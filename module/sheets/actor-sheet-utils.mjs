@@ -238,7 +238,10 @@ async function prepareFeatures(context) {
 			feature: item.system.data?.constructor,
 			items: {},
 		});
-		featureType.items[item.id] = { item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) };
+		featureType.items[item.id] = {
+			item,
+			additionalData: await featureType.feature?.getAdditionalData(item.system.data),
+		};
 	}
 
 	context.optionalFeatures = {};
@@ -247,7 +250,10 @@ async function prepareFeatures(context) {
 			optional: item.system.data?.constructor,
 			items: {},
 		});
-		optionalType.items[item.id] = { item, additionalData: await optionalType.optional?.getAdditionalData(item.system.data) };
+		optionalType.items[item.id] = {
+			item,
+			additionalData: await optionalType.optional?.getAdditionalData(item.system.data),
+		};
 
 		// Feature Clocks
 		const relevantTypes = ['optionalFeature'];
@@ -781,8 +787,8 @@ async function _onItemDelete(element, sheet) {
 	const item = sheet.actor.items.get(itemId);
 
 	if (
-		await Dialog.confirm({
-			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+		await foundry.applications.api.DialogV2.confirm({
+			window: { title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }) },
 			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
 			rejectClose: false,
 		})
@@ -1060,13 +1066,19 @@ async function _onItemCreateDialog(ev, sheet) {
 			break;
 	}
 
-	const buttons = types.map((item) => ({
-		label: item.label ?? (item.subtype ? item.subtype.split('.')[1] : item.type),
-		callback: () => _createItem(item.type, clock, item.subtype, sheet),
-	}));
+	const buttons = types.map((item) => {
+		let label = item.label ?? (item.subtype ? item.subtype.split('.')[1] : item.type);
+		return {
+			action: label,
+			label: label,
+			callback: () => _createItem(item.type, clock, item.subtype, sheet),
+		};
+	});
 
-	new Dialog({
-		title: 'Select Item Type',
+	console.log(buttons);
+
+	await new foundry.applications.api.DialogV2({
+		window: { title: 'Select Item Type' },
 		content: `<p>Select the type of item you want to create:</p>`,
 		buttons: buttons,
 	}).render(true);
