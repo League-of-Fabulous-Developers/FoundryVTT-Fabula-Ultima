@@ -1,9 +1,9 @@
-import { FUBaseItemDataModel } from './item-data-model.mjs';
+import { FUItemDataModel } from './item-data-model.mjs';
 
 /**
  * @description Embeds a feature inside a data property
  */
-export class EmbeddedFeatureDataModel extends FUBaseItemDataModel {
+export class EmbeddedFeatureDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { StringField, SchemaField, BooleanField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {

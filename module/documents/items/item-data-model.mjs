@@ -1,7 +1,9 @@
 /**
  * @description Base data model for items in the system
+ * @property {String} fuid
+ * @property {String} source
  */
-export class FUBaseItemDataModel extends foundry.abstract.TypeDataModel {
+export class FUItemDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { StringField } = foundry.data.fields;
 		return {
@@ -21,15 +23,26 @@ export class FUBaseItemDataModel extends foundry.abstract.TypeDataModel {
 /**
  * @description Standard data model for most items in the system
  */
-export class FUItemDataModel extends FUBaseItemDataModel {
+export class FUStandardItemDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
-			subtype: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
 			summary: new SchemaField({ value: new StringField() }),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		});
+	}
+}
+
+/**
+ * @description Data model for items that contain a subtype
+ */
+export class FUSubTypedItemDataModel extends FUStandardItemDataModel {
+	static defineSchema() {
+		const { SchemaField, StringField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
+			subtype: new SchemaField({ value: new StringField() }),
 		});
 	}
 }

@@ -3,7 +3,7 @@ import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { ArmorMigrations } from './armor-migrations.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -48,7 +48,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {number} init.value
  * @property {string} source.value
  */
-export class ArmorDataModel extends FUItemDataModel {
+export class ArmorDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'attributes.primary.value', 'def.attribute');
 		deprecationNotice(this, 'attributes.secondary.value', 'mdef.attribute');

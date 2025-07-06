@@ -8,7 +8,7 @@ import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
@@ -102,7 +102,7 @@ const POTENCIES = {
  * @property {string} source.value
  * @property {boolean} hasRoll.value
  */
-export class RitualDataModel extends FUItemDataModel {
+export class RitualDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'class.value');
 		deprecationNotice(this, 'useWeapon.accuracy.value');

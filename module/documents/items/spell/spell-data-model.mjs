@@ -13,7 +13,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
@@ -88,7 +88,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class SpellDataModel extends FUItemDataModel {
+export class SpellDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {

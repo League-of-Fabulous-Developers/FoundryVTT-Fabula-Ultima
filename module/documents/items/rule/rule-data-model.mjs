@@ -1,7 +1,7 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -26,7 +26,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {ProgressDataModel} progress
  * @property {string} source
  */
-export class RuleDataModel extends FUItemDataModel {
+export class RuleDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
 		const { SchemaField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {

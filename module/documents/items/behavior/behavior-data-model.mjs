@@ -1,6 +1,6 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -19,7 +19,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {number} weight.value
  * @property {string} source.value
  */
-export class BehaviorDataModel extends FUItemDataModel {
+export class BehaviorDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
 		const { SchemaField, BooleanField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {

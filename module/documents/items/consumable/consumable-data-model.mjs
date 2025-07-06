@@ -3,7 +3,7 @@ import { FU } from '../../../helpers/config.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
@@ -27,7 +27,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
  * @property {number} ipCost.value
  * @property {string} source.value
  */
-export class ConsumableDataModel extends FUItemDataModel {
+export class ConsumableDataModel extends FUSubTypedItemDataModel {
 	static defineSchema() {
 		const { SchemaField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {

@@ -1,7 +1,7 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -42,7 +42,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {number} init.value
  * @property {string} source.value
  */
-export class AccessoryDataModel extends FUItemDataModel {
+export class AccessoryDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'isMartial.value');
 		deprecationNotice(this, 'isBehaviour.value');

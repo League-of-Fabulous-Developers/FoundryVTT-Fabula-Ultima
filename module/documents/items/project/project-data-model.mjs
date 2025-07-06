@@ -4,7 +4,7 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -63,7 +63,7 @@ const usesCosts = { consumable: 1, permanent: 5 };
  * @property {number} clock.value
  * @property {string} clock.value
  */
-export class ProjectDataModel extends FUItemDataModel {
+export class ProjectDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'clock.value');
 		deprecationNotice(this, 'hasClock.value');

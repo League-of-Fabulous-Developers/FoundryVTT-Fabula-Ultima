@@ -5,7 +5,7 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
@@ -77,7 +77,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
-export class BasicItemDataModel extends FUItemDataModel {
+export class BasicItemDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {

@@ -2,7 +2,7 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { SETTINGS } from '../../../settings.js';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -43,7 +43,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} origin.value
  * @property {string} source.value
  */
-export class TreasureDataModel extends FUItemDataModel {
+export class TreasureDataModel extends FUSubTypedItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
