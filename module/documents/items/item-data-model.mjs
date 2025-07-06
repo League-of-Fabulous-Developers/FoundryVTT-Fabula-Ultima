@@ -18,6 +18,13 @@ export class FUItemDataModel extends foundry.abstract.TypeDataModel {
 	get attributePartials() {
 		return [];
 	}
+
+	static migrateData(source) {
+		if (source.source.value) {
+			source.source = source.source.value;
+		}
+		return source;
+	}
 }
 
 /**

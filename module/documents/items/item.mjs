@@ -35,15 +35,6 @@ export class FUItem extends Item {
 	}
 
 	/**
-	 * @override
-	 */
-	static migrateData(source) {
-		// TODO: Verify
-		this._addDataFieldMigration(source, `system.source.value`, 'system.source');
-		return super.migrateData(source);
-	}
-
-	/**
 	 * Prepare a data object which is passed to any Roll formulas that are created related to this Item.
 	 * @private
 	 * @returns {object|null} The roll data object, or null if no actors is associated with this item.
