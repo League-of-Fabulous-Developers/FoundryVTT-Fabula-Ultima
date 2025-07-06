@@ -58,14 +58,8 @@ export class ArmorDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
@@ -78,8 +72,7 @@ export class ArmorDataModel extends FUItemDataModel {
 				value: new NumberField({ initial: 0, integer: true, nullable: false }),
 			}),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
 	}
 
 	static migrateData(source) {

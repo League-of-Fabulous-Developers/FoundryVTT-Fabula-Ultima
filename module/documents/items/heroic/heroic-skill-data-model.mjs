@@ -70,22 +70,13 @@ export class HeroicSkillDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField({ initial: 'skill', choices: Object.keys(FU.heroicType) }) }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			class: new SchemaField({ value: new StringField() }),
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			requirement: new SchemaField({ value: new StringField() }),
-			source: new SchemaField({
-				value: new StringField(),
-			}),
-		};
+		});
 	}
 
 	get attributePartials() {

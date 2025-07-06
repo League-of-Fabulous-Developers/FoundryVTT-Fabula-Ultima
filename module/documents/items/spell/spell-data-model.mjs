@@ -90,14 +90,8 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  */
 export class SpellDataModel extends FUItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			class: new SchemaField({ value: new StringField() }),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
@@ -109,7 +103,6 @@ export class SpellDataModel extends FUItemDataModel {
 			duration: new SchemaField({ value: new StringField() }),
 			isOffensive: new SchemaField({ value: new BooleanField() }),
 			opportunity: new StringField(),
-			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
 					hrZero: new SchemaField({ value: new BooleanField() }),
@@ -122,7 +115,7 @@ export class SpellDataModel extends FUItemDataModel {
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 			traits: new SetField(new StringField()),
-		};
+		});
 	}
 
 	static migrateData(source) {

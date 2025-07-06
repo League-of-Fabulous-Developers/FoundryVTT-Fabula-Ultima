@@ -45,19 +45,12 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  */
 export class TreasureDataModel extends FUItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField({ initial: 'treasure', choices: Object.keys(FU.treasureType) }) }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quantity: new SchemaField({ value: new NumberField({ initial: 1, min: 0, integer: true, nullable: false }) }),
 			origin: new SchemaField({ value: new StringField() }),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
 	}
 
 	get attributePartials() {

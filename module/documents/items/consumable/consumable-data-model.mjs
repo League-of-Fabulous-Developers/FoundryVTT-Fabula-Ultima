@@ -29,17 +29,10 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
  */
 export class ConsumableDataModel extends FUItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField({ initial: 'potion', choices: Object.keys(FU.consumableType) }) }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			ipCost: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
 	}
 
 	get attributePartials() {

@@ -55,14 +55,8 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  */
 export class ClassDataModel extends FUItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, BooleanField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({
 				value: new NumberField({ initial: 1, min: 1, max: 10, nullable: false }),
 				max: new NumberField({ initial: 10, min: 1, nullable: false }),
@@ -89,8 +83,7 @@ export class ClassDataModel extends FUItemDataModel {
 					spiritism: new SchemaField({ value: new BooleanField() }),
 				}),
 			}),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
 	}
 
 	/**
