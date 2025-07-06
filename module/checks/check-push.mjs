@@ -7,14 +7,14 @@ import { CheckConfiguration } from './check-configuration.mjs';
 
 const { DiceTerm, OperatorTerm, NumericTerm } = foundry.dice.terms;
 
-function addRollContextMenuEntries(html, options) {
+function addRollContextMenuEntries(application, menuItems) {
 	// Character push
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextPush',
 		icon: '<i class="fas fa-arrow-up-right-dots"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
@@ -22,7 +22,7 @@ function addRollContextMenuEntries(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
@@ -65,15 +65,17 @@ const getPushParams = async (actor) => {
 	});
 
 	/** @type CheckPush */
-	const push = await Dialog.prompt({
-		title: game.i18n.localize('FU.DialogPushTitle'),
+	const push = await foundry.applications.api.DialogV2.prompt({
+		window: { title: game.i18n.localize('FU.DialogPushTitle') },
 		label: game.i18n.localize('FU.DialogPushLabel'),
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
 		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 		/** @type {(jQuery) => (CheckPush | false)} */
-		callback: (html) => {
-			const index = +html.find('input[name=bond]:checked').val();
-			return bonds[index] || false;
+		ok: {
+			callback: (event, html, dialog) => {
+				const index = Number(dialog.element.querySelector('input[name=bond]:checked').value);
+				return bonds[index] || false;
+			},
 		},
 		rejectClose: false,
 	});
@@ -135,7 +137,7 @@ const handlePush = async (check, actor, item) => {
 };
 
 function initialize() {
-	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
+	Hooks.on('getChatMessageContextOptions', addRollContextMenuEntries);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 }
 

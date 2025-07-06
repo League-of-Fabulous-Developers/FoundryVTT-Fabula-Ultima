@@ -478,7 +478,7 @@ function reapplyClickListeners() {
 		html.querySelector('.some-class')?.addEventListener('click', function (event) {
 			const itemId = event.target.dataset.itemId;
 			if (event.target.dataset.itemId) {
-				const messageId = $(event.target).parents('[data-message-id]').data('messageId');
+				const messageId = event.target.closest('[data-message-id]')?.dataset?.messageId;
 				const message = game.messages.get(messageId);
 				if (message) {
 					const actor = ChatMessage.getSpeakerActor(message.speaker);
@@ -585,9 +585,9 @@ const isCheck = (message, type = allExceptDisplay) => {
 async function promptConfiguration(actor, check, title) {
 	title = title || 'FU.DialogCheckTitle';
 	const attributes = actor.system.attributes;
-	return await Dialog.wait(
+	return await foundry.applications.api.DialogV2.wait(
 		{
-			title: game.i18n.localize(title),
+			window: { title: game.i18n.localize(title) },
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
 				attributes: FU.attributes,
 				attributeAbbr: FU.attributeAbbreviations,
@@ -607,12 +607,13 @@ async function promptConfiguration(actor, check, title) {
 				{
 					icon: '<i class="fas fa-dice"></i>',
 					label: game.i18n.localize('FU.DialogCheckRoll'),
-					callback: (jQuery) => {
+					callback: (event, button, dialog) => {
+						const element = dialog.element;
 						return {
-							primary: jQuery.find('*[name=primary]:checked').val(),
-							secondary: jQuery.find('*[name=secondary]:checked').val(),
-							modifier: +jQuery.find('*[name=modifier]').val(),
-							difficulty: +jQuery.find('*[name=difficulty]').val(),
+							primary: element.querySelector('input[name=primary]:checked').value,
+							secondary: element.querySelector('input[name=secondary]:checked').value,
+							modifier: Number(element.querySelector('input[name=modifier]').value),
+							difficulty: Number(element.querySelector('input[name=difficulty]').value),
 						};
 					},
 				},

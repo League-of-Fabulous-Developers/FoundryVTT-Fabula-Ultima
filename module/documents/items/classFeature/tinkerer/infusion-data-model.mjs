@@ -12,16 +12,15 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 const infusionKey = 'infusion';
 
 /**
- * @param {ChatLog} app
- * @param {ContextMenuEntry[]} options
+ * @param {ChatLog} application
+ * @param {ContextMenuEntry[]} menuItems
  */
-const onGetChatLogEntryContext = (app, options) => {
-	console.log(app, options);
-	options.push({
+function onGetChatLogEntryContext(application, menuItems) {
+	menuItems.push({
 		name: 'FU.ClassFeatureInfusionsApply',
 		icon: '<i class="fa-solid fa-flask-vial"></i>',
-		condition: (jQuery) => {
-			const messageId = jQuery.data('messageId');
+		condition: (li) => {
+			const messageId = li.dataset.messageId;
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
 			const checkInspector = CheckConfiguration.inspect(message);
@@ -29,8 +28,8 @@ const onGetChatLogEntryContext = (app, options) => {
 				return actor.itemTypes.classFeature.some((value) => value.system instanceof ClassFeatureTypeDataModel && value.system.data instanceof InfusionsDataModel && actor.system.resources.ip.value >= value.system.data.ipCost);
 			}
 		},
-		callback: async (jQuery) => {
-			const messageId = jQuery.data('messageId');
+		callback: async (li) => {
+			const messageId = li.dataset.messageId;
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
 			const inspector = CheckConfiguration.inspect(message);
@@ -59,8 +58,9 @@ const onGetChatLogEntryContext = (app, options) => {
 			}
 		},
 	});
-};
-Hooks.on('getChatLogEntryContext', onGetChatLogEntryContext);
+}
+
+Hooks.on('getChatMessageContextOptions', onGetChatLogEntryContext);
 
 /**
  * @type RenderCheckHook

@@ -93,7 +93,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	/**
 	 * @param turns
 	 * @param {FUCombat} combat
-	 * @return {Object.<"friendly"|"neutral"|"hostile", {}[]>}
+	 * @return {Object.<'friendly'|'neutral'|'hostile', {}[]>}
 	 */
 	async getFactions(turns, combat) {
 		// TODO: This information is also required by the combat hud, but populated in an entirely different way!
@@ -163,8 +163,8 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		if (!combatant) return;
 
 		if (combatant.isDefeated) {
-			const takeTurn = await Dialog.confirm({
-				title: game.i18n.localize('FU.DialogDefeatedTurnTitle'),
+			const takeTurn = await foundry.applications.api.DialogV2.confirm({
+				window: { title: game.i18n.localize('FU.DialogDefeatedTurnTitle') },
 				content: game.i18n.localize('FU.DialogDefeatedTurnContent'),
 			});
 			if (!takeTurn) return;

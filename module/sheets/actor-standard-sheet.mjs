@@ -667,10 +667,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 	_onSkillLevelUpdate(input) {
 		const segment = input.value;
 
-		const li = $(input).closest('.item');
+		const li = input.closest('[data-item-id]');
 
-		if (li.length) {
-			const itemId = li.find('input').data('item-id');
+		if (li) {
+			const itemId = li.dataset.itemId;
 			const item = this.actor.items.get(itemId);
 
 			if (item) {
@@ -688,10 +688,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @param {HTMLElement} input - The context menu event.
 	 */
 	_onSkillLevelReset(input) {
-		const li = $(input).closest('.item');
+		const li = input.closest('[data-item-id]');
 
-		if (li.length) {
-			const itemId = li.find('input').data('item-id');
+		if (li) {
+			const itemId = li.dataset.itemId;
 			const item = this.actor.items.get(itemId);
 
 			if (item) {
@@ -717,11 +717,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @private
 	 */
 	_onProgressReset(input, dataType, dataPath) {
-		const li = $(input).closest('.item');
+		const li = input.closest('[data-item-id]');
 
-		if (li.length) {
+		if (li) {
 			// If the clock is from an item
-			const itemId = li.data('itemId');
+			const itemId = li.dataset.itemId;
 			const item = this.actor.items.get(itemId);
 
 			if (dataPath) {
@@ -1010,11 +1010,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (!segment) {
 			throw Error('Segment element not properly retrieved from input event');
 		}
-		const li = $(input).closest('.item');
+		const li = input.closest('[data-item-id]');
 
-		if (li.length) {
+		if (li) {
 			// If the clock is from an item
-			const itemId = li.data('itemId');
+			const itemId = li.dataset.itemId;
 			const item = this.actor.items.get(itemId);
 
 			if (dataPath) {

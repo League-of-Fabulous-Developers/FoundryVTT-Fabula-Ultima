@@ -154,7 +154,6 @@ export class SpellDataModel extends FUItemDataModel {
 
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
-				// TODO: Replace with ChooseWeaponDialog once this has been refactored like `SkillDataModel`
 				const weapon = await ChooseWeaponDialog.prompt(actor, true);
 				if (weapon) {
 					check.primary = weapon.system.attributes.primary.value;

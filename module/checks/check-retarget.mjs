@@ -4,13 +4,13 @@ import { ChecksV2 } from './checks-v2.mjs';
 import { getTargeted } from '../helpers/target-handler.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 
-function addRetargetEntry(html, options) {
-	options.unshift({
+function addRetargetEntry(application, menuItems) {
+	menuItems.unshift({
 		name: 'FU.ChatContextRetarget',
 		icon: '<i class="fas fa-bullseye"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const isCheck = ChecksV2.isCheck(message);
@@ -21,7 +21,7 @@ function addRetargetEntry(html, options) {
 			return false;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			await retarget(messageId);
 		},
 	});
@@ -52,7 +52,7 @@ async function retarget(messageId) {
 }
 
 function initialize() {
-	Hooks.on('getChatLogEntryContext', addRetargetEntry);
+	Hooks.on('getChatMessageContextOptions', addRetargetEntry);
 }
 
 export const CheckRetarget = Object.freeze({

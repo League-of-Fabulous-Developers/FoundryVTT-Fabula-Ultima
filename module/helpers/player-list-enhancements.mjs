@@ -98,8 +98,8 @@ async function spendMetaCurrency(actor, force = false) {
 	if (metaCurrency && actor.system.resources.fp.value > 0) {
 		const confirmed =
 			force ||
-			(await Dialog.confirm({
-				title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
+			(await foundry.applications.api.DialogV2.confirm({
+				window: { title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }) },
 				content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
 				options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 				rejectClose: false,

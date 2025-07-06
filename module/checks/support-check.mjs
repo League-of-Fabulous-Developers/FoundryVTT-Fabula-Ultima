@@ -42,17 +42,19 @@ async function handleSupportCheck(groupCheck) {
 
 	let bond;
 	try {
-		bond = await Dialog.prompt({
-			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
+		bond = await foundry.applications.api.DialogV2.prompt({
+			window: { title: game.i18n.localize('FU.GroupCheckBondDialogTitle') },
 			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
 				bonds,
 			}),
-			callback: (jQuery) => {
-				const selected = jQuery.find('[name=bond]:checked').val();
-				return bonds[selected]?.feelings ?? [];
+			ok: {
+				callback: (event, button, dialog) => {
+					const selected = dialog.element.querySelector('[name=bond]:checked').value;
+					return bonds[selected]?.feelings ?? [];
+				},
 			},
 		});
 	} catch (e) {
@@ -87,7 +89,7 @@ function attachSupportCheckListener(chatLog, html) {
 	html.querySelector('.some-class')?.addEventListener('click', async function (event) {
 		const groupCheckId = event.target.dataset.support;
 		if (groupCheckId) {
-			const messageId = $(event.target).parents('[data-message-id]').data('messageId');
+			const messageId = event.target.closest('[data-message-id]')?.dataset?.messageId;
 			const message = game.messages.get(messageId);
 			if (message) {
 				const groupCheck = message.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);

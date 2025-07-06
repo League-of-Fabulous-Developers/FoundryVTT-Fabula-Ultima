@@ -172,8 +172,8 @@ export class FUItem extends Item {
 			</div>
 			`;
 
-		const confirmation = await Dialog.confirm({
-			title: game.i18n.localize('FU.FUID.Regenerate'),
+		const confirmation = await foundry.applications.api.DialogV2.confirm({
+			window: { title: game.i18n.localize('FU.FUID.Regenerate') },
 			content: html,
 			defaultYes: false,
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },

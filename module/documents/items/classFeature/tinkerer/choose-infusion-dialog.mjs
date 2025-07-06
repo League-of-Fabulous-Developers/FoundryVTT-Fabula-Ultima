@@ -31,16 +31,18 @@ async function prompt(infusions) {
 	const content = await foundry.applications.handlebars.renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-infusion.hbs', data);
 
 	const selectedInfusion = await new Promise((resolve) => {
-		const dialog = new Dialog({
-			title: 'FU.ClassFeatureInfusionsDialogTitle',
+		const dialog = new foundry.applications.api.DialogV2({
+			window: { title: 'FU.ClassFeatureInfusionsDialogTitle' },
 			label: 'FU.Submit',
 			rejectClose: false,
 			content: content,
-			render: (jQuery) => {
-				jQuery.find('[data-action=select][data-index]').on('click', function () {
-					const category = this.dataset.category;
-					resolve(data.infusions[category][Number(this.dataset.index)] ?? null);
-					dialog.close();
+			render: (event, dialog) => {
+				dialog.element.querySelectorAll('[data-action=select][data-index]').forEach((element) => {
+					element.addEventListener('click', () => {
+						const category = element.dataset.category;
+						resolve(data.infusions[category][Number(element.dataset.index)] ?? null);
+						dialog.close();
+					});
 				});
 			},
 			close: () => resolve(null),

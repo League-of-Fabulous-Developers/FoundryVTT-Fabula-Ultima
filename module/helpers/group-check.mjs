@@ -70,17 +70,19 @@ async function handleSupportCheck(groupCheck) {
 
 	let bond;
 	try {
-		bond = await Dialog.prompt({
-			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
+		bond = await foundry.applications.api.DialogV2.prompt({
+			window: { title: game.i18n.localize('FU.GroupCheckBondDialogTitle') },
 			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
 				bonds,
 			}),
-			callback: (jQuery) => {
-				const selected = jQuery.find('[name=bond]:checked').val();
-				return bonds[selected]?.feelings ?? [];
+			ok: {
+				callback: (event, button, dialog) => {
+					const selected = dialog.element.querySelector('[name=bond]:checked').value;
+					return bonds[selected]?.feelings ?? [];
+				},
 			},
 		});
 	} catch (e) {
@@ -213,8 +215,8 @@ export class GroupCheck extends Application {
 		 */
 		let groupCheck;
 		if (!initiative) {
-			groupCheck = await Dialog.prompt({
-				title: game.i18n.localize('FU.DialogGroupCheckTitle'),
+			groupCheck = await foundry.applications.api.DialogV2.prompt({
+				window: { title: game.i18n.localize('FU.DialogGroupCheckTitle') },
 				label: game.i18n.localize('FU.DialogGroupCheckLabel'),
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
@@ -225,20 +227,25 @@ export class GroupCheck extends Application {
 					},
 				}),
 				/** @type {(jQuery) => GroupCheckFlag}*/
-				callback: (jQuery) => ({
-					id: groupCheckId,
-					leader: leader.id,
-					initiatingUser: game.user.id,
-					attributes: {
-						attr1: jQuery.find('[name=attributes\\.attr1]:checked').val(),
-						attr2: jQuery.find('[name=attributes\\.attr2]:checked').val(),
+				ok: {
+					callback: (event, button, dialog) => {
+						const element = dialog.element;
+						return {
+							id: groupCheckId,
+							leader: leader.id,
+							initiatingUser: game.user.id,
+							attributes: {
+								attr1: element.querySelector('[name=attributes\\.attr1]:checked').value,
+								attr2: element.querySelector('[name=attributes\\.attr2]:checked').value,
+							},
+							difficulty: {
+								check: element.querySelector('[name=difficulty\\.check]').value,
+								support: element.querySelector('[name=difficulty\\.support]').value,
+							},
+							supporters: [],
+						};
 					},
-					difficulty: {
-						check: jQuery.find('[name=difficulty\\.check]').val(),
-						support: jQuery.find('[name=difficulty\\.support]').val(),
-					},
-					supporters: [],
-				}),
+				},
 				rejectClose: false,
 			});
 		} else {
@@ -386,8 +393,8 @@ export class GroupCheck extends Application {
 
 	async close(options = {}) {
 		if (!options.roll) {
-			const cancel = await Dialog.confirm({
-				title: game.i18n.localize('FU.GroupCheckCancelDialogTitle'),
+			const cancel = await foundry.applications.api.DialogV2.confirm({
+				window: { title: game.i18n.localize('FU.GroupCheckCancelDialogTitle') },
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
 				rejectClose: false,

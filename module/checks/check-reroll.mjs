@@ -15,14 +15,14 @@ const { Die, DiceTerm, NumericTerm } = foundry.dice.terms;
  * @property {boolean} ignoreFp
  */
 
-function addRerollEntry(html, options) {
+function addRerollEntry(application, menuItems) {
 	// Character push
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextRerollFabula',
 		icon: '<i class="fas fa-dice"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
@@ -30,7 +30,7 @@ function addRerollEntry(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
@@ -43,12 +43,12 @@ function addRerollEntry(html, options) {
 	});
 
 	// Villain reroll
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextRerollUltima',
 		icon: '<i class="fas fa-dice"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
@@ -56,7 +56,7 @@ function addRerollEntry(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
@@ -119,8 +119,8 @@ const getRerollParams = async (check, actor) => {
 	};
 
 	/** @type RerollParams */
-	const reroll = await Dialog.prompt({
-		title: game.i18n.localize('FU.DialogRerollTitle'),
+	const reroll = await foundry.applications.api.DialogV2.prompt({
+		window: { title: game.i18n.localize('FU.DialogRerollTitle') },
 		label: game.i18n.localize('FU.DialogRerollLabel'),
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-reroll.hbs', {
 			traits,
@@ -129,24 +129,25 @@ const getRerollParams = async (check, actor) => {
 		}),
 		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 		/** @type {(jQuery) => RerollParams} */
-		callback: (html) => {
-			const trait = html.find('input[name=trait]:checked');
+		ok: {
+			callback: (event, button, dialog) => {
+				const trait = dialog.element.querySelector('input[name=trait]:checked');
 
-			let selection = html
-				.find('input[name=results]:checked')
-				.map((_, el) => el.value)
-				.get();
+				const selection = dialog.element
+					.querySelectorAll('input[name=results]:checked')
+					.values()
+					.map((el) => el.value)
+					.toArray();
 
-			selection = Array.isArray(selection) ? selection : [selection];
+				const ignoreFp = dialog.element.querySelector('input[name="ignore-fp"]').checked;
 
-			const ignoreFp = html.find('input[name="results"][value="ignore-fp"]').is(':checked');
-
-			return {
-				trait: trait.val(),
-				value: trait.data('value'),
-				selection: selection,
-				ignoreFp: ignoreFp,
-			};
+				return {
+					trait: trait.value,
+					value: trait.dataset.value,
+					selection: selection,
+					ignoreFp: ignoreFp,
+				};
+			},
 		},
 		rejectClose: false,
 	});
@@ -215,7 +216,7 @@ const handleReroll = async (result, actor, item) => {
 };
 
 function initialize() {
-	Hooks.on('getChatLogEntryContext', addRerollEntry);
+	Hooks.on('getChatMessageContextOptions', addRerollEntry);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 }
 

@@ -77,7 +77,7 @@ async function process(request, getUpdatesForActor) {
  * @returns {FUActor[]}
  */
 function getSingleTarget(event) {
-	const dataId = $(event.target).closest('a').data('id');
+	const dataId = event.target.closest('a')?.dataset?.id;
 	const actor = fromUuidSync(dataId);
 	if (!actor) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });

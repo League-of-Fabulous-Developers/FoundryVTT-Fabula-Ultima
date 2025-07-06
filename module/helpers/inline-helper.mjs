@@ -141,7 +141,7 @@ function determineSource(document, element) {
 	if (document instanceof FUActor) {
 		actorUuid = document.uuid;
 		console.debug(`Determining source document as Actor ${actorUuid}`);
-		const itemId = $(element).closest('[data-item-id]').data('itemId');
+		const itemId = element.closest('[data-item-id]')?.dataset?.itemId;
 		if (itemId) {
 			let item = document.items.get(itemId);
 			itemUuid = item.uuid;
@@ -149,7 +149,7 @@ function determineSource(document, element) {
 		} else {
 			name = document.name;
 		}
-		const effectId = $(element).closest('[data-effect-id]').data('effectId');
+		const effectId = element.closest('[data-effect-id]')?.dataset?.effectId;
 		if (effectId) {
 			const effect = document.effects.get(effectId);
 			if (effect) {

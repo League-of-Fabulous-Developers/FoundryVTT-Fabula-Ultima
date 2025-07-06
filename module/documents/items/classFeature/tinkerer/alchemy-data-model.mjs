@@ -11,7 +11,7 @@ const alchemyFlavors = {
 
 /**
  * @extends RollableClassFeatureDataModel
- * @property {"basic","advanced","superior"} rank
+ * @property {'basic','advanced','superior'} rank
  * @property {string} description
  * @property {string} basic
  * @property {string} advanced
@@ -135,8 +135,8 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			if (model.rank === 'superior') {
 				ranks.push('superior');
 			}
-			rank = await Dialog.prompt({
-				title: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankTitle'),
+			rank = await foundry.applications.api.DialogV2.prompt({
+				window: { title: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankTitle') },
 				label: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankLabel'),
 				content: `
 				<div class="desc">
@@ -146,7 +146,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				`,
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 				rejectClose: false,
-				callback: (html) => html.find('select[name=rank]').val(),
+				ok: { callback: (event, html, dialog) => dialog.element.querySelector('select[name=rank]').value },
 			});
 			dice = model.config.ranks[rank]?.dice;
 		}

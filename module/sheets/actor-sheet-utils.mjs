@@ -744,8 +744,8 @@ function _saveExpandedState(sheet) {
 	sheet.actor.update({ 'system._expanded': Array.from(sheet._expanded) });
 }
 
-async function onSendItemToPartyStash(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function onSendItemToPartyStash(element, sheet) {
+	const item = sheet.actor.items.get(element.dataset.itemId);
 	const party = await FUPartySheet.getActiveModel();
 	if (party) {
 		return InventoryPipeline.requestTrade(sheet.actor.uuid, item.uuid, false, party.parent.uuid);

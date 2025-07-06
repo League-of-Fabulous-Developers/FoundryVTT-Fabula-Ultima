@@ -267,7 +267,7 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 	});
 
-	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
+	Hooks.on('getChatMessageContextOptions', addRollContextMenuEntries);
 	DamagePipeline.initialize();
 	ResourcePipeline.initialize();
 	Effects.initialize();

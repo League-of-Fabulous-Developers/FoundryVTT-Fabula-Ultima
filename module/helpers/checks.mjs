@@ -377,17 +377,17 @@ export async function retargetCheck(params) {
 }
 
 /**
- * @param {jQuery} html
- * @param {ContextMenuEntry[]} options
+ * @param {ApplicationV2} application
+ * @param {ContextMenuEntry[]} menuItems
  */
-export function addRollContextMenuEntries(html, options) {
+export function addRollContextMenuEntries(application, menuItems) {
 	// Retarget Tokens
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextRetarget',
 		icon: '<i class="fas fa-bullseye"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
@@ -395,7 +395,7 @@ export function addRollContextMenuEntries(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.result?.fumble;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
@@ -415,12 +415,12 @@ export function addRollContextMenuEntries(html, options) {
 	});
 
 	// Character reroll
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextRerollFabula',
 		icon: '<i class="fas fa-dice"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
@@ -428,7 +428,7 @@ export function addRollContextMenuEntries(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.result?.fumble;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
@@ -447,12 +447,12 @@ export function addRollContextMenuEntries(html, options) {
 	});
 
 	// Character push
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextPush',
 		icon: '<i class="fas fa-arrow-up-right-dots"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
@@ -460,7 +460,7 @@ export function addRollContextMenuEntries(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.push && !flag.result?.fumble;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
@@ -479,12 +479,12 @@ export function addRollContextMenuEntries(html, options) {
 	});
 
 	// Villain reroll
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextRerollUltima',
 		icon: '<i class="fas fa-dice"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
@@ -492,7 +492,7 @@ export function addRollContextMenuEntries(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.result?.fumble;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
@@ -583,15 +583,17 @@ async function getPushParams(actor) {
 	});
 
 	/** @type CheckPush */
-	const push = await Dialog.prompt({
-		title: game.i18n.localize('FU.DialogPushTitle'),
+	const push = await foundry.applications.api.DialogV2.prompt({
+		window: { title: game.i18n.localize('FU.DialogPushTitle') },
 		label: game.i18n.localize('FU.DialogPushLabel'),
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
 		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckPush} */
-		callback: (html) => {
-			const index = +html.find('input[name=bond]:checked').val();
-			return bonds[index];
+		ok: {
+			callback: (event, button, dialog) => {
+				const index = Number(dialog.element.querySelector('input[name=bond]:checked').value);
+				return bonds[index];
+			},
 		},
 	});
 
@@ -642,8 +644,8 @@ async function getRerollParams(params, actor) {
 	};
 
 	/** @type CheckReroll */
-	const reroll = await Dialog.prompt({
-		title: game.i18n.localize('FU.DialogRerollTitle'),
+	const reroll = await foundry.applications.api.DialogV2.prompt({
+		window: { title: game.i18n.localize('FU.DialogRerollTitle') },
 		label: game.i18n.localize('FU.DialogRerollLabel'),
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-reroll.hbs', {
 			traits,
@@ -652,19 +654,22 @@ async function getRerollParams(params, actor) {
 		}),
 		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckReroll} */
-		callback: (html) => {
-			const trait = html.find('input[name=trait]:checked');
+		ok: {
+			callback: (event, button, dialog) => {
+				const trait = dialog.element.querySelector('input[name=trait]:checked');
 
-			const selection = html
-				.find('input[name=results]:checked')
-				.map((_, el) => el.value)
-				.get();
+				const selection = dialog.element
+					.querySelectorAll('input[name=results]:checked')
+					.values()
+					.map((el) => el.value)
+					.toArray();
 
-			return {
-				trait: trait.val(),
-				value: trait.data('value'),
-				selection: selection,
-			};
+				return {
+					trait: trait.value,
+					value: trait.dataset.value,
+					selection: selection,
+				};
+			},
 		},
 	});
 
@@ -808,7 +813,15 @@ export async function promptCheck(actor, title, action) {
 			}
 		});
 
-		return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, null, CheckConfiguration.initDifficulty(check.difficulty));
+		return ChecksV2.attributeCheck(
+			actor,
+			{
+				primary: check.attr1,
+				secondary: check.attr2,
+			},
+			null,
+			CheckConfiguration.initDifficulty(check.difficulty),
+		);
 	} catch (e) {
 		console.log(e);
 		return { rollResult: 0, message: null };
@@ -835,9 +848,9 @@ export async function promptOpenCheck(actor, title, action) {
 			recentActorChecks.attr2 = 'ins';
 		}
 
-		const { attr1, attr2, modifier } = await Dialog.wait(
+		const { attr1, attr2, modifier } = await foundry.applications.api.DialogV2.wait(
 			{
-				title: game.i18n.localize(titleMain),
+				window: { title: game.i18n.localize(titleMain) },
 				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-opencheck.hbs', {
 					attributes: FU.attributes,
 					attributeAbbr: FU.attributeAbbreviations,
@@ -857,11 +870,12 @@ export async function promptOpenCheck(actor, title, action) {
 					{
 						icon: '<i class="fas fa-dice"></i>',
 						label: game.i18n.localize('FU.DialogCheckRoll'),
-						callback: (jQuery) => {
+						callback: (event, button, dialog) => {
+							const element = dialog.element;
 							return {
-								attr1: jQuery.find('*[name=attr1]:checked').val(),
-								attr2: jQuery.find('*[name=attr2]:checked').val(),
-								modifier: +jQuery.find('*[name=modifier]').val(),
+								attr1: element.querySelector('input[name=attr1]:checked').value,
+								attr2: element.querySelector('input[name=attr2]:checked').value,
+								modifier: Number(element.querySelector('input[name=modifier]').value),
 							};
 						},
 					},

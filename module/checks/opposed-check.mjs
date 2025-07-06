@@ -9,7 +9,7 @@ import { CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 const SOURCE_CHECK = 'SourceCheck';
 
 const isOpposableCheck = (li) => {
-	const messageId = li.data('messageId');
+	const messageId = li.dataset.messageId;
 	/** @type ChatMessage | undefined */
 	const message = game.messages.get(messageId);
 	if (ChecksV2.isCheck(message, 'attribute')) {
@@ -23,7 +23,7 @@ const isOpposableCheck = (li) => {
 };
 
 const opposeCheck = async (li) => {
-	const messageId = li.data('messageId');
+	const messageId = li.dataset.messageId;
 	/** @type ChatMessage | undefined */
 	const message = game.messages.get(messageId);
 	/** @type CheckResultV2 */
@@ -41,8 +41,8 @@ const opposeCheck = async (li) => {
 				critical: sourceCheck.critical,
 			};
 			SpecialResults.skipRender(check);
-			const result = await Dialog.prompt({
-				title: game.i18n.localize('FU.OpposedCheckBonusDialog'),
+			const result = await foundry.applications.api.DialogV2.prompt({
+				window: { title: game.i18n.localize('FU.OpposedCheckBonusDialog') },
 				label: game.i18n.localize('FU.Submit'),
 				content: `
                 <fieldset class="flexcol resource-content">
@@ -64,11 +64,14 @@ const opposeCheck = async (li) => {
                 </fieldset>
                 `,
 				rejectClose: false,
-				callback: (jQuery) => {
-					return {
-						bonus: Number(jQuery.find('[name=bonus]').val()),
-						name: jQuery.find('[name=description]').val().trim(),
-					};
+				ok: {
+					callback: (event, button, dialog) => {
+						const element = dialog.element;
+						return {
+							bonus: Number(element.querySelector('[name=bonus]').value),
+							name: element.querySelector('[name=description]').value.trim(),
+						};
+					},
 				},
 				options: {
 					classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
@@ -84,8 +87,8 @@ const opposeCheck = async (li) => {
 	}
 };
 
-const onGetChatLogEntryContext = (html, options) => {
-	options.push({
+const onGetChatLogEntryContext = (application, menuItems) => {
+	menuItems.push({
 		name: 'FU.ChatContextOppose',
 		icon: '<i class="fas fa-down-left-and-up-right-to-center"></i>',
 		group: SYSTEM,
@@ -195,7 +198,7 @@ const onRenderCheck = (sections, check, actor) => {
 };
 
 function initialize() {
-	Hooks.on('getChatLogEntryContext', onGetChatLogEntryContext);
+	Hooks.on('getChatMessageContextOptions', onGetChatLogEntryContext);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 }
