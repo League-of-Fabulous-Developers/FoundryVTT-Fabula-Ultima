@@ -81,6 +81,7 @@ import { FUStashSheet } from './sheets/actor-stash-sheet.mjs';
 import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
 import { registerKeyBindings } from './keybindings.mjs';
 import { FUHandlebars } from './helpers/handlebars.mjs';
+import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -244,7 +245,7 @@ Hooks.once('init', async () => {
 		label: 'Standard Stash Sheet',
 	});
 
-	const itemTypesWithSpecialSheets = ['classFeature', 'optionalFeature'];
+	const itemTypesWithSpecialSheets = ['effect', 'classFeature', 'optionalFeature'];
 	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
 	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
 		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
@@ -260,6 +261,11 @@ Hooks.once('init', async () => {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
+	});
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUEffectItemSheet, {
+		types: ['effect'],
+		makeDefault: true,
+		label: 'Effect Item Sheet',
 	});
 	const { DocumentSheetConfig } = foundry.applications.apps;
 	DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);

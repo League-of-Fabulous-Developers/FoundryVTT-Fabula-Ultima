@@ -61,12 +61,6 @@ export class FUStandardItemSheet extends FUItemSheet {
 	 */
 	_configureRenderParts(options) {
 		const parts = super._configureRenderParts(options);
-		switch (this.item.type) {
-			case 'effect':
-				delete parts.attributes;
-				delete parts.description;
-				break;
-		}
 		//parts.main.template = systemPath(`item-${this.item.type}-sheet.hbs`);
 		return parts;
 	}
@@ -90,12 +84,6 @@ export class FUStandardItemSheet extends FUItemSheet {
 		const tabs = super._prepareTabs(group);
 
 		switch (this.item.type) {
-			case 'effect':
-				delete tabs.attributes;
-				delete tabs.description;
-				this.tabGroups.primary = 'effects';
-				break;
-
 			default:
 				break;
 		}
