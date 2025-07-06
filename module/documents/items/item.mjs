@@ -40,7 +40,7 @@ export class FUItem extends Item {
 	 * @returns {object|null} The roll data object, or null if no actors is associated with this item.
 	 */
 	getRollData() {
-		// If present, return the actors's roll data.
+		// If present, return the actor's roll data.
 		if (!this.actor) return null;
 		const rollData = this.actor.getRollData();
 

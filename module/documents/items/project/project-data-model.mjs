@@ -4,7 +4,7 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -63,7 +63,7 @@ const usesCosts = { consumable: 1, permanent: 5 };
  * @property {number} clock.value
  * @property {string} clock.value
  */
-export class ProjectDataModel extends FUItemDataModel {
+export class ProjectDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'clock.value');
 		deprecationNotice(this, 'hasClock.value');
@@ -71,14 +71,8 @@ export class ProjectDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: Object.keys(FU.potency) }) }),
 			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: Object.keys(FU.area) }) }),
@@ -87,8 +81,7 @@ export class ProjectDataModel extends FUItemDataModel {
 			numTinker: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			numHelper: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			lvlVision: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 5, integer: true, nullable: false }) }),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
 	}
 
 	prepareBaseData() {

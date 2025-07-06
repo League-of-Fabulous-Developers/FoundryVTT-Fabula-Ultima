@@ -1,7 +1,7 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -42,7 +42,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {number} init.value
  * @property {string} source.value
  */
-export class AccessoryDataModel extends FUItemDataModel {
+export class AccessoryDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'isMartial.value');
 		deprecationNotice(this, 'isBehaviour.value');
@@ -51,21 +51,14 @@ export class AccessoryDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quality: new SchemaField({ value: new StringField() }),
 			def: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
 	}
 
 	transferEffects() {

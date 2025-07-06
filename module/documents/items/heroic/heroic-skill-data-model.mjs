@@ -3,7 +3,7 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -46,7 +46,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} requirement.value
  * @property {string} source.value
  */
-export class HeroicSkillDataModel extends FUItemDataModel {
+export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
 	static {
 		deprecationNotice(this, 'level.min');
 		deprecationNotice(this, 'level.value');
@@ -70,22 +70,13 @@ export class HeroicSkillDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField({ initial: 'skill', choices: Object.keys(FU.heroicType) }) }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			class: new SchemaField({ value: new StringField() }),
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			requirement: new SchemaField({ value: new StringField() }),
-			source: new SchemaField({
-				value: new StringField(),
-			}),
-		};
+		});
 	}
 
 	get attributePartials() {

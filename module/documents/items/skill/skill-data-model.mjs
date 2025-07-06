@@ -15,7 +15,7 @@ import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
@@ -140,7 +140,7 @@ function getTags(skill) {
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class SkillDataModel extends FUItemDataModel {
+export class SkillDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
 		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
@@ -158,14 +158,8 @@ export class SkillDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({
 				value: new NumberField({ initial: 1, min: 0, integer: true, nullable: false }),
 				max: new NumberField({ initial: 10, min: 1, integer: true, nullable: false }),
@@ -184,12 +178,11 @@ export class SkillDataModel extends FUItemDataModel {
 			damage: new EmbeddedDataField(DamageDataModelV2, {}),
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
-			source: new SchemaField({ value: new StringField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 			traits: new SetField(new StringField()),
-		};
+		});
 	}
 
 	static migrateData(source) {

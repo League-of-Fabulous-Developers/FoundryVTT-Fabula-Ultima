@@ -8,7 +8,7 @@ import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
@@ -102,7 +102,7 @@ const POTENCIES = {
  * @property {string} source.value
  * @property {boolean} hasRoll.value
  */
-export class RitualDataModel extends FUItemDataModel {
+export class RitualDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'class.value');
 		deprecationNotice(this, 'useWeapon.accuracy.value');
@@ -126,23 +126,16 @@ export class RitualDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			attributes: new EmbeddedDataField(ItemAttributesDataModelV2, { initial: { primary: 'ins', secondary: 'wlp' } }),
 			modifier: new NumberField({ initial: 0, integer: true, nullable: false }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: Object.keys(FU.potency) }) }),
 			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: Object.keys(FU.area) }) }),
-			source: new SchemaField({ value: new StringField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
-		};
+		});
 	}
 
 	static migrateData(source) {

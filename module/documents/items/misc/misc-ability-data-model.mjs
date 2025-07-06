@@ -13,7 +13,7 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
-import { FUItemDataModel } from '../item-data-model.mjs';
+import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
@@ -101,7 +101,7 @@ const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class MiscAbilityDataModel extends FUItemDataModel {
+export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 	static {
 		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
 		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
@@ -119,14 +119,8 @@ export class MiscAbilityDataModel extends FUItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			opportunity: new StringField(),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModelV2, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModelV2, {
@@ -144,12 +138,11 @@ export class MiscAbilityDataModel extends FUItemDataModel {
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
-			source: new SchemaField({ value: new StringField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 			traits: new SetField(new StringField()),
-		};
+		});
 	}
 
 	static migrateData(source) {
