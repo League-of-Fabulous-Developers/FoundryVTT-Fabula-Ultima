@@ -1,15 +1,15 @@
+import { FUBaseItemDataModel } from './item-data-model.mjs';
+
 /**
  * @description Embeds a feature inside a data property
  */
-export class EmbeddedFeatureDataModel extends foundry.abstract.TypeDataModel {
+export class EmbeddedFeatureDataModel extends FUBaseItemDataModel {
 	static defineSchema() {
 		const { StringField, SchemaField, BooleanField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
+		return Object.assign(super.defineSchema(), {
 			summary: new SchemaField({ value: new StringField() }),
-			source: new StringField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
-		};
+		});
 	}
 
 	prepareDerivedData() {

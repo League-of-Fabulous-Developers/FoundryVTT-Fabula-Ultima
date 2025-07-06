@@ -6,6 +6,7 @@ export class FUBaseItemDataModel extends foundry.abstract.TypeDataModel {
 		const { StringField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
+			source: new StringField(),
 		};
 	}
 
@@ -27,7 +28,6 @@ export class FUItemDataModel extends FUBaseItemDataModel {
 			subtype: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
 			summary: new SchemaField({ value: new StringField() }),
-			source: new SchemaField({ value: new StringField() }),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 		});
