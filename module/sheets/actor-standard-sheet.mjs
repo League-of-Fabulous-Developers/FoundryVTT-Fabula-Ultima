@@ -629,6 +629,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
+
 	// Method to change the sort type
 	changeSortType() {
 		if (this.sortMethod === 'name') {
@@ -704,7 +705,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	/**
 	 * Resets the progress clock.
 	 * @param {HTMLInputElement} input - The input change event.
-	 * @param {"feature"} [dataType] is the item a feature
+	 * @param {'feature'} [dataType] is the item a feature
 	 * @param {string} [dataPath] path to clock data
 	 * @private
 	 */
@@ -993,7 +994,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	/**
 	 * Updates the progress clock value based on the clicked segment.
 	 * @param {HTMLElement} input - The input element
-	 * @param {"feature"} [dataType] Is the item a feature
+	 * @param {'feature'} [dataType] Is the item a feature
 	 * @param {string} [dataPath] path to clock data
 	 * @private
 	 */
@@ -1042,22 +1043,27 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @this FUStandardActorSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
+	 * @returns {void}
 	 */
 	static levelUp(event, target) {
-		const exp = this.actor.system.resources.exp.value;
+		const {
+			level: { value: level },
+			resources: {
+				exp: { value: exp },
+			},
+		} = this.actor.system;
+
 		if (exp < 10) {
 			return;
 		}
 
-		const { level } = this.actor.system;
 		const $icon = $(target).css('position', 'relative');
-		$icon.animate({ top: '-100%', opacity: 0 }, 500, function () {
+		$icon.animate({ top: '-100%', opacity: 0 }, 500, () => {
+			$icon.remove();
 			this.actor.update({
 				'system.resources.exp.value': exp - 10,
-				'system.level.value': level.value + 1,
+				'system.level.value': level + 1,
 			});
-			$icon.remove();
 		});
 	}
 
@@ -1204,6 +1210,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	// TODO: Re-use with the ones from item sheet?
 	/* -------------------------------------------- */
+
 	// ACTIVE EFFECTS
 	static CreateEffect(event, target) {
 		onManageActiveEffect(event, this.actor, 'create');
@@ -1228,5 +1235,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	static RollEffect(event, target) {
 		onManageActiveEffect(event, this.actor, 'roll');
 	}
+
 	/* -------------------------------------------- */
 }
