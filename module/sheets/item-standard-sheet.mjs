@@ -53,6 +53,24 @@ export class FUStandardItemSheet extends FUItemSheet {
 		return context;
 	}
 
+	/**
+	 * @description Allow subclasses to dynamically configure render parts.
+	 * @param {HandlebarsRenderOptions} options
+	 * @returns {Record<string, HandlebarsTemplatePart>}
+	 * @protected
+	 */
+	_configureRenderParts(options) {
+		const parts = super._configureRenderParts(options);
+		switch (this.item.type) {
+			case 'effect':
+				delete parts.attributes;
+				delete parts.description;
+				break;
+		}
+		//parts.main.template = systemPath(`item-${this.item.type}-sheet.hbs`);
+		return parts;
+	}
+
 	/** @override
 	 * @type Record<ApplicationTab>
 	 * */
@@ -100,18 +118,6 @@ export class FUStandardItemSheet extends FUItemSheet {
 			}
 		}
 		return attributePartials;
-	}
-
-	/**
-	 * @description Allow subclasses to dynamically configure render parts.
-	 * @param {HandlebarsRenderOptions} options
-	 * @returns {Record<string, HandlebarsTemplatePart>}
-	 * @protected
-	 */
-	_configureRenderParts(options) {
-		const parts = super._configureRenderParts(options);
-		//parts.main.template = systemPath(`item-${this.item.type}-sheet.hbs`);
-		return parts;
 	}
 
 	/* -------------------------------------------- */
