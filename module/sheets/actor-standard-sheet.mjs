@@ -59,8 +59,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 			levelUp: FUStandardActorSheet.levelUp,
 
 			// Buttons
-			incrementItem: FUStandardActorSheet.incrementItem,
-			decrementItem: FUStandardActorSheet.decrementItem,
+			modifyClassLevel: FUStandardActorSheet.modifyClassLevel,
+			modifyResource: { handler: FUStandardActorSheet.modifyResource, buttons: [0, 2] },
 			equipItem: { handler: FUStandardActorSheet.equipItem, buttons: [0, 2] },
 
 			// Features
@@ -133,6 +133,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 	constructor(options) {
 		super(options);
 		this.#equipmentHandler = new EquipmentHandler(this.actor);
+	}
+
+	/**
+	 * @override
+	 */
+	_onClickAction(event, target) {
+		console.warn('Unhandled action:', target.dataset.action, event, target);
 	}
 
 	/**
@@ -1132,65 +1139,39 @@ export class FUStandardActorSheet extends FUActorSheet {
 		this.#equipmentHandler.handleItemClick(event, target);
 	}
 
-	/**
-	 * @this FUStandardActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
-	static async incrementItem(event, target) {
-		return FUStandardActorSheet.adjustItem(event, target, 1, this);
-	}
-
-	/**
-	 * @this FUStandardActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
-	static async decrementItem(event, target) {
-		return FUStandardActorSheet.adjustItem(event, target, -1, this);
-	}
-
-	static async adjustItem(event, target, increment, sheet) {
-		const itemId = target.dataset.itemId;
-		const item = sheet.actor.items.get(itemId);
-		const type = target.dataset.type;
-		const rightClick = event.button === 2;
-
-		if (item) {
-			switch (type) {
-				case 'levelCounter':
-					await sheet._updateLevel(item, increment);
-					break;
-
-				case 'resourceCounter':
-					await ProgressDataModel.updateForDocument(item, 'system.rp', increment, rightClick);
-					break;
-
-				case 'clockCounter':
-					{
-						const dataPath = target.dataset.dataPath;
-						await ProgressDataModel.updateForDocument(item, dataPath, increment, rightClick);
-					}
-					break;
-				case 'optionalRPCounter':
-					await ProgressDataModel.updateForDocument(item, `system.data.rp`, increment, rightClick);
-					break;
-				case 'featureCounter':
-					await ProgressDataModel.updateForDocument(item, `system.data.progress`, increment, rightClick);
-					break;
-				case 'projectCounter':
-					await ProgressDataModel.updateForDocument(item, `system.progress`, increment, false);
-					break;
-
-				default:
-					console.error('Invalid item data type:', type);
-					break;
-			}
+	static modifyResource(event, target) {
+		let document;
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		if (itemId) {
+			document = this.actor.items.get(itemId);
 		} else {
-			console.error(`Item with ID ${itemId} not found.`);
+			const effectId = target.closest('[data-effect-id]')?.dataset?.effectId;
+			document = this.actor.effects.get(effectId);
 		}
+		const dataPath = target.closest('[data-data-path]')?.dataset?.dataPath;
+		const resourceChange = target.closest('[data-resource-action]')?.dataset?.resourceAction === 'decrement' ? -1 : 1;
+		const amount = (Number(target.closest('[data-amount]')?.dataset?.amount) || 1) * resourceChange;
+
+		const step = event.button !== 0;
+
+		ProgressDataModel.updateForDocument(document, dataPath, amount, step);
+	}
+
+	static modifyClassLevel(event, target) {
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		const classItem = this.actor.items.get(itemId);
+		const change = target.closest('[data-level-action]')?.dataset?.levelAction === 'decrement' ? -1 : 1;
+
+		if (!classItem || classItem.type !== 'class') {
+			return;
+		}
+
+		const { value, min, max } = classItem.system.level;
+		const newValue = value + change;
+
+		classItem.update({
+			'system.level.value': Math.clamp(newValue, min, max),
+		});
 	}
 
 	/**

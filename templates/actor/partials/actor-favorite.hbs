@@ -58,21 +58,25 @@
 								<label class="item-quality resource-text-sm"
 									   style="flex-grow: 2;">{{item.system.data.rp.name }}</label>
 								<div class="resource-text-t buttons-inc">
-									<a class="decrement-button" data-type="optionalRPCounter"
-									   data-action="decrementItem"
-									   data-item-id="{{ item._id }}"
-									   data-tooltip="{{localize
-										'FU.DecreaseTooltip'}} ({{item.system.data.rp.step}})">-</a>
+									<a class="decrement-button"
+									   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.rp.step}})"
+									   data-action="modifyResource"
+									   data-data-path="system.data.rp"
+									   data-resource-action="decrement">
+										-
+									</a>
 									<span data-resource="item.rp">{{ item.system.data.rp.current }}</span>
 									{{#if (gt item.system.data.rp.max 0)}}
 										<span>/</span>
 										<span>{{ item.system.data.rp.max }}</span>
 									{{/if}}
-									<a class="increment-button" data-type="optionalRPCounter"
-									   data-item-id="{{ item._id }}"
-									   data-action="incrementItem"
-									   data-tooltip="{{localize
-										'FU.IncreaseTooltip'}} ({{item.system.data.rp.step}})">+</a>
+									<a class="increment-button"
+									   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.rp.step}})"
+									   data-action="modifyResource"
+									   data-data-path="system.data.rp"
+									   data-resource-action="increment">
+										+
+									</a>
 								</div>
 							</div>
 						{{/if}}
@@ -84,19 +88,25 @@
 								<label class="item-quality resource-text-sm"
 									   style="flex-grow: 2;">{{item.system.rp.name }}</label>
 								<div class="resource-text-t buttons-inc">
-									<a class="decrement-button" data-type="resourceCounter"
-									   data-item-id="{{ item._id }}"
-									   data-action="decrementItem"
-									   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.rp.step}})">-</a>
+									<a class="decrement-button"
+									   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.rp.step}})"
+									   data-action="modifyResource"
+									   data-data-path="system.rp"
+									   data-resource-action="decrement">
+										-
+									</a>
 									<span data-resource="item.rp">{{ item.system.rp.current }}</span>
 									{{#if (gt item.system.rp.max 0)}}
 										<span>/</span>
 										<span>{{ item.system.rp.max }}</span>
 									{{/if}}
-									<a class="increment-button" data-type="resourceCounter"
-									   data-item-id="{{ item._id }}"
-									   data-action="incrementItem"
-									   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.rp.step}})">+</a>
+									<a class="increment-button"
+									   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.rp.step}})"
+									   data-action="modifyResource"
+									   data-data-path="system.rp"
+									   data-resource-action="increment">
+										+
+									</a>
 								</div>
 							</div>
 						{{/if}}
@@ -116,17 +126,23 @@
 							<div class="item-m inline-desc flexcol flex-group-center resource-content"
 								 style="padding: 0; border-radius: 6px 12px 12px 6px;">
 								<div class="resource-text-t buttons-inc">
-									<a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}"
-									   data-action="decrementItem"
-									   data-tooltip="{{localize
-										'FU.DecreaseTooltip'}} ({{item.progressPerDay}})">-</a>
+									<a class="decrement-button"
+									   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progressPerDay.value}})"
+									   data-action="modifyResource"
+									   data-data-path="system.progress"
+									   data-resource-action="decrement">
+										-
+									</a>
 									<span data-resource="item.rp">{{ item.system.progress.current }}</span>
 									<span>/</span>
 									<span>{{ item.progressMax }}</span>
-									<a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}"
-									   data-action="incrementItem"
-									   data-tooltip="{{localize
-										'FU.IncreaseTooltip'}} ({{item.progressPerDay}})">+</a>
+									<a class="increment-button"
+									   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progressPerDay.value}})"
+									   data-action="modifyResource"
+									   data-data-path="system.progress"
+									   data-resource-action="increment">
+										+
+									</a>
 								</div>
 							</div>
 						{{/if}}

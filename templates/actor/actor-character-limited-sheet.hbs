@@ -125,11 +125,11 @@
 								{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 								{{!-- Class Level --}}
 								<div class="item-m inline-desc buttons-inc" style="padding:0">
-									<a class="decrement-button" data-type="levelCounter" data-item-id="{{ item._id }}">-</a>
+									<a class="decrement-button" data-action="modifyClassLevel" data-level-action="decrement">-</a>
 									<span data-resource="item.level">{{ item.level }}</span>
 									<span>/</span>
 									<span>{{ item.system.level.max }}</span>
-									<a class="increment-button" data-type="levelCounter" data-item-id="{{ item._id }}" data-action="incrementButton">+</a>
+									<a class="increment-button" data-action="modifyClassLevel" data-level-action="increment">+</a>
 								</div>
 							</div>
 							<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">

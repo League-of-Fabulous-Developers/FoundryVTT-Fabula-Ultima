@@ -6,53 +6,74 @@
 			{{#if isOwner}}<i class="fas fa-plus icon"></i>{{/if}}{{localize 'FU.Clocks'}}
 		</a>
 	</legend>
-	{{#each items as |item id|}}
+	{{#each items as |item|}}
 		{{#if (and item.system.isFavored.value item.system.hasClock.value)}}
+			{{#if (not @first)}}
+				<hr>
+			{{/if}}
+
 			<div class="item clock-m" data-item-id="{{ item._id }}" style="grid-column-gap: 2px;">
 				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
 				 arr=item.system.progress.progressArray
 				 data=item.system.progress
 				 dataPath='system.progress'
 				}}
-				<a class="increment-button" data-type="clockCounter" data-item-id="{{ item._id }}"
+				<a class="increment-button"
 				   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})"
-				   data-action="updateClock" data-data-path="system.progress" data-update-amount="1">
-					<i class="fas fa-plus"></i></a>
-				<a class="decrement-button" data-type="clockCounter" data-item-id="{{ item._id }}"
-				   data-action="updateClock" data-data-path="system.progress" data-update-amount="-1"
-
-				   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
-				 class="fas fa-minus"></i></a>
+				   data-action="modifyResource"
+				   data-data-path="system.progress"
+				   data-resource-action="increment">
+					<i class="fas fa-plus"></i>
+				</a>
+				<a class="decrement-button"
+				   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"
+				   data-action="modifyResource"
+				   data-data-path="system.progress"
+				   data-resource-action="decrement">
+					<i class="fas fa-minus"></i>
+				</a>
 				<h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
-					<span class="resource-label-m">{{ item.system.progress.name }}</span>
+					{{#if item.system.data.progress.name }}
+						<span class="resource-label-m">{{ item.system.progress.name }}</span>
+					{{else}}
+						<span class="resource-label-m">{{ item.name }}</span>
+					{{/if}}
 				</h4>
 			</div>
-			<hr>
 		{{/if}}
-	{{/each}}
 
-	{{!-- Optional Feature Sections --}}
-	{{#each optionalFeatures}}
-		{{#each items }}
-			{{#if (and item.system.isFavored.value item.system.data.hasClock.value)}}
-				<div class="item clock-m" data-item-id="{{ item._id }}" style="grid-column-gap: 2px;">
-					{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-					 arr=item.progressArr
-					 data=item.system.data.progress
-					 dataPath="system.data.progress"}}
-					<a class="increment-button" data-type="featureCounter" data-item-id="{{ item._id }}"
-					   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})"
-					   data-action="incrementButton">
-						<i class="fas fa-plus"></i></a>
-					<a class="decrement-button" data-type="featureCounter" data-item-id="{{ item._id }}"
-					   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
-					 class="fas fa-minus"></i></a>
-					<h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
-						<span class="resource-label-m">{{ item.system.data.progress.name }}</span>
-					</h4>
-				</div>
+		{{#if (and item.system.isFavored.value item.system.data.hasClock.value)}}
+			{{#if (not @first)}}
 				<hr>
 			{{/if}}
-		{{/each}}
+
+			<div class="item clock-m" data-item-id="{{ item._id }}" style="grid-column-gap: 2px;">
+				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
+				 arr=item.system.data.progress.progressArray
+				 data=item.system.data.progress
+				 dataPath="system.data.progress"}}
+				<a class="increment-button"
+				   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})"
+				   data-action="modifyResource"
+				   data-data-path="system.data.progress"
+				   data-resource-action="increment">
+					<i class="fas fa-plus"></i>
+				</a>
+				<a class="decrement-button"
+				   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"
+				   data-action="modifyResource"
+				   data-data-path="system.data.progress"
+				   data-resource-action="decrement">
+					<i class="fas fa-minus"></i>
+				</a>
+				<h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
+					{{#if item.system.data.progress.name }}
+						<span class="resource-label-m">{{ item.system.data.progress.name }}</span>
+					{{else}}
+						<span class="resource-label-m">{{ item.name }}</span>
+					{{/if}}
+				</h4>
+			</div>
+		{{/if}}
 	{{/each}}
 </fieldset>

@@ -73,13 +73,23 @@
                                     </a>
 									{{#if effect.system.rules.progress.enabled }}
 										<div class="effect-control buttons-inc">
-											<a class="decrement-button" style="color:unset" data-action="decrementProgress">-</a>
+											<a class="decrement-button" style="color:unset"
+											   data-action="modifyResource"
+											   data-data-path="system.rules.progress"
+											   data-resource-action="decrement">
+												-
+											</a>
 											<span data-resource="progress">{{ effect.system.rules.progress.current }}</span>
 											{{#if (gt effect.system.rules.progress.max 0)}}
 												<span>/</span>
 												<span>{{ effect.system.rules.progress.max }}</span>
 											{{/if}}
-											<a class="increment-button" style="color:unset" data-action="incrementProgress" data-action="incrementButton">+</a>
+											<a class="increment-button" style="color:unset"
+											   data-action="modifyResource"
+											   data-data-path="system.rules.progress"
+											   data-resource-action="increment">
+												+
+											</a>
 										</div>
 									{{/if}}
                                 </div>
