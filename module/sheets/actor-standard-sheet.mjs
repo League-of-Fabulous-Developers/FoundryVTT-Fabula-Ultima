@@ -258,7 +258,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 						}
 					}
 				}
-				ActorSheetUtils.prepareNpcCompanionData(context);
+				if (this.isNPC) {
+					ActorSheetUtils.prepareNpcCompanionData(context);
+				}
 				break;
 
 			case 'stats':
@@ -337,7 +339,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 						relativeTo: context.actor,
 					}),
 				};
-				ActorSheetUtils.prepareNpcCompanionData(context);
+				if (this.isNPC) {
+					ActorSheetUtils.prepareNpcCompanionData(context);
+				}
 				break;
 		}
 
