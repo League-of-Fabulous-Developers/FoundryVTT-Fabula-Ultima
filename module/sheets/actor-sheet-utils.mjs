@@ -1205,6 +1205,31 @@ function prepareCharacterData(context) {
 	}
 }
 
+function prepareNpcCompanionData(context) {
+	if (context.actor.system.rank.value === 'companion' || context.actor.system.rank.value === 'custom') {
+		// Populate the dropdown with owned actors
+		context.ownedActors = game.actors.filter((a) => a.type === 'character' && a.testUserPermission(game.user, 'OWNER'));
+
+		// Check if a refActor is selected
+		const refActor = context.system.references.actor;
+		context.refActorLevel = refActor ? refActor.system.level.value : 0;
+
+		if (refActor) {
+			// Filter skills associated with the refActor
+			context.availableSkills = refActor.items.filter((item) => item.type === 'skill');
+
+			// Retrieve the selected referenceSkill by UUID
+			context.refSkill = context.system.references.skill ? context.availableSkills.find((skill) => skill.uuid === context.system.references.skill) : null;
+			context.refSkillLevel = context.refSkill ? context.refSkill.system.level.value || 0 : 0;
+		} else {
+			// No referencePlayer selected, clear skills and selected skill
+			context.availableSkills = [];
+			context.refSkill = null;
+			context.refSkillLevel = 0;
+		}
+	}
+}
+
 function sortByOrder(a, b) {
 	return this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0);
 }
@@ -1261,6 +1286,7 @@ export const ActorSheetUtils = Object.freeze({
 	handleInventoryItemDrop,
 	activateExpandedItemListener,
 	prepareSorting,
+	prepareNpcCompanionData,
 	// Used by modules
 	getWeaponDisplayData,
 	getSkillDisplayData,

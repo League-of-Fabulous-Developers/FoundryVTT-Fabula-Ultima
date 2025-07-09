@@ -258,6 +258,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						}
 					}
 				}
+				ActorSheetUtils.prepareNpcCompanionData(context);
 				break;
 
 			case 'stats':
@@ -328,32 +329,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'settings':
-				// Prepare NPC Companion Data
-				if (this.isNPC) {
-					if (this.actor.system.rank.value === 'companion' || this.actor.system.rank.value === 'custom') {
-						// Populate the dropdown with owned actors
-						context.ownedActors = game.actors.filter((a) => a.type === 'character' && a.testUserPermission(game.user, 'OWNER'));
-
-						// Check if a refActor is selected
-						const refActor = context.system.references.actor;
-						context.refActorLevel = refActor ? refActor.system.level.value : 0;
-
-						if (refActor) {
-							// Filter skills associated with the refActor
-							context.availableSkills = refActor.items.filter((item) => item.type === 'skill');
-
-							// Retrieve the selected referenceSkill by UUID
-							context.refSkill = context.system.references.skill ? context.availableSkills.find((skill) => skill.uuid === context.system.references.skill) : null;
-							context.refSkillLevel = context.refSkill ? context.refSkill.system.level.value || 0 : 0;
-						} else {
-							// No referencePlayer selected, clear skills and selected skill
-							context.availableSkills = [];
-							context.refSkill = null;
-							context.refSkillLevel = 0;
-						}
-					}
-				}
-
 				// Enriches description fields within the context object
 				context.enrichedHtml = {
 					description: await TextEditor.enrichHTML(context.system.description ?? '', {
@@ -362,7 +337,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						relativeTo: context.actor,
 					}),
 				};
-
+				ActorSheetUtils.prepareNpcCompanionData(context);
 				break;
 		}
 
