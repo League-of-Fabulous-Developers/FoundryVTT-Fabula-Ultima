@@ -756,7 +756,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		// Handle item rolls.
 		if (dataset.rollType) {
 			if (dataset.rollType === 'item') {
-				const itemId = target.closest('.item').dataset.itemId;
+				const itemId = target.closest('[data-item-id]').dataset.itemId;
 				const item = this.actor.items.get(itemId);
 				if (item) {
 					if (modifiers.ctrl) {
