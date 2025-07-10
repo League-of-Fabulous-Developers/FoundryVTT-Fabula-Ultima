@@ -720,10 +720,12 @@ function activateExpandedItemListener(html, expanded, onExpand) {
 			desc.style.height = '0';
 			setTimeout(() => {
 				desc.style.display = 'none';
+				desc.classList.add('hidden'); // Add hidden class after transition
 				expanded.delete(itemId);
 			}, 200); // After transition completes, hide it
 		} else {
 			// Slide down effect
+			desc.classList.remove('hidden'); // Remove hidden class immediately
 			desc.style.display = 'block';
 			const initialHeight = desc.scrollHeight + 'px'; // Get the natural height
 			desc.style.height = '0';
