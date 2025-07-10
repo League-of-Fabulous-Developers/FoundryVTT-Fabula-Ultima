@@ -1,4 +1,4 @@
-import { ChecksV2 } from './checks-v2.mjs';
+import { Checks } from './checks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
@@ -53,7 +53,7 @@ const onReadyResumeGroupChecks = () => {
 		const actor = ChatMessage.getSpeakerActor(chatMessage.speaker);
 		/** @type GroupCheckV2Flag */
 		const flag = chatMessage.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
-		ChecksV2.groupCheck(actor, (check) => {
+		Checks.groupCheck(actor, (check) => {
 			check.type = flag.initiative ? 'initiative' : 'group';
 			check.id = flag.id;
 			check.primary = flag.primary;
@@ -215,7 +215,7 @@ class GroupCheckApp extends Application {
 	constructor(groupCheck, actor) {
 		super();
 		this.#groupCheckId = groupCheck.id;
-		this.#hookId = Hooks.on('renderChatMessage', this.handleSupportCheck.bind(this));
+		this.#hookId = Hooks.on('renderChatMessageHTML', this.handleSupportCheck.bind(this));
 
 		this.#chatMessage = game.messages
 			.search({
@@ -343,7 +343,7 @@ class GroupCheckApp extends Application {
 				return;
 			}
 		}
-		Hooks.off('renderChatMessage', this.#hookId);
+		Hooks.off('renderChatMessageHTML', this.#hookId);
 		const flag = this.groupCheckData;
 		if (options.roll) {
 			this.groupCheckData.status = 'completed';
@@ -466,8 +466,19 @@ const initInitiativeCheck = (check, actor, item) => {
 	}
 };
 
+/**
+ * @param {CheckV2} check
+ * @param {number} supportDifficulty
+ */
+function setSupportCheckDifficulty(check, supportDifficulty) {
+	check.additionalData[groupCheckKey] ??= {
+		supportDifficulty,
+	};
+}
+
 export const GroupCheck = Object.freeze({
 	initialize,
 	initInitiativeCheck,
 	initGroupCheck,
+	setSupportCheckDifficulty,
 });

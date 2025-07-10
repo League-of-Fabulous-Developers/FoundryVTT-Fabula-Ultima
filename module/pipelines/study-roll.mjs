@@ -84,45 +84,35 @@ export class StudyRollHandler {
 		const contentRows = this._generateContentRows(difficultyThresholds, localizedStrings);
 
 		// Create the dialog
-		const dialog = new Dialog(
-			{
-				title: localizedStrings.studyRoll,
-				content: this._buildDialogContent(tokenInfo, contentRows, localizedStrings),
-				buttons: {
-					ok: {
-						label: localizedStrings.submit,
-						callback: async (html) => this._handleDialogSubmit(html, this.rollResult),
-					},
-					cancel: { label: localizedStrings.cancel },
-				},
-				default: 'ok',
-				render: async (html) => {
-					// Attach retarget button listener after dialog is rendered
-					html.find('#retarget').on('click', async () => {
-						console.log('Retarget button clicked'); // Debugging log
-						const newTargets = await getTargeted();
-						console.log('New Targets:', newTargets); // Debugging log
+		await foundry.applications.api.DialogV2.confirm({
+			window: { title: localizedStrings.studyRoll },
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+			content: this._buildDialogContent(tokenInfo, contentRows, localizedStrings),
+			render: async (event, dialog) => {
+				// Attach retarget button listener after dialog is rendered
+				dialog.element.querySelector('#retarget').addEventListener('click', async () => {
+					console.log('Retarget button clicked'); // Debugging log
+					const newTargets = await getTargeted();
+					console.log('New Targets:', newTargets); // Debugging log
 
-						// Update the instance's targets
-						this.targets = newTargets;
+					// Update the instance's targets
+					this.targets = newTargets;
 
-						// Generate new token information and update the dialog content
-						const newTokenInfo = this._generateTokenInfo(newTargets);
-						const newContentRows = this._generateContentRows(difficultyThresholds, localizedStrings);
+					// Generate new token information and update the dialog content
+					const newTokenInfo = this._generateTokenInfo(newTargets);
+					const newContentRows = this._generateContentRows(difficultyThresholds, localizedStrings);
 
-						// Re-render the dialog content
-						html.find('.targets-container').html(newTokenInfo);
-						html.find('.content-rows').html(newContentRows);
-					});
-				},
+					// Re-render the dialog content
+					dialog.element.querySelector('.targets-container').innerHTML = newTokenInfo;
+					dialog.element.querySelector('.content-rows').innerHTML = newContentRows.join('\n');
+				});
 			},
-			{
-				classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+			yes: {
+				label: localizedStrings.submit,
+				callback: async (event, button, dialog) => this._handleDialogSubmit(dialog),
 			},
-		);
-
-		// Render the dialog
-		await dialog.render(true);
+			no: { label: localizedStrings.cancel },
+		});
 	}
 
 	/**
@@ -190,8 +180,8 @@ export class StudyRollHandler {
 	/**
 	 * Handle dialog submit
 	 */
-	async _handleDialogSubmit(html) {
-		const studyValue = parseInt(html.find('#study-input').val(), 10);
+	async _handleDialogSubmit(dialog) {
+		const studyValue = parseInt(dialog.element.querySelector('#study-input').value, 10);
 		if (!isNaN(studyValue)) {
 			this.#studyValueOverride = studyValue;
 			await this.handleStudyTarget();

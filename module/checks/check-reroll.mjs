@@ -1,6 +1,6 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { ChecksV2 } from './checks-v2.mjs';
+import { Checks } from './checks.mjs';
 import { CHECK_REROLL } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
@@ -36,7 +36,7 @@ function addRerollEntry(application, menuItems) {
 			if (message) {
 				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 				if (check) {
-					await ChecksV2.modifyCheck(check.id, handleReroll);
+					await Checks.modifyCheck(check.id, handleReroll);
 				}
 			}
 		},
@@ -62,7 +62,7 @@ function addRerollEntry(application, menuItems) {
 			if (message) {
 				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 				if (check) {
-					await ChecksV2.modifyCheck(check.id, handleReroll);
+					await Checks.modifyCheck(check.id, handleReroll);
 				}
 			}
 		},

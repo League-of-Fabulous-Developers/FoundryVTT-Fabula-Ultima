@@ -32,6 +32,23 @@ const description = (sections, description, summary, order, open = true) => {
 };
 
 /**
+ * @param {CheckRenderData} sections
+ * @param {string} text
+ * @param {string} summary
+ * @param {number} [order]
+ * @param {Boolean} open Defaults to true
+ */
+const genericText = (sections, text, order) => {
+	sections.push(async () => ({
+		partial: 'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
+		data: {
+			text: await TextEditor.enrichHTML(text),
+		},
+		order,
+	}));
+};
+
+/**
  * A description section with customizable title and without summary.
  * @param {CheckRenderData} sections
  * @param {string} title
@@ -166,6 +183,22 @@ const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
 			img: item.img,
 			id: item.id,
 			uuid: item.uuid,
+		},
+	});
+};
+
+/**
+ * Sets chat message flavor by default. Specify order for other usecases.
+ * @param {CheckRenderData} sections
+ * @param {string} flavor
+ * @param {number} [order]
+ */
+const genericFlavor = (sections, flavor, order = CHECK_FLAVOR) => {
+	sections.push({
+		order: order,
+		partial: 'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
+		data: {
+			title: flavor,
 		},
 	});
 };
@@ -321,6 +354,7 @@ const spendResource = (sections, actor, item, targets, flags, expense = undefine
 
 export const CommonSections = {
 	description,
+	genericText,
 	collapsibleDescription,
 	clock,
 	tags,
@@ -328,6 +362,7 @@ export const CommonSections = {
 	quality,
 	resource,
 	itemFlavor,
+	genericFlavor,
 	opportunity,
 	targeted,
 	spendResource,

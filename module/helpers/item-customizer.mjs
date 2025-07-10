@@ -1,5 +1,5 @@
 import { FU } from './config.mjs';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { Checks } from '../checks/checks.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 
@@ -221,7 +221,7 @@ export class ItemCustomizer extends foundry.appv1.api.FormApplication {
 		if (isWeaponModule) await modifiedItem.update({ 'system.data.type': typeValue });
 
 		this.setupCheckHooks(formData, modifiedItem, selectedItem);
-		return await ChecksV2.accuracyCheck(this.actor, modifiedItem, CheckConfiguration.initHrZero(hrZeroBool));
+		return await Checks.accuracyCheck(this.actor, modifiedItem, CheckConfiguration.initHrZero(hrZeroBool));
 	}
 
 	setupCheckHooks(formData, modifiedItem, selectedItem) {

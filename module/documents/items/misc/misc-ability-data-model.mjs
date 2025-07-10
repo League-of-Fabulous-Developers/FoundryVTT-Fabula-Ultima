@@ -6,7 +6,7 @@ import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
 import { UseWeaponDataModelV2 } from '../common/use-weapon-data-model-v2.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
@@ -173,9 +173,9 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
 			if (this.useWeapon.accuracy) {
-				return ChecksV2.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
+				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
 			} else {
-				return ChecksV2.attributeCheck(
+				return Checks.attributeCheck(
 					this.parent.actor,
 					{
 						primary: this.attributes.primary,
@@ -186,7 +186,7 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 				);
 			}
 		}
-		return ChecksV2.display(this.parent.actor, this.parent);
+		return Checks.display(this.parent.actor, this.parent);
 	}
 
 	/**
@@ -204,7 +204,7 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 			if (weapon == null) {
 				throw new Error('no selection');
 			}
-			const { check: weaponCheck, error } = await ChecksV2.prepareCheckDryRun('accuracy', actor, weapon);
+			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
 			if (error) {
 				throw error;
 			}

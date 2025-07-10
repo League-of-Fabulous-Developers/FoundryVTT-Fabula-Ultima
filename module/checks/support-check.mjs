@@ -1,6 +1,6 @@
 import { Flags } from '../helpers/flags.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
-import { ChecksV2 } from './checks-v2.mjs';
+import { Checks } from './checks.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
@@ -63,7 +63,7 @@ async function handleSupportCheck(groupCheck) {
 		throw new Error(msg);
 	}
 
-	ChecksV2.supportCheck(character, (check, actor) => {
+	return Checks.supportCheck(character, (check, actor) => {
 		check.primary = groupCheck.primary;
 		check.secondary = groupCheck.secondary;
 		if (groupCheck.initiative && actor.system.derived.init.value) {
@@ -86,7 +86,7 @@ async function handleSupportCheck(groupCheck) {
  */
 function attachSupportCheckListener(chatLog, html) {
 	// Reapply event listeners for each chat message
-	html.querySelector('.some-class')?.addEventListener('click', async function (event) {
+	html.addEventListener('click', async (event) => {
 		const groupCheckId = event.target.dataset.support;
 		if (groupCheckId) {
 			const messageId = event.target.closest('[data-message-id]')?.dataset?.messageId;
@@ -94,11 +94,11 @@ function attachSupportCheckListener(chatLog, html) {
 			if (message) {
 				const groupCheck = message.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
 				if (groupCheck && groupCheck.status === 'open') {
-					$(event.target).attr('disabled', true);
+					event.target.disabled = true;
 					try {
 						await handleSupportCheck(groupCheck);
 					} finally {
-						$(event.target).attr('disabled', false);
+						event.target.disabled = false;
 					}
 				}
 			}

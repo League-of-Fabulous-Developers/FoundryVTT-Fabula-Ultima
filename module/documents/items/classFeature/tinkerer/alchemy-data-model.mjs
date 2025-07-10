@@ -2,12 +2,25 @@ import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
+import { CommonSections } from '../../../../checks/common-sections.mjs';
+import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 
-const alchemyFlavors = {
+const alchemyRanks = {
 	basic: 'FU.ClassFeatureAlchemyBasic',
 	advanced: 'FU.ClassFeatureAlchemyAdvanced',
 	superior: 'FU.ClassFeatureAlchemySuperior',
 };
+
+/**
+ * @type {RenderCheckHook}
+ */
+const onRenderCheck = (sections, check, actor, item) => {
+	if (check.type === 'display' && item?.system?.data instanceof AlchemyDataModel) {
+		CommonSections.description(sections, item.system.data.description, item.system.summary.value);
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @extends RollableClassFeatureDataModel
@@ -38,7 +51,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				initial: 'basic',
 				nullable: false,
 				blank: true,
-				choices: Object.keys(alchemyFlavors),
+				choices: Object.keys(alchemyRanks),
 			}),
 			description: new HTMLField(),
 			basic: new HTMLField(),
@@ -127,7 +140,11 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 	 * @param {AlchemyDataModel} model
 	 * @return {Promise<void>}
 	 */
-	static async roll(model, item) {
+	static async roll(model, item, isShift) {
+		if (isShift) {
+			return Checks.display(item.actor, item);
+		}
+
 		let dice = model.config.ranks.basic.dice;
 		let rank = 'basic';
 		if (['advanced', 'superior'].includes(model.rank)) {
@@ -141,7 +158,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				content: `
 				<div class="desc">
 					<label><strong>${game.i18n.localize('FU.Rank')}</strong></label>:
-					<select name="rank">${ranks.map((value) => `<option value="${value}">${game.i18n.localize(alchemyFlavors[value])}</option>`)}</select>
+					<select name="rank">${ranks.map((value) => `<option value="${value}">${game.i18n.localize(alchemyRanks[value])}</option>`)}</select>
 				</div>
 				`,
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
@@ -161,7 +178,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			const description = descriptions[rank];
 			if (model.config.targetRollTable && model.config.effectRollTable) {
 				const data = {
-					rank: alchemyFlavors[rank],
+					rank: alchemyRanks[rank],
 					description: description,
 					alwaysAvailableEffects: [...model.config.alwaysAvailableEffects],
 					results: [],
@@ -179,7 +196,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 					flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 				});
 			} else {
-				await roll.toMessage({ flavor: game.i18n.localize(alchemyFlavors[rank]), speaker });
+				await roll.toMessage({ flavor: game.i18n.localize(alchemyRanks[rank]), speaker });
 			}
 		}
 	}

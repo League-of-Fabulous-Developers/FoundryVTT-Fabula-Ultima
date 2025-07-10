@@ -1,6 +1,6 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { ChecksV2 } from './checks-v2.mjs';
+import { Checks } from './checks.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { SpecialResults } from './special-results.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
@@ -12,7 +12,7 @@ const isOpposableCheck = (li) => {
 	const messageId = li.dataset.messageId;
 	/** @type ChatMessage | undefined */
 	const message = game.messages.get(messageId);
-	if (ChecksV2.isCheck(message, 'attribute')) {
+	if (Checks.isCheck(message, 'attribute')) {
 		const speaker = ChatMessage.getSpeakerActor(message);
 		const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
 		if (speaker !== character) {
@@ -31,7 +31,7 @@ const opposeCheck = async (li) => {
 	if (sourceCheck) {
 		const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
 		const opposedCheckBonus = character.system.bonuses.accuracy.opposedCheck || 0;
-		await ChecksV2.opposedCheck(character, async (check) => {
+		await Checks.opposedCheck(character, async (check) => {
 			check.primary = sourceCheck.primary.attribute;
 			check.secondary = sourceCheck.secondary.attribute;
 			check.additionalData[SOURCE_CHECK] = {

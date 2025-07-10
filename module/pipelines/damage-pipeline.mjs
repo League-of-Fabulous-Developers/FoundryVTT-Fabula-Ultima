@@ -13,7 +13,7 @@ import { Traits } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { Checks } from '../checks/checks.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -491,7 +491,7 @@ function onRenderChatMessage(message, html) {
 	let disabled = false;
 
 	// Damage prompt application message
-	if (ChecksV2.isCheck(message)) {
+	if (Checks.isCheck(message)) {
 		const inspector = CheckConfiguration.inspect(message);
 		const damageData = inspector.getDamage();
 		const traits = inspector.getTraits();

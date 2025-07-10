@@ -8,11 +8,9 @@ import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { registerSystemSettings } from './settings.js';
-import { addRollContextMenuEntries, createCheckMessage, promptCheck, promptOpenCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
-import { GroupCheck } from './helpers/group-check.mjs';
 import { CharacterDataModel } from './documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from './documents/actors/npc/npc-data-model.mjs';
 import { AccessoryDataModel } from './documents/items/accessory/accessory-data-model.mjs';
@@ -57,7 +55,7 @@ import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdow
 import { InlineEffects } from './helpers/inline-effects.mjs';
 import { SystemControls } from './helpers/system-controls.mjs';
 import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
-import { ChecksV2 } from './checks/checks-v2.mjs';
+import { Checks } from './checks/checks.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
@@ -82,6 +80,8 @@ import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
 import { registerKeyBindings } from './keybindings.mjs';
 import { FUHandlebars } from './helpers/handlebars.mjs';
 import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
+import { GroupCheck } from './checks/group-check.mjs';
+import { CheckPrompt } from './checks/check-prompt.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -91,11 +91,15 @@ globalThis.projectfu = {
 	SYSTEM,
 	Flags,
 	SystemControls,
-	ChecksV2,
+	Checks,
 	CheckConfiguration,
 	ActionHandler,
 	StudyRollHandler,
 	ItemCustomizer,
+	get ChecksV2() {
+		console.warn(new Error("You are accessing the deprecated 'globalThis.projectfu.ChecksV2'. Please use 'globalThis.projectfu.Checks' instead."));
+		return Checks;
+	},
 };
 
 /* -------------------------------------------- */
@@ -107,23 +111,6 @@ globalThis.projectfu = {
 //   CONFIG.Actor.systemDataModels.character = CharacterData;
 // });
 
-/**
- * Monkey patch foundry.data.fields.DataField._applyChangeCustom to return the initial value instead of "undefined" when the value was not changed in a way detectable by "!==".
- */
-function monkeyPatchDataFieldApplyCustomChange() {
-	if (game.release.isNewer('12')) {
-		const original = foundry.data.fields.DataField.prototype._applyChangeCustom;
-		foundry.data.fields.DataField.prototype._applyChangeCustom = function (value, delta, model, change) {
-			const result = original(value, delta, model, change);
-			if (result === undefined) {
-				return foundry.utils.getProperty(model, change.key);
-			} else {
-				return result;
-			}
-		};
-	}
-}
-
 Hooks.once('init', async () => {
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
@@ -131,19 +118,20 @@ Hooks.once('init', async () => {
 		FUActor,
 		FUItem,
 		rollItemMacro,
-		rollCheck,
-		createCheckMessage,
-		GroupCheck: GroupCheck,
 		ClassFeatureDataModel,
 		RollableClassFeatureDataModel,
 		OptionalFeatureDataModel,
 		RollableOptionalFeatureDataModel,
-		ChecksV2,
+		Checks: Checks,
 		CheckConfiguration,
 		ActionHandler,
 		ItemCustomizer,
 		util: {
 			slugify,
+		},
+		get ChecksV2() {
+			console.warn(new Error("You are accessing the deprecated 'game.projectfu.ChecksV2'. Please use 'game.projectfu.Checks' instead."));
+			return Checks;
 		},
 	};
 
@@ -158,8 +146,6 @@ Hooks.once('init', async () => {
 		formula: '1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value',
 		decimals: 2,
 	};
-
-	monkeyPatchDataFieldApplyCustomChange();
 
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = FUActor;
@@ -273,7 +259,6 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 	});
 
-	Hooks.on('getChatMessageContextOptions', addRollContextMenuEntries);
 	DamagePipeline.initialize();
 	ResourcePipeline.initialize();
 	Effects.initialize();
@@ -340,24 +325,22 @@ Hooks.once('ready', async function () {
 
 	Hooks.on('promptOpenCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		promptOpenCheck(actor);
+		CheckPrompt.openCheck(actor);
 	});
 
 	Hooks.on('promptAttributeCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		promptCheck(actor);
+		CheckPrompt.attributeCheck(actor);
 	});
 
 	Hooks.on('promptGroupCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		let isShift = false;
-		GroupCheck.promptCheck(actor, isShift);
+		CheckPrompt.groupCheck(actor);
 	});
 
 	Hooks.on('promptInitiativeCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		let isShift = true;
-		GroupCheck.promptCheck(actor, isShift);
+		Checks.groupCheck(actor, GroupCheck.initInitiativeCheck);
 	});
 
 	Hooks.on(FUHooks.DATA_PREPARED_ACTOR, (actor) => {

@@ -6,42 +6,42 @@
     {{#if (eq actor.type "character")}}
     <div class="action-container grid grid-2col gap-5">
 
-        <span class="action-style button-style rollable" id="guardAction" data-action="guardAction"
+        <span class="action-style button-style rollable" id="guardAction" data-action="action" data-type="guard"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.GuardRule'}}">
             {{localize "FU.Guard"}}
         </span>
 
-        <span class="action-style button-style rollable " id="equipmentAction" data-action="equipmentAction"
+        <span class="action-style button-style rollable " id="equipmentAction" data-action="action" data-type="equipment"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.EquipmentRule'}}">
             {{localize "FU.Equipment"}}
         </span>
 
-        <span class="action-style button-style rollable " id="hinderAction" data-action="hinderAction"
+        <span class="action-style button-style rollable " id="hinderAction" data-action="action" data-type="hinder"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.HinderRule'}}">
             {{localize "FU.Hinder"}}
         </span>
 
-        <span class="action-style button-style rollable" id="inventoryAction" data-action="inventoryAction"
+        <span class="action-style button-style rollable" id="inventoryAction" data-action="action" data-type="inventory"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.InventoryRule'}}">
             {{localize "FU.Inventory"}}
         </span>
 
-        <span class="action-style button-style rollable " id="objectiveAction" data-action="objectiveAction"
+        <span class="action-style button-style rollable " id="objectiveAction" data-action="action" data-type="objective"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
             {{localize "FU.Objective"}}
         </span>
 
-        <span class="action-style button-style rollable" id="spellAction" data-action="spellAction"
+        <span class="action-style button-style rollable" id="spellAction" data-action="action" data-type="spell"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.SpellRule'}}">
             {{localize "FU.Spell"}}
         </span>
 
-        <span class="action-style button-style rollable " id="studyAction" data-action="studyAction"
+        <span class="action-style button-style rollable " id="studyAction" data-action="action" data-type="study"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.StudyRule'}}">
             {{localize "FU.Study"}}
         </span>
 
-        <span class="action-style button-style rollable" id="skillAction" data-action="skillAction"
+        <span class="action-style button-style rollable" id="skillAction" data-action="action" data-type="skill"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.SkillRule'}}">
             {{localize "FU.Skill"}}
         </span>
@@ -55,26 +55,26 @@
                 <label for="studySelect" >{{localize 'FU.Study'}}</label>
             </span>
 
-            <select name="system.study.value" id="studySelect" data-dtype="Number" class="resource-label-l">
+            <select name="system.study.value" id="studySelect" class="resource-label-l">
                 {{selectOptions studyRoll selected=system.study.value}}
             </select>
         </span>
-        <span class="action-style button-style rollable" id="guardAction" data-action="guardAction"
+        <span class="action-style button-style rollable" id="guardAction" data-action="action" data-type="guard"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.GuardRule'}}">
             {{localize "FU.Guard"}}
         </span>
 
-        <span class="action-style button-style rollable " id="hinderAction" data-action="hinderAction"
+        <span class="action-style button-style rollable " id="hinderAction" data-action="action" data-type="hinder"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.HinderRule'}}">
             {{localize "FU.Hinder"}}
         </span>
 
-        <span class="action-style button-style rollable " id="objectiveAction" data-action="objectiveAction"
+        <span class="action-style button-style rollable " id="objectiveAction" data-action="action" data-type="objective"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
             {{localize "FU.Objective"}}
         </span>
 
-        <span class="action-style button-style rollable" id="skillAction" data-action="skillAction"
+        <span class="action-style button-style rollable" id="skillAction" data-action="action" data-type="skill"
             data-roll-type="action-type" data-tooltip="{{localize 'FU.SkillRule'}}">
             {{localize "FU.Skill"}}
         </span>

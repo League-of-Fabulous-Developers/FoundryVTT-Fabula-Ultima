@@ -70,7 +70,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs',
 
 		// Chat Messages
-		'systems/projectfu/templates/chat/chat-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-container.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
@@ -94,13 +93,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 		'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
-		'systems/projectfu/templates/chat/partials/chat-check-details.hbs',
-		'systems/projectfu/templates/chat/partials/chat-ability-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
 		'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
-		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
-		'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
@@ -109,6 +104,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 		'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
 		'systems/projectfu/templates/chat/chat-advance-clock.hbs',
+		'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',

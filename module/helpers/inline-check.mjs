@@ -1,10 +1,11 @@
 import { FU } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { Checks } from '../checks/checks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DifficultyLevel } from '../checks/difficulty-level.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { CheckPrompt } from '../checks/check-prompt.mjs';
 
 /**
  * @type {TextEditorEnricherConfig}
@@ -53,7 +54,7 @@ function checkEnricher(match, options) {
 			anchor.append(` ${game.i18n.localize(FU.attributeAbbreviations[second])} `);
 		}
 		// [OPTIONAL] Modifier
-		let modifier = match.groups.modifier;
+		let modifier = (match.groups.modifier ?? '').slice(1, -1);
 		if (modifier) {
 			if (label) {
 				anchor.dataset.modifier = modifier;
@@ -117,7 +118,7 @@ async function onRender(element) {
 	element.addEventListener('click', async (event) => {
 		const first = renderContext.dataset.first;
 		const second = renderContext.dataset.second;
-		let difficulty = renderContext.dataset.difficulty;
+		const difficulty = renderContext.dataset.difficulty;
 		const prompt = event.shiftKey;
 
 		const attributes = { primary: first, secondary: second };
@@ -126,39 +127,43 @@ async function onRender(element) {
 		if (targets.length === 0) return;
 
 		for (const actor of targets) {
-			await ChecksV2.attributeCheck(actor, attributes, renderContext.sourceInfo.resolveItem(), async (check) => {
-				let config = CheckConfiguration.configure(check);
+			if (prompt) {
 				let modifier = 0;
-
-				if (element.dataset.modifier !== undefined) {
+				if (renderContext.dataset.modifier !== undefined) {
 					const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
 					modifier = await Expressions.evaluateAsync(renderContext.dataset.modifier, context);
+					if (isNaN(modifier)) {
+						modifier = 0;
+					}
 				}
 
-				if (prompt) {
-					const promptResult = await ChecksV2.promptConfiguration(
-						actor,
-						{
-							primary: check.primary,
-							secondary: check.secondary,
-							modifier,
-							difficulty,
-						},
-						null,
-					);
-					config.setAttributes(promptResult.primary, promptResult.secondary);
-					modifier = promptResult.modifier;
-					difficulty = promptResult.difficulty;
-				}
+				await CheckPrompt.attributeCheck(actor, {
+					initialConfig: {
+						primary: attributes.primary,
+						secondary: attributes.secondary,
+						difficulty: difficulty,
+						modifier: modifier,
+					},
+				});
+			} else {
+				await Checks.attributeCheck(actor, attributes, renderContext.sourceInfo.resolveItem(), async (check) => {
+					let config = CheckConfiguration.configure(check);
+					let modifier = 0;
 
-				if (difficulty > 0) {
-					config.setDifficulty(difficulty);
-				}
+					if (renderContext.dataset.modifier !== undefined) {
+						const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+						modifier = await Expressions.evaluateAsync(renderContext.dataset.modifier, context);
+					}
 
-				if (modifier !== 0) {
-					config.addModifier('Inline Modifier', modifier);
-				}
-			});
+					if (difficulty > 0) {
+						config.setDifficulty(difficulty);
+					}
+
+					if (modifier !== 0) {
+						config.addModifier('Inline Modifier', modifier);
+					}
+				});
+			}
 		}
 	});
 }

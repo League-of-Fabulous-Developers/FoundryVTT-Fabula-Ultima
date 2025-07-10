@@ -1,12 +1,10 @@
 import { Effects, isActiveEffectForStatusEffectId, onManageActiveEffect } from '../pipelines/effects.mjs';
-import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
-import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { Checks } from '../checks/checks.mjs';
 import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
@@ -18,8 +16,33 @@ import { ProgressDataModel } from '../documents/items/common/progress-data-model
 import { BehaviorRoll } from '../documents/items/behavior/behavior-roll.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { CheckPrompt } from '../checks/check-prompt.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
+import { CheckHooks } from '../checks/check-hooks.mjs';
+import { CommonSections } from '../checks/common-sections.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+
+const affinityKey = 'affinity';
+
+/**
+ * @type {RenderCheckHook}
+ */
+const onDisplayAffinity = (sections, check, actor, item, additionalFlags, targets) => {
+	const affinity = check.additionalData[affinityKey];
+	if (check.type === 'display' && affinity) {
+		const affinityData = actor.system.affinities[affinity];
+
+		const description = game.i18n.format('FU.AffinityDescription', {
+			affinityName: game.i18n.localize(FU.damageTypes[affinity]),
+			affinityValue: game.i18n.localize(FU.affType[affinityData.current]),
+		});
+		CommonSections.genericFlavor(sections, game.i18n.localize('FU.CurrentAffinity'));
+		CommonSections.genericText(sections, description);
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onDisplayAffinity);
 
 /**
  * @description Standard actor sheet, now v2
@@ -42,10 +65,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			roll: FUStandardActorSheet.Roll,
 			spendMetaCurrency: FUStandardActorSheet.SpendMetaCurrency,
 			studyAction: FUStandardActorSheet.StudyAction,
-			guardAction: FUStandardActorSheet.PerformAction,
-			hinderAction: FUStandardActorSheet.PerformAction,
-			objectiveAction: FUStandardActorSheet.PerformAction,
-			skillAction: FUStandardActorSheet.PerformAction,
+			action: FUStandardActorSheet.PerformAction,
 			toggleStatusEffect: FUStandardActorSheet.ToggleStatusEffect,
 			useEquipment: FUStandardActorSheet.ToggleUseEquipment,
 			itemFavored: FUStandardActorSheet.ToggleItemFavored,
@@ -754,19 +774,19 @@ export class FUStandardActorSheet extends FUActorSheet {
 			}
 
 			if (dataset.rollType === 'roll-check') {
-				return promptCheck(this.actor);
-			}
-
-			if (dataset.rollType === 'roll-init') {
-				return ChecksV2.groupCheck(this.actor, GroupCheckV2.initInitiativeCheck);
+				return CheckPrompt.attributeCheck(this.actor);
 			}
 
 			if (dataset.rollType === 'open-check') {
-				return promptOpenCheck(this.actor, 'FU.OpenCheck', 'open');
+				return CheckPrompt.openCheck(this.actor);
+			}
+
+			if (dataset.rollType === 'roll-init' || (dataset.rollType === 'group-check' && modifiers.shift)) {
+				return Checks.groupCheck(this.actor, GroupCheckV2.initInitiativeCheck);
 			}
 
 			if (dataset.rollType === 'group-check') {
-				return ChecksV2.groupCheck(this.actor, modifiers.shift ? GroupCheckV2.initInitiativeCheck : GroupCheckV2.initGroupCheck);
+				return CheckPrompt.groupCheck(this.actor);
 			}
 		}
 
@@ -797,25 +817,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		// Handle affinity-type rolls
 		if (dataset.rollType === 'affinity-type') {
-			const actor = this.actor;
-			// const affinity = JSON.parse(dataset.action);
-			const affinity = JSON.parse(dataset.affinity);
-
-			const affinityName = affinity.label;
-			const affinityValue = affinity.affTypeCurr;
-
-			// Get the localized string from FU.AffinityDescription
-			const description = game.i18n.format('FU.AffinityDescription', {
-				affinityName: affinityName,
-				affinityValue: affinityValue,
+			Checks.display(this.actor, null, (check) => {
+				check.additionalData[affinityKey] = dataset.affinity;
 			});
-
-			const params = {
-				description: description,
-				speaker: ChatMessage.getSpeaker({ actor }),
-			};
-
-			createChatMessage(params);
 			return;
 		}
 
@@ -843,7 +847,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	static async PerformAction(e, elem) {
 		const isShift = e.shiftKey;
 		const actionHandler = new ActionHandler(this.actor);
-		await actionHandler.handleAction(elem.dataset.action, isShift);
+		await actionHandler.handleAction(elem.dataset.type, isShift);
 	}
 
 	static ToggleStatusEffect(e, elem) {

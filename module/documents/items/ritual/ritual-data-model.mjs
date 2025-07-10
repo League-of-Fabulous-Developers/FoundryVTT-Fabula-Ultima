@@ -1,7 +1,7 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { RitualMigrations } from './ritual-migrations.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
@@ -162,9 +162,9 @@ export class RitualDataModel extends FUStandardItemDataModel {
 
 	async roll() {
 		if (this.hasRoll.value) {
-			return ChecksV2.magicCheck(this.parent.actor, this.parent);
+			return Checks.magicCheck(this.parent.actor, this.parent);
 		} else {
-			return ChecksV2.display(this.parent.actor, this.parent);
+			return Checks.display(this.parent.actor, this.parent);
 		}
 	}
 

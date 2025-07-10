@@ -1,7 +1,7 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
 import { CharacterDataModel } from '../../../actors/character/character-data-model.mjs';
 import { ChooseInfusionDialog } from './choose-infusion-dialog.mjs';
@@ -24,7 +24,7 @@ function onGetChatLogEntryContext(application, menuItems) {
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
 			const checkInspector = CheckConfiguration.inspect(message);
-			if (ChecksV2.isCheck(message, 'accuracy') && checkInspector.getDamage() && !checkInspector.getCheck().additionalData[infusionKey] && actor && actor.isOwner && actor.system instanceof CharacterDataModel) {
+			if (Checks.isCheck(message, 'accuracy') && checkInspector.getDamage() && !checkInspector.getCheck().additionalData[infusionKey] && actor && actor.isOwner && actor.system instanceof CharacterDataModel) {
 				return actor.itemTypes.classFeature.some((value) => value.system instanceof ClassFeatureTypeDataModel && value.system.data instanceof InfusionsDataModel && actor.system.resources.ip.value >= value.system.data.ipCost);
 			}
 		},
@@ -38,7 +38,7 @@ function onGetChatLogEntryContext(application, menuItems) {
 			const infusionData = infusions.system.data;
 			const infusion = await ChooseInfusionDialog.prompt(infusionData);
 			if (infusion) {
-				await ChecksV2.modifyCheck(inspector.getCheck().id, (check) => {
+				await Checks.modifyCheck(inspector.getCheck().id, (check) => {
 					CheckConfiguration.configure(check).modifyDamage((damage) => {
 						damage.type = infusion.changedDamageType;
 						damage.modifiers.push({

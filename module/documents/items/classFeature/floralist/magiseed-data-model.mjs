@@ -1,6 +1,6 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /**
@@ -177,14 +177,14 @@ export class MagiseedDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static async roll(model, item, shiftClick) {
-		return ChecksV2.display(item.actor, item, (check) => (check.additionalData[magiseedActionKey] = 'effect'));
+		return Checks.display(item.actor, item, (check) => (check.additionalData[magiseedActionKey] = 'effect'));
 	}
 
 	postPlanted() {
-		return ChecksV2.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'planted'));
+		return Checks.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'planted'));
 	}
 
 	postRemoved() {
-		return ChecksV2.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'removed'));
+		return Checks.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'removed'));
 	}
 }

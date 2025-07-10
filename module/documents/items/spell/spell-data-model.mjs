@@ -5,7 +5,7 @@ import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-mode
 import { SpellMigrations } from './spell-migrations.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
@@ -129,10 +129,10 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	 */
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
-			return ChecksV2.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
+			return Checks.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
 		} else {
 			CommonEvents.spell(this.parent.actor, this.parent);
-			return ChecksV2.display(this.parent.actor, this.parent);
+			return Checks.display(this.parent.actor, this.parent);
 		}
 	}
 

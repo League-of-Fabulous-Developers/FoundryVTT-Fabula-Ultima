@@ -1,6 +1,6 @@
 import { getTasteAliasFlag, IngredientDataModel, tasteComparator, TASTES } from './ingredient-data-model.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const FLAG_ALL_YOU_CAN_EAT = 'allYouCanEat';
@@ -144,7 +144,7 @@ export class CookingApplication extends foundry.appv1.api.FormApplication {
 		updates.push(actor.updateEmbeddedDocuments('Item', ingredientUpdates));
 
 		updates.unshift(
-			ChecksV2.display(actor, this.#cookbook.item, (check) => {
+			Checks.display(actor, this.#cookbook.item, (check) => {
 				check.additionalData['action'] = 'cooking';
 				check.additionalData['cooking'] = renderData;
 			}),

@@ -1,5 +1,5 @@
 import { RollableClassFeatureDataModel } from './class-feature-data-model.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
@@ -37,7 +37,7 @@ export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 		if (this.data instanceof RollableClassFeatureDataModel) {
 			return this.data.constructor.roll(this.data, this.parent, modifiers.shift);
 		} else {
-			return ChecksV2.display(this.parent.actor, this.parent);
+			return Checks.display(this.parent.actor, this.parent);
 		}
 	}
 

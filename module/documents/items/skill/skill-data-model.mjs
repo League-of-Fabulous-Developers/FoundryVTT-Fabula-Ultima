@@ -2,7 +2,7 @@ import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
@@ -93,7 +93,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
  * @type RenderCheckHook
  */
 const onRenderDisplay = (sections, check, actor, item, flags) => {
-	if (check.type === 'display' && item.system instanceof SkillDataModel) {
+	if (check.type === 'display' && item?.system instanceof SkillDataModel) {
 		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
 		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		if (item.system.hasResource.value) {
@@ -213,9 +213,9 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
 			if (this.useWeapon.accuracy) {
-				return ChecksV2.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
+				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
 			} else {
-				return ChecksV2.attributeCheck(
+				return Checks.attributeCheck(
 					this.parent.actor,
 					{
 						primary: this.attributes.primary,
@@ -226,7 +226,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 				);
 			}
 		}
-		return ChecksV2.display(this.parent.actor, this.parent);
+		return Checks.display(this.parent.actor, this.parent);
 	}
 
 	/**
@@ -244,7 +244,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			if (weapon == null) {
 				throw new Error('no selection');
 			}
-			const { check: weaponCheck, error } = await ChecksV2.prepareCheckDryRun('accuracy', actor, weapon);
+			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
 			if (error) {
 				throw error;
 			}

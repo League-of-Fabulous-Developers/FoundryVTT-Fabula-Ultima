@@ -1,5 +1,5 @@
 import { Effects, onManageActiveEffect, prepareActiveEffectCategories } from '../pipelines/effects.mjs';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { Checks } from '../checks/checks.mjs';
 import { FU, systemPath } from '../helpers/config.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import * as CONFIG from '../helpers/config.mjs';
@@ -443,7 +443,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	_onSendToChat(event) {
 		event.preventDefault();
 		const item = this.item;
-		ChecksV2.display(this, item);
+		Checks.display(this, item);
 	}
 
 	/**

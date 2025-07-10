@@ -1,5 +1,5 @@
 import { SOCKET } from '../../socket.mjs';
-import { ChecksV2 } from '../../checks/checks-v2.mjs';
+import { Checks } from '../../checks/checks.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { FUActor } from '../actors/actor.mjs';
@@ -117,7 +117,7 @@ export class FUItem extends Item {
 		if (this.system.roll instanceof Function) {
 			return this.system.roll(modifiers);
 		} else {
-			return ChecksV2.display(this.actor, this);
+			return Checks.display(this.actor, this);
 		}
 	}
 
