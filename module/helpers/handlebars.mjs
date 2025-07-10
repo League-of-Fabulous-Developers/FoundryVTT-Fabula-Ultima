@@ -230,7 +230,7 @@ function progress(document, path, options) {
 					dataPath: path,
 					type: type,
 					action: action,
-					displayName: data.displayName,
+					displayName: data.displayName && (progress.name || document.name),
 				})
 			: '';
 

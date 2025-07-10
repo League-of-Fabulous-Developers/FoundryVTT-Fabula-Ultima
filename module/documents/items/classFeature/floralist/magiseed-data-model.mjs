@@ -17,6 +17,8 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 		/** @type MagiseedAction */
 		const action = check.additionalData[magiseedActionKey];
 
+		const gardenName = foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') || foundry.utils.getProperty(actor, 'system.floralist.garden.name') || game.i18n.localize('FU.ClassFeatureGarden');
+
 		switch (action) {
 			case 'effect': {
 				let floralistData = actor?.system?.floralist;
@@ -56,7 +58,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenAdded', {
 							item: item.name,
-							garden: foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') ?? game.i18n.localize('FU.ClassFeatureGarden'),
+							garden: gardenName,
 						}),
 					},
 				});
@@ -68,7 +70,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenRemoved', {
 							item: item.name,
-							garden: foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') ?? game.i18n.localize('FU.ClassFeatureGarden'),
+							garden: gardenName,
 						}),
 					},
 				});
