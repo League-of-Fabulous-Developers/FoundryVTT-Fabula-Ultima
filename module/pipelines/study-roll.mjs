@@ -9,6 +9,9 @@ import { MESSAGES, SOCKET } from '../socket.mjs';
  * @property {FUActor[]} targets The targets of the study roll.
  */
 export class StudyRollHandler {
+	static #coreStudyDifficulties = Object.freeze([10, 13, 16]);
+	static #revisedStudyDifficulties = Object.freeze([7, 10, 13]);
+
 	/**
 	 * @type {Number}
 	 * @private
@@ -204,8 +207,15 @@ export class StudyRollHandler {
 	}
 
 	static getMaxValue() {
+		return this.getStudyDifficulties().at(-1);
+	}
+
+	/**
+	 * @return {[number, number, number]}
+	 */
+	static getStudyDifficulties() {
 		const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
-		return useRevisedStudyRule ? 13 : 16;
+		return useRevisedStudyRule ? this.#revisedStudyDifficulties : this.#coreStudyDifficulties;
 	}
 
 	/**
@@ -213,10 +223,7 @@ export class StudyRollHandler {
 	 * @returns {"none"|"basic"|"complete"|"detailed"}
 	 */
 	static resolveStudyResult(studyValue) {
-		const coreRule = [10, 13, 16];
-		const revisedRule = [7, 10, 13];
-		const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
-		const difficultyThresholds = useRevisedStudyRule ? revisedRule : coreRule;
+		const difficultyThresholds = this.getStudyDifficulties();
 
 		let result;
 		if (studyValue >= difficultyThresholds[0] && studyValue < difficultyThresholds[1]) result = 'basic';

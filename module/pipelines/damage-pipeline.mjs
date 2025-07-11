@@ -530,7 +530,7 @@ function onRenderChatMessage(message, html) {
 			}
 		};
 
-		html.querySelector(`a[data-action="applyDamage"]`)?.addEventListener('click', (event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage));
+		html.querySelectorAll(`a[data-action="applyDamage"]`).forEach((element) => element.addEventListener('click', (event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage)));
 		html.querySelector(`a[data-action="applyDamageSelected"]`)?.addEventListener('click', (event) => handleClick(event, getSelected, applyDefaultDamage, customizeDamage));
 		html.querySelector(`a[data-action="selectDamageCustomizer"]`)?.addEventListener('click', async (event) => {
 			event.preventDefault();
@@ -550,29 +550,29 @@ function onRenderChatMessage(message, html) {
 				);
 			}
 		});
-
-		Pipeline.handleClick(message, html, 'inspectActor', async (dataset) => {
-			const uuid = dataset.uuid;
-			return FUPartySheet.inspectAdversary(uuid);
-		});
-
-		Pipeline.handleClickRevert(message, html, 'revertDamage', async (dataset) => {
-			const uuid = dataset.uuid;
-			const actor = fromUuidSync(uuid);
-			const updates = [];
-			const amountRecovered = dataset.amount;
-			const resource = dataset.resource.toLowerCase();
-			updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountRecovered, true));
-			TokenUtils.showFloatyText(actor, `${amountRecovered} ${resource}`, `lightgreen`);
-			return Promise.all(updates);
-		});
-
-		html.querySelector(`a[data-action="toggleBreakdown"]`)?.addEventListener('click', (event) => {
-			event.preventDefault();
-			const breakdown = html.querySelector('#breakdown');
-			if (breakdown) breakdown.classList.toggle('hidden');
-		});
 	}
+
+	Pipeline.handleClick(message, html, 'inspectActor', async (dataset) => {
+		const uuid = dataset.uuid;
+		return FUPartySheet.inspectAdversary(uuid);
+	});
+
+	Pipeline.handleClickRevert(message, html, 'revertDamage', async (dataset) => {
+		const uuid = dataset.uuid;
+		const actor = fromUuidSync(uuid);
+		const updates = [];
+		const amountRecovered = Number(dataset.amount);
+		const resource = dataset.resource.toLowerCase();
+		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountRecovered, true));
+		TokenUtils.showFloatyText(actor, `${amountRecovered} ${resource}`, `lightgreen`);
+		return Promise.all(updates);
+	});
+
+	html.querySelector(`a[data-action="toggleBreakdown"]`)?.addEventListener('click', (event) => {
+		event.preventDefault();
+		const breakdown = html.querySelector('#breakdown');
+		if (breakdown) breakdown.classList.toggle('hidden');
+	});
 }
 
 /**

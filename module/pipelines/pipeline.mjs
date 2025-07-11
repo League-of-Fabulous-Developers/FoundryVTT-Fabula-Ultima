@@ -93,13 +93,12 @@ function getSingleTarget(event) {
  * @param {(data: Object) => Promise<void>} onClick
  */
 async function handleClick(message, html, actionName, onClick) {
-	const dataAction = html.querySelector(`a[data-action="${actionName}"]`);
-	if (dataAction) {
-		dataAction.addEventListener('click', async (event) => {
+	html.querySelectorAll(`a[data-action="${actionName}"]`).forEach((element) => {
+		element.addEventListener('click', async (event) => {
 			event.preventDefault();
-			await onClick({ ...dataAction.dataset });
+			await onClick({ ...element.dataset });
 		});
-	}
+	});
 }
 
 /**
@@ -109,28 +108,27 @@ async function handleClick(message, html, actionName, onClick) {
  * @param {(data: Object) => Promise<void>} action
  */
 async function handleClickRevert(message, html, actionName, action) {
-	const revert = html.querySelector(`a[data-action="${actionName}"]`);
-	if (!revert) return;
+	html.querySelectorAll(`a[data-action="${actionName}"]`).forEach((element) => {
+		const messageContent = html.querySelector('.message-content');
+		const reverted = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName);
 
-	const messageContent = html.querySelector('.message-content');
-	const reverted = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName);
-
-	if (reverted) {
-		messageContent?.classList.add('strikethrough');
-		revert.classList.add('action-disabled');
-	} else {
-		revert.addEventListener('click', async (event) => {
-			event.preventDefault();
-			try {
-				await action({ ...revert.dataset });
-				const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
-				revertedActions.push(actionName);
-				await message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
-			} catch (ex) {
-				console.debug(ex);
-			}
-		});
-	}
+		if (reverted) {
+			messageContent?.classList.add('strikethrough');
+			element.classList.add('action-disabled');
+		} else {
+			element.addEventListener('click', async (event) => {
+				event.preventDefault();
+				try {
+					await action({ ...element.dataset });
+					const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
+					revertedActions.push(actionName);
+					await message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
+				} catch (ex) {
+					console.debug(ex);
+				}
+			});
+		}
+	});
 }
 
 /**

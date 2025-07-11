@@ -165,74 +165,78 @@ export class NpcProfileWindow extends FUApplication {
 
 		/** @type FUActor **/
 		const actor = await fromUuid(existing.uuid);
-		const maxStudyValue = StudyRollHandler.getMaxValue();
+		const studyDifficulties = StudyRollHandler.getStudyDifficulties();
 		const affinities = Object.keys(FU.damageTypes);
 		const affinityMap = Object.fromEntries(Object.entries(actor.system.affinities).map(([key, aff]) => [key, FU.affTypeAbbr[aff.current]]));
 		/** @type String **/
 		const traits = actor.system.traits.value;
-		const traitsArray = traits.trim().split(',').filter(Boolean);
+		const traitsArray = traits
+			.trim()
+			.split(',')
+			.map((value) => value.trim())
+			.filter(Boolean);
 		console.debug(`Editing profile of ${JSON.stringify(existing)}`);
-		new Dialog({
-			title: game.i18n.localize('FU.NpcProfileUpdate'),
+
+		let updatedProfile = await foundry.applications.api.DialogV2.input({
+			window: { title: game.i18n.localize('FU.NpcProfileUpdate') },
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
 				existing: existing,
-				maxStudyValue: maxStudyValue,
+				studyDifficulties: studyDifficulties,
 				affinities: affinities,
 				affinityMap: affinityMap,
 				traits: traitsArray,
 			}),
-			buttons: [
-				{
-					label: 'Confirm',
-					callback: async (html) => {
-						// Study
-						const studyStr = html.find('[name="study"]').val();
-						const study = Number(studyStr);
-						if (study !== existing.study) {
-							existing.study = study;
-						}
+			render: (event, dialog) => {
+				const studyValueDisplay = dialog.element.querySelector('#study-value');
+				const studyValueInput = dialog.element.querySelector('[name=study]');
+				studyValueInput.addEventListener('change', (e) => {
+					studyValueDisplay.textContent = studyValueInput.value;
+				});
+			},
+			rejectClose: false,
+			ok: {
+				label: 'FU.Confirm',
+			},
+		});
 
-						// Revealed
-						const formElem = html.find('form')[0];
-						const form = new FormData(formElem);
-						existing.revealed ??= {};
+		if (updatedProfile) {
+			updatedProfile = foundry.utils.expandObject(updatedProfile);
 
-						// Affinities
-						for (const aff of affinities) {
-							if (form.has(`affinities.${aff}`)) {
-								existing.revealed.affinities ??= {};
-								existing.revealed.affinities[aff] = true;
-							} else {
-								if (existing.revealed?.affinities?.[aff]) {
-									delete existing.revealed.affinities[aff];
-								}
-							}
-						}
-						if (existing.revealed.affinities && Object.keys(existing.revealed.affinities).length === 0) {
-							delete existing.revealed.affinities;
-						}
+			// Study
+			const study = Number(updatedProfile.study);
+			if (study !== existing.study) {
+				existing.study = study;
+			}
 
-						// Traits
-						const data = Object.fromEntries(form.entries());
-						const traits = Object.entries(data)
-							.filter(([key, value]) => key.startsWith('traits.') && value === 'on')
-							.map(([key]) => key.replace('traits.', ''));
-						if (traits.length > 0) {
-							existing.revealed.traits = traits;
-						} else {
-							if (existing.revealed.traits) {
-								delete existing.revealed.traits;
-							}
-						}
+			// Revealed
+			existing.revealed ??= {};
 
-						await party.updateAdversary(existing);
-					},
-				},
-				{
-					label: 'Cancel',
-					callback: () => {},
-				},
-			],
-		}).render(true);
+			// Affinities
+			for (const aff of affinities) {
+				const affinityValue = foundry.utils.getProperty(updatedProfile, `affinities.${aff}`);
+				if (affinityValue === true) {
+					existing.revealed.affinities ??= {};
+					existing.revealed.affinities[aff] = true;
+				} else if (affinityValue === false) {
+					delete existing.revealed?.affinities?.[aff];
+				}
+			}
+			if (existing.revealed.affinities && Object.keys(existing.revealed.affinities).length === 0) {
+				delete existing.revealed.affinities;
+			}
+
+			// Traits
+			console.log(updatedProfile);
+			const traits = Object.entries(updatedProfile.traits ?? {})
+				.filter(([, value]) => value)
+				.map(([key]) => key);
+			if (traits.length > 0) {
+				existing.revealed.traits = traits;
+			} else {
+				delete existing.revealed.traits;
+			}
+
+			await party.updateAdversary(existing);
+		}
 	}
 }
