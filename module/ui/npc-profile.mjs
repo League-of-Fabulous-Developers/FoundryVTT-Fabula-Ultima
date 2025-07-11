@@ -226,7 +226,6 @@ export class NpcProfileWindow extends FUApplication {
 			}
 
 			// Traits
-			console.log(updatedProfile);
 			const traits = Object.entries(updatedProfile.traits ?? {})
 				.filter(([, value]) => value)
 				.map(([key]) => key);
