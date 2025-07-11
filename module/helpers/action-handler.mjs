@@ -80,8 +80,11 @@ export class ActionHandler {
 	 * Handle the study action for the actor.
 	 */
 	async handleStudyAction() {
-		await Checks.openCheck(this.actor, { primary: 'ins', secondary: 'ins' }, (check) => {
-			check.additionalData[actionKey] = 'study';
+		await CheckPrompt.openCheck(this.actor, {
+			initialConfig: { primary: 'ins', secondary: 'ins' },
+			checkCallback: (check) => {
+				check.additionalData[actionKey] = 'study';
+			},
 		});
 	}
 
