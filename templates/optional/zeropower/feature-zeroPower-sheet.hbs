@@ -23,9 +23,12 @@
 							{{localize 'FU.LimitTrigger'}}"
                        class="resource-label-m resource-inputs select-dropdown-full" />
             </legend>
-            {{editor enrichedHtml.zeroTrigger.description target="system.data.zeroTrigger.description"
-                     engine="prosemirror"
-                     rollData=rollData button=true owner=owner editable=editable }}
+            {{formInput dataFields.zeroTrigger.fields.description
+						name="system.data.zeroTrigger.description"
+						value=system.data.zeroTrigger.description
+						toggled=true
+						owner=owner
+						enriched=enrichedHtml.zeroTrigger.description }}
         </fieldset>
 
         {{!-- Zero Effect --}}
@@ -36,7 +39,7 @@
                        data-tooltip="{{localize 'FU.LimitEffect'}}"
                        class="resource-label-m resource-inputs select-dropdown-full" />
             </legend>
-			{{formInput dataFields.zeroEffect.description
+			{{formInput dataFields.zeroEffect.fields.description
 						name="system.data.zeroEffect.description"
 						value=system.data.zeroEffect.description
 						toggled=true

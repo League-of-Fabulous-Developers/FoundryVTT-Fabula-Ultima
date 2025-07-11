@@ -73,18 +73,10 @@ export class DataModelRegistry {
 	}
 
 	/**
-	 * @returns {Map<string, DataModel>}
-	 */
-	get map() {
-		return this.#map;
-	}
-
-	/**
 	 * @param {string} key
 	 * @returns {any}
 	 */
 	byKey(key) {
-		//key = key.replace('projectfu.', '');
 		return this.#map.get(key);
 	}
 
@@ -105,24 +97,9 @@ export class DataModelRegistry {
 	}
 
 	/**
-	 * @returns {Record<string, DataModel>}
-	 */
-	get record() {
-		return this.#map;
-	}
-
-	/**
-	 * @returns {{[p: string]: DataModel}}
-	 */
-	get asObject() {
-		const obj = Object.fromEntries(this.map);
-		return obj;
-	}
-
-	/**
-	 * @returns {*}
+	 * @returns {Record<string, string>}
 	 */
 	get entries() {
-		return Object.entries(this.asObject).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+		return Object.entries(this.all).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 	}
 }
