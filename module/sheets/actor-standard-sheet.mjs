@@ -236,6 +236,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 				delete parts.classes;
 				delete parts.spells;
 				delete parts.items;
+				if (!game.settings.get(SYSTEM, SETTINGS.optionNPCNotesTab)) {
+					delete parts.notes;
+				}
 				break;
 		}
 		return parts;
@@ -292,6 +295,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 						studyRoll.unshift('-');
 						studyRoll = studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
 						context.studyRoll = studyRoll;
+
+						context.enrichedHtml = {
+							description: await TextEditor.enrichHTML(context.system.description ?? '', {
+								secrets: this.actor.isOwner,
+								rollData: context.actor.getRollData(),
+								relativeTo: context.actor,
+							}),
+						};
 					}
 				}
 				break;
@@ -351,7 +362,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'settings':
-				// Enriches description fields within the context object
+				if (this.isNPC) {
+					ActorSheetUtils.prepareNpcCompanionData(context);
+				}
+				break;
+			case 'notes': {
 				context.enrichedHtml = {
 					description: await TextEditor.enrichHTML(context.system.description ?? '', {
 						secrets: this.actor.isOwner,
@@ -359,10 +374,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						relativeTo: context.actor,
 					}),
 				};
-				if (this.isNPC) {
-					ActorSheetUtils.prepareNpcCompanionData(context);
-				}
-				break;
+			}
 		}
 
 		return context;

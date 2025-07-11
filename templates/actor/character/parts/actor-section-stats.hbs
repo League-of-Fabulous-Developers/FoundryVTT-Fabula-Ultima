@@ -111,15 +111,9 @@
 							   value="{{ system.traits.value }}" placeholder="{{localize 'FU.Traits'}}"
 							   data-dtype="String" />
 					</li>
-					<section class="flex2 npc-desc">
+					<section class="flex2 npc-desc resource-content">
 						{{#if (eq (getGameSetting 'optionNPCNotesTab') true)}}
-							{{formInput system.schema.fields.description
-										toggled=true
-										value=system.description
-										rollData=rollData
-										owner=owner
-										editable=false
-										enriched=enrichedHtml.description}}
+							{{{enrichedHtml.description}}}
 						{{else}}
 							{{formInput system.schema.fields.description
 										toggled=true
