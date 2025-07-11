@@ -1,0 +1,34 @@
+<main>
+	<fieldset class="form-group">
+		<label for="resource">{{localize 'FU.Resource'}}</label>
+		<select name="resource" id="resource">
+			<option value="fp">{{localize 'FU.FabulaAbbr'}}</option>
+			<option value="ip">{{localize 'FU.InventoryAbbr'}}</option>
+			<option value="zenit">{{localize 'FU.Zenit'}}</option>
+			<option value="hp">{{localize 'FU.HealthAbbr'}}</option>
+			<option value="mp">{{localize 'FU.MindAbbr'}}</option>
+		</select>
+	</fieldset>
+
+	<fieldset class="form-group">
+		<label for="amount">{{localize 'FU.Amount'}}</label>
+		<input type="number" name="amount" id="amount" value="1" />
+	</fieldset>
+
+	<fieldset class="form-group">
+		<label for="resource-source">{{localize 'FU.Source'}}</label>
+		<input type="text" name="source" id="resource-source" value="{{defaultSource}}" />
+	</fieldset>
+
+	<fieldset class="form-group">
+		<legend>{{localize 'FU.Characters'}}</legend>
+		<div class="character-list">
+			{{#each characters}}
+				<label>
+					<input type="checkbox" name="recipients" value="{{uuid}}" checked>
+					{{name}}
+				</label>
+			{{/each}}
+		</div>
+	</fieldset>
+</main>

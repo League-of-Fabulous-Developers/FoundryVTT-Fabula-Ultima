@@ -1,4 +1,4 @@
-import { FU } from '../helpers/config.mjs';
+import { FU, systemPath } from '../helpers/config.mjs';
 
 /**
  * @typedef DamageType
@@ -32,170 +32,95 @@ import { FU } from '../helpers/config.mjs';
  * @param {DamageOverrideCallback} callback - The function to call when the user confirms.
  * @param {() => void} onCancel - The function to call when the user cancels.
  */
-export function DamageCustomizer(damage, targets, callback, onCancel) {
-	// Map damage types to options with the current type selected
-	const damageTypesOptions = Object.keys(FU.damageTypes)
-		.map((type) => `<option value="${type}" ${type === damage.type ? 'selected' : ''}>${game.i18n.localize(FU.damageTypes[type])}</option>`)
-		.join('');
-
-	// Create the content for the dialog
-	const content = `
-        <form>
-            <div class="desc mb-3 gap-5">
-                <div class="inline-desc form-group resource-content gap-5" style="padding: 5px 10px;">
-                    <label for="total-damage" class="resource-label" style="flex-grow: 8;">
-                        <b>${game.i18n.localize('FU.Total')}</b>
-                        <span id="total-damage">
-                            <b>${damage.total} ${game.i18n.localize(FU.damageTypes[damage.type])} + 0 Extra</b>
-                        </span>
-                    </label>
-                    <i id="total-damage-icon" class="icon ${FU.affIcon[damage.type]}" style="flex: 0 1 auto;"></i>
-                </div>
-            </div>
-            <div class="desc mb-3 grid grid-2col gap-2">
-				<div class="form-group">
-					<label for="extra-damage">
-						<b>${game.i18n.localize('FU.DamageExtra')}</b>
-					</label>
-					<input id="extra-damage" name="extra-damage" type="number" value="0" />
-				</div>
-				<div class="form-group">
-					<label for="damage-type"><b>${game.i18n.localize('FU.DamageType')}</b></label>
-					<select id="damage-type" name="damage-type">${damageTypesOptions}</select>
-				</div>
-				<div class="form-group flex-auto">
-					<label for="hr-zero"><b>${game.i18n.localize('FU.HRZeroStatus')}</b></label>
-					<input id="hr-zero" name="hr-zero" type="checkbox" />
-				</div>
-            </div>
-            <div class="desc grid grid-2col gap-5">
-                <div class="gap-2 grid-span-2">
-                    <div class="form-group">
-                        <button type="button" id="check-all" class="btn">${game.i18n.localize('FU.IgnoreAll')}</button>
-                        <button type="button" id="check-none" class="btn">${game.i18n.localize('FU.IgnoreNone')}</button>
-                    </div>
-                </div>
-                <div class="gap-2">
-                    <div class="form-group">
-                        <label for="ignore-vulnerable"><b>${game.i18n.localize('FU.IgnoreVulnerable')}</b></label>
-                        <input id="ignore-vulnerable" class="ignore" name="ignore-vulnerable" type="checkbox" />
-                    </div>
-                    <div class="form-group">
-                        <label for="ignore-resistance"><b>${game.i18n.localize('FU.IgnoreResistances')}</b></label>
-                        <input id="ignore-resistance" class="ignore" name="ignore-resistance" type="checkbox" />
-                    </div>
-                </div>
-                <div class="gap-2">
-                    <div class="form-group">
-                        <label for="ignore-immunities"><b>${game.i18n.localize('FU.IgnoreImmunities')}</b></label>
-                        <input id="ignore-immunities" class="ignore" name="ignore-immunities" type="checkbox" />
-                    </div>
-                    <div class="form-group">
-                        <label for="ignore-absorption"><b>${game.i18n.localize('FU.IgnoreAbsorption')}</b></label>
-                        <input id="ignore-absorption" class="ignore" name="ignore-absorption" type="checkbox" />
-                    </div>
-                </div>
-            </div>
-        </form>
-		<hr>
-    `;
-
+export async function DamageCustomizer(damage, targets, callback, onCancel) {
 	// Create and render the dialog
-	new Dialog(
-		{
+	const result = await foundry.applications.api.DialogV2.input({
+		window: {
 			title: game.i18n.localize('FU.DamageCustomizer'),
-			content,
-			buttons: {
-				yes: {
-					icon: "<i class='fas fa-check'></i>",
-					label: 'Apply',
-					callback: (html) => {
-						// Retrieve values from the form
-						const damageType = html.find('[name="damage-type"]').val();
-						const extraDamage = parseInt(html.find('[name="extra-damage"]').val(), 10) || 0;
-						const hrZero = html.find('[name="hr-zero"]').is(':checked');
-						const ignoreVulnerable = html.find('[name="ignore-vulnerable"]').is(':checked');
-						const ignoreResistance = html.find('[name="ignore-resistance"]').is(':checked');
-						const ignoreImmunities = html.find('[name="ignore-immunities"]').is(':checked');
-						const ignoreAbsorption = html.find('[name="ignore-absorption"]').is(':checked');
-
-						// Create an object with the extra damage information
-						const damageOverride = {
-							damageType,
-							extraDamage,
-							hrZero,
-							ignoreVulnerable,
-							ignoreResistance,
-							ignoreImmunities,
-							ignoreAbsorption,
-							targets,
-						};
-
-						// Execute the callback with the extra damage information and targets
-						callback(damageOverride, targets);
-					},
-				},
-				cancel: {
-					label: 'Cancel',
-					callback: () => {
-						// Execute onCancel function if provided
-						if (typeof onCancel === 'function') {
-							onCancel();
-						}
-					},
-				},
-			},
-			default: 'yes',
-			render: (html) => {
-				// Cache selectors
-				const $hrZeroCheckbox = html.find('#hr-zero');
-				const $totalDamageSpan = html.find('#total-damage');
-				const $damageTypeSelect = html.find('#damage-type');
-				const $extraDamageInput = html.find('#extra-damage');
-				const $totalDamageIcon = html.find('#total-damage-icon');
-				const $checkAllButton = html.find('#check-all');
-				const $checkNoneButton = html.find('#check-none');
-				const $ignoreCheckboxes = html.find('.ignore');
-
-				// Function to update total damage and icons based on HR Zero status, and extra damage
-				function updateTotalDamage() {
-					const extraDamage = parseInt($extraDamageInput.val(), 10) || 0;
-					const selectedDamageType = $damageTypeSelect.val();
-					const baseDamage = $hrZeroCheckbox.is(':checked') ? damage.modifierTotal : damage.total;
-					const totalDamage = baseDamage + extraDamage;
-
-					$totalDamageSpan.html(`${baseDamage} (Base) + ${extraDamage} (Extra Damage) = ${totalDamage} ${game.i18n.localize(FU.damageTypes[selectedDamageType])}`);
-					// Update icons
-					$totalDamageIcon.attr('class', `icon ${FU.affIcon[selectedDamageType]}`);
-				}
-
-				// Initial update
-				updateTotalDamage();
-
-				// Update total damage and icons based on changes
-				$hrZeroCheckbox.on('change', updateTotalDamage);
-				$damageTypeSelect.on('change', updateTotalDamage);
-				$extraDamageInput.on('input', updateTotalDamage);
-
-				// Handle check all and check none buttons
-				$checkAllButton.on('click', () => {
-					$ignoreCheckboxes.prop('checked', true);
-				});
-
-				$checkNoneButton.on('click', () => {
-					$ignoreCheckboxes.prop('checked', false);
-				});
-			},
-			close: () => {
-				// Execute onCancel function if provided
-				if (typeof onCancel === 'function') {
-					onCancel();
-				}
-			},
 		},
-		{
+		position: {
 			width: 440,
-			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		},
-	).render(true);
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-damage-customizer.hbs'), {
+			FU,
+			damage,
+		}),
+		rejectClose: false,
+		ok: {
+			icon: "<i class='fas fa-check'></i>",
+			label: 'FU.Confirm',
+		},
+		render: (event, dialog) => {
+			// Cache selectors
+			const hrZeroCheckbox = dialog.element.querySelector('#hr-zero');
+			const totalDamageSpan = dialog.element.querySelector('#total-damage');
+			const damageTypeSelect = dialog.element.querySelector('#damage-type');
+			const extraDamageInput = dialog.element.querySelector('#extra-damage');
+			const totalDamageIcon = dialog.element.querySelector('#total-damage-icon');
+			const checkAllButton = dialog.element.querySelector('#check-all');
+			const checkNoneButton = dialog.element.querySelector('#check-none');
+			const ignoreCheckboxes = dialog.element.querySelectorAll('.ignore');
+
+			// Function to update total damage and icons based on HR Zero status, and extra damage
+			function updateTotalDamage() {
+				const extraDamage = parseInt(extraDamageInput.value, 10) || 0;
+				const selectedDamageType = damageTypeSelect.value;
+				const baseDamage = hrZeroCheckbox.checked ? damage.modifierTotal : damage.total;
+				const totalDamage = baseDamage + extraDamage;
+
+				totalDamageSpan.textContent = `${baseDamage} (Base) + ${extraDamage} (Extra Damage) = ${totalDamage} ${game.i18n.localize(FU.damageTypes[selectedDamageType])}`;
+				// Update icons
+				totalDamageIcon.classList.value = `icon ${FU.affIcon[selectedDamageType]}`;
+			}
+
+			// Initial update
+			updateTotalDamage();
+
+			// Update total damage and icons based on changes
+			hrZeroCheckbox.addEventListener('change', updateTotalDamage);
+			damageTypeSelect.addEventListener('change', updateTotalDamage);
+			extraDamageInput.addEventListener('input', updateTotalDamage);
+
+			// Handle check all and check none buttons
+			checkAllButton.addEventListener('click', () => {
+				ignoreCheckboxes.forEach((el) => (el.checked = true));
+			});
+
+			checkNoneButton.addEventListener('click', () => {
+				ignoreCheckboxes.forEach((el) => (el.checked = false));
+			});
+		},
+	});
+
+	if (result) {
+		console.log(result);
+		// Retrieve values from the form
+		const damageType = result['damage-type'];
+		const extraDamage = parseInt(result['extra-damage'], 10) || 0;
+		const hrZero = result['hr-zero'];
+		const ignoreVulnerable = result['ignore-vulnerable'];
+		const ignoreResistance = result['ignore-resistance'];
+		const ignoreImmunities = result['ignore-immunities'];
+		const ignoreAbsorption = result['ignore-absorption'];
+
+		// Create an object with the extra damage information
+		const damageOverride = {
+			damageType,
+			extraDamage,
+			hrZero,
+			ignoreVulnerable,
+			ignoreResistance,
+			ignoreImmunities,
+			ignoreAbsorption,
+			targets,
+		};
+
+		// Execute the callback with the extra damage information and targets
+		callback(damageOverride, targets);
+	} else {
+		if (typeof onCancel === 'function') {
+			onCancel();
+		}
+	}
 }

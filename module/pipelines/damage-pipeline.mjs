@@ -499,7 +499,7 @@ function onRenderChatMessage(message, html) {
 		const sourceInfo = getSourceInfoFromChatMessage(message);
 
 		const customizeDamage = async (event, targets) => {
-			DamageCustomizer(
+			return DamageCustomizer(
 				damageData,
 				targets,
 				async (extraDamageInfo) => {
@@ -535,19 +535,21 @@ function onRenderChatMessage(message, html) {
 		html.querySelector(`a[data-action="selectDamageCustomizer"]`)?.addEventListener('click', async (event) => {
 			event.preventDefault();
 			if (!disabled) {
-				disabled = true;
 				const targets = await getTargeted();
-				DamageCustomizer(
-					damageData,
-					targets,
-					async (damageOverride) => {
-						await handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
-						disabled = false;
-					},
-					() => {
-						disabled = false;
-					},
-				);
+				if (targets.length) {
+					disabled = true;
+					return DamageCustomizer(
+						damageData,
+						targets,
+						async (damageOverride) => {
+							await handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
+							disabled = false;
+						},
+						() => {
+							disabled = false;
+						},
+					);
+				}
 			}
 		});
 	}

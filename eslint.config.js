@@ -24,7 +24,6 @@ const foundryvtt = {
 			ChatMessage: 'readonly',
 			Combat: 'readonly',
 			Combatant: 'readonly',
-			Dialog: 'readonly',
 			FilePicker: 'readonly',
 			Folder: 'readonly',
 			Handlebars: 'readonly',

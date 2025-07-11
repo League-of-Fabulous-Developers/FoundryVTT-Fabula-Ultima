@@ -1,4 +1,4 @@
-import { FU } from './config.mjs';
+import { FU, systemPath } from './config.mjs';
 import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
@@ -162,14 +162,19 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 			if (isAny) {
 				choices = Object.keys(FU.damageTypes);
 			}
-			new Dialog({
-				title: 'Select Damage Type',
-				content: `<p>Select the damage type to apply to the weapon</p>`,
-				buttons: choices.map((c) => ({
-					label: game.i18n.localize(FU.damageTypes[c]),
-					callback: () => onApply(c),
+			const result = await foundry.applications.api.DialogV2.wait({
+				window: { title: 'Select Damage Type' },
+				content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-inline-weapon-enchant.hbs')),
+				rejectClose: false,
+				buttons: choices.map((choice) => ({
+					action: choice,
+					label: game.i18n.localize(FU.damageTypes[choice]),
 				})),
-			}).render(true);
+			});
+			console.log(result);
+			if (result) {
+				onApply(result);
+			}
 		} else {
 			onApply(choices[0]);
 		}

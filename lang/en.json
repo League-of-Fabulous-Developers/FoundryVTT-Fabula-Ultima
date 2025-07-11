@@ -1454,6 +1454,7 @@
 		"Unknown": "Unknown",
 		"DialogInvalidTarget": "Only character-type actors can be targeted",
 		"AwardResources": "Award Resources",
+		"ClockSections": "Sections",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

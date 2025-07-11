@@ -260,9 +260,9 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onIncrementProgressTrack(event, target) {
-		const name = target.dataset.name;
+		const index = target.closest('[data-index]').dataset.index;
 		const increment = target.dataset.increment;
-		this.updateProgressTrack(name, Number.parseInt(increment));
+		this.updateProgressTrack(index, Number.parseInt(increment));
 	}
 
 	/**
@@ -272,8 +272,8 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onRevealProgressTrack(event, target) {
-		const name = target.dataset.name;
-		this.revealProgressTrack(name);
+		const index = target.closest('[data-index]').dataset.index;
+		this.revealProgressTrack(index);
 	}
 
 	/**
@@ -283,8 +283,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onRemoveProgressTrack(event, target) {
-		const name = target.dataset.name;
-		this.removeProgressTrack(name);
+		this.removeProgressTrack(Number(target.closest('[data-index]').dataset.index));
 	}
 
 	/**
@@ -377,74 +376,33 @@ export class FUPartySheet extends FUActorSheet {
 		const characters = await this.party.getCharacterActors();
 		const defaultSource = StringUtils.localize('USER.RoleGamemaster');
 
-		// TODO: Use HBS
-		const content = `
-  <form>
-    <div class="form-group">
-      <label for="resource">Resource</label>
-      <select name="resource" id="resource">
-        <option value="fp">FP</option>
-        <option value="ip">IP</option>
-        <option value="zenit">Zenit</option>
-        <option value="hp">HP</option>
-        <option value="mp">MP</option>
-      </select>
-    </div>
-        
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input type="number" name="amount" id="amount" value="1"/>
-    </div>
-    
-    <div class="form-group">
-      <label for="resource-source">Source</label>
-        <input type="text" name="source" id="resource-source" value="${defaultSource}" />
-     </div>
-
-    <div class="form-group">
-      <label>Characters</label>
-      <div class="character-list">
-        ${characters
-			.map(
-				(c) => `
-          <label>
-            <input type="checkbox" name="recipients" value="${c.uuid}" checked> ${c.name}
-          </label>
-        `,
-			)
-			.join('<br>')}
-      </div>
-    </div>
-  </form>`;
-
-		new Dialog({
-			title: StringUtils.localize('FU.AwardResources'),
-			content,
-			buttons: {
-				confirm: {
-					label: 'Confirm',
-					callback: async (html) => {
-						const resource = html.find('[name="resource"]').val();
-						const source = html.find('[name="source"]').val();
-						const amount = Number(html.find('[name="amount"]').val());
-						const selectedIds = [...html[0].querySelectorAll('input[name="recipients"]:checked')].map((input) => input.value);
-						console.log('Giving', resource, 'to:', selectedIds);
-						const selectedActors = characters.filter((c) => selectedIds.includes(c.uuid));
-						const request = new ResourceRequest(new InlineSourceInfo(source), selectedActors, resource, amount);
-						if (amount > 0) {
-							await ResourcePipeline.processRecovery(request);
-						} else {
-							await ResourcePipeline.processLoss(request);
-						}
-						return this.render(true);
-					},
-				},
-				cancel: {
-					label: 'Cancel',
-				},
+		const result = await foundry.applications.api.DialogV2.input({
+			window: { title: StringUtils.localize('FU.AwardResources') },
+			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-award-resources.hbs'), {
+				defaultSource: defaultSource,
+				characters: characters,
+			}),
+			rejectClose: false,
+			ok: {
+				label: 'FU.Confirm',
 			},
-			default: 'confirm',
-		}).render(true);
+		});
+
+		if (result) {
+			const resource = result.resource;
+			const source = result.source;
+			const amount = result.amount;
+			const selectedIds = result.recipients;
+			console.log('Giving', resource, 'to:', selectedIds);
+			const selectedActors = characters.filter((c) => selectedIds.includes(c.uuid));
+			const request = new ResourceRequest(new InlineSourceInfo(source), selectedActors, resource, amount);
+			if (amount > 0) {
+				await ResourcePipeline.processRecovery(request);
+			} else {
+				await ResourcePipeline.processLoss(request);
+			}
+			return this.render(true);
+		}
 	}
 
 	/**
@@ -452,58 +410,38 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async promptAddProgressTrack() {
 		console.debug('Adding a progress track');
-		new Dialog({
-			title: 'Progress Track',
-			content: `<form>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name"/>
-        
-        <label for="max"">Maximum</label>
-		<input type="number" name="max" value="6"/>
-      </div>
-    </form>`,
-			buttons: [
-				{
-					label: 'Confirm',
-					callback: async (html) => {
-						const name = html.find('[name="name"]').val();
 
-						if (!name) {
-							return;
-						}
-						const max = html.find('[name="max"]').val();
-						console.log('Creating progress track with name: ', name);
+		const result = await foundry.applications.api.DialogV2.input({
+			window: { title: game.i18n.localize('FU.ClockAdd') },
+			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-party-clock.hbs'), {}),
+			rejectClose: false,
+			ok: {
+				label: game.i18n.localize('FU.Confirm'),
+			},
+		});
 
-						let tracks = foundry.utils.duplicate(this.actor.system.tracks);
-						const existing = tracks.find((t) => t.name === name);
-						// TODO: Localize
-						if (existing) {
-							ui.notifications.error('A progress track already exists with that given name.', { localize: true });
-							return;
-						}
+		if (result) {
+			if (!result.name) {
+				return;
+			}
+			console.log('Creating progress track with name: ', result.name);
 
-						const newTrack = ProgressDataModel.construct(name, max);
-						tracks.push(newTrack);
-						this.actor.update({ ['system.tracks']: tracks });
-					},
-				},
-				{
-					label: 'Cancel',
-					callback: () => {},
-				},
-			],
-		}).render(true);
+			const tracks = foundry.utils.duplicate(this.actor.system.tracks);
+
+			const newTrack = ProgressDataModel.construct(result.name, result.max);
+			tracks.push(newTrack);
+			this.actor.update({ ['system.tracks']: tracks });
+		}
 	}
 
 	/**
 	 * @description  increment button click events for progress tracks
-	 * @param {String} name The name of the progress track
-	 * @param {Number} increment
+	 * @param {number} index The index of the progress track
+	 * @param {number} increment
 	 */
-	updateProgressTrack(name, increment) {
+	updateProgressTrack(index, increment) {
 		const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-		const track = tracks.find((t) => t.name === name);
+		const track = tracks[index];
 		if (track) {
 			track.current = MathHelper.clamp(track.current + increment * track.step, 0, track.max);
 			this.actor.update({ ['system.tracks']: tracks });
@@ -513,24 +451,21 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @param {String} name
+	 * @param {number} index
 	 */
-	removeProgressTrack(name) {
+	removeProgressTrack(index) {
 		/** @type ProgressDataModel[] **/
-		let tracks = foundry.utils.duplicate(this.actor.system.tracks);
-		const track = tracks.find((t) => t.name === name);
-		if (track) {
-			tracks = tracks.filter((t) => t.name !== name);
-			this.actor.update({ ['system.tracks']: tracks });
-		}
+		const tracks = foundry.utils.duplicate(this.actor.system.tracks);
+		tracks.splice(index, 1);
+		this.actor.update({ ['system.tracks']: tracks });
 	}
 
 	/**
-	 * @param {String} name
+	 * @param {number} index
 	 */
-	revealProgressTrack(name) {
+	revealProgressTrack(index) {
 		const tracks = this.actor.system.tracks;
-		const track = tracks.find((t) => t.name === name);
+		const track = tracks[index];
 		if (track) {
 			ProgressDataModel.sendToChat(this.actor, track);
 		}
