@@ -76,6 +76,7 @@ export class ArmorDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
 		ArmorMigrations.run(source);
 		return source;
 	}

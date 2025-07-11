@@ -146,6 +146,7 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
 		MiscAbilityMigrations.run(source);
 		return source;
 	}

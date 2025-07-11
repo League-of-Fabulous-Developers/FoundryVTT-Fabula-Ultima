@@ -119,6 +119,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
 		SpellMigrations.run(source);
 		return source;
 	}
