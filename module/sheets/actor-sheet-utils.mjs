@@ -110,6 +110,8 @@ function prepareNpcCombat(context) {
 
 	const rules = [];
 
+	const treasures = [];
+
 	for (let item of context.items) {
 		switch (item.type) {
 			case 'basic':
@@ -126,12 +128,18 @@ function prepareNpcCombat(context) {
 			case 'rule':
 				rules.push(item);
 				break;
+
+			case 'treasure':
+				treasures.push(item);
+				break;
 		}
 	}
 
 	context.basics = basics;
 
 	context.rules = rules;
+
+	context.treasures = treasures;
 }
 
 /**

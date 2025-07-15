@@ -236,6 +236,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 				delete parts.classes;
 				delete parts.spells;
 				delete parts.items;
+				// Behavior roll
+				if (!game.settings.get('projectfu', 'optionBehaviorRoll')) {
+					delete parts.behavior;
+				}
 				if (!game.settings.get(SYSTEM, SETTINGS.optionNPCNotesTab)) {
 					delete parts.notes;
 				}
