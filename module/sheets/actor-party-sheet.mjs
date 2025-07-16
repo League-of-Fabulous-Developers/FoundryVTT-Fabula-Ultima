@@ -123,6 +123,7 @@ export class FUPartySheet extends FUActorSheet {
 			xp: experience.total,
 			zenit: this.party.resources.zenit.value,
 		};
+		context.currencyName = game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency) || 'FU.Zenit';
 
 		return context;
 	}
