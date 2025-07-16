@@ -9,7 +9,7 @@ export class CookingApplication extends foundry.applications.api.HandlebarsAppli
 	/** @type ApplicationConfiguration */
 	static DEFAULT_OPTIONS = {
 		window: { title: 'FU.ClassFeatureCookbookCookingTitle', minimizable: false },
-		classes: ['form', 'projectfu', 'cooking-app'],
+		classes: ['form', 'projectfu', 'cooking-app', 'backgroundstyle'],
 		position: {
 			width: 550,
 		},

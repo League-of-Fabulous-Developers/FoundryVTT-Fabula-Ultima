@@ -18,7 +18,6 @@ const foundryvtt = {
 			...globals.jquery,
 			ActiveEffect: 'readonly',
 			Actor: 'readonly',
-			Application: 'readonly',
 			CONFIG: 'readonly',
 			CONST: 'readonly',
 			ChatMessage: 'readonly',

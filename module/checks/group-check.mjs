@@ -185,7 +185,7 @@ const onPrepareGroupCheck = (check, actor, item, registerCallback) => {
 	}
 };
 
-class GroupCheckApp extends Application {
+class GroupCheckApp extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 	/**
 	 * @type CheckId
 	 */
@@ -199,14 +199,27 @@ class GroupCheckApp extends Application {
 	 */
 	#hookId;
 
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
+	/**
+	 * @type ApplicationConfiguration
+	 */
+	static DEFAULT_OPTIONS = {
+		window: { title: 'FU.GroupCheck' },
+		position: {
 			width: 300,
 			height: 500,
-			title: game.i18n.localize('FU.GroupCheck'),
-			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-		});
-	}
+		},
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		actions: {
+			roll: GroupCheckApp.#roll,
+			cancel: GroupCheckApp.#cancel,
+		},
+	};
+
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/app/app-group-check.hbs',
+		},
+	};
 
 	/**
 	 * @param {import('./check-hooks.mjs').CheckV2} groupCheck
@@ -283,8 +296,10 @@ class GroupCheckApp extends Application {
 		});
 	}
 
-	get template() {
-		return 'systems/projectfu/templates/app/app-group-check.hbs';
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
+		Object.assign(context, this.getData());
+		return context;
 	}
 
 	getData(options = {}) {
@@ -325,10 +340,12 @@ class GroupCheckApp extends Application {
 		);
 	}
 
-	activateListeners(html) {
-		super.activateListeners(html);
-		html.find('button[data-type=group-check][data-action=roll]').click(() => this.close({ roll: true }));
-		html.find('button[data-type=group-check][data-action=cancel]').click(() => this.close({ roll: false }));
+	static #roll() {
+		this.close({ roll: true });
+	}
+
+	static #cancel() {
+		this.close({ roll: false });
 	}
 
 	async close(options = {}) {
