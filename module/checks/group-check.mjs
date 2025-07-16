@@ -5,6 +5,7 @@ import { CheckConfiguration } from './check-configuration.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { SupportCheck } from './support-check.mjs';
+import FUApplication from '../ui/application.mjs';
 
 /**
  * @typedef SupporterV2
@@ -185,7 +186,7 @@ const onPrepareGroupCheck = (check, actor, item, registerCallback) => {
 	}
 };
 
-class GroupCheckApp extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+class GroupCheckApp extends FUApplication {
 	/**
 	 * @type CheckId
 	 */

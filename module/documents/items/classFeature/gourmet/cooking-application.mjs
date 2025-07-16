@@ -2,10 +2,11 @@ import { getTasteAliasFlag, IngredientDataModel, tasteComparator, TASTES } from 
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { Checks } from '../../../../checks/checks.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import FUApplication from '../../../../ui/application.mjs';
 
 const FLAG_ALL_YOU_CAN_EAT = 'allYouCanEat';
 
-export class CookingApplication extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export class CookingApplication extends FUApplication {
 	/** @type ApplicationConfiguration */
 	static DEFAULT_OPTIONS = {
 		window: { title: 'FU.ClassFeatureCookbookCookingTitle', minimizable: false },
