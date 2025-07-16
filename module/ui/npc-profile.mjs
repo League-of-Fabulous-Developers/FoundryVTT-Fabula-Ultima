@@ -127,7 +127,7 @@ export class NpcProfileWindow extends FUApplication {
 		context.revealAffinities = revealAffinities;
 		context.level = system.level.value;
 		context.hp = system.resources.hp.max;
-		context.mp = system.resources.hp.max;
+		context.mp = system.resources.mp.max;
 		context.localizedSpecies = FU.species[this.data.species];
 
 		// Ensure expanded state is initialized
