@@ -1,16 +1,16 @@
-<form>
+<div>
     <div class="flexrow gap-05">
         <section class="flex0 mb">
             <fieldset class="desc title-fieldset resource-content">
                 <legend class="resource-label-m">
                     {{localize "FU.ClassFeatureCookbookCookingIngredients"}}
                 </legend>
-                {{#each recipe.ingredients}}
+                {{#each recipe}}
                     <div>
                         <label>
                             <span class="resource-label-sm">{{localize "FU.ClassFeatureIngredient"}} {{math @index "+" 1}}</span><br>
                             <select class="resource-inputs select-dropdown-full grid-span-4" name="ingredients.{{@index}}">
-                                {{selectOptions (lookup @root.options @index) selected=this nameAttr="value"
+                                {{selectOptions (lookup @root.options @index) selected=this valueAttr="value"
                                                 labelAttr="label" blank="-"}}
                             </select>
                         </label>
@@ -43,4 +43,4 @@
     <div class="flexrow">
         <button type="button" data-action="startCooking" class="action-button" {{#unless effects}}disabled{{/unless}}>{{localize "FU.ClassFeatureCookbookCookingStartCooking"}}</button>
     </div>
-</form>
+</div>

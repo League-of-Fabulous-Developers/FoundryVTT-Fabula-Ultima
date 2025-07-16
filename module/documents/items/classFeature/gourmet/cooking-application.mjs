@@ -5,54 +5,64 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const FLAG_ALL_YOU_CAN_EAT = 'allYouCanEat';
 
-/**
- * @typedef Recipe
- * @property {string[]} ingredients
- */
-
-/**
- * @property {Recipe} object
- */
-export class CookingApplication extends foundry.appv1.api.FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'projectfu', 'cooking-app'],
+export class CookingApplication extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+	/** @type ApplicationConfiguration */
+	static DEFAULT_OPTIONS = {
+		window: { title: 'FU.ClassFeatureCookbookCookingTitle', minimizable: false },
+		classes: ['form', 'projectfu', 'cooking-app'],
+		position: {
 			width: 550,
-			height: 'auto',
+		},
+		tag: 'form',
+		form: {
 			closeOnSubmit: false,
-			editable: true,
-			sheetConfig: false,
 			submitOnChange: true,
-			submitOnClose: true,
-			minimizable: false,
-			title: 'FU.ClassFeatureCookbookCookingTitle',
-		});
-	}
+			handler: CookingApplication.#onFormSubmit,
+		},
+		actions: {
+			startCooking: CookingApplication.#startCooking,
+		},
+	};
+
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/feature/gourmet/cooking-application.hbs',
+		},
+	};
 
 	/**
 	 * @type CookbookDataModel
 	 */
 	#cookbook;
 
+	/**
+	 * @type {string[]}
+	 */
+	#recipe;
+
 	constructor(cookbook) {
+		super();
 		if (cookbook.app) {
 			return cookbook.app;
 		}
 		const maxIngredients = cookbook.actor.getFlag(SYSTEM, FLAG_ALL_YOU_CAN_EAT) ? 4 : 3;
-		super({ ingredients: Array(maxIngredients).fill('') });
+		this.#recipe = Array(maxIngredients).fill('');
 		this.#cookbook = cookbook;
 		cookbook.app = this;
 	}
 
-	get template() {
-		return 'systems/projectfu/templates/feature/gourmet/cooking-application.hbs';
+	async _prepareContext(options = {}) {
+		const context = await super._prepareContext(options);
+		const data = await this.getData();
+		Object.assign(context, data);
+		return context;
 	}
 
-	async getData(options = {}) {
+	async getData() {
 		/** @type {Record<string, FUItem>} */
 		const ingredients = this.#cookbook.actor.itemTypes.classFeature.filter((value) => value.system.data instanceof IngredientDataModel && value.system.data.quantity > 0).reduce((agg, val) => (agg[val.id] = val) && agg, {});
 
-		const tastes = this.object.ingredients
+		const tastes = this.#recipe
 			.map((value) => ingredients[value])
 			.filter((value) => !!value)
 			.map((value) => value.system.data.taste)
@@ -93,8 +103,8 @@ export class CookingApplication extends foundry.appv1.api.FormApplication {
 				})),
 		);
 
-		const usedIngredients = this.object.ingredients.reduce((acc, value, idx) => (acc[value] = (acc[value] ?? 0) + 1) && acc, {});
-		const selectOptions = this.object.ingredients.map((value) =>
+		const usedIngredients = this.#recipe.reduce((acc, value, idx) => (acc[value] = (acc[value] ?? 0) + 1) && acc, {});
+		const selectOptions = this.#recipe.map((value) =>
 			Object.entries(ingredients)
 				.filter(([id, item]) => value === id || (item.system.data.quantity ?? 0) - (usedIngredients[id] ?? 0) > 0)
 				.map(([id, item]) => ({
@@ -104,7 +114,7 @@ export class CookingApplication extends foundry.appv1.api.FormApplication {
 		);
 
 		return {
-			recipe: this.object,
+			recipe: this.#recipe,
 			ingredients: ingredients,
 			effects: effects,
 			options: selectOptions,
@@ -114,17 +124,14 @@ export class CookingApplication extends foundry.appv1.api.FormApplication {
 	async close(options = {}) {
 		await super.close(options);
 		delete this.#cookbook.app;
-		if (options.getCooking) {
-			return this.#startCooking();
-		}
 	}
 
-	async #startCooking() {
+	static async #startCooking() {
 		const data = await this.getData();
-		const updates = [];
+		const updates = [this.close()];
 
 		const renderData = {
-			ingredients: data.recipe.ingredients.map((id) => data.ingredients[id]).filter((value) => !!value),
+			ingredients: data.recipe.map((id) => data.ingredients[id]).filter((value) => !!value),
 			effects: data.effects,
 		};
 
@@ -153,14 +160,10 @@ export class CookingApplication extends foundry.appv1.api.FormApplication {
 		return Promise.all(updates);
 	}
 
-	async _updateObject(event, formData) {
-		formData = foundry.utils.expandObject(formData);
-		this.object.ingredients = Array.from(Object.values(formData.ingredients));
+	static async #onFormSubmit(event, form, formData) {
+		for (let i = 0; i < this.#recipe.length; i++) {
+			this.#recipe[i] = formData.get(`ingredients.${i}`);
+		}
 		this.render();
-	}
-
-	activateListeners(html) {
-		html.find('[data-action=startCooking]').click(() => this.close({ getCooking: true }));
-		return super.activateListeners(html);
 	}
 }
