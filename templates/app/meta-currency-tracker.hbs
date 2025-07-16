@@ -1,74 +1,75 @@
 <form class='meta-currency-tracker'>
-    <fieldset class='title-fieldset resource-content flex-group-center flexrow desc'>
-        <legend class='resource-label-sm'>
-            <label>{{localize 'FU.AppMetaCurrencyTrackerFabula'}}</label>
-        </legend>
-        {{numberInput object.fabula name='fabula' min=0 step=1}}
-        {{#if options.editable}}
-            <span class='flex0 action-button'>
-				<button type='button' data-action='increment-fabula' class='w-100'><i class='fas fa-plus'></i> </button>
+	<fieldset class='title-fieldset resource-content flex-group-center flexrow desc'>
+		<legend class='resource-label-sm'>
+			<label>{{localize 'FU.AppMetaCurrencyTrackerFabula'}}</label>
+		</legend>
+		{{numberInput object.fabula name='fabula' min=0 step=1 disabled=(not editable)}}
+		{{#if editable}}
+			<span class='flex0 action-button'>
+				<button type='button' data-action='increment' data-type="fabula" class='w-100'><i
+				 class='fas fa-plus'></i> </button>
 			</span>
-        {{/if}}
-    </fieldset>
-    <fieldset class='title-fieldset resource-content flex-group-center flexrow desc'>
-        <legend class='resource-label-sm'>
-            <label>{{localize 'FU.AppMetaCurrencyTrackerUltima'}}</label>
-        </legend>
-        {{numberInput object.ultima name='ultima' min=0 step=1}}
-        {{#if options.editable}}
-            <span class='flex0 action-button'>
-				<button type='button' data-action='increment-ultima' class='w-100'><i class='fas fa-plus'></i> </button>
+		{{/if}}
+	</fieldset>
+	<fieldset class='title-fieldset resource-content flex-group-center flexrow desc'>
+		<legend class='resource-label-sm'>
+			<label>{{localize 'FU.AppMetaCurrencyTrackerUltima'}}</label>
+		</legend>
+		{{numberInput object.ultima name='ultima' min=0 step=1 disabled=(not editable)}}
+		{{#if editable}}
+			<span class='flex0 action-button'>
+				<button type='button' data-action='increment' data-type="ultima" class='w-100'><i class='fas fa-plus'></i> </button>
 			</span>
-        {{/if}}
-    </fieldset>
-    {{#if options.editable}}
-        <fieldset class='title-fieldset resource-content flex-group-center flexrow desc'>
-            <legend class='resource-label-sm'>
-                <label>{{localize 'FU.AppMetaCurrencyTrackerActiveCharacters'}}</label>
-            </legend>
-            <div class="grid characters">
-                <div class="d-contents title">
-                    <span>{{localize "FU.Character"}}</span>
-                    <span>{{localize "FU.Player"}}</span>
-                    <span>{{localize "FU.AppMetaCurrencyTrackerOnline"}}</span>
-                    <span>{{localize "FU.AppMetaCurrencyTrackerActive"}}</span>
-                </div>
-                {{#each players as |player|}}
-                    {{#if player.character}}
-                        <div class="d-contents">
-                            <span>{{player.character.name}}</span>
-                            <span>{{player.name}}</span>
-                            <span style="color: {{player.color}}"><i
-                             class="fa-circle {{#if player.active}}fas{{else}}far{{/if}}"></i></span>
-                            <span>
+		{{/if}}
+	</fieldset>
+	{{#if editable}}
+		<fieldset class='title-fieldset resource-content flex-group-center flexrow desc'>
+			<legend class='resource-label-sm'>
+				<label>{{localize 'FU.AppMetaCurrencyTrackerActiveCharacters'}}</label>
+			</legend>
+			<div class="grid characters">
+				<div class="d-contents title">
+					<span>{{localize "FU.Character"}}</span>
+					<span>{{localize "FU.Player"}}</span>
+					<span>{{localize "FU.AppMetaCurrencyTrackerOnline"}}</span>
+					<span>{{localize "FU.AppMetaCurrencyTrackerActive"}}</span>
+				</div>
+				{{#each players as |player|}}
+					{{#if player.character}}
+						<div class="d-contents">
+							<span>{{player.character.name}}</span>
+							<span>{{player.name}}</span>
+							<span style="color: {{player.color}}"><i
+							 class="fa-circle {{#if player.active}}fas{{else}}far{{/if}}"></i></span>
+							<span>
                             <a data-action="override" data-actor-id="{{player.character.id}}"
-                               data-user-id="{{player.id}}">
+							   data-user-id="{{player.id}}">
                                 <i
-                                 class="fa-circle-check {{#if (lookup @root.object.activityOverride player.character.id)
-                                                              includeZero=true ~}}
-                                     {{~#if (lookup @root.object.activityOverride player.character.id) ~}}
+								 class="fa-circle-check {{#if (lookup @root.object.activityOverride player.character.id)
+															  includeZero=true ~}}
+									 {{~#if (lookup @root.object.activityOverride player.character.id) ~}}
                                     fas
                                 {{~else~}}
                                     far
                                 {{~/if~}}
-                                     {{~else~}}
-                                     {{~#if player.active~}}
+									 {{~else~}}
+									 {{~#if player.active~}}
                                     fas
                                 {{~else~}}
                                     far
                                 {{~/if~}}
-                                 {{~/if~}}
+								 {{~/if~}}
                             "></i>
                             </a>
                         </span>
-                        </div>
-                    {{/if}}
-                {{/each}}
-            </div>
-        </fieldset>
-        <section class='resource-content flex-group-center flexrow action-button'>
-            <button type='button' data-action='calc-exp'><i class='fas fa-calculator'></i>{{localize
-             'FU.AppMetaCurrencyTrackerCalculateExp'}}</button>
-        </section>
-    {{/if}}
+						</div>
+					{{/if}}
+				{{/each}}
+			</div>
+		</fieldset>
+		<section class='resource-content flex-group-center flexrow action-button'>
+			<button type='button' data-action='calc'><i class='fas fa-calculator'></i>{{localize
+			 'FU.AppMetaCurrencyTrackerCalculateExp'}}</button>
+		</section>
+	{{/if}}
 </form>
