@@ -1,0 +1,19 @@
+.combat-hud-config-app {
+	--color-form-label: var(--color-dark-1);
+	--color-form-label-hover: var(--color-dark-1);
+	--color-form-hint: var(--color-dark-2);
+	--color-form-hint-hover: var(--color-dark-2);
+	--color-text-primary: var(--color-dark-2);
+
+	input[type='checkbox'] {
+		--checkbox-checkmark-color: var(--color-dark-1);
+	}
+
+	.notes {
+		flex: 0 0 100%;
+	}
+
+	.settings-form {
+		overflow: scroll;
+	}
+}

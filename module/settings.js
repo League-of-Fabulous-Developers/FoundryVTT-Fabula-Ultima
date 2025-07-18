@@ -3,6 +3,7 @@ import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTr
 import { CombatHUD } from './ui/combat-hud.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
+import FUApplication from './ui/application.mjs';
 
 export const SETTINGS = Object.freeze({
 	experimentalCombatHud: 'experimentalCombatHud',
@@ -76,7 +77,13 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.ChatMessageOptionsManage'),
 		hint: game.i18n.localize('FU.ChatMessageOptionsSettingsInstuction'),
 		icon: 'fas fa-message',
-		type: ChatMessageOptions,
+		type: createConfigurationApp('FU.ChatMessageOptions', [
+			SETTINGS.optionChatMessageHideTags,
+			SETTINGS.optionChatMessageHideDescription,
+			SETTINGS.optionChatMessageCollapseDescription,
+			SETTINGS.optionChatMessageHideQuality,
+			SETTINGS.optionChatMessageHideRollDetails,
+		]),
 		restricted: true,
 	});
 
@@ -129,7 +136,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: OptionalRules,
+		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules]),
 		restricted: true,
 	});
 
@@ -175,7 +182,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.BehaviorRollsManage'),
 		hint: game.i18n.localize('FU.BehaviorRollsManageHint'),
 		icon: 'fas fa-book',
-		type: BehaviorRollsConfig,
+		type: createConfigurationApp('FU.BehaviorRolls', [SETTINGS.optionBehaviorRoll, SETTINGS.optionTargetPriority, SETTINGS.optionTargetPriorityRules]),
 		restricted: true,
 		requiresReload: true,
 	});
@@ -501,7 +508,7 @@ export const registerSystemSettings = async function () {
 		hint: game.i18n.localize('FU.ConfigMetaCurrencySettingsHint'),
 		label: game.i18n.localize('FU.ConfigMetaCurrencySettingsLabel'),
 		icon: 'fas fa-chart-line',
-		type: MetaCurrencyTrackerOptions,
+		type: createConfigurationApp('FU.ConfigMetaCurrencySettings', [SETTINGS.metaCurrencyBaseExperience, SETTINGS.metaCurrencyKeepExcessFabula, SETTINGS.metaCurrencyAutomation, SETTINGS.metaCurrencyAutomaticallyDistributeExp]),
 		restricted: true,
 	});
 
@@ -705,101 +712,41 @@ export const registerSystemSettings = async function () {
 	});
 };
 
-class OptionalRules extends foundry.appv1.api.FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: 'systems/projectfu/templates/system/settings/optional-rules.hbs',
-		});
-	}
-
-	getData() {
-		return {
-			optionQuirks: game.settings.get(SYSTEM, SETTINGS.optionQuirks),
-			optionZeroPower: game.settings.get(SYSTEM, SETTINGS.optionZeroPower),
-			optionCampingRules: game.settings.get(SYSTEM, SETTINGS.optionCampingRules),
-		};
-	}
-
-	async _updateObject(event, formData) {
-		const { optionQuirks, optionZeroPower, optionCampingRules } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.optionQuirks, optionQuirks);
-		game.settings.set(SYSTEM, SETTINGS.optionZeroPower, optionZeroPower);
-		game.settings.set(SYSTEM, SETTINGS.optionCampingRules, optionCampingRules);
-	}
-}
-
-class ChatMessageOptions extends foundry.appv1.api.FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: 'systems/projectfu/templates/system/settings/chat-messages.hbs',
-		});
-	}
-
-	getData() {
-		return {
-			optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
-			optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
-			optionChatMessageCollapseDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageCollapseDescription),
-			optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
-			optionChatMessageHideRollDetails: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails),
-			optionChatMessageHideOptions: {
-				show: 'FU.ChatMessageShow',
-				clicked: 'FU.ChatMessageClicked',
-				hide: 'FU.ChatMessageHide',
-			},
-		};
-	}
-
-	async _updateObject(event, formData) {
-		const { optionChatMessageHideTags, optionChatMessageHideDescription, optionChatMessageCollapseDescription, optionChatMessageHideQuality, optionChatMessageHideRollDetails } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideTags, optionChatMessageHideTags);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideDescription, optionChatMessageHideDescription);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageCollapseDescription, optionChatMessageCollapseDescription);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideQuality, optionChatMessageHideQuality);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideRollDetails, optionChatMessageHideRollDetails);
-	}
-}
-
-class BehaviorRollsConfig extends foundry.appv1.api.FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: 'systems/projectfu/templates/system/settings/behavior-rolls.hbs',
-		});
-	}
-
-	getData() {
-		return {
-			optionBehaviorRoll: game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll),
-			optionTargetPriority: game.settings.get(SYSTEM, SETTINGS.optionTargetPriority),
-			optionTargetPriorityRules: game.settings.get(SYSTEM, SETTINGS.optionTargetPriorityRules),
-		};
-	}
-
-	async _updateObject(event, formData) {
-		const { optionBehaviorRoll, optionTargetPriority, optionTargetPriorityRules } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.optionBehaviorRoll, optionBehaviorRoll);
-		game.settings.set(SYSTEM, SETTINGS.optionTargetPriority, optionTargetPriority);
-		game.settings.set(SYSTEM, SETTINGS.optionTargetPriorityRules, optionTargetPriorityRules);
-	}
-}
-
-class CombatHudSettings extends foundry.appv1.api.FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu'],
-			template: 'systems/projectfu/templates/system/settings/combat-hud.hbs',
-			id: 'combat-hud-settings',
+class CombatHudSettings extends FUApplication {
+	/** @type ApplicationConfiguration */
+	static DEFAULT_OPTIONS = {
+		classes: ['projectfu', 'combat-hud-config-app'],
+		id: 'combat-hud-settings',
+		position: {
 			width: 600,
-		});
+		},
+		form: {
+			closeOnSubmit: true,
+			submitOnChange: false,
+			handler: CombatHudSettings.#save,
+		},
+	};
+
+	/** @type {Record<string, HandlebarsTemplatePart>} */
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/app/settings/combat-hud.hbs',
+		},
+	};
+
+	async _onRender(context, options) {
+		this.element.querySelectorAll('.mats-icon-picker').forEach((el) =>
+			el.addEventListener('change', (event) => {
+				event.preventDefault();
+				el.parentNode.querySelector('.mats-o').textContent = el.value;
+			}),
+		);
 	}
 
-	activateListeners(html) {
-		html.find('.mats-icon-picker').on('change', (event) => {
-			event.preventDefault();
-			const picker = $(event.target);
-			$(picker).find('+ .mats-o').text($(picker).val());
-		});
-		return super.activateListeners(html);
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
+		Object.assign(context, this.getData());
+		return context;
 	}
 
 	getData() {
@@ -810,7 +757,10 @@ class CombatHudSettings extends foundry.appv1.api.FormApplication {
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
 			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
 			optionCombatHudPositionButton: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton),
-			optionCombatHudPositionButtonOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
+			optionCombatHudPositionButtonOptions: {
+				bottom: 'FU.CombatHudPositionBottom',
+				top: 'FU.CombatHudPositionTop',
+			},
 			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
 			optionCombatHudPositionOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
 			optionCombatHudPortrait: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait),
@@ -818,7 +768,10 @@ class CombatHudSettings extends foundry.appv1.api.FormApplication {
 			optionCombatHudShowEffects: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects),
 			optionCombatHudEffectsMarqueeDuration: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration),
 			optionCombatHudEffectsMarqueeMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode),
-			optionCombatHudEffectsMarqueeModeOptions: { normal: 'FU.CombatHudEffectsMarqueeModeNormal', alternate: 'FU.CombatHudEffectsMarqueeModeAlternate' },
+			optionCombatHudEffectsMarqueeModeOptions: {
+				normal: 'FU.CombatHudEffectsMarqueeModeNormal',
+				alternate: 'FU.CombatHudEffectsMarqueeModeAlternate',
+			},
 			optionCombatHudReordering: game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering),
 			optionCombatHudShowOrderNumbers: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers),
 			isGM: game.user.isGM,
@@ -842,7 +795,7 @@ class CombatHudSettings extends foundry.appv1.api.FormApplication {
 		};
 	}
 
-	async _updateObject(event, formData) {
+	static async #save(event, form, formData) {
 		if (game.user.isGM) {
 			const {
 				experimentalCombatHud,
@@ -865,7 +818,7 @@ class CombatHudSettings extends foundry.appv1.api.FormApplication {
 				optionCombatHudTurnIconsTurnsLeftHidden,
 				optionCombatHudTheme,
 				optionCombatHudShowNPCTurnsLeftMode,
-			} = foundry.utils.expandObject(formData);
+			} = formData.object;
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
@@ -899,7 +852,7 @@ class CombatHudSettings extends foundry.appv1.api.FormApplication {
 				optionCombatHudEffectsMarqueeDuration,
 				optionCombatHudEffectsMarqueeMode,
 				optionCombatHudShowOrderNumbers,
-			} = foundry.utils.expandObject(formData);
+			} = formData.object;
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
@@ -917,32 +870,119 @@ class CombatHudSettings extends foundry.appv1.api.FormApplication {
 	}
 }
 
-class MetaCurrencyTrackerOptions extends foundry.appv1.api.FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			title: game.i18n.localize('FU.ConfigMetaCurrencySettings'),
-			width: 700,
-		});
-	}
-
-	get template() {
-		return 'systems/projectfu/templates/system/settings/meta-currency.hbs';
-	}
-
-	getData(options = {}) {
-		return {
-			baseExperience: game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience),
-			keepExcessFabula: game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula),
-			automation: game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomation),
-			automaticallyDistributeExp: game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp),
+/**
+ * @param {string[]} settings
+ * @return SettingsConfigurationApp
+ */
+function createConfigurationApp(name, settings) {
+	return class ConfigApp extends SettingsConfigurationApp {
+		static DEFAULT_OPTIONS = {
+			window: { title: name },
 		};
+
+		constructor() {
+			super(settings);
+		}
+	};
+}
+
+class SettingsConfigurationApp extends FUApplication {
+	/** @type ApplicationConfiguration */
+	static DEFAULT_OPTIONS = {
+		classes: ['settings-config-app'],
+		form: {
+			handler: SettingsConfigurationApp.#save,
+			submitOnChange: false,
+			closeOnSubmit: true,
+		},
+	};
+
+	/** @type {Record<string, HandlebarsTemplatePart>} */
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/app/settings-config-app.hbs',
+		},
+	};
+
+	#settingData = [];
+
+	/**
+	 * @param {string[]} settings
+	 */
+	constructor(settings) {
+		super();
+
+		const isGM = game.user.isGM;
+		const fields = foundry.data.fields;
+		for (let settingKey of settings || []) {
+			const settingDocument = game.settings.get(SYSTEM, settingKey, { document: true });
+			const setting = game.settings.settings.get(settingDocument.key);
+
+			if (setting.scope === CONST.SETTING_SCOPES.WORLD && !isGM) {
+				continue;
+			}
+
+			const data = {
+				namespace: setting.namespace,
+				key: setting.key,
+				completeKey: settingDocument.key,
+				value: game.settings.get(setting.namespace, setting.key),
+			};
+			if (setting.type instanceof fields.DataField) {
+				data.field = setting.type;
+			} else if (setting.type === Boolean) {
+				data.field = new fields.BooleanField({ initial: setting.default ?? false });
+			} else if (setting.type === Number) {
+				const { min, max, step } = setting.range ?? {};
+				data.field = new fields.NumberField({
+					required: true,
+					choices: setting.choices,
+					initial: setting.default,
+					min,
+					max,
+					step,
+				});
+			} else if (setting.filePicker) {
+				throw new Error('SettingsConfigurationApp does not support file pickers');
+			} else {
+				data.field = new fields.StringField({ required: true, choices: setting.choices });
+			}
+			data.field.name = settingDocument.key;
+			data.field.label ||= game.i18n.localize(setting.name ?? '');
+			data.field.hint ||= game.i18n.localize(setting.hint ?? '');
+
+			this.#settingData.push(data);
+		}
 	}
 
-	async _updateObject(event, formData) {
-		const { baseExperience, keepExcessFabula, automation, automaticallyDistributeExp } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyBaseExperience, baseExperience);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula, keepExcessFabula);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyAutomation, automation);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp, automaticallyDistributeExp);
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
+		Object.assign(context, {
+			settings: this.#settingData,
+		});
+		console.log(context.settings);
+		return context;
+	}
+
+	static async #save(event, form, formData) {
+		let requiresClientReload = false;
+		let requiresWorldReload = false;
+
+		for (const setting of this.#settingData) {
+			const priorValue = game.settings.get(setting.namespace, setting.key, { document: true })._source.value;
+			let newValue;
+			try {
+				const formValue = formData.object[setting.completeKey];
+				newValue = await game.settings.set(setting.namespace, setting.key, formValue, { document: true });
+			} catch (error) {
+				ui.notifications.error(error);
+			}
+			if (priorValue === newValue) continue; // Compare JSON strings
+			requiresClientReload ||= setting.scope !== CONST.SETTING_SCOPES.WORLD && setting.requiresReload;
+			requiresWorldReload ||= setting.scope === CONST.SETTING_SCOPES.WORLD && setting.requiresReload;
+		}
+		if (requiresClientReload || requiresWorldReload) {
+			await foundry.applications.settings.SettingsConfig.reloadConfirm({ world: requiresWorldReload });
+		}
 	}
 }

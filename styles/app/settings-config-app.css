@@ -1,0 +1,21 @@
+.settings-config-app {
+	--color-form-label: var(--color-dark-1);
+	--color-form-label-hover: var(--color-dark-1);
+	--color-form-hint: var(--color-dark-2);
+	--color-form-hint-hover: var(--color-dark-2);
+
+	input[type='checkbox'] {
+		--checkbox-checkmark-color: var(--color-dark-1);
+	}
+
+	.form-group {
+		& > .form-fields,
+		& > label {
+			flex: 1 1 min-content !important;
+		}
+	}
+
+	.setting {
+		padding-bottom: 0.5em;
+	}
+}
