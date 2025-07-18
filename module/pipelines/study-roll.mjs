@@ -2,7 +2,6 @@ import { FU } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { getTargeted } from '../helpers/target-handler.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
-import { MESSAGES, SOCKET } from '../socket.mjs';
 
 /**
  * @property {FUActor} actor The actor who started the study roll
@@ -50,7 +49,7 @@ export class StudyRollHandler {
 		if (game.user?.isGM) {
 			CommonEvents.study(this.actor, targets, this.studyValue);
 		} else {
-			await SOCKET.executeAsGM(MESSAGES.StudyEvent, {
+			await game.projectfu.socket.studyRoll({
 				actorUuid: this.actor.uuid,
 				targetUuids: targets.map((t) => t.uuid),
 				checkResult: this.checkResult,

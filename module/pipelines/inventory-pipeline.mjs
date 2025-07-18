@@ -2,7 +2,6 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { getPrioritizedUserSelected } from '../helpers/target-handler.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
-import { MESSAGES, SOCKET } from '../socket.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
@@ -19,7 +18,7 @@ function getCurrencyLocalizationKey() {
 /**
  * @returns {String}
  */
-function getCurrencyString() {
+export function getCurrencyString() {
 	return game.i18n.localize(getCurrencyLocalizationKey());
 }
 
@@ -273,7 +272,7 @@ async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
 			});
 		}
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestZenitTransfer, sourceActorId, targetActorId, amount);
+		await game.projectfu.socket.requestZenitTransfer(sourceActorId, targetActorId, amount);
 	}
 }
 
@@ -358,7 +357,7 @@ async function requestTrade(actorId, itemId, sale, targetId = undefined, modifie
 	if (game.user?.isGM) {
 		return handleTrade(actorId, itemId, sale, targetId, modifiers);
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, sale, targetId, modifiers);
+		await game.projectfu.socket.requestTrade(actorId, itemId, sale, targetId, modifiers);
 		return false;
 	}
 }

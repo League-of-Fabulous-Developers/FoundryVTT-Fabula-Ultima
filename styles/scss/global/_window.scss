@@ -99,6 +99,11 @@
 		margin: auto;
 		border-radius: 24px;
 
+		width: 100%;
+		&p {
+			width: 100%;
+		}
+
 		.close {
 			opacity: 0;
 			pointer-events: none;

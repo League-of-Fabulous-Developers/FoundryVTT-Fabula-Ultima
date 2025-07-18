@@ -1,4 +1,3 @@
-import { SOCKET } from '../../socket.mjs';
 import { Checks } from '../../checks/checks.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
@@ -103,7 +102,7 @@ export class FUItem extends Item {
 	 */
 	async roll(modifiers = { shift: false, alt: false, ctrl: false, meta: false }) {
 		if (this.system.showTitleCard?.value) {
-			SOCKET.executeForEveryone('use', this.name);
+			game.projectfu.socket.showBanner(this.name);
 		}
 
 		return this.handleCheckV2(modifiers);

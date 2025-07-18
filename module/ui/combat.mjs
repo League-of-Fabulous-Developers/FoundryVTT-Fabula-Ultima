@@ -1,6 +1,6 @@
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
-import { MESSAGES, SOCKET } from '../socket.mjs';
+import { MESSAGES } from '../socket.mjs';
 import { CombatHUD } from './combat-hud.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
@@ -315,7 +315,7 @@ export class FUCombat extends foundry.documents.Combat {
 		} else {
 			if (combatant.actor.isOwner) {
 				console.debug(`Executing message ${MESSAGES.RequestStartTurn} as GM`);
-				await SOCKET.executeAsGM(MESSAGES.RequestStartTurn, this.id, combatant.id);
+				await game.projectfu.socket.requestStartTurn(this.id, combatant.id);
 			} else {
 				// TODO: Inform user?
 			}
@@ -354,7 +354,7 @@ export class FUCombat extends foundry.documents.Combat {
 		} else {
 			if (combatant.actor.isOwner) {
 				console.debug(`Executing message ${MESSAGES.RequestEndTurn} as GM`);
-				await SOCKET.executeAsGM(MESSAGES.RequestEndTurn, this.id, combatant.id);
+				await game.projectfu.socket.requestEndTurn(this.id, combatant.id);
 			} else {
 				// TODO: Inform user?
 			}
