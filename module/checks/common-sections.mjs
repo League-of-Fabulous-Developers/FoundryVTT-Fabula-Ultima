@@ -11,7 +11,7 @@ import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @param {CheckRenderData} sections
- * @param {string} description
+ * @param {string | Promise<string>} description
  * @param {string} summary
  * @param {number} [order]
  * @param {Boolean} open Defaults to true
@@ -24,7 +24,7 @@ const description = (sections, description, summary, order, open = true) => {
 				summary,
 				//The open attribute needs to be present without a value to be considered true.
 				open: open ? 'open' : '',
-				description: await TextEditor.enrichHTML(description),
+				description: typeof description === 'string' ? await TextEditor.enrichHTML(description) : await description,
 			},
 			order,
 		}));
