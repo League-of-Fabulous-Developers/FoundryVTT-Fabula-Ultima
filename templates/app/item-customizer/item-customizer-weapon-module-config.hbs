@@ -1,0 +1,51 @@
+<form class="resource-content desc">
+	<fieldset class="desc grid grid-3col gap-5 mb-5">
+		<label>
+			{{localize 'FU.Primary'}}
+			<select name="system.data.accuracy.attr1">
+				{{selectOptions FU.attributeAbbreviations selected=system.data.accuracy.attr1 localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.Secondary'}}
+			<select name="system.data.accuracy.attr2">
+				{{selectOptions FU.attributeAbbreviations selected=system.data.accuracy.attr2 localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize "FU.Accuracy"}}
+			<input type="number" name="system.data.accuracy.modifier" value="{{system.data.accuracy.modifier}}" />
+		</label>
+	</fieldset>
+
+	<fieldset class="grid grid-2col gap-5 mb-5" style="align-items: end; justify-content: end;">
+		<label>
+			{{localize 'FU.DamageBonus'}}
+			<input type="number" name="system.data.damage.bonus" value="{{system.data.damage.bonus}}" />
+		</label>
+
+		<label>
+			{{localize 'FU.DamageType'}}
+			<select name="system.data.damage.type">
+				{{selectOptions FU.damageTypes selected=system.data.damage.type localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.WeaponType'}}
+			<select name="system.data.type">
+				{{selectOptions FU.weaponTypes selected=system.data.type localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.DefenseType'}}
+			<select name="system.data.accuracy.defense">
+				{{selectOptions FU.defenses selected=system.data.accuracy.defense localize=true labelAttr='abbr'}}
+			</select>
+		</label>
+
+	</fieldset>
+</form>

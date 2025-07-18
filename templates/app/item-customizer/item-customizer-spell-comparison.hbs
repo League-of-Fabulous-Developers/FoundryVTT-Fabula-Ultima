@@ -1,0 +1,20 @@
+<div class="flexcol dialog-name resource-content">
+	<div class="flexrow">
+		<div class="dialog-image">
+			<img src="{{img}}" data-tooltip="{{name}}" alt="{{name}}" />
+		</div>
+		<label class="resource-label">
+			{{name}}
+			{{#if system.isOffensive.value}}
+				<strong>【{{localize (lookup @root.FU.attributeAbbreviations system.attributes.primary.value)}}
+					+ {{localize (lookup @root.FU.attributeAbbreviations system.attributes.secondary.value)}}】
+					+ {{system.accuracy.value}}</strong>
+				{{#if system.rollInfo.damage.hasDamage.value}}
+					<strong> ⬥ </strong>
+					<strong>【{{#unless system.rollInfo.useWeapon.hrZero.value}}{{localize "FU.HighRollAbbr"}}{{else}}{{localize "FU.HRZero"}}{{/unless}} + {{system.rollInfo.damage.value}}】</strong>
+					{{localize (lookup @root.FU.damageTypes system.rollInfo.damage.type.value)}}
+				{{/if}}
+			{{/if}}
+		</label>
+	</div>
+</div>

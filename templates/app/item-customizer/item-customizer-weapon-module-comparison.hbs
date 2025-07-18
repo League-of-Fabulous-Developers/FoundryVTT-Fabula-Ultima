@@ -1,0 +1,18 @@
+<div class="flexcol dialog-name resource-content">
+	<div class="flexrow">
+		<div class="dialog-image">
+			<img src="{{img}}" data-tooltip="{{name}}" alt="{{name}}" />
+		</div>
+		<label class="resource-label">
+			{{name}}
+			<strong>【{{localize (lookup @root.FU.attributeAbbreviations system.data.accuracy.attr1)}} + {{localize (lookup @root.FU.attributeAbbreviations system.data.accuracy.attr2)}}】 + {{system.data.accuracy.modifier}}</strong>
+			<strong> ⬥ </strong>
+			<strong>【{{localize "FU.HighRollAbbr"}} + {{system.data.damage.bonus}}】</strong> {{localize (lookup @root.FU.damageTypes system.data.damage.type)}}
+		</label>
+	</div>
+	<div>
+		<strong>{{localize (lookup @root.FU.weaponTypes system.data.type)}}</strong>
+		<strong>{{localize 'FU.Versus'}}</strong>
+		<strong>{{localize (lookup (lookup @root.FU.defenses system.data.accuracy.defense) 'abbr')}}</strong>
+	</div>
+</div>
