@@ -424,6 +424,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 				},
 			],
 			{
+				jQuery: false,
 				fixed: true,
 			},
 		);
@@ -431,7 +432,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 	/**
 	 * Determine whether or not the current user has sufficient permission to edit
-	 * @param {HTMLElement | JQuery<HTMLElement>} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
+	 * @param {HTMLElement} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
 	 * @param {"update" | "delete"} op - The operation to check -- either "update" or "delete"
 	 * @returns
 	 */
@@ -443,13 +444,10 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 	/**
 	 * Retrieves an ActiveEffect from an HTML element
-	 * @param {HTMLElement | JQuery<HTMLElement>} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
+	 * @param {HTMLElement} element - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
 	 * @returns ActiveEffect or undefined
 	 */
-	_getEffectFromElement(elem) {
-		// Make sure we have an HTMLElement and not a jQuery wrapper object
-		const element = elem instanceof HTMLElement ? elem : elem[0];
-
+	_getEffectFromElement(element) {
 		const effectId = element.dataset.effectId;
 		const actorId = element.dataset.actorId;
 		const actor = game.actors.get(actorId);
