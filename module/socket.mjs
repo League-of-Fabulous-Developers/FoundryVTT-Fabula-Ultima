@@ -176,8 +176,10 @@ export class FUSocketHandler {
 			const handler = this.#messageHandlers.get(message.name);
 			if (!(handler instanceof Function)) return;
 
-			handler.apply(undefined, [...message.args, message]);
-			Hooks.callAll(FUHooks.SOCKET_RECEIVE_EVENT, message);
+			const frozen = foundry.utils.deepFreeze(message);
+
+			handler.apply(undefined, [...frozen.args, frozen]);
+			Hooks.callAll(FUHooks.SOCKET_RECEIVE_EVENT, frozen);
 		});
 	}
 
