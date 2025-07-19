@@ -871,8 +871,9 @@ class CombatHudSettings extends FUApplication {
 }
 
 /**
+ * @param {string} name
  * @param {string[]} settings
- * @return SettingsConfigurationApp
+ * @return {typeof SettingsConfigurationApp}
  */
 function createConfigurationApp(name, settings) {
 	return class ConfigApp extends SettingsConfigurationApp {
