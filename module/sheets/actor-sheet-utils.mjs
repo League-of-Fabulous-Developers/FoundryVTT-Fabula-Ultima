@@ -25,6 +25,7 @@ async function prepareData(context, sheet) {
 	if (!context.items) {
 		context.items = sheet.actor.items;
 	}
+	context.itemCount = context.actor.items.size;
 	context.system = sheet.actor.system;
 	context.flags = sheet.actor.flags;
 	context.isGM = game.user.isGM;
@@ -47,8 +48,6 @@ const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
  * @param {Object} context The actor to prepare.
  */
 async function prepareItems(context) {
-	context.itemCount = context.actor.items.size;
-
 	// TODO: Handle elsewhere
 	// Iterate through items, allocating to containers
 	for (let item of context.items) {
