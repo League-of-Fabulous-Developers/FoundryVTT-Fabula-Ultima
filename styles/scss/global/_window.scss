@@ -95,13 +95,16 @@
 		box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
 		background-image: linear-gradient($color-charname-gradient);
 		border: thin solid $color-secondary;
-		padding: 24px;
+		padding: 12px;
 		margin: auto;
 		border-radius: 24px;
 
 		width: 100%;
-		&p {
+		& p {
 			width: 100%;
+		}
+		&::after {
+			content: '';
 		}
 
 		.close {
