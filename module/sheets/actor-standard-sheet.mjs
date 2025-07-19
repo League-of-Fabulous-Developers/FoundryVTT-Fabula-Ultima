@@ -101,6 +101,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	};
 
 	// These will be filtered in _configureRenderOptions
+	/** @type {Record<string, HandlebarsTemplatePart>} */
 	static PARTS = {
 		header: { template: systemTemplatePath('actor/character/parts/actor-header') },
 		tabs: { template: systemTemplatePath(`actor/character/parts/actor-tabs`) },
@@ -245,6 +246,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 				}
 				break;
 		}
+		Object.entries(parts).forEach(([partId, config]) => {
+			if (!['header', 'tabs'].includes(partId)) {
+				config.scrollable ??= [''];
+			}
+		});
 		return parts;
 	}
 
