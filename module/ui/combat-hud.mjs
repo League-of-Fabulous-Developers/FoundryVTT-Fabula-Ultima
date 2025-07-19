@@ -473,6 +473,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			],
 			{
 				jQuery: false,
+				jQuery: false,
 				fixed: true,
 			},
 		);
@@ -481,7 +482,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	/**
 	 * Determine whether or not the current user has sufficient permission to edit
 	 * @param {HTMLElement} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
-	 * @param {'update' | 'delete'} op - The operation to check -- either "update" or "delete"
+	 * @param {"update" | "delete"} op - The operation to check -- either "update" or "delete"
 	 * @returns
 	 */
 	_canModifyEffectContextMenu(elem, op = 'update') {
