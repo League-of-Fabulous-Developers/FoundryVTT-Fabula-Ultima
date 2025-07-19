@@ -147,11 +147,10 @@ export class FUSocketHandler {
 		if (game.user.isGM) {
 			handler.apply(undefined, args);
 		} else {
-			const gm = game.users.find((user) => user.isGM && user.active);
-			if (gm) {
+			if (game.user.activeGM) {
 				const message = Object.freeze({
 					...getBaseMessage(),
-					users: [gm.id],
+					users: [game.user.activeGM.id],
 					name,
 					args,
 				});
@@ -196,8 +195,7 @@ export class FUSocketHandler {
 	 */
 	async requestStartTurn(combatId, combatantId) {
 		try {
-			const gm = game.users.find((user) => user.isGM && user.active);
-			if (!gm) throw new Error(game.i18n.localize('FU.RequestStartTurnNoActiveGM'));
+			if (!game.user.activeGM) throw new Error(game.i18n.localize('FU.RequestStartTurnNoActiveGM'));
 			await this.executeAsGM(MESSAGES.RequestStartTurn, combatId, combatantId);
 		} catch (err) {
 			ui.notifications.error(err.message, { localize: true });
@@ -211,8 +209,7 @@ export class FUSocketHandler {
 	 */
 	async requestEndTurn(combatId, combatantId) {
 		try {
-			const gm = game.users.find((user) => user.isGM && user.active);
-			if (!gm) throw new Error(game.i18n.localize('FU.RequestEndTurnNoActiveGM'));
+			if (!game.user.activeGM) throw new Error(game.i18n.localize('FU.RequestEndTurnNoActiveGM'));
 			await this.executeAsGM(MESSAGES.RequestEndTurn, combatId, combatantId);
 		} catch (err) {
 			ui.notifications.error(err.message, { localize: true });
@@ -227,9 +224,7 @@ export class FUSocketHandler {
 	 */
 	async requestZenitTransfer(sourceActorId, targetActorId, amount) {
 		try {
-			const gm = game.users.find((user) => user.isGM && user.active);
-			if (!gm) throw new Error(game.i18n.format('FU.RequestZenitTransferNoActiveGM', { currency: getCurrencyString() }));
-
+			if (!game.users.activeGM) throw new Error(game.i18n.format('FU.RequestZenitTransferNoActiveGM', { currency: getCurrencyString() }));
 			await this.executeAsGM(MESSAGES.RequestZenitTransfer, sourceActorId, targetActorId, amount);
 		} catch (err) {
 			ui.notifications.error(err.message, { localize: true });
@@ -245,8 +240,7 @@ export class FUSocketHandler {
 	 */
 	async requestTrade(actorId, itemId, sale, targetId = undefined, modifiers = {}) {
 		try {
-			const gm = game.users.find((user) => user.isGM && user.active);
-			if (!gm) throw new Error(game.i18n.localize('FU.RequestTradeNoActiveGM'));
+			if (!game.users.activeGM) throw new Error(game.i18n.localize('FU.RequestTradeNoActiveGM'));
 			await this.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, sale, targetId, modifiers);
 		} catch (err) {
 			ui.notifications.error(err.message, { localize: true });
