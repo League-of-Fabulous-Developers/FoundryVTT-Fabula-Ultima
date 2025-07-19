@@ -150,6 +150,7 @@ export class FUPartySheet extends FUActorSheet {
 				break;
 			case 'inventory':
 				await ActorSheetUtils.prepareItems(context);
+				await ActorSheetUtils.prepareInventory(context);
 				break;
 			case 'adversaries':
 				break;
