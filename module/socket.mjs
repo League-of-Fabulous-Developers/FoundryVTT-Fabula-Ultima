@@ -141,24 +141,23 @@ export class FUSocketHandler {
 		const handler = this.#messageHandlers.get(name);
 		if (!handler) return;
 
-		const message = {
+		const message = foundry.utils.deepFreeze({
 			id: foundry.utils.randomID(),
 			timestamp: Date.now(),
 			sender: game.user?.id,
 			name,
 			users,
 			args,
-		};
+		});
 
 		const confirmed = Hooks.call(FUHooks.SOCKET_SEND_EVENT, message);
 		if (!confirmed) return;
 
 		// If the message recipients includes the current user, call the handler directly
 		// since game.socket.emit will not emit the message to the current client
-		if (message.users.includes(game.user.id)) handler.apply(undefined, message.args);
+		if (message.users.includes(game.user.id)) handler.apply(undefined, [...message.args, message]);
 
-		// Only dispatch socket message if the message's recipients include someone other
-		// than the current user.
+		// Only dispatch socket message if the message's recipients include someone other than the current user.
 		if (message.users.some((user) => user.id !== game.user.id)) game.socket.emit(this.identifier, message);
 	}
 
@@ -174,11 +173,11 @@ export class FUSocketHandler {
 			// If this message is intended for only specific recipients and that is not us, do not process any further.
 			if (Array.isArray(message.users) && !message.users.includes(game.user.id)) return;
 
-			const confirmed = Hooks.call(FUHooks.SOCKET_RECEIVE_EVENT, message);
-			if (!confirmed) return;
-
 			const handler = this.#messageHandlers.get(message.name);
-			if (handler instanceof Function) handler.apply(undefined, message.args);
+			if (!(handler instanceof Function)) return;
+
+			handler.apply(undefined, [...message.args, message]);
+			Hooks.callAll(FUHooks.SOCKET_RECEIVE_EVENT, message);
 		});
 	}
 
