@@ -59,7 +59,7 @@ export class FUSocketHandler {
 	identifier = `system.${SYSTEM}`;
 
 	/** @type {Map<string, Function>} */
-	messageHandlers = new Map();
+	#messageHandlers = new Map();
 
 	constructor() {
 		this.registerSocketHandlers();
@@ -67,12 +67,22 @@ export class FUSocketHandler {
 
 	/**
 	 * Registers a message handler
-	 * @param {*} message
-	 * @param {*} handler
+	 * @param {string} message - Name of message handler to register
+	 * @param {Function} handler - Function to be called when message received
 	 */
 	register(message, handler) {
 		if (!(handler instanceof Function)) return;
-		if (!this.messageHandlers.has(message)) this.messageHandlers.set(message, handler);
+		if (this.#messageHandlers.has(message)) throw new Error(game.i18n.format('FU.SocketHandlerAlreadyRegistered', { name: message }));
+		else this.#messageHandlers.set(message, handler);
+	}
+
+	/**
+	 * Unregisters a message handler
+	 * @param {string} message - Name of message handler to unregister
+	 * @returns {boolean} - True if a handler was registered, false otherwise
+	 */
+	unregister(message) {
+		return this.#messageHandlers.delete(message);
 	}
 
 	/**
@@ -83,7 +93,7 @@ export class FUSocketHandler {
 	 * @returns
 	 */
 	async executeAsUser(name, userId, ...args) {
-		return this.executeForUsers(name, [userId], ...args);
+		return this.sendMessage(name, [userId], args);
 	}
 
 	/**
@@ -93,19 +103,7 @@ export class FUSocketHandler {
 	 * @param  {...any} args - Arguments to pass to handler
 	 */
 	async executeForUsers(name, users, ...args) {
-		const handler = this.messageHandlers.get(name);
-		if (!handler) return;
-
-		const message = Object.freeze({
-			...getBaseMessage(),
-			name,
-			users,
-			args,
-		});
-
-		Hooks.callAll(FUHooks.SOCKET_SEND_EVENT, message);
-		if (users.includes(game.user.id)) handler.apply(undefined, args);
-		await game.socket.emit(this.identifier, message);
+		return this.sendMessage(name, users, args);
 	}
 
 	/**
@@ -114,24 +112,11 @@ export class FUSocketHandler {
 	 * @param  {...any} args - Arguments to pass to handler
 	 */
 	async executeForEveryone(name, ...args) {
-		const handler = this.messageHandlers.get(name);
-		if (!handler) return;
-
-		const message = Object.freeze({
-			...getBaseMessage(),
+		return this.sendMessage(
 			name,
-			users: game.users.reduce((prev, curr) => {
-				// Add all currently active users
-				if (curr.active) return [...prev, curr.id];
-				else return prev;
-			}, []),
+			game.users.filter((user) => user.active).map((user) => user.id),
 			args,
-		});
-
-		Hooks.callAll(FUHooks.SOCKET_SEND_EVENT, message);
-
-		handler.apply(undefined, args);
-		await game.socket.emit(this.identifier, message);
+		);
 	}
 
 	/**
@@ -141,23 +126,40 @@ export class FUSocketHandler {
 	 * @returns
 	 */
 	async executeAsGM(name, ...args) {
-		const handler = this.messageHandlers.get(name);
+		if (game.users.activeGM) {
+			return this.sendMessage(name, [game.users.activeGM.id], args);
+		}
+	}
+
+	/**
+	 * @param {string} name - Handler name
+	 * @param {string[]} users - List of user IDs to process this message
+	 * @param {any[]} args - List of arguments to pass to handler
+	 * @returns
+	 */
+	async sendMessage(name, users, args) {
+		const handler = this.#messageHandlers.get(name);
 		if (!handler) return;
 
-		if (game.user.isGM) {
-			handler.apply(undefined, args);
-		} else {
-			if (game.user.activeGM) {
-				const message = Object.freeze({
-					...getBaseMessage(),
-					users: [game.user.activeGM.id],
-					name,
-					args,
-				});
-				Hooks.callAll(FUHooks.SOCKET_SEND_EVENT, message);
-				await game.socket.emit(this.identifier, message);
-			}
-		}
+		const message = {
+			id: foundry.utils.randomID(),
+			timestamp: Date.now(),
+			sender: game.user?.id,
+			name,
+			users,
+			args,
+		};
+
+		const confirmed = Hooks.call(FUHooks.SOCKET_SEND_EVENT, message);
+		if (!confirmed) return;
+
+		// If the message recipients includes the current user, call the handler directly
+		// since game.socket.emit will not emit the message to the current client
+		if (message.users.includes(game.user.id)) handler.apply(undefined, message.args);
+
+		// Only dispatch socket message if the message's recipients include someone other
+		// than the current user.
+		if (message.users.some((user) => user.id !== game.user.id)) game.socket.emit(this.identifier, message);
 	}
 
 	registerSocketHandlers() {
@@ -172,10 +174,10 @@ export class FUSocketHandler {
 			// If this message is intended for only specific recipients and that is not us, do not process any further.
 			if (Array.isArray(message.users) && !message.users.includes(game.user.id)) return;
 
-			console.log('Socket message received:', message);
-			Hooks.callAll(FUHooks.SOCKET_RECEIVE_EVENT, message);
+			const confirmed = Hooks.call(FUHooks.SOCKET_RECEIVE_EVENT, message);
+			if (!confirmed) return;
 
-			const handler = this.messageHandlers.get(message.name);
+			const handler = this.#messageHandlers.get(message.name);
 			if (handler instanceof Function) handler.apply(undefined, message.args);
 		});
 	}
@@ -195,7 +197,7 @@ export class FUSocketHandler {
 	 */
 	async requestStartTurn(combatId, combatantId) {
 		try {
-			if (!game.user.activeGM) throw new Error(game.i18n.localize('FU.RequestStartTurnNoActiveGM'));
+			if (!game.users.activeGM) throw new Error(game.i18n.localize('FU.RequestStartTurnNoActiveGM'));
 			await this.executeAsGM(MESSAGES.RequestStartTurn, combatId, combatantId);
 		} catch (err) {
 			ui.notifications.error(err.message, { localize: true });
@@ -209,7 +211,7 @@ export class FUSocketHandler {
 	 */
 	async requestEndTurn(combatId, combatantId) {
 		try {
-			if (!game.user.activeGM) throw new Error(game.i18n.localize('FU.RequestEndTurnNoActiveGM'));
+			if (!game.users.activeGM) throw new Error(game.i18n.localize('FU.RequestEndTurnNoActiveGM'));
 			await this.executeAsGM(MESSAGES.RequestEndTurn, combatId, combatantId);
 		} catch (err) {
 			ui.notifications.error(err.message, { localize: true });
@@ -294,12 +296,4 @@ async function requestEndTurn(combatId, combatantId) {
 		const combatant = combat.combatants.get(combatantId);
 		if (combatant) await combat.endTurn(combatant);
 	}
-}
-
-function getBaseMessage() {
-	return {
-		id: foundry.utils.randomID(),
-		timestamp: Date.now(),
-		sender: game.user?.id,
-	};
 }
