@@ -135,4 +135,18 @@ export const FUHooks = {
 	 * @remarks Uses {@link NpcProfileData}
 	 */
 	PARTY_ADVERSARY_EVENT: 'projectfu.events.party.adversary',
+
+	/**
+	 * @description Dispatched when a websocket message arrives, after it has been processed by the socket handler.
+	 * @example callback(event)
+	 * @remarks Uses {@link SocketMessage}
+	 */
+	SOCKET_RECEIVE_EVENT: 'projectfu.events.socket.received',
+
+	/**
+	 * @description Dispatched after a websocket message is sent
+	 * @example callback(event)
+	 * @remarks Uses {@link SocketMessage}
+	 */
+	SOCKET_SEND_EVENT: 'projectfu.events.socket.sent',
 };
