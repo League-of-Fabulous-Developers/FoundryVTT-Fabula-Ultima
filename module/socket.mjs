@@ -251,7 +251,7 @@ export class FUSocketHandler {
 	 * @param {{actorUuid : String, targetUuids: String[], checkResult: Number}} data
 	 */
 	async studyRoll(data) {
-		this.executeAsGM(MESSAGES.StudyEvent, data);
+		await this.executeAsGM(MESSAGES.StudyEvent, data);
 	}
 }
 
