@@ -363,6 +363,7 @@ async function requestTrade(actorId, itemId, sale, targetId = undefined, modifie
 }
 
 async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}) {
+	console.log('Handling trade from:', actorId, itemId, targetId);
 	const actor = fromUuidSync(actorId);
 	const item = fromUuidSync(itemId);
 	const target = fromUuidSync(targetId);
@@ -461,12 +462,18 @@ async function onRenderChatMessage(message, html) {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		const modifiers = getModifiers(ev);
-		return requestTrade(actor, item, true, modifiers);
+		return requestTrade(actor, item, true, undefined, modifiers);
 	});
 
 	Pipeline.handleClick(message, html, rechargeAction, async (dataset) => {
 		const actor = fromUuidSync(dataset.actor);
 		return rechargeIP(actor);
+	});
+
+	Pipeline.handleClick(message, html, lootAction, async (dataset, ev) => {
+		const { actor, item } = dataset;
+		const modifiers = getModifiers(ev);
+		return requestTrade(actor, item, false, undefined, modifiers);
 	});
 }
 

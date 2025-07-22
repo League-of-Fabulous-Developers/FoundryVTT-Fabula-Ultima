@@ -44,12 +44,6 @@ export const MESSAGES = Object.freeze({
  * @property {any[]} args - List of arguments to pass to handler function
  */
 
-/**
- * @typedef {Object} SocketHandler
- * @property {string} messageType
- * @property {Function} handler
- */
-
 export class FUSocketHandler {
 	/**
 	 * MUST be 'system.[systemname]'
