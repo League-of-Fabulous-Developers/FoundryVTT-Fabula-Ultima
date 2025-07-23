@@ -1462,6 +1462,11 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"RequestStartTurnNoActiveGM": "No GM online!  Unable to start turn.",
+		"RequestEndTurnNoActiveGM": "No GM online!  Unable to end turn.",
+		"RequestZenitTransferNoActiveGM": "No GM online!  Unable to transfer {currency}.",
+		"RequestTradeNoActiveGM": "No GM online!  Unable to trade item.",
+		"SocketHandlerAlreadyRegistered": "Attempted to re-register an existing socket handler: {name}"
 	}
 }

@@ -2,7 +2,6 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { getPrioritizedUserSelected } from '../helpers/target-handler.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
-import { MESSAGES, SOCKET } from '../socket.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
@@ -19,7 +18,7 @@ function getCurrencyLocalizationKey() {
 /**
  * @returns {String}
  */
-function getCurrencyString() {
+export function getCurrencyString() {
 	return game.i18n.localize(getCurrencyLocalizationKey());
 }
 
@@ -273,7 +272,7 @@ async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
 			});
 		}
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestZenitTransfer, sourceActorId, targetActorId, amount);
+		await game.projectfu.socket.requestZenitTransfer(sourceActorId, targetActorId, amount);
 	}
 }
 
@@ -358,12 +357,13 @@ async function requestTrade(actorId, itemId, sale, targetId = undefined, modifie
 	if (game.user?.isGM) {
 		return handleTrade(actorId, itemId, sale, targetId, modifiers);
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, sale, targetId, modifiers);
+		await game.projectfu.socket.requestTrade(actorId, itemId, sale, targetId, modifiers);
 		return false;
 	}
 }
 
 async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}) {
+	console.log('Handling trade from:', actorId, itemId, targetId);
 	const actor = fromUuidSync(actorId);
 	const item = fromUuidSync(itemId);
 	const target = fromUuidSync(targetId);
@@ -462,12 +462,18 @@ async function onRenderChatMessage(message, html) {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		const modifiers = getModifiers(ev);
-		return requestTrade(actor, item, true, modifiers);
+		return requestTrade(actor, item, true, undefined, modifiers);
 	});
 
 	Pipeline.handleClick(message, html, rechargeAction, async (dataset) => {
 		const actor = fromUuidSync(dataset.actor);
 		return rechargeIP(actor);
+	});
+
+	Pipeline.handleClick(message, html, lootAction, async (dataset, ev) => {
+		const { actor, item } = dataset;
+		const modifiers = getModifiers(ev);
+		return requestTrade(actor, item, false, undefined, modifiers);
 	});
 }
 

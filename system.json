@@ -290,14 +290,7 @@
 			"path": "lang/cn.json"
 		}
 	],
-	"relationships": {
-		"requires": [
-			{
-				"id": "socketlib",
-				"type": "module"
-			}
-		]
-	},
+	"relationships": {},
 	"documentTypes": {
 		"Actor": {
 			"character": {

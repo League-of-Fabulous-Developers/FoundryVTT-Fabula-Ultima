@@ -30,7 +30,7 @@ import { SpellDataModel } from './documents/items/spell/spell-data-model.mjs';
 import { TreasureDataModel } from './documents/items/treasure/treasure-data-model.mjs';
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
 import { EffectDataModel } from './documents/items/effect/effect-data-model.mjs';
-import { onSocketLibReady } from './socket.mjs';
+import { FUSocketHandler } from './socket.mjs';
 import { statusEffects } from './documents/effects/statuses.mjs';
 
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
@@ -133,6 +133,7 @@ Hooks.once('init', async () => {
 			console.warn(new Error("You are accessing the deprecated 'game.projectfu.ChecksV2'. Please use 'game.projectfu.Checks' instead."));
 			return Checks;
 		},
+		socket: new FUSocketHandler(),
 	};
 
 	// Add custom constants for configuration.
@@ -397,8 +398,6 @@ Hooks.once('ready', async function () {
 		}
 	});
 });
-
-Hooks.once('socketlib.ready', onSocketLibReady);
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
