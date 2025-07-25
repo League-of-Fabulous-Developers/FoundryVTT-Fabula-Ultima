@@ -1,0 +1,58 @@
+/* =====================
+	LAYOUT VARIABLES
+	===================== */
+:root {
+	/* Spacing Variables */
+	--spacing-xs: 0.18rem;
+	--spacing-sm: 0.25rem;
+	--spacing-md: 0.5rem;
+	--spacing-lg: 1rem;
+	--spacing-xl: 1.5rem;
+
+	/* Padding Variables */
+	--padding-sm: 5px;
+	--padding-md: 10px;
+	--padding-lg: 20px;
+
+	/* Border Radius Variables */
+	--radius-sm: 0.3rem;
+	--radius-md: 0.6rem;
+	--radius-lg: 0.8rem;
+	--radius-xl: 1rem;
+	--radius-pill: 999px;
+
+	/* Shadow Variables */
+	--shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.13);
+	--shadow-md: 0 2px 8px rgba(0, 0, 0, 0.15);
+	--shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.6);
+	--shadow-glow: 0 0 15px rgba(143, 188, 143, 0.2);
+	--shadow-inset: inset 0 1px 3px #2B4A42FF;
+
+	/* Grid & Layout Variables */
+	--grid-gap-sm: 0.2rem;
+	--grid-gap-md: 0.5rem;
+	--grid-gap-lg: 1rem;
+	--column-width-left: 200px;
+	--portrait-size: 180px;
+	--portrait-size-min: 80px;
+
+	/* Transition Variables */
+	--transition-fast: 0.2s;
+	--transition-medium: 0.3s;
+
+	/* Button & Component Variables */
+	--pill-radius: var(--radius-md);
+	--pill-shadow: var(--shadow-md);
+	--button-radius: var(--radius-md);
+	--button-shadow: var(--shadow-md);
+	--button-padding: var(--padding-md);
+
+	/* Border Width Variables */
+	--border-width: 2px;
+	--border-width-thin: 1px;
+	--border-width-thick: 3px;
+	--border-groove: 2px groove var(--dasu-c-groove);
+
+	/* Interactive Variables */
+	--disabled-opacity: 0.5;
+}

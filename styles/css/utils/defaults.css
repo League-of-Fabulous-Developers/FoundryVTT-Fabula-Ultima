@@ -1,0 +1,43 @@
+/* Reset or remove default styles for all HTML elements                       
+/* ----------------------------------------- */
+a {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	font-weight: inherit;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+.sheet nav.sheet-tabs {
+	-ms-flex-item-align: stretch;
+	align-self: stretch;
+	-webkit-box-flex: 0;
+	-ms-flex: 0;
+	flex: 0;
+	margin: 0;
+}
+
+blockquote {
+	padding: 0 0 0 10px !important;
+}
+
+input[type=number] {
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+input[type=checkbox] {
+	top: 0 !important;
+}
