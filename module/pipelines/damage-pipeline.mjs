@@ -14,6 +14,7 @@ import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { Checks } from '../checks/checks.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -403,22 +404,39 @@ async function process(request) {
 		}
 
 		// Damage application
+		let color = 'red';
 		let damageTaken = context.result;
 		const difference = context.actor.system.resources[resource].value - damageTaken;
 		if (difference < 0) {
 			damageTaken -= Math.abs(difference);
 		}
 
-		// TODO: Print message to chat
+		// If it's a negative number, we are dealing with the absorption,
+		// need to check whether there's enough to be healing
+		if (damageTaken < 0) {
+			color = 'green';
+			const missingResource = ResourcePipeline.calculateMissingResource(context.actor, `resources.${resource}`);
+			damageTaken = -Math.min(missingResource, Math.abs(damageTaken));
+		}
+
+		// If no damage was dealt or absorbed, exit early
 		if (damageTaken === 0) {
 			ui.notifications.warn(`The damage to ${actor.name} was reduced to 0`);
+			ChatMessage.create({
+				speaker: ChatMessage.getSpeaker({ actor }),
+				content: StringUtils.localize('FU.ChatApplyDamageNone', {
+					actor: actor.name,
+					from: request.sourceInfo.name,
+				}),
+			});
 			continue;
 		}
 
 		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
-		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, `red`);
+		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
 
 		// Dispatch event
+		damageTaken = Math.abs(damageTaken);
 		CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
 
 		// Chat message
