@@ -241,7 +241,7 @@ function resolveAffinity(context) {
 		}
 	}
 	if (affinity === FU.affValue.absorption) {
-		if (context.damageOverride.ignoreAbsorption) {
+		if (context.damageOverride.ignoreAbsorption || context.traits.has(Traits.IgnoreAbsorption)) {
 			affinity = FU.affValue.none;
 		} else {
 			affinityMessage = 'FU.ChatApplyDamageAbsorb';
