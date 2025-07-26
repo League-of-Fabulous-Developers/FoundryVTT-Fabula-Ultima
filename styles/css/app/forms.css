@@ -17,12 +17,12 @@
 		background-size: cover;
 		border-radius: 10px;
 		padding: 5px;
+	}
 
-		input,
-		select {
-			color: var(--color-text-primary);
-			background-color: var(--pfu-color-app-section-content-secondary);
-			border: thin solid var(--color-text-primary);
-		}
+	input,
+	select {
+		color: var(--color-text-primary);
+		background-color: var(--pfu-color-app-section-content-secondary);
+		border: thin solid var(--color-text-primary);
 	}
 }
