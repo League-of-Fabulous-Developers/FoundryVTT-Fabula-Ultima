@@ -150,7 +150,7 @@ async function attributeCheck(actor, options = {}) {
 			actor,
 			{
 				primary: promptResult.primary,
-				secondary: promptResult.primary,
+				secondary: promptResult.secondary,
 			},
 			null,
 			(check, callbackActor, item) => {
@@ -182,7 +182,7 @@ async function openCheck(actor, options = {}) {
 			actor,
 			{
 				primary: promptResult.primary,
-				secondary: promptResult.primary,
+				secondary: promptResult.secondary,
 			},
 			(check, callbackActor, item) => {
 				const checkConfigurer = CheckConfiguration.configure(check);
