@@ -1,0 +1,28 @@
+.backgroundstyle {
+	--color-form-label: var(--color-dark-1);
+	--color-form-label-hover: var(--color-dark-1);
+	--color-form-hint: var(--color-dark-2);
+	--color-form-hint-hover: var(--color-dark-2);
+
+	input[type='checkbox'] {
+		--checkbox-checkmark-color: var(--color-dark-1);
+	}
+
+	.form-group {
+		background: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+		background-blend-mode: multiply;
+		background-repeat: repeat-y;
+		background-position: right top;
+		border: 1px solid #6f6c66;
+		background-size: cover;
+		border-radius: 10px;
+		padding: 5px;
+	}
+
+	input,
+	select {
+		color: var(--color-text-primary);
+		background-color: var(--pfu-color-app-section-content-secondary);
+		border: thin solid var(--color-text-primary);
+	}
+}
