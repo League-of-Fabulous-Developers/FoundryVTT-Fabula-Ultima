@@ -320,4 +320,5 @@ export const ResourcePipeline = {
 	processRecovery,
 	processLoss,
 	calculateExpense,
+	calculateMissingResource,
 };

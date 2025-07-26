@@ -897,6 +897,7 @@
 		"ChatApplyDamageImmune": "<strong>{actor}</strong> was <strong>immune</strong> to <strong>{type}</strong> and took <strong>{damage}</strong> damage from <strong>{from}</strong>",
 		"ChatApplyDamageImmuneIgnored": "<strong>{actor}</strong> took <strong>{damage} {type}</strong> damage from <strong>{from} (Immunity ignored)</strong>",
 		"ChatApplyDamageAbsorb": "<strong>{actor} absorbed {type}</strong> damage from <strong>{from}</strong> and was healed by <strong>{damage}</strong> HP",
+		"ChatApplyDamageNone": "<strong>{actor}</strong> received no damage from <strong>{from}</strong>.",
 		"ChatApplyResourceLoss": "Spend",
 		"ChatApplyResourceLossTooltip": "Click to spend the given resource on the actor who performed this action.",
 		"ChatApplyResourceLossSelected": "Spend Selected",
