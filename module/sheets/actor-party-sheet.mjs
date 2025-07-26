@@ -332,7 +332,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #revealMetaCurrency(event, target) {
+	static async #revealMetaCurrency() {
 		MetaCurrencyTrackerApplication.renderApp();
 	}
 
@@ -603,22 +603,20 @@ export class FUPartySheet extends FUActorSheet {
  */
 
 // Set up sidebar menu option
-Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-	const name = 'FU.Party';
-	tools[name] = {
-		name: name,
-		title: 'FU.Party',
+Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
+
+/**
+ * @param {SystemControlTool[]} tools
+ */
+function onGetSystemTools(tools) {
+	tools.push({
+		name: 'FU.Party',
 		icon: 'fa-solid fa fa-users',
-		button: true,
-		active: false,
-		toggle: false,
-		onChange: (event, active) => {
-			if (active) {
-				FUPartySheet.toggleActive();
-			}
+		onClick: () => {
+			FUPartySheet.toggleActive();
 		},
-	};
-});
+	});
+}
 
 /**
  * @param {StudyEvent} ev
@@ -665,7 +663,7 @@ async function onRenderChatMessage(message, html) {
 	for (const el of elements) {
 		el.addEventListener(
 			'click',
-			async (event) => {
+			async () => {
 				const uuid = el.dataset.uuid;
 				const party = await FUPartySheet.getActive();
 				return party.sheet.revealNpc(uuid);

@@ -1,5 +1,4 @@
 import { SETTINGS } from '../settings.js';
-import { SystemControls } from '../helpers/system-controls.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FUCombat } from './combat.mjs';
@@ -7,13 +6,62 @@ import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
 
 Hooks.once('setup', () => {
-	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
-		Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-			tools['projectfu-combathud-toggle'] = CombatHUD.getToggleControlButton();
-			tools['projectfu-combathud-saved-toggle'] = CombatHUD.getSavedControlButton();
-			tools['projectfu-combathud-reset'] = CombatHUD.getResetControlButton();
-		});
+	/**
+	 * @typedef HudButtonData
+	 * @property {string} name
+	 * @property {string} icon
+	 * @property {boolean} [visible]
+	 * @property {boolean} [toggle]
+	 * @property {boolean} [active]
+	 * @property {(event: Event, active: boolean) => void} [onClick]   A callback invoked when the tool is activated
+	 * or deactivated
+	 */
+
+	/**
+	 * @param {HTMLElement} containerElement
+	 * @param {HudButtonData} buttonData
+	 */
+	function createButton(containerElement, buttonData) {
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.classList.add('control', 'ui-control');
+		button.innerHTML = `<i class="${buttonData.icon}"></i>`;
+		button.dataset.tooltip = game.i18n.localize(buttonData.name);
+
+		if (buttonData.toggle) {
+			let active = buttonData.active;
+			button.classList.add('toggle');
+			button.ariaPressed = active;
+			button.addEventListener('click', (e) => {
+				active = !active;
+				button.ariaPressed = active;
+				if (buttonData.onClick) {
+					buttonData.onClick(e, active);
+				}
+			});
+		} else {
+			if (buttonData.onClick) {
+				button.addEventListener('click', (e) => {
+					buttonData.onClick(e, false);
+				});
+			}
+		}
+
+		containerElement.appendChild(button);
 	}
+
+	Hooks.on('renderCombatTracker', (app, element) => {
+		if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
+			const containerElement = document.createElement('div');
+			containerElement.id = 'combat-hud-controls';
+			createButton(containerElement, CombatHUD.getToggleControlButton());
+			createButton(containerElement, CombatHUD.getSavedControlButton());
+			createButton(containerElement, CombatHUD.getResetControlButton());
+
+			const combatTrackerSection = element.querySelector('#combat-tracker').parentElement;
+			combatTrackerSection.prepend(containerElement);
+		}
+	});
 });
 
 export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
@@ -433,7 +481,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	/**
 	 * Determine whether or not the current user has sufficient permission to edit
 	 * @param {HTMLElement} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
-	 * @param {"update" | "delete"} op - The operation to check -- either "update" or "delete"
+	 * @param {'update' | 'delete'} op - The operation to check -- either "update" or "delete"
 	 * @returns
 	 */
 	_canModifyEffectContextMenu(elem, op = 'update') {
@@ -918,7 +966,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		this.render(true);
 	}
 
-	_onUpdateCombatant(combatant, changes) {
+	_onUpdateCombatant() {
 		this._onUpdateHUD();
 	}
 
@@ -1161,17 +1209,18 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		CombatHUD.update();
 	}
 
+	/**
+	 * @return {HudButtonData}
+	 */
 	static getToggleControlButton() {
 		return {
-			name: 'projectfu-combathud-toggle',
-			title: game.i18n.localize('FU.CombatHudControlButtonTitle'),
+			name: game.i18n.localize('FU.CombatHudControlButtonTitle'),
 			icon: 'fas fa-thumbtack',
-			button: false,
 			toggle: true,
 			visible: game.combat ? game.combat.isActive : false,
 			active: !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized),
 
-			onChange: () => {
+			onClick: () => {
 				console.log('Click toggle');
 				if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
 					CombatHUD.restore();
@@ -1182,16 +1231,17 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		};
 	}
 
+	/**
+	 * @return {HudButtonData}
+	 */
 	static getSavedControlButton() {
 		return {
-			name: 'projectfu-combathud-saved-toggle',
-			title: game.i18n.localize('FU.CombatHudSaveButtonTitle'),
+			name: game.i18n.localize('FU.CombatHudSaveButtonTitle'),
 			icon: 'fas fa-lock',
-			button: false,
 			toggle: true,
 			visible: game.combat ? game.combat.isActive : false,
 			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved),
-			onChange: () => {
+			onClick: () => {
 				console.log('Click save');
 				const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
 				game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
@@ -1199,15 +1249,16 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		};
 	}
 
+	/**
+	 * @return {HudButtonData}
+	 */
 	static getResetControlButton() {
 		return {
-			name: 'projectfu-combathud-reset',
-			title: game.i18n.localize('FU.CombatHudResetButtonTitle'),
+			name: game.i18n.localize('FU.CombatHudResetButtonTitle'),
 			icon: 'fas fa-undo',
-			button: true,
 			// visible: game.combat ? game.combat.isActive : false,
 			visible: true,
-			onChange: () => {
+			onClick: () => {
 				console.log('Click reset');
 				CombatHUD.reset();
 			},
@@ -1224,7 +1275,10 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	async _getCombatantThumbnail(combatant) {
 		if (combatant._videoSrc && !combatant.img) {
 			if (combatant._thumb) return combatant._thumb;
-			return (combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, { width: 200, height: 200 }));
+			return (combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, {
+				width: 200,
+				height: 200,
+			}));
 		}
 		return combatant.img ?? CONST.DEFAULT_TOKEN;
 	}

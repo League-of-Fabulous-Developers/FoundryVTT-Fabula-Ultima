@@ -1,71 +1,62 @@
 import { SYSTEM } from './config.mjs';
 
 /**
- * @typedef SceneControlTool
- * The data structure for a single tool in the {@link SceneControl#tools} record.
+ * @typedef SystemControlTool
  * @property {string} name
- * @property {number} order
- * @property {string} title
  * @property {string} icon
  * @property {boolean} [visible]
  * @property {boolean} [toggle]
  * @property {boolean} [active]
- * @property {boolean} [button]
- * @property {(event: Event, active: boolean) => void} [onChange]   A callback invoked when the tool is activated
- * or deactivated
- * @property {ToolclipConfiguration} [toolclip]                     Configuration for rendering the tool's toolclip
+ * @property {(event: Event, active: boolean) => void} [onClick]
  */
-
-/**
- * @typedef SceneControl
- * The data structure for a set of controls in the {@link SceneControls#controls} record.
- * @property {string} name
- * @property {number} order
- * @property {string} title
- * @property {string} icon
- * @property {boolean} [visible]
- * @property {Record<string, SceneControlTool>} tools
- * @property {string} activeTool
- * @property {(event: Event, active: boolean) => void} [onChange]
- * A callback invoked when control set is activated or deactivated
- * @property {(event: Event, tool: SceneControlTool) => void} [onToolChange]
- * A callback invoked when the active tool changes
- */
-
-/**
- * @param {Record<string, SceneControl>} controls
- * @remarks {@link https://foundryvtt.com/api/v13/classes/foundry.applications.ui.SceneControls.html#controls}
- */
-function initializeSystemControl(controls) {
-	/** @type SceneControlTool[] */
-	const tools = {};
-
-	Hooks.callAll(SystemControls.HOOK_GET_SYSTEM_TOOLS, tools);
-
-	controls[SYSTEM] = {
-		name: SYSTEM,
-		title: 'FU.UiControlTitle',
-		icon: 'fus-star2',
-		tools: tools,
-		activeTool: '',
-		onChange: (event, active) => {},
-		layer: SYSTEM,
-	};
-}
 
 // Register the hook into Foundry
 let initialized;
-class SystemControlsLayer extends foundry.canvas.layers.InteractionLayer {}
 export const SystemControls = Object.freeze({
 	initialize() {
 		if (!initialized) {
-			initialized = true;
-			CONFIG.Canvas.layers[SYSTEM] = {
-				layerClass: SystemControlsLayer,
-				group: 'interface',
-			};
+			Hooks.on('renderPlayers', (app, element) => {
+				const containerElement = document.createElement('div');
+				containerElement.classList.add('system-controls');
 
-			Hooks.on('getSceneControlButtons', initializeSystemControl);
+				/** @type {SystemControlTool[]} */
+				const systemTools = [];
+				Hooks.callAll(SystemControls.HOOK_GET_SYSTEM_TOOLS, systemTools);
+
+				const menuItems = systemTools
+					.filter((tool) => tool.visible !== false)
+					.map((tool) => {
+						const toolButton = document.createElement('button');
+						toolButton.type = 'button';
+						toolButton.classList.add('control', 'ui-control');
+						toolButton.innerHTML = `<i class="${tool.icon}"></i>`;
+						toolButton.dataset.tooltip = game.i18n.localize(tool.name);
+						toolButton.dataset.tooltipDirection = game.tooltip.constructor.TOOLTIP_DIRECTIONS.UP;
+
+						if (tool.toggle) {
+							let active = tool.active;
+							toolButton.classList.add('toggle');
+							toolButton.ariaPressed = active;
+							toolButton.addEventListener('click', (e) => {
+								active = !active;
+								toolButton.ariaPressed = active;
+								if (tool.onClick) {
+									tool.onClick(e, active);
+								}
+							});
+						} else {
+							if (tool.onClick) {
+								toolButton.addEventListener('click', (e) => {
+									tool.onClick(e, false);
+								});
+							}
+						}
+						return toolButton;
+					});
+
+				containerElement.append(...menuItems);
+				element.prepend(containerElement);
+			});
 		}
 	},
 	HOOK_GET_SYSTEM_TOOLS: `${SYSTEM}.getSystemControlTools`,

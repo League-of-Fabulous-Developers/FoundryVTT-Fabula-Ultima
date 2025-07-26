@@ -57,25 +57,27 @@ const renderApp = () => (gameWellspringManager ??= new GameWellspringManager()).
 
 const regExp = /^\/(ws|wellsprings?)$/i;
 
-function onChatMessage(chatLog, message, data) {
+function onChatMessage(chatLog, message) {
 	if (game.user.isGM && regExp.test(message)) {
 		renderApp();
 		return false;
 	}
 }
 
-function initialize() {
-	const name = GameWellspringManager.name;
-	Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-		tools[name] = {
-			name: name,
-			title: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
-			icon: 'fas fa-earth-asia',
-			button: true,
-			visible: game.user.isGM,
-			onChange: () => renderApp(),
-		};
+/**
+ * @param {SystemControlTool[]} tools
+ */
+function onGetSystemTools(tools) {
+	tools.push({
+		name: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
+		icon: 'fas fa-earth-asia',
+		visible: game.user.isGM,
+		onClick: () => renderApp(),
 	});
+}
+
+function initialize() {
+	Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
 
 	Hooks.on('projectfu.actor.dataPrepared', ActorWellspringManager.onActorPrepared);
 

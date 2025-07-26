@@ -7,17 +7,17 @@ import { CharacterDataModel } from '../../documents/actors/character/character-d
 import { NpcDataModel } from '../../documents/actors/npc/npc-data-model.mjs';
 import FUApplication from '../application.mjs';
 
-Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-	tools[MetaCurrencyTrackerApplication.name] = {
-		name: MetaCurrencyTrackerApplication.name,
-		title: 'FU.AppMetaCurrencyTrackerTitle',
+/**
+ * @param {SystemControlTool[]} tools
+ */
+function onGetSystemTools(tools) {
+	tools.push({
+		name: 'FU.AppMetaCurrencyTrackerTitle',
 		icon: 'fa-solid fa-chart-line',
-		button: true,
-		active: false,
-		toggle: false,
-		onChange: (event, active) => renderApp(),
-	};
-});
+		onClick: () => renderApp(),
+	});
+}
+Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
 
 let app;
 const renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);
@@ -26,7 +26,7 @@ Hooks.on('chatMessage', handleChatCommand);
 
 const regExp = /^\/(fabula|ultima|metacurrency)$/i;
 
-function handleChatCommand(chatLog, message, data) {
+function handleChatCommand(chatLog, message) {
 	if (regExp.test(message)) {
 		renderApp();
 		return false;
