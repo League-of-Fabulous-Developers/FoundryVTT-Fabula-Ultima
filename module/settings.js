@@ -901,7 +901,7 @@ class SettingsConfigurationApp extends FUApplication {
 	/** @type {Record<string, HandlebarsTemplatePart>} */
 	static PARTS = {
 		main: {
-			template: 'systems/projectfu/templates/app/settings-config-app.hbs',
+			template: 'systems/projectfu/templates/app/settings/settings-config-app.hbs',
 		},
 	};
 
