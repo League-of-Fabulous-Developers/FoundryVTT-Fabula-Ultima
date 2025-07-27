@@ -696,7 +696,7 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.Automation'),
 		label: game.i18n.localize('FU.AutomationOptions'),
 		hint: game.i18n.localize('FU.AutomationHint'),
-		icon: 'fas fa-book',
+		icon: 'fa fa-wrench',
 		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects]),
 		restricted: true,
 	});
@@ -733,7 +733,7 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.Homebrew'),
 		label: game.i18n.localize('FU.HomebrewOptions'),
 		hint: game.i18n.localize('FU.HomebrewHint'),
-		icon: 'fas fa-book',
+		icon: 'fa fa-coffee',
 		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability]),
 		restricted: true,
 	});
