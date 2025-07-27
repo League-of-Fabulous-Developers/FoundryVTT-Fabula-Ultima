@@ -259,6 +259,25 @@
 	fill: var(--color-secondary);
 }
 
+.ra-1x {
+	font-size: 1.125rem;
+	font-style: normal;
+}
+
+.ra-1xh {
+	font-size: 1.5em;
+	font-style: normal;
+}
+
+.ra.ral {
+	text-shadow:
+		-0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
+		/* Top-left */ 0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
+		/* Top-right */ -0.5px 0.5px 0 rgba(0, 0, 0, 0.5),
+		/* Bottom-left */ 0.5px 0.5px 0 rgba(0, 0, 0, 0.5);
+	/* Bottom-right */
+}
+
 /* Status colors (assumes these CSS vars exist) */
 .is-buff {
 	color: var(--color-success) !important;

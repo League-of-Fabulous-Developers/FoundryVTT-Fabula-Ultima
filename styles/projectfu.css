@@ -5,6 +5,8 @@
 @import 'css/utils/typography.css';
 @import 'css/utils/mixins.css';
 @import 'css/utils/messages.css';
+@import 'css/utils/icons.css';
+@import 'css/rpg-awesome.css';
 
 @import 'css/global/inline.css';
 @import 'css/global/window.css';
