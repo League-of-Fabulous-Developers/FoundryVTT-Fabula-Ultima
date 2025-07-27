@@ -531,7 +531,9 @@
 		"DamagePoison": "Poison",
 		"AffinityNormal": "Normal",
 		"AffinityVulnerable": "Vulnerable",
+		"AffinityVulnerableHint": "Vulnerable Multiplier",
 		"AffinityResistance": "Resistance",
+		"AffinityResistanceHint": "Resistance Multiplier",
 		"AffinityImmune": "Immune",
 		"AffinityAbsorption": "Absorption",
 		"AffinityRepulsion": "Repulsion",
@@ -1474,6 +1476,9 @@
 		"AutomationHint": "Enable to automate damage, healing and effect applications for actors.",
 		"Homebrew": "Homebrew",
 		"HomebrewOptions": "Manage Homebrew",
-		"HomebrewHint": "Apply various systemic overrides."
+		"HomebrewHint": "Apply various systemic overrides.",
+		"SheetOptionsTitle": "Document Sheets",
+		"SheetOptions": "Configure Sheets",
+		"SheetOptionsHint": "Configure various options for the system's sheets."
 	}
 }

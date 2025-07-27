@@ -15,6 +15,7 @@ import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -184,19 +185,6 @@ export class DamagePipelineContext extends PipelineContext {
 	}
 }
 
-// TODO: Provide variant option to modify resistance/vulnerability scaling
-/**
- * @type {Record<Number, Number>}
- * @description Index : Multiplier
- */
-const affinityDamageModifier = {
-	[FU.affValue.vulnerability]: 2,
-	[FU.affValue.none]: 1,
-	[FU.affValue.resistance]: 0.5,
-	[FU.affValue.immunity]: 0,
-	[FU.affValue.absorption]: -1,
-};
-
 /**
  * @param {DamagePipelineContext} context
  * @return {Boolean}
@@ -325,7 +313,8 @@ function collectMultipliers(context) {
 		context.addModifier('scaleIncomingDamage', scaleIncomingDamage);
 	}
 
-	context.addModifier('affinity', affinityDamageModifier[context.affinity]);
+	const modifier = affinityDamageModifier[context.affinity]();
+	context.addModifier('affinity', modifier);
 }
 
 /**
@@ -628,6 +617,19 @@ async function absorbDamage(resource, amount, sourceInfo, targets) {
 	const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
 	await ResourcePipeline.processRecovery(request);
 }
+
+// TODO: Memoize if needed
+/**
+ * @type {Record<Number, Function<Number>>}
+ * @description Index : Multiplier
+ */
+let affinityDamageModifier = {
+	[FU.affValue.vulnerability]: () => game.settings.get(SYSTEM, SETTINGS.affinityVulnerability),
+	[FU.affValue.none]: () => 1,
+	[FU.affValue.resistance]: () => game.settings.get(SYSTEM, SETTINGS.affinityResistance),
+	[FU.affValue.immunity]: () => 0,
+	[FU.affValue.absorption]: () => -1,
+};
 
 /**
  * @description Initialize the pipeline's hooks

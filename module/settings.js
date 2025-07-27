@@ -6,16 +6,15 @@ import { WellspringDataModel } from './documents/items/classFeature/invoker/invo
 import FUApplication from './ui/application.mjs';
 
 export const SETTINGS = Object.freeze({
-	experimentalCombatHud: 'experimentalCombatHud',
+	// Meta Currency
 	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
 	metaCurrencyAutomation: 'metaCurrencyAutomation',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
 	metaCurrencyFabula: 'metaCurrencyFabula',
-	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
 	metaCurrencyUltima: 'metaCurrencyUltima',
-	optionAlwaysFavorite: 'optionAlwaysFavorite',
-	optionBehaviorRoll: 'optionBehaviorRoll',
-	optionCampingRules: 'optionCampingRules',
+	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
+	// Combat HUD
+	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudCompact: 'optionCombatHudCompact',
 	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
@@ -39,23 +38,31 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
+	optionCombatHudWidth: 'optionCombatHudWidth',
+	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
 	optionChatMessageHideDescription: 'optionChatMessageHideDescription',
 	optionChatMessageCollapseDescription: 'optionChatMessageCollapseDescription',
 	optionChatMessageHideQuality: 'optionChatMessageHideQuality',
 	optionChatMessageHideRollDetails: 'optionChatMessageHideRollDetails',
-	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatMouseDown: 'optionCombatMouseDown',
 	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
-	optionNPCNotesTab: 'optionNPCNotesTab',
-	optionQuirks: 'optionQuirks',
-	optionStudySavePath: 'optionStudySavePath',
+	// Behavior Rolls
+	optionBehaviorRoll: 'optionBehaviorRoll',
 	optionTargetPriority: 'optionTargetPriority',
 	optionTargetPriorityRules: 'optionTargetPriorityRules',
+	optionStudySavePath: 'optionStudySavePath',
+	// Optional Rules
+	optionCampingRules: 'optionCampingRules',
+	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
+	useRevisedStudyRule: 'useRevisedStudyRule',
+	// Sheets
+	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
-	activeWellsprings: 'activeWellsprings',
+	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	// Automation
 	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
@@ -63,11 +70,14 @@ export const SETTINGS = Object.freeze({
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
 	// Homebrew
 	homebrewOptions: 'homebrewOptions',
-	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionBondMaxLength: 'optionBondMaxLength',
 	optionRenameCurrency: 'optionRenameCurrency',
+	affinityResistance: 'affinityResistance',
+	affinityVulnerability: 'affinityVulnerability',
 	// Party
 	activeParty: 'optionActiveParty',
+	// STATE
+	activeWellsprings: 'activeWellsprings',
 });
 
 /**
@@ -550,15 +560,6 @@ export const registerSystemSettings = async function () {
 		default: 'ip',
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
-		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
-		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
-		scope: 'client',
-		config: true,
-		type: Boolean,
-		default: true,
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTheme, {
 		name: game.i18n.localize('FU.CombatHudTheme'),
 		hint: game.i18n.localize('FU.CombatHudThemeHint'),
@@ -653,21 +654,39 @@ export const registerSystemSettings = async function () {
 	});
 
 	// SHEETS
+	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
+		name: game.i18n.localize('FU.SheetOptionsTitle'),
+		label: game.i18n.localize('FU.SheetOptions'),
+		hint: game.i18n.localize('FU.SheetOptionsHint'),
+		icon: 'fas fa-book',
+		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms]),
+		restricted: true,
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
 		name: game.i18n.localize('FU.NotesTabSettings'),
 		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: false,
 		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
+		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
+		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
 		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
 		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
 		scope: 'client',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: false,
 	});
@@ -715,7 +734,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.HomebrewOptions'),
 		hint: game.i18n.localize('FU.HomebrewHint'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength]),
+		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability]),
 		restricted: true,
 	});
 
@@ -735,6 +754,36 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Number,
 		default: 6,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.affinityResistance, {
+		name: game.i18n.localize('FU.AffinityResistance'),
+		hint: game.i18n.localize('FU.AffinityResistanceHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 0.5,
+		range: {
+			min: 0.5,
+			step: 0.05,
+			max: 1,
+		},
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.affinityVulnerability, {
+		name: game.i18n.localize('FU.AffinityVulnerable'),
+		hint: game.i18n.localize('FU.AffinityVulnerableHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 2,
+		range: {
+			min: 1,
+			step: 0.05,
+			max: 2,
+		},
 		requiresReload: true,
 	});
 };
