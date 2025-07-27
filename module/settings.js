@@ -15,7 +15,6 @@ export const SETTINGS = Object.freeze({
 	metaCurrencyUltima: 'metaCurrencyUltima',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	optionBehaviorRoll: 'optionBehaviorRoll',
-	optionBondMaxLength: 'optionBondMaxLength',
 	optionCampingRules: 'optionCampingRules',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudCompact: 'optionCombatHudCompact',
@@ -51,18 +50,22 @@ export const SETTINGS = Object.freeze({
 	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
 	optionNPCNotesTab: 'optionNPCNotesTab',
 	optionQuirks: 'optionQuirks',
-	optionRenameCurrency: 'optionRenameCurrency',
 	optionStudySavePath: 'optionStudySavePath',
 	optionTargetPriority: 'optionTargetPriority',
 	optionTargetPriorityRules: 'optionTargetPriorityRules',
 	optionZeroPower: 'optionZeroPower',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
-	useRevisedStudyRule: 'useRevisedStudyRule',
 	activeWellsprings: 'activeWellsprings',
 	// Automation
+	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
+	// Homebrew
+	homebrewOptions: 'homebrewOptions',
+	useRevisedStudyRule: 'useRevisedStudyRule',
+	optionBondMaxLength: 'optionBondMaxLength',
+	optionRenameCurrency: 'optionRenameCurrency',
 	// Party
 	activeParty: 'optionActiveParty',
 });
@@ -72,6 +75,7 @@ export const SETTINGS = Object.freeze({
  * @returns {Promise<void>}
  */
 export const registerSystemSettings = async function () {
+	// CHAT MESSAGE OPTIONS
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
 		name: game.i18n.localize('FU.ChatMessageOptions'),
 		label: game.i18n.localize('FU.ChatMessageOptionsManage'),
@@ -131,12 +135,13 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
+	// OPTIONAL RULES
 	game.settings.registerMenu(SYSTEM, 'myOptionalRules', {
 		name: game.i18n.localize('FU.OptionalRules'),
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules]),
+		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule]),
 		restricted: true,
 	});
 
@@ -167,6 +172,16 @@ export const registerSystemSettings = async function () {
 		default: true,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
+		name: game.i18n.localize('FU.RevisedStudyRollSettings'),
+		hint: game.i18n.localize('FU.RevisedStudyRollSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	// BEHAVIOR ROLLS
 	game.settings.register(SYSTEM, SETTINGS.optionBehaviorRoll, {
 		name: game.i18n.localize('FU.BehaviorRollsSettings'),
 		hint: game.i18n.localize('FU.BehaviorRollsSettingsHint'),
@@ -244,15 +259,6 @@ export const registerSystemSettings = async function () {
 		},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
-		name: game.i18n.localize('FU.RevisedStudyRollSettings'),
-		hint: game.i18n.localize('FU.RevisedStudyRollSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.optionStudySavePath, {
 		name: game.i18n.localize('FU.StudySavePathSettings'),
 		hint: game.i18n.localize('FU.StudySavePathSettingsHint'),
@@ -260,35 +266,6 @@ export const registerSystemSettings = async function () {
 		config: true,
 		type: String,
 		default: 'Bestiary',
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
-		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
-		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
-		scope: 'client',
-		config: true,
-		type: Boolean,
-		default: false,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
-		name: game.i18n.localize('FU.NotesTabSettings'),
-		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
-		name: game.i18n.localize('FU.BondMax'),
-		hint: game.i18n.localize('FU.BondMaxHint'),
-		scope: 'world',
-		config: true,
-		type: Number,
-		default: 6,
-		requiresReload: true,
 	});
 
 	game.settings.registerMenu(SYSTEM, 'combatHudSettings', {
@@ -466,15 +443,6 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Object,
 		default: {},
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionRenameCurrency, {
-		name: game.i18n.localize('FU.RenameCurrency'),
-		hint: game.i18n.localize('FU.RenameCurrencyHint'),
-		scope: 'world',
-		config: true,
-		type: String,
-		default: 'Zenit',
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {
@@ -684,11 +652,41 @@ export const registerSystemSettings = async function () {
 			]),
 	});
 
+	// SHEETS
+	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
+		name: game.i18n.localize('FU.NotesTabSettings'),
+		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
+		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
+		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
+		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: false,
+	});
+
+	// AUTOMATION
+	game.settings.registerMenu(SYSTEM, SETTINGS.automationOptions, {
+		name: game.i18n.localize('FU.Automation'),
+		label: game.i18n.localize('FU.AutomationOptions'),
+		hint: game.i18n.localize('FU.AutomationHint'),
+		icon: 'fas fa-book',
+		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects]),
+		restricted: true,
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.optionAutomationManageEffects, {
 		name: game.i18n.localize('FU.AutomationManageEffects'),
 		hint: game.i18n.localize('FU.AutomationManageEffectsHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: true,
 	});
@@ -697,7 +695,7 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.AutomationEffectsReminder'),
 		hint: game.i18n.localize('FU.AutomationEffectsReminderHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: true,
 	});
@@ -706,9 +704,38 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.AutomationRemoveExpiredEffects'),
 		hint: game.i18n.localize('FU.AutomationRemoveExpiredEffectsHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: false,
+	});
+
+	// HOMEBREW
+	game.settings.registerMenu(SYSTEM, SETTINGS.homebrewOptions, {
+		name: game.i18n.localize('FU.Homebrew'),
+		label: game.i18n.localize('FU.HomebrewOptions'),
+		hint: game.i18n.localize('FU.HomebrewHint'),
+		icon: 'fas fa-book',
+		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength]),
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionRenameCurrency, {
+		name: game.i18n.localize('FU.RenameCurrency'),
+		hint: game.i18n.localize('FU.RenameCurrencyHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'Zenit',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
+		name: game.i18n.localize('FU.BondMax'),
+		hint: game.i18n.localize('FU.BondMaxHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 6,
+		requiresReload: true,
 	});
 };
 
@@ -874,6 +901,7 @@ class CombatHudSettings extends FUApplication {
  * @param {string} name
  * @param {string[]} settings
  * @return {typeof SettingsConfigurationApp}
+ * @remarks Expects the settings to be various settings to be already registered, but hidden.
  */
 function createConfigurationApp(name, settings) {
 	return class ConfigApp extends SettingsConfigurationApp {
