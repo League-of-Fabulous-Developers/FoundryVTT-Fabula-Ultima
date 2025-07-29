@@ -127,7 +127,7 @@ const getRerollParams = async (check, actor) => {
 			attr1,
 			attr2,
 		}),
-		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		/** @type {(jQuery) => RerollParams} */
 		ok: {
 			callback: (event, button, dialog) => {

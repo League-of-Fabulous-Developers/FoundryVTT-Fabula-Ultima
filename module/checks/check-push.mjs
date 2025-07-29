@@ -69,7 +69,7 @@ const getPushParams = async (actor) => {
 		window: { title: game.i18n.localize('FU.DialogPushTitle') },
 		label: game.i18n.localize('FU.DialogPushLabel'),
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
-		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		/** @type {(jQuery) => (CheckPush | false)} */
 		ok: {
 			callback: (event, html, dialog) => {

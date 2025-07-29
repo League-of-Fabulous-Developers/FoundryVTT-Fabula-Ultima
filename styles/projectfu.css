@@ -13,6 +13,7 @@
 @import 'css/global/grid.css';
 @import 'css/global/flex.css';
 
+@import 'css/components/affinity.css';
 @import 'css/components/dialogs.css';
 @import 'css/components/clocks.css';
 @import 'css/components/barmeter.css';

@@ -17,6 +17,7 @@
 	-ms-flex-align: center;
 	align-items: center;
 	margin-bottom: 0.125rem;
+	gap: 5px;
   }
   .chat-message .chat-header img {
 	-webkit-box-flex: 0;

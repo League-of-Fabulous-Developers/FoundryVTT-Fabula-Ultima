@@ -1,6 +1,6 @@
 /* Reset or remove default styles for all HTML elements                       
 /* ----------------------------------------- */
-a {
+/* a {
 	text-decoration: none;
 }
 
@@ -40,4 +40,4 @@ input[type=number] {
 
 input[type=checkbox] {
 	top: 0 !important;
-}
+} */

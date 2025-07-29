@@ -5,11 +5,6 @@
   font-weight: bold;
 }
 
-.ability-score,
-.ability-mod {
-  flex: 0 0 44px;
-}
-
 /* =========================
    Attributes
    ========================= */
@@ -50,7 +45,6 @@
 
 .attribute {
   padding: 0 0.15rem;
-  border: 1px solid var(--color-border);
 }
 
 .attribute-header {

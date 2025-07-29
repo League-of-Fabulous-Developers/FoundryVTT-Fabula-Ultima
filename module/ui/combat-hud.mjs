@@ -473,7 +473,6 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			],
 			{
 				jQuery: false,
-				jQuery: false,
 				fixed: true,
 			},
 		);

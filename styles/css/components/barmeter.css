@@ -123,18 +123,21 @@
 	background: #2b4a42;
 	border: 1px solid #c7c7c7;
 	height: 32px;
+	text-align: center;
 }
 
 .projectfu .resource-middle-input {
 	background: transparent;
 	border: 1px solid #c7c7c7;
 	height: 32px;
+	text-align: center;
 }
 
 .projectfu .resource-max-input {
 	background: #2b4a42;
 	border: 1px solid #c7c7c7;
 	height: 32px;
+	text-align: center;
 }
 
 .projectfu .resource-max-input:disabled,

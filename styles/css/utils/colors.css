@@ -212,8 +212,8 @@
 	--text-shadow-glow: 0 0 6px var(--color-primary), 0 0 12px var(--color-primary-highlight);
 	/* ===================== LEGACY SYSTEM COLORS ===================== */
 	/* Primary colors */
-	--color-primary: #ebf7af;
-	--color-secondary: #2b4a42;
+	--color-primary: #2b4a42;
+	--color-secondary: #3d665a;
 	--color-ternary: #3d665a;
 	--color-quaternary: #cccbbb;
 	/* Inverted primary colors */
@@ -378,7 +378,7 @@
 	--color-info-bg: rgba(96, 165, 250, 0.15);
 	--color-info-border: rgba(96, 165, 250, 0.4);
 	/* ===================== BORDER COLORS ===================== */
-	--color-border-primary: #2B4A42FF;
+	--color-border-primary: #2b4a42;
 	--color-border-secondary: #7aa87a;
 	--color-border-tertiary: #3a4a4a;
 	--color-border-fancy: #ffeec0;

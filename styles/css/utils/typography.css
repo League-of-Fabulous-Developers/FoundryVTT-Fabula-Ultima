@@ -101,6 +101,8 @@
 	--font-title: 'CreditValleybold';
 	--font-fancy: 'Playfair Display', 'Bodoni Moda', serif;
 	--font-quote: 'EB Garamond', sans-serif;
+
+	/* Font sizes */
 	--font-size-xs: 0.7rem;
 	--font-size-sm: 0.8rem;
 	--font-size-md: 0.95rem;
@@ -108,6 +110,38 @@
 	--font-size-xl: 1.8rem;
 	--font-size-xxl: 2rem;
 	--font-size-xxxl: 3rem;
+
+	/* Typography specific sizes */
+	--font-size-base: 1rem;
+	--font-size-small: 0.875rem;
+	--font-size-large: 1.125rem;
+	--font-size-xlarge: 1.25rem;
+	--font-size-xxlarge: 1.375rem;
+	--font-size-xxxlarge: 1.5rem;
+	--font-size-char-name: 2.125rem;
+	--font-size-pronouns: 1.35rem;
+	--font-size-action-button: 0.813rem;
+	--font-size-flavor-text: 1.25rem;
+	--font-size-resource-input: 0.875rem;
+	--font-size-crisis: 1.4rem;
+
+	/* Heading sizes */
+	--font-size-h1: 2rem;
+	--font-size-h2: 1.75rem;
+	--font-size-h3: 1.625rem;
+	--font-size-h4: 1.5rem;
+	--font-size-h5: 1.375rem;
+	--font-size-h6: 1.25rem;
+
+	/* Font weights */
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: 700;
+
+	/* Line heights */
+	--line-height-tight: 1.2em;
+	--line-height-normal: 1.45em;
+	--line-height-relaxed: 1.6em;
 }
 
 .projectfu {
@@ -137,7 +171,6 @@
 	font-weight: normal;
 	font-style: normal;
 	font-size: 1.5rem;
-	/* Preferred icon size */
 	display: inline-block;
 	line-height: 1;
 	text-transform: none;
@@ -158,475 +191,276 @@
 	font-variation-settings: "FILL" 1;
 }
 
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-
 /* ----------------------------------------- */
-/* Window App                     
+/* Application Sheets                     
 /* ----------------------------------------- */
-.window-app:not([id$=-popout]) {
-	font-family: "PT Sans Narrow", sans-serif;
+.application.journal-sheet:not([id$=-popout]),
+.application.projectfu:not([id$=-popout]),
+.chat-message.message {
+	font-family: var(--font-primary);
+	
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0.5rem 0;
+	}
+
+	h1.desc {
+		font-family: var(--font-title);
+		font-size: var(--font-size-h1) !important;
+		font-weight: var(--font-weight-bold);
+		color: var(--color-primary);
+	}
+
+	h2.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h2) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h3.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h3) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h4.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h4) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h5.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h5) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h6.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h6) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	.sheet-body,
+	.journal-sheet-container {
+
+		p,
+		li {
+			font-family: var(--font-primary);
+			font-style: normal;
+			font-size: var(--font-size-base);
+		}
+
+		blockquote,
+		blockquote p {
+			font-family: var(--font-quote) !important;
+			font-style: italic;
+			font-size: var(--font-size-base);
+		}
+
+		.editor ul,
+		.journal-page-content ul,
+		.editor-content ul,
+		.chat-desc ul {
+			list-style: diamonds;
+
+			li::marker,
+			.ProseMirror li::marker {
+				color: var(--color-primary);
+				font-size: var(--font-size-small);
+			}
+		}
+
+		.editor ol,
+		.journal-page-content ol,
+		.editor-content ol,
+		.chat-desc ol {
+
+			li::marker,
+			.ProseMirror li::marker {
+				color: var(--color-primary);
+				font-size: var(--font-size-base);
+				font-weight: var(--font-weight-bold);
+			}
+		}
+	}
+
+	.label {
+		border: none;
+	}
+
+	nav,
+	a.item {
+		font-weight: var(--font-weight-bold);
+	}
+
+	[class^=item-] {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.item,
+	.zenit-content {
+		font-size: var(--font-size-base);
+
+		.item-name {
+			font-size: var(--font-size-small);
+			font-weight: var(--font-weight-bold);
+		}
+
+		.item-quality {
+			font-size: var(--font-size-small);
+		}
+	}
+
+	input.resource-inputs {
+		font-size: var(--font-size-resource-input);
+
+		&.summary {
+			font-family: var(--font-quote);
+			font-weight: var(--font-weight-bold);
+			font-style: italic;
+			font-size: var(--font-size-base);
+			line-height: var(--line-height-normal);
+		}
+	}
+
+	.resource-content {
+		font-family: var(--font-primary);
+
+		&.affinity label {
+			font-family: var(--font-secondary);
+			font-size: var(--font-size-large);
+			color: var(--color-primary);
+		}
+
+		.resource-text-sm {
+			font-size: var(--font-size-base);
+			font-family: var(--font-primary);
+		}
+
+		.resource-text-m {
+			font-size: var(--font-size-base);
+			font-family: var(--font-primary);
+		}
+
+		.resource-label-t {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-sm {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-m {
+			font-size: var(--font-size-large);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-l {
+			font-size: var(--font-size-xlarge);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-xl {
+			font-size: var(--font-size-xxxlarge);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+	}
+
+	label.is-crisis {
+		font-size: var(--font-size-crisis);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-secondary);
+		font-style: italic;
+	}
+
+	.action-button {
+		font-weight: var(--font-weight-bold);
+		font-size: var(--font-size-action-button);
+		line-height: var(--line-height-tight);
+	}
+
+	.charname input {
+		font-family: var(--font-secondary);
+		font-weight: var(--font-weight-medium);
+		font-size: var(--font-size-char-name);
+		text-transform: none;
+	}
+
+	.pronouns input {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-pronouns);
+	}
+
+	.detail-desc {
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-normal);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-primary);
+
+		div {
+			font-size: var(--font-size-small);
+			padding: 5px 0;
+		}
+	}
+
+	.description-effect {
+		font-size: 0.938rem;
+		line-height: var(--line-height-normal);
+		font-weight: var(--font-weight-normal) !important;
+		font-family: var(--font-primary);
+	}
+
+	.quote {
+		border-left: 3px solid #999;
+		padding-left: 10px;
+		font-style: italic;
+	}
+
+	.chat-desc {
+		.summary {
+			font-family: var(--font-quote);
+			font-weight: var(--font-weight-bold);
+			font-style: italic;
+			font-size: var(--font-size-base);
+			line-height: var(--line-height-normal);
+			color: var(--color-secondary);
+		}
+
+		p {
+			font-family: var(--font-primary);
+			font-size: var(--font-size-base);
+			line-height: var(--line-height-normal);
+		}
+	}
+
+	.chat-message .message-header .flavor-text {
+		font-size: var(--font-size-flavor-text);
+		line-height: var(--line-height-normal);
+	}
+
+	.auto-shrink {
+		overflow: hidden;
+		width: 100%;
+		box-sizing: border-box;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.sheet nav.sheet-tabs .item {
+		font-size: var(--font-size-base);
+		line-height: var(--line-height-normal);
+	}
 }
 
-.window-app:not([id$=-popout]) h1 {
-	font-family: "CreditValleybold";
-	font-size: 2rem !important;
-	font-weight: 700;
-	color: #2b4a42;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) h2 {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-size: 1.75rem !important;
-	font-weight: 700;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) h3 {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-size: 1.625rem !important;
-	font-weight: 700;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) h4 {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-size: 1.5rem !important;
-	font-weight: 700;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) h5 {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-size: 1.375rem !important;
-	font-weight: 700;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) h6 {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-size: 1.25rem !important;
-	font-weight: 700;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .sheet-body p,
-.window-app:not([id$=-popout]) .sheet-body li,
-.window-app:not([id$=-popout]) .journal-sheet-container p,
-.window-app:not([id$=-popout]) .journal-sheet-container li {
-	font-family: "PT Sans Narrow", sans-serif;
-	font-style: normal;
-	font-size: 1rem;
-}
-
-.window-app:not([id$=-popout]) .sheet-body blockquote,
-.window-app:not([id$=-popout]) .sheet-body blockquote p,
-.window-app:not([id$=-popout]) .journal-sheet-container blockquote,
-.window-app:not([id$=-popout]) .journal-sheet-container blockquote p {
-	font-family: "EB Garamond", sans-serif !important;
-	font-style: italic;
-	font-size: 1rem;
-}
-
-.window-app:not([id$=-popout]) .sheet-body .editor ul,
-.window-app:not([id$=-popout]) .sheet-body .journal-page-content ul,
-.window-app:not([id$=-popout]) .sheet-body .editor-content ul,
-.window-app:not([id$=-popout]) .sheet-body .chat-desc ul,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor ul,
-.window-app:not([id$=-popout]) .journal-sheet-container .journal-page-content ul,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor-content ul,
-.window-app:not([id$=-popout]) .journal-sheet-container .chat-desc ul {
-	list-style: diamonds;
-}
-
-.window-app:not([id$=-popout]) .sheet-body .editor ul li::marker,
-.window-app:not([id$=-popout]) .sheet-body .editor ul .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .sheet-body .journal-page-content ul li::marker,
-.window-app:not([id$=-popout]) .sheet-body .journal-page-content ul .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .sheet-body .editor-content ul li::marker,
-.window-app:not([id$=-popout]) .sheet-body .editor-content ul .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .sheet-body .chat-desc ul li::marker,
-.window-app:not([id$=-popout]) .sheet-body .chat-desc ul .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor ul li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor ul .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .journal-page-content ul li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .journal-page-content ul .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor-content ul li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor-content ul .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .chat-desc ul li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .chat-desc ul .ProseMirror li::marker {
-	color: #2b4a42;
-	font-size: 0.875rem;
-}
-
-.window-app:not([id$=-popout]) .sheet-body .editor ol li::marker,
-.window-app:not([id$=-popout]) .sheet-body .editor ol .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .sheet-body .journal-page-content ol li::marker,
-.window-app:not([id$=-popout]) .sheet-body .journal-page-content ol .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .sheet-body .editor-content ol li::marker,
-.window-app:not([id$=-popout]) .sheet-body .editor-content ol .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .sheet-body .chat-desc ol li::marker,
-.window-app:not([id$=-popout]) .sheet-body .chat-desc ol .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor ol li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor ol .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .journal-page-content ol li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .journal-page-content ol .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor-content ol li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .editor-content ol .ProseMirror li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .chat-desc ol li::marker,
-.window-app:not([id$=-popout]) .journal-sheet-container .chat-desc ol .ProseMirror li::marker {
-	color: #2b4a42;
-	font-size: 1rem;
-	font-weight: bold;
-}
-
-.window-app:not([id$=-popout]) .label {
-	font-variant: small-caps;
-	border: none;
-}
-
-.window-app:not([id$=-popout]) nav,
-.window-app:not([id$=-popout]) a.item {
-	font-weight: bold;
-}
-
-.window-app:not([id$=-popout]) [class^=item-] {
-	font-weight: bold;
-}
-
-.window-app:not([id$=-popout]) .item,
-.window-app:not([id$=-popout]) .zenit-content {
-	font-size: 1rem;
-}
-
-.window-app:not([id$=-popout]) .item .item-name,
-.window-app:not([id$=-popout]) .zenit-content .item-name {
-	font-size: 0.875rem;
-	font-weight: bold;
-}
-
-.window-app:not([id$=-popout]) .item .item-quality,
-.window-app:not([id$=-popout]) .zenit-content .item-quality {
-	font-size: 0.875rem;
-}
-
-.window-app:not([id$=-popout]) input.resource-inputs {
-	font-size: 0.875rem;
-}
-
-.window-app:not([id$=-popout]) input.resource-inputs.summary {
-	font-family: "EB Garamond", sans-serif;
-	font-weight: 700;
-	font-style: italic;
-	font-size: 1rem;
-	line-height: 1.45em;
-}
-
-.window-app:not([id$=-popout]) .resource-content {
-	font-family: "PT Sans Narrow", sans-serif;
-}
-
-.window-app:not([id$=-popout]) .resource-content.affinity label {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-size: 1.125rem;
-	color: #2b4a42;
-}
-
-.window-app:not([id$=-popout]) .resource-content .resource-text-sm {
-	font-size: 1rem;
-	font-family: "PT Sans Narrow", sans-serif;
-}
-
-.window-app:not([id$=-popout]) .resource-content .resource-text-m {
-	font-size: 1rem;
-	font-family: "PT Sans Narrow", sans-serif;
-}
-
-.window-app:not([id$=-popout]) .resource-content .resource-label-t {
-	font-size: 1rem;
-	font-weight: bold;
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .resource-content .resource-label-sm {
-	font-size: 1rem;
-	font-weight: bold;
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .resource-content .resource-label-m {
-	font-size: 1.125rem;
-	font-weight: bold;
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .resource-content .resource-label-l {
-	font-size: 1.25rem;
-	font-weight: bold;
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .resource-content .resource-label-xl {
-	font-size: 1.5rem;
-	font-weight: bold;
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) label.is-crisis {
-	font-size: 1.4rem;
-	font-weight: bold;
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-variant: small-caps;
-	font-style: italic;
-}
-
-.window-app:not([id$=-popout]) .action-button {
-	font-weight: bold;
-	font-size: 0.813rem;
-	line-height: 1.2em;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit,
-.window-app:not([id$=-popout]) .editor .editor-content,
-.window-app:not([id$=-popout]) .editor .journal-entry-page,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page,
-.window-app:not([id$=-popout]) .editor-container .editor-edit,
-.window-app:not([id$=-popout]) .editor-container .editor-content,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page {
-	font-weight: normal;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit h1,
-.window-app:not([id$=-popout]) .editor .editor-edit h2,
-.window-app:not([id$=-popout]) .editor .editor-edit h3,
-.window-app:not([id$=-popout]) .editor .editor-content h1,
-.window-app:not([id$=-popout]) .editor .editor-content h2,
-.window-app:not([id$=-popout]) .editor .editor-content h3,
-.window-app:not([id$=-popout]) .editor .journal-entry-page h1,
-.window-app:not([id$=-popout]) .editor .journal-entry-page h2,
-.window-app:not([id$=-popout]) .editor .journal-entry-page h3,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit h1,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit h2,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit h3,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content h1,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content h2,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content h3,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page h1,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page h2,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page h3,
-.window-app:not([id$=-popout]) .editor-container .editor-edit h1,
-.window-app:not([id$=-popout]) .editor-container .editor-edit h2,
-.window-app:not([id$=-popout]) .editor-container .editor-edit h3,
-.window-app:not([id$=-popout]) .editor-container .editor-content h1,
-.window-app:not([id$=-popout]) .editor-container .editor-content h2,
-.window-app:not([id$=-popout]) .editor-container .editor-content h3,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page h1,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page h2,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page h3 {
-	border-bottom: 2px solid #2b4a42;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit h1,
-.window-app:not([id$=-popout]) .editor .editor-content h1,
-.window-app:not([id$=-popout]) .editor .journal-entry-page h1,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit h1,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content h1,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page h1,
-.window-app:not([id$=-popout]) .editor-container .editor-edit h1,
-.window-app:not([id$=-popout]) .editor-container .editor-content h1,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page h1 {
-	line-height: 1.2em;
-	margin-bottom: 5px;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit h2,
-.window-app:not([id$=-popout]) .editor .editor-edit h3,
-.window-app:not([id$=-popout]) .editor .editor-edit h4,
-.window-app:not([id$=-popout]) .editor .editor-content h2,
-.window-app:not([id$=-popout]) .editor .editor-content h3,
-.window-app:not([id$=-popout]) .editor .editor-content h4,
-.window-app:not([id$=-popout]) .editor .journal-entry-page h2,
-.window-app:not([id$=-popout]) .editor .journal-entry-page h3,
-.window-app:not([id$=-popout]) .editor .journal-entry-page h4,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit h2,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit h3,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit h4,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content h2,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content h3,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content h4,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page h2,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page h3,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page h4,
-.window-app:not([id$=-popout]) .editor-container .editor-edit h2,
-.window-app:not([id$=-popout]) .editor-container .editor-edit h3,
-.window-app:not([id$=-popout]) .editor-container .editor-edit h4,
-.window-app:not([id$=-popout]) .editor-container .editor-content h2,
-.window-app:not([id$=-popout]) .editor-container .editor-content h3,
-.window-app:not([id$=-popout]) .editor-container .editor-content h4,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page h2,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page h3,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page h4 {
-	line-height: 1.45em;
-	margin-bottom: 5px;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit hr,
-.window-app:not([id$=-popout]) .editor .editor-content hr,
-.window-app:not([id$=-popout]) .editor .journal-entry-page hr,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit hr,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content hr,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page hr,
-.window-app:not([id$=-popout]) .editor-container .editor-edit hr,
-.window-app:not([id$=-popout]) .editor-container .editor-content hr,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page hr {
-	margin: 5px 0;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit p,
-.window-app:not([id$=-popout]) .editor .editor-content p,
-.window-app:not([id$=-popout]) .editor .journal-entry-page p,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit p,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content p,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page p,
-.window-app:not([id$=-popout]) .editor-container .editor-edit p,
-.window-app:not([id$=-popout]) .editor-container .editor-content p,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page p {
-	margin: 0;
-	line-height: 1.6em;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit p:not(:first-child),
-.window-app:not([id$=-popout]) .editor .editor-content p:not(:first-child),
-.window-app:not([id$=-popout]) .editor .journal-entry-page p:not(:first-child),
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit p:not(:first-child),
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content p:not(:first-child),
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page p:not(:first-child),
-.window-app:not([id$=-popout]) .editor-container .editor-edit p:not(:first-child),
-.window-app:not([id$=-popout]) .editor-container .editor-content p:not(:first-child),
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page p:not(:first-child) {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit blockquote,
-.window-app:not([id$=-popout]) .editor .editor-content blockquote,
-.window-app:not([id$=-popout]) .editor .journal-entry-page blockquote,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit blockquote,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content blockquote,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page blockquote,
-.window-app:not([id$=-popout]) .editor-container .editor-edit blockquote,
-.window-app:not([id$=-popout]) .editor-container .editor-content blockquote,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page blockquote {
-	line-height: 1.45em;
-}
-
-.window-app:not([id$=-popout]) .editor .editor-edit .editor-content,
-.window-app:not([id$=-popout]) .editor .editor-content .editor-content,
-.window-app:not([id$=-popout]) .editor .journal-entry-page .editor-content,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-edit .editor-content,
-.window-app:not([id$=-popout]) .journal-entry-content .editor-content .editor-content,
-.window-app:not([id$=-popout]) .journal-entry-content .journal-entry-page .editor-content,
-.window-app:not([id$=-popout]) .editor-container .editor-edit .editor-content,
-.window-app:not([id$=-popout]) .editor-container .editor-content .editor-content,
-.window-app:not([id$=-popout]) .editor-container .journal-entry-page .editor-content {
-	font-size: 1rem;
-	line-height: 1.45em;
-	width: 100%;
-}
-
-.window-app:not([id$=-popout]) .charname input {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-weight: 500;
-	font-size: 2.125rem;
-	text-transform: none;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .pronouns input {
-	font-family: "Yanone Kaffeesatz", sans-serif;
-	font-size: 1.35rem;
-	padding-top: 0.3rem;
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .detail-desc {
-	font-size: 0.875rem;
-	line-height: 1.45em;
-	font-weight: bold;
-	font-family: "PT Sans Narrow", sans-serif;
-}
-
-.window-app:not([id$=-popout]) .detail-desc div {
-	font-size: 0.875rem;
-	padding: 5px 0;
-}
-
-.window-app:not([id$=-popout]) .description-effect {
-	font-size: 0.938rem;
-	line-height: 1.45em;
-	font-weight: normal !important;
-	font-family: "PT Sans Narrow", sans-serif;
-}
-
-.window-app:not([id$=-popout]) .uppercase {
-	font-variant: small-caps;
-}
-
-.window-app:not([id$=-popout]) .quote {
-	border-left: 3px solid #999;
-	padding-left: 10px;
-	font-style: italic;
-}
-
-.window-app:not([id$=-popout]) .chat-desc .summary {
-	font-family: "EB Garamond", sans-serif;
-	font-weight: 700;
-	font-style: italic;
-	font-size: 1rem;
-	line-height: 1.45em;
-	color: #3d665a;
-}
-
-.window-app:not([id$=-popout]) .chat-desc p {
-	font-family: "PT Sans Narrow", sans-serif;
-	font-size: 1rem;
-	line-height: 1.45em;
-}
-
-.window-app:not([id$=-popout]) .chat-message .message-header .flavor-text {
-	font-size: 1.25rem;
-	line-height: 1.45em;
-}
-
-.window-app:not([id$=-popout]) .auto-shrink {
-	overflow: hidden;
-	width: 100%;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-.window-app:not([id$=-popout]) .sheet nav.sheet-tabs .item {
-	font-variant: small-caps;
-	font-size: 1rem;
-	line-height: 1.45em;
-}
-
+/* Icon classes */
 .is-offensive {
 	font-family: "Fabula Ultima icons";
 	font-size: 1.75rem;
@@ -697,7 +531,7 @@
 }
 
 .is-two-weapon.equip {
-	color: #2b4a42 !important;
+	color: var(--color-primary) !important;
 	-webkit-text-stroke: transparent;
 }
 
@@ -851,7 +685,7 @@
 
 .fnt {
 	font-family: "FnT_BasicShapes1";
-	font-size: 1.125rem;
+	font-size: var(--font-size-large);
 	-webkit-text-stroke: 0.5px #000000;
 }
 
@@ -862,7 +696,7 @@
 
 .evil {
 	font-family: "Evilz";
-	font-size: 1.125rem;
+	font-size: var(--font-size-large);
 	-webkit-text-stroke: 0.5px #000000;
 }
 
@@ -937,4 +771,75 @@
 .action-disabled {
 	pointer-events: none;
 	opacity: 0.5;
+}
+
+/* Scoped CSS specifically for ProseMirror element */
+.application.journal-sheet,
+.application.projectfu {
+	.editor-content {
+		h1 {
+			font-family: var(--font-title);
+			font-size: var(--font-size-h1);
+			font-weight: var(--font-weight-bold);
+		}
+
+		h2, h3, h4, h5, h6 {
+			font-family: var(--font-secondary);
+			font-weight: var(--font-weight-bold);
+		}
+
+		h2 { font-size: var(--font-size-h2); }
+		h3 { font-size: var(--font-size-h3); }
+		h4 { font-size: var(--font-size-h4); }
+		h5 { font-size: var(--font-size-h5); }
+		h6 { font-size: var(--font-size-h6); }
+
+		p,
+		li {
+			font-family: var(--font-primary);
+			font-style: normal;
+			font-size: var(--font-size-base);
+		}
+
+		blockquote,
+		blockquote p {
+			font-family: var(--font-quote);
+			font-style: italic;
+			font-size: var(--font-size-base);
+		}
+
+		ul {
+			list-style: diamonds;
+
+			li::marker {
+				font-size: var(--font-size-small);
+			}
+		}
+
+		ol li::marker {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-bold);
+		}
+
+		strong {
+			font-weight: var(--font-weight-bold);
+		}
+	}
+
+	prose-mirror[name="system.description"].editor.prosemirror {
+		.editor-content {
+			h1, h2, h3, h4, h5, h6 {
+				font-family: var(--font-secondary);
+				font-weight: var(--font-weight-bold);
+				color: var(--color-border-primary);
+				margin: 0.125rem 0;
+			}
+			ul {
+				list-style: diamonds;
+			}
+			ul li::marker {
+				font-size: var(--font-size-small);
+			}
+		}
+	}
 }

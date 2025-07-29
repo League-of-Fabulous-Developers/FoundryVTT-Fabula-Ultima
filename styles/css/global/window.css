@@ -7,10 +7,6 @@
   padding: 1rem;
 }
 
-.projectfu.actor .sheet-header {
-  margin-bottom: 1rem;
-}
-
 .projectfu.actor .tab {
   padding: 0.5rem;
 }
@@ -33,8 +29,6 @@
   text-shadow: 0 0 10px red;
   cursor: pointer;
 }
-
-
 
 /* ----------------------------------------- */
 /* Window Styles                     
