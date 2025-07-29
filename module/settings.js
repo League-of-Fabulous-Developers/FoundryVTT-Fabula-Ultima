@@ -6,17 +6,15 @@ import { WellspringDataModel } from './documents/items/classFeature/invoker/invo
 import FUApplication from './ui/application.mjs';
 
 export const SETTINGS = Object.freeze({
-	experimentalCombatHud: 'experimentalCombatHud',
+	// Meta Currency
 	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
 	metaCurrencyAutomation: 'metaCurrencyAutomation',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
 	metaCurrencyFabula: 'metaCurrencyFabula',
-	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
 	metaCurrencyUltima: 'metaCurrencyUltima',
-	optionAlwaysFavorite: 'optionAlwaysFavorite',
-	optionBehaviorRoll: 'optionBehaviorRoll',
-	optionBondMaxLength: 'optionBondMaxLength',
-	optionCampingRules: 'optionCampingRules',
+	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
+	// Combat HUD
+	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudCompact: 'optionCombatHudCompact',
 	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
@@ -40,31 +38,46 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
+	optionCombatHudWidth: 'optionCombatHudWidth',
+	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
 	optionChatMessageHideDescription: 'optionChatMessageHideDescription',
 	optionChatMessageCollapseDescription: 'optionChatMessageCollapseDescription',
 	optionChatMessageHideQuality: 'optionChatMessageHideQuality',
 	optionChatMessageHideRollDetails: 'optionChatMessageHideRollDetails',
-	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatMouseDown: 'optionCombatMouseDown',
 	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
-	optionNPCNotesTab: 'optionNPCNotesTab',
-	optionQuirks: 'optionQuirks',
-	optionRenameCurrency: 'optionRenameCurrency',
-	optionStudySavePath: 'optionStudySavePath',
+	// Behavior Rolls
+	optionBehaviorRoll: 'optionBehaviorRoll',
 	optionTargetPriority: 'optionTargetPriority',
 	optionTargetPriorityRules: 'optionTargetPriorityRules',
+	optionStudySavePath: 'optionStudySavePath',
+	// Optional Rules
+	optionCampingRules: 'optionCampingRules',
+	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
-	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	useRevisedStudyRule: 'useRevisedStudyRule',
-	activeWellsprings: 'activeWellsprings',
+	// Sheets
+	sheetOptions: 'sheetOptions',
+	showAssociatedTherioforms: 'showAssociatedTherioforms',
+	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	// Automation
+	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
+	// Homebrew
+	homebrewOptions: 'homebrewOptions',
+	optionBondMaxLength: 'optionBondMaxLength',
+	optionRenameCurrency: 'optionRenameCurrency',
+	affinityResistance: 'affinityResistance',
+	affinityVulnerability: 'affinityVulnerability',
 	// Party
 	activeParty: 'optionActiveParty',
+	// STATE
+	activeWellsprings: 'activeWellsprings',
 });
 
 /**
@@ -72,6 +85,7 @@ export const SETTINGS = Object.freeze({
  * @returns {Promise<void>}
  */
 export const registerSystemSettings = async function () {
+	// CHAT MESSAGE OPTIONS
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
 		name: game.i18n.localize('FU.ChatMessageOptions'),
 		label: game.i18n.localize('FU.ChatMessageOptionsManage'),
@@ -131,12 +145,13 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
+	// OPTIONAL RULES
 	game.settings.registerMenu(SYSTEM, 'myOptionalRules', {
 		name: game.i18n.localize('FU.OptionalRules'),
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules]),
+		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule]),
 		restricted: true,
 	});
 
@@ -167,6 +182,16 @@ export const registerSystemSettings = async function () {
 		default: true,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
+		name: game.i18n.localize('FU.RevisedStudyRollSettings'),
+		hint: game.i18n.localize('FU.RevisedStudyRollSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	// BEHAVIOR ROLLS
 	game.settings.register(SYSTEM, SETTINGS.optionBehaviorRoll, {
 		name: game.i18n.localize('FU.BehaviorRollsSettings'),
 		hint: game.i18n.localize('FU.BehaviorRollsSettingsHint'),
@@ -244,15 +269,6 @@ export const registerSystemSettings = async function () {
 		},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
-		name: game.i18n.localize('FU.RevisedStudyRollSettings'),
-		hint: game.i18n.localize('FU.RevisedStudyRollSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.optionStudySavePath, {
 		name: game.i18n.localize('FU.StudySavePathSettings'),
 		hint: game.i18n.localize('FU.StudySavePathSettingsHint'),
@@ -260,35 +276,6 @@ export const registerSystemSettings = async function () {
 		config: true,
 		type: String,
 		default: 'Bestiary',
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
-		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
-		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
-		scope: 'client',
-		config: true,
-		type: Boolean,
-		default: false,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
-		name: game.i18n.localize('FU.NotesTabSettings'),
-		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
-		name: game.i18n.localize('FU.BondMax'),
-		hint: game.i18n.localize('FU.BondMaxHint'),
-		scope: 'world',
-		config: true,
-		type: Number,
-		default: 6,
-		requiresReload: true,
 	});
 
 	game.settings.registerMenu(SYSTEM, 'combatHudSettings', {
@@ -468,15 +455,6 @@ export const registerSystemSettings = async function () {
 		default: {},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionRenameCurrency, {
-		name: game.i18n.localize('FU.RenameCurrency'),
-		hint: game.i18n.localize('FU.RenameCurrencyHint'),
-		scope: 'world',
-		config: true,
-		type: String,
-		default: 'Zenit',
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {
 		name: 'Count used Fabula Points',
 		scope: 'world',
@@ -582,15 +560,6 @@ export const registerSystemSettings = async function () {
 		default: 'ip',
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
-		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
-		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
-		scope: 'client',
-		config: true,
-		type: Boolean,
-		default: true,
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTheme, {
 		name: game.i18n.localize('FU.CombatHudTheme'),
 		hint: game.i18n.localize('FU.CombatHudThemeHint'),
@@ -684,11 +653,59 @@ export const registerSystemSettings = async function () {
 			]),
 	});
 
+	// SHEETS
+	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
+		name: game.i18n.localize('FU.SheetOptionsTitle'),
+		label: game.i18n.localize('FU.SheetOptions'),
+		hint: game.i18n.localize('FU.SheetOptionsHint'),
+		icon: 'fas fa-book',
+		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms]),
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
+		name: game.i18n.localize('FU.NotesTabSettings'),
+		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
+		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
+		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
+		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
+		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	// AUTOMATION
+	game.settings.registerMenu(SYSTEM, SETTINGS.automationOptions, {
+		name: game.i18n.localize('FU.Automation'),
+		label: game.i18n.localize('FU.AutomationOptions'),
+		hint: game.i18n.localize('FU.AutomationHint'),
+		icon: 'fa fa-wrench',
+		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects]),
+		restricted: true,
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.optionAutomationManageEffects, {
 		name: game.i18n.localize('FU.AutomationManageEffects'),
 		hint: game.i18n.localize('FU.AutomationManageEffectsHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: true,
 	});
@@ -697,7 +714,7 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.AutomationEffectsReminder'),
 		hint: game.i18n.localize('FU.AutomationEffectsReminderHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: true,
 	});
@@ -706,9 +723,68 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.AutomationRemoveExpiredEffects'),
 		hint: game.i18n.localize('FU.AutomationRemoveExpiredEffectsHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: false,
+	});
+
+	// HOMEBREW
+	game.settings.registerMenu(SYSTEM, SETTINGS.homebrewOptions, {
+		name: game.i18n.localize('FU.Homebrew'),
+		label: game.i18n.localize('FU.HomebrewOptions'),
+		hint: game.i18n.localize('FU.HomebrewHint'),
+		icon: 'fa fa-coffee',
+		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability]),
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionRenameCurrency, {
+		name: game.i18n.localize('FU.RenameCurrency'),
+		hint: game.i18n.localize('FU.RenameCurrencyHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'Zenit',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
+		name: game.i18n.localize('FU.BondMax'),
+		hint: game.i18n.localize('FU.BondMaxHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 6,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.affinityResistance, {
+		name: game.i18n.localize('FU.AffinityResistance'),
+		hint: game.i18n.localize('FU.AffinityResistanceHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 0.5,
+		range: {
+			min: 0.5,
+			step: 0.05,
+			max: 1,
+		},
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.affinityVulnerability, {
+		name: game.i18n.localize('FU.AffinityVulnerable'),
+		hint: game.i18n.localize('FU.AffinityVulnerableHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 2,
+		range: {
+			min: 1,
+			step: 0.05,
+			max: 2,
+		},
+		requiresReload: true,
 	});
 };
 
@@ -874,6 +950,7 @@ class CombatHudSettings extends FUApplication {
  * @param {string} name
  * @param {string[]} settings
  * @return {typeof SettingsConfigurationApp}
+ * @remarks Expects the settings to be various settings to be already registered, but hidden.
  */
 function createConfigurationApp(name, settings) {
 	return class ConfigApp extends SettingsConfigurationApp {

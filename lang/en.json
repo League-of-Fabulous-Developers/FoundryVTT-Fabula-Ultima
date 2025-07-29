@@ -531,7 +531,9 @@
 		"DamagePoison": "Poison",
 		"AffinityNormal": "Normal",
 		"AffinityVulnerable": "Vulnerable",
+		"AffinityVulnerableHint": "Vulnerable Multiplier",
 		"AffinityResistance": "Resistance",
+		"AffinityResistanceHint": "Resistance Multiplier",
 		"AffinityImmune": "Immune",
 		"AffinityAbsorption": "Absorption",
 		"AffinityRepulsion": "Repulsion",
@@ -1468,6 +1470,15 @@
 		"RequestEndTurnNoActiveGM": "No GM online!  Unable to end turn.",
 		"RequestZenitTransferNoActiveGM": "No GM online!  Unable to transfer {currency}.",
 		"RequestTradeNoActiveGM": "No GM online!  Unable to trade item.",
-		"SocketHandlerAlreadyRegistered": "Attempted to re-register an existing socket handler: {name}"
+		"SocketHandlerAlreadyRegistered": "Attempted to re-register an existing socket handler: {name}",
+		"Automation": "Automation",
+		"AutomationOptions": "Manage Automation Options",
+		"AutomationHint": "Enable to automate damage, healing and effect applications for actors.",
+		"Homebrew": "Homebrew",
+		"HomebrewOptions": "Manage Homebrew",
+		"HomebrewHint": "Apply various systemic overrides.",
+		"SheetOptionsTitle": "Document Sheets",
+		"SheetOptions": "Configure Sheets",
+		"SheetOptionsHint": "Configure various options for the system's sheets."
 	}
 }
