@@ -357,6 +357,22 @@ function reveal(actor, revealed) {
 }
 
 /**
+ * @typedef OpportunityEvent
+ * @description Dispatched when a character gets an opportunity
+ * @property {FUActor} actor
+ * @property {Boolean} fumble If the opportunity came from a fumble, which goes to the opposition of the actor.
+ */
+
+function opportunity(actor, fumble) {
+	/** @type OpportunityEvent  **/
+	const event = {
+		actor: actor,
+		fumble: fumble,
+	};
+	Hooks.call(FUHooks.OPPORTUNITY_EVENT, event);
+}
+
+/**
  * @param {TargetData[]} targets
  * @returns {EventTarget[]}
  */
@@ -400,4 +416,5 @@ export const CommonEvents = Object.freeze({
 	study,
 	rest,
 	reveal,
+	opportunity,
 });

@@ -72,6 +72,7 @@ export const SETTINGS = Object.freeze({
 	homebrewOptions: 'homebrewOptions',
 	optionBondMaxLength: 'optionBondMaxLength',
 	optionRenameCurrency: 'optionRenameCurrency',
+	opportunities: 'opportunities',
 	affinityResistance: 'affinityResistance',
 	affinityVulnerability: 'affinityVulnerability',
 	// Party

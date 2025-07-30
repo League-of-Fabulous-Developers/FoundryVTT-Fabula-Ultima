@@ -113,6 +113,12 @@ export const FUHooks = {
 	 */
 	STUDY_EVENT: 'projectfu.events.study',
 	/**
+	 * @description Dispatched after an actor gains an opportunity
+	 * @example callback(event)
+	 * @remarks Uses {@link OpportunityEvent}
+	 */
+	OPPORTUNITY_EVENT: 'projectfu.events.opportunity',
+	/**
 	 * @description Dispatched whenever there is a change in active wellsprings.
 	 * @remarks Uses {@link WellspringDataModel}
 	 */

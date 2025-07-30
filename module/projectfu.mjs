@@ -82,6 +82,7 @@ import { FUHandlebars } from './helpers/handlebars.mjs';
 import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
 import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
+import { OpportunityHandler } from './pipelines/opportunity.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -267,6 +268,7 @@ Hooks.once('init', async () => {
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();
+	OpportunityHandler.initialize();
 
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
