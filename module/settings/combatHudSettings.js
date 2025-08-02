@@ -2,6 +2,21 @@ import FUApplication from '../ui/application.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 
+// export class OpportunitySettings extends FUApplication {
+// 	/** @type ApplicationConfiguration */
+// 	static DEFAULT_OPTIONS = {
+// 		classes: ['projectfu'],
+// 		id: 'combat-hud-settings',
+// 		position: {
+// 			width: 600,
+// 		},
+// 		form: {
+// 			closeOnSubmit: true,
+// 			submitOnChange: false,
+// 		},
+// 	};
+// }
+
 export class CombatHudSettings extends FUApplication {
 	/** @type ApplicationConfiguration */
 	static DEFAULT_OPTIONS = {

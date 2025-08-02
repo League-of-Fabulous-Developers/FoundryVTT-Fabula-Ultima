@@ -1,0 +1,12 @@
+<div>
+	{{#each choices}}
+		<div>
+			<label class="flexrow">
+				<input type="radio" name="index" value="{{@index}}" class="flex0">
+				<span class="flexcol">
+                    {{{label}}}
+                </span>
+			</label>
+		</div>
+	{{/each}}
+</div>

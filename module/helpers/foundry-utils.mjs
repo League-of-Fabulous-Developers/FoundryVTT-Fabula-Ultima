@@ -1,6 +1,8 @@
 import { StringUtils } from './string-utils.mjs';
+import { systemTemplatePath } from './system-utils.mjs';
+import { TextEditor } from './text-editor.mjs';
 
-const { api, fields } = foundry.applications;
+const { api, fields, handlebars } = foundry.applications;
 
 /**
  * @typedef FormSelectOption
@@ -28,6 +30,9 @@ const { api, fields } = foundry.applications;
  * @property {"single"|"multi"|"checkboxes"} [type] Customize the type of select that is created
  */
 
+/**
+ * @remarks Helper usage examples can also be found here: https://foundryvtt.wiki/en/development/api/helpers
+ */
 export default class FoundryUtils {
 	/**
 	 * @param {String} title
@@ -56,7 +61,6 @@ export default class FoundryUtils {
 	}
 
 	/**
-	 *
 	 * @param {Object} typeObject
 	 * @returns {FormSelectOption[]}
 	 * @remarks This follows the 'key:value' format used in the system's CONFIG file
@@ -78,5 +82,59 @@ export default class FoundryUtils {
 		const keys1 = Object.keys(obj1).sort();
 		const keys2 = Object.keys(obj2).sort();
 		return JSON.stringify(keys1) === JSON.stringify(keys2);
+	}
+
+	/**
+	 * @param {String} templatePath The path relative to the system's templates directory
+	 * @param {Object} context Used by the template
+	 * @returns {Promise<*>}
+	 */
+	static async renderTemplate(templatePath, context) {
+		return await handlebars.renderTemplate(systemTemplatePath(templatePath), context);
+	}
+
+	/**
+	 * @typedef LabelFunction
+	 * @template T
+	 * @param {T} object
+	 * @returns String
+	 */
+
+	/**
+	 * @template T
+	 * @param {string} title - Dialog title
+	 * @param {T[]} options - Array of elements to choose from
+	 * @param {LabelFunction<T>} getLabel
+	 * @returns {Promise<string|null>} - Selected string or null if cancelled
+	 */
+	static async promptChoice(title, options, getLabel) {
+		const context = {
+			choices: await Promise.all(
+				options.map(async (opt) => {
+					const label = getLabel(opt);
+					const enrichedLabel = await TextEditor.enrichHTML(label);
+					return {
+						label: enrichedLabel,
+						element: opt,
+					};
+				}),
+			),
+		};
+		const content = await handlebars.renderTemplate(systemTemplatePath('dialog/dialog-choose'), context);
+		const { index } = await api.DialogV2.input({
+			window: { title: title },
+			label: game.i18n.localize('FU.Submit'),
+			rejectClose: false,
+			content: content,
+			ok: {
+				label: 'FU.Confirm',
+			},
+		});
+
+		if (index) {
+			return options[index];
+		} else {
+			return null;
+		}
 	}
 }

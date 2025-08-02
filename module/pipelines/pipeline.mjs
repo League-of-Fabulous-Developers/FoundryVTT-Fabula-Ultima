@@ -92,7 +92,7 @@ function getSingleTarget(event) {
  * @param {String} actionName - The name of the data-action, e.g: "roll"
  * @param {(data: Object) => Promise<void>} onClick
  */
-async function handleClick(message, html, actionName, onClick) {
+function handleClick(message, html, actionName, onClick) {
 	html.querySelectorAll(`a[data-action="${actionName}"]`).forEach((element) => {
 		element.addEventListener('click', async (event) => {
 			event.preventDefault();

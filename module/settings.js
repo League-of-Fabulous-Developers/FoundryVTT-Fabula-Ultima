@@ -90,6 +90,8 @@ export const SETTINGS = Object.freeze({
  * @returns {Promise<void>}
  */
 export const registerSystemSettings = async function () {
+	const fields = foundry.data.fields;
+
 	// CHAT MESSAGE OPTIONS
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
 		name: game.i18n.localize('FU.ChatMessageOptions'),
@@ -242,7 +244,7 @@ export const registerSystemSettings = async function () {
 		icon: 'fa-solid fa-users',
 		config: true,
 		scope: 'world',
-		type: new foundry.data.fields.ForeignDocumentField(Actor, {
+		type: new fields.ForeignDocumentField(Actor, {
 			nullable: true,
 			blank: true,
 			idOnly: true,
@@ -283,6 +285,7 @@ export const registerSystemSettings = async function () {
 		default: 'Bestiary',
 	});
 
+	// COMBAT HUD
 	game.settings.registerMenu(SYSTEM, 'combatHudSettings', {
 		name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
 		hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
@@ -739,7 +742,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.HomebrewOptions'),
 		hint: game.i18n.localize('FU.HomebrewHint'),
 		icon: 'fa fa-coffee',
-		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability]),
+		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability, SETTINGS.opportunities]),
 		restricted: true,
 	});
 
@@ -778,8 +781,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.affinityVulnerability, {
-		name: game.i18n.localize('FU.AffinityVulnerable'),
-		hint: game.i18n.localize('FU.AffinityVulnerableHint'),
+		name: 'FU.AffinityVulnerable',
+		hint: 'FU.AffinityVulnerableHint',
 		scope: 'world',
 		config: false,
 		type: Number,
@@ -792,17 +795,26 @@ export const registerSystemSettings = async function () {
 		requiresReload: true,
 	});
 
+	// OPPORTUNITIES
+	// game.settings.registerMenu(SYSTEM, 'opportunitySettings', {
+	// 	name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
+	// 	hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
+	// 	label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
+	// 	scope: 'client',
+	// 	icon: 'fas fa-book',
+	// 	type: CombatHudSettings,
+	// });
+
 	game.settings.register(SYSTEM, SETTINGS.opportunities, {
 		name: 'FU.Opportunities',
-		hint: 'FU.Opportunities',
+		hint: 'FU.OpportunitiesHint',
 		scope: 'world',
-		config: true,
-		type: new foundry.data.fields.ArrayField(
-			new foundry.data.fields.SchemaField({
-				name: new foundry.data.fields.StringField(),
-				description: new foundry.data.fields.StringField(),
-			}),
-		),
+		config: false,
+		type: new fields.ForeignDocumentField(RollTable, {
+			nullable: true,
+			blank: true,
+			idOnly: true,
+		}),
 	});
 };
 
