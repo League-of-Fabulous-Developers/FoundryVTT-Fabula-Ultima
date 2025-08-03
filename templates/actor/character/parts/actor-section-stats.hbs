@@ -83,23 +83,26 @@
 				{{!-- Action Buttons --}}
 				{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
 
-				<fieldset class="section-container title-fieldset desc resource-content">
-					<legend class="resource-label-m">
-						{{localize 'FU.Villain'}}
-					</legend>
-					<div class="flex-group-center">
-						<div class="resource-content">
-							<label class="resource-label-sm">{{localize 'FU.Phase'}}</label>
-							<input type="number" name="system.phases.value" value="{{ system.phases.value }}"
-								   data-dtype="Number" class="resource-inputs bonus" />
+				<!-- Villain -->
+				{{#if system.villain.value}}
+					<fieldset class="section-container title-fieldset desc resource-content">
+						<legend class="resource-label-m">
+							{{localize 'FU.Villain'}}
+						</legend>
+						<div class="flex-group-center">
+							<div class="resource-content">
+								<label class="resource-label-sm">{{localize 'FU.Phase'}}</label>
+								<input type="number" name="system.phases.value" value="{{ system.phases.value }}"
+									   data-dtype="Number" class="resource-inputs bonus" />
+							</div>
+							<div class="resource-content">
+								<label class="resource-label-sm">{{localize 'FU.Multipart'}}</label>
+								<input type="text" name="system.multipart.value" value="{{ system.multipart.value }}"
+									   data-dtype="String" class="resource-inputs bonus" />
+							</div>
 						</div>
-						<div class="resource-content">
-							<label class="resource-label-sm">{{localize 'FU.Multipart'}}</label>
-							<input type="text" name="system.multipart.value" value="{{ system.multipart.value }}"
-								   data-dtype="String" class="resource-inputs bonus" />
-						</div>
-					</div>
-				</fieldset>
+					</fieldset>
+				{{/if}}
 				{{!-- Clock Section --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
 			</aside>
