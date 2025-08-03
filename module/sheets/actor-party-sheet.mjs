@@ -17,6 +17,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { getCurrencyString } from '../pipelines/inventory-pipeline.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -123,7 +124,7 @@ export class FUPartySheet extends FUActorSheet {
 			xp: experience.total,
 			zenit: this.party.resources.zenit.value,
 		};
-		context.currencyName = game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency) || 'FU.Zenit';
+		context.currency = getCurrencyString();
 
 		return context;
 	}
