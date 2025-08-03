@@ -137,4 +137,13 @@ export default class FoundryUtils {
 			return null;
 		}
 	}
+
+	/**
+	 * @param {String} title
+	 * @param {String[]} options
+	 * @returns {Promise<string|null>}
+	 */
+	static async promptStringChoice(title, options) {
+		return this.promptChoice(title, options, (opt) => opt);
+	}
 }

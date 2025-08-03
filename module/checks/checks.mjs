@@ -510,9 +510,9 @@ const performCheck = async (check, actor, item, initialConfigCallback = undefine
 	const result = await processResult(preparedCheck, roll, actor, item);
 	await renderCheck(result, actor, item);
 	if (result.critical) {
-		CommonEvents.opportunity(actor, false);
+		CommonEvents.opportunity(actor, check.type, item, false);
 	} else if (result.fumble) {
-		CommonEvents.opportunity(actor, true);
+		CommonEvents.opportunity(actor, check.type, item, true);
 	}
 };
 

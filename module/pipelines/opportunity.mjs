@@ -4,6 +4,7 @@ import { SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from './pipeline.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @param {OpportunityEvent} event
@@ -26,33 +27,39 @@ async function onOpportunity(event) {
 		speaker: ChatMessage.getSpeaker({ actor }),
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-opportunity', {
 			actor: actor,
+			item: event.item,
 			message: message,
+			type: event.type,
 		}),
 	});
 }
 
 /**
  * @param {FUActor} actor
+ * @param {String} type
+ * @param {FUItem} item
  * @returns {Promise<void>}
  */
-async function promptOpportunity(actor) {
+async function promptOpportunity(actor, type, item) {
 	/** @type RollableTable **/
 	const tableUuid = game.settings.get(SYSTEM, SETTINGS.opportunities);
 	const table = await fromUuid(`RollTable.${tableUuid}`);
 	if (table) {
-		//console.debug(`Using table ${table}`);
 		const elements = [...table.results.values()];
 		console.debug(`Providing ${elements.length} choices from ${table.name}`);
-		const selected = await FoundryUtils.promptChoice('FU.Opportunities', elements, (e) => e.description);
-		console.debug(`Selected ${selected}`);
+		let choices = await Promise.all(elements.map(async (e) => await TextEditor.enrichHTML(e.description)));
+		if (item.system.opportunity) {
+			choices = choices.concat(item.system.opportunity);
+		}
 
-		const opportunity = selected.description;
+		const selected = await FoundryUtils.promptStringChoice('FU.Opportunities', choices);
+		console.debug(`Selected opportunity: ${selected}`);
 
 		ChatMessage.create({
 			speaker: ChatMessage.getSpeaker(),
 			content: await FoundryUtils.renderTemplate('chat/chat-opportunity', {
 				actor: actor,
-				opportunity: opportunity,
+				opportunity: selected,
 			}),
 		});
 	}
@@ -67,12 +74,15 @@ function onRenderChatMessage(message, element) {
 		return;
 	}
 
-	Pipeline.handleClick(message, element, 'applyOpportunity', (dataset) => {
+	Pipeline.handleClick(message, element, 'applyOpportunity', async (dataset) => {
 		const actorId = dataset.actor;
 		/** @type FUActor **/
-		const actor = fromUuidSync(`Actor.${actorId}`);
+		const actor = await fromUuid(`${actorId}`);
+		const type = dataset.type;
+		const itemId = dataset.item;
+		const item = await fromUuid(`${itemId}`);
 		if (actor) {
-			return promptOpportunity(actor);
+			return promptOpportunity(actor, type, item);
 		}
 	});
 }
