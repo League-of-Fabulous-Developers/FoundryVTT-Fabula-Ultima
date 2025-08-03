@@ -314,6 +314,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 							}),
 						};
 					}
+					await ActorSheetUtils.prepareFeatures(context);
 				}
 				break;
 
