@@ -113,7 +113,7 @@ export const FUHooks = {
 	 */
 	STUDY_EVENT: 'projectfu.events.study',
 	/**
-	 * @description Dispatched after an actor gains an opportunity
+	 * @description Dispatched after a character gains an opportunity
 	 * @example callback(event)
 	 * @remarks Uses {@link OpportunityEvent}
 	 */
