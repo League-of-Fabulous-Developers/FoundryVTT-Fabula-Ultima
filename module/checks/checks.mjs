@@ -14,6 +14,7 @@ import { OpposedCheck } from './opposed-check.mjs';
 import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
+import { CommonEvents } from './common-events.mjs';
 
 const { DiceTerm, NumericTerm } = foundry.dice.terms;
 
@@ -507,7 +508,12 @@ const performCheck = async (check, actor, item, initialConfigCallback = undefine
 	const preparedCheck = await prepareCheck(check, actor, item, initialConfigCallback);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
-	return await renderCheck(result, actor, item);
+	await renderCheck(result, actor, item);
+	if (result.critical) {
+		CommonEvents.opportunity(actor, check.type, item, false);
+	} else if (result.fumble) {
+		CommonEvents.opportunity(actor, check.type, item, true);
+	}
 };
 
 /**

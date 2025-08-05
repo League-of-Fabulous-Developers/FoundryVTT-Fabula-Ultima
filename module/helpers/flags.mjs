@@ -31,6 +31,7 @@ export const Flags = Object.freeze({
 		Targets: 'Targets',
 		RevertedAction: 'RevertedAction',
 		Effects: 'Effects',
+		Opportunity: 'Opportunity',
 		Inventory: 'Inventory',
 		Party: 'Party',
 	}),

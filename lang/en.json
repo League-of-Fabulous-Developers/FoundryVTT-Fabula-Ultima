@@ -920,6 +920,9 @@
 		"ChatMissingItemWithId": "No item was found in the actor with the given id",
 		"ChatManageEffects": "Affected by the following effects:",
 		"ChatPingTarget": "Ping the targeted actor",
+		"ChatApplyOpportunity": "Apply Opportunity",
+		"ChatOpportunity": "<strong>{actor}</strong> gets to apply the effects of an opportunity!",
+		"ChatFumbleOpportunity": "The opposition of <strong>{actor}</strong> gets to apply the effects of an opportunity!",
 		"TotalAvailableSkills": "Total Available Skills",
 		"TotalSPAvailable": "Total SP Available",
 		"AvailableSPLevels": "Available skills from levels",
@@ -1479,6 +1482,8 @@
 		"HomebrewHint": "Apply various systemic overrides.",
 		"SheetOptionsTitle": "Document Sheets",
 		"SheetOptions": "Configure Sheets",
-		"SheetOptionsHint": "Configure various options for the system's sheets."
+		"SheetOptionsHint": "Configure various options for the system's sheets.",
+		"Opportunities": "Opportunities",
+		"OpportunitiesHint": "When assigned, will be prompted as choices for the users."
 	}
 }

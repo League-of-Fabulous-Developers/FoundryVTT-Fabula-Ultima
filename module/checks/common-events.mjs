@@ -357,6 +357,26 @@ function reveal(actor, revealed) {
 }
 
 /**
+ * @typedef OpportunityEvent
+ * @description Dispatched when a character gets an opportunity
+ * @property {FUActor} actor
+ * @property {String} type The type of check that led to the opportunity
+ * @property {FUItem} item The item that prompted the check
+ * @property {Boolean} fumble If the opportunity came from a fumble, which goes to the opposition of the actor.
+ */
+
+function opportunity(actor, type, item, fumble) {
+	/** @type OpportunityEvent  **/
+	const event = {
+		actor: actor,
+		type: type,
+		item: item,
+		fumble: fumble,
+	};
+	Hooks.call(FUHooks.OPPORTUNITY_EVENT, event);
+}
+
+/**
  * @param {TargetData[]} targets
  * @returns {EventTarget[]}
  */
@@ -400,4 +420,5 @@ export const CommonEvents = Object.freeze({
 	study,
 	rest,
 	reveal,
+	opportunity,
 });

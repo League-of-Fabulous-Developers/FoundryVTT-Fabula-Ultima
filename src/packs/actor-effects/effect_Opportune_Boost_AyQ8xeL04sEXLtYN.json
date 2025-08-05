@@ -1,0 +1,113 @@
+{
+  "name": "Opportune Boost",
+  "type": "effect",
+  "_id": "AyQ8xeL04sEXLtYN",
+  "img": "icons/magic/control/buff-luck-fortune-clover-green.webp",
+  "system": {
+    "fuid": "opportune-boost",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Opportune Boost",
+      "img": "icons/magic/control/buff-luck-fortune-clover-green.webp",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "step": 1,
+            "max": 6
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "k3wtbyDJUHiaY6Lz",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.magicCheck",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.opposedCheck",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.openCheck",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        }
+      ],
+      "description": "<p>The next check performed by you will receive a <strong>+4 bonus.</strong></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1754233508092,
+        "modifiedTime": 1754234624795,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!AyQ8xeL04sEXLtYN.k3wtbyDJUHiaY6Lz"
+    }
+  ],
+  "folder": "423RpDks0B2eewCA",
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "J5B4HfVqUaCPvzGg": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.342",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1754233004487,
+    "modifiedTime": 1754234635909,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+  },
+  "_key": "!items!AyQ8xeL04sEXLtYN"
+}
