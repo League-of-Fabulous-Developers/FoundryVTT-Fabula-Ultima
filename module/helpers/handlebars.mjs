@@ -1,4 +1,5 @@
 import { systemTemplatePath } from './system-utils.mjs';
+import { ObjectUtils } from './object-utils.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -204,7 +205,7 @@ export const FUHandlebars = Object.freeze({
 			return Array.isArray(array) && array.includes(value);
 		});
 
-		Handlebars.registerHelper('get', (map, key) => map?.[key]);
+		Handlebars.registerHelper('get', (map, key) => ObjectUtils.getPropertyValueByPath(map, key));
 
 		Handlebars.registerHelper('clamp', (val, min, max) => {
 			return Math.max(Math.min(val, max), min);
