@@ -1,0 +1,397 @@
+:root {
+	--icon-ful-sl-star: url('../../static/icons/ful-sl-star.svg');
+	--icon-fus-sl-star: url('../../static/icons/fus-sl-star.svg');
+	--icon-fus-star: url('../../static/icons/fus-star.svg');
+	--icon-fus-star2: url('../../static/icons/fus-star2.svg');
+	--icon-fus-star2-border: url('../../static/icons/fus-star2-border.svg');
+
+	--icon-fus-offensive: url('../../static/icons/fus-offensive.svg');
+	--icon-fus-martial: url('../../static/icons/fus-martial.svg');
+	--icon-ful-offensive: url('../../static/icons/ful-offensive.svg');
+	--icon-ful-martial: url('../../static/icons/ful-martial.svg');
+
+	--icon-fu-zenit: url('../../static/compendium/ui/coins_5.png');
+	--icon-fu-fp: url('../../static/compendium/ui/fp.png');
+	--icon-fu-up: url('../../static/compendium/ui/up.png');
+	--icon-fu-xp: url('../../static/compendium/ui/xp.png');
+
+	--icon-fu-shaken: url('../../static/statuses/Shaken.webp');
+	--icon-fu-dazed: url('../../static/statuses/Dazed.webp');
+	--icon-fu-slow: url('../../static/statuses/Slow.webp');
+	--icon-fu-weak: url('../../static/statuses/Weak.webp');
+	--icon-fu-enraged: url('../../static/statuses/Enraged.webp');
+	--icon-fu-poisoned: url('../../static/statuses/Poisoned.webp');
+
+	--icon-fu-flying: url('../../static/statuses/Flying.webp');
+	--icon-fu-guard: url('../../static/statuses/Guard.webp');
+	--icon-fu-cover: url('../../static/statuses/Cover.webp');
+	--icon-fu-aura: url('../../static/statuses/Aura.webp');
+	--icon-fu-barrier: url('../../static/statuses/Barrier.webp');
+
+	--icon-fu-ins-up: url('../../static/statuses/InsUp.webp');
+	--icon-fu-ins-down: url('../../static/statuses/InsDown.webp');
+	--icon-fu-dex-up: url('../../static/statuses/DexUp.webp');
+	--icon-fu-dex-down: url('../../static/statuses/DexDown.webp');
+	--icon-fu-mig-up: url('../../static/statuses/MigUp.webp');
+	--icon-fu-mig-down: url('../../static/statuses/MigDown.webp');
+	--icon-fu-wlp-up: url('../../static/statuses/WlpUp.webp');
+	--icon-fu-wlp-down: url('../../static/statuses/WlpDown.webp');
+
+	--icon-fu-beast: url('../../static/icons/beast.svg');
+	--icon-fu-construct: url('../../static/icons/construct.svg');
+	--icon-fu-demon: url('../../static/icons/demon.svg');
+	--icon-fu-elemental: url('../../static/icons/elemental.svg');
+	--icon-fu-humanoid: url('../../static/icons/humanoid.svg');
+	--icon-fu-monster: url('../../static/icons/monster.svg');
+	--icon-fu-plant: url('../../static/icons/plant.svg');
+	--icon-fu-undead: url('../../static/icons/undead.svg');
+}
+
+.fu-fp {
+	background-image: var(--icon-fu-fp);
+}
+
+.fu-up {
+	background-image: var(--icon-fu-up);
+}
+
+.fu-xp {
+	background-image: var(--icon-fu-xp);
+}
+
+.fu-shaken {
+	background-image: var(--icon-fu-shaken);
+}
+
+.fu-dazed {
+	background-image: var(--icon-fu-dazed);
+}
+
+.fu-weak {
+	background-image: var(--icon-fu-weak);
+}
+
+.fu-slow {
+	background-image: var(--icon-fu-slow);
+}
+
+.fu-enraged {
+	background-image: var(--icon-fu-enraged);
+}
+
+.fu-poisoned {
+	background-image: var(--icon-fu-poisoned);
+}
+
+.fu-guard {
+	background-image: var(--icon-fu-guard);
+}
+
+.fu-flying {
+	background-image: var(--icon-fu-flying);
+}
+
+.fu-cover {
+	background-image: var(--icon-fu-cover);
+}
+
+.fu-aura {
+	background-image: var(--icon-fu-aura);
+}
+
+.fu-barrier {
+	background-image: var(--icon-fu-barrier);
+}
+
+.fu-wlp-up {
+	background-image: var(--icon-fu-wlp-up);
+}
+
+.fu-wlp-down {
+	background-image: var(--icon-fu-wlp-down);
+}
+
+.fu-dex-up {
+	background-image: var(--icon-fu-dex-up);
+}
+
+.fu-dex-down {
+	background-image: var(--icon-fu-dex-down);
+}
+
+.fu-mig-up {
+	background-image: var(--icon-fu-mig-up);
+}
+
+.fu-mig-down {
+	background-image: var(--icon-fu-mig-down);
+}
+
+.fu-ins-up {
+	background-image: var(--icon-fu-ins-up);
+}
+
+.fu-ins-down {
+	background-image: var(--icon-fu-ins-down);
+}
+
+.fu-zenit {
+	background-image: var(--icon-fu-zenit);
+}
+
+.fus-offensive {
+	background-image: var(--icon-fus-offensive);
+}
+
+.fus-martial {
+	background-image: var(--icon-fus-martial);
+}
+
+.ful-offensive {
+	background-image: var(--icon-ful-offensive);
+}
+
+.ful-martial {
+	background-image: var(--icon-ful-martial);
+}
+
+.fu-beast {
+	background-image: var(--icon-fu-beast);
+}
+
+.fu-construct {
+	background-image: var(--icon-fu-construct);
+}
+
+.fu-demon {
+	background-image: var(--icon-fu-demon);
+}
+
+.fu-elemental {
+	background-image: var(--icon-fu-elemental);
+}
+
+.fu-humanoid {
+	background-image: var(--icon-fu-humanoid);
+}
+
+.fu-monster {
+	background-image: var(--icon-fu-monster);
+}
+
+.fu-plant {
+	background-image: var(--icon-fu-plant);
+}
+
+.fu-undead {
+	background-image: var(--icon-fu-undead);
+}
+
+.ful-sl-star {
+	background-image: var(--icon-ful-sl-star);
+}
+
+.fus-sl-star {
+	background-image: var(--icon-fus-sl-star);
+}
+
+.fus-star {
+	background-image: var(--icon-fus-star);
+}
+
+.fus-star2 {
+	background-image: var(--icon-fus-star2);
+}
+
+.fus-star2-border {
+	background-image: var(--icon-fus-star2-border);
+}
+
+.fu-effect-placeholder {
+	background-image: url('/icons/svg/aura.svg');
+}
+
+.fu-weapon-enchant {
+	background-image: url('../../../static/icons/fus-weapon-enchant.svg');
+}
+
+/* Icon display styles */
+.fui,
+.fua,
+.fun,
+.fusl,
+.fuk,
+.fue {
+	background-size: cover;
+	display: inline-block;
+	font-style: normal;
+	-webkit-text-stroke: 0.05rem black;
+}
+
+.fui {
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+}
+
+.fua,
+.fun,
+.fusl {
+	width: 24px;
+	height: 24px;
+}
+
+.fuk {
+	width: 18px;
+	height: 18px;
+}
+
+.fue {
+	width: 20px;
+	height: 20px;
+	margin-right: 4px;
+}
+
+.fun,
+.fusl,
+.fuk {
+	/* Optional fill override, if color-secondary is defined */
+	fill: var(--color-secondary);
+}
+
+.ra-1x {
+	font-size: 1.125rem;
+	font-style: normal;
+}
+
+.ra-1xh {
+	font-size: 1.5em;
+	font-style: normal;
+}
+
+.ra.ral {
+	text-shadow:
+		-0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
+		/* Top-left */ 0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
+		/* Top-right */ -0.5px 0.5px 0 rgba(0, 0, 0, 0.5),
+		/* Bottom-left */ 0.5px 0.5px 0 rgba(0, 0, 0, 0.5);
+	/* Bottom-right */
+}
+
+/* Status colors (assumes these CSS vars exist) */
+.is-buff {
+	color: var(--color-success) !important;
+}
+
+.is-crisis {
+	color: var(--color-danger) !important;
+}
+
+.is-levelup {
+	color: var(--color-levelup) !important;
+	-webkit-text-stroke: 1px var(--color-secondary);
+	margin-left: 1px;
+}
+
+.is-buff.float-text,
+.is-crisis.float-text,
+.is-levelup.float-text {
+	display: inline-block;
+	position: relative;
+	animation: floating 3s infinite ease-in-out;
+	bottom: 2px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+@keyframes floating {
+
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	25%,
+	75% {
+		transform: translateY(-5px);
+	}
+
+	50% {
+		transform: translateY(0);
+	}
+}
+
+.spin2win:hover i {
+	animation: hover-up-down 1s ease-in-out infinite alternate;
+}
+
+.spin2win:hover label {
+	cursor: pointer;
+}
+
+@keyframes hover-up-down {
+
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-3px);
+	}
+}
+
+/* Other utility elements */
+.hidden-radio {
+	display: none;
+}
+
+.star-label {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-size: cover;
+	cursor: pointer;
+}
+
+img:not([src]) {
+	content: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+}
+
+.icon-option {
+	display: flex;
+	align-items: center;
+	height: 28px;
+}
+
+.icon-preview {
+	margin: 0 5px;
+}
+
+.image-icon-s {
+	width: 24px;
+	height: 24px;
+}
+
+.effect-icon-wrapper {
+	display: inline-block;
+	position: relative;
+}
+
+.effect-icon-image {
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+.effect-icon-label {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: var(--color-shadow);
+	color: white;
+	font-size: 0.8rem;
+	pointer-events: none;
+	border-radius: 999px;
+	padding: 1px 5px;
+	transform: translate(30%, 30%);
+}

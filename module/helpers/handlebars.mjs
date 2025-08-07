@@ -64,6 +64,14 @@ export const FUHandlebars = Object.freeze({
 			return '';
 		});
 
+		Handlebars.registerHelper('ifEquals', function (a, b, options) {
+			if (a === b) {
+				return options.fn(this);
+			} else {
+				return options.inverse ? options.inverse(this) : '';
+			}
+		});
+
 		Handlebars.registerHelper('half', function (value) {
 			var num = Number(value);
 			if (isNaN(num)) {
@@ -76,6 +84,20 @@ export const FUHandlebars = Object.freeze({
 			value = parseFloat(value);
 			max = parseFloat(max);
 			const percentage = (value / max) * 100;
+			return percentage.toFixed(2) + '%';
+		});
+
+		// TODO: Needs a attribute like maxPercent
+		Handlebars.registerHelper('calculateOverflowPercentage', function (value, max) {
+			value = parseFloat(value);
+			max = parseFloat(max);
+
+			// Calculate overflow: (current - max) / (50% of max) * 100
+			const maxPercent = 0.5; // This treats 150% of max as the maximum overflow (100% overflow bar width)
+			const overflow = value - max;
+			const overflowMax = max * maxPercent; // 50% of max is the maximum overflow
+			const percentage = Math.min((overflow / overflowMax) * 100, 100); // Cap at 100%
+
 			return percentage.toFixed(2) + '%';
 		});
 

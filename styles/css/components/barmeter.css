@@ -1,0 +1,168 @@
+/* ----------------------------------------- */
+/* Barmeter Styles                       
+/* ----------------------------------------- */
+/* HP/MP/IP Input Bar */
+.projectfu .bar-progress {
+	font-size: 18px;
+	height: 20px;
+	border: 1px solid #c7c7c7;
+	background-color: #656565;
+	-webkit-box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+	position: relative;
+}
+
+.projectfu .bar-progress.diag {
+	clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+}
+
+.projectfu .bar-progress::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.projectfu .bar-progress-bar {
+	float: left;
+	height: 100%;
+	max-width: 100%;
+	background-color: #ea9aa8;
+	-webkit-box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0.125em 0.125em 0em 0.0625em rgba(0, 0, 0, 0.5) inset;
+	-webkit-transition: width 500ms ease-in-out;
+	transition: width 500ms ease-in-out;
+	position: relative;
+}
+
+.projectfu .bar-progress-bar.diag {
+	clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+	margin-left: -2px;
+}
+
+.projectfu .bar-hp {
+	background-color: #17b924;
+	background-image: -webkit-gradient(linear, left top, right top, from(#17b924), to(rgba(255, 255, 255, 0.5)));
+	background-image: linear-gradient(90deg, #17b924, rgba(255, 255, 255, 0.5));
+}
+
+.projectfu .bar-hp-crisis {
+	background-color: #d1232a;
+	background-image: -webkit-gradient(linear, left top, right top, from(#d1232a), to(rgba(255, 255, 255, 0.5)));
+	background-image: linear-gradient(90deg, #d1232a, rgba(255, 255, 255, 0.5));
+}
+
+.projectfu .bar-mp {
+	background-color: #16aad6;
+	background-image: -webkit-gradient(linear, left top, right top, from(#16aad6), to(rgba(255, 255, 255, 0.5)));
+	background-image: linear-gradient(90deg, #16aad6, rgba(255, 255, 255, 0.5));
+}
+
+.projectfu .bar-ip {
+	background-color: #d68931;
+	background-image: -webkit-gradient(linear, left top, right top, from(#d68931), to(rgba(255, 255, 255, 0.5)));
+	background-image: linear-gradient(90deg, #d68931, rgba(255, 255, 255, 0.5));
+}
+
+.projectfu .bar-project {
+	background-color: #d68931;
+	background-image: -webkit-gradient(linear, left top, right top, from(#d68931), to(rgba(255, 255, 255, 0.5)));
+	background-image: linear-gradient(90deg, #d68931, rgba(255, 255, 255, 0.5));
+}
+
+.projectfu .bar-level {
+	background-color: #ffd166;
+	background-image: -webkit-gradient(linear, left top, right top, from(#6ee36e), to(rgba(255, 255, 255, 0.5)));
+	background-image: linear-gradient(90deg, #6ee36e, rgba(255, 255, 255, 0.5));
+}
+
+.projectfu .bar-zeropower {
+	background-color: #9400d3;
+	background-image: -webkit-gradient(linear, left top, right top, from(#9400d3), to(rgba(255, 255, 255, 0.5)));
+	background-image: linear-gradient(90deg, #9400d3, rgba(255, 255, 255, 0.5));
+}
+
+.projectfu .bar-start {
+	border-radius: 0 0 100% 100%;
+}
+
+.projectfu .bar-middle {
+	border-radius: 0 0 100% 100%;
+}
+
+.projectfu .bar-end {
+	border-radius: 0 0 100% 100%;
+}
+
+.projectfu .bar-value {
+	color: #ffffff;
+}
+
+.projectfu .center-line {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+	width: 1px;
+	background-color: #c7c7c7;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.projectfu .center-line.diag {
+	-webkit-transform: translateX(-50%) rotate(28deg);
+	-ms-transform: translateX(-50%) rotate(28deg);
+	transform: translateX(-50%) rotate(28deg);
+	margin-left: -4px;
+}
+
+.projectfu .resource-current-input {
+	color: #ebf7af;
+	background: #2b4a42;
+	border: 1px solid #c7c7c7;
+	height: 32px;
+	text-align: center;
+}
+
+.projectfu .resource-middle-input {
+	background: transparent;
+	border: 1px solid #c7c7c7;
+	height: 32px;
+	text-align: center;
+}
+
+.projectfu .resource-max-input {
+	background: #2b4a42;
+	border: 1px solid #c7c7c7;
+	height: 32px;
+	text-align: center;
+}
+
+.projectfu .resource-max-input:disabled,
+.projectfu .resource-max-input:hover:disabled {
+	color: #ebf7af;
+	border: 1px solid #c7c7c7;
+	opacity: 0.8;
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

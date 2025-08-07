@@ -9,7 +9,6 @@
 	{{#each items as |item id|}}
 		{{#if (and item.system.isFavored.value item.system.hasClock.value)}}
 			{{progress item 'system.progress' displayName=true type='clockCounter' }}
-			<hr>
 		{{/if}}
 	{{/each}}
 
@@ -18,7 +17,6 @@
 		{{#each items }}
 			{{#if (and item.system.isFavored.value item.system.data.hasClock.value)}}
 				{{progress item 'system.data.progress' displayName=true type='featureCounter' }}
-				<hr>
 			{{/if}}
 		{{/each}}
 	{{/each}}

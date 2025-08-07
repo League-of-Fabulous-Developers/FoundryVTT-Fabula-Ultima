@@ -11,12 +11,13 @@
 				{{#each system.affinities as |affinity key|}}
 					<div class="affinity resource-content flex-group-center flexcol">
 						<label data-label="{{ affinity.label }}" style="line-height: 1.2em">
-          <span>
-            <i class="{{ affinity.icon }}"></i>
-            <br />
-                      <span class="resource-label-sm">{{affinity.label}}</span>
-                      
-          </span>
+							<span style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+								<img class="affinity-icon"
+									src="systems/projectfu/styles/static/affinities/icons/{{key}}.png"
+									alt="{{key}}"
+									style="width: 24px; height: 24px;">
+								<span class="resource-label-sm">{{affinity.label}}</span>
+							</span>
 						</label>
 						<select name="system.affinities.{{ key }}.base"
 								class="resource-inputs select-dropdown"

@@ -1,0 +1,1405 @@
+/* ----------------------------------------- */
+/* Combat Styles                       
+/* ----------------------------------------- */
+.projectfu .token-initiative {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+}
+
+.projectfu .token-initiative i.fas {
+	vertical-align: middle;
+}
+
+.projectfu .token-initiative .take-turn.out-of-turn:hover {
+	text-shadow: 0 0 4px white;
+}
+
+.projectfu .combatant-control[disabled] {
+	opacity: 0.55;
+}
+
+.projectfu #combat-tracker {
+	--color-disposition-friendly: #33bc4e;
+	--color-disposition-hostile: #e72124;
+	--color-disposition-neutral: #f1d836;
+}
+
+.projectfu #combat-tracker .current-turn {
+	padding: 0.25em;
+	font-size: 1.5em;
+}
+
+.projectfu #combat-tracker .faction {
+	padding: 0.25em;
+	font-size: 1.2em;
+}
+
+.projectfu #combat-tracker .friendly {
+	background-color: color-mix(in srgb, var(--color-disposition-friendly) 10%, transparent);
+}
+
+.projectfu #combat-tracker .hostile {
+	background-color: color-mix(in srgb, var(--color-disposition-hostile) 10%, transparent);
+}
+
+.projectfu #combat-tracker .neutral {
+	background-color: color-mix(in srgb, var(--color-disposition-neutral) 10%, transparent);
+}
+
+@-webkit-keyframes glow {
+	0% {
+		-webkit-box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+		box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+	}
+
+	50% {
+		-webkit-box-shadow: 0px 0px 8px 2px rgba(45, 255, 196, 0.7);
+		box-shadow: 0px 0px 8px 2px rgba(45, 255, 196, 0.7);
+	}
+
+	100% {
+		-webkit-box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+		box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+	}
+}
+
+@keyframes glow {
+	0% {
+		-webkit-box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+		box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+	}
+
+	50% {
+		-webkit-box-shadow: 0px 0px 8px 2px rgba(45, 255, 196, 0.7);
+		box-shadow: 0px 0px 8px 2px rgba(45, 255, 196, 0.7);
+	}
+
+	100% {
+		-webkit-box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+		box-shadow: 0px 0px 4px 2px rgba(45, 255, 196, 0.9);
+	}
+}
+
+.projectfu #combat-tracker .started-turn {
+	-webkit-animation: glow 2s infinite alternate ease-in-out;
+	animation: glow 2s infinite alternate ease-in-out;
+}
+
+/* ----------------------------------------- */
+/* Retro Style                       
+/* ----------------------------------------- */
+.projectfu#combat-hud {
+	--hud-height: auto;
+	--npc-width-percent: 30%;
+	--character-width-percent: calc(100% - var(--npc-width-percent));
+	--combat-info-height: auto;
+	--combat-info-content-padding: 5px;
+	--combat-info-image-size: calc(3.5em - var(--combat-info-content-padding) * 2);
+	--combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
+	--combat-info-effects-icon-size: 1.5em;
+	--combat-bars-right-margin: 2.5em;
+	--combat-info-character-width-none: 100%;
+	--combat-bars-width-none: 0;
+	--combat-info-character-width-one: 65%;
+	--combat-bars-width-one: calc(100% - var(--combat-info-character-width-one) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-info-character-width-two: 50%;
+	--combat-bars-width-two: calc(100% - var(--combat-info-character-width-two) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-info-character-width-three: 30%;
+	--combat-bars-width-three: calc(100% - var(--combat-info-character-width-three) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-bars-icon-width: 45%;
+	--combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
+	--hud-buttons-height: 2.2em;
+	--hud-buttons-width: 3em;
+	--hud-opacity: 1;
+	--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));
+	--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));
+	--combatant-control-z-index: 99;
+	position: fixed;
+	left: 0;
+	height: var(--hud-height);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 4px;
+}
+
+@-webkit-keyframes effects-marquee {
+	0% {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+
+	100% {
+		-webkit-transform: translate(-150%, 0);
+		transform: translate(-150%, 0);
+	}
+}
+
+@keyframes effects-marquee {
+	0% {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+
+	100% {
+		-webkit-transform: translate(-150%, 0);
+		transform: translate(-150%, 0);
+	}
+}
+
+.projectfu#combat-hud .window-button {
+	position: absolute;
+	top: var(--window-button-top);
+	bottom: var(--window-button-bottom);
+	color: #ffffff;
+	z-index: 99;
+	/*
+		Set !important because some themes will set pointer-events to none on the main application
+		element, and the selector for that is more specific than this one.
+	  */
+	pointer-events: initial !important;
+	text-shadow: 1px 1px 1px #000000;
+	-webkit-box-shadow: 3px 3px #2b4a42;
+	box-shadow: 3px 3px #2b4a42;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc)), #2b4a42;
+	background: linear-gradient(to bottom, #2c584d, #a0cdbc), #2b4a42;
+	padding: 0.5em 1em 0.5em 1em;
+	height: var(--hud-buttons-height);
+	width: var(--hud-buttons-width);
+}
+
+.projectfu#combat-hud .window-button.window-minimize {
+	right: 0.5em;
+}
+
+.projectfu#combat-hud .window-button.window-popout {
+	right: 4em;
+}
+
+.projectfu#combat-hud .window-button.window-compact {
+	right: 7.5em;
+}
+
+.projectfu#combat-hud .window-button.window-compact .fas.hidden {
+	display: none;
+}
+
+.projectfu#combat-hud .window-button.window-drag {
+	left: 0em;
+}
+
+.projectfu#combat-hud .window-button.window-start {
+	left: 3.5em;
+}
+
+.projectfu#combat-hud .window-button.hidden {
+	display: none;
+}
+
+.projectfu#combat-hud .window-button.window-stop {
+	left: 3.5em;
+}
+
+.projectfu#combat-hud .window-button a {
+	padding: 0;
+	margin: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.projectfu#combat-hud .faction-list {
+	color: #ebf7af;
+	text-shadow: 1px 1px 1px #000000;
+	-webkit-box-shadow: 2px 4px var(--hud-boxshadow-color);
+	box-shadow: 2px 4px var(--hud-boxshadow-color);
+	border-radius: 10px;
+	background: var(--hud-background-gradient);
+	padding: 0.25em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	gap: 2px;
+}
+
+.projectfu#combat-hud .faction-list.compact .combat-row img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-image-size-compact);
+	flex: 0 0 var(--combat-info-image-size-compact);
+	height: var(--combat-info-image-size-compact);
+	width: var(--combat-info-image-size-compact);
+}
+
+.projectfu#combat-hud .faction-list.compact .combat-row .combat-info .combat-name {
+	height: 100%;
+}
+
+.projectfu#combat-hud .faction-list.compact .combat-row .combat-info .combat-effects {
+	height: 0;
+}
+
+.projectfu#combat-hud .faction-list .combat-row {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	height: var(--combat-info-height);
+	border-radius: 10px;
+	margin: 0 auto;
+	padding: var(--combat-info-content-padding);
+	background: #2b4a42;
+	color: #ebf7af;
+	text-transform: uppercase;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 4px;
+	position: relative;
+	pointer-events: initial;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combatant-control {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+	z-index: var(--combatant-control-z-index);
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combatant-control[disabled]:hover {
+	text-shadow: 1px 1px 1px #000000;
+}
+
+.projectfu#combat-hud .faction-list .combat-row img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-image-size);
+	flex: 0 0 var(--combat-info-image-size);
+	height: var(--combat-info-image-size);
+	width: var(--combat-info-image-size);
+	-o-object-fit: cover;
+	object-fit: cover;
+	-o-object-position: 50% 0;
+	object-position: 50% 0;
+	border: none;
+}
+
+.projectfu#combat-hud .faction-list .combat-row img:hover {
+	cursor: pointer;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-info {
+	overflow: hidden;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-info .combat-name {
+	overflow: hidden;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	height: auto;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-info .combat-name h2 {
+	font-size: 1.1em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: none;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-info .combat-name.full-height {
+	height: 100%;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-effects {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 1px;
+	height: auto;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+	overflow: hidden;
+	max-width: 100%;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-effects img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-effects-icon-size);
+	flex: 0 0 var(--combat-info-effects-icon-size);
+	height: var(--combat-info-effects-icon-size);
+	width: var(--combat-info-effects-icon-size);
+	-o-object-fit: cover;
+	object-fit: cover;
+	-o-object-position: 50% 0;
+	object-position: 50% 0;
+	border: none;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-effects .marquee {
+	white-space: nowrap;
+	display: inline-block;
+	-webkit-animation-name: effects-marquee;
+	animation-name: effects-marquee;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-effects .marquee img {
+	display: inline-block;
+}
+
+.projectfu#combat-hud .faction-list .combat-row .combat-effects .marquee:hover {
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+
+.projectfu#combat-hud .faction-list .combat-row.crisis .combat-info .combat-name {
+	color: #d1232a;
+}
+
+.projectfu#combat-hud .faction-list .combat-row.ko .combat-info .combat-name {
+	-webkit-text-decoration: line-through #000000;
+	text-decoration: line-through #000000;
+}
+
+.projectfu#combat-hud .faction-list.npcs {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--npc-width-percent);
+	flex: 0 0 var(--npc-width-percent);
+}
+
+.projectfu#combat-hud .faction-list.characters {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--character-width-percent);
+	flex: 0 0 var(--character-width-percent);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 12px;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	gap: 3px;
+	height: auto;
+	min-height: auto;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container .bar {
+	width: 100%;
+	height: 20px;
+	position: relative;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container .bar .resource-value-compact {
+	position: absolute;
+	display: none;
+	margin-left: 0.3em;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container .resource-value {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	height: auto;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	gap: 5px;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container .resource-value i.ra-gear-hammer {
+	margin-right: -5px;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container .resource-value i {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-icon-width);
+	flex: 0 0 var(--combat-bars-icon-width);
+	text-align: right;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container .resource-value .resource-text {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-text-width);
+	flex: 0 0 var(--combat-bars-text-width);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row .combat-bars .bar-container .resource-value .resource-text span {
+	text-align: left;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.no-bars .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-character-width-none);
+	flex: 0 0 var(--combat-info-character-width-none);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.no-bars .combat-bars {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-none);
+	flex: 0 0 var(--combat-bars-width-none);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.one-bar .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-character-width-one);
+	flex: 0 0 var(--combat-info-character-width-one);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.one-bar .combat-bars {
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-one);
+	flex: 0 0 var(--combat-bars-width-one);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.one-bar .combat-bars .bar-container {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.two-bars .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-character-width-two);
+	flex: 0 0 var(--combat-info-character-width-two);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.two-bars .combat-bars {
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-two);
+	flex: 0 0 var(--combat-bars-width-two);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.two-bars .combat-bars .bar-container {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.three-bars .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-character-width-three);
+	flex: 0 0 var(--combat-info-character-width-three);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.three-bars .combat-bars {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-three);
+	flex: 0 0 var(--combat-bars-width-three);
+}
+
+.projectfu#combat-hud .faction-list.characters .combat-row.three-bars .combat-bars .bar-container {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 33.3333333333%;
+	flex: 0 0 33.3333333333%;
+}
+
+.projectfu#combat-hud .faction-list.characters.compact .combat-row .combat-bars .bar-container .bar .resource-value-compact {
+	display: block;
+}
+
+.projectfu#combat-hud .faction-list.characters.compact .combat-row .combat-bars .bar-container .resource-value {
+	height: 0;
+	display: none;
+}
+
+/* ----------------------------------------- */
+/* Modern Styles                       
+/* ----------------------------------------- */
+.projectfu#combat-hud.modern {
+	--npc-width-percent: 0;
+	--combat-info-image-size: calc(8.5em - var(--combat-info-content-padding) * 2);
+	--combat-info-image-size-npcs: calc(7em - var(--combat-info-content-padding) * 2);
+	--combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
+	--combat-info-pc-background: url("../../static/ui/combat-hud/pc_bg.svg");
+	--combat-info-clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0% 0%, 0% 50%);
+	--combat-image-size: var(--combat-info-image-size);
+	--combat-bars-width-three: auto;
+	--combat-bars-min-width: 150px;
+	--combat-bar-height: 12px;
+	--combat-bar-gap: 3px;
+	--combat-bar-right-offset: 10px;
+	--combat-bars-text-width: auto;
+	--combat-hp-label-color: #ebffed;
+	--combat-mp-label-color: #c0f0ff;
+	--combat-ip-label-color: #ffdfbb;
+	--combat-xp-label-color: #ffd166;
+	--combat-zeropower-label-color: #f0ccff;
+	--combat-bars-background: url("../../static/ui/combat-hud/bar_bg.svg");
+	--combat-effects-background: rgba(25, 25, 25, 0.6);
+	pointer-events: none;
+	max-height: 355px;
+}
+
+.projectfu#combat-hud.modern .faction-list {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	gap: 15px;
+	width: 100%;
+	margin: 0;
+	-webkit-box-pack: space-evenly;
+	-ms-flex-pack: space-evenly;
+	justify-content: space-evenly;
+	padding-top: 25px;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	background: none;
+	position: relative;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row.hovered .combat-info {
+	opacity: 1;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row.hovered.effects-on-hover .combat-effects {
+	opacity: 1;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	pointer-events: all;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-image {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-image-size);
+	flex: 0 0 var(--combat-image-size);
+	height: var(--combat-image-size);
+	width: var(--combat-image-size);
+	padding: 2px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: relative;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-image img {
+	clip-path: var(--combat-info-clip-path);
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 calc(var(--combat-image-size) - 5px);
+	flex: 0 0 calc(var(--combat-image-size) - 5px);
+	height: calc(var(--combat-image-size) - 5px);
+	width: calc(var(--combat-image-size) - 5px);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-image-bg {
+	position: absolute;
+	background-image: var(--combat-info-pc-background);
+	background-repeat: no-repeat;
+	background-size: contain;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	min-width: var(--combat-bars-min-width);
+	height: 50%;
+	-ms-flex-item-align: end;
+	align-self: flex-end;
+	gap: var(--combat-bar-gap);
+	position: relative;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container {
+	position: absolute;
+	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	gap: 5px;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .bar-label {
+	-webkit-transform: skew(-10deg);
+	-ms-transform: skew(-10deg);
+	transform: skew(-10deg);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .bar-label.label-hp {
+	color: var(--combat-hp-label-color);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .bar-label.label-mp {
+	color: var(--combat-mp-label-color);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .bar-label.label-ip {
+	color: var(--combat-ip-label-color);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .bar-label.label-xp {
+	color: var(--combat-exp-label-color);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .bar-label.label-zeropower {
+	color: var(--combat-zeropower-label-color);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .resource-value {
+	gap: 0;
+	width: 20%;
+	font-size: 1.2em;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .resource-value .resource-text.full {
+	color: #ffd166;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container .bar {
+	height: var(--combat-bar-height);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container:nth-child(1) {
+	top: 0px;
+	right: 0px;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container:nth-child(2) {
+	top: calc(var(--combat-bar-height) + var(--combat-bar-gap));
+	right: var(--combat-bar-right-offset);
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container:nth-child(3) {
+	top: calc(2 * var(--combat-bar-height) + 2 * var(--combat-bar-gap));
+	right: calc(2 * var(--combat-bar-right-offset));
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-bars .bar-container:nth-child(4) {
+	top: calc(3 * var(--combat-bar-height) + 3 * var(--combat-bar-gap));
+	right: calc(3 * var(--combat-bar-right-offset));
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-info {
+	position: absolute;
+	width: 125px;
+	top: 75%;
+	-webkit-transform: translateY(-50%) translateX(-35px) rotate(45deg);
+	-ms-transform: translateY(-50%) translateX(-35px) rotate(45deg);
+	transform: translateY(-50%) translateX(-35px) rotate(45deg);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	opacity: 0;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-effects {
+	position: absolute;
+	left: 45%;
+	height: 60%;
+	min-width: 170px;
+	top: -15px;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combat-effects div {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.projectfu#combat-hud.modern .faction-list .combat-row .combatant-control {
+	left: 0;
+	top: 0;
+	right: initial;
+	bottom: initial;
+}
+
+.projectfu#combat-hud.modern .faction-list.characters {
+	-webkit-box-flex: 2.5;
+	-ms-flex: 2.5;
+	flex: 2.5;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+
+.projectfu#combat-hud.modern .faction-list.characters .combat-row {
+	max-width: 260px;
+}
+
+.projectfu#combat-hud.modern .faction-list.npcs {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 250px;
+	flex: 0 0 250px;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+	-ms-flex-line-pack: start;
+	align-content: flex-start;
+}
+
+.projectfu#combat-hud.modern .faction-list.npcs .combat-row .combat-image {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-image-size-npcs);
+	flex: 0 0 var(--combat-info-image-size-npcs);
+	height: var(--combat-info-image-size-npcs);
+	width: var(--combat-info-image-size-npcs);
+}
+
+.projectfu#combat-hud.modern .faction-list.npcs .combat-row .combat-image img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 calc(var(--combat-info-image-size-npcs) - 5px);
+	flex: 0 0 calc(var(--combat-info-image-size-npcs) - 5px);
+	height: calc(var(--combat-info-image-size-npcs) - 5px);
+	width: calc(var(--combat-info-image-size-npcs) - 5px);
+}
+
+.projectfu#combat-hud.modern .faction-list.npcs .combat-row .combat-info {
+	width: 100px;
+	top: 67%;
+	-webkit-transform: translateY(-50%) translateX(-30px) rotate(45deg);
+	-ms-transform: translateY(-50%) translateX(-30px) rotate(45deg);
+	transform: translateY(-50%) translateX(-30px) rotate(45deg);
+}
+
+.projectfu#combat-hud.modern .faction-list.npcs .combat-effects {
+	left: 95%;
+	height: 100%;
+	top: 0;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	min-width: 100px;
+	max-width: 100px;
+	z-index: calc(var(--combatant-control-z-index) + 1);
+	background: var(--combat-effects-background);
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	border: 2px solid #2b4a42;
+	border-radius: 10px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.projectfu#combat-hud.modern .faction-list.npcs .combat-effects div {
+	height: 100%;
+	width: 100%;
+	padding: 6px;
+}
+
+/* ----------------------------------------- */
+/* Mother Styles                       
+/* ----------------------------------------- */
+.projectfu#combat-hud.mother {
+	--hud-height: 16em;
+	--npc-width-percent: 30%;
+	--character-width-percent: 100%;
+	--combat-info-height: auto;
+	--combat-info-content-padding: 5px;
+	--combat-info-image-size: calc(3.5em - var(--combat-info-content-padding) * 2);
+	--combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
+	--combat-info-effects-icon-size: 1.5em;
+	--combat-bars-right-margin: 2.5em;
+	--combat-info-character-width-none: 100%;
+	--combat-bars-width-none: 0;
+	--combat-info-character-width-one: 65%;
+	--combat-bars-width-one: calc(100% - var(--combat-info-character-width-one) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-info-character-width-two: 50%;
+	--combat-bars-width-two: calc(100% - var(--combat-info-character-width-two) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-info-character-width-three: 30%;
+	--combat-bars-width-three: calc(100% - var(--combat-info-character-width-three) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-bars-icon-width: 45%;
+	--combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
+	--hud-buttons-height: 2.2em;
+	--hud-buttons-width: 3em;
+	--hud-opacity: 1;
+	--box-shadow-color-1: rgba(56, 48, 80, var(--hud-opacity));
+	--box-shadow-color-2: rgba(104, 208, 184, var(--hud-opacity));
+	--box-shadow-color-3: rgba(247, 232, 168, var(--hud-opacity));
+	--box-shadow-color-4: rgba(61, 60, 85, var(--hud-opacity));
+	--hud-background-gradient: rgba(40, 8, 40, var(--hud-opacity));
+	--hud-boxshadow-color: 0 0 0 5px var(--box-shadow-color-1), 0 0 0 10px var(--box-shadow-color-2), 0 0 0 12px var(--box-shadow-color-3), 0 0 0 15px var(--box-shadow-color-4);
+	--combatant-control-z-index: 99;
+	--hud-background-image-color: #148782;
+	--hud-background-color: #5f90a3;
+	pointer-events: none;
+}
+
+.projectfu#combat-hud.mother .window-button {
+	position: absolute;
+	top: var(--window-button-top);
+	bottom: var(--window-button-bottom);
+	color: #ffffff;
+	z-index: 99;
+	text-shadow: 1px 1px 1px #000000;
+	-webkit-box-shadow: 3px 3px #2b4a42;
+	box-shadow: 3px 3px #2b4a42;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc)), #2b4a42;
+	background: linear-gradient(to bottom, #2c584d, #a0cdbc), #2b4a42;
+	padding: 0.5em 1em 0.5em 1em;
+	height: var(--hud-buttons-height);
+	width: var(--hud-buttons-width);
+}
+
+.projectfu#combat-hud.mother .window-button.window-minimize {
+	right: 0.5em;
+}
+
+.projectfu#combat-hud.mother .window-button.window-popout {
+	right: 4em;
+}
+
+.projectfu#combat-hud.mother .window-button.window-compact {
+	right: 7.5em;
+}
+
+.projectfu#combat-hud.mother .window-button.window-compact .fas.hidden {
+	display: none;
+}
+
+.projectfu#combat-hud.mother .window-button.window-drag {
+	left: 0em;
+}
+
+.projectfu#combat-hud.mother .window-button.window-start {
+	left: 3.5em;
+}
+
+.projectfu#combat-hud.mother .window-button.hidden {
+	display: none;
+}
+
+.projectfu#combat-hud.mother .window-button.window-stop {
+	left: 3.5em;
+}
+
+.projectfu#combat-hud.mother .window-button a {
+	padding: 0;
+	margin: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.projectfu#combat-hud.mother .faction-list {
+	color: #ebf7af;
+	text-shadow: 1px 1px 1px #000000;
+	border-radius: 10px;
+	background: transparent;
+	padding: 0.25em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	gap: 2rem;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	padding-top: 25px;
+}
+
+.projectfu#combat-hud.mother .faction-list .bar-container {
+	font-family: "Press Start 2P", cursive;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.projectfu#combat-hud.mother .faction-list .resource-value {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	margin-right: 2px;
+}
+
+.projectfu#combat-hud.mother .faction-list .resource-text {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	font-size: 16px;
+	color: white;
+	cursor: pointer;
+}
+
+.projectfu#combat-hud.mother .faction-list .digit-box {
+	width: 24px;
+	height: 32px;
+	background-color: white;
+	color: black;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin: 2px;
+	font-size: 22px;
+	outline: 3px solid black;
+	border-color: darkcyan;
+	overflow: hidden;
+	-webkit-transition: -webkit-transform 0.1s, -webkit-box-shadow 0.1s;
+	transition: -webkit-transform 0.1s, -webkit-box-shadow 0.1s;
+	transition: transform 0.1s, box-shadow 0.1s;
+	transition: transform 0.1s, box-shadow 0.1s, -webkit-transform 0.1s, -webkit-box-shadow 0.1s;
+	-webkit-box-shadow: inset 0.025em -0.15em 0em 0.00125em rgb(0, 0, 0), inset 0.125em 0em 0 0 rgba(152, 160, 128, 0.6), inset 0em -0.4em 0 0 rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0.025em -0.15em 0em 0.00125em rgb(0, 0, 0), inset 0.125em 0em 0 0 rgba(152, 160, 128, 0.6), inset 0em -0.4em 0 0 rgba(0, 0, 0, 0.3);
+	padding-left: 3px;
+}
+
+.projectfu#combat-hud.mother .faction-list .digit-box.crisis {
+	color: #d1232a;
+}
+
+.projectfu#combat-hud.mother .faction-list .digit-row {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+
+.projectfu#combat-hud.mother .faction-list.compact .combat-row img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-image-size-compact);
+	flex: 0 0 var(--combat-info-image-size-compact);
+	height: var(--combat-info-image-size-compact);
+	width: var(--combat-info-image-size-compact);
+}
+
+.projectfu#combat-hud.mother .faction-list.compact .combat-row .combat-info .combat-name {
+	height: 100%;
+}
+
+.projectfu#combat-hud.mother .faction-list.compact .combat-row .combat-info .combat-effects {
+	height: 0;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row:hover {
+	-webkit-transform: translateY(-5px);
+	-ms-transform: translateY(-5px);
+	transform: translateY(-5px);
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	height: var(--combat-info-height);
+	border-radius: 10px;
+	margin: 0 auto;
+	padding: var(--combat-info-content-padding);
+	-webkit-box-shadow: var(--hud-boxshadow-color);
+	box-shadow: var(--hud-boxshadow-color);
+	color: #ebf7af;
+	text-transform: uppercase;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative;
+	background-image: linear-gradient(45deg, var(--hud-background-image-color) 25%, transparent 25%, transparent 75%, var(--hud-background-image-color) 75%, var(--hud-background-image-color)), linear-gradient(45deg, var(--hud-background-image-color) 25%, transparent 25%, transparent 75%, var(--hud-background-image-color) 75%, var(--hud-background-image-color));
+	background-size: 60px 60px;
+	background-position: 0 0, 30px 30px;
+	background-color: var(--hud-background-color);
+	-webkit-transition: -webkit-transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition: -webkit-transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	width: 9rem;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combatant-control {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	z-index: var(--combatant-control-z-index);
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-family: "Press Start 2P", cursive;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-image-size);
+	flex: 0 0 var(--combat-info-image-size);
+	height: var(--combat-info-image-size);
+	width: var(--combat-info-image-size);
+	-o-object-fit: cover;
+	object-fit: cover;
+	-o-object-position: 50% 0;
+	object-position: 50% 0;
+	border: none;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row img:hover {
+	cursor: pointer;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-info {
+	overflow: hidden;
+	text-align: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-info .combat-name {
+	overflow: hidden;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: auto;
+	-webkit-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-info .combat-name h2 {
+	font-family: "trigger-bold";
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: none;
+	cursor: pointer;
+	font-size: 1.625rem;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-info .combat-name.full-height {
+	height: 100%;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-effects {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 1px;
+	height: auto;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+	overflow: hidden;
+	max-width: 100%;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-effects img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-info-effects-icon-size);
+	flex: 0 0 var(--combat-info-effects-icon-size);
+	height: var(--combat-info-effects-icon-size);
+	width: var(--combat-info-effects-icon-size);
+	-o-object-fit: cover;
+	object-fit: cover;
+	-o-object-position: 50% 0;
+	object-position: 50% 0;
+	border: none;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-effects .marquee {
+	white-space: nowrap;
+	display: inline-block;
+	-webkit-animation-name: effects-marquee;
+	animation-name: effects-marquee;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-effects .marquee img {
+	display: inline-block;
+}
+
+.projectfu#combat-hud.mother .faction-list .combat-row .combat-effects .marquee:hover {
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 0px;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	height: auto;
+	min-height: auto;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container .bar {
+	width: 100%;
+	height: 20px;
+	position: relative;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container .bar .resource-value-compact {
+	position: absolute;
+	display: none;
+	margin-left: 0.3em;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container .resource-value {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	height: auto;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container .resource-value i.ra-gear-hammer {
+	margin-right: -5px;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container .resource-value i {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-icon-width);
+	flex: 0 0 var(--combat-bars-icon-width);
+	text-align: right;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container .resource-value .resource-text {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-text-width);
+	flex: 0 0 var(--combat-bars-text-width);
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row .combat-bars .bar-container .resource-value .resource-text span {
+	text-align: left;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	margin: 0px 5px;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.no-bars .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 10%;
+	flex: 0 0 10%;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.no-bars .combat-bars {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-none);
+	flex: 0 0 var(--combat-bars-width-none);
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.one-bar .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 10%;
+	flex: 0 0 10%;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.one-bar .combat-bars {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-one);
+	flex: 0 0 var(--combat-bars-width-one);
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.two-bars .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 10%;
+	flex: 0 0 10%;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.two-bars .combat-bars {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-two);
+	flex: 0 0 var(--combat-bars-width-two);
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.three-bars .combat-info {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 10%;
+	flex: 0 0 10%;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters .combat-row.three-bars .combat-bars {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 var(--combat-bars-width-three);
+	flex: 0 0 var(--combat-bars-width-three);
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters.compact .combat-row .combat-bars .bar-container .bar .resource-value-compact {
+	display: block;
+}
+
+.projectfu#combat-hud.mother .faction-list.characters.compact .combat-row .combat-bars .bar-container .resource-value {
+	height: 0;
+	display: none;
+}

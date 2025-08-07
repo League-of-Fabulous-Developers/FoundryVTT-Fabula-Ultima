@@ -31,7 +31,7 @@
 	],
 	"scripts": [],
 	"esmodules": ["module/projectfu.mjs"],
-	"styles": ["styles/css/projectfu.css", "styles/projectfu.css"],
+	"styles": ["styles/projectfu.css"],
 	"packs": [
 		{
 			"label": "NPCs",

@@ -1,0 +1,575 @@
+/* ===================== FOUNDRY COLOR VARIABLES ===================== */
+:root {
+	/* ===================== CORE BACKGROUND COLORS ===================== */
+	--color-primary-bg: #1a2a2a;
+	--color-secondary-bg: #2a3a3a;
+	--color-tertiary-bg: #3a4a4a;
+	--color-accent-bg: #0d352f;
+	--color-accent-bg-light: #7aa87a;
+	--color-surface-bg: #2d3d3d;
+	--color-overlay-bg: rgba(26, 42, 42, 0.95);
+	--color-modal-bg: rgba(0, 0, 0, 0.8);
+	--color-transparent: transparent;
+	/* ===================== UI STATE COLORS ===================== */
+	--color-success: #17b924;
+	--color-success-bg: rgba(16, 185, 129, 0.1);
+	--color-success-border: rgba(16, 185, 129, 0.3);
+	--color-warning: #c78f31;
+	--color-warning-bg: rgba(245, 158, 11, 0.1);
+	--color-warning-border: rgba(245, 158, 11, 0.3);
+	--color-error: #d1232a;
+	--color-error-bg: rgba(239, 68, 68, 0.1);
+	--color-error-border: rgba(239, 68, 68, 0.3);
+	--color-info: #17a2b8;
+	--color-info-bg: rgba(59, 130, 246, 0.1);
+	--color-info-border: rgba(59, 130, 246, 0.3);
+	/* ===================== BORDER COLORS ===================== */
+	--color-border-primary: #2B4A42FF;
+	--color-border-secondary: #7aa87a;
+	--color-border-tertiary: #4a5a5a;
+	--color-border-fancy: #c9a76f;
+	--color-border-hover: #FFF79AFF;
+	--color-border-active: #e28079cc;
+	--color-border-muted: #ffeec0bf;
+	--color-border-focus: #3b82f6;
+	--color-border-disabled: #6b7280;
+	--color-border-divider: rgba(143, 188, 143, 0.3);
+	/* ===================== TEXT COLORS ===================== */
+	--color-text-primary: #ffeec0;
+	--color-text-secondary: #8fbc8f;
+	--color-text-tertiary: #e0e6d0;
+	--color-text-muted: #bdc89d;
+	--color-text-dark: #222c2c;
+	--color-text-light: #ffffff;
+	--color-text-link: #60a5fa;
+	--color-text-link-hover: #93c5fd;
+	--color-text-placeholder: #9ca3af;
+	--color-text-disabled: #6b7280;
+	/* ===================== BUTTON COLORS - PRIMARY ===================== */
+	--color-button-bg: #ffeec0;
+	--color-button-text: #222c2c;
+	--color-button-border: #8fbc8f;
+	--color-button-hover-bg: #DCD374FF;
+	--color-button-hover-text: #1a2a2a;
+	--color-button-hover-border: #DCD374FF;
+	--color-button-active-bg: #e28079cc;
+	--color-button-active-text: #FFF79AFF;
+	--color-button-active-border: #fff79a;
+	--color-button-disabled-bg: #f5f5f5;
+	--color-button-disabled-text: #bdbdbd;
+	--color-button-disabled-border: #e0e0e0;
+	/* ===================== BUTTON COLORS - SECONDARY ===================== */
+	--color-button-bg-secondary: #f0f7e8;
+	--color-button-text-secondary: #2a3a3a;
+	--color-button-border-secondary: #7aa87a;
+	--color-button-hover-bg-secondary: #e6f2d6;
+	--color-button-hover-text-secondary: #1a2a2a;
+	--color-button-hover-border-secondary: #ca8a04;
+	--color-button-active-bg-secondary: #ca8a04;
+	--color-button-active-text-secondary: #fff;
+	--color-button-active-border-secondary: #a36d00;
+	--color-button-disabled-bg-secondary: #f5f5f5;
+	--color-button-disabled-text-secondary: #bdbdbd;
+	--color-button-disabled-border-secondary: #e0e0e0;
+	/* ===================== BUTTON COLORS - GHOST/OUTLINE ===================== */
+	--color-button-bg-ghost: transparent;
+	--color-button-text-ghost: var(--color-text-primary);
+	--color-button-border-ghost: var(--color-border-primary);
+	--color-button-hover-bg-ghost: rgba(255, 238, 192, 0.1);
+	--color-button-hover-text-ghost: var(--color-text-primary);
+	--color-button-hover-border-ghost: var(--color-border-hover);
+	/* ===================== FORM ELEMENT COLORS ===================== */
+	--color-input-bg: #2a3a3a;
+	--color-input-text: var(--color-text-primary);
+	--color-input-border: var(--color-border-primary);
+	--color-input-placeholder: var(--color-text-placeholder);
+	--color-input-focus-bg: #2d3d3d;
+	--color-input-focus-border: var(--color-border-focus);
+	--color-input-disabled-bg: #1a2a2a;
+	--color-input-disabled-text: var(--color-text-disabled);
+	--color-input-disabled-border: var(--color-border-disabled);
+	/* ===================== SELECT/DROPDOWN COLORS ===================== */
+	--color-select-bg: var(--color-input-bg);
+	--color-select-text: var(--color-input-text);
+	--color-select-border: var(--color-input-border);
+	--color-select-arrow: var(--color-text-muted);
+	--color-select-option-bg: #3a4a4a;
+	--color-select-option-hover-bg: #4a5a5a;
+	--color-select-option-selected-bg: var(--color-accent-bg);
+	/* ===================== CHECKBOX/RADIO COLORS ===================== */
+	--color-checkbox-bg: var(--color-input-bg);
+	--color-checkbox-border: var(--color-input-border);
+	--color-checkbox-checked-bg: var(--color-success);
+	--color-checkbox-checked-border: var(--color-success);
+	--color-checkbox-checkmark: #ffffff;
+	--color-checkbox-disabled-bg: var(--color-input-disabled-bg);
+	/* ===================== RESOURCE BAR COLORS ===================== */
+	--color-hp-bar: linear-gradient(90deg, #315936 0%, #63b05f 100%);
+	--color-mp-bar: linear-gradient(90deg, #232d50 0%, #587fab 100%);
+	--color-ip-bar: linear-gradient(90deg, #8f8352 0%, #d8cf78 100%);
+	--color-exp-bar: linear-gradient(90deg, #501c16 0%, #b19940 100%);
+	--color-zero-bar: linear-gradient(90deg, #4c1d95 0%, #8b5cf6 100%);
+	--color-project-bar: linear-gradient(90deg, #92400e 0%, #f59e0b 100%);
+	--color-ritual-bar: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%);
+	/* ===================== CHAT COLORS ===================== */
+	--color-chat-bg: rgba(42, 58, 58, 0.95);
+	--color-chat-border: var(--color-border-primary);
+	--color-chat-message-bg: rgba(26, 42, 42, 0.3);
+	--color-chat-message-border: rgba(143, 188, 143, 0.2);
+	--color-chat-timestamp: var(--color-text-muted);
+	--color-chat-speaker: var(--color-text-secondary);
+	--color-chat-whisper: #8b5cf6;
+	--color-chat-ooc: #6b7280;
+	--color-chat-ic: var(--color-text-primary);
+	--color-chat-emote: #f59e0b;
+	--color-chat-roll: #10b981;
+	--color-chat-blind: #ef4444;
+	/* ===================== DICE ROLL COLORS ===================== */
+	--color-dice-success: #10b981;
+	--color-dice-failure: #ef4444;
+	--color-dice-critical: #f59e0b;
+	--color-dice-fumble: #7c2d12;
+	--color-dice-normal: var(--color-text-primary);
+	--color-dice-advantage: #22c55e;
+	--color-dice-disadvantage: #ef4444;
+	/* ===================== SIDEBAR COLORS ===================== */
+	--color-sidebar-bg: var(--color-secondary-bg);
+	--color-sidebar-border: var(--color-border-primary);
+	--color-sidebar-tab-bg: var(--color-primary-bg);
+	--color-sidebar-tab-active-bg: var(--color-accent-bg);
+	--color-sidebar-tab-hover-bg: rgba(122, 168, 122, 0.1);
+	--color-sidebar-tab-text: var(--color-text-secondary);
+	--color-sidebar-tab-active-text: var(--color-text-primary);
+	/* ===================== DIRECTORY/LIST COLORS ===================== */
+	--color-directory-bg: var(--color-secondary-bg);
+	--color-directory-item-bg: transparent;
+	--color-directory-item-hover-bg: rgba(122, 168, 122, 0.1);
+	--color-directory-item-selected-bg: var(--color-accent-bg);
+	--color-directory-item-border: transparent;
+	--color-directory-folder-bg: rgba(42, 58, 58, 0.5);
+	--color-directory-folder-hover-bg: rgba(42, 58, 58, 0.7);
+	/* ===================== COMBAT TRACKER COLORS ===================== */
+	--color-combat-bg: var(--color-secondary-bg);
+	--color-combat-current-turn: rgba(255, 238, 192, 0.2);
+	--color-combat-next-turn: rgba(122, 168, 122, 0.1);
+	--color-combat-defeated: rgba(239, 68, 68, 0.2);
+	--color-combat-hidden: rgba(107, 114, 128, 0.3);
+	/* ===================== TOKEN COLORS ===================== */
+	--color-token-friendly: #10b981;
+	--color-token-neutral: #f59e0b;
+	--color-token-hostile: #ef4444;
+	--color-token-selection: #3b82f6;
+	--color-token-target: #8b5cf6;
+	--color-token-hover: rgba(255, 255, 255, 0.3);
+	/* ===================== WINDOW/APPLICATION COLORS ===================== */
+	--color-window-bg: var(--color-primary-bg);
+	--color-window-header-bg: var(--color-secondary-bg);
+	--color-window-header-text: var(--color-text-primary);
+	--color-window-border: var(--color-border-primary);
+	--color-window-resize-handle: var(--color-border-secondary);
+	--color-window-close-hover: #ef4444;
+	--color-window-minimize-hover: #f59e0b;
+	--color-window-maximize-hover: #10b981;
+	/* ===================== TAB COLORS ===================== */
+	--color-tab-bg: var(--color-secondary-bg);
+	--color-tab-active-bg: var(--color-primary-bg);
+	--color-tab-hover-bg: rgba(122, 168, 122, 0.1);
+	--color-tab-text: var(--color-text-secondary);
+	--color-tab-active-text: var(--color-text-primary);
+	--color-tab-border: var(--color-border-primary);
+	--color-tab-active-border: var(--color-border-secondary);
+	/* ===================== TOOLTIP COLORS ===================== */
+	--color-tooltip-bg: rgba(42, 58, 58, 0.95);
+	--color-tooltip-text: var(--color-text-primary);
+	--color-tooltip-border: var(--color-border-primary);
+	/* ===================== CONTEXT MENU COLORS ===================== */
+	--color-context-bg: var(--color-secondary-bg);
+	--color-context-border: var(--color-border-primary);
+	--color-context-item-hover-bg: rgba(122, 168, 122, 0.1);
+	--color-context-separator: var(--color-border-muted);
+	/* ===================== PROGRESS/LOADING COLORS ===================== */
+	--color-progress-bg: rgba(107, 114, 128, 0.3);
+	--color-progress-fill: var(--color-success);
+	--color-loading-spinner: var(--color-text-secondary);
+	/* ===================== GRADIENT DEFINITIONS ===================== */
+	--gradient-primary: linear-gradient(145deg, var(--color-primary-bg) 0%, var(--color-secondary-bg) 100%);
+	--gradient-accent: linear-gradient(0deg, #e28079cc 0%, #f1a372cc 100%);
+	--gradient-divider: linear-gradient(90deg, transparent, rgba(143, 188, 143, 0.53), transparent);
+	--gradient-button-bg: linear-gradient(135deg, #ffeec0 0%, #fffbe6 100%);
+	--gradient-button-hover-bg: linear-gradient(135deg, #DCD374FF 0%, #FFF79AFF 100%);
+	--gradient-button-active-bg: linear-gradient(135deg, #E28079CC 0%, #F1A372CC 100%);
+	--gradient-button-disabled-bg: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+	--gradient-window-header: linear-gradient(180deg, var(--color-window-header-bg) 0%, rgba(42, 58, 58, 0.8) 100%);
+	/* ===================== SHADOW DEFINITIONS ===================== */
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	--shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+	/* ===================== TEXT SHADOW DEFINITIONS ===================== */
+	--text-shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.7);
+	--text-shadow-strong: 0 2px 8px rgba(0, 0, 0, 0.7);
+	--text-shadow-glow: 0 0 6px var(--color-primary), 0 0 12px var(--color-primary-highlight);
+	/* ===================== LEGACY SYSTEM COLORS ===================== */
+	/* Primary colors */
+	--color-primary: #2b4a42;
+	--color-secondary: #3d665a;
+	--color-ternary: #3d665a;
+	--color-quaternary: #cccbbb;
+	/* Inverted primary colors */
+	--color-primary-inverted: #000000;
+	--color-secondary-inverted: #412a3a;
+	/* Neutral colors */
+	--color-white: #ffffff;
+	--color-black: #000000;
+	--color-faint: #c9c7b8;
+	--color-beige: #f5f5dc;
+	--color-tan: #444444;
+	--color-dark: #191813;
+	--color-groove: #eeede0;
+	/* Semantic colors */
+	/* FIXME: replace with error */
+	--color-danger: #d1232a;
+	/* Tab Hover */
+	--color-shadow: #e74c3c;
+	--color-shadow-inverted: #2a4a41;
+	/* Progress Bar */
+	--color-grey: rgba(255, 255, 255, 0.5);
+	--color-inset: #c7c7c7;
+	--color-hp: #17b924;
+	--color-hp-crisis: #d1232a;
+	--color-hp-ko: #000000;
+	--color-mp: #16aad6;
+	--color-ip: #d68931;
+	--color-project: #d68931;
+	--color-levelup: #ffd166;
+	--color-levelup-gradient: #6ee36e;
+	--color-zeropower: #9400d3;
+	--color-background: var(--color-secondary);
+	--color-background-inverted: var(--color-secondary-inverted);
+	--color-background-alt: var(--color-primary);
+	--color-box-shadow: #1d362f;
+	--color-box-shadow-inverted: #000000;
+	/* Gradients */
+	--color-charname-gradient: linear-gradient(to right, #532853, #bfb8c4);
+	--color-charname-gradient-alt: linear-gradient(to right, #2a4a41, #b9c4b8);
+	--color-tabStyle-gradient: linear-gradient(to bottom, #2c584d, #a0cdbc);
+	--color-transparent-gradient: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+	--color-header-gradient: linear-gradient(to right, #e9f3ea, transparent);
+	--color-quote-gradient: linear-gradient(to right, #e1efe3, transparent);
+	/* Affinity icons */
+	--color-outline: black;
+	--color-icon-guard: #dddddd;
+	--color-icon-sword: #dddddd;
+	--color-icon-wind: #cfd600;
+	--color-icon-bolt-lightning: #ffef26;
+	--color-icon-moon: #e40134;
+	--color-icon-hill-rockslide: #d29d3e;
+	--color-icon-fire: #f59a00;
+	--color-icon-snowflake: #9cbccd;
+	--color-icon-sun: #fff7b2;
+	--color-icon-skull-crossbones: #d679a2;
+	/* Text & shadows */
+	--font-size: 20px;
+	--rcaption-font-size: 0.875rem;
+	--text-shadow-side: 0.07rem 0.07rem 0.07rem var(--color-black);
+	--text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	/* Result themes */
+	--background-default: linear-gradient(to right, #7da0ca, #004f89);
+	--border-default: #7da0ca;
+	--background-success: linear-gradient(to right, #91c469, #228c22);
+	--border-success: #91c469;
+	--background-failure: linear-gradient(to right, #edb7aa, #880012);
+	--border-failure: #edb7aa;
+	--background-critical: linear-gradient(to right, #f7c754, #d17f10);
+	--border-critical: #ffcc56;
+	--background-fumble: linear-gradient(to right, #b087a6, #15031e);
+	--border-fumble: #b087a6;
+	/* Hit/Miss colors */
+	--background-hit: linear-gradient(to right, #228c22, #91c469);
+	--border-hit: #91c469;
+	--background-miss: linear-gradient(to right, #880012, #edb7aa);
+	--border-miss: #edb7aa;
+	/* Damage Types */
+	--background-physical: linear-gradient(to right, #a1a1a1, #8c8c8c);
+	--border-physical: #a1a1a1;
+	--background-air: linear-gradient(to right, #b6e0ff, #8cb2c2);
+	--border-air: #b6e0ff;
+	--background-bolt: linear-gradient(to right, #fdda76, #fbc847);
+	--border-bolt: #fdda76;
+	--background-dark: linear-gradient(to right, #543987, #2b0d6b);
+	--border-dark: #543987;
+	--background-earth: linear-gradient(to right, #d28d3e, #9f5b1f);
+	--border-earth: #d28d3e;
+	--background-fire: linear-gradient(to right, #f58a00, #c05b00);
+	--border-fire: #f58a00;
+	--background-ice: linear-gradient(to right, #bce4fa, #4f7b9a);
+	--border-ice: #bce4fa;
+	--background-light: linear-gradient(to right, #fff7b2, #e1c29f);
+	--border-light: #fff7b2;
+	--background-poison: linear-gradient(to right, #d678a2, #a65a83);
+	--border-poison: #d678a2;
+	--background-untyped: linear-gradient(to right, #c0c0c0, #a8a8a8);
+	--border-untyped: #a8a8a8;
+	/* Party */
+	--party-name: #b34700;
+	--party-identity: #228b22;
+	--party-menu-button: linear-gradient(to right, #1d2b3a, var(--color-background));
+	--character-plate: linear-gradient(to bottom, #1d2b3a, #2e3d4f);
+	--companion-plate: linear-gradient(to bottom, #2c3e50, #3b5870);
+	--adversary-plate: linear-gradient(to bottom, #6a3986, #1e0f2a);
+	/* Ranks */
+	--rank-soldier: #8a7300;
+	--rank-elite: #b34700;
+	--rank-champion: #801e1f;
+	/* Species */
+	--species-beast: #3e2900;
+	--species-demon: #ff4444;
+	--species-construct: #cccccc;
+	--species-elemental: #1ec8e7;
+	--species-humanoid: #444444;
+	--species-monster: #6e0f9c;
+	--species-plant: #228b22;
+	--species-undead: #bbbbbb;
+	/* ===================== CUSTOMIZATION ALIASES ===================== */
+	--main-bg: var(--color-primary-bg);
+	--accent-bg: var(--color-secondary-bg);
+	--surface-bg: var(--color-accent-bg);
+	--surface-bg-light: var(--color-accent-bg-light);
+	--border: var(--color-border-primary);
+	--border-primary: var(--color-border-primary);
+	--border-hover: var(--color-border-hover);
+	--text-main: var(--color-text-primary);
+	--text-accent: var(--color-text-secondary);
+	--text-muted: var(--color-text-muted);
+	--text-dark: var(--color-text-dark);
+	--pill-gradient: var(--gradient-primary);
+	--accent-gradient: var(--gradient-accent);
+	--divider-gradient: var(--gradient-divider);
+	--hover-bg: var(--color-button-hover-bg);
+	--hover-text: var(--color-button-hover-text);
+	--focus-outline: 2px solid var(--color-border-hover);
+	--background-core: url('../../static/ui/HojitasDouble_highres.png'), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%);
+	--background-card: url("../../static/ui/Bkg_highres.png"), linear-gradient(to right, #f5f5dc, #c9c7b8);
+}
+
+/* ===================== DARK THEME OVERRIDES ===================== */
+.theme-dark {
+	/* ===================== CORE BACKGROUND COLORS ===================== */
+	--color-primary-bg: #151f1f;
+	--color-secondary-bg: #252525;
+	--color-tertiary-bg: #353535;
+	--color-accent-bg: #0a2822;
+	--color-accent-bg-light: #0d201d;
+	--color-surface-bg: #1d2d2d;
+	--color-overlay-bg: rgba(21, 31, 31, 0.95);
+	--color-modal-bg: rgba(0, 0, 0, 0.9);
+	/* ===================== UI STATE COLORS ===================== */
+	--color-success: #22c55e;
+	--color-success-bg: rgba(34, 197, 94, 0.15);
+	--color-success-border: rgba(34, 197, 94, 0.4);
+	--color-warning: #fbbf24;
+	--color-warning-bg: rgba(251, 191, 36, 0.15);
+	--color-warning-border: rgba(251, 191, 36, 0.4);
+	--color-error: #f87171;
+	--color-error-bg: rgba(248, 113, 113, 0.15);
+	--color-error-border: rgba(248, 113, 113, 0.4);
+	--color-info: #60a5fa;
+	--color-info-bg: rgba(96, 165, 250, 0.15);
+	--color-info-border: rgba(96, 165, 250, 0.4);
+	/* ===================== BORDER COLORS ===================== */
+	--color-border-primary: #2b4a42;
+	--color-border-secondary: #7aa87a;
+	--color-border-tertiary: #3a4a4a;
+	--color-border-fancy: #ffeec0;
+	--color-border-hover: #FFF79AFF;
+	--color-border-active: #e28079cc;
+	--color-border-muted: #ffeec0bf;
+	--color-border-focus: #60a5fa;
+	--color-border-disabled: #4b5563;
+	--color-border-divider: rgba(122, 168, 122, 0.2);
+	/* ===================== TEXT COLORS ===================== */
+	--color-text-primary: #ebf7af;
+	--color-text-secondary: #7aa87a;
+	--color-text-tertiary: #d0d6c0;
+	--color-text-muted: #a3b48d;
+	--color-text-dark: #1a1f1f;
+	--color-text-light: #ffffff;
+	--color-text-link: #93c5fd;
+	--color-text-link-hover: #bfdbfe;
+	--color-text-placeholder: #6b7280;
+	--color-text-disabled: #4b5563;
+	/* ===================== BUTTON COLORS - PRIMARY ===================== */
+	--color-button-bg: #ffeec0;
+	--color-button-text: #222c2c;
+	--color-button-border: #8fbc8f;
+	--color-button-hover-bg: #DCD374FF;
+	--color-button-hover-text: #1a2a2a;
+	--color-button-hover-border: #eab308;
+	--color-button-active-bg: #e28079cc;
+	--color-button-active-text: #FFF79AFF;
+	--color-button-active-border: #fff79a;
+	--color-button-disabled-bg: #374151;
+	--color-button-disabled-text: #6b7280;
+	--color-button-disabled-border: #4b5563;
+	/* ===================== BUTTON COLORS - SECONDARY ===================== */
+	--color-button-bg-secondary: #374151;
+	--color-button-text-secondary: #d1d5db;
+	--color-button-border-secondary: #6b7280;
+	--color-button-hover-bg-secondary: #4b5563;
+	--color-button-hover-text-secondary: #f3f4f6;
+	--color-button-hover-border-secondary: #9ca3af;
+	--color-button-active-bg-secondary: #ca8a04;
+	--color-button-active-text-secondary: #fff;
+	--color-button-active-border-secondary: #a36d00;
+	--color-button-disabled-bg-secondary: #1f2937;
+	--color-button-disabled-text-secondary: #4b5563;
+	--color-button-disabled-border-secondary: #374151;
+	/* ===================== BUTTON COLORS - GHOST/OUTLINE ===================== */
+	--color-button-bg-ghost: transparent;
+	--color-button-text-ghost: var(--color-text-primary);
+	--color-button-border-ghost: var(--color-border-primary);
+	--color-button-hover-bg-ghost: rgba(235, 247, 175, 0.1);
+	--color-button-hover-text-ghost: var(--color-text-primary);
+	--color-button-hover-border-ghost: var(--color-border-hover);
+	/* ===================== FORM ELEMENT COLORS ===================== */
+	--color-input-bg: #1a2a2a;
+	--color-input-text: var(--color-text-primary);
+	--color-input-border: var(--color-border-primary);
+	--color-input-placeholder: var(--color-text-placeholder);
+	--color-input-focus-bg: #1d2d2d;
+	--color-input-focus-border: var(--color-border-focus);
+	--color-input-disabled-bg: #101818;
+	--color-input-disabled-text: var(--color-text-disabled);
+	--color-input-disabled-border: var(--color-border-disabled);
+	/* ===================== SELECT/DROPDOWN COLORS ===================== */
+	--color-select-bg: var(--color-input-bg);
+	--color-select-text: var(--color-input-text);
+	--color-select-border: var(--color-input-border);
+	--color-select-arrow: var(--color-text-muted);
+	--color-select-option-bg: #2a3a3a;
+	--color-select-option-hover-bg: #3a4a4a;
+	--color-select-option-selected-bg: var(--color-accent-bg);
+	/* ===================== CHECKBOX/RADIO COLORS ===================== */
+	--color-checkbox-bg: var(--color-input-bg);
+	--color-checkbox-border: var(--color-input-border);
+	--color-checkbox-checked-bg: var(--color-success);
+	--color-checkbox-checked-border: var(--color-success);
+	--color-checkbox-checkmark: #ffffff;
+	--color-checkbox-disabled-bg: var(--color-input-disabled-bg);
+	/* ===================== RESOURCE BAR COLORS ===================== */
+	--color-hp-bar: linear-gradient(90deg, #315936 0%, #63b05f 100%);
+	--color-mp-bar: linear-gradient(90deg, #232d50 0%, #587fab 100%);
+	--color-ip-bar: linear-gradient(90deg, #8f8352 0%, #d8cf78 100%);
+	--color-exp-bar: linear-gradient(90deg, #501c16 0%, #b19940 100%);
+	--color-zero-bar: linear-gradient(90deg, #4c1d95 0%, #8b5cf6 100%);
+	--color-project-bar: linear-gradient(90deg, #92400e 0%, #f59e0b 100%);
+	--color-ritual-bar: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%);
+	/* ===================== CHAT COLORS ===================== */
+	--color-chat-bg: rgba(21, 31, 31, 0.95);
+	--color-chat-border: var(--color-border-primary);
+	--color-chat-message-bg: rgba(21, 31, 31, 0.4);
+	--color-chat-message-border: rgba(122, 168, 122, 0.15);
+	--color-chat-timestamp: var(--color-text-muted);
+	--color-chat-speaker: var(--color-text-secondary);
+	--color-chat-whisper: #a855f7;
+	--color-chat-ooc: #6b7280;
+	--color-chat-ic: var(--color-text-primary);
+	--color-chat-emote: #fbbf24;
+	--color-chat-roll: #22c55e;
+	--color-chat-blind: #f87171;
+	/* ===================== DICE ROLL COLORS ===================== */
+	--color-dice-success: #22c55e;
+	--color-dice-failure: #f87171;
+	--color-dice-critical: #fbbf24;
+	--color-dice-fumble: #991b1b;
+	--color-dice-normal: var(--color-text-primary);
+	--color-dice-advantage: #34d399;
+	--color-dice-disadvantage: #f87171;
+	/* ===================== SIDEBAR COLORS ===================== */
+	--color-sidebar-bg: var(--color-secondary-bg);
+	--color-sidebar-border: var(--color-border-primary);
+	--color-sidebar-tab-bg: var(--color-primary-bg);
+	--color-sidebar-tab-active-bg: var(--color-accent-bg);
+	--color-sidebar-tab-hover-bg: rgba(122, 168, 122, 0.15);
+	--color-sidebar-tab-text: var(--color-text-secondary);
+	--color-sidebar-tab-active-text: var(--color-text-primary);
+	/* ===================== DIRECTORY/LIST COLORS ===================== */
+	--color-directory-bg: var(--color-secondary-bg);
+	--color-directory-item-bg: transparent;
+	--color-directory-item-hover-bg: rgba(122, 168, 122, 0.15);
+	--color-directory-item-selected-bg: var(--color-accent-bg);
+	--color-directory-item-border: transparent;
+	--color-directory-folder-bg: rgba(21, 31, 31, 0.6);
+	--color-directory-folder-hover-bg: rgba(21, 31, 31, 0.8);
+	/* ===================== COMBAT TRACKER COLORS ===================== */
+	--color-combat-bg: var(--color-secondary-bg);
+	--color-combat-current-turn: rgba(235, 247, 175, 0.2);
+	--color-combat-next-turn: rgba(122, 168, 122, 0.15);
+	--color-combat-defeated: rgba(248, 113, 113, 0.2);
+	--color-combat-hidden: rgba(75, 85, 99, 0.4);
+	/* ===================== TOKEN COLORS ===================== */
+	--color-token-friendly: #22c55e;
+	--color-token-neutral: #fbbf24;
+	--color-token-hostile: #f87171;
+	--color-token-selection: #60a5fa;
+	--color-token-target: #a855f7;
+	--color-token-hover: rgba(255, 255, 255, 0.2);
+	/* ===================== WINDOW/APPLICATION COLORS ===================== */
+	--color-window-bg: var(--color-primary-bg);
+	--color-window-header-bg: var(--color-secondary-bg);
+	--color-window-header-text: var(--color-text-primary);
+	--color-window-border: var(--color-border-primary);
+	--color-window-resize-handle: var(--color-border-secondary);
+	--color-window-close-hover: #f87171;
+	--color-window-minimize-hover: #fbbf24;
+	--color-window-maximize-hover: #22c55e;
+	/* ===================== TAB COLORS ===================== */
+	--color-tab-bg: var(--color-secondary-bg);
+	--color-tab-active-bg: var(--color-primary-bg);
+	--color-tab-hover-bg: rgba(122, 168, 122, 0.15);
+	--color-tab-text: var(--color-text-secondary);
+	--color-tab-active-text: var(--color-text-primary);
+	--color-tab-border: var(--color-border-primary);
+	--color-tab-active-border: var(--color-border-secondary);
+	/* ===================== TOOLTIP COLORS ===================== */
+	--color-tooltip-bg: rgba(21, 31, 31, 0.95);
+	--color-tooltip-text: var(--color-text-primary);
+	--color-tooltip-border: var(--color-border-primary);
+	/* ===================== CONTEXT MENU COLORS ===================== */
+	--color-context-bg: var(--color-secondary-bg);
+	--color-context-border: var(--color-border-primary);
+	--color-context-item-hover-bg: rgba(122, 168, 122, 0.15);
+	--color-context-separator: var(--color-border-muted);
+	/* ===================== PROGRESS/LOADING COLORS ===================== */
+	--color-progress-bg: rgba(75, 85, 99, 0.4);
+	--color-progress-fill: var(--color-success);
+	--color-loading-spinner: var(--color-text-secondary);
+	/* ===================== GRADIENT DEFINITIONS ===================== */
+	--gradient-primary: linear-gradient(145deg, var(--color-primary-bg) 0%, var(--color-secondary-bg) 100%);
+	--gradient-accent: linear-gradient(0deg, #e28079cc 0%, #f1a372cc 100%);
+	--gradient-divider: linear-gradient(90deg, transparent, rgba(122, 168, 122, 0.3), transparent);
+	--gradient-button-bg: linear-gradient(135deg, #ffeec0 0%, #fffbe6 100%);
+	--gradient-button-hover-bg: linear-gradient(135deg, #DCD374FF 0%, #FFF79AFF 100%);
+	--gradient-button-active-bg: linear-gradient(135deg, #E28079CC 0%, #F1A372CC 100%);
+	--gradient-button-disabled-bg: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+	--gradient-window-header: linear-gradient(180deg, var(--color-window-header-bg) 0%, rgba(21, 31, 31, 0.8) 100%);
+	/* ===================== CUSTOMIZATION ALIASES ===================== */
+	--main-bg: var(--color-primary-bg);
+	--accent-bg: var(--color-secondary-bg);
+	--surface-bg: var(--color-accent-bg);
+	--surface-bg-light: var(--color-accent-bg-light);
+	--border: var(--color-border-primary);
+	--border-primary: var(--color-border-primary);
+	--border-hover: var(--color-border-hover);
+	--text-main: var(--color-text-primary);
+	--text-accent: var(--color-text-secondary);
+	--text-muted: var(--color-text-muted);
+	--text-dark: var(--color-text-dark);
+	--pill-gradient: var(--gradient-primary);
+	--accent-gradient: var(--gradient-accent);
+	--divider-gradient: var(--gradient-divider);
+	--hover-bg: var(--color-button-hover-bg);
+	--hover-text: var(--color-button-hover-text);
+	--focus-outline: 2px solid var(--color-border-hover);
+}
