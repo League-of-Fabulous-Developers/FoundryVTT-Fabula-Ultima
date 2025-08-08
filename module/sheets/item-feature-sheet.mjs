@@ -49,6 +49,10 @@ export class FUFeatureSheet extends FUItemSheet {
 	async _preparePartContext(partId, ctx, options) {
 		const context = await super._preparePartContext(partId, ctx, options);
 		switch (partId) {
+			case 'tabs': {
+				context.subtypeLocalizationKey = this.subtypeLocalizationKey;
+				break;
+			}
 			case 'details': {
 				context.system = this.system;
 				context.fields = this.system.schema.fields;
@@ -187,7 +191,7 @@ export class FUFeatureSheet extends FUItemSheet {
 	/**
 	 * @returns {String}
 	 */
-	get localizedSubtype() {
+	get subtypeLocalizationKey() {
 		if (this.item.type === 'optionalFeature') {
 			const type = this.item.system.optionalType;
 			return OptionalFeatureRegistry.instance.localize(type);
