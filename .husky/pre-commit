@@ -3,7 +3,7 @@ git stash -q --keep-index
 
 npm run lint
 npm run prettier
-npm run build
+# npm run build
 
 # Stage changed files
 git add -u

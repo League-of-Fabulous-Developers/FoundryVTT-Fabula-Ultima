@@ -4,7 +4,7 @@ import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
 import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
-import { FUActorSheetV2 } from './sheets/actor-sheet-v2.mjs';
+// import { FUActorSheetV2 } from './sheets/actor-sheet-v2.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
@@ -223,11 +223,11 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 		label: 'Standard Actor Sheet v1',
 	});
-	foundry.documents.collections.Actors.registerSheet('projectfu', FUActorSheetV2, {
-		types: ['character', 'npc'],
-		makeDefault: false,
-		label: 'Standard Actor Sheet V2',
-	});
+	// foundry.documents.collections.Actors.registerSheet('projectfu', FUActorSheetV2, {
+	// 	types: ['character', 'npc'],
+	// 	makeDefault: false,
+	// 	label: 'Standard Actor Sheet V2',
+	// });
 	foundry.documents.collections.Actors.registerSheet('projectfu', FUPartySheet, {
 		types: ['party'],
 		makeDefault: true,

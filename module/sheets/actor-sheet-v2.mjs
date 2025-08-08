@@ -101,34 +101,53 @@ export class FUActorSheetV2 extends FUActorSheet {
 		},
 	};
 
+	// These will be filtered in _configureRenderOptions
+	/** @type {Record<string, HandlebarsTemplatePart>} */
+	static PARTS = {
+		main: { template: systemTemplatePath('actor/character-v2/parts/sheet') },
+		// header: { template: systemTemplatePath('actor/character/parts/actor-header') },
+		// tabs: { template: systemTemplatePath(`actor/character/parts/actor-tabs`) },
+		// stats: { template: systemTemplatePath(`actor/character/parts/actor-section-stats`) },
+		// features: { template: systemTemplatePath(`actor/character/parts/actor-section-features`) },
+		// // NPC
+		// combat: { template: systemTemplatePath(`actor/character/parts/actor-section-combat`) },
+		// behavior: { template: systemTemplatePath(`actor/character/parts/actor-section-behavior`) },
+		// // Character
+		// classes: { template: systemTemplatePath(`actor/character/parts/actor-section-classes`) },
+		// items: { template: systemTemplatePath(`actor/character/parts/actor-section-items`) },
+		// spells: { template: systemTemplatePath(`actor/character/parts/actor-section-spells`) },
+		// notes: { template: systemTemplatePath(`actor/character/parts/actor-section-notes`) },
+		// effects: { template: systemTemplatePath('actor/character/parts/actor-section-effects') },
+		// settings: { template: systemTemplatePath(`actor/character/parts/actor-section-settings`) },
+	};
+
+	/**
+	 * These arrays are used in _configureRenderOptions later to filter out template parts
+	 * used for the actual type of actor (character, npc, limited character, limited npc)
+	 * being displayed
+	 */
+
 	/** @override
 	 * @type Record<ApplicationTab>
-	 * */
+	 **/
 	static TABS = {
 		primary: {
 			tabs: [
 				{ id: 'stats', label: 'FU.Stats', icon: 'fa fa-star' },
 				{ id: 'classes', label: 'FU.Classes', icon: 'fa fa-users' },
 				{ id: 'features', label: 'FU.Features', icon: 'fa fa-plus-circle' },
+				// { id: 'spells', label: 'FU.Spell' },
 				{ id: 'items', label: 'FU.Items', icon: 'fa-solid fa-gift' },
-				{ id: 'notes', icon: 'fa fa-book' },
-				{ id: 'effects', icon: 'fa fa-magic' },
-				{ id: 'settings', icon: 'fa fa-cog' },
+
+				{ id: 'combat', label: 'FU.Combat' },
+				{ id: 'behavior', label: 'FU.Behavior' },
+
+				{ id: 'notes', label: '', icon: 'fa fa-book' },
+				{ id: 'effects', label: '', icon: 'fa-solid fa-wand-magic-sparkles' },
+				{ id: 'settings', label: '', icon: 'fa-solid fa-sliders' },
 			],
 			initial: 'stats',
 		},
-	};
-
-	/**
-	 * PARTS definition for the v2 actor sheet
-	 */
-	static PARTS = {
-		main: {
-			template: systemTemplatePath('actor/character-v2/parts/sheet'),
-			root: true,
-		},
-		// Tab content parts
-		// TODO: Figure out how appv2 tabs work and fix this
 	};
 
 	// Initialize sortOrder
@@ -230,6 +249,11 @@ export class FUActorSheetV2 extends FUActorSheet {
 				}
 				break;
 		}
+		Object.entries(parts).forEach(([partId, config]) => {
+			if (!['header', 'tabs'].includes(partId)) {
+				config.scrollable ??= [''];
+			}
+		});
 		return parts;
 	}
 
@@ -293,6 +317,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 							}),
 						};
 					}
+					await ActorSheetUtils.prepareFeatures(context);
 				}
 				break;
 
@@ -428,6 +453,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 		return context;
 	}
 
+	/* -------------------------------------------- */
 	/**
 	 * @override
 	 * @private
