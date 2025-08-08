@@ -43,7 +43,7 @@
                             <div class="invocation-description">
                                 {{formInput (get @root.dataFields (concat @key ".fields.basic.fields.description"))
 										 name=(concat "system.data." @key ".basic.description")
-                                         value=(get system (concat ".data." @key ".basic.description"))
+                                         value=(get system (concat "data." @key ".basic.description"))
 								 		 enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "basic") "description")
                                          toggled=true}}
                             </div>
