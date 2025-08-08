@@ -5,6 +5,7 @@ import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { CombatHudSettings } from './settings/combatHudSettings.js';
 import { SettingsConfigurationApp } from './settings/settingsConfigurationApp.js';
+import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 
 /**
  * @description All system settings
@@ -248,6 +249,7 @@ export const registerSystemSettings = async function () {
 			nullable: true,
 			blank: true,
 			idOnly: true,
+			choices: () => Object.fromEntries(game.actors.contents.filter((actor) => actor.system instanceof PartyDataModel).map((a) => [a.id, a.name])),
 		}),
 		restricted: true,
 	});
