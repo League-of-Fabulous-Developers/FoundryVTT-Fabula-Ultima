@@ -106,9 +106,7 @@ function prepareAbilities(context) {
  */
 function prepareNpcCombat(context) {
 	const basics = [];
-
 	const rules = [];
-
 	const treasures = [];
 
 	for (let item of context.items) {
@@ -135,9 +133,7 @@ function prepareNpcCombat(context) {
 	}
 
 	context.basics = basics;
-
 	context.rules = rules;
-
 	context.treasures = treasures;
 }
 
