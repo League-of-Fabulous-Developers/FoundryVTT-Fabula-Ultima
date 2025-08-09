@@ -41,8 +41,10 @@
                         </label>
                     </div>
                     <hr/>
-                    {{editor (lookup ../additionalData.effects @index)
-                             target=(concat 'system.data.effects.' @index '.effect') engine='prosemirror' button=true}}
+					{{formInput @root.dataFields.effects.element.fields.effect
+								value=effect
+								enriched=(lookup ../additionalData.effects @index)
+								toggled=true}}
                 </fieldset>
             </div>
         {{/each}}
