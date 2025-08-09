@@ -66,14 +66,15 @@
                     data-taste2="{{taste2}}">
                     <legend class="resource-label-full">
                         <label class="resource-label-m">
-                            {{localize (lookup @root/additionalData.tastes taste1)}} + {{localize (lookup
-                            @root/additionalData.tastes
-                            taste2)}}
+                            {{localize (lookup @root/additionalData.tastes taste1)}} + {{localize (lookup @root/additionalData.tastes taste2)}}
                         </label>
                     </legend>
                     <div>
-                        {{editor (lookup (lookup @root/enrichedHtml.combinations @key) 'effect') target=(concat
-                        'system.data.combinations.' @key '.effect') engine='prosemirror' button=true}}
+						{{formInput (get @root.dataFields (concat 'combinations.fields.' @key ".fields.effect"))
+									name=(concat "system.data.combinations." @key ".effect")
+									value=effect
+									enriched=(lookup (lookup @root/enrichedHtml.combinations @key) 'effect')
+									toggled=true}}
                     </div>
                 </fieldset>
                 {{/each}}
