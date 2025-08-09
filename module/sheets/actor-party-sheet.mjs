@@ -352,7 +352,7 @@ export class FUPartySheet extends FUActorSheet {
 	static async #restParty() {
 		const actors = await this.party.getCharacterActors();
 		for (const actor of actors) {
-			await actor.sheet.onRest(actor);
+			await actor.rest(false);
 			this.render(true);
 		}
 	}
