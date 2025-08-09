@@ -254,15 +254,6 @@ export const registerSystemSettings = async function () {
 		restricted: true,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
-		name: game.i18n.localize('FU.CombatHudPanTokenSettings'),
-		hint: game.i18n.localize('FU.CombatHudPanTokenSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.optionDefaultTargetingMode, {
 		name: game.i18n.localize('FU.DefaultTargetingMode'),
 		hint: game.i18n.localize('FU.DefaultTargetingModeHint'),
@@ -278,13 +269,13 @@ export const registerSystemSettings = async function () {
 		},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionStudySavePath, {
-		name: game.i18n.localize('FU.StudySavePathSettings'),
-		hint: game.i18n.localize('FU.StudySavePathSettingsHint'),
+	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
+		name: game.i18n.localize('FU.CombatHudPanTokenSettings'),
+		hint: game.i18n.localize('FU.CombatHudPanTokenSettingsHint'),
 		scope: 'world',
 		config: true,
-		type: String,
-		default: 'Bestiary',
+		type: Boolean,
+		default: false,
 	});
 
 	// COMBAT HUD
