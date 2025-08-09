@@ -11,11 +11,12 @@
 				{{#each system.affinities as |affinity key|}}
 					<div class="affinity resource-content flex-group-center flexcol">
 						<label data-label="{{ affinity.label }}" style="line-height: 1.2em">
-							<span style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+							<span
+							 style="display: flex; flex-direction: column; align-items: center; text-align: center;">
 								<img class="affinity-icon"
-									src="systems/projectfu/styles/static/affinities/icons/{{key}}.png"
-									alt="{{key}}"
-									style="width: 24px; height: 24px;">
+									 src="systems/projectfu/styles/static/affinities/icons/{{key}}.png"
+									 alt="{{key}}"
+									 style="width: 24px; height: 24px;">
 								<span class="resource-label-sm">{{affinity.label}}</span>
 							</span>
 						</label>
@@ -237,24 +238,28 @@
 				</legend>
 
 				{{#if (eq actor.type "npc")}}
-					<div class="form-group">
-          <span class="resource-label-m">
-            <i class="ra ra-sword ra-1x ra-flip-horizontal ra-1x"></i>
-            <label>{{localize 'FU.UseEquipment'}}</label>
-          </span>
-						<div class="form-fields">
-							<input class="use-equipment" type="checkbox" name="system.useEquipment.value" {{ checked
-							 system.useEquipment.value }} data-action="useEquipment" />
+					<!-- Use Equipment -->
+					{{#unless (eq actor.system.species.value 'beast')}}
+						<div class="form-group">
+					  <span class="resource-label-m">
+						<i class="ra ra-sword ra-1x ra-flip-horizontal ra-1x"></i>
+						<label>{{localize 'FU.UseEquipment'}}</label>
+					  </span>
+							<div class="form-fields">
+								<input class="use-equipment" type="checkbox" name="system.useEquipment.value"
+									{{ checked system.useEquipment.value }} data-action="useEquipment" />
+							</div>
+							<p class="notes">{{localize 'FU.UseEquipmentHint'}}</p>
 						</div>
-						<p class="notes">{{localize 'FU.UseEquipmentHint'}}</p>
-					</div>
+					{{/unless}}
+
 					{{#if (or (eq actor.system.rank.value "companion") (eq actor.system.rank.value "custom"))}}
 						<div class="form-group">
                       <span class="resource-label-m">
                           <i class="fa-solid fa-user-group"></i>
                           <label for="refActor">{{localize 'FU.Player'}}</label>
                       </span>
-                      <span class="resource-label-m">LV: {{refActorLevel}}</span>
+							<span class="resource-label-m">LV: {{refActorLevel}}</span>
 							<div class="form-fields resource-content">
 								<select name="system.references.actor" id="refActor" class="resource-inputs">
 									<option value="">—</option>
@@ -273,7 +278,7 @@
                           <i class="fa-solid fa-cogs"></i>
                           <label for="refSkill">{{localize 'FU.Skill'}}</label>
                       </span>
-                      <span class="resource-label-m">SL: {{refSkillLevel}}</span>
+							<span class="resource-label-m">SL: {{refSkillLevel}}</span>
 							<div class="form-fields resource-content">
 								<select name="system.references.skill" id="refSkill" class="resource-inputs">
 									<option value="">—</option>
