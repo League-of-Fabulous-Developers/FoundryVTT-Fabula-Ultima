@@ -1,65 +1,74 @@
 <div>
-    {{#if infusions.basic.length}}
-        <h4>{{localize 'FU.ClassFeatureGadgetsRankBasic'}}</h4>
-        {{#each infusions.basic}}
-            <div>
-                <button data-action="select" data-index="{{@index}}" data-category="basic">
-                    <span class="flexcol">
+	{{#if infusions.basic.length}}
+		<fieldset class="resource-content">
+			<legend>{{localize 'FU.ClassFeatureGadgetsRankBasic'}}</legend>
+			{{#each infusions.basic}}
+				<div class="flexrow">
+					<input type="radio" id="{{@root.dialogId}}-basicInfusions-{{@index}}" name="infusion"
+						   value="basicInfusions:{{@index}}" class="flex0">
+					<label for="{{@root.dialogId}}-basicInfusions-{{@index}}" class="flexcol">
                         <span>
                             <strong>{{name}}</strong>
-                            {{#if extraDamage}}
-                                <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
-                            {{/if}}
-                            {{#if changedDamageType}}
-                                <span></span>
-                            {{/if}}
+							{{#if changedDamageType}}
+								<span>{{localize (lookup @root.FU.damageTypes changedDamageType)}} {{localize
+								 'FU.Damage'}}</span>
+							{{/if}}
+							{{#if extraDamage}}
+								<span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
+							{{/if}}
                         </span>
-                        <span>{{description}}</span>
-                    </span>
-                </button>
-            </div>
-        {{/each}}
-    {{/if}}
-    {{#if infusions.advanced.length}}
-        <h4>{{localize 'FU.ClassFeatureGadgetsRankAdvanced'}}</h4>
-        {{#each infusions.advanced}}
-            <div>
-                <button data-action="select" data-index="{{@index}}" data-category="advanced">
-                    <span class="flexcol">
+						<span>{{description}}</span>
+					</label>
+				</div>
+			{{/each}}
+		</fieldset>
+	{{/if}}
+	{{#if infusions.advanced.length}}
+		<fieldset class="resource-content">
+			<legend>{{localize 'FU.ClassFeatureGadgetsRankAdvanced'}}</legend>
+			{{#each infusions.advanced}}
+				<div class="flexrow">
+					<input type="radio" id="{{@root.dialogId}}-advancedInfusions-{{@index}}" name="infusion"
+						   value="advancedInfusions:{{@index}}" class="flex0">
+					<label for="{{@root.dialogId}}-advancedInfusions-{{@index}}" class="flexcol">
                         <span>
                             <strong>{{name}}</strong>
-                            {{#if extraDamage}}
-                                <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
-                            {{/if}}
-                            {{#if changedDamageType}}
-                                <span></span>
-                            {{/if}}
+							{{#if changedDamageType}}
+								<span>{{localize (lookup @root.FU.damageTypes changedDamageType)}} {{localize
+								 'FU.Damage'}}</span>
+							{{/if}}
+							{{#if extraDamage}}
+								<span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
+							{{/if}}
                         </span>
-                        <span>{{description}}</span>
-                    </span>
-                </button>
-            </div>
-        {{/each}}
-    {{/if}}
-    {{#if infusions.superior.length}}
-        <h4>{{localize 'FU.ClassFeatureGadgetsRankSuperior'}}</h4>
-        {{#each infusions.superior}}
-            <div>
-                <button data-action="select" data-index="{{@index}}" data-category="superior">
-                    <span class="flexcol">
+						<span>{{description}}</span>
+					</label>
+				</div>
+			{{/each}}
+		</fieldset>
+	{{/if}}
+	{{#if infusions.superior.length}}
+		<fieldset class="resource-content">
+			<legend>{{localize 'FU.ClassFeatureGadgetsRankSuperior'}}</legend>
+			{{#each infusions.superior}}
+				<div class="flexrow">
+					<input type="radio" id="{{@root.dialogId}}-superiorInfusions-{{@index}}" name="infusion"
+						   value="superiorInfusions:{{@index}}" class="flex0">
+					<label for="{{@root.dialogId}}-superiorInfusions-{{@index}}" class="flexcol">
                         <span>
                             <strong>{{name}}</strong>
-                            {{#if extraDamage}}
-                                <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
-                            {{/if}}
-                            {{#if changedDamageType}}
-                                <span></span>
-                            {{/if}}
+							{{#if changedDamageType}}
+								<span>{{localize (lookup @root.FU.damageTypes changedDamageType)}} {{localize
+								 'FU.Damage'}}</span>
+							{{/if}}
+							{{#if extraDamage}}
+								<span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
+							{{/if}}
                         </span>
-                        <span>{{description}}</span>
-                    </span>
-                </button>
-            </div>
-        {{/each}}
-    {{/if}}
+						<span>{{description}}</span>
+					</label>
+				</div>
+			{{/each}}
+		</fieldset>
+	{{/if}}
 </div>
