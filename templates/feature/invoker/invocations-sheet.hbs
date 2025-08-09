@@ -43,7 +43,7 @@
                             <div class="invocation-description">
                                 {{formInput (get @root.dataFields (concat @key ".fields.basic.fields.description"))
 										 name=(concat "system.data." @key ".basic.description")
-                                         value=(get system (concat "data." @key ".basic.description"))
+                                         value=basic.description
 								 		 enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "basic") "description")
                                          toggled=true}}
                             </div>
@@ -63,7 +63,7 @@
                                 <div class="invocation-description">
 									{{formInput (get @root.dataFields (concat @key ".fields.advanced.fields.description"))
 												name=(concat "system.data." @key ".advanced.description")
-												value=(get system (concat "data." @key ".advanced.description"))
+												value=advanced.description
 												enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "advanced") "description")
 												toggled=true}}
                                 </div>
@@ -83,7 +83,7 @@
                                     <div class="invocation-description">
 										{{formInput (get @root.dataFields (concat @key ".fields.superior1.fields.description"))
 													name=(concat "system.data." @key ".superior1.description")
-													value=(get system (concat "data." @key ".superior1.description"))
+													value=superior1.description
 													enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "superior1") "description")
 													toggled=true}}
                                     </div>
@@ -98,7 +98,7 @@
                                     <div class="invocation-description">
 										{{formInput (get @root.dataFields (concat @key ".fields.superior2.fields.description"))
 													name=(concat "system.data." @key ".superior2.description")
-													value=(get system (concat "data." @key ".superior2.description"))
+													value=superior2.description
 													enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "superior2") "description")
 													toggled=true}}
                                     </div>
