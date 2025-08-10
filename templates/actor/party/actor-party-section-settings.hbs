@@ -41,7 +41,7 @@
 				</a>
 			</legend>
 			<div style="max-height: 400px; overflow-y: scroll;">
-				{{formInput system.schema.fields.notes value=system.notes localize=true button=false editable=true}}
+				<prose-mirror name="system.notes" value="{{system.notes}}"></prose-mirror>
 			</div>
 		</fieldset>
 	</main>

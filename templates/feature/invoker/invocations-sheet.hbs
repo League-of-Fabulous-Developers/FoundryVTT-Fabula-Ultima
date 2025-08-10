@@ -18,12 +18,10 @@
                     </label>
                 </div>
                 <div>
-					{{formInput dataFields.description
-								name="system.data.description"
-								value=system.data.description
-								toggled=true
-								enriched=enrichedHtml.description}}
-                </div>
+					<prose-mirror name="system.data.description" value="{{system.data.description}}" toggled>
+						{{{enrichedHtml.description}}}
+					</prose-mirror>
+				</div>
             </fieldset>
         </div>
         {{#each additionalData.wellsprings}}
@@ -41,11 +39,9 @@
                                 </label>
                             </div>
                             <div class="invocation-description">
-                                {{formInput (get @root.dataFields (concat @key ".fields.basic.fields.description"))
-										 name=(concat "system.data." @key ".basic.description")
-                                         value=basic.description
-								 		 enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "basic") "description")
-                                         toggled=true}}
+								<prose-mirror name="system.data.{{@key}}.basic.description" value="{{basic.description}}" toggled>
+									{{{lookup (lookup (lookup @root.enrichedHtml @key) "basic") "description"}}}
+								</prose-mirror>
                             </div>
                         </fieldset>
 						<!-- Advanced -->
@@ -61,11 +57,9 @@
                                     </label>
                                 </div>
                                 <div class="invocation-description">
-									{{formInput (get @root.dataFields (concat @key ".fields.advanced.fields.description"))
-												name=(concat "system.data." @key ".advanced.description")
-												value=advanced.description
-												enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "advanced") "description")
-												toggled=true}}
+									<prose-mirror name="system.data.{{@key}}.advanced.description" value="{{advanced.description}}" toggled>
+										{{{lookup (lookup (lookup @root.enrichedHtml @key) "advanced") "description"}}}
+									</prose-mirror>
                                 </div>
                             </fieldset>
 							<!-- Superior -->
@@ -81,11 +75,9 @@
                                         </label>
                                     </div>
                                     <div class="invocation-description">
-										{{formInput (get @root.dataFields (concat @key ".fields.superior1.fields.description"))
-													name=(concat "system.data." @key ".superior1.description")
-													value=superior1.description
-													enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "superior1") "description")
-													toggled=true}}
+										<prose-mirror name="system.data.{{@key}}.superior1.description" value="{{superior1.description}}" toggled>
+											{{{lookup (lookup (lookup @root.enrichedHtml @key) "superior1") "description"}}}
+										</prose-mirror>
                                     </div>
                                     <hr>
                                     <div>
@@ -96,11 +88,9 @@
                                         </label>
                                     </div>
                                     <div class="invocation-description">
-										{{formInput (get @root.dataFields (concat @key ".fields.superior2.fields.description"))
-													name=(concat "system.data." @key ".superior2.description")
-													value=superior2.description
-													enriched=(lookup (lookup (lookup @root.enrichedHtml @key) "superior2") "description")
-													toggled=true}}
+										<prose-mirror name="system.data.{{@key}}.superior2.description" value="{{superior2.description}}" toggled>
+											{{{lookup (lookup (lookup @root.enrichedHtml @key) "superior2") "description"}}}
+										</prose-mirror>
                                     </div>
                                 </fieldset>
                             {{/unless}}

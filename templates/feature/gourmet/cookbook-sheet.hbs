@@ -70,11 +70,9 @@
                         </label>
                     </legend>
                     <div>
-						{{formInput (get @root.dataFields (concat 'combinations.fields.' @key ".fields.effect"))
-									name=(concat "system.data.combinations." @key ".effect")
-									value=effect
-									enriched=(lookup (lookup @root/enrichedHtml.combinations @key) 'effect')
-									toggled=true}}
+						<prose-mirror name="system.data.combinations.{{@key}}.effect" value="{{effect}}" toggled>
+							{{{lookup (lookup @root/enrichedHtml.combinations @key) 'effect'}}}
+						</prose-mirror>
                     </div>
                 </fieldset>
                 {{/each}}

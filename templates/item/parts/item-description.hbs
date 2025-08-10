@@ -4,12 +4,11 @@
 			{{localize 'FU.Description'}}
 			<i class="fas fa-info-circle"></i>
 		</label>
-
+		{{log this}}
 		{{#if system.schema.fields.description}}
-			{{formInput system.schema.fields.description
-						toggled=true
-						value=system.description
-						enriched=enriched.description}}
+			<prose-mirror name="system.description" value="{{system.description}}" toggled>
+				{{{enrichedHtml.description}}}
+			</prose-mirror>
 		{{/if}}
 	</fieldset>
 </div>

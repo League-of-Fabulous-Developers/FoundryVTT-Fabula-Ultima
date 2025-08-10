@@ -34,7 +34,7 @@ export class FUStandardItemSheet extends FUItemSheet {
 		const context = await super._preparePartContext(partId, ctx, options);
 		switch (partId) {
 			case 'description':
-				context.enriched = await SheetUtils.prepareEnrichedTextEditor(this, 'system.description');
+				context.enrichedHtml = await SheetUtils.prepareEnrichedTextEditor(this, 'system.description');
 				break;
 			case 'attributes':
 				{

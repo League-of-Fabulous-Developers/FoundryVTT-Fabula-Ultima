@@ -714,14 +714,6 @@ function activateDefaultListeners(html, sheet) {
 			li.addEventListener('dragstart', handler, false);
 		});
 	}
-
-	// Automatically expand elements that are in the _expanded state
-	sheet._expanded.forEach((itemId) => {
-		const desc = html.find(`li[data-item-id="${itemId}"] .individual-description`);
-		if (desc.length) {
-			desc.removeClass('hidden').css({ display: 'block', height: 'auto' });
-		}
-	});
 }
 
 function activateExpandedItemListener(html, expanded, onExpand) {
@@ -737,7 +729,10 @@ function activateExpandedItemListener(html, expanded, onExpand) {
 		if (expanded.has(itemId)) {
 			// Slide up effect
 			desc.style.transition = 'height 0.2s ease';
-			desc.style.height = '0';
+			desc.style.height = desc.scrollHeight + 'px';
+			setTimeout(() => {
+				desc.style.height = '0';
+			});
 			setTimeout(() => {
 				desc.style.display = 'none';
 				desc.classList.add('hidden'); // Add hidden class after transition
@@ -1285,6 +1280,24 @@ function prepareSorting(context) {
 		Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
 	}
 }
+
+function onRenderFUActorSheet(sheet, element) {
+	// Automatically expand elements that are in the _expanded state
+	console.log(sheet._expanded);
+	if (sheet._expanded) {
+		sheet._expanded.forEach((itemId) => {
+			const expandedDescriptions = element.querySelectorAll(`li[data-item-id=${itemId}] .individual-description`);
+			console.log(itemId, expandedDescriptions);
+			expandedDescriptions.forEach((el) => {
+				el.classList.remove('hidden');
+				el.style.display = 'block';
+				el.style.height = 'auto';
+			});
+		});
+	}
+}
+
+Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 
 /**
  * @description Provides utility functions for rendering the actor sheet

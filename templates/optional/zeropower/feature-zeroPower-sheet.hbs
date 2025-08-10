@@ -23,12 +23,9 @@
 							{{localize 'FU.LimitTrigger'}}"
                        class="resource-label-m resource-inputs select-dropdown-full" />
             </legend>
-            {{formInput dataFields.zeroTrigger.fields.description
-						name="system.data.zeroTrigger.description"
-						value=system.data.zeroTrigger.description
-						toggled=true
-						owner=owner
-						enriched=enrichedHtml.zeroTrigger.description }}
+			<prose-mirror name="system.data.zeroTrigger.description" value="{{system.data.zeroTrigger.description}}" toggled>
+				{{{enrichedHtml.zeroTrigger.description}}}
+			</prose-mirror>
         </fieldset>
 
         {{!-- Zero Effect --}}
@@ -39,13 +36,9 @@
                        data-tooltip="{{localize 'FU.LimitEffect'}}"
                        class="resource-label-m resource-inputs select-dropdown-full" />
             </legend>
-			{{formInput dataFields.zeroEffect.fields.description
-						name="system.data.zeroEffect.description"
-						value=system.data.zeroEffect.description
-						toggled=true
-						rollData=rollData
-						owner=owner
-						enriched=enrichedHtml.zeroEffect.description}}
+			<prose-mirror name="system.data.zeroEffect.description" value="{{system.data.zeroEffect.description}}" toggled>
+				{{{enrichedHtml.zeroEffect.description}}}
+			</prose-mirror>
         </fieldset>
     </div>
 </div>
