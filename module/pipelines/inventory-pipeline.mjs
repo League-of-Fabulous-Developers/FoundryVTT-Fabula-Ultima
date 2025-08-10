@@ -466,14 +466,14 @@ async function onRenderChatMessage(message, jQuery) {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		const modifiers = getModifiers(ev);
-		return requestTrade(actor, item, true, modifiers);
+		return requestTrade(actor, item, true, undefined, modifiers);
 	});
 
 	Pipeline.handleClick(message, jQuery, lootAction, async (dataset, ev) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		const modifiers = getModifiers(ev);
-		return requestTrade(actor, item, false, modifiers);
+		return requestTrade(actor, item, false, undefined, modifiers);
 	});
 
 	Pipeline.handleClick(message, jQuery, rechargeAction, async (dataset) => {
