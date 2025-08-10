@@ -51,7 +51,6 @@ async function promptOpportunity(actor, type, item) {
 		if (item.system.opportunity) {
 			choices = choices.concat(item.system.opportunity);
 		}
-
 		const selected = await FoundryUtils.promptStringChoice('FU.Opportunities', choices);
 		console.debug(`Selected opportunity: ${selected}`);
 
@@ -62,6 +61,8 @@ async function promptOpportunity(actor, type, item) {
 				opportunity: selected,
 			}),
 		});
+	} else {
+		ui.notifications.warn('FU.ChatOpportunitySettingMissing', { localize: true });
 	}
 }
 
