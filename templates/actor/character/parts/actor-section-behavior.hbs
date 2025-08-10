@@ -32,11 +32,7 @@
                           {{!-- Item Control--}}
                           {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                       </div>
-                      <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-                          {{#if item.system.description}}
-                              {{{item.enrichedHtml.description}}}
-                          {{/if}}
-                      </div>
+					  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
                   </li>
               {{/if}}
           {{/each}}
@@ -66,11 +62,7 @@
                               {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 
                           </div>
-                          <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-                              {{#if item.system.description}}
-                                  {{{item.enrichedHtml.description}}}
-                              {{/if}}
-                          </div>
+						  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
                       </li>
                   {{/if}}
               {{/each}}

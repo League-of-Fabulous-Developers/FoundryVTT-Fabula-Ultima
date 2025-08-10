@@ -9,7 +9,8 @@ import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
- * @param context
+ * @param {Object} context
+ * @param {FUActorSheet} sheet
  * @returns {Promise<void>}
  */
 async function prepareData(context, sheet) {
@@ -51,7 +52,6 @@ async function prepareItems(context) {
 	// TODO: Handle elsewhere
 	// Iterate through items, allocating to containers
 	for (let item of context.items) {
-		//item.img = item.img || CONST.DEFAULT_TOKEN;
 		if (CLOCK_TYPES.includes(item.type)) {
 			const progressArr = [];
 			const progress = item.system.progress || { current: 0, max: 6 };
@@ -79,11 +79,27 @@ async function prepareItems(context) {
 			item.mdef = `+${item.system.mdef.value}`;
 			item.init = item.system.init.value > 0 ? `+${item.system.init.value}` : item.system.init.value;
 		}
-
-		item.enrichedHtml = {
-			description: await TextEditor.enrichHTML(item.system?.description ?? ''),
-		};
 	}
+}
+
+/**
+ * @param {Object} context
+ * @returns {Promise<void>}
+ */
+async function enrichItems(context) {
+	for (let item of context.items) {
+		await enrichItemDescription(item);
+	}
+}
+
+/**
+ * @param {FUItem} item
+ * @returns {Promise<void>}
+ */
+async function enrichItemDescription(item) {
+	item.enrichedHtml = {
+		description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+	};
 }
 
 /**
@@ -280,7 +296,7 @@ async function prepareFeatures(context) {
 /**
  * @param {ApplicationRenderContext} context
  */
-function prepareSpells(context) {
+async function prepareSpells(context) {
 	const spells = [];
 	const rituals = [];
 
@@ -714,7 +730,8 @@ function activateExpandedItemListener(html, expanded, onExpand) {
 		if (!el) return; // Ensures we only proceed if the target is .click-item
 
 		const parentEl = el.closest('li');
-		const itemId = parentEl.dataset.itemId;
+		// Support both items and effects
+		const itemId = parentEl.dataset.itemId ?? parentEl.dataset.effectId;
 		const desc = parentEl.querySelector('.individual-description');
 
 		if (expanded.has(itemId)) {
@@ -1276,6 +1293,7 @@ function prepareSorting(context) {
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
 	prepareItems,
+	enrichItems,
 	findItemConfig,
 	prepareCharacterData,
 	activateDefaultListeners,

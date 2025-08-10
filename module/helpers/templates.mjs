@@ -29,6 +29,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-derived-stats.hbs',
 
 		'systems/projectfu/templates/actor/partials/actor-item-name.hbs',
+		'systems/projectfu/templates/actor/partials/actor-item-description.hbs',
 		'systems/projectfu/templates/actor/partials/actor-actions.hbs',
 		'systems/projectfu/templates/actor/partials/actor-vehicle.hbs',
 		'systems/projectfu/templates/actor/partials/actor-garden.hbs',

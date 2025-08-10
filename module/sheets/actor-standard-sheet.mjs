@@ -430,6 +430,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		context.FU = FU;
 		// Model agnostic
 		await ActorSheetUtils.prepareData(context, this);
+		await ActorSheetUtils.enrichItems(context);
 		// For characters/npcs
 		ActorSheetUtils.prepareCharacterData(context);
 
