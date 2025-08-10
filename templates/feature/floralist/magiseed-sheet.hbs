@@ -41,10 +41,9 @@
                         </label>
                     </div>
                     <hr/>
-					{{formInput @root.dataFields.effects.element.fields.effect
-								value=effect
-								enriched=(lookup ../additionalData.effects @index)
-								toggled=true}}
+					<prose-mirror name="system.data.effects.{{@index}}.effect" value="{{effect}}" toggled>
+						{{{lookup ../additionalData.effects @index}}}
+					</prose-mirror>
                 </fieldset>
             </div>
         {{/each}}
