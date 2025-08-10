@@ -605,7 +605,7 @@ function evaluateReferencedProperties(expression, context) {
 		}
 
 		// Evaluate the property value
-		const propertyValue = ObjectUtils.getPropertyValueByPath(root, propertyPath);
+		const propertyValue = ObjectUtils.getProperty(root, propertyPath);
 		if (propertyValue === undefined) {
 			throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
 		}

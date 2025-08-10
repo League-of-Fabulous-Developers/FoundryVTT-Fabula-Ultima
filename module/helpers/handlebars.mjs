@@ -205,7 +205,7 @@ export const FUHandlebars = Object.freeze({
 			return Array.isArray(array) && array.includes(value);
 		});
 
-		Handlebars.registerHelper('get', (map, key) => ObjectUtils.getPropertyValueByPath(map, key));
+		Handlebars.registerHelper('get', (map, key) => ObjectUtils.getProperty(map, key));
 
 		Handlebars.registerHelper('clamp', (val, min, max) => {
 			return Math.max(Math.min(val, max), min);
