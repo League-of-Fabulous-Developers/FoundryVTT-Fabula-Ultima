@@ -103,7 +103,7 @@ export class NpcProfileWindow extends Application {
 			revealAffinities: revealAffinities,
 			level: system.level.value,
 			hp: system.resources.hp.max,
-			mp: system.resources.hp.max,
+			mp: system.resources.mp.max,
 			localizedSpecies: FU.species[this.data.species],
 		};
 
