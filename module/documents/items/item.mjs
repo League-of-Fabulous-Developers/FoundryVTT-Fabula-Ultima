@@ -16,6 +16,7 @@ import { FUActor } from '../actors/actor.mjs';
  * @description Extend the basic Item document with some very simple modifications.
  * @property {foundry.abstract.TypeDataModel} system
  * @property {FUActor} actor
+ * @property {String} type
  * @extends {Item}
  * @inheritDoc
  */
@@ -207,7 +208,7 @@ Hooks.on('preCreateItem', (item, options, userId) => {
 				return false;
 			}
 			// Only support white-listed item types
-			if (!item.canStash) {
+			if (!actor.sheet.supportsItem(item)) {
 				ui.notifications.error(`FU.ActorSheetItemNotSupported`, { localize: true });
 				return false;
 			}

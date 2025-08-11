@@ -45,6 +45,7 @@ export class FUPartySheet extends FUActorSheet {
 			removeTrack: this.#onRemoveProgressTrack,
 			incrementProgress: this.#onIncrementProgressTrack,
 			revealTrack: this.#onRevealProgressTrack,
+			selectCampActivity: this.#onSelectCampActivity,
 			callHook: this.#callHook,
 			activate: this.#activate,
 		},
@@ -65,6 +66,7 @@ export class FUPartySheet extends FUActorSheet {
 				{ id: 'overview', label: 'FU.Overview', icon: 'ra ra-double-team' },
 				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'camp', label: 'FU.Camp', icon: 'ra ra-campfire' },
 				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
 			],
 			initial: 'overview',
@@ -94,6 +96,9 @@ export class FUPartySheet extends FUActorSheet {
 		adversaries: {
 			template: systemPath('templates/actor/party/actor-party-section-adversaries.hbs'),
 		},
+		camp: {
+			template: systemPath('templates/actor/party/actor-party-section-camp.hbs'),
+		},
 		settings: {
 			template: systemPath('templates/actor/party/actor-party-section-settings.hbs'),
 		},
@@ -112,6 +117,7 @@ export class FUPartySheet extends FUActorSheet {
 		context.actionHooks = FUPartySheet.prepareActionHooks();
 		context.isGM = game.user.isGM;
 		await ActorSheetUtils.prepareData(context, this);
+		await ActorSheetUtils.enrichItems(context);
 		context.characters = await this.party.getCharacterData();
 		context.companions = await this.party.getCompanionData();
 		context.characterCount = this.party.characters.size + this.party.companions.size;
@@ -148,6 +154,9 @@ export class FUPartySheet extends FUActorSheet {
 				context.tabs = this._prepareTabs('primary');
 				break;
 			case 'overview':
+				break;
+			case 'camp':
+				context.campActivities = this.actor.getItemsByType('optionalFeature').filter((item) => item.system.optionalType === 'projectfu.campActivity');
 				break;
 			case 'inventory':
 				await ActorSheetUtils.prepareItems(context);
@@ -287,6 +296,35 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #onRemoveProgressTrack(event, target) {
 		this.removeProgressTrack(Number(target.closest('[data-index]').dataset.index));
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onSelectCampActivity(event, target) {
+		const id = target.dataset.id;
+		const item = this.actor.items.get(id);
+		if (item) {
+			item.sheet._onSendToChat(event);
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	supportsItem(item) {
+		if (super.supportsItem(item)) {
+			return true;
+		}
+		if (item.type === 'optionalFeature') {
+			if (item.system.optionalType === 'projectfu.campActivity') {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -490,17 +528,21 @@ export class FUPartySheet extends FUActorSheet {
 				name: game.i18n.localize('FU.Delete'),
 				icon: '<i class="fas fa-trash"></i>',
 				callback: (el) => {
-					const id = el.dataset.uuid;
+					const id = el.dataset.id;
+					const uuid = el.dataset.uuid;
 					const type = el.dataset.type;
 					switch (type) {
 						case 'character':
-							this.party.removeCharacter(id);
+							this.party.removeCharacter(uuid);
 							break;
 						case 'npc':
-							this.party.removeAdversary(id);
+							this.party.removeAdversary(uuid);
 							break;
 						case 'companion':
-							this.party.removeCompanion(id);
+							this.party.removeCompanion(uuid);
+							break;
+						case 'item':
+							this.actor.items.get(id).delete();
 							break;
 					}
 				},
