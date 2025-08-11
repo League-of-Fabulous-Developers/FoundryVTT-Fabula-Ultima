@@ -95,10 +95,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="individual-description">
-                        {{#if effect.enrichedDescription}}
-                            {{{effect.enrichedDescription}}}
-                        {{/if}}
+                        <div class="individual-description align-left {{#unless (inArray effect.id _expandedIds)}}hidden{{/unless}}" data-item-id="{{ effect.id }}">
+							{{#if effect.enrichedDescription}}
+								{{{effect.enrichedDescription}}}
+							{{/if}}
                         </div>
                     </li>
                 {{/each}}

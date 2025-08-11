@@ -25,6 +25,16 @@ function mergeRecursive(target, source) {
 	return [target, changed];
 }
 
+/**
+ * @param {Object} obj The object to resolve the property from
+ * @param {String} path The path to the property, in dot notation
+ * @returns {undefined|*} The value of the property
+ */
+function getProperty(obj, path) {
+	return foundry.utils.getProperty(obj, path);
+}
+
 export const ObjectUtils = Object.freeze({
 	mergeRecursive,
+	getProperty,
 });

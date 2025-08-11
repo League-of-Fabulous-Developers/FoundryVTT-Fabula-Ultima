@@ -118,12 +118,9 @@
 						{{#if (eq (getGameSetting 'optionNPCNotesTab') true)}}
 							{{{enrichedHtml.description}}}
 						{{else}}
-							{{formInput system.schema.fields.description
-										toggled=true
-										value=system.description
-										rollData=rollData
-										owner=owner
-										enriched=enrichedHtml.description}}
+							<prose-mirror name="system.description" value="{{system.description}}" toggled>
+								{{{enrichedHtml.description}}}
+							</prose-mirror>
 						{{/if}}
 					</section>
 				</section>

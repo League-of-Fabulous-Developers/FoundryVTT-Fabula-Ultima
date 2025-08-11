@@ -15,10 +15,9 @@
 									{{localize 'FU.BiographyInfo'}}
 								</a>
 							</legend>
-							{{formInput system.schema.fields.description
-										toggled=true
-										value=system.description
-										enriched=enrichedHtml.description}}
+							<prose-mirror name="system.description" value="{{system.description}}" toggled>
+								{{{enrichedHtml.description}}}
+							</prose-mirror>
 						</fieldset>
 					</main>
 				</section>
@@ -33,10 +32,9 @@
 							</a>
 						</legend>
 						{{!-- Enriched Description --}}
-						{{formInput system.schema.fields.description
-									toggled=true
-									value=system.description
-									enriched=enrichedHtml.description}}
+						<prose-mirror name="system.description" value="{{system.description}}" toggled>
+							{{{enrichedHtml.description}}}
+						</prose-mirror>
 					</fieldset>
 				</main>
 			</section>

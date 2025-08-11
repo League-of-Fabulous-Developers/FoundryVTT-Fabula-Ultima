@@ -5,6 +5,7 @@ import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { CombatHudSettings } from './settings/combatHudSettings.js';
 import { SettingsConfigurationApp } from './settings/settingsConfigurationApp.js';
+import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 
 /**
  * @description All system settings
@@ -248,17 +249,9 @@ export const registerSystemSettings = async function () {
 			nullable: true,
 			blank: true,
 			idOnly: true,
+			choices: () => Object.fromEntries(game.actors.contents.filter((actor) => actor.system instanceof PartyDataModel).map((a) => [a.id, a.name])),
 		}),
 		restricted: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
-		name: game.i18n.localize('FU.CombatHudPanTokenSettings'),
-		hint: game.i18n.localize('FU.CombatHudPanTokenSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionDefaultTargetingMode, {
@@ -276,13 +269,13 @@ export const registerSystemSettings = async function () {
 		},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionStudySavePath, {
-		name: game.i18n.localize('FU.StudySavePathSettings'),
-		hint: game.i18n.localize('FU.StudySavePathSettingsHint'),
+	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
+		name: game.i18n.localize('FU.CombatHudPanTokenSettings'),
+		hint: game.i18n.localize('FU.CombatHudPanTokenSettingsHint'),
 		scope: 'world',
 		config: true,
-		type: String,
-		default: 'Bestiary',
+		type: Boolean,
+		default: false,
 	});
 
 	// COMBAT HUD

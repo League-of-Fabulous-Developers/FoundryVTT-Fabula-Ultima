@@ -1,4 +1,3 @@
-{{log this}}
 <div class='resource-content desc'>
     <div>
         <fieldset class="title-fieldset desc resource-content">
@@ -41,8 +40,9 @@
                         </label>
                     </div>
                     <hr/>
-                    {{editor (lookup ../additionalData.effects @index)
-                             target=(concat 'system.data.effects.' @index '.effect') engine='prosemirror' button=true}}
+					<prose-mirror name="system.data.effects.{{@index}}.effect" value="{{effect}}" toggled>
+						{{{lookup ../additionalData.effects @index}}}
+					</prose-mirror>
                 </fieldset>
             </div>
         {{/each}}

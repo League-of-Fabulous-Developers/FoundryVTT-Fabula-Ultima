@@ -46,11 +46,7 @@
                       {{!-- Item Control--}}
                       {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                   </div>
-                  <div class="individual-description align-left">
-                      {{#if item.system.description}}
-                          {{{item.enrichedHtml.description}}}
-                      {{/if}}
-                  </div>
+				  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
               </li>
           {{/each}}
       </ol>
@@ -97,11 +93,7 @@
                       {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                   </div>
                   <span class="item-quality">{{ item.quality }}</span>
-                  <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-                      {{#if item.system.description}}
-                          {{{item.enrichedHtml.description}}}
-                      {{/if}}
-                  </div>
+				  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
               </li>
           {{/each}}
       </ol>
@@ -124,13 +116,7 @@
                   <div class="flexrow">
                       {{!-- Item Name--}}
                       {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                      <div class="item-full start tiny-desc">
-                      <span class="description-effect">
-                          {{#if item.system.description}}
-                              {{{item.enrichedHtml.description}}}
-                          {{/if}}
-                      </span>
-                      </div>
+					  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
                       {{!-- Clocks --}}
                       {{#if item.system.hasClock.value}}
 						  {{progress item 'system.progress' type='clockCounter'}}

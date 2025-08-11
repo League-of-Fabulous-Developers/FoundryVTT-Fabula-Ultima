@@ -9,7 +9,8 @@ import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
- * @param context
+ * @param {Object} context
+ * @param {FUActorSheet} sheet
  * @returns {Promise<void>}
  */
 async function prepareData(context, sheet) {
@@ -51,7 +52,6 @@ async function prepareItems(context) {
 	// TODO: Handle elsewhere
 	// Iterate through items, allocating to containers
 	for (let item of context.items) {
-		//item.img = item.img || CONST.DEFAULT_TOKEN;
 		if (CLOCK_TYPES.includes(item.type)) {
 			const progressArr = [];
 			const progress = item.system.progress || { current: 0, max: 6 };
@@ -79,11 +79,27 @@ async function prepareItems(context) {
 			item.mdef = `+${item.system.mdef.value}`;
 			item.init = item.system.init.value > 0 ? `+${item.system.init.value}` : item.system.init.value;
 		}
-
-		item.enrichedHtml = {
-			description: await TextEditor.enrichHTML(item.system?.description ?? ''),
-		};
 	}
+}
+
+/**
+ * @param {Object} context
+ * @returns {Promise<void>}
+ */
+async function enrichItems(context) {
+	for (let item of context.items) {
+		await enrichItemDescription(item);
+	}
+}
+
+/**
+ * @param {FUItem} item
+ * @returns {Promise<void>}
+ */
+async function enrichItemDescription(item) {
+	item.enrichedHtml = {
+		description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+	};
 }
 
 /**
@@ -106,9 +122,7 @@ function prepareAbilities(context) {
  */
 function prepareNpcCombat(context) {
 	const basics = [];
-
 	const rules = [];
-
 	const treasures = [];
 
 	for (let item of context.items) {
@@ -135,9 +149,7 @@ function prepareNpcCombat(context) {
 	}
 
 	context.basics = basics;
-
 	context.rules = rules;
-
 	context.treasures = treasures;
 }
 
@@ -284,7 +296,7 @@ async function prepareFeatures(context) {
 /**
  * @param {ApplicationRenderContext} context
  */
-function prepareSpells(context) {
+async function prepareSpells(context) {
 	const spells = [];
 	const rituals = [];
 
@@ -702,14 +714,6 @@ function activateDefaultListeners(html, sheet) {
 			li.addEventListener('dragstart', handler, false);
 		});
 	}
-
-	// Automatically expand elements that are in the _expanded state
-	sheet._expanded.forEach((itemId) => {
-		const desc = html.find(`li[data-item-id="${itemId}"] .individual-description`);
-		if (desc.length) {
-			desc.removeClass('hidden').css({ display: 'block', height: 'auto' });
-		}
-	});
 }
 
 function activateExpandedItemListener(html, expanded, onExpand) {
@@ -718,13 +722,17 @@ function activateExpandedItemListener(html, expanded, onExpand) {
 		if (!el) return; // Ensures we only proceed if the target is .click-item
 
 		const parentEl = el.closest('li');
-		const itemId = parentEl.dataset.itemId;
+		// Support both items and effects
+		const itemId = parentEl.dataset.itemId ?? parentEl.dataset.effectId;
 		const desc = parentEl.querySelector('.individual-description');
 
 		if (expanded.has(itemId)) {
 			// Slide up effect
 			desc.style.transition = 'height 0.2s ease';
-			desc.style.height = '0';
+			desc.style.height = desc.scrollHeight + 'px';
+			setTimeout(() => {
+				desc.style.height = '0';
+			});
 			setTimeout(() => {
 				desc.style.display = 'none';
 				desc.classList.add('hidden'); // Add hidden class after transition
@@ -1273,6 +1281,24 @@ function prepareSorting(context) {
 	}
 }
 
+function onRenderFUActorSheet(sheet, element) {
+	// Automatically expand elements that are in the _expanded state
+	console.log(sheet._expanded);
+	if (sheet._expanded) {
+		sheet._expanded.forEach((itemId) => {
+			const expandedDescriptions = element.querySelectorAll(`li[data-item-id=${itemId}] .individual-description`);
+			console.log(itemId, expandedDescriptions);
+			expandedDescriptions.forEach((el) => {
+				el.classList.remove('hidden');
+				el.style.display = 'block';
+				el.style.height = 'auto';
+			});
+		});
+	}
+}
+
+Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
+
 /**
  * @description Provides utility functions for rendering the actor sheet
  * @type {Readonly<{prepareItems: ((function(Object): Promise<void>)|*)}>}
@@ -1280,6 +1306,7 @@ function prepareSorting(context) {
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
 	prepareItems,
+	enrichItems,
 	findItemConfig,
 	prepareCharacterData,
 	activateDefaultListeners,

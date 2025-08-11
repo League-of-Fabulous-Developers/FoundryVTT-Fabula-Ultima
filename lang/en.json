@@ -923,6 +923,7 @@
 		"ChatApplyOpportunity": "Apply Opportunity",
 		"ChatOpportunity": "<strong>{actor}</strong> gets to apply the effects of an opportunity!",
 		"ChatFumbleOpportunity": "The opposition of <strong>{actor}</strong> gets to apply the effects of an opportunity!",
+		"ChatOpportunitySettingMissing": "Automation for opportunities must be set on the system's homebrew settings",
 		"TotalAvailableSkills": "Total Available Skills",
 		"TotalSPAvailable": "Total SP Available",
 		"AvailableSPLevels": "Available skills from levels",
