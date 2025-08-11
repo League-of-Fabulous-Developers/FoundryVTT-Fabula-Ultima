@@ -462,6 +462,7 @@ FU.checkTypes = {
 };
 
 FU.classFeatures = {};
+FU.optionalFeatures = {};
 
 FU.studyRoll = {
 	core: [10, 13, 16],

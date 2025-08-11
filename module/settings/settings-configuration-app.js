@@ -42,6 +42,8 @@ export class SettingsConfigurationApp extends FUApplication {
 				key: setting.key,
 				completeKey: settingDocument.key,
 				value: game.settings.get(setting.namespace, setting.key),
+				scope: setting.scope,
+				requiresReload: setting.requiresReload,
 			};
 			if (setting.type instanceof fields.DataField) {
 				data.field = setting.type;
@@ -75,7 +77,6 @@ export class SettingsConfigurationApp extends FUApplication {
 		Object.assign(context, {
 			settings: this.#settingData,
 		});
-		console.log(context.settings);
 		return context;
 	}
 

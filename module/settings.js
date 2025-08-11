@@ -4,7 +4,7 @@ import { CombatHUD } from './ui/combat-hud.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { CombatHudSettings } from './settings/combatHudSettings.js';
-import { SettingsConfigurationApp } from './settings/settingsConfigurationApp.js';
+import { SettingsConfigurationApp } from './settings/settings-configuration-app.js';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 
 /**
@@ -170,6 +170,7 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: true,
+		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionZeroPower, {
@@ -179,6 +180,7 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: true,
+		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCampingRules, {
@@ -188,6 +190,7 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: true,
+		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {

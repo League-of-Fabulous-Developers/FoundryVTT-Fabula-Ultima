@@ -970,37 +970,26 @@ async function _onItemCreateDialog(ev, sheet) {
 	const isNPC = sheet.actor.type === 'npc';
 	const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.all);
 	switch (dataType) {
-		case 'newClock':
+		case 'newClock': {
+			clock = true;
+
 			types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 			if (isCharacter) {
-				const options = ['miscAbility', 'ritual'];
-
-				// Optional Features
-				const optionalFeatures = [];
-
+				types = types.filter((item) => ['miscAbility', 'ritual'].includes(item.type));
 				// Check if the optionZeroPower setting is false, then add the zeroPower feature
-				if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
-					optionalFeatures.push({
+				if (FU.optionalFeatures.zeroPower) {
+					types.push({
 						type: 'optionalFeature',
-						subtype: 'projectfu.zeroPower',
+						subtype: FU.optionalFeatures.zeroPower,
 						label: game.i18n.localize('Zero Power'),
 					});
 				}
-
-				// Filter out items based on options
-				types = types.filter((item) => options.includes(item.type));
-
-				// Filter out 'quirk' and 'camping' optional feature types
-				const filteredOptionalFeatures = optionalFeatures.filter((feature) => !['projectfu.quirk', 'projectfu-playtest.camping'].includes(feature.subtype));
-
-				// Push filtered optional features to types array
-				types.push(...filteredOptionalFeatures);
 			} else if (isNPC) {
 				types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
 			}
-			clock = true;
 			break;
-		case 'newFavorite':
+		}
+		case 'newFavorite': {
 			types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 
 			if (isCharacter) {
@@ -1009,18 +998,6 @@ async function _onItemCreateDialog(ev, sheet) {
 				// Filter out default types to hide for characters
 				types = types.filter((item) => !dontShowCharacter.includes(item.type));
 
-				// Conditional rendering for optional features based on system settings
-				let dontShowOptional = [];
-				if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
-					dontShowOptional.push('projectfu.zeroPower');
-				}
-				if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
-					dontShowOptional.push('projectfu.quirk');
-				}
-				if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
-					dontShowOptional.push('projectfu-playtest.camping');
-				}
-
 				// Optional Features
 				let optionalFeatures = optionalFeatureTypes.map(([key, optional]) => ({
 					type: 'optionalFeature',
@@ -1028,11 +1005,8 @@ async function _onItemCreateDialog(ev, sheet) {
 					label: game.i18n.localize(optional.translation),
 				}));
 
-				// Filter out optional features based on system settings
-				let filteredOptionalFeatures = optionalFeatures.filter((feature) => !dontShowOptional.includes(feature.subtype));
-
 				// Push filtered optional features to types array
-				types.push(...filteredOptionalFeatures);
+				types.push(...optionalFeatures);
 			} else if (isNPC) {
 				let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable']; // Default types to hide for NPCs
 				if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
@@ -1040,6 +1014,7 @@ async function _onItemCreateDialog(ev, sheet) {
 				types = types.filter((item) => !dontShowNPC.includes(item.type));
 			}
 			break;
+		}
 		case 'newClassFeatures': {
 			const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.all);
 			types = ['miscAbility', 'project'];
@@ -1054,24 +1029,9 @@ async function _onItemCreateDialog(ev, sheet) {
 				})),
 			);
 
-			// Optional Features
-			const dontShow = [];
-			if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
-				dontShow.push('projectfu.zeroPower');
-			}
-			if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
-				dontShow.push('projectfu.quirk');
-			}
-			if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
-				dontShow.push('projectfu-playtest.camping');
-			}
-
-			// Filter optionalFeatureTypes based on dontShow array
-			const filteredOptionalFeatureTypes = optionalFeatureTypes.filter(([key, optional]) => !dontShow.includes(key));
-
 			// Push filtered types to the types array
 			types.push(
-				...filteredOptionalFeatureTypes.map(([key, optional]) => ({
+				...optionalFeatureTypes.map(([key, optional]) => ({
 					type: 'optionalFeature',
 					subtype: key,
 					label: game.i18n.localize(optional.translation),

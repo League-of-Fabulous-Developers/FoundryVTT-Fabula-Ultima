@@ -133,6 +133,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-description.hbs',
 
+		'systems/projectfu/templates/optional/camp-activity/feature-camp-activity-sheet.hbs',
+		'systems/projectfu/templates/optional/camp-activity/feature-camp-activity-preview.hbs',
+
 		'systems/projectfu/templates/optional/partials/feature-resource-points-sheet.hbs',
 		'systems/projectfu/templates/optional/partials/feature-progress-clock-sheet.hbs',
 
