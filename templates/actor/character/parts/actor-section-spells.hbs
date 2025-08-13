@@ -1,0 +1,54 @@
+<div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="spells">
+  <section class="desc">
+      <header class="items-main-header">
+      <span class="items-main">
+        <label class="items-label">{{localize "FU.Rituals"}}</label>
+      </span>
+      </header>
+      <ol class="items-list">
+          <li class="item flexrow items-header">
+              <div class="item-name">{{localize "FU.Rituals"}}</div>
+              <div class="item-m">{{localize "FU.MindPointCost"}}</div>
+              <div class="item-xs">{{localize "FU.DLAbbr"}}</div>
+              <div class="item-m">{{localize 'FU.Clock'}}</div>
+              <div class="item-m end">
+                  <a class="item-control item-create" aria-describedby="tooltip"
+                    data-tooltip="{{localize 'FU.RitualCreate'}}" data-type="ritual">
+                      <i class="fas fa-plus icon"></i>
+                      {{localize 'FU.Add'}}
+                  </a>
+              </div>
+          </li>
+          {{#each rituals as |item id|}}
+              <li class="item" data-item-id="{{ item._id }}">
+                  <div class="flexrow">
+                      {{!-- Item Name--}}
+                      {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                      <div class="item-m">{{ item.mpCost }}</div>
+                      <div class="item-xs">{{ item.dLevel }}</div>
+                      {{!-- Clocks --}}
+                      {{#if (not item.system.hasClock.value)}}
+                          <div class="item-m">{{ item.clock }}</div>
+                      {{/if}}
+                      {{#if item.system.hasClock.value}}
+						  {{progress item 'system.progress' type='clockCounter'}}
+                      {{/if}}
+
+                      {{!-- Item Control--}}
+                      {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                  </div>
+                  <span>{{ item.quality }}</span>
+				  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+              </li>
+          {{/each}}
+      </ol>
+
+      <header class="items-main-header">
+      <span class="items-main">
+        <label class="items-label">{{localize "FU.Spells"}}</label>
+      </span>
+      </header>
+    {{> "systems/projectfu/templates/actor/sections/actor-spell-list.hbs"}}
+
+  </section>
+</div>

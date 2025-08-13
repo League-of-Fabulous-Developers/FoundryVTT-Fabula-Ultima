@@ -9,3 +9,9 @@
         <div class="divider" style="--index: {{obj.id}}"></div>
     {{/each}}
 </div>
+
+{{#if displayName}}
+	<label class="item-name resource-content">
+		<span class="resource-label-l">{{data.name}}</span>
+	</label>
+{{/if}}

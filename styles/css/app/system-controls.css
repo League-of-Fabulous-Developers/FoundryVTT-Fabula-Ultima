@@ -1,0 +1,19 @@
+#players {
+	&:not(.expanded) .system-controls {
+		margin-bottom: -24px;
+		transition: margin-bottom 0.5s ease-in-out;
+	}
+
+	.system-controls {
+		width: 200px;
+		margin-bottom: 0;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap-reverse;
+		gap: 8px;
+
+		> * {
+			flex: 0 1 auto;
+		}
+	}
+}

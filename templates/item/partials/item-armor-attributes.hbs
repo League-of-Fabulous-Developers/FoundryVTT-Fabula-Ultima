@@ -1,0 +1,27 @@
+<div class="resource-content flexcol flex-group-center">
+	<label class="resource-label-m flexlarge align-left">{{localize 'FU.DefenseAbbr'}}
+	</label>
+	<span>
+		<select name="system.def.attribute" class="resource-inputs select-dropdown" {{#if
+		 system.isMartial.value}}disabled{{/if}}>
+			{{selectOptions attrAbbr selected=system.def.attribute blank='-' sort=true
+							localize=true}}
+		</select>
+		<input type="number" name="system.def.value" value="{{ system.def.value }}"
+			   data-dtype="Number"
+			   class="resource-inputs select-dropdown-sm" />
+	</span>
+</div>
+
+<div class="resource-content flexcol flex-group-center">
+	<label class="resource-label-m flexlarge align-left">{{localize
+	 'FU.MagicDefenseAbbr'}}</label>
+	<span>
+		<select name="system.mdef.attribute" class="resource-inputs select-dropdown">
+			{{selectOptions attrAbbr selected=system.mdef.attribute blank='-' sort=true
+							localize=true}}
+		</select>
+		<input type="number" name="system.mdef.value" value="{{ system.mdef.value }}"
+			   data-dtype="Number" class="resource-inputs select-dropdown-sm" />
+	</span>
+</div>

@@ -1,0 +1,12 @@
+<div class="desc">
+	{{#each settings as |setting|}}
+		<div class="setting">
+			{{formGroup setting.field value=setting.value localize=true}}
+		</div>
+	{{/each}}
+	<div class="form-group buttons">
+		<button type="submit">
+			<i class="fas fa-floppy-disk"></i>{{localize "FU.SettingsSave"}}
+		</button>
+	</div>
+</div>

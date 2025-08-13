@@ -1,18 +1,20 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { ChecksV2 } from './checks-v2.mjs';
+import { Checks } from './checks.mjs';
 import { CHECK_PUSH } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
-function addRollContextMenuEntries(html, options) {
+const { DiceTerm, OperatorTerm, NumericTerm } = foundry.dice.terms;
+
+function addRollContextMenuEntries(application, menuItems) {
 	// Character push
-	options.unshift({
+	menuItems.unshift({
 		name: 'FU.ChatContextPush',
 		icon: '<i class="fas fa-arrow-up-right-dots"></i>',
 		group: SYSTEM,
 		condition: (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
@@ -20,13 +22,13 @@ function addRollContextMenuEntries(html, options) {
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
-			const messageId = li.data('messageId');
+			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
 				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 				if (check) {
-					await ChecksV2.modifyCheck(check.id, handlePush);
+					await Checks.modifyCheck(check.id, handlePush);
 				}
 			}
 		},
@@ -63,15 +65,17 @@ const getPushParams = async (actor) => {
 	});
 
 	/** @type CheckPush */
-	const push = await Dialog.prompt({
-		title: game.i18n.localize('FU.DialogPushTitle'),
+	const push = await foundry.applications.api.DialogV2.prompt({
+		window: { title: game.i18n.localize('FU.DialogPushTitle') },
 		label: game.i18n.localize('FU.DialogPushLabel'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
-		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		/** @type {(jQuery) => (CheckPush | false)} */
-		callback: (html) => {
-			const index = +html.find('input[name=bond]:checked').val();
-			return bonds[index] || false;
+		ok: {
+			callback: (event, html, dialog) => {
+				const index = Number(dialog.element.querySelector('input[name=bond]:checked').value);
+				return bonds[index] || false;
+			},
 		},
 		rejectClose: false,
 	});
@@ -89,14 +93,10 @@ const getPushParams = async (actor) => {
  * @return {RollTerm} the replacement
  */
 function getReplacementTerm(term) {
-	const DiceTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.DiceTerm : DiceTerm;
-
-	const NumericTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.NumericTerm : NumericTerm;
-
-	if (term instanceof DiceTermClass) {
-		return new NumericTermClass({ number: term.total, options: { ...term.options, faces: term.faces } });
-	} else if (term instanceof NumericTermClass) {
-		return new NumericTermClass({ number: term.number, options: term.options });
+	if (term instanceof DiceTerm) {
+		return new NumericTerm({ number: term.total, options: { ...term.options, faces: term.faces } });
+	} else if (term instanceof NumericTerm) {
+		return new NumericTerm({ number: term.number, options: term.options });
 	} else {
 		throw new Error(`Unexpected term: ${term.constructor.name}`);
 	}
@@ -137,7 +137,7 @@ const handlePush = async (check, actor, item) => {
 };
 
 function initialize() {
-	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
+	Hooks.on('getChatMessageContextOptions', addRollContextMenuEntries);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 }
 

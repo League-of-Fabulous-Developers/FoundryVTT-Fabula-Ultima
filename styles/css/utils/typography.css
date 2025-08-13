@@ -1,0 +1,845 @@
+/* =========================
+   Typography
+   ========================= */
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap");
+@import 'node_modules/rpg-awesome/scss/rpg-awesome';
+
+@font-face {
+	font-family: 'Yanone Kaffeesatz';
+	src: url('../../fonts/yanone-kafffeesatz/YanoneKaffeesatz-VariableFont_wght.ttf') format('truetype');
+	font-optical-sizing: auto;
+	font-weight: 200 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Fabula Ultima icons';
+	src: url('../../fonts/fabula-ultima/FabulaUltimaIcons-Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'CreditValley';
+	src: url('../../fonts/credit-valley/CreditValley.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'CreditValleybold';
+	src: url('../../fonts/credit-valley/CreditValleybold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'trigger-bold';
+	src: url('../../fonts/trigger-bold/trigger-bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Evilz';
+	src: url('../../fonts/evil-font/Evilz.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FnT_BasicShapes1';
+	src: url('../../fonts/fnt-bs/FNT_BS.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'old retro labels tfb';
+	src: url('../../fonts/old-retro-labels-tfb/old_retro_labels_tfb.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@counter-style diamonds {
+	system: cyclic;
+	suffix: ' ';
+	symbols: '◆';
+}
+
+@font-face {
+	font-family: 'Material Symbols Outlined';
+	font-style: normal;
+	src: url('../../fonts/material-symbols/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+@font-face {
+	font-family: 'Material Symbols Rounded';
+	font-style: normal;
+	src: url('../../fonts/material-symbols/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+@font-face {
+	font-family: 'Material Symbols Sharp';
+	font-style: normal;
+	src: url('../../fonts/material-symbols/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+/* =========================
+   Typography Variables
+   ========================= */
+:root {
+	--font-primary: 'PT Sans Narrow', sans-serif;
+	--font-secondary: 'Yanone Kaffeesatz', sans-serif;
+	--font-title: 'CreditValleybold';
+	--font-fancy: 'Playfair Display', 'Bodoni Moda', serif;
+	--font-quote: 'EB Garamond', sans-serif;
+
+	/* Font sizes */
+	--font-size-xs: 0.7rem;
+	--font-size-sm: 0.8rem;
+	--font-size-md: 0.95rem;
+	--font-size-lg: 1.1rem;
+	--font-size-xl: 1.8rem;
+	--font-size-xxl: 2rem;
+	--font-size-xxxl: 3rem;
+
+	/* Typography specific sizes */
+	--font-size-base: 1rem;
+	--font-size-small: 0.875rem;
+	--font-size-large: 1.125rem;
+	--font-size-xlarge: 1.25rem;
+	--font-size-xxlarge: 1.375rem;
+	--font-size-xxxlarge: 1.5rem;
+	--font-size-char-name: 2rem;
+	--font-size-pronouns: 1.35rem;
+	--font-size-action-button: 0.813rem;
+	--font-size-flavor-text: 1.25rem;
+	--font-size-resource-input: 0.875rem;
+	--font-size-crisis: 1.2rem;
+
+	/* Heading sizes */
+	--font-size-h1: 2rem;
+	--font-size-h2: 1.75rem;
+	--font-size-h3: 1.625rem;
+	--font-size-h4: 1.5rem;
+	--font-size-h5: 1.375rem;
+	--font-size-h6: 1.25rem;
+
+	/* Font weights */
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: 700;
+
+	/* Line heights */
+	--line-height-tight: 1.2em;
+	--line-height-normal: 1.45em;
+	--line-height-relaxed: 1.6em;
+}
+
+.projectfu {
+	font-family: var(--font-primary);
+}
+
+.projectfu.actor,
+.projectfu.item {
+	font-family: var(--font-primary)
+}
+
+.mats-o {
+	font-family: "Material Symbols Outlined";
+}
+
+.mats-r {
+	font-family: "Material Symbols Rounded";
+}
+
+.mats-s {
+	font-family: "Material Symbols Sharp";
+}
+
+.mats-o,
+.mats-r,
+.mats-s {
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1.5rem;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	vertical-align: middle;
+}
+
+.mats-o.mats-icon::before,
+.mats-r.mats-icon::before,
+.mats-s.mats-icon::before {
+	content: var(--mats-icon);
+}
+
+.mats-fill {
+	font-variation-settings: "FILL" 1;
+}
+
+/* ----------------------------------------- */
+/* Application Sheets                     
+/* ----------------------------------------- */
+.application.journal-sheet:not([id$=-popout]),
+.application.projectfu:not([id$=-popout]),
+.chat-message.message {
+	font-family: var(--font-primary);
+	
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0.5rem 0;
+	}
+
+	h1.desc {
+		font-family: var(--font-title);
+		font-size: var(--font-size-h1) !important;
+		font-weight: var(--font-weight-bold);
+		color: var(--color-primary);
+	}
+
+	h2.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h2) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h3.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h3) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h4.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h4) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h5.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h5) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	h6.desc {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-h6) !important;
+		font-weight: var(--font-weight-bold);
+	}
+
+	.sheet-body,
+	.journal-sheet-container {
+
+		p,
+		li {
+			font-family: var(--font-primary);
+			font-style: normal;
+			font-size: var(--font-size-base);
+		}
+
+		blockquote,
+		blockquote p {
+			font-family: var(--font-quote) !important;
+			font-style: italic;
+			font-size: var(--font-size-base);
+		}
+
+		.editor ul,
+		.journal-page-content ul,
+		.editor-content ul,
+		.chat-desc ul {
+			list-style: diamonds;
+
+			li::marker,
+			.ProseMirror li::marker {
+				color: var(--color-primary);
+				font-size: var(--font-size-small);
+			}
+		}
+
+		.editor ol,
+		.journal-page-content ol,
+		.editor-content ol,
+		.chat-desc ol {
+
+			li::marker,
+			.ProseMirror li::marker {
+				color: var(--color-primary);
+				font-size: var(--font-size-base);
+				font-weight: var(--font-weight-bold);
+			}
+		}
+	}
+
+	.label {
+		border: none;
+	}
+
+	nav,
+	a.item {
+		font-weight: var(--font-weight-bold);
+	}
+
+	[class^=item-] {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.item,
+	.zenit-content {
+		font-size: var(--font-size-base);
+
+		.item-name {
+			font-size: var(--font-size-small);
+			font-weight: var(--font-weight-bold);
+		}
+
+		.item-quality {
+			font-size: var(--font-size-small);
+		}
+	}
+
+	input.resource-inputs {
+		font-size: var(--font-size-resource-input);
+
+		&.summary {
+			font-family: var(--font-quote);
+			font-weight: var(--font-weight-bold);
+			font-style: italic;
+			font-size: var(--font-size-base);
+			line-height: var(--line-height-normal);
+		}
+	}
+
+	.resource-content {
+		font-family: var(--font-primary);
+
+		&.affinity label {
+			font-family: var(--font-secondary);
+			font-size: var(--font-size-large);
+			color: var(--color-primary);
+		}
+
+		.resource-text-sm {
+			font-size: var(--font-size-base);
+			font-family: var(--font-primary);
+		}
+
+		.resource-text-m {
+			font-size: var(--font-size-base);
+			font-family: var(--font-primary);
+		}
+
+		.resource-label-t {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-sm {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-m {
+			font-size: var(--font-size-large);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-l {
+			font-size: var(--font-size-xlarge);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+
+		.resource-label-xl {
+			font-size: var(--font-size-xxxlarge);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+		}
+	}
+
+	label.is-crisis {
+		font-size: var(--font-size-crisis);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-secondary);
+		font-style: italic;
+	}
+
+	.action-button {
+		font-weight: var(--font-weight-bold);
+		font-size: var(--font-size-action-button);
+		line-height: var(--line-height-tight);
+	}
+
+	.charname input {
+		font-family: var(--font-secondary);
+		font-weight: var(--font-weight-medium);
+		font-size: var(--font-size-char-name);
+		text-transform: none;
+	}
+
+	.pronouns input {
+		font-family: var(--font-secondary);
+		font-size: var(--font-size-pronouns);
+	}
+
+	.detail-desc {
+		font-size: var(--font-size-small);
+		line-height: var(--line-height-normal);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-primary);
+
+		div {
+			font-size: var(--font-size-small);
+			padding: 5px 0;
+		}
+	}
+
+	.description-effect {
+		font-size: 0.938rem;
+		line-height: var(--line-height-normal);
+		font-weight: var(--font-weight-normal) !important;
+		font-family: var(--font-primary);
+	}
+
+	.quote {
+		border-left: 3px solid #999;
+		padding-left: 10px;
+		font-style: italic;
+	}
+
+	.chat-desc {
+		.summary {
+			font-family: var(--font-quote);
+			font-weight: var(--font-weight-bold);
+			font-style: italic;
+			font-size: var(--font-size-base);
+			line-height: var(--line-height-normal);
+			color: var(--color-secondary);
+		}
+
+		p {
+			font-family: var(--font-primary);
+			font-size: var(--font-size-base);
+			line-height: var(--line-height-normal);
+		}
+	}
+
+	.chat-message .message-header .flavor-text {
+		font-size: var(--font-size-flavor-text);
+		line-height: var(--line-height-normal);
+	}
+
+	.auto-shrink {
+		overflow: hidden;
+		width: 100%;
+		box-sizing: border-box;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.sheet nav.sheet-tabs .item {
+		font-size: var(--font-size-base);
+		line-height: var(--line-height-normal);
+	}
+}
+
+/* Icon classes */
+.is-offensive {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #d1232a !important;
+	-webkit-text-stroke: 0.5px #000000;
+}
+
+.is-offensive::before {
+	content: "o";
+}
+
+.is-martial {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #d1232a !important;
+	-webkit-text-stroke: 0.5px #000000;
+}
+
+.is-martial::before {
+	content: "w";
+}
+
+.is-melee {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #000000 !important;
+}
+
+.is-melee::before {
+	content: "m";
+}
+
+.is-range {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #000000 !important;
+}
+
+.is-range::before {
+	content: "r";
+}
+
+.is-spell {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #000000 !important;
+}
+
+.is-spell::before {
+	content: "c";
+}
+
+.is-skill {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #000000 !important;
+}
+
+.is-skill::before {
+	content: "s";
+}
+
+.is-two-weapon {
+	color: #000000 !important;
+	font-family: "Evilz";
+	font-size: 1.75rem;
+	-webkit-text-stroke: 0.5px #000000;
+}
+
+.is-two-weapon.equip {
+	color: var(--color-primary) !important;
+	-webkit-text-stroke: transparent;
+}
+
+.is-two-weapon::before {
+	content: "4";
+}
+
+.is-header {
+	font-size: 1.75rem;
+	color: #000000;
+	font-family: "old retro labels tfb";
+}
+
+.is-header::before {
+	content: "d";
+}
+
+.fu-phys {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #dedede !important;
+}
+
+.fu-phys::before {
+	content: "p";
+}
+
+.fu-wind {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #cfd600 !important;
+}
+
+.fu-wind::before {
+	content: "a";
+}
+
+.fu-bolt {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #ffef26 !important;
+}
+
+.fu-bolt::before {
+	content: "b";
+}
+
+.fu-dark {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #543987 !important;
+}
+
+.fu-dark::before {
+	content: "d";
+}
+
+.fu-earth {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #d28d3e !important;
+}
+
+.fu-earth::before {
+	content: "e";
+}
+
+.fu-fire {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #f58a00 !important;
+}
+
+.fu-fire::before {
+	content: "f";
+}
+
+.fu-ice {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #bce4fa !important;
+}
+
+.fu-ice::before {
+	content: "i";
+}
+
+.fu-light {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #fff7b2 !important;
+}
+
+.fu-light::before {
+	content: "l";
+}
+
+.fu-poison {
+	font-family: "Fabula Ultima icons";
+	font-size: 1.75rem;
+	color: #d678a2 !important;
+}
+
+.fu-poison::before {
+	content: "t";
+}
+
+.is-diamond {
+	font-family: "FnT_BasicShapes1";
+	font-size: 1.75rem;
+	-webkit-text-stroke: 0.5px #000000;
+	color: #d1232a !important;
+}
+
+.is-diamond::before {
+	content: "Q";
+}
+
+.is-club {
+	font-family: "FnT_BasicShapes1";
+	font-size: 1.75rem;
+	-webkit-text-stroke: 0.5px #000000;
+	color: #000000 !important;
+}
+
+.is-club::before {
+	content: "P";
+}
+
+.is-heart {
+	font-family: "FnT_BasicShapes1";
+	font-size: 1.75rem;
+	-webkit-text-stroke: 0.5px #000000;
+	color: #d1232a !important;
+}
+
+.is-heart::before {
+	content: "O";
+}
+
+.is-spade {
+	font-family: "FnT_BasicShapes1";
+	font-size: 1.75rem;
+	-webkit-text-stroke: 0.5px #000000;
+	color: #000000 !important;
+}
+
+.is-spade::before {
+	content: "R";
+}
+
+.fnt {
+	font-family: "FnT_BasicShapes1";
+	font-size: var(--font-size-large);
+	-webkit-text-stroke: 0.5px #000000;
+}
+
+.retrolabels {
+	color: #000000;
+	font-family: "old retro labels tfb";
+}
+
+.evil {
+	font-family: "Evilz";
+	font-size: var(--font-size-large);
+	-webkit-text-stroke: 0.5px #000000;
+}
+
+.font-size-10 {
+	font-size: var(--font-size-10);
+}
+
+.font-size-11 {
+	font-size: var(--font-size-11);
+}
+
+.font-size-12 {
+	font-size: var(--font-size-12);
+}
+
+.font-size-13 {
+	font-size: var(--font-size-13);
+}
+
+.font-size-14 {
+	font-size: var(--font-size-14);
+}
+
+.font-size-15 {
+	font-size: var(--font-size-15);
+}
+
+.font-size-16 {
+	font-size: var(--font-size-16);
+}
+
+.font-size-18 {
+	font-size: var(--font-size-18);
+}
+
+.font-size-20 {
+	font-size: var(--font-size-20);
+}
+
+.font-size-24 {
+	font-size: var(--font-size-24);
+}
+
+.font-size-28 {
+	font-size: var(--font-size-28);
+}
+
+.font-size-32 {
+	font-size: var(--font-size-32);
+}
+
+.font-size-36 {
+	font-size: var(--font-size-36);
+}
+
+.font-size-48 {
+	font-size: var(--font-size-48);
+}
+
+.font-size-64 {
+	font-size: var(--font-size-64);
+}
+
+.font-size-80 {
+	font-size: var(--font-size-80);
+}
+
+.strikethrough {
+	text-decoration: line-through;
+}
+
+.action-disabled {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+/* Scoped CSS specifically for ProseMirror element */
+.application.journal-sheet,
+.application.projectfu {
+	.editor-content {
+		h1 {
+			font-family: var(--font-title);
+			font-size: var(--font-size-h1);
+			font-weight: var(--font-weight-bold);
+		}
+
+		h2, h3, h4, h5, h6 {
+			font-family: var(--font-secondary);
+			font-weight: var(--font-weight-bold);
+		}
+
+		h2 { font-size: var(--font-size-h2); }
+		h3 { font-size: var(--font-size-h3); }
+		h4 { font-size: var(--font-size-h4); }
+		h5 { font-size: var(--font-size-h5); }
+		h6 { font-size: var(--font-size-h6); }
+
+		p,
+		li {
+			font-family: var(--font-primary);
+			font-style: normal;
+			font-size: var(--font-size-base);
+		}
+
+		blockquote,
+		blockquote p {
+			font-family: var(--font-quote);
+			font-style: italic;
+			font-size: var(--font-size-base);
+		}
+
+		ul {
+			list-style: diamonds;
+
+			li::marker {
+				font-size: var(--font-size-small);
+			}
+		}
+
+		ol li::marker {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-bold);
+		}
+
+		strong {
+			font-weight: var(--font-weight-bold);
+		}
+	}
+
+	prose-mirror[name="system.description"].editor.prosemirror {
+		.editor-content {
+			h1, h2, h3, h4, h5, h6 {
+				font-family: var(--font-secondary);
+				font-weight: var(--font-weight-bold);
+				color: var(--color-border-primary);
+				margin: 0.125rem 0;
+			}
+			ul {
+				list-style: diamonds;
+			}
+			ul li::marker {
+				font-size: var(--font-size-small);
+			}
+		}
+	}
+}

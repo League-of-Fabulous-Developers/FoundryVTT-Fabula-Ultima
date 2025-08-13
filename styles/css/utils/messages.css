@@ -1,0 +1,1926 @@
+/* ----------------------------------------- */
+/* Item Card Structure                       
+/* ----------------------------------------- */
+.chat-message .message-header .message-sender {
+	-webkit-box-flex: 3;
+	-ms-flex: 3;
+	flex: 3;
+	margin: 0;
+	white-space: nowrap;
+	font-family: "PT Sans Narrow", sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+  }
+  .chat-message .chat-header {
+	padding: 0.125rem 0;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-bottom: 0.125rem;
+	gap: 5px;
+  }
+  .chat-message .chat-header img {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 2.25rem;
+	flex: 0 0 2.25rem;
+	height: auto;
+	width: 2rem;
+	border: 0;
+	-webkit-filter: drop-shadow(2px 2px 4px #000000);
+	filter: drop-shadow(2px 2px 4px #000000);
+	position: relative;
+	cursor: pointer;
+  }
+  .chat-message .chat-header h2,
+  .chat-message .chat-header h3 {
+	border-bottom: none !important;
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	font-family: "PT Sans Narrow", sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+	font-variant: small-caps;
+  }
+  .chat-message .chat-header h2 {
+	margin: 0 0.5rem;
+	font-size: 1.25rem;
+  }
+  
+  .chat-message,
+  .chat-message.whisper {
+	background: url("../../static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+	background: var(--background-card);
+	background-blend-mode: multiply !important;
+	background-repeat: repeat-y;
+	background-position: right top;
+	margin: 0.25rem;
+	padding: 0.5rem;
+	font-size: var(--font-size-14);
+	border: 2px solid #6f6c66;
+	background-size: cover;
+	border-radius: 5px;
+  }
+  .chat-message .chat-desc,
+  .chat-message.whisper .chat-desc {
+	text-align: left;
+	font-size: 0.875rem;
+	padding: 0.313rem 0.5rem;
+	margin: 5px 0;
+	color: #272a2a;
+	-webkit-box-shadow: 1px 2px #2b4a42;
+	box-shadow: 1px 2px #2b4a42;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
+	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+	border-radius: 10px;
+	border-top: 1px solid #c9c7b8;
+  }
+  .chat-message .chat-desc strong,
+  .chat-message.whisper .chat-desc strong {
+	color: #272a2a;
+  }
+  .chat-message .chat-desc .resource-label,
+  .chat-message.whisper .chat-desc .resource-label {
+	color: #2b4a42;
+	font-weight: bold;
+	font-size: 16px;
+	border: transparent;
+  }
+  .chat-message .chat-desc .summary,
+  .chat-message.whisper .chat-desc .summary {
+	margin: 0 0 0.188rem 0.625rem;
+	font-family: "EB Garamond", sans-serif;
+	font-weight: 700;
+	font-style: italic;
+	font-size: 1rem;
+	line-height: 1.45em;
+	color: #3d665a;
+  }
+  .chat-message .chat-desc p,
+  .chat-message.whisper .chat-desc p {
+	font-family: "PT Sans Narrow", sans-serif;
+	font-size: 1rem;
+	line-height: 1.45em;
+  }
+  
+  .chat-message.whisper {
+	background: url("../../static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#ffffff), to(#bebebe));
+	background: url("../../static/ui/Bkg_highres.png"), linear-gradient(to right, #ffffff, #bebebe);
+	background-blend-mode: multiply !important;
+	background-repeat: repeat-y;
+	background-position: right top;
+	border: 2px solid #545469;
+  }
+  
+  .chat-message.blind {
+	background: url("../../static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#f6e4f7), to(#eaceeb));
+	background: url("../../static/ui/Bkg_highres.png"), linear-gradient(to right, #f6e4f7, #eaceeb);
+	background-blend-mode: multiply !important;
+	background-repeat: repeat-y;
+	background-position: right top;
+	border: 2px solid #6b476b;
+  }
+  
+  .detail-desc {
+	color: #000000;
+	-webkit-box-shadow: 1px 2px #2b4a42;
+	box-shadow: 1px 2px #2b4a42;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
+	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+	border-radius: 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-box-align: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+	margin: 2px auto 5px;
+	font-family: "PT Sans";
+	font-size: 20px;
+  }
+  .detail-desc .multi-target-label {
+	font-size: 15px;
+  }
+  .detail-desc .difficulty {
+	border: 2px solid #dc6773;
+  }
+  .detail-desc .summary {
+	font-size: 16px;
+	color: #2b4a42;
+  }
+  .detail-desc label.title {
+	font-family: "PT Sans Caption" !important;
+	font-weight: 700;
+	font-size: 0.75rem;
+	color: #2b4a42;
+	font-variant: small-caps;
+  }
+  .detail-desc label.detail {
+	font-family: "PT Sans";
+	font-weight: 700;
+	font-size: 1.1rem;
+	font-variant: small-caps;
+  }
+  .detail-desc label.total {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#7da0ca), to(#004f89));
+	background-image: linear-gradient(to right, #7da0ca, #004f89);
+	border: 2px solid #7da0ca;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.total .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.success {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#91c469), to(#228c22));
+	background-image: linear-gradient(to right, #91c469, #228c22);
+	border: 2px solid #91c469;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.success .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.success .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.success .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.failure {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#edb7aa), to(#880012));
+	background-image: linear-gradient(to right, #edb7aa, #880012);
+	border: 2px solid #edb7aa;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.failure .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.failure .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.failure .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.critical {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#f7c754), to(#d17f10));
+	background-image: linear-gradient(to right, #f7c754, #d17f10);
+	border: 2px solid #ffcc56;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.critical .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.critical .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.critical .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.critical::before, .detail-desc label.total.critical::after {
+	font-family: "Material Symbols Outlined";
+	font-size: 80%;
+	color: white;
+	text-shadow: black 1px 0, black -1px 0, black 0 1px, black 0 -1px;
+	-ms-flex-item-align: center;
+	align-self: center;
+  }
+  .detail-desc label.total.critical::before {
+	content: "arrow_back_ios_new";
+  }
+  .detail-desc label.total.critical::after {
+	content: "arrow_forward_ios";
+  }
+  .detail-desc label.total.critical .startcap,
+  .detail-desc label.total.critical .endcap {
+	padding: 0;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 2 0px;
+	flex: 1 2 0px;
+  }
+  .detail-desc label.total.fumble {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#b087a6), to(#15031e));
+	background-image: linear-gradient(to right, #b087a6, #15031e);
+	border: 2px solid #b087a6;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.fumble .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.fumble .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.total.fumble .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.total.fumble::before, .detail-desc label.total.fumble::after {
+	font-family: "Material Symbols Outlined";
+	font-size: 80%;
+	color: white;
+	text-shadow: black 1px 0, black -1px 0, black 0 1px, black 0 -1px;
+	-ms-flex-item-align: center;
+	align-self: center;
+  }
+  .detail-desc label.total.fumble::before {
+	content: "arrow_forward_ios";
+  }
+  .detail-desc label.total.fumble::after {
+	content: "arrow_back_ios_new";
+  }
+  .detail-desc label.total.fumble .startcap,
+  .detail-desc label.total.fumble .endcap {
+	padding: 0;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 2 0px;
+	flex: 1 2 0px;
+  }
+  .detail-desc label.damageType {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#7da0ca), to(#004f89));
+	background-image: linear-gradient(to right, #7da0ca, #004f89);
+	border: 2px solid #7da0ca;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.physical {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#a1a1a1), to(#8c8c8c));
+	background-image: linear-gradient(to right, #a1a1a1, #8c8c8c);
+	border: 2px solid #a1a1a1;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.physical .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.physical .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.physical .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.air {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#b6e0ff), to(#8cb2c2));
+	background-image: linear-gradient(to right, #b6e0ff, #8cb2c2);
+	border: 2px solid #b6e0ff;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.air .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.air .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.air .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.bolt {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#fdda76), to(#fbc847));
+	background-image: linear-gradient(to right, #fdda76, #fbc847);
+	border: 2px solid #fdda76;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.bolt .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.bolt .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.bolt .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.dark {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#543987), to(#2b0d6b));
+	background-image: linear-gradient(to right, #543987, #2b0d6b);
+	border: 2px solid #543987;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.dark .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.dark .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.dark .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.earth {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#d28d3e), to(#9f5b1f));
+	background-image: linear-gradient(to right, #d28d3e, #9f5b1f);
+	border: 2px solid #d28d3e;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.earth .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.earth .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.earth .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.fire {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#f58a00), to(#c05b00));
+	background-image: linear-gradient(to right, #f58a00, #c05b00);
+	border: 2px solid #f58a00;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.fire .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.fire .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.fire .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.ice {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#bce4fa), to(#4f7b9a));
+	background-image: linear-gradient(to right, #bce4fa, #4f7b9a);
+	border: 2px solid #bce4fa;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.ice .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.ice .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.ice .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.light {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#fff7b2), to(#e1c29f));
+	background-image: linear-gradient(to right, #fff7b2, #e1c29f);
+	border: 2px solid #fff7b2;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.light .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.light .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.light .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.poison {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#d678a2), to(#a65a83));
+	background-image: linear-gradient(to right, #d678a2, #a65a83);
+	border: 2px solid #d678a2;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.poison .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.poison .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.poison .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.untyped {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#c0c0c0), to(#a8a8a8));
+	background-image: linear-gradient(to right, #c0c0c0, #a8a8a8);
+	border: 2px solid #a8a8a8;
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.untyped .startcap {
+	text-shadow: 1px 1px 0.25rem rgba(0, 0, 0, 0.7);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .detail-desc label.damageType.untyped .startcap.detail {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .detail-desc label.damageType.untyped .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .detail-desc > div {
+	margin: 0;
+	height: 100% !important;
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	text-align: center;
+	position: relative;
+	font-size: 0.875rem;
+  }
+  .detail-desc > div::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 1px;
+	background-color: #412a3a;
+  }
+  .detail-desc > div:nth-child(3)::before, .detail-desc > div:last-child::before {
+	display: none;
+  }
+  .detail-desc .icon-letter {
+	position: sticky;
+	background-color: #2b4a42;
+	color: #ebf7af;
+	padding: 0 2px;
+	border-radius: 5px;
+	font-size: 10px;
+	margin: 0;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 16px;
+	flex: 0 0 16px;
+	text-align: center;
+  }
+  .detail-desc .crisis {
+	color: red;
+  }
+  
+  .vs-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 0;
+	padding: 0 0.125rem;
+	white-space: nowrap;
+	-webkit-box-flex: 0;
+	-ms-flex: 0;
+	flex: 0;
+  }
+  
+  .combineAccDmg {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 5px;
+  }
+  .combineAccDmg .accuracy-check {
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+  }
+  
+  .group-check-supporters .group-check-supporters-title > *:not(:last-child),
+  .group-check-supporters .group-check-supporters-supporter > *:not(:last-child) {
+	border-right: 1px solid black;
+  }
+  .group-check-supporters .group-check-supporters-title {
+	font-weight: bolder;
+  }
+  
+  .message-content .targets {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+  }
+  .message-content .targets .target.total {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#7da0ca), to(#004f89));
+	background-image: linear-gradient(to right, #7da0ca, #004f89);
+	border: 2px solid #7da0ca;
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .message-content .targets .target.total .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .message-content .targets .target.total .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .message-content .targets .target.total.hit {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#228c22), to(#91c469));
+	background-image: linear-gradient(to right, #228c22, #91c469);
+	border: 2px solid #91c469;
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .message-content .targets .target.total.hit .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .message-content .targets .target.total.hit .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .message-content .targets .target.total.miss {
+	font-family: "PT Sans Caption";
+	font-weight: 700;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, right top, from(#880012), to(#edb7aa));
+	background-image: linear-gradient(to right, #880012, #edb7aa);
+	border: 2px solid #edb7aa;
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .message-content .targets .target.total.miss .startcap {
+	text-shadow: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: start;
+	padding: 0 5px;
+  }
+  .message-content .targets .target.total.miss .endcap {
+	color: #ffffff;
+	font-size: 0.875rem;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: end;
+	padding: 0 5px;
+  }
+  .message-content .targets .target:not(:last-child) {
+	margin-bottom: 0.125em;
+  }
+  .message-content .targets .target .hit,
+  .message-content .targets .target .miss {
+	white-space: nowrap;
+	font-size: var(--font-size-14);
+	font-family: "PT Sans Narrow", sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+	font-variant: small-caps;
+	text-align: right;
+  }
+  .message-content .targets .target.flexrow {
+	gap: 0.25em;
+  }
+  
+  .exp-award {
+	font-family: "PT Sans Narrow", sans-serif;
+  }
+  .exp-award .exp-calculation {
+	grid-template-columns: 3fr 1fr;
+  }
+  .exp-award .exp-calculation > :not(legend) {
+	font-size: var(--font-size-15);
+  }
+  .exp-award .exp-calculation > .d-contents:nth-child(even):not(.exp-total) > * {
+	background-color: color-mix(in srgb, #3d665a 20%, transparent);
+  }
+  .exp-award .exp-calculation .exp-total > * {
+	border-top: 1px solid #3d665a;
+  }
+  .exp-award .active-characters .character:not(:last-child) {
+	margin-bottom: 0.5em;
+  }
+  
+  .editor .editor-edit,
+  .editor .editor-content,
+  .editor .journal-entry-page,
+  .editor .message-content,
+  .journal-entry-content .editor-edit,
+  .journal-entry-content .editor-content,
+  .journal-entry-content .journal-entry-page,
+  .journal-entry-content .message-content,
+  .editor-container .editor-edit,
+  .editor-container .editor-content,
+  .editor-container .journal-entry-page,
+  .editor-container .message-content,
+  .chat-message .editor-edit,
+  .chat-message .editor-content,
+  .chat-message .journal-entry-page,
+  .chat-message .message-content {
+	font-weight: normal;
+  }
+  .editor .editor-edit h1,
+  .editor .editor-edit h2,
+  .editor .editor-edit h3,
+  .editor .editor-content h1,
+  .editor .editor-content h2,
+  .editor .editor-content h3,
+  .editor .journal-entry-page h1,
+  .editor .journal-entry-page h2,
+  .editor .journal-entry-page h3,
+  .editor .message-content h1,
+  .editor .message-content h2,
+  .editor .message-content h3,
+  .journal-entry-content .editor-edit h1,
+  .journal-entry-content .editor-edit h2,
+  .journal-entry-content .editor-edit h3,
+  .journal-entry-content .editor-content h1,
+  .journal-entry-content .editor-content h2,
+  .journal-entry-content .editor-content h3,
+  .journal-entry-content .journal-entry-page h1,
+  .journal-entry-content .journal-entry-page h2,
+  .journal-entry-content .journal-entry-page h3,
+  .journal-entry-content .message-content h1,
+  .journal-entry-content .message-content h2,
+  .journal-entry-content .message-content h3,
+  .editor-container .editor-edit h1,
+  .editor-container .editor-edit h2,
+  .editor-container .editor-edit h3,
+  .editor-container .editor-content h1,
+  .editor-container .editor-content h2,
+  .editor-container .editor-content h3,
+  .editor-container .journal-entry-page h1,
+  .editor-container .journal-entry-page h2,
+  .editor-container .journal-entry-page h3,
+  .editor-container .message-content h1,
+  .editor-container .message-content h2,
+  .editor-container .message-content h3,
+  .chat-message .editor-edit h1,
+  .chat-message .editor-edit h2,
+  .chat-message .editor-edit h3,
+  .chat-message .editor-content h1,
+  .chat-message .editor-content h2,
+  .chat-message .editor-content h3,
+  .chat-message .journal-entry-page h1,
+  .chat-message .journal-entry-page h2,
+  .chat-message .journal-entry-page h3,
+  .chat-message .message-content h1,
+  .chat-message .message-content h2,
+  .chat-message .message-content h3 {
+	border-bottom: 2px solid #2b4a42;
+  }
+  .editor .editor-edit h1,
+  .editor .editor-content h1,
+  .editor .journal-entry-page h1,
+  .editor .message-content h1,
+  .journal-entry-content .editor-edit h1,
+  .journal-entry-content .editor-content h1,
+  .journal-entry-content .journal-entry-page h1,
+  .journal-entry-content .message-content h1,
+  .editor-container .editor-edit h1,
+  .editor-container .editor-content h1,
+  .editor-container .journal-entry-page h1,
+  .editor-container .message-content h1,
+  .chat-message .editor-edit h1,
+  .chat-message .editor-content h1,
+  .chat-message .journal-entry-page h1,
+  .chat-message .message-content h1 {
+	line-height: 1.2em;
+  }
+  .editor .editor-edit h2,
+  .editor .editor-edit h3,
+  .editor .editor-edit h4,
+  .editor .editor-content h2,
+  .editor .editor-content h3,
+  .editor .editor-content h4,
+  .editor .journal-entry-page h2,
+  .editor .journal-entry-page h3,
+  .editor .journal-entry-page h4,
+  .editor .message-content h2,
+  .editor .message-content h3,
+  .editor .message-content h4,
+  .journal-entry-content .editor-edit h2,
+  .journal-entry-content .editor-edit h3,
+  .journal-entry-content .editor-edit h4,
+  .journal-entry-content .editor-content h2,
+  .journal-entry-content .editor-content h3,
+  .journal-entry-content .editor-content h4,
+  .journal-entry-content .journal-entry-page h2,
+  .journal-entry-content .journal-entry-page h3,
+  .journal-entry-content .journal-entry-page h4,
+  .journal-entry-content .message-content h2,
+  .journal-entry-content .message-content h3,
+  .journal-entry-content .message-content h4,
+  .editor-container .editor-edit h2,
+  .editor-container .editor-edit h3,
+  .editor-container .editor-edit h4,
+  .editor-container .editor-content h2,
+  .editor-container .editor-content h3,
+  .editor-container .editor-content h4,
+  .editor-container .journal-entry-page h2,
+  .editor-container .journal-entry-page h3,
+  .editor-container .journal-entry-page h4,
+  .editor-container .message-content h2,
+  .editor-container .message-content h3,
+  .editor-container .message-content h4,
+  .chat-message .editor-edit h2,
+  .chat-message .editor-edit h3,
+  .chat-message .editor-edit h4,
+  .chat-message .editor-content h2,
+  .chat-message .editor-content h3,
+  .chat-message .editor-content h4,
+  .chat-message .journal-entry-page h2,
+  .chat-message .journal-entry-page h3,
+  .chat-message .journal-entry-page h4,
+  .chat-message .message-content h2,
+  .chat-message .message-content h3,
+  .chat-message .message-content h4 {
+	line-height: 1.2em;
+  }
+  .editor .editor-edit hr,
+  .editor .editor-content hr,
+  .editor .journal-entry-page hr,
+  .editor .message-content hr,
+  .journal-entry-content .editor-edit hr,
+  .journal-entry-content .editor-content hr,
+  .journal-entry-content .journal-entry-page hr,
+  .journal-entry-content .message-content hr,
+  .editor-container .editor-edit hr,
+  .editor-container .editor-content hr,
+  .editor-container .journal-entry-page hr,
+  .editor-container .message-content hr,
+  .chat-message .editor-edit hr,
+  .chat-message .editor-content hr,
+  .chat-message .journal-entry-page hr,
+  .chat-message .message-content hr {
+	margin: 5px 0;
+  }
+  .editor .editor-edit p,
+  .editor .editor-content p,
+  .editor .journal-entry-page p,
+  .editor .message-content p,
+  .journal-entry-content .editor-edit p,
+  .journal-entry-content .editor-content p,
+  .journal-entry-content .journal-entry-page p,
+  .journal-entry-content .message-content p,
+  .editor-container .editor-edit p,
+  .editor-container .editor-content p,
+  .editor-container .journal-entry-page p,
+  .editor-container .message-content p,
+  .chat-message .editor-edit p,
+  .chat-message .editor-content p,
+  .chat-message .journal-entry-page p,
+  .chat-message .message-content p {
+	margin: 0;
+	line-height: 1.2em;
+  }
+  .editor .editor-edit h1 + p,
+  .editor .editor-edit h2 + p,
+  .editor .editor-edit h3 + p,
+  .editor .editor-edit h4 + p,
+  .editor .editor-edit h5 + p,
+  .editor .editor-edit h6 + p,
+  .editor .editor-edit p + p,
+  .editor .editor-content h1 + p,
+  .editor .editor-content h2 + p,
+  .editor .editor-content h3 + p,
+  .editor .editor-content h4 + p,
+  .editor .editor-content h5 + p,
+  .editor .editor-content h6 + p,
+  .editor .editor-content p + p,
+  .editor .journal-entry-page h1 + p,
+  .editor .journal-entry-page h2 + p,
+  .editor .journal-entry-page h3 + p,
+  .editor .journal-entry-page h4 + p,
+  .editor .journal-entry-page h5 + p,
+  .editor .journal-entry-page h6 + p,
+  .editor .journal-entry-page p + p,
+  .editor .message-content h1 + p,
+  .editor .message-content h2 + p,
+  .editor .message-content h3 + p,
+  .editor .message-content h4 + p,
+  .editor .message-content h5 + p,
+  .editor .message-content h6 + p,
+  .editor .message-content p + p,
+  .journal-entry-content .editor-edit h1 + p,
+  .journal-entry-content .editor-edit h2 + p,
+  .journal-entry-content .editor-edit h3 + p,
+  .journal-entry-content .editor-edit h4 + p,
+  .journal-entry-content .editor-edit h5 + p,
+  .journal-entry-content .editor-edit h6 + p,
+  .journal-entry-content .editor-edit p + p,
+  .journal-entry-content .editor-content h1 + p,
+  .journal-entry-content .editor-content h2 + p,
+  .journal-entry-content .editor-content h3 + p,
+  .journal-entry-content .editor-content h4 + p,
+  .journal-entry-content .editor-content h5 + p,
+  .journal-entry-content .editor-content h6 + p,
+  .journal-entry-content .editor-content p + p,
+  .journal-entry-content .journal-entry-page h1 + p,
+  .journal-entry-content .journal-entry-page h2 + p,
+  .journal-entry-content .journal-entry-page h3 + p,
+  .journal-entry-content .journal-entry-page h4 + p,
+  .journal-entry-content .journal-entry-page h5 + p,
+  .journal-entry-content .journal-entry-page h6 + p,
+  .journal-entry-content .journal-entry-page p + p,
+  .journal-entry-content .message-content h1 + p,
+  .journal-entry-content .message-content h2 + p,
+  .journal-entry-content .message-content h3 + p,
+  .journal-entry-content .message-content h4 + p,
+  .journal-entry-content .message-content h5 + p,
+  .journal-entry-content .message-content h6 + p,
+  .journal-entry-content .message-content p + p,
+  .editor-container .editor-edit h1 + p,
+  .editor-container .editor-edit h2 + p,
+  .editor-container .editor-edit h3 + p,
+  .editor-container .editor-edit h4 + p,
+  .editor-container .editor-edit h5 + p,
+  .editor-container .editor-edit h6 + p,
+  .editor-container .editor-edit p + p,
+  .editor-container .editor-content h1 + p,
+  .editor-container .editor-content h2 + p,
+  .editor-container .editor-content h3 + p,
+  .editor-container .editor-content h4 + p,
+  .editor-container .editor-content h5 + p,
+  .editor-container .editor-content h6 + p,
+  .editor-container .editor-content p + p,
+  .editor-container .journal-entry-page h1 + p,
+  .editor-container .journal-entry-page h2 + p,
+  .editor-container .journal-entry-page h3 + p,
+  .editor-container .journal-entry-page h4 + p,
+  .editor-container .journal-entry-page h5 + p,
+  .editor-container .journal-entry-page h6 + p,
+  .editor-container .journal-entry-page p + p,
+  .editor-container .message-content h1 + p,
+  .editor-container .message-content h2 + p,
+  .editor-container .message-content h3 + p,
+  .editor-container .message-content h4 + p,
+  .editor-container .message-content h5 + p,
+  .editor-container .message-content h6 + p,
+  .editor-container .message-content p + p,
+  .chat-message .editor-edit h1 + p,
+  .chat-message .editor-edit h2 + p,
+  .chat-message .editor-edit h3 + p,
+  .chat-message .editor-edit h4 + p,
+  .chat-message .editor-edit h5 + p,
+  .chat-message .editor-edit h6 + p,
+  .chat-message .editor-edit p + p,
+  .chat-message .editor-content h1 + p,
+  .chat-message .editor-content h2 + p,
+  .chat-message .editor-content h3 + p,
+  .chat-message .editor-content h4 + p,
+  .chat-message .editor-content h5 + p,
+  .chat-message .editor-content h6 + p,
+  .chat-message .editor-content p + p,
+  .chat-message .journal-entry-page h1 + p,
+  .chat-message .journal-entry-page h2 + p,
+  .chat-message .journal-entry-page h3 + p,
+  .chat-message .journal-entry-page h4 + p,
+  .chat-message .journal-entry-page h5 + p,
+  .chat-message .journal-entry-page h6 + p,
+  .chat-message .journal-entry-page p + p,
+  .chat-message .message-content h1 + p,
+  .chat-message .message-content h2 + p,
+  .chat-message .message-content h3 + p,
+  .chat-message .message-content h4 + p,
+  .chat-message .message-content h5 + p,
+  .chat-message .message-content h6 + p,
+  .chat-message .message-content p + p {
+	margin-top: 10px;
+  }
+  .editor .editor-edit blockquote,
+  .editor .editor-content blockquote,
+  .editor .journal-entry-page blockquote,
+  .editor .message-content blockquote,
+  .journal-entry-content .editor-edit blockquote,
+  .journal-entry-content .editor-content blockquote,
+  .journal-entry-content .journal-entry-page blockquote,
+  .journal-entry-content .message-content blockquote,
+  .editor-container .editor-edit blockquote,
+  .editor-container .editor-content blockquote,
+  .editor-container .journal-entry-page blockquote,
+  .editor-container .message-content blockquote,
+  .chat-message .editor-edit blockquote,
+  .chat-message .editor-content blockquote,
+  .chat-message .journal-entry-page blockquote,
+  .chat-message .message-content blockquote {
+	line-height: 1.2em;
+  }
+  .editor .editor-edit .editor-content,
+  .editor .editor-content .editor-content,
+  .editor .journal-entry-page .editor-content,
+  .editor .message-content .editor-content,
+  .journal-entry-content .editor-edit .editor-content,
+  .journal-entry-content .editor-content .editor-content,
+  .journal-entry-content .journal-entry-page .editor-content,
+  .journal-entry-content .message-content .editor-content,
+  .editor-container .editor-edit .editor-content,
+  .editor-container .editor-content .editor-content,
+  .editor-container .journal-entry-page .editor-content,
+  .editor-container .message-content .editor-content,
+  .chat-message .editor-edit .editor-content,
+  .chat-message .editor-content .editor-content,
+  .chat-message .journal-entry-page .editor-content,
+  .chat-message .message-content .editor-content {
+	font-size: 16px;
+	line-height: 1.2em;
+	width: 100%;
+  }
+  
+  .title-fieldset legend {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	border-radius: 10px;
+	margin: 0 auto;
+	padding: 2px 10px;
+	background: #2b4a42;
+	color: #ffffff;
+	position: relative;
+	text-align: center;
+	width: auto;
+	border: 0.01em solid #148782;
+  }
+  
+  .title-fieldset.desc {
+	background: -webkit-gradient(linear, left top, right top, from(rgba(238, 244, 228, 0.5)), to(rgba(226, 237, 213, 0.5)));
+	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+	border-radius: 10px;
+	border: 1px solid rgba(44, 74, 66, 0.3294117647);
+  }
+  
+  .unique-rp {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	font-family: "Yanone Kaffeesatz", sans-serif;
+	background-color: #2b4a42;
+	color: #fff79a;
+	border-radius: 10px;
+	padding: 10px 20px;
+	width: 100%;
+	font-size: 20px;
+	font-weight: bold;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	white-space: nowrap;
+	text-transform: uppercase;
+	text-align: center;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	line-height: 1.2;
+	/* Hue overlay */
+  }
+  .unique-rp .rp-label {
+	color: #fff79a;
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	min-width: 0;
+	overflow: hidden;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	text-align: left;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	white-space: wrap;
+  }
+  .unique-rp .stats {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 5px;
+  }
+  .unique-rp .stat-current,
+  .unique-rp .stat-max {
+	color: #2b4a42;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
+	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+	border-radius: 4px;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	width: 2em;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
+	height: fit-content;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+	font-family: "PT Sans", sans-serif;
+  }
+  .unique-rp .stat-current::after,
+  .unique-rp .stat-max::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #fff79a;
+	mix-blend-mode: hue;
+	opacity: 0.7;
+	border-radius: 4px;
+	z-index: 0;
+  }
+  .unique-rp .stat-divider {
+	color: #fff79a;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	font-size: larger;
+  }
+  
+  .unique-clock {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	font-family: "Yanone Kaffeesatz", sans-serif;
+	background-color: #2b4a42;
+	color: #fff79a;
+	border-radius: 10px;
+	padding: 10px 20px;
+	width: 100%;
+	font-size: 20px;
+	font-weight: bold;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	white-space: nowrap;
+	text-transform: uppercase;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	line-height: 1.2;
+	/* Hue overlay */
+	/* Hue overlay */
+  }
+  .unique-clock .rp-label {
+	color: #fff79a;
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	min-width: 0;
+	overflow: hidden;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	text-align: left;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	white-space: wrap;
+  }
+  .unique-clock .stats {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 5px;
+  }
+  .unique-clock .stat-current,
+  .unique-clock .stat-max {
+	color: #2b4a42;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
+	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+	border-radius: 4px;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	width: 2em;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
+	height: fit-content;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+	font-family: "PT Sans", sans-serif;
+  }
+  .unique-clock .stat-current::after,
+  .unique-clock .stat-max::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #fff79a;
+	mix-blend-mode: hue;
+	opacity: 0.7;
+	border-radius: 4px;
+	z-index: 0;
+  }
+  .unique-clock .stat-divider {
+	color: #fff79a;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	font-size: larger;
+  }
+  .unique-clock .progress-container {
+	position: relative;
+	padding: 5px;
+	background-color: #e1e5d1;
+	border-radius: 50%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	z-index: 1;
+  }
+  .unique-clock .progress-container::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 5px;
+	background-color: rgba(255, 247, 154, 0.5);
+	mix-blend-mode: multiply;
+	opacity: 0.75;
+	border-radius: 50%;
+	z-index: 0;
+  }
+  .unique-clock .progress {
+	--size: 50px;
+	--border-width: 2px;
+	width: var(--size);
+	height: var(--size);
+	position: relative;
+  }
+  .unique-clock .progress[data-segments="1"] .divider {
+	display: none;
+  }
+  .unique-clock .progress[data-segments="2"] .pie {
+	clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
+  }
+  .unique-clock .progress[data-segments="3"] .pie {
+	clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
+  }
+  .unique-clock .progress[data-segments="4"] .pie {
+	clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
+  }
+  .unique-clock .progress[data-segments="5"] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
+  }
+  .unique-clock .progress[data-segments="6"] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
+  }
+  .unique-clock .progress[data-segments="7"] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 110% 0);
+  }
+  .unique-clock .progress[data-segments="8"] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 100% 0);
+  }
+  .unique-clock .progress[data-segments="9"] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 95% 0);
+  }
+  .unique-clock .progress[data-segments="10"] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+  }
+  .unique-clock .progress[data-segments="11"] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+  }
+  .unique-clock .progress[data-segments="12"] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 80% 0);
+  }
+  .unique-clock .progress .foreground {
+	pointer-events: none;
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	border: var(--border-width) solid #2b4a42;
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+  }
+  .unique-clock .progress .divider {
+	pointer-events: none;
+	position: absolute;
+	width: var(--border-width);
+	height: calc(50% - 0.5 * var(--border-width));
+	top: calc(0.5 * var(--border-width));
+	right: calc(50% - var(--border-width) / 2);
+	background: #3d665a;
+	-webkit-transform-origin: center bottom;
+	-ms-transform-origin: center bottom;
+	transform-origin: center bottom;
+	-webkit-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	-ms-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+  }
+  .unique-clock .progress input[type=radio].pie {
+	position: absolute;
+	top: 0;
+	margin: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	-webkit-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	-ms-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	z-index: 1;
+  }
+  .unique-clock .progress .pie:hover {
+	cursor: pointer;
+  }
+  .unique-clock .progress .pie:checked,
+  .unique-clock .progress .pie:checked ~ .pie {
+	background-color: #2b4a42;
+  }
+  .unique-clock .progress .pie:hover,
+  .unique-clock .progress .pie:hover ~ .pie {
+	background-color: #ebf7af;
+  }
+  .unique-clock .progress .pie:checked:hover,
+  .unique-clock .progress .pie:checked:hover ~ .pie,
+  .unique-clock .progress .pie:checked ~ .pie:hover,
+  .unique-clock .progress .pie:checked ~ .pie:hover ~ .pie,
+  .unique-clock .progress .pie:hover ~ .pie:checked,
+  .unique-clock .progress .pie:hover ~ .pie:checked ~ .pie {
+	background-color: #2b4a42;
+  }
+  
+  .button-style {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 10px;
+	border: 0.01em solid #148782;
+	background: #2b4a42;
+	color: #ebf7af;
+	text-decoration: none;
+	-webkit-transition: background-color 0.3s, color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
+	-webkit-transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+	transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+  }
+  .button-style:hover {
+	background: -webkit-gradient(linear, left bottom, left top, from(rgb(220, 211, 116)), to(rgb(255, 247, 154))) !important;
+	background: linear-gradient(0deg, rgb(220, 211, 116) 0%, rgb(255, 247, 154) 100%) !important;
+	color: #047470 !important;
+	text-shadow: none;
+  }
+  .button-style i {
+	font-size: 0.875rem;
+	line-height: 1;
+  }
+  .button-style a {
+	font-family: "PT Sans Caption", sans-serif;
+	font-size: 1rem;
+  }
+  .button-style.study-style {
+	width: 100% !important;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+  }
+  .button-style.active {
+	color: #fff79a;
+	border: 1px solid #753002;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(226, 128, 121, 0.8)), to(rgba(241, 163, 114, 0.8)));
+	background: linear-gradient(0deg, rgba(226, 128, 121, 0.8) 0%, rgba(241, 163, 114, 0.8) 100%);
+	-webkit-box-shadow: 0 0 5px #d8e08f;
+	box-shadow: 0 0 5px #d8e08f;
+	text-shadow: 1px 1px 2px #753002, -1px -1px 2px #753002;
+  }
+  .button-style.active:hover {
+	text-shadow: none;
+  }
+  .button-style.action-style {
+	width: 100% !important;
+	height: 100% !important;
+  }
+  .button-style button {
+	border-radius: inherit;
+	color: inherit;
+	background: inherit;
+	border: inherit;
+  }
+  .button-style button:hover, .button-style button:focus {
+	-webkit-box-shadow: unset;
+	box-shadow: unset;
+  }
+  .button-style#behavior-action {
+	padding: 5px;
+	font-size: 0.875rem;
+  }
+  .button-style button:disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+	pointer-events: none;
+  }
+  .button-style:has(button:disabled) {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	-webkit-transform: translateY(1px);
+	-ms-transform: translateY(1px);
+	transform: translateY(1px);
+  }
+  
+  table {
+	border-top: 1px solid var(--pfu-color-app-control-border);
+	border-bottom: 1px solid var(--pfu-color-app-control-border);
+  }
+  table thead {
+	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content);
+	border-bottom: 1px solid var(--pfu-color-app-control-border);
+  }
+  table caption {
+	caption-side: top;
+	font-weight: bold;
+	color: inherit;
+  }
+  

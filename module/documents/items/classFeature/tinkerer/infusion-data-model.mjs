@@ -1,35 +1,35 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
 import { CharacterDataModel } from '../../../actors/character/character-data-model.mjs';
 import { ChooseInfusionDialog } from './choose-infusion-dialog.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const infusionKey = 'infusion';
 
 /**
- * @param {ChatLog} app
- * @param {ContextMenuEntry[]} options
+ * @param {ChatLog} application
+ * @param {ContextMenuEntry[]} menuItems
  */
-const onGetChatLogEntryContext = (app, options) => {
-	console.log(app, options);
-	options.push({
+function onGetChatLogEntryContext(application, menuItems) {
+	menuItems.push({
 		name: 'FU.ClassFeatureInfusionsApply',
 		icon: '<i class="fa-solid fa-flask-vial"></i>',
-		condition: (jQuery) => {
-			const messageId = jQuery.data('messageId');
+		condition: (li) => {
+			const messageId = li.dataset.messageId;
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
 			const checkInspector = CheckConfiguration.inspect(message);
-			if (ChecksV2.isCheck(message, 'accuracy') && checkInspector.getDamage() && !checkInspector.getCheck().additionalData[infusionKey] && actor && actor.isOwner && actor.system instanceof CharacterDataModel) {
+			if (Checks.isCheck(message, 'accuracy') && checkInspector.getDamage() && !checkInspector.getCheck().additionalData[infusionKey] && actor && actor.isOwner && actor.system instanceof CharacterDataModel) {
 				return actor.itemTypes.classFeature.some((value) => value.system instanceof ClassFeatureTypeDataModel && value.system.data instanceof InfusionsDataModel && actor.system.resources.ip.value >= value.system.data.ipCost);
 			}
 		},
-		callback: async (jQuery) => {
-			const messageId = jQuery.data('messageId');
+		callback: async (li) => {
+			const messageId = li.dataset.messageId;
 			const message = game.messages.get(messageId);
 			const actor = ChatMessage.getSpeakerActor(message.speaker);
 			const inspector = CheckConfiguration.inspect(message);
@@ -38,7 +38,7 @@ const onGetChatLogEntryContext = (app, options) => {
 			const infusionData = infusions.system.data;
 			const infusion = await ChooseInfusionDialog.prompt(infusionData);
 			if (infusion) {
-				await ChecksV2.modifyCheck(inspector.getCheck().id, (check) => {
+				await Checks.modifyCheck(inspector.getCheck().id, (check) => {
 					CheckConfiguration.configure(check).modifyDamage((damage) => {
 						damage.type = infusion.changedDamageType;
 						damage.modifiers.push({
@@ -58,8 +58,9 @@ const onGetChatLogEntryContext = (app, options) => {
 			}
 		},
 	});
-};
-Hooks.on('getChatLogEntryContext', onGetChatLogEntryContext);
+}
+
+Hooks.on('getChatMessageContextOptions', onGetChatLogEntryContext);
 
 /**
  * @type RenderCheckHook
@@ -91,7 +92,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} name
  * @property {string} description
  * @property {number} extraDamage
- * @property {"",DamageType} changedDamageType
+ * @property {'',DamageType} changedDamageType
  */
 class InfusionDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -107,7 +108,7 @@ class InfusionDataModel extends foundry.abstract.DataModel {
 
 /**
  * @extends ClassFeatureDataModel
- * @property {"basic","advanced","superior"} rank
+ * @property {'basic','advanced','superior'} rank
  * @property {number} ipCost
  * @property {string} description
  * @property {InfusionDataModel[]} basicInfusions
@@ -168,16 +169,20 @@ export class InfusionsDataModel extends ClassFeatureDataModel {
 	}
 
 	static activateListeners(html, item) {
-		html.find('[data-action=addInfusion][data-rank]').click(() => {
-			const rank = event.currentTarget.dataset.rank;
-			item.update({
-				[`system.data.${rank}`]: [...item.system.data[rank], {}],
+		html.querySelectorAll('[data-action=addInfusion][data-rank]').forEach((el) => {
+			el.addEventListener('click', (e) => {
+				const rank = event.currentTarget.dataset.rank;
+				item.update({
+					[`system.data.${rank}`]: [...item.system.data[rank], {}],
+				});
 			});
 		});
-		html.find('[data-action=deleteInfusion][data-rank][data-index]').click((event) => {
-			const rank = event.currentTarget.dataset.rank;
-			const idx = event.currentTarget.dataset.index;
-			item.update({ [`system.data.${rank}`]: item.system.data[rank].toSpliced(idx, 1) });
+		html.querySelectorAll('[data-action=deleteInfusion][data-rank][data-index]').forEach((el) => {
+			el.addEventListener('click', (event) => {
+				const rank = event.currentTarget.dataset.rank;
+				const idx = event.currentTarget.dataset.index;
+				item.update({ [`system.data.${rank}`]: item.system.data[rank].toSpliced(idx, 1) });
+			});
 		});
 	}
 

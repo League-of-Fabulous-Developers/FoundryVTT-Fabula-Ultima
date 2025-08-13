@@ -1,23 +1,132 @@
 import { SETTINGS } from '../settings.js';
-
-import { SystemControls } from '../helpers/system-controls.mjs';
-import { SYSTEM, FU } from '../helpers/config.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FUCombat } from './combat.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
 
 Hooks.once('setup', () => {
-	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
-		Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-			tools.push(CombatHUD.getToggleControlButton());
-			tools.push(CombatHUD.getSavedControlButton());
-			tools.push(CombatHUD.getResetControlButton());
-		});
+	/**
+	 * @typedef HudButtonData
+	 * @property {string} name
+	 * @property {string} icon
+	 * @property {boolean} [visible]
+	 * @property {boolean} [toggle]
+	 * @property {boolean} [active]
+	 * @property {(event: Event, active: boolean) => void} [onClick]   A callback invoked when the tool is activated
+	 * or deactivated
+	 */
+
+	/**
+	 * @param {HTMLElement} containerElement
+	 * @param {HudButtonData} buttonData
+	 */
+	function createButton(containerElement, buttonData) {
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.classList.add('control', 'ui-control');
+		button.innerHTML = `<i class="${buttonData.icon}"></i>`;
+		button.dataset.tooltip = game.i18n.localize(buttonData.name);
+
+		if (buttonData.toggle) {
+			let active = buttonData.active;
+			button.classList.add('toggle');
+			button.ariaPressed = active;
+			button.addEventListener('click', (e) => {
+				active = !active;
+				button.ariaPressed = active;
+				if (buttonData.onClick) {
+					buttonData.onClick(e, active);
+				}
+			});
+		} else {
+			if (buttonData.onClick) {
+				button.addEventListener('click', (e) => {
+					buttonData.onClick(e, false);
+				});
+			}
+		}
+
+		containerElement.appendChild(button);
 	}
+
+	Hooks.on('renderCombatTracker', (app, element) => {
+		if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
+			const containerElement = document.createElement('div');
+			containerElement.id = 'combat-hud-controls';
+			createButton(containerElement, CombatHUD.getToggleControlButton());
+			createButton(containerElement, CombatHUD.getSavedControlButton());
+			createButton(containerElement, CombatHUD.getResetControlButton());
+
+			const combatTrackerSection = element.querySelector('#combat-tracker').parentElement;
+			combatTrackerSection.prepend(containerElement);
+		}
+	});
 });
 
-export class CombatHUD extends Application {
+export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 	#hooks = [];
+
+	static DEFAULT_OPTIONS = {
+		id: 'combat-hud',
+		classes: [...super.DEFAULT_OPTIONS.classes, 'projectfu'],
+		form: { closeOnSubmit: false },
+		window: {
+			frame: false,
+			positioned: false,
+		},
+		actions: {
+			toggleCompact: CombatHUD.ToggleCompactMode,
+			minimize: CombatHUD.MinimizeHUD,
+			popout: CombatHUD.PopOutHUD,
+			start: CombatHUD.StartCombat,
+			stop: CombatHUD.StopCombat,
+			startTurn: CombatHUD.StartTurn,
+			endTurn: CombatHUD.EndTurn,
+			takeTurnOutOfTurn: CombatHUD.TakeTurnOutOfTurn,
+			clickCombatant: CombatHUD.ClickCombatant,
+			clickEffect: CombatHUD.ClickEffect,
+		},
+	};
+
+	static PARTS = {
+		'fu-default': {
+			template: systemTemplatePath('ui/combat-hud/combat-hud-default'),
+			templates: [
+				systemTemplatePath('ui/partials/combat-bar-hp'),
+				systemTemplatePath('ui/partials/combat-bar-mp'),
+				systemTemplatePath('ui/partials/combat-bar-ip'),
+				systemTemplatePath('ui/partials/combat-bar-zeropower'),
+				systemTemplatePath('ui/partials/combat-bar-fp'),
+				systemTemplatePath('ui/partials/combat-bar-zenit'),
+				systemTemplatePath('ui/partials/combat-bar-exp'),
+			],
+		},
+		'fu-modern': {
+			template: systemTemplatePath('ui/combat-hud/combat-hud-modern'),
+			templates: [
+				systemTemplatePath('ui/partials/combat-bar-hp-modern'),
+				systemTemplatePath('ui/partials/combat-bar-mp-modern'),
+				systemTemplatePath('ui/partials/combat-bar-ip-modern'),
+				systemTemplatePath('ui/partials/combat-bar-fp-modern'),
+				systemTemplatePath('ui/partials/combat-bar-zeropower-modern'),
+				systemTemplatePath('ui/partials/combat-bar-zenit-modern'),
+				systemTemplatePath('ui/partials/combat-bar-exp-modern'),
+			],
+		},
+		'fu-mother': {
+			template: systemTemplatePath('ui/combat-hud/combat-hud-mother'),
+			templates: [
+				systemTemplatePath('ui/partials/combat-bar-hp-mother'),
+				systemTemplatePath('ui/partials/combat-bar-mp-mother'),
+				systemTemplatePath('ui/partials/combat-bar-ip-mother'),
+				systemTemplatePath('ui/partials/combat-bar-fp-mother'),
+				systemTemplatePath('ui/partials/combat-bar-zeropower-mother'),
+				systemTemplatePath('ui/partials/combat-bar-zenit-mother'),
+				systemTemplatePath('ui/partials/combat-bar-exp-mother'),
+			],
+		},
+	};
 
 	constructor(options) {
 		super(options);
@@ -68,17 +177,6 @@ export class CombatHUD extends Application {
 		console.debug(`Combat HUD: Ready`);
 	}
 
-	static get defaultOptions() {
-		const theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme);
-		let template = FU.combatHudThemeTemplates[theme];
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			id: 'combat-hud',
-			popOut: false,
-			template: `systems/projectfu/templates/ui/combat-hud/${template}.hbs`,
-			classes: [...super.defaultOptions.classes, 'projectfu'],
-		});
-	}
-
 	_getAdditionalStyle(opacity) {
 		const theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme);
 		switch (theme) {
@@ -127,13 +225,14 @@ export class CombatHUD extends Application {
 	}
 
 	_resetButtons() {
-		const tokenButton = ui.controls.controls.find((control) => control.name === SYSTEM);
+		const tokenButton = ui.controls.controls[SYSTEM];
+
 		if (tokenButton) {
-			let tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
+			let tool = tokenButton.tools['projectfu-combathud-toggle'];
 			tool.active = false;
 			tool.visible = false;
 
-			tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-reset');
+			tool = tokenButton.tools['projectfu-combathud-reset'];
 			tool.visible = false;
 
 			ui.controls.render(true);
@@ -151,8 +250,8 @@ export class CombatHUD extends Application {
 		return basePath + resource + theme + '.hbs';
 	}
 
-	async getData(options = {}) {
-		const data = await super.getData(options);
+	async _prepareContext(options = {}) {
+		const data = await super._prepareContext(options);
 		data.cssClasses = this.options.classes.join(' ');
 		data.cssId = this.options.id;
 		data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
@@ -287,174 +386,276 @@ export class CombatHUD extends Application {
 		return data;
 	}
 
-	activateListeners(html) {
-		super.activateListeners(html);
+	async _onRender(context, options) {
+		await super._onRender(context, options);
 
-		const rows = html.find('.combat-row');
-		rows.hover(this._onHoverIn.bind(this), this._onHoverOut.bind(this));
+		const rows = this.element.querySelectorAll(`.combat-row`);
+		const hoverIn = this._onHoverIn.bind(this);
+		const hoverOut = this._onHoverOut.bind(this);
+		const dragCombatantStart = this._doCombatantDragStart.bind(this);
+		const dragCombatantDrop = this._doCombatantDrop.bind(this);
 
-		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering) && game.user.isGM) {
-			rows.on('dragstart', this._doCombatantDragStart.bind(this));
-			//rows.on('dragover', this._doDragOver.bind(this));
-			rows.on('drop', this._doCombatantDrop.bind(this)); // this might not work. 'dragend' is the call for the draggable item, not 'drop'
+		for (const row of rows) {
+			if (row instanceof HTMLElement) {
+				row.addEventListener('mouseenter', hoverIn);
+				row.addEventListener('mouseleave', hoverOut);
 
-			const images = rows.find('.combat-image');
-			images.attr('draggable', true);
-			images.on('dragstart', this._doCombatantDragStart.bind(this));
-			// images.on('dragover', this._doDragOver.bind(this));
-			images.on('drop', this._doCombatantDrop.bind(this)); // this might not work. 'dragend' is the call for the draggable item, not 'drop'
-		}
-
-		const combatantImages = html.find('.combat-row .token-image');
-		combatantImages.click((event) => this._onCombatantClick(event));
-
-		const combatantNames = html.find('.token-name');
-		combatantNames.click((event) => this._onCombatantClick(event));
-
-		const popOutButton = html.find('.window-popout');
-		popOutButton.click(this._doPopOut.bind(this));
-
-		const compactButton = html.find('.window-compact');
-		compactButton.click(this._doToggleCompact.bind(this));
-
-		const minimizeButton = html.find('.window-minimize');
-		minimizeButton.click(this._doMinimize.bind(this));
-
-		const dragButton = html.find('.window-drag');
-		dragButton.on('dragstart', this._doHudDragStart.bind(this));
-		dragButton.on('drag', this._doHudDrag.bind(this));
-		dragButton.on('dragend', this._doHudDrop.bind(this));
-
-		if (this.isFirefox) {
-			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
-		}
-
-		this._startCombatButton = html.find('.window-start');
-		this._startCombatButton.click(this._doStartCombat.bind(this));
-
-		this._stopCombatButton = html.find('.window-stop');
-		this._stopCombatButton.click(this._doStopCombat.bind(this));
-
-		if (game.combat && game.combat.started) {
-			this._startCombatButton.addClass('hidden');
-			this._stopCombatButton.removeClass('hidden');
-		}
-
-		html.find('a[data-action=start-turn]').click((event) => ui.combat.handleStartTurn(event));
-		html.find('a[data-action=end-turn]').click((event) => ui.combat.handleEndTurn(event));
-		html.find('a[data-action=take-turn-out-of-turn]').click((event) => ui.combat.handleTakeTurnOutOfTurn(event));
-
-		const effectImages = html.find('.combat-effect-img');
-
-		effectImages.on('click', async (event) => {
-			event.preventDefault();
-			const effectImg = event.currentTarget;
-			const effectId = effectImg.dataset.effectId;
-			const actorId = effectImg.dataset.actorId;
-			const actor = game.actors.get(actorId);
-			if (!actor) return;
-
-			if (event.button === 0) {
-				const effect = actor.effects.get(effectId);
-				if (effect) {
-					await effect.update({ disabled: !effect.disabled });
+				if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering) && game.user.isGM) {
+					row.addEventListener('dragstart', dragCombatantStart);
+					row.addEventListener('drop', dragCombatantDrop);
 				}
 			}
-		});
+		}
 
-		effectImages.on('contextmenu', async (event) => {
-			event.preventDefault();
-			const effectImg = event.currentTarget;
-			const effectId = effectImg.dataset.effectId;
-			const actorId = effectImg.dataset.actorId;
-			const actor = game.actors.get(actorId);
-			if (!actor) return;
-
-			const effect = actor.effects.get(effectId);
-			if (effect) {
-				new ActiveEffectConfig(effect).render(true);
+		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering) && game.user.isGM) {
+			const images = this.element.querySelectorAll(`.combat-row .combat-image`);
+			for (const image of images) {
+				if (image instanceof HTMLElement) {
+					image.setAttribute('draggable', true);
+					image.addEventListener('dragstart', dragCombatantStart);
+					image.addEventListener('drop', dragCombatantDrop);
+				}
 			}
-		});
+		}
+
+		const dragButton = this.element.querySelector('.window-drag');
+		dragButton.addEventListener('dragstart', this._doHudDragStart.bind(this));
+		dragButton.addEventListener('drag', this._doHudDrag.bind(this));
+		dragButton.addEventListener('dragend', this._doHudDrop.bind(this));
+
+		if (this.isFirefox) window.document.addEventListener('dragover', this._fireFoxDragWorkaround.bind(this));
+
+		this._setStartStopButtonVisibility();
+
+		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
+			this.close();
+			return;
+		}
+		this._setSizeAndPosition();
+		this._setEffectContextMenus();
+	}
+
+	_setEffectContextMenus() {
+		new foundry.applications.ux.ContextMenu(
+			this.element,
+			'.combat-effects [data-effect-id][data-actor-id]',
+			[
+				{
+					name: 'FU.EffectEdit',
+					icon: `<i class="fas fa-edit"></i>`,
+					callback: (elem) => {
+						const effect = this._getEffectFromElement(elem);
+						if (!effect) return;
+						new foundry.applications.sheets.ActiveEffectConfig({ document: effect }).render({ force: true });
+					},
+					condition: (elem) => this._canModifyEffectContextMenu(elem),
+				},
+				{
+					name: 'FU.EffectToggle',
+					icon: `<i class="fas fa-circle-check"></i>`,
+					callback: async (elem) => {
+						const effect = this._getEffectFromElement(elem);
+						if (!effect || !effect.canUserModify(game.user, 'update')) return;
+						await effect.update({ disabled: !effect.disabled });
+					},
+					condition: (elem) => this._canModifyEffectContextMenu(elem, 'update'),
+				},
+				{
+					name: 'FU.EffectDelete',
+					icon: `<i class="fas fa-trash"></i>`,
+					callback: async (elem) => {
+						const effect = this._getEffectFromElement(elem);
+						if (!effect || !effect.canUserModify(game.user, 'delete')) return;
+						await effect.delete();
+					},
+					condition: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
+				},
+			],
+			{
+				jQuery: false,
+				fixed: true,
+			},
+		);
+	}
+
+	/**
+	 * Determine whether or not the current user has sufficient permission to edit
+	 * @param {HTMLElement} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
+	 * @param {'update' | 'delete'} op - The operation to check -- either "update" or "delete"
+	 * @returns
+	 */
+	_canModifyEffectContextMenu(elem, op = 'update') {
+		const effect = this._getEffectFromElement(elem);
+		if (!effect) return false;
+		return effect.canUserModify(game.user, op);
+	}
+
+	/**
+	 * Retrieves an ActiveEffect from an HTML element
+	 * @param {HTMLElement} element - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
+	 * @returns ActiveEffect or undefined
+	 */
+	_getEffectFromElement(element) {
+		const effectId = element.dataset.effectId;
+		const actorId = element.dataset.actorId;
+		const actor = game.actors.get(actorId);
+		if (!actor) return;
+		return actor.effects.get(effectId);
+	}
+
+	_setStartStopButtonVisibility() {
+		const startButton = this.element.querySelector(`.window-start`);
+		const stopButton = this.element.querySelector(`.window-stop`);
+
+		if (game.combat?.started) {
+			if (startButton instanceof HTMLElement) startButton.classList.add('hidden');
+			if (stopButton instanceof HTMLElement) stopButton.classList.remove('hidden');
+		} else {
+			if (startButton instanceof HTMLElement) startButton.classList.remove('hidden');
+			if (stopButton instanceof HTMLElement) stopButton.classList.add('hidden');
+		}
+	}
+
+	_setSizeAndPosition() {
+		const element = this.element.querySelector(`#combat-hud`);
+
+		if (this._poppedOut) {
+			element.style.width = 'calc(100% - 4px)';
+			element.style.height = '100%';
+			element.style.left = '0px';
+			return;
+		}
+
+		const hOffset = -5;
+		let minWidth = 700;
+		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme) === 'fu-modern') {
+			minWidth = 805;
+		}
+		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme) === 'fu-mother') {
+			minWidth = 805;
+		}
+
+		const uiLeft = document.querySelector(`#ui-left`);
+		const uiMiddle = document.querySelector(`#ui-middle`);
+		const uiRight = document.querySelector(`#ui-right`);
+
+		let hudWidth = uiMiddle.clientWidth + uiLeft.clientWidth * 0.5;
+		if (hudWidth < minWidth) {
+			hudWidth = minWidth;
+		}
+
+		let uiRightWidth = uiRight.length ? uiRight.clientWidth : 0;
+		hudWidth -= uiRightWidth * 0.5;
+
+		const alpha = game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100;
+		hudWidth = this.lerp(minWidth, hudWidth, alpha);
+
+		element.style.width = `${hudWidth - hOffset}px`;
+
+		const { position, positionButton } = this._getPosition();
+		if (position.top) {
+			element.style.top = `${position.top}px`;
+		}
+		if (position.bottom) {
+			element.style.bottom = `${position.bottom}px`;
+		}
+		if (position.left) {
+			element.style.left = `${position.left}px`;
+		}
+
+		// Apply button position
+		this._applyButtonPosition(positionButton);
 	}
 
 	_doHudDragStart(event) {
-		event.originalEvent.dataTransfer.setDragImage(this._emptyImage, 0, 0);
+		if (event instanceof DragEvent) {
+			event.dataTransfer.setDragImage(this._emptyImage, 0, 0);
+			event.dataTransfer.effectAllowed = 'move';
+			event.dataTransfer.dropEffect = 'move';
+			const elem = this.element.querySelector(`#combat-hud`);
+			this.dragInitialLeft = event.clientX - elem.offsetLeft;
+			this.dragInitialTop = event.clientY - elem.offsetTop;
 
-		// Set drag tracking vars
-		const nativeEvent = event.originalEvent;
-		const elementPos = this.element.position();
-		this.dragInitialLeft = elementPos.left;
-		this.dragInitialTop = elementPos.top;
-		this.dragInitialX = nativeEvent.clientX;
-		this.dragInitialY = nativeEvent.clientY;
-		this.firefoxDragX = 0;
-		this.firefoxDragY = 0;
+			this.firefoxDragX = 0;
+			this.firefoxDragY = 0;
+		}
 	}
 
-	// FireFox does not populate event.clientX or event.clientY
-	// during drag events. A workaround is to bind a seperate handler
-	// to the dragover event instead, which gets processed directly
-	// before any drag event and allows us to record the current drag position.
 	_fireFoxDragWorkaround(event) {
-		// Keep this check; drag events can trigger with (0,0) when outside the window or target
-		// and they should be treated as invalid
-		if (event.clientX <= 0 || event.clientY <= 0) return;
+		if (event instanceof DragEvent) {
+			// Keep this check; drag events can trigger with (0,0) when outside the window or target
+			// and they should be treated as invalid
+			if (event.clientX <= 0 || event.clientY <= 0) return;
 
-		// These need to be tracked separately
-		// The listener is listening to *any* drag on window, and may not be relevant to the combatHUD
-		// So the actual update should be deferred to _doHudDrag which is bound specifically to combatHUD
-		this.firefoxDragX = event.clientX;
-		this.firefoxDragY = event.clientY;
+			// These need to be tracked separately
+			// The listener is listening to *any* drag on window, and may not be relevant to the combatHUD
+			// So the actual update should be deferred to _doHudDrag which is bound specifically to combatHUD
+			this.firefoxDragX = event.clientX;
+			this.firefoxDragY = event.clientY;
+		}
 	}
 
 	_doHudDrag(event) {
-		event.originalEvent.dataTransfer.dropEffect = 'move';
+		if (event instanceof DragEvent) {
+			const elem = this.element.querySelector(`#combat-hud`);
 
-		// Firefox doesn't handle drag events the same as other browsers
-		// We use the 'dragOver' event for that
-		let dragPosition;
-		if (this.isFirefox) {
-			dragPosition = { x: this.firefoxDragX, y: this.firefoxDragY };
-		} else {
-			dragPosition = { x: event.clientX, y: event.clientY };
+			const dragPosition = this.isFirefox
+				? {
+						x: this.firefoxDragX,
+						y: this.firefoxDragY,
+					}
+				: {
+						x: event.clientX,
+						y: event.clientY,
+					};
+
+			// Keep this check; drag events can trigger with (0,0) when outside the window or target
+			// and they should be treated as invalid
+			if (dragPosition.x <= 0 || dragPosition.y <= 0) return;
+
+			// Delay the actual drag animation by a frame to ensure that it's handled after
+			// the firefox workaround drag handler
+			if (this._dragAnimationFrame) cancelAnimationFrame(this._dragAnimationFrame);
+
+			this._dragAnimationFrame = requestAnimationFrame(() => {
+				const dragButton = elem.querySelector(`.window-drag`);
+
+				const deltaX = dragPosition.x - this.dragInitialX - dragButton.clientWidth;
+				const deltaY = dragPosition.y - this.dragInitialY + dragButton.clientHeight;
+
+				const newLeft = this.dragInitialLeft + deltaX;
+				const newTop = this.dragInitialTop + deltaY;
+
+				elem.style.left = `${newLeft}px`;
+				elem.style.top = `${newTop}px`;
+				if (elem.style.bottom !== 'initial') elem.style.bottom = 'initial';
+				cancelAnimationFrame(this._dragAnimationFrame);
+				this._dragAnimationFrame = null;
+			});
 		}
-
-		// Keep this check; drag events can trigger with (0,0) when outside the window or target
-		// and they should be treated as invalid
-		if (dragPosition.x <= 0 || dragPosition.y <= 0) return;
-
-		// Update
-		if (this._dragAnimationFrame) {
-			cancelAnimationFrame(this._dragAnimationFrame);
-		}
-		this._dragAnimationFrame = requestAnimationFrame(() => {
-			// Calculate deltas
-			const deltaX = dragPosition.x - this.dragInitialX;
-			const deltaY = dragPosition.y - this.dragInitialY;
-
-			// Calculate final values
-			const newLeft = this.dragInitialLeft + deltaX;
-			const newTop = this.dragInitialTop + deltaY;
-
-			// Apply
-			this.element.css('left', newLeft);
-			this.element.css('top', newTop);
-			if (this.element.css('bottom') !== 'initial') {
-				this.element.css('bottom', 'initial');
-			}
-		});
 	}
 
-	_doHudDrop() {
-		const offset = this.element.offset();
-		const height = this.element.outerHeight();
-		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+	_doHudDrop(event) {
+		if (event instanceof DragEvent) {
+			const elem = this.element.querySelector(`#combat-hud`);
+			const offset = {
+				x: elem.offsetLeft,
+				y: elem.offsetTop,
+			};
+			const height = elem.clientHeight;
 
-		const draggedPosition = {
-			x: offset.left,
-			y: positionFromTop ? offset.top : $(window).height() - offset.top - height,
-		};
-		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
+			const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+			const draggedPosition = {
+				x: offset.x,
+				y: positionFromTop ? offset.y : window.innerHeight - offset.y - height,
+			};
+
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
+		}
+	}
+
+	static StartCombat() {
+		this._doStartCombat();
 	}
 
 	async _doStartCombat() {
@@ -465,10 +666,13 @@ export class CombatHUD extends Application {
 
 		await game.combat.startCombat();
 
-		this._startCombatButton.addClass('hidden');
-		this._stopCombatButton.removeClass('hidden');
+		this._setStartStopButtonVisibility();
 
 		this._onUpdateHUD();
+	}
+
+	static StopCombat() {
+		this._doStopCombat();
 	}
 
 	async _doStopCombat() {
@@ -479,8 +683,7 @@ export class CombatHUD extends Application {
 
 		await game.combat.endCombat();
 
-		this._startCombatButton.removeClass('hidden');
-		this._stopCombatButton.addClass('hidden');
+		this._setStartStopButtonVisibility();
 	}
 
 	_onGameReady() {
@@ -520,15 +723,16 @@ export class CombatHUD extends Application {
 		if (!game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) return;
 		if (!game.user.isGM) return;
 
-		event.originalEvent.dataTransfer.dropEffect = 'move';
-		event.originalEvent.dataTransfer.setData(
-			'text/plain',
-			JSON.stringify({
-				token: event.currentTarget.dataset.tokenId,
-				actor: event.currentTarget.dataset.actorId,
-				type: event.currentTarget.dataset.type,
-			}),
-		);
+		const actualEvent = event.originalEvent ?? event;
+
+		actualEvent.dataTransfer.dropEffect = 'move';
+
+		const dropData = {
+			token: event.currentTarget.dataset.tokenId,
+			actor: event.currentTarget.dataset.actorId,
+			type: event.currentTarget.dataset.type,
+		};
+		actualEvent.dataTransfer.setData('text/plain', JSON.stringify(dropData));
 	}
 
 	_doDragOver(event) {}
@@ -541,7 +745,8 @@ export class CombatHUD extends Application {
 		const combatRowOver = event.currentTarget.closest('.combat-row');
 		const actorTypeOver = combatRowOver.dataset.type;
 
-		const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+		const actualEvent = event.originalEvent ?? event;
+		const data = JSON.parse(actualEvent.dataTransfer.getData('text/plain'));
 		const actorTypeDragged = data.type;
 
 		if (actorTypeOver !== actorTypeDragged) {
@@ -549,43 +754,52 @@ export class CombatHUD extends Application {
 			return;
 		}
 
-		const faction = actorTypeOver === 'character' ? '.characters' : '.npcs';
-		const combatRowDragged = this.element.find(`.combat-row[data-token-id="${data.token}"]`)[0];
+		// const faction = actorTypeOver === 'character' ? '.characters' : '.npcs';
+		const combatRowDragged = this.element.querySelector(`.combat-row[data-token-id="${data.token}"]`);
 
 		const orderOver = parseInt(combatRowOver.dataset.order);
 		const orderDragged = parseInt(combatRowDragged.dataset.order);
 
 		combatRowOver.dataset.order = orderDragged;
-		$(combatRowOver).find('.combat-order').html(orderDragged);
+		let orderElems = combatRowDragged.querySelectorAll('.combat-order');
+		for (const elem of orderElems) {
+			if (elem instanceof HTMLElement) elem.innerHTML = orderDragged;
+		}
 
 		combatRowDragged.dataset.order = orderOver;
-		$(combatRowDragged).find('.combat-order').html(orderOver);
+		orderElems = combatRowDragged.querySelectorAll(`.combat-order`);
+		for (const elem of orderElems) {
+			if (elem instanceof HTMLElement) elem.innerHTML = orderOver;
+		}
 
+		// Update ordering cache
 		const ordering = game.settings.get(SYSTEM, SETTINGS.optionCombatHudActorOrdering);
-
 		ordering.find((o) => o.tokenId === data.token).order = orderOver;
 		ordering.find((o) => o.tokenId === combatRowOver.dataset.tokenId).order = orderDragged;
-
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, ordering);
+	}
 
-		const factionList = this.element.find(faction);
-		const rows = $(faction).find('.combat-row').detach();
-		const sortedRows = $(rows.toArray().sort((a, b) => a.dataset.order - b.dataset.order));
-
-		factionList.append(sortedRows);
+	static MinimizeHUD() {
+		this._doMinimize();
 	}
 
 	_doMinimize() {
 		console.debug(`Combat HUD: Minimizing (Internal)`);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, true);
 
-		const tokenButton = ui.controls.controls.find((control) => control.name === SYSTEM);
+		const tokenButton = ui.controls.controls[SYSTEM];
+
 		if (tokenButton) {
-			tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle').active = false;
+			const tool = tokenButton.tools['projectfu-combathud-toggle'];
+			if (tool) tool.active = false;
 			ui.controls.render(true);
 		}
 
 		CombatHUD.close();
+	}
+
+	static ToggleCompactMode() {
+		this._doToggleCompact();
 	}
 
 	_doToggleCompact() {
@@ -594,10 +808,19 @@ export class CombatHUD extends Application {
 		const isCompact = !game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, isCompact);
 
-		const icons = this.element.find('.window-compact .fas');
-		icons.toggleClass('hidden');
+		const icons = this.element.querySelectorAll(`.window-compact .fas`);
+		for (const icon of icons) {
+			if (icon instanceof HTMLElement) icon.classList.toggle('hidden');
+		}
 
-		this.element.find('.faction-list').toggleClass('compact');
+		const factionLists = this.element.querySelectorAll(`.faction-list`);
+		for (const list of factionLists) {
+			if (list instanceof HTMLElement) list.classList.toggle('compact');
+		}
+	}
+
+	static PopOutHUD() {
+		this._doPopOut();
 	}
 
 	_doPopOut() {
@@ -614,19 +837,22 @@ export class CombatHUD extends Application {
 		}
 	}
 
-	_onCombatantClick(event) {
+	static ClickCombatant(e, elem) {
+		this._onCombatantClick(e, elem);
+	}
+
+	_onCombatantClick(event, elem) {
 		const now = Date.now();
 		const dt = now - this._clickTime;
 		this._clickTime = now;
 		if (dt <= 250) {
-			this._onCombatantDoubleClick(event);
+			this._onCombatantDoubleClick(event, elem);
 			return;
 		}
 
-		const isShiftActive = game.keyboard.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
+		const isShiftActive = game.keyboard.isModifierActive(foundry.helpers.interaction.KeyboardManager.MODIFIER_KEYS.SHIFT);
 
-		const combatRow = event.currentTarget.closest('.combat-row');
-		const token = canvas.tokens.get(combatRow.dataset.tokenId);
+		const token = canvas.tokens.get(elem.dataset.tokenId);
 		if (token) {
 			if (!token.actor?.testUserPermission(game.user, 'OBSERVER')) {
 				return;
@@ -636,11 +862,12 @@ export class CombatHUD extends Application {
 		}
 	}
 
-	_onCombatantDoubleClick(event) {
+	_onCombatantDoubleClick(event, elem) {
 		event.preventDefault();
 
-		const combatRow = event.currentTarget.closest('.combat-row');
-		const token = canvas.tokens.get(combatRow.dataset.tokenId);
+		// const combatRow = event.currentTarget.closest('.combat-row');
+		// const token = canvas.tokens.get(combatRow.dataset.tokenId);
+		const token = canvas.tokens.get(elem.dataset.tokenId);
 
 		if (token) {
 			const combatant = game.combat.combatants.find((c) => c.tokenId === token.id);
@@ -677,64 +904,6 @@ export class CombatHUD extends Application {
 		return a + alpha * (b - a);
 	}
 
-	/**
-	 * @override
-	 */
-	async _render(force, options) {
-		// if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
-		// 	this.close();
-		// 	return;
-		// }
-
-		await super._render(force, options);
-		if (this._poppedOut) {
-			this.element.css('width', 'calc(100% - 4px)');
-			this.element.css('height', '100%');
-			this.element.css('left', '0px');
-			return;
-		}
-
-		const hOffset = -5;
-		let minWidth = 700;
-		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme) === 'fu-modern') {
-			minWidth = 805;
-		}
-		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme) === 'fu-mother') {
-			minWidth = 805;
-		}
-
-		const uiLeft = $('#ui-left');
-		const uiMiddle = $('#ui-middle');
-		const uiRight = $('#ui-right');
-
-		let hudWidth = uiMiddle.width() + uiLeft.width() * 0.5;
-		if (hudWidth < minWidth) {
-			hudWidth = minWidth;
-		}
-
-		let uiRightWidth = uiRight.length ? uiRight.width() : 0;
-		hudWidth -= uiRightWidth * 0.5;
-
-		const alpha = game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100;
-		hudWidth = this.lerp(minWidth, hudWidth, alpha);
-
-		this.element.css('width', hudWidth + hOffset);
-
-		const { position, positionButton } = this._getPosition();
-		if (position.top) {
-			this.element.css('top', position.top);
-		}
-		if (position.bottom) {
-			this.element.css('bottom', position.bottom);
-		}
-		if (position.left) {
-			this.element.css('left', position.left);
-		}
-
-		// Apply button position
-		this._applyButtonPosition(positionButton);
-	}
-
 	_getPosition() {
 		const draggedPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudDraggedPosition);
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
@@ -747,10 +916,12 @@ export class CombatHUD extends Application {
 		// position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left - uiLeft.width() * 0.5;
 		position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left;
 		if (positionFromTop) {
-			const uiTop = $('#ui-top');
-			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;
+			// const uiTop = $('#ui-top');
+			// position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;
+			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : 20;
 		} else {
-			const uiBottom = $('#ui-bottom');
+			// const uiBottom = $('#ui-bottom');
+			const uiBottom = $('#hotbar');
 			position.bottom = draggedPosition && draggedPosition.y ? draggedPosition.y : uiBottom.height() + 35;
 		}
 
@@ -771,10 +942,13 @@ export class CombatHUD extends Application {
 	}
 
 	_applyButtonPosition(positionButton) {
-		this.element.find('.window-button').css({
-			'--window-button-top': positionButton.top,
-			'--window-button-bottom': positionButton.bottom,
-		});
+		const buttons = this.element.querySelectorAll(`.window-button`);
+		for (const button of buttons) {
+			if (button instanceof HTMLElement) {
+				button.style.setProperty('--window-button-top', positionButton.top);
+				button.style.setProperty('--window-button-bottom', positionButton.bottom);
+			}
+		}
 	}
 
 	_onUpdateHUD_Round() {
@@ -792,7 +966,7 @@ export class CombatHUD extends Application {
 		this.render(true);
 	}
 
-	_onUpdateCombatant(combatant, changes) {
+	_onUpdateCombatant() {
 		this._onUpdateHUD();
 	}
 
@@ -967,26 +1141,28 @@ export class CombatHUD extends Application {
 		ui.combatHud._onUpdateHUD_Round();
 	}
 
-	static init() {
+	static async init() {
 		console.debug(`Combat HUD: Initializing statically`);
 		ui.combatHud ??= new CombatHUD();
 		console.debug(`Combat HUD: First render`);
 
-		ui.combatHud.render(true);
+		await ui.combatHud.render(true);
 
-		setTimeout(() => {
-			const systemButton = ui.controls.controls.find((control) => control.name === SYSTEM);
-			if (systemButton) {
-				let tool = systemButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
+		const systemButton = ui.controls.controls[SYSTEM];
+		if (systemButton) {
+			let tool = systemButton.tools.HUDToggle;
+			if (tool) {
 				tool.active = !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized);
 				tool.visible = true;
-
-				tool = systemButton.tools.find((tool) => tool.name === 'projectfu-combathud-reset');
-				tool.visible = true;
-
-				ui.controls.render(true);
 			}
-		}, 200);
+
+			tool = systemButton.tools.hudReset;
+			if (tool) {
+				tool.visible = true;
+			}
+
+			ui.controls.render(true);
+		}
 
 		console.debug(`Combat HUD: Initializing finished`);
 	}
@@ -1033,16 +1209,19 @@ export class CombatHUD extends Application {
 		CombatHUD.update();
 	}
 
+	/**
+	 * @return {HudButtonData}
+	 */
 	static getToggleControlButton() {
 		return {
-			name: 'projectfu-combathud-toggle',
-			title: game.i18n.localize('FU.CombatHudControlButtonTitle'),
+			name: game.i18n.localize('FU.CombatHudControlButtonTitle'),
 			icon: 'fas fa-thumbtack',
-			button: false,
 			toggle: true,
 			visible: game.combat ? game.combat.isActive : false,
 			active: !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized),
+
 			onClick: () => {
+				console.log('Click toggle');
 				if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
 					CombatHUD.restore();
 				} else {
@@ -1052,30 +1231,35 @@ export class CombatHUD extends Application {
 		};
 	}
 
+	/**
+	 * @return {HudButtonData}
+	 */
 	static getSavedControlButton() {
 		return {
-			name: 'projectfu-combathud-saved-toggle',
-			title: game.i18n.localize('FU.CombatHudSaveButtonTitle'),
+			name: game.i18n.localize('FU.CombatHudSaveButtonTitle'),
 			icon: 'fas fa-lock',
-			button: false,
 			toggle: true,
 			visible: game.combat ? game.combat.isActive : false,
 			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved),
 			onClick: () => {
+				console.log('Click save');
 				const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
 				game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
 			},
 		};
 	}
 
+	/**
+	 * @return {HudButtonData}
+	 */
 	static getResetControlButton() {
 		return {
-			name: 'projectfu-combathud-reset',
-			title: game.i18n.localize('FU.CombatHudResetButtonTitle'),
+			name: game.i18n.localize('FU.CombatHudResetButtonTitle'),
 			icon: 'fas fa-undo',
-			button: true,
-			visible: game.combat ? game.combat.isActive : false,
+			// visible: game.combat ? game.combat.isActive : false,
+			visible: true,
 			onClick: () => {
+				console.log('Click reset');
 				CombatHUD.reset();
 			},
 		};
@@ -1091,8 +1275,44 @@ export class CombatHUD extends Application {
 	async _getCombatantThumbnail(combatant) {
 		if (combatant._videoSrc && !combatant.img) {
 			if (combatant._thumb) return combatant._thumb;
-			return (combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, { width: 200, height: 200 }));
+			return (combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, {
+				width: 200,
+				height: 200,
+			}));
 		}
 		return combatant.img ?? CONST.DEFAULT_TOKEN;
+	}
+
+	_configureRenderOptions(options) {
+		super._configureRenderOptions(options);
+
+		// Set theme template
+		const theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme);
+		options.parts = [theme];
+
+		return options;
+	}
+
+	static StartTurn(e) {
+		ui.combat.handleStartTurn(e);
+	}
+
+	static EndTurn(e) {
+		ui.combat.handleEndTurn(e);
+	}
+
+	static TakeTurnOutOfTurn(e) {
+		ui.combat.handleTakeTurnOutOfTurn(e);
+	}
+
+	static async ClickEffect(e, elem) {
+		const actor = game.actors.get(elem.dataset.actorId);
+		if (!(actor instanceof Actor)) return;
+		if (e.button === 0) {
+			const effect = actor.effects.get(elem.dataset.effectId);
+			// Currently, the HUD will actually only show temporary effects
+			if (effect?.isTemporary) await effect.delete();
+			else await effect.update({ disabled: !effect.disabled });
+		}
 	}
 }

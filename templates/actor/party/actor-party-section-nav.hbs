@@ -1,0 +1,95 @@
+<div class="side sidebar flex-group-center">
+
+	<nav class="sheet-tabs tabs menu"
+		 aria-roledescription="{{localize "SHEETS.FormNavLabel"}}">
+		{{#each tabs as |tab|}}
+			<a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+        class="button button-style{{#if tab.cssClass}} {{tab.cssClass}}{{/if}}"
+				{{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+				{{#if tab.icon}}<i class="{{tab.icon}}" inert></i>{{/if}}
+				{{#if tab.label}}<span>{{localize tab.label}}</span>{{/if}}
+			</a>
+		{{/each}}
+	</nav>
+
+	<div style="width: 100%;">
+		<!-- CLOCKS -->
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m" aria-describedby="tooltip">
+				<a class="resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}" style="width: fit-content;">
+					<a data-action="addTrack">
+						<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
+					</a>
+				</a>
+			</legend>
+
+			{{#each system.tracks }}
+				<div class="item clock-m" data-name="{{ this.name }}" data-index="{{@index}}" style="grid-column-gap: 2px;">
+					<a class="progress" style="--segments: {{this.max}};" data-segments="{{this.max}}" data-tooltip="{{localize 'FU.Progress'}}">
+						<div class="foreground"></div>
+						{{#each this.progressArray as |obj key|}}
+							<input disabled class="pie slice{{obj.id}}" type="radio" value="{{obj.id}}" style="--index: {{obj.id}}" {{checked obj.checked}} />
+							<div class="divider" style="--index: {{obj.id}}"></div>
+						{{/each}}
+					</a>
+
+					<a class="increment-button" data-action="incrementProgress" data-increment="1"
+					   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{this.step}})">
+						<i class="fas fa-plus"></i>
+					</a>
+					<a class="decrement-button" data-action="incrementProgress" data-increment="-1"
+					   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{this.step}})"> <i
+					 class="fas fa-minus"></i>
+					</a>
+
+					<h4 class="item-name rollable resource-content"  data-roll-type="item">
+						<a data-action="removeTrack">
+							<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
+						</a>
+						<a data-action="revealTrack" data-tooltip="{{this.name}}"><span class="resource-label-m">{{ this.name }}</span></a>
+					</h4>
+
+				</div>
+				<hr>
+			{{/each}}
+
+		</fieldset>
+
+		<!-- ACTIONS -->
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.Actions'}}
+			</legend>
+
+			{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="refreshSheet" tooltip="FU.Refresh" icon="fa fa-refresh"}}
+			{{#if isGM}}
+				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="restParty" tooltip="FU.Rest" icon="fas fa-bed" }}
+				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="rewardResource" tooltip="FU.AwardResources" icon="fas fa-feather" }}
+			{{/if}}
+			{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="revealMetaCurrency" tooltip="FU.AppMetaCurrencyTrackerTitle" icon="fa-solid fa-chart-line"}}
+
+			{{#each actionHooks}}
+				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="callHook" tooltip=this.name icon=this.icon option=this.hook}}
+			{{/each}}
+		</fieldset>
+
+		<!-- STATS -->
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.Stats'}}
+			</legend>
+			<div class="resources">
+				<i class="fuk fu-zenit icon-aff" data-tooltip="{{localize @root.currency}}"></i>
+				{{stats.zenit}}
+				<i class="fuk fu-xp icon-aff" data-tooltip="{{localize 'FU.ChatExpAwardEarnedExp'}}"></i>
+				{{stats.xp}}
+			</div>
+			<div class="resources">
+				<i class="fuk fu-fp icon-aff" data-tooltip="{{localize 'FU.ChatExpAwardSpentFabula'}}"></i>
+				{{stats.fp}}
+				<i class="fuk fu-up icon-aff" data-tooltip="{{localize 'FU.ChatExpAwardUltimaExp'}}"></i>
+				{{stats.up}}
+			</div>
+		</fieldset>
+	</div>
+</div>

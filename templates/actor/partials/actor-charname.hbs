@@ -1,37 +1,38 @@
 <div class="charname-container flexrow grid-span-4">
-    <h2 class="charname" style="flex: 3;">
-        <input name="name" type="text" value="{{ actor.name }}" placeholder="Name" data-tooltip="{{ actor.name }}"
-               class="resource-inputs-charname auto-shrink" />
-    </h2>
-    <h4 class="pronouns">
-        <input name="system.resources.pronouns.name" type="text" value="{{ system.resources.pronouns.name }}"
-               placeholder="Pronouns" data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}"
-               class="auto-shrink" />
-    </h4>
+	<h2 class="charname" style="flex: 3;">
+		<input name="name" type="text" value="{{ actor.name }}" placeholder="Name" data-tooltip="{{ actor.name }}"
+			   class="resource-inputs-charname auto-shrink" />
+	</h2>
+	<h4 class="pronouns">
+		<input name="system.resources.pronouns.name" type="text" value="{{ system.resources.pronouns.name }}"
+			   placeholder="Pronouns" data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}"
+			   class="auto-shrink" />
+	</h4>
 </div>
 {{#if (eq actor.type "character")}}
-    <span class="flexrow grid grid-2col grid-span-2"
-          style="border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
+	<span class="flexrow grid grid-2col grid-span-2"
+		  style="border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
     <!-- Level -->
     <span class="resource-content levelup-container level-field flexcol flex-group-center">
         <label class="resource-label-m" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip">
             <i class="fas fa-chart-simple icon"></i>{{localize
-         'FU.LevelAbbr'}} </label>
+		 'FU.LevelAbbr'}} </label>
         <input name="system.level.value" value="{{ system.level.value }}" type="number" data-dtype="Number"
-               class="resource-inputs" style="border-radius: 0 12px 0 0;;" />
+			   class="resource-inputs" style="border-radius: 0 12px 0 0;;" />
     </span>
-        <!-- Experience -->
+		<!-- Experience -->
     <span class="resource-content levelup-container level-field flexcol flex-group-center"
-          style="border-top-right-radius: 12px;">
+		  style="border-top-right-radius: 12px;">
         <label class="resource-label-m" data-tooltip="{{localize 'FU.Exp'}}" aria-describedby="tooltip">
             <i class="fas fa-feather-pointed icon"></i>
-            {{localize 'FU.ExpAbbr'}} {{#if (gte system.resources.exp.value 10)}}
-            <i class="fas fa-hand-point-up is-levelup float-text" data-tooltip="{{localize 'FU.LevelUp'}}"
-               aria-describedby="tooltip"></i>
-        {{/if}}
+			{{localize 'FU.ExpAbbr'}}
+			{{#if (gte system.resources.exp.value 10)}}
+				<i class="fas fa-hand-point-up is-levelup float-text" data-action="levelUp" data-tooltip="{{localize 'FU.LevelUp'}}"
+				   aria-describedby="tooltip"></i>
+			{{/if}}
         </label>
         <input name="system.resources.exp.value" value="{{ system.resources.exp.value }}" type="number"
-               data-dtype="Number" class="resource-inputs" style="border-radius: 10px 0 0;" />
+			   data-dtype="Number" class="resource-inputs" style="border-radius: 10px 0 0;" />
     </span>
     <div class="bar bar-progress grid-span-2" style="height: 10px;">
         <div class="bar-progress-bar bar-level" style="width: {{calculatePercentage system.resources.exp.value 10}};">
@@ -40,29 +41,32 @@
 </span>
 {{/if}}
 {{#if (eq actor.type "npc")}}
-    <div class="grid-span-2 resource-content npc-level-container">
-        <!-- Level -->
-        <label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip">
-            <i class="fas fa-chart-simple icon"></i>
-            {{localize 'FU.LevelAbbr'}}
-        </label>
-        <input type="number" name="system.level.value" min="5" max="60" step="5" value="{{ system.level.value }}" class="resource-inputs grid-span-2 level-input" />
-        <!-- Rank -->
-        <label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Rank'}}"
-               aria-describedby="tooltip"> <i
-         class="fas fa-feather-pointed icon"></i>{{localize
-         'FU.Rank'}} </label>
-        <div class="grid-span-2 flexrow">
-            <select name="system.rank.value" class="resource-inputs rank-select">
-                {{selectOptions FU.rank selected=system.rank.value localize=true}}
-            </select>
+	<div class="grid-span-2 resource-content npc-level-container">
+		<!-- Level -->
+		<label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Level'}}"
+			   aria-describedby="tooltip">
+			<i class="fas fa-chart-simple icon"></i>
+			{{localize 'FU.LevelAbbr'}}
+		</label>
+		<input type="number" name="system.level.value" min="5" max="60" step="5" value="{{ system.level.value }}"
+			   class="resource-inputs grid-span-2 level-input" />
+		<!-- Rank -->
+		<label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Rank'}}"
+			   aria-describedby="tooltip"> <i
+		 class="fas fa-feather-pointed icon"></i>{{localize
+		 'FU.Rank'}} </label>
+		<div class="grid-span-2 flexrow" style="flex-wrap: nowrap;">
+			<select name="system.rank.value" class="resource-inputs rank-select">
+				{{selectOptions FU.rank selected=system.rank.value localize=true}}
+			</select>
 
-            {{#if (eq system.rank.value 'champion')}}
-                <span class="resource-inputs flex0 champion-input">
-                    <input type="number" name="system.rank.replacedSoldiers" min="1" max="6" value="{{system.rank.replacedSoldiers}}"
-                          class="resource-inputs" />
+			{{#if (eq system.rank.value 'champion')}}
+				<span class="resource-inputs flex0 champion-input">
+                    <input type="number" name="system.rank.replacedSoldiers" min="1" max="6"
+						   value="{{system.rank.replacedSoldiers}}"
+						   class="resource-inputs" />
                 </span>
-            {{/if}}
-        </div>
-    </div>
+			{{/if}}
+		</div>
+	</div>
 {{/if}}

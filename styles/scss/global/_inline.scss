@@ -1,3 +1,6 @@
+/* ----------------------------------------- */
+/* Inline Styles                       
+/* ----------------------------------------- */
 @import '../utils/colors';
 
 .fu-tags {
@@ -81,7 +84,15 @@ a.inline-roll {
 }
 
 .inline {
-	display: inline-block;
+	display: inline-flex;
+	gap: 0.025em;
+	align-items: baseline;
+
+	img {
+		border: none;
+		position: relative;
+		top: 3px;
+	}
 
 	&.broken {
 		font-size: var(--font-size-14);
@@ -102,7 +113,6 @@ a.inline-roll {
 	&.inline-recovery,
 	&.inline-loss,
 	&.inline-effect,
-	&.inline-affinity,
 	&.inline-type,
 	&.inline-clock,
 	&.inline-weapon {

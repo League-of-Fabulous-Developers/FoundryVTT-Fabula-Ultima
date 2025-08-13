@@ -1,3 +1,6 @@
+/* ----------------------------------------- */
+/* Forms Styles                       
+/* ----------------------------------------- */
 /* Description Format */
 .sheet-body {
 	.desc {
@@ -128,8 +131,7 @@
 			border-radius: 0;
 			display: flex;
 			align-items: center;
-
-			div {
+			height: 100% div {
 				gap: 2px;
 			}
 		}
@@ -366,7 +368,7 @@
 }
 
 /* Item Description Styles */
-.tab.desc.active {
+.window-content > .tab.active {
 	margin-bottom: 5px;
 	overflow-y: auto;
 	min-height: 16em;
@@ -384,7 +386,7 @@
 
 /* Editor Content Styles */
 .editor-content {
-	height: fit-content;
+	height: 100%;
 	padding: 0 0.5em;
 }
 
@@ -469,6 +471,13 @@
 	-webkit-backdrop-filter: blur(8px);
 	border-radius: 12px; /* optional: smooth rounded corners */
 	border: 1px solid rgba(255, 255, 255, 0.1); /* optional: subtle border */
+
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	right: 8px;
+	bottom: 8px;
+	z-index: -50;
 }
 
 .tag {
@@ -486,6 +495,7 @@
 .party {
 	display: flex;
 	color: $color-primary;
+	flex-direction: row;
 
 	.editor-menu {
 		color: var(--pfu-color-app-control-content) !important;
@@ -498,6 +508,11 @@
 		display: flex;
 		justify-content: space-between;
 		flex-direction: column;
+		margin-right: 16px;
+
+		.menu {
+			margin-left: -16px;
+		}
 
 		.resources {
 			display: flex;

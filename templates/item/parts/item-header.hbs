@@ -1,0 +1,89 @@
+<header class="sheet-header desc">
+	<div class="profile desc" style="display: flex; align-items: stretch;">
+		{{!-- <img class="item-profile-img" src="{{ item.img }}" data-edit="img" data-action="editImage" title="{{ item.name }}" /> --}}
+		<img class="item-profile-img"
+			src="{{ item.img }}"
+			data-edit="img"
+			data-action="editImage"
+			data-tooltip="{{ item.name }}"
+			style="flex-shrink: 0;" />
+		
+		<div class="header-fields">
+			<div class="header-start grid grid-6col">
+				<div class="charname-container flexrow grid-span-4">
+					<h2 class="charname" style="flex: 4;">
+						<input name="name" type="text" value="{{ item.name }}" placeholder="Name"
+							   data-tooltip="{{ item.name }}" class="resource-inputs-charname auto-shrink" />
+					</h2>
+					<h4 class="martials">
+						{{#if showMartial}}
+							<input id="martial-checkbox" type="checkbox" style="display: none;" {{#if
+							 system.isMartial.value}}checked{{/if}}>
+							<label for="martial-checkbox">
+								<img id="martial-header"
+									 class="icon-aff {{#if
+									  system.isMartial.value}}fus-martial active{{else}}ful-martial{{/if}}"
+									 tabindex="0" aria-hidden="true">
+							</label>
+						{{/if}}
+
+						{{#if showOffensive}}
+							<input id="offensive-checkbox" type="checkbox" style="display: none;" {{#if
+							 system.isOffensive.value}}checked{{/if}}>
+							<label for="offensive-checkbox">
+								<img id="offensive-header"
+									 class="icon-aff {{#if
+									  system.isOffensive.value}}fus-offensive active{{else}}ful-offensive{{/if}}"
+									 tabindex="0" aria-hidden="true">
+							</label>
+						{{/if}}
+					</h4>
+				</div>
+
+				{{!-- Part --}}
+				<span class="flexrow grid-span-2 gap-2"
+					  style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
+
+                    {{!-- Item Type --}}
+					<span class="resource-content levelup-container flexcol flex-group-center">
+                        <label class="resource-label-m" for="item.type"> <i
+						 class="fas fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
+                        <input type="text" name="item.type" value="{{localize (translate item.type)}}"
+							   data-dtype="String" class="resource-inputs" disabled
+							   style="border-radius: 0 12px 0 0;" />
+                    </span>
+
+					{{!-- Source --}}
+					<span class="resource-content levelup-container flexcol flex-group-center"
+						  style="border-top-right-radius: 12px;">
+                        <label class="resource-label-m rollable" id="pdfLink">
+							{{localize 'FU.Source'}} </label>
+						<input type="text" name="system.source" value="{{ system.source }}"
+							   data-dtype="String" style="border-radius: 10px 0 0;" class="resource-inputs" />
+
+                    </span>
+                </span>
+			</div>
+
+			{{!-- Center Header --}}
+			{{#if system.schema.fields.summary}}
+				<div class="item-header header-field header-center grid grid-3col desc">
+					<div class="resource-content summary grid-span-3">
+						<label class="resource-label-sm" for="system.summary.value"> <i
+						 class="fas fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
+						<blockquote>
+							<input type="text" name="system.summary.value" value="{{ system.summary.value }}"
+								   data-dtype="String" class="flex-group-center resource-inputs summary"
+								   data-tooltip="{{ system.summary.value }}" />
+						</blockquote>
+					</div>
+				</div>
+			{{/if}}
+		</div>
+	</div>
+
+	{{!-- Optional Traits --}}
+	<div class="w-100">
+		{{> 'systems/projectfu/templates/item/partials/item-traits.hbs' }}
+	</div>
+</header>

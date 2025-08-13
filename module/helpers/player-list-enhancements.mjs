@@ -2,22 +2,65 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 
-function addFabulaPointDisplay(app, html, data) {
-	const userId = game.userId;
+/**
+ * @param {UserData} user
+ * @returns {HTMLAnchorElement}
+ */
+function createFpActionElement(user) {
+	const fpActionAnchor = document.createElement('a');
+	fpActionAnchor.dataset.action = 'spendFabula';
+	fpActionAnchor.classList.add('flex0');
+	fpActionAnchor.append(createFpDisplay(user));
+
+	fpActionAnchor.addEventListener('click', (ev) => {
+		ev.preventDefault();
+		return spendMetaCurrency(user.character);
+	});
+	fpActionAnchor.addEventListener('contextmenu', (ev) => {
+		ev.preventDefault();
+		ev.stopPropagation();
+		return gainMetaCurrency(user.character);
+	});
+	return fpActionAnchor;
+}
+
+/**
+ * @param {UserData} user
+ * @returns {HTMLSpanElement}
+ */
+function createFpDisplay(user) {
+	const fabulaPoints = user.character.system.resources.fp.value;
+	const icon = fabulaPoints < 10 ? `counter_${fabulaPoints}` : 'add_circle';
+	const tooltip = fabulaPoints >= 10 ? game.i18n.localize('FU.FabulaPoints') + ': ' + fabulaPoints : '';
+
+	const fpDisplay = document.createElement('span');
+	fpDisplay.classList.add('flex0', 'mats-o', 'font-size-20');
+	fpDisplay.textContent = icon;
+
+	if (fabulaPoints >= 10) {
+		fpDisplay.dataset.tooltip = tooltip;
+	}
+	return fpDisplay;
+}
+
+/**
+ * @param {Players} app
+ * @param {HTMLElement} element
+ * @param data
+ */
+function addFabulaPointDisplay(app, element, data) {
+	const currentUser = game.user;
 	const isGM = game.user.isGM;
 	const actor = game.user.character;
 
 	// Function to render uneditable fabula points for players (excluding current user)
 	function renderUneditableFabulaPoints() {
-		html.find('#player-list .player[data-user-id]').each(function () {
-			const playerId = this.dataset.userId;
-			const user = game.users.get(playerId);
+		element.querySelectorAll('.player[data-user-id]').forEach((el) => {
+			const userId = el.dataset.userId;
+			const user = game.users.get(userId);
 
-			if (playerId !== userId && !isGM && user.character) {
-				const fabulaPoints = user.character.system.resources.fp.value;
-				const icon = fabulaPoints < 10 ? `counter_${fabulaPoints}` : 'add_circle';
-				const tooltip = fabulaPoints >= 10 ? game.i18n.localize('FU.FabulaPoints') + ': ' + fabulaPoints : '';
-				$(this).append(`<span class="flex0 mats-o font-size-20" ${fabulaPoints >= 10 ? `data-tooltip="${tooltip}"` : ''}>${icon}</span>`);
+			if (userId !== currentUser.id && !isGM && user.character) {
+				el.append(createFpDisplay(user));
 			}
 		});
 	}
@@ -25,49 +68,23 @@ function addFabulaPointDisplay(app, html, data) {
 	// Function to render spendable fabula points for the current user
 	function renderSpendableFabulaPoints() {
 		if (actor && actor.system instanceof CharacterDataModel && !isGM) {
-			const fabulaPoints = actor.system.resources.fp.value;
-			const icon = fabulaPoints < 10 ? `counter_${fabulaPoints}` : 'add_circle';
-			const tooltip = fabulaPoints >= 10 ? game.i18n.localize('FU.FabulaPoints') + ': ' + fabulaPoints : '';
+			const fpActionAnchor = createFpActionElement(currentUser);
 
-			html.find(`#player-list .player[data-user-id=${userId}]`).each(function () {
-				$(this)
-					.append(`<a class="flex0" data-user-id="${userId}" data-action="spendFabula"><span class="mats-o font-size-20" ${fabulaPoints >= 10 ? `data-tooltip="${tooltip}"` : ''}>${icon}</span></a>`)
-					.find(`a[data-user-id="${userId}"][data-action="spendFabula"]`)
-					.on('click', function (event) {
-						event.preventDefault();
-						return spendMetaCurrency(actor);
-					})
-					.on('contextmenu', function (event) {
-						event.preventDefault();
-						return gainMetaCurrency(actor);
-					});
-			});
+			const userElement = element.querySelector(`.player[data-user-id=${currentUser.id}]`);
+			userElement.append(fpActionAnchor);
 		}
 	}
 
 	// Function to render spendable fabula points for GMs
 	function renderGMFabulaPoints() {
 		if (isGM) {
-			html.find('#player-list .player[data-user-id]').each(function () {
-				const playerId = this.dataset.userId;
+			element.querySelectorAll('.player[data-user-id]').forEach((userElement) => {
+				const playerId = userElement.dataset.userId;
 				const user = game.users.get(playerId);
 
 				if (user.character && user.character.system instanceof CharacterDataModel) {
-					const charId = user.character._id;
-					const fabulaPoints = user.character.system.resources.fp.value;
-					const icon = fabulaPoints < 10 ? `counter_${fabulaPoints}` : 'add_circle';
-					const tooltip = fabulaPoints >= 10 ? game.i18n.localize('FU.FabulaPoints') + ': ' + fabulaPoints : '';
-
-					$(this)
-						.append(`<a class="flex0" data-user-id="${charId}" data-action="spendFabula"><span class="mats-o font-size-20" ${fabulaPoints >= 10 ? `data-tooltip="${tooltip}"` : ''}>${icon}</span></a>`)
-						.on('click', `a[data-user-id="${charId}"][data-action="spendFabula"]`, async function (event) {
-							event.preventDefault();
-							return spendMetaCurrency(user.character);
-						})
-						.on('contextmenu', `a[data-user-id="${charId}"][data-action="spendFabula"]`, async function (event) {
-							event.preventDefault();
-							return gainMetaCurrency(user.character);
-						});
+					const fpActionAnchor = createFpActionElement(user);
+					userElement.append(fpActionAnchor);
 				}
 			});
 		}
@@ -98,8 +115,8 @@ async function spendMetaCurrency(actor, force = false) {
 	if (metaCurrency && actor.system.resources.fp.value > 0) {
 		const confirmed =
 			force ||
-			(await Dialog.confirm({
-				title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
+			(await foundry.applications.api.DialogV2.confirm({
+				window: { title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }) },
 				content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
 				options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 				rejectClose: false,
@@ -163,7 +180,7 @@ function rerenderPlayerList(actor) {
 
 export const PlayerListEnhancements = Object.freeze({
 	initialize() {
-		Hooks.on('renderPlayerList', addFabulaPointDisplay);
+		Hooks.on('renderPlayers', addFabulaPointDisplay);
 		Hooks.on('updateActor', rerenderPlayerList);
 	},
 	spendMetaCurrency,

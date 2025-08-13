@@ -5,7 +5,7 @@ import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
 
 /**
  * @param {FUActor} actor
- * @param {"mainHand", "offHand", "phantom", "armor"} slot
+ * @param {'mainHand', 'offHand', 'phantom', 'armor'} slot
  * @return {FUItem|null}
  */
 function getWeapon(actor, slot) {
@@ -66,28 +66,20 @@ async function prompt(actor, includeWeaponModules = false) {
 		FU,
 	};
 
-	const content = await renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-weapon.hbs', data);
+	const content = await foundry.applications.handlebars.renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-weapon.hbs', data);
 
-	const selectedWeapon = await new Promise((resolve) => {
-		const dialog = new Dialog({
-			title: game.i18n.localize('FU.ChooseWeaponDialogTitle'),
-			label: game.i18n.localize('FU.Submit'),
-			rejectClose: false,
-			content: content,
-			render: (jQuery) => {
-				jQuery.find('[data-item-id][data-action=select]').on('click', function () {
-					resolve(actor.items.get(this.dataset.itemId) ?? null);
-					dialog.close();
-				});
-			},
-			close: () => resolve(null),
-			buttons: {},
-		});
-		dialog.render(true);
+	const { selected } = await foundry.applications.api.DialogV2.input({
+		window: { title: game.i18n.localize('FU.ChooseWeaponDialogTitle') },
+		label: game.i18n.localize('FU.Submit'),
+		rejectClose: false,
+		content: content,
+		ok: {
+			label: 'FU.Confirm',
+		},
 	});
 
-	if (selectedWeapon) {
-		return selectedWeapon;
+	if (selected) {
+		return actor.items.get(selected) ?? null;
 	} else {
 		return null;
 	}

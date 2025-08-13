@@ -5,8 +5,14 @@ import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { Targeting } from '../../../../helpers/targeting.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import FUApplication from '../../../../ui/application.mjs';
 
-async function getDescription(model, useAttributes = false) {
+/**
+ * @param {VerseDataModel} model
+ * @return {Promise<string|string>}
+ */
+async function getDescription(model) {
 	const key = model.key;
 	const tone = model.tone;
 
@@ -27,35 +33,26 @@ async function getDescription(model, useAttributes = false) {
 
 	let rollData = {};
 
-	// If key is not available, default to tone's rollData
-	if (!key) {
-		rollData = (await ToneDataModel.getAdditionalData(tone.data.system)).rollData;
-	} else {
-		// Set rollData based on the key
-		const keyData = key.system.data;
-		rollData.key = {
-			type: keyData.type,
-			typeLocal: game.i18n.localize(FU.damageTypes[keyData.type]),
-			status: keyData.status,
-			statusLocal: game.i18n.localize(FU.statusEffects[keyData.status]),
-			attribute: keyData.attribute,
-			attributeLocal: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
-			resource: keyData.recovery,
-			resourceLocal: game.i18n.localize(FU.resources[keyData.recovery]),
-		};
+	// Set rollData based on the key
+	const keyData = key.system.data;
+	rollData.key = {
+		type: game.i18n.localize(FU.damageTypes[keyData.type]),
+		status: game.i18n.localize(FU.statusEffects[keyData.status]),
+		attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
+		recovery: game.i18n.localize(FU.resources[keyData.recovery]),
+	};
 
-		const actor = model.parent?.parent?.actor;
-		if (useAttributes && actor) {
-			rollData.attribute = Object.entries(actor.system.attributes ?? {}).reduce(
-				(agg, [attrKey, value]) => ({
-					...agg,
-					[attrKey]: value.current,
-				}),
-				{},
-			);
-		} else {
-			rollData.attribute = (await ToneDataModel.getAdditionalData(tone.system.data)).rollData.attribute;
-		}
+	const actor = model.parent?.parent?.actor;
+	if (actor) {
+		rollData.attribute = Object.entries(actor.system.attributes ?? {}).reduce(
+			(agg, [attrKey, value]) => ({
+				...agg,
+				[attrKey]: value.current,
+			}),
+			{},
+		);
+	} else {
+		rollData.attribute = (await ToneDataModel.getAdditionalData(tone.system.data)).rollData.attribute;
 	}
 
 	// Return enriched HTML using the tone description and roll data
@@ -64,21 +61,31 @@ async function getDescription(model, useAttributes = false) {
 	});
 }
 
-export class VersesApplication extends FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'projectfu', 'verses-app'],
+export class VersesApplication extends FUApplication {
+	/** @type ApplicationConfiguration */
+	static DEFAULT_OPTIONS = {
+		window: { title: 'FU.ClassFeatureVerseSingDialogTitle', minimizable: false },
+		classes: ['form', 'projectfu', 'verses-app'],
+		position: {
 			width: 550,
 			height: 'auto',
+		},
+		form: {
 			closeOnSubmit: false,
-			editable: true,
-			sheetConfig: false,
 			submitOnChange: true,
-			submitOnClose: true,
-			minimizable: false,
-			title: game.i18n.localize('FU.ClassFeatureVerseSingDialogTitle'),
-		});
-	}
+			handler: VersesApplication.#onFormSubmit,
+		},
+		actions: {
+			perform: VersesApplication.#startPerforming,
+		},
+	};
+
+	/** @type {Record<string, HandlebarsTemplatePart>} */
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/feature/chanter/feature-verse-application.hbs',
+		},
+	};
 
 	/**
 	 * @type VerseDataModel
@@ -96,12 +103,13 @@ export class VersesApplication extends FormApplication {
 	#defaultTone;
 
 	constructor(verse, options = {}) {
-		super(verse);
+		super(options);
 		if (verse.app) {
 			return verse.app;
 		}
 
 		this.#verse = verse;
+		// this.#verse = verse.clone({}, { keepId: true });
 		verse.app = this;
 
 		// Set predefined key and tone if provided in options
@@ -133,15 +141,17 @@ export class VersesApplication extends FormApplication {
 			}, {});
 	}
 
-	get template() {
-		return 'systems/projectfu/templates/feature/chanter/feature-verse-application.hbs';
-	}
-
 	get defaultVolume() {
 		return 'low';
 	}
 
-	async getData(options = {}) {
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
+		Object.assign(context, await this.getData());
+		return context;
+	}
+
+	async getData() {
 		// Define volume options
 		const volumes = {
 			low: game.i18n.localize('FU.ClassFeatureVerseVolumeLow'),
@@ -158,7 +168,7 @@ export class VersesApplication extends FormApplication {
 		}
 
 		// Fetch the initial description
-		const effects = await getDescription(this.#verse, true);
+		const effects = await getDescription(this.#verse);
 
 		// Current key, tone, and volume selections
 		let performance = {
@@ -176,9 +186,9 @@ export class VersesApplication extends FormApplication {
 		};
 	}
 
-	async _updateObject(event, formData) {
+	static async #onFormSubmit(event, form, formData) {
 		// Process the form data
-		formData = foundry.utils.expandObject(formData);
+		formData = foundry.utils.expandObject(formData.object);
 		const selectedKey = this.#verse.actor.items.get(formData.performance.key);
 		const selectedTone = this.#verse.actor.items.get(formData.performance.tone);
 		const selectedVolume = formData.performance.volume;
@@ -189,18 +199,15 @@ export class VersesApplication extends FormApplication {
 			tone: selectedTone,
 			volume: selectedVolume,
 		});
+		this.render();
 	}
 
 	async close(options = {}) {
 		await super.close(options);
 		delete this.#verse.app;
-
-		if (options.getPerforming) {
-			await this.#startPerforming();
-		}
 	}
 
-	async #startPerforming() {
+	static async #startPerforming() {
 		if (!this.#verse.key || !this.#verse.tone) {
 			// Show a warning notification if either key or tone is missing
 			ui.notifications.warn(game.i18n.localize('FU.ClassFeatureVerseNoKeyOrToneSelected'));
@@ -252,56 +259,13 @@ export class VersesApplication extends FormApplication {
 		// Prepare the chat message data
 		const chatMessage = {
 			speaker: ChatMessage.implementation.getSpeaker({ actor }),
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', this.#verse.parent.parent),
-			content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
+			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', this.#verse.parent.parent),
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
 			flags: flags,
 		};
 
 		// Create the chat message
 		await ChatMessage.create(chatMessage);
-	}
-
-	activateListeners(html) {
-		super.activateListeners(html);
-
-		const updateDescription = async (key = this.#verse.key, tone = this.#verse.tone) => {
-			// Ensure that the #verse object is updated with the selected key and tone
-			await this.#verse.updateSource({
-				key: key,
-				tone: tone,
-			});
-
-			const effects = await getDescription(this.#verse, true);
-			html.find('div.verse-description').html(effects);
-		};
-
-		html.find('select[name="performance.tone"]').change(async (event) => {
-			const selectedToneId = $(event.target).val();
-
-			// Update the description after setting the tone
-			if (this.#verse.tone) {
-				await updateDescription(undefined, this.#verse.actor.items.get(selectedToneId));
-			}
-		});
-
-		html.find('select[name="performance.key"]').change(async (event) => {
-			const selectedKeyId = $(event.target).val();
-
-			// Update the description after setting the key
-			if (this.#verse.key) {
-				await updateDescription(this.#verse.actor.items.get(selectedKeyId));
-			}
-		});
-
-		html.find('select[name="performance.volume"]').change(async (event) => {
-			const selectedVolumeId = $(event.target).val();
-			this.#verse.volume = selectedVolumeId;
-
-			await updateDescription();
-		});
-
-		html.find('[data-action=startPerforming]').click(() => this.close({ getPerforming: true }));
-
-		updateDescription();
+		this.close();
 	}
 }

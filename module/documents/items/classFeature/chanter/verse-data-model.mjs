@@ -2,11 +2,13 @@ import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FUItem } from '../../item.mjs';
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
-import { LocallyEmbeddedDocumentField } from '../locally-embedded-document-field.mjs';
 import { FUActor } from '../../../actors/actor.mjs';
 import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { VersesApplication } from './verses-application.mjs';
+import { LocallyEmbeddedDocumentField } from '../../../../fields/locally-embedded-document-field.mjs';
+import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',
@@ -89,11 +91,11 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static get template() {
-		return 'systems/projectfu/templates/feature/chanter/feature-verse-sheet.hbs';
+		return systemTemplatePath('feature/chanter/feature-verse-sheet');
 	}
 
 	static get previewTemplate() {
-		return 'systems/projectfu/templates/feature/chanter/feature-verse-preview.hbs';
+		return systemTemplatePath('feature/chanter/feature-verse-preview');
 	}
 
 	static async getAdditionalData(model) {

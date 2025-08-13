@@ -1,0 +1,30 @@
+<div class="grid grid-3col" style="width: 100%;">
+	<div class="resource-content flexcol flex-group-center">
+		<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+		 'FU.Category'}}</label>
+		<select name="system.category.value" class="resource-inputs select-dropdown-m">
+			{{selectOptions weaponCategoriesWithoutCustom selected=system.category.value sort=true
+							localize=true}}
+		</select>
+	</div>
+	<div class="resource-content flexcol flex-group-center">
+		<label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize
+		 'FU.Hand'}}</label>
+		{{#if system.isCustomWeapon.value}}
+			<select name="system.hands.value" class="resource-inputs select-dropdown-m" disabled>
+				<option value="two-handed">{{localize 'FU.TwoHanded'}}</option>
+			</select>
+		{{else}}
+			<select name="system.hands.value" class="resource-inputs select-dropdown-m">
+				{{selectOptions handedness selected=system.hands.value sort=true localize=true}}
+			</select>
+		{{/if}}
+	</div>
+	<div class="resource-content flexcol flex-group-center">
+		<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+		 'FU.ItemType'}}</label>
+		<select name="system.type.value" class="resource-inputs select-dropdown-m">
+			{{selectOptions wpnType selected=system.type.value sort=true localize=true}}
+		</select>
+	</div>
+</div>

@@ -1,0 +1,31 @@
+<!-- Base Affinities Input Section -->
+<fieldset class="section-container title-fieldset desc affinities resource-content">
+	<legend class="resource-label-m">
+		{{localize 'FU.BaseAffinity'}}
+	</legend>
+
+	<div class="header-fields grid grid-9col" style="margin: 5px 0;">
+		{{#if system.affinities}}
+			{{#each system.affinities as |affinity key|}}
+				<div class="affinity resource-content flex-group-center flexcol">
+					<label data-label="{{affinity.label}}" style="line-height: 1.2em">
+						<span>
+							<img class="affinity-icon" 
+								src="systems/projectfu/styles/static/affinities/icons/{{key}}.png" 
+								alt="{{key}}" 
+								style="width: 24px; height: 24px;">
+							<br />
+							<span class="resource-label-sm">{{affinity.label}}</span>
+						</span>
+					</label>
+					<select name="system.affinities.{{key}}.base"
+							class="resource-inputs select-dropdown"
+							data-tooltip="{{affinity.base}}: {{affinity.affTypeBase}}"
+							data-dtype="Number">
+						{{selectOptions @root.FU.affTypeAbbr selected=affinity.base localize=true}}
+					</select>
+				</div>
+			{{/each}}
+		{{/if}}
+	</div>
+</fieldset>

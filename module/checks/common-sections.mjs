@@ -7,10 +7,11 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { ConsumableDataModel } from '../documents/items/consumable/consumable-data-model.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @param {CheckRenderData} sections
- * @param {string} description
+ * @param {string | Promise<string>} description
  * @param {string} summary
  * @param {number} [order]
  * @param {Boolean} open Defaults to true
@@ -23,11 +24,28 @@ const description = (sections, description, summary, order, open = true) => {
 				summary,
 				//The open attribute needs to be present without a value to be considered true.
 				open: open ? 'open' : '',
-				description: await TextEditor.enrichHTML(description),
+				description: typeof description === 'string' ? await TextEditor.enrichHTML(description) : await description,
 			},
 			order,
 		}));
 	}
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string} text
+ * @param {string} summary
+ * @param {number} [order]
+ * @param {Boolean} open Defaults to true
+ */
+const genericText = (sections, text, order) => {
+	sections.push(async () => ({
+		partial: 'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
+		data: {
+			text: await TextEditor.enrichHTML(text),
+		},
+		order,
+	}));
 };
 
 /**
@@ -165,6 +183,22 @@ const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
 			img: item.img,
 			id: item.id,
 			uuid: item.uuid,
+		},
+	});
+};
+
+/**
+ * Sets chat message flavor by default. Specify order for other usecases.
+ * @param {CheckRenderData} sections
+ * @param {string} flavor
+ * @param {number} [order]
+ */
+const genericFlavor = (sections, flavor, order = CHECK_FLAVOR) => {
+	sections.push({
+		order: order,
+		partial: 'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
+		data: {
+			title: flavor,
 		},
 	});
 };
@@ -320,6 +354,7 @@ const spendResource = (sections, actor, item, targets, flags, expense = undefine
 
 export const CommonSections = {
 	description,
+	genericText,
 	collapsibleDescription,
 	clock,
 	tags,
@@ -327,6 +362,7 @@ export const CommonSections = {
 	quality,
 	resource,
 	itemFlavor,
+	genericFlavor,
 	opportunity,
 	targeted,
 	spendResource,

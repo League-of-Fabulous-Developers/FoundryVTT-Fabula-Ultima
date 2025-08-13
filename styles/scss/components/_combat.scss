@@ -1,3 +1,6 @@
+/* ----------------------------------------- */
+/* Combat Styles                       
+/* ----------------------------------------- */
 .token-initiative {
 	display: flex;
 	justify-content: space-around;
@@ -59,6 +62,9 @@
 	}
 }
 
+/* ----------------------------------------- */
+/* Retro Style                       
+/* ----------------------------------------- */
 &#combat-hud {
 	--hud-height: auto;
 	--npc-width-percent: 30%;
@@ -107,6 +113,12 @@
 		bottom: var(--window-button-bottom);
 		color: $color-white;
 		z-index: 99;
+
+		/*
+      Set !important because some themes will set pointer-events to none on the main application
+      element, and the selector for that is more specific than this one.
+    */
+		pointer-events: initial !important;
 
 		text-shadow: 1px 1px 1px $color-black;
 		box-shadow: 3px 3px $color-secondary;
@@ -203,6 +215,8 @@
 			display: flex;
 			gap: 4px;
 			position: relative;
+
+			pointer-events: initial;
 
 			.combatant-control {
 				display: flex;
@@ -448,6 +462,9 @@
 	}
 }
 
+/* ----------------------------------------- */
+/* Modern Styles                       
+/* ----------------------------------------- */
 &#combat-hud.modern {
 	--npc-width-percent: 0;
 	--combat-info-image-size: calc(8.5em - var(--combat-info-content-padding) * 2);
@@ -469,6 +486,8 @@
 	--combat-zeropower-label-color: #f0ccff;
 	--combat-bars-background: url('../static/ui/combat-hud/bar_bg.svg');
 	--combat-effects-background: rgba(25, 25, 25, 0.6);
+
+	pointer-events: none;
 
 	max-height: 355px;
 
@@ -701,6 +720,9 @@
 	}
 }
 
+/* ----------------------------------------- */
+/* Mother Styles                       
+/* ----------------------------------------- */
 &#combat-hud.mother {
 	--hud-height: 16em;
 	--npc-width-percent: 30%;
@@ -733,6 +755,8 @@
 	--combatant-control-z-index: 99;
 	--hud-background-image-color: #148782;
 	--hud-background-color: #5f90a3;
+
+	pointer-events: none;
 
 	.window-button {
 		position: absolute;

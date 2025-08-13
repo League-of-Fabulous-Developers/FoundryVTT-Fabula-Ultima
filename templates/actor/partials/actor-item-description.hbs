@@ -1,0 +1,10 @@
+<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}" data-item-id="{{ item._id }}">
+	{{#if item.detail}}
+		<div class="item-quality align-left">
+			<strong>{{item.detail}}</strong>
+		</div>
+	{{/if}}
+	{{#if item.enrichedHtml.description}}
+		{{{item.enrichedHtml.description}}}
+	{{/if}}
+</div>

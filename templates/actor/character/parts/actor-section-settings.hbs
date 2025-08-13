@@ -1,0 +1,300 @@
+<div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="settings">
+	{{!-- Base Affinity Section --}}
+	<fieldset class="section-container title-fieldset desc affinities resource-content">
+		<legend class="resource-label-m">
+			{{localize 'FU.BaseAffinity'}}
+		</legend>
+
+		{{!-- Start Affinity Section --}}
+		<div class="header-fields grid grid-9col" style="margin: 5px 0;">
+			{{#if system.affinities}}
+				{{#each system.affinities as |affinity key|}}
+					<div class="affinity resource-content flex-group-center flexcol">
+						<label data-label="{{ affinity.label }}" style="line-height: 1.2em">
+							<span
+							 style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+								<img class="affinity-icon"
+									 src="systems/projectfu/styles/static/affinities/icons/{{key}}.png"
+									 alt="{{key}}"
+									 style="width: 24px; height: 24px;">
+								<span class="resource-label-sm">{{affinity.label}}</span>
+							</span>
+						</label>
+						<select name="system.affinities.{{ key }}.base"
+								class="resource-inputs select-dropdown"
+								data-tooltip="{{ affinity.base }}: {{ affinity.affTypeBase }}"
+								data-dtype="Number">
+							{{selectOptions @root.FU.affTypeAbbr selected=affinity.base localize=true}}
+						</select>
+					</div>
+				{{/each}}
+			{{/if}}
+		</div>
+		{{!-- End Affinity Section --}}
+	</fieldset>
+
+	{{!-- Base Immunities Section --}}
+	<fieldset class="section-container title-fieldset desc affinities resource-content">
+		<legend class="resource-label-m">
+			{{localize 'FU.StatusEffectImmunity'}}
+		</legend>
+
+		{{!-- Start Immunity Section --}}
+		<div class="header-fields grid grid-9col" style="margin: 5px 0;">
+			{{#if system.immunities}}
+				{{#each system.immunities as |immunity key|}}
+					<div class="affinity resource-content flex-group-center flexrow">
+						<input type="checkbox"
+							   id="immunity-{{key}}"
+							   name="system.immunities.{{key}}.base"
+							   class="resource-inputs checkbox"
+							   {{#if immunity.base}}checked{{/if}}
+							{{checked immunity.base}}
+						>
+						<label for="immunity-{{key}}" style="line-height: 1.2em">
+							<span class="resource-label-sm">{{immunity.label}}</span>
+						</label>
+					</div>
+				{{/each}}
+			{{/if}}
+		</div>
+		{{!-- End Immunity Section --}}
+	</fieldset>
+
+
+	<section class="body-section grid grid-4col">
+		<aside class="sidebar flex-group-center">
+			{{!-- Global Bonus Sidebar --}}
+		<fieldset class="section-container title-fieldset desc affinities resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.GlobalBonuses'}}
+			</legend>
+
+			{{!-- Character Relevent Bonuses --}} {{#if (eq actor.type "character")}}
+			<div class="flex-group-center">
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.HealthBonus'}}</label>
+					<input type="number" name="system.resources.hp.bonus" value="{{ system.resources.hp.bonus }}"
+						   data-dtype="Number" class="resource-inputs bonus" {{#if
+					 actor.overrides.system.resources.hp.bonus}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}  />
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.MindBonus'}}</label>
+					<input type="number" name="system.resources.mp.bonus" value="{{ system.resources.mp.bonus }}"
+						   data-dtype="Number" class="resource-inputs bonus" {{#if
+					 actor.overrides.system.resources.mp.bonus
+					 includeZero=true}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.InventoryBonus'}}</label>
+					<input type="number" name="system.resources.ip.bonus" value="{{ system.resources.ip.bonus }}"
+						   data-dtype="Number" class="resource-inputs bonus" {{#if
+					 actor.overrides.system.resources.ip.bonus
+					 includeZero=true}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.DefenseBonus'}}</label>
+					<input type="number" name="system.derived.def.bonus" value="{{ system.derived.def.bonus }}"
+						   data-dtype="Number" class="resource-inputs bonus" {{#if
+					 actor.overrides.system.derived.def.bonus
+					 includeZero=true}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.MagicDefenseBonus'}}</label>
+					<input type="number" name="system.derived.mdef.bonus" value="{{ system.derived.mdef.bonus }}"
+						   data-dtype="Number" class="resource-inputs bonus" {{#if
+					 actor.overrides.system.derived.mdef.bonus
+					 includeZero=true}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.InitiativeBonus'}}</label>
+					<input type="number" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
+						   data-dtype="Number" class="resource-inputs bonus" {{#if
+					 actor.overrides.system.derived.init.bonus
+					 includeZero=true}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.AccuracyBonus'}}</label>
+					<input type="number" name="system.bonuses.accuracy.accuracyCheck"
+						   value="{{ system.bonuses.accuracy.accuracyCheck }}" data-dtype="Number"
+						   class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.accuracyCheck
+															   includeZero=true}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
+					<input type="number" name="system.bonuses.accuracy.magicCheck"
+						   value="{{ system.bonuses.accuracy.magicCheck }}" data-dtype="Number"
+						   class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.magicCheck
+															   includeZero=true}}disabled
+						   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+				</div>
+			</div>
+		{{/if}} {{!-- NPC Relevent Bonuses --}}
+			{{#if (eq actor.type "npc")}}
+				<div class="flex-group-center">
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.HealthBonus'}}</label>
+						<input type="number" name="system.resources.hp.bonus" value="{{ system.resources.hp.bonus }}"
+							   data-dtype="Number" class="resource-inputs bonus" {{#if
+						 actor.overrides.system.resources.hp.bonus}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.MindBonus'}}</label>
+						<input type="number" name="system.resources.mp.bonus" value="{{ system.resources.mp.bonus }}"
+							   data-dtype="Number" class="resource-inputs bonus" {{#if
+						 actor.overrides.system.resources.mp.bonus
+						 includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.DefenseBonus'}}</label>
+						<input type="number" name="system.derived.def.bonus" value="{{ system.derived.def.bonus }}"
+							   data-dtype="Number" class="resource-inputs bonus" {{#if
+						 actor.overrides.system.derived.def.bonus
+						 includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.MagicDefenseBonus'}}</label>
+						<input type="number" name="system.derived.mdef.bonus" value="{{ system.derived.mdef.bonus }}"
+							   data-dtype="Number" class="resource-inputs bonus" {{#if
+						 actor.overrides.system.derived.mdef.bonus
+						 includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.InitiativeBonus'}}</label>
+						<input type="number" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
+							   data-dtype="Number" class="resource-inputs bonus" {{#if
+						 actor.overrides.system.derived.init.bonus
+						 includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.AccuracyBonus'}}</label>
+						<input type="number" name="system.bonuses.accuracy.accuracyCheck"
+							   value="{{ system.bonuses.accuracy.accuracyCheck }}" data-dtype="Number"
+							   class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.accuracyCheck
+																   includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
+						<input type="number" name="system.bonuses.accuracy.magicCheck"
+							   value="{{ system.bonuses.accuracy.magicCheck }}" data-dtype="Number"
+							   class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.magicCheck
+																   includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.MeleeDamageBonus'}}</label>
+						<input type="number" name="system.bonuses.damage.melee"
+							   value="{{ system.bonuses.damage.melee }}" data-dtype="Number"
+							   class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.damage.melee
+																   includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.RangedDamageBonus'}}</label>
+						<input type="number" name="system.bonuses.damage.ranged"
+							   value="{{ system.bonuses.damage.ranged }}" data-dtype="Number"
+							   class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.damage.ranged
+																   includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+					<div class="resource-content">
+						<label class="resource-label-sm">{{localize 'FU.SpellDamageBonus'}}</label>
+						<input type="number" name="system.bonuses.damage.spell"
+							   value="{{ system.bonuses.damage.spell }}" data-dtype="Number"
+							   class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.damage.spell
+																   includeZero=true}}disabled
+							   data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+					</div>
+				</div>
+			</fieldset>
+				{{!-- NPC Skills --}}
+				{{>"systems/projectfu/templates/actor/partials/actor-npc-skills.hbs" actor=actor}}
+			{{/if}}
+			<!-- Other Sidebar  -->
+			<div class="action-container grid grid-2col">
+
+			</div>
+
+		</aside>
+
+		<main class="grid-span-3">
+			{{!-- Settings Section --}}
+			<fieldset class="section-container title-fieldset desc align-left resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.SheetSettings'}}
+				</legend>
+
+				{{#if (eq actor.type "npc")}}
+					<!-- Use Equipment -->
+					{{#unless (eq actor.system.species.value 'beast')}}
+						<div class="form-group">
+							<div class="form-fields">
+								<span class="resource-label-m">
+									<i class="ra ra-sword ra-1x ra-flip-horizontal ra-1x"></i>
+									<label>{{localize 'FU.UseEquipment'}}</label>
+								</span>
+								<input class="use-equipment" type="checkbox" name="system.useEquipment.value"
+									{{ checked system.useEquipment.value }} data-action="useEquipment" />
+							</div>
+							<p class="notes">{{localize 'FU.UseEquipmentHint'}}</p>
+						</div>
+					{{/unless}}
+
+					{{#if (or (eq actor.system.rank.value "companion") (eq actor.system.rank.value "custom"))}}
+						<div class="form-group">
+                      <span class="resource-label-m">
+                          <i class="fa-solid fa-user-group"></i>
+                          <label for="refActor">{{localize 'FU.Player'}}</label>
+                      </span>
+							<span class="resource-label-m">LV: {{refActorLevel}}</span>
+							<div class="form-fields resource-content">
+								<select name="system.references.actor" id="refActor" class="resource-inputs">
+									<option value="">—</option>
+									{{#each ownedActors as |owned|}}
+										<option value="{{owned.id}}"
+												{{#if (eq ../system.references.actor.id owned.id)}}selected{{/if}}>
+											{{owned.name}}
+										</option>
+									{{/each}}
+								</select>
+							</div>
+							<p class="notes">({{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}</p>
+						</div>
+						<div class="form-group">
+                      <span class="resource-label-m">
+                          <i class="fa-solid fa-cogs"></i>
+                          <label for="refSkill">{{localize 'FU.Skill'}}</label>
+                      </span>
+							<span class="resource-label-m">SL: {{refSkillLevel}}</span>
+							<div class="form-fields resource-content">
+								<select name="system.references.skill" id="refSkill" class="resource-inputs">
+									<option value="">—</option>
+									{{#each availableSkills as |skill|}}
+										<option value="{{skill.uuid}}"
+												{{#if (eq ../system.references.skill skill.uuid)}}selected{{/if}}>
+											{{skill.name}}
+										</option>
+									{{/each}}
+								</select>
+							</div>
+							<p class="notes">({{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}</p>
+						</div>
+					{{/if}}
+				{{/if}}
+			</fieldset>
+		</main>
+	</section>
+</div>

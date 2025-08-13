@@ -1,0 +1,46 @@
+{{!-- Adversaries  --}}
+<section class="tab {{tab.cssClass}}" data-tab="adversaries" data-group="primary">
+	<section class="adversaries">
+		{{#unless (gt adversaries.length 0)}}
+			<div class="label centered-message">
+				{{localize 'FU.AdversariesEmpty'}}
+			</div>
+		{{/unless}}
+
+		{{#each adversaries}}
+			<div class="section-container entry character-option {{#if this.active}}active{{/if}}"
+				 data-uuid="{{this.uuid}}" data-type="npc">
+				<div class="portrait">
+					<a data-action="revealNpc" data-actor="{{this.uuid}}">
+						<img src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+					</a>
+				</div>
+				<div class="data">
+					<header>
+						<div class="name" data-tooltip="{{this.uuid}}">
+							{{name}}
+						</div>
+						<div class="blurb">
+							<div class="tag {{_rank}}">
+								{{#if (eq this.studyResult 'none')}}
+									{{localize 'FU.Unknown'}} {{localize this.rank}}
+								{{else}}
+									{{localize this.species }} {{localize this.rank}}
+								{{/if}}
+							</div>
+						</div>
+						<div class="study">
+							{{#if this.isRevealed }}
+								<i data-tooltip="FU.StudyRevealed" class="ra ra-light-bulb"></i>
+							{{/if}}
+							{{#if (gt this.study 0)}}
+								<span data-tooltip="{{this.study}}">{{this.studyPercent}}%</span>
+							{{/if}}
+						</div>
+						</a>
+					</header>
+				</div>
+			</div>
+		{{/each}}
+	</section>
+</section>

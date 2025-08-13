@@ -4,7 +4,7 @@
 	{{#if @root.actor.isCharacterType}}
 		<a class="item-control item-favored" data-item-id="{{item._id}}"
 		   data-tooltip="{{#if item.system.isFavored.value}}{{ localize 'FU.FavoriteRemove' }}{{else}}{{ localize
-			'FU.Favorite' }}{{/if}}" aria-describedby="tooltip">
+			'FU.Favorite' }}{{/if}}" ariatt-describedby="tooltip" data-action="itemFavored">
 			<i class="{{#if item.system.isFavored.value}}fas active{{else}}far{{/if}} fa-star button-style"></i>
 		</a>
 	{{else}}

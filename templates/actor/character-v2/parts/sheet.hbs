@@ -1,0 +1,349 @@
+<div class="projectfu-v2">
+        <div class="header-bar">
+    <div class="header-main">
+        <div class="name-section">
+            <div class="actor-name">{{actor.name}}</div>
+            <span class="actor-pronoun-quote-hang">
+            <span class="actor-pronouns">{{system.resources.pronouns.name}}</span>
+            <span class="diamond">◆</span>
+            <span class="actor-quote">The world isn’t a place to conquer, but to understand. Every soul carries a story, and sometimes, the only thing we need to do is listen.</span>
+            </span>
+        </div>
+        <div class="level-block flexcol">
+            <div class="level-section">
+                <div class="level-label">{{localize "FU.LevelAbbr"}}</div>
+                <span class="level-ornament left">◆</span>
+                <span class="level-num">{{system.level.value}}</span>
+                <span class="level-ornament right">◆</span>
+            </div>
+            <div class="level-up-row">
+                <button class="btn-base level-up-btn" type="button" data-action="levelUp" {{#unless (gte system.resources.exp.value 10)}}disabled{{/unless}}>
+                <span class="level-up-label">{{localize "FU.LevelUp"}}</span>
+                <span class="level-up-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="identity-row">
+        <div class="stat-pill">
+            <span class="stat-label">{{localize "FU.Identity"}}</span>
+            <span class="stat-value">{{system.resources.identity.name}}</span>
+        </div>
+        <div class="stat-pill">
+            <span class="stat-label">{{localize "FU.Theme"}}</span>
+            <span class="stat-value">{{system.resources.theme.name}}</span>
+        </div>
+        <div class="stat-pill">
+            <span class="stat-label">{{localize "FU.Origin"}}</span>
+            <span class="stat-value">{{system.resources.origin.name}}</span>
+        </div>
+    </div>
+</div>
+<div class="top-header-row">
+	<div class="portrait-area">
+		<img class="profile-img" src="{{ actor.img }}" data-edit="img" data-action="editImage" data-tooltip="{{ actor.name }}" />
+	</div>
+    <div class="attributes-resources attributes-resources-header">
+        <!-- Attributes -->
+        <div class="attributes-block">
+            <div class="attributes-title">{{localize "FU.Attributes"}}</div>
+            <div class="section-divider"></div>
+            <div class="attributes-list">
+                {{#each system.attributes as |attribute key|}}
+                <div class="attribute-row">
+                    <span class="diamond">◆</span>
+                    <span class="attr-name">{{attribute.abbr}}</span>
+                    <select class="attr-dice-select" name="system.attributes.{{key}}.base" data-dtype="Number"
+                        {{#if (lookup (lookup @root.actor.overrides.system.attributes key) "base")}}disabled
+                        data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}>
+                        {{selectOptions @root.FU.attributeDice selected=attribute.base localize=true}}
+                    </select>
+                    <span class="attr-val">
+                        {{attribute.current}}
+                        {{#if (eq attribute.base attribute.current)}}
+                            <i class="fas fa-minus attr-status-neutral"></i>
+                        {{else}}
+                            {{#if (gt attribute.base attribute.current)}}
+                                <i class="fas fa-caret-down attr-status-down"></i>
+                            {{else}}
+                                <i class="fas fa-caret-up attr-status-up"></i>
+                            {{/if}}
+                        {{/if}}
+                    </span>
+                    <span class="diamond">◆</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="resources-block">
+            <div class="resource-item">
+                <div class="resource-header">
+                    <span class="resource-label-group">
+                        <div class="resource-icon">🌿</div>
+                        <span class="resource-label vital-label">{{localize "FU.HealthAbbr"}}</span>
+                    </span>
+                    <span class="resource-val">
+                    <input class="resource-current-input" type="number" min="0" max="{{system.resources.hp.max}}" name="system.resources.hp.value" value="{{system.resources.hp.value}}" />
+                    <span class="resource-slash">/</span>
+                    <span class="resource-max">{{system.resources.hp.max}}</span>
+                    </span>
+                </div>
+                <div class="bar-container">
+                    <div class="bar hp-bar">
+                        {{#if (gt system.resources.hp.value system.resources.hp.max)}}
+                            <!-- Overflow bar system: Current > Max, so show full bar + overflow -->
+                            <div class="bar-fill" style="width: 100%"></div>
+                            <div class="bar-overflow" style="width: {{calculateOverflowPercentage system.resources.hp.value system.resources.hp.max}}"></div>
+                        {{else}}
+                            <!-- Normal bar: Current <= Max -->
+                            <div class="bar-fill" style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}}"></div>
+                        {{/if}}
+                        <div class="crisis-marker" title="Crisis"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-item">
+                <div class="resource-header">
+                    <span class="resource-label-group">
+                        <div class="resource-icon">💧</div>
+                        <span class="resource-label vital-label">{{localize "FU.MindAbbr"}}</span>
+                    </span>
+                    <span class="resource-val">
+                    <input class="resource-current-input" type="number" min="0" max="{{system.resources.mp.max}}" name="system.resources.mp.value" value="{{system.resources.mp.value}}" />
+                    <span class="resource-slash">/</span>
+                    <span class="resource-max">{{system.resources.mp.max}}</span>
+                    </span>
+                </div>
+                <div class="bar-container">
+                    <div class="bar mp-bar">
+                        {{#if (gt system.resources.mp.value system.resources.mp.max)}}
+                            <!-- Overflow bar system: Current > Max, so show full bar + overflow -->
+                            <div class="bar-fill" style="width: 100%"></div>
+                            <div class="bar-overflow" style="width: {{calculateOverflowPercentage system.resources.mp.value system.resources.mp.max}}"></div>
+                        {{else}}
+                            <!-- Normal bar: Current <= Max -->
+                            <div class="bar-fill" style="width: {{calculatePercentage system.resources.mp.value system.resources.mp.max}}"></div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            <div class="resource-item">
+                <div class="resource-header">
+                    <span class="resource-label-group">
+                        <div class="resource-icon">⚡</div>
+                        <span class="resource-label vital-label">{{localize "FU.InventoryAbbr"}}</span>
+                    </span>
+                    <span class="resource-val">
+                    <input class="resource-current-input" type="number" min="0" max="{{system.resources.ip.max}}" name="system.resources.ip.value" value="{{system.resources.ip.value}}" />
+                    <span class="resource-slash">/</span>
+                    <span class="resource-max">{{system.resources.ip.max}}</span>
+                    </span>
+                </div>
+                <div class="bar-container">
+                    <div class="bar ip-bar">
+                        <div class="bar-fill" style="width: {{calculatePercentage system.resources.ip.value system.resources.ip.max}}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-item">
+                <div class="resource-header">
+                    <span class="resource-label-group">
+                        <div class="resource-icon">📜</div>
+                        <span class="resource-label vital-label">{{localize "FU.ExpAbbr"}}</span>
+                    </span>
+                    <span class="resource-val">
+                    <input class="resource-current-input" type="number" min="0" name="system.resources.exp.value" value="{{system.resources.exp.value}}" />
+                    <span class="resource-slash">/</span>
+                    <span class="resource-max">10</span>
+                    </span>
+                </div>
+                <div class="bar-container">
+                    <div class="bar exp-bar">
+                        <div class="bar-fill" style="width: {{calculatePercentage system.resources.exp.value 10}}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="check-block">
+            <div class="fabula-block">
+                <div class="fabula-logo-title-group">
+                    <div class="fabula-feather-logo">
+                        <img src="/systems/projectfu/styles/static/icons/fus-star2.svg" alt="Fabula Point" class="fabula-star-icon rollable" data-action="spendMetaCurrency" />
+                    </div>
+                    <div class="fabula-title">{{localize 'FU.FabulaPoints'}}</div>
+                </div>
+                <div class="fabula-value">
+                    <input class="fabula-current-input" type="number" min="0" max="9999" name="system.resources.fabula.value" value="{{system.resources.fp.value}}" />
+                </div>
+            </div>
+            <div class="check-actions check-actions-header">
+                <button class="btn-base check-action flexcol rollable spin2win" data-roll-type="group-check" data-action="roll">
+                    <div class="check-icon">
+                        <i class="fas fa-dice-d20 spin2win ra-1xh"></i>
+                    </div>
+                    <div class="check-label">{{localize "FU.GroupCheck"}}</div>
+                </button>
+                <button class="btn-base check-action flexcol rollable spin2win" data-roll-type="roll-check" data-action="roll">
+                    <div class="check-icon">
+                        <i class="fas fa-dice-d20 spin2win ra-1xh"></i>
+                    </div>
+                    <div class="check-label">{{localize "FU.RollCheck"}}</div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sheet-content-columns">
+    <div class="sheet-left-column">
+        <div class="actions-section">
+            <div class="actions-header" data-tooltip="[Left Click] Perform Action <br>[Shift+Click] Send Description">{{localize "FU.Actions"}}</div>
+            <div class="section-divider"></div>
+            <div class="actions-container">
+                {{#if (eq actor.type "character")}}
+                <div class="action-buttons-grid">
+                    <button class="btn-base action-btn guard rollable{{#if guardActive}} active{{/if}}" id="guardAction" data-action="action" data-type="guard"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.GuardRule'}}">
+                        {{localize "FU.Guard"}}
+                    </button>
+                    <button class="btn-base action-btn equipment rollable" id="equipmentAction" data-action="action" data-type="equipment"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.EquipmentRule'}}">
+                        {{localize "FU.Equipment"}}
+                    </button>
+                    <button class="btn-base action-btn hinder rollable" id="hinderAction" data-action="action" data-type="hinder"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.HinderRule'}}">
+                        {{localize "FU.Hinder"}}
+                    </button>
+                    <button class="btn-base action-btn inventory rollable" id="inventoryAction" data-action="action" data-type="inventory"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.InventoryRule'}}">
+                        {{localize "FU.Inventory"}}
+                    </button>
+                    <button class="btn-base action-btn objective rollable" id="objectiveAction" data-action="action" data-type="objective"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
+                        {{localize "FU.Objective"}}
+                    </button>
+                    <button class="btn-base action-btn spell rollable" id="spellAction" data-action="action" data-type="spell"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.SpellRule'}}">
+                        {{localize "FU.Spell"}}
+                    </button>
+                    <button class="btn-base action-btn study rollable" id="studyAction" data-action="action" data-type="study"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.StudyRule'}}">
+                        {{localize "FU.Study"}}
+                    </button>
+                    <button class="btn-base action-btn skill rollable" id="skillAction" data-action="action" data-type="skill"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.SkillRule'}}">
+                        {{localize "FU.Skill"}}
+                    </button>
+                </div>
+                {{/if}}
+                
+                {{#if (eq actor.type "npc")}}
+                <div class="action-buttons-grid npc-actions">
+                    <!-- Study Action with Select for NPCs -->
+                    <div class="study-action-container" data-tooltip="{{localize 'FU.StudyRoll'}}">
+                        <button class="btn-base action-btn study rollable" data-action="studyAction">
+                            <i class="fas fa-magnifying-glass"></i>
+                            {{localize 'FU.Study'}}
+                        </button>
+                        <select name="system.study.value" class="study-select">
+                            {{selectOptions studyRoll selected=system.study.value}}
+                        </select>
+                    </div>
+                    
+                    <!-- Other NPC Actions -->
+                    <button class="btn-base action-btn guard rollable{{#if guardActive}} active{{/if}}" id="guardAction" data-action="action" data-type="guard"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.GuardRule'}}">
+                        {{localize "FU.Guard"}}
+                    </button>
+                    <button class="btn-base action-btn hinder rollable" id="hinderAction" data-action="action" data-type="hinder"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.HinderRule'}}">
+                        {{localize "FU.Hinder"}}
+                    </button>
+                    <button class="btn-base action-btn objective rollable" id="objectiveAction" data-action="action" data-type="objective"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
+                        {{localize "FU.Objective"}}
+                    </button>
+                    <button class="btn-base action-btn skill rollable" id="skillAction" data-action="action" data-type="skill"
+                        data-roll-type="action-type" data-tooltip="{{localize 'FU.SkillRule'}}">
+                        {{localize "FU.Skill"}}
+                    </button>
+                    
+                    <!-- Behavior Roll for NPCs (conditional) -->
+                    {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
+                    <button class="btn-base action-btn behavior rollable behavior-roll" id="behavior-action" data-roll-type="behavior" data-action="roll">
+                        <i class="fas fa-dice-d20"></i>
+                        {{localize "FU.Behavior"}}
+                    </button>
+                    {{/if}}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="clock-section">
+            <!-- This area contains clocks and resource bars will get most of the remaining space -->
+        </div>
+    </div>
+    <div class="sheet-right-column">
+    <!-- Current Affinities Display Section -->
+		<section class="v2-current-affinities-section">
+			<div class="affinities-section">
+				<div class="affinities-list icons-only">
+					{{#if system.affinities}}
+						{{#each system.affinities as |affinity key|}}
+						<img class="affinity-icon rollable" 
+							src="systems/projectfu/styles/static/affinities/icons/{{key}}.png" 
+							alt="{{key}}"
+							data-label="{{affinity.label}}"
+							data-roll-type="affinity-type"
+							data-affinity="{{key}}"
+							data-action="roll"
+							data-tooltip="{{affinity.label}}<br>{{affinity.affTypeCurr}}">
+						<span class="affinity-label" style="font-weight: bold; font-size: 16px; letter-spacing: 0.5px; margin-bottom: -2px;">{{affinity.affTypeCurrAbbr}}</span>
+						{{/each}}
+					{{/if}}
+				</div>
+			</div>
+		</section>
+
+        <!-- Stats Section -->
+        <div class="stat-context">
+            <div class="stat-bar">
+                <div class="stat-pill">
+                    <span class="stat-label">{{localize "FU.DefenseAbbr"}}</span>
+                    <span class="stat-value">{{system.derived.def.value}}</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">{{localize "FU.MagicDefenseAbbr"}}</span>
+                    <span class="stat-value">{{system.derived.mdef.value}}</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">{{localize "FU.InitiativeAbbr"}}</span>
+                    <span class="stat-value">{{system.derived.init.value}}</span>
+                </div>
+                <div class="stat-pill">
+					<span class="stat-icon"></span>
+                    <span class="stat-label"><i class="fuk fu-zenit icon-aff" style=""></i>{{localize "FU.Zenit"}}</span>
+                    <span class="stat-value">{{system.resources.zennit.value}}z</span>
+                </div>
+            </div>
+        </div>
+	
+        <!-- Tab Navigation -->
+        <nav class="navigation-section sheet-tabs tabs" aria-roledescription="Tab Navigation">
+            {{#each tabs as |tab|}}
+            <a class="btn-base nav-pill{{#if tab.active}} active{{/if}}" 
+               data-action="tab" 
+               data-group="{{tab.group}}" 
+               data-tab="{{tab.id}}" 
+               {{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+                <span class="nav-icon">
+                    {{#if tab.icon}}<i class="{{tab.icon}}"></i>{{/if}}
+                </span>
+                <span class="nav-label">
+                    {{#if tab.label}}{{localize tab.label}}{{/if}}
+                </span>
+            </a>
+            {{/each}}
+        </nav>
+		{{!-- TODO: Figure out how tabs work later --}}
+    </div>
+</div> 

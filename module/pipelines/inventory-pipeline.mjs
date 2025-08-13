@@ -2,8 +2,9 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { getPrioritizedUserSelected } from '../helpers/target-handler.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
-import { MESSAGES, SOCKET } from '../socket.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
 
 const sellAction = 'inventorySell';
 const lootAction = 'inventoryLoot';
@@ -17,7 +18,7 @@ function getCurrencyLocalizationKey() {
 /**
  * @returns {String}
  */
-function getCurrencyString() {
+export function getCurrencyString() {
 	return game.i18n.localize(getCurrencyLocalizationKey());
 }
 
@@ -51,7 +52,7 @@ async function tradeItem(actor, item, sale) {
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-trade-item.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-trade-item.hbs', {
 			message: message,
 			actorName: actor.name,
 			actorId: actor.uuid,
@@ -76,6 +77,7 @@ async function tradeItem(actor, item, sale) {
  */
 async function distributeZenit(actor, targets) {
 	if (!actor.isOwner) {
+		console.error(`The actor is not owned by the user`);
 		return;
 	}
 	if (!targets) {
@@ -84,11 +86,16 @@ async function distributeZenit(actor, targets) {
 		if (party) {
 			targets = await party.getCharacterActors();
 		}
+		if (!targets) {
+			console.warn(`Could not find any characters or party`);
+			return;
+		}
 	}
 
 	// Prompt confirmation
 	const zenit = actor.system.resources.zenit.value;
 	if (zenit <= 0) {
+		console.warn(`No zenit available to distribute`);
 		return;
 	}
 
@@ -110,8 +117,8 @@ async function distributeZenit(actor, targets) {
 
 	console.debug(`Distributing ${zenit} zenit from ${actor.name} to ${characterCount} characters`);
 	const targetString = targets.map((t) => t.name).join(', ');
-	new Dialog({
-		title: 'Distribute Zenit',
+	const confirmed = await foundry.applications.api.DialogV2.confirm({
+		window: { title: game.i18n.format('FU.InventoryDistributeZenit', { currence: game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency) }) },
 		content: game.i18n.format('FU.ChatInventoryDistributeZenit', {
 			actor: actor.name,
 			zenit: distributed,
@@ -119,34 +126,32 @@ async function distributeZenit(actor, targets) {
 			targets: targetString,
 			currency: getCurrencyString(),
 		}),
-		buttons: [
-			{
-				label: 'Confirm',
-				callback: async () => {
-					await updateResources(actor, -distributed);
+		rejectClose: false,
+		yes: {
+			label: 'FU.Confirm',
+		},
+		no: {
+			label: 'FU.Cancel',
+		},
+	});
+	if (confirmed) {
+		await updateResources(actor, -distributed);
 
-					for (const target of targets) {
-						await updateResources(target, share);
-					}
+		for (const target of targets) {
+			await updateResources(target, share);
+		}
 
-					ChatMessage.create({
-						speaker: ChatMessage.getSpeaker({ actor }),
-						flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-						content: await renderTemplate('systems/projectfu/templates/chat/chat-distribute-zenit.hbs', {
-							message: 'FU.ChatDistributeZenit',
-							targets: targetString,
-							zenit: distributed,
-							currency: getCurrencyString(),
-						}),
-					});
-				},
-			},
-			{
-				label: 'Cancel',
-				callback: () => {},
-			},
-		],
-	}).render(true);
+		ChatMessage.create({
+			speaker: ChatMessage.getSpeaker({ actor }),
+			flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-distribute-zenit.hbs', {
+				message: 'FU.ChatDistributeZenit',
+				targets: targetString,
+				zenit: distributed,
+				currency: getCurrencyString(),
+			}),
+		});
+	}
 }
 
 async function updateResources(actor, zenitIncrement, ipIncrement) {
@@ -176,7 +181,7 @@ async function requestRecharge(actor) {
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-recharge-ip.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-recharge-ip.hbs', {
 			actorName: actor.name,
 			actorId: actor.uuid,
 		}),
@@ -206,37 +211,36 @@ async function rechargeIP(actor) {
 	}
 
 	console.debug(`Recharging the IP of ${target.name}`);
-	new Dialog({
-		title: game.i18n.localize('FU.InventoryRechargeIP'),
+	const confirmed = foundry.applications.api.DialogV2.confirm({
+		window: { title: game.i18n.localize('FU.InventoryRechargeIP') },
 		content: game.i18n.format('FU.ChatInventoryRechargePrompt', {
 			cost: cost,
 			ip: missingIP,
 			currency: getCurrencyString(),
 		}),
-		buttons: [
-			{
-				label: 'Confirm',
-				callback: async () => {
-					//await updateZenit(actor, cost);
-					await updateResources(target, -cost, missingIP);
+		rejectClose: false,
+		yes: {
+			label: 'FU.Confirm',
+		},
+		no: {
+			label: 'FU.Cancel',
+		},
+	});
 
-					ChatMessage.create({
-						speaker: ChatMessage.getSpeaker({ target }),
-						flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-						content: game.i18n.format('FU.ChatInventoryRechargeCompleted', {
-							target: target.name,
-							ip: missingIP,
-							currency: getCurrencyString(),
-						}),
-					});
-				},
-			},
-			{
-				label: 'Cancel',
-				callback: () => {},
-			},
-		],
-	}).render(true);
+	if (confirmed) {
+		//await updateZenit(actor, cost);
+		await updateResources(target, -cost, missingIP);
+
+		ChatMessage.create({
+			speaker: ChatMessage.getSpeaker({ target }),
+			flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
+			content: game.i18n.format('FU.ChatInventoryRechargeCompleted', {
+				target: target.name,
+				ip: missingIP,
+				currency: getCurrencyString(),
+			}),
+		});
+	}
 }
 
 /**
@@ -268,7 +272,7 @@ async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
 			});
 		}
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestZenitTransfer, sourceActorId, targetActorId, amount);
+		await game.projectfu.socket.requestZenitTransfer(sourceActorId, targetActorId, amount);
 	}
 }
 
@@ -290,47 +294,38 @@ async function promptPartyZenitTransfer(actor, mode) {
 			break;
 	}
 
-	new Dialog({
-		title: game.i18n.format(label, { currency: currency }),
+	const result = await foundry.applications.api.DialogV2.input({
+		window: { title: game.i18n.format(label, { currency: currency }) },
 		content: `<form>
       <div class="form-group">        
         <label for="amount"">Amount</label>
 		<input type="number" name="amount" value="0"/>
       </div>
     </form>`,
-		buttons: [
-			{
-				label: 'Confirm',
-				callback: async (html) => {
-					const amountStr = html.find('[name="amount"]').val();
-					if (!amountStr) {
-						return;
-					}
+		rejectClose: false,
+		ok: {
+			label: 'FU.Confirm',
+		},
+	});
 
-					const amount = Number(amountStr);
-					const party = await FUPartySheet.getActive();
-					if (party) {
-						let source, target;
-						switch (mode) {
-							case 'deposit':
-								source = actor;
-								target = party;
-								break;
-							case 'withdraw':
-								source = party;
-								target = actor;
-								break;
-						}
-						await requestZenitTransfer(source.uuid, target.uuid, amount);
-					}
-				},
-			},
-			{
-				label: 'Cancel',
-				callback: () => {},
-			},
-		],
-	}).render(true);
+	if (result && result.amount) {
+		const amount = Number(result.amount);
+		const party = await FUPartySheet.getActive();
+		if (party) {
+			let source, target;
+			switch (mode) {
+				case 'deposit':
+					source = actor;
+					target = party;
+					break;
+				case 'withdraw':
+					source = party;
+					target = actor;
+					break;
+			}
+			await requestZenitTransfer(source.uuid, target.uuid, amount);
+		}
+	}
 }
 
 /**
@@ -362,12 +357,13 @@ async function requestTrade(actorId, itemId, sale, targetId = undefined, modifie
 	if (game.user?.isGM) {
 		return handleTrade(actorId, itemId, sale, targetId, modifiers);
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, sale, targetId, modifiers);
+		await game.projectfu.socket.requestTrade(actorId, itemId, sale, targetId, modifiers);
 		return false;
 	}
 }
 
 async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}) {
+	console.log('Handling trade from:', actorId, itemId, targetId);
 	const actor = fromUuidSync(actorId);
 	const item = fromUuidSync(itemId);
 	const target = fromUuidSync(targetId);
@@ -419,7 +415,7 @@ async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-item-acquired.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-item-acquired.hbs', {
 			message: message,
 			actorName: actor.name,
 			itemName: item.name,
@@ -448,9 +444,9 @@ function validateFunds(target, cost) {
 
 /**
  * @param {Document} message
- * @param {jQuery} jQuery
+ * @param {HTMLElement} html
  */
-async function onRenderChatMessage(message, jQuery) {
+async function onRenderChatMessage(message, html) {
 	if (!message.getFlag(Flags.Scope, Flags.ChatMessage.Inventory) && !message.getFlag(Flags.Scope, Flags.ChatMessage.ResourceGain)) {
 		return;
 	}
@@ -462,23 +458,22 @@ async function onRenderChatMessage(message, jQuery) {
 		meta: ev?.metaKey ?? false,
 	});
 
-	Pipeline.handleClick(message, jQuery, sellAction, async (dataset, ev) => {
+	Pipeline.handleClick(message, html, sellAction, async (dataset, ev) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		const modifiers = getModifiers(ev);
-		return requestTrade(actor, item, true, modifiers);
+		return requestTrade(actor, item, true, undefined, modifiers);
 	});
 
-	Pipeline.handleClick(message, jQuery, lootAction, async (dataset, ev) => {
-		const actor = dataset.actor;
-		const item = dataset.item;
-		const modifiers = getModifiers(ev);
-		return requestTrade(actor, item, false, modifiers);
-	});
-
-	Pipeline.handleClick(message, jQuery, rechargeAction, async (dataset) => {
+	Pipeline.handleClick(message, html, rechargeAction, async (dataset) => {
 		const actor = fromUuidSync(dataset.actor);
 		return rechargeIP(actor);
+	});
+
+	Pipeline.handleClick(message, html, lootAction, async (dataset, ev) => {
+		const { actor, item } = dataset;
+		const modifiers = getModifiers(ev);
+		return requestTrade(actor, item, false, undefined, modifiers);
 	});
 }
 
@@ -486,7 +481,7 @@ async function onRenderChatMessage(message, jQuery) {
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
-	Hooks.on('renderChatMessage', onRenderChatMessage);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 export const InventoryPipeline = {

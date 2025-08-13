@@ -1,4 +1,4 @@
-import { FU } from './config.mjs';
+import { FU, systemPath } from './config.mjs';
 import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
@@ -8,6 +8,7 @@ import { WeaponDataModel } from '../documents/items/weapon/weapon-data-model.mjs
 import { ClassFeatureTypeDataModel } from '../documents/items/classFeature/class-feature-type-data-model.mjs';
 import { WeaponModuleDataModel } from '../documents/items/classFeature/pilot/weapon-module-data-model.mjs';
 import { InlineEffects } from './inline-effects.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
 const className = `inline-weapon`;
@@ -16,6 +17,7 @@ const className = `inline-weapon`;
  * @type {TextEditorEnricherConfig}
  */
 const editorEnricher = {
+	id: 'InlineWeaponEnricher',
 	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.configurationPropertyGroups),
 	enricher: (match, options) => {
 		const choices = match.groups.choices.split(' ');
@@ -38,7 +40,7 @@ const editorEnricher = {
 				anchor.dataset.label = label;
 				anchor.append(label);
 			} else {
-				anchor.append(choices.map(InlineHelper.capitalize).join(' '));
+				anchor.append(choices.map(StringUtils.capitalize).join(' '));
 			}
 
 			// CONFIG
@@ -49,45 +51,39 @@ const editorEnricher = {
 
 		return null;
 	},
+	onRender: onRender,
 };
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const renderContext = await InlineHelper.getRenderContext(element);
 
-	html.find(`a.inline.inline-weapon[draggable]`)
-		.on('click', async function () {
-			let targets = await targetHandler();
-			if (targets.length > 0) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
-				const choices = this.dataset.choices.split(' ');
-				const config = InlineHelper.fromBase64(this.dataset.config);
-				targets.forEach(async (target) => {
-					await applyEffectToWeapon(target, sourceInfo, choices, config);
-				});
+	element.addEventListener('click', async function (event) {
+		const targets = await targetHandler();
+		if (targets.length > 0) {
+			const choices = renderContext.dataset.choices.split(' ');
+			const config = InlineHelper.fromBase64(renderContext.dataset.config);
+			for (const target of targets) {
+				await applyEffectToWeapon(target, renderContext.sourceInfo, choices, config);
 			}
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
+		}
+	});
+	element.addEventListener('dragstart', (event) => {
+		if (!event.dataTransfer) return;
 
-			const data = {
-				type: INLINE_WEAPON,
-				sourceInfo: InlineHelper.determineSource(document, this),
-				config: InlineHelper.fromBase64(this.dataset.config),
-				traits: this.dataset.choices,
-			};
-			event.dataTransfer.setData('text/plain', JSON.stringify(data));
-			event.stopPropagation();
-		});
+		const data = {
+			type: INLINE_WEAPON,
+			sourceInfo: renderContext.sourceInfo,
+			config: InlineHelper.fromBase64(renderContext.dataset.config),
+			traits: renderContext.dataset.choices,
+		};
+
+		event.dataTransfer.setData('text/plain', JSON.stringify(data));
+		event.stopPropagation();
+	});
 }
 
 async function onDropActor(actor, sheet, { type, sourceInfo, choices, config, ignore }) {
@@ -111,7 +107,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	} else if (weapon.system instanceof ClassFeatureTypeDataModel && weapon.system.data instanceof WeaponModuleDataModel) {
 		key = 'system.data.damage.type';
 	}
-	const localizedDamageType = game.i18n.localize(`FU.Damage${InlineHelper.capitalize(type)}`);
+	const localizedDamageType = game.i18n.localize(`FU.Damage${StringUtils.capitalize(type)}`);
 
 	return {
 		fuid: `alter-damage-type-${type}`,
@@ -166,14 +162,19 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 			if (isAny) {
 				choices = Object.keys(FU.damageTypes);
 			}
-			new Dialog({
-				title: 'Select Damage Type',
-				content: `<p>Select the damage type to apply to the weapon</p>`,
-				buttons: choices.map((c) => ({
-					label: game.i18n.localize(FU.damageTypes[c]),
-					callback: () => onApply(c),
+			const result = await foundry.applications.api.DialogV2.wait({
+				window: { title: 'Select Damage Type' },
+				content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-inline-weapon-enchant.hbs')),
+				rejectClose: false,
+				buttons: choices.map((choice) => ({
+					action: choice,
+					label: game.i18n.localize(FU.damageTypes[choice]),
 				})),
-			}).render(true);
+			});
+			console.log(result);
+			if (result) {
+				onApply(result);
+			}
 		} else {
 			onApply(choices[0]);
 		}
@@ -182,8 +183,10 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 	}
 }
 
+/**
+ * @type {FUInlineCommand}
+ */
 export const InlineWeapon = {
-	enricher: editorEnricher,
-	activateListeners,
+	enrichers: [editorEnricher],
 	onDropActor,
 };

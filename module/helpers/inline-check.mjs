@@ -1,17 +1,20 @@
 import { FU } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { Checks } from '../checks/checks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DifficultyLevel } from '../checks/difficulty-level.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { CheckPrompt } from '../checks/check-prompt.mjs';
 
 /**
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
+	id: 'InlineCheckEnricher',
 	pattern: InlineHelper.compose('CHECK', '\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?'),
 	enricher: checkEnricher,
+	onRender: onRender,
 };
 
 /**
@@ -51,7 +54,7 @@ function checkEnricher(match, options) {
 			anchor.append(` ${game.i18n.localize(FU.attributeAbbreviations[second])} `);
 		}
 		// [OPTIONAL] Modifier
-		let modifier = match.groups.modifier;
+		let modifier = (match.groups.modifier ?? '').slice(1, -1);
 		if (modifier) {
 			if (label) {
 				anchor.dataset.modifier = modifier;
@@ -106,53 +109,50 @@ function appendDifficulty(level, anchor, show) {
 }
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const renderContext = await InlineHelper.getRenderContext(element);
 
-	html.find('a.inline.inline-check').on('click', async function (event) {
-		const first = this.dataset.first;
-		const second = this.dataset.second;
-		let difficulty = this.dataset.difficulty;
+	element.addEventListener('click', async (event) => {
+		const first = renderContext.dataset.first;
+		const second = renderContext.dataset.second;
+		const difficulty = renderContext.dataset.difficulty;
 		const prompt = event.shiftKey;
 
-		let attributes = {
-			primary: first,
-			secondary: second,
-		};
+		const attributes = { primary: first, secondary: second };
+		const targets = await targetHandler();
 
-		let targets = await targetHandler();
-		if (targets.length > 0) {
-			const sourceInfo = InlineHelper.determineSource(document, this);
-			for (const actor of targets) {
-				ChecksV2.attributeCheck(actor, attributes, sourceInfo.resolveItem(), async (check) => {
+		if (targets.length === 0) return;
+
+		for (const actor of targets) {
+			if (prompt) {
+				let modifier = 0;
+				if (renderContext.dataset.modifier !== undefined) {
+					const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+					modifier = await Expressions.evaluateAsync(renderContext.dataset.modifier, context);
+					if (isNaN(modifier)) {
+						modifier = 0;
+					}
+				}
+
+				await CheckPrompt.attributeCheck(actor, {
+					initialConfig: {
+						primary: attributes.primary,
+						secondary: attributes.secondary,
+						difficulty: difficulty,
+						modifier: modifier,
+					},
+				});
+			} else {
+				await Checks.attributeCheck(actor, attributes, renderContext.sourceInfo.resolveItem(), async (check) => {
 					let config = CheckConfiguration.configure(check);
 					let modifier = 0;
 
-					if (this.dataset.modifier !== undefined) {
-						const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-						modifier = await Expressions.evaluateAsync(this.dataset.modifier, context);
-					}
-
-					if (prompt) {
-						const promptResult = await ChecksV2.promptConfiguration(
-							actor,
-							{
-								primary: check.primary,
-								secondary: check.secondary,
-								modifier: modifier,
-								difficulty: difficulty,
-							},
-							null,
-						);
-
-						config.setAttributes(promptResult.primary, promptResult.secondary);
-						modifier = promptResult.modifier;
-						difficulty = promptResult.difficulty;
+					if (renderContext.dataset.modifier !== undefined) {
+						const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+						modifier = await Expressions.evaluateAsync(renderContext.dataset.modifier, context);
 					}
 
 					if (difficulty > 0) {
@@ -169,9 +169,8 @@ function activateListeners(document, html) {
 }
 
 /**
- * Used by the CONFIG.TextEditor to hook into Foundry's text editor templating system
+ * @type {FUInlineCommand}
  */
-export const InlineChecks = {
-	enricher: inlineCheckEnricher,
-	activateListeners,
-};
+export const InlineChecks = Object.freeze({
+	enrichers: [inlineCheckEnricher],
+});

@@ -50,18 +50,21 @@ export class GardenDataModel extends ClassFeatureDataModel {
 	}
 
 	static activateListeners(html, item, sheet) {
-		html.find('[data-action]').on('click', (e) => {
-			const action = e.currentTarget.dataset.action;
+		html.querySelectorAll('[data-action]').forEach((el) => {
+			el.addEventListener('click', (e) => {
+				const action = e.currentTarget.dataset.action;
 
-			const delta = action === 'increment' ? 1 : -1;
+				const delta = action === 'increment' ? 1 : -1;
 
-			const newValue = Math.clamp(item.system.data.clock.current + delta, 0, 4);
+				const newValue = Math.clamp(item.system.data.clock.current + delta, 0, 4);
 
-			return item.update({ 'system.data.clock.current': newValue });
+				return item.update({ 'system.data.clock.current': newValue });
+			});
 		});
 
-		html.find('.progress input')
-			.on('click', (e) => item.update({ 'system.data.clock.current': e.currentTarget.value }))
-			.on('contextmenu', (e) => item.update({ 'system.data.clock.current': 0 }));
+		html.querySelectorAll('.progress input').forEach((el) => {
+			el.addEventListener('click', (e) => item.update({ 'system.data.clock.current': e.currentTarget.value }));
+			el.addEventListener('contextmenu', (e) => item.update({ 'system.data.clock.current': 0 }));
+		});
 	}
 }

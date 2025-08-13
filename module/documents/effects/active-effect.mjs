@@ -316,7 +316,7 @@ export class FUActiveEffect extends ActiveEffect {
 		await ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ actor: this.parent }),
 			flags: flags,
-			content: await renderTemplate('systems/projectfu/templates/chat/chat-active-effect.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-active-effect.hbs', {
 				effect: this,
 				description: description,
 			}),

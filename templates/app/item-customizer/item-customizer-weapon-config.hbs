@@ -1,0 +1,57 @@
+<form class="resource-content desc">
+	<fieldset class="desc grid grid-3col gap-5 mb-5">
+		<label>
+			{{localize 'FU.Primary'}}
+			<select name="system.attributes.primary.value">
+				{{selectOptions FU.attributeAbbreviations selected=system.attributes.primary.value localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.Secondary'}}
+			<select name="system.attributes.secondary.value">
+				{{selectOptions FU.attributeAbbreviations selected=system.attributes.secondary.value localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize "FU.Accuracy"}}
+			<input type="number" name="system.accuracy.value" value="{{system.accuracy.value}}" />
+		</label>
+	</fieldset>
+
+	<fieldset class="grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;">
+		<label>
+			{{localize 'FU.DamageBonus'}}
+			<input type="number" name="system.damage.value" value="{{system.damage.value}}" />
+		</label>
+
+		<label>
+			{{localize 'FU.DamageType'}}
+			<select name="system.damageType.value">
+				{{selectOptions FU.damageTypes selected=system.damageType.value localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.HRZero'}}
+			<input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{checked
+			 system.rollInfo.useWeapon.hrZero.value}} />
+		</label>
+
+		<label>
+			{{localize 'FU.WeaponType'}}
+			<select name="system.type.value">
+				{{selectOptions FU.weaponTypes selected=system.type.value localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.DefenseType'}}
+			<select name="system.defense">
+				{{selectOptions FU.defenses selected=system.defense localize=true labelAttr='abbr'}}
+			</select>
+		</label>
+
+	</fieldset>
+</form>

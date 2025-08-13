@@ -17,10 +17,15 @@ const INLINE_EFFECT_CLASS = 'inline-effect';
 
 const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
 
+/**
+ * @type {TextEditorEnricherConfig}
+ */
 const enricher = {
+	id: 'InlineEffect',
 	// ID|UUID|Base64String
 	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]+={0,3})', configurationPropertyGroups),
 	enricher: inlineEffectEnricher,
+	onRender: onRender,
 };
 
 function createEffectAnchor(effect, label) {
@@ -146,82 +151,92 @@ async function inlineEffectEnricher(match, options) {
 }
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const target = element.firstElementChild;
+	const document = InlineHelper.resolveDocument(element);
+	const sourceInfo = InlineHelper.determineSource(document, target);
+	const dataset = target.dataset;
 
-	html.find('a.inline.inline-effect[draggable]')
-		.on('click', async function (event) {
-			const sourceInfo = InlineHelper.determineSource(document, this);
-			const effectData = InlineHelper.fromBase64(this.dataset.effect);
-			const status = this.dataset.status;
-			const config = InlineHelper.fromBase64(this.dataset.config);
-			const isCtrlClick = event.ctrlKey;
+	const effectData = InlineHelper.fromBase64(dataset.effect);
+	const status = dataset.status;
+	const config = InlineHelper.fromBase64(dataset.config);
 
-			const targets = await targetHandler();
-			if (!targets.length) return;
-			targets.forEach((actor) => {
-				if (effectData) {
-					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData) : Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
-				} else if (status) {
-					isCtrlClick ? disableStatusEffect(actor, status) : !actor.statuses.has(status) && Effects.toggleStatusEffect(actor, status, sourceInfo, config);
-				}
-			});
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
-			if (!(event.target instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
-			const sourceInfo = InlineHelper.determineSource(document, this);
-			const data = {
-				type: INLINE_EFFECT,
-				sourceInfo: sourceInfo,
-				config: InlineHelper.fromBase64(this.dataset.config),
-				effect: InlineHelper.fromBase64(this.dataset.effect),
-				status: this.dataset.status,
-			};
-			event.dataTransfer.setData('text/plain', JSON.stringify(data));
-			event.stopPropagation();
-		})
-		.on('contextmenu', function (event) {
-			event.preventDefault();
-			event.stopPropagation();
-			let effectData;
-			if (this.dataset.status) {
-				const status = this.dataset.status;
-				const statusEffect = CONFIG.statusEffects.find((value) => value.id === status);
-				if (statusEffect) {
-					effectData = { ...statusEffect, statuses: [status] };
-				}
-			} else {
-				effectData = InlineHelper.fromBase64(this.dataset.effect);
-			}
+	// Click handler
+	element.addEventListener('click', async function (event) {
+		const isCtrlClick = event.ctrlKey;
+		const targets = await targetHandler();
+		if (!targets.length) return;
+
+		targets.forEach((actor) => {
 			if (effectData) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
-				effectData.sourceInfo = sourceInfo;
-				const cls = getDocumentClass('ActiveEffect');
-				delete effectData.id;
-				cls.migrateDataSafe(effectData);
-				cls.cleanData(effectData);
-				Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true })
-					.then((value) => {
-						return cls.create(effectData, { temporary: true, render: true, parent: value });
-					})
-					.then((value) => {
-						const activeEffectConfig = new ActiveEffectConfig(value);
-						activeEffectConfig.render(true, { editable: false });
-					});
+				if (isCtrlClick) {
+					Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData);
+				} else {
+					Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
+				}
+			} else if (status) {
+				if (isCtrlClick) {
+					disableStatusEffect(actor, status);
+				} else if (!actor.statuses.has(status)) {
+					Effects.toggleStatusEffect(actor, status, sourceInfo, config);
+				}
 			}
 		});
+	});
+
+	// Dragstart handler
+	element.addEventListener('dragstart', function (event) {
+		const data = {
+			type: INLINE_EFFECT,
+			sourceInfo: sourceInfo,
+			config: InlineHelper.fromBase64(dataset.config),
+			effect: InlineHelper.fromBase64(dataset.effect),
+			status: dataset.status,
+		};
+
+		event.dataTransfer.setData('text/plain', JSON.stringify(data));
+		event.stopPropagation();
+	});
+
+	// Contextmenu handler
+	element.addEventListener('contextmenu', function (event) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		let effectData;
+		if (dataset.status) {
+			const status = dataset.status;
+			const statusEffect = CONFIG.statusEffects.find((value) => value.id === status);
+			if (statusEffect) {
+				effectData = { ...statusEffect, statuses: [status] };
+			}
+		} else {
+			effectData = InlineHelper.fromBase64(dataset.effect);
+		}
+
+		if (effectData) {
+			effectData.sourceInfo = sourceInfo;
+
+			const cls = getDocumentClass('ActiveEffect');
+			delete effectData.id;
+
+			cls.migrateDataSafe(effectData);
+			cls.cleanData(effectData);
+
+			Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true })
+				.then((value) => cls.create(effectData, { temporary: true, render: true, parent: value }))
+				.then((value) => {
+					const activeEffectConfig = new foundry.applications.sheets.ActiveEffectConfig(value);
+					activeEffectConfig.render(true, { editable: false });
+				});
+		}
+	});
 }
 
-function onDropActor(actor, sheet, { type, sourceInfo, config, effect, status }) {
+async function onDropActor(actor, sheet, { type, sourceInfo, config, effect, status }) {
 	if (type === INLINE_EFFECT) {
 		if (status) {
 			if (!actor.statuses.has(status)) {
@@ -238,18 +253,13 @@ function showEffectConfiguration(state, dispatch, view, ...rest) {
 	new InlineEffectConfiguration(state, dispatch).render(true);
 }
 
-function initialize() {
-	CONFIG.TextEditor.enrichers.push(enricher);
-	Hooks.on('renderChatMessage', activateListeners);
-	Hooks.on('renderApplication', activateListeners);
-	Hooks.on('renderActorSheet', activateListeners);
-	Hooks.on('renderItemSheet', activateListeners);
-	Hooks.on('dropActorSheetData', onDropActor);
-}
-
+/**
+ * @type {FUInlineCommand}
+ */
 export const InlineEffects = {
+	enrichers: [enricher],
 	showEffectConfiguration,
 	parseConfigData,
+	onDropActor,
 	configurationPropertyGroups,
-	initialize,
 };

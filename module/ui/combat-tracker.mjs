@@ -1,110 +1,99 @@
 import { FUCombat } from './combat.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
+import { systemPath } from '../helpers/config.mjs';
 
 /**
  * @class
  * @property {FUCombat} viewed The currently tracked combat encounter
  * @property {Function<Promise<object>>} getData
  * @property {Function<Combatant, Boolean, void>} hoverCombatant
+ * @property {HTMLElement} element
  * @remarks {@link https://foundryvtt.com/api/classes/client.CombatTracker.html}
  */
-export class FUCombatTracker extends CombatTracker {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: 'systems/projectfu/templates/ui/combat-tracker.hbs',
-			classes: [...super.defaultOptions.classes, 'projectfu'],
+export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
+	/**
+	 * @inheritDoc
+	 * @type ApplicationConfiguration
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: ['projectfu'],
+	};
+
+	/** @inheritdoc */
+	static PARTS = {
+		/** Inherited */
+		header: {
+			template: systemPath('templates/ui/combat-tracker-header.hbs'),
+		},
+		/** Overridden, only used for "alternative" combat */
+		tracker: {
+			template: systemPath('templates/ui/combat-tracker.hbs'),
+		},
+		/** Inherited, only used for "alternative" combats */
+		footer: {
+			template: 'templates/sidebar/tabs/combat/footer.hbs',
+		},
+	};
+
+	/** @inheritdoc */
+	_configureRenderParts(options) {
+		// deep clone of static PARTS
+		const parts = super._configureRenderParts(options);
+		//delete parts.footer;
+		return parts;
+	}
+
+	/**
+	 * Prepare render context for the tracker part.
+	 * @param {ApplicationRenderContext} context
+	 * @param {HandlebarsRenderOptions} options
+	 * @returns {Promise<void>}
+	 * @override
+	 */
+	async _prepareTrackerContext(context, options) {
+		const combat = this.viewed;
+		if (!combat) return;
+		await super._prepareTrackerContext(context, options);
+
+		combat.populateData(context);
+		// We add more data to the turns objects
+		context.turns = context.turns?.map((turn) => {
+			turn.statusEffects = combat.combatants.get(turn.id)?.actor.temporaryEffects.map((effect) => ({
+				name: effect.name,
+				img: effect.img,
+			}));
+			turn.css = turn.css.replace('active', '');
+			return turn;
 		});
+		context.factions = await this.getFactions(context.turns, combat);
+		if (context.turns.size === 0) {
+			console.error(`Found no available turns on combat ${combat}`);
+		}
 	}
 
 	/**
-	 * @description The data context used by the rendering
-	 * @param options
-	 * @returns {Promise<*>}
-	 */
-	async getData(options = {}) {
-		const data = await super.getData(options);
-		/** @type FUCombat **/
-		const combat = data.combat;
-		data.icons = this.icons;
-
-		if (combat) {
-			combat.populateData(data);
-			// We add more data to the turns objects
-			data.turns = data.turns?.map((turn) => {
-				turn.statusEffects = combat.combatants.get(turn.id)?.actor.temporaryEffects.map((effect) => ({
-					name: effect.name,
-					img: effect.img,
-				}));
-				turn.css = turn.css.replace('active', '');
-				return turn;
-			});
-			data.factions = await this.getFactions(data.turns, combat);
-			if (data.turns.size === 0) {
-				console.error(`Found no available turns on combat ${combat}`);
+	 * @inheritDoc
+	 * @override
+	 * */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		this.element.addEventListener('click', async (ev) => {
+			const target = ev.target;
+			if (target.closest('.start-turn')) {
+				return this.handleStartTurn(ev);
+			} else if (target.closest('.end-turn')) {
+				return this.handleEndTurn(ev);
+			} else if (target.closest('.take-turn.out-of-turn')) {
+				return this.handleTakeTurnOutOfTurn(ev);
 			}
-		}
-		return data;
-	}
-
-	/**
-	 * @param {jQuery} html
-	 */
-	activateListeners(html) {
-		super.activateListeners(html);
-		html.find('a[data-action=start-turn]').click((event) => this.handleStartTurn(event));
-		html.find('a[data-action=end-turn]').click((event) => this.handleEndTurn(event));
-		html.find('a[data-action=take-turn-out-of-turn]').click((event) => this.handleTakeTurnOutOfTurn(event));
-		html.find('.combatant')
-			.off('click')
-			.on('click', (event) => this.customOnCombatantClick(event));
-		html.find('.combatant-name').on('dblclick', (event) => this._onCombatantMouseDown(event));
-	}
-
-	/**
-	 * Custom method for handling combatant click
-	 * @param {Event} event
-	 */
-	customOnCombatantClick(event) {
-		event.preventDefault();
-
-		if (game.settings.get('projectfu', 'optionCombatMouseDown')) {
-			// Call the custom function
-			this._onCustomCombatantMouseDown(event);
-		} else {
-			this._onCombatantMouseDown(event);
-		}
-	}
-
-	/**
-	 * Handle custom combatant mouse down
-	 * @param {Event} event
-	 */
-	async _onCustomCombatantMouseDown(event) {
-		event.preventDefault();
-
-		const li = event.currentTarget;
-		const combatant = this.viewed.combatants.get(li.dataset.combatantId);
-		const token = combatant.token;
-		if (!combatant.actor?.testUserPermission(game.user, 'OBSERVER')) return;
-
-		// Handle double-left click to open sheet
-		const now = Date.now();
-		const dt = now - this._clickTime;
-		this._clickTime = now;
-		if (dt <= 250) {
-			return combatant.actor?.sheet.render(true);
-		}
-
-		// Control Token object (no panning)
-		if (token?.object) {
-			token.object?.control({ releaseOthers: true });
-		}
+		});
 	}
 
 	/**
 	 * @param turns
 	 * @param {FUCombat} combat
-	 * @return {Object.<"friendly"|"neutral"|"hostile", {}[]>}
+	 * @return {Object.<'friendly'|'neutral'|'hostile', {}[]>}
 	 */
 	async getFactions(turns, combat) {
 		// TODO: This information is also required by the combat hud, but populated in an entirely different way!
@@ -132,54 +121,56 @@ export class FUCombatTracker extends CombatTracker {
 	}
 
 	/**
-	 * Handle a Combatant control toggle
-	 * @private
-	 * @param {Event} event   The originating mousedown event
+	 * Handle performing some action for an individual combatant.
+	 * @param {PointerEvent} event  The triggering event.
+	 * @param {HTMLElement} target  The action target element.
 	 * @override
 	 */
-	async _onCombatantControl(event) {
-		await super._onCombatantControl(event);
+	_onCombatantControl(event, target) {
+		super._onCombatantControl(event, target);
 
-		const btn = event.currentTarget;
-		const li = btn.closest('.combatant');
-		const combat = this.viewed;
-		const c = combat.combatants.get(li.dataset.combatantId);
+		const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
+		const combatant = this.viewed?.combatants.get(combatantId);
+		if (!combatant) return;
 
 		// Switch control action
-		switch (btn.dataset.control) {
+		switch (target.dataset.action) {
 			case 'inspectCombatant': {
-				const uuid = `Actor.${c.actorId}`;
-				await FUPartySheet.inspectAdversary(uuid);
+				const uuid = `Actor.${combatant.actorId}`;
+				FUPartySheet.inspectAdversary(uuid);
 				break;
 			}
 		}
 	}
 
+	#getCombatantFromEvent(event) {
+		const parent = event.target.closest('[data-combatant-id]');
+		if (!parent) return;
+
+		const combatantId = parent.dataset.combatantId;
+		return this.viewed.combatants.get(combatantId);
+	}
+
 	async handleStartTurn(event) {
-		const combatantId = $(event.currentTarget).parents('[data-combatant-id]').data('combatantId');
-		const combatant = this.viewed.combatants.get(combatantId);
+		const combatant = this.#getCombatantFromEvent(event);
 		if (combatant) {
 			await this.viewed.startTurn(combatant);
 		}
 	}
 
 	async handleEndTurn(event) {
-		const combatantId = $(event.currentTarget).parents('[data-combatant-id]').data('combatantId');
-		/** @type Combatant  */
-		const combatant = this.viewed.combatants.get(combatantId);
-		if (combatant) {
-			if (combatant.isDefeated) {
-				const takeTurn = await Dialog.confirm({
-					title: game.i18n.localize('FU.DialogDefeatedTurnTitle'),
-					content: game.i18n.localize('FU.DialogDefeatedTurnContent'),
-				});
+		const combatant = this.#getCombatantFromEvent(event);
+		if (!combatant) return;
 
-				if (!takeTurn) {
-					return;
-				}
-			}
-			await this.viewed.endTurn(combatant);
+		if (combatant.isDefeated) {
+			const takeTurn = await foundry.applications.api.DialogV2.confirm({
+				window: { title: game.i18n.localize('FU.DialogDefeatedTurnTitle') },
+				content: game.i18n.localize('FU.DialogDefeatedTurnContent'),
+			});
+			if (!takeTurn) return;
 		}
+
+		await this.viewed.endTurn(combatant);
 	}
 
 	async handleTakeTurnOutOfTurn(event) {

@@ -1,0 +1,28 @@
+<div class="item-m inline-desc" style="text-align: center; padding: 1px;">
+	{{#if displayName}}
+		<label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ displayName }}</label>
+	{{/if}}
+	<div class="resource-text-t buttons-inc" style="padding: 0 4px;">
+		<a class="decrement-button"
+		   data-type="{{type}}"
+		   data-item-id="{{id}}"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-update-amount="-1"
+		   data-tooltip="{{localize
+			'FU.DecreaseTooltip'}} ({{data.step}})">-</a>
+		<span data-resource="item.rp">{{ data.current }}</span>
+		{{#if (gt data.max 0)}}
+			<span>/</span>
+			<span>{{ data.max }}</span>
+		{{/if}}
+		<a class="increment-button"
+		   data-type="{{type}}"
+		   data-item-id="{{id}}"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-update-amount="1"
+		   data-tooltip="{{localize
+			'FU.IncreaseTooltip'}} ({{data.step}})">+</a>
+	</div>
+</div>

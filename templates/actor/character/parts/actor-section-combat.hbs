@@ -1,0 +1,138 @@
+<div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="combat">
+  <section class="desc">
+    {{> "systems/projectfu/templates/actor/sections/actor-attack-list.hbs"}}
+      <!-- Skill Item Section only shown if the actor has skill items -->
+      {{#if skills.length}}
+      <ol class="items-list">
+          <li class="item flexrow items-header">
+              <div class="item-name">{{localize 'FU.Skills'}}</div>
+              <div class="item-lg">{{localize 'FU.SkillLevel'}}</div>
+              <div class="item-m end">
+                  <a class="item-control item-create" aria-describedby="tooltip"
+                    data-tooltip="{{localize 'FU.SkillCreate'}}" data-type="skill">
+                      <i class="fas fa-plus icon"></i>
+                      {{localize 'FU.Add'}}
+                  </a>
+              </div>
+          </li>
+          {{#each skills as |item id|}}
+              <li class="item" data-item-id="{{ item._id }}">
+                  <div class="flexrow" style="height: fit-content; align-items: flex-start;">
+                      <div class="flexcol">
+                          {{!-- Item Name--}}
+                          {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                          {{#if item.quality}}
+                              <div class="item-quality">{{ item.quality }}</div>
+                          {{/if}}
+                      </div>
+                      {{!-- Resource Points --}}
+                      {{#if item.system.hasResource.value}}
+						  {{progress item 'system.rp' style='basic' type='resourceCounter' }}
+                      {{/if}}
+                      {{!-- Star Tracker--}}
+                      <div class="skillLevel item-lg sl-stars">
+                          {{#each item.skillArr as |level|}}
+                              <div class="star-radio-container">
+                                  <input type="radio" name="skillLevel_{{ item._id }}"
+                                        id="skillLevel_{{ item._id }}_{{ level.id }}" value="{{ level.id }}" {{#if
+                                          level.checked}}checked{{/if}} data-item-id="{{ item._id }}"
+                                        class="hidden-radio">
+                                  <label for="skillLevel_{{ item._id }}_{{ level.id }}"
+                                        class="star-label {{#if
+                                          (lte level.id item.system.level.value)}} fus-sl-star {{else}}ful-sl-star{{/if}}"></label>
+                              </div>
+                          {{/each}}
+                      </div>
+                      {{!-- Item Control--}}
+                      {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                  </div>
+				  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+              </li>
+          {{/each}}
+      </ol>
+      {{/if}}
+
+    {{> "systems/projectfu/templates/actor/sections/actor-spell-list.hbs"}}
+
+      <ol class="items-list">
+          <li class="item flexrow items-header">
+              <div class="item-name">{{localize "FU.OtherAction"}}</div>
+              <div class="item-full start">{{localize 'FU.Effect'}}</div>
+              <div class="item-m end">
+                  <a class="item-control item-create" aria-describedby="tooltip"
+                    data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
+                      <i class="fas fa-plus icon"></i>
+                      {{localize 'FU.Add'}}
+                  </a>
+              </div>
+          </li>
+          {{#each abilities as |item id|}}
+              <li class="item" data-item-id="{{ item._id }}">
+                  <div class="flexrow" style="height: fit-content; align-items: flex-start;">
+                      <div class="flexcol">
+                          {{!-- Item Name--}}
+                          {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                      </div>
+                      <div class="item-full start tiny-desc">
+                      <span class="description-effect">
+                          {{#if item.system.description}}
+                              {{{item.enrichedHtml.description}}}
+                          {{/if}}
+                      </span>
+                      </div>
+
+                      {{!-- Resource Points --}}
+                      {{#if item.system.hasResource.value}}
+						  {{progress item 'system.rp' style='basic' type='resourceCounter' }}
+                      {{/if}}
+                      {{!-- Clocks --}}
+                      {{#if item.system.hasClock.value}}
+						  {{progress item 'system.progress' type='clockCounter'}}
+                      {{/if}}
+                      {{!-- Item Control--}}
+                      {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                  </div>
+                  <span class="item-quality">{{ item.quality }}</span>
+				  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+              </li>
+          {{/each}}
+      </ol>
+
+      <ol class="items-list">
+          <li class="item flexrow items-header">
+              <div class="item-name">{{localize "FU.SpecialRule"}}</div>
+              <div class="item-full start">{{localize 'FU.Effect'}}</div>
+              <div class="item-m end">
+                  <a class="item-control item-create" aria-describedby="tooltip"
+                    data-tooltip="{{localize 'FU.RuleCreate'}}" data-type="rule">
+                      <i class="fas fa-plus icon"></i>
+                      {{localize 'FU.Add'}}
+                  </a>
+              </div>
+          </li>
+          {{#each rules as |item id|}}
+
+              <li class="item" data-item-id="{{ item._id }}">
+                  <div class="flexrow">
+                      {{!-- Item Name--}}
+                      {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+					  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+                      {{!-- Clocks --}}
+                      {{#if item.system.hasClock.value}}
+						  {{progress item 'system.progress' type='clockCounter'}}
+                      {{/if}}
+                      {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                  </div>
+              </li>
+          {{/each}}
+      </ol>
+
+	  {{> "systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs"}}
+
+  </section>
+  {{#if actor.system.useEquipment.value}}
+      <section class="desc">
+          {{> "systems/projectfu/templates/actor/partials/actor-npc-items.hbs" item=item}}
+      </section>
+  {{/if}}
+</div>

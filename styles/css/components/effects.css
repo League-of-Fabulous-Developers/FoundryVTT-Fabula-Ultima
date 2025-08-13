@@ -1,0 +1,148 @@
+/* =========================
+   Effect Styles
+   ========================= */
+
+/* =========================
+   Section Header
+   ========================= */
+.effects-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: var(--border-groove);
+  font-weight: bold;
+}
+
+.effects-header > * {
+  font-size: 14px;
+  text-align: center;
+}
+
+.effects-header .effect-name {
+  font-weight: bold;
+  padding-left: 5px;
+  text-align: left;
+  display: flex;
+}
+
+/* =========================
+   Effects List
+   ========================= */
+.effects-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  color: var(--dasu-c-tan);
+}
+
+/* Child lists */
+.effects-list .effect-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Effect Name */
+.effects-list .effect-name {
+  flex: 2;
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+}
+
+.effects-list .effect-name h3,
+.effects-list .effect-name h4 {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+/* =========================
+   Control Buttons
+   ========================= */
+.effects-list .effect-controls {
+  display: flex;
+  flex: 0 0 100px;
+  justify-content: flex-end;
+}
+
+.effects-list .effect-controls a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 6px;
+}
+
+/* =========================
+   Individual Effect
+   ========================= */
+.effects-list .effect {
+  align-items: center;
+  padding: 0 2px; /* to align with the header border */
+  border-bottom: 1px solid var(--color-border);
+}
+
+.effects-list .effect:last-child {
+  border-bottom: none;
+}
+
+.effects-list .effect .effect-name {
+  color: var(--dasu-c-dark);
+}
+
+.effects-list .effect .effect-name .effect-image {
+  flex: 0 0 30px;
+  height: 30px;
+  background-size: 30px;
+  border: none;
+  margin-right: 5px;
+}
+
+.effects-list .effect-prop {
+  text-align: center;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  font-size: 12px;
+}
+
+/* =========================
+   Section Header
+   ========================= */
+.effects-list .effects-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: var(--border-groove);
+  font-weight: bold;
+}
+
+.effects-list .effects-header > * {
+  font-size: 12px;
+  text-align: center;
+}
+
+.effects-list .effects-header .effect-name {
+  padding-left: 5px;
+  text-align: left;
+}
+
+.effects .item .effect-source,
+.effects .item .effect-duration,
+.effects .item .effect-controls {
+  text-align: center;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  font-size: 12px;
+}
+
+.effects .item .effect-controls {
+  border: none;
+}

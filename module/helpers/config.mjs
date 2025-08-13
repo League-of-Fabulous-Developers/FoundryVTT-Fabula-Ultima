@@ -409,8 +409,8 @@ FU.handedness = {
 	'two-handed': 'FU.TwoHanded',
 };
 
-FU.classFeatureRegistry = new ClassFeatureRegistry();
-FU.optionalFeatureRegistry = new OptionalFeatureRegistry();
+FU.classFeatureRegistry = ClassFeatureRegistry.instance;
+FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
 
 FU.resources = {
 	hp: 'FU.HealthPoints',
@@ -462,6 +462,7 @@ FU.checkTypes = {
 };
 
 FU.classFeatures = {};
+FU.optionalFeatures = {};
 
 FU.studyRoll = {
 	core: [10, 13, 16],

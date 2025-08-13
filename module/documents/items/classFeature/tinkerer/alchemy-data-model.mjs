@@ -1,16 +1,30 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
+import { CommonSections } from '../../../../checks/common-sections.mjs';
+import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 
-const alchemyFlavors = {
+const alchemyRanks = {
 	basic: 'FU.ClassFeatureAlchemyBasic',
 	advanced: 'FU.ClassFeatureAlchemyAdvanced',
 	superior: 'FU.ClassFeatureAlchemySuperior',
 };
 
 /**
+ * @type {RenderCheckHook}
+ */
+const onRenderCheck = (sections, check, actor, item) => {
+	if (check.type === 'display' && item?.system?.data instanceof AlchemyDataModel) {
+		CommonSections.description(sections, item.system.data.description, item.system.summary.value);
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
+
+/**
  * @extends RollableClassFeatureDataModel
- * @property {"basic","advanced","superior"} rank
+ * @property {'basic','advanced','superior'} rank
  * @property {string} description
  * @property {string} basic
  * @property {string} advanced
@@ -37,7 +51,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				initial: 'basic',
 				nullable: false,
 				blank: true,
-				choices: Object.keys(alchemyFlavors),
+				choices: Object.keys(alchemyRanks),
 			}),
 			description: new HTMLField(),
 			basic: new HTMLField(),
@@ -102,14 +116,23 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static activateListeners(html, item) {
-		html.find('[data-action=addEffect]').click(() =>
-			item.update({
-				'system.data.config.alwaysAvailableEffects': [...item.system.data.config.alwaysAvailableEffects, game.i18n.localize('FU.ClassFeatureAlchemyAlwaysAvailableEffectNew')],
-			}),
-		);
-		html.find('[data-action=deleteEffect][data-index]').click((event) => {
-			const idx = event.currentTarget.dataset.index;
-			item.update({ 'system.data.config.alwaysAvailableEffects': item.system.data.config.alwaysAvailableEffects.toSpliced(idx, 1) });
+		const addEffectEl = html.querySelector('[data-action=addEffect]');
+		if (addEffectEl) {
+			addEffectEl.addEventListener('click', () => {
+				item.update({
+					'system.data.config.alwaysAvailableEffects': [...item.system.data.config.alwaysAvailableEffects, game.i18n.localize('FU.ClassFeatureAlchemyAlwaysAvailableEffectNew')],
+				});
+			});
+		}
+
+		const deleteEffectEls = html.querySelectorAll('[data-action=deleteEffect][data-index]');
+		deleteEffectEls.forEach((el) => {
+			el.addEventListener('click', (event) => {
+				const idx = Number(event.currentTarget.dataset.index);
+				item.update({
+					'system.data.config.alwaysAvailableEffects': item.system.data.config.alwaysAvailableEffects.toSpliced(idx, 1),
+				});
+			});
 		});
 	}
 
@@ -117,7 +140,11 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 	 * @param {AlchemyDataModel} model
 	 * @return {Promise<void>}
 	 */
-	static async roll(model, item) {
+	static async roll(model, item, isShift) {
+		if (isShift) {
+			return Checks.display(item.actor, item);
+		}
+
 		let dice = model.config.ranks.basic.dice;
 		let rank = 'basic';
 		if (['advanced', 'superior'].includes(model.rank)) {
@@ -125,18 +152,18 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			if (model.rank === 'superior') {
 				ranks.push('superior');
 			}
-			rank = await Dialog.prompt({
-				title: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankTitle'),
+			rank = await foundry.applications.api.DialogV2.prompt({
+				window: { title: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankTitle') },
 				label: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankLabel'),
 				content: `
 				<div class="desc">
 					<label><strong>${game.i18n.localize('FU.Rank')}</strong></label>:
-					<select name="rank">${ranks.map((value) => `<option value="${value}">${game.i18n.localize(alchemyFlavors[value])}</option>`)}</select>
+					<select name="rank">${ranks.map((value) => `<option value="${value}">${game.i18n.localize(alchemyRanks[value])}</option>`)}</select>
 				</div>
 				`,
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 				rejectClose: false,
-				callback: (html) => html.find('select[name=rank]').val(),
+				ok: { callback: (event, html, dialog) => dialog.element.querySelector('select[name=rank]').value },
 			});
 			dice = model.config.ranks[rank]?.dice;
 		}
@@ -151,7 +178,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			const description = descriptions[rank];
 			if (model.config.targetRollTable && model.config.effectRollTable) {
 				const data = {
-					rank: alchemyFlavors[rank],
+					rank: alchemyRanks[rank],
 					description: description,
 					alwaysAvailableEffects: [...model.config.alwaysAvailableEffects],
 					results: [],
@@ -165,11 +192,11 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 					speaker,
 					type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 					rolls: [roll],
-					content: await renderTemplate('systems/projectfu/templates/feature/tinkerer/feature-alchemy-chat-message.hbs', data),
+					content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/tinkerer/feature-alchemy-chat-message.hbs', data),
 					flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 				});
 			} else {
-				await roll.toMessage({ flavor: game.i18n.localize(alchemyFlavors[rank]), speaker });
+				await roll.toMessage({ flavor: game.i18n.localize(alchemyRanks[rank]), speaker });
 			}
 		}
 	}

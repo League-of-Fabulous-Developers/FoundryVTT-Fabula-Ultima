@@ -2,9 +2,10 @@ import { WELLSPRINGS } from './invoker-integration.mjs';
 import { InvocationSelectionApplication } from './invocation-selection-application.mjs';
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CHECK_FLAVOR } from '../../../../checks/default-section-order.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const BASIC = 'FU.ClassFeatureInvocationsBasicName';
 
@@ -123,7 +124,7 @@ export class InvocationsDataModel extends RollableClassFeatureDataModel {
 
 	static async roll(model, item, isShift) {
 		if (isShift) {
-			return ChecksV2.display(item.actor, item);
+			return Checks.display(item.actor, item);
 		} else {
 			const activeWellsprings = model.actor?.wellspringManager.activeWellsprings;
 			if (!activeWellsprings) return;
@@ -136,7 +137,7 @@ export class InvocationsDataModel extends RollableClassFeatureDataModel {
 	 * @param {"basic", "advanced", "superior1", "superior2"} invocation
 	 */
 	useInvocation(element, invocation) {
-		return ChecksV2.display(this.actor, this.item, (check) => {
+		return Checks.display(this.actor, this.item, (check) => {
 			check.additionalData[invocationKey] = {
 				element,
 				invocation,

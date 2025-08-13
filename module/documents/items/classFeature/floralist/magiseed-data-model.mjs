@@ -1,6 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /**
  * @typedef {"effect", "planted", "removed"} MagiseedAction
@@ -15,6 +16,8 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item && item.system?.data instanceof MagiseedDataModel) {
 		/** @type MagiseedAction */
 		const action = check.additionalData[magiseedActionKey];
+
+		const gardenName = foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') || foundry.utils.getProperty(actor, 'system.floralist.garden.name') || game.i18n.localize('FU.ClassFeatureGarden');
 
 		switch (action) {
 			case 'effect': {
@@ -55,7 +58,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenAdded', {
 							item: item.name,
-							garden: foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') ?? game.i18n.localize('FU.ClassFeatureGarden'),
+							garden: gardenName,
 						}),
 					},
 				});
@@ -67,7 +70,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenRemoved', {
 							item: item.name,
-							garden: foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') ?? game.i18n.localize('FU.ClassFeatureGarden'),
+							garden: gardenName,
 						}),
 					},
 				});
@@ -176,14 +179,14 @@ export class MagiseedDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static async roll(model, item, shiftClick) {
-		return ChecksV2.display(item.actor, item, (check) => (check.additionalData[magiseedActionKey] = 'effect'));
+		return Checks.display(item.actor, item, (check) => (check.additionalData[magiseedActionKey] = 'effect'));
 	}
 
 	postPlanted() {
-		return ChecksV2.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'planted'));
+		return Checks.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'planted'));
 	}
 
 	postRemoved() {
-		return ChecksV2.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'removed'));
+		return Checks.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'removed'));
 	}
 }

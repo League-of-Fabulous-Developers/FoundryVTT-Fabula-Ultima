@@ -68,7 +68,7 @@ async function filterTargetsByRule(actor, item, targets) {
 }
 
 /**
- * @property {String} name The name of the action to be used by jQuery
+ * @property {String} name The name of the action to be used
  * @property {String} icon The font awesome icon
  * @property {String} tooltip The localized tooltip to use
  * @property {Object} fields The fields to use for the action's dataset
@@ -123,23 +123,26 @@ function deserializeTargetData(targetData) {
 
 /**
  * @param {Document} document
- * @param {jQuery} jQuery
+ * @param {HTMLElement} html
  */
-function onRenderChatMessage(document, jQuery) {
+function onRenderChatMessage(document, html) {
 	if (!document.getFlag(Flags.Scope, Flags.ChatMessage.Targets)) {
 		return;
 	}
 
-	jQuery.find(`a[data-action=${defaultAction.name}]`).click(function (event) {
-		console.debug(`Targeting ${this.dataset.id}`);
-		const actor = fromUuidSync(this.dataset.id);
-		const token = actor.token.object;
-		if (!validateCombatant(token)) {
-			return;
-		}
-		return pingCombatant(token);
+	const links = html.querySelectorAll(`a[data-action="${defaultAction.name}"]`);
+	links.forEach((link) => {
+		link.addEventListener('click', function (event) {
+			console.debug(`Targeting ${this.dataset.id}`);
+			const actor = fromUuidSync(this.dataset.id);
+			const token = actor.token?.object;
+			if (!validateCombatant(token)) return;
+			return pingCombatant(token);
+		});
 	});
 }
+
+Hooks.on(`renderChatMessageHTML`, onRenderChatMessage);
 
 function validateCombatant(token) {
 	const canvas = game.canvas;

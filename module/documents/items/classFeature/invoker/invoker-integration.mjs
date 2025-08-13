@@ -55,24 +55,25 @@ let gameWellspringManager;
 
 const renderApp = () => (gameWellspringManager ??= new GameWellspringManager()).render(true);
 
-function onGetSystemTools(tools) {
-	tools.push({
-		name: 'Playtest' + GameWellspringManager.name,
-		title: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
-		icon: 'fas fa-earth-asia',
-		button: true,
-		visible: game.user.isGM,
-		onClick: renderApp,
-	});
-}
-
 const regExp = /^\/(ws|wellsprings?)$/i;
 
-function onChatMessage(chatLog, message, data) {
+function onChatMessage(chatLog, message) {
 	if (game.user.isGM && regExp.test(message)) {
 		renderApp();
 		return false;
 	}
+}
+
+/**
+ * @param {SystemControlTool[]} tools
+ */
+function onGetSystemTools(tools) {
+	tools.push({
+		name: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
+		icon: 'fas fa-earth-asia',
+		visible: game.user.isGM,
+		onClick: () => renderApp(),
+	});
 }
 
 function initialize() {

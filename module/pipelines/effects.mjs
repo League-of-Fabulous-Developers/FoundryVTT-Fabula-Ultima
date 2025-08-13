@@ -9,6 +9,7 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -60,7 +61,7 @@ function createTemporaryEffect(owner, effectType, name) {
 	};
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
-			label: name ?? game.i18n.localize('FU.NewEffect'),
+			name: name ?? game.i18n.localize('FU.NewEffect'),
 			img: 'icons/svg/aura.svg',
 			source: owner.uuid,
 			system: system,
@@ -72,12 +73,13 @@ function createTemporaryEffect(owner, effectType, name) {
 
 /**
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
- * @param {MouseEvent} event      The left-click event on the effect control
- * @param {Actor|Item} owner      The owning document which manages this effect
+ * @param {PointerEvent} event     The left-click event on the effect control
+ * @param {Actor|Item} owner       The owning document which manages this effect
+ * @param {string} action          The action to be performed, where data-action might differ
  */
-export async function onManageActiveEffect(event, owner) {
+export async function onManageActiveEffect(event, owner, action) {
 	event.preventDefault();
-	const anchor = event.target.dataset.action ? event.target : event.currentTarget;
+	const anchor = HTMLUtils.findWithDataset(event.target);
 	const listItem = anchor.closest('li');
 
 	/**
@@ -95,7 +97,7 @@ export async function onManageActiveEffect(event, owner) {
 		return effect;
 	};
 
-	switch (anchor.dataset.action) {
+	switch (action ?? anchor.dataset.action) {
 		case 'create':
 			return createTemporaryEffect(owner, listItem.dataset.effectType);
 		case 'edit':
@@ -186,7 +188,7 @@ function canBeRemoved(effect) {
 }
 
 // Helper function to generate the @EFFECT format string
-export function formatEffect(effect) {
+function formatEffect(effect) {
 	const encodedEffect = InlineHelper.toBase64(effect.toJSON());
 	return `@EFFECT[${encodedEffect}]`;
 }
@@ -516,7 +518,7 @@ async function manageEffectDuration(event) {
 	ChatMessage.create({
 		//speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-manage-effects.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-manage-effects.hbs', {
 			message: 'FU.ChatManageEffects',
 			effects: managedEffects,
 			round: event.round,
@@ -565,7 +567,7 @@ async function promptEffectRemoval(event) {
 	const serializedActors = Targeting.serializeTargetData(event.actors);
 	ChatMessage.create({
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-combat-end.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-combat-end.hbs', {
 			message: message,
 			actors: JSON.stringify(serializedActors),
 			round: event.round,
@@ -576,14 +578,14 @@ async function promptEffectRemoval(event) {
 
 /**
  * @param {Document} message
- * @param {jQuery} jQuery
+ * @param {HTMLElement} element
  */
-function onRenderChatMessage(message, jQuery) {
+function onRenderChatMessage(message, element) {
 	if (!message.getFlag(SYSTEM, Flags.ChatMessage.Effects)) {
 		return;
 	}
 
-	Pipeline.handleClick(message, jQuery, 'removeEffect', (dataset) => {
+	Pipeline.handleClick(message, element, 'removeEffect', (dataset) => {
 		const effectId = dataset.id;
 		const actorId = dataset.actorId;
 		console.debug(`Removing effect ${effectId} on ${actorId}`);
@@ -596,7 +598,7 @@ function onRenderChatMessage(message, jQuery) {
 		}
 	});
 
-	Pipeline.handleClick(message, jQuery, 'display', async (dataset) => {
+	Pipeline.handleClick(message, element, 'display', async (dataset) => {
 		const description = dataset.description;
 		const actorId = dataset.actorId;
 		const actor = fromUuidSync(actorId);
@@ -606,7 +608,7 @@ function onRenderChatMessage(message, jQuery) {
 		});
 	});
 
-	Pipeline.handleClick(message, jQuery, 'clearEffects', (dataset) => {
+	Pipeline.handleClick(message, element, 'clearEffects', (dataset) => {
 		const actors = Targeting.deserializeTargetData(dataset.actors);
 		actors.forEach((actor) => {
 			actor.clearTemporaryEffects();
@@ -658,7 +660,7 @@ const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });
 function initialize() {
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 	Hooks.on(FUHooks.REST_EVENT, onRestEvent);
-	Hooks.on('renderChatMessage', onRenderChatMessage);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 /**
@@ -671,6 +673,7 @@ export const Effects = Object.freeze({
 	onApplyEffectToActor: onApplyEffect,
 	canBeRemoved,
 	toggleStatusEffect,
+	formatEffect,
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,

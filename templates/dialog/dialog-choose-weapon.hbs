@@ -1,38 +1,39 @@
 <div>
     {{#each equippedWeapons}}
         <div>
-            <button data-action="select" data-item-id="{{id}}">
-                <span class="flexcol">
+			<label class="flexrow">
+            	<input type="radio" name="selected" value="{{id}}" class="flex0">
+				<span class="flexcol">
                     <strong>{{name}}</strong>
-                    {{#if (eq type 'weapon')}}
-                        <span>
+					{{#if (eq type 'weapon')}}
+						<span>
                         <span>
                             {{localize 'FU.AttributesPretty' attr1=(localize (lookup @root.FU.attributeAbbreviations system.attributes.primary.value)) attr2=(localize (lookup @root.FU.attributeAbbreviations system.attributes.secondary.value))}}
-                            {{#if system.accuracy.value}}{{#if (gt system.accuracy.value 0)}}+{{/if}}{{system.accuracy.value}}{{/if}}
+							{{#if system.accuracy.value}}{{#if (gt system.accuracy.value 0)}}+{{/if}}{{system.accuracy.value}}{{/if}}
                         </span>
                         <span>{{localize 'FU.DamagePretty' damage=system.damage.value}}{{localize (lookup @root.FU.damageTypes system.damageType.value)}}</span>
                     </span>
-                    {{/if}}
-                    {{#if (eq type 'basic')}}
-                        <span>
+					{{/if}}
+					{{#if (eq type 'basic')}}
+						<span>
                         <span>
                             {{localize 'FU.AttributesPretty' attr1=(localize (lookup @root.FU.attributeAbbreviations system.attributes.primary.value)) attr2=(localize (lookup @root.FU.attributeAbbreviations system.attributes.secondary.value))}}
-                            {{#if system.accuracy.value}}{{#if (gt system.accuracy.value 0)}}+{{/if}}{{system.accuracy.value}}{{/if}}
+							{{#if system.accuracy.value}}{{#if (gt system.accuracy.value 0)}}+{{/if}}{{system.accuracy.value}}{{/if}}
                         </span>
                         <span>{{localize 'FU.DamagePretty' damage=system.damage.value}}{{localize (lookup @root.FU.damageTypes system.damageType.value)}}</span>
                     </span>
-                    {{/if}}
-                    {{#if (and (eq type 'classFeature') (eq system.featureType 'projectfu.weaponModule'))}}
-                        <span>
+					{{/if}}
+					{{#if (and (eq type 'classFeature') (eq system.featureType 'projectfu.weaponModule'))}}
+						<span>
                         <span>
                             {{localize 'FU.AttributesPretty' attr1=(localize (lookup @root.FU.attributeAbbreviations system.data.accuracy.attr1)) attr2=(localize (lookup @root.FU.attributeAbbreviations system.data.accuracy.attr2))}}
-                            {{#if system.data.accuracy.modifier}}{{#if (gt system.data.accuracy.modifier 0)}}+{{/if}}{{system.data.accuracy.modifier}}{{/if}}
+							{{#if system.data.accuracy.modifier}}{{#if (gt system.data.accuracy.modifier 0)}}+{{/if}}{{system.data.accuracy.modifier}}{{/if}}
                         </span>
                         <span>{{localize 'FU.DamagePretty' damage=system.data.damage.bonus}}{{localize (lookup @root.FU.damageTypes system.data.damage.type)}}</span>
                     </span>
-                    {{/if}}
+					{{/if}}
                 </span>
-            </button>
+			</label>
         </div>
     {{/each}}
 </div>

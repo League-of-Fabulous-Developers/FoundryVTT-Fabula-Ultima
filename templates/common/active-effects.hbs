@@ -20,7 +20,7 @@
                 <div class="item-lg">{{localize 'FU.Source'}}</div>
                 <div class="item-lg">{{localize 'FU.Duration'}}</div>
                 <div class="item-s end flexrow">
-                    <a class="effect-control" data-action="create" title="{{localize 'FU.EffectCreate'}}"> <i
+                    <a class="effect-control" data-action="createEffect" title="{{localize 'FU.EffectCreate'}}"> <i
                      class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
                 </div>
             </li>
@@ -55,40 +55,50 @@
                                 <div class="item-lg">{{effect.system.eventLabel}}</div>
                                 {{!-- Controls--}}
                                 <div class="item-m end flexrow">
-                                    <a class="effect-control" data-action="toggle"
+                                    <a class="effect-control" data-action="toggleEffect"
                                        title="{{localize 'FU.EffectToggle'}}">
                                         <i
                                          class="{{#if
                                           effect.disabled}}far fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
                                     </a>
-                                    <a class="effect-control" data-action="copy-inline" title="{{localize 'FU.EffectCopy'}}">
+                                    <a class="effect-control" data-action="copyInline" title="{{localize 'FU.EffectCopy'}}">
                                         <i class="fas fa-copy"></i>
                                     </a>
-                                    <a class="effect-control" data-action="edit" title="{{localize 'FU.EffectEdit'}}">
+                                    <a class="effect-control" data-action="editEffect" title="{{localize 'FU.EffectEdit'}}">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a class="effect-control" data-action="delete"
+                                    <a class="effect-control" data-action="deleteEffect"
                                        title="{{localize 'FU.EffectDelete'}}">
                                         <i class="fas fa-trash"></i>
                                     </a>
 									{{#if effect.system.rules.progress.enabled }}
 										<div class="effect-control buttons-inc">
-											<a class="decrement-button" style="color:unset" data-action="decrementProgress">-</a>
+											<a class="decrement-button" style="color:unset"
+											   data-action="modifyResource"
+											   data-data-path="system.rules.progress"
+											   data-resource-action="decrement">
+												-
+											</a>
 											<span data-resource="progress">{{ effect.system.rules.progress.current }}</span>
 											{{#if (gt effect.system.rules.progress.max 0)}}
 												<span>/</span>
 												<span>{{ effect.system.rules.progress.max }}</span>
 											{{/if}}
-											<a class="increment-button" style="color:unset" data-action="incrementProgress">+</a>
+											<a class="increment-button" style="color:unset"
+											   data-action="modifyResource"
+											   data-data-path="system.rules.progress"
+											   data-resource-action="increment">
+												+
+											</a>
 										</div>
 									{{/if}}
                                 </div>
                             </div>
                         </div>
-                        <div class="individual-description">
-                        {{#if effect.enrichedDescription}}
-                            {{{effect.enrichedDescription}}}
-                        {{/if}}
+                        <div class="individual-description align-left {{#unless (inArray effect.id _expandedIds)}}hidden{{/unless}}" data-item-id="{{ effect.id }}">
+							{{#if effect.enrichedDescription}}
+								{{{effect.enrichedDescription}}}
+							{{/if}}
                         </div>
                     </li>
                 {{/each}}

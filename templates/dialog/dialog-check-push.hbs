@@ -1,7 +1,7 @@
-<section class="bonds desc title-fieldset resource-content flex-group-left">
-    {{localize 'FU.GroupCheckBondDialogTitle'}}
+<fieldset class="resource-content">
+    <legend>{{localize 'FU.GroupCheckBondDialogTitle'}}</legend>
     {{#each bonds}}
-    <fieldset class="form-fields">
+    <fieldset>
         <label>
             <input type="radio" name="bond" value="{{@index}}">
             <span class="bond">
@@ -16,5 +16,4 @@
         </label>
     </fieldset>
     {{/each}}
-</section>
-<hr>
+</fieldset>

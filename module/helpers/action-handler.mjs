@@ -1,6 +1,50 @@
-import { createChatMessage, promptCheck, promptOpenCheck } from './checks.mjs';
 import { toggleStatusEffect } from '../pipelines/effects.mjs';
 import { InlineSourceInfo } from './inline-helper.mjs';
+import { FU } from './config.mjs';
+import { TextEditor } from './text-editor.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
+import { Checks } from '../checks/checks.mjs';
+import { CheckPrompt } from '../checks/check-prompt.mjs';
+import { CheckHooks } from '../checks/check-hooks.mjs';
+import { CHECK_FLAVOR } from '../checks/default-section-order.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
+
+const actionKey = 'ruleDefinedAction';
+
+/**
+ * @type {RenderCheckHook}
+ */
+const onRenderCheck = (sections, check, actor) => {
+	const action = check.additionalData[actionKey];
+	if (action) {
+		const description = game.i18n.localize(FU.actionRule[action]);
+		if (description) {
+			sections.push(
+				foundry.applications.handlebars
+					.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+						title: FU.actionTypes[action],
+					})
+					.then((value) => ({
+						content: value,
+						order: CHECK_FLAVOR,
+					})),
+			);
+
+			sections.push(
+				TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
+					content: v,
+					order: -1050,
+				})),
+			);
+		}
+
+		if (action === 'study') {
+			const studyRollHandler = new StudyRollHandler(actor, check, CheckConfiguration.inspect(check).getTargets());
+			studyRollHandler.handleStudyRoll();
+		}
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 export class ActionHandler {
 	constructor(actor) {
@@ -8,48 +52,27 @@ export class ActionHandler {
 	}
 
 	async handleAction(actionType, isShift = false) {
-		let action = '';
-
-		switch (actionType) {
-			case 'equipmentAction':
-				action = 'equipment';
-				if (!isShift) await this.createActionMessage(action);
-				break;
-			case 'guardAction':
-				action = 'guard';
-				if (!isShift) await this.toggleGuardEffect(this.actor);
-				break;
-			case 'hinderAction':
-				action = 'hinder';
-				if (!isShift) await this.promptHinderCheck();
-				break;
-			case 'inventoryAction':
-				action = 'inventory';
-				if (!isShift) await this.createActionMessage(action);
-				break;
-			case 'objectiveAction':
-				action = 'objective';
-				if (!isShift) await this.createActionMessage(action);
-				break;
-			case 'spellAction':
-				action = 'spell';
-				if (!isShift) await this.createActionMessage(action);
-				break;
-			case 'studyAction':
-				action = 'study';
-				if (!isShift) await this.handleStudyAction();
-				break;
-			case 'skillAction':
-				action = 'skill';
-				if (!isShift) await this.createActionMessage(action);
-				break;
-			default:
-				action = 'default';
-				break;
-		}
-
-		if (action !== 'default' && isShift) {
-			await this.createActionMessage(action);
+		if (!isShift) {
+			switch (actionType) {
+				case 'equipment':
+					return this.createActionMessage(actionType);
+				case 'guard':
+					return this.toggleGuardEffect(this.actor);
+				case 'hinder':
+					return this.promptHinderCheck();
+				case 'inventory':
+					return this.createActionMessage(actionType);
+				case 'objective':
+					return this.createActionMessage(actionType);
+				case 'spell':
+					return this.createActionMessage(actionType);
+				case 'study':
+					return this.handleStudyAction();
+				case 'skill':
+					return this.createActionMessage(actionType);
+			}
+		} else {
+			await this.createActionMessage(actionType);
 		}
 	}
 
@@ -57,16 +80,27 @@ export class ActionHandler {
 	 * Handle the study action for the actor.
 	 */
 	async handleStudyAction() {
-		const action = 'study';
-		promptOpenCheck(this.actor, 'FU.StudyRoll', action);
+		await CheckPrompt.openCheck(this.actor, {
+			initialConfig: { primary: 'ins', secondary: 'ins' },
+			checkCallback: (check) => {
+				check.additionalData[actionKey] = 'study';
+			},
+		});
 	}
 
 	/**
 	 * Prompt a hinder check for the actor.
 	 */
 	async promptHinderCheck() {
-		const action = 'hinder';
-		await promptCheck(this.actor, 'FU.Hinder', action);
+		await CheckPrompt.attributeCheck(this.actor, {
+			checkCallback: (check) => {
+				check.additionalData[actionKey] = 'hinder';
+			},
+			initialConfig: {
+				difficulty: 10,
+				modifier: 0,
+			},
+		});
 	}
 
 	/**
@@ -74,18 +108,9 @@ export class ActionHandler {
 	 * @param {string} action - The type of action to create a message for.
 	 */
 	async createActionMessage(action) {
-		const actionName = game.i18n.localize(CONFIG.FU.actionTypes[action] || action);
-		const actionRule = game.i18n.localize(CONFIG.FU.actionRule[action] || action);
-
-		const params = {
-			details: {
-				name: actionName,
-			},
-			description: actionRule,
-			speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-		};
-		// Call the createChatMessage function and await its completion
-		await createChatMessage(params);
+		return Checks.display(this.actor, null, (check) => {
+			check.additionalData[actionKey] = action;
+		});
 	}
 
 	/**

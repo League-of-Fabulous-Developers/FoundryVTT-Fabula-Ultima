@@ -5,7 +5,7 @@ import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-mode
 import { SpellMigrations } from './spell-migrations.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
@@ -13,6 +13,8 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -86,16 +88,10 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class SpellDataModel extends foundry.abstract.TypeDataModel {
+export class SpellDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			class: new SchemaField({ value: new StringField() }),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
@@ -107,7 +103,6 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			duration: new SchemaField({ value: new StringField() }),
 			isOffensive: new SchemaField({ value: new BooleanField() }),
 			opportunity: new StringField(),
-			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
 					hrZero: new SchemaField({ value: new BooleanField() }),
@@ -120,10 +115,11 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 			traits: new SetField(new StringField()),
-		};
+		});
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
 		SpellMigrations.run(source);
 		return source;
 	}
@@ -134,10 +130,10 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
-			return ChecksV2.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
+			return Checks.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
 		} else {
 			CommonEvents.spell(this.parent.actor, this.parent);
-			return ChecksV2.display(this.parent.actor, this.parent);
+			return Checks.display(this.parent.actor, this.parent);
 		}
 	}
 
@@ -152,7 +148,6 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
-				// TODO: Replace with ChooseWeaponDialog once this has been refactored like `SkillDataModel`
 				const weapon = await ChooseWeaponDialog.prompt(actor, true);
 				if (weapon) {
 					check.primary = weapon.system.attributes.primary.value;
@@ -184,5 +179,19 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
 				.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
 		};
+	}
+
+	get attributePartials() {
+		return [
+			ItemPartialTemplates.controls,
+			ItemPartialTemplates.classField,
+			ItemPartialTemplates.opportunityField,
+			ItemPartialTemplates.durationField,
+			ItemPartialTemplates.actionCost,
+			ItemPartialTemplates.targeting,
+			ItemPartialTemplates.legacyAccuracy,
+			ItemPartialTemplates.legacyDamage,
+			ItemPartialTemplates.behaviorField,
+		];
 	}
 }

@@ -1,0 +1,8 @@
+<section class="tab {{tab.cssClass}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+	<div class="form-group">
+		<label class="resource-label-m flexlarge">{{localize 'FU.EffectCrisisInteraction'}}</label>
+		<select name="system.predicate.crisisInteraction" class="resource-inputs select-dropdown-m">
+			{{selectOptions crisisInteractions selected=system.predicate.crisisInteraction sort=true localize=true}}
+		</select>
+	</div>
+</section>

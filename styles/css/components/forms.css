@@ -1,0 +1,273 @@
+/* =========================
+   Form Styles
+   ========================= */
+.sheet-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border: 0;
+  border-radius: 0;
+}
+
+.sheet-header-left .profile-img {
+  border-radius: 0;
+  box-shadow: 0 2px 8px #000a;
+}
+
+.sheet-header-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 0;
+}
+
+.sheet-header-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sheet-tabs {
+  flex: 0;
+}
+
+.sheet-body,
+.sheet-body .tab,
+.sheet-body .tab .editor {
+  height: 100%;
+}
+
+.tab.biography {
+  flex: 1;
+
+  .editor {
+    height: 100%;
+  }
+}
+
+.tox {
+  .tox-editor-container {
+    background: var(--dasu-c-white);
+  }
+
+  .tox-edit-area {
+    padding: 0 8px;
+  }
+}
+
+/* =========================
+   Form Styles (Sheet Specific)
+   ========================= */
+.projectfu.actor .item-form,
+.projectfu.item .item-form {
+  font-family: var(--font-primary);
+}
+
+.projectfu.actor .sheet-header,
+.projectfu.item .sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  min-height: 120px;
+
+  .profile-img {
+    flex: 0 0 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+
+  .header-fields {
+    flex: 1;
+  }
+}
+
+.projectfu.actor .sheet-tabs,
+.projectfu.item .sheet-tabs {
+  flex: 0;
+}
+
+.projectfu.actor .sheet-body,
+.projectfu.actor .sheet-body .tab,
+.projectfu.actor .sheet-body .tab .editor,
+.projectfu.item .sheet-body,
+.projectfu.item .sheet-body .tab,
+.projectfu.item .sheet-body .tab .editor {
+  height: 100%;
+}
+
+.projectfu.actor .tab.biography,
+.projectfu.item .tab.biography {
+  flex: 1;
+
+  .editor {
+    height: 100%;
+  }
+}
+
+/* =========================
+   Input Field Styling (Sheet specific)
+   ========================= */
+.projectfu.actor input[type='text'],
+.projectfu.actor input[type='number'],
+.projectfu.actor input[type='password'],
+.projectfu.actor input[type='email'],
+.projectfu.actor input[type='url'],
+.projectfu.actor input[type='search'],
+.projectfu.actor input[type='tel'],
+.projectfu.actor textarea,
+.projectfu.actor select,
+.projectfu.item input[type='text'],
+.projectfu.item input[type='number'],
+.projectfu.item input[type='password'],
+.projectfu.item input[type='email'],
+.projectfu.item input[type='url'],
+.projectfu.item input[type='search'],
+.projectfu.item input[type='tel'],
+.projectfu.item textarea,
+.projectfu.item select {
+  width: 100%;
+  padding: 0.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  background: var(--color-bg-primary);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.projectfu.actor input[type='text']:focus,
+.projectfu.actor input[type='number']:focus,
+.projectfu.actor input[type='password']:focus,
+.projectfu.actor input[type='email']:focus,
+.projectfu.actor input[type='url']:focus,
+.projectfu.actor input[type='search']:focus,
+.projectfu.actor input[type='tel']:focus,
+.projectfu.actor textarea:focus,
+.projectfu.actor select:focus,
+.projectfu.item input[type='text']:focus,
+.projectfu.item input[type='number']:focus,
+.projectfu.item input[type='password']:focus,
+.projectfu.item input[type='email']:focus,
+.projectfu.item input[type='url']:focus,
+.projectfu.item input[type='search']:focus,
+.projectfu.item input[type='tel']:focus,
+.projectfu.item textarea:focus,
+.projectfu.item select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 3px var(--color-primary);
+  background: var(--color-bg-secondary);
+}
+
+.projectfu.actor input[type='text']:hover,
+.projectfu.actor input[type='number']:hover,
+.projectfu.actor input[type='password']:hover,
+.projectfu.actor input[type='email']:hover,
+.projectfu.actor input[type='url']:hover,
+.projectfu.actor input[type='search']:hover,
+.projectfu.actor input[type='tel']:hover,
+.projectfu.actor textarea:hover,
+.projectfu.actor select:hover,
+.projectfu.item input[type='text']:hover,
+.projectfu.item input[type='number']:hover,
+.projectfu.item input[type='password']:hover,
+.projectfu.item input[type='email']:hover,
+.projectfu.item input[type='url']:hover,
+.projectfu.item input[type='search']:hover,
+.projectfu.item input[type='tel']:hover,
+.projectfu.item textarea:hover,
+.projectfu.item select:hover {
+  border-color: var(--color-primary);
+  background: var(--color-bg-secondary);
+}
+
+.projectfu.actor .tox,
+.projectfu.item .tox {
+  .tox-editor-container {
+    background: var(--dasu-c-white);
+  }
+
+  .tox-edit-area {
+    padding: 0 8px;
+  }
+}
+
+.projectfu.tags.input-element-tags {
+  justify-content: flex-start !important;
+}
+
+/* =========================
+   Sheet Tab Navigation
+   ========================= */
+.sheet-tabs.tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.25rem;
+  width: 100%;
+  min-height: 2.1rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0.25rem;
+  background: var(--color-bg-secondary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.sheet-tabs.tabs .tab-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.25rem 1rem 0 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sheet-tabs.tabs a,
+.sheet-tabs.tabs .tab-btn {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.18rem 0.7rem;
+  margin: 0;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.sheet-tabs.tabs a.active,
+.sheet-tabs.tabs .tab-btn.active,
+.sheet-tabs.tabs a[aria-selected='true'],
+.sheet-tabs.tabs .tab-btn[aria-selected='true'] {
+  background: var(--color-bg-primary);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.12);
+  z-index: 2;
+}
+
+.sheet-tabs.tabs a:not(.active):hover,
+.sheet-tabs.tabs .tab-btn:not(.active):hover {
+  background: var(--color-bg-primary);
+  color: #fff;
+}
+
+.sheet-tabs.tabs a:focus,
+.sheet-tabs.tabs .tab-btn:focus {
+  outline: 2px solid var(--color-bg-primary);
+  outline-offset: 2px;
+}

@@ -1,0 +1,37 @@
+<div class="tab attributes {{tab.cssClass}}" data-group="primary" data-tab="attributes">
+
+	<div class="item-settings" style="display:ruby;">
+		{{#each attributePartials.settings as |part|}}
+			{{> (part) @root}}
+		{{/each}}
+	</div>
+
+	<!-- Default -->
+	{{#if attributePartials.flex}}
+		<fieldset class="title-fieldset desc resource-content grid-span-2 gap-5"
+				  style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+			<legend class="resource-label-full">
+				<label class="resource-label-m"><i class="fa fa-wrench icon"></i>{{localize
+				 'FU.General'}}</label>
+			</legend>
+			{{#each attributePartials.flex as |part|}}
+				{{> (part) @root}}
+			{{/each}}
+		</fieldset>
+	{{/if}}
+
+	<!-- Grid -->
+	{{#if attributePartials.grid}}
+		<section class="grid grid-2col gap-5">
+			{{#each attributePartials.grid as |part|}}
+				{{> (part) @root}}
+			{{/each}}
+		</section>
+	{{/if}}
+
+	<!-- Sections -->
+	{{#each attributePartials.section as |part|}}
+		{{> (part) @root}}
+	{{/each}}
+
+</div>

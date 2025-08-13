@@ -2,6 +2,7 @@ import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /** @type RenderCheckHook */
 const onRenderCheck = (sections, check, actor, item, additionalFlags, targets) => {

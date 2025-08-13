@@ -1,0 +1,59 @@
+<main>
+	<div class="desc mb-3 gap-5">
+		<div class="inline-desc form-group resource-content gap-5" style="padding: 5px 10px;">
+			<label for="total-damage" class="resource-label" style="flex-grow: 8;">
+				<b>{{localize 'FU.Total'}}</b>
+				<span id="total-damage">
+                            <b>{{damage.total}} {{localize (lookup FU.damageTypes damage.type)}} + 0 {{localize 'FU.Extra'}}</b>
+                        </span>
+			</label>
+			<i id="total-damage-icon" class="icon {{lookup FU.affIcon damage.type}}" style="flex: 0 1 auto;"></i>
+		</div>
+	</div>
+	<div class="desc mb-3 grid grid-2col gap-2">
+		<div class="form-group">
+			<label for="extra-damage">
+				<b>{{localize 'FU.DamageExtra'}}</b>
+			</label>
+			<input id="extra-damage" name="extra-damage" type="number" value="0" />
+		</div>
+		<div class="form-group">
+			<label for="damage-type"><b>{{localize 'FU.DamageType'}}</b></label>
+			<select id="damage-type" name="damage-type">
+				{{selectOptions FU.damageTypes selected=damage.type localize=true}}
+			</select>
+		</div>
+		<div class="form-group flex-auto">
+			<label for="hr-zero"><b>{{localize 'FU.HRZeroStatus'}}</b></label>
+			<input id="hr-zero" name="hr-zero" type="checkbox" />
+		</div>
+	</div>
+	<div class="desc grid grid-2col gap-5">
+		<div class="gap-2 grid-span-2">
+			<div class="form-group">
+				<button type="button" id="check-all" class="btn">{{localize 'FU.IgnoreAll'}}</button>
+				<button type="button" id="check-none" class="btn">{{localize 'FU.IgnoreNone'}}</button>
+			</div>
+		</div>
+		<div class="gap-2">
+			<div class="form-group">
+				<label for="ignore-vulnerable"><b>{{localize 'FU.IgnoreVulnerable'}}</b></label>
+				<input id="ignore-vulnerable" class="ignore" name="ignore-vulnerable" type="checkbox" />
+			</div>
+			<div class="form-group">
+				<label for="ignore-resistance"><b>{{localize 'FU.IgnoreResistances'}}</b></label>
+				<input id="ignore-resistance" class="ignore" name="ignore-resistance" type="checkbox" />
+			</div>
+		</div>
+		<div class="gap-2">
+			<div class="form-group">
+				<label for="ignore-immunities"><b>{{localize 'FU.IgnoreImmunities'}}</b></label>
+				<input id="ignore-immunities" class="ignore" name="ignore-immunities" type="checkbox" />
+			</div>
+			<div class="form-group">
+				<label for="ignore-absorption"><b>{{localize 'FU.IgnoreAbsorption'}}</b></label>
+				<input id="ignore-absorption" class="ignore" name="ignore-absorption" type="checkbox" />
+			</div>
+		</div>
+	</div>
+</main>

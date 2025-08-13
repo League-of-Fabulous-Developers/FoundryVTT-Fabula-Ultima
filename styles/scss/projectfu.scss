@@ -1,43 +1,43 @@
 // Add custom fonts by visiting and search https://fonts.google.com
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap');
-@import 'node_modules/rpg-awesome/scss/rpg-awesome';
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap');
+// @import 'node_modules/rpg-awesome/scss/rpg-awesome';
 
 // Import utilities.
-@import 'utils/colors';
-@import 'utils/mixins';
-@import 'utils/typography';
-@import 'utils/variables';
-@import 'utils/messages';
-@import 'utils/icons';
-@import 'utils/sizing';
-@import 'utils/display';
+// @import 'utils/colors';
+// @import 'utils/mixins';
+// @import 'utils/typography';
+// @import 'utils/variables';
+// @import 'utils/messages';
+// @import 'utils/icons';
+// @import 'utils/sizing';
+// @import 'utils/display';
 
 /* Global styles */
-@import 'global/defaults';
-@import 'global/flex';
-@import 'global/grid';
-@import 'global/window';
-@import 'global/inline';
+// @import 'global/defaults';
+// @import 'global/flex';
+// @import 'global/grid';
+// @import 'global/window';
+// @import 'global/inline';
 
 /* Styles limited to projectfu sheets */
-.projectfu {
-	@import 'components/affinity';
-	@import 'components/barmeter';
-	@import 'components/buttons';
-	@import 'components/clocks';
-	@import 'components/dialogs';
-	@import 'components/divider';
-	@import 'components/effects';
-	@import 'components/forms';
-	@import 'components/items';
-	@import 'components/resource';
-	@import 'components/combat';
-	@import 'applications/inline-effect-config';
-	@import 'applications/meta-currency-tracker';
-	@import 'applications/settings';
-}
+// .projectfu {
+// @import 'components/affinity';
+// @import 'components/barmeter';
+// @import 'components/buttons';
+// @import 'components/clocks';
+// @import 'components/dialogs';
+// @import 'components/divider';
+// @import 'components/effects';
+// @import 'components/forms';
+// @import 'components/items';
+// @import 'components/resource';
+// @import 'components/combat';
+// @import 'applications/inline-effect-config';
+// @import 'applications/meta-currency-tracker';
+// @import 'applications/settings';
+// }

@@ -33,10 +33,10 @@
                 <hr>
                 <div class="item growth-clock" data-item-id="{{ clock.id }}">
                     {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs" arr=clock.system.data.clock.progressArray data=clock.system.data.clock dataPath="system.data.clock"}}
-                    <a class="increment-button" data-type="clockCounter" data-item-id="{{ clock.id }}" data-data-path="system.data.clock">
+                    <a class="increment-button" data-action="modifyResource" data-data-path="system.data.clock" data-resource-action="increment">
                         <i class="fas fa-plus"></i>
                     </a>
-                    <a class="decrement-button" data-type="clockCounter" data-item-id="{{ clock.id }}" data-data-path="system.data.clock">
+                    <a class="decrement-button" data-action="modifyResource" data-data-path="system.data.clock" data-resource-action="decrement">
                         <i class="fas fa-minus"></i>
                     </a>
                     <h4 class="item-name rollable resource-content" data-item-id="{{clock.id}}" data-roll-type="item">
