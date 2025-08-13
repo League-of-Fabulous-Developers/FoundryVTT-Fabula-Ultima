@@ -550,6 +550,8 @@
 		"Quality": "Quality",
 		"Customization": "Customization",
 		"Opportunity": "Opportunity",
+		"Opportunities": "Opportunities",
+		"OpportunitiesHint": "When assigned, will be prompted as choices for the users.",
 		"InitiativeBonus": "Initiative Bonus",
 		"Price": "Price",
 		"MagicDefenseFormula": "Magic Defense Formula",
@@ -785,6 +787,7 @@
 		"Entropism": "Entropism",
 		"Ritualism": "Ritualism",
 		"Spiritism": "Spiritism",
+		"OptionalFeatureCampActivity": "Camp Activity",
 		"OptionalFeatureDialogChangeTypeTitle": "Change optional feature type?",
 		"OptionalFeatureDialogChangeTypeContent": "Do you really want to change the type of this optional feature? Your previously entered data will be lost.",
 		"ClassFeatureDialogChangeTypeTitle": "Change class feature type?",
@@ -1409,6 +1412,7 @@
 		"All": "All",
 		"Adventurer": "Adventurer",
 		"Party": "Party",
+		"SetActive": "Set Active",
 		"Notes": "Notes",
 		"PartySheetEmpty": "You must drag-n-drop the characters from the Actors onto here. Remember to set it as the active party in the settings. Also, there is a keybinding for the sheet (by default P).",
 		"PartyCompanionIdentity": "<strong>{actor}'s</strong> Companion",
@@ -1462,16 +1466,8 @@
 		"DialogInvalidTarget": "Only character-type actors can be targeted",
 		"AwardResources": "Award Resources",
 		"ClockSections": "Sections",
-		"FUID": {
-			"Long": "Fabula Ultima ID",
-			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
-		},
-		"RequestStartTurnNoActiveGM": "No GM online!  Unable to start turn.",
-		"RequestEndTurnNoActiveGM": "No GM online!  Unable to end turn.",
+		"RequestStartTurnNoActiveGM": "No GM online! Unable to start turn.",
+		"RequestEndTurnNoActiveGM": "No GM online! Unable to end turn.",
 		"RequestZenitTransferNoActiveGM": "No GM online!  Unable to transfer {currency}.",
 		"RequestTradeNoActiveGM": "No GM online!  Unable to trade item.",
 		"SocketHandlerAlreadyRegistered": "Attempted to re-register an existing socket handler: {name}",
@@ -1484,7 +1480,13 @@
 		"SheetOptionsTitle": "Document Sheets",
 		"SheetOptions": "Configure Sheets",
 		"SheetOptionsHint": "Configure various options for the system's sheets.",
-		"Opportunities": "Opportunities",
-		"OpportunitiesHint": "When assigned, will be prompted as choices for the users."
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }

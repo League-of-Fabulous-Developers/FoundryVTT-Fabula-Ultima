@@ -994,7 +994,7 @@ async function _onItemCreateDialog(ev, sheet) {
 
 			if (isCharacter) {
 				// Filter out item type
-				let dontShowCharacter = ['rule', 'behavior', 'basic']; // Default types to hide for characters
+				let dontShowCharacter = ['rule', 'behavior', 'basic', 'effect']; // Default types to hide for characters
 				// Filter out default types to hide for characters
 				types = types.filter((item) => !dontShowCharacter.includes(item.type));
 
@@ -1008,7 +1008,7 @@ async function _onItemCreateDialog(ev, sheet) {
 				// Push filtered optional features to types array
 				types.push(...optionalFeatures);
 			} else if (isNPC) {
-				let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable']; // Default types to hide for NPCs
+				let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'effect']; // Default types to hide for NPCs
 				if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
 				// Filter out default types to hide for NPCs
 				types = types.filter((item) => !dontShowNPC.includes(item.type));
