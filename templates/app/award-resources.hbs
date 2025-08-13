@@ -1,0 +1,32 @@
+<form>
+	<div class="form-group">
+		<label for="resource">{{localize "FU.Resource"}}</label>
+		<select name="resource" id="resource">
+			{{#each resources}}
+				<option value="{{this.id}}">{{localize this.label}}</option>
+			{{/each}}
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="amount">{{localize "FU.Amount"}}</label>
+		<input type="number" name="amount" id="amount" value="1" min="0"/>
+	</div>
+
+	<div class="form-group">
+		<label for="resource-source">{{localize "FU.Source"}}</label>
+		<input type="text" name="source" id="resource-source" value="{{defaultSource}}"/>
+	</div>
+
+	<div class="form-group">
+		<label>{{localize "FU.Characters"}}</label>
+		<div class="character-list">
+			{{#each characters}}
+				<label>
+					<input type="checkbox" name="recipients" value="{{this.uuid}}" checked> {{this.name}}
+				</label>
+				{{#unless @last}}<br>{{/unless}}
+			{{/each}}
+		</div>
+	</div>
+</form>
