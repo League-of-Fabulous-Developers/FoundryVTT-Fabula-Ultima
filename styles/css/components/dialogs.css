@@ -158,6 +158,6 @@
 
 	.form-buttons button,
 	.action-button button {
-		background: rgba(255, 255, 240, 0.8);
+		/* background: rgba(255, 255, 240, 0.8); */
 	}
 }

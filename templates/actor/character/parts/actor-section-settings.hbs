@@ -241,11 +241,11 @@
 					<!-- Use Equipment -->
 					{{#unless (eq actor.system.species.value 'beast')}}
 						<div class="form-group">
-					  <span class="resource-label-m">
-						<i class="ra ra-sword ra-1x ra-flip-horizontal ra-1x"></i>
-						<label>{{localize 'FU.UseEquipment'}}</label>
-					  </span>
 							<div class="form-fields">
+								<span class="resource-label-m">
+									<i class="ra ra-sword ra-1x ra-flip-horizontal ra-1x"></i>
+									<label>{{localize 'FU.UseEquipment'}}</label>
+								</span>
 								<input class="use-equipment" type="checkbox" name="system.useEquipment.value"
 									{{ checked system.useEquipment.value }} data-action="useEquipment" />
 							</div>
