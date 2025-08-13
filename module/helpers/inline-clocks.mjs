@@ -6,9 +6,11 @@ import { targetHandler } from './target-handler.mjs';
 /**
  * @type {TextEditorEnricherConfig}
  */
-const inlineCheckEnricher = {
+const enricher = {
+	id: 'inlineProgressEnricher',
 	pattern: InlineHelper.compose('(CLOCK|PROGRESS)', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)(\\s+(?<value>.*?))?'),
 	enricher: checkEnricher,
+	onRender: onRender,
 };
 
 /**
@@ -40,64 +42,60 @@ function checkEnricher(match, options) {
 }
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const renderContext = await InlineHelper.getRenderContext(element);
+	const id = renderContext.dataset.id;
+	const command = renderContext.dataset.command;
 
-	html.find('a.inline.inline-clock').on('click', async function (event) {
-		const sourceInfo = InlineHelper.determineSource(document, this);
-		const actor = sourceInfo.resolveActor();
-		if (actor) {
-			const id = this.dataset.id;
-			const command = this.dataset.command;
+	element.addEventListener('click', async function (event) {
+		const actor = renderContext.sourceInfo.resolveActor();
+		if (!actor) return;
 
-			switch (command) {
-				case 'update': {
-					// Resolve the progress data from the actor
-					let progress = await actor.resolveProgress(id);
-					if (!progress) {
-						const missingItemErrorMessage = game.i18n.localize('FU.ChatMissingItemWithId');
-						ui.notifications.error(`${missingItemErrorMessage}: '${id}'`, { localize: true });
-						return;
-					}
-
-					// Evaluate the given value
-					const targets = await targetHandler(false);
-					const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-					const value = await Expressions.evaluateAsync(this.dataset.value, context);
-
-					// Validate progress won't go below min or max
-					if (progress.isMaximum && value > 0) {
-						ui.notifications.info('FU.ChatProgressAtMaximum', { localize: true });
-						return;
-					}
-					if (progress.isMinimum && value < 0) {
-						ui.notifications.info('FU.ChatProgressAtMinimum', { localize: true });
-						return;
-					}
-
-					// Now update
-					const step = Number(value);
-					let source;
-					if (sourceInfo.hasItem) {
-						source = sourceInfo.resolveItem();
-					} else if (sourceInfo.hasEffect) {
-						source = sourceInfo.resolveEffect();
-					}
-					progress = await actor.updateProgress(id, step);
-					await renderStep(progress, step, actor, source);
-					break;
+		switch (command) {
+			case 'update': {
+				// Resolve the progress data from the actor
+				let progress = await actor.resolveProgress(id);
+				if (!progress) {
+					const missingItemErrorMessage = game.i18n.localize('FU.ChatMissingItemWithId');
+					ui.notifications.error(`${missingItemErrorMessage}: '${id}'`, { localize: true });
+					return;
 				}
 
-				case 'reset': {
-					const clock = actor.resolveProgress(id);
-					await actor.updateProgress(id, -clock.current);
-					break;
+				// Evaluate the value
+				const targets = await targetHandler();
+				const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+				const value = await Expressions.evaluateAsync(renderContext.dataset.value, context);
+
+				// Validate min/max
+				if (progress.isMaximum && value > 0) {
+					ui.notifications.info('FU.ChatProgressAtMaximum', { localize: true });
+					return;
 				}
+				if (progress.isMinimum && value < 0) {
+					ui.notifications.info('FU.ChatProgressAtMinimum', { localize: true });
+					return;
+				}
+
+				// Apply update
+				const step = Number(value);
+				let source;
+				if (renderContext.sourceInfo.hasItem) {
+					source = renderContext.sourceInfo.resolveItem();
+				} else if (renderContext.sourceInfo.hasEffect) {
+					source = renderContext.sourceInfo.resolveEffect();
+				}
+				progress = await actor.updateProgress(id, step);
+				await renderStep(progress, step, actor, source);
+				break;
+			}
+
+			case 'reset': {
+				const clock = actor.resolveProgress(id);
+				await actor.updateProgress(id, -clock.current);
+				break;
 			}
 		}
 	});
@@ -115,7 +113,7 @@ async function renderStep(progress, step, actor, source) {
 	const progressArr = progress.progressArray;
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
 			message: step > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
 			step: step,
 			clock: progress.name ?? progress.parent.parent.name,
@@ -127,9 +125,8 @@ async function renderStep(progress, step, actor, source) {
 }
 
 /**
- * Used by the CONFIG.TextEditor to hook into Foundry's text editor templating system
+ * @type {FUInlineCommand}
  */
 export const InlineClocks = {
-	enricher: inlineCheckEnricher,
-	activateListeners,
+	enrichers: [enricher],
 };

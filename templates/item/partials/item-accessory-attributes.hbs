@@ -1,0 +1,25 @@
+<div class="resource-content flexcol flex-group-center">
+	<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+	 'FU.DefenseAbbr'}}
+	</label>
+	<span>
+			<input type="number" name="system.def.value" value="{{ system.def.value }}"
+				   data-dtype="Number" class="resource-inputs select-dropdown-sm" />
+		</span>
+</div>
+<div class="resource-content flexcol flex-group-center">
+	<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+	 'FU.MagicDefenseAbbr'}}</label>
+	<span>
+			{{#if (eq item.type "armor")}}
+				<select name="system.attributes.secondary.value"
+						class="resource-inputs select-dropdown">
+					{{selectOptions attrAbbr selected=system.attributes.secondary.value
+									blank='-'
+									sort=true localize=true}}
+				</select>
+			{{/if}}
+		<input type="number" name="system.mdef.value" value="{{ system.mdef.value }}"
+			   data-dtype="Number" class="resource-inputs select-dropdown-sm" />
+		</span>
+</div>

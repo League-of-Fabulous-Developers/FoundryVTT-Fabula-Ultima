@@ -1,6 +1,6 @@
 import { Flags } from '../helpers/flags.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
-import { ChecksV2 } from './checks-v2.mjs';
+import { Checks } from './checks.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
@@ -42,17 +42,19 @@ async function handleSupportCheck(groupCheck) {
 
 	let bond;
 	try {
-		bond = await Dialog.prompt({
-			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
+		bond = await foundry.applications.api.DialogV2.prompt({
+			window: { title: game.i18n.localize('FU.GroupCheckBondDialogTitle') },
 			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
 				bonds,
 			}),
-			callback: (jQuery) => {
-				const selected = jQuery.find('[name=bond]:checked').val();
-				return bonds[selected]?.feelings ?? [];
+			ok: {
+				callback: (event, button, dialog) => {
+					const selected = dialog.element.querySelector('[name=bond]:checked').value;
+					return bonds[selected]?.feelings ?? [];
+				},
 			},
 		});
 	} catch (e) {
@@ -61,7 +63,7 @@ async function handleSupportCheck(groupCheck) {
 		throw new Error(msg);
 	}
 
-	ChecksV2.supportCheck(character, (check, actor) => {
+	return Checks.supportCheck(character, (check, actor) => {
 		check.primary = groupCheck.primary;
 		check.secondary = groupCheck.secondary;
 		if (groupCheck.initiative && actor.system.derived.init.value) {
@@ -80,23 +82,23 @@ async function handleSupportCheck(groupCheck) {
 
 /**
  * @param {ChatLog} chatLog
- * @param {jQuery} jQuery
+ * @param {Document} html
  */
-function attachSupportCheckListener(chatLog, jQuery) {
+function attachSupportCheckListener(chatLog, html) {
 	// Reapply event listeners for each chat message
-	jQuery.on('click', async function (event) {
+	html.addEventListener('click', async (event) => {
 		const groupCheckId = event.target.dataset.support;
 		if (groupCheckId) {
-			const messageId = $(event.target).parents('[data-message-id]').data('messageId');
+			const messageId = event.target.closest('[data-message-id]')?.dataset?.messageId;
 			const message = game.messages.get(messageId);
 			if (message) {
 				const groupCheck = message.getFlag(SYSTEM, Flags.ChatMessage.GroupCheckV2);
 				if (groupCheck && groupCheck.status === 'open') {
-					$(event.target).attr('disabled', true);
+					event.target.disabled = true;
 					try {
 						await handleSupportCheck(groupCheck);
 					} finally {
-						$(event.target).attr('disabled', false);
+						event.target.disabled = false;
 					}
 				}
 			}

@@ -4,37 +4,10 @@
 
 {{!-- Resource Points --}}
 {{#if system.data.hasResource.value}}
-    <div class="item-m inline-desc" style="text-align: center; padding: 1px;">
-        <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ system.data.rp.name }}</label>
-        <div class="resource-text-t buttons-inc" style="padding: 0 4px;">
-            <a class="decrement-button" data-type="optionalRPCounter"
-                data-item-id="{{item.id}}"
-                data-tooltip="{{localize
-                'FU.DecreaseTooltip'}} ({{system.data.rp.step}})">-</a>
-            <span data-resource="item.rp">{{ system.data.rp.current }}</span>
-            {{#if (gt system.data.rp.max 0)}}
-                <span>/</span>
-                <span>{{ system.data.rp.max }}</span>
-            {{/if}}
-            <a class="increment-button" data-type="optionalRPCounter"
-                data-item-id="{{item.id}}"
-                data-tooltip="{{localize
-                'FU.IncreaseTooltip'}} ({{system.data.rp.step}})">+</a>
-        </div>
-    </div>
+	{{progress item 'system.data.rp' style='basic' type='optionalRPCounter'}}
 {{/if}}
 
 {{!-- Clocks --}}
 {{#if system.data.hasClock.value}}
-    <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
-        <a class="decrement-button align-left" data-type="featureCounter" data-item-id="{{item.id}}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
-                class="fas fa-minus"></i></a>
-        <div class="progress-container">
-            {{> "systems/projectfu/templates/optional/partials/feature-progress-clock.hbs"
-            arr=item.progressArr
-                data=item.system.data.progress}}
-        </div>
-        <a class="increment-button align-right" data-type="featureCounter" data-item-id="{{item.id}}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
-                class="fas fa-plus"></i></a>
-    </div>
+	{{progress item 'system.data.progress' type='featureCounter'}}
 {{/if}}

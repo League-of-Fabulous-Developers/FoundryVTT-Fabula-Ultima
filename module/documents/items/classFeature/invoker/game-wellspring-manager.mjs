@@ -1,23 +1,37 @@
 import { FLAG_ACTIVE_WELLSPRINGS, WellspringDataModel, WELLSPRINGS } from './invoker-integration.mjs';
-import { SYSTEM } from '../../../../helpers/config.mjs';
+import { SYSTEM, systemPath } from '../../../../helpers/config.mjs';
 import { FUHooks } from '../../../../hooks.mjs';
 import { SETTINGS } from '../../../../settings.js';
+import FUApplication from '../../../../ui/application.mjs';
 
-export class GameWellspringManager extends Application {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'projectfu', 'wellspring-manager-app'],
-			width: 350,
-			height: 'auto',
-			closeOnSubmit: false,
-			editable: true,
-			sheetConfig: false,
-			submitOnChange: true,
-			submitOnClose: true,
-			minimizable: false,
+export class GameWellspringManager extends FUApplication {
+	/**
+	 * @inheritDoc
+	 * @override
+	 * @type ApplicationConfiguration
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: ['form', 'wellspring-manager-app'],
+		position: { width: 350, height: 'auto' },
+		actions: {
+			toggleWellspring: this.#toggleWellspring,
+			clearWellsprings: this.#clearWellsprings,
+		},
+		window: {
 			title: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
-		});
-	}
+			resizable: true,
+			minimizable: false,
+		},
+	};
+
+	/**
+	 * @override
+	 */
+	static PARTS = {
+		form: {
+			template: systemPath('templates/feature/invoker/wellspring-manager-application.hbs'),
+		},
+	};
 
 	constructor() {
 		super();
@@ -26,8 +40,20 @@ export class GameWellspringManager extends Application {
 		Hooks.on('canvasReady', () => this.render());
 	}
 
-	get template() {
-		return 'systems/projectfu/templates/feature/invoker/wellspring-manager-application.hbs';
+	/** @override */
+	async _prepareContext(options) {
+		let context = await super._prepareContext(options);
+		context.global = GameWellspringManager.globalActiveWellsprings;
+		context.active = {
+			scene: GameWellspringManager.activeScene?.name,
+			wellsprings: GameWellspringManager.activeSceneActiveWellsprings,
+		};
+		context.current = {
+			scene: GameWellspringManager.currentScene?.name,
+			wellsprings: GameWellspringManager.currentSceneActiveWellsprings,
+		};
+		context.wellsprings = WELLSPRINGS;
+		return context;
 	}
 
 	/**
@@ -80,11 +106,14 @@ export class GameWellspringManager extends Application {
 	}
 
 	/**
-	 * @param {MouseEvent} event
+	 * @this GameWellspringManager
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
 	 */
-	async toggleWellspring(event) {
-		const context = event.currentTarget.closest('[data-context]').dataset.context;
-		const element = event.currentTarget.dataset.wellspring;
+	static async #toggleWellspring(event, target) {
+		const context = target.closest('fieldset[data-context]').dataset.context;
+		const element = target.dataset.wellspring;
 
 		const wellsprings = this.getWellsprings(context);
 
@@ -96,12 +125,15 @@ export class GameWellspringManager extends Application {
 	}
 
 	/**
-	 * @param {MouseEvent} event
+	 * @this GameWellspringManager
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
 	 */
-	clearWellsprings(event) {
+	static #clearWellsprings(event, target) {
 		if (!event.shiftKey) return;
 
-		const context = event.currentTarget.closest('[data-context]').dataset.context;
+		const context = target.closest('fieldset[data-context]').dataset.context;
 
 		({
 			global: () => game.settings.set(SYSTEM, SETTINGS.activeWellsprings, new WellspringDataModel()),
@@ -110,27 +142,5 @@ export class GameWellspringManager extends Application {
 		})[context]();
 
 		this.render();
-	}
-
-	activateListeners(html) {
-		super.activateListeners(html);
-
-		html.find('a[data-action=toggleWellspring][data-wellspring]').click(this.toggleWellspring.bind(this));
-		html.find('a[data-action=clearWellsprings]').click(this.clearWellsprings.bind(this));
-	}
-
-	getData(options = {}) {
-		return {
-			global: GameWellspringManager.globalActiveWellsprings,
-			active: {
-				scene: GameWellspringManager.activeScene?.name,
-				wellsprings: GameWellspringManager.activeSceneActiveWellsprings,
-			},
-			current: {
-				scene: GameWellspringManager.currentScene?.name,
-				wellsprings: GameWellspringManager.currentSceneActiveWellsprings,
-			},
-			wellsprings: WELLSPRINGS,
-		};
 	}
 }

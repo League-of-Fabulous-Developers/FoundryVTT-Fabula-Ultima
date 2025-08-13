@@ -3,15 +3,14 @@ import { SETTINGS } from '../settings.js';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
-
-const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
-const SKILL_TYPES = ['skill'];
-const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
-const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
- * @param context
+ * @param {Object} context
+ * @param {FUActorSheet} sheet
  * @returns {Promise<void>}
  */
 async function prepareData(context, sheet) {
@@ -24,9 +23,12 @@ async function prepareData(context, sheet) {
 
 	// Add the actor's data to context.data for easier access, as well as flags.
 	context.actor = sheet.actor;
+	if (!context.items) {
+		context.items = sheet.actor.items;
+	}
+	context.itemCount = context.actor.items.size;
 	context.system = sheet.actor.system;
 	context.flags = sheet.actor.flags;
-	context.itemCount = context.actor.items.size;
 	context.isGM = game.user.isGM;
 	context.isOwner = sheet.actor.isOwner;
 
@@ -36,68 +38,20 @@ async function prepareData(context, sheet) {
 	context.fields = sheet.document.schema.fields;
 	context.system = sheet.document.system;
 	context.systemFields = sheet.document.system.schema.fields;
-
-	await prepareItems(context);
 }
+
+const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
+const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
+const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
 
 /**
  * @description Organize and classify Items for Character sheets.
  * @param {Object} context The actor to prepare.
  */
 async function prepareItems(context) {
-	// Initialize containers.
-	const basics = [];
-	const weapons = [];
-	const armor = [];
-	const shields = [];
-	const accessories = [];
-
-	const classes = [];
-	const skills = [];
-	const heroics = [];
-	const spells = [];
-	const abilities = [];
-	const rules = [];
-	const behaviors = [];
-	const consumables = [];
-	const treasures = [];
-	const projects = [];
-	const rituals = [];
-	const effects = [];
-
+	// TODO: Handle elsewhere
 	// Iterate through items, allocating to containers
 	for (let item of context.items) {
-		item.img = item.img || CONST.DEFAULT_TOKEN;
-
-		if (item.system.quality?.value) {
-			item.quality = item.system.quality.value;
-		}
-
-		item.isMartial = item.system.isMartial?.value ? true : false;
-		item.isOffensive = item.system.isOffensive?.value ? true : false;
-		item.isBehavior = item.system.isBehavior?.value ? true : false;
-		item.equipped = item.system.isEquipped?.value ? true : false;
-		item.equippedSlot = item.system.isEquipped && item.system.isEquipped.slot ? true : false;
-		item.level = item.system.level?.value;
-		item.class = item.system.class?.value;
-		item.mpCost = item.system.cost?.amount;
-		item.target = item.system.targeting?.rule;
-		item.duration = item.system.duration?.value;
-		item.dLevel = item.system.dLevel?.value;
-		item.clock = item.system.clock?.value;
-		item.progressPerDay = item.system.progressPerDay?.value;
-		item.days = item.system.days?.value;
-		item.cost = item.system.cost?.value;
-		item.discount = item.system.discount?.value;
-		item.potency = item.system.potency?.value;
-		item.area = item.system.area?.value;
-		item.use = item.system.use?.value;
-		item.defect = item.system.isDefect?.value ? true : false;
-		item.defectMod = item.system.use?.value;
-		item.progressCurr = item.system.progress?.current;
-		item.progressStep = item.system.progress?.step;
-		item.progressMax = item.system.progress?.max;
-
 		if (CLOCK_TYPES.includes(item.type)) {
 			const progressArr = [];
 			const progress = item.system.progress || { current: 0, max: 6 };
@@ -120,139 +74,193 @@ async function prepareItems(context) {
 			}
 			item.rpArr = rpArr.reverse();
 		}
-		if (SKILL_TYPES.includes(item.type)) {
-			const skillArr = [];
-			const level = item.system.level || { value: 0, max: 8 };
-			for (let i = 0; i < level.max; i++) {
-				skillArr.push({
-					id: i + 1,
-					checked: parseInt(level.value) === i + 1,
-				});
-			}
-			item.skillArr = skillArr;
-		}
 		if (WEARABLE_TYPES.includes(item.type)) {
 			item.def = item.isMartial && item.type === 'armor' ? item.system.def.value : `+${item.system.def.value}`;
 			item.mdef = `+${item.system.mdef.value}`;
 			item.init = item.system.init.value > 0 ? `+${item.system.init.value}` : item.system.init.value;
 		}
+	}
+}
 
-		item.enrichedHtml = {
-			description: await TextEditor.enrichHTML(item.system?.description ?? ''),
-		};
+/**
+ * @param {Object} context
+ * @returns {Promise<void>}
+ */
+async function enrichItems(context) {
+	for (let item of context.items) {
+		await enrichItemDescription(item);
+	}
+}
 
-		if (item.type === 'basic') {
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
-			item.quality = weapData.qualityString;
-			item.detail = weapData.detailString;
-			item.attackString = weapData.attackString;
-			item.damageString = weapData.damageString;
-			basics.push(item);
-		} else if (item.type === 'weapon') {
-			item.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
-			item.quality = weapData.qualityString;
-			item.detail = weapData.detailString;
-			item.attackString = weapData.attackString;
-			item.damageString = weapData.damageString;
-			weapons.push(item);
-		} else if (item.type === 'armor') {
-			armor.push(item);
-		} else if (item.type === 'shield') {
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
-			item.quality = weapData.qualityString;
-			item.detail = weapData.detailString;
-			item.attackString = weapData.attackString;
-			item.damageString = weapData.damageString;
-			shields.push(item);
-		} else if (item.type === 'accessory') {
-			accessories.push(item);
-		} else if (item.type === 'class') {
-			classes.push(item);
-		} else if (item.type === 'skill') {
-			const itemObj = context.actor.items.get(item._id);
-			const skillData = getSkillDisplayData(itemObj);
-			item.quality = skillData.qualityString;
-			skills.push(item);
-		} else if (item.type === 'heroic') {
-			heroics.push(item);
-		} else if (item.type === 'spell') {
-			const itemObj = context.actor.items.get(item._id);
-			const spellData = getSpellDisplayData(context.actor, itemObj);
-			item.quality = spellData.qualityString;
-			item.detail = spellData.detailString;
-			item.attackString = spellData.attackString;
-			item.damageString = spellData.damageString;
-			spells.push(item);
-		} else if (item.type === 'miscAbility') {
-			const itemObj = context.actor.items.get(item._id);
-			const skillData = getSkillDisplayData(itemObj);
+/**
+ * @param {FUItem} item
+ * @returns {Promise<void>}
+ */
+async function enrichItemDescription(item) {
+	item.enrichedHtml = {
+		description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+	};
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareAbilities(context) {
+	const abilities = [];
+	for (let item of context.items) {
+		if (item.type === 'miscAbility') {
+			const skillData = getSkillDisplayData(item);
 			item.quality = skillData.qualityString;
 			abilities.push(item);
-		} else if (item.type === 'rule') {
-			rules.push(item);
-		} else if (item.type === 'behavior') {
-			behaviors.push(item);
-		} else if (item.type === 'consumable') {
-			const itemObj = context.actor.items.get(item._id);
-			const itemData = getItemDisplayData(itemObj);
-			item.quality = itemData.qualityString;
-			consumables.push(item);
-		} else if (item.type === 'treasure') {
-			const itemObj = context.actor.items.get(item._id);
-			const itemData = getItemDisplayData(itemObj);
-			item.quality = itemData.qualityString;
-			treasures.push(item);
-		} else if (item.type === 'project') {
-			const itemObj = context.actor.items.get(item._id);
-			item.cost = itemObj.system.cost?.value;
-			item.discount = itemObj.system.discount?.value;
-			item.progressMax = itemObj.system.progress?.max;
-			item.progressPerDay = itemObj.system.progressPerDay?.value;
-			item.days = itemObj.system.days?.value;
-			item.progressCurr = itemObj.system.progress?.current;
-			item.progressStep = itemObj.system.progress?.step;
-			projects.push(item);
-		} else if (item.type === 'ritual') {
-			const itemObj = context.actor.items.get(item._id);
-			item.mpCost = itemObj.system.mpCost?.value;
-			item.dLevel = itemObj.system.dLevel?.value;
-			item.clock = itemObj.system.clock?.value;
-			rituals.push(item);
-		} else if (item.type === 'effect') {
-			effects.push(item);
+		}
+	}
+	context.abilities = abilities;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareNpcCombat(context) {
+	const basics = [];
+	const rules = [];
+	const treasures = [];
+
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'basic':
+				{
+					const weapData = getWeaponDisplayData(context.actor, item);
+					item.quality = weapData.qualityString;
+					item.detail = weapData.detailString;
+					item.attackString = weapData.attackString;
+					item.damageString = weapData.damageString;
+					basics.push(item);
+				}
+				break;
+
+			case 'rule':
+				rules.push(item);
+				break;
+
+			case 'treasure':
+				treasures.push(item);
+				break;
 		}
 	}
 
-	// Assign and return
 	context.basics = basics;
+	context.rules = rules;
+	context.treasures = treasures;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareInventory(context) {
+	const weapons = [];
+	const armor = [];
+	const shields = [];
+	const accessories = [];
+	const consumables = [];
+	const treasures = [];
+
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'armor':
+				armor.push(item);
+				break;
+
+			case 'shield':
+				{
+					const weaponData = getWeaponDisplayData(context.actor, item);
+					item.quality = weaponData.qualityString;
+					item.detail = weaponData.detailString;
+					item.attackString = weaponData.attackString;
+					item.damageString = weaponData.damageString;
+					shields.push(item);
+				}
+				break;
+
+			case 'accessory':
+				accessories.push(item);
+				break;
+
+			case 'weapon':
+				{
+					item.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
+					const weaponData = getWeaponDisplayData(context.actor, item);
+					item.quality = weaponData.qualityString;
+					item.detail = weaponData.detailString;
+					item.attackString = weaponData.attackString;
+					item.damageString = weaponData.damageString;
+					weapons.push(item);
+				}
+				break;
+
+			case 'treasure':
+				{
+					const itemData = getItemDisplayData(item);
+					item.quality = itemData.qualityString;
+					treasures.push(item);
+				}
+				break;
+
+			case 'consumable':
+				{
+					const itemData = getItemDisplayData(item);
+					item.quality = itemData.qualityString;
+					consumables.push(item);
+				}
+				break;
+		}
+	}
+
 	context.weapons = weapons;
 	context.armor = armor;
 	context.shields = shields;
 	context.accessories = accessories;
-	context.equipment = [...weapons, ...armor, ...shields, ...accessories];
-	context.classes = classes;
-	context.skills = skills;
-	context.heroics = heroics;
-	context.spells = spells;
-	context.abilities = abilities;
-	context.rules = rules;
-	context.behaviors = behaviors;
 	context.consumables = consumables;
 	context.treasures = treasures;
+	context.equipment = [...weapons, ...armor, ...shields, ...accessories];
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareProjects(context) {
+	const projects = [];
+	for (let item of context.items) {
+		if (item.type === 'project') {
+			item.cost = item.system.cost?.value;
+			item.discount = item.system.discount?.value;
+			item.progressMax = item.system.progress?.max;
+			item.progressPerDay = item.system.progressPerDay?.value;
+			item.days = item.system.days?.value;
+			item.progressCurr = item.system.progress?.current;
+			item.progressStep = item.system.progress?.step;
+			item.defect = !!item.system.isDefect?.value;
+			item.defectMod = item.system.use?.value;
+			item.use = item.system.use?.value;
+			projects.push(item);
+		}
+	}
 	context.projects = projects;
-	context.rituals = rituals;
-	context.effects = effects;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+async function prepareFeatures(context) {
 	context.classFeatures = {};
 	for (const item of context.actor.itemTypes.classFeature) {
 		const featureType = (context.classFeatures[item.system.featureType] ??= {
 			feature: item.system.data?.constructor,
 			items: {},
 		});
-		featureType.items[item.id] = { item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) };
+		featureType.items[item.id] = {
+			item,
+			additionalData: await featureType.feature?.getAdditionalData(item.system.data),
+		};
 	}
 
 	context.optionalFeatures = {};
@@ -261,7 +269,10 @@ async function prepareItems(context) {
 			optional: item.system.data?.constructor,
 			items: {},
 		});
-		optionalType.items[item.id] = { item, additionalData: await optionalType.optional?.getAdditionalData(item.system.data) };
+		optionalType.items[item.id] = {
+			item,
+			additionalData: await optionalType.optional?.getAdditionalData(item.system.data),
+		};
 
 		// Feature Clocks
 		const relevantTypes = ['optionalFeature'];
@@ -280,6 +291,88 @@ async function prepareItems(context) {
 			item.progressArr = progressArr.reverse();
 		}
 	}
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+async function prepareSpells(context) {
+	const spells = [];
+	const rituals = [];
+
+	// Iterate through items, allocating to containers
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'spell':
+				{
+					const spellData = getSpellDisplayData(context.actor, item);
+					item.quality = spellData.qualityString;
+					item.detail = spellData.detailString;
+					item.attackString = spellData.attackString;
+					item.damageString = spellData.damageString;
+					spells.push(item);
+				}
+				break;
+
+			case 'ritual':
+				{
+					item.mpCost = item.system.mpCost?.value;
+					item.dLevel = item.system.dLevel?.value;
+					item.clock = item.system.clock?.value;
+					item.potency = item.system.potency?.value;
+					item.area = item.system.area?.value;
+					rituals.push(item);
+				}
+				break;
+		}
+	}
+
+	context.spells = spells;
+	context.rituals = rituals;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareClasses(context) {
+	const classes = [];
+	const skills = [];
+	const heroics = [];
+
+	// Iterate through items, allocating to containers
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'class':
+				classes.push(item);
+				break;
+
+			case 'skill':
+				{
+					const skillData = getSkillDisplayData(item);
+					item.quality = skillData.qualityString;
+					skills.push(item);
+
+					const skillArr = [];
+					const level = item.system.level || { value: 0, max: 8 };
+					for (let i = 0; i < level.max; i++) {
+						skillArr.push({
+							id: i + 1,
+							checked: parseInt(level.value) === i + 1,
+						});
+					}
+					item.skillArr = skillArr;
+				}
+				break;
+
+			case 'heroic':
+				heroics.push(item);
+				break;
+		}
+	}
+
+	context.classes = classes;
+	context.skills = skills;
+	context.heroics = heroics;
 }
 
 /**
@@ -478,7 +571,7 @@ function getSkillDisplayData(item) {
 			: `【${hrZeroText} ${item.system?.rollInfo?.damage?.value > 0 ? ` ${item.system?.rollInfo?.damage?.value}` : '0'} 】${translate(item.system?.rollInfo?.damage.type.value)}`;
 	}
 
-	const qualityString = [capitalizeFirst(item.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
+	const qualityString = [StringUtils.capitalize(item.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
 
 	const starCurrent = item.system?.level?.value;
 	const starMax = item.system?.level?.max;
@@ -518,7 +611,7 @@ function getSpellDisplayData(actor, item) {
 
 	const qualText = item.system.quality?.value || '';
 	const detailString = [attackString, damageString].filter(Boolean).join('⬥');
-	const qualityString = [capitalizeFirst(item.system.cost.amount), capitalizeFirst(item.system.targeting.rule), capitalizeFirst(item.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
+	const qualityString = [StringUtils.capitalize(item.system.cost.amount), StringUtils.capitalize(item.system.targeting.rule), StringUtils.capitalize(item.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
 
 	return {
 		attackString,
@@ -529,68 +622,79 @@ function getSpellDisplayData(actor, item) {
 }
 
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
  */
 function activateDefaultListeners(html, sheet) {
-	html.on('click', '.item-edit', (ev) => _onItemEdit($(ev.currentTarget), sheet));
-	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev, sheet)); // Middle-click to edit item
+	// Click to edit item
+	html.addEventListener('click', (ev) => {
+		const target = ev.target.closest('.item-edit');
+		if (target) {
+			_onItemEdit(target, sheet);
+		}
+	});
 
 	// Initialize the context menu options
 	const contextMenuOptions = [
 		{
 			name: game.i18n.localize('FU.Edit'),
 			icon: '<i class="fas fa-edit"></i>',
-			callback: (jq) => _onItemEdit(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemEdit(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 		{
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
-			callback: (jq) => _onItemDuplicate(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemDuplicate(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 		{
 			name: game.i18n.localize('FU.Delete'),
 			icon: '<i class="fas fa-trash"></i>',
-			callback: (jq) => _onItemDelete(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemDelete(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 	];
+
 	if (sheet.actor.isCharacterType) {
 		contextMenuOptions.push({
 			name: game.i18n.localize('FU.StashItem'),
 			icon: '<i class="fa fa-paper-plane"></i>',
-			callback: (jq) => onSendItemToPartyStash(jq, sheet),
-			condition: (jq) => {
-				const item = sheet.actor.items.get(jq.data('itemId'));
-				return item.canStash;
+			callback: (html) => onSendItemToPartyStash(html, sheet),
+			condition: (html) => {
+				const item = sheet.actor.items.get(html.dataset.itemId);
+				return item?.canStash;
 			},
 		});
 	}
-	html.on('click', '.item-option', (jq) => {
-		const itemId = jq.currentTarget.dataset.itemId;
 
-		// Check for the Behavior option before adding it
-		const behaviorOptionExists = contextMenuOptions.some((option) => option.name === game.i18n.localize('FU.Behavior'));
-		if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll') && !behaviorOptionExists) {
-			const item = sheet.actor.items.get(itemId);
+	html.addEventListener('click', (event) => {
+		// Ensure the target is an item-option
+		if (event.target.closest('.item-option')) {
+			const itemId = event.target.closest('.item-option').dataset.itemId;
 
-			if (item?.system?.isBehavior) {
-				const behaviorClass = item.system.isBehavior.value ? 'fas active' : 'far';
+			// Check for the Behavior option before adding it
+			const behaviorOptionExists = contextMenuOptions.some((option) => option.name === game.i18n.localize('FU.Behavior'));
+			if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll') && !behaviorOptionExists) {
+				const item = sheet.actor.items.get(itemId);
 
-				contextMenuOptions.push({
-					name: game.i18n.localize('FU.Behavior'),
-					icon: `<i class="${behaviorClass} fa-address-book"></i>`,
-					callback: (jq) => _onItemBehavior(jq, sheet),
-					condition: (jq) => !!jq.data('itemId'),
-				});
+				if (item?.system?.isBehavior) {
+					const behaviorClass = item.system.isBehavior.value ? 'fas active' : 'far';
+
+					contextMenuOptions.push({
+						name: game.i18n.localize('FU.Behavior'),
+						icon: `<i class="${behaviorClass} fa-address-book"></i>`,
+						callback: (html) => _onItemBehavior(html, sheet),
+						condition: (html) => !!html.dataset.itemid,
+					});
+				}
 			}
 		}
 	});
-	// eslint-disable-next-line no-undef
-	new ContextMenu(html, '.item-option', contextMenuOptions, {
+
+	new foundry.applications.ux.ContextMenu.implementation(html, '.item-option', contextMenuOptions, {
 		eventName: 'click',
+		jQuery: false,
 		onOpen: (menu) => {
 			setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);
 		},
@@ -603,37 +707,47 @@ function activateDefaultListeners(html, sheet) {
 	// Drag events
 	if (sheet.actor.isOwner) {
 		let handler = (ev) => sheet._onDragStart(ev);
-		html.find('li.item').each((i, li) => {
+		const items = html.querySelectorAll('li.item');
+		items.forEach((li) => {
 			if (li.classList.contains('inventory-header')) return;
 			li.setAttribute('draggable', true);
 			li.addEventListener('dragstart', handler, false);
 		});
 	}
-
-	// Automatically expand elements that are in the _expanded state
-	sheet._expanded.forEach((itemId) => {
-		const desc = html.find(`li[data-item-id="${itemId}"] .individual-description`);
-		if (desc.length) {
-			desc.removeClass('hidden').css({ display: 'block', height: 'auto' });
-		}
-	});
 }
 
 function activateExpandedItemListener(html, expanded, onExpand) {
-	html.find('.click-item').click((ev) => {
-		const el = $(ev.currentTarget);
+	html.addEventListener('click', (ev) => {
+		const el = ev.target.closest('.click-item');
+		if (!el) return; // Ensures we only proceed if the target is .click-item
+
 		const parentEl = el.closest('li');
-		const itemId = parentEl.data('itemId');
-		const desc = parentEl.find('.individual-description');
+		// Support both items and effects
+		const itemId = parentEl.dataset.itemId ?? parentEl.dataset.effectId;
+		const desc = parentEl.querySelector('.individual-description');
 
 		if (expanded.has(itemId)) {
-			desc.slideUp(200, () => desc.css('display', 'none'));
-			expanded.delete(itemId);
-		} else {
-			desc.slideDown(200, () => {
-				desc.css('display', 'block');
-				desc.css('height', 'auto');
+			// Slide up effect
+			desc.style.transition = 'height 0.2s ease';
+			desc.style.height = desc.scrollHeight + 'px';
+			setTimeout(() => {
+				desc.style.height = '0';
 			});
+			setTimeout(() => {
+				desc.style.display = 'none';
+				desc.classList.add('hidden'); // Add hidden class after transition
+				expanded.delete(itemId);
+			}, 200); // After transition completes, hide it
+		} else {
+			// Slide down effect
+			desc.classList.remove('hidden'); // Remove hidden class immediately
+			desc.style.display = 'block';
+			const initialHeight = desc.scrollHeight + 'px'; // Get the natural height
+			desc.style.height = '0';
+			setTimeout(() => {
+				desc.style.transition = 'height 0.2s ease';
+				desc.style.height = initialHeight; // Slide to the full height
+			}, 10); // Small delay to apply height animation
 			expanded.add(itemId);
 		}
 
@@ -647,8 +761,8 @@ function _saveExpandedState(sheet) {
 	sheet.actor.update({ 'system._expanded': Array.from(sheet._expanded) });
 }
 
-async function onSendItemToPartyStash(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function onSendItemToPartyStash(element, sheet) {
+	const item = sheet.actor.items.get(element.dataset.itemId);
 	const party = await FUPartySheet.getActiveModel();
 	if (party) {
 		return InventoryPipeline.requestTrade(sheet.actor.uuid, item.uuid, false, party.parent.uuid);
@@ -657,56 +771,59 @@ async function onSendItemToPartyStash(jq, sheet) {
 
 /**
  * Handles the editing of an item.
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} element - The element the ContextMenu was attached to
  * @param {ActorSheet} sheet
  */
-function _onItemEdit(jq, sheet) {
-	const dataItemId = jq.data('itemId');
-	const item = sheet.actor.items.get(dataItemId);
+function _onItemEdit(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
 	if (item) item.sheet.render(true);
 }
 
 /**
  * Toggles the behavior state of the specified item.
- * @param {jQuery} jq - The element that the ContextMenu was attached to.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item's behavior state has been updated.
+ * @returns {Promise<void>}
  */
-async function _onItemBehavior(jq, sheet) {
-	const itemId = jq.data('itemId');
+async function _onItemBehavior(element, sheet) {
+	const itemId = element.dataset.itemId;
 	const item = sheet.actor.items.get(itemId);
 	const isBehaviorBool = item.system.isBehavior.value;
-	sheet.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
+	await sheet.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
 }
 
 /**
  * Deletes the specified item after confirming with the user.
- * @param {jQuery} jq - The element that the ContextMenu was attached to.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item has been deleted.
+ * @returns {Promise<void>}
  */
-async function _onItemDelete(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function _onItemDelete(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
+
 	if (
-		await Dialog.confirm({
-			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+		await foundry.applications.api.DialogV2.confirm({
+			window: { title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }) },
 			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
 			rejectClose: false,
 		})
 	) {
 		await item.delete();
-		jq.slideUp(200, () => sheet.render(false));
+		sheet.render(false); // Removed `jq.slideUp` since it's jQuery-specific
 	}
 }
 
 /**
  * Duplicates the specified item and adds it to the actor's item list.
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item has been duplicated.
+ * @returns {Promise<void>}
  */
-async function _onItemDuplicate(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function _onItemDuplicate(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
 	if (item) {
 		const dupData = foundry.utils.duplicate(item);
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
@@ -715,34 +832,40 @@ async function _onItemDuplicate(jq, sheet) {
 	}
 }
 
-// Handle middle-click editing of an item sheet
-function _onMiddleClickEditItem(ev, sheet) {
-	if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
-		ev.preventDefault();
-		_onItemEdit($(ev.currentTarget), sheet);
-	}
-}
-
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
  */
 function activateInventoryListeners(html, sheet) {
-	html.find('a[data-action="clearInventory"]').click((ev) => {
-		ev.preventDefault();
-		console.debug(`Clearing all items from actor ${sheet.actor}`);
-		sheet.actor.clearEmbeddedItems();
-	});
-	html.on('click', '.item-create', (ev) => _onItemCreate(ev, sheet));
-	html.on('click', '.item-create-dialog', (ev) => _onItemCreateDialog(ev, sheet));
-	html.on('click', '.item-sell', (ev) => onTradeItem($(ev.currentTarget), sheet, true));
-	html.on('click', '.item-share', (ev) => onTradeItem($(ev.currentTarget), sheet, false));
-	html.on('click', '.item-loot', (ev) => onLootItem($(ev.currentTarget), sheet, false, ev));
-	html.on('click', '.zenit-distribute', async (ev) => {
-		return InventoryPipeline.distributeZenit(sheet.actor);
-	});
-	html.on('click', '.recharge-ip', async (ev) => {
-		return InventoryPipeline.requestRecharge(sheet.actor);
+	// General click handler for delegated events
+	html.addEventListener('click', (ev) => {
+		const target = ev.target;
+
+		// Check for a data action
+		const dataAction = ev.target.parentElement.dataset.action;
+		switch (dataAction) {
+			case 'clearInventory':
+				console.debug(`Clearing all items from actor ${sheet.actor}`);
+				sheet.actor.clearEmbeddedItems();
+				return;
+		}
+
+		// Check for classes
+		if (target.closest('.item-create')) {
+			_onItemCreate(ev, sheet);
+		} else if (target.closest('.item-create-dialog')) {
+			_onItemCreateDialog(ev, sheet);
+		} else if (target.closest('.item-sell')) {
+			onTradeItem(target.closest('.item-sell'), sheet, true);
+		} else if (target.closest('.item-share')) {
+			onTradeItem(target.closest('.item-share'), sheet, false);
+		} else if (target.closest('.item-loot')) {
+			onLootItem(target.closest('.item-loot'), sheet, false);
+		} else if (target.closest('.zenit-distribute')) {
+			InventoryPipeline.distributeZenit(sheet.actor);
+		} else if (target.closest('.recharge-ip')) {
+			InventoryPipeline.requestRecharge(sheet.actor);
+		}
 	});
 }
 
@@ -755,34 +878,31 @@ const getModifiers = (event) => ({
 
 /**
  * Handles the selling of items
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} el - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
  */
-function onLootItem(jq, sheet, sell, event) {
-	const dataItemId = jq.data('itemId');
+function onLootItem(el, sheet, sell) {
+	const dataItemId = el.dataset.itemId;
 	const sourceActor = sheet.actor;
 	const item = sourceActor.items.get(dataItemId);
-	if (!item) {
-		return;
-	}
+	if (!item) return;
+
 	const targetActor = getPrioritizedUserTargeted();
-	if (!targetActor) {
-		return;
-	}
+	if (!targetActor) return;
 
 	const modifiers = getModifiers(event);
 	InventoryPipeline.requestTrade(sourceActor.uuid, item.uuid, false, targetActor.uuid, modifiers);
 }
 
 /**
- * @description Handles looting item directly from a sheet
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * Handles looting item directly from a sheet
+ * @param {HTMLElement} el - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
  */
-function onTradeItem(jq, sheet, sell) {
-	const dataItemId = jq.data('itemId');
+function onTradeItem(el, sheet, sell) {
+	const dataItemId = el.dataset.itemId;
 	const item = sheet.actor.items.get(dataItemId);
 	if (item) {
 		InventoryPipeline.tradeItem(sheet.actor, item, sell);
@@ -797,7 +917,7 @@ function onTradeItem(jq, sheet, sell) {
  */
 async function _onItemCreate(ev, sheet) {
 	ev.preventDefault();
-	const header = ev.currentTarget;
+	const header = ev.target;
 	// Get the type of item to create.
 	const type = header.dataset.type;
 	// Grab any data associated with this control.
@@ -838,7 +958,9 @@ async function _onItemCreate(ev, sheet) {
 async function _onItemCreateDialog(ev, sheet) {
 	ev.preventDefault();
 
-	const dataType = ev.currentTarget.dataset.type;
+	const target = HTMLUtils.findWithDataset(ev.target);
+	const dataset = target.dataset;
+	const dataType = dataset.type; // ?? ev.srcElement.dataset.type;
 	let types;
 	let clock = false;
 
@@ -846,58 +968,35 @@ async function _onItemCreateDialog(ev, sheet) {
 	const allItemTypes = Object.keys(CONFIG.Item.dataModels);
 	const isCharacter = sheet.actor.type === 'character';
 	const isNPC = sheet.actor.type === 'npc';
-	const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals());
+	const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.all);
 	switch (dataType) {
-		case 'newClock':
+		case 'newClock': {
+			clock = true;
+
 			types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 			if (isCharacter) {
-				const options = ['miscAbility', 'ritual'];
-
-				// Optional Features
-				const optionalFeatures = [];
-
+				types = types.filter((item) => ['miscAbility', 'ritual'].includes(item.type));
 				// Check if the optionZeroPower setting is false, then add the zeroPower feature
-				if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
-					optionalFeatures.push({
+				if (FU.optionalFeatures.zeroPower) {
+					types.push({
 						type: 'optionalFeature',
-						subtype: 'projectfu.zeroPower',
+						subtype: FU.optionalFeatures.zeroPower,
 						label: game.i18n.localize('Zero Power'),
 					});
 				}
-
-				// Filter out items based on options
-				types = types.filter((item) => options.includes(item.type));
-
-				// Filter out 'quirk' and 'camping' optional feature types
-				const filteredOptionalFeatures = optionalFeatures.filter((feature) => !['projectfu.quirk', 'projectfu-playtest.camping'].includes(feature.subtype));
-
-				// Push filtered optional features to types array
-				types.push(...filteredOptionalFeatures);
 			} else if (isNPC) {
 				types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
 			}
-			clock = true;
 			break;
-		case 'newFavorite':
+		}
+		case 'newFavorite': {
 			types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 
 			if (isCharacter) {
 				// Filter out item type
-				let dontShowCharacter = ['rule', 'behavior', 'basic']; // Default types to hide for characters
+				let dontShowCharacter = ['rule', 'behavior', 'basic', 'effect']; // Default types to hide for characters
 				// Filter out default types to hide for characters
 				types = types.filter((item) => !dontShowCharacter.includes(item.type));
-
-				// Conditional rendering for optional features based on system settings
-				let dontShowOptional = [];
-				if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
-					dontShowOptional.push('projectfu.zeroPower');
-				}
-				if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
-					dontShowOptional.push('projectfu.quirk');
-				}
-				if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
-					dontShowOptional.push('projectfu-playtest.camping');
-				}
 
 				// Optional Features
 				let optionalFeatures = optionalFeatureTypes.map(([key, optional]) => ({
@@ -906,20 +1005,18 @@ async function _onItemCreateDialog(ev, sheet) {
 					label: game.i18n.localize(optional.translation),
 				}));
 
-				// Filter out optional features based on system settings
-				let filteredOptionalFeatures = optionalFeatures.filter((feature) => !dontShowOptional.includes(feature.subtype));
-
 				// Push filtered optional features to types array
-				types.push(...filteredOptionalFeatures);
+				types.push(...optionalFeatures);
 			} else if (isNPC) {
-				let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable']; // Default types to hide for NPCs
+				let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'effect']; // Default types to hide for NPCs
 				if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
 				// Filter out default types to hide for NPCs
 				types = types.filter((item) => !dontShowNPC.includes(item.type));
 			}
 			break;
+		}
 		case 'newClassFeatures': {
-			const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
+			const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.all);
 			types = ['miscAbility', 'project'];
 			// Filter out item type
 			types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
@@ -932,24 +1029,9 @@ async function _onItemCreateDialog(ev, sheet) {
 				})),
 			);
 
-			// Optional Features
-			const dontShow = [];
-			if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
-				dontShow.push('projectfu.zeroPower');
-			}
-			if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
-				dontShow.push('projectfu.quirk');
-			}
-			if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
-				dontShow.push('projectfu-playtest.camping');
-			}
-
-			// Filter optionalFeatureTypes based on dontShow array
-			const filteredOptionalFeatureTypes = optionalFeatureTypes.filter(([key, optional]) => !dontShow.includes(key));
-
 			// Push filtered types to the types array
 			types.push(
-				...filteredOptionalFeatureTypes.map(([key, optional]) => ({
+				...optionalFeatureTypes.map(([key, optional]) => ({
 					type: 'optionalFeature',
 					subtype: key,
 					label: game.i18n.localize(optional.translation),
@@ -961,13 +1043,19 @@ async function _onItemCreateDialog(ev, sheet) {
 			break;
 	}
 
-	const buttons = types.map((item) => ({
-		label: item.label ?? (item.subtype ? item.subtype.split('.')[1] : item.type),
-		callback: () => _createItem(item.type, clock, item.subtype, sheet),
-	}));
+	const buttons = types.map((item) => {
+		let label = item.label ?? (item.subtype ? item.subtype.split('.')[1] : item.type);
+		return {
+			action: label,
+			label: label,
+			callback: () => _createItem(item.type, clock, item.subtype, sheet),
+		};
+	});
 
-	new Dialog({
-		title: 'Select Item Type',
+	console.log(buttons);
+
+	await new foundry.applications.api.DialogV2({
+		window: { title: 'Select Item Type' },
 		content: `<p>Select the type of item you want to create:</p>`,
 		buttons: buttons,
 	}).render(true);
@@ -1039,27 +1127,137 @@ async function handleInventoryItemDrop(actor, data, onNewItem) {
 }
 
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
- * @returns
  */
-async function activateStashListeners(html, sheet) {
-	html.find('.rollable').click((ev) => {
-		const element = ev.currentTarget;
-		const dataset = element.dataset;
-		if (dataset.rollType) {
+function activateStashListeners(html, sheet) {
+	const rollables = html.querySelectorAll('.rollable');
+	rollables.forEach((el) => {
+		el.addEventListener('click', (ev) => {
+			const element = ev.currentTarget;
+			const dataset = element.dataset;
 			if (dataset.rollType === 'item') {
-				const itemId = element.closest('.item').dataset.itemId;
+				const parentItem = element.closest('.item');
+				if (!parentItem) return;
+
+				const itemId = parentItem.dataset.itemId;
 				const item = sheet.actor.items.get(itemId);
 				if (item) {
 					item.sheet._onSendToChat(ev);
 				}
 			}
-		}
+		});
 	});
 }
 
-const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
+/**
+ * Organize and classify Items for Character sheets.
+ * @param {Object} context
+ */
+function prepareCharacterData(context) {
+	if (!context || !context.system || !context.system.attributes || !context.system.affinities) {
+		console.error('Invalid context or context.system');
+		return;
+	}
+
+	// Handle ability scores.
+	for (let [k, v] of Object.entries(context.system.attributes)) {
+		v.label = game.i18n.localize(CONFIG.FU.attributes[k]) ?? k;
+		v.abbr = game.i18n.localize(CONFIG.FU.attributeAbbreviations[k]) ?? k;
+	}
+
+	// Handle affinity
+	for (let [k, v] of Object.entries(context.system.affinities)) {
+		v.label = game.i18n.localize(CONFIG.FU.damageTypes[k]) ?? k;
+		v.affTypeBase = game.i18n.localize(CONFIG.FU.affType[v.base]) ?? v.base;
+		v.affTypeBaseAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.base]) ?? v.base;
+		v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
+		v.affTypeCurrAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.current]) ?? v.current;
+		v.icon = CONFIG.FU.affIcon[k];
+	}
+
+	// Handle immunity
+	for (let [k, v] of Object.entries(context.system.immunities)) {
+		v.label = game.i18n.localize(CONFIG.FU.temporaryEffects[k]) ?? k;
+	}
+}
+
+function prepareNpcCompanionData(context) {
+	if (context.actor.system.rank.value === 'companion' || context.actor.system.rank.value === 'custom') {
+		// Populate the dropdown with owned actors
+		context.ownedActors = game.actors.filter((a) => a.type === 'character' && a.testUserPermission(game.user, 'OWNER'));
+
+		// Check if a refActor is selected
+		const refActor = context.system.references.actor;
+		context.refActorLevel = refActor ? refActor.system.level.value : 0;
+
+		if (refActor) {
+			// Filter skills associated with the refActor
+			context.availableSkills = refActor.items.filter((item) => item.type === 'skill');
+
+			// Retrieve the selected referenceSkill by UUID
+			context.refSkill = context.system.references.skill ? context.availableSkills.find((skill) => skill.uuid === context.system.references.skill) : null;
+			context.refSkillLevel = context.refSkill ? context.refSkill.system.level.value || 0 : 0;
+		} else {
+			// No referencePlayer selected, clear skills and selected skill
+			context.availableSkills = [];
+			context.refSkill = null;
+			context.refSkillLevel = 0;
+		}
+	}
+}
+
+function sortByOrder(a, b) {
+	return this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0);
+}
+
+function sortByName(a, b) {
+	const nameA = a.name.toUpperCase();
+	const nameB = b.name.toUpperCase();
+	return this.sortOrder * nameA.localeCompare(nameB);
+}
+
+function sortByType(a, b) {
+	const typeA = a.type.toUpperCase();
+	const typeB = b.type.toUpperCase();
+	return this.sortOrder * typeA.localeCompare(typeB);
+}
+
+function prepareSorting(context) {
+	// Sort the items array in-place based on the current sorting method
+	let sortFn = sortByOrder;
+	if (this.sortMethod === 'name') {
+		sortFn = sortByName;
+	} else if (this.sortMethod === 'type') {
+		sortFn = sortByType;
+	}
+	sortFn = sortFn.bind(this);
+	context.items = context.items.contents.sort(sortFn);
+	if (context.classFeatures) {
+		Object.keys(context.classFeatures).forEach((k) => (context.classFeatures[k].items = Object.fromEntries(Object.entries(context.classFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+	}
+	if (context.optionalFeatures) {
+		Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+	}
+}
+
+function onRenderFUActorSheet(sheet, element) {
+	// Automatically expand elements that are in the _expanded state
+	console.log(sheet._expanded);
+	if (sheet._expanded) {
+		sheet._expanded.forEach((itemId) => {
+			const expandedDescriptions = element.querySelectorAll(`li[data-item-id=${itemId}] .individual-description`);
+			console.log(itemId, expandedDescriptions);
+			expandedDescriptions.forEach((el) => {
+				el.classList.remove('hidden');
+				el.style.display = 'block';
+				el.style.height = 'auto';
+			});
+		});
+	}
+}
+
+Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 
 /**
  * @description Provides utility functions for rendering the actor sheet
@@ -1068,12 +1266,23 @@ const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
 	prepareItems,
+	enrichItems,
 	findItemConfig,
+	prepareCharacterData,
 	activateDefaultListeners,
+	prepareClasses,
+	prepareNpcCombat,
+	prepareInventory,
+	prepareSpells,
+	prepareProjects,
+	prepareFeatures,
+	prepareAbilities,
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,
 	activateExpandedItemListener,
+	prepareSorting,
+	prepareNpcCompanionData,
 	// Used by modules
 	getWeaponDisplayData,
 	getSkillDisplayData,

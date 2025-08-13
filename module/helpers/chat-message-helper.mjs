@@ -8,21 +8,21 @@ import { SYSTEM } from './config.mjs';
  * @param {Promise<ChatMessage, void>} callback The function to execute for the item
  */
 function registerContextMenuItem(flag, name, iconClass, callback) {
-	const hook = (html, options) => {
-		options.unshift({
+	const hook = (application, menuItems) => {
+		menuItems.unshift({
 			name: name,
 			icon: `<i class="${iconClass}"></i>`,
 			group: SYSTEM,
 			condition: (li) => {
-				const messageId = li.data('messageId');
+				const messageId = li.dataset.messageId;
 				/** @type ChatMessage | undefined */
-				const message = game.messages.get(messageId);
+				const message = fromId(messageId);
 				return message.getFlag(SYSTEM, flag);
 			},
 			callback: async (li) => {
-				const messageId = li.data('messageId');
+				const messageId = li.dataset.messageId;
 				/** @type ChatMessage | undefined */
-				const message = game.messages.get(messageId);
+				const message = fromId(messageId);
 				if (message) {
 					const damage = message.getFlag(SYSTEM, flag);
 					if (damage) {
@@ -33,9 +33,14 @@ function registerContextMenuItem(flag, name, iconClass, callback) {
 		});
 	};
 
-	Hooks.on('getChatLogEntryContext', hook);
+	Hooks.on('getChatMessageContextOptions', hook);
+}
+
+function fromId(messageId) {
+	return game.messages.get(messageId);
 }
 
 export const ChatMessageHelper = Object.freeze({
 	registerContextMenuItem,
+	fromId,
 });

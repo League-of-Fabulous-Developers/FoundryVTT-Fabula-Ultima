@@ -1,0 +1,22 @@
+<fieldset class="title-fieldset desc resource-content">
+	<legend class="resource-label-full">
+		<label class="resource-label-m"><i class="fas fa-bullseye icon"></i>{{localize
+		 'FU.Damage'}}</label>
+	</legend>
+	<div class="grid grid-2col">
+		<div class="resource-content flexcol flex-group-center">
+			<label for="system.rollInfo.impdamage.type.value"
+				   class="resource-label-m flexlarge">{{localize
+			 'FU.DamageType'}} </label>
+			<select name="system.damageType.value"
+					class="resource-inputs select-dropdown-m">
+				{{selectOptions damageTypes selected=system.damageType.value sort=true localize=true}}
+			</select>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
+			<input type="number" name="system.damage.value" value="{{ system.damage.value }}"
+				   class="resource-inputs" data-dtype="Number" />
+		</div>
+	</div>
+</fieldset>

@@ -1,4 +1,4 @@
-<form class="inline-effect-config">
+<div class="inline-effect-config">
     <fieldset class="title-fieldset resource-content flex-group-center">
         <legend class="resource-label-sm">{{localize "FU.InlineEffectType"}}</legend>
         <select name="type" class="resource-inputs select-dropdown-xl">
@@ -26,7 +26,7 @@
             <legend class="resource-label-sm">{{localize "FU.InlineEffectGuidedBasicInformation"}}</legend>
             <header class="flexrow">
                 <img src="{{#if data.guided.icon}}{{data.guided.icon}}{{else}}{{defaultIcon}}{{/if}}"
-                     data-edit="guided.icon" class="effect-icon flex0" />
+                     data-action="editImage" class="effect-icon flex0" />
                 <h1>
                     <input name="guided.name" type="text"
                            value="{{#if data.guided.name}}{{data.guided.name}}{{else}}{{defaultName}}{{/if}}"
@@ -72,4 +72,4 @@
             {{localize "FU.TextEditorDialogButtonInsert"}}
         </button>
     </footer>
-</form>
+</div>

@@ -38,9 +38,9 @@
         }}" aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
                 {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
-                    <i class="fas fa-caret-up is-crisis crisisHP float-text"></i>
+                    <i class="fas fa-caret-up is-crisis crisisHP float-text" data-action="crisisHP"></i>
                 {{else}}
-                    <i class="fas fa-caret-up crisisHP"></i>
+                    <i class="fas fa-caret-up crisisHP" data-action="crisisHP"></i>
                 {{/if}}
             </div>
         </span>
@@ -57,7 +57,7 @@
          class="fas fa-hat-wizard icon"></i>{{localize
          'FU.MindAbbr'}} </label>
         <label class="resource-label-l align-right rollable" data-tooltip="{{localize 'FU.Rest'}}"
-               aria-describedby="tooltip">
+               aria-describedby="tooltip" data-action="rest">
             <i class="fas fa-bed rest"></i></label>
     </div>
     <div class="bar bar-progress">

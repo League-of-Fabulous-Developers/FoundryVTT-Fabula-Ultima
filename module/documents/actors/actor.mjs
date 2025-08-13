@@ -7,6 +7,7 @@ import { SkillDataModel } from '../items/skill/skill-data-model.mjs';
 import { MathHelper } from '../../helpers/math-helper.mjs';
 import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs';
 import { ZeroPowerDataModel } from '../items/optionalFeature/zeropower/zeropower-data-model.mjs';
+import { CommonEvents } from '../../checks/common-events.mjs';
 
 /**
  * @typedef Actor
@@ -435,6 +436,41 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @description Handle resting actions for the actor, restoring health and possibly other resources.
+	 * @param {boolean} recoverInventoryPoints
+	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
+	 */
+	async rest(recoverInventoryPoints) {
+		const maxHP = this.system.resources.hp?.max;
+		const maxMP = this.system.resources.mp?.max;
+		const maxIP = this.system.resources.ip?.max;
+
+		// Prepare the update data using mergeObject to avoid overwriting other fields
+		let updateData = foundry.utils.mergeObject(this.toObject(false), {
+			'system.resources.hp.value': maxHP,
+			'system.resources.mp.value': maxMP,
+		});
+
+		if (recoverInventoryPoints) {
+			updateData = foundry.utils.mergeObject(updateData, {
+				'system.resources.ip.value': maxIP,
+			});
+		}
+
+		// Update the actor
+		await this.update(updateData);
+
+		// Dispatch the event
+		CommonEvents.rest(this);
+
+		// Rerender the actor's sheet if necessary
+		if (recoverInventoryPoints || updateData['system.resources.ip.value']) {
+			this.sheet.render(true);
+		}
+	}
+
+	// TODO: Move out
+	/**
 	 * @description Resolves a progress tracker with the given id among
 	 * the actor's items and effects.
 	 * @param {String} id
@@ -464,6 +500,7 @@ export class FUActor extends Actor {
 		return null;
 	}
 
+	// TODO: Move out
 	/**
 	 * @description Searches through current items for one with the given fuid, then updates its progress.
 	 * @param {String} id

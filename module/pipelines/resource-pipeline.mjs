@@ -160,7 +160,7 @@ async function processRecovery(request) {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: flavor,
 				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true),
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
 					message: recoveryMessages[request.resourceType],
 					actor: actor.name,
 					uuid: actor.uuid,
@@ -219,7 +219,7 @@ async function processLoss(request) {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: flavor,
 				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceLoss, true),
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
 					message: 'FU.ChatResourceLoss',
 					actor: actor.name,
 					amount: Math.abs(amountLost),
@@ -267,16 +267,15 @@ function calculateExpense(item, targets) {
 
 /**
  * @param {Document} message
- * @param {jQuery} jQuery
+ * @param {HTMLElement} html
  */
-function onRenderChatMessage(message, jQuery) {
+function onRenderChatMessage(message, html) {
 	if (!message.getFlag(SYSTEM, Flags.ChatMessage.ResourceLoss) && !message.getFlag(SYSTEM, Flags.ChatMessage.ResourceGain)) {
 		return;
 	}
 
 	/**
-	 * @param dataset
-	 * @param {FUActor[]} targets
+	 * @param {Object} dataset
 	 * @returns {Promise<Awaited<*>[]>}
 	 */
 	const applyResourceLoss = async (dataset) => {
@@ -285,9 +284,10 @@ function onRenderChatMessage(message, jQuery) {
 		const request = new ResourceRequest(sourceInfo, [actor], dataset.resource, dataset.amount);
 		return ResourcePipeline.processLoss(request);
 	};
-	Pipeline.handleClick(message, jQuery, 'applyResourceLoss', applyResourceLoss);
 
-	Pipeline.handleClickRevert(message, jQuery, 'revertResourceLoss', async (dataset) => {
+	Pipeline.handleClick(message, html, 'applyResourceLoss', applyResourceLoss);
+
+	Pipeline.handleClickRevert(message, html, 'revertResourceLoss', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
 		const amount = dataset.amount;
 		const attributeKey = dataset.key;
@@ -297,7 +297,7 @@ function onRenderChatMessage(message, jQuery) {
 		return Promise.all(updates);
 	});
 
-	Pipeline.handleClickRevert(message, jQuery, 'revertResourceGain', async (dataset) => {
+	Pipeline.handleClickRevert(message, html, 'revertResourceGain', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
 		const amount = dataset.amount;
 		const attributeKey = dataset.key;
@@ -308,9 +308,17 @@ function onRenderChatMessage(message, jQuery) {
 	});
 }
 
+/**
+ * @description Initialize the pipeline's hooks
+ */
+function initialize() {
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
+}
+
 export const ResourcePipeline = {
+	initialize,
 	processRecovery,
 	processLoss,
-	onRenderChatMessage,
 	calculateExpense,
+	calculateMissingResource,
 };

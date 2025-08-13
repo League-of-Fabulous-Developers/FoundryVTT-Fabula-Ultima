@@ -1,17 +1,17 @@
 <div class="{{cssClasses}} mother" id="{{cssId}}">
     <div class="window-button window-compact">
-        <a class="compact" title="Toggle compact mode">
+        <a class="compact" title="Toggle compact mode" data-action="toggleCompact">
             <i class="fas fa-caret-down {{#if isCompact }}hidden{{/if}}"></i>
             <i class="fas fa-caret-up {{#unless isCompact }}hidden{{/unless}}"></i>
         </a>
     </div>
     <div class="window-button window-popout">
-        <a class="popout" title="Popout Combat HUD" data-target="combat-hud">
+        <a class="popout" title="Popout Combat HUD" data-target="combat-hud" data-action="popout">
             <i class="fas fa-up-right-from-square"></i>
         </a>
     </div>
     <div class="window-button window-minimize">
-        <a class="minimize" title="Minimize Combat HUD">
+        <a class="minimize" title="Minimize Combat HUD" data-action="minimize">
             <i class="fas fa-minus"></i>
         </a>
     </div>
@@ -22,12 +22,12 @@
     </div>
     {{#if isGM}}
     <div class="window-button window-start">
-        <a class="start" title="Start Combat">
+        <a class="start" title="Start Combat" data-action="start">
             <i class="fas fa-play"></i>
         </a>
     </div>
     <div class="window-button window-stop hidden">
-        <a class="stop" title="Stop Combat">
+        <a class="stop" title="Stop Combat" data-action="stop">
             <i class="fas fa-stop"></i>
         </a>
     </div>
@@ -41,7 +41,7 @@
                 {{!-- <img class="token-image" src="{{this.img}}" alt="{{name}}" /> --}}
                 <div class="combat-info">
                     <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
-                        <h2 class="token-name" data-tooltip="{{ name }}">
+                        <h2 class="token-name" data-tooltip="{{ name }}" data-action="clickCombatant" data-token-id="{{this.token.id}}">
                             {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                 <span class="combat-order">{{ this.order }}</span>.&nbsp;
                             {{/if}}
@@ -75,7 +75,7 @@
                                 {{/each}}
                             </div>
                         {{else}}
-                            <div>
+                            <div class="marquee">
                                 {{#each this.effects as |effect|}}
                                     <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />

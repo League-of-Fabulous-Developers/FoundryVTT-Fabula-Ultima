@@ -4,6 +4,7 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 import { FU } from '../helpers/config.mjs';
+import { ObjectUtils } from '../helpers/object-utils.mjs';
 
 /**
  * @typedef Roll
@@ -604,7 +605,7 @@ function evaluateReferencedProperties(expression, context) {
 		}
 
 		// Evaluate the property value
-		const propertyValue = getPropertyValueByPath(root, propertyPath);
+		const propertyValue = ObjectUtils.getProperty(root, propertyPath);
 		if (propertyValue === undefined) {
 			throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
 		}
@@ -731,30 +732,9 @@ function getFunctionFromPath(obj, path) {
 	return current;
 }
 
-/**
- * @param obj The object to resolve the property from
- * @param path The path to the property, in dot notation
- * @returns {undefined|*} The value of the property
- */
-function getPropertyValueByPath(obj, path) {
-	const keys = path.split('.');
-	let value = obj;
-
-	for (let key of keys) {
-		if (typeof value === 'object' && value !== null) {
-			value = value[key];
-		} else {
-			return undefined;
-		}
-	}
-
-	return value;
-}
-
 export const Expressions = {
 	evaluate,
 	evaluateAsync,
 	requiresContext,
 	getFunctionFromPath,
-	getPropertyValueByPath,
 };

@@ -2,7 +2,7 @@
     <div class="resource-value">
         <div class="resource-text"
             data-tooltip="{{localize 'FU.ExpAbbr'}}: {{ this.actor.system.resources.exp.value }} / 10">
-            {{{ formatResource this.actor.system.resources.exp.value 10 "XP" }}}
+            {{{ formatResource (clamp this.actor.system.resources.exp.value 0 999) 10 "XP" }}}
         </div>
     </div>
 </div>

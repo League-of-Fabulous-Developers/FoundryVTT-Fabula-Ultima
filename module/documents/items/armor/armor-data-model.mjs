@@ -3,6 +3,8 @@ import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { ArmorMigrations } from './armor-migrations.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ArmorDataModel) {
@@ -46,7 +48,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {number} init.value
  * @property {string} source.value
  */
-export class ArmorDataModel extends foundry.abstract.TypeDataModel {
+export class ArmorDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'attributes.primary.value', 'def.attribute');
 		deprecationNotice(this, 'attributes.secondary.value', 'mdef.attribute');
@@ -56,14 +58,8 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
@@ -76,11 +72,11 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 				value: new NumberField({ initial: 0, integer: true, nullable: false }),
 			}),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
 		ArmorMigrations.run(source);
 		return source;
 	}
@@ -93,5 +89,9 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 
 	transferEffects() {
 		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.armorActive;
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.qualityCost, ItemPartialTemplates.initiativeField, ItemPartialTemplates.armor];
 	}
 }

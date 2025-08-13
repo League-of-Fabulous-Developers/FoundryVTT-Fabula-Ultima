@@ -1,16 +1,7 @@
-import { SOCKET } from '../../socket.mjs';
-import { ChecksV2 } from '../../checks/checks-v2.mjs';
+import { Checks } from '../../checks/checks.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { FUActor } from '../actors/actor.mjs';
-
-/**
- * @typedef KeyboardModifiers
- * @property {boolean} shift
- * @property {boolean} alt
- * @property {boolean} ctrl
- * @property {boolean} meta
- */
 
 /**
  * @typedef Item
@@ -48,7 +39,7 @@ export class FUItem extends Item {
 	 * @returns {object|null} The roll data object, or null if no actors is associated with this item.
 	 */
 	getRollData() {
-		// If present, return the actors's roll data.
+		// If present, return the actor's roll data.
 		if (!this.actor) return null;
 		const rollData = this.actor.getRollData();
 
@@ -117,7 +108,7 @@ export class FUItem extends Item {
 	 */
 	async roll(modifiers = { shift: false, alt: false, ctrl: false, meta: false }) {
 		if (this.system.showTitleCard?.value) {
-			SOCKET.executeForEveryone('use', this.name);
+			game.projectfu.socket.showBanner(this.name);
 		}
 
 		return this.handleCheckV2(modifiers);
@@ -131,7 +122,7 @@ export class FUItem extends Item {
 		if (this.system.roll instanceof Function) {
 			return this.system.roll(modifiers);
 		} else {
-			return ChecksV2.display(this.actor, this);
+			return Checks.display(this.actor, this);
 		}
 	}
 
@@ -186,8 +177,8 @@ export class FUItem extends Item {
 			</div>
 			`;
 
-		const confirmation = await Dialog.confirm({
-			title: game.i18n.localize('FU.FUID.Regenerate'),
+		const confirmation = await foundry.applications.api.DialogV2.confirm({
+			window: { title: game.i18n.localize('FU.FUID.Regenerate') },
 			content: html,
 			defaultYes: false,
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },

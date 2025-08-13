@@ -4,7 +4,7 @@
     {{! If a combatant has already started a turn }}
         {{#if @root.turnStarted}}
             {{#if (eq @root.combatant.id this.id)}}
-                <a class="combatant-control take-turn active-combatant" role="button" data-action="end-turn"{{#unless this.isOwner }} disabled{{/unless}}>
+                <a class="combatant-control take-turn active-combatant end-turn" role="button" data-action="endTurn"{{#unless this.isOwner }} disabled{{/unless}}>
                     <i class="mats-o mats-fill">{{@root.icons.active}}</i>
                 </a>
             {{else}}
@@ -29,12 +29,12 @@
             {{else}}
                 {{! If the combatant's faction CAN take a turn}}
                 {{#if (eq @root.currentTurn this.faction)}}
-                    <a class="combatant-control take-turn" role="button" data-action="start-turn"{{#unless this.isOwner }} disabled{{/unless}}>
+                    <a class="combatant-control take-turn start-turn" role="button" data-action="startTurn"{{#unless this.isOwner }} disabled{{/unless}}>
                         <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
                     </a>
                 {{! If the turn is taken out of order due to some mechanic }}
                 {{else}}
-                    <a class="combatant-control take-turn out-of-turn" data-action="take-turn-out-of-turn"{{#unless this.isOwner }} disabled{{/unless}}>
+                    <a class="combatant-control take-turn out-of-turn" data-action="takeTurnOutOfTurn"{{#unless this.isOwner }} disabled{{/unless}}>
                         <i class="mats-o">counter_{{lookup @root.turnsLeft this.id}}</i>
                     </a>
                 {{/if}}

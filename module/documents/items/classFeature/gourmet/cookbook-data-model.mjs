@@ -8,7 +8,7 @@ import { SYSTEM } from '../../../../helpers/config.mjs';
  * @type RenderCheckHook
  */
 const renderCheck = (sections, check, actor, item, additionalFlags) => {
-	if (check.type === 'display' && item.system.data instanceof CookbookDataModel && check.additionalData['action'] === 'cooking') {
+	if (check.type === 'display' && item?.system?.data instanceof CookbookDataModel && check.additionalData['action'] === 'cooking') {
 		sections.push({
 			partial: 'systems/projectfu/templates/feature/gourmet/cooking-chat-message.hbs',
 			data: check.additionalData['cooking'],
@@ -65,26 +65,38 @@ export class CookbookDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static activateListeners(html, item, sheet) {
-		sheet.taste1 ??= html.find('input[type=radio][name=taste1]:checked').val();
-		sheet.taste2 ??= html.find('input[type=radio][name=taste2]:checked').val();
+		const htmlFormElement = html.closest('form');
+		const taste1Radio = htmlFormElement.elements.namedItem('taste1');
+		const taste2Radio = htmlFormElement.elements.namedItem('taste2');
 
-		html.find('input[type=radio][name=taste1]').val([sheet.taste1]);
-		html.find('input[type=radio][name=taste2]').val([sheet.taste2]);
+		sheet.taste1 ??= taste1Radio.value;
+		sheet.taste2 ??= taste2Radio.value;
+
+		taste1Radio.value = sheet.taste1;
+		taste2Radio.value = sheet.taste2;
+
+		console.log(sheet.taste1, sheet.taste2);
+		console.log(taste1Radio, taste2Radio);
 
 		const toggleHighlight = () => {
-			html.find(`[data-taste1][data-taste2]`).each((idx, el) =>
-				$(el).toggleClass('active', (el.dataset.taste1 === sheet.taste1 && el.dataset.taste2 === sheet.taste2) || (el.dataset.taste1 === sheet.taste2 && el.dataset.taste2 === sheet.taste1)),
+			console.log(sheet.taste1, sheet.taste2);
+			html.querySelectorAll(`[data-taste1][data-taste2]`).forEach((el) =>
+				el.classList.toggle('active', (el.dataset.taste1 === sheet.taste1 && el.dataset.taste2 === sheet.taste2) || (el.dataset.taste1 === sheet.taste2 && el.dataset.taste2 === sheet.taste1)),
 			);
 		};
 		toggleHighlight();
 
-		html.find('input[type=radio][name=taste1]').change(function () {
-			sheet.taste1 = this.value;
-			toggleHighlight();
+		html.querySelectorAll('input[type=radio][name=taste1]').forEach((el) => {
+			el.addEventListener('change', (e) => {
+				sheet.taste1 = e.currentTarget.value;
+				toggleHighlight();
+			});
 		});
-		html.find('input[type=radio][name=taste2]').change(function () {
-			sheet.taste2 = this.value;
-			toggleHighlight();
+		html.querySelectorAll('input[type=radio][name=taste2]').forEach((el) => {
+			el.addEventListener('change', (e) => {
+				sheet.taste2 = e.currentTarget.value;
+				toggleHighlight();
+			});
 		});
 	}
 

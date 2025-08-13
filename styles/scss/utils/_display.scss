@@ -1,3 +1,6 @@
+/* ----------------------------------------- */
+/* Display States                       
+/* ----------------------------------------- */
 $displayStates: block, inline, inline-block, flex, none, contents;
 
 @each $displayState in $displayStates {

@@ -1,9 +1,42 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
-import { createCheckMessage, rollCheck } from '../../../../helpers/checks.mjs';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
-import { Flags } from '../../../../helpers/flags.mjs';
-import { SYSTEM } from '../../../../helpers/config.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { CommonSections } from '../../../../checks/common-sections.mjs';
 
+const MAGITECH_RANK = 'MagitechRank';
+
+const RANK_TRANSLATION_KEYS = {
+	basic: 'FU.ClassFeatureGadgetsRankBasic',
+	advanced: 'FU.ClassFeatureGadgetsRankAdvanced',
+	superior: 'FU.ClassFeatureGadgetsRankSuperior',
+};
+
+// Inject a renderCheck hook to display the enriched description
+Hooks.on('projectfu.renderCheck', (sections, check, actor, item) => {
+	if (item?.system?.data instanceof MagitechDataModel) {
+		const rank = check.additionalData[MAGITECH_RANK];
+
+		if (rank) {
+			CommonSections.tags(sections, [{ tag: 'FU.ClassFeatureGadgetsRank', value: game.i18n.localize(RANK_TRANSLATION_KEYS[rank]), separator: ':' }]);
+		}
+
+		CommonSections.description(sections, item.system.data.description, item.system.summary.value);
+
+		if (rank) {
+			sections.push(async () => ({
+				content: `<div class="chat-desc">${await TextEditor.enrichHTML(item.system.data[rank] || '')}</div>`,
+			}));
+		}
+	}
+});
+
+/**
+ * @property {'basic', 'advanced', 'superior'} rank
+ * @property {string} description
+ * @property {string} basic
+ * @property {string} advanced
+ * @property {string} superior
+ */
 export class MagitechDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField } = foundry.data.fields;
@@ -61,45 +94,50 @@ export class MagitechDataModel extends RollableClassFeatureDataModel {
 	 * @return {Promise<void>}
 	 */
 	static async roll(model, item, isShift) {
-		const currentIns = model.actor.system.attributes.ins.current;
+		if (isShift) {
+			return Checks.display(item.actor, item);
+		}
 
-		switch (model.rank) {
+		const availableRanks = [];
+		if (model.rank === 'basic') {
+			availableRanks.push('basic');
+		} else if (model.rank === 'advanced') {
+			availableRanks.push('basic', 'advanced');
+		} else if (model.rank === 'superior') {
+			availableRanks.push('basic', 'advanced', 'superior');
+		}
+		let selectedRank;
+		if (availableRanks.length > 1) {
+			const result = await foundry.applications.api.DialogV2.input({
+				window: { title: game.i18n.localize('FU.ClassFeatureMagitech') },
+				content: `
+					<div>
+						<select name="rank">
+							${availableRanks.map((r) => `<option value="${r}">${game.i18n.localize(RANK_TRANSLATION_KEYS[r])}</option>`).join('\n')}
+						</select>
+					</div>`,
+				rejectClose: false,
+			});
+			if (result) {
+				selectedRank = result.rank;
+			} else {
+				return;
+			}
+		} else {
+			selectedRank = availableRanks[0];
+		}
+		switch (selectedRank) {
 			case 'basic': {
-				/** @type CheckParameters */
-				const check = {
-					check: {
-						title: game.i18n.localize('FU.ClassFeatureMagitechOverride'),
-						attr1: {
-							attribute: 'ins',
-							dice: currentIns,
-						},
-						attr2: {
-							attribute: 'ins',
-							dice: currentIns,
-						},
-						modifier: 0,
-						bonus: 0,
-					},
-				};
-				rollCheck(check).then((value) => createCheckMessage(value, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } }));
-				break;
+				return Checks.attributeCheck(item.actor, { primary: 'ins', secondary: 'ins' }, item, (check) => {
+					check.additionalData[MAGITECH_RANK] = selectedRank;
+				});
 			}
 			case 'advanced':
 			case 'superior': {
-				const rankField = model.rank;
-				const description = await TextEditor.enrichHTML(model[rankField] || '');
-
-				// Inject a renderCheck hook to display the enriched description
-				Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
-					sections.push({
-						content: `<div class="chat-desc">${description}</div>`,
-						order: -1000,
-					});
+				return Checks.display(item.actor, item, (check) => {
+					check.additionalData[MAGITECH_RANK] = selectedRank;
 				});
-
-				return ChecksV2.display(item.actor, item);
 			}
-
 			default:
 				ui.notifications.warn(`Unknown rank: ${model.rank}`);
 		}

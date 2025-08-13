@@ -1,0 +1,14 @@
+<div class="tab description {{tab.cssClass}}"  data-group="primary" data-tab="description">
+	<fieldset class="desc title-fieldset resource-content">
+		<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+			{{localize 'FU.Description'}}
+			<i class="fas fa-info-circle"></i>
+		</label>
+		{{log this}}
+		{{#if system.schema.fields.description}}
+			<prose-mirror name="system.description" value="{{system.description}}" toggled>
+				{{{enrichedHtml.description}}}
+			</prose-mirror>
+		{{/if}}
+	</fieldset>
+</div>

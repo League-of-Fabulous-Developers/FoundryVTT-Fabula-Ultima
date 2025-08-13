@@ -1,14 +1,4 @@
 <div class="item-lg" data-tooltip="{{{system.data.zeroTrigger.description}}}">{{ item.system.data.zeroTrigger.value }}</div>
 <div class="item-lg" data-tooltip="{{{system.data.zeroEffect.description}}}">{{ item.system.data.zeroEffect.value }}</div>
 {{!-- Clocks --}}
-<div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
-    <a class="decrement-button align-left" data-type="featureCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
-            class="fas fa-minus"></i></a>
-    <div class="progress-container">
-        {{> "systems/projectfu/templates/optional/partials/feature-progress-clock.hbs"
-        arr=item.progressArr
-        data=item.system.data.progress}}
-    </div>
-    <a class="increment-button align-right" data-type="featureCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
-            class="fas fa-plus"></i></a>
-</div>
+{{progress item 'system.data.progress' type='featureCounter'}}

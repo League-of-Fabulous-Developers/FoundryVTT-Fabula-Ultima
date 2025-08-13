@@ -1,6 +1,7 @@
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { FU } from '../helpers/config.mjs';
 import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
+import FUApplication from './application.mjs';
 
 /**
  * @typedef NpcProfileRevealData
@@ -26,8 +27,9 @@ import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
 
 /**
  * @property {NpcProfileData} data
+ * @inheritDoc
  */
-export class NpcProfileWindow extends Application {
+export class NpcProfileWindow extends FUApplication {
 	constructor(data = {}, options = {}) {
 		options.title = data.name;
 		super(data, options);
@@ -35,19 +37,40 @@ export class NpcProfileWindow extends Application {
 		this._expanded = new Set();
 	}
 
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			id: 'npc-profile',
-			classes: ['projectfu', 'sheet', 'actor', 'npc-profile', 'backgroundstyle'],
-			template: 'systems/projectfu/templates/ui/study/npc-profile.hbs',
-			width: 730,
-			height: 'auto',
-			resizable: true,
-			title: 'NPC Profile',
-		});
+	/** @inheritdoc
+	 * @override
+	 * */
+	_initializeApplicationOptions(options) {
+		return super._initializeApplicationOptions(options);
 	}
 
-	async getData() {
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: ['actor', 'npc-profile'],
+		resizable: true,
+		title: 'NPC Profile',
+		position: { width: 750, height: 'auto' },
+		actions: {
+			revealActor: this.#revealActor,
+		},
+	};
+
+	/**
+	 * @override
+	 */
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/ui/study/npc-profile.hbs',
+		},
+	};
+
+	/** @override */
+	async _prepareContext(options) {
+		let context = await super._prepareContext(options);
+
 		/** @type FUActor **/
 		const actor = await fromUuid(this.data.uuid);
 		/** @type NpcDataModel  **/
@@ -90,43 +113,46 @@ export class NpcProfileWindow extends Application {
 			};
 		});
 
-		let context = {
-			...this.data,
-			actor: actor,
-			system: system,
-			items: actor.items,
-			basic: basic,
-			complete: complete,
-			detailed: detailed,
-			affinities: affinities,
-			revealStats: revealStats,
-			revealAffinities: revealAffinities,
-			level: system.level.value,
-			hp: system.resources.hp.max,
-			mp: system.resources.hp.max,
-			localizedSpecies: FU.species[this.data.species],
-		};
+		Object.assign(context, this.data);
+		context.actor = actor;
+		context.name = actor.name;
+		context.img = actor.img;
+		context.system = system;
+		context.items = actor.items;
+		context.basic = basic;
+		context.complete = complete;
+		context.detailed = detailed;
+		context.affinities = affinities;
+		context.revealStats = revealStats;
+		context.revealAffinities = revealAffinities;
+		context.level = system.level.value;
+		context.hp = system.resources.hp.max;
+		context.mp = system.resources.mp.max;
+		context.localizedSpecies = FU.species[this.data.species];
 
 		// Ensure expanded state is initialized
 		context._expandedIds = Array.from(this._expanded);
 		await ActorSheetUtils.prepareItems(context);
-
 		return context;
 	}
 
-	activateListeners(html) {
-		super.activateListeners(html);
-		html.find('[data-action=revealActor]').on('click', (ev) => {
-			const uuid = this.data.uuid;
-			const actor = fromUuidSync(uuid);
-			if (actor) {
-				actor.sheet.render(true);
-			} else {
-				ui.notifications.error('The referenced actor is no longer present');
-			}
-		});
-		// Toggle Expandable Item Description
-		ActorSheetUtils.activateExpandedItemListener(html, this._expanded);
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		ActorSheetUtils.activateExpandedItemListener(this.element, this._expanded);
+	}
+
+	static async #revealActor() {
+		const uuid = this.data.uuid;
+		const actor = fromUuidSync(uuid);
+		if (actor) {
+			actor.sheet.render(true);
+		} else {
+			ui.notifications.error('The referenced actor is no longer present');
+		}
 	}
 
 	/**
@@ -139,74 +165,77 @@ export class NpcProfileWindow extends Application {
 
 		/** @type FUActor **/
 		const actor = await fromUuid(existing.uuid);
-		const maxStudyValue = StudyRollHandler.getMaxValue();
+		const studyDifficulties = StudyRollHandler.getStudyDifficulties();
 		const affinities = Object.keys(FU.damageTypes);
 		const affinityMap = Object.fromEntries(Object.entries(actor.system.affinities).map(([key, aff]) => [key, FU.affTypeAbbr[aff.current]]));
 		/** @type String **/
 		const traits = actor.system.traits.value;
-		const traitsArray = traits.trim().split(',').filter(Boolean);
+		const traitsArray = traits
+			.trim()
+			.split(',')
+			.map((value) => value.trim())
+			.filter(Boolean);
 		console.debug(`Editing profile of ${JSON.stringify(existing)}`);
-		new Dialog({
-			title: game.i18n.localize('FU.NpcProfileUpdate'),
-			content: await renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
+
+		let updatedProfile = await foundry.applications.api.DialogV2.input({
+			window: { title: game.i18n.localize('FU.NpcProfileUpdate') },
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
 				existing: existing,
-				maxStudyValue: maxStudyValue,
+				studyDifficulties: studyDifficulties,
 				affinities: affinities,
 				affinityMap: affinityMap,
 				traits: traitsArray,
 			}),
-			buttons: [
-				{
-					label: 'Confirm',
-					callback: async (html) => {
-						// Study
-						const studyStr = html.find('[name="study"]').val();
-						const study = Number(studyStr);
-						if (study !== existing.study) {
-							existing.study = study;
-						}
+			render: (event, dialog) => {
+				const studyValueDisplay = dialog.element.querySelector('#study-value');
+				const studyValueInput = dialog.element.querySelector('[name=study]');
+				studyValueInput.addEventListener('change', (e) => {
+					studyValueDisplay.textContent = studyValueInput.value;
+				});
+			},
+			rejectClose: false,
+			ok: {
+				label: 'FU.Confirm',
+			},
+		});
 
-						// Revealed
-						const formElem = html.find('form')[0];
-						const form = new FormData(formElem);
-						existing.revealed ??= {};
+		if (updatedProfile) {
+			updatedProfile = foundry.utils.expandObject(updatedProfile);
 
-						// Affinities
-						for (const aff of affinities) {
-							if (form.has(`affinities.${aff}`)) {
-								existing.revealed.affinities ??= {};
-								existing.revealed.affinities[aff] = true;
-							} else {
-								if (existing.revealed?.affinities?.[aff]) {
-									delete existing.revealed.affinities[aff];
-								}
-							}
-						}
-						if (existing.revealed.affinities && Object.keys(existing.revealed.affinities).length === 0) {
-							delete existing.revealed.affinities;
-						}
+			// Study
+			const study = Number(updatedProfile.study);
+			if (study !== existing.study) {
+				existing.study = study;
+			}
 
-						// Traits
-						const data = Object.fromEntries(form.entries());
-						const traits = Object.entries(data)
-							.filter(([key, value]) => key.startsWith('traits.') && value === 'on')
-							.map(([key]) => key.replace('traits.', ''));
-						if (traits.length > 0) {
-							existing.revealed.traits = traits;
-						} else {
-							if (existing.revealed.traits) {
-								delete existing.revealed.traits;
-							}
-						}
+			// Revealed
+			existing.revealed ??= {};
 
-						await party.updateAdversary(existing);
-					},
-				},
-				{
-					label: 'Cancel',
-					callback: () => {},
-				},
-			],
-		}).render(true);
+			// Affinities
+			for (const aff of affinities) {
+				const affinityValue = foundry.utils.getProperty(updatedProfile, `affinities.${aff}`);
+				if (affinityValue === true) {
+					existing.revealed.affinities ??= {};
+					existing.revealed.affinities[aff] = true;
+				} else if (affinityValue === false) {
+					delete existing.revealed?.affinities?.[aff];
+				}
+			}
+			if (existing.revealed.affinities && Object.keys(existing.revealed.affinities).length === 0) {
+				delete existing.revealed.affinities;
+			}
+
+			// Traits
+			const traits = Object.entries(updatedProfile.traits ?? {})
+				.filter(([, value]) => value)
+				.map(([key]) => key);
+			if (traits.length > 0) {
+				existing.revealed.traits = traits;
+			} else {
+				delete existing.revealed.traits;
+			}
+
+			await party.updateAdversary(existing);
+		}
 	}
 }

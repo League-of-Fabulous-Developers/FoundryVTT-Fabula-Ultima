@@ -1,0 +1,43 @@
+<div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="notes">
+	<section class="body-section grid grid-4col">
+		{{#if (eq actor.type "character")}}
+			<main class="grid-span-4">
+				{{>"systems/projectfu/templates/actor/partials/actor-traits.hbs"}}
+				<section class="body-section grid grid-4col">
+					<main class="grid-span-4">
+						{{!-- Bond Section --}}
+						{{>"systems/projectfu/templates/actor/partials/actor-bonds.hbs" bond=bond
+						 bondIndex=bondIndex}}
+						{{!-- Enriched Description --}}
+						<fieldset class="section-container title-fieldset desc resource-content">
+							<legend class="resource-label-m" aria-describedby="tooltip">
+								<a class="resource-inputs resource-label-m">
+									{{localize 'FU.BiographyInfo'}}
+								</a>
+							</legend>
+							<prose-mirror name="system.description" value="{{system.description}}" toggled>
+								{{{enrichedHtml.description}}}
+							</prose-mirror>
+						</fieldset>
+					</main>
+				</section>
+			</main>
+		{{else}}
+			<section class="body-section grid grid-4col">
+				<main class="grid-span-4">
+					<fieldset class="section-container title-fieldset desc resource-content">
+						<legend class="resource-label-m" aria-describedby="tooltip">
+							<a class="resource-inputs resource-label-m">
+								{{localize 'FU.BiographyInfo'}}
+							</a>
+						</legend>
+						{{!-- Enriched Description --}}
+						<prose-mirror name="system.description" value="{{system.description}}" toggled>
+							{{{enrichedHtml.description}}}
+						</prose-mirror>
+					</fieldset>
+				</main>
+			</section>
+		{{/if}}
+	</section>
+</div>

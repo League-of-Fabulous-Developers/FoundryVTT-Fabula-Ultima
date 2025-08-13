@@ -32,8 +32,17 @@ function localize(key, data = undefined) {
 	return game.i18n.localize(key);
 }
 
+/**
+ * @param {String|*} input
+ * @returns {String}
+ */
+function capitalize(input) {
+	return typeof input === 'string' ? input.charAt(0).toUpperCase() + input.slice(1).toLowerCase() : input;
+}
+
 export const StringUtils = Object.freeze({
 	kebabToPascal,
 	titleToKebab,
 	localize,
+	capitalize,
 });

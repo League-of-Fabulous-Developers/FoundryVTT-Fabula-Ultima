@@ -3,6 +3,7 @@ import { ProgressDataModel } from '../../common/progress-data-model.mjs';
 import { OptionalFeatureTypeDataModel } from '../optional-feature-type-data-model.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /** @type RenderCheckHook */
 const onRenderCheck = (sections, check, actor, item) => {
@@ -29,15 +30,19 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {ProgressDataModel} rp
  */
 export class QuirkDataModel extends OptionalFeatureDataModel {
+	static {
+		Object.defineProperty(this, 'TYPE', { value: 'quirk' });
+	}
+
 	static defineSchema() {
 		const { HTMLField, SchemaField, BooleanField, EmbeddedDataField } = foundry.data.fields;
-		return {
+		return Object.assign(super.defineSchema(), {
 			description: new HTMLField(),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
-		};
+		});
 	}
 
 	static get template() {
@@ -56,7 +61,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 		const clockDataString = await this.getClockDataString(model);
 		const resourceDataString = await this.getResourceDataString(model);
 		return {
-			enrichedDescription: await TextEditor.enrichHTML(model.description),
+			enrichedDescription: await TextEditor.implementation.enrichHTML(model.description),
 			clockDataString,
 			resourceDataString,
 		};
@@ -68,7 +73,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 		// Determine resource display status
 		const resourceDisplay =
 			hasResource?.value ?? true
-				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
+				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
 						data: rp,
 					})
 				: '';
@@ -90,7 +95,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 		// Determine clock display status
 		const clockDisplay =
 			hasClock?.value ?? true
-				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
 						arr: progressArr,
 						data: progress,
 					})

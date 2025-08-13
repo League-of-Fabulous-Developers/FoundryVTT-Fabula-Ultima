@@ -11,7 +11,9 @@
             <label class="resource-label-m">{{localize 'FU.Description'}}</label>
         </legend>
         <div>
-            {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
-        </div>
+			<prose-mirror name="system.data.description" value="{{system.data.description}}" toggled>
+				{{{enrichedHtml.description}}}
+			</prose-mirror>
+		</div>
     </fieldset>
 </div>

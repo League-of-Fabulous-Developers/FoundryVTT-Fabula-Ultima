@@ -1,21 +1,25 @@
-import { SYSTEM, FU } from './helpers/config.mjs';
+import { FU, SYSTEM } from './helpers/config.mjs';
 import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { CombatHUD } from './ui/combat-hud.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
+import { CombatHudSettings } from './settings/combatHudSettings.js';
+import { SettingsConfigurationApp } from './settings/settings-configuration-app.js';
+import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 
+/**
+ * @description All system settings
+ */
 export const SETTINGS = Object.freeze({
-	experimentalCombatHud: 'experimentalCombatHud',
+	// Meta Currency
 	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
 	metaCurrencyAutomation: 'metaCurrencyAutomation',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
 	metaCurrencyFabula: 'metaCurrencyFabula',
-	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
 	metaCurrencyUltima: 'metaCurrencyUltima',
-	optionAlwaysFavorite: 'optionAlwaysFavorite',
-	optionBehaviorRoll: 'optionBehaviorRoll',
-	optionBondMaxLength: 'optionBondMaxLength',
-	optionCampingRules: 'optionCampingRules',
+	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
+	// Combat HUD
+	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudCompact: 'optionCombatHudCompact',
 	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
@@ -39,31 +43,47 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
+	optionCombatHudWidth: 'optionCombatHudWidth',
+	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
 	optionChatMessageHideDescription: 'optionChatMessageHideDescription',
 	optionChatMessageCollapseDescription: 'optionChatMessageCollapseDescription',
 	optionChatMessageHideQuality: 'optionChatMessageHideQuality',
 	optionChatMessageHideRollDetails: 'optionChatMessageHideRollDetails',
-	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatMouseDown: 'optionCombatMouseDown',
 	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
-	optionNPCNotesTab: 'optionNPCNotesTab',
-	optionQuirks: 'optionQuirks',
-	optionRenameCurrency: 'optionRenameCurrency',
-	optionStudySavePath: 'optionStudySavePath',
+	// Behavior Rolls
+	optionBehaviorRoll: 'optionBehaviorRoll',
 	optionTargetPriority: 'optionTargetPriority',
 	optionTargetPriorityRules: 'optionTargetPriorityRules',
+	optionStudySavePath: 'optionStudySavePath',
+	// Optional Rules
+	optionCampingRules: 'optionCampingRules',
+	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
-	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	useRevisedStudyRule: 'useRevisedStudyRule',
-	activeWellsprings: 'activeWellsprings',
+	// Sheets
+	sheetOptions: 'sheetOptions',
+	showAssociatedTherioforms: 'showAssociatedTherioforms',
+	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	// Automation
+	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
+	// Homebrew
+	homebrewOptions: 'homebrewOptions',
+	optionBondMaxLength: 'optionBondMaxLength',
+	optionRenameCurrency: 'optionRenameCurrency',
+	opportunities: 'opportunities',
+	affinityResistance: 'affinityResistance',
+	affinityVulnerability: 'affinityVulnerability',
 	// Party
 	activeParty: 'optionActiveParty',
+	// STATE
+	activeWellsprings: 'activeWellsprings',
 });
 
 /**
@@ -71,12 +91,21 @@ export const SETTINGS = Object.freeze({
  * @returns {Promise<void>}
  */
 export const registerSystemSettings = async function () {
+	const fields = foundry.data.fields;
+
+	// CHAT MESSAGE OPTIONS
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
 		name: game.i18n.localize('FU.ChatMessageOptions'),
 		label: game.i18n.localize('FU.ChatMessageOptionsManage'),
 		hint: game.i18n.localize('FU.ChatMessageOptionsSettingsInstuction'),
 		icon: 'fas fa-message',
-		type: ChatMessageOptions,
+		type: createConfigurationApp('FU.ChatMessageOptions', [
+			SETTINGS.optionChatMessageHideTags,
+			SETTINGS.optionChatMessageHideDescription,
+			SETTINGS.optionChatMessageCollapseDescription,
+			SETTINGS.optionChatMessageHideQuality,
+			SETTINGS.optionChatMessageHideRollDetails,
+		]),
 		restricted: true,
 	});
 
@@ -124,12 +153,13 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
+	// OPTIONAL RULES
 	game.settings.registerMenu(SYSTEM, 'myOptionalRules', {
 		name: game.i18n.localize('FU.OptionalRules'),
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: OptionalRules,
+		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule]),
 		restricted: true,
 	});
 
@@ -140,6 +170,7 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: true,
+		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionZeroPower, {
@@ -149,6 +180,7 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: true,
+		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCampingRules, {
@@ -158,8 +190,19 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: true,
+		requiresReload: true,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
+		name: game.i18n.localize('FU.RevisedStudyRollSettings'),
+		hint: game.i18n.localize('FU.RevisedStudyRollSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	// BEHAVIOR ROLLS
 	game.settings.register(SYSTEM, SETTINGS.optionBehaviorRoll, {
 		name: game.i18n.localize('FU.BehaviorRollsSettings'),
 		hint: game.i18n.localize('FU.BehaviorRollsSettingsHint'),
@@ -175,7 +218,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.BehaviorRollsManage'),
 		hint: game.i18n.localize('FU.BehaviorRollsManageHint'),
 		icon: 'fas fa-book',
-		type: BehaviorRollsConfig,
+		type: createConfigurationApp('FU.BehaviorRolls', [SETTINGS.optionBehaviorRoll, SETTINGS.optionTargetPriority, SETTINGS.optionTargetPriorityRules]),
 		restricted: true,
 		requiresReload: true,
 	});
@@ -200,25 +243,18 @@ export const registerSystemSettings = async function () {
 
 	// Party
 	game.settings.register(SYSTEM, SETTINGS.activeParty, {
-		name: game.i18n.localize('FU.ActiveParty'),
-		hint: game.i18n.localize('FU.ActivePartyHint'),
-		icon: 'fas fa fa-users',
+		name: 'FU.ActiveParty',
+		hint: 'FU.ActivePartyHint',
+		icon: 'fa-solid fa-users',
 		config: true,
 		scope: 'world',
-		type: new foundry.data.fields.ForeignDocumentField(Actor, {
+		type: new fields.ForeignDocumentField(Actor, {
 			nullable: true,
 			blank: true,
+			idOnly: true,
+			choices: () => Object.fromEntries(game.actors.contents.filter((actor) => actor.system instanceof PartyDataModel).map((a) => [a.id, a.name])),
 		}),
 		restricted: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
-		name: game.i18n.localize('FU.CombatHudPanTokenSettings'),
-		hint: game.i18n.localize('FU.CombatHudPanTokenSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionDefaultTargetingMode, {
@@ -236,53 +272,16 @@ export const registerSystemSettings = async function () {
 		},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
-		name: game.i18n.localize('FU.RevisedStudyRollSettings'),
-		hint: game.i18n.localize('FU.RevisedStudyRollSettingsHint'),
+	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
+		name: game.i18n.localize('FU.CombatHudPanTokenSettings'),
+		hint: game.i18n.localize('FU.CombatHudPanTokenSettingsHint'),
 		scope: 'world',
 		config: true,
 		type: Boolean,
 		default: false,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionStudySavePath, {
-		name: game.i18n.localize('FU.StudySavePathSettings'),
-		hint: game.i18n.localize('FU.StudySavePathSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: String,
-		default: 'Bestiary',
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
-		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
-		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
-		scope: 'client',
-		config: true,
-		type: Boolean,
-		default: false,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
-		name: game.i18n.localize('FU.NotesTabSettings'),
-		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
-		name: game.i18n.localize('FU.BondMax'),
-		hint: game.i18n.localize('FU.BondMaxHint'),
-		scope: 'world',
-		config: true,
-		type: Number,
-		default: 6,
-		requiresReload: true,
-	});
-
+	// COMBAT HUD
 	game.settings.registerMenu(SYSTEM, 'combatHudSettings', {
 		name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
 		hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
@@ -460,15 +459,6 @@ export const registerSystemSettings = async function () {
 		default: {},
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionRenameCurrency, {
-		name: game.i18n.localize('FU.RenameCurrency'),
-		hint: game.i18n.localize('FU.RenameCurrencyHint'),
-		scope: 'world',
-		config: true,
-		type: String,
-		default: 'Zenit',
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {
 		name: 'Count used Fabula Points',
 		scope: 'world',
@@ -500,7 +490,7 @@ export const registerSystemSettings = async function () {
 		hint: game.i18n.localize('FU.ConfigMetaCurrencySettingsHint'),
 		label: game.i18n.localize('FU.ConfigMetaCurrencySettingsLabel'),
 		icon: 'fas fa-chart-line',
-		type: MetaCurrencyTrackerOptions,
+		type: createConfigurationApp('FU.ConfigMetaCurrencySettings', [SETTINGS.metaCurrencyBaseExperience, SETTINGS.metaCurrencyKeepExcessFabula, SETTINGS.metaCurrencyAutomation, SETTINGS.metaCurrencyAutomaticallyDistributeExp]),
 		restricted: true,
 	});
 
@@ -572,15 +562,6 @@ export const registerSystemSettings = async function () {
 		type: String,
 		choices: FU.combatHudResources,
 		default: 'ip',
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
-		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
-		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
-		scope: 'client',
-		config: true,
-		type: Boolean,
-		default: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTheme, {
@@ -667,7 +648,6 @@ export const registerSystemSettings = async function () {
 		config: false,
 		requiresReload: false,
 		type: WellspringDataModel,
-		default: false,
 		onChange: (newValue) =>
 			Hooks.callAll(FUHooks.HOOK_WELLSPRING_CHANGED, [
 				{
@@ -677,11 +657,59 @@ export const registerSystemSettings = async function () {
 			]),
 	});
 
+	// SHEETS
+	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
+		name: game.i18n.localize('FU.SheetOptionsTitle'),
+		label: game.i18n.localize('FU.SheetOptions'),
+		hint: game.i18n.localize('FU.SheetOptionsHint'),
+		icon: 'fas fa-book',
+		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms]),
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
+		name: game.i18n.localize('FU.NotesTabSettings'),
+		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
+		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
+		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
+		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
+		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	// AUTOMATION
+	game.settings.registerMenu(SYSTEM, SETTINGS.automationOptions, {
+		name: game.i18n.localize('FU.Automation'),
+		label: game.i18n.localize('FU.AutomationOptions'),
+		hint: game.i18n.localize('FU.AutomationHint'),
+		icon: 'fa fa-wrench',
+		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects]),
+		restricted: true,
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.optionAutomationManageEffects, {
 		name: game.i18n.localize('FU.AutomationManageEffects'),
 		hint: game.i18n.localize('FU.AutomationManageEffectsHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: true,
 	});
@@ -690,7 +718,7 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.AutomationEffectsReminder'),
 		hint: game.i18n.localize('FU.AutomationEffectsReminderHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: true,
 	});
@@ -699,250 +727,107 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.AutomationRemoveExpiredEffects'),
 		hint: game.i18n.localize('FU.AutomationRemoveExpiredEffectsHint'),
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Boolean,
 		default: false,
 	});
+
+	// HOMEBREW
+	game.settings.registerMenu(SYSTEM, SETTINGS.homebrewOptions, {
+		name: game.i18n.localize('FU.Homebrew'),
+		label: game.i18n.localize('FU.HomebrewOptions'),
+		hint: game.i18n.localize('FU.HomebrewHint'),
+		icon: 'fa fa-coffee',
+		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability, SETTINGS.opportunities]),
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionRenameCurrency, {
+		name: game.i18n.localize('FU.RenameCurrency'),
+		hint: game.i18n.localize('FU.RenameCurrencyHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'Zenit',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
+		name: game.i18n.localize('FU.BondMax'),
+		hint: game.i18n.localize('FU.BondMaxHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 6,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.affinityResistance, {
+		name: game.i18n.localize('FU.AffinityResistance'),
+		hint: game.i18n.localize('FU.AffinityResistanceHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 0.5,
+		range: {
+			min: 0.5,
+			step: 0.05,
+			max: 1,
+		},
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.affinityVulnerability, {
+		name: 'FU.AffinityVulnerable',
+		hint: 'FU.AffinityVulnerableHint',
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 2,
+		range: {
+			min: 1,
+			step: 0.05,
+			max: 2,
+		},
+		requiresReload: true,
+	});
+
+	// OPPORTUNITIES
+	// game.settings.registerMenu(SYSTEM, 'opportunitySettings', {
+	// 	name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
+	// 	hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
+	// 	label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
+	// 	scope: 'client',
+	// 	icon: 'fas fa-book',
+	// 	type: CombatHudSettings,
+	// });
+
+	game.settings.register(SYSTEM, SETTINGS.opportunities, {
+		name: 'FU.Opportunities',
+		hint: 'FU.OpportunitiesHint',
+		scope: 'world',
+		config: false,
+		type: new fields.ForeignDocumentField(RollTable, {
+			nullable: true,
+			blank: true,
+			idOnly: true,
+		}),
+	});
 };
 
-class OptionalRules extends FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: 'systems/projectfu/templates/system/settings/optional-rules.hbs',
-		});
-	}
-
-	getData() {
-		return {
-			optionQuirks: game.settings.get(SYSTEM, SETTINGS.optionQuirks),
-			optionZeroPower: game.settings.get(SYSTEM, SETTINGS.optionZeroPower),
-			optionCampingRules: game.settings.get(SYSTEM, SETTINGS.optionCampingRules),
+/**
+ * @param {string} name
+ * @param {string[]} settings
+ * @return {typeof SettingsConfigurationApp}
+ * @remarks Expects the settings to be various settings to be already registered, but hidden.
+ */
+function createConfigurationApp(name, settings) {
+	return class ConfigApp extends SettingsConfigurationApp {
+		static DEFAULT_OPTIONS = {
+			window: { title: name },
 		};
-	}
 
-	async _updateObject(event, formData) {
-		const { optionQuirks, optionZeroPower, optionCampingRules } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.optionQuirks, optionQuirks);
-		game.settings.set(SYSTEM, SETTINGS.optionZeroPower, optionZeroPower);
-		game.settings.set(SYSTEM, SETTINGS.optionCampingRules, optionCampingRules);
-	}
-}
-
-class ChatMessageOptions extends FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: 'systems/projectfu/templates/system/settings/chat-messages.hbs',
-		});
-	}
-
-	getData() {
-		return {
-			optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
-			optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
-			optionChatMessageCollapseDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageCollapseDescription),
-			optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
-			optionChatMessageHideRollDetails: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails),
-			optionChatMessageHideOptions: {
-				show: 'FU.ChatMessageShow',
-				clicked: 'FU.ChatMessageClicked',
-				hide: 'FU.ChatMessageHide',
-			},
-		};
-	}
-
-	async _updateObject(event, formData) {
-		const { optionChatMessageHideTags, optionChatMessageHideDescription, optionChatMessageCollapseDescription, optionChatMessageHideQuality, optionChatMessageHideRollDetails } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideTags, optionChatMessageHideTags);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideDescription, optionChatMessageHideDescription);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageCollapseDescription, optionChatMessageCollapseDescription);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideQuality, optionChatMessageHideQuality);
-		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideRollDetails, optionChatMessageHideRollDetails);
-	}
-}
-
-class BehaviorRollsConfig extends FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: 'systems/projectfu/templates/system/settings/behavior-rolls.hbs',
-		});
-	}
-
-	getData() {
-		return {
-			optionBehaviorRoll: game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll),
-			optionTargetPriority: game.settings.get(SYSTEM, SETTINGS.optionTargetPriority),
-			optionTargetPriorityRules: game.settings.get(SYSTEM, SETTINGS.optionTargetPriorityRules),
-		};
-	}
-
-	async _updateObject(event, formData) {
-		const { optionBehaviorRoll, optionTargetPriority, optionTargetPriorityRules } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.optionBehaviorRoll, optionBehaviorRoll);
-		game.settings.set(SYSTEM, SETTINGS.optionTargetPriority, optionTargetPriority);
-		game.settings.set(SYSTEM, SETTINGS.optionTargetPriorityRules, optionTargetPriorityRules);
-	}
-}
-
-class CombatHudSettings extends FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu'],
-			template: 'systems/projectfu/templates/system/settings/combat-hud.hbs',
-			id: 'combat-hud-settings',
-			width: 600,
-		});
-	}
-
-	activateListeners(html) {
-		html.find('.mats-icon-picker').on('change', (event) => {
-			event.preventDefault();
-			const picker = $(event.target);
-			$(picker).find('+ .mats-o').text($(picker).val());
-		});
-		return super.activateListeners(html);
-	}
-
-	getData() {
-		const materialSymbolsLabel = game.i18n.localize('FU.CombatHudTurnIconsGoogleMaterialSymbolsLabel');
-		const materialSymbolsLink = `<a href="https://fonts.google.com/icons" target="_blank">${materialSymbolsLabel}</a>`;
-		return {
-			experimentalCombatHud: game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud),
-			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
-			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
-			optionCombatHudPositionButton: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton),
-			optionCombatHudPositionButtonOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
-			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
-			optionCombatHudPositionOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
-			optionCombatHudPortrait: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait),
-			optionCombatHudPortraitOptions: { actor: 'FU.CombatHudPortraitActor', token: 'FU.CombatHudPortraitToken' },
-			optionCombatHudShowEffects: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects),
-			optionCombatHudEffectsMarqueeDuration: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration),
-			optionCombatHudEffectsMarqueeMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode),
-			optionCombatHudEffectsMarqueeModeOptions: { normal: 'FU.CombatHudEffectsMarqueeModeNormal', alternate: 'FU.CombatHudEffectsMarqueeModeAlternate' },
-			optionCombatHudReordering: game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering),
-			optionCombatHudShowOrderNumbers: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers),
-			isGM: game.user.isGM,
-			optionCombatHudTrackedResource1: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
-			optionCombatHudTrackedResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
-			optionCombatHudTrackedResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
-			optionCombatHudTrackedResource4: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
-			optionCombatHudTurnIconsActive: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive),
-			optionCombatHudTurnIconsOutOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns),
-			optionCombatHudTurnIconsTurnsLeftHidden: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden),
-			trackedResources: FU.combatHudResources,
-			optionCombatHudTheme: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme),
-			optionCombatHudThemeOptions: FU.combatHudThemes,
-			optionCombatHudShowNPCTurnsLeftMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode),
-			optionCombatHudShowNPCTurnsLeftModeOptions: {
-				never: 'FU.CombatHudShowNPCTurnsLeftModeNever',
-				always: 'FU.CombatHudShowNPCTurnsLeftModeAlways',
-				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied',
-			},
-			combatHudTurnIconsHint: new Handlebars.SafeString(game.i18n.format('FU.CombatHudTurnIconsHint', { materialSymbolsLink: materialSymbolsLink })),
-		};
-	}
-
-	async _updateObject(event, formData) {
-		if (game.user.isGM) {
-			const {
-				experimentalCombatHud,
-				optionCombatHudOpacity,
-				optionCombatHudWidth,
-				optionCombatHudPositionButton,
-				optionCombatHudPosition,
-				optionCombatHudPortrait,
-				optionCombatHudShowEffects,
-				optionCombatHudEffectsMarqueeDuration,
-				optionCombatHudEffectsMarqueeMode,
-				optionCombatHudReordering,
-				optionCombatHudShowOrderNumbers,
-				optionCombatHudTrackedResource1,
-				optionCombatHudTrackedResource2,
-				optionCombatHudTrackedResource3,
-				optionCombatHudTrackedResource4,
-				optionCombatHudTurnIconsActive,
-				optionCombatHudTurnIconsOutOfTurns,
-				optionCombatHudTurnIconsTurnsLeftHidden,
-				optionCombatHudTheme,
-				optionCombatHudShowNPCTurnsLeftMode,
-			} = foundry.utils.expandObject(formData);
-
-			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudWidth, optionCombatHudWidth);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPositionButton, optionCombatHudPositionButton);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPosition, optionCombatHudPosition);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPortrait, optionCombatHudPortrait);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowEffects, optionCombatHudShowEffects);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, optionCombatHudEffectsMarqueeDuration);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudReordering, optionCombatHudReordering);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, optionCombatHudTrackedResource1);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, optionCombatHudTrackedResource2);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, optionCombatHudTrackedResource3);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource4, optionCombatHudTrackedResource4);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTheme, optionCombatHudTheme);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, optionCombatHudShowNPCTurnsLeftMode);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, optionCombatHudTurnIconsActive);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns, optionCombatHudTurnIconsOutOfTurns);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden, optionCombatHudTurnIconsTurnsLeftHidden);
-		} else {
-			const {
-				experimentalCombatHud,
-				optionCombatHudOpacity,
-				optionCombatHudWidth,
-				optionCombatHudPositionButton,
-				optionCombatHudPosition,
-				optionCombatHudPortrait,
-				optionCombatHudShowEffects,
-				optionCombatHudEffectsMarqueeDuration,
-				optionCombatHudEffectsMarqueeMode,
-				optionCombatHudShowOrderNumbers,
-			} = foundry.utils.expandObject(formData);
-
-			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudWidth, optionCombatHudWidth);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPositionButton, optionCombatHudPositionButton);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPosition, optionCombatHudPosition);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPortrait, optionCombatHudPortrait);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowEffects, optionCombatHudShowEffects);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, optionCombatHudEffectsMarqueeDuration);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
-			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
+		constructor() {
+			super(settings);
 		}
-
-		await SettingsConfig.reloadConfirm({ world: game.user.isGM });
-	}
-}
-
-class MetaCurrencyTrackerOptions extends FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			title: game.i18n.localize('FU.ConfigMetaCurrencySettings'),
-			width: 700,
-		});
-	}
-
-	get template() {
-		return 'systems/projectfu/templates/system/settings/meta-currency.hbs';
-	}
-
-	getData(options = {}) {
-		return {
-			baseExperience: game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience),
-			keepExcessFabula: game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula),
-			automation: game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomation),
-			automaticallyDistributeExp: game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp),
-		};
-	}
-
-	async _updateObject(event, formData) {
-		const { baseExperience, keepExcessFabula, automation, automaticallyDistributeExp } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyBaseExperience, baseExperience);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula, keepExcessFabula);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyAutomation, automation);
-		game.settings.set(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp, automaticallyDistributeExp);
-	}
+	};
 }

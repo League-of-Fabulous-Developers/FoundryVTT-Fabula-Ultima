@@ -1,0 +1,163 @@
+/* ----------------------------------------- */
+/* Dialogs Styles                       
+/* ----------------------------------------- */
+.projectfu.unique-dialog {
+	.dialog-content {
+		.resource-content {
+			color: #2b4a42;
+			background-color: transparent;
+		}
+
+		label {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-medium);
+			font-family: var(--font-primary)
+		}
+
+		.resource-content.resource-label {
+			font-size: 1.125rem;
+			font-weight: bold;
+			font-family: "Yanone Kaffeesatz", sans-serif;
+			font-variant: small-caps;
+		}
+
+		.desc {
+			background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+			background-blend-mode: multiply;
+			background-repeat: repeat-y;
+			background-position: right top;
+			border-radius: 10px;
+			border: 1px solid rgba(44, 74, 66, 0.3294117647);
+			padding: 0.25rem;
+		}
+
+		.desc .inline-desc {
+			background: linear-gradient(to right, rgb(233, 243, 234), rgba(233, 243, 234, 0.5));
+			border-radius: 10px;
+			border: 1px solid #a2b29f;
+			padding: 5px;
+		}
+
+		fieldset {
+			background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+			background-blend-mode: multiply;
+			background-repeat: repeat-y;
+			background-position: right top;
+			border-radius: 10px;
+			border: 1px solid rgba(44, 74, 66, 0.3294117647);
+			padding: 5px;
+			margin-bottom: 5px;
+			justify-content: flex-start;
+		}
+
+		fieldset legend {
+			border-radius: 10px;
+			margin: 0 auto;
+			padding: 0px 15px;
+			background: #2b4a42;
+			color: #ebf7af;
+			position: relative;
+			text-align: left;
+			width: auto;
+		}
+
+		.radio-container {
+			display: -webkit-inline-box;
+			display: -ms-inline-flexbox;
+			display: inline-flex;
+			gap: 5px;
+		}
+
+		.radio-container label {
+			font-size: 16px;
+			line-height: 1.45em;
+			font-family: "PT Sans Narrow", sans-serif;
+		}
+	}
+
+	.dialog-buttons {
+		margin-top: 5px;
+	}
+
+	.dialog-group-check-cancel {
+		padding: 0.5em;
+	}
+
+	.dialog-group-check-support>* {
+		margin: 0.5em;
+	}
+
+	.dialog-group-check-support .leader {
+		font-weight: bold;
+	}
+
+	.dialog-group-check-support .bond {
+		padding: 0.25em;
+		border: 1px solid gray;
+		margin-bottom: 0.25em;
+	}
+
+	.dialog-group-check-support .bond .feeling,
+	.dialog-group-check-support .bond .bondWith {
+		font-weight: bold;
+	}
+
+	.dialog-name .dialog-image {
+		border: none;
+		padding-right: 5px;
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 30px;
+		flex: 0 0 30px;
+		position: relative;
+	}
+
+	.dialog-name .dialog-image img {
+		max-width: 100%;
+		display: block;
+		height: 24px;
+		width: 24px;
+		overflow: hidden;
+		border-radius: 5px;
+		background-image: linear-gradient(to right, #2b4a42, #3d665a);
+		-webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+		transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+		transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
+	}
+
+	.dialog-name .dialog-image:hover img {
+		-webkit-transform: scale(1.1);
+		-ms-transform: scale(1.1);
+		transform: scale(1.1);
+		-webkit-transform-origin: center center;
+		-ms-transform-origin: center center;
+		transform-origin: center center;
+		opacity: 0.75;
+	}
+
+	.dialog-name .dialog-image:hover img::before {
+		content: "";
+		position: absolute;
+		width: 24px;
+		height: 24px;
+		opacity: 0.75;
+		z-index: -1;
+	}
+
+	.active-effect-sheet .editor {
+		height: 200px;
+	}
+
+	.targets-container {
+		border: 2px dotted;
+		min-height: 70px;
+		padding: 5px;
+		width: auto;
+		overflow-x: auto;
+	}
+
+	.form-buttons button,
+	.action-button button {
+		/* background: rgba(255, 255, 240, 0.8); */
+	}
+}

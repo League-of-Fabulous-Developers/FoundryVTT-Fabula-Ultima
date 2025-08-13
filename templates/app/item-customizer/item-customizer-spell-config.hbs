@@ -1,0 +1,54 @@
+<form class="resource-content desc">
+
+	<fieldset class="desc grid grid-2col gap-5 mb-5">
+		<label>
+			{{localize "FU.IsOffensive"}}
+			<input type="checkbox" name="system.isOffensive.value" {{checked system.isOffensive.value}} />
+		</label>
+
+		<label>
+			{{localize "FU.HasDamage"}}
+			<input type="checkbox" name="system.rollInfo.damage.hasDamage.value" {{checked system.rollInfo.damage.hasDamage.value}} {{disabled (not system.isOffensive.value)}} />
+		</label>
+
+	</fieldset>
+	<fieldset class="desc grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;" {{disabled (not system.isOffensive.value)}}>
+		<label>
+			{{localize 'FU.Primary'}}
+			<select name="system.attributes.primary.value">
+				{{selectOptions FU.attributeAbbreviations selected=system.attributes.primary.value localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.Secondary'}}
+			<select name="system.attributes.secondary.value">
+				{{selectOptions FU.attributeAbbreviations selected=system.attributes.secondary.value localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize "FU.Accuracy"}}
+			<input type="number" name="system.rollInfo.accuracy.value" value="{{system.rollInfo.accuracy.value}}" />
+		</label>
+	</fieldset>
+
+	<fieldset class="grid grid-3col gap-5 mb-5" style="align-items: end; justify-content: end;" {{disabled (not (and system.isOffensive.value system.rollInfo.damage.hasDamage.value))}}>
+		<label>
+			{{localize 'FU.DamageBonus'}}
+			<input type="number" name="system.rollInfo.damage.value" value="{{system.rollInfo.damage.value}}" />
+		</label>
+
+		<label>
+			{{localize 'FU.DamageType'}}
+			<select name="system.rollInfo.damage.type.value">
+				{{selectOptions FU.damageTypes selected=system.rollInfo.damage.type.value localize=true}}
+			</select>
+		</label>
+
+		<label>
+			{{localize 'FU.HRZero'}}
+			<input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{checked system.rollInfo.useWeapon.hrZero.value}} />
+		</label>
+	</fieldset>
+</form>

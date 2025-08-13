@@ -1,0 +1,78 @@
+{{!-- Overview --}}
+<section class="tab {{tab.cssClass}}" data-tab="overview" data-group="primary">
+	<section class="party overview">
+
+		{{#unless characterCount}}
+			<div class="label centered-message">
+				{{localize 'FU.PartySheetEmpty'}}
+			</div>
+		{{/unless}}
+
+		{{#each characters}}
+		{{!-- Character Card  --}}
+			<div class="section-container plate character character-option {{this.statusClass}}"
+				 data-uuid="{{this.actor.uuid}}" data-type="character">
+
+				<div class="image-container">
+					<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="character">
+						<img class="portrait {{role}}" src="{{ this.actor.img }}"
+							 data-tooltip="{{ this.name }}" />
+					</a>
+					<div class="icon-row classes">
+						{{#each this.classes}}
+							<img class="item" src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+						{{/each}}
+					</div>
+				</div>
+
+				<div class="name">{{ this.name }}</div>
+				<div class="identity">{{this.identity }}</div>
+
+				{{#each this.resources}}
+					<div class="bar {{this.name}}">
+						<i class="icon {{this.icon}}" data-tooltip="{{this.label}}" style="width: 18px;"></i>
+						<div class="track">
+							<div class="fill" style="width: {{this.percentage}}%;"></div>
+						</div>
+						<span class="label" style="width: 40px; font-weight: 400;">{{this.current}}
+							/{{this.max}}</span>
+					</div>
+				{{/each}}
+
+				<div class="resources">
+					<i class="fuk fu-zenit icon-aff" data-tooltip="{{localize @root.currency}}"></i>
+					{{this.zenit}}
+
+					<i class="fuk fu-fp icon-aff" data-tooltip="{{localize 'FU.FabulaPoints'}}"></i>
+					{{this.fp}}
+				</div>
+
+
+			</div>
+		{{/each}}
+
+		{{#each companions}}
+		{{!-- Companion Card --}}
+			<div class="section-container plate companion character-option" data-uuid="{{this.actor.uuid}}"
+				 data-type="companion">
+
+				<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="companion">
+					<img class="portrait damage" src="{{ this.actor.img }}" data-tooltip="{{ this.name }}" />
+				</a>
+
+				<div class="name">{{ this.name }}</div>
+				<div class="identity"><span>{{{this.identity }}}</span></div>
+
+				{{#each this.resources}}
+					<div class="bar {{this.name}}">
+						<i class="icon {{this.icon}}" data-tooltip="{{this.label}}" style="width: 18px;"></i>
+						<div class="track">
+							<div class="fill" style="width: {{this.percentage}}%;"></div>
+						</div>
+						<span class="label">{{this.current}}/{{this.max}}</span>
+					</div>
+				{{/each}}
+			</div>
+		{{/each}}
+	</section>
+</section>

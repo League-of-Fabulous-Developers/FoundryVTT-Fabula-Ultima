@@ -43,7 +43,7 @@
         {
           "key": "system.bonuses.damage.all",
           "mode": 2,
-          "value": "&sl('heart-in-the-engine')*5",
+          "value": "&sl('heart-in-the-engine')*2",
           "priority": null
         }
       ],

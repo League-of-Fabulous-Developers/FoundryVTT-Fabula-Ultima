@@ -1,6 +1,7 @@
 import { FU } from './config.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { Effects } from '../pipelines/effects.mjs';
+import FUApplication from '../ui/application.mjs';
 
 /*
 possible changes from official effects:
@@ -175,7 +176,7 @@ const SUPPORTED_CHANGE_TYPES = {
 	},
 };
 
-class TempActiveEffectConfig extends ActiveEffectConfig {
+class TempActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
 	async _updateObject(event, formData) {
 		this.object.updateSource(formData);
 		return this.render();
@@ -189,39 +190,59 @@ class TempActiveEffectConfig extends ActiveEffectConfig {
 	}
 }
 
-export class InlineEffectConfiguration extends FormApplication {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'sheet', 'projectfu', 'unique-dialog'],
+export class InlineEffectConfiguration extends FUApplication {
+	/** @type ApplicationConfiguration */
+	static DEFAULT_OPTIONS = {
+		classes: ['form', 'sheet', 'projectfu', 'unique-dialog'],
+		window: {
+			title: 'FU.InlineEffectConfig',
 			resizable: true,
+		},
+		position: {
 			height: 'auto',
+		},
+		form: {
 			closeOnSubmit: false,
-			editable: true,
-			sheetConfig: false,
 			submitOnChange: true,
-			submitOnClose: true,
-		});
-	}
+			handler: InlineEffectConfiguration.#onFormSubmit,
+		},
+		actions: {
+			editImage: InlineEffectConfiguration.#onEditImage,
+			add: InlineEffectConfiguration.#onAdd,
+			delete: InlineEffectConfiguration.#onDelete,
+			finish: InlineEffectConfiguration.#onFinish,
+		},
+	};
+
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/app/inline-effect-config.hbs',
+		},
+	};
 
 	#defaultIcon = '/icons/svg/aura.svg';
 	#defaultName = game.i18n.localize('FU.NewEffect');
 
+	#object;
 	#state;
 	#dispatch;
 
 	constructor(state, dispatch) {
-		super({ type: 'status' }, { title: game.i18n.localize('FU.InlineEffectConfig') });
+		super();
+		this.#object = { type: 'status' };
 		this.#state = state;
 		this.#dispatch = dispatch;
 	}
 
-	get template() {
-		return 'systems/projectfu/templates/app/inline-effect-config.hbs';
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
+		Object.assign(context, this.getData());
+		return context;
 	}
 
 	getData(options = {}) {
 		return {
-			data: this.object,
+			data: this.#object,
 			effectTypes: {
 				status: 'FU.InlineEffectTypeStatus',
 				boonOrBane: 'FU.InlineEffectTypeBoonOrBane',
@@ -236,78 +257,71 @@ export class InlineEffectConfiguration extends FormApplication {
 		};
 	}
 
+	static #onFormSubmit(event, form, formData) {
+		this._updateObject(event, formData);
+	}
+
 	async _updateObject(event, formData) {
-		formData = foundry.utils.expandObject(formData);
-		if (formData.type === 'guided' && formData.type !== this.object.type) {
+		formData = foundry.utils.expandObject(Object.fromEntries(formData.entries()));
+		if (formData.type === 'guided' && formData.type !== this.#object.type) {
 			formData.guided ??= { changes: [{ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) }] };
 		}
-		this.object = formData;
-		if (this.object?.guided?.changes) {
-			this.object.guided.changes = Array.from(Object.values(this.object.guided.changes));
+		this.#object = formData;
+		if (this.#object?.guided?.changes) {
+			this.#object.guided.changes = Array.from(Object.values(this.#object.guided.changes));
 		}
 		this.render();
 	}
 
-	activateListeners(html) {
-		html.find('img[data-edit]').on('click', this.#onEditImage.bind(this));
-		html.find('.change-controls .change-control[data-action]').click(this.#onChangeControl.bind(this));
-		html.find('button[data-action=finish]').click(this.#onFinish.bind(this));
-		return super.activateListeners(html);
-	}
-
-	#onEditImage(event) {
-		const attr = event.currentTarget.dataset.edit;
-		const current = foundry.utils.getProperty(this.object, attr);
-		const fp = new FilePicker({
-			current,
+	static #onEditImage(event) {
+		const fp = new foundry.applications.apps.FilePicker({
+			current: this.#object?.guided?.icon,
 			type: 'image',
 			redirectToRoot: [this.#defaultIcon],
 			callback: (path) => {
-				event.currentTarget.src = path;
-				if (this.options.submitOnChange) {
-					return this._onSubmit(event);
-				}
+				this.#object.guided.icon = path;
+				this.render();
 			},
-			top: this.position.top + 40,
-			left: this.position.left + 10,
+			position: {
+				top: this.position.top + 40,
+				left: this.position.left + 10,
+			},
 		});
 		return fp.browse();
 	}
 
-	#onChangeControl(event) {
-		const action = event.currentTarget.dataset.action;
-		switch (action) {
-			case 'add': {
-				const idx = this.object?.guided?.changes?.length ?? 0;
-				return this.submit({
-					updateData: {
-						[`guided.changes.${idx}`]: { type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) },
-					},
-				});
-			}
-			case 'delete':
-				event.currentTarget.closest('.change').remove();
-				return this.submit().then(() => this.render());
-		}
+	static #onAdd() {
+		const idx = this.#object?.guided?.changes?.length ?? 0;
+		return this.submit({
+			updateData: {
+				[`guided.changes.${idx}`]: { type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) },
+			},
+		});
 	}
 
-	#onFinish(event) {
-		this.close({ finish: true });
+	static #onDelete(event) {
+		event.currentTarget.closest('.change').remove();
+		return this.submit().then(() => this.render());
+	}
+
+	static async #onFinish() {
+		await this.submit();
+		return this.close({ finish: true });
 	}
 
 	async close(options = {}) {
 		await super.close(options);
 		if (options.finish) {
-			if (['status', 'boonOrBane'].includes(this.object.type)) {
-				this.#dispatch(this.#state.tr.insertText(` @EFFECT[${this.object.status}] `));
+			if (['status', 'boonOrBane'].includes(this.#object.type)) {
+				this.#dispatch(this.#state.tr.insertText(` @EFFECT[${this.#object.status}] `));
 			}
-			if (this.object.type === 'guided') {
-				const effectData = { ...this.object.guided };
+			if (this.#object.type === 'guided') {
+				const effectData = { ...this.#object.guided };
 				effectData.changes = (effectData.changes ?? []).flatMap((value) => SUPPORTED_CHANGE_TYPES[value.type].toChange(value));
 				const encodedEffect = InlineHelper.toBase64(effectData);
 				this.#dispatch(this.#state.tr.insertText(` @EFFECT[${encodedEffect}] `));
 			}
-			if (this.object.type === 'custom') {
+			if (this.#object.type === 'custom') {
 				const cls = getDocumentClass('ActiveEffect');
 				const tempActor = await Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true });
 				const tempEffect = await cls.create(

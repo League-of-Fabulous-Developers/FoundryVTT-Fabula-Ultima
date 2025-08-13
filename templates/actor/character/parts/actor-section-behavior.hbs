@@ -1,0 +1,72 @@
+<div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="behavior">
+  <section class="desc">
+      <header class="items-main-header">
+      <span class="items-main spin2win rollable" data-roll-type="behavior" data-action="roll">
+        <i class="fas fa-dice-d20 ra-1x"></i>
+        <label class="items-label">{{ localize "FU.Behavior" }}</label>
+      </span>
+      </header>
+
+      <ol class="items-list">
+          <li class="item flexrow items-header">
+
+              <div class="item-name">{{ localize "FU.BehaviorActive" }}</div>
+              <div class="item-sm">{{ localize "FU.BehaviorWeight" }}</div>
+              <div class="item-m end">
+                  <a class="item-control item-create" aria-describedby="tooltip"
+                    data-tooltip="{{ localize 'FU.BehaviorAdd' }}" data-type="behavior">
+                      <i class="fas fa-plus"></i>{{ localize 'FU.Add' }}
+                  </a>
+              </div>
+          </li>
+
+          {{#each items as |item id|}}
+              {{#if (and item.system.isBehavior.value)}}
+                  <li class="item" data-item-id="{{ item._id }}">
+                      <div class="flexrow">
+                          {{!-- Item Name--}}
+                          {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                          <div class="item-sm">
+                              <span>{{ item.system.weight.value }}</span>
+                          </div>
+                          {{!-- Item Control--}}
+                          {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                      </div>
+					  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+                  </li>
+              {{/if}}
+          {{/each}}
+
+          <ol class="items-list">
+              <li class="item flexrow items-header">
+                  <div class="item-name">{{ localize "FU.BehaviorInactive" }}</div>
+                  <div class="item-sm">{{ localize "FU.BehaviorWeight" }}</div>
+                  <div class="item-m end">
+                      <a class="item-control item-create" aria-describedby="tooltip"
+                        data-tooltip="{{ localize 'FU.BehaviorAdd' }}" data-type="behavior">
+                          <i class="fas fa-plus"></i>{{ localize 'FU.Add' }}
+                      </a>
+                  </div>
+              </li>
+
+              {{#each behaviors as |item id|}}
+                  {{#if (not item.system.isBehavior.value)}}
+                      <li class="item" data-item-id="{{ item._id }}">
+                          <div class="flexrow">
+                              {{!-- Item Name--}}
+                              {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                              <div class="item-sm">
+                                  <span>{{ item.system.weight.value }}</span>
+                              </div>
+                              {{!-- Item Control--}}
+                              {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+
+                          </div>
+						  {{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+                      </li>
+                  {{/if}}
+              {{/each}}
+          </ol>
+      </ol>
+  </section>
+</div>

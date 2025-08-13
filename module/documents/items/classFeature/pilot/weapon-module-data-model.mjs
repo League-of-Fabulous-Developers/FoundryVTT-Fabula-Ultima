@@ -1,11 +1,12 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU, SYSTEM } from '../../../../helpers/config.mjs';
 import { SETTINGS } from '../../../../settings.js';
-import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { Checks } from '../../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const weaponModuleTypes = {
 	...FU.weaponTypes,
@@ -152,14 +153,10 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 	 * @override
 	 */
 	static roll(model, item, hrZero) {
-		WeaponModuleDataModel.#rollChecksV2(model, item, hrZero);
-	}
-
-	static #rollChecksV2(model, item, hrZero) {
 		if (model.isShield) {
-			ChecksV2.display(item.actor, item);
+			Checks.display(item.actor, item);
 		} else {
-			ChecksV2.accuracyCheck(item.actor, item, CheckConfiguration.initHrZero(hrZero));
+			Checks.accuracyCheck(item.actor, item, CheckConfiguration.initHrZero(hrZero));
 		}
 	}
 

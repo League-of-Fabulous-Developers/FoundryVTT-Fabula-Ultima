@@ -1,3 +1,6 @@
+/* ----------------------------------------- */
+/* Resources Styles                       
+/* ----------------------------------------- */
 /* Non-breaking space after icon */
 .icon::after {
 	content: '\00a0';
@@ -275,7 +278,7 @@
 		}
 
 		input {
-			height: 100%;
+			width: min-content;
 		}
 
 		&::before,

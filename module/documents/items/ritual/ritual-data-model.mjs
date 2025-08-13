@@ -1,13 +1,15 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { RitualMigrations } from './ritual-migrations.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
  * @type {PrepareCheckHook}
@@ -100,7 +102,7 @@ const POTENCIES = {
  * @property {string} source.value
  * @property {boolean} hasRoll.value
  */
-export class RitualDataModel extends foundry.abstract.TypeDataModel {
+export class RitualDataModel extends FUStandardItemDataModel {
 	static {
 		deprecationNotice(this, 'class.value');
 		deprecationNotice(this, 'useWeapon.accuracy.value');
@@ -124,26 +126,20 @@ export class RitualDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			attributes: new EmbeddedDataField(ItemAttributesDataModelV2, { initial: { primary: 'ins', secondary: 'wlp' } }),
 			modifier: new NumberField({ initial: 0, integer: true, nullable: false }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: Object.keys(FU.potency) }) }),
 			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: Object.keys(FU.area) }) }),
-			source: new SchemaField({ value: new StringField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
-		};
+		});
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
 		RitualMigrations.run(source);
 		return source;
 	}
@@ -167,9 +163,13 @@ export class RitualDataModel extends foundry.abstract.TypeDataModel {
 
 	async roll() {
 		if (this.hasRoll.value) {
-			return ChecksV2.magicCheck(this.parent.actor, this.parent);
+			return Checks.magicCheck(this.parent.actor, this.parent);
 		} else {
-			return ChecksV2.display(this.parent.actor, this.parent);
+			return Checks.display(this.parent.actor, this.parent);
 		}
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
 	}
 }

@@ -1,13 +1,13 @@
 <div class="flexrow gap-05 invocations-selection">
-    {{#each wellsprings as |wellspring|}}
-        <fieldset class="desc title-fieldset resource-content" data-element="{{@key}}">
-            <legend class="resource-label-m"><i class="fun {{wellspring.icon}}"></i>{{localize wellspring.name}}</legend>
-            {{#each wellspring.invocations as |invocation|}}
-                <fieldset class="desc title-fieldset resource-content">
-                    <legend class="resource-label-sm"><a data-invocation="{{@key}}">{{invocation.name}}</a></legend>
-                    <div>{{{invocation.description}}}</div>
-                </fieldset>
-            {{/each}}
-        </fieldset>
-    {{/each}}
+  {{#each wellsprings as |wellspring springId|}}
+      <fieldset class="desc title-fieldset resource-content" data-element="{{@key}}">
+          <legend class="resource-label-m"><i class="fun {{wellspring.icon}}"></i>{{localize wellspring.name}}</legend>
+          {{#each wellspring.invocations as |invocation|}}
+              <fieldset class="desc title-fieldset resource-content">
+                  <legend class="resource-label-sm"><a data-invocation="{{@key}}" data-action="useInvocation" data-element="{{springId}}">{{invocation.name}}</a></legend>
+                  <div>{{{invocation.description}}}</div>
+              </fieldset>
+          {{/each}}
+      </fieldset>
+  {{/each}}
 </div>

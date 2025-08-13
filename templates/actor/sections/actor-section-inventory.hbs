@@ -51,11 +51,7 @@
 					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" actor=actor item=item}}
 				</div>
 				<span class="item-quality">{{ item.quality }}</span>
-				<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-					{{#if item.enrichedHtml.description}}
-						{{{item.enrichedHtml.description}}}
-					{{/if}}
-				</div>
+				{{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
 			</li>
 		{{/each}}
 	</ol>

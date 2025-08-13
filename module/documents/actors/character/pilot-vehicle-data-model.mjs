@@ -1,4 +1,3 @@
-import { LocallyEmbeddedDocumentField } from '../../items/classFeature/locally-embedded-document-field.mjs';
 import { FUItem } from '../../items/item.mjs';
 import { FUActor } from '../actor.mjs';
 import { ClassFeatureTypeDataModel } from '../../items/classFeature/class-feature-type-data-model.mjs';
@@ -6,6 +5,7 @@ import { VehicleDataModel } from '../../items/classFeature/pilot/vehicle-data-mo
 import { WeaponModuleDataModel } from '../../items/classFeature/pilot/weapon-module-data-model.mjs';
 import { ArmorModuleDataModel } from '../../items/classFeature/pilot/armor-module-data-model.mjs';
 import { SupportModuleDataModel } from '../../items/classFeature/pilot/support-module-data-model.mjs';
+import { LocallyEmbeddedDocumentField } from '../../../fields/locally-embedded-document-field.mjs';
 
 /**
  * @property {FUItem | null} vehicle

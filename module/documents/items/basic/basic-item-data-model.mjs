@@ -2,9 +2,11 @@ import { FU } from '../../../helpers/config.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUStandardItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
  * @param {CheckV2} check
@@ -75,16 +77,10 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
-export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
+export class BasicItemDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
@@ -95,13 +91,12 @@ export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quality: new SchemaField({ value: new StringField() }),
-			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
 					hrZero: new SchemaField({ value: new BooleanField() }),
 				}),
 			}),
-		};
+		});
 	}
 
 	/**
@@ -109,6 +104,13 @@ export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		return ChecksV2.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+	}
+
+	/**
+	 * @override
+	 */
+	get attributePartials() {
+		return [ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage];
 	}
 }

@@ -77,7 +77,7 @@ async function process(request, getUpdatesForActor) {
  * @returns {FUActor[]}
  */
 function getSingleTarget(event) {
-	const dataId = $(event.target).closest('a').data('id');
+	const dataId = event.target.closest('a')?.dataset?.id;
 	const actor = fromUuidSync(dataId);
 	if (!actor) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
@@ -88,48 +88,47 @@ function getSingleTarget(event) {
 
 /**
  * @param {ChatMessage} message
- * @param {jQuery} jQuery
- * @param {String} actionName The name of the data-action in the html, e.g: `a[data-action=...]`
- * @param {Function<Object, Promise>} onClick
- * @returns {Promise<*>}
+ * @param {HTMLElement} html
+ * @param {String} actionName - The name of the data-action, e.g: "roll"
+ * @param {(data: Object) => Promise<void>} onClick
  */
-async function handleClick(message, jQuery, actionName, onClick) {
-	const dataAction = jQuery.find(`a[data-action=${actionName}]`);
-	if (dataAction) {
-		dataAction.click(async (event) => {
+function handleClick(message, html, actionName, onClick) {
+	html.querySelectorAll(`a[data-action="${actionName}"]`).forEach((element) => {
+		element.addEventListener('click', async (event) => {
 			event.preventDefault();
-			await onClick(dataAction.data());
+			await onClick({ ...element.dataset });
 		});
-	}
+	});
 }
 
 /**
  * @param {ChatMessage} message
- * @param {jQuery} jQuery
- * @param {String} actionName The name of the data-action in the html, e.g: `a[data-action=...]`
- * @param {Function<Object, Promise} action
- * @returns {Promise<*>}
+ * @param {HTMLElement} html
+ * @param {String} actionName
+ * @param {(data: Object) => Promise<void>} action
  */
-async function handleClickRevert(message, jQuery, actionName, action) {
-	const revert = jQuery.find(`a[data-action=${actionName}]`);
-	if (revert) {
-		if (message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName)) {
-			jQuery.find('.message-content').addClass('strikethrough');
-			revert.addClass('action-disabled');
+async function handleClickRevert(message, html, actionName, action) {
+	html.querySelectorAll(`a[data-action="${actionName}"]`).forEach((element) => {
+		const messageContent = html.querySelector('.message-content');
+		const reverted = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName);
+
+		if (reverted) {
+			messageContent?.classList.add('strikethrough');
+			element.classList.add('action-disabled');
 		} else {
-			revert.click(async (event) => {
+			element.addEventListener('click', async (event) => {
 				event.preventDefault();
 				try {
-					await action(revert.data());
+					await action({ ...element.dataset });
 					const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
 					revertedActions.push(actionName);
-					message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
+					await message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
 				} catch (ex) {
 					console.debug(ex);
 				}
 			});
 		}
-	}
+	});
 }
 
 /**

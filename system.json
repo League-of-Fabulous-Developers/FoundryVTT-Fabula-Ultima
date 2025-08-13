@@ -4,9 +4,9 @@
 	"description": "An Unofficial Fabula Ultima system for FoundryVTT!",
 	"version": "#{VERSION}#",
 	"compatibility": {
-		"minimum": "12",
-		"verified": "12",
-		"maximum": "12"
+		"minimum": "13",
+		"verified": "13",
+		"maximum": "13"
 	},
 	"authors": [
 		{
@@ -31,7 +31,7 @@
 	],
 	"scripts": [],
 	"esmodules": ["module/projectfu.mjs"],
-	"styles": ["styles/css/projectfu.css", "styles/projectfu.css"],
+	"styles": ["styles/projectfu.css"],
 	"packs": [
 		{
 			"label": "NPCs",
@@ -290,14 +290,7 @@
 			"path": "lang/cn.json"
 		}
 	],
-	"relationships": {
-		"requires": [
-			{
-				"id": "socketlib",
-				"type": "module"
-			}
-		]
-	},
+	"relationships": {},
 	"documentTypes": {
 		"Actor": {
 			"character": {

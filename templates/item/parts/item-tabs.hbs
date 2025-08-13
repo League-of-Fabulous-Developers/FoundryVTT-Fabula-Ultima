@@ -1,0 +1,65 @@
+<div class="grid grid-3col w-100">
+
+	{{#if system.schema.fields.subtype}}
+	{{!-- Sub Type --}}
+		<span id="subtype-section" class="resource-content flexrow flex-group-center desc">
+            <label class="resource-label-sm" for="item.type">
+				<i class="fas fa-chart-simple icon"></i>
+				{{localize 'FU.SubType'}}
+			</label>
+			{{#if (eq item.type "heroic")}}
+				<span>
+                <select name="system.subtype.value" data-dtype="String"
+						class="resource-inputs select-dropdown-l">
+					{{selectOptions heroicType selected=system.subtype.value sort=true localize=true}}
+				</select>
+            </span>
+			{{else if (eq item.type "miscAbility")}}
+				<span>
+                <select name="system.subtype.value" data-dtype="String"
+						class="resource-inputs select-dropdown-l">
+					{{selectOptions miscCategories selected=system.subtype.value sort=true localize=true}}
+				</select>
+            </span>
+			{{else if (eq item.type "consumable")}}
+				<span>
+                <select name="system.subtype.value" data-dtype="String"
+						class="resource-inputs select-dropdown-l">
+					{{selectOptions consumableType selected=system.subtype.value sort=true localize=true}}
+					</select>
+				</span>
+			{{else if (eq item.type "treasure")}}
+				<span>
+                <select name="system.subtype.value" data-dtype="String"
+						class="resource-inputs select-dropdown-l">
+					{{selectOptions treasureType selected=system.subtype.value sort=true localize=true}}
+				</select>
+            </span>
+			{{/if}}
+	</span>
+	{{else if (or (eq item.type "classFeature") (eq item.type "optionalFeature"))}}
+		<span id="subtype-section" class="resource-content flexrow flex-group-center desc">
+		<span>
+			<label class="resource-label-m">{{localize subtypeLocalizationKey}}</label>
+			<a data-action="changeSubtype">
+				<i class="fa fa-pencil-square"></i>
+			</a>
+		</span>
+	</span>
+	{{/if}}
+
+
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs desc flexrow grid-span-2 gap-5"
+		 style="align-self: stretch;"
+		 aria-roledescription="{{localize "SHEETS.FormNavLabel"}}">
+		{{#each tabs as |tab|}}
+			<a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+			   class="item rollable tab button-style{{#if tab.cssClass}} {{tab.cssClass}}{{/if}}"
+			   {{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+				{{#if tab.icon}}<i class="{{tab.icon}}" inert></i>{{/if}}
+				{{#if tab.label}}<span>{{localize tab.label}}</span>{{/if}}
+			</a>
+		{{/each}}
+	</nav>
+</div>

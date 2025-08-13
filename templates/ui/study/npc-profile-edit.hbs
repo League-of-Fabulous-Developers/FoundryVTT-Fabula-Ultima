@@ -3,26 +3,42 @@
 	<fieldset>
 		<legend>General</legend>
 		<div class="form-group">
-			<label for="study">Study Result</label>
-			<input type="range" name="study" value="{{existing.study}}" min="0" max="{{maxStudyValue}}" step="1"
-				   oninput="document.getElementById('study-value').textContent = this.value">
-			<span style="text-align: center;" id="study-value">{{existing.study}}</span>
+			<label for="study">
+				Study Result: <span id="study-value">{{existing.study}}</span>
+			</label>
+			<div style="padding-bottom: 0.5em">
+				<input id="study" type="range" name="study" value="{{existing.study}}" min="0" max="{{studyDifficulties.[2]}}" step="1" list="studyDifficulties">
+				<datalist id="studyDifficulties" >
+					<option value="0" label="0"></option>
+					{{#each studyDifficulties}}
+						<option value="{{this}}" label="{{this}}"></option>
+					{{/each}}
+				</datalist>
+				<div style="position: relative; margin-top: -1em; width: 100%;">
+					<span style="position: absolute; left: 0">0</span>
+					{{#with studyDifficulties.[2] as | max |}}
+						{{#each @root.studyDifficulties}}
+							<span style="position: absolute; left: calc((100% - {{#if (gte this 10)}}15px{{else}}9px{{/if}}) * ({{this}}/{{max}}))">{{this}}</span>
+						{{/each}}
+					{{/with}}
+				</div>
+			</div>
 		</div>
 	</fieldset>
 
-	<fieldset>
+	<fieldset style="gap: 0">
 		<legend>{{localize 'FU.Affinities'}}</legend>
 		{{#each affinities}}
 			<label>
 				<input type="checkbox"
 					   name="affinities.{{this}}" {{#if (lookup ../existing.revealed.affinities this)}}checked{{/if}} />
 				{{this}} ({{localize (get ../affinityMap this)}})
-			</label><br>
+			</label>
 		{{/each}}
 	</fieldset>
 
 	{{#if traits}}
-		<fieldset>
+		<fieldset style="gap: 0">
 			<legend>{{localize 'FU.Traits'}}</legend>
 			{{#each traits}}
 				<label>

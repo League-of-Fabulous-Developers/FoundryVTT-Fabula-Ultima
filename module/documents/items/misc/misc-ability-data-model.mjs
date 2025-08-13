@@ -6,13 +6,15 @@ import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
 import { UseWeaponDataModelV2 } from '../common/use-weapon-data-model-v2.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
+import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof MiscAbilityDataModel) {
@@ -99,7 +101,7 @@ const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
+export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 	static {
 		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
 		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
@@ -117,14 +119,8 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			opportunity: new StringField(),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModelV2, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModelV2, {
@@ -142,15 +138,15 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
-			source: new SchemaField({ value: new StringField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 			traits: new SetField(new StringField()),
-		};
+		});
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
 		MiscAbilityMigrations.run(source);
 		return source;
 	}
@@ -178,9 +174,9 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
 			if (this.useWeapon.accuracy) {
-				return ChecksV2.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
+				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
 			} else {
-				return ChecksV2.attributeCheck(
+				return Checks.attributeCheck(
 					this.parent.actor,
 					{
 						primary: this.attributes.primary,
@@ -191,7 +187,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 				);
 			}
 		}
-		return ChecksV2.display(this.parent.actor, this.parent);
+		return Checks.display(this.parent.actor, this.parent);
 	}
 
 	/**
@@ -209,7 +205,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			if (weapon == null) {
 				throw new Error('no selection');
 			}
-			const { check: weaponCheck, error } = await ChecksV2.prepareCheckDryRun('accuracy', actor, weapon);
+			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
 			if (error) {
 				throw error;
 			}
@@ -270,5 +266,19 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			});
 			check.additionalData[ABILITY_USED_WEAPON] = this.parent.uuid;
 		};
+	}
+
+	get attributePartials() {
+		return [
+			ItemPartialTemplates.controls,
+			ItemPartialTemplates.opportunityField,
+			ItemPartialTemplates.actionCost,
+			ItemPartialTemplates.accuracy,
+			ItemPartialTemplates.damage,
+			ItemPartialTemplates.targeting,
+			ItemPartialTemplates.resourcePoints,
+			ItemPartialTemplates.behaviorField,
+			ItemPartialTemplates.progressClock,
+		];
 	}
 }

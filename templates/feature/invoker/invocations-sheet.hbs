@@ -18,14 +18,16 @@
                     </label>
                 </div>
                 <div>
-                    {{editor enrichedHtml.description target='system.data.description' engine='prosemirror'
-                             button=true}}
-                </div>
+					<prose-mirror name="system.data.description" value="{{system.data.description}}" toggled>
+						{{{enrichedHtml.description}}}
+					</prose-mirror>
+				</div>
             </fieldset>
         </div>
         {{#each additionalData.wellsprings}}
             {{#with (lookup @root.system.data @key)}}
                 <div class='tab' data-group='invocationsTabs' data-tab='{{@key}}'>
+					<!-- Basic -->
                     <fieldset class="desc title-fieldset resource-content">
                         <legend class="resource-label-m">{{localize ../name}}</legend>
                         <fieldset class="desc title-fieldset resource-content">
@@ -37,11 +39,12 @@
                                 </label>
                             </div>
                             <div class="invocation-description">
-                                {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "basic") "description")
-                                         target=(concat "system.data." @key ".basic.description") engine='prosemirror'
-                                         button=true}}
+								<prose-mirror name="system.data.{{@key}}.basic.description" value="{{basic.description}}" toggled>
+									{{{lookup (lookup (lookup @root.enrichedHtml @key) "basic") "description"}}}
+								</prose-mirror>
                             </div>
                         </fieldset>
+						<!-- Advanced -->
                         {{#unless (eq @root.system.data.level "basic")}}
                             <fieldset class="desc title-fieldset resource-content">
                                 <legend class="resource-label-sm">{{localize
@@ -54,12 +57,12 @@
                                     </label>
                                 </div>
                                 <div class="invocation-description">
-                                    {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "advanced") "description")
-                                             target=(concat "system.data." @key ".advanced.description")
-                                             engine='prosemirror'
-                                             button=true}}
+									<prose-mirror name="system.data.{{@key}}.advanced.description" value="{{advanced.description}}" toggled>
+										{{{lookup (lookup (lookup @root.enrichedHtml @key) "advanced") "description"}}}
+									</prose-mirror>
                                 </div>
                             </fieldset>
+							<!-- Superior -->
                             {{#unless (eq @root.system.data.level "advanced")}}
                                 <fieldset class="desc title-fieldset resource-content">
                                     <legend class="resource-label-sm">{{localize
@@ -72,10 +75,9 @@
                                         </label>
                                     </div>
                                     <div class="invocation-description">
-                                        {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "superior1") "description")
-                                                 target=(concat "system.data." @key ".superior1.description")
-                                                 engine='prosemirror'
-                                                 button=true}}
+										<prose-mirror name="system.data.{{@key}}.superior1.description" value="{{superior1.description}}" toggled>
+											{{{lookup (lookup (lookup @root.enrichedHtml @key) "superior1") "description"}}}
+										</prose-mirror>
                                     </div>
                                     <hr>
                                     <div>
@@ -86,10 +88,9 @@
                                         </label>
                                     </div>
                                     <div class="invocation-description">
-                                        {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "superior2") "description")
-                                                 target=(concat "system.data." @key ".superior2.description")
-                                                 engine='prosemirror'
-                                                 button=true}}
+										<prose-mirror name="system.data.{{@key}}.superior2.description" value="{{superior2.description}}" toggled>
+											{{{lookup (lookup (lookup @root.enrichedHtml @key) "superior2") "description"}}}
+										</prose-mirror>
                                     </div>
                                 </fieldset>
                             {{/unless}}

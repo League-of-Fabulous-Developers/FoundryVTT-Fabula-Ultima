@@ -1,20 +1,28 @@
+import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
+import FUApplication from '../../../../ui/application.mjs';
 import { WELLSPRINGS } from './invoker-integration.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
-export class InvocationSelectionApplication extends Application {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'projectfu', 'invocations-selection-app'],
+export class InvocationSelectionApplication extends FUApplication {
+	static DEFAULT_OPTIONS = {
+		classes: ['form', 'invocations-selection'],
+		window: {
+			title: 'FU.ClassFeatureInvocationsSelectDialogTitle',
+		},
+		position: {
 			width: 350,
 			height: 'auto',
-			closeOnSubmit: false,
-			editable: true,
-			sheetConfig: false,
-			submitOnChange: true,
-			submitOnClose: true,
-			minimizable: false,
-			title: 'FU.ClassFeatureInvocationsSelectDialogTitle',
-		});
-	}
+		},
+		actions: {
+			useInvocation: InvocationSelectionApplication.UseInvocation,
+		},
+	};
+
+	static PARTS = {
+		app: {
+			template: systemTemplatePath('feature/invoker/invocations-selection-application'),
+		},
+	};
 
 	#model;
 
@@ -25,11 +33,7 @@ export class InvocationSelectionApplication extends Application {
 		return this.#model.app;
 	}
 
-	get template() {
-		return 'systems/projectfu/templates/feature/invoker/invocations-selection-application.hbs';
-	}
-
-	async getData(options = {}) {
+	async _prepareContext(options = {}) {
 		const activeWellsprings = Object.entries(this.#model.actor.wellspringManager.activeWellsprings)
 			.filter(([, value]) => value)
 			.reduce((agg, [key, value]) => (agg[key] = value) && agg, {});
@@ -61,15 +65,25 @@ export class InvocationSelectionApplication extends Application {
 		return { wellsprings: data };
 	}
 
-	render(force = false, options = {}) {
-		const activeWellsprings = Object.values(this.#model.actor.wellspringManager.activeWellsprings).filter((value) => value).length;
-		return super.render(force, { width: InvocationSelectionApplication.defaultOptions.width * activeWellsprings, ...options });
+	static UseInvocation(event, elem) {
+		this.close({
+			use: {
+				element: elem.dataset.element,
+				invocation: elem.dataset.invocation,
+			},
+		});
 	}
 
-	activateListeners(html) {
-		super.activateListeners(html);
+	_onRender(context, options) {
+		// Set width
+		const activeWellsprings = Object.values(this.#model.actor.wellspringManager.activeWellsprings).filter((value) => value).length;
+		foundry.utils.mergeObject(options, {
+			position: {
+				width: activeWellsprings * InvocationSelectionApplication.DEFAULT_OPTIONS.position.width,
+			},
+		});
 
-		html.find('[data-element] [data-invocation]').click(this.useInvocation.bind(this));
+		return super._onRender(context, options);
 	}
 
 	useInvocation(event) {

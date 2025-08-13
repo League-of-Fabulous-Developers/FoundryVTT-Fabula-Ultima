@@ -1,0 +1,60 @@
+<section>
+	<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
+		<legend class="resource-text-m">{{localize 'FU.Attributes'}}</legend>
+		{{#each attributes}}
+			<fieldset>
+				<label class="resource-label-sm">
+					<abbr title="{{localize this}}">
+						{{localize (lookup @root/attributeAbbr @key)}}
+					</abbr>
+					<span>:</span>
+					<span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
+				</label>
+			</fieldset>
+		{{/each}}
+	</fieldset>
+</section>
+<section>
+	<fieldset class="flexrow resource-content">
+		<legend class="resource-text-m">{{localize 'FU.Primary'}}</legend>
+		<span class="radio-container">{{radioBoxes 'primary' attributes checked=primary localize=true }}</span>
+	</fieldset>
+	<fieldset class="flexrow resource-content">
+		<legend class="resource-text-m">{{localize 'FU.Secondary'}}</legend>
+		<span class="radio-container">{{radioBoxes 'secondary' attributes checked=secondary localize=true }}</span>
+	</fieldset>
+
+	<fieldset class="flex-group-left resource-content">
+		<legend class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</legend>
+		{{#if (eq type 'open')}}
+			<label class="resource-text-m">
+				<span>{{localize 'FU.DialogCheckOpenCheck'}} {{localize 'FU.Bonus'}}: {{bonus}}</span>
+			</label>
+		{{/if}}
+		<label class="resource-text-m">
+			{{localize 'FU.DialogCheckModifier'}}
+			<input name="modifier" type="number" value="{{modifier}}">
+		</label>
+	</fieldset>
+
+	{{#if (ne type 'open')}}
+		<fieldset class="flex-group-left resource-content">
+			<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
+			{{#if (eq type 'group')}}
+				<label class="resource-text-m">
+					{{localize 'FU.DialogGroupCheckDifficulty'}}
+					<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+				</label>
+				<label class="resource-text-m">
+					{{localize 'FU.DialogGroupCheckSupportDifficulty'}}
+					<input name="supportDifficulty" type="number" value="{{supportDifficulty}}" min="0">
+				</label>
+			{{else}}
+				<label class="resource-text-m">
+					{{localize 'FU.DialogCheckDifficulty'}}
+					<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+				</label>
+			{{/if}}
+		</fieldset>
+	{{/if}}
+</section>

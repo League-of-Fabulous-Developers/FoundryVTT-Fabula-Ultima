@@ -1,3 +1,5 @@
+import { HTMLUtils } from './html-utils.mjs';
+
 export class EquipmentHandler {
 	constructor(actor) {
 		this.actor = actor;
@@ -6,135 +8,126 @@ export class EquipmentHandler {
 	/**
 	 * Handles item click events, equipping or unequipping items based on the click type.
 	 *
-	 * @param {Event} ev - The click event triggering the item click.
-	 * @param {string} clickType - Indicates the type of click event: 'left', 'right', or 'ctrl'.
+	 * @param {PointerEvent} ev - The click event triggering the item click.
+	 * @param {HTMLElement} target
 	 * @returns {void}
 	 */
-	async handleItemClick(ev, clickType) {
-		const li = $(ev.currentTarget).closest('.item');
-		const itemId = li.data('itemId');
+	async handleItemClick(ev, target) {
+		ev.preventDefault();
+		const li = HTMLUtils.findWithDataset(target);
+
+		if (!li) return;
+
+		const itemId = li.dataset.id;
 		const item = this.actor.items.get(itemId);
 
 		if (!item) return;
 
-		const unarmedStrike = this.actor.getSingleItemByFuid('unarmed-strike');
-		const monkeyGrip = this.actor.getSingleItemByFuid('monkey-grip');
-		const dualShield = this.actor.getSingleItemByFuid('dual-shieldbearer');
-		const equippedData = foundry.utils.deepClone(this.actor.system.equipped);
+		const equippedData = this.actor.system.equipped.toObject();
 
 		const itemType = item.type;
-		const itemHand = item.system.hands?.value;
 
-		const slot = this.determineSlot(itemType, clickType, dualShield);
-		if (!slot) return;
-
-		const twoHandedWeaponEquipped = this.isTwoHandedWeaponEquipped(equippedData);
-		const dualShieldActive = dualShield !== null;
-
-		if (itemType === 'weapon' && clickType === 'ctrl') {
-			await this.handlePhantomSlot(itemId, equippedData, li, item);
-		} else if (itemType === 'weapon' && itemHand === 'two-handed') {
-			await this.handleTwoHandedWeapon(itemId, equippedData, monkeyGrip, slot);
+		if (itemType === 'weapon') {
+			this.handleWeapon(item, equippedData, ev);
 		} else if (itemType === 'shield') {
-			await this.handleShield(itemId, equippedData, dualShieldActive, monkeyGrip, clickType, slot);
+			this.handleShield(item, equippedData, ev);
+		} else if (itemType === 'armor') {
+			this.handleArmor(item, equippedData, ev);
+		} else if (itemType === 'accessory') {
+			this.handleAccessory(item, equippedData, ev);
 		} else {
-			await this.handleOtherItems(itemId, equippedData, twoHandedWeaponEquipped, clickType, slot);
+			// unsupported item type
+			return;
 		}
 
-		// Check for empty slots and equip unarmed strike if necessary
-		this.autoEquipUnarmedStrike(unarmedStrike, equippedData);
-
+		this.autoEquipUnarmedStrike(equippedData);
 		await this.actor.update({ 'system.equipped': equippedData });
-		this.updateItemIcon(li, item, equippedData[slot]);
-
-		if (clickType === 'right') ev.preventDefault();
 	}
 
-	// Determine which slot to use based on item type and click type
-	determineSlot(itemType, clickType, dualShield) {
-		const slotLookup = {
-			weapon: clickType === 'ctrl' ? 'phantom' : clickType === 'right' ? 'offHand' : 'mainHand',
-			shield: clickType === 'right' && dualShield ? 'mainHand' : 'offHand',
-			armor: 'armor',
-			accessory: 'accessory',
-		};
-		return slotLookup[itemType] || null;
-	}
-
-	// Check if a two-handed weapon is equipped
-	isTwoHandedWeaponEquipped(equippedData) {
-		return equippedData.mainHand && equippedData.offHand && this.actor.items.get(equippedData.mainHand)?.system.hands.value === 'two-handed';
-	}
-
-	// Handle equipping and unequipping items in the phantom slot
-	async handlePhantomSlot(itemId, equippedData, li, item) {
-		if (equippedData.phantom === itemId) {
+	handleWeapon(item, equippedData, event) {
+		const unequipped = [];
+		if (equippedData.mainHand === item.id) {
+			equippedData.mainHand = null;
+			unequipped.push('mainHand');
+		}
+		if (equippedData.offHand === item.id) {
+			equippedData.offHand = null;
+			unequipped.push('offHand');
+		}
+		if (equippedData.phantom === item.id) {
 			equippedData.phantom = null;
-		} else {
-			equippedData.phantom = itemId;
-			if (equippedData.mainHand === itemId) equippedData.mainHand = null;
-			if (equippedData.offHand === itemId) equippedData.offHand = null;
+			unequipped.push('phantom');
 		}
-		await this.actor.update({ 'system.equipped': equippedData });
-		this.updateItemIcon(li, item, equippedData.phantom);
-	}
 
-	// Handle equipping and unequipping two-handed weapons
-	async handleTwoHandedWeapon(itemId, equippedData, monkeyGrip, slot) {
-		if (equippedData.mainHand === itemId && equippedData.offHand === itemId) {
-			equippedData.mainHand = null;
-			equippedData.offHand = null;
+		const monkeyGrip = this.actor.getSingleItemByFuid('monkey-grip');
+		if (item.system.hands.value === 'one-handed' || monkeyGrip) {
+			if (event.ctrlKey && !unequipped.includes('phantom')) {
+				equippedData.phantom = item.id;
+			} else if (event.button === 2 /* right click */ && !unequipped.includes('offHand')) {
+				const previouslyEquipped = this.actor.items.get(equippedData.offHand);
+				if (previouslyEquipped && previouslyEquipped.system?.hands.value === 'two-handed') {
+					equippedData.mainHand = null;
+				}
+				equippedData.offHand = item.id;
+			} else if (!unequipped.includes('mainHand')) {
+				const previouslyEquipped = this.actor.items.get(equippedData.offHand);
+				if (previouslyEquipped && previouslyEquipped.system?.hands.value === 'two-handed') {
+					equippedData.offHand = null;
+				}
+				equippedData.mainHand = item.id;
+			}
 		} else {
-			if (monkeyGrip) {
-				equippedData[slot] = equippedData[slot] === itemId ? null : itemId;
-				if (slot === 'mainHand' && equippedData.offHand === itemId) equippedData.offHand = null;
-				if (slot === 'offHand' && equippedData.mainHand === itemId) equippedData.mainHand = null;
-			} else {
-				equippedData.mainHand = itemId;
-				equippedData.offHand = itemId;
+			if (event.ctrlKey && !unequipped.includes('phantom')) {
+				equippedData.phantom = item.id;
+			} else if (!unequipped.includes('mainHand')) {
+				equippedData.mainHand = item.id;
+				equippedData.offHand = item.id;
 			}
 		}
-
-		// Remove from phantom if equipped elsewhere
-		if (equippedData.phantom === itemId) equippedData.phantom = null;
 	}
 
-	// Handle equipping and unequipping shields
-	async handleShield(itemId, equippedData, dualShieldActive, monkeyGrip, clickType, slot) {
+	handleShield(item, equippedData, event) {
+		const dualShieldActive = this.actor.getSingleItemByFuid('dual-shieldbearer');
+
+		const unequipped = [];
+		if (equippedData.mainHand === item.id) {
+			equippedData.mainHand = null;
+			unequipped.push('mainHand');
+		}
+		if (equippedData.offHand === item.id) {
+			equippedData.offHand = null;
+			unequipped.push('offHand');
+		}
+
 		if (dualShieldActive) {
-			equippedData[slot] = equippedData[slot] === itemId ? null : itemId;
-			if (slot === 'mainHand' && equippedData.offHand === itemId) equippedData.offHand = null;
-			if (slot === 'offHand' && equippedData.mainHand === itemId) equippedData.mainHand = null;
+			if (event.button === 0 && !unequipped.includes('mainHand')) {
+				equippedData.mainHand = item.id;
+			} else if (event.button === 2 && !unequipped.includes('offHand')) {
+				equippedData.offHand = item.id;
+			}
+		} else if (!unequipped.includes('offHand')) {
+			equippedData.offHand = item.id;
+		}
+	}
+
+	handleArmor(item, equippedData, ev) {
+		if (equippedData.armor === item.id) {
+			equippedData.armor = null;
 		} else {
-			if (clickType === 'right') {
-				equippedData[slot] = null;
-			} else {
-				if (slot === 'mainHand' && !monkeyGrip) return;
-				equippedData[slot] = equippedData[slot] === itemId ? null : itemId;
-				if (slot === 'mainHand' && equippedData.offHand === itemId) equippedData.offHand = null;
-				if (slot === 'offHand' && equippedData.mainHand === itemId) equippedData.mainHand = null;
-			}
+			equippedData.armor = item.id;
 		}
 	}
 
-	// Handle other item types
-	async handleOtherItems(itemId, equippedData, twoHandedWeaponEquipped, clickType, slot) {
-		if (twoHandedWeaponEquipped && clickType === 'right') {
-			equippedData.mainHand = null;
-			equippedData.offHand = null;
+	handleAccessory(item, equippedData, ev) {
+		if (equippedData.accessory === item.id) {
+			equippedData.accessory = null;
+		} else {
+			equippedData.accessory = item.id;
 		}
-		equippedData[slot] = equippedData[slot] === itemId ? null : itemId;
-		if (slot === 'mainHand' || slot === 'offHand') {
-			if (equippedData.mainHand === equippedData.offHand) {
-				equippedData.mainHand = null;
-				equippedData.offHand = null;
-			}
-		}
-		// Remove from phantom if equipped elsewhere
-		if (equippedData.phantom === itemId) equippedData.phantom = null;
 	}
 
-	autoEquipUnarmedStrike(unarmedStrike, equippedData) {
+	autoEquipUnarmedStrike(equippedData) {
+		const unarmedStrike = this.actor.getSingleItemByFuid('unarmed-strike');
 		if (!unarmedStrike) return;
 
 		// If main hand is empty, equip unarmed strike
@@ -142,35 +135,8 @@ export class EquipmentHandler {
 			equippedData.mainHand = unarmedStrike.id;
 		}
 		// If off hand is empty, equip unarmed strike
-		else if (!equippedData.offHand) {
+		if (!equippedData.offHand) {
 			equippedData.offHand = unarmedStrike.id;
 		}
-	}
-
-	// Update the icon in the UI for the item, based on its equipped state
-	updateItemIcon(li, item, equippedItemId) {
-		const icon = li.find('.item-icon');
-		const isEquipped = equippedItemId === item.id;
-		icon.removeClass('fa-circle fa-toolbox ra-sword ra-relic-blade ra-shield ra-helmet fas fa-leaf');
-
-		if (isEquipped) {
-			icon.addClass(this.getIconClassForEquippedItem(item));
-		} else {
-			icon.addClass('fa-circle');
-		}
-	}
-
-	// Determine the appropriate icon class for an equipped item based on its type and properties
-	getIconClassForEquippedItem(item) {
-		if (item.type === 'weapon') {
-			return item.system.hands.value === 'two-handed' ? 'ra ra-relic-blade ra-2x' : 'ra ra-sword ra-2x';
-		} else if (item.type === 'shield') {
-			return 'ra ra-shield ra-2x';
-		} else if (item.type === 'armor') {
-			return 'ra ra-helmet ra-2x';
-		} else if (item.type === 'accessory') {
-			return 'fas fa-leaf ra-2x';
-		}
-		return 'fa-circle';
 	}
 }

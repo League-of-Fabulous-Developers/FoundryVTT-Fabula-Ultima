@@ -1,0 +1,10 @@
+{{{localize message actor=actor.name}}}
+
+{{#if actor.isOwner}}
+	<div class="fu-tags flexrow gap-5">
+		<a data-action="applyOpportunity" data-type="{{type}}" data-actor="{{actor.uuid}}" data-item="{{item.uuid}}">
+			<span class='fu-tag button flex-group-center gap-5' style="width: 100%;white-space: nowrap;">{{localize 'FU.ChatApplyOpportunity'}}<i class="icon ra ra-aries"></i></span>
+		</a>
+	</div>
+{{/if}}
+

@@ -4,20 +4,11 @@
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function () {
-	return loadTemplates([
+	return foundry.applications.handlebars.loadTemplates([
 		// Actor Section partials.
-		'systems/projectfu/templates/actor/sections/actor-section-classes.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-features.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-spells.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-items.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-combat.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-notes.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-behavior.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-inventory.hbs',
-		'systems/projectfu/templates/actor/sections/actor-party-section-settings.hbs',
 		'systems/projectfu/templates/actor/sections/actor-spell-list.hbs',
 		'systems/projectfu/templates/actor/sections/actor-attack-list.hbs',
 
@@ -33,12 +24,12 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-attributes.hbs',
 		'systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs',
 		'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
-		'systems/projectfu/templates/actor/partials/actor-header.hbs',
 		'systems/projectfu/templates/actor/partials/actor-resources.hbs',
 		'systems/projectfu/templates/actor/partials/actor-traits.hbs',
 		'systems/projectfu/templates/actor/partials/actor-derived-stats.hbs',
 
 		'systems/projectfu/templates/actor/partials/actor-item-name.hbs',
+		'systems/projectfu/templates/actor/partials/actor-item-description.hbs',
 		'systems/projectfu/templates/actor/partials/actor-actions.hbs',
 		'systems/projectfu/templates/actor/partials/actor-vehicle.hbs',
 		'systems/projectfu/templates/actor/partials/actor-garden.hbs',
@@ -56,12 +47,9 @@ export const preloadHandlebarsTemplates = async function () {
 		// Item partials
 		'systems/projectfu/templates/item/partials/item-progress-clock.hbs',
 		'systems/projectfu/templates/item/partials/item-resource-points.hbs',
-		'systems/projectfu/templates/item/partials/item-damage-section.hbs',
-		'systems/projectfu/templates/item/partials/item-accuracy-section.hbs',
 		'systems/projectfu/templates/item/partials/item-action-cost.hbs',
 		'systems/projectfu/templates/item/partials/item-targeting.hbs',
 		'systems/projectfu/templates/item/partials/item-controls.hbs',
-		'systems/projectfu/templates/item/partials/item-header.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
 		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
 		'systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs',
@@ -72,9 +60,6 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Effects
 		'systems/projectfu/templates/effects/active-effect-details.hbs',
-		'systems/projectfu/templates/effects/active-effect-duration.hbs',
-		'systems/projectfu/templates/effects/active-effect-predicate.hbs',
-		'systems/projectfu/templates/effects/active-effect-rules.hbs',
 		'systems/projectfu/templates/effects/active-effect-image.hbs',
 
 		// Dialogs
@@ -86,7 +71,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs',
 
 		// Chat Messages
-		'systems/projectfu/templates/chat/chat-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-container.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
@@ -110,13 +94,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 		'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
-		'systems/projectfu/templates/chat/partials/chat-check-details.hbs',
-		'systems/projectfu/templates/chat/partials/chat-ability-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
 		'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
-		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
-		'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
@@ -125,14 +105,12 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 		'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
 		'systems/projectfu/templates/chat/chat-advance-clock.hbs',
+		'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
 		// Applications
-		'systems/projectfu/templates/app/item-customizer.hbs',
-		'systems/projectfu/templates/app/partials/customizer-weapon.hbs',
-		'systems/projectfu/templates/app/partials/customizer-spell.hbs',
 		'systems/projectfu/templates/app/app-group-check.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
@@ -154,6 +132,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs',
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-description.hbs',
+
+		'systems/projectfu/templates/optional/camp-activity/feature-camp-activity-sheet.hbs',
+		'systems/projectfu/templates/optional/camp-activity/feature-camp-activity-preview.hbs',
 
 		'systems/projectfu/templates/optional/partials/feature-resource-points-sheet.hbs',
 		'systems/projectfu/templates/optional/partials/feature-progress-clock-sheet.hbs',
@@ -242,5 +223,10 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// UI
 		'systems/projectfu/templates/ui/study/npc-profile.hbs',
+
+		// Progress,
+		'systems/projectfu/templates/common/progress/progress-clock.hbs',
+		'systems/projectfu/templates/common/progress/progress-basic.hbs',
+		'systems/projectfu/templates/common/progress/progress-bar.hbs',
 	]);
 };

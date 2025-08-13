@@ -3,16 +3,15 @@ import { FUActor } from './documents/actors/actor.mjs';
 import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
 import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
-import { FUItemSheet } from './sheets/item-sheet.mjs';
+import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
+// import { FUActorSheetV2 } from './sheets/actor-sheet-v2.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { registerSystemSettings } from './settings.js';
-import { addRollContextMenuEntries, createCheckMessage, promptCheck, promptOpenCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
-import { GroupCheck } from './helpers/group-check.mjs';
 import { CharacterDataModel } from './documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from './documents/actors/npc/npc-data-model.mjs';
 import { AccessoryDataModel } from './documents/items/accessory/accessory-data-model.mjs';
@@ -32,16 +31,16 @@ import { SpellDataModel } from './documents/items/spell/spell-data-model.mjs';
 import { TreasureDataModel } from './documents/items/treasure/treasure-data-model.mjs';
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
 import { EffectDataModel } from './documents/items/effect/effect-data-model.mjs';
-import { onSocketLibReady } from './socket.mjs';
+import { FUSocketHandler } from './socket.mjs';
 import { statusEffects } from './documents/effects/statuses.mjs';
 
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
-import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
+import { FUClassFeatureSheet } from './sheets/item-class-feature-sheet.mjs';
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 
 import { OptionalFeatureTypeDataModel } from './documents/items/optionalFeature/optional-feature-type-data-model.mjs';
-import { FUOptionalFeatureSheet } from './documents/items/optionalFeature/optional-feature-sheet.mjs';
+import { FUOptionalFeatureSheet } from './sheets/item-optional-feature-sheet.mjs';
 import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './documents/items/optionalFeature/optional-feature-data-model.mjs';
 import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
 
@@ -57,7 +56,7 @@ import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdow
 import { InlineEffects } from './helpers/inline-effects.mjs';
 import { SystemControls } from './helpers/system-controls.mjs';
 import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
-import { ChecksV2 } from './checks/checks-v2.mjs';
+import { Checks } from './checks/checks.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
@@ -67,14 +66,12 @@ import { FUHooks } from './hooks.mjs';
 import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
 import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
 import { InlineWeapon } from './helpers/inline-weapon.mjs';
-import { Targeting } from './helpers/targeting.mjs';
 import { InlineHelper } from './helpers/inline-helper.mjs';
-import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
 import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
-import { onRenderActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
+import { FUActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
 import { InlineClocks } from './helpers/inline-clocks.mjs';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
@@ -82,6 +79,11 @@ import { StashDataModel } from './documents/actors/stash/stash-data-model.mjs';
 import { FUStashSheet } from './sheets/actor-stash-sheet.mjs';
 import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
 import { registerKeyBindings } from './keybindings.mjs';
+import { FUHandlebars } from './helpers/handlebars.mjs';
+import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
+import { GroupCheck } from './checks/group-check.mjs';
+import { CheckPrompt } from './checks/check-prompt.mjs';
+import { OpportunityHandler } from './pipelines/opportunity.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -91,11 +93,15 @@ globalThis.projectfu = {
 	SYSTEM,
 	Flags,
 	SystemControls,
-	ChecksV2,
+	Checks,
 	CheckConfiguration,
 	ActionHandler,
 	StudyRollHandler,
 	ItemCustomizer,
+	get ChecksV2() {
+		console.warn(new Error("You are accessing the deprecated 'globalThis.projectfu.ChecksV2'. Please use 'globalThis.projectfu.Checks' instead."));
+		return Checks;
+	},
 };
 
 /* -------------------------------------------- */
@@ -107,23 +113,6 @@ globalThis.projectfu = {
 //   CONFIG.Actor.systemDataModels.character = CharacterData;
 // });
 
-/**
- * Monkey patch foundry.data.fields.DataField._applyChangeCustom to return the initial value instead of "undefined" when the value was not changed in a way detectable by "!==".
- */
-function monkeyPatchDataFieldApplyCustomChange() {
-	if (game.release.isNewer('12')) {
-		const original = foundry.data.fields.DataField.prototype._applyChangeCustom;
-		foundry.data.fields.DataField.prototype._applyChangeCustom = function (value, delta, model, change) {
-			const result = original(value, delta, model, change);
-			if (result === undefined) {
-				return foundry.utils.getProperty(model, change.key);
-			} else {
-				return result;
-			}
-		};
-	}
-}
-
 Hooks.once('init', async () => {
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
@@ -131,20 +120,22 @@ Hooks.once('init', async () => {
 		FUActor,
 		FUItem,
 		rollItemMacro,
-		rollCheck,
-		createCheckMessage,
-		GroupCheck: GroupCheck,
 		ClassFeatureDataModel,
 		RollableClassFeatureDataModel,
 		OptionalFeatureDataModel,
 		RollableOptionalFeatureDataModel,
-		ChecksV2,
+		Checks: Checks,
 		CheckConfiguration,
 		ActionHandler,
 		ItemCustomizer,
 		util: {
 			slugify,
 		},
+		get ChecksV2() {
+			console.warn(new Error("You are accessing the deprecated 'game.projectfu.ChecksV2'. Please use 'game.projectfu.Checks' instead."));
+			return Checks;
+		},
+		socket: new FUSocketHandler(),
 	};
 
 	// Add custom constants for configuration.
@@ -158,8 +149,6 @@ Hooks.once('init', async () => {
 		formula: '1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value',
 		decimals: 2,
 	};
-
-	monkeyPatchDataFieldApplyCustomChange();
 
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = FUActor;
@@ -205,8 +194,8 @@ Hooks.once('init', async () => {
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
 
 	// Register system settings
-	registerSystemSettings();
-	registerKeyBindings();
+	await registerSystemSettings();
+	await registerKeyBindings();
 
 	// Set combat tracker
 	console.log(`${SYSTEM} | Initializing combat tracker`);
@@ -216,103 +205,95 @@ Hooks.once('init', async () => {
 		formula: '1',
 		decimals: 0,
 	};
-	CONFIG.ui.combat = FUCombatTracker;
+
+	//CONFIG.ui.combat = FUCombatTracker;
+	Object.assign(CONFIG.ui, {
+		combat: FUCombatTracker,
+	});
 
 	// Register status effects
 	CONFIG.ActiveEffect.legacyTransferral = false;
 	CONFIG.statusEffects = statusEffects;
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
-	// Register sheet application classes
-	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('projectfu', FUStandardActorSheet, {
+	// Register sheet application classes. The 'types' fields associates the data model for each document.
+	foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		types: ['character', 'npc'],
 		makeDefault: true,
-		label: 'Standard Actor Sheet',
+		label: 'Standard Actor Sheet v1',
 	});
-	Actors.registerSheet('projectfu', FUPartySheet, {
+	// foundry.documents.collections.Actors.registerSheet('projectfu', FUActorSheetV2, {
+	// 	types: ['character', 'npc'],
+	// 	makeDefault: false,
+	// 	label: 'Standard Actor Sheet V2',
+	// });
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUPartySheet, {
 		types: ['party'],
 		makeDefault: true,
 		label: 'Standard Party Sheet',
 	});
-	Actors.registerSheet('projectfu', FUStashSheet, {
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStashSheet, {
 		types: ['stash'],
 		makeDefault: true,
 		label: 'Standard Stash Sheet',
 	});
-	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('projectfu', FUItemSheet, {
+
+	const itemTypesWithSpecialSheets = ['effect', 'classFeature', 'optionalFeature'];
+	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
+		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
 		label: 'Class Feature Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
 	});
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUEffectItemSheet, {
+		types: ['effect'],
+		makeDefault: true,
+		label: 'Effect Item Sheet',
+	});
+	const { DocumentSheetConfig } = foundry.applications.apps;
+	DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
+	DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
+		makeDefault: true,
+	});
 
-	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
+	ResourcePipeline.initialize();
 	Effects.initialize();
 	InventoryPipeline.initialize();
-	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
-	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();
+	OpportunityHandler.initialize();
 
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
-	CONFIG.TextEditor.enrichers.push(InlineDamage.enricher);
-	Hooks.on('renderChatMessage', InlineDamage.activateListeners);
-	Hooks.on('renderApplication', InlineDamage.activateListeners);
-	Hooks.on('renderActorSheet', InlineDamage.activateListeners);
-	Hooks.on('renderItemSheet', InlineDamage.activateListeners);
-	Hooks.on('dropActorSheetData', InlineDamage.onDropActor);
-
-	CONFIG.TextEditor.enrichers.push(...InlineResources.enrichers);
-	Hooks.on('renderChatMessage', InlineResources.activateListeners);
-	Hooks.on('renderApplication', InlineResources.activateListeners);
-	Hooks.on('renderActorSheet', InlineResources.activateListeners);
-	Hooks.on('renderItemSheet', InlineResources.activateListeners);
-	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
-
-	CONFIG.TextEditor.enrichers.push(InlineChecks.enricher);
-	Hooks.on('renderChatMessage', InlineChecks.activateListeners);
-	Hooks.on('renderApplication', InlineChecks.activateListeners);
-	Hooks.on('renderActorSheet', InlineChecks.activateListeners);
-	Hooks.on('renderItemSheet', InlineChecks.activateListeners);
-
-	CONFIG.TextEditor.enrichers.push(InlineWeapon.enricher);
-	Hooks.on('renderChatMessage', InlineWeapon.activateListeners);
-	Hooks.on('renderApplication', InlineWeapon.activateListeners);
-	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
-	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
-	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
-
-	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
-
-	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
-	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
-	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
-
-	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
-
-	InlineEffects.initialize();
+	// System Text Editor Enrichers
+	InlineHelper.registerCommand(InlineDamage);
+	InlineHelper.registerCommand(InlineEffects);
+	InlineHelper.registerCommand(InlineResources);
+	InlineHelper.registerCommand(InlineChecks);
+	InlineHelper.registerCommand(InlineWeapon);
+	InlineHelper.registerCommand(InlineType);
+	InlineHelper.registerCommand(InlineClocks);
+	InlineHelper.registerCommand(InlineIcon);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
 	TextEditorCommandDropdown.initialize();
-
 	SystemControls.initialize();
-
 	PlayerListEnhancements.initialize();
 
 	// Preload Handlebars templates.
@@ -325,237 +306,7 @@ Hooks.once('setup', () => {});
 /*  Handlebars Helpers                          */
 /* -------------------------------------------- */
 
-// If you need to add Handlebars helpers, here are a few useful examples:
-Handlebars.registerHelper('concat', function () {
-	var outStr = '';
-	for (var arg in arguments) {
-		if (typeof arguments[arg] != 'object') {
-			outStr += arguments[arg];
-		}
-	}
-	return outStr;
-});
-
-Handlebars.registerHelper('toLowerCase', function (str) {
-	return str.toLowerCase();
-});
-
-Handlebars.registerHelper('translate', function (str) {
-	const result = Object.assign(
-		{
-			spell: 'FU.Spell',
-			hp: 'FU.HealthAbbr',
-			mp: 'FU.MindAbbr',
-			ip: 'FU.InventoryAbbr',
-			shields: 'FU.Shield',
-			arcanism: 'FU.Arcanism',
-			chimerism: 'FU.Chimerism',
-			elementalism: 'FU.Elementalism',
-			entropism: 'FU.Entropism',
-			ritualism: 'FU.Ritualism',
-			spiritism: 'FU.Spiritism',
-		},
-		CONFIG.FU.damageTypes,
-		CONFIG.FU.itemTypes,
-		CONFIG.FU.weaponTypes,
-	);
-
-	return result?.[str] ?? str;
-});
-
-Handlebars.registerHelper('getGameSetting', function (settingKey) {
-	return game.settings.get('projectfu', settingKey);
-});
-
-Handlebars.registerHelper('capitalize', function (str) {
-	if (str && typeof str === 'string') {
-		return str.charAt(0).toUpperCase() + str.slice(1);
-	}
-	return str;
-});
-
-Handlebars.registerHelper('uppercase', function (str) {
-	if (str && typeof str === 'string') {
-		return str.toUpperCase();
-	}
-	return str;
-});
-
-Handlebars.registerHelper('neq', function (a, b, options) {
-	if (a !== b) {
-		return options.fn(this);
-	}
-	return '';
-});
-
-Handlebars.registerHelper('half', function (value) {
-	var num = Number(value);
-	if (isNaN(num)) {
-		return '';
-	}
-	return Math.floor(num / 2);
-});
-
-Handlebars.registerHelper('calculatePercentage', function (value, max) {
-	value = parseFloat(value);
-	max = parseFloat(max);
-	const percentage = (value / max) * 100;
-	return percentage.toFixed(2) + '%';
-});
-
-Handlebars.registerHelper('crisis', function (value, max) {
-	value = parseFloat(value);
-	max = parseFloat(max);
-	const half = max / 2;
-	return value <= half;
-});
-
-Handlebars.registerHelper('lookupItemById', function (items, itemId) {
-	return items.find((item) => item._id === itemId);
-});
-
-Handlebars.registerHelper('isItemEquipped', function (item, equippedItems) {
-	if (!item || !equippedItems) {
-		console.error('Item or equippedItems is missing.');
-		return false;
-	}
-
-	// Ensure equippedItems is an object and includes the item ID
-	if (typeof equippedItems === 'object' && Object.values(equippedItems).includes(item._id)) {
-		return true;
-	}
-
-	return false;
-});
-
-// Define a Handlebars helper to get the icon class based on item properties
-Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
-	if (!item || !item._id || !equippedItems) {
-		return '';
-	}
-
-	const itemId = item._id;
-
-	// Check if item is equipped in any slot
-	const isEquipped = Object.values(equippedItems).includes(itemId);
-
-	// Default icon if the item is not equipped
-	if (!isEquipped) {
-		return 'fas fa-circle ra-1xh';
-	}
-
-	// Special case: if item is equipped in both mainHand and offHand
-	if (itemId === equippedItems.mainHand && itemId === equippedItems.offHand) {
-		return 'is-two-weapon equip ra-1xh';
-	}
-	// Special case: if shield is equipped in mainHand
-	if (itemId === equippedItems.mainHand && item.type === 'shield') {
-		return 'ra ra-heavy-shield ra-1xh';
-	}
-	// Special case: if item is in the phantom slot
-	if (item.type === 'weapon' && itemId === equippedItems.phantom) {
-		return 'ra ra-daggers ra-1xh';
-	}
-	if (item.type === 'weapon') {
-		if (itemId === equippedItems.mainHand) {
-			return 'ra ra-sword ra-1xh ra-flip-horizontal';
-		} else if (itemId === equippedItems.offHand) {
-			return 'ra ra-plain-dagger ra-1xh ra-rotate-180';
-		}
-	} else if (item.type === 'shield') {
-		if (itemId === equippedItems.offHand) {
-			return 'ra ra-shield ra-1xh';
-		} else if (itemId === equippedItems.mainHand) {
-			return 'ra ra-heavy-shield ra-1xh';
-		}
-	} else if (item.type === 'armor') {
-		if (itemId === equippedItems.armor) {
-			return 'ra ra-helmet ra-1xh';
-		}
-	} else if (item.type === 'accessory') {
-		if (itemId === equippedItems.accessory) {
-			return 'fas fa-leaf ra-1xh';
-		}
-	}
-
-	return 'fas fa-circle ra-1xh';
-});
-
-Handlebars.registerHelper('getSlot', function (item) {
-	if (!item || !item.system) return '';
-	if (item.type === 'weapon') {
-		return item.system.hands.value === 'two-handed' ? 'mainHand' : 'offHand';
-	} else if (item.type === 'shield') {
-		return 'offHand';
-	} else if (item.type === 'armor') {
-		return 'armor';
-	} else if (item.type === 'accessory') {
-		return 'accessory';
-	}
-	return '';
-});
-
-Handlebars.registerHelper('mathAbs', function (value) {
-	return Math.abs(value);
-});
-
-Handlebars.registerHelper('formatMod', function (value) {
-	if (value > 0) {
-		return '+' + value;
-	} else if (value < 0) {
-		return value;
-	}
-	return value;
-});
-
-Handlebars.registerHelper('inArray', function (item, array, options) {
-	if (Array.isArray(array) && array.includes(item)) {
-		return options.fn(this);
-	} else {
-		return options.inverse ? options.inverse(this) : '';
-	}
-});
-
-Handlebars.registerHelper('inSet', function (item, set) {
-	return set.has(item);
-});
-
-Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax, resourceName) {
-	// Convert value to a string to split into 3 digits
-	const valueString = resourceValue.toString().padStart(3, '0');
-	const isCrisis = resourceValue <= resourceMax / 2 && resourceName == 'HP';
-	const digitBoxes = valueString
-		.split('')
-		.map(
-			(digit) =>
-				`<div class="digit-box${isCrisis ? ' crisis' : ''}">
-            <span class="inner-shadow">
-                <span class="number">${digit}</span>
-            </span>
-        </div>`,
-		)
-		.join('');
-
-	return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
-});
-
-Handlebars.registerHelper('math', function (left, operator, right) {
-	left = parseFloat(left);
-	right = parseFloat(right);
-	return {
-		'+': left + right,
-		'-': left - right,
-		'*': left * right,
-		'/': left / right,
-		'%': left % right,
-	}[operator];
-});
-
-Handlebars.registerHelper('includes', function (array, value) {
-	return Array.isArray(array) && array.includes(value);
-});
-
-Handlebars.registerHelper('get', (map, key) => map?.[key]);
+FUHandlebars.registerHelpers();
 
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
@@ -583,24 +334,22 @@ Hooks.once('ready', async function () {
 
 	Hooks.on('promptOpenCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		promptOpenCheck(actor);
+		CheckPrompt.openCheck(actor);
 	});
 
 	Hooks.on('promptAttributeCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		promptCheck(actor);
+		CheckPrompt.attributeCheck(actor);
 	});
 
 	Hooks.on('promptGroupCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		let isShift = false;
-		GroupCheck.promptCheck(actor, isShift);
+		CheckPrompt.groupCheck(actor);
 	});
 
 	Hooks.on('promptInitiativeCheckCalled', (actor) => {
 		if (handleNoActor(actor)) return;
-		let isShift = true;
-		GroupCheck.promptCheck(actor, isShift);
+		Checks.groupCheck(actor, GroupCheck.initInitiativeCheck);
 	});
 
 	Hooks.on(FUHooks.DATA_PREPARED_ACTOR, (actor) => {
@@ -657,8 +406,6 @@ Hooks.once('ready', async function () {
 		}
 	});
 });
-
-Hooks.once('socketlib.ready', onSocketLibReady);
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */

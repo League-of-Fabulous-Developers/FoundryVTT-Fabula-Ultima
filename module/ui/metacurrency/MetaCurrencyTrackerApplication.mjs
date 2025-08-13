@@ -5,27 +5,28 @@ import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 import { CharacterDataModel } from '../../documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../../documents/actors/npc/npc-data-model.mjs';
+import FUApplication from '../application.mjs';
 
-Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, getTool);
+/**
+ * @param {SystemControlTool[]} tools
+ */
+function onGetSystemTools(tools) {
+	tools.push({
+		name: 'FU.AppMetaCurrencyTrackerTitle',
+		icon: 'fa-solid fa-chart-line',
+		onClick: () => renderApp(),
+	});
+}
+Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
 
 let app;
 const renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);
-
-function getTool(tools) {
-	tools.push({
-		name: MetaCurrencyTrackerApplication.name,
-		title: 'FU.AppMetaCurrencyTrackerTitle',
-		icon: 'fa-solid fa-chart-line',
-		button: true,
-		onClick: renderApp,
-	});
-}
 
 Hooks.on('chatMessage', handleChatCommand);
 
 const regExp = /^\/(fabula|ultima|metacurrency)$/i;
 
-function handleChatCommand(chatLog, message, data) {
+function handleChatCommand(chatLog, message) {
 	if (regExp.test(message)) {
 		renderApp();
 		return false;
@@ -65,36 +66,44 @@ function increment(setting) {
 	game.settings.set(SYSTEM, setting, oldValue + 1);
 }
 
-export class MetaCurrencyTrackerApplication extends FormApplication {
+export class MetaCurrencyTrackerApplication extends FUApplication {
 	static get HOOK_UPDATE_META_CURRENCY() {
 		return `${SYSTEM}.updateMetaCurrency`;
 	}
 
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'backgroundstyle', 'projectfu', 'unique-dialog'],
+	/** @type ApplicationConfiguration */
+	static DEFAULT_OPTIONS = {
+		window: { title: 'FU.AppMetaCurrencyTrackerTitle', minimizable: false },
+		classes: ['form', 'backgroundstyle', 'projectfu', 'unique-dialog'],
+		form: {
 			closeOnSubmit: false,
-			editable: game.user.isGM,
-			sheetConfig: false,
 			submitOnChange: true,
-			submitOnClose: true,
-			minimizable: false,
-			title: 'FU.AppMetaCurrencyTrackerTitle',
-		});
-	}
+			handler: MetaCurrencyTrackerApplication.#updateMetaCurrency,
+		},
+		actions: {
+			increment: MetaCurrencyTrackerApplication.#incrementMetaCurrency,
+			calc: MetaCurrencyTrackerApplication.#calculateSessionExp,
+			override: MetaCurrencyTrackerApplication.#overrideActivity,
+		},
+	};
 
-	get template() {
-		return 'systems/projectfu/templates/app/meta-currency-tracker.hbs';
-	}
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/app/meta-currency-tracker.hbs',
+		},
+	};
+
+	#state;
 
 	constructor() {
+		super();
 		const usedFabulaPoints = game.settings.get(SYSTEM, SETTINGS.metaCurrencyFabula);
 		const usedUltimaPoints = game.settings.get(SYSTEM, SETTINGS.metaCurrencyUltima);
-		super({ fabula: usedFabulaPoints, ultima: usedUltimaPoints, activityOverride: {} });
+		this.#state = { fabula: usedFabulaPoints, ultima: usedUltimaPoints, activityOverride: {} };
 
 		Hooks.on(MetaCurrencyTrackerApplication.HOOK_UPDATE_META_CURRENCY, () => {
-			this.object.fabula = game.settings.get(SYSTEM, SETTINGS.metaCurrencyFabula);
-			this.object.ultima = game.settings.get(SYSTEM, SETTINGS.metaCurrencyUltima);
+			this.#state.fabula = game.settings.get(SYSTEM, SETTINGS.metaCurrencyFabula);
+			this.#state.ultima = game.settings.get(SYSTEM, SETTINGS.metaCurrencyUltima);
 			this.render();
 		});
 
@@ -103,44 +112,51 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 		}
 	}
 
-	getData(options = {}) {
-		const data = super.getData(options);
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
 
-		data.players = game.users
+		context.object = this.#state;
+		context.editable = game.user.isGM;
+		context.players = game.users
 			.filter((user) => !user.isGM)
 			.filter((user) => user.character)
 			.sort((a, b) => a - b);
 
-		return data;
+		return context;
 	}
 
-	async _updateObject(event, formData) {
-		if (game.settings.get(SYSTEM, SETTINGS.metaCurrencyFabula) !== formData.fabula) {
-			game.settings.set(SYSTEM, SETTINGS.metaCurrencyFabula, formData.fabula);
+	static async #updateMetaCurrency(event, form, formData) {
+		const fabula = formData.get('fabula');
+		if (game.settings.get(SYSTEM, SETTINGS.metaCurrencyFabula) !== fabula) {
+			game.settings.set(SYSTEM, SETTINGS.metaCurrencyFabula, fabula);
 		}
-		if (game.settings.get(SYSTEM, SETTINGS.metaCurrencyUltima) !== formData.ultima) {
-			game.settings.set(SYSTEM, SETTINGS.metaCurrencyUltima, formData.ultima);
+
+		const ultima = formData.get('ultima');
+		if (game.settings.get(SYSTEM, SETTINGS.metaCurrencyUltima) !== ultima) {
+			game.settings.set(SYSTEM, SETTINGS.metaCurrencyUltima, ultima);
 		}
 	}
 
-	activateListeners(html) {
-		html.find('button[data-action=calc-exp]').on('click', (event) => this.calculateExp(event));
-		html.find('button[data-action=increment-fabula]').on('click', () => increment(SETTINGS.metaCurrencyFabula));
-		html.find('button[data-action=increment-ultima]').on('click', () => increment(SETTINGS.metaCurrencyUltima));
-		html.find('a[data-action=override][data-actor-id][data-user-id]').on('click', (event) => this.overrideActiveCharacter(event));
-		return super.activateListeners(html);
+	static #incrementMetaCurrency(event, element) {
+		const currency = element.dataset.type;
+		if (currency === 'fabula') {
+			increment(SETTINGS.metaCurrencyFabula);
+		}
+		if (currency === 'ultima') {
+			increment(SETTINGS.metaCurrencyUltima);
+		}
 	}
 
-	async calculateExp(event) {
-		const { fabula: spentFabulaPoints, ultima: spentUltimaPoints } = this.object;
+	static async #calculateSessionExp() {
+		const { fabula: spentFabulaPoints, ultima: spentUltimaPoints } = this.#state;
 
 		const activeCharacters = game.users
 			.filter((user) => !user.isGM)
 			.filter((user) => user.character)
-			.filter((user) => (user.character.id in this.object.activityOverride ? this.object.activityOverride[user.character.id] : user.active))
+			.filter((user) => (user.character.id in this.#state.activityOverride ? this.#state.activityOverride[user.character.id] : user.active))
 			.map((user) => user.character);
 
-		const baseExp = game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience); //TODO add setting
+		const baseExp = game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience);
 		const fabulaExp = Math.floor(spentFabulaPoints / Math.max(1, activeCharacters.length));
 
 		const automaticallyDistributeExp = game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp);
@@ -157,13 +173,18 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 		/** @type ChatMessageData */
 		const messageData = {
 			flavor: game.i18n.localize('FU.ChatExpAwardFlavor'),
-			content: await renderTemplate('systems/projectfu/templates/chat/chat-exp-award.hbs', data),
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-exp-award.hbs', data),
 		};
 
 		ChatMessage.create(messageData);
 
 		if (automaticallyDistributeExp) {
-			Actor.updateDocuments(activeCharacters.map((character) => ({ _id: character.id, 'system.resources.exp.value': character.system.resources.exp.value + data.totalExp })));
+			Actor.updateDocuments(
+				activeCharacters.map((character) => ({
+					_id: character.id,
+					'system.resources.exp.value': character.system.resources.exp.value + data.totalExp,
+				})),
+			);
 		}
 
 		const newFabulaValue = game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula) ? spentFabulaPoints % Math.max(1, activeCharacters.length) : 0;
@@ -171,13 +192,12 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 		game.settings.set(SYSTEM, SETTINGS.metaCurrencyUltima, 0);
 	}
 
-	overrideActiveCharacter(event) {
-		const target = event.currentTarget;
-		const actorId = target.dataset.actorId;
-		const userId = target.dataset.userId;
+	static #overrideActivity(event, element) {
+		const actorId = element.dataset.actorId;
+		const userId = element.dataset.userId;
 		const user = game.users.get(userId);
-		const currentOverride = this.object.activityOverride[actorId];
-		this.object.activityOverride[actorId] = currentOverride ?? user.active ? 0 : 1;
+		const currentOverride = this.#state.activityOverride[actorId];
+		this.#state.activityOverride[actorId] = currentOverride ?? user.active ? 0 : 1;
 		this.render();
 	}
 

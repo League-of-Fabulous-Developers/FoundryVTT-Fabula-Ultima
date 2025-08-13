@@ -1,75 +1,129 @@
 import { FU } from '../../helpers/config.mjs';
-
-// TODO: Replace with ActiveEffectConfig override in V13?
+import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 
 /**
- * A hook event that fires when the ActiveEffectConfig application is rendered
- * @param {ActiveEffectConfig} sheet The Application instance being rendered
- * @param {JQuery<HTMLElement>} html  The inner HTML of the document that will be displayed and may be modified
- * @param {Record<string, any>} context The object of data used when rendering the application
+ * The Application responsible for configuring a single ActiveEffect document within a parent Actor or Item.
  */
-export async function onRenderActiveEffectConfig(sheet, html, context) {
-	let data = context.data;
-	data.system = sheet.document.system;
-	data.effectDuration = FU.effectDuration;
-	data.effectType = FU.effectType;
-	data.effectTracking = FU.effectTracking;
-	data.crisisInteractions = FU.crisisInteractions;
+export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
+	/** @inheritdoc */
+	static DEFAULT_OPTIONS = {
+		classes: ['projectfu', 'sheet', `backgroundstyle`],
+	};
 
-	// Effect Type select field (Append)
-	const detailsTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-details.hbs`, data);
-	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(detailsTemplate);
+	/** @inheritdoc */
+	static PARTS = {
+		header: {
+			template: 'templates/sheets/active-effect/header.hbs',
+		},
+		tabs: {
+			template: 'templates/generic/tab-navigation.hbs',
+		},
 
-	// Find the navigation element
-	let nav = html.find('nav.sheet-tabs.tabs');
-	if (nav.length) {
-		const targetTab = nav.find('a[data-tab="effects"]');
+		// DEFAULT
+		details: {
+			template: 'templates/sheets/active-effect/details.hbs',
+		},
+		changes: {
+			template: 'templates/sheets/active-effect/changes.hbs',
+		},
+		// ADDITIONS/CHANGES
+		duration: {
+			template: systemTemplatePath('effects/active-effect-duration'),
+		},
+		predicates: {
+			template: systemTemplatePath('effects/active-effect-predicates'),
+		},
+		rules: {
+			template: systemTemplatePath('effects/active-effect-rules'),
+		},
 
-		// Predicates
-		const predicateLabel = game.i18n.localize('FU.Predicate');
-		const predicateTab = `<a class="item" data-tab="predicate"><i class="fas fa-book"></i>${predicateLabel}</a>`;
-		targetTab.before(predicateTab);
+		footer: {
+			template: 'templates/generic/form-footer.hbs',
+		},
+	};
 
-		// Rules
-		const rulesLabel = game.i18n.localize('FU.Rule');
-		const rulesTab = `<a class="item" data-tab="rules"><i class="fas fa-book"></i>${rulesLabel}</a>`;
-		targetTab.before(rulesTab);
+	/** @override */
+	static TABS = {
+		sheet: {
+			tabs: [
+				{ id: 'details', icon: 'fa-solid fa-book' },
+				{ id: 'duration', icon: 'fa-solid fa-clock' },
+				{ id: 'predicates', label: 'FU.Predicate', icon: 'fa-solid fa-check' },
+				{ id: 'rules', label: 'FU.Rule', icon: 'fa-solid fa-list' },
+				{ id: 'changes', icon: 'fa-solid fa-gears' },
+			],
+			initial: 'details',
+			labelPrefix: 'EFFECT.TABS',
+		},
+	};
+
+	/** @inheritDoc */
+	async _preparePartContext(partId, context) {
+		const partContext = await super._preparePartContext(partId, context);
+		switch (partId) {
+			case 'duration':
+				{
+					context.effectDuration = FU.effectDuration;
+					context.effectTracking = FU.effectTracking;
+				}
+				break;
+
+			case 'predicates':
+				{
+					context.crisisInteractions = FU.crisisInteractions;
+				}
+				break;
+		}
+		return partContext;
 	}
 
-	// Duration Tab (Replace)
-	const durationTab = html.find('.tab[data-tab=duration]');
-	durationTab.empty();
-	const durationTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-duration.hbs`, data);
-	durationTab.append(durationTemplate);
-
-	// Predicate Tab (Add)
-	const predicateTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-predicate.hbs`, data);
-	durationTab.before(predicateTemplate);
-
-	// Effects Tab
-	const effectsTab = html.find('.tab[data-tab=effects]');
-	if (!html.find('#effect-key-options').length) {
-		const options = getAttributeKeys();
-		const datalist = $('<datalist id="effect-key-options"></datalist>');
-		options.forEach((opt) => datalist.append(`<option value="${opt}">`));
-		html.append(datalist);
+	/** @inheritdoc */
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
+		context.systemFields = this.document.system.schema.fields;
+		context.system = this.document.system;
+		context.effectType = FU.effectType;
+		context.crisisInteractions = FU.crisisInteractions;
+		return context;
 	}
-	html.find('.key input').each((index, el) => {
-		const $el = $(el);
-		const name = $el.attr('name');
-		const value = $el.val();
 
-		// Create the new input element (e.g., with a datalist or custom attributes)
-		const $newInput = $(`<input type="text" name="${name}" value="${value}" list="effect-key-options" />`);
-		// Replace the original input with the new one
-		$el.replaceWith($newInput);
-	});
+	/** @inheritDoc */
+	async _onRender(context, options) {
+		await super._onRender(context, options);
+		const html = this.element;
 
-	// Rules Tab (Add)
-	const rulesTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-rules.hbs`, data);
-	effectsTab.before(rulesTemplate);
+		// CHANGES Tab
+		if (!html.querySelector('#effect-key-options')) {
+			const options = getAttributeKeys();
+			const datalist = document.createElement('datalist');
+			datalist.id = 'effect-key-options';
 
-	sheet.setPosition({ ...sheet.position, height: 'auto' });
+			options.forEach((opt) => {
+				const option = document.createElement('option');
+				option.value = opt;
+				datalist.appendChild(option);
+			});
+
+			html.appendChild(datalist);
+		}
+
+		html.querySelectorAll('.key input').forEach((el) => {
+			const name = el.getAttribute('name');
+			const value = el.value;
+
+			const newInput = document.createElement('input');
+			newInput.type = 'text';
+			newInput.name = name;
+			newInput.value = value;
+			newInput.setAttribute('list', 'effect-key-options');
+
+			el.parentNode.replaceChild(newInput, el);
+		});
+
+		// Remove assigning statuses since we don't do that
+		const statusForm = html.querySelector('div.form-group.statuses');
+		statusForm.remove();
+	}
 }
 
 let attributeKeys = undefined;

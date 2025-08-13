@@ -2,6 +2,8 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof TreasureDataModel) {
@@ -41,20 +43,17 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} origin.value
  * @property {string} source.value
  */
-export class TreasureDataModel extends foundry.abstract.TypeDataModel {
+export class TreasureDataModel extends FUSubTypedItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField({ initial: 'treasure', choices: Object.keys(FU.treasureType) }) }),
-			summary: new SchemaField({ value: new StringField() }),
-			description: new HTMLField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-			showTitleCard: new SchemaField({ value: new BooleanField() }),
+		const { SchemaField, StringField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quantity: new SchemaField({ value: new NumberField({ initial: 1, min: 0, integer: true, nullable: false }) }),
 			origin: new SchemaField({ value: new StringField() }),
-			source: new SchemaField({ value: new StringField() }),
-		};
+		});
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.treasure];
 	}
 }

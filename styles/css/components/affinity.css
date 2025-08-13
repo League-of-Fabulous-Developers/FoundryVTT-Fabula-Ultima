@@ -1,0 +1,77 @@
+:root {
+	--size-outline: 2px;
+	--color-text-shadow: #333;
+  
+	--color-icon-guard: #6c757d;
+	--color-icon-sword: #dc3545;
+	--color-icon-wind: #20c997;
+	--color-icon-bolt-lightning: #ffc107;
+	--color-icon-moon: #6610f2;
+	--color-icon-hill-rockslide: #795548;
+	--color-icon-fire: #fd7e14;
+	--color-icon-snowflake: #17a2b8;
+	--color-icon-sun: #f8d210;
+	--color-icon-skull-crossbones: #343a40;
+  }
+  
+  .affinities {
+	padding: 2px;
+	width: 100%;
+  }
+  
+  .icon-aff {
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	margin-bottom: -2px;
+  
+	&.fa-guard {
+	  color: var(--color-icon-guard);
+	}
+  
+	&.fa-sword {
+	  color: var(--color-icon-sword);
+	}
+  
+	&.fa-wind {
+	  color: var(--color-icon-wind);
+	}
+  
+	&.fa-bolt-lightning {
+	  color: var(--color-icon-bolt-lightning);
+	}
+  
+	&.fa-moon {
+	  color: var(--color-icon-moon);
+	}
+  
+	&.fa-hill-rockslide {
+	  color: var(--color-icon-hill-rockslide);
+	}
+  
+	&.fa-fire {
+	  color: var(--color-icon-fire);
+	}
+  
+	&.fa-snowflake {
+	  color: var(--color-icon-snowflake);
+	}
+  
+	&.fa-sun {
+	  color: var(--color-icon-sun);
+	}
+  
+	&.fa-skull-crossbones {
+	  color: var(--color-icon-skull-crossbones);
+	}
+  
+	&::before {
+	  text-shadow: var(--size-outline) var(--size-outline) 1px var(--color-outline);
+	}
+  
+	&::after {
+	  z-index: 2;
+	  outline: var(--size-outline) solid var(--color-outline);
+	}
+  }
+  

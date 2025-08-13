@@ -1,0 +1,194 @@
+<div class="tab {{tab.cssClass}}" data-group="primary" data-tab="features">
+	<section class="desc">
+		<header class="items-main-header">
+		<span class="items-main">
+			<label class="items-label">{{localize "FU.Features"}}</label>
+		</span>
+			<span class="item-create-dialog items-main total-level w-25" data-type="newClassFeatures"
+				  data-tooltip="{{localize 'FU.Add'}} {{localize 'FU.Feature'}}">
+			<a>{{localize 'FU.Add'}} <i class="fas fa-circle-plus"></i></a>
+		</span>
+		</header>
+
+		{{!-- Class Feature Sections --}}
+		{{#each classFeatures}}
+			<ol class="items-list">
+				<li class="item flexrow items-header">
+					<div class="item-name">{{localize feature.translation}}</div>
+					<div class="item-sm end">
+						<div class="item-controls">
+							<a class="item-control item-create" aria-describedby="tooltip"
+							   data-tooltip="{{localize 'FU.FeatureCreate'
+														featureType=(localize feature.translation)}}"
+							   data-type="classFeature" data-feature-type="{{@key}}">
+								<i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+						</div>
+					</div>
+				</li>
+				{{#each items }}
+					<li class="item" data-item-id="{{ item._id }}">
+						<div class="flexrow">
+							{{!-- Item Name--}}
+							{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+							{{> (lookup ../feature 'previewTemplate') item additionalData=additionalData item=item}}
+							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+						</div>
+						<div class="individual-description align-left {{#unless
+						 (inArray _id _expandedIds)}}hidden{{/unless}}">
+							{{> (lookup ../feature 'expandTemplate') item additionalData=additionalData item=item}}
+						</div>
+					</li>
+				{{/each}}
+			</ol>
+		{{/each}}
+
+		{{!-- Optional Feature Sections --}}
+		{{#each optionalFeatures}}
+			<ol class="items-list">
+				<li class="item flexrow items-header">
+					<div class="item-name">{{localize optional.translation}}</div>
+					<div class="item-sm end">
+						<div class="item-controls">
+							<a class="item-control item-create" aria-describedby="tooltip"
+							   data-tooltip="{{localize 'FU.FeatureCreate'
+														optionalType=(localize optional.translation)}}"
+							   data-type="optionalFeature" data-optional-type="{{@key}}">
+								<i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+						</div>
+					</div>
+				</li>
+				{{#each items }}
+					<li class="item" data-item-id="{{ item._id }}">
+						<div class="flexrow">
+							{{!-- Item Name--}}
+							{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+							{{> (lookup ../optional 'previewTemplate') item additionalData=additionalData item=item}}
+							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+						</div>
+						<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+							{{> (lookup ../optional 'expandTemplate') item additionalData=additionalData item=item}}
+						</div>
+					</li>
+				{{/each}}
+			</ol>
+		{{/each}}
+
+		{{#if abilities}}
+		{{!-- Misc Abilities Section--}}
+			<ol class="items-list">
+				<li class="item flexrow items-header">
+					<div class="item-name">{{localize 'FU.Feature'}}</div>
+					<div class="item-full start">{{localize 'FU.Effect'}}</div>
+					<div class="item-m end">
+						<a class="item-control item-create" aria-describedby="tooltip"
+						   data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
+							<i class="fas fa-plus icon"></i>
+							{{localize 'FU.Add'}}
+						</a>
+					</div>
+				</li>
+				{{#each abilities as |item id|}}
+					<li class="item" data-item-id="{{ item._id }}">
+						<div class="flexrow" style="height: fit-content; align-items: flex-start;">
+							<div class="flexcol">
+								<div class="flexrow">
+									{{!-- Item Name--}}
+									{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+									<div class="item-full start description-effect">
+										<p>{{ item.system.summary.value}}</p>
+									</div>
+								</div>
+								{{#if item.system.subtype}}
+									<div class="item-quality">{{ item.quality }}</div>
+								{{/if}}
+							</div>
+							{{!-- Resource Points --}}
+							{{#if item.system.hasResource.value}}
+								{{progress item 'system.rp' type='resourceCounter'}}
+
+							{{/if}}
+							{{!-- Clocks --}}
+							{{#if item.system.hasClock.value}}
+								{{progress item 'system.progress' type='clockCounter'}}
+							{{/if}}
+							{{!-- Item Control--}}
+							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+						</div>
+						<span class="item-quality"></span>
+						{{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+					</li>
+				{{/each}}
+			</ol>
+		{{/if}}
+
+		{{#if projects}}
+		{{!-- Projects Section--}}
+			<ol class="items-list">
+				<li class="item flexrow items-header">
+					<div class="item-name">{{localize "FU.Projects"}}</div>
+					<div class="item-progressbar">{{localize "FU.ProjectStatus"}}</div>
+					<div class="item-m">{{localize "FU.Progress"}}</div>
+					<div class="item-sm end">
+						<a class="item-control item-create" aria-describedby="tooltip"
+						   data-tooltip="{{localize 'FU.ProjectCreate'}}" data-type="project">
+							<i class="fas fa-plus icon"></i>
+							{{localize 'FU.Add'}}
+						</a>
+					</div>
+				</li>
+				{{#each projects as |item id|}}
+					<li class="item" data-item-id="{{ item._id }}">
+						<div class="flexrow">
+							{{!-- Item Name--}}
+							{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+							{{!-- Progress Bar --}}
+							{{!-- Progress Counter --}}
+							{{progress item 'system.progress' style='bar' type='projectCounter' }}
+							{{!-- Item Control--}}
+							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+						</div>
+						<span>{{ item.quality }}</span>
+						{{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
+					</li>
+				{{/each}}
+			</ol>
+		{{/if}}
+
+		{{#if rules}}
+			<ol class="items-list">
+				<li class="item flexrow items-header">
+					<div class="item-name">{{localize "FU.SpecialRule"}}</div>
+					<div class="item-full start">{{localize 'FU.Effect'}}</div>
+					<div class="item-m end">
+						<a class="item-control item-create" aria-describedby="tooltip"
+						   data-tooltip="{{localize 'FU.RuleCreate'}}" data-type="rule">
+							<i class="fas fa-plus icon"></i>
+							{{localize 'FU.Add'}}
+						</a>
+					</div>
+				</li>
+				{{#each rules as |item id|}}
+
+					<li class="item" data-item-id="{{ item._id }}">
+						<div class="flexrow">
+							{{!-- Item Name--}}
+							{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+							<div class="item-full start tiny-desc">
+					<span class="description-effect">
+						{{#if item.system.description}}
+							{{{item.enrichedHtml.description}}}
+						{{/if}}
+					</span>
+							</div>
+							{{!-- Clocks --}}
+							{{#if item.system.hasClock.value}}
+								{{progress item 'system.progress' type='clockCounter' }}
+							{{/if}}
+							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+						</div>
+					</li>
+				{{/each}}
+			</ol>
+		{{/if}}
+	</section>
+</div>

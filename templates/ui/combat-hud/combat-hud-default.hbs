@@ -1,17 +1,17 @@
 <div class="{{cssClasses}}" id="{{cssId}}">
     <div class="window-button window-compact">
-        <a class="compact" title="Toggle compact mode">
+        <a class="compact" title="Toggle compact mode" data-action="toggleCompact">
             <i class="fas fa-caret-down {{#if isCompact }}hidden{{/if}}"></i>
             <i class="fas fa-caret-up {{#unless isCompact }}hidden{{/unless}}"></i>
         </a>
     </div>
     <div class="window-button window-popout">
-        <a class="popout" title="Popout Combat HUD" data-target="combat-hud">
+        <a class="popout" title="Popout Combat HUD" data-target="combat-hud" data-action="popout">
             <i class="fas fa-up-right-from-square"></i>
         </a>
     </div>
     <div class="window-button window-minimize">
-        <a class="minimize" title="Minimize Combat HUD">
+        <a class="minimize" title="Minimize Combat HUD" data-action="minimize">
             <i class="fas fa-minus"></i>
         </a>
     </div>
@@ -22,12 +22,12 @@
     </div>
     {{#if isGM}}
     <div class="window-button window-start">
-        <a class="start" title="Start Combat">
+        <a class="start" title="Start Combat" data-action="start">
             <i class="fas fa-play"></i>
         </a>
     </div>
     <div class="window-button window-stop hidden">
-        <a class="stop" title="Stop Combat">
+        <a class="stop" title="Stop Combat" data-action="stop">
             <i class="fas fa-stop"></i>
         </a>
     </div>
@@ -38,10 +38,10 @@
             <div class="combat-row {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}} {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}" data-type="npc" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                  {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
-                <img class="token-image" src="{{this.img}}" alt="{{name}}" />
+                <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
                 <div class="combat-info">
                     <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
-                        <h2 class="token-name">
+                        <h2 class="token-name" data-action="clickCombatant" data-token-id="{{this.token.id}}">
                             {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                 <span class="combat-order">{{ this.order }}</span>.&nbsp;
                             {{/if}}
@@ -49,7 +49,7 @@
                         </h2>
                     </div>
                     {{#if this.hasEffects}}
-                        <div class="combat-effects">
+                        <div class="combat-effects" data-tooltip="Tooltip test">
                             {{#if this.shouldEffectsMarquee}}
                                 <div class="marquee"
                                      style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
@@ -63,7 +63,7 @@
                                     {{/each}}
                                 </div>
                             {{else}}
-                                <div>
+                                <div class="marquee">
                                     {{#each this.effects as |effect|}}
                                         <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
@@ -83,10 +83,10 @@
             <div class="combat-row {{ this.rowClass }} {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}} {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}" data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                  {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
-                <img class="token-image" src="{{this.img}}" alt="{{name}}" />
+                <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
                 <div class="combat-info">
                     <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
-                        <h2>
+                        <h2 data-action="clickCombatant" data-token-id="{{this.token.id}}">
                             {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                 <span class="combat-order">{{ this.order }}</span>.&nbsp;
                             {{/if}}
@@ -99,18 +99,18 @@
                                 <div class="marquee"
                                      style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-action="clickEffect" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-action="clickEffect" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>
                             {{else}}
-                                <div>
+                                <div class="marquee">
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-action="clickEffect" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>

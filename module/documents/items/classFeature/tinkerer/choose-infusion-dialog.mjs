@@ -26,30 +26,33 @@ async function prompt(infusions) {
 	const data = {
 		infusions: availableInfusions,
 		FU,
+		dialogId: foundry.utils.randomID(),
 	};
 
-	const content = await renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-infusion.hbs', data);
+	const content = await foundry.applications.handlebars.renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-infusion.hbs', data);
 
-	const selectedInfusion = await new Promise((resolve) => {
-		const dialog = new Dialog({
-			title: 'FU.ClassFeatureInfusionsDialogTitle',
-			label: 'FU.Submit',
-			rejectClose: false,
-			content: content,
-			render: (jQuery) => {
-				jQuery.find('[data-action=select][data-index]').on('click', function () {
-					const category = this.dataset.category;
-					resolve(data.infusions[category][Number(this.dataset.index)] ?? null);
-					dialog.close();
-				});
-			},
-			close: () => resolve(null),
-			buttons: {},
-		});
-		dialog.render(true);
+	const result = await foundry.applications.api.DialogV2.input({
+		window: { title: game.i18n.localize('FU.ClassFeatureInfusionsDialogTitle') },
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		label: game.i18n.localize('FU.Submit'),
+		rejectClose: false,
+		content: content,
+		ok: {
+			label: 'FU.Confirm',
+		},
+		submit: (result) => {
+			if (result.infusion) {
+				const [rank, index] = result.infusion.split(/:/);
+				result.infusion = infusions[rank][index];
+			}
+		},
 	});
 
-	return selectedInfusion || null;
+	if (!result?.infusion) {
+		ui.notifications.warn('No infusion selected.');
+	}
+
+	return result?.infusion || null;
 }
 
 export const ChooseInfusionDialog = Object.freeze({
