@@ -1,0 +1,59 @@
+{
+  "folder": "lTFAsRseiLeS0NPa",
+  "name": "Broken Wind Tactic",
+  "type": "heroic",
+  "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
+  "system": {
+    "fuid": "broken-wind-tactic",
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Improve your enemies' attacks to deceive them."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Guardian</strong>.</p></blockquote><p>After an enemy you can see performs an <strong>Accuracy Check</strong> or a <strong>Magic Check</strong> for an offensive spell ( @ICON[offensive] ) on their turn during a conflict, you may grant them a +3 bonus to the Result of the Check. If you do, choose one option: you and every ally who is able to hear you gain Resistance to all damage types until the end of this turn; <strong>or</strong> you and every ally who is able to hear you deal 5 extra damage until the end of this turn. Once you use this Skill, you cannot use it again until the start of your next turn.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": {
+      "value": "FUHS4"
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "2sIzoqmFNykqXyPi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.lKh5BiLwOUZ74kpS",
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840471,
+    "modifiedTime": 1749778642401,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_id": "ztwoBu5USCKeJhVy",
+  "_key": "!items!ztwoBu5USCKeJhVy"
+}
