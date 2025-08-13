@@ -141,7 +141,7 @@ export class StudyRollHandler {
 		return tokens
 			.map(
 				({ img, name }) => `
-        <div class="flexcol">
+        <div class="flexcol resource-content">
             <img src="${img}" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 5px;">
             <strong>${name}</strong>
         </div><br>`,
@@ -171,7 +171,7 @@ export class StudyRollHandler {
                 ${contentRows.join('')}
             </table>
         </div>
-        <div class="desc">
+        <div class="resource-content desc">
             <p>${localizedStrings.dataResult}</p>
             <input type="number" id="study-input" value="${this.studyValue || ''}">
         </div>
