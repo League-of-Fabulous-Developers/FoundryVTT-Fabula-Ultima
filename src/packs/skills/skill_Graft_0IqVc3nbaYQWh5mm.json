@@ -77,12 +77,13 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.c8XnasogJbKkVL4o",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
     "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "exportSource": null
   },
   "_id": "0IqVc3nbaYQWh5mm",
   "sort": 0,

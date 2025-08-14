@@ -85,19 +85,18 @@
     "projectfu-playtest": {
       "growthClock": false
     },
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.3wujzPJj4dyCUUHX"
-    }
+    "core": {}
   },
   "_stats": {
-    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.NYYdaxY3QrkpRMsR",
+    "compendiumSource": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.3wujzPJj4dyCUUHX",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
     "modifiedTime": 1743175288970,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "exportSource": null
   },
   "_id": "gf73sZuiSvnt7FtX",
   "sort": 300000,

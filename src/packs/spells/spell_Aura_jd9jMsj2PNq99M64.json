@@ -3,7 +3,7 @@
   "name": "Aura",
   "type": "spell",
   "_id": "jd9jMsj2PNq99M64",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/aura.png",
+  "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -133,12 +133,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706571961584,
-    "modifiedTime": 1748877477684,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1745162952155,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 500000,
   "_key": "!items!jd9jMsj2PNq99M64"

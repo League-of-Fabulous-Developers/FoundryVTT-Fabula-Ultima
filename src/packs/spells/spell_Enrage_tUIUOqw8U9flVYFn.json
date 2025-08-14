@@ -3,7 +3,7 @@
   "name": "Enrage",
   "type": "spell",
   "_id": "tUIUOqw8U9flVYFn",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/enrage.png",
+  "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -133,12 +133,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706572370902,
-    "modifiedTime": 1748877520120,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1744722177879,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 1200000,
   "_key": "!items!tUIUOqw8U9flVYFn"

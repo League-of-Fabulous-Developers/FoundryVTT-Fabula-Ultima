@@ -3,7 +3,7 @@
   "name": "Awaken",
   "type": "spell",
   "_id": "NfVMYKMJ8Qp1DHJL",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
+  "img": "icons/magic/control/silhouette-hold-change-blue.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -133,12 +133,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706572044662,
-    "modifiedTime": 1748877497944,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1744722033239,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 400000,
   "_key": "!items!NfVMYKMJ8Qp1DHJL"

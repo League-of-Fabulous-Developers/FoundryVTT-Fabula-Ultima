@@ -3,7 +3,7 @@
   "name": "Mercy",
   "type": "spell",
   "_id": "puwGwI8mNZeDo7Il",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/mercy.png",
+  "img": "icons/magic/life/ankh-shadow-green.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -133,12 +133,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706572901522,
-    "modifiedTime": 1748877561606,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1744722638208,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 1100000,
   "_key": "!items!puwGwI8mNZeDo7Il"

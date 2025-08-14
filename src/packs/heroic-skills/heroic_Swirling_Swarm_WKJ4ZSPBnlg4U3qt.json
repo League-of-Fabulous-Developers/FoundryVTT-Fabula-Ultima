@@ -131,14 +131,15 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
         "modifiedTime": 1743169875074,
         "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "exportSource": null
       },
       "img": "icons/skills/ranged/daggers-thrown-salvo-teal.webp",
       "type": "base",
@@ -180,14 +181,15 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
         "modifiedTime": 1743169880598,
         "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "exportSource": null
       },
       "img": "icons/skills/ranged/daggers-thrown-salvo-teal.webp",
       "type": "base",
@@ -208,12 +210,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706684737113,
     "modifiedTime": 1744640670707,
     "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_id": "WKJ4ZSPBnlg4U3qt",
   "sort": 0,

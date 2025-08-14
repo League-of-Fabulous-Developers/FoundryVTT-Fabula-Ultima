@@ -144,14 +144,15 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
+        "coreVersion": "13.346",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null,
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "exportSource": null
       },
       "img": "icons/magic/control/debuff-energy-hold-yellow.webp",
       "type": "base",
@@ -165,12 +166,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1711429218464,
     "modifiedTime": 1744556907399,
     "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_id": "kpg23Fs85uniba2A",
   "sort": 0,

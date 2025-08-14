@@ -1,6 +1,6 @@
 {
   "folder": "deLkolgURtb8RMPr",
-  "name": "Gadget- Magitech",
+  "name": "Gadget - Magitech",
   "type": "classFeature",
   "_id": "EmwWSYlFjlUSGPLL",
   "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/magitech.png",
@@ -33,12 +33,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1711288389957,
-    "modifiedTime": 1745361196503,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1755191021782,
+    "lastModifiedBy": "nqoGRB1RfVIAK1Qj",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_key": "!items!EmwWSYlFjlUSGPLL"
 }

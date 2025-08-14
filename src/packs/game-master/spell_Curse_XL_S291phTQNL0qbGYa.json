@@ -120,17 +120,18 @@
   "effects": [],
   "flags": {
     "core": {},
-    "cf": null
+    "cf": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1690417015023,
     "modifiedTime": 1744755071711,
     "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "S291phTQNL0qbGYa",

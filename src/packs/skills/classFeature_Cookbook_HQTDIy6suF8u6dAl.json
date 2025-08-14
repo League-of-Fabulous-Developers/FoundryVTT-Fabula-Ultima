@@ -164,12 +164,13 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743352342231,
         "modifiedTime": 1743352573826,
-        "lastModifiedBy": "aylHtMTxbnWEKFH9"
+        "lastModifiedBy": "aylHtMTxbnWEKFH9",
+        "exportSource": null
       },
       "_key": "!items.effects!HQTDIy6suF8u6dAl.k9WbWvZnDJe5GesN"
     }
@@ -182,12 +183,13 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.QUQhMl5YMbIf1Wdb",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
     "modifiedTime": 1744383261568,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "exportSource": null
   },
   "_id": "HQTDIy6suF8u6dAl",
   "sort": 0,

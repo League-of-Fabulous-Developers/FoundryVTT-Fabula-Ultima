@@ -50,12 +50,13 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744737913623,
         "modifiedTime": 1744737994183,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "exportSource": null
       },
       "_key": "!items.effects!DeP3zdCRSwwMbKmX.dYTJiTq2oXwQSmaE"
     }
@@ -69,12 +70,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744737903255,
     "modifiedTime": 1744737922810,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "exportSource": null
   },
   "_key": "!items!DeP3zdCRSwwMbKmX"
 }

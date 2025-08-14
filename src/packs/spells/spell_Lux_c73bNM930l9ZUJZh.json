@@ -3,7 +3,7 @@
   "name": "Lux",
   "type": "spell",
   "_id": "c73bNM930l9ZUJZh",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/lux.png",
+  "img": "icons/magic/light/projectile-stars-blue.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -133,12 +133,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706572797059,
-    "modifiedTime": 1748877554518,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1744722361504,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 800000,
   "_key": "!items!c73bNM930l9ZUJZh"
