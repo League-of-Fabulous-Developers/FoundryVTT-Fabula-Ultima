@@ -54,7 +54,11 @@
 			"zeroPower": "Zero Power",
 			"classFeature": "Class Feature",
 			"optionalFeature": "Optional Feature",
-			"effect": "Effect"
+			"effect": "Effect",
+			"mnemosphere": "Mnemosphere",
+			"hoplosphere": "Hoplosphere",
+			"mnemosphereReceptacle": "Mnemosphere Receptacle",
+			"customWeapon": "Custom Weapon"
 		}
 	},
 	"FU": {
@@ -1487,6 +1491,22 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"ItemDeeplyNested": "This item belongs to <strong>{parent}</strong>.",
+		"Technospheres": "Technospheres",
+		"TechnospheresSlots": "Slots",
+		"TechnospheresSlotEmpty": "Empty slot",
+		"TechnosphereRemove": "Remove Technosphere",
+		"HoplosphereCoagulationLevel": "Coagulation Level",
+		"HoplosphereRequiresTwoSlots": "Requires two Slots",
+		"HoplosphereWeaponOnly": "Only socketable in Weapons",
+		"TechnospheresSlotsAlpha": "Slots α",
+		"TechnospheresSlotsBeta": "Slots β",
+		"TechnospheresSlotsGamma": "Slots γ",
+		"TechnospheresSlotsDelta": "Slots δ",
+		"Tabs": "Tabs",
+		"CustomWeaponFormPrimary": "Form I",
+		"CustomWeaponFormSecondary": "Form II",
+		"CustomWeaponTransforming": "Transforming Weapon?"
 	}
 }

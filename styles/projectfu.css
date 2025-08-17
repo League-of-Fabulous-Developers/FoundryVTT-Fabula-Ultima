@@ -30,3 +30,11 @@
 
 @import 'css/app/_index.css';
 @import 'css/actor/_index.css';
+
+@import 'sheets/mnemosphere-sheet.css';
+@import 'sheets/hoplosphere-sheet.css';
+@import 'sheets/mnemosphere-receptacle-sheet.css';
+@import 'sheets/custom-weapon-sheet.css';
+@import 'sheets/armor-sheet.css';
+
+@import 'chat/chat-slotted-technospheres.css';

@@ -6,6 +6,13 @@ import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { FUItem } from '../documents/items/item.mjs';
+import { PseudoItem } from '../documents/pseudo/pseudo-item.mjs';
+
+const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
+const SKILL_TYPES = ['skill'];
+const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
+const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -662,7 +669,10 @@ function activateDefaultListeners(html, sheet) {
 			icon: '<i class="fa fa-paper-plane"></i>',
 			callback: (html) => onSendItemToPartyStash(html, sheet),
 			condition: (html) => {
-				const item = sheet.actor.items.get(html.dataset.itemId);
+				let item = sheet.actor.items.get(html.dataset.itemId);
+				if (!item) {
+					item = fromUuidSync(html.dataset.uuid);
+				}
 				return item?.canStash;
 			},
 		});
@@ -692,7 +702,7 @@ function activateDefaultListeners(html, sheet) {
 		}
 	});
 
-	new foundry.applications.ux.ContextMenu.implementation(html, '.item-option', contextMenuOptions, {
+	new foundry.applications.ux.ContextMenu.implementation(html, ':not(.deeply-nested) .item-option', contextMenuOptions, {
 		eventName: 'click',
 		jQuery: false,
 		onOpen: (menu) => {
@@ -709,11 +719,43 @@ function activateDefaultListeners(html, sheet) {
 		let handler = (ev) => sheet._onDragStart(ev);
 		const items = html.querySelectorAll('li.item');
 		items.forEach((li) => {
-			if (li.classList.contains('inventory-header')) return;
+			if (['inventory-header', 'items-header', 'not-draggable'].some((clazz) => li.classList.contains(clazz))) return;
+			const item = fromUuidSync(li.dataset.uuid);
+			if (item && item.parent !== sheet.actor) return;
 			li.setAttribute('draggable', true);
 			li.addEventListener('dragstart', handler, false);
 		});
 	}
+
+	html.querySelectorAll('li.item, li.effect').forEach((li) => {
+		const item = fromUuidSync(li.dataset.uuid);
+		if (item && item.parent !== sheet.actor) {
+			let directParentItem = item.parent;
+			while (!(directParentItem instanceof FUItem || directParentItem instanceof PseudoItem)) {
+				directParentItem = directParentItem.parent;
+			}
+			let parentItem = directParentItem;
+			let parentage = [];
+			while (!(parentItem instanceof Actor || parentItem == null)) {
+				if (parentItem instanceof FUItem || parentItem instanceof PseudoItem) {
+					parentage.unshift(parentItem);
+				}
+				parentItem = parentItem.parent;
+			}
+			parentage = parentage.map((item) => item.name).join(' → ');
+			li.classList.add('deeply-nested');
+			li.dataset.tooltip = game.i18n.format('FU.ItemDeeplyNested', { parent: parentage });
+			const contextMenuAnchor = li.querySelector('.item-option');
+			if (contextMenuAnchor) {
+				contextMenuAnchor.classList.add('disabled');
+			}
+			const deleteEffectAnchor = li.querySelector('.effect-control[data-action="delete"]');
+			if (deleteEffectAnchor) {
+				deleteEffectAnchor.classList.add('disabled');
+				deleteEffectAnchor.querySelector('.fas')?.classList?.replace('fas', 'far');
+			}
+		}
+	});
 }
 
 function activateExpandedItemListener(html, expanded, onExpand) {
@@ -777,6 +819,9 @@ async function onSendItemToPartyStash(element, sheet) {
 function _onItemEdit(element, sheet) {
 	const itemId = element.dataset.itemId;
 	const item = sheet.actor.items.get(itemId);
+	if (!item) {
+		item = fromUuidSync(element.closest('[data-uuid]').dataset.uuid);
+	}
 	if (item) item.sheet.render(true);
 }
 

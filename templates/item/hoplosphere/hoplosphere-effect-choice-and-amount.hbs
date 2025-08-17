@@ -1,0 +1,13 @@
+{{ log "in choice and amount" this }}
+<fieldset>
+	<label>
+		{{localize templateData.choice.label}}
+		<select name="{{fieldPrefix}}.{{templateData.choice.name}}">
+			{{selectOptions templateData.choice.choices selected=(lookup effect templateData.choice.name) localize=true}}
+		</select>
+	</label>
+	<label>
+		{{localize templateData.amount.label}}
+		<input type="number" name="{{fieldPrefix}}.{{templateData.amount.name}}" value="{{lookup effect templateData.amount.name}}"/>
+	</label>
+</fieldset>

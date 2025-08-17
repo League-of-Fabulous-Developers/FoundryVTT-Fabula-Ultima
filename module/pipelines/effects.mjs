@@ -100,13 +100,23 @@ export async function onManageActiveEffect(event, owner, action) {
 	switch (action ?? anchor.dataset.action) {
 		case 'create':
 			return createTemporaryEffect(owner, listItem.dataset.effectType);
-		case 'edit':
-			return resolveEffect().sheet.render(true);
+		case 'edit': {
+			const effect = resolveEffect();
+			return effect.sheet.render(true, { editable: owner === effect.parent });
+		}
 		case 'delete': {
 			const _effect = resolveEffect();
 			if (canBeRemoved(_effect)) {
-				sendToChatEffectRemoved(_effect, owner);
-				return _effect.delete();
+				if (
+					await Dialog.confirm({
+						title: game.i18n.format('FU.DialogDeleteItemTitle', { item: _effect.name }),
+						content: game.i18n.format('FU.DialogDeleteItemDescription', { item: _effect.name }),
+						rejectClose: false,
+					})
+				) {
+					sendToChatEffectRemoved(_effect, owner);
+					return _effect.delete();
+				}
 			}
 			break;
 		}
@@ -677,4 +687,5 @@ export const Effects = Object.freeze({
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,
+	createTemporaryEffect,
 });

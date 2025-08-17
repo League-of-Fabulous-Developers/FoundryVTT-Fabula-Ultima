@@ -1,0 +1,22 @@
+{
+  "name": "Mnemospheres",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "ghKKGdGJfB1dO8GY",
+  "description": "",
+  "sort": 0,
+  "color": "#8080c0",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1743927864994,
+    "modifiedTime": 1743927914263,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_key": "!folders!ghKKGdGJfB1dO8GY"
+}

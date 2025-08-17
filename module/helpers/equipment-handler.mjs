@@ -27,8 +27,10 @@ export class EquipmentHandler {
 
 		const itemType = item.type;
 
-		if (itemType === 'weapon') {
+		if (itemType === 'weapon' || itemType === 'customWeapon') {
 			this.handleWeapon(item, equippedData, ev);
+		} else if (itemType === 'weapon' || itemType === "customWeapon") {
+			this.handleCustomWeapon(item, equippedData, ev);
 		} else if (itemType === 'shield') {
 			this.handleShield(item, equippedData, ev);
 		} else if (itemType === 'armor') {
@@ -42,6 +44,29 @@ export class EquipmentHandler {
 
 		this.autoEquipUnarmedStrike(equippedData);
 		await this.actor.update({ 'system.equipped': equippedData });
+	}
+
+	handleCustomWeapon(item, equippedData, event) {
+		const unequipped = [];
+		if (equippedData.mainHand === item.id) {
+			equippedData.mainHand = null;
+			unequipped.push('mainHand');
+		}
+		if (equippedData.offHand === item.id) {
+			equippedData.offHand = null;
+			unequipped.push('offHand');
+		}
+		if (equippedData.phantom === item.id) {
+			equippedData.phantom = null;
+			unequipped.push('phantom');
+		}
+
+		if (event.ctrlKey && !unequipped.includes('phantom')) {
+			equippedData.phantom = item.id;
+		} else if (!unequipped.includes('mainHand')) {
+			equippedData.mainHand = item.id;
+			equippedData.offHand = item.id;
+		}
 	}
 
 	handleWeapon(item, equippedData, event) {

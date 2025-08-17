@@ -1,10 +1,13 @@
+import { SYSTEM } from './config.mjs';
+
 /**
  * Define a set of template paths to pre-load
  * Pre-loaded templates are compiled and cached for fast access when rendering
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function () {
-	return foundry.applications.handlebars.loadTemplates([
+	return Promise.all([
+	foundry.applications.handlebars.loadTemplates([
 		// Actor Section partials.
 		'systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs',
@@ -228,5 +231,22 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/common/progress/progress-clock.hbs',
 		'systems/projectfu/templates/common/progress/progress-basic.hbs',
 		'systems/projectfu/templates/common/progress/progress-bar.hbs',
+		]),
+		loadTemplates(
+			foundry.utils.flattenObject({
+				[SYSTEM]: {
+					hoplosphere: {
+						effectSingleChoice: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-single-choice.hbs',
+						effectChoiceAndAmount: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-choice-and-amount.hbs',
+						effectAmount: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-amount.hbs',
+						notification: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-notification.hbs',
+						freeText: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-free-text.hbs',
+					},
+					customWeapon: {
+						chatSlotted: 'systems/projectfu/templates/item/custom-weapon/custom-weapon-chat-slotted.hbs',
+					},
+				},
+			}),
+		),
 	]);
 };

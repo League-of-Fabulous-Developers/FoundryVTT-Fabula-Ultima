@@ -1,0 +1,264 @@
+.hoplosphere-sheet {
+	--pfu-sheet-background-image: url(../static/ui/HojitasDouble_highres.png), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	--pfu-sheet-element-margin-bottom: 0.5rem;
+
+	--pfu-section-text-color: #2b4a42;
+	--pfu-section-background-image: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	--pfu-section-background-blend-mode: multiply;
+	--pfu-section-background-repeat: repeat-y;
+	--pfu-section-background-size: cover;
+	--pfu-section-border-color: #6f6c66;
+	--pfu-section-border-radius: 1rem;
+	--pfu-section-padding: 0.5rem;
+
+	--pfu-field-text-color: #ebf7af;
+	--pfu-field-background: #2b4a42;
+	--pfu-field-border-radius: 0.5rem;
+	--pfu-field-font-size: 0.75rem;
+	--pfu-field-font-family: 'PT Sans Narrow', sans-serif;
+
+	--pfu-label-text-color: #2b4a42;
+	--pfu-label-font-family: 'Yanone Kaffeesatz', sans-serif;
+	--pfu-label-font-size: 1rem;
+	--pfu-label-font-weight: bold;
+
+	--pfu-button-background-default: #2b4a42;
+	--pfu-button-background-active: linear-gradient(0deg, rgba(226, 128, 121, 0.8) 0%, rgba(241, 163, 114, 0.8) 100%);
+	--pfu-button-background-hover: linear-gradient(0deg, rgb(220, 211, 116) 0%, rgb(255, 247, 154) 100%);
+	--pfu-button-text-color-default: #ebf7af;
+	--pfu-button-text-color-active: #fff79a;
+	--pfu-button-text-color-hover: #047470;
+	--pfu-button-font-weight: 700;
+	--pfu-button-border-radius: var(--pfu-field-border-radius);
+	--pfu-button-font-size: var(--pfu-label-font-size);
+	--pfu-button-font-family: var(--pfu-field-font-family);
+
+	--pfu-fieldset-padding: 0.5rem;
+
+	.window-content {
+		background-image: var(--pfu-sheet-background-image);
+
+		& > * {
+			margin-bottom: var(--pfu-sheet-element-margin-bottom);
+		}
+
+		& > header,
+		& > nav,
+		& > main,
+		& > aside,
+		& > footer,
+		& > section,
+		.section {
+			color: var(--pfu-section-text-color);
+
+			background-image: var(--pfu-section-background-image);
+			background-blend-mode: var(--pfu-section-background-blend-mode);
+			background-repeat: var(--pfu-section-background-repeat);
+			background-size: var(--pfu-section-background-size);
+
+			border-color: var(--pfu-section-border-color);
+			border-radius: var(--pfu-section-border-radius);
+
+			padding: var(--pfu-section-padding);
+
+			input,
+			select,
+			.field {
+				--input-focus-outline-color: transparent;
+				--color-shadow-primary: transparent;
+
+				color: var(--pfu-field-text-color);
+				background-color: var(--pfu-field-background);
+				border-radius: var(--pfu-field-border-radius);
+				font-family: var(--pfu-field-font-family);
+				font-size: var(--pfu-field-font-size);
+			}
+
+			button,
+			.button {
+				--button-focus-outline-color: transparent;
+
+				color: var(--pfu-button-text-color-default);
+				background-color: var(--pfu-button-background-default);
+				border-radius: var(--pfu-button-border-radius);
+				font-size: var(--pfu-button-font-size);
+				font-family: var(--pfu-button-font-size);
+				font-weight: var(--pfu-button-font-weight);
+
+				&.active {
+					color: var(--pfu-button-text-color-active);
+					background: var(--pfu-button-background-active);
+				}
+
+				&:hover,
+				&.active:hover {
+					color: var(--pfu-button-text-color-hover);
+					background: var(--pfu-button-background-hover);
+				}
+			}
+
+			label,
+			.label {
+				color: var(--pfu-label-text-color);
+				font-size: var(--pfu-label-font-size);
+				font-family: var(--pfu-label-font-family);
+				font-weight: var(--pfu-label-font-weight);
+			}
+		}
+
+		.sheet-header {
+			display: grid;
+			grid-template-areas:
+				'image name info'
+				'image summary summary';
+
+			grid-template-columns: 140px 2fr 1fr;
+			grid-template-rows: min-content max-content;
+			align-items: flex-start;
+
+			.document-image {
+				grid-area: image;
+				width: 100%;
+				height: 100%;
+				border-radius: var(--pfu-section-border-radius) 0 0 var(--pfu-section-border-radius);
+				background-color: var(--pfu-label-text-color);
+			}
+
+			.document-name {
+				grid-area: name;
+				background: linear-gradient(to right, #532853, #bfb8c4);
+
+				height: 100%;
+
+				border-top: 1px solid var(--pfu-section-border-color);
+
+				input {
+					background-color: transparent;
+					border: none;
+					border-radius: initial;
+					font-size: 2rem;
+					font-family: 'Yanone Kaffeesatz', sans-serif;
+					font-weight: 500;
+					margin-bottom: 0;
+					margin-top: 0;
+				}
+			}
+
+			.document-info {
+				--color-cool-4: transparent;
+
+				grid-area: info;
+				display: grid;
+				grid-auto-flow: column;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: auto auto;
+				align-items: center;
+				justify-items: center;
+				gap: 3px;
+
+				border-top: 1px solid var(--pfu-section-border-color);
+				border-right: 1px solid var(--pfu-section-border-color);
+				border-left: 1px solid var(--pfu-section-border-color);
+				border-top-right-radius: var(--pfu-section-border-radius);
+
+				:nth-child(1),
+				:nth-child(3) {
+					height: 100%;
+				}
+
+				:nth-child(2),
+				:nth-child(4) {
+					height: 100%;
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+				}
+
+				:nth-child(2) {
+					border-top-left-radius: 0;
+					border-top-right-radius: var(--pfu-section-border-radius);
+				}
+
+				:nth-child(4) {
+					border-top-left-radius: var(--pfu-section-border-radius);
+					border-top-right-radius: 0;
+				}
+			}
+
+			.document-summary {
+				grid-area: summary;
+
+				height: 100%;
+				padding: 0.5rem 1rem;
+
+				border-top: 1px solid var(--pfu-section-border-color);
+				border-bottom: 1px solid var(--pfu-section-border-color);
+				border-right: 1px solid var(--pfu-section-border-color);
+				border-bottom-right-radius: var(--pfu-section-border-radius);
+
+				blockquote {
+					display: flex;
+					align-items: center;
+					margin: 0.5rem;
+
+					& > * {
+						flex-grow: 0;
+						flex-shrink: 0;
+						flex-basis: max-content;
+						padding-right: 0.25rem;
+					}
+
+					input {
+						color: var(--pfu-section-text-color);
+						background-color: transparent;
+						font-family: 'EB Garamond', serif;
+						font-weight: 700;
+						font-style: italic;
+						font-size: 1rem;
+						line-height: 1.5rem;
+						padding: 0;
+					}
+				}
+			}
+		}
+
+		.system {
+			fieldset {
+				padding: var(--pfu-fieldset-padding);
+				border-radius: var(--pfu-section-border-radius);
+			}
+
+			h4 {
+				font-size: var(--pfu-fontsize-h4);
+				font-family: var(--pfu-font-family-primary);
+				text-shadow: var(--pfu-color-primary);
+
+				a,
+				input,
+				select,
+				label {
+					font-size: inherit;
+					font-family: inherit;
+				}
+			}
+		}
+
+		.main {
+			fieldset {
+				padding: var(--pfu-fieldset-padding);
+				border-radius: var(--pfu-section-border-radius);
+
+				legend {
+				}
+
+				.fields {
+					display: flex;
+					gap: var(--pfu-fieldset-padding);
+
+					& > * {
+						flex: 1;
+					}
+				}
+			}
+		}
+	}
+}

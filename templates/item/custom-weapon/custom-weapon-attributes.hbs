@@ -1,0 +1,255 @@
+<main class="tab attributes" data-tab="attributes" data-group="main">
+	<section>
+		{{!-- General Info Section --}}
+		<fieldset>
+			<label data-tooltip="{{localize 'FU.Favorite'}}">
+				<i class="{{#if item.system.isFavored}}fas{{else}}far{{/if}} fa-star"></i>
+				<input type="checkbox" name="system.isFavored" {{ checked system.isFavored }} />
+			</label>
+			<label data-tooltip="{{localize 'FU.TitleCardInfo'}}">
+				<i class="{{#if item.system.showTitleCard}}fas{{else}}far{{/if}} fa-message"></i>
+				<input type="checkbox" name="system.showTitleCard" {{ checked system.showTitleCard }} />
+			</label>
+			<label>
+				<span>{{localize 'FU.IsMartial'}}</span>
+				<input type="checkbox" name="system.isMartial" {{ checked system.isMartial }} />
+			</label>
+			<label>
+				<span>{{localize 'FU.CustomWeaponTransforming'}}</span>
+				<input type="checkbox" name="system.isTransforming" {{ checked system.isTransforming }} />
+			</label>
+		</fieldset>
+
+		<fieldset class="general">
+			{{#unless technosphereMode}}
+				<label>
+					{{localize 'FU.Quality'}}
+					<input type="text" name="system.quality" value="{{ system.quality }}" />
+				</label>
+			{{else}}
+				<label>
+					{{localize "FU.TechnospheresSlots"}}
+					<select name="system.slots">
+						{{selectOptions @root.FU.technospheres.weaponSlots selected=system.slots labelAttr="label" localize=true}}
+					</select>
+				</label>
+			{{/unless}}
+			<label>
+				{{localize 'FU.Cost'}}
+				<input type="number" name="system.cost" value="{{ system.cost }}" />
+			</label>
+			<label>
+				{{localize 'FU.Defense'}}
+				<select name="system.defense">
+					{{selectOptions FU.defenses selected=system.defense sort=true localize=true labelAttr="abbr"}}
+				</select>
+			</label>
+		</fieldset>
+	</section>
+
+
+	<nav class="navigation tabs {{#unless system.isTransforming}}hidden{{/unless}}" data-action="tab">
+		<a class="button" data-tab="primaryForm" data-group="form">{{localize 'FU.CustomWeaponFormPrimary'}}</a>
+		<a class="button" data-tab="secondaryForm" data-group="form">{{localize 'FU.CustomWeaponFormSecondary'}}</a>
+	</nav>
+
+	<section class="tab" data-tab="primaryForm" data-group="form">
+		{{#if system.isTransforming}}
+			<fieldset>
+				<legend>
+					<i class="fas fa-tag"></i>
+					{{localize 'FU.Name'}}
+				</legend>
+				<label>
+					{{localize 'FU.Name'}}
+					<input type="text" name="system.primaryForm.name" value="{{system.primaryForm.name}}">
+				</label>
+			</fieldset>
+		{{/if}}
+
+		{{!-- General Section --}}
+		<fieldset class="general">
+			<legend>
+				<i class="fas fa-gears"></i>
+				{{localize 'FU.General'}}
+			</legend>
+			<label>
+				{{localize 'FU.WeaponType'}}
+				<select name="system.primaryForm.type">
+					{{selectOptions FU.weaponTypes selected=system.primaryForm.type localize=true}}
+				</select>
+			</label>
+			<label>
+				{{localize 'FU.Category'}}
+				<select name="system.primaryForm.category">
+					{{selectOptions FU.weaponCategories selected=system.primaryForm.category localize=true}}
+				</select>
+			</label>
+		</fieldset>
+
+		{{!-- Accuracy Section --}}
+		<fieldset class="accuracy">
+			<legend>
+				<i class="fas fa-dice icon"></i>
+				{{localize 'FU.Accuracy'}}
+			</legend>
+			<label>
+				{{localize 'FU.Attributes'}}
+				<span class="attributes">
+					<select name="system.primaryForm.attributes.primary">
+						{{selectOptions FU.attributeAbbreviations selected=system.primaryForm.attributes.primary
+										sort=true
+										localize=true}}
+					</select>
+					<select name="system.primaryForm.attributes.secondary">
+						{{selectOptions FU.attributeAbbreviations selected=system.primaryForm.attributes.secondary
+										sort=true
+										localize=true}}
+					</select>
+				</span>
+			</label>
+			<label>
+				{{localize 'FU.Bonus'}}
+				<input type="number" name="system.primaryForm.accuracy" value="{{ system.primaryForm.accuracy }}" />
+			</label>
+		</fieldset>
+
+		{{!-- Damage Section --}}
+		<fieldset class="damage">
+			<legend>
+				<i class="fas fa-bullseye icon"></i>
+				{{localize 'FU.Damage'}}
+			</legend>
+			<label>
+				{{localize 'FU.DamageType'}}
+				<select name="system.primaryForm.damage.type">
+					{{selectOptions FU.damageTypes selected=system.primaryForm.damage.type sort=true localize=true}}
+				</select>
+			</label>
+
+			<label>
+				{{localize 'FU.Bonus'}}
+				<input type="number" name="system.primaryForm.damage.value"
+					   value="{{ system.primaryForm.damage.value }}" />
+			</label>
+		</fieldset>
+
+		{{!-- Defenses Section --}}
+		<fieldset class="damage">
+			<legend>
+				<i class="fas fa-shield-halved icon"></i>
+				{{localize 'FU.Defenses'}}
+			</legend>
+			<label>
+				{{localize 'FU.Defense'}}
+				<input type="number" name="system.primaryForm.def" value="{{ system.primaryForm.def }}">
+			</label>
+
+			<label>
+				{{localize 'FU.MagicDefense'}}
+				<input type="number" name="system.primaryForm.mdef" value="{{ system.primaryForm.mdef }}" />
+			</label>
+		</fieldset>
+	</section>
+
+	{{#if system.isTransforming}}
+		<section class="tab" data-tab="secondaryForm" data-group="form">
+			<fieldset>
+				<legend>
+					<i class="fas fa-tag"></i>
+					{{localize 'FU.Name'}}
+				</legend>
+				<label>
+					{{localize 'FU.Name'}}
+					<input type="text" name="system.secondaryForm.name" value="{{system.secondaryForm.name}}">
+				</label>
+			</fieldset>
+
+			{{!-- General Section --}}
+			<fieldset class="general">
+				<legend>
+					<i class="fas fa-gears"></i>
+					{{localize 'FU.General'}}
+				</legend>
+				<label>
+					{{localize 'FU.WeaponType'}}
+					<select name="system.secondaryForm.type">
+						{{selectOptions FU.weaponTypes selected=system.secondaryForm.type localize=true}}
+					</select>
+				</label>
+				<label>
+					{{localize 'FU.WeaponCategory'}}
+					<select name="system.secondaryForm.category">
+						{{selectOptions FU.weaponCategories selected=system.secondaryForm.category localize=true}}
+					</select>
+				</label>
+			</fieldset>
+
+			{{!-- Accuracy Section --}}
+			<fieldset class="accuracy">
+				<legend>
+					<i class="fas fa-dice icon"></i>
+					{{localize 'FU.Accuracy'}}
+				</legend>
+				<label>
+					{{localize 'FU.Attributes'}}
+					<span class="attributes">
+						<select name="system.secondaryForm.attributes.primary">
+							{{selectOptions FU.attributeAbbreviations selected=system.secondaryForm.attributes.primary
+											sort=true
+											localize=true}}
+						</select>
+						<select name="system.secondaryForm.attributes.secondary">
+							{{selectOptions FU.attributeAbbreviations selected=system.secondaryForm.attributes.secondary
+											sort=true
+											localize=true}}
+						</select>
+					</span>
+				</label>
+				<label>
+					{{localize 'FU.Bonus'}}
+					<input type="number" name="system.secondaryForm.accuracy"
+						   value="{{ system.secondaryForm.accuracy }}" />
+				</label>
+			</fieldset>
+
+			{{!-- Damage Section --}}
+			<fieldset class="damage">
+				<legend>
+					<i class="fas fa-bullseye icon"></i>
+					{{localize 'FU.Damage'}}
+				</legend>
+				<label>
+					{{localize 'FU.DamageType'}}
+					<select name="system.secondaryForm.damage.type">
+						{{selectOptions FU.damageTypes selected=system.secondaryForm.damage.type sort=true
+										localize=true}}
+					</select>
+				</label>
+
+				<label>
+					{{localize 'FU.Bonus'}}
+					<input type="number" name="system.secondaryForm.damage.value"
+						   value="{{ system.secondaryForm.damage.value }}" />
+				</label>
+			</fieldset>
+
+			{{!-- Defenses Section --}}
+			<fieldset class="damage">
+				<legend>
+					<i class="fas fa-shield-halved icon"></i>
+					{{localize 'FU.Defenses'}}
+				</legend>
+				<label>
+					{{localize 'FU.Defense'}}
+					<input type="number" name="system.secondaryForm.def" value="{{ system.secondaryForm.def }}">
+				</label>
+
+				<label>
+					{{localize 'FU.MagicDefense'}}
+					<input type="number" name="system.secondaryForm.mdef" value="{{ system.secondaryForm.mdef }}" />
+				</label>
+			</fieldset>
+		</section>
+	{{/if}}
+</main>

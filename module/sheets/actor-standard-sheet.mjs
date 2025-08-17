@@ -784,7 +784,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (dataset.rollType) {
 			if (dataset.rollType === 'item') {
 				const itemId = target.closest('[data-item-id]').dataset.itemId;
-				const item = this.actor.items.get(itemId);
+				let item = this.actor.items.get(itemId);
+				if (!item && target.closest('.item').dataset.uuid) {
+					item = await fromUuid(target.closest('.item').dataset.uuid);
+				}
 				if (item) {
 					if (modifiers.ctrl) {
 						return new ItemCustomizer(this.actor, item).render(true);

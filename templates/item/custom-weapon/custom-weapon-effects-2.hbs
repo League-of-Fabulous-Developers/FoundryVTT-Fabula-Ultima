@@ -1,0 +1,87 @@
+<main class="tab effects" data-tab="effects" data-group="main">
+	<header>
+		<h1>{{localize "FU.Effects"}}</h1>
+		<a data-action="clearTempEffects" data-tooltip="{{localize 'FU.ClearTemp'}}">
+			{{localize 'FU.Clear'}}
+			<i class="fas fa-eraser"></i>
+		</a>
+	</header>
+	{{#each effects as |section sid|}}
+		<section class="effect-table">
+			<header>
+				<div>{{localize section.label}}</div>
+				<div>{{localize 'FU.Source'}}</div>
+				<div>{{localize 'FU.Duration'}}</div>
+				<div>
+					<a data-action="effect" data-effect-action="create" data-effect-type="{{ section.type }}"
+					   title="{{localize 'FU.EffectCreate'}}">
+						<i class="fas fa-plus"></i>
+						{{localize "FU.Add"}}
+					</a>
+				</div>
+			</header>
+			<ol class="effect-table-body">
+				{{#each section.effects as |effect|}}
+					<li class="effect" data-effect-id="{{ effect.id }}" data-uuid="{{ effect.uuid }}">
+						{{!-- Image --}}
+						<div data-action="effect" data-effect-action="roll">
+							<img src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
+						</div>
+						{{!-- Name --}}
+						<h4 class="effect-name"
+							{{~#if (and effect.isSuppressed (not effect.disabled))~}}
+							data-tooltip="
+							{{~#if (eq effect.flags.projectfu.CrisisInteraction "active")~}}
+								{{~localize "FU.EffectCrisisInteractionActiveTooltip"~}}
+								{{~else~}}
+								{{~localize "FU.EffectCrisisInteractionInactiveTooltip"~}}
+							{{~/if}}"
+							{{~/if}}
+						>
+							{{ effect.name }}
+						</h4>
+						{{!-- Source --}}
+						<div>{{ effect.sourceName }}</div>
+						{{!-- Duration--}}
+						<div>{{effect.system.eventLabel}}</div>
+						{{!-- Controls--}}
+						<div>
+							<a data-action="effect" data-effect-action="toggle" title="{{localize 'FU.EffectToggle'}}">
+								<i class="{{#if
+								 effect.disabled}}far fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
+							</a>
+							<a data-action="effect" data-effect-action="copy-inline" title="{{localize 'FU.EffectCopy'}}">
+								<i class="fas fa-copy"></i>
+							</a>
+							<a data-action="effect" data-effect-action="edit" title="{{localize 'FU.EffectEdit'}}">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a data-action="effect" data-effect-action="delete" title="{{localize 'FU.EffectDelete'}}">
+								<i class="fas fa-trash"></i>
+							</a>
+
+							{{#if effect.system.rules.progress.enabled }}
+								<div>
+									<a data-action="effect" data-effect-action="decrementProgress">-</a>
+									<span
+									 data-resource="progress">{{ effect.system.rules.progress.current }}</span>
+									{{#if (gt effect.system.rules.progress.max 0)}}
+										<span>/</span>
+										<span>{{ effect.system.rules.progress.max }}</span>
+									{{/if}}
+									<a data-action="effect" data-effect-action="incrementProgress">+</a>
+								</div>
+							{{/if}}
+						</div>
+						{{!-- Expanded Row Content --}}
+						<div>
+							{{#if effect.enrichedDescription}}
+								{{{effect.enrichedDescription}}}
+							{{/if}}
+						</div>
+					</li>
+				{{/each}}
+			</ol>
+		</section>
+	{{/each}}
+</main>

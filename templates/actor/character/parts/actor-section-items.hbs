@@ -1,4 +1,4 @@
-<div class="tab items desc {{tab.cssClass}}" data-group="primary" data-tab="items">
+<section class="tab items desc {{tab.cssClass}}" data-group="primary" data-tab="items">
     {{!-- Equipped Item Header--}}
     {{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs" item=item}}
 
@@ -15,7 +15,7 @@
             </div>
         </li>
         {{#each weapons as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -46,7 +46,7 @@
             </div>
         </li>
         {{#each shields as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -78,7 +78,7 @@
             </div>
         </li>
         {{#each armor as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -110,7 +110,7 @@
             </div>
         </li>
         {{#each accessories as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -148,7 +148,7 @@
                 </div>
             </li>
             {{#each basics as |item id|}}
-                <li class="item" data-item-id="{{ item._id }}">
+                <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                     <div class="flexrow">
                         {{!-- Item Name--}}
                         {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -163,4 +163,29 @@
         </ol>
     {{/if}}
 
-</div>
+	{{#if other.length}}
+		<ol class="items-list">
+			<li class="item flexrow items-header">
+				<div class="item-name">{{localize "FU.Other"}}</div>
+				<div class="item-full start">&nbsp;</div>
+				<div class="item-m end">&nbsp;</div>
+			</li>
+			{{#each other as |item id|}}
+				<li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
+					<div class="flexrow">
+						{{!-- Item Name--}}
+						{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+						<div class="item-full start inlay"></div>
+						{{!-- Item Control--}}
+						{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+					</div>
+					<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+						{{#if item.enrichedHtml.description}}
+							{{{item.enrichedHtml.description}}}
+						{{/if}}
+					</div>
+				</li>
+			{{/each}}
+		</ol>
+	{{/if}}
+</section>

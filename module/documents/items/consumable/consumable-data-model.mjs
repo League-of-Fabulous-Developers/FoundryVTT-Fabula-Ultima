@@ -38,4 +38,20 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 	get attributePartials() {
 		return [ItemPartialTemplates.controls, ItemPartialTemplates.ipCostField, ItemPartialTemplates.behaviorField];
 	}
+
+	/**
+	 * Get the display data for an item.
+	 *
+	 * @returns {object|boolean} An object containing item display information, or false if this is not an item.
+	 * @property {string} qualityString - The item's summary.
+	 */
+	getItemDisplayData() {
+		// Retrieve and process the item's summary
+		const summary = this.summary.value?.trim() || '';
+		const qualityString = summary || game.i18n.localize('FU.SummaryNone');
+
+		return {
+			qualityString,
+		};
+	}
 }

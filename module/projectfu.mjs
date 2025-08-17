@@ -84,6 +84,14 @@ import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
 import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
 import { OpportunityHandler } from './pipelines/opportunity.mjs';
+import { MnemosphereDataModel } from './documents/items/mnemosphere/mnemosphere-data-model.mjs';
+import { MnemosphereSheet } from './documents/items/mnemosphere/mnemosphere-sheet.mjs';
+import { HoplosphereDataModel } from './documents/items/hoplosphere/hoplosphere-data-model.mjs';
+import { HoplosphereSheet } from './documents/items/hoplosphere/hoplosphere-sheet.mjs';
+import { MnemosphereReceptacleDataModel } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-data-model.mjs';
+import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-sheet.mjs';
+import { CustomWeaponDataModel } from './documents/items/customWeapon/custom-weapon-data-model.mjs';
+import { CustomWeaponSheet } from './documents/items/customWeapon/custom-weapon-sheet.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -189,6 +197,10 @@ Hooks.once('init', async () => {
 		treasure: TreasureDataModel,
 		weapon: WeaponDataModel,
 		effect: EffectDataModel,
+		mnemosphere: MnemosphereDataModel,
+		hoplosphere: HoplosphereDataModel,
+		mnemosphereReceptacle: MnemosphereReceptacleDataModel,
+		customWeapon: CustomWeaponDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
@@ -261,6 +273,27 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 		label: 'Effect Item Sheet',
 	});
+	Items.registerSheet(SYSTEM, MnemosphereSheet, {
+		types: ['mnemosphere'],
+		makeDefault: true,
+		label: 'Mnemosphere Sheet',
+	});
+	Items.registerSheet(SYSTEM, HoplosphereSheet, {
+		types: ['hoplosphere'],
+		makeDefault: true,
+		label: 'Hoplosphere Sheet',
+	});
+	Items.registerSheet(SYSTEM, MnemosphereReceptacleSheet, {
+		types: ['mnemosphereReceptacle'],
+		makeDefault: true,
+		label: 'Mnemosphere Receptacle Sheet',
+	});
+	Items.registerSheet(SYSTEM, CustomWeaponSheet, {
+		types: ['customWeapon'],
+		makeDefault: true,
+		label: 'Custom Weapon Receptacle Sheet',
+	});
+
 	const { DocumentSheetConfig } = foundry.applications.apps;
 	DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
 	DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
@@ -307,6 +340,17 @@ Hooks.once('setup', () => {});
 /* -------------------------------------------- */
 
 FUHandlebars.registerHelpers();
+
+Handlebars.registerHelper('times', function (n, block) {
+	let accum = '';
+	for (let i = 0; i < n; ++i) {
+		block.data.index = i;
+		block.data.first = i === 0;
+		block.data.last = i === n - 1;
+		accum += block.fn(this);
+	}
+	return accum;
+});
 
 /* -------------------------------------------- */
 /*  Ready Hook                                  */

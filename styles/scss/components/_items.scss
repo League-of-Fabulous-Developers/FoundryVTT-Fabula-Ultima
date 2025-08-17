@@ -497,6 +497,10 @@
 		border-color: $color-secondary;
 		color: darken($color-secondary, 20%);
 	}
+
+	&.deeply-nested {
+		background: rgb(100 100 100 / 0.2);
+	}
 }
 
 .items-list .items-header {
