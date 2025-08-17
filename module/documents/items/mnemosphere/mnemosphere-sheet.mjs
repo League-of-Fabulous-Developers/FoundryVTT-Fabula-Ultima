@@ -1,5 +1,7 @@
 import { PseudoItem } from '../../pseudo/pseudo-item.mjs';
 import { editImageFile } from '../../../helpers/image-file-picker.mjs';
+import { PseudoDocument } from '../../pseudo/pseudo-document.mjs';
+import { TextEditor } from '../../../helpers/text-editor.mjs';
 
 export class MnemosphereSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
 	/**
@@ -36,7 +38,7 @@ export class MnemosphereSheet extends foundry.applications.api.HandlebarsApplica
 		form: {
 			submitOnChange: true,
 		},
-		classes: ['mnemosphere-sheet'],
+		classes: ['projectfu', 'sheet', 'item', 'backgroundstyle', 'mnemosphere-sheet'],
 		dragDrop: [{ dragSelector: null, dropSelector: null }],
 		position: {
 			width: 700,
@@ -57,6 +59,13 @@ export class MnemosphereSheet extends foundry.applications.api.HandlebarsApplica
 			template: 'systems/projectfu/templates/item/mnemosphere/mnemosphere-other.hbs',
 		},
 	};
+
+	static _migrateConstructorParams(first, rest) {
+		if (first?.document instanceof PseudoDocument) {
+			return first;
+		}
+		return super._migrateConstructorParams(first, rest);
+	}
 
 	static #printDebug() {
 		console.log(this);
@@ -109,6 +118,7 @@ export class MnemosphereSheet extends foundry.applications.api.HandlebarsApplica
 	}
 
 	static #onItemRoll(event, element) {
+		if (!this.item.actor) return;
 		const itemId = element.closest('[data-item-id]').dataset.itemId;
 		const item = this.item.system.items.get(itemId);
 		if (item) {
@@ -151,7 +161,7 @@ export class MnemosphereSheet extends foundry.applications.api.HandlebarsApplica
 			d.callbacks = {
 				drop: this._onDrop.bind(this),
 			};
-			return new DragDrop(d);
+			return new foundry.applications.ux.DragDrop(d);
 		});
 	}
 
@@ -209,7 +219,7 @@ export class MnemosphereSheet extends foundry.applications.api.HandlebarsApplica
 
 	async #handleItemDrop(data) {
 		const item = await fromUuid(data.uuid);
-		if (['skill', 'heroic', 'spell', 'classFeature'].includes(item.type)) {
+		if (['skill', 'heroic', 'spell', 'classFeature'].includes(item?.type)) {
 			await this.item.system.createEmbeddedDocuments(PseudoItem.documentName, [item.toObject(true)]);
 		}
 	}

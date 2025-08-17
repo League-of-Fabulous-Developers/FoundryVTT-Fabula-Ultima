@@ -114,7 +114,7 @@ export class MnemosphereReceptacleSheet extends foundry.applications.api.Handleb
 		return this.options.dragDrop.map((d) => {
 			d.permissions = {};
 			d.callbacks = Object.fromEntries(Object.entries(d.callbacks).map(([k, v]) => [k, v.bind(this)]));
-			return new DragDrop(d);
+			return new foundry.applications.ux.DragDrop(d);
 		});
 	}
 

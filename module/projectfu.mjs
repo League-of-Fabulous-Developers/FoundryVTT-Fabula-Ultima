@@ -252,23 +252,24 @@ Hooks.once('init', async () => {
 	});
 
 	const itemTypesWithSpecialSheets = ['effect', 'classFeature', 'optionalFeature'];
-	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
-	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
+	const Items = foundry.documents.collections.Items;
+	Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+	Items.registerSheet('projectfu', FUStandardItemSheet, {
 		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
 		label: 'Class Feature Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUEffectItemSheet, {
+	Items.registerSheet(SYSTEM, FUEffectItemSheet, {
 		types: ['effect'],
 		makeDefault: true,
 		label: 'Effect Item Sheet',

@@ -1,6 +1,6 @@
 import { Effects, onManageActiveEffect, prepareActiveEffectCategories } from '../pipelines/effects.mjs';
 import { Checks } from '../checks/checks.mjs';
-import { FU, systemPath } from '../helpers/config.mjs';
+import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import * as CONFIG from '../helpers/config.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
@@ -9,6 +9,7 @@ import { HoplosphereDataModel } from '../documents/items/hoplosphere/hoplosphere
 import { MnemosphereDataModel } from '../documents/items/mnemosphere/mnemosphere-data-model.mjs';
 import { PseudoItem } from '../documents/pseudo/pseudo-item.mjs';
 import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/enable-pseudo-documents-mixin.mjs';
+import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -65,6 +66,13 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			},
 		],
 	};
+
+	static _migrateConstructorParams(first, rest) {
+		if (first?.document instanceof PseudoDocument) {
+			return first;
+		}
+		return super._migrateConstructorParams(first, rest);
+	}
 
 	/**
 	 * @description The default template parts
@@ -247,21 +255,25 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		dropZone?.addEventListener('drop', this._onDropReset.bind(this));
 
 		if (this.item.system instanceof PseudoDocumentEnabledTypeDataModel) {
-			html.querySelectorAll('[data-action=edit]').forEach((el) => el.addEventListener('click', (event) => {
-				const id = event.currentTarget.closest('[data-item-id]').dataset.itemId;
-				this.item.system.items.get(id).sheet.render({ force: true });
-			}));
-			html.querySelectorAll('[data-action=delete]').forEach((el) => el.addEventListener('click', (event) => {
-				const id = event.currentTarget.closest('[data-item-id]').dataset.itemId;
-				const promises = [];
-				const item = this.item.system.items.get(id);
-				if (item.actor && (item.system instanceof MnemosphereDataModel || item.system instanceof HoplosphereDataModel)) {
-					const itemObject = item.toObject(true);
-					promises.push(this.item.actor.createEmbeddedDocuments('Item', [itemObject]));
-				}
-				promises.push(item.delete());
-				return Promise.all(promises);
-			}));
+			html.querySelectorAll('[data-action=edit]').forEach((el) =>
+				el.addEventListener('click', (event) => {
+					const id = event.currentTarget.closest('[data-item-id]').dataset.itemId;
+					this.item.system.items.get(id).sheet.render({ force: true });
+				}),
+			);
+			html.querySelectorAll('[data-action=delete]').forEach((el) =>
+				el.addEventListener('click', (event) => {
+					const id = event.currentTarget.closest('[data-item-id]').dataset.itemId;
+					const promises = [];
+					const item = this.item.system.items.get(id);
+					if (item.actor && (item.system instanceof MnemosphereDataModel || item.system instanceof HoplosphereDataModel)) {
+						const itemObject = item.toObject(true);
+						promises.push(this.item.actor.createEmbeddedDocuments('Item', [itemObject]));
+					}
+					promises.push(item.delete());
+					return Promise.all(promises);
+				}),
+			);
 		}
 	}
 

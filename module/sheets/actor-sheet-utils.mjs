@@ -9,11 +9,6 @@ import { TextEditor } from '../helpers/text-editor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { PseudoItem } from '../documents/pseudo/pseudo-item.mjs';
 
-const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
-const SKILL_TYPES = ['skill'];
-const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
-const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
-
 /**
  * @description Prepares model-agnostic data for the actor
  * @param {Object} context
@@ -818,7 +813,7 @@ async function onSendItemToPartyStash(element, sheet) {
  */
 function _onItemEdit(element, sheet) {
 	const itemId = element.dataset.itemId;
-	const item = sheet.actor.items.get(itemId);
+	let item = sheet.actor.items.get(itemId);
 	if (!item) {
 		item = fromUuidSync(element.closest('[data-uuid]').dataset.uuid);
 	}

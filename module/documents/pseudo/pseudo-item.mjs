@@ -4,8 +4,7 @@ import { PseudoDocumentTypeDataField } from './pseudo-document-type-data-field.m
 import { PseudoDocument } from './pseudo-document.mjs';
 import { PseudoActiveEffect } from './pseudo-active-effect.mjs';
 import { FUItem } from '../items/item.mjs';
-import { SOCKET } from '../../socket.mjs';
-import { ChecksV2 } from '../../checks/checks-v2.mjs';
+import { Checks } from '../../checks/checks.mjs';
 
 export class PseudoItem extends PseudoDocument {
 	static documentName = 'Item';
@@ -140,12 +139,12 @@ export class PseudoItem extends PseudoDocument {
 
 	async roll(modifiers = { shift: false, alt: false, ctrl: false, meta: false }) {
 		if (this.system.showTitleCard?.value) {
-			SOCKET.executeForEveryone('use', this.name);
+			await game.projectfu.socket.executeForEveryone('use', this.name);
 		}
 		if (this.system.roll instanceof Function) {
 			return this.system.roll(modifiers);
 		} else {
-			return ChecksV2.display(this.actor, this);
+			return Checks.display(this.actor, this);
 		}
 	}
 

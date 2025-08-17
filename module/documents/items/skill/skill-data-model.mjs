@@ -337,4 +337,8 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.resourcePoints,
 		];
 	}
+
+	get skillLevelArray() {
+		return new Array(this.level.max).keys().map((_, idx) => ({ id: idx + 1, checked: idx < this.level.value }));
+	}
 }

@@ -5,7 +5,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { Checks } from '../../../checks/checks.mjs';
 import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-collection-field.mjs';
 import { PseudoItem } from '../../pseudo/pseudo-item.mjs';
 import { SETTINGS } from '../../../settings.js';
@@ -222,7 +222,7 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		return ChecksV2.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
 	}
 
 	get slotCount() {

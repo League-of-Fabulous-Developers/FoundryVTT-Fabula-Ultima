@@ -72,7 +72,7 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 
 	static defineSchema() {
 		const { SchemaField, StringField, BooleanField, NumberField } = foundry.data.fields;
-		return Object.assign(super.defineSchema(), {
+		return Object.assign(FUStandardItemDataModel.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),

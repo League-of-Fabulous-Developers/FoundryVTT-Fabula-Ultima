@@ -27,9 +27,9 @@ export class EquipmentHandler {
 
 		const itemType = item.type;
 
-		if (itemType === 'weapon' || itemType === 'customWeapon') {
+		if (itemType === 'weapon') {
 			this.handleWeapon(item, equippedData, ev);
-		} else if (itemType === 'weapon' || itemType === "customWeapon") {
+		} else if (itemType === 'customWeapon') {
 			this.handleCustomWeapon(item, equippedData, ev);
 		} else if (itemType === 'shield') {
 			this.handleShield(item, equippedData, ev);

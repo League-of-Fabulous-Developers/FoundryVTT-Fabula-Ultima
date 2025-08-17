@@ -108,7 +108,7 @@ export async function onManageActiveEffect(event, owner, action) {
 			const _effect = resolveEffect();
 			if (canBeRemoved(_effect)) {
 				if (
-					await Dialog.confirm({
+					await foundry.applications.api.DialogV2.confirm({
 						title: game.i18n.format('FU.DialogDeleteItemTitle', { item: _effect.name }),
 						content: game.i18n.format('FU.DialogDeleteItemDescription', { item: _effect.name }),
 						rejectClose: false,

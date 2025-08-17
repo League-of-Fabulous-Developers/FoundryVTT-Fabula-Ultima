@@ -151,6 +151,15 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 	}
 
 	/**
+	 * Return a reference to the parent Collection instance that contains this Document.
+	 * @this {PseudoDocument}
+	 * @returns {Collection|null}
+	 */
+	get collection() {
+		return this.parent[this.parentCollection];
+	}
+
+	/**
 	 * The Document this PseudoDocument belongs to. May be nested multiple layers deep.
 	 * @return {null|foundry.abstract.Document}
 	 */
@@ -231,7 +240,7 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 			const cls = this._getSheetClass();
 
 			// Application V1 Document Sheets
-			if (foundry.utils.isSubclass(cls, Application)) {
+			if (foundry.utils.isSubclass(cls, foundry.appv1.api.Application)) {
 				this._sheet = new cls(this, { editable: this.isOwner });
 			}
 

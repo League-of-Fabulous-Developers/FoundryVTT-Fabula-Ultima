@@ -92,7 +92,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				if (item?.type === 'shield') {
 					total += getValue(item, isMagic ? 'mdef.value' : 'def.value');
 				}
-				if (item?.type === "customWeapon") {
+				if (item?.type === 'customWeapon') {
 					total += getValue(item, isMagic ? 'mdef' : 'def');
 				}
 			});

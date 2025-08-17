@@ -11,7 +11,7 @@ export async function editImageFile(app, target) {
 	const current = foundry.utils.getProperty(app.document._source, attr);
 	const defaultArtwork = app.document.constructor.getDefaultArtwork?.(app.document._source) ?? {};
 	const defaultImage = foundry.utils.getProperty(defaultArtwork, attr);
-	const fp = new FilePicker({
+	const fp = new foundry.applications.apps.FilePicker({
 		current,
 		type: 'image',
 		redirectToRoot: defaultImage ? [defaultImage] : [],

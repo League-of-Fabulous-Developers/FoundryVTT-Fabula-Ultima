@@ -1,5 +1,6 @@
 import { editImageFile } from '../../../helpers/image-file-picker.mjs';
 import { HoplosphereDataModel } from './hoplosphere-data-model.mjs';
+import { PseudoDocument } from '../../pseudo/pseudo-document.mjs';
 
 export class HoplosphereSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
 	/**
@@ -32,7 +33,7 @@ export class HoplosphereSheet extends foundry.applications.api.HandlebarsApplica
 		form: {
 			submitOnChange: true,
 		},
-		classes: ['hoplosphere-sheet'],
+		classes: ['projectfu', 'sheet', 'item', 'backgroundstyle', 'hoplosphere-sheet'],
 		position: {
 			width: 700,
 		},
@@ -40,7 +41,7 @@ export class HoplosphereSheet extends foundry.applications.api.HandlebarsApplica
 
 	static PARTS = {
 		header: {
-			template: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-header.hbs',
+			template: 'systems/projectfu/templates/item/parts/item-header.hbs',
 		},
 		system: {
 			template: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-system.hbs',
@@ -49,6 +50,13 @@ export class HoplosphereSheet extends foundry.applications.api.HandlebarsApplica
 			template: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-main.hbs',
 		},
 	};
+
+	static _migrateConstructorParams(first, rest) {
+		if (first?.document instanceof PseudoDocument) {
+			return first;
+		}
+		return super._migrateConstructorParams(first, rest);
+	}
 
 	static #printDebug() {
 		console.log(this);
