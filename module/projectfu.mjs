@@ -92,6 +92,7 @@ import { MnemosphereReceptacleDataModel } from './documents/items/mnemosphereRec
 import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-sheet.mjs';
 import { CustomWeaponDataModel } from './documents/items/customWeapon/custom-weapon-data-model.mjs';
 import { CustomWeaponSheet } from './documents/items/customWeapon/custom-weapon-sheet.mjs';
+import { FUItemArmorSheet } from './sheets/item-armor-sheet.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -251,13 +252,18 @@ Hooks.once('init', async () => {
 		label: 'Standard Stash Sheet',
 	});
 
-	const itemTypesWithSpecialSheets = ['effect', 'classFeature', 'optionalFeature'];
+	const itemTypesWithSpecialSheets = ['armor', 'effect', 'classFeature', 'optionalFeature'];
 	const Items = foundry.documents.collections.Items;
 	Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
 	Items.registerSheet('projectfu', FUStandardItemSheet, {
 		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
 		makeDefault: true,
 		label: 'Standard Item Sheet',
+	});
+	Items.registerSheet(SYSTEM, FUItemArmorSheet, {
+		types: ['armor'],
+		makeDefault: true,
+		label: 'Armor Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],

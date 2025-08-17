@@ -1,13 +1,11 @@
 import { Effects, onManageActiveEffect, prepareActiveEffectCategories } from '../pipelines/effects.mjs';
 import { Checks } from '../checks/checks.mjs';
-import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
-import { Traits } from '../pipelines/traits.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { FU, systemPath } from '../helpers/config.mjs';
+import { Traits } from '../pipelines/traits.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
-import { SETTINGS } from '../settings.js';
 import { HoplosphereDataModel } from '../documents/items/hoplosphere/hoplosphere-data-model.mjs';
 import { MnemosphereDataModel } from '../documents/items/mnemosphere/mnemosphere-data-model.mjs';
-import { PseudoItem } from '../documents/pseudo/pseudo-item.mjs';
 import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/enable-pseudo-documents-mixin.mjs';
 import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
 
@@ -17,7 +15,7 @@ const { api, sheets } = foundry.applications;
  * @description Extend the basic ItemSheet with some very simple modifications
  * @property {FUItem} item
  * @property {FUItemDataModel} system
- * @extends {ItemSheet}
+ * @extends {foundry.applications.sheets.ItemSheetV2}
  */
 export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
 	// Initialize drag counter
@@ -57,9 +55,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		},
 		// TODO: Probably doesn't do anything
 		dragDrop: [
-			{
-				dropSelector: '.technosphere-slots .slot',
-			},
 			{
 				dragSelector: '.directory-item.document.item, .effects-list .effect', // Selector for draggable items
 				dropSelector: '.desc.drop-zone', // Selector for item sheet
@@ -156,11 +151,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		context.flags = context.item.flags;
 		context.FU = FU;
 		context.effects = prepareActiveEffectCategories(this.item.effects);
-
-		if (game.settings.get(SYSTEM, SETTINGS.technospheres) && this.item.system instanceof PseudoDocumentEnabledTypeDataModel) {
-			context.technosphereMode = true;
-			context.slots = this.#createSlotArray();
-		}
 
 		return context;
 	}
@@ -336,10 +326,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	async _onDrop(event) {
 		console.debug('Drop event detected');
 		event.preventDefault();
-
-		if (event.currentTarget.classList.contains('slot')) {
-			return this.#handleTechnosphereDrop(event);
-		}
 
 		// Retrieve drag data using TextEditor
 		const data = TextEditor.getDragEventData(event);
@@ -531,76 +517,5 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 
 	static async RollEffect(event, target) {
 		return onManageActiveEffect(event, this.item, 'roll');
-	}
-
-	#createSlotArray() {
-		const items = this.item.system.slotted;
-
-		const slots = [];
-
-		const usedSlots = items.reduce((previousValue, currentValue) => previousValue + (currentValue.system instanceof HoplosphereDataModel ? currentValue.system.requiredSlots : 1), 0);
-		const itemSlots = this.item.system.slotCount;
-		let unusedSlots = itemSlots;
-		const totalMnemosphereSlots = this.item.system.mnemosphereSlots;
-		let unusedMnemosphereSlots = totalMnemosphereSlots;
-		const totalSlots = Math.max(usedSlots, itemSlots);
-
-		for (let itemIdx = 0, slotIdx = 0; slotIdx < totalSlots; itemIdx++, slotIdx++, unusedSlots--) {
-			const currentItem = items[itemIdx];
-			const currentSlot = {
-				item: currentItem,
-				type: 'hoplosphere',
-			};
-			slots[slotIdx] = currentSlot;
-
-			if (currentItem?.system instanceof MnemosphereDataModel) {
-				currentSlot.overCapacity = slotIdx >= totalMnemosphereSlots;
-				currentSlot.type = 'mnemosphere';
-				unusedMnemosphereSlots--;
-			} else if (currentItem?.system instanceof HoplosphereDataModel) {
-				currentSlot.overCapacity = slotIdx >= itemSlots;
-
-				if (currentItem.system.requiredSlots === 2) {
-					slotIdx++;
-					const occupiedSlot = (slots[slotIdx] = {
-						type: 'hoplosphere',
-						occupied: true,
-						overCapacity: slotIdx >= itemSlots,
-					});
-					currentSlot.overCapacity = occupiedSlot.overCapacity;
-				}
-			}
-
-			if (unusedMnemosphereSlots && (!currentSlot.item || unusedSlots === unusedMnemosphereSlots)) {
-				currentSlot.type = 'mnemosphere';
-				unusedMnemosphereSlots--;
-			}
-		}
-
-		return slots;
-	}
-
-	async #handleTechnosphereDrop(event) {
-		const data = TextEditor.getDragEventData(event);
-		console.log(data);
-		if (data.type === 'Item') {
-			const item = await fromUuid(data.uuid);
-
-			if (['mnemosphere', 'hoplosphere'].includes(item.type)) {
-				if (item.system.socketable === 'weapon') {
-					ui.notifications.error('FU.TechnospheresSlottingErrorWeaponOnly', { localize: true });
-					return;
-				}
-
-				const promises = [];
-				promises.push(this.item.system.createEmbeddedDocuments(PseudoItem.documentName, [item.toObject(true)]));
-				if (item.isEmbedded) {
-					promises.push(item.delete());
-				}
-				return Promise.all(promises);
-			} else {
-				ui.notifications.error('FU.TechnospheresSlottingErrorNotTechnospheres');
-			}
-		}
 	}
 }
