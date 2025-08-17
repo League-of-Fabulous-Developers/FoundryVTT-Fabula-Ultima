@@ -26,7 +26,7 @@
                     </div>
                 </li>
                 {{#each items }}
-                    <li class="item" data-item-id="{{ item._id }}">
+                    <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                         <div class="flexrow">
                             {{!-- Item Name--}}
                             {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -57,7 +57,7 @@
                     </div>
                 </li>
                 {{#each items }}
-                    <li class="item" data-item-id="{{ item._id }}">
+                    <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                         <div class="flexrow">
                             {{!-- Item Name--}}
                             {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -87,7 +87,7 @@
                     </div>
                 </li>
                 {{#each abilities as |item id|}}
-                    <li class="item" data-item-id="{{ item._id }}">
+                    <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                         <div class="flexrow" style="height: fit-content; align-items: flex-start;">
                             <div class="flexcol">
                                 <div class="flexrow">
@@ -172,7 +172,7 @@
                     </div>
                 </li>
                 {{#each projects as |item id|}}
-                    <li class="item" data-item-id="{{ item._id }}">
+                    <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                         <div class="flexrow">
                             {{!-- Item Name--}}
                             {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -230,7 +230,7 @@
                 </li>
                 {{#each rules as |item id|}}
 
-                    <li class="item" data-item-id="{{ item._id }}">
+                    <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                         <div class="flexrow">
                             {{!-- Item Name--}}
                             {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}

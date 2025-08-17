@@ -46,6 +46,7 @@ export class FUPartySheet extends ActorSheet {
 		// Enrich or transform data here
 		const context = super.getData();
 		context.actionHooks = FUPartySheet.prepareActionHooks();
+		context.items = [...this.actor.allItems()];
 		await ActorSheetUtils.prepareData(context, this);
 		context.characters = this.party.characterData;
 		context.characterCount = this.party.characters.size;

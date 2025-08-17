@@ -1,9 +1,14 @@
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../pipelines/effects.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
-import { FU } from '../helpers/config.mjs';
-import { InlineHelper } from '../helpers/inline-helper.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
+import { InlineHelper } from '../helpers/inline-helper.mjs';
 import { Traits } from '../pipelines/traits.mjs';
+import { SETTINGS } from '../settings.js';
+import { HoplosphereDataModel } from '../documents/items/hoplosphere/hoplosphere-data-model.mjs';
+import { MnemosphereDataModel } from '../documents/items/mnemosphere/mnemosphere-data-model.mjs';
+import { PseudoItem } from '../documents/pseudo/pseudo-item.mjs';
+import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/enable-pseudo-documents-mixin.mjs';
 
 /**
  * @description Extend the basic ItemSheet with some very simple modifications
@@ -27,6 +32,9 @@ export class FUItemSheet extends ItemSheet {
 				},
 			],
 			dragDrop: [
+				{
+					dropSelector: '.technosphere-slots .slot',
+				},
 				{
 					dragSelector: '.directory-item.document.item, .effects-list .effect', // Selector for draggable items
 					dropSelector: '.desc.drop-zone', // Selector for item sheet
@@ -57,7 +65,7 @@ export class FUItemSheet extends ItemSheet {
 		const context = super.getData();
 
 		// Use a safe clone of the actor data for further operations.
-		const actor = this.object?.parent ?? null;
+		const actor = this.object?.actor ?? null;
 		const actorData = actor ? actor.toObject(false) : null;
 
 		// Use a safe clone of the item data for further operations.
@@ -112,6 +120,11 @@ export class FUItemSheet extends ItemSheet {
 		};
 
 		context.FU = FU;
+
+		if (game.settings.get(SYSTEM, SETTINGS.technospheres) && this.item.system instanceof PseudoDocumentEnabledTypeDataModel) {
+			context.technosphereMode = true;
+			context.slots = this.#createSlotArray();
+		}
 
 		return context;
 	}
@@ -211,6 +224,24 @@ export class FUItemSheet extends ItemSheet {
 			}
 			traitsSelector.val('');
 		});
+
+		if (this.item.system instanceof PseudoDocumentEnabledTypeDataModel) {
+			html.find('[data-action=edit]').on('click', (event) => {
+				const id = event.currentTarget.closest('[data-item-id]').dataset.itemId;
+				this.item.system.items.get(id).sheet.render({ force: true });
+			});
+			html.find('[data-action=delete]').on('click', (event) => {
+				const id = event.currentTarget.closest('[data-item-id]').dataset.itemId;
+				const promises = [];
+				const item = this.item.system.items.get(id);
+				if (item.actor && (item.system instanceof MnemosphereDataModel || item.system instanceof HoplosphereDataModel)) {
+					const itemObject = item.toObject(true);
+					promises.push(this.item.actor.createEmbeddedDocuments('Item', [itemObject]));
+				}
+				promises.push(item.delete());
+				return Promise.all(promises);
+			});
+		}
 	}
 
 	/* -------------------------------------------- */
@@ -261,6 +292,10 @@ export class FUItemSheet extends ItemSheet {
 	async _onDrop(event) {
 		console.log('Drop event detected');
 		event.preventDefault();
+
+		if (event.currentTarget.classList.contains('slot')) {
+			return this.#handleTechnosphereDrop(event);
+		}
 
 		// Retrieve drag data using TextEditor
 		const data = TextEditor.getDragEventData(event);
@@ -399,7 +434,7 @@ export class FUItemSheet extends ItemSheet {
 	_getSubmitData(updateData = {}) {
 		const data = super._getSubmitData(updateData);
 		// Prevent submitting overridden values
-		const overrides = foundry.utils.flattenObject(this.item.overrides);
+		const overrides = foundry.utils.flattenObject(this.item.overrides ?? {});
 		for (let k of Object.keys(overrides)) {
 			delete data[k];
 		}
@@ -423,5 +458,76 @@ export class FUItemSheet extends ItemSheet {
 
 		// Call the display method
 		ChecksV2.display(this, item);
+	}
+
+	#createSlotArray() {
+		const items = this.item.system.slotted;
+
+		const slots = [];
+
+		const usedSlots = items.reduce((previousValue, currentValue) => previousValue + (currentValue.system instanceof HoplosphereDataModel ? currentValue.system.requiredSlots : 1), 0);
+		const itemSlots = this.item.system.slotCount;
+		let unusedSlots = itemSlots;
+		const totalMnemosphereSlots = this.item.system.mnemosphereSlots;
+		let unusedMnemosphereSlots = totalMnemosphereSlots;
+		const totalSlots = Math.max(usedSlots, itemSlots);
+
+		for (let itemIdx = 0, slotIdx = 0; slotIdx < totalSlots; itemIdx++, slotIdx++, unusedSlots--) {
+			const currentItem = items[itemIdx];
+			const currentSlot = {
+				item: currentItem,
+				type: 'hoplosphere',
+			};
+			slots[slotIdx] = currentSlot;
+
+			if (currentItem?.system instanceof MnemosphereDataModel) {
+				currentSlot.overCapacity = slotIdx >= totalMnemosphereSlots;
+				currentSlot.type = 'mnemosphere';
+				unusedMnemosphereSlots--;
+			} else if (currentItem?.system instanceof HoplosphereDataModel) {
+				currentSlot.overCapacity = slotIdx >= itemSlots;
+
+				if (currentItem.system.requiredSlots === 2) {
+					slotIdx++;
+					const occupiedSlot = (slots[slotIdx] = {
+						type: 'hoplosphere',
+						occupied: true,
+						overCapacity: slotIdx >= itemSlots,
+					});
+					currentSlot.overCapacity = occupiedSlot.overCapacity;
+				}
+			}
+
+			if (unusedMnemosphereSlots && (!currentSlot.item || unusedSlots === unusedMnemosphereSlots)) {
+				currentSlot.type = 'mnemosphere';
+				unusedMnemosphereSlots--;
+			}
+		}
+
+		return slots;
+	}
+
+	async #handleTechnosphereDrop(event) {
+		const data = TextEditor.getDragEventData(event);
+		console.log(data);
+		if (data.type === 'Item') {
+			const item = await fromUuid(data.uuid);
+
+			if (['mnemosphere', 'hoplosphere'].includes(item.type)) {
+				if (item.system.socketable === 'weapon') {
+					ui.notifications.error('FU.TechnospheresSlottingErrorWeaponOnly', { localize: true });
+					return;
+				}
+
+				const promises = [];
+				promises.push(this.item.system.createEmbeddedDocuments(PseudoItem.documentName, [item.toObject(true)]));
+				if (item.isEmbedded) {
+					promises.push(item.delete());
+				}
+				return Promise.all(promises);
+			} else {
+				ui.notifications.error('FU.TechnospheresSlottingErrorNotTechnospheres');
+			}
+		}
 	}
 }

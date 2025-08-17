@@ -1,3 +1,6 @@
+import { ShieldDataModel } from '../../items/shield/shield-data-model.mjs';
+import { CustomWeaponDataModel } from '../../items/customWeapon/custom-weapon-data-model.mjs';
+
 /**
  * @property {number} init.value
  * @property {number} init.bonus
@@ -65,8 +68,12 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 					equipmentDef += mainHandItem.system.def.value;
 					equipmentMdef += mainHandItem.system.mdef.value;
 				}
+				if (mainHandItem && mainHandItem.system instanceof CustomWeaponDataModel) {
+					equipmentDef += mainHandItem.system.def;
+					equipmentMdef += mainHandItem.system.mdef;
+				}
 			}
-			if (equippedItems.offHand) {
+			if (equippedItems.offHand && equippedItems.offHand !== equippedItems.mainHand) {
 				const offHandItem = actor.items.get(equippedItems.offHand);
 				if (offHandItem && offHandItem.type === 'shield') {
 					equipmentDef += offHandItem.system.def.value;
@@ -175,13 +182,13 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		if (!actor.system.vehicle?.weaponsActive) {
 			if (equippedItems.mainHand) {
 				const shield = actor.items.get(equippedItems.mainHand);
-				if (shield) {
+				if (shield && shield.system instanceof ShieldDataModel) {
 					initMod += shield.system.init.value;
 				}
 			}
 			if (equippedItems.offHand) {
 				const shield = actor.items.get(equippedItems.offHand);
-				if (shield) {
+				if (shield && shield.system instanceof ShieldDataModel) {
 					initMod += shield.system.init.value;
 				}
 			}

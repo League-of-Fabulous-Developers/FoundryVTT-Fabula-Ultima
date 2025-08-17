@@ -1,0 +1,49 @@
+{{log this}}
+<main class="main">
+	<fieldset>
+		<legend>[PH] General</legend>
+		<div class="fields">
+			<label>
+				[PH] Socketable in
+				<select name="system.socketable">
+					{{selectOptions socketableOptions selected=system.socketable localize=true}}
+				</select>
+			</label>
+			<label>
+				[PH] Slots required
+				<select name="system.requiredSlots">
+					{{selectOptions requiredSlotsOptions selected=system.requiredSlots localize=true}}
+				</select>
+			</label>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>
+			[PH] Effects
+			<a data-action="addEffect"><i class="fas fa-plus"></i></a>
+		</legend>
+		{{#each system.effects}}
+			<div class="effect">
+				<div class="flexrow">
+					<label>
+						[PH] Change Type
+						<select name="system.effects.{{@index}}.type">
+							{{selectOptions @root.effectOptions selected=type labelAttr="label" localize=true}}
+						</select>
+					</label>
+					<label>
+						[PH] Required coagulation level
+						<input type="number" name="system.effects.{{@index}}.coagulationLevel"
+							   value="{{coagulationLevel}}">
+					</label>
+					<button type="button" data-action="removeEffect" data-index="{{@index}}">
+						<i class="fas fa-trash"></i>
+					</button>
+				</div>
+				<div>
+					{{> (lookup this "template") null effect=this templateData=templateData fieldPrefix=(concat "system.effects." @index)}}
+				</div>
+			</div>
+		{{/each}}
+	</fieldset>
+</main>

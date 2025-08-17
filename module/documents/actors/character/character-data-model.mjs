@@ -131,11 +131,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	prepareBaseData() {
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
+
+		this.vehicle.prepareData();
 	}
 
 	prepareEmbeddedData() {
 		this.#prepareBasicResources();
-		this.vehicle.prepareData();
 		this.derived.prepareData();
 	}
 

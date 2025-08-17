@@ -30,6 +30,7 @@ const foundryvtt = {
 			Combatant: 'readonly',
 			Dialog: 'readonly',
 			DocumentSheet: 'readonly',
+			DragDrop: 'readonly',
 			FilePicker: 'readonly',
 			Folder: 'readonly',
 			FormApplication: 'readonly',

@@ -64,6 +64,7 @@ export const SETTINGS = Object.freeze({
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
 	// Party
 	activeParty: 'optionActiveParty',
+	technospheres: 'useTechnospheres',
 });
 
 /**
@@ -703,6 +704,16 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.technospheres, {
+		name: game.i18n.localize('FU.OptionTechnospheres'),
+		hint: game.i18n.localize('FU.OptionTechnospheresHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
 };
 
 class OptionalRules extends FormApplication {
@@ -713,18 +724,23 @@ class OptionalRules extends FormApplication {
 	}
 
 	getData() {
-		return {
-			optionQuirks: game.settings.get(SYSTEM, SETTINGS.optionQuirks),
-			optionZeroPower: game.settings.get(SYSTEM, SETTINGS.optionZeroPower),
-			optionCampingRules: game.settings.get(SYSTEM, SETTINGS.optionCampingRules),
-		};
+		let entries = [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.technospheres].map((value) => [value, game.settings.get(SYSTEM, value)]);
+		return Object.fromEntries(entries);
 	}
 
 	async _updateObject(event, formData) {
-		const { optionQuirks, optionZeroPower, optionCampingRules } = foundry.utils.expandObject(formData);
-		game.settings.set(SYSTEM, SETTINGS.optionQuirks, optionQuirks);
-		game.settings.set(SYSTEM, SETTINGS.optionZeroPower, optionZeroPower);
-		game.settings.set(SYSTEM, SETTINGS.optionCampingRules, optionCampingRules);
+		let requiresClientReload = false;
+		let requiresWorldReload = false;
+		for (let [key, value] of Object.entries(foundry.utils.flattenObject(formData))) {
+			const settingConfig = game.settings.settings.get(`${SYSTEM}.${key}`);
+			if (!settingConfig) continue;
+			const current = game.settings.get(settingConfig.namespace, settingConfig.key);
+			if (value === current) continue;
+			requiresClientReload ||= settingConfig.scope === 'client' && settingConfig.requiresReload;
+			requiresWorldReload ||= settingConfig.scope === 'world' && settingConfig.requiresReload;
+			await game.settings.set(settingConfig.namespace, settingConfig.key, value);
+		}
+		if (requiresClientReload || requiresWorldReload) SettingsConfig.reloadConfirm({ world: requiresWorldReload });
 	}
 }
 
@@ -810,7 +826,10 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
 			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
 			optionCombatHudPositionButton: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton),
-			optionCombatHudPositionButtonOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
+			optionCombatHudPositionButtonOptions: {
+				bottom: 'FU.CombatHudPositionBottom',
+				top: 'FU.CombatHudPositionTop',
+			},
 			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
 			optionCombatHudPositionOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
 			optionCombatHudPortrait: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait),
@@ -818,7 +837,10 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudShowEffects: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects),
 			optionCombatHudEffectsMarqueeDuration: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration),
 			optionCombatHudEffectsMarqueeMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode),
-			optionCombatHudEffectsMarqueeModeOptions: { normal: 'FU.CombatHudEffectsMarqueeModeNormal', alternate: 'FU.CombatHudEffectsMarqueeModeAlternate' },
+			optionCombatHudEffectsMarqueeModeOptions: {
+				normal: 'FU.CombatHudEffectsMarqueeModeNormal',
+				alternate: 'FU.CombatHudEffectsMarqueeModeAlternate',
+			},
 			optionCombatHudReordering: game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering),
 			optionCombatHudShowOrderNumbers: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers),
 			isGM: game.user.isGM,

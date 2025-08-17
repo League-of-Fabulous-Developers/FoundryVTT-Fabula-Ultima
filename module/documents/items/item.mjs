@@ -2,6 +2,10 @@ import { SOCKET } from '../../socket.mjs';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
+import { EnablePseudoDocumentsMixin } from '../pseudo/enable-pseudo-documents-mixin.mjs';
+import { PseudoItem } from '../pseudo/pseudo-item.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
+import { SETTINGS } from '../../settings.js';
 
 /**
  * @typedef KeyboardModifiers
@@ -11,14 +15,14 @@ import { FUHooks } from '../../hooks.mjs';
  * @property {boolean} meta
  */
 
-/**
- * @typedef Item
- * @property {Actor} actor
- * @property {String} uuid
- * @property {String} name
- * @property {Map<String, Object>} effects
- * @property {Object} FUActor
- */
+// /**
+//  * @typedef Item
+//  * @property {Actor} actor
+//  * @property {String} uuid
+//  * @property {String} name
+//  * @property {Map<String, Object>} effects
+//  * @property {Object} FUActor
+//  */
 
 /**
  * @description Extend the basic Item document with some very simple modifications.
@@ -26,7 +30,16 @@ import { FUHooks } from '../../hooks.mjs';
  * @extends {Item}
  * @inheritDoc
  */
-export class FUItem extends Item {
+export class FUItem extends EnablePseudoDocumentsMixin(Item) {
+	static async createDialog(data = {}, { parent = null, pack = null, types, ...options } = {}) {
+		console.log(data, parent, pack, types, options);
+		if (!game.settings.get(SYSTEM, SETTINGS.technospheres)) {
+			types ??= FUItem.TYPES.filter((value) => !['mnemosphere', 'hoplosphere', 'mnemosphereReceptacle'].includes(value));
+		}
+
+		return super.createDialog(data, { ...options, parent, pack, types });
+	}
+
 	overrides = this.overrides ?? {};
 
 	/**
@@ -38,6 +51,9 @@ export class FUItem extends Item {
 		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
 		Hooks.callAll(FUHooks.DATA_PREPARED_ITEM, this);
+		for (const nestedItem of this.allItems()) {
+			Hooks.callAll(FUHooks.DATA_PREPARED_ITEM, nestedItem);
+		}
 	}
 
 	/**
@@ -47,7 +63,9 @@ export class FUItem extends Item {
 	 */
 	getRollData() {
 		// If present, return the actors's roll data.
-		if (!this.actor) return null;
+		if (!this.actor) {
+			return null;
+		}
 		const rollData = this.actor.getRollData();
 
 		// Grab the item's system data as well.
@@ -59,8 +77,8 @@ export class FUItem extends Item {
 	/**
 	 * @override
 	 */
-	toObject() {
-		const result = super.toObject();
+	toObject(source) {
+		const result = super.toObject(source);
 		result.uuid = this.uuid;
 		return result;
 	}
@@ -133,7 +151,9 @@ export class FUItem extends Item {
 		// Organize non-disabled effects by their application priority
 		const changes = [];
 		for (const effect of this.allApplicableEffects()) {
-			if (!effect.active) continue;
+			if (!effect.active) {
+				continue;
+			}
 			changes.push(
 				...effect.changes.map((change) => {
 					const c = foundry.utils.deepClone(change);
@@ -147,13 +167,26 @@ export class FUItem extends Item {
 
 		// Apply all changes
 		for (let change of changes) {
-			if (!change.key) continue;
+			if (!change.key) {
+				continue;
+			}
 			const changes = change.effect.apply(this, change);
 			Object.assign(overrides, changes);
 		}
 
 		// Expand the set of final overrides
 		this.overrides = foundry.utils.expandObject(overrides);
+
+		if (this.system.afterApplyActiveEffects) {
+			this.system.afterApplyActiveEffects();
+		}
+
+		for (const item of this.allItems()) {
+			if (item.applyActiveEffects) {
+				item.applyActiveEffects();
+			}
+		}
+
 		this.render();
 	}
 
@@ -162,6 +195,37 @@ export class FUItem extends Item {
 			// only yield effects that try to modify the item and not the actor
 			if (effect.target === this) {
 				yield effect;
+			}
+		}
+	}
+
+	get transferredEffects() {
+		if (this.system.transferEffects ? this.system.transferEffects() : true) {
+			const effects = this.effects.filter((e) => e.transfer === true).filter((e) => (this.system.shouldApplyEffect ? this.system.shouldApplyEffect(e) : true));
+			for (let collection of Object.values(this.nestedCollections)) {
+				if (collection.documentClass === PseudoItem) {
+					for (let item of collection) {
+						effects.push(...item.transferredEffects);
+					}
+				}
+			}
+			return effects;
+		} else {
+			return [];
+		}
+	}
+
+	*allEffects() {
+		for (let effect of this.effects) {
+			yield effect;
+		}
+		for (let collection of Object.values(this.nestedCollections)) {
+			if (collection.documentClass === PseudoItem) {
+				for (let item of collection) {
+					for (let effect of item.allEffects()) {
+						yield effect;
+					}
+				}
 			}
 		}
 	}
@@ -185,7 +249,9 @@ export class FUItem extends Item {
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		});
 
-		if (!confirmation) return;
+		if (!confirmation) {
+			return;
+		}
 
 		const fuid = slugify(this.name);
 		await this.update({ 'system.fuid': fuid });
@@ -194,7 +260,7 @@ export class FUItem extends Item {
 	}
 
 	get isEquipped() {
-		if (this.actor && this.actor.type !== 'party') {
+		if (this.actor && ['character', 'npc'].includes(this.actor.type)) {
 			return this.actor.system.equipped.isEquipped(this);
 		}
 		return false;

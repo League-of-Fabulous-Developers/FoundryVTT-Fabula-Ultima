@@ -10,10 +10,18 @@ function migrateLegacyWeaponType(source) {
 	}
 }
 
+function migrateCustomWeaponCategory(source) {
+	if ('category' in source && 'value' in source.category && source.category.value === 'custom') {
+		source.category.value = 'brawling';
+	}
+}
+
 export class WeaponMigrations {
 	static run(source) {
 		migrateLegacyHandedness(source);
 
 		migrateLegacyWeaponType(source);
+
+		migrateCustomWeaponCategory(source);
 	}
 }

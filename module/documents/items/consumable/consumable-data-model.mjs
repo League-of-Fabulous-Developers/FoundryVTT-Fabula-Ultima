@@ -39,4 +39,20 @@ export class ConsumableDataModel extends foundry.abstract.TypeDataModel {
 			source: new SchemaField({ value: new StringField() }),
 		};
 	}
+
+	/**
+	 * Get the display data for an item.
+	 *
+	 * @returns {object|boolean} An object containing item display information, or false if this is not an item.
+	 * @property {string} qualityString - The item's summary.
+	 */
+	getItemDisplayData() {
+		// Retrieve and process the item's summary
+		const summary = this.summary.value?.trim() || '';
+		const qualityString = summary || game.i18n.localize('FU.SummaryNone');
+
+		return {
+			qualityString,
+		};
+	}
 }

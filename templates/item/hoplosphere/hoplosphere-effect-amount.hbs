@@ -1,0 +1,7 @@
+{{ log "in amount" this }}
+<fieldset>
+	<label>
+		{{localize templateData.label}}
+		<input type="number" name="{{fieldPrefix}}.{{templateData.name}}" value="{{lookup effect templateData.name}}"/>
+	</label>
+</fieldset>

@@ -23,7 +23,7 @@ export class EquipmentHandler {
 		const equippedData = foundry.utils.deepClone(this.actor.system.equipped);
 
 		const itemType = item.type;
-		const itemHand = item.system.hands?.value;
+		const itemHand = itemType === 'customWeapon' ? 'two-handed' : item.system.hands?.value;
 
 		const slot = this.determineSlot(itemType, clickType, dualShield);
 		if (!slot) return;
@@ -33,7 +33,7 @@ export class EquipmentHandler {
 
 		if (itemType === 'weapon' && clickType === 'ctrl') {
 			await this.handlePhantomSlot(itemId, equippedData, li, item);
-		} else if (itemType === 'weapon' && itemHand === 'two-handed') {
+		} else if ((itemType === 'weapon' || itemType === 'customWeapon') && itemHand === 'two-handed') {
 			await this.handleTwoHandedWeapon(itemId, equippedData, monkeyGrip, slot);
 		} else if (itemType === 'shield') {
 			await this.handleShield(itemId, equippedData, dualShieldActive, monkeyGrip, clickType, slot);
@@ -54,6 +54,7 @@ export class EquipmentHandler {
 	determineSlot(itemType, clickType, dualShield) {
 		const slotLookup = {
 			weapon: clickType === 'ctrl' ? 'phantom' : clickType === 'right' ? 'offHand' : 'mainHand',
+			customWeapon: 'mainHand',
 			shield: clickType === 'right' && dualShield ? 'mainHand' : 'offHand',
 			armor: 'armor',
 			accessory: 'accessory',
@@ -63,7 +64,7 @@ export class EquipmentHandler {
 
 	// Check if a two-handed weapon is equipped
 	isTwoHandedWeaponEquipped(equippedData) {
-		return equippedData.mainHand && equippedData.offHand && this.actor.items.get(equippedData.mainHand)?.system.hands.value === 'two-handed';
+		return equippedData.mainHand && equippedData.offHand && (this.actor.items.get(equippedData.mainHand).type === 'customWeapon' || this.actor.items.get(equippedData.mainHand)?.system.hands.value === 'two-handed');
 	}
 
 	// Handle equipping and unequipping items in the phantom slot

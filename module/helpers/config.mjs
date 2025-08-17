@@ -280,7 +280,7 @@ FU.statusEffectRule = {
 };
 
 /**
- * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown", "custom"} WeaponCategory
+ * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown"} WeaponCategory
  */
 /**
  * @type {Object.<WeaponCategory, string>}
@@ -296,7 +296,6 @@ FU.weaponCategories = {
 	spear: 'FU.Spear',
 	sword: 'FU.Sword',
 	thrown: 'FU.Thrown',
-	custom: 'FU.Custom',
 };
 
 /**
@@ -645,4 +644,46 @@ FU.damageOverrideScope = {
 	attack: 'FU.Attack',
 	spell: 'FU.Spell',
 	skill: 'FU.Skill',
+};
+
+FU.technospheres = {
+	armorSlots: {
+		alpha: {
+			label: 'FU.TechnospheresSlotsAlpha',
+			slots: 1,
+			mnemospheres: 1,
+		},
+		beta: {
+			label: 'FU.TechnospheresSlotsBeta',
+			slots: 2,
+			mnemospheres: 1,
+		},
+		gamma: {
+			label: 'FU.TechnospheresSlotsGamma',
+			slots: 3,
+			mnemospheres: 2,
+		},
+	},
+	weaponSlots: {
+		alpha: {
+			label: 'FU.TechnospheresSlotsAlpha',
+			slots: 1,
+			mnemospheres: 1,
+		},
+		beta: {
+			label: 'FU.TechnospheresSlotsBeta',
+			slots: 2,
+			mnemospheres: 1,
+		},
+		gamma: {
+			label: 'FU.TechnospheresSlotsGamma',
+			slots: 3,
+			mnemospheres: 2,
+		},
+		delta: {
+			label: 'FU.TechnospheresSlotsDelta',
+			slots: 4,
+			mnemospheres: 2,
+		},
+	},
 };

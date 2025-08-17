@@ -128,7 +128,7 @@ function getTags(skill) {
  * @property {string} class.value
  * @property {UseWeaponDataModelV2} useWeapon
  * @property {ItemAttributesDataModelV2} attributes
- * @property {number} accuracy.value
+ * @property {number} accuracy
  * @property {Defense} defense
  * @property {DamageDataModelV2} damage
  * @property {ImprovisedDamageDataModel} impdamage
@@ -323,5 +323,92 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			});
 			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
 		};
+	}
+
+	shouldApplyEffect(effect) {
+		return this.level.value > 0;
+	}
+
+	/**
+	 * Get the display data for an item.
+	 *
+	 * @returns {object|boolean} An object containing skill display information, or false if this is not a skill.
+	 * @property {string} qualityString - The skill's description.
+	 */
+	getSkillDisplayData() {
+		function translate(string) {
+			if (!string) {
+				return '';
+			}
+			const allTranslations = Object.assign({}, CONFIG.FU.attributeAbbreviations, CONFIG.FU.damageTypes);
+
+			return game.i18n.localize(allTranslations?.[string] ?? string);
+		}
+
+		// Get the equipped item IDs from the actor's system
+		const equipped = this.parent.actor.system.equipped || {};
+		const mainHandId = equipped.mainHand;
+
+		// Find the main hand weapon by its ID
+		const weaponMain = mainHandId ? this.parent.actor.items.get(mainHandId) : null;
+
+		const hasRoll = this.hasRoll.value;
+		const hasDamage = this.damage.hasDamage;
+		const usesWeapons = this.useWeapon.accuracy;
+		const usesWeaponsDamage = this.useWeapon.damage;
+		const hrZeroText = this.damage.hrZero ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
+
+		let attackWeaponAttributes, attackAttributes;
+		if (usesWeapons && weaponMain) {
+			let { primary, secondary } = weaponMain?.system?.attributes ?? {};
+			attackWeaponAttributes = [translate(typeof primary === 'string' ? primary : primary.value).toUpperCase(), translate(typeof secondary === 'string' ? primary : primary.value).toUpperCase()].join(' + ');
+		} else {
+			attackWeaponAttributes = '';
+		}
+
+		if (hasRoll) {
+			attackAttributes = [translate(this.attributes.primary).toUpperCase(), translate(this.attributes.secondary).toUpperCase()].join(' + ');
+		}
+
+		const weaponString = usesWeapons ? (weaponMain ? weaponMain?.name : game.i18n.localize('FU.AbilityNoWeaponEquipped')) : '';
+
+		let attackString = '';
+		if (hasRoll || usesWeapons) {
+			let accuracy = weaponMain?.system?.accuracy;
+			if (typeof accuracy === 'object') {
+				accuracy = accuracy.value;
+			}
+			attackString = usesWeapons ? `【${attackWeaponAttributes}】${weaponMain ? (accuracy > 0 ? ` + ${accuracy + this.accuracy}` : '') : ''}` : `【${attackAttributes}】${this.accuracy > 0 ? ` + ${this.accuracy}` : ''}`;
+		}
+
+		let damageString = '';
+		if (hasDamage || usesWeaponsDamage) {
+			let damageValue = weaponMain?.system?.damage.value;
+			let damageType = weaponMain?.system?.damageType;
+			if (typeof damageValue === 'object') {
+				damageType = damageType.value;
+			} else {
+				weaponMain?.system?.damage?.type;
+			}
+
+			damageString = usesWeapons
+				? `【${hrZeroText} ${weaponMain ? `${damageValue?.value}】 ${translate(damageType?.value)}` : ''}`
+				: `【${hrZeroText} ${this.damage.value > 0 ? ` ${this.damage.value}` : '0'} 】${translate(this.damage.type)}`;
+		}
+
+		const qualityString = [this.class.value.capitalize(), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
+
+		const starCurrent = this.level.value;
+		const starMax = this.level.max;
+
+		return {
+			qualityString: `${qualityString}`,
+			starCurrent: `${starCurrent}`,
+			starMax: `${starMax}`,
+		};
+	}
+
+	get skillLevelArray() {
+		return new Array(this.level.max).keys().map((_, idx) => ({ id: idx + 1, checked: idx < this.level.value }));
 	}
 }

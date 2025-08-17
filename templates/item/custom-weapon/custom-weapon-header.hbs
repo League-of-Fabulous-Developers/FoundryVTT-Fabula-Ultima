@@ -1,0 +1,50 @@
+<header class="sheet-header">
+	<img src="{{ item.img }}" data-action="editImage" data-edit="img" title="{{ item.name }}" class="document-image" />
+	<h1 class="document-name">
+		<input name="name" type="text" value="{{ item.name }}" placeholder="Name"
+			   data-tooltip="{{ item.name }}" />
+	</h1>
+	<div class="document-info">
+        <span class="label">
+            <i class="fas fa-chart-simple"></i>
+			{{localize 'FU.ItemType'}}
+        </span>
+		<input type="text" disabled value="{{localize (translate item.type)}}">
+
+		<span class="label">{{localize 'FU.Source'}} </span>
+		<input type="text" name="system.source" value="{{ item.system.source }}" />
+	</div>
+
+	<div class="document-summary">
+		{{#if system.isTransforming}}
+			<div class="label">
+				<a data-action="changeForm" data-tooltip="Click to switch active form">
+					<i class="mats-s">transform</i>
+					Form
+				</a>
+				<blockquote>
+					{{#if (eq system.activeForm "primaryForm")}}
+						{{#if system.primaryForm.name}}
+							{{system.primaryForm.name}}
+						{{else}}
+							{{localize "FU.CustomWeaponFormPrimary"}}
+						{{/if}}
+					{{else}}
+						{{#if system.secondaryForm.name}}
+							{{system.secondaryForm.name}}
+						{{else}}
+							{{localize "FU.CustomWeaponFormSecondary"}}
+						{{/if}}
+					{{/if}}
+				</blockquote>
+			</div>
+		{{/if}}
+		<label>
+			<i class="fas fa-chart-simple"></i>
+			{{localize 'FU.Summary'}}
+			<span class="blockquote">
+				<input type="text" name="system.summary" value="{{ system.summary }}" />
+			</span>
+		</label>
+	</div>
+</header>
