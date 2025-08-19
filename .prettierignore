@@ -1,5 +1,6 @@
 packs
 testdata
-styles/css
+styles/css/animate.min.css
+styles/css/rpg-awesome.css
 templates
 *.md

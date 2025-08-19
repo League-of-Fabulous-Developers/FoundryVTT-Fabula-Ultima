@@ -5,99 +5,165 @@
   "description": "<p>Roll a <strong>d6</strong> to determine the <strong>ingredient’s taste</strong> using the table below, then describe its appearance and give it a name.</p>",
   "results": [
     {
-      "type": "pack",
-      "documentCollection": "projectfu.skills",
+      "type": "document",
       "weight": 1,
       "range": [
         1,
         1
       ],
       "drawn": false,
-      "text": "Bitter",
-      "documentId": "9uSPEQZ4fi6PDkV1",
       "img": "icons/consumables/vegetable/root-ginger-brown.webp",
       "_id": "pP2XEjuybb1VoGDB",
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Bitter",
+      "documentUuid": "Compendium.projectfu.skills.Item.9uSPEQZ4fi6PDkV1",
+      "description": "",
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.pP2XEjuybb1VoGDB"
     },
     {
-      "type": "pack",
-      "documentCollection": "projectfu.skills",
+      "type": "document",
       "weight": 1,
       "range": [
         2,
         2
       ],
       "drawn": false,
-      "text": "Salty",
-      "documentId": "pClb5dXEgvo29U0C",
       "img": "icons/consumables/food/salt-seasoning-spice-pink.webp",
       "_id": "lpCAFOrFhDZYoyMH",
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Salty",
+      "documentUuid": "Compendium.projectfu.skills.Item.pClb5dXEgvo29U0C",
+      "description": "",
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.lpCAFOrFhDZYoyMH"
     },
     {
-      "type": "pack",
-      "documentCollection": "projectfu.skills",
+      "type": "document",
       "weight": 1,
       "range": [
         3,
         3
       ],
       "drawn": false,
-      "text": "Sour",
-      "documentId": "oMpFTAPDl7SEG3v2",
       "img": "icons/consumables/fruit/lemon-citrus-yellow.webp",
       "_id": "So2fIZh9msPC0lFr",
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Sour",
+      "documentUuid": "Compendium.projectfu.skills.Item.oMpFTAPDl7SEG3v2",
+      "description": "",
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.So2fIZh9msPC0lFr"
     },
     {
-      "type": "pack",
-      "documentCollection": "projectfu.skills",
+      "type": "document",
       "weight": 1,
       "range": [
         4,
         4
       ],
       "drawn": false,
-      "text": "Sweet",
-      "documentId": "ZLrC6QQvsJOh4F2h",
       "img": "icons/consumables/fruit/nectarine-ripe-orange.webp",
       "_id": "PYd9zb1DuGCoaiOr",
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Sweet",
+      "documentUuid": "Compendium.projectfu.skills.Item.ZLrC6QQvsJOh4F2h",
+      "description": "",
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.PYd9zb1DuGCoaiOr"
     },
     {
-      "type": "pack",
-      "documentCollection": "projectfu.skills",
+      "type": "document",
       "weight": 1,
       "range": [
         5,
         5
       ],
       "drawn": false,
-      "text": "Umami",
-      "documentId": "DjSSat9WKMIziH5E",
       "img": "icons/consumables/food/cheese-cube-orange.webp",
       "_id": "dnKJmQVRsUHUD91P",
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Umami",
+      "documentUuid": "Compendium.projectfu.skills.Item.DjSSat9WKMIziH5E",
+      "description": "",
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.dnKJmQVRsUHUD91P"
     },
     {
-      "type": "pack",
-      "documentCollection": "projectfu.skills",
+      "type": "document",
       "weight": 1,
       "range": [
         6,
         6
       ],
       "drawn": false,
-      "text": "Your choice",
-      "documentId": "rCwHs7DhXDWwnQYe",
       "img": "icons/consumables/food/bowl-salad-green.webp",
       "_id": "j6WlsKtj7SCXjZIW",
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Your choice",
+      "documentUuid": "Compendium.projectfu.skills.Item.rCwHs7DhXDWwnQYe",
+      "description": "",
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.j6WlsKtj7SCXjZIW"
     }
   ],
@@ -107,12 +173,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742677029227,
     "modifiedTime": 1745431389871,
-    "lastModifiedBy": "4BP57v2riKcaALIW"
+    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "exportSource": null
   },
   "formula": "1d6",
   "ownership": {

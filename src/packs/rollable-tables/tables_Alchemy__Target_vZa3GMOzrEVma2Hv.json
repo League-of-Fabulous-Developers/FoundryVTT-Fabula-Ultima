@@ -12,10 +12,21 @@
       ],
       "drawn": false,
       "_id": "XgGLKpsOv9luRBck",
-      "text": "... you or one ally you can see that is present on the scene.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "... you or one ally you can see that is present on the scene.",
+      "name": "",
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.XgGLKpsOv9luRBck"
     },
     {
@@ -27,10 +38,21 @@
       ],
       "drawn": false,
       "_id": "mRhNxnilSDSIMH8w",
-      "text": "... one enemy you can see that is present on the scene.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "... one enemy you can see that is present on the scene.",
+      "name": "",
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.mRhNxnilSDSIMH8w"
     },
     {
@@ -42,10 +64,21 @@
       ],
       "drawn": false,
       "_id": "BnBOQIJYo4CO2pNh",
-      "text": "... you and every ally present on the scene.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "... you and every ally present on the scene.",
+      "name": "",
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.BnBOQIJYo4CO2pNh"
     },
     {
@@ -57,10 +90,21 @@
       ],
       "drawn": false,
       "_id": "FteL00ZCRQnqU7uh",
-      "text": "... every enemy present on the scene.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "... every enemy present on the scene.",
+      "name": "",
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.FteL00ZCRQnqU7uh"
     }
   ],
@@ -78,12 +122,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1710031308833,
     "modifiedTime": 1745431292422,
     "lastModifiedBy": "4BP57v2riKcaALIW",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "formula": "1d20",
   "_id": "vZa3GMOzrEVma2Hv",

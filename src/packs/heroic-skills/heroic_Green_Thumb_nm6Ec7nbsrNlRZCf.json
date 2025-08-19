@@ -57,12 +57,13 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.nm6Ec7nbsrNlRZCf",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
     "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "exportSource": null
   },
   "_id": "nm6Ec7nbsrNlRZCf",
   "ownership": {

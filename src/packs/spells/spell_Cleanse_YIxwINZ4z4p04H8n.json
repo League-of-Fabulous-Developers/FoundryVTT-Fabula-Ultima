@@ -3,7 +3,7 @@
   "name": "Cleanse",
   "type": "spell",
   "_id": "YIxwINZ4z4p04H8n",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/cleanse.png",
+  "img": "icons/magic/life/cross-beam-green.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -133,12 +133,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706572278932,
-    "modifiedTime": 1748877512617,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1737917828089,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 600000,
   "_key": "!items!YIxwINZ4z4p04H8n"

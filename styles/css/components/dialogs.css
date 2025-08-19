@@ -11,13 +11,13 @@
 		label {
 			font-size: var(--font-size-base);
 			font-weight: var(--font-weight-medium);
-			font-family: var(--font-primary)
+			font-family: var(--font-primary);
 		}
 
 		.resource-content.resource-label {
 			font-size: 1.125rem;
 			font-weight: bold;
-			font-family: "Yanone Kaffeesatz", sans-serif;
+			font-family: 'Yanone Kaffeesatz', sans-serif;
 			font-variant: small-caps;
 		}
 
@@ -71,7 +71,7 @@
 		.radio-container label {
 			font-size: 16px;
 			line-height: 1.45em;
-			font-family: "PT Sans Narrow", sans-serif;
+			font-family: 'PT Sans Narrow', sans-serif;
 		}
 	}
 
@@ -83,7 +83,7 @@
 		padding: 0.5em;
 	}
 
-	.dialog-group-check-support>* {
+	.dialog-group-check-support > * {
 		margin: 0.5em;
 	}
 
@@ -119,10 +119,19 @@
 		overflow: hidden;
 		border-radius: 5px;
 		background-image: linear-gradient(to right, #2b4a42, #3d665a);
-		-webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
-		transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
-		transition: transform 0.3s ease, opacity 0.3s ease;
-		transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
+		-webkit-transition:
+			opacity 0.3s ease,
+			-webkit-transform 0.3s ease;
+		transition:
+			opacity 0.3s ease,
+			-webkit-transform 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease,
+			-webkit-transform 0.3s ease;
 	}
 
 	.dialog-name .dialog-image:hover img {
@@ -136,7 +145,7 @@
 	}
 
 	.dialog-name .dialog-image:hover img::before {
-		content: "";
+		content: '';
 		position: absolute;
 		width: 24px;
 		height: 24px;

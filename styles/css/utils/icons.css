@@ -305,7 +305,6 @@
 }
 
 @keyframes floating {
-
 	0%,
 	100% {
 		transform: translateY(0);
@@ -330,7 +329,6 @@
 }
 
 @keyframes hover-up-down {
-
 	0%,
 	100% {
 		transform: translateY(0);

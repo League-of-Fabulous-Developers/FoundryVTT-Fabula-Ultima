@@ -12,7 +12,7 @@
 
 {{#if weapon.quality}}
     <div class="toggle-section quality {{#if (getGameSetting 'optionChatMessageHideQuality')}}hidden{{/if}}">
-        {{> 'systems/projectfu/templates/chat/partials/chat-item-armor-info.hbs' quality=weapon.quality}}
+        {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=weapon.quality}}
     </div>
 {{/if}}
 

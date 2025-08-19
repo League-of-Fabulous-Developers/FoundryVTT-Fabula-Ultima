@@ -30,13 +30,15 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
         "modifiedTime": 1745602228299,
-        "lastModifiedBy": "2sIzoqmFNykqXyPi"
+        "lastModifiedBy": "2sIzoqmFNykqXyPi",
+        "exportSource": null
       },
+      "category": null,
       "_key": "!journal.pages!hs3GyWJls59GhaNz.GMRfkNkDfJS0V3To"
     },
     {
@@ -68,13 +70,15 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
         "modifiedTime": 1745602451576,
-        "lastModifiedBy": "2sIzoqmFNykqXyPi"
+        "lastModifiedBy": "2sIzoqmFNykqXyPi",
+        "exportSource": null
       },
+      "category": null,
       "_key": "!journal.pages!hs3GyWJls59GhaNz.W4kQjYXrLRVomFdg"
     }
   ],
@@ -91,14 +95,16 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1723766576793,
     "modifiedTime": 1723766576881,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "exportSource": null
   },
   "_id": "hs3GyWJls59GhaNz",
   "sort": 700000,
+  "categories": [],
   "_key": "!journal!hs3GyWJls59GhaNz"
 }

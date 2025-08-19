@@ -106,6 +106,23 @@ function attachSupportCheckListener(chatLog, html) {
 	});
 }
 
+const critThresholdFlag = 'critThreshold.supportCheck';
+
+/**
+ * @param {CheckV2} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const onPrepareCheck = (check, actor) => {
+	if (check.type === 'support') {
+		const flag = actor.getFlag(SYSTEM, critThresholdFlag);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		}
+	}
+};
+
 /**
  * @type {RenderCheckHook}
  */
@@ -160,6 +177,7 @@ const getBond = (check) => {
 
 const initialize = () => {
 	Hooks.on('renderChatLog', attachSupportCheckListener);
+	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderSupportCheck);
 };
 

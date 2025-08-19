@@ -30,13 +30,15 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "createdTime": 1711757942464,
         "modifiedTime": 1743173723125,
         "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "exportSource": null
       },
+      "category": null,
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.RQuhkt73kxwmzIL0"
     },
     {
@@ -68,13 +70,15 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "createdTime": 1711758523017,
         "modifiedTime": 1744502218185,
         "lastModifiedBy": "LokWlpJRX2uVxtGn",
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "exportSource": null
       },
+      "category": null,
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.lVGLqvkCVFBXhqau"
     },
     {
@@ -105,13 +109,15 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742791669758,
         "modifiedTime": 1743173665778,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "exportSource": null
       },
+      "category": null,
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.uafn9l51ROzc9q0w"
     }
   ],
@@ -127,14 +133,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1711757921039,
     "modifiedTime": 1723766576881,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_id": "mcjpTrTkosKxoyCc",
   "sort": 900000,
+  "categories": [],
   "_key": "!journal!mcjpTrTkosKxoyCc"
 }

@@ -97,6 +97,8 @@ const onGetChatLogEntryContext = (application, menuItems) => {
 	});
 };
 
+const critThresholdFlag = 'critThreshold.opposedCheck';
+
 /**
  * @param {CheckV2} check
  * @param {FUActor} actor
@@ -108,6 +110,11 @@ const onPrepareCheck = (check, actor) => {
 				label: 'FU.OpposedCheckBonusGeneric',
 				value: actor.system.bonuses.accuracy.opposedCheck,
 			});
+		}
+
+		const flag = actor.getFlag(SYSTEM, critThresholdFlag);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
 		}
 	}
 };

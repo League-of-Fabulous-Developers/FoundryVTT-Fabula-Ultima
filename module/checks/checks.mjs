@@ -198,6 +198,7 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.id ??= foundry.utils.randomID();
 	check.modifiers ??= [];
 	check.additionalData ??= {};
+	check.critThreshold = CRITICAL_THRESHOLD;
 	Object.seal(check);
 	// Set initial targets (actions without rolls can have targeting)
 	CheckConfiguration.configure(check).setDefaultTargets();
@@ -355,9 +356,10 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 		}),
 		modifiers: Object.freeze(check.modifiers.map(Object.freeze)),
 		modifierTotal: check.modifiers.reduce((agg, curr) => agg + curr.value, 0),
+		critThreshold: check.critThreshold,
 		result: roll.total,
 		fumble: primary.result === 1 && secondary.result === 1,
-		critical: primary.result === secondary.result && primary.result >= CRITICAL_THRESHOLD,
+		critical: primary.result === secondary.result && primary.result >= Math.max(2, check.critThreshold),
 		additionalData: check.additionalData,
 	});
 

@@ -13,10 +13,21 @@
       ],
       "drawn": false,
       "_id": "4mUo3MCQ7XW757cT",
-      "text": "Each of this delicacy's targets recovers from the (choose one: dazed, enraged, poisoned, shaken, slow, weak) status effect.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets recovers from the (choose one: dazed, enraged, poisoned, shaken, slow, weak) status effect.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.4mUo3MCQ7XW757cT"
     },
     {
@@ -28,10 +39,21 @@
       ],
       "drawn": false,
       "_id": "IyMoJ2PruCzwJX0p",
-      "text": "Each of this delicacy's targets suffers the (choose one: @EFFECT[dazed]; @EFFECT[shaken]; @EFFECT[slow]; @EFFECT[weak]) status effect",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets suffers the (choose one: @EFFECT[dazed]; @EFFECT[shaken]; @EFFECT[slow]; @EFFECT[weak]) status effect",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.IyMoJ2PruCzwJX0p"
     },
     {
@@ -43,10 +65,21 @@
       ],
       "drawn": false,
       "_id": "OviSl6PLGoVU7D01",
-      "text": "Each of this delicacy's targets recovers @GAIN[40 hp]. This amount increases to @GAIN[50 hp] if you are level 30 or higher.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets recovers @GAIN[40 hp]. This amount increases to @GAIN[50 hp] if you are level 30 or higher.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.OviSl6PLGoVU7D01"
     },
     {
@@ -58,10 +91,21 @@
       ],
       "drawn": false,
       "_id": "cAYIGqzB1TlNzf4C",
-      "text": "Each of this delicacy's targets recovers @GAIN[40 mp]. This amount increases to @GAIN[50 mp] if you are level 30 or higher.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets recovers @GAIN[40 mp]. This amount increases to @GAIN[50 mp] if you are level 30 or higher.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.cAYIGqzB1TlNzf4C"
     },
     {
@@ -73,10 +117,21 @@
       ],
       "drawn": false,
       "_id": "0axlJjmbT0athFPg",
-      "text": "Each of this delicacy's targets suffers @DMG[20 untyped] (choose one: air; bolt; earth; fire; ice; poison) damage. This amount increases to @DMG[30 untyped] damage if you are level 30 or higher.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets suffers @DMG[20 untyped] (choose one: air; bolt; earth; fire; ice; poison) damage. This amount increases to @DMG[30 untyped] damage if you are level 30 or higher.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.0axlJjmbT0athFPg"
     },
     {
@@ -88,10 +143,21 @@
       ],
       "drawn": false,
       "_id": "9WHO0tPajgyokXki",
-      "text": "Until the end of your next turn, every source that deals (choose one: air; bolt; earth; fire; ice; poison) damage deals 5 extra damage to each of this delicacy's targets",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Until the end of your next turn, every source that deals (choose one: air; bolt; earth; fire; ice; poison) damage deals 5 extra damage to each of this delicacy's targets",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.9WHO0tPajgyokXki"
     },
     {
@@ -103,10 +169,21 @@
       ],
       "drawn": false,
       "_id": "2N05BK9tEKKwCE0k",
-      "text": "Each of this delicacy's targets cannot perform the Guard action during their next turn",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets cannot perform the Guard action during their next turn",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.2N05BK9tEKKwCE0k"
     },
     {
@@ -118,10 +195,21 @@
       ],
       "drawn": false,
       "_id": "Itl9YI1ShtXBRQSF",
-      "text": "Each of this delicacy's targets cannot perform the Spell action during their next turn.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets cannot perform the Spell action during their next turn.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.Itl9YI1ShtXBRQSF"
     },
     {
@@ -133,10 +221,21 @@
       ],
       "drawn": false,
       "_id": "Xqr55pvPfddFa7Pg",
-      "text": "Each of this delicacy's targets cannot perform the Skill action during their next turn.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets cannot perform the Skill action during their next turn.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.Xqr55pvPfddFa7Pg"
     },
     {
@@ -148,10 +247,21 @@
       ],
       "drawn": false,
       "_id": "lm9lOKmihD1gtP53",
-      "text": "Each of this delicacy's targets gains Resistance to (choose one: @UUID[Compendium.projectfu.actor-effects.Item.3tMyw1mCjd7SfGTD]{Air}; @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt}; @UUID[Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG]{Earth}; @UUID[Compendium.projectfu.actor-effects.Item.FAfKTXxluiqIVP5t]{Fire}; @UUID[Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8]{Ice}; @UUID[Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX]{Poison}) damage until the end of your next turn.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets gains Resistance to (choose one: @UUID[Compendium.projectfu.actor-effects.Item.3tMyw1mCjd7SfGTD]{Air}; @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt}; @UUID[Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG]{Earth}; @UUID[Compendium.projectfu.actor-effects.Item.FAfKTXxluiqIVP5t]{Fire}; @UUID[Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8]{Ice}; @UUID[Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX]{Poison}) damage until the end of your next turn.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.lm9lOKmihD1gtP53"
     },
     {
@@ -163,10 +273,21 @@
       ],
       "drawn": false,
       "_id": "jC07L6JDGRjEXnDB",
-      "text": "Each of this delicacy's targets treats their (choose one: @UUID[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw]{Dexterity}; @UUID[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw]{Insight}; @UUID[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp]{Might}; @UUID[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG]{Willpower}) as if it were one die size higher (up to a maximum of d12) until the end of your next turn.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Each of this delicacy's targets treats their (choose one: @UUID[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw]{Dexterity}; @UUID[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw]{Insight}; @UUID[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp]{Might}; @UUID[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG]{Willpower}) as if it were one die size higher (up to a maximum of d12) until the end of your next turn.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.jC07L6JDGRjEXnDB"
     },
     {
@@ -178,10 +299,21 @@
       ],
       "drawn": false,
       "_id": "1p0nXtG8Pwv71jHw",
-      "text": "During the next turn of each of this delicacy's targets, all damage they deal becomes (choose one: air; bolt; earth; fire; ice; poison) and its type cannot change.",
-      "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "During the next turn of each of this delicacy's targets, all damage they deal becomes (choose one: air; bolt; earth; fire; ice; poison) and its type cannot change.",
+      "name": "",
       "_key": "!tables.results!LeFYrfI8SzWK4GAa.1p0nXtG8Pwv71jHw"
     }
   ],
@@ -191,12 +323,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742677027237,
     "modifiedTime": 1745431368277,
-    "lastModifiedBy": "4BP57v2riKcaALIW"
+    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "exportSource": null
   },
   "formula": "1d12",
   "ownership": {

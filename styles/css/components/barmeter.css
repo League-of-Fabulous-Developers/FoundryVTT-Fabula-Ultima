@@ -17,7 +17,7 @@
 }
 
 .projectfu .bar-progress::after {
-	content: "";
+	content: '';
 	display: block;
 	clear: both;
 }

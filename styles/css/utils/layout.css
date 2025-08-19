@@ -26,7 +26,7 @@
 	--shadow-md: 0 2px 8px rgba(0, 0, 0, 0.15);
 	--shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.6);
 	--shadow-glow: 0 0 15px rgba(143, 188, 143, 0.2);
-	--shadow-inset: inset 0 1px 3px #2B4A42FF;
+	--shadow-inset: inset 0 1px 3px #2b4a42ff;
 
 	/* Grid & Layout Variables */
 	--grid-gap-sm: 0.2rem;

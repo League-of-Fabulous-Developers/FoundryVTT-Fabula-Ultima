@@ -572,7 +572,7 @@
 	--combat-info-image-size: calc(8.5em - var(--combat-info-content-padding) * 2);
 	--combat-info-image-size-npcs: calc(7em - var(--combat-info-content-padding) * 2);
 	--combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
-	--combat-info-pc-background: url("../../static/ui/combat-hud/pc_bg.svg");
+	--combat-info-pc-background: url('../../static/ui/combat-hud/pc_bg.svg');
 	--combat-info-clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0% 0%, 0% 50%);
 	--combat-image-size: var(--combat-info-image-size);
 	--combat-bars-width-three: auto;
@@ -586,7 +586,7 @@
 	--combat-ip-label-color: #ffdfbb;
 	--combat-xp-label-color: #ffd166;
 	--combat-zeropower-label-color: #f0ccff;
-	--combat-bars-background: url("../../static/ui/combat-hud/bar_bg.svg");
+	--combat-bars-background: url('../../static/ui/combat-hud/bar_bg.svg');
 	--combat-effects-background: rgba(25, 25, 25, 0.6);
 	pointer-events: none;
 	max-height: 355px;
@@ -1005,7 +1005,7 @@
 }
 
 .projectfu#combat-hud.mother .faction-list .bar-container {
-	font-family: "Press Start 2P", cursive;
+	font-family: 'Press Start 2P', cursive;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -1059,12 +1059,28 @@
 	outline: 3px solid black;
 	border-color: darkcyan;
 	overflow: hidden;
-	-webkit-transition: -webkit-transform 0.1s, -webkit-box-shadow 0.1s;
-	transition: -webkit-transform 0.1s, -webkit-box-shadow 0.1s;
-	transition: transform 0.1s, box-shadow 0.1s;
-	transition: transform 0.1s, box-shadow 0.1s, -webkit-transform 0.1s, -webkit-box-shadow 0.1s;
-	-webkit-box-shadow: inset 0.025em -0.15em 0em 0.00125em rgb(0, 0, 0), inset 0.125em 0em 0 0 rgba(152, 160, 128, 0.6), inset 0em -0.4em 0 0 rgba(0, 0, 0, 0.3);
-	box-shadow: inset 0.025em -0.15em 0em 0.00125em rgb(0, 0, 0), inset 0.125em 0em 0 0 rgba(152, 160, 128, 0.6), inset 0em -0.4em 0 0 rgba(0, 0, 0, 0.3);
+	-webkit-transition:
+		-webkit-transform 0.1s,
+		-webkit-box-shadow 0.1s;
+	transition:
+		-webkit-transform 0.1s,
+		-webkit-box-shadow 0.1s;
+	transition:
+		transform 0.1s,
+		box-shadow 0.1s;
+	transition:
+		transform 0.1s,
+		box-shadow 0.1s,
+		-webkit-transform 0.1s,
+		-webkit-box-shadow 0.1s;
+	-webkit-box-shadow:
+		inset 0.025em -0.15em 0em 0.00125em rgb(0, 0, 0),
+		inset 0.125em 0em 0 0 rgba(152, 160, 128, 0.6),
+		inset 0em -0.4em 0 0 rgba(0, 0, 0, 0.3);
+	box-shadow:
+		inset 0.025em -0.15em 0em 0.00125em rgb(0, 0, 0),
+		inset 0.125em 0em 0 0 rgba(152, 160, 128, 0.6),
+		inset 0em -0.4em 0 0 rgba(0, 0, 0, 0.3);
 	padding-left: 3px;
 }
 
@@ -1120,14 +1136,19 @@
 	display: -ms-flexbox;
 	display: flex;
 	position: relative;
-	background-image: linear-gradient(45deg, var(--hud-background-image-color) 25%, transparent 25%, transparent 75%, var(--hud-background-image-color) 75%, var(--hud-background-image-color)), linear-gradient(45deg, var(--hud-background-image-color) 25%, transparent 25%, transparent 75%, var(--hud-background-image-color) 75%, var(--hud-background-image-color));
+	background-image: linear-gradient(45deg, var(--hud-background-image-color) 25%, transparent 25%, transparent 75%, var(--hud-background-image-color) 75%, var(--hud-background-image-color)),
+		linear-gradient(45deg, var(--hud-background-image-color) 25%, transparent 25%, transparent 75%, var(--hud-background-image-color) 75%, var(--hud-background-image-color));
 	background-size: 60px 60px;
-	background-position: 0 0, 30px 30px;
+	background-position:
+		0 0,
+		30px 30px;
 	background-color: var(--hud-background-color);
 	-webkit-transition: -webkit-transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 	transition: -webkit-transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 	transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-	transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition:
+		transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+		-webkit-transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-ms-flex-direction: column;
@@ -1146,7 +1167,7 @@
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	font-family: "Press Start 2P", cursive;
+	font-family: 'Press Start 2P', cursive;
 }
 
 .projectfu#combat-hud.mother .faction-list .combat-row img {
@@ -1191,7 +1212,7 @@
 }
 
 .projectfu#combat-hud.mother .faction-list .combat-row .combat-info .combat-name h2 {
-	font-family: "trigger-bold";
+	font-family: 'trigger-bold';
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

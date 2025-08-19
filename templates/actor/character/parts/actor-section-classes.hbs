@@ -20,7 +20,7 @@
 			</div>
 		</li>
 		{{#each classes as |item id|}}
-			<li class="item" data-item-id="{{ item._id }}">
+			<li class="item draggable" data-item-id="{{ item._id }}">
 				<div class="flexrow">
 					{{!-- Item Name--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -64,7 +64,7 @@
 			</div>
 		</li>
 		{{#each skills as |item id|}}
-			<li class="item" data-item-id="{{ item._id }}">
+			<li class="item draggable" data-item-id="{{ item._id }}">
 				<div class="flexrow" style="height: fit-content; align-items: flex-start;">
 					<div class="flexcol">
 						{{!-- Item Name--}}
@@ -123,7 +123,7 @@
 			</div>
 		</li>
 		{{#each heroics as |item id|}}
-			<li class="item" data-item-id="{{ item._id }}">
+			<li class="item draggable" data-item-id="{{ item._id }}">
 				<div class="flexrow">
 					{{!-- Item Name--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}

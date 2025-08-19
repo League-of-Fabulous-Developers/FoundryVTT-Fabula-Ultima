@@ -3,7 +3,7 @@
   "name": "Reinforce",
   "type": "spell",
   "_id": "ZxDpmAqbYQqDULxd",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce.png",
+  "img": "icons/magic/nature/barrier-shield-wood-vines.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -133,12 +133,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706573024313,
-    "modifiedTime": 1748877567841,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1744722811962,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 700000,
   "_key": "!items!ZxDpmAqbYQqDULxd"

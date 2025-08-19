@@ -44,12 +44,13 @@
       "_stats": {
         "compendiumSource": "Compendium.world.weaponqualities.Item.IRhl8FEN6dzHAuhT.ActiveEffect.9RYq1bSswXmmUmCR",
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728749884726,
         "modifiedTime": 1728775168246,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+        "exportSource": null
       },
       "_key": "!items.effects!l8Iw5eSxnGsKIvGj.Bcstwj9R41jdjEfh"
     }
@@ -59,12 +60,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193107,
     "modifiedTime": 1728747193107,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
+    "exportSource": null
   },
   "_id": "l8Iw5eSxnGsKIvGj",
   "sort": 1900000,

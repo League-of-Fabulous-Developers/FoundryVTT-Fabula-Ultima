@@ -14,7 +14,7 @@
         </div>
     </li>
     {{#each weapons as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
+        <li class="item draggable" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
                 {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -45,7 +45,7 @@
         </div>
     </li>
     {{#each shields as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
+        <li class="item draggable" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
                 {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -77,7 +77,7 @@
         </div>
     </li>
     {{#each armor as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
+        <li class="item draggable" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
                 {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -109,7 +109,7 @@
         </div>
     </li>
     {{#each accessories as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
+        <li class="item draggable" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
                 {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}

@@ -66,12 +66,13 @@
       "_stats": {
         "compendiumSource": "Compendium.projectfu.actor-effects.Item.gJLXjO1eEGbwZagp.ActiveEffect.bX83GKcbtvPeNqvG",
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1745422652949,
         "modifiedTime": 1745422987517,
-        "lastModifiedBy": "4BP57v2riKcaALIW"
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "exportSource": null
       },
       "_key": "!items.effects!gJLXjO1eEGbwZagp.rz2zKJDhh7Hx9B35"
     },
@@ -130,12 +131,13 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1745422673829,
         "modifiedTime": 1745423190320,
-        "lastModifiedBy": "4BP57v2riKcaALIW"
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "exportSource": null
       },
       "_key": "!items.effects!gJLXjO1eEGbwZagp.4gEFtsHgI2hQPIa0"
     },
@@ -194,12 +196,13 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1745422997255,
         "modifiedTime": 1745423234351,
-        "lastModifiedBy": "4BP57v2riKcaALIW"
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "exportSource": null
       },
       "_key": "!items.effects!gJLXjO1eEGbwZagp.dVFOtfXGeEdQ6DVc"
     },
@@ -258,12 +261,13 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1745423263622,
         "modifiedTime": 1745423378469,
-        "lastModifiedBy": "4BP57v2riKcaALIW"
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "exportSource": null
       },
       "_key": "!items.effects!gJLXjO1eEGbwZagp.OrmoJcptYWdsMnsb"
     },
@@ -322,12 +326,13 @@
       "_stats": {
         "compendiumSource": "Compendium.projectfu.actor-effects.Item.gJLXjO1eEGbwZagp.ActiveEffect.OrmoJcptYWdsMnsb",
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1745423473064,
         "modifiedTime": 1745423502694,
-        "lastModifiedBy": "4BP57v2riKcaALIW"
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "exportSource": null
       },
       "_key": "!items.effects!gJLXjO1eEGbwZagp.4jQLg6EumQ1xivgQ"
     },
@@ -392,12 +397,13 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1745423543333,
         "modifiedTime": 1745423565026,
-        "lastModifiedBy": "4BP57v2riKcaALIW"
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "exportSource": null
       },
       "_key": "!items.effects!gJLXjO1eEGbwZagp.awGa5v8uXAmkVDgZ"
     },
@@ -468,12 +474,13 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1745423569712,
         "modifiedTime": 1745423698798,
-        "lastModifiedBy": "4BP57v2riKcaALIW"
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "exportSource": null
       },
       "_key": "!items.effects!gJLXjO1eEGbwZagp.wRElOGOUVUWHaQMF"
     }
@@ -487,12 +494,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745422132322,
     "modifiedTime": 1745422260547,
-    "lastModifiedBy": "4BP57v2riKcaALIW"
+    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "exportSource": null
   },
   "_key": "!items!gJLXjO1eEGbwZagp"
 }

@@ -123,18 +123,37 @@
   },
   "effects": [
     {
+      "name": "Magic Artillery",
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_magical_artillery.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "step": 1,
+            "max": 6
+          }
+        }
+      },
       "duration": {
-        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Magic Artillery",
-      "_id": "HmpPyOHEzMIoGVgk",
+      "_id": "qHjYR6862sVRMKSg",
+      "type": "base",
       "changes": [
         {
           "key": "system.bonuses.accuracy.magicCheck",
@@ -144,32 +163,24 @@
         }
       ],
       "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": "FUCR187"
-        }
-      },
-      "tint": "#ffffff",
+      "sort": 0,
+      "flags": {},
       "_stats": {
-        "coreVersion": "12.331",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1741989009557,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
-        "compendiumSource": null,
-        "duplicateSource": null
+        "createdTime": 1755194021736,
+        "modifiedTime": 1755194050968,
+        "lastModifiedBy": "nqoGRB1RfVIAK1Qj"
       },
-      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_magical_artillery.png",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!b5zzfsWN7h5ugrnW.HmpPyOHEzMIoGVgk"
+      "_key": "!items.effects!b5zzfsWN7h5ugrnW.qHjYR6862sVRMKSg"
     }
   ],
   "ownership": {
@@ -184,12 +195,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706497996319,
     "modifiedTime": 1742002045081,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_id": "b5zzfsWN7h5ugrnW",
   "sort": 300000,

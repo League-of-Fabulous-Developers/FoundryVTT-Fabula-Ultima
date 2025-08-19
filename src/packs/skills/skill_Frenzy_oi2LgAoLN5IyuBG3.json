@@ -122,7 +122,86 @@
     "defense": "def",
     "fuid": "frenzy"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Frenzy",
+      "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_frenzy.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "step": 1,
+            "max": 6
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "PMPMqLWDwFn8w3z2",
+      "type": "base",
+      "changes": [
+        {
+          "key": "flags.projectfu.critThreshold.accuracyCheck.brawling",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.critThreshold.accuracyCheck.dagger",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.critThreshold.accuracyCheck.flail",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.critThreshold.accuracyCheck.thrown",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.347",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1755624497199,
+        "modifiedTime": 1755624622927,
+        "lastModifiedBy": "VpDy3go69LzoCFsX"
+      },
+      "_key": "!items.effects!oi2LgAoLN5IyuBG3.PMPMqLWDwFn8w3z2"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -134,12 +213,13 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "createdTime": 1706502388707,
     "modifiedTime": 1741976208164,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "sort": 200000,
   "_key": "!items!oi2LgAoLN5IyuBG3"
