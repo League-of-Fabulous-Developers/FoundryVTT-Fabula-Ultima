@@ -187,7 +187,7 @@
         </li>
         {{#each items as |item id|}}
         {{#if (or (eq item.type "spell") (eq item.type "basic"))}}
-        <li class="item" data-item-id="{{ item._id }}">
+        <li class="item draggable" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 <div class="flexcol">
                     {{!-- Item Name--}}
