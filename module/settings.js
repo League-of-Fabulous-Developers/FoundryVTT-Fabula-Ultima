@@ -84,6 +84,8 @@ export const SETTINGS = Object.freeze({
 	activeParty: 'optionActiveParty',
 	// STATE
 	activeWellsprings: 'activeWellsprings',
+
+	optionEnableDragRuler: 'optionEnableDragRuler',
 });
 
 /**
@@ -811,6 +813,16 @@ export const registerSystemSettings = async function () {
 			blank: true,
 			idOnly: true,
 		}),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRuler, {
+		name: 'FU.EnableDragRulerSettingLabel',
+		hint: 'FU.EnableDragRulerSettingHint',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
 	});
 };
 

@@ -8,7 +8,7 @@ import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { registerSystemSettings } from './settings.js';
+import { registerSystemSettings, SETTINGS } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -295,6 +295,12 @@ Hooks.once('init', async () => {
 	TextEditorCommandDropdown.initialize();
 	SystemControls.initialize();
 	PlayerListEnhancements.initialize();
+
+	// Disable the token drag ruler measurement, unless they've specifically
+	// gone in and enabled it for some reason.
+	if (!game.settings.get(SYSTEM, SETTINGS.optionEnableDragRuler)) {
+		CONFIG.Token.rulerClass = null;
+	}
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
