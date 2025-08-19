@@ -7,6 +7,8 @@ import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 
+const critThresholdFlag = 'critThreshold.magicCheck';
+
 /**
  * @param {CheckV2} check
  * @param {FUActor} actor
@@ -21,6 +23,11 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 				label: 'FU.MagicCheckBonusGeneric',
 				value: actor.system.bonuses.accuracy.magicCheck,
 			});
+		}
+
+		const flag = actor.getFlag(SYSTEM, critThresholdFlag);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
 		}
 	}
 };

@@ -177,12 +177,22 @@ const waitForSupportChecks = async (check, actor, item) => {
 	});
 };
 
+const critThresholdFlags = {
+	group: 'critThreshold.groupCheck',
+	initiative: 'critThreshold.initiativeCheck',
+};
+
 /**
  * @type PrepareCheckHook
  */
 const onPrepareGroupCheck = (check, actor, item, registerCallback) => {
 	if (['group', 'initiative'].includes(check.type)) {
 		registerCallback(waitForSupportChecks, Number.MAX_VALUE);
+
+		const flag = actor.getFlag(SYSTEM, critThresholdFlags[check.type]);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		}
 	}
 };
 

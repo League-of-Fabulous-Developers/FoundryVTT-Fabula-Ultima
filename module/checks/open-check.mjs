@@ -1,5 +1,6 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 
 /**
  * @typedef TargetData
@@ -18,6 +19,8 @@ function handleGenericBonus(actor, modifiers) {
 	}
 }
 
+const critThresholdFlag = 'critThreshold.openCheck';
+
 /**
  * @param {CheckV2} check
  * @param {FUActor} actor
@@ -28,6 +31,11 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 	const { type, modifiers } = check;
 	if (type === 'open') {
 		handleGenericBonus(actor, modifiers);
+
+		const flag = actor.getFlag(SYSTEM, critThresholdFlag);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		}
 	}
 };
 

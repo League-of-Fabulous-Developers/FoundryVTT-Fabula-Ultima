@@ -29,18 +29,48 @@ function handleGenericBonus(actor, modifiers) {
 	}
 }
 
+const critThresholdFlags = {
+	all: 'critThreshold.accuracyCheck.all',
+	melee: 'critThreshold.accuracyCheck.melee',
+	ranged: 'critThreshold.accuracyCheck.ranged',
+	arcane: 'critThreshold.accuracyCheck.arcane',
+	bow: 'critThreshold.accuracyCheck.bow',
+	brawling: 'critThreshold.accuracyCheck.brawling',
+	dagger: 'critThreshold.accuracyCheck.dagger',
+	firearm: 'critThreshold.accuracyCheck.firearm',
+	flail: 'critThreshold.accuracyCheck.flail',
+	heavy: 'critThreshold.accuracyCheck.heavy',
+	spear: 'critThreshold.accuracyCheck.spear',
+	sword: 'critThreshold.accuracyCheck.sword',
+	thrown: 'critThreshold.accuracyCheck.thrown',
+};
+
 /**
  * @type CheckCallback
  */
 const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
 	const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
 
+	{
+		const flag = actor.getFlag(SYSTEM, critThresholdFlags.all);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		}
+	}
+
 	// Weapon Category
-	if (weaponTraits.weaponCategory && actor.system.bonuses.accuracy[weaponTraits.weaponCategory]) {
-		check.modifiers.push({
-			label: `FU.AccuracyCheckBonus${weaponTraits.weaponCategory.capitalize()}`,
-			value: actor.system.bonuses.accuracy[weaponTraits.weaponCategory],
-		});
+	if (weaponTraits.weaponCategory) {
+		if (actor.system.bonuses.accuracy[weaponTraits.weaponCategory]) {
+			check.modifiers.push({
+				label: `FU.AccuracyCheckBonus${weaponTraits.weaponCategory.capitalize()}`,
+				value: actor.system.bonuses.accuracy[weaponTraits.weaponCategory],
+			});
+		}
+
+		const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponCategory]);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		}
 	}
 
 	// Attack Type
@@ -55,6 +85,13 @@ const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
 			label: 'FU.AccuracyCheckBonusRanged',
 			value: actor.system.bonuses.accuracy.accuracyRanged,
 		});
+	}
+
+	{
+		const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponType]);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		}
 	}
 };
 

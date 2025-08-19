@@ -1,6 +1,24 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
+
+const critThresholdFlag = 'critThreshold.attributeCheck';
+
+/**
+ * @param {CheckV2} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const onPrepareCheck = (check, actor) => {
+	if (check.type === 'attribute') {
+		const flag = actor.getFlag(SYSTEM, critThresholdFlag);
+		if (flag) {
+			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		}
+	}
+};
 
 /**
  * @param {CheckRenderData} data
@@ -42,6 +60,7 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 };
 
 const initialize = () => {
+	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 };
 
