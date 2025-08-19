@@ -7,14 +7,14 @@
 :root {
 	--color-shadow-primary: #182a25;
 	--pfu-color-app-section-content-secondary: #2b4a42ff;
-  }
-  
-  .fu-tags {
+}
+
+.fu-tags {
 	margin: 0;
 	padding: 0.125rem 0;
-  }
-  .fu-tags .fu-tag {
-	font-family: "PT Sans Narrow", sans-serif;
+}
+.fu-tags .fu-tag {
+	font-family: 'PT Sans Narrow', sans-serif;
 	font-variant: small-caps;
 	font-size: 0.813rem;
 	font-weight: 700;
@@ -37,36 +37,36 @@
 	display: inline-flex;
 	margin: 0.0625rem 0;
 	text-shadow: 0.07rem 0.07rem 0.07rem #000000;
-  }
-  .fu-tags .fu-tag i {
+}
+.fu-tags .fu-tag i {
 	color: #ffffff;
-  }
-  .fu-tags .fu-tag:hover {
+}
+.fu-tags .fu-tag:hover {
 	-webkit-filter: brightness(1);
 	filter: brightness(1);
 	cursor: pointer;
-  }
-  .fu-tags .fu-tag.button {
+}
+.fu-tags .fu-tag.button {
 	padding: 0.188rem;
 	letter-spacing: 0;
-  }
-  .fu-tags .fu-tag:not(.button) {
+}
+.fu-tags .fu-tag:not(.button) {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
-  }
-  
-  #tooltip.link-matches a.content-link {
+}
+
+#tooltip.link-matches a.content-link {
 	color: #ffffff;
 	text-shadow: 0.07rem 0.07rem 0.07rem #000000;
-  }
-  
-  .locked-tooltip.link-matches a.content-link {
+}
+
+.locked-tooltip.link-matches a.content-link {
 	color: #ffffff;
 	text-shadow: 0.07rem 0.07rem 0.07rem #000000;
-  }
-  
-  a.content-link,
-  a.inline-roll {
+}
+
+a.content-link,
+a.inline-roll {
 	background: #3d665a;
 	border: 0.063rem solid #f5f5dc;
 	border-radius: 0.5rem;
@@ -79,13 +79,13 @@
 	white-space: nowrap;
 	word-break: break-all;
 	text-shadow: 0.07rem 0.07rem 0.07rem #000000;
-  }
-  a.content-link i,
-  a.inline-roll i {
+}
+a.content-link i,
+a.inline-roll i {
 	color: #ffffff;
-  }
-  
-  .inline {
+}
+
+.inline {
 	display: -webkit-inline-box;
 	display: -ms-inline-flexbox;
 	display: inline-flex;
@@ -93,13 +93,13 @@
 	-webkit-box-align: baseline;
 	-ms-flex-align: baseline;
 	align-items: baseline;
-  }
-  .inline img {
+}
+.inline img {
 	border: none;
 	position: relative;
 	top: 3px;
-  }
-  .inline.broken {
+}
+.inline.broken {
 	font-size: var(--font-size-14);
 	background: color-mix(in srgb, red, transparent 95%);
 	padding: 0.125em 0.25em;
@@ -107,11 +107,18 @@
 	border-radius: 1px;
 	white-space: nowrap;
 	word-break: break-all;
-  }
-  .inline.broken .fas {
+}
+.inline.broken .fas {
 	margin-right: 0.125rem;
-  }
-  .inline.inline-check, .inline.inline-damage, .inline.inline-recovery, .inline.inline-loss, .inline.inline-effect, .inline.inline-type, .inline.inline-clock, .inline.inline-weapon {
+}
+.inline.inline-check,
+.inline.inline-damage,
+.inline.inline-recovery,
+.inline.inline-loss,
+.inline.inline-effect,
+.inline.inline-type,
+.inline.inline-clock,
+.inline.inline-weapon {
 	background: #3d665a;
 	border: 0.063rem solid #f5f5dc;
 	border-radius: 0.5rem;
@@ -125,32 +132,34 @@
 	text-shadow: 0.07rem 0.07rem 0.07rem #000000;
 	white-space: nowrap;
 	word-break: break-all;
-  }
-  .inline.inline-damage .fun {
+}
+.inline.inline-damage .fun {
 	margin-left: 0.125rem;
 	display: inline-block;
 	width: var(--font-size-18);
 	height: var(--font-size-18);
-  }
-  .inline.inline-damage [class^=fu-],
-  .inline.inline-damage [class*=" fu-"] {
+}
+.inline.inline-damage [class^='fu-'],
+.inline.inline-damage [class*=' fu-'] {
 	font-size: var(--font-size-18);
-  }
-  .inline.inline-damage .fua {
+}
+.inline.inline-damage .fua {
 	margin-left: 0.125rem;
 	display: inline-block;
 	width: 18px;
 	height: 18px;
 	text-align: center;
-  }
-  .inline.inline-recovery .fas,
-  .inline.inline-recovery .ra, .inline.inline-loss .fas,
-  .inline.inline-loss .ra {
+}
+.inline.inline-recovery .fas,
+.inline.inline-recovery .ra,
+.inline.inline-loss .fas,
+.inline.inline-loss .ra {
 	margin-left: 0.125rem;
 	vertical-align: middle;
 	font-size: var(--font-size-18);
-  }
-  .inline.inline-recovery .indicator, .inline.inline-loss .indicator {
+}
+.inline.inline-recovery .indicator,
+.inline.inline-loss .indicator {
 	width: 0;
 	height: 0;
 	display: inline-block;
@@ -160,72 +169,74 @@
 	border-right: calc(var(--font-size-16) / 2) solid transparent;
 	-webkit-filter: drop-shadow(0px 1px 1px black);
 	filter: drop-shadow(0px 1px 1px black);
-  }
-  .inline.inline-recovery .hp, .inline.inline-loss .hp {
+}
+.inline.inline-recovery .hp,
+.inline.inline-loss .hp {
 	background: -webkit-gradient(linear, left top, right top, from(#17b924), to(color-mix(in srgb, #17b924, black 30%)));
 	background: linear-gradient(to right, #17b924, color-mix(in srgb, #17b924, black 30%));
 	-webkit-background-clip: text;
 	background-clip: text;
-  }
-  .inline.inline-recovery .mp, .inline.inline-loss .mp {
+}
+.inline.inline-recovery .mp,
+.inline.inline-loss .mp {
 	background: -webkit-gradient(linear, left top, right top, from(#16aad6), to(color-mix(in srgb, #16aad6, black 30%)));
 	background: linear-gradient(to right, #16aad6, color-mix(in srgb, #16aad6, black 30%));
 	-webkit-background-clip: text;
 	background-clip: text;
-  }
-  .inline.inline-recovery .ip, .inline.inline-loss .ip {
+}
+.inline.inline-recovery .ip,
+.inline.inline-loss .ip {
 	background: -webkit-gradient(linear, left top, right top, from(#d68931), to(color-mix(in srgb, #d68931, black 30%)));
 	background: linear-gradient(to right, #d68931, color-mix(in srgb, #d68931, black 30%));
 	-webkit-background-clip: text;
 	background-clip: text;
-  }
-  .inline.inline-recovery .indicator {
+}
+.inline.inline-recovery .indicator {
 	border-bottom: calc(var(--font-size-16) * 0.866) solid #17b924;
-  }
-  .inline.inline-recovery:hover .indicator {
+}
+.inline.inline-recovery:hover .indicator {
 	-webkit-animation: 0.5s infinite alternate linear recovery-indicator-bobbing;
 	animation: 0.5s infinite alternate linear recovery-indicator-bobbing;
-  }
-  .inline.inline-loss .indicator {
+}
+.inline.inline-loss .indicator {
 	border-top: calc(var(--font-size-16) * 0.866) solid #d1232a;
 	border-bottom: calc(var(--font-size-16) * 0.134) solid transparent;
-  }
-  .inline.inline-loss:hover .indicator {
+}
+.inline.inline-loss:hover .indicator {
 	-webkit-animation: 0.5s infinite alternate linear loss-indicator-bobbing;
 	animation: 0.5s infinite alternate linear loss-indicator-bobbing;
-  }
-  .inline.inline-effect .fun {
+}
+.inline.inline-effect .fun {
 	margin-right: 0.125rem;
 	display: inline-block;
 	width: var(--font-size-18);
 	height: var(--font-size-18);
 	-webkit-filter: brightness(0.5);
 	filter: brightness(0.5);
-  }
-  .inline.inline-effect:hover .fun {
+}
+.inline.inline-effect:hover .fun {
 	-webkit-filter: brightness(1);
 	filter: brightness(1);
-  }
-  
-  @-webkit-keyframes recovery-indicator-bobbing {
+}
+
+@-webkit-keyframes recovery-indicator-bobbing {
 	to {
-	  translate: 0 -2px;
+		translate: 0 -2px;
 	}
-  }
-  
-  @keyframes recovery-indicator-bobbing {
+}
+
+@keyframes recovery-indicator-bobbing {
 	to {
-	  translate: 0 -2px;
+		translate: 0 -2px;
 	}
-  }
-  @-webkit-keyframes loss-indicator-bobbing {
+}
+@-webkit-keyframes loss-indicator-bobbing {
 	to {
-	  translate: 0 2px;
+		translate: 0 2px;
 	}
-  }
-  @keyframes loss-indicator-bobbing {
+}
+@keyframes loss-indicator-bobbing {
 	to {
-	  translate: 0 2px;
+		translate: 0 2px;
 	}
-  }
-  
+}

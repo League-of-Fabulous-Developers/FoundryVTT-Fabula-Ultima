@@ -24,11 +24,11 @@
 	--color-info-bg: rgba(59, 130, 246, 0.1);
 	--color-info-border: rgba(59, 130, 246, 0.3);
 	/* ===================== BORDER COLORS ===================== */
-	--color-border-primary: #2B4A42FF;
+	--color-border-primary: #2b4a42ff;
 	--color-border-secondary: #7aa87a;
 	--color-border-tertiary: #4a5a5a;
 	--color-border-fancy: #c9a76f;
-	--color-border-hover: #FFF79AFF;
+	--color-border-hover: #fff79aff;
 	--color-border-active: #e28079cc;
 	--color-border-muted: #ffeec0bf;
 	--color-border-focus: #3b82f6;
@@ -49,11 +49,11 @@
 	--color-button-bg: #ffeec0;
 	--color-button-text: #222c2c;
 	--color-button-border: #8fbc8f;
-	--color-button-hover-bg: #DCD374FF;
+	--color-button-hover-bg: #dcd374ff;
 	--color-button-hover-text: #1a2a2a;
-	--color-button-hover-border: #DCD374FF;
+	--color-button-hover-border: #dcd374ff;
 	--color-button-active-bg: #e28079cc;
-	--color-button-active-text: #FFF79AFF;
+	--color-button-active-text: #fff79aff;
 	--color-button-active-border: #fff79a;
 	--color-button-disabled-bg: #f5f5f5;
 	--color-button-disabled-text: #bdbdbd;
@@ -196,8 +196,8 @@
 	--gradient-accent: linear-gradient(0deg, #e28079cc 0%, #f1a372cc 100%);
 	--gradient-divider: linear-gradient(90deg, transparent, rgba(143, 188, 143, 0.53), transparent);
 	--gradient-button-bg: linear-gradient(135deg, #ffeec0 0%, #fffbe6 100%);
-	--gradient-button-hover-bg: linear-gradient(135deg, #DCD374FF 0%, #FFF79AFF 100%);
-	--gradient-button-active-bg: linear-gradient(135deg, #E28079CC 0%, #F1A372CC 100%);
+	--gradient-button-hover-bg: linear-gradient(135deg, #dcd374ff 0%, #fff79aff 100%);
+	--gradient-button-active-bg: linear-gradient(135deg, #e28079cc 0%, #f1a372cc 100%);
 	--gradient-button-disabled-bg: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
 	--gradient-window-header: linear-gradient(180deg, var(--color-window-header-bg) 0%, rgba(42, 58, 58, 0.8) 100%);
 	/* ===================== SHADOW DEFINITIONS ===================== */
@@ -350,7 +350,7 @@
 	--hover-text: var(--color-button-hover-text);
 	--focus-outline: 2px solid var(--color-border-hover);
 	--background-core: url('../../static/ui/HojitasDouble_highres.png'), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%);
-	--background-card: url("../../static/ui/Bkg_highres.png"), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	--background-card: url('../../static/ui/Bkg_highres.png'), linear-gradient(to right, #f5f5dc, #c9c7b8);
 }
 
 /* ===================== DARK THEME OVERRIDES ===================== */
@@ -382,7 +382,7 @@
 	--color-border-secondary: #7aa87a;
 	--color-border-tertiary: #3a4a4a;
 	--color-border-fancy: #ffeec0;
-	--color-border-hover: #FFF79AFF;
+	--color-border-hover: #fff79aff;
 	--color-border-active: #e28079cc;
 	--color-border-muted: #ffeec0bf;
 	--color-border-focus: #60a5fa;
@@ -403,11 +403,11 @@
 	--color-button-bg: #ffeec0;
 	--color-button-text: #222c2c;
 	--color-button-border: #8fbc8f;
-	--color-button-hover-bg: #DCD374FF;
+	--color-button-hover-bg: #dcd374ff;
 	--color-button-hover-text: #1a2a2a;
 	--color-button-hover-border: #eab308;
 	--color-button-active-bg: #e28079cc;
-	--color-button-active-text: #FFF79AFF;
+	--color-button-active-text: #fff79aff;
 	--color-button-active-border: #fff79a;
 	--color-button-disabled-bg: #374151;
 	--color-button-disabled-text: #6b7280;
@@ -550,8 +550,8 @@
 	--gradient-accent: linear-gradient(0deg, #e28079cc 0%, #f1a372cc 100%);
 	--gradient-divider: linear-gradient(90deg, transparent, rgba(122, 168, 122, 0.3), transparent);
 	--gradient-button-bg: linear-gradient(135deg, #ffeec0 0%, #fffbe6 100%);
-	--gradient-button-hover-bg: linear-gradient(135deg, #DCD374FF 0%, #FFF79AFF 100%);
-	--gradient-button-active-bg: linear-gradient(135deg, #E28079CC 0%, #F1A372CC 100%);
+	--gradient-button-hover-bg: linear-gradient(135deg, #dcd374ff 0%, #fff79aff 100%);
+	--gradient-button-active-bg: linear-gradient(135deg, #e28079cc 0%, #f1a372cc 100%);
 	--gradient-button-disabled-bg: linear-gradient(135deg, #374151 0%, #1f2937 100%);
 	--gradient-window-header: linear-gradient(180deg, var(--color-window-header-bg) 0%, rgba(21, 31, 31, 0.8) 100%);
 	/* ===================== CUSTOMIZATION ALIASES ===================== */

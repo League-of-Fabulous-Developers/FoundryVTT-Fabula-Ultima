@@ -2,12 +2,12 @@
    Typography
    ========================= */
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap');
 @import 'node_modules/rpg-awesome/scss/rpg-awesome';
 
 @font-face {
@@ -66,7 +66,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 
 @counter-style diamonds {
 	system: cyclic;
@@ -150,19 +149,19 @@
 
 .projectfu.actor,
 .projectfu.item {
-	font-family: var(--font-primary)
+	font-family: var(--font-primary);
 }
 
 .mats-o {
-	font-family: "Material Symbols Outlined";
+	font-family: 'Material Symbols Outlined';
 }
 
 .mats-r {
-	font-family: "Material Symbols Rounded";
+	font-family: 'Material Symbols Rounded';
 }
 
 .mats-s {
-	font-family: "Material Symbols Sharp";
+	font-family: 'Material Symbols Sharp';
 }
 
 .mats-o,
@@ -188,19 +187,23 @@
 }
 
 .mats-fill {
-	font-variation-settings: "FILL" 1;
+	font-variation-settings: 'FILL' 1;
 }
 
 /* ----------------------------------------- */
 /* Application Sheets                     
 /* ----------------------------------------- */
-.application.journal-sheet:not([id$=-popout]),
-.application.projectfu:not([id$=-popout]),
+.application.journal-sheet:not([id$='-popout']),
+.application.projectfu:not([id$='-popout']),
 .chat-message.message {
 	font-family: var(--font-primary);
-	
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		margin: 0.5rem 0;
 	}
 
@@ -243,7 +246,6 @@
 
 	.sheet-body,
 	.journal-sheet-container {
-
 		p,
 		li {
 			font-family: var(--font-primary);
@@ -275,7 +277,6 @@
 		.journal-page-content ol,
 		.editor-content ol,
 		.chat-desc ol {
-
 			li::marker,
 			.ProseMirror li::marker {
 				color: var(--color-primary);
@@ -294,7 +295,7 @@
 		font-weight: var(--font-weight-bold);
 	}
 
-	[class^=item-] {
+	[class^='item-'] {
 		font-weight: var(--font-weight-bold);
 	}
 
@@ -462,70 +463,70 @@
 
 /* Icon classes */
 .is-offensive {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #d1232a !important;
 	-webkit-text-stroke: 0.5px #000000;
 }
 
 .is-offensive::before {
-	content: "o";
+	content: 'o';
 }
 
 .is-martial {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #d1232a !important;
 	-webkit-text-stroke: 0.5px #000000;
 }
 
 .is-martial::before {
-	content: "w";
+	content: 'w';
 }
 
 .is-melee {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #000000 !important;
 }
 
 .is-melee::before {
-	content: "m";
+	content: 'm';
 }
 
 .is-range {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #000000 !important;
 }
 
 .is-range::before {
-	content: "r";
+	content: 'r';
 }
 
 .is-spell {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #000000 !important;
 }
 
 .is-spell::before {
-	content: "c";
+	content: 'c';
 }
 
 .is-skill {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #000000 !important;
 }
 
 .is-skill::before {
-	content: "s";
+	content: 's';
 }
 
 .is-two-weapon {
 	color: #000000 !important;
-	font-family: "Evilz";
+	font-family: 'Evilz';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px #000000;
 }
@@ -536,166 +537,166 @@
 }
 
 .is-two-weapon::before {
-	content: "4";
+	content: '4';
 }
 
 .is-header {
 	font-size: 1.75rem;
 	color: #000000;
-	font-family: "old retro labels tfb";
+	font-family: 'old retro labels tfb';
 }
 
 .is-header::before {
-	content: "d";
+	content: 'd';
 }
 
 .fu-phys {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #dedede !important;
 }
 
 .fu-phys::before {
-	content: "p";
+	content: 'p';
 }
 
 .fu-wind {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #cfd600 !important;
 }
 
 .fu-wind::before {
-	content: "a";
+	content: 'a';
 }
 
 .fu-bolt {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #ffef26 !important;
 }
 
 .fu-bolt::before {
-	content: "b";
+	content: 'b';
 }
 
 .fu-dark {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #543987 !important;
 }
 
 .fu-dark::before {
-	content: "d";
+	content: 'd';
 }
 
 .fu-earth {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #d28d3e !important;
 }
 
 .fu-earth::before {
-	content: "e";
+	content: 'e';
 }
 
 .fu-fire {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #f58a00 !important;
 }
 
 .fu-fire::before {
-	content: "f";
+	content: 'f';
 }
 
 .fu-ice {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #bce4fa !important;
 }
 
 .fu-ice::before {
-	content: "i";
+	content: 'i';
 }
 
 .fu-light {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #fff7b2 !important;
 }
 
 .fu-light::before {
-	content: "l";
+	content: 'l';
 }
 
 .fu-poison {
-	font-family: "Fabula Ultima icons";
+	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
 	color: #d678a2 !important;
 }
 
 .fu-poison::before {
-	content: "t";
+	content: 't';
 }
 
 .is-diamond {
-	font-family: "FnT_BasicShapes1";
+	font-family: 'FnT_BasicShapes1';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px #000000;
 	color: #d1232a !important;
 }
 
 .is-diamond::before {
-	content: "Q";
+	content: 'Q';
 }
 
 .is-club {
-	font-family: "FnT_BasicShapes1";
+	font-family: 'FnT_BasicShapes1';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px #000000;
 	color: #000000 !important;
 }
 
 .is-club::before {
-	content: "P";
+	content: 'P';
 }
 
 .is-heart {
-	font-family: "FnT_BasicShapes1";
+	font-family: 'FnT_BasicShapes1';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px #000000;
 	color: #d1232a !important;
 }
 
 .is-heart::before {
-	content: "O";
+	content: 'O';
 }
 
 .is-spade {
-	font-family: "FnT_BasicShapes1";
+	font-family: 'FnT_BasicShapes1';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px #000000;
 	color: #000000 !important;
 }
 
 .is-spade::before {
-	content: "R";
+	content: 'R';
 }
 
 .fnt {
-	font-family: "FnT_BasicShapes1";
+	font-family: 'FnT_BasicShapes1';
 	font-size: var(--font-size-large);
 	-webkit-text-stroke: 0.5px #000000;
 }
 
 .retrolabels {
 	color: #000000;
-	font-family: "old retro labels tfb";
+	font-family: 'old retro labels tfb';
 }
 
 .evil {
-	font-family: "Evilz";
+	font-family: 'Evilz';
 	font-size: var(--font-size-large);
 	-webkit-text-stroke: 0.5px #000000;
 }
@@ -783,16 +784,30 @@
 			font-weight: var(--font-weight-bold);
 		}
 
-		h2, h3, h4, h5, h6 {
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
 			font-family: var(--font-secondary);
 			font-weight: var(--font-weight-bold);
 		}
 
-		h2 { font-size: var(--font-size-h2); }
-		h3 { font-size: var(--font-size-h3); }
-		h4 { font-size: var(--font-size-h4); }
-		h5 { font-size: var(--font-size-h5); }
-		h6 { font-size: var(--font-size-h6); }
+		h2 {
+			font-size: var(--font-size-h2);
+		}
+		h3 {
+			font-size: var(--font-size-h3);
+		}
+		h4 {
+			font-size: var(--font-size-h4);
+		}
+		h5 {
+			font-size: var(--font-size-h5);
+		}
+		h6 {
+			font-size: var(--font-size-h6);
+		}
 
 		p,
 		li {
@@ -826,9 +841,14 @@
 		}
 	}
 
-	prose-mirror[name="system.description"].editor.prosemirror {
+	prose-mirror[name='system.description'].editor.prosemirror {
 		.editor-content {
-			h1, h2, h3, h4, h5, h6 {
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
 				font-family: var(--font-secondary);
 				font-weight: var(--font-weight-bold);
 				color: var(--color-border-primary);

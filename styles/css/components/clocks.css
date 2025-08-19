@@ -1,104 +1,104 @@
-  /* ----------------------------------------- */
-  /* Clocks Styles                       
+/* ----------------------------------------- */
+/* Clocks Styles                       
   /* ----------------------------------------- */
 .projectfu .progress {
-  --size: 50px;
-  --border-width: 2px;
-  width: var(--size);
-  height: var(--size);
-  position: relative;
+	--size: 50px;
+	--border-width: 2px;
+	width: var(--size);
+	height: var(--size);
+	position: relative;
 }
-.projectfu .progress[data-segments="1"] .divider {
-  display: none;
+.projectfu .progress[data-segments='1'] .divider {
+	display: none;
 }
-.projectfu .progress[data-segments="2"] .pie {
-  clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
+.projectfu .progress[data-segments='2'] .pie {
+	clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
 }
-.projectfu .progress[data-segments="3"] .pie {
-  clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
+.projectfu .progress[data-segments='3'] .pie {
+	clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
 }
-.projectfu .progress[data-segments="4"] .pie {
-  clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
+.projectfu .progress[data-segments='4'] .pie {
+	clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
 }
-.projectfu .progress[data-segments="5"] .pie {
-  clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
+.projectfu .progress[data-segments='5'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
 }
-.projectfu .progress[data-segments="6"] .pie {
-  clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
+.projectfu .progress[data-segments='6'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
 }
-.projectfu .progress[data-segments="7"] .pie {
-  clip-path: polygon(50% 0, 50% 50%, 110% 0);
+.projectfu .progress[data-segments='7'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 110% 0);
 }
-.projectfu .progress[data-segments="8"] .pie {
-  clip-path: polygon(50% 0, 50% 50%, 100% 0);
+.projectfu .progress[data-segments='8'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 100% 0);
 }
-.projectfu .progress[data-segments="9"] .pie {
-  clip-path: polygon(50% 0, 50% 50%, 95% 0);
+.projectfu .progress[data-segments='9'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 95% 0);
 }
-.projectfu .progress[data-segments="10"] .pie {
-  clip-path: polygon(50% 0, 50% 50%, 85% 0);
+.projectfu .progress[data-segments='10'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
 }
-.projectfu .progress[data-segments="11"] .pie {
-  clip-path: polygon(50% 0, 50% 50%, 85% 0);
+.projectfu .progress[data-segments='11'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
 }
-.projectfu .progress[data-segments="12"] .pie {
-  clip-path: polygon(50% 0, 50% 50%, 80% 0);
+.projectfu .progress[data-segments='12'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 80% 0);
 }
 .projectfu .progress .foreground {
-  pointer-events: none;
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  border: var(--border-width) solid #2b4a42;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  z-index: 2;
+	pointer-events: none;
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	border: var(--border-width) solid #2b4a42;
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
 }
 .projectfu .progress .divider {
-  pointer-events: none;
-  position: absolute;
-  width: var(--border-width);
-  height: calc(50% - 0.5 * var(--border-width));
-  top: calc(0.5 * var(--border-width));
-  right: calc(50% - var(--border-width) / 2);
-  background: #3d665a;
-  -webkit-transform-origin: center bottom;
-  -ms-transform-origin: center bottom;
-  transform-origin: center bottom;
-  -webkit-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
-  -ms-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
-  transform: rotate(calc(var(--index) * 1turn / var(--segments)));
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  z-index: 2;
+	pointer-events: none;
+	position: absolute;
+	width: var(--border-width);
+	height: calc(50% - 0.5 * var(--border-width));
+	top: calc(0.5 * var(--border-width));
+	right: calc(50% - var(--border-width) / 2);
+	background: #3d665a;
+	-webkit-transform-origin: center bottom;
+	-ms-transform-origin: center bottom;
+	transform-origin: center bottom;
+	-webkit-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	-ms-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
 }
-.projectfu .progress input[type=radio].pie {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  -webkit-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
-  -ms-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
-  transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
-  z-index: 1;
+.projectfu .progress input[type='radio'].pie {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	-webkit-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	-ms-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+	z-index: 1;
 }
 .projectfu .progress .pie:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 .projectfu .progress .pie:checked,
 .projectfu .progress .pie:checked ~ .pie {
-  background-color: #2b4a42;
+	background-color: #2b4a42;
 }
 .projectfu .progress .pie:hover,
 .projectfu .progress .pie:hover ~ .pie {
-  background-color: #ebf7af;
+	background-color: #ebf7af;
 }
 .projectfu .progress .pie:checked:hover,
 .projectfu .progress .pie:checked:hover ~ .pie,
@@ -106,31 +106,31 @@
 .projectfu .progress .pie:checked ~ .pie:hover ~ .pie,
 .projectfu .progress .pie:hover ~ .pie:checked,
 .projectfu .progress .pie:hover ~ .pie:checked ~ .pie {
-  background-color: #2b4a42;
+	background-color: #2b4a42;
 }
 .projectfu .clock-m,
 .projectfu .growth-clock {
-  display: grid;
-  grid-template-areas: "clock name name" "clock minus plus";
-  grid-template-columns: 50px 1fr 1fr;
+	display: grid;
+	grid-template-areas: 'clock name name' 'clock minus plus';
+	grid-template-columns: 50px 1fr 1fr;
 }
 .projectfu .clock-m .progress,
 .projectfu .growth-clock .progress {
-  grid-area: clock;
+	grid-area: clock;
 }
 .projectfu .clock-m .increment-button,
 .projectfu .growth-clock .increment-button {
-  grid-area: plus;
+	grid-area: plus;
 }
 .projectfu .clock-m .decrement-button,
 .projectfu .growth-clock .decrement-button {
-  grid-area: minus;
+	grid-area: minus;
 }
 .projectfu .clock-m .item-name,
 .projectfu .growth-clock .item-name {
-  grid-area: name;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-wrap: nowrap !important;
-  font-size: 75% !important;
+	grid-area: name;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap !important;
+	font-size: 75% !important;
 }

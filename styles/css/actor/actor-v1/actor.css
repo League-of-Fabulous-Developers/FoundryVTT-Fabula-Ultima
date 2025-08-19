@@ -150,7 +150,7 @@
 
 .projectfu .sheet-header .header-fields #roll-section {
 	border-radius: 0 10px 10px 0;
-	height: 100%
+	height: 100%;
 }
 
 .projectfu .sheet-header .header-fields #item-navbar {
@@ -291,7 +291,7 @@
 	margin-block: auto;
 }
 
-.projectfu .sheet-wrapper>footer {
+.projectfu .sheet-wrapper > footer {
 	margin-top: auto;
 }
 
@@ -362,7 +362,7 @@
 	min-height: 20em;
 }
 
-.projectfu .window-content>.tab.active {
+.projectfu .window-content > .tab.active {
 	margin-bottom: 5px;
 	overflow-y: auto;
 	min-height: 16em;
@@ -540,7 +540,7 @@
 	border: 1px solid #c9a76f;
 	border-radius: 12px;
 	padding: 10px 20px;
-	font-family: "Cormorant Garamond", serif;
+	font-family: 'Cormorant Garamond', serif;
 	text-shadow: 0 1px 1px #fff5d0;
 	box-shadow: 0 2px 0 #8d6e3d;
 	transition: transform 0.1s ease;
@@ -666,7 +666,7 @@
 }
 
 .projectfu .party .adversaries .entry:not(:last-child):after {
-	content: "";
+	content: '';
 	background-color: rgba(68, 55, 48, 0.1);
 	width: 100%;
 	height: 1px;
@@ -692,35 +692,35 @@
 	border: none;
 }
 
-.projectfu .party .adversaries .entry>.data {
+.projectfu .party .adversaries .entry > .data {
 	width: 100%;
 	color: var(--pfu-color-app-section-content-secondary);
 }
 
-.projectfu .party .adversaries .entry>.data header {
+.projectfu .party .adversaries .entry > .data header {
 	display: grid;
-	grid: "name study" 1fr "blurb study" min-content/auto -webkit-max-content;
-	grid: "name study" 1fr "blurb study" min-content/auto max-content;
+	grid: 'name study' 1fr 'blurb study' min-content/auto -webkit-max-content;
+	grid: 'name study' 1fr 'blurb study' min-content/auto max-content;
 	margin-bottom: 0.25rem;
 	padding-left: 0.5rem;
 }
 
-.projectfu .party .adversaries .entry>.data header .name {
+.projectfu .party .adversaries .entry > .data header .name {
 	grid-area: name;
 	align-items: center;
 	display: flex;
-	font-family: "CreditValleybold";
+	font-family: 'CreditValleybold';
 	font-size: xx-large;
 	font-weight: 700;
 }
 
-.projectfu .party .adversaries .entry>.data header .name i {
+.projectfu .party .adversaries .entry > .data header .name i {
 	font-size: 0.8em;
 	margin-left: 0.125rem;
 }
 
-.projectfu .party .adversaries .entry>.data .blurb {
-	font: "Yanone Kaffeesatz", sans-serif;
+.projectfu .party .adversaries .entry > .data .blurb {
+	font: 'Yanone Kaffeesatz', sans-serif;
 	align-items: center;
 	color: var(--alt-dark);
 	display: flex;
@@ -731,14 +731,14 @@
 	position: relative;
 }
 
-.projectfu .party .adversaries .entry>.data .blurb hr.vr {
+.projectfu .party .adversaries .entry > .data .blurb hr.vr {
 	border: 1px solid var(--color-border);
 	height: 0.5rem;
 	position: relative;
 	top: 1px;
 }
 
-.projectfu .party .adversaries .entry>.data .study {
+.projectfu .party .adversaries .entry > .data .study {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -746,17 +746,17 @@
 	grid-area: study;
 }
 
-.projectfu .party .adversaries .entry>.data .study>* {
+.projectfu .party .adversaries .entry > .data .study > * {
 	width: 1.5rem;
 	height: 1.5rem;
 }
 
-.projectfu .party .adversaries .entry>.data .study .empty {
+.projectfu .party .adversaries .entry > .data .study .empty {
 	border: 2px dashed rgba(0, 0, 0, 0.5);
 	border-radius: 50%;
 }
 
-.projectfu .party .adversaries .entry>.data .study img {
+.projectfu .party .adversaries .entry > .data .study img {
 	border: none;
 	display: block;
 	/* Make sure image doesn't behave like text */
@@ -787,7 +787,9 @@
 	-webkit-transition: -webkit-transform 0.3s ease;
 	transition: -webkit-transform 0.3s ease;
 	transition: transform 0.3s ease;
-	transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+	transition:
+		transform 0.3s ease,
+		-webkit-transform 0.3s ease;
 }
 
 .projectfu .party .overview .plate .name {
@@ -1054,7 +1056,6 @@
 	border-right: 1px solid rgb(255, 255, 255);
 }
 
-
 /* ----------------------------------------- */
 /* Resources Styles                       
   /* ----------------------------------------- */
@@ -1297,7 +1298,7 @@
 	grid-template-columns: repeat(3, 1fr);
 }
 
-.projectfu .npc-level-container>label {
+.projectfu .npc-level-container > label {
 	padding: 2px;
 	border-radius: initial !important;
 	display: flex;
@@ -1306,7 +1307,9 @@
 	border: 1px solid rgba(44, 74, 66, 0.3294117647);
 	width: 100%;
 	justify-content: center;
-	background: url(../static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+	background:
+		url(../static/ui/Bkg_highres.png),
+		-webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
 	background: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
 	background-blend-mode: multiply;
 	background-repeat: repeat-y;
@@ -1345,11 +1348,11 @@
 }
 
 .projectfu .npc-level-container .champion-input::before {
-	content: "(";
+	content: '(';
 }
 
 .projectfu .npc-level-container .champion-input::after {
-	content: ")";
+	content: ')';
 }
 
 /* ----------------------------------------- */
@@ -1379,7 +1382,7 @@
 	padding: 2px 0;
 }
 
-.projectfu .items-header>* {
+.projectfu .items-header > * {
 	font-size: var(--font-size-small);
 	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc));
 	background: linear-gradient(to bottom, #2c584d, #a0cdbc);
@@ -1725,10 +1728,19 @@
 	overflow: hidden;
 	border-radius: 5px;
 	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-	-webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
-	transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
-	transition: transform 0.3s ease, opacity 0.3s ease;
-	transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
+	-webkit-transition:
+		opacity 0.3s ease,
+		-webkit-transform 0.3s ease;
+	transition:
+		opacity 0.3s ease,
+		-webkit-transform 0.3s ease;
+	transition:
+		transform 0.3s ease,
+		opacity 0.3s ease;
+	transition:
+		transform 0.3s ease,
+		opacity 0.3s ease,
+		-webkit-transform 0.3s ease;
 }
 
 .projectfu .items-list .item .item-name .item-image:hover img,
@@ -1744,7 +1756,7 @@
 
 .projectfu .items-list .item .item-name .item-image:hover img::before,
 .projectfu .items-list .effect .item-name .item-image:hover img::before {
-	content: "";
+	content: '';
 	position: absolute;
 	width: 24px;
 	height: 24px;
@@ -1769,10 +1781,19 @@
 	border-radius: 4px;
 	border: 0 solid transparent;
 	opacity: 0.4;
-	-webkit-transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-	transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-	transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-	transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	-webkit-transition:
+		opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		-webkit-transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	transition:
+		opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		-webkit-transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	transition:
+		transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	transition:
+		transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		-webkit-transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .projectfu .status-effect-toggle img:not(.immune):hover {
@@ -1806,7 +1827,7 @@
 }
 
 .projectfu .status-effect-toggle.immune::after {
-	content: "✘";
+	content: '✘';
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -1855,8 +1876,16 @@
 .projectfu .items-list .effect {
 	align-items: center;
 	padding: 1px 2px;
-	-webkit-transition: background-color 0.5s ease, border-color 0.5s ease, border-radius 0.5s ease, color 0.5s ease;
-	transition: background-color 0.5s ease, border-color 0.5s ease, border-radius 0.5s ease, color 0.5s ease;
+	-webkit-transition:
+		background-color 0.5s ease,
+		border-color 0.5s ease,
+		border-radius 0.5s ease,
+		color 0.5s ease;
+	transition:
+		background-color 0.5s ease,
+		border-color 0.5s ease,
+		border-radius 0.5s ease,
+		color 0.5s ease;
 	background-color: transparent;
 	border: 2px solid transparent;
 	border-radius: 7px;
@@ -1883,7 +1912,7 @@
 	background-color: transparent;
 }
 
-.projectfu .items-list .items-header>* {
+.projectfu .items-list .items-header > * {
 	font-size: var(--font-size-small);
 	text-align: center;
 	color: #ebf7af;
@@ -2034,11 +2063,6 @@
 	left: unset !important;
 }
 
-
-
-
-
-
 /* ----------------------------------------- */
 /* Button Styles                       
   /* ----------------------------------------- */
@@ -2078,18 +2102,38 @@
 	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), color-stop(#a0cdbc), to(#2b4a42));
 	background: linear-gradient(to bottom, #2c584d, #a0cdbc, #2b4a42);
 	word-wrap: break-word;
-	-webkit-transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+	-webkit-transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
 }
 
 .projectfu .zenit-style,
 .projectfu .study-style {
-	-webkit-transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+	-webkit-transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
 }
 
 .projectfu .zenit-style input,
@@ -2150,10 +2194,20 @@
 	font-size: var(--font-size-base);
 	font-weight: bold;
 	box-shadow: 2px 4px var(--color-primary);
-	-webkit-transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+	-webkit-transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
 }
 
 .projectfu .slot-style .equipped-item {
@@ -2208,12 +2262,26 @@
 	background: var(--color-primary);
 	color: #ebf7af;
 	text-decoration: none;
-	-webkit-transition: background-color 0.3s, color 0.3s;
-	transition: background-color 0.3s, color 0.3s;
-	-webkit-transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+	-webkit-transition:
+		background-color 0.3s,
+		color 0.3s;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+	-webkit-transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
+		-webkit-transform 0.2s ease-in-out,
+		-webkit-box-shadow 0.2s ease-in-out;
 }
 
 .projectfu .button-style:hover {
@@ -2258,7 +2326,9 @@
 	background: linear-gradient(0deg, rgba(226, 128, 121, 0.8) 0%, rgba(241, 163, 114, 0.8) 100%);
 	-webkit-box-shadow: 0 0 5px #d8e08f;
 	box-shadow: 0 0 5px #d8e08f;
-	text-shadow: 1px 1px 2px #753002, -1px -1px 2px #753002;
+	text-shadow:
+		1px 1px 2px #753002,
+		-1px -1px 2px #753002;
 }
 
 .projectfu .button-style.active:hover {
@@ -2319,13 +2389,26 @@
 	font-size: 1.5rem;
 	opacity: 0.3;
 	color: #666;
-	-webkit-transition: opacity 0.2s ease, color 0.2s ease, -webkit-filter 0.2s ease;
-	transition: opacity 0.2s ease, color 0.2s ease, -webkit-filter 0.2s ease;
-	transition: opacity 0.2s ease, color 0.2s ease, filter 0.2s ease;
-	transition: opacity 0.2s ease, color 0.2s ease, filter 0.2s ease, -webkit-filter 0.2s ease;
+	-webkit-transition:
+		opacity 0.2s ease,
+		color 0.2s ease,
+		-webkit-filter 0.2s ease;
+	transition:
+		opacity 0.2s ease,
+		color 0.2s ease,
+		-webkit-filter 0.2s ease;
+	transition:
+		opacity 0.2s ease,
+		color 0.2s ease,
+		filter 0.2s ease;
+	transition:
+		opacity 0.2s ease,
+		color 0.2s ease,
+		filter 0.2s ease,
+		-webkit-filter 0.2s ease;
 }
 
-.projectfu .icon-toggle input:checked+.toggle-icon {
+.projectfu .icon-toggle input:checked + .toggle-icon {
 	opacity: 1;
 	color: #2b4a42;
 	-webkit-filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
