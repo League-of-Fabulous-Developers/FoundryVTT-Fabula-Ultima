@@ -85,7 +85,8 @@ export const SETTINGS = Object.freeze({
 	// STATE
 	activeWellsprings: 'activeWellsprings',
 
-	optionEnableDragRuler: 'optionEnableDragRuler',
+	optionEnableDragRulerGridless: 'optionEnableDragRulerGridless',
+	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
 });
 
 /**
@@ -815,14 +816,24 @@ export const registerSystemSettings = async function () {
 		}),
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRuler, {
-		name: 'FU.EnableDragRulerSettingLabel',
-		hint: 'FU.EnableDragRulerSettingHint',
+	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridless, {
+		name: 'FU.EnableDragRulerSettingGridlessLabel',
+		hint: 'FU.EnableDragRulerSettingGridlessHint',
 		scope: 'world',
 		config: true,
 		type: Boolean,
 		default: false,
-		requiresReload: true,
+		requiresReload: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridded, {
+		name: 'FU.EnableDragRulerSettingGriddedLabel',
+		hint: 'FU.EnableDragRulerSettinGriddedHint',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
 	});
 };
 
