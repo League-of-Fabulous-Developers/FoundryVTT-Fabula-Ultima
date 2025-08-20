@@ -23,8 +23,6 @@ export class FUTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
 	}
 
 	static toggleVisibility() {
-		const shouldDraw = FUTokenRuler.shouldDraw;
-		console.log('Toggling:', shouldDraw);
 		FUTokenRuler.instances.forEach((instance) => {
 			instance.refresh(instance.#previousRefreshData);
 		});
