@@ -8,7 +8,7 @@ import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { registerSystemSettings, SETTINGS } from './settings.js';
+import { registerSystemSettings } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -84,6 +84,7 @@ import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
 import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
 import { OpportunityHandler } from './pipelines/opportunity.mjs';
+import { FUTokenRuler } from './ui/token-ruler.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -296,11 +297,14 @@ Hooks.once('init', async () => {
 	SystemControls.initialize();
 	PlayerListEnhancements.initialize();
 
-	// Disable the token drag ruler measurement, unless they've specifically
-	// gone in and enabled it for some reason.
-	if (!game.settings.get(SYSTEM, SETTINGS.optionEnableDragRuler)) {
-		CONFIG.Token.rulerClass = null;
-	}
+	// // Disable the token drag ruler measurement, unless they've specifically
+	// // gone in and enabled it for some reason.
+	// if (!game.settings.get(SYSTEM, SETTINGS.optionEnableDragRuler)) {
+	// 	CONFIG.Token.rulerClass = null;
+	// }
+
+	// Override token ruler class
+	CONFIG.Token.rulerClass = FUTokenRuler;
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();

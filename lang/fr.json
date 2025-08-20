@@ -1482,6 +1482,7 @@
 		"SheetOptionsHint": "Configurez diverses options pour les fiches du système.",
 		"EnableDragRulerSettingLabel": "Enable Token Drag Ruler",
 		"EnableDragRulerSettingHint": "Enable to show distance measurement when dragging a token.",
+		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
