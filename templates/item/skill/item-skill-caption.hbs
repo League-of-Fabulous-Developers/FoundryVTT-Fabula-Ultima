@@ -1,0 +1,36 @@
+<div class="item-quality">
+	{{system.class.value}}
+	{{#if system.hasRoll.value}}
+		{{#if system.class.value}}⬥{{/if}}
+		{{#unless system.useWeapon.accuracy}}
+			【{{localize (lookup FU.attributeAbbreviations system.attributes.primary)}} + {{localize (lookup FU.attributeAbbreviations system.attributes.secondary)}}】
+			{{#if (gt system.accuracy 0)}}+ {{system.accuracy}}{{/if}}
+			{{#if (lt system.accuracy 0)}}- {{system.accuracy}}{{/if}}
+		{{else}}
+			{{#unless weapon}}
+				{{localize 'FU.AbilityNoWeaponEquipped'}}
+			{{else}}
+				{{weapon.name}}
+				⬥
+				【{{localize (lookup FU.attributeAbbreviations weapon.primary)}} + {{localize (lookup FU.attributeAbbreviations weapon.secondary)}}】
+				{{#with (math system.accuracy '+' weapon.accuracy) as |modifier|}}
+					{{#if (gt modifier 0)}}+ {{modifier}}{{/if}}
+					{{#if (lt modifier 0)}}- {{modifier}}{{/if}}
+				{{/with}}
+			{{/unless}}
+		{{/unless}}
+		{{#if system.damage.hasDamage}}
+			⬥
+			{{#unless system.useWeapon.damage}}
+				【{{#if system.damage.hrZero}}{{localize 'FU.HRZero'}}{{else}}{{localize 'FU.HighRollAbbr'}}{{/if}} + {{system.damage.value}}】
+			{{else}}
+				【{{#if system.damage.hrZero}}{{localize 'FU.HRZero'}}{{else}}{{localize 'FU.HighRollAbbr'}}{{/if}} + {{math system.damage.value '+' weapon.damage}}】
+			{{/unless}}
+			{{#if system.damage.type}}
+				{{localize (lookup FU.damageTypes system.damage.type)}}
+			{{else}}
+				{{localize (lookup FU.damageTypes weapon.damageType)}}
+			{{/if}}
+		{{/if}}
+	{{/if}}
+</div>

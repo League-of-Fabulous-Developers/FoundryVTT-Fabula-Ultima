@@ -198,6 +198,36 @@ export class FUItem extends Item {
 		}
 		return false;
 	}
+
+	/**
+	 * @return {() => String|Promise<String>}
+	 */
+	get renderInlay() {
+		if (this.system.renderInlay) {
+			return this.system.renderInlay.bind(this.system);
+		}
+		return undefined;
+	}
+
+	/**
+	 * @return {() => String|Promise<String>}
+	 */
+	get renderCaption() {
+		if (this.system.renderCaption) {
+			return this.system.renderCaption.bind(this.system);
+		}
+		return undefined;
+	}
+
+	/**
+	 * @return {() => String|Promise<String>}
+	 */
+	get renderDescription() {
+		if (this.system.renderDescription) {
+			return this.system.renderDescription.bind(this.system);
+		}
+		return undefined;
+	}
 }
 
 Hooks.on('preCreateItem', (item, options, userId) => {

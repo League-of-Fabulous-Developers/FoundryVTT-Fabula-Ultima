@@ -17,6 +17,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -332,5 +333,63 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.targeting,
 			ItemPartialTemplates.resourcePoints,
 		];
+	}
+
+	async renderInlay() {
+		const skillArr = Array(this.level.max)
+			.fill(null)
+			.map((value, index) => ({
+				level: index + 1,
+				reached: this.level.value > index,
+			}));
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('item/skill/item-skill-inlay'), { system: this, skillArr: skillArr });
+	}
+
+	async renderCaption() {
+		const actor = this.parent.actor;
+		let weaponData;
+		const mainWeapon = actor.items.get(actor.system.equipped.mainHand);
+		if (mainWeapon) {
+			if (mainWeapon.type === 'weapon') {
+				weaponData = {
+					name: mainWeapon.name,
+					primary: mainWeapon.system.attributes.primary.value,
+					secondary: mainWeapon.system.attributes.secondary.value,
+					accuracy: mainWeapon.system.accuracy.value,
+					damage: mainWeapon.system.damage.value,
+					damageType: mainWeapon.system.damageType.value,
+				};
+			}
+		}
+
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('item/skill/item-skill-caption'), {
+			FU: FU,
+			system: this,
+			weapon: weaponData,
+		});
+	}
+
+	setSkillLevel(event, target) {
+		let newLevel = Number(target.closest('[data-level]').dataset.level) || 0;
+		if (event.type === 'contextmenu') {
+			newLevel = Math.max(newLevel - 1, 0);
+		}
+
+		this.parent.update({
+			'system.level.value': newLevel,
+		});
+	}
+
+	updateSkillResource(event, target) {
+		let change = target.dataset.resourceAction === 'decrement' ? -1 : 1;
+		if (event.type === 'contextmenu') {
+			change *= this.rp.step;
+		}
+
+		const newValue = Math.clamp(this.rp.current + change, 0, this.rp.max || Number.MAX_SAFE_INTEGER);
+
+		this.parent.update({
+			'system.rp.current': newValue,
+		});
 	}
 }

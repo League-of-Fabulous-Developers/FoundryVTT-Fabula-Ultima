@@ -397,3 +397,8 @@
 .d-contents {
 	display: contents;
 }
+
+.d-subgrid {
+	display: grid;
+	grid: subgrid;
+}

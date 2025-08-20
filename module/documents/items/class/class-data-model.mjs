@@ -3,6 +3,7 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 
 const tagProperties = {
 	'benefits.resources.hp.value': 'FU.BenefitHp',
@@ -101,5 +102,20 @@ export class ClassDataModel extends FUStandardItemDataModel {
 		source = super.migrateData(source) ?? source;
 		ClassMigrations.run(source);
 		return source;
+	}
+
+	modifyClassLevel(event, target) {
+		const change = target.closest('[data-level-action]')?.dataset?.levelAction === 'decrement' ? -1 : 1;
+
+		const { value, min, max } = this.level;
+		const newValue = value + change;
+
+		return this.parent.update({
+			'system.level.value': Math.clamp(newValue, min, max),
+		});
+	}
+
+	async renderInlay() {
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('item/class/item-class-inlay'), this);
 	}
 }

@@ -25,13 +25,9 @@
 					{{!-- Item Name--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 					{{!-- Class Level --}}
-					<div class="item-m inline-desc buttons-inc" style="padding:0">
-						<a class="decrement-button" data-action="modifyClassLevel" data-level-action="decrement">-</a>
-						<span data-resource="item.level">{{ item.system.level.value }}</span>
-						<span>/</span>
-						<span>{{ item.system.level.max }}</span>
-						<a class="increment-button" data-action="modifyClassLevel" data-level-action="increment">+</a>
-					</div>
+						<div class="d-contents">
+							{{{lookup @root.inlays item.uuid}}}
+						</div>
 					{{!-- Item Control--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 				</div>
@@ -69,27 +65,15 @@
 					<div class="flexcol">
 						{{!-- Item Name--}}
 						{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-						{{#if item.quality}}
+						{{!-- {{#if item.quality}}
 							<div class="item-quality">{{ item.quality }}</div>
-						{{/if}}
+						{{/if}} --}}
+						<div class="d-contents">
+							{{{lookup @root.captions item.uuid}}}
+						</div>
 					</div>
-					{{!-- Resource Points --}}
-					{{#if item.system.hasResource.value}}
-						{{progress item 'system.rp' style='basic' type='resourceCounter' }}
-					{{/if}}
-					{{!-- Star Tracker--}}
-					<div class="skillLevel item-lg sl-stars">
-						{{#each item.skillArr as |level|}}
-							<div class="star-radio-container">
-								<input type="radio" name="skillLevel_{{ item._id }}"
-									   id="skillLevel_{{ item._id }}_{{ level.id }}" value="{{ level.id }}" {{#if
-										level.checked}}checked{{/if}} data-item-id="{{ item._id }}"
-									   class="hidden-radio">
-								<label for="skillLevel_{{ item._id }}_{{ level.id }}"
-									   class="star-label {{#if
-										(lte level.id item.system.level.value)}} fus-sl-star {{else}}ful-sl-star{{/if}}"></label>
-							</div>
-						{{/each}}
+					<div class="d-contents">
+						{{{lookup @root.inlays item.uuid}}}
 					</div>
 					{{!-- Item Control--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
@@ -127,13 +111,9 @@
 				<div class="flexrow">
 					{{!-- Item Name--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-					{{!-- Resource Points --}}
-					{{#if item.system.hasResource.value}}
-						{{progress item 'system.rp' style='basic' type='resourceCounter' }}
-					{{/if}}
-					{{!-- Subtype --}}
-					<div class="item-m">
-						<span>{{capitalize item.type }} {{capitalize item.system.subtype.value }}</span>
+
+					<div class="d-contents">
+						{{{lookup @root.inlays item.uuid}}}
 					</div>
 					{{!-- Item Control--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}

@@ -82,6 +82,30 @@ async function prepareItems(context) {
 	}
 }
 
+async function prepareItemInlays(context) {
+	context.inlays = {};
+	context.captions = {};
+	context.expandedDescriptions = {};
+
+	for (let item of context.items) {
+		if (item.renderInlay) {
+			context.inlays[item.uuid] = item.renderInlay();
+		}
+
+		if (item.renderCaption) {
+			context.captions[item.uuid] = item.renderCaption();
+		}
+
+		if (item.renderDescription) {
+			context.expandedDescriptions[item.uuid] = item.renderDescription();
+		}
+	}
+
+	context.inlays = Object.fromEntries(await Promise.all(Object.entries(context.inlays).map(async ([k, v]) => [k, await v])));
+	context.captions = Object.fromEntries(await Promise.all(Object.entries(context.captions).map(async ([k, v]) => [k, await v])));
+	context.expandedDescriptions = Object.fromEntries(await Promise.all(Object.entries(context.expandedDescriptions).map(async ([k, v]) => [k, await v])));
+}
+
 /**
  * @param {Object} context
  * @returns {Promise<void>}
@@ -1266,6 +1290,7 @@ Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
 	prepareItems,
+	prepareItemInlays,
 	enrichItems,
 	findItemConfig,
 	prepareCharacterData,

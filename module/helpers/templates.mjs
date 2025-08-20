@@ -54,6 +54,10 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
 		'systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs',
 		'systems/projectfu/templates/item/partials/item-traits.hbs',
+		'systems/projectfu/templates/item/class/item-class-inlay.hbs',
+		'systems/projectfu/templates/item/skill/item-skill-inlay.hbs',
+		'systems/projectfu/templates/item/skill/item-skill-caption.hbs',
+		'systems/projectfu/templates/item/heroic/item-heroic-inlay.hbs',
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',
