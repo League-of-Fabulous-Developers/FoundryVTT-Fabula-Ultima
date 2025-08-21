@@ -2,11 +2,14 @@ import { CHECK_FLAVOR, CHECK_RESULT } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
-import { FU } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { SETTINGS } from '../settings.js';
+import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -263,6 +266,13 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 					for (const target of targets) {
 						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 					}
+				}
+
+				if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+					const actors = targets.map((t) => fromUuidSync(t.uuid));
+					const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+					const request = new DamageRequest(sourceInfo, actors);
+					await DamagePipeline.process(request);
 				}
 			}
 
