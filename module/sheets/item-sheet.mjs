@@ -49,13 +49,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		form: {
 			submitOnChange: true,
 		},
-		// TODO: Probably doesn't do anything
-		dragDrop: [
-			{
-				dragSelector: '.directory-item.document.item, .effects-list .effect', // Selector for draggable items
-				dropSelector: '.desc.drop-zone', // Selector for item sheet
-			},
-		],
 	};
 
 	/**
@@ -204,7 +197,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	 */
 	_attachFrameListeners() {
 		super._attachFrameListeners();
-		const html = this.element;
 
 		// [PDFPager Support] Opening Journal PDF pages from PDF Code
 		document.getElementById('pdfLink')?.addEventListener('click', () => {
@@ -226,12 +218,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				console.error('Invalid input format. Please use proper syntax "PDFCode PageNumber"');
 			}
 		});
-
-		// dropzone event listeners
-		const dropZone = html.querySelector('.desc.drop-zone');
-		dropZone?.addEventListener('dragenter', this._onDragEnter.bind(this));
-		dropZone?.addEventListener('dragleave', this._onDragLeave.bind(this));
-		dropZone?.addEventListener('drop', this._onDropReset.bind(this));
 	}
 
 	/**
@@ -244,16 +230,63 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	}
 
 	/* -------------------------------------------- */
+	/*  Drag and Drop Support (as it's not implemented by default on ItemSheetV2
+	/* -------------------------------------------- */
+	/** @inheritDoc */
+	async _onRender(context, options) {
+		await super._onRender(context, options);
+		new foundry.applications.ux.DragDrop.implementation({
+			dragSelector: '.draggable',
+			permissions: {
+				dragstart: this._canDragStart.bind(this),
+				drop: this._canDragDrop.bind(this),
+			},
+			callbacks: {
+				dragstart: this._onDragStart.bind(this),
+				dragover: this._onDragOver.bind(this),
+				drop: this._onDrop.bind(this),
+			},
+		}).bind(this.element);
+	}
 
-	_onDragEnter(event) {
-		event.preventDefault();
+	/**
+	 * An event that occurs when a drag workflow begins for a draggable item on the sheet.
+	 * @param {DragEvent} event       The initiating drag start event
+	 * @returns {Promise<void>}
+	 * @protected
+	 */
+	_onDragStart(event) {
+		const target = event.currentTarget;
+		if ('link' in event.target.dataset) return;
+		let dragData;
+
+		// Owned Items
+		if (target.dataset.itemId) {
+			const item = this.actor.items.get(target.dataset.itemId);
+			dragData = item.toDragData();
+		}
+
+		// Active Effect
+		if (target.dataset.effectId) {
+			const effect = this.actor.effects.get(target.dataset.effectId);
+			dragData = effect.toDragData();
+		}
+
+		// Set data transfer
+		if (!dragData) return;
+		event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+		// Custom highlighting
 		this.dragCounter++;
 		const dropZone = $(event.currentTarget);
 		dropZone.addClass('highlight-drop-zone');
 	}
 
-	_onDragLeave(event) {
-		event.preventDefault();
+	/**
+	 * An event that occurs when a drag workflow moves over a drop target.
+	 * @param {DragEvent} event
+	 * @protected
+	 */
+	_onDragOver(event) {
 		this.dragCounter--;
 		if (this.dragCounter === 0) {
 			const dropZone = $(event.currentTarget);
@@ -261,41 +294,23 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 
-	_onDropReset(event) {
+	/**
+	 * An event that occurs when data is dropped into a drop target.
+	 * @param {DragEvent} event
+	 * @returns {Promise<void>}
+	 * @protected
+	 */
+	async _onDrop(event) {
+		console.debug(`Drop event detected on ${this.item.name}`);
+		event.preventDefault();
+
+		// Custom highlighting
 		this.dragCounter = 0;
 		const dropZone = $(event.currentTarget);
 		dropZone.removeClass('highlight-drop-zone');
-	}
-
-	_onDragStart(event) {
-		const li = event.currentTarget;
-		if ('link' in event.target.dataset) {
-			return;
-		}
-
-		// Create drag data
-		let dragData;
-
-		// Active Effect
-		if (li.dataset.effectId) {
-			const effect = this.item.effects.get(li.dataset.effectId);
-			dragData = effect.toDragData();
-		}
-
-		if (!dragData) {
-			return;
-		}
-
-		// Set data transfer
-		event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-	}
-
-	async _onDrop(event) {
-		console.debug('Drop event detected');
-		event.preventDefault();
 
 		// Retrieve drag data using TextEditor
-		const data = TextEditor.getDragEventData(event);
+		const data = TextEditor.implementation.getDragEventData(event);
 
 		if (data.type === 'Item') {
 			const itemData = await Item.implementation.fromDropData(data);
@@ -333,8 +348,23 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 
+	/**
+	 * Define whether a user is able to begin a dragstart workflow for a given drag selector.
+	 * @param {string} selector       The candidate HTML selector for dragging
+	 * @returns {boolean}             Can the current user drag this selector?
+	 * @protected
+	 */
+	_canDragStart(selector) {
+		return this.isEditable;
+	}
+
+	/**
+	 * Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector.
+	 * @param {string} selector       The candidate HTML selector for the drop target
+	 * @returns {boolean}             Can the current user drop on this selector?
+	 * @protected
+	 */
 	_canDragDrop() {
-		console.log('Checking drag drop capability');
 		return this.isEditable;
 	}
 
@@ -412,6 +442,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			console.log('No active ProseMirror editor found.');
 		}
 	}
+	/* -------------------------------------------- */
 
 	/**
 	 * @override
