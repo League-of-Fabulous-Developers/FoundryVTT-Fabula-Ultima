@@ -42,9 +42,18 @@ function migrateCostAndTargets(source) {
 	}
 }
 
+function migratePerTargetCost(source) {
+	if (source.cost && source.targeting) {
+		if (source.targeting.rule === Targeting.rule.multiple) {
+			source.cost.perTarget = true;
+		}
+	}
+}
+
 export class SpellMigrations {
 	static run(source) {
 		migrateQualityToOpportunity(source);
 		migrateCostAndTargets(source);
+		migratePerTargetCost(source);
 	}
 }
