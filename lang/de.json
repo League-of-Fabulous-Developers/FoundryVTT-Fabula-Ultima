@@ -1480,6 +1480,11 @@
 		"SheetOptionsTitle": "Dokumentenformulare",
 		"SheetOptions": "Konfiguriere Dokumentenformulare",
 		"SheetOptionsHint": "Verwalte Optionen, die sich auf die Dokumentformulare auswirken.",
+		"DragRulerSettingsEnableGridlessLabel": "Enable Token Drag Ruler",
+		"DragRulerSettingsEnableGridlessHint": "Enable to show distance measurement when dragging a token in a scene with no grid.",
+		"DragRulerSettingsEnableGriddedLabel": "Enable Token Drag Ruler for Gridded Scenes",
+		"DragRulerSettingsEnableGriddedHint": "Enable to show distance measurement when dragging a token in a scene with a grid.",
+		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
