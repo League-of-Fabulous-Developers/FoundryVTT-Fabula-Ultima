@@ -79,8 +79,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 			levelUp: FUStandardActorSheet.levelUp,
 
 			// Buttons
-			modifyClassLevel: FUStandardActorSheet.modifyClassLevel,
-			modifyResource: { handler: FUStandardActorSheet.modifyResource, buttons: [0, 2] },
+			// modifyClassLevel: FUStandardActorSheet.modifyClassLevel,
+			// modifyResource: { handler: FUStandardActorSheet.modifyResource, buttons: [0, 2] },
 			equipItem: { handler: FUStandardActorSheet.equipItem, buttons: [0, 2] },
 
 			// Features
@@ -160,7 +160,34 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @override
 	 */
 	_onClickAction(event, target) {
+		if (this.#dispatchClickActionToItem(event, target)) {
+			return;
+		}
+
 		console.warn('Unhandled action:', target.dataset.action, event, target);
+	}
+
+	#dispatchClickActionToItem(event, target) {
+		let success = false;
+
+		const itemId = target.closest('[data-item-id]').dataset.itemId;
+		let item;
+
+		if (itemId) {
+			item = this.actor.items.get(itemId);
+		}
+
+		if (!item) {
+			const uuid = target.closest('[data-uuid]').dataset.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+
+		if (item && item.system[target.dataset.action]) {
+			item.system[target.dataset.action](event, target);
+			success = true;
+		}
+
+		return success;
 	}
 
 	/**
@@ -405,18 +432,18 @@ export class FUStandardActorSheet extends FUActorSheet {
 		super._attachPartListeners(partId, element, options);
 		switch (partId) {
 			case 'classes': {
-				element.addEventListener('click', (ev) => {
-					const target = ev.target;
-					if (target.matches('.skillLevel input')) {
-						this._onSkillLevelUpdate(target);
-					}
-				});
-				element.addEventListener('contextmenu', (ev) => {
-					if (ev.target.closest('.skillLevel')) {
-						ev.preventDefault();
-						this._onSkillLevelReset(ev.target);
-					}
-				});
+				// element.addEventListener('click', (ev) => {
+				// 	const target = ev.target;
+				// 	if (target.matches('.skillLevel input')) {
+				// 		this._onSkillLevelUpdate(target);
+				// 	}
+				// });
+				// element.addEventListener('contextmenu', (ev) => {
+				// 	if (ev.target.closest('.skillLevel')) {
+				// 		ev.preventDefault();
+				// 		this._onSkillLevelReset(ev.target);
+				// 	}
+				// });
 				break;
 			}
 		}
@@ -430,6 +457,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		context.FU = FU;
 		// Model agnostic
 		await ActorSheetUtils.prepareData(context, this);
+		await ActorSheetUtils.prepareItemInlays(context);
 		await ActorSheetUtils.enrichItems(context);
 		// For characters/npcs
 		ActorSheetUtils.prepareCharacterData(context);

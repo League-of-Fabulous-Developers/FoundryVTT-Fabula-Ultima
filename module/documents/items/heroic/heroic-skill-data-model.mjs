@@ -5,6 +5,7 @@ import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof HeroicSkillDataModel) {
@@ -81,5 +82,22 @@ export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.controls, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill, ItemPartialTemplates.resourcePoints];
+	}
+
+	async renderInlay() {
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('item/heroic/item-heroic-inlay'), this);
+	}
+
+	updateHeroicResource(event, target) {
+		let change = target.dataset.resourceAction === 'decrement' ? -1 : 1;
+		if (event.type === 'contextmenu') {
+			change *= this.rp.step;
+		}
+
+		const newValue = Math.clamp(this.rp.current + change, 0, this.rp.max || Number.MAX_SAFE_INTEGER);
+
+		this.parent.update({
+			'system.rp.current': newValue,
+		});
 	}
 }
