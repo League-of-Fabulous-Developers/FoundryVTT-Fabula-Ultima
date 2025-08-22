@@ -58,7 +58,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 
 		// Optional resource
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
-		CommonSections.spendResource(sections, actor, item, targets, flags);
+		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
 	} else if (check.type === 'attribute' && check.additionalData[ABILITY_USED_WEAPON]) {
 		const ability = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
 		CommonSections.itemFlavor(sections, ability);

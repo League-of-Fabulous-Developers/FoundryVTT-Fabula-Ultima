@@ -1480,6 +1480,11 @@
 		"SheetOptionsTitle": "Document Sheets",
 		"SheetOptions": "Configure Sheets",
 		"SheetOptionsHint": "Configure various options for the system's sheets.",
+		"DragRulerSettingsEnableGridlessLabel": "Enable Token Drag Ruler",
+		"DragRulerSettingsEnableGridlessHint": "Enable to show distance measurement when dragging a token in a scene with no grid.",
+		"DragRulerSettingsEnableGriddedLabel": "Enable Token Drag Ruler for Gridded Scenes",
+		"DragRulerSettingsEnableGriddedHint": "Enable to show distance measurement when dragging a token in a scene with a grid.",
+		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
 		"FUID": {
 			"Long": "ID Fabula Ultima",
 			"Short": "FUID",

@@ -51,7 +51,7 @@ function onRenderCheck(data, result, actor, item, flags) {
 			CommonSections.targeted(data, actor, item, targets, flags, null, null);
 		}
 
-		CommonSections.spendResource(data, actor, item, targets, flags);
+		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 	}
 }
 

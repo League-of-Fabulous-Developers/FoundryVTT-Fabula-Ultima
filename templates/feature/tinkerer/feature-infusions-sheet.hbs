@@ -34,6 +34,10 @@
                 {{selectOptions additionalData.ranks selected=system.data.rank localize=true}}
             </select>
         </label>
+		<label class="resource-label-m">
+			{{localize 'FU.InventoryCost'}}
+			<input type="number" name="system.data.ipCost" value="{{system.data.ipCost}}" class="resource-text-m resource-inputs">
+		</label>
     </div>
     <nav class='infusion-tabs tabs flexrow gap-5' data-group='infusionTabs'>
         <a class='item rollable tab button-style' data-tab='description'>{{localize 'FU.Description'}}</a>
