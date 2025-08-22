@@ -1290,6 +1290,7 @@
 		"CombatHudDefault": "Por defecto (Estilo Retro)",
 		"CombatHudModern": "Moderno",
 		"CombatHudMother": "Mother",
+		"CombatHudPixel": "Pixel",
 		"CombatHudTrackedResource4": "Cuarto Recurso Mostrado",
 		"CombatHudTrackedResource4Hint": "Elige el cuarto recurso que se mostrará como una barra en el HUD de Combate. No es compatible con todos los temas.",
 		"CombatHudShowNPCTurnsLeftMode": "Modo de turnos restantes de PNJ",

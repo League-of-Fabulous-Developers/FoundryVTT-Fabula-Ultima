@@ -126,6 +126,18 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 				systemTemplatePath('ui/partials/combat-bar-exp-mother'),
 			],
 		},
+		'fu-pixel': {
+			template: systemTemplatePath('ui/combat-hud/combat-hud-pixel'),
+			templates: [
+				systemTemplatePath('ui/partials/combat-bar-hp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-mp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-ip-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-fp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-zeropower-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-zenit-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-exp-pixel'),
+			],
+		},
 	};
 
 	constructor(options) {
@@ -207,6 +219,12 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 					'0 0 0 10px rgba(104, 208, 184, var(--hud-opacity)), ' +
 					'0 0 0 12px rgba(247, 232, 168, var(--hud-opacity)), ' +
 					'0 0 0 15px rgba(61, 60, 85, var(--hud-opacity));'
+				);
+			case 'fu-pixel':
+				return (
+					'--hud-opacity: ' +
+					opacity +
+					';'
 				);
 		}
 	}
