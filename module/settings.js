@@ -817,8 +817,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridless, {
-		name: 'FU.EnableDragRulerSettingGridlessLabel',
-		hint: 'FU.EnableDragRulerSettingGridlessHint',
+		name: 'FU.DragRulerSettingsEnableGridlessLabel',
+		hint: 'FU.DragRulerSettingsEnableGridlessHint',
 		scope: 'world',
 		config: true,
 		type: Boolean,
@@ -827,8 +827,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridded, {
-		name: 'FU.EnableDragRulerSettingGriddedLabel',
-		hint: 'FU.EnableDragRulerSettinGriddedHint',
+		name: 'FU.DragRulerSettingsEnableGriddedLabel',
+		hint: 'FU.DragRulerSettingsEnableGriddedHint',
 		scope: 'world',
 		config: true,
 		type: Boolean,

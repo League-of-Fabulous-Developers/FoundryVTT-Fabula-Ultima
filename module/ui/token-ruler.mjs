@@ -1,5 +1,5 @@
 import { SYSTEM } from '../helpers/config.mjs';
-import { KEYBINDINGS } from '../keybindings.mjs';
+import { FUKeybindings } from '../keybindings.mjs';
 import { SETTINGS } from '../settings.js';
 
 export class FUTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
@@ -9,7 +9,7 @@ export class FUTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
 		if (canvas.scene.grid.type === 0 && game.settings.get(SYSTEM, SETTINGS.optionEnableDragRulerGridless)) return true;
 		else if (canvas.scene.grid.type !== 0 && game.settings.get(SYSTEM, SETTINGS.optionEnableDragRulerGridded)) return true;
 
-		const binding = game.keybindings.get(SYSTEM, KEYBINDINGS.showTokenDragRuler);
+		const binding = game.keybindings.get(SYSTEM, FUKeybindings.showTokenDragRuler);
 		if (binding?.some(({ key }) => game.keyboard.downKeys.has(key))) return true;
 
 		return false;

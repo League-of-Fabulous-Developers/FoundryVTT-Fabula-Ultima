@@ -2,13 +2,13 @@ import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
 import { Flags } from './helpers/flags.mjs';
 import { FUTokenRuler } from './ui/token-ruler.mjs';
 
-export const KEYBINDINGS = Object.freeze({
+export const FUKeybindings = Object.freeze({
 	openPartySheet: 'openPartySheet',
 	showTokenDragRuler: 'showTokenDragRuler',
 });
 
 export const registerKeyBindings = async function () {
-	game.keybindings.register(Flags.Scope, KEYBINDINGS.openPartySheet, {
+	game.keybindings.register(Flags.Scope, FUKeybindings.openPartySheet, {
 		name: game.i18n.localize('FU.ActivePartySheetOpen'),
 		editable: [
 			{
@@ -23,7 +23,7 @@ export const registerKeyBindings = async function () {
 		precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
 	});
 
-	game.keybindings.register(Flags.Scope, KEYBINDINGS.showTokenDragRuler, {
+	game.keybindings.register(Flags.Scope, FUKeybindings.showTokenDragRuler, {
 		name: game.i18n.localize('FU.ShowTokenDragRulerKey'),
 		editable: [
 			{
