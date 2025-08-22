@@ -3,7 +3,7 @@
         <label class="resource-label-m"><i class="fas fa-hat-wizard"></i>{{localize 'FU.Resource'}}</label>
     </legend>
 
-    <div class="grid grid-2col">
+    <div class="grid grid-3col">
 
         <div class="resource-content flexcol flex-group-center">
             <label for="system.cost.resource" class="resource-label-m">{{localize 'FU.Resource'}} </label>
@@ -17,6 +17,10 @@
                    value="{{ system.cost.amount }}" class="resource-inputs"
                    data-dtype="Number" />
         </div>
-
+		<div class="resource-content flexcol flex-group-center">
+            <label class="resource-label-m">{{localize 'FU.CostPerTarget'}}
+            <input type="checkbox" name="system.cost.perTarget" {{checked system.cost.perTarget}} class="resource-inputs" />
+			</label>
+        </div>
     </div>
 </fieldset>

@@ -2,7 +2,6 @@ import { Pipeline, PipelineRequest } from './pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 
@@ -242,26 +241,14 @@ async function processLoss(request) {
  */
 
 /**
- * @param {FUItem} item
+ * @param {ActionCostDataModel} cost
  * @param {TargetData[]} targets
  * @return {ResourceExpense}
  */
-function calculateExpense(item, targets) {
-	let amount = item.system.cost.amount;
-	let resource = item.system.cost.resource;
-	const targeting = item.system.targeting;
-
-	if (targeting.rule === Targeting.rule.multiple && targeting.max > 1) {
-		if (targets.length === 0) {
-			console.warn(`Wrong number of targets given (${targets.length}) for calculating resource expense. Using default of 1.`);
-		} else {
-			amount = amount * targets.length;
-		}
-	}
-
+function calculateExpense(cost, targets) {
 	return {
-		resource: resource,
-		amount: amount,
+		resource: cost.resource,
+		amount: cost.amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
 	};
 }
 

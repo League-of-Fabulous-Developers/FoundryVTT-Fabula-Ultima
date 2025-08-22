@@ -5,7 +5,6 @@ import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
 import { FU } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
-import { ConsumableDataModel } from '../documents/items/consumable/consumable-data-model.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 
@@ -310,30 +309,17 @@ async function showFloatyText(targetData, localizedText) {
  * @param {CheckRenderData} sections
  * @param {FUActor} actor
  * @param {FUItem} item
+ * @param {ActionCostDataModel} cost
  * @param {TargetData[]} targets
  * @param {Object} flags
- * @param {ResourceExpense} expense
  */
-const spendResource = (sections, actor, item, targets, flags, expense = undefined) => {
-	// Resolve the expense if not explicit
-	if (expense === undefined) {
-		// If using the newer cost data model
-		if (item.system.cost) {
-			if (item.system.cost.amount === 0) {
-				return;
-			}
-			expense = ResourcePipeline.calculateExpense(item, targets);
-			if (expense.amount === 0) {
-				return;
-			}
-		}
-		// Support for consumables
-		else if (item.system instanceof ConsumableDataModel) {
-			expense = {
-				resource: 'ip',
-				amount: item.system.ipCost.value,
-			};
-		}
+const spendResource = (sections, actor, item, cost, targets, flags) => {
+	if (cost.amount === 0) {
+		return;
+	}
+	const expense = ResourcePipeline.calculateExpense(cost, targets);
+	if (expense.amount === 0) {
+		return;
 	}
 
 	if (expense) {

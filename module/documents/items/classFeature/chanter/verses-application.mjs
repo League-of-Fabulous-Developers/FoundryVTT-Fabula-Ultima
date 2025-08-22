@@ -7,6 +7,7 @@ import { Targeting } from '../../../../helpers/targeting.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FUApplication from '../../../../ui/application.mjs';
+import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
 
 /**
  * @param {VerseDataModel} model
@@ -237,11 +238,12 @@ export class VersesApplication extends FUApplication {
 
 		// SpendResource
 		const sections = [];
-		const expense = {
+		const expense = new ActionCostDataModel({
 			resource: 'mp',
 			amount: cost,
-		};
-		CommonSections.spendResource(sections, actor, item, targets, flags, expense);
+			perTarget: false,
+		});
+		CommonSections.spendResource(sections, actor, item, expense, targets, flags);
 		CommonEvents.skill(actor, item);
 
 		// Data for the template
