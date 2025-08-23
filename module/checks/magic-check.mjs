@@ -82,7 +82,7 @@ const onProcessCheck = (check, actor, item) => {
  * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
-	const accuracyData = inspector.getAccuracyData();
+	const checkData = inspector.getCheck();
 
 	let damageData;
 	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
@@ -95,13 +95,13 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 		order: CHECK_ROLL,
 		partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
 		data: {
-			accuracy: accuracyData,
+			check: checkData,
 			damage: damageData,
 		},
 	});
 
 	const targets = inspector.getTargets();
-	CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
+	CommonSections.targeted(data, actor, item, targets, flags, checkData, damageData);
 	CommonEvents.attack(inspector, actor, item);
 }
 

@@ -61,24 +61,35 @@ export class DamageData {
 		return this.modifiers.reduce((agg, curr) => agg + curr.value, 0);
 	}
 
+	get bonus() {
+		return this.modifierTotal;
+	}
+
 	/**
 	 * @returns {Number}
 	 */
 	get total() {
 		return this.modifierTotal + this.hr;
 	}
+
+	/**
+	 * @param {TemplateDamageData} templatedDamageData
+	 * @returns {DamageData}
+	 */
+	static fromTemplatedDamageData(templatedDamageData) {
+		return new DamageData({});
+	}
 }
 
+// TODO: Fold into DamageData?
 /**
  * @typedef TemplateDamageData
  * @property {Object} result - The result attributes from the check.
  * @property {number} result.attr1 - The primary check result.
  * @property {number} result.attr2 - The secondary check result.
- * @property {Object} damage - The damage details.
- * @property {number} damage.hrZero - The HR zero value.
+ * @property {DamageData} damage - The damage details.
  * @property {number} damage.bonus - The total damage bonus.
  * @property {number} damage.total - The total calculated damage.
- * @property {string} damage.type - The type of damage.
  * @property {String} damage.extra - Additional damage information.
  * @property {Object} translation - Translation details for damage types and icons.
  * @property {Object} translation.damageTypes - The available damage types.
@@ -534,46 +545,23 @@ class CheckInspector {
 	}
 
 	/**
-	 * @remarks Used for templating
+	 * @typedef CheckAccuracyData
+	 * @property {CheckV2} result
 	 */
-	getAccuracyData() {
-		const _check = this.getCheck();
-		const accuracyData = {
-			result: {
-				attr1: _check.primary.result,
-				attr2: _check.secondary.result,
-				die1: _check.primary.dice,
-				die2: _check.secondary.dice,
-				modifier: _check.modifierTotal,
-				total: _check.result,
-				crit: _check.critical,
-				fumble: _check.fumble,
-			},
-			check: {
-				attr1: {
-					attribute: _check.primary.attribute,
-				},
-				attr2: {
-					attribute: _check.secondary.attribute,
-				},
-			},
-			modifiers: _check.modifiers,
-			additionalData: _check.additionalData,
-		};
-		return accuracyData;
-	}
 
 	/**
 	 * @returns {TemplateDamageData}
 	 * @remarks Used for templating.
 	 */
 	getDamageData() {
-		const _check = this.getCheck();
 		const traits = this.getTraits();
 		const isBase = traits.includes(Traits.Base);
+
 		const damage = this.getDamage();
 		const hrZero = this.getHrZero();
 		const modifierTotal = damage.modifierTotal;
+
+		const _check = this.getCheck();
 		const primary = _check.primary.result;
 		const secondary = _check.secondary.result;
 		const total = hrZero ? modifierTotal : Math.max(primary, secondary) + modifierTotal;
@@ -586,10 +574,8 @@ class CheckInspector {
 					attr2: secondary,
 				},
 				damage: {
-					hrZero: hrZero,
-					bonus: modifierTotal,
+					...damage,
 					total: total,
-					type: damage.type,
 					extra: damage.extra,
 					traits: traits,
 				},

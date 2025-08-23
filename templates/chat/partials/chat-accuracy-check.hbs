@@ -11,12 +11,12 @@
 
 <div class='detail-desc flexrow flex-group-center desc'>
     <label
-        class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow"
-        {{#if result.crit}}data-tooltip="{{localize 'FU.Critical'}}"{{/if}}
-        {{#if result.fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
+        class="total {{#if critical}}critical{{else}}{{#if fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow"
+        {{#if critical}}data-tooltip="{{localize 'FU.Critical'}}"{{/if}}
+        {{#if fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
     >
         <div class="startcap"></div>
-        <div class="" style="flex: 0 1 auto;">{{result.total}} <label>vs</label> {{uppercase additionalData.targetedDefense}}{{uppercase details.defense}}</div>
+        <div class="" style="flex: 0 1 auto;">{{result}} <label>vs</label> {{uppercase additionalData.targetedDefense}}{{uppercase details.defense}}</div>
         <div class="endcap"></div>
     </label>
 </div>
@@ -25,17 +25,17 @@
 <div class="toggle-section accuracy-check-results {{#if (getGameSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
     <div class="flexrow gap-5">
         <div class='detail-desc flex-group-center grid grid-3col flex3'>
-            <div data-tooltip="(Die Size: {{result.die1}})">
-                <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}}</label>
-                <label class="detail">{{result.attr1}}</label>
+            <div data-tooltip="(Die Size: {{primary.dice}})">
+                <label class="title">{{localize (concat 'FU.Attribute' (capitalize primary.attribute) 'Abbr')}}</label>
+                <label class="detail">{{primary.result}}</label>
             </div>
-            <div data-tooltip="(Die Size: {{result.die2}})">
-                <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}}</label>
-                <label class="detail">{{result.attr2}}</label>
+            <div data-tooltip="(Die Size: {{secondary.dice}})">
+                <label class="title">{{localize (concat 'FU.Attribute' (capitalize secondary.attribute) 'Abbr')}}</label>
+                <label class="detail">{{secondary.result}}</label>
             </div>
             <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}" {{/if}}>
                 <label class="title">{{localize 'FU.ModAbbr'}}</label>
-                <label class="detail">{{result.modifier}}</label>
+                <label class="detail">{{modifierTotal}}</label>
             </div>
         </div>
     </div>

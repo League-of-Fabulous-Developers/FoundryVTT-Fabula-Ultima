@@ -157,7 +157,7 @@ const onProcessCheck = (check, actor, item) => {
 function onRenderCheck(data, checkResult, actor, item, flags) {
 	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-		const accuracyData = inspector.getAccuracyData();
+		const checkData = inspector.getCheck();
 		const damageData = inspector.getDamageData();
 
 		// Push combined data for accuracy and damage
@@ -165,14 +165,14 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
 			data: {
-				accuracy: accuracyData,
+				check: checkData,
 				damage: damageData,
 			},
 		});
 
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-		CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
+		CommonSections.targeted(data, actor, item, targets, flags, checkData, damageData);
 		CommonEvents.attack(inspector, actor, item);
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();

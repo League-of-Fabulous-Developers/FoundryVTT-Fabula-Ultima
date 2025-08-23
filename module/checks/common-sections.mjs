@@ -239,6 +239,7 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 			let actions = [];
 			actions.push(Targeting.defaultAction);
 			let selectedActions = [];
+			1;
 
 			if (accuracyData && damageData) {
 				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
@@ -268,10 +269,10 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 					}
 				}
 
-				if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+				if (game.user.isGM && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
 					const actors = targets.map((t) => fromUuidSync(t.uuid));
 					const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
-					const request = new DamageRequest(sourceInfo, actors);
+					const request = new DamageRequest(sourceInfo, actors, damageData);
 					await DamagePipeline.process(request);
 				}
 			}
