@@ -20,4 +20,12 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			submitOnChange: true,
 		},
 	};
+
+	/**
+	 * @param {FUItem} item
+	 * @returns {Boolean}
+	 */
+	supportsItem(item) {
+		return item.canStash;
+	}
 }

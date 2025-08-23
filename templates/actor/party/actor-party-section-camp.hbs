@@ -1,0 +1,30 @@
+{{!-- Adversaries  --}}
+<section class="tab {{tab.cssClass}}" data-tab="camp" data-group="primary">
+	<section class="adversaries">
+		{{#unless (gt campActivities.length 0)}}
+			<div class="label centered-message">
+				{{localize 'FU.CampEmpty'}}
+			</div>
+		{{/unless}}
+
+		{{#each campActivities}}
+			<div class="section-container entry character-option" data-id="{{this.id}}" data-uuid="{{this.uuid}}" data-type="item">
+				<div class="portrait">
+					<a data-action="selectCampActivity" data-id="{{this.id}}">
+						<img src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+					</a>
+				</div>
+				<div class="data">
+					<header>
+						<div class="name" data-tooltip="{{this.uuid}}">
+							{{name}}
+						</div>
+						<div class="blurb">
+							{{{enrichedHtml.description}}}
+						</div>
+					</header>
+				</div>
+			</div>
+		{{/each}}
+	</section>
+</section>
