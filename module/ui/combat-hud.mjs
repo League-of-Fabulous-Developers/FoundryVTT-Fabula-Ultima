@@ -574,6 +574,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			event.dataTransfer.dropEffect = 'move';
 			const elem = this.element.querySelector(`#combat-hud`);
 			this.dragInitialLeft = event.clientX - elem.offsetLeft;
+
 			this.dragInitialTop = event.clientY - elem.offsetTop;
 
 			this.firefoxDragX = 0;
@@ -621,10 +622,10 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 				const dragButton = elem.querySelector(`.window-drag`);
 
 				const deltaX = dragPosition.x - this.dragInitialX - dragButton.clientWidth;
-				const deltaY = dragPosition.y - this.dragInitialY + dragButton.clientHeight;
+				const deltaY = dragPosition.y - this.dragInitialTop + dragButton.clientHeight;
 
 				const newLeft = this.dragInitialLeft + deltaX;
-				const newTop = this.dragInitialTop + deltaY;
+				const newTop = this.dragInitialTop + deltaY + (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton) === 'top' ? -dragButton.clientHeight : -elem.clientHeight - dragButton.clientHeight);
 
 				elem.style.left = `${newLeft}px`;
 				elem.style.top = `${newTop}px`;
