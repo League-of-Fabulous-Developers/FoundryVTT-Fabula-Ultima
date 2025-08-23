@@ -1,4 +1,4 @@
-import { SYSTEM, FU } from '../helpers/config.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
@@ -52,23 +52,26 @@ export class DamageData {
 		// eslint-disable-next-line no-unused-vars
 		const { modifierTotal, ..._data } = data;
 		Object.assign(this, _data);
+		if (!this.hrZero) {
+			this.hrZero = false;
+		}
 	}
 
 	/**
-	 * @returns {Number}
+	 * @returns {Number} The sum of all bonus damage modifiers ({@linkcode modifiers})
 	 */
 	get modifierTotal() {
 		return this.modifiers.reduce((agg, curr) => agg + curr.value, 0);
 	}
 
-	get bonus() {
-		return this.modifierTotal;
-	}
-
 	/**
 	 * @returns {Number}
+	 * @remarks Doesn't account for {@linkcode hrZero}
 	 */
 	get total() {
+		if (this.hrZero) {
+			return this.modifierTotal;
+		}
 		return this.modifierTotal + this.hr;
 	}
 
@@ -544,49 +547,22 @@ class CheckInspector {
 		return this.getCheck().fumble;
 	}
 
+	// TODO: Figure out how to handle this better
 	/**
-	 * @typedef CheckAccuracyData
-	 * @property {CheckV2} result
-	 */
-
-	/**
-	 * @returns {TemplateDamageData}
+	 * @returns {DamageData}
 	 * @remarks Used for templating.
 	 */
-	getDamageData() {
+	getExtendedDamageData() {
 		const traits = this.getTraits();
 		const isBase = traits.includes(Traits.Base);
-
 		const damage = this.getDamage();
-		const hrZero = this.getHrZero();
-		const modifierTotal = damage.modifierTotal;
-
-		const _check = this.getCheck();
-		const primary = _check.primary.result;
-		const secondary = _check.secondary.result;
-		const total = hrZero ? modifierTotal : Math.max(primary, secondary) + modifierTotal;
 
 		let result = null;
 		if (damage) {
-			result = {
-				result: {
-					attr1: primary,
-					attr2: secondary,
-				},
-				damage: {
-					...damage,
-					total: total,
-					extra: damage.extra,
-					traits: traits,
-				},
-				translation: {
-					damageTypes: FU.damageTypes,
-					damageIcon: FU.affIcon,
-				},
-				modifiers: isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers,
-			};
+			damage.traits = traits;
+			damage.modifiers = isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers;
+			result = damage;
 		}
-
 		return result;
 	}
 }

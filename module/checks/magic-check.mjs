@@ -1,6 +1,6 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
@@ -87,7 +87,7 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 	let damageData;
 	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
 	if (hasDamage) {
-		damageData = inspector.getDamageData();
+		damageData = inspector.getExtendedDamageData();
 	}
 
 	// Push combined data for accuracy and damage
@@ -97,6 +97,10 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 		data: {
 			check: checkData,
 			damage: damageData,
+			translation: {
+				damageTypes: FU.damageTypes,
+				damageIcon: FU.affIcon,
+			},
 		},
 	});
 

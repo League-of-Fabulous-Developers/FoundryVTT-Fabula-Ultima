@@ -1,4 +1,4 @@
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { Flags } from '../helpers/flags.mjs';
@@ -158,7 +158,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 		const checkData = inspector.getCheck();
-		const damageData = inspector.getDamageData();
+		const damageData = inspector.getExtendedDamageData();
 
 		// Push combined data for accuracy and damage
 		data.push({
@@ -167,6 +167,10 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 			data: {
 				check: checkData,
 				damage: damageData,
+				translation: {
+					damageTypes: FU.damageTypes,
+					damageIcon: FU.affIcon,
+				},
 			},
 		});
 

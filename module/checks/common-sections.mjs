@@ -229,30 +229,31 @@ const opportunity = (sections, opportunity, order) => {
  * @param {FUItem} item
  * @param {TargetData[]} targets
  * @param {Object} flags
- * @param accuracyData
- * @param {TemplateDamageData} damageData
+ * @param {CheckResultV2} checkData
+ * @param {DamageData} damageData
  */
-const targeted = (sections, actor, item, targets, flags, accuracyData = undefined, damageData = undefined) => {
+const targeted = (sections, actor, item, targets, flags, checkData = undefined, damageData = undefined) => {
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
 	if (isTargeted) {
+		const isDamage = checkData && damageData;
 		sections.push(async function () {
 			let actions = [];
 			actions.push(Targeting.defaultAction);
 			let selectedActions = [];
 			1;
 
-			if (accuracyData && damageData) {
+			if (isDamage) {
 				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
 				actions.push(
 					new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: accuracyData,
+						accuracy: checkData,
 						damage: damageData,
 					}),
 				);
 
 				selectedActions.push(
 					new TargetAction('applyDamageSelected', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: accuracyData,
+						accuracy: checkData,
 						damage: damageData,
 					}),
 				);
@@ -269,11 +270,19 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 					}
 				}
 
-				if (game.user.isGM && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
-					const actors = targets.map((t) => fromUuidSync(t.uuid));
-					const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
-					const request = new DamageRequest(sourceInfo, actors, damageData);
-					await DamagePipeline.process(request);
+				if (damageData) {
+					if (game.user.isGM && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+						const actors = targets.filter((t) => t.result === 'hit').map((t) => fromUuidSync(t.uuid));
+						const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+						const request = new DamageRequest(sourceInfo, actors, damageData);
+
+						// Fire after the section resolves
+						setTimeout(() => {
+							DamagePipeline.process(request).catch((err) => {
+								console.error('DamagePipeline error:', err);
+							});
+						}, 500);
+					}
 				}
 			}
 
