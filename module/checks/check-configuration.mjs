@@ -74,32 +74,7 @@ export class DamageData {
 		}
 		return this.modifierTotal + this.hr;
 	}
-
-	/**
-	 * @param {TemplateDamageData} templatedDamageData
-	 * @returns {DamageData}
-	 */
-	static fromTemplatedDamageData(templatedDamageData) {
-		return new DamageData({});
-	}
 }
-
-// TODO: Fold into DamageData?
-/**
- * @typedef TemplateDamageData
- * @property {Object} result - The result attributes from the check.
- * @property {number} result.attr1 - The primary check result.
- * @property {number} result.attr2 - The secondary check result.
- * @property {DamageData} damage - The damage details.
- * @property {number} damage.bonus - The total damage bonus.
- * @property {number} damage.total - The total calculated damage.
- * @property {String} damage.extra - Additional damage information.
- * @property {Object} translation - Translation details for damage types and icons.
- * @property {Object} translation.damageTypes - The available damage types.
- * @property {Object} translation.damageIcon - The icon representation of damage types.
- * @property {Array} modifiers - Modifiers applied to the damage.
- *
- */
 
 /**
  * @typedef WeaponTraits

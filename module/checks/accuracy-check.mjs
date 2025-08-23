@@ -178,7 +178,6 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 		const targets = inspector.getTargets();
 		CommonSections.targeted(data, actor, item, targets, flags, checkData, damageData);
 		CommonEvents.attack(inspector, actor, item);
-
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
 	}
 }

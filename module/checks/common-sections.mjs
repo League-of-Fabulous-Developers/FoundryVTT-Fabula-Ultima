@@ -2,13 +2,11 @@ import { CHECK_FLAVOR, CHECK_RESULT } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
-import { FU, SYSTEM } from '../helpers/config.mjs';
+import { FU } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
-import { SETTINGS } from '../settings.js';
-import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 
 /**
@@ -240,7 +238,6 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 			let actions = [];
 			actions.push(Targeting.defaultAction);
 			let selectedActions = [];
-			1;
 
 			if (isDamage) {
 				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
@@ -248,7 +245,7 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 					new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
 						accuracy: checkData,
 						damage: damageData,
-					}),
+					}).requiresOwner(),
 				);
 
 				selectedActions.push(
@@ -271,18 +268,13 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 				}
 
 				if (damageData) {
-					if (game.user.isGM && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
-						const actors = targets.filter((t) => t.result === 'hit').map((t) => fromUuidSync(t.uuid));
-						const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
-						const request = new DamageRequest(sourceInfo, actors, damageData);
-
-						// Fire after the section resolves
-						setTimeout(() => {
-							DamagePipeline.process(request).catch((err) => {
-								console.error('DamagePipeline error:', err);
-							});
-						}, 500);
-					}
+					setTimeout(() => {
+						game.projectfu.socket.requestPipeline('damage', {
+							sourceInfo: InlineSourceInfo.fromInstance(actor, item),
+							targets,
+							damageData,
+						});
+					}, 50);
 				}
 			}
 
