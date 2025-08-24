@@ -78,6 +78,12 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
  * @extends PipelineRequest
  */
 export class DamageRequest extends PipelineRequest {
+	/**
+	 * @param {InlineSourceInfo} sourceInfo
+	 * @param {FUActor[]} targets
+	 * @param {DamageData} damageData
+	 * @param {DamageOverrideInfo} damageOverride
+	 */
 	constructor(sourceInfo, targets, damageData, damageOverride = {}) {
 		super(sourceInfo, targets);
 		this.damageData = damageData;

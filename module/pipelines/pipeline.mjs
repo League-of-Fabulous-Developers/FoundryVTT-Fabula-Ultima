@@ -17,6 +17,10 @@ import { Flags } from '../helpers/flags.mjs';
  * @property {Event | null} event
  */
 export class PipelineRequest {
+	/**
+	 * @param {InlineSourceInfo} sourceInfo
+	 * @param {FUActor[]} targets
+	 */
 	constructor(sourceInfo, targets) {
 		this.sourceInfo = sourceInfo;
 		this.targets = targets;

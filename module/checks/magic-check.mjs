@@ -1,6 +1,6 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
@@ -82,12 +82,12 @@ const onProcessCheck = (check, actor, item) => {
  * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
-	const accuracyData = inspector.getAccuracyData();
+	const checkData = inspector.getCheck();
 
 	let damageData;
 	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
 	if (hasDamage) {
-		damageData = inspector.getDamageData();
+		damageData = inspector.getExtendedDamageData();
 	}
 
 	// Push combined data for accuracy and damage
@@ -95,13 +95,17 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 		order: CHECK_ROLL,
 		partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
 		data: {
-			accuracy: accuracyData,
+			check: checkData,
 			damage: damageData,
+			translation: {
+				damageTypes: FU.damageTypes,
+				damageIcon: FU.affIcon,
+			},
 		},
 	});
 
 	const targets = inspector.getTargets();
-	CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
+	CommonSections.targeted(data, actor, item, targets, flags, checkData, damageData);
 	CommonEvents.attack(inspector, actor, item);
 }
 
