@@ -250,6 +250,43 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		return basePath + resource + theme + '.hbs';
 	}
 
+	_getDragPositionBoundaries() {
+		// if (newLeft >= 0 && newLeft < window.innerWidth - buttonRect.width ) elem.style.left = `${newLeft}px`;
+
+		const elem = this.element.querySelector(`#combat-hud`);
+
+		const elemRect = elem.getBoundingClientRect();
+
+		const bounds = {
+			left: 0,
+			top: 0,
+			right: window.innerWidth - elemRect.width,
+			bottom: window.innerHeight - elemRect.height,
+		};
+
+		// Adjust boundaries if our drag button is found (it should always be, but just in case)
+		const dragButton = this.element.querySelector('.window-drag');
+
+		if (dragButton instanceof HTMLElement) {
+			const rect = dragButton.getBoundingClientRect();
+			bounds.right = window.innerWidth - rect.width;
+
+			// Prevent from placing the drag button under the sidebar
+			const sidebarButtons = document.querySelector(`#ui-right nav`);
+			if (sidebarButtons instanceof HTMLElement) bounds.right -= sidebarButtons.getBoundingClientRect().width;
+
+			if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton) === 'top') {
+				bounds.bottom = window.innerHeight - rect.height;
+				bounds.top = rect.height;
+			} else {
+				bounds.top = -elemRect.height + rect.height;
+				bounds.bottom = window.innerHeight - elemRect.height - rect.height;
+			}
+		}
+
+		return bounds;
+	}
+
 	async _prepareContext(options = {}) {
 		const data = await super._prepareContext(options);
 		data.cssClasses = this.options.classes.join(' ');
@@ -620,15 +657,18 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 			this._dragAnimationFrame = requestAnimationFrame(() => {
 				const dragButton = elem.querySelector(`.window-drag`);
+				const buttonPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton);
 
 				const deltaX = dragPosition.x - this.dragInitialX - dragButton.clientWidth;
 				const deltaY = dragPosition.y - this.dragInitialTop + dragButton.clientHeight;
 
 				const newLeft = this.dragInitialLeft + deltaX;
-				const newTop = this.dragInitialTop + deltaY + (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton) === 'top' ? -dragButton.clientHeight : -elem.clientHeight - dragButton.clientHeight);
+				const newTop = this.dragInitialTop + deltaY + (buttonPosition === 'top' ? -dragButton.clientHeight : -elem.clientHeight - dragButton.clientHeight);
 
-				elem.style.left = `${newLeft}px`;
-				elem.style.top = `${newTop}px`;
+				const positionBounds = this._getDragPositionBoundaries();
+				if (newTop >= positionBounds.top && newTop <= positionBounds.bottom) elem.style.top = `${newTop}px`;
+				if (newLeft >= positionBounds.left && newLeft <= positionBounds.right) elem.style.left = `${newLeft}px`;
+
 				if (elem.style.bottom !== 'initial') elem.style.bottom = 'initial';
 				cancelAnimationFrame(this._dragAnimationFrame);
 				this._dragAnimationFrame = null;
