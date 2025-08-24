@@ -468,6 +468,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			this.close();
 			return;
 		}
+
 		this._setSizeAndPosition();
 		this._setEffectContextMenus();
 	}
@@ -598,6 +599,13 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		}
 		if (position.left) {
 			element.style.left = `${position.left}px`;
+		}
+
+		const rect = element.getBoundingClientRect();
+		if (rect) {
+			const bounds = this._getDragPositionBoundaries();
+			if (rect.top <= bounds.top || rect.top >= bounds.bottom) element.style.top = `${bounds.top}px`;
+			if (rect.left <= bounds.left || rect.left >= bounds.right) element.style.left = `${bounds.left}px`;
 		}
 
 		// Apply button position
