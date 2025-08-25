@@ -310,6 +310,9 @@ async function prepareSpells(context) {
 					item.detail = spellData.detailString;
 					item.attackString = spellData.attackString;
 					item.damageString = spellData.damageString;
+					item.duration = item.system.duration?.value || '';
+					item.target = item.system.targeting?.rule || '';
+					item.mpCost = item.system.cost?.amount || 0;
 					spells.push(item);
 				}
 				break;
