@@ -1,0 +1,22 @@
+
+<div class="bar-container">
+    <div class="resource-value">
+        <div class="resource-label">
+            <span>ZP</span>
+        </div>
+        <div class="resource-text">
+            <span>{{ this.zeropower.progress.current }} / {{ this.zeropower.progress.max }}</span>
+        </div>
+    </div>
+    <div class="bar bar-progress" data-tooltip="{{localize 'FU.Limit'}}">
+        <div class="bar-progress-bar bar-zeropower"
+            style="width: {{calculatePercentage this.zeropower.progress.current this.zeropower.progress.max}};"></div>
+        <span class="bar-value"></span>
+
+    </div>  
+    <div class="resource-value-compact">
+        <div class="resource-text">
+            <span>{{ this.zeropower.progress.current }} / {{ this.zeropower.progress.max }} ZP</span>
+        </div>
+    </div>
+</div>

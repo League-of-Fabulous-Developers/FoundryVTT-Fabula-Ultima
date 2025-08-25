@@ -1290,6 +1290,7 @@
 		"CombatHudDefault": "Padrão (Estilo Retrô)",
 		"CombatHudModern": "Moderno",
 		"CombatHudMother": "Mother",
+		"CombatHudPixel": "Pixel",
 		"CombatHudTrackedResource4": "Quarto Recurso Mostrado",
 		"CombatHudTrackedResource4Hint": "Escolha o quarto recurso a ser mostrado como uma barra no HUD de Combate. Não suportado em todos os temas.",
 		"CombatHudShowNPCTurnsLeftMode": "PNJs à esquerda",

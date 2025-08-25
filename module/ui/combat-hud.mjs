@@ -126,6 +126,18 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 				systemTemplatePath('ui/partials/combat-bar-exp-mother'),
 			],
 		},
+		'fu-pixel': {
+			template: systemTemplatePath('ui/combat-hud/combat-hud-pixel'),
+			templates: [
+				systemTemplatePath('ui/partials/combat-bar-hp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-mp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-ip-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-fp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-zeropower-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-zenit-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-exp-pixel'),
+			],
+		},
 	};
 
 	constructor(options) {
@@ -207,6 +219,12 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 					'0 0 0 10px rgba(104, 208, 184, var(--hud-opacity)), ' +
 					'0 0 0 12px rgba(247, 232, 168, var(--hud-opacity)), ' +
 					'0 0 0 15px rgba(61, 60, 85, var(--hud-opacity));'
+				);
+			case 'fu-pixel':
+				return (
+					'--hud-opacity: ' +
+					opacity +
+					';'
 				);
 		}
 	}
@@ -918,7 +936,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		if (positionFromTop) {
 			// const uiTop = $('#ui-top');
 			// position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;
-			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : 20;
+			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : 48;
 		} else {
 			// const uiBottom = $('#ui-bottom');
 			const uiBottom = $('#hotbar');
@@ -930,12 +948,10 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const positionButton = {};
 		if (positionButtonFromTop) {
 			// Set button to top if option is set to 'top'
-			positionButton.top = '-2em';
-			positionButton.bottom = 'none';
+			positionButton.position = 'window-button-top';
 		} else {
 			// Set button to bottom if option is set to 'bottom'
-			positionButton.top = 'none';
-			positionButton.bottom = '-2em';
+			positionButton.position = 'window-button-bottom';
 		}
 
 		return { position, positionButton };
@@ -945,8 +961,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const buttons = this.element.querySelectorAll(`.window-button`);
 		for (const button of buttons) {
 			if (button instanceof HTMLElement) {
-				button.style.setProperty('--window-button-top', positionButton.top);
-				button.style.setProperty('--window-button-bottom', positionButton.bottom);
+				button.classList.add(positionButton.position);
 			}
 		}
 	}

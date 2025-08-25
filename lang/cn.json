@@ -1290,6 +1290,7 @@
 		"CombatHudDefault": "标准(Retro风格)",
 		"CombatHudModern": "现代",
 		"CombatHudMother": "Mother",
+		"CombatHudPixel": "Pixel",
 		"CombatHudTrackedResource4": "四轨资源风格",
 		"CombatHudTrackedResource4Hint": "选择在战斗HUD中显示的第四个资源，并非所有主题都支持。",
 		"CombatHudShowNPCTurnsLeftMode": "NPC回合留存模式",

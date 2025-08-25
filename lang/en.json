@@ -1292,6 +1292,7 @@
 		"CombatHudDefault": "Default (Retro style)",
 		"CombatHudModern": "Modern",
 		"CombatHudMother": "Mother",
+		"CombatHudPixel": "Pixel",
 		"CombatHudTrackedResource4": "Fourth Tracked Resource",
 		"CombatHudTrackedResource4Hint": "Choose the fourth resource to be shown as a bar in the Combat HUD. Not supported in all themes.",
 		"CombatHudShowNPCTurnsLeftMode": "NPC Turns Left Mode",
