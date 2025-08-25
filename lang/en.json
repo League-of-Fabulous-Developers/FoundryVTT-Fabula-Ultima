@@ -1487,6 +1487,8 @@
 		"DragRulerSettingsEnableGriddedLabel": "Enable Drag Ruler for Gridded Scenes",
 		"DragRulerSettingsEnableGriddedHint": "Enable to show distance measurement when dragging a token in a scene with a grid.",
 		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
+		"Track": "Track",
+		"Tracks": "Tracks",
 		"CostPerTarget": "Cost per Target",
 		"FUID": {
 			"Long": "Fabula Ultima ID",

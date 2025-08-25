@@ -212,6 +212,7 @@ export const FUHandlebars = Object.freeze({
 		});
 
 		Handlebars.registerHelper('progress', progress);
+		Handlebars.registerHelper('progressCollection', progressCollection);
 	},
 });
 
@@ -232,11 +233,37 @@ const progressStyleTemplates = Object.freeze({
  * @param {FUActor|FUItem} document
  * @param {String} path
  * @param {ProgressHandlebarOptions} options
+ * @returns {String}
  */
 function progress(document, path, options) {
 	const id = document._id;
 	const progress = foundry.utils.getProperty(document, path);
+	return renderProgress(progress, id, path, options);
+}
 
+/**
+ * @param {FUActor|FUItem} document
+ * @param {String} path
+ * @param {int} index
+ * @param {ProgressHandlebarOptions} options
+ * @returns {String}
+ */
+function progressCollection(document, path, index, options) {
+	const id = document._id;
+	const array = ObjectUtils.getProperty(document, path);
+	const progress = array[index];
+	return renderProgress(progress, id, path, options, index);
+}
+
+/**
+ * @param {ProgressDataModel} progress
+ * @param {int} id
+ * @param {String} path
+ * @param {int} index
+ * @param {ProgressHandlebarOptions} options
+ * @returns {String}
+ */
+function renderProgress(progress, id, path, options, index = undefined) {
 	const data = options.hash;
 	const type = data.type;
 	const style = data.style ?? 'clock';
@@ -249,6 +276,8 @@ function progress(document, path, options) {
 			? template({
 					arr: progress.progressArray,
 					id: id,
+					index: index,
+					isCollection: index !== undefined,
 					data: progress,
 					dataPath: path,
 					type: type,

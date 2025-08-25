@@ -1,3 +1,7 @@
+import { systemPath } from '../../../helpers/config.mjs';
+import { ObjectUtils } from '../../../helpers/object-utils.mjs';
+import { MathHelper } from '../../../helpers/math-helper.mjs';
+
 /**
  * @description Models the tracking of progress, whether that be clocks or resources.
  * @property {string} name A label, used for user-facing displays.
@@ -97,5 +101,67 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 
 		const currentPropertyPath = `${propertyPath}.current`;
 		await document.update({ [currentPropertyPath]: newProgress });
+	}
+
+	/**
+	 * @description Updates a progress track at an index
+	 * @param {Document} document
+	 * @param {String} propertyPath
+	 * @param {number} index The index of the progress track
+	 * @param {number} increment
+	 */
+	static async updateAtIndexForDocument(document, propertyPath, index, increment) {
+		const property = ObjectUtils.getProperty(document, propertyPath);
+		/** @type ProgressDataModel[] **/
+		const tracks = foundry.utils.duplicate(property);
+		const track = tracks[index];
+		if (track) {
+			track.current = MathHelper.clamp(track.current + increment * track.step, 0, track.max);
+			document.update({ [propertyPath]: tracks });
+		} else {
+			ui.notifications.error(`Failed to update progress track for ${document.name}`);
+		}
+	}
+
+	/**
+	 * @param {Document} document
+	 * @param {String} propertyPath
+	 * @param {number} index
+	 */
+	static async removeAtIndexForDocument(document, propertyPath, index) {
+		const property = ObjectUtils.getProperty(document, propertyPath);
+		/** @type ProgressDataModel[] **/
+		const tracks = foundry.utils.duplicate(property);
+		tracks.splice(index, 1);
+		document.update({ [propertyPath]: tracks });
+	}
+
+	/**
+	 * @param {Document} document
+	 * @param {String} propertyPath
+	 * @returns {Promise<void>}
+	 */
+	static async promptAddToDocument(document, propertyPath) {
+		const result = await foundry.applications.api.DialogV2.input({
+			window: { title: game.i18n.localize('FU.ClockAdd') },
+			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-party-clock.hbs'), {}),
+			rejectClose: false,
+			ok: {
+				label: game.i18n.localize('FU.Confirm'),
+			},
+		});
+
+		if (result) {
+			if (!result.name) {
+				return;
+			}
+			console.log('Creating progress track with name: ', result.name);
+			const property = ObjectUtils.getProperty(document, propertyPath);
+			/** @type ProgressDataModel[] **/
+			const tracks = foundry.utils.duplicate(property);
+			const newTrack = ProgressDataModel.construct(result.name, result.max);
+			tracks.push(newTrack);
+			document.update({ [propertyPath]: tracks });
+		}
 	}
 }

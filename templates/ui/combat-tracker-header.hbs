@@ -86,7 +86,24 @@
 			<button type="button" class="encounter-context-menu inline-control combat-control icon fa-solid fa-ellipsis-vertical"
 					{{#unless (and user.isGM hasCombat)}}disabled{{/unless}}></button>
 		</div>
+	</div>
 
+	<div>
+		{{!-- Clocks --}}
+		<fieldset class="section-container title-fieldset resource-content">
+			<legend class="resource-label-m" aria-describedby="tooltip">
+				<a class="resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}" style="width: fit-content;">
+					<a data-action="addTrack">
+						<i class="fas fa-plus icon"></i>{{localize 'FU.Tracks'}}
+					</a>
+				</a>
+			</legend>
+
+			{{#each combat.system.tracks }}
+				{{progressCollection ../combat 'system.tracks' @index displayName=true style="bar"}}
+			{{/each}}
+
+		</fieldset>
 	</div>
 
 </header>

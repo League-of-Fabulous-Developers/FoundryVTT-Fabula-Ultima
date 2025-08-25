@@ -264,8 +264,8 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #onIncrementProgressTrack(event, target) {
 		const index = target.closest('[data-index]').dataset.index;
-		const increment = target.dataset.increment;
-		this.updateProgressTrack(index, Number.parseInt(increment));
+		const increment = Number.parseInt(target.dataset.increment);
+		await ProgressDataModel.updateAtIndexForDocument(this.actor, 'system.tracks', index, increment);
 	}
 
 	/**
@@ -286,7 +286,8 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onRemoveProgressTrack(event, target) {
-		this.removeProgressTrack(Number(target.closest('[data-index]').dataset.index));
+		const index = Number(target.closest('[data-index]').dataset.index);
+		await ProgressDataModel.removeAtIndexForDocument(this.actor, 'system.tracks', index);
 	}
 
 	/**
@@ -412,29 +413,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @description Adds a new progress track
 	 */
 	static async promptAddProgressTrack() {
-		console.debug('Adding a progress track');
-
-		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: game.i18n.localize('FU.ClockAdd') },
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-party-clock.hbs'), {}),
-			rejectClose: false,
-			ok: {
-				label: game.i18n.localize('FU.Confirm'),
-			},
-		});
-
-		if (result) {
-			if (!result.name) {
-				return;
-			}
-			console.log('Creating progress track with name: ', result.name);
-
-			const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-
-			const newTrack = ProgressDataModel.construct(result.name, result.max);
-			tracks.push(newTrack);
-			this.actor.update({ ['system.tracks']: tracks });
-		}
+		await ProgressDataModel.promptAddToDocument(this.actor, 'system.tracks');
 	}
 
 	/**

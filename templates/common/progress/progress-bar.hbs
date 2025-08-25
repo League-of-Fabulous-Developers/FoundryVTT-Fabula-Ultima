@@ -10,12 +10,18 @@
 
 <div class="item-m inline-desc flexcol flex-group-center resource-content"
 	 style="padding: 0; border-radius: 6px 12px 12px 6px;">
+	{{#if displayName}}
+		<label class="item-name resource-content">
+			<span class="resource-label-sm">{{displayName}}</span>
+		</label>
+	{{/if}}
 	<div class="resource-text-t buttons-inc">
 		<a class="decrement-button"
 		   data-type="{{type}}"
 		   data-item-id="{{id}}"
 		   data-action="{{action}}"
 		   data-data-path="{{dataPath}}"
+		   data-index="{{index}}"
 		   data-update-amount="-1"
 		   data-tooltip="{{localize
 			'FU.DecreaseTooltip'}}">-</a>
@@ -27,6 +33,7 @@
 		   data-item-id="{{id}}"
 		   data-action="{{action}}"
 		   data-data-path="{{dataPath}}"
+		   data-index="{{index}}"
 		   data-update-amount="1"
 		   data-tooltip="{{localize
 			'FU.IncreaseTooltip'}}">+</a>

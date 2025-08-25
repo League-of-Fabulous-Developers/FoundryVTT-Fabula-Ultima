@@ -2,12 +2,12 @@
 
 	<a class="increment-button" data-type="{{type}}" data-item-id="{{id}}"
 	   data-tooltip="{{localize "FU.IncreaseTooltip"}}" data-action="{{action}}"
-	   data-data-path="{{dataPath}}" data-update-amount="1">
+	   data-index="{{index}}" data-data-path="{{dataPath}}" data-update-amount="1">
 		<i class="fas fa-plus"></i>
 	</a>
 
 	<div class="progress-container">
-		<div class="progress" style="--segments: {{data.max}};" data-segments="{{data.max}}"
+		<div class="progress" style="--segments: {{data.max}};" data-segments="{{data.max}}" data-index="{{index}}"
 			 data-tooltip="{{localize 'FU.Progress'}}"
 			 {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}>
 
@@ -26,9 +26,17 @@
 		{{/if}}
 	</div>
 
-	<a class="decrement-button" data-type="{{type}}" data-item-id="{{id}}"
-	   data-action="{{action}}" data-data-path="{{dataPath}}" data-update-amount="-1"
-	   data-tooltip="{{localize "FU.DecreaseTooltip"}}">
-		<i class="fas fa-minus"></i>
-	</a>
+	<div>
+		<a class="decrement-button" data-type="{{type}}" data-item-id="{{id}}"
+		   data-index="{{index}}"
+		   data-action="{{action}}" data-data-path="{{dataPath}}" data-update-amount="-1"
+		   data-tooltip="{{localize "FU.DecreaseTooltip"}}">
+			<i class="fas fa-minus"></i>
+		</a>
+		{{#if isCollection}}
+			<a data-action="removeProgress" data-item-id="{{id}}" data-data-path="{{dataPath}}" data-index="{{index}}">
+				<i class="icon fas fa-trash"></i>
+			</a>
+		{{/if}}
+	</div>
 </div>
