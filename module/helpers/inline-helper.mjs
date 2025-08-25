@@ -274,7 +274,7 @@ let inlineCommands = [];
  * @property {Document} document
  * @property {HTMLElement} target
  * @property {InlineSourceInfo} sourceInfo
- * @property {Object} dataset
+ * @property {DOMStringMap} dataset
  */
 
 /**
@@ -369,13 +369,15 @@ const traitsPattern = '(\\|(?<traits>[a-zA-Z-,]+)\\|)?';
 
 /**
  * @param {String} identifier The name of the regex group
- * @param key The key of the property
- * @param value The value of the property
+ * @param {String} key The key of the property
+ * @param {String} value The pattern for the value of the property
  * @returns {String}
  */
 function propertyPattern(identifier, key, value) {
 	return `(\\s+${key}:(?<${identifier}>${value}))?`;
 }
+
+const documentPropertyGroup = [propertyPattern('document', 'document', '[\\w.-]+'), propertyPattern('propertyPath', 'propertyPath', '[\\w.-]+'), propertyPattern('index', 'index', '\\d')];
 
 export const InlineHelper = {
 	determineSource,
@@ -389,4 +391,5 @@ export const InlineHelper = {
 	propertyPattern,
 	resolveDocument,
 	getRenderContext,
+	documentPropertyGroup,
 };

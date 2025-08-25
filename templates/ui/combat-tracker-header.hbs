@@ -36,6 +36,11 @@
 						{{ label }}
 					</button>
 				{{/each}}
+
+				<div id="combat-tracker-controls">
+
+				</div>
+
 				<button type="button" class="inline-control icon fa-solid fa-gear" data-action="trackerSettings"
 						data-tooltip aria-label="{{ localize "COMBAT.Settings" }}"></button>
 
@@ -45,7 +50,6 @@
 					<i class="fa-solid fa-plus" inert></i>
 					<span>{{ localize "COMBAT.Create" }}</span>
 				</button>
-
 			{{/if}}
 		</nav>
 	{{/if}}
@@ -82,11 +86,18 @@
 
 		{{!-- Combat Controls --}}
 		<div class="control-buttons right flexrow">
-			<div class="spacer"></div>
+			<button type="button" class="inline-control combat-control icon ra ra-clockwork" data-action="addTrack" data-tooltip="FU.Tracks"></button>
 			<button type="button" class="encounter-context-menu inline-control combat-control icon fa-solid fa-ellipsis-vertical"
 					{{#unless (and user.isGM hasCombat)}}disabled{{/unless}}></button>
 		</div>
-
 	</div>
 
+	{{!-- Clocks --}}
+	<div class="section-container desc resource-content">
+		{{#each combat.system.tracks }}
+			<div>
+				{{progressCollection ../combat 'system.tracks' @index displayName=true prompt=true }}
+			</div>
+		{{/each}}
+	</div>
 </header>

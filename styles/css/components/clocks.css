@@ -1,6 +1,6 @@
 /* ----------------------------------------- */
 /* Clocks Styles                       
-  /* ----------------------------------------- */
+ /* ----------------------------------------- */
 .projectfu .progress {
 	--size: 50px;
 	--border-width: 2px;
@@ -8,6 +8,16 @@
 	height: var(--size);
 	position: relative;
 }
+
+.projectfu .progress-container {
+	display: flex;
+	justify-content: space-evenly;
+	gap: 2em;
+}
+
+.projectfu .progress-controls {
+}
+
 .projectfu .progress[data-segments='1'] .divider {
 	display: none;
 }

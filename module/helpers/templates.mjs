@@ -236,5 +236,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/common/progress/progress-clock.hbs',
 		'systems/projectfu/templates/common/progress/progress-basic.hbs',
 		'systems/projectfu/templates/common/progress/progress-bar.hbs',
+		'systems/projectfu/templates/common/progress/partials/progress-controls.hbs',
 	]);
 };

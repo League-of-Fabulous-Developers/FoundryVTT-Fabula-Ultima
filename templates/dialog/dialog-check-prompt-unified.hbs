@@ -1,20 +1,41 @@
+{{#if attributeValues}}
+	<section>
+		<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
+			<legend class="resource-text-m">{{localize 'FU.Attributes'}}</legend>
+			{{#each attributes}}
+				<fieldset>
+					<label class="resource-label-sm">
+						<abbr title="{{localize this}}">
+							{{localize (lookup @root/attributeAbbr @key)}}
+						</abbr>
+						<span>:</span>
+						<span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
+					</label>
+				</fieldset>
+			{{/each}}
+		</fieldset>
+	</section>
+{{/if}}
 <section>
-	<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
-		<legend class="resource-text-m">{{localize 'FU.Attributes'}}</legend>
-		{{#each attributes}}
-			<fieldset>
-				<label class="resource-label-sm">
-					<abbr title="{{localize this}}">
-						{{localize (lookup @root/attributeAbbr @key)}}
-					</abbr>
-					<span>:</span>
-					<span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
-				</label>
-			</fieldset>
-		{{/each}}
-	</fieldset>
-</section>
-<section>
+
+	{{#if label}}
+		<fieldset class="flex-group-center resource-content">
+			<legend class="resource-text-m">{{localize 'Label'}}</legend>
+			<label class="resource-text-m">
+				<input name="label" type="text" value="{{label}}">
+			</label>
+		</fieldset>
+	{{/if}}
+
+	{{#if increment}}
+		<fieldset class="flex-group-center resource-content">
+			<legend class="resource-text-m">{{localize 'Increment'}}</legend>
+			<label class="resource-text-m">
+				<input name="increment" type="checkbox" {{checked increment}}>
+			</label>
+		</fieldset>
+	{{/if}}
+
 	<fieldset class="flexrow resource-content">
 		<legend class="resource-text-m">{{localize 'FU.Primary'}}</legend>
 		<span class="radio-container">{{radioBoxes 'primary' attributes checked=primary localize=true }}</span>

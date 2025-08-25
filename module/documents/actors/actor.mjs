@@ -303,6 +303,14 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @param {String} id
+	 * @returns {FUActiveEffect}
+	 */
+	resolveEffect(id) {
+		return Array.from(this.allEffects()).find((value) => value.id === id);
+	}
+
+	/**
 	 * @returns {EffectCategories}
 	 * @remarks Used by modules mostly
 	 */

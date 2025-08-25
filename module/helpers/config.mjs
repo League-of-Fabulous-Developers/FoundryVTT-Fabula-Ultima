@@ -656,3 +656,9 @@ FU.damageOverrideScope = {
 	spell: 'FU.Spell',
 	skill: 'FU.Skill',
 };
+
+FU.trackStyles = {
+	clock: 'FU.Clock',
+	basic: 'FU.Basic',
+	bar: 'FU.Bar',
+};

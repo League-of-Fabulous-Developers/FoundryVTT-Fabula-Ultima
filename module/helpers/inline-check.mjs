@@ -6,13 +6,32 @@ import { DifficultyLevel } from '../checks/difficulty-level.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { CheckPrompt } from '../checks/check-prompt.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+
+/**
+ * @typedef InlineCheckDataset
+ * @extends DOMStringMap
+ * @inheritDoc
+ * @property first
+ * @property second
+ * @property modifier
+ * @property label
+ * @property document
+ * @property propertyPath
+ * @property index
+ * @property increment
+ */
 
 /**
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
 	id: 'InlineCheckEnricher',
-	pattern: InlineHelper.compose('CHECK', '\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?'),
+	pattern: InlineHelper.compose(
+		'CHECK',
+		'\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?',
+		InlineHelper.documentPropertyGroup.concat(InlineHelper.propertyPattern('increment', 'increment', '(true|false)', true)),
+	),
 	enricher: checkEnricher,
 	onRender: onRender,
 };
@@ -75,6 +94,12 @@ function checkEnricher(match, options) {
 			appendDifficulty(level, anchor, label === undefined);
 		}
 		anchor.setAttribute('data-tooltip', tooltip);
+		// [OPTIONAL] Document, PropertyPath, Index, Increment
+		anchor.dataset.document = match.groups.document;
+		anchor.dataset.propertyPath = match.groups.propertyPath;
+		anchor.dataset.index = match.groups.index;
+		anchor.dataset.increment = match.groups.increment;
+
 		return anchor;
 	}
 	return null;
@@ -116,22 +141,59 @@ async function onRender(element) {
 	const renderContext = await InlineHelper.getRenderContext(element);
 
 	element.addEventListener('click', async (event) => {
-		const first = renderContext.dataset.first;
-		const second = renderContext.dataset.second;
-		const difficulty = renderContext.dataset.difficulty;
+		/** @type InlineCheckDataset **/
+		const dataset = renderContext.dataset;
+		const first = dataset.first;
+		const second = dataset.second;
+		const difficulty = dataset.difficulty;
 		const prompt = event.shiftKey;
 
 		const attributes = { primary: first, secondary: second };
 		const targets = await targetHandler();
+		/** @type CheckResultCallback **/
+		const onResult = async (check) => {
+			if (difficulty && dataset.document) {
+				const result = check.result;
+				console.debug(`Processing check result of ${result} versus difficulty ${difficulty}`);
+				if (result.fumble || result < difficulty) {
+					return;
+				}
+
+				// TODO: Factor out into function in checks API?
+				let increment = 1;
+
+				const difference = result - difficulty;
+				if (difference >= 6) {
+					increment += 2;
+				} else if (difference >= 3) {
+					increment++;
+				}
+
+				if (result.critical) {
+					increment += 2;
+				}
+
+				if (dataset.increment === 'false') {
+					increment = -increment;
+				}
+
+				const document = await fromUuid(dataset.document);
+				if (dataset.index) {
+					await ProgressDataModel.updateAtIndexForDocument(document, dataset.propertyPath, dataset.index, increment, {
+						source: targets[0],
+					});
+				}
+			}
+		};
 
 		if (targets.length === 0) return;
 
 		for (const actor of targets) {
 			if (prompt) {
 				let modifier = 0;
-				if (renderContext.dataset.modifier !== undefined) {
+				if (dataset.modifier !== undefined) {
 					const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
-					modifier = await Expressions.evaluateAsync(renderContext.dataset.modifier, context);
+					modifier = await Expressions.evaluateAsync(dataset.modifier, context);
 					if (isNaN(modifier)) {
 						modifier = 0;
 					}
@@ -144,25 +206,32 @@ async function onRender(element) {
 						difficulty: difficulty,
 						modifier: modifier,
 					},
+					resultCallback: onResult,
 				});
 			} else {
-				await Checks.attributeCheck(actor, attributes, renderContext.sourceInfo.resolveItem(), async (check) => {
-					let config = CheckConfiguration.configure(check);
-					let modifier = 0;
+				await Checks.attributeCheck(
+					actor,
+					attributes,
+					renderContext.sourceInfo.resolveItem(),
+					async (check) => {
+						let config = CheckConfiguration.configure(check);
+						let modifier = 0;
 
-					if (renderContext.dataset.modifier !== undefined) {
-						const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
-						modifier = await Expressions.evaluateAsync(renderContext.dataset.modifier, context);
-					}
+						if (dataset.modifier !== undefined) {
+							const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+							modifier = await Expressions.evaluateAsync(dataset.modifier, context);
+						}
 
-					if (difficulty > 0) {
-						config.setDifficulty(difficulty);
-					}
+						if (difficulty > 0) {
+							config.setDifficulty(difficulty);
+						}
 
-					if (modifier !== 0) {
-						config.addModifier('Inline Modifier', modifier);
-					}
-				});
+						if (modifier !== 0) {
+							config.addModifier('Inline Modifier', modifier);
+						}
+					},
+					onResult,
+				);
 			}
 		}
 	});

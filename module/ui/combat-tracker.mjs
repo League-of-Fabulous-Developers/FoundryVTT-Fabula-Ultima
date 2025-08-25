@@ -1,6 +1,7 @@
 import { FUCombat } from './combat.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { systemPath } from '../helpers/config.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 
 /**
  * @class
@@ -18,6 +19,14 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 */
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu'],
+		actions: {
+			// Progress tracks
+			addTrack: this.#onAddProgressTrack,
+			updateProgress: { handler: this.UpdateProgress, buttons: [0, 2] },
+			removeProgress: this.#onRemoveProgressTrack,
+			incrementProgress: this.#onIncrementProgressTrack,
+			promptProgress: this.#onPromptProgress,
+		},
 	};
 
 	/** @inheritdoc */
@@ -179,5 +188,58 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		} else {
 			ui.notifications.info('FU.CombatTakeTurnOutOfTurn', { localize: true });
 		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onAddProgressTrack(event, target) {
+		await ProgressDataModel.promptAddToDocument(this.viewed, 'system.tracks', true);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onRemoveProgressTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		await ProgressDataModel.removeAtIndexForDocument(this.viewed, 'system.tracks', index);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async UpdateProgress(event, target) {
+		//const rightClick = event.which === 3 || event.button === 2;
+		const { updateAmount, index, dataPath } = target.dataset;
+		const document = this.viewed;
+		const increment = parseFloat(updateAmount);
+		await ProgressDataModel.updateAtIndexForDocument(document, dataPath, Number.parseInt(index), increment);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onIncrementProgressTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		const increment = Number.parseInt(target.dataset.increment);
+		await ProgressDataModel.updateAtIndexForDocument(this.viewed, 'system.tracks', index, increment);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onPromptProgress(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		await ProgressDataModel.promptCheckAtIndexForDocument(this.viewed, 'system.tracks', index);
 	}
 }

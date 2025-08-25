@@ -50,8 +50,9 @@ const accuracyCheck = async (actor, item, configCallback) => {
  * @param {CheckAttributes} attributes
  * @param {FUItem} item
  * @param {CheckCallback} [configCallback]
+ * @param {CheckResultCallback} onPerform
  */
-const attributeCheck = async (actor, attributes, item, configCallback) => {
+const attributeCheck = async (actor, attributes, item, configCallback, onPerform) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'attribute',
@@ -59,7 +60,7 @@ const attributeCheck = async (actor, attributes, item, configCallback) => {
 		secondary: attributes.secondary,
 	};
 
-	return performCheck(check, actor, item, configCallback);
+	return performCheck(check, actor, item, configCallback, onPerform);
 };
 
 /**
@@ -505,12 +506,16 @@ reapplyClickListeners();
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} [initialConfigCallback]
+ * @param {CheckResultCallback} onPerform
  */
-const performCheck = async (check, actor, item, initialConfigCallback = undefined) => {
+const performCheck = async (check, actor, item, initialConfigCallback = undefined, onPerform = undefined) => {
 	const preparedCheck = await prepareCheck(check, actor, item, initialConfigCallback);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
 	await renderCheck(result, actor, item);
+	if (onPerform) {
+		await onPerform(result);
+	}
 	if (result.critical) {
 		CommonEvents.opportunity(actor, check.type, item, false);
 	} else if (result.fumble) {

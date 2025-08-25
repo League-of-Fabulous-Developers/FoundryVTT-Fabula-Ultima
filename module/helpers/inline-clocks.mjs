@@ -2,6 +2,7 @@ import { InlineHelper } from './inline-helper.mjs';
 import { StringUtils } from './string-utils.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { targetHandler } from './target-handler.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 
 /**
  * @type {TextEditorEnricherConfig}
@@ -88,7 +89,7 @@ async function onRender(element) {
 					source = renderContext.sourceInfo.resolveEffect();
 				}
 				progress = await actor.updateProgress(id, step);
-				await renderStep(progress, step, actor, source);
+				await ProgressDataModel.notifyUpdate(actor, progress, step, source);
 				break;
 			}
 
@@ -102,31 +103,8 @@ async function onRender(element) {
 }
 
 /**
- * @param {ProgressDataModel} progress
- * @param {Number} step
- * @param {FUActor} actor
- * @param {Object} source
- * @returns {Promise<string>}
- */
-async function renderStep(progress, step, actor, source) {
-	// Generate and reverse the progress array
-	const progressArr = progress.progressArray;
-	ChatMessage.create({
-		speaker: ChatMessage.getSpeaker({ actor }),
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
-			message: step > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
-			step: step,
-			clock: progress.name ?? progress.parent.parent.name,
-			source: source.name,
-			data: progress,
-			arr: progressArr,
-		}),
-	});
-}
-
-/**
  * @type {FUInlineCommand}
  */
-export const InlineClocks = {
+export const InlineClocks = Object.freeze({
 	enrichers: [enricher],
-};
+});

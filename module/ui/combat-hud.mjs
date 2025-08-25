@@ -22,9 +22,10 @@ Hooks.once('setup', () => {
 	 * @param {HudButtonData} buttonData
 	 */
 	function createButton(containerElement, buttonData) {
+		// TODO: Could use some adjustment, or move to the combat-tracker-header
 		const button = document.createElement('button');
 		button.type = 'button';
-		button.classList.add('control', 'ui-control');
+		button.classList.add('control', 'inline-control');
 		button.innerHTML = `<i class="${buttonData.icon}"></i>`;
 		button.dataset.tooltip = game.i18n.localize(buttonData.name);
 
@@ -58,7 +59,7 @@ Hooks.once('setup', () => {
 			createButton(containerElement, CombatHUD.getSavedControlButton());
 			createButton(containerElement, CombatHUD.getResetControlButton());
 
-			const combatTrackerSection = element.querySelector('#combat-tracker').parentElement;
+			const combatTrackerSection = element.querySelector('#combat-tracker-controls');
 			combatTrackerSection.prepend(containerElement);
 		}
 	});
@@ -221,11 +222,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 					'0 0 0 15px rgba(61, 60, 85, var(--hud-opacity));'
 				);
 			case 'fu-pixel':
-				return (
-					'--hud-opacity: ' +
-					opacity +
-					';'
-				);
+				return '--hud-opacity: ' + opacity + ';';
 		}
 	}
 

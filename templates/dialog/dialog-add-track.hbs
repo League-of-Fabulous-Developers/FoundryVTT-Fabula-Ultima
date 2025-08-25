@@ -1,0 +1,19 @@
+<form>
+	<div class="flex-group-center resource-content desc">
+		<label class="resource-label" for="name">{{localize 'FU.Name'}}</label>
+		<input type="text" id="name" name="name"/>
+	</div>
+
+	<div class="flex-group-center flexrow resource-content desc">
+		<label class="resource-label" for="max">{{localize 'FU.ClockSections'}}</label>
+		<input class="resource-label" type="number" id="max" name="max" value="6"/>
+		{{#if selectStyle}}
+			<label class="resource-label" for="style">{{localize 'Style'}}</label>
+			<select id="style" name="style">
+				<option value="basic">Basic</option>
+				<option value="clock">Clock</option>
+				<option value="bar">Bar</option>
+			</select>
+		{{/if}}
+	</div>
+</form> 

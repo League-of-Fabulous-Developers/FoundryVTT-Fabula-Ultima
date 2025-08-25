@@ -2,6 +2,7 @@ import { Checks } from './checks.mjs';
 import { FU } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { GroupCheck } from './group-check.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * @typedef AttributeCheckConfig
@@ -31,6 +32,8 @@ import { GroupCheck } from './group-check.mjs';
  * @template T
  * @property {T} [initialConfig]
  * @property {CheckCallback} [checkCallback]
+ * @property {CheckResultCallback} resultCallback
+ * @property
  */
 
 const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
@@ -139,6 +142,51 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 }
 
 /**
+ * @template T
+ * @param {Document} document
+ * @param {T} initialConfig
+ * @returns {Promise<AttributeCheckConfig>}
+ */
+async function promptForChat(document, initialConfig) {
+	const type = 'attribute';
+	const recentCheck = retrieveRecentCheck(document, type);
+
+	Object.keys(recentCheck).forEach((key) => {
+		if (initialConfig[key] != null) {
+			recentCheck[key] = initialConfig[key];
+		}
+	});
+
+	const result = await foundry.applications.api.DialogV2.input({
+		window: { title: game.i18n.localize('FU.DialogPromptCheckTitle') },
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		content: await FoundryUtils.renderTemplate('dialog/dialog-check-prompt-unified', {
+			type: type,
+			label: initialConfig.label,
+			increment: initialConfig.increment !== undefined,
+			attributes: FU.attributes,
+			attributeAbbr: FU.attributeAbbreviations,
+			primary: recentCheck.primary,
+			secondary: recentCheck.secondary,
+			modifier: recentCheck.modifier,
+			difficulty: recentCheck.difficulty,
+			supportDifficulty: recentCheck.supportDifficulty,
+			bonus: 0,
+		}),
+		rejectClose: false,
+		ok: {
+			icon: 'fas fa-dice',
+			label: game.i18n.localize('FU.Submit'),
+		},
+	});
+	if (result) {
+		saveRecentCheck(document, type, result);
+		return result;
+	}
+	return null;
+}
+
+/**
  * @param {Actor} actor
  * @param {CheckPromptOptions<AttributeCheckConfig>} [options]
  * @returns {Promise<void>}
@@ -228,4 +276,5 @@ export const CheckPrompt = Object.freeze({
 	attributeCheck,
 	openCheck,
 	groupCheck,
+	promptForChat,
 });
