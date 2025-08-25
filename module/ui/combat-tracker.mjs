@@ -194,7 +194,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @returns {Promise<void>}
 	 */
 	static async #onAddProgressTrack(event, target) {
-		await ProgressDataModel.promptAddToDocument(this.viewed, 'system.tracks');
+		await ProgressDataModel.promptAddToDocument(this.viewed, 'system.tracks', true);
 	}
 
 	/**

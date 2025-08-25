@@ -1,0 +1,21 @@
+<form>
+
+	<div class="form-group">
+		<label for="name">{{localize 'FU.Name'}}</label>
+		<input type="text" id="name" name="name"/>
+	</div>
+
+	<div class="form-group">
+		<label for="max">{{localize 'FU.ClockSections'}}</label>
+		<input type="number" id="max" name="max" value="6"/>
+		{{#if selectStyle}}
+			<label for="style">{{localize 'FU.Style'}}</label>
+			<select id="style" name="style">
+				<option value="basic">Basic</option>
+				<option value="clock">Clock</option>
+				<option value="bar">Bar</option>
+			</select>
+		{{/if}}
+
+	</div>
+</form>

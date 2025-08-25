@@ -8,6 +8,7 @@ import { MathHelper } from '../../../helpers/math-helper.mjs';
  * @property {number} current The current value
  * @property {number} step The step size (a multiplier for each increment/decrement)
  * @property {number} max The maximum value
+ * @property {string} style An optional style to use for this trac
  * @property {Boolean} enabled Whether this progress track should be used
  * @property {string} id Optionally, a unique identifier for internal lookups.
  */
@@ -21,6 +22,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 			step: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
 			max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 			enabled: new BooleanField({ initial: false }),
+			style: new StringField({ nullable: true }),
 		};
 	}
 
@@ -39,12 +41,14 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	/**
 	 * @param {String} name
 	 * @param {Number} max
+	 * @param {String} style
 	 * @returns {ProgressDataModel}
 	 */
-	static construct(name, max) {
+	static construct(name, max, style = undefined) {
 		return new this({
 			name: name,
 			max: max,
+			style: style,
 		});
 	}
 
@@ -139,12 +143,15 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	/**
 	 * @param {Document} document
 	 * @param {String} propertyPath
+	 * @pararm {Boolean} selectStyle
 	 * @returns {Promise<void>}
 	 */
-	static async promptAddToDocument(document, propertyPath) {
+	static async promptAddToDocument(document, propertyPath, selectStyle = false) {
 		const result = await foundry.applications.api.DialogV2.input({
 			window: { title: game.i18n.localize('FU.ClockAdd') },
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-party-clock.hbs'), {}),
+			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-track.hbs'), {
+				selectStyle: selectStyle,
+			}),
 			rejectClose: false,
 			ok: {
 				label: game.i18n.localize('FU.Confirm'),
@@ -159,7 +166,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 			const property = ObjectUtils.getProperty(document, propertyPath);
 			/** @type ProgressDataModel[] **/
 			const tracks = foundry.utils.duplicate(property);
-			const newTrack = ProgressDataModel.construct(result.name, result.max);
+			const newTrack = ProgressDataModel.construct(result.name, result.max, result.style);
 			tracks.push(newTrack);
 			document.update({ [propertyPath]: tracks });
 		}
