@@ -15,6 +15,9 @@ export class CombatHudSettings extends FUApplication {
 			submitOnChange: false,
 			handler: CombatHudSettings.#save,
 		},
+		actions: {
+			resetPosition: CombatHudSettings.ResetPosition,
+		},
 	};
 
 	/** @type {Record<string, HandlebarsTemplatePart>} */
@@ -23,6 +26,11 @@ export class CombatHudSettings extends FUApplication {
 			template: 'systems/projectfu/templates/app/settings/combat-hud.hbs',
 		},
 	};
+
+	static async ResetPosition() {
+		await game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, { x: 0, y: 0 });
+		if (ui.combatHud) await ui.combatHud.render();
+	}
 
 	async _onRender(context, options) {
 		this.element.querySelectorAll('.mats-icon-picker').forEach((el) =>
