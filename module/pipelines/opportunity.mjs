@@ -40,7 +40,7 @@ async function onOpportunity(event) {
  * @param {FUItem} item
  * @returns {Promise<void>}
  */
-async function promptOpportunity(actor, type, item) {
+async function promptOpportunity(actor, type, item = undefined) {
 	/** @type RollableTable **/
 	const tableUuid = game.settings.get(SYSTEM, SETTINGS.opportunities);
 	const table = await fromUuid(`RollTable.${tableUuid}`);
@@ -48,8 +48,10 @@ async function promptOpportunity(actor, type, item) {
 		const elements = [...table.results.values()];
 		console.debug(`Providing ${elements.length} choices from ${table.name}`);
 		let choices = await Promise.all(elements.map(async (e) => await TextEditor.enrichHTML(e.description)));
-		if (item.system.opportunity) {
-			choices = choices.concat(item.system.opportunity);
+		if (item) {
+			if (item.system.opportunity) {
+				choices = choices.concat(item.system.opportunity);
+			}
 		}
 		const selected = await FoundryUtils.promptStringChoice('FU.Opportunities', choices);
 		console.debug(`Selected opportunity: ${selected}`);

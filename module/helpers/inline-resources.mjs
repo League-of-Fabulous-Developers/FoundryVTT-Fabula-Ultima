@@ -1,6 +1,6 @@
 import { FU } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { InlineHelper } from './inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 
@@ -134,6 +134,7 @@ async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInf
 	if (sourceInfo === undefined) {
 		return true;
 	}
+	sourceInfo = InlineSourceInfo.fromObject(sourceInfo);
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
 		const context = ExpressionContext.fromSourceInfo(sourceInfo, [actor]);

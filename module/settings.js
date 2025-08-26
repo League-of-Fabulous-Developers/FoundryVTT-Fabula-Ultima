@@ -73,6 +73,7 @@ export const SETTINGS = Object.freeze({
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
+	automationApplyDamage: 'automationApplyDamage',
 	// Homebrew
 	homebrewOptions: 'homebrewOptions',
 	optionBondMaxLength: 'optionBondMaxLength',
@@ -84,6 +85,9 @@ export const SETTINGS = Object.freeze({
 	activeParty: 'optionActiveParty',
 	// STATE
 	activeWellsprings: 'activeWellsprings',
+
+	optionEnableDragRulerGridless: 'optionEnableDragRulerGridless',
+	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
 });
 
 /**
@@ -701,7 +705,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.AutomationOptions'),
 		hint: game.i18n.localize('FU.AutomationHint'),
 		icon: 'fa fa-wrench',
-		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects]),
+		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects, SETTINGS.automationApplyDamage]),
 		restricted: true,
 	});
 
@@ -726,6 +730,15 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects, {
 		name: game.i18n.localize('FU.AutomationRemoveExpiredEffects'),
 		hint: game.i18n.localize('FU.AutomationRemoveExpiredEffectsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.automationApplyDamage, {
+		name: game.i18n.localize('FU.AutomationApplyDamage'),
+		hint: game.i18n.localize('FU.AutomationApplyDamageHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -791,16 +804,6 @@ export const registerSystemSettings = async function () {
 		requiresReload: true,
 	});
 
-	// OPPORTUNITIES
-	// game.settings.registerMenu(SYSTEM, 'opportunitySettings', {
-	// 	name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
-	// 	hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
-	// 	label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
-	// 	scope: 'client',
-	// 	icon: 'fas fa-book',
-	// 	type: CombatHudSettings,
-	// });
-
 	game.settings.register(SYSTEM, SETTINGS.opportunities, {
 		name: 'FU.Opportunities',
 		hint: 'FU.OpportunitiesHint',
@@ -811,6 +814,26 @@ export const registerSystemSettings = async function () {
 			blank: true,
 			idOnly: true,
 		}),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridless, {
+		name: 'FU.DragRulerSettingsEnableGridlessLabel',
+		hint: 'FU.DragRulerSettingsEnableGridlessHint',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridded, {
+		name: 'FU.DragRulerSettingsEnableGriddedLabel',
+		hint: 'FU.DragRulerSettingsEnableGriddedHint',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
 	});
 };
 

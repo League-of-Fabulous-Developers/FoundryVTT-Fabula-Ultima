@@ -84,6 +84,7 @@ import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
 import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
 import { OpportunityHandler } from './pipelines/opportunity.mjs';
+import { FUTokenRuler } from './ui/token-ruler.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -295,6 +296,15 @@ Hooks.once('init', async () => {
 	TextEditorCommandDropdown.initialize();
 	SystemControls.initialize();
 	PlayerListEnhancements.initialize();
+
+	// // Disable the token drag ruler measurement, unless they've specifically
+	// // gone in and enabled it for some reason.
+	// if (!game.settings.get(SYSTEM, SETTINGS.optionEnableDragRuler)) {
+	// 	CONFIG.Token.rulerClass = null;
+	// }
+
+	// Override token ruler class
+	CONFIG.Token.rulerClass = FUTokenRuler;
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();

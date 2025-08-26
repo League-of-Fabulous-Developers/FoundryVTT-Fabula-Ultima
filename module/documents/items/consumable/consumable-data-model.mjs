@@ -5,6 +5,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof ConsumableDataModel) {
@@ -12,7 +13,8 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 		CommonSections.description(sections, item.system.description, item.system.summary.value);
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
 		CommonSections.targeted(sections, actor, item, targets, flags);
-		CommonSections.spendResource(sections, actor, item, [], flags);
+		const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
+		CommonSections.spendResource(sections, actor, item, cost, [], flags);
 
 		CommonEvents.item(actor, item);
 	}

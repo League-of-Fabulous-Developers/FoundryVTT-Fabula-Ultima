@@ -10,8 +10,12 @@ export class ActorWellspringManager {
 	constructor(actor) {
 		this.#actor = actor;
 
-		Hooks.on(FUHooks.HOOK_WELLSPRING_CHANGED, () => this.#actor.sheet.render());
-		Hooks.on('canvasReady', () => this.#actor.sheet.render());
+		Hooks.on(FUHooks.HOOK_WELLSPRING_CHANGED, () => {
+			if (this.#actor.sheet.rendered) this.#actor.sheet.render();
+		});
+		Hooks.on('canvasReady', () => {
+			if (this.#actor.sheet.rendered) this.#actor.sheet.render();
+		});
 	}
 
 	static onActorPrepared(actor) {

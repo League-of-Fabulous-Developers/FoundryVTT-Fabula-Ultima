@@ -590,12 +590,14 @@ FU.combatHudThemes = {
 	'fu-default': 'FU.CombatHudDefault',
 	'fu-modern': 'FU.CombatHudModern',
 	'fu-mother': 'FU.CombatHudMother',
+	'fu-pixel': 'FU.CombatHudPixel',
 };
 
 FU.combatHudThemeTemplates = {
 	'fu-default': 'combat-hud-default',
 	'fu-modern': 'combat-hud-modern',
 	'fu-mother': 'combat-hud-mother',
+	'fu-pixel': 'combat-hud-pixel',
 };
 
 FU.rank = {

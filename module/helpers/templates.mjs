@@ -216,6 +216,14 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/partials/combat-bar-ip-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-exp-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-hp-pixel.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-mp-pixel.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-ip-pixel.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-exp-pixel.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-pixel.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-fp-pixel.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zenit-pixel.hbs',
+		'systems/projectfu/templates/ui/partials/combat-hud-turn-pixel.hbs',
 		'systems/projectfu/templates/ui/partials/combat-hud-turn.hbs',
 
 		// Common

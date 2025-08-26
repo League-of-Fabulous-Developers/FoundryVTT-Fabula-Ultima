@@ -67,7 +67,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 
 		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargets();
-		CommonSections.spendResource(sections, actor, item, targets, flags);
+		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
@@ -101,7 +101,7 @@ const onRenderDisplay = (sections, check, actor, item, flags) => {
 		}
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
-		CommonSections.spendResource(sections, actor, item, targets, flags);
+		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
 		CommonEvents.skill(actor, item);
 	}
 };

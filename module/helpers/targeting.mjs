@@ -15,6 +15,7 @@ import { getTargeted } from './target-handler.mjs';
  * @property {Number} mdef
  * @property {number} difficulty
  * @property {"none", "hit", "miss"} result
+ * @property {Boolean} isOwner
  */
 
 // TODO: Make an option for GM
@@ -72,6 +73,7 @@ async function filterTargetsByRule(actor, item, targets) {
  * @property {String} icon The font awesome icon
  * @property {String} tooltip The localized tooltip to use
  * @property {Object} fields The fields to use for the action's dataset
+ * @property {Boolean} owner Whether this action can only be applied the owner
  * @remarks Expects an action handler where dataset.id is a reference to an actor
  */
 export class TargetAction {
@@ -80,6 +82,15 @@ export class TargetAction {
 		this.icon = icon;
 		this.tooltip = tooltip;
 		this.fields = fields ?? {};
+		this.owner = false;
+	}
+
+	/**
+	 * @returns {TargetAction}
+	 */
+	requiresOwner() {
+		this.owner = true;
+		return this;
 	}
 }
 
@@ -103,13 +114,25 @@ function getSerializedTargetData() {
  */
 function serializeTargetData(targets) {
 	return targets.map((target) => {
-		return {
-			name: target.name,
-			uuid: target.uuid,
-			link: target.link,
-			result: 'none',
-		};
+		return constructData(target);
 	});
+}
+
+/**
+ * @param {FUActor} actor
+ * @returns {TargetData}
+ */
+function constructData(actor) {
+	/** @type TargetData **/
+	return {
+		name: actor.name,
+		uuid: actor.uuid,
+		link: actor.link,
+		result: 'none',
+		def: actor.system.derived.def.value,
+		mdef: actor.system.derived.mdef.value,
+		isOwner: actor.isOwner,
+	};
 }
 
 /**
@@ -165,21 +188,6 @@ async function panToCombatant(token) {
 	const canvas = game.canvas;
 	const { x, y } = token.center;
 	await canvas.animatePan({ x, y, scale: Math.max(canvas.stage.scale.x, 0.5) });
-}
-
-/**
- * @param {FUActor} actor
- * @returns {TargetData}
- */
-function constructData(actor) {
-	/** @type TargetData **/
-	return {
-		name: actor.name,
-		uuid: actor.uuid,
-		link: actor.link,
-		def: actor.system.derived.def.value,
-		mdef: actor.system.derived.mdef.value,
-	};
 }
 
 export const Targeting = Object.freeze({

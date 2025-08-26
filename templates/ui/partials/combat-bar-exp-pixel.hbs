@@ -1,0 +1,21 @@
+
+<div class="bar-container">
+    <div class="resource-value">
+        <div class="resource-label">
+            <span>EXP</span>
+        </div>
+        <div class="resource-text">
+            <span>{{ this.actor.system.resources.exp.value }} / 10</span>
+        </div>
+    </div>
+    <div class="bar bar-progress" data-tooltip="{{localize 'FU.Exp'}}">
+        <div class="bar-progress-bar bar-level"
+            style="width: {{calculatePercentage this.actor.system.resources.exp.value 10}};"></div>
+        <span class="bar-value"></span>
+    </div>  
+    <div class="resource-value-compact">
+        <div class="resource-text">
+            <span>{{ this.actor.system.resources.exp.value }} XP</span>
+        </div>
+    </div>
+</div>

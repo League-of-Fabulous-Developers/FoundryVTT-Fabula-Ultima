@@ -1,7 +1,7 @@
 <div class="combineAccDmg">
-    {{#if accuracy}}
+    {{#if check}}
         <div class="accuracy-check">
-            {{#with accuracy}}
+            {{#with check}}
                 {{> 'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs' hideSettings=../hideSettings}}
             {{/with}}
         </div>
@@ -9,9 +9,7 @@
 
     {{#if damage}}
         <div class="damage-check">
-            {{#with damage}}
-                {{> 'systems/projectfu/templates/chat/partials/chat-damage.hbs' hideSettings=../hideSettings}}
-            {{/with}}
+			{{> 'systems/projectfu/templates/chat/partials/chat-damage.hbs' damage=damage check=check translation=translation hideSettings=../hideSettings}}
         </div>
     {{/if}}
 </div>

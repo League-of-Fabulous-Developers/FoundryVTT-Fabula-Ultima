@@ -19,6 +19,9 @@ import { SYSTEM } from './helpers/config.mjs';
 import { getCurrencyString, InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
 import { FUHooks } from './hooks.mjs';
 import { StudyRollHandler } from './pipelines/study-roll.mjs';
+import { DamagePipeline, DamageRequest } from './pipelines/damage-pipeline.mjs';
+import { InlineSourceInfo } from './helpers/inline-helper.mjs';
+import { DamageData } from './checks/check-configuration.mjs';
 
 /**
  * @readonly
@@ -31,6 +34,7 @@ export const MESSAGES = Object.freeze({
 	RequestTrade: 'requestTrade',
 	RequestZenitTransfer: 'requestZenitTransfer',
 	StudyEvent: 'studyEvent',
+	Pipeline: 'pipeline',
 });
 
 /**
@@ -162,6 +166,7 @@ export class FUSocketHandler {
 		this.register(MESSAGES.RequestZenitTransfer, InventoryPipeline.requestZenitTransfer);
 		this.register(MESSAGES.RequestTrade, InventoryPipeline.requestTrade);
 		this.register(MESSAGES.StudyEvent, StudyRollHandler.onStudyEvent);
+		this.register(MESSAGES.Pipeline, this.requestPipeline);
 
 		game.socket.on(this.identifier, (message) => {
 			// If this message is intended for only specific recipients and that is not us, do not process any further.
@@ -249,6 +254,38 @@ export class FUSocketHandler {
 	 */
 	async studyRoll(data) {
 		await this.executeAsGM(MESSAGES.StudyEvent, data);
+	}
+
+	/**
+	 * @param {String} name
+	 * @param {Object} data
+	 * @returns {Promise<void>}
+	 */
+	async requestPipeline(name, data) {
+		try {
+			if (!game.users.activeGM) throw new Error(game.i18n.localize('FU.NoActiveGM'));
+			if (game.user.isGM) {
+				switch (name) {
+					case 'damage':
+						{
+							const actors = data.targets.filter((t) => t.result === 'hit').map((t) => fromUuidSync(t.uuid));
+							if (actors.length === 0) {
+								console.debug('No valid targets to automate damage application for');
+								return;
+							}
+							const sourceInfo = InlineSourceInfo.fromObject(data.sourceInfo);
+							const damageData = new DamageData(data.damageData);
+							const request = new DamageRequest(sourceInfo, actors, damageData);
+							await DamagePipeline.process(request);
+						}
+						break;
+				}
+			} else {
+				await this.executeAsGM(MESSAGES.Pipeline, name, data);
+			}
+		} catch (err) {
+			ui.notifications.error(err.message, { localize: true });
+		}
 	}
 }
 

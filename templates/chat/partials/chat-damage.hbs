@@ -14,9 +14,9 @@
         <label class="damageType {{damage.type}} grid grid-3col">
             <div class="startcap"></div>
             <div>{{damage.total}}</div>
-            <div class="endcap"
-                data-tooltip="{{localize (lookup translation.damageTypes damage.type)}}">
-                <i class="{{localize (lookup translation.damageIcon damage.type)}}"></i></div>
+            <div class="endcap" data-tooltip="{{localize (lookup translation.damageTypes damage.type)}}">
+                <i class="{{localize (lookup translation.damageIcon damage.type)}}"></i>
+			</div>
         </label>
     </a>
 </div>
@@ -28,19 +28,17 @@
                 <label class="title">{{localize 'FU.HighRollAbbr'}}</label>
                 <label class="detail">
                     {{#if (not damage.hrZero)}}
-                        {{#if (gte result.attr1 result.attr2)}}
-                            {{result.attr1}}
+                        {{#if (gte check.primary.result check.secondary.result)}}
+                            {{check.primary.result}}
                         {{else}}
-                            {{result.attr2}}
+                            {{check.secondary.result}}
                         {{/if}}
                     {{/if}}
                 </label>
             </div>
-            <div {{#if
-                modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"
-                {{/if}}>
+            <div {{#if damage.modifiers}}data-tooltip="{{#each damage.modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
                 <label class="title">{{localize 'FU.ModAbbr'}}</label>
-                <label class="detail">{{damage.bonus}}</label>
+                <label class="detail">{{damage.modifierTotal}}</label>
             </div>
         </div>
     </div>
