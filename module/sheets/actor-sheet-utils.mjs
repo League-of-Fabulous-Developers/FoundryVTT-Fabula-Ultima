@@ -1101,15 +1101,15 @@ async function _createItem(type, clock, subtype, sheet) {
 }
 
 /**
- * @param actor
- * @param data
+ * @param {FUActor} actor
+ * @param {Object} data
  * @param {Promise<*>} onNewItem
  * @returns {Promise<Boolean>}
  */
 async function handleInventoryItemDrop(actor, data, onNewItem) {
 	/** @type FUItem **/
 	const item = await Item.implementation.fromDropData(data);
-	if (item.canStash) {
+	if (actor.sheet.supportsItem(item)) {
 		const existingItem = actor.items.find((i) => i.name === item.name && i.type === item.type);
 		let incremented = false;
 		if (existingItem) {
