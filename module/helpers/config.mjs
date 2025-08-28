@@ -640,6 +640,16 @@ FU.difficultyLevel = {
 };
 
 /**
+ * @type {Object<DifficultyLevel, string>}
+ */
+FU.difficultyLevelIcon = {
+	easy: 'ra ra-sheep',
+	normal: 'ra ra-aware',
+	hard: 'ra ra-monster-skull',
+	veryHard: 'ra ra-player-despair',
+};
+
+/**
  * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
  */
 FU.targetingRules = {

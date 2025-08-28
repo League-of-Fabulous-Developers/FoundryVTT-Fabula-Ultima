@@ -66,13 +66,6 @@
 			<fieldset class="flex-group-left resource-content">
 				<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
 
-				<div class="flexrow" style="flex-wrap: nowrap;">
-					<button type="button" data-action="setDifficulty" data-value="7">{{localize 'FU.Easy'}}</button>
-					<button type="button" data-action="setDifficulty" data-value="10">{{localize 'FU.Normal'}}</button>
-					<button type="button" data-action="setDifficulty" data-value="13">{{localize 'FU.Hard'}}</button>
-					<button type="button" data-action="setDifficulty" data-value="16">{{localize 'FU.VeryHard'}}</button>
-				</div>
-
 				{{#if (eq type 'group')}}
 					<label class="resource-text-m">
 						{{localize 'FU.DialogGroupCheckDifficulty'}}
@@ -88,6 +81,13 @@
 						<input name="difficulty" type="number" value="{{difficulty}}" min="0">
 					</label>
 				{{/if}}
+
+				<div class="flexrow" style="flex-wrap: nowrap;">
+					<button type="button" style="background: var(--difficulty-easy)" data-action="setDifficulty" data-value="7" data-tooltip="{{localize 'FU.Easy'}}"><i class="icon ra ra-sheep"></i></button>
+					<button type="button" style="background: var(--difficulty-normal)" data-action="setDifficulty" data-value="10" data-tooltip="{{localize 'FU.Normal'}}"><i class="icon ra ra-aware"></i></button>
+					<button type="button" style="background: var(--difficulty-hard)" data-action="setDifficulty" data-value="13" data-tooltip="{{localize 'FU.Hard'}}"><i class="icon ra ra-monster-skull"></i></button>
+					<button type="button" style="background: var(--difficulty-veryHard)" data-action="setDifficulty" data-value="16" data-tooltip="{{localize 'FU.VeryHard'}}"><i class="icon ra ra-player-despair"></i></button>
+				</div>
 			</fieldset>
 		{{/if}}
 	</div>
