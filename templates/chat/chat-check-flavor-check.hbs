@@ -1,3 +1,6 @@
 <header class="title-desc chat-header flexrow">
-    <h2>{{localize title}}</h2>
+	<h2 style="margin: 0;">{{localize title}}</h2>
+	{{#if label}}
+		<span class="flavor-text">{{label}}</span>
+	{{/if}}
 </header>

@@ -116,6 +116,9 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 	const result = await foundry.applications.api.DialogV2.input({
 		window: { title: game.i18n.localize('FU.DialogCheckTitle') },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		actions: {
+			setDifficulty: onSetDifficulty,
+		},
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-prompt-unified.hbs', {
 			type: type,
 			attributes: FU.attributes,
@@ -160,6 +163,9 @@ async function promptForChat(document, initialConfig) {
 	const result = await foundry.applications.api.DialogV2.input({
 		window: { title: game.i18n.localize('FU.DialogPromptCheckTitle') },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		actions: {
+			setDifficulty: onSetDifficulty,
+		},
 		content: await FoundryUtils.renderTemplate('dialog/dialog-check-prompt-unified', {
 			type: type,
 			label: initialConfig.label,
@@ -187,6 +193,20 @@ async function promptForChat(document, initialConfig) {
 }
 
 /**
+ * @param {PointerEvent} event   The originating click event
+ * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+ * @returns {Promise<void>}
+ */
+async function onSetDifficulty(event, target) {
+	const input = target.closest('fieldset').querySelector("input[name='difficulty']");
+	if (!input) return;
+	input.value = target.dataset.value ?? '';
+	// Let Foundry know it changed
+	input.dispatchEvent(new Event('input', { bubbles: true }));
+	input.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/**
  * @param {Actor} actor
  * @param {CheckPromptOptions<AttributeCheckConfig>} [options]
  * @returns {Promise<void>}
@@ -209,7 +229,6 @@ async function attributeCheck(actor, options = {}) {
 				if (promptResult.modifier) {
 					checkConfigurer.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
 				}
-
 				if (options.checkCallback) {
 					options.checkCallback(check, callbackActor, item);
 				}

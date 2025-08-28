@@ -420,6 +420,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 
 	bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
+	const inspector = CheckConfiguration.inspect(result);
 	let flavor;
 	if (flavorSections.length) {
 		flavor = '';
@@ -441,6 +442,8 @@ async function renderCheck(result, actor, item, flags = {}) {
 				})
 			: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 					title: FU.checkTypes[result.type] || 'FU.RollCheck',
+					type: result.type,
+					label: inspector.getLabel(),
 				});
 	}
 

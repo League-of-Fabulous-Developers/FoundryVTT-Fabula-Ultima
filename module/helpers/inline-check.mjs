@@ -205,6 +205,11 @@ async function onRender(element) {
 						secondary: attributes.secondary,
 						difficulty: difficulty,
 						modifier: modifier,
+						label: dataset.label,
+					},
+					checkCallback: (check) => {
+						let config = CheckConfiguration.configure(check);
+						config.setLabel(dataset.label);
 					},
 					resultCallback: onResult,
 				});
@@ -215,6 +220,7 @@ async function onRender(element) {
 					renderContext.sourceInfo.resolveItem(),
 					async (check) => {
 						let config = CheckConfiguration.configure(check);
+						config.setLabel(dataset.label);
 						let modifier = 0;
 
 						if (dataset.modifier !== undefined) {
