@@ -1,40 +1,43 @@
-<div class="progress-controls">
-	<a class="increment-button"
-	   data-type="{{type}}"
-	   data-item-id="{{id}}"
-	   data-action="{{action}}"
-	   data-data-path="{{dataPath}}"
-	   data-index="{{index}}"
-	   data-update-amount="1"
-	   data-tooltip="{{localize
-		'FU.IncreaseTooltip'}} ({{data.step}})">
-		<i class="icon fas fa-plus"></i>
-	</a>
-	<a class="decrement-button"
-	   data-type="{{type}}"
-	   data-item-id="{{id}}"
-	   data-action="{{action}}"
-	   data-data-path="{{dataPath}}"
-	   data-index="{{index}}"
-	   data-update-amount="-1"
-	   data-tooltip="{{localize
-		'FU.DecreaseTooltip'}} ({{data.step}})">
-		<i class="icon fas fa-minus"></i>
-	</a>
-	{{#if isCollection}}
-		<a data-action="removeProgress"
+{{#if controls}}
+	<div class="progress-controls">
+		<a class="increment-button"
+		   data-type="{{type}}"
 		   data-item-id="{{id}}"
+		   data-action="{{action}}"
 		   data-data-path="{{dataPath}}"
-		   data-index="{{index}}">
-			<i class="icon fas fa-close"></i>
+		   data-index="{{index}}"
+		   data-update-amount="1"
+		   data-tooltip="{{localize
+			'FU.IncreaseTooltip'}} ({{data.step}})">
+			<i class="icon fas fa-plus"></i>
 		</a>
-	{{/if}}
-	{{#if prompt}}
-		<a data-action="promptProgress"
+		<a class="decrement-button"
+		   data-type="{{type}}"
 		   data-item-id="{{id}}"
+		   data-action="{{action}}"
 		   data-data-path="{{dataPath}}"
-		   data-index="{{index}}">
-			<i class="icon ra ra-perspective-dice-six"></i>
+		   data-index="{{index}}"
+		   data-update-amount="-1"
+		   data-tooltip="{{localize
+			'FU.DecreaseTooltip'}} ({{data.step}})">
+			<i class="icon fas fa-minus"></i>
 		</a>
-	{{/if}}
-</div>
+		{{#if isCollection}}
+			<a data-action="removeProgress"
+			   data-item-id="{{id}}"
+			   data-data-path="{{dataPath}}"
+			   data-index="{{index}}">
+				<i class="icon fas fa-close"></i>
+			</a>
+		{{/if}}
+		{{#if prompt}}
+			<a data-action="promptProgress"
+			   data-item-id="{{id}}"
+			   data-data-path="{{dataPath}}"
+			   data-index="{{index}}">
+				<i class="icon ra ra-perspective-dice-six"></i>
+			</a>
+		{{/if}}
+	</div>
+{{/if}}
+

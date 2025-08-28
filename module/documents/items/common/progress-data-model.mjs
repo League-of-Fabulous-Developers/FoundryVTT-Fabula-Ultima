@@ -250,12 +250,17 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		});
 		if (prompt) {
 			console.debug(`Prompting a request to roll a check for progress track at ${propertyPath} from check: ${prompt}`);
+			// Needed because we only have the raw data atm
+			const segments = this.generateProgressArray(track);
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker(),
 				content: await FoundryUtils.renderTemplate('chat/chat-prompt-check', {
-					document: document.uuid,
+					document: document,
+					uuid: document.uuid,
 					propertyPath: propertyPath,
 					index: index,
+					track: track,
+					segments: segments,
 					label: prompt.label,
 					primary: prompt.primary,
 					secondary: prompt.secondary,
