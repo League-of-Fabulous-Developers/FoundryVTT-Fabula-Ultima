@@ -1,7 +1,6 @@
 import { FUCombat } from './combat.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { systemPath } from '../helpers/config.mjs';
-import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 
 /**
  * @class
@@ -22,9 +21,8 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		actions: {
 			// Progress tracks
 			addTrack: this.#onAddProgressTrack,
-			updateProgress: { handler: this.UpdateProgress, buttons: [0, 2] },
+			updateProgress: { handler: this.#onUpdateProgress, buttons: [0, 2] },
 			removeProgress: this.#onRemoveProgressTrack,
-			incrementProgress: this.#onIncrementProgressTrack,
 			promptProgress: this.#onPromptProgress,
 		},
 	};
@@ -196,7 +194,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @returns {Promise<void>}
 	 */
 	static async #onAddProgressTrack(event, target) {
-		await ProgressDataModel.promptAddToDocument(this.viewed, 'system.tracks', true);
+		return this.viewed.addTrack();
 	}
 
 	/**
@@ -206,7 +204,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 */
 	static async #onRemoveProgressTrack(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
-		await ProgressDataModel.removeAtIndexForDocument(this.viewed, 'system.tracks', index);
+		return this.viewed.removeTrack(index);
 	}
 
 	/**
@@ -214,23 +212,11 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async UpdateProgress(event, target) {
+	static async #onUpdateProgress(event, target) {
 		//const rightClick = event.which === 3 || event.button === 2;
-		const { updateAmount, index, dataPath } = target.dataset;
-		const document = this.viewed;
-		const increment = parseFloat(updateAmount);
-		await ProgressDataModel.updateAtIndexForDocument(document, dataPath, Number.parseInt(index), increment);
-	}
-
-	/**
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
-	static async #onIncrementProgressTrack(event, target) {
-		const index = Number(target.closest('[data-index]').dataset.index);
-		const increment = Number.parseInt(target.dataset.increment);
-		await ProgressDataModel.updateAtIndexForDocument(this.viewed, 'system.tracks', index, increment);
+		const { updateAmount, index } = target.dataset;
+		const increment = parseInt(updateAmount);
+		return this.viewed.updateTrack(parseInt(index), increment);
 	}
 
 	/**
@@ -240,6 +226,6 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 */
 	static async #onPromptProgress(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
-		await ProgressDataModel.promptCheckAtIndexForDocument(this.viewed, 'system.tracks', index);
+		await this.viewed.promptTrack(index);
 	}
 }

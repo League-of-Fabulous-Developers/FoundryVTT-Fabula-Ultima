@@ -196,6 +196,25 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
+	 * @description Adds the track to a document (at the end)
+	 * @param {Document} document
+	 * @param {String} propertyPath
+	 * @param {ProgressDataModel} track
+	 */
+	static async addToDocument(document, propertyPath, track) {
+		if (track === undefined) {
+			throw Error('Undefined track reference was given');
+		}
+		const property = ObjectUtils.getProperty(document, propertyPath);
+		/** @type ProgressDataModel[] **/
+		const tracks = foundry.utils.duplicate(property);
+		const newTrack = new this(ObjectUtils.cleanObject(track));
+		tracks.push(newTrack);
+		document.update({ [propertyPath]: tracks });
+		CommonEvents.progress(document, newTrack, 'add');
+	}
+
+	/**
 	 * @param {Document} document
 	 * @param {String} propertyPath
 	 * @pararm {Boolean} selectStyle
@@ -219,13 +238,8 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 				return;
 			}
 			console.log('Creating progress track with name: ', result.name);
-			const property = ObjectUtils.getProperty(document, propertyPath);
-			/** @type ProgressDataModel[] **/
-			const tracks = foundry.utils.duplicate(property);
 			const newTrack = ProgressDataModel.construct(result.name, result.max, result.style);
-			tracks.push(newTrack);
-			document.update({ [propertyPath]: tracks });
-			CommonEvents.progress(document, newTrack, 'add');
+			await this.addToDocument(document, propertyPath, newTrack);
 		}
 	}
 

@@ -683,4 +683,41 @@ export class FUCombat extends foundry.documents.Combat {
 	static get activeEncounter() {
 		return game.combat;
 	}
+
+	/**
+	 * @param {ProgressDataModel|undefined} track
+	 * @returns {Promise<void>}
+	 */
+	async addTrack(track) {
+		if (track) {
+			return ProgressDataModel.addToDocument(this, 'system.tracks', track);
+		} else {
+			return ProgressDataModel.promptAddToDocument(this, 'system.tracks', true);
+		}
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 */
+	async removeTrack(index) {
+		return ProgressDataModel.removeAtIndexForDocument(this, 'system.tracks', index);
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 * @param {number} increment
+	 */
+	async updateTrack(index, increment) {
+		return ProgressDataModel.updateAtIndexForDocument(this, 'system.tracks', Number.parseInt(index), increment);
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 */
+	async promptTrack(index) {
+		await ProgressDataModel.promptCheckAtIndexForDocument(this, 'system.tracks', index);
+	}
 }

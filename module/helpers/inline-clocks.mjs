@@ -3,13 +3,28 @@ import { StringUtils } from './string-utils.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { FUCombat } from '../ui/combat.mjs';
+
+/**
+ * @typedef InlineClockDataset
+ * @extends DOMStringMap
+ * @inheritDoc
+ * @property id
+ * @property command add, update, reset
+ * @property value
+ * @property label
+ * @property max
+ * @property style
+ */
+
+const creationProperties = [InlineHelper.propertyPattern('max', 'max', '\\d+'), InlineHelper.propertyPattern('style', 'style', '(clock|bar|basic)')];
 
 /**
  * @type {TextEditorEnricherConfig}
  */
 const enricher = {
 	id: 'inlineProgressEnricher',
-	pattern: InlineHelper.compose('(CLOCK|PROGRESS)', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)(\\s+(?<value>.*?))?'),
+	pattern: InlineHelper.compose('(CLOCK|PROGRESS)', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)(\\s+(?<value>.*?))?', creationProperties),
 	enricher: checkEnricher,
 	onRender: onRender,
 };
@@ -31,6 +46,8 @@ function checkEnricher(match, options) {
 		anchor.classList.add('inline', 'inline-clock');
 		anchor.dataset.command = command;
 		anchor.dataset.value = value;
+		anchor.dataset.max = match.groups.max;
+		anchor.dataset.style = match.groups.style;
 
 		if (label) {
 			anchor.append(label);
@@ -48,14 +65,36 @@ function checkEnricher(match, options) {
  */
 async function onRender(element) {
 	const renderContext = await InlineHelper.getRenderContext(element);
-	const id = renderContext.dataset.id;
-	const command = renderContext.dataset.command;
+	/** @type InlineClockDataset **/
+	const dataset = renderContext.dataset;
+	const id = dataset.id;
+	const command = dataset.command;
 
 	element.addEventListener('click', async function (event) {
 		const actor = renderContext.sourceInfo.resolveActor();
 		if (!actor) return;
 
 		switch (command) {
+			// Add a clock with id to combat/actor
+			case 'add': {
+				switch (dataset.value) {
+					case 'combat':
+						if (FUCombat.hasActiveEncounter) {
+							await FUCombat.activeEncounter.addTrack({
+								id: dataset.id,
+								name: dataset.label ?? dataset.id,
+								max: dataset.max,
+								style: dataset.style,
+							});
+						}
+						break;
+
+					case 'actor':
+						break;
+				}
+				break;
+			}
+
 			case 'update': {
 				// Resolve the progress data from the actor
 				let progress = await actor.resolveProgress(id);
@@ -68,7 +107,7 @@ async function onRender(element) {
 				// Evaluate the value
 				const targets = await targetHandler();
 				const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
-				const value = await Expressions.evaluateAsync(renderContext.dataset.value, context);
+				const value = await Expressions.evaluateAsync(dataset.value, context);
 
 				// Validate min/max
 				if (progress.isMaximum && value > 0) {
