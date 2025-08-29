@@ -187,7 +187,15 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		const property = ObjectUtils.getProperty(document, propertyPath);
 		/** @type ProgressDataModel[] **/
 		const tracks = foundry.utils.duplicate(property);
-		CommonEvents.progress(document, tracks[index], 'remove');
+		const track = tracks[index];
+		CommonEvents.progress(document, track, 'remove');
+		await this.sendToChat(
+			document,
+			track,
+			StringUtils.localize('FU.ChatProgressTrackRemoved', {
+				name: track.name,
+			}),
+		);
 		tracks.splice(index, 1);
 		document.update({ [propertyPath]: tracks });
 	}
