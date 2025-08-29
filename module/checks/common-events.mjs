@@ -377,6 +377,35 @@ function opportunity(actor, type, item, fumble) {
 }
 
 /**
+ * @type
+ *
+ */
+
+/**
+ * @typedef ProgressEvent
+ * @description Dispatched when a progress track has been updated
+ * @property {Document} document The document that has the tracker
+ * @property {ProgressDataModel} progress The tracker in question
+ * @property {"add"|"remove"|"update"} action The action that was performed
+ * @property {Number|undefined} increment If an update was performed, the change in the tracker,
+ * @property {Document|undefined} source If an update was performed, the source behind the change.
+ */
+
+function progress(document, progress, action, increment = undefined, source = undefined) {
+	/** @type ProgressEvent  **/
+	const event = {
+		document: document,
+		progress: progress,
+		action: action,
+		increment: increment,
+		source: source,
+	};
+	Hooks.call(FUHooks.PROGRESS_EVENT, event);
+}
+
+// Helpers
+
+/**
  * @param {TargetData[]} targets
  * @returns {EventTarget[]}
  */
@@ -421,4 +450,5 @@ export const CommonEvents = Object.freeze({
 	rest,
 	reveal,
 	opportunity,
+	progress,
 });

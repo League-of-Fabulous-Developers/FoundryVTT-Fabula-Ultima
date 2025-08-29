@@ -97,7 +97,7 @@
 		<div class="section-container desc resource-content">
 			{{#each combat.system.tracks }}
 				<div>
-					{{progressCollection ../combat 'system.tracks' @index displayName=true prompt=true }}
+					{{progressCollection ../combat 'system.tracks' @index displayName=true prompt=true controls=../combat.isOwner }}
 				</div>
 			{{/each}}
 		</div>

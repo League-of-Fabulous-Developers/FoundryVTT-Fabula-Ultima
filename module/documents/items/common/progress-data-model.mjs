@@ -4,6 +4,7 @@ import { MathHelper } from '../../../helpers/math-helper.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 import { CheckPrompt } from '../../../checks/check-prompt.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
 
 /**
  * @typedef ProgressSegment
@@ -17,7 +18,7 @@ import { StringUtils } from '../../../helpers/string-utils.mjs';
  * @property {number} current The current value
  * @property {number} step The step size (a multiplier for each increment/decrement)
  * @property {number} max The maximum value
- * @property {string} style An optional style to use for this trac
+ * @property {string} style An optional style to use for this track
  * @property {Boolean} enabled Whether this progress track should be used
  * @property {string} id Optionally, a unique identifier for internal lookups.
  */
@@ -163,6 +164,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 * @returns {Promise}
 	 */
 	static async notifyUpdate(document, progress, increment, source) {
+		CommonEvents.progress(document, progress, 'update', increment, source);
 		return ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ document }),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
@@ -188,6 +190,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		const property = ObjectUtils.getProperty(document, propertyPath);
 		/** @type ProgressDataModel[] **/
 		const tracks = foundry.utils.duplicate(property);
+		CommonEvents.progress(document, tracks[index], 'remove');
 		tracks.splice(index, 1);
 		document.update({ [propertyPath]: tracks });
 	}
@@ -222,6 +225,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 			const newTrack = ProgressDataModel.construct(result.name, result.max, result.style);
 			tracks.push(newTrack);
 			document.update({ [propertyPath]: tracks });
+			CommonEvents.progress(document, newTrack, 'add');
 		}
 	}
 
