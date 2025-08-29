@@ -104,7 +104,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-targets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 		'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
-		'systems/projectfu/templates/chat/chat-advance-clock.hbs',
 		'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 
 		// UI Components

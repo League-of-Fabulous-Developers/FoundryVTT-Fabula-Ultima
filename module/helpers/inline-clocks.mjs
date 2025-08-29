@@ -77,15 +77,30 @@ async function onRender(element) {
 		switch (command) {
 			// Add a clock with id to combat/actor
 			case 'add': {
+				const targets = await targetHandler();
+				const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+				const source = context.resolveActorOrSource();
+
 				switch (dataset.value) {
 					case 'combat':
 						if (FUCombat.hasActiveEncounter) {
-							await FUCombat.activeEncounter.addTrack({
+							/** @type ProgressDataModel **/
+							const track = {
 								id: dataset.id,
 								name: dataset.label ?? dataset.id,
+								current: 0,
 								max: dataset.max,
 								style: dataset.style,
-							});
+							};
+							await FUCombat.activeEncounter.addTrack(track);
+							await ProgressDataModel.sendToChat(
+								source,
+								track,
+								StringUtils.localize('FU.ChatProgressTrackAdded', {
+									name: dataset.label,
+									source: source.name,
+								}),
+							);
 						}
 						break;
 

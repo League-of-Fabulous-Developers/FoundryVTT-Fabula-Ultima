@@ -1415,6 +1415,7 @@
 		"ChatDecrementClock": "<strong>{clock}</strong> was decreased by <strong>{step}</strong> due to <strong>{source}</strong>.",
 		"ChatProgressAtMaximum": "The given progress track is already at its maximum value!",
 		"ChatProgressAtMinimum": "The given progress track is already at its minimum value!",
+		"ChatProgressTrackAdded": "The progress track <strong>{name}</strong> has been started by <strong>{source}</source>.",
 		"Reference": "Reference",
 		"All": "All",
 		"Adventurer": "Adventurer",

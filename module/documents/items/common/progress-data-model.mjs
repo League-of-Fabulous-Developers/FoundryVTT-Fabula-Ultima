@@ -81,16 +81,18 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * @param {FUActor} actor
+	 * @param {FUActor|FUItem|Document} actor
 	 * @param {ProgressDataModel} track
+	 * @param {String} message
 	 * @returns {Promise<void>}
 	 */
-	static async sendToChat(actor, track) {
+	static async sendToChat(actor, track, message = undefined) {
 		await ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ actor: actor }),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
-				arr: track.progressArray,
-				data: track,
+				progress: track,
+				segments: this.generateProgressArray(track),
+				message: message,
 			}),
 		});
 	}
@@ -165,17 +167,12 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 */
 	static async notifyUpdate(document, progress, increment, source) {
 		CommonEvents.progress(document, progress, 'update', increment, source);
-		return ChatMessage.create({
-			speaker: ChatMessage.getSpeaker({ document }),
-			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
-				message: increment > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
-				step: increment,
-				clock: progress.name ?? progress.parent.parent.name,
-				source: source.name,
-				progress: progress,
-				segments: this.generateProgressArray(progress),
-			}),
+		const message = StringUtils.localize(increment > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock', {
+			clock: progress.name ?? progress.parent.parent.name,
+			source: source.name,
+			step: increment,
 		});
+		return this.sendToChat(document, progress, message);
 	}
 
 	/**
@@ -205,7 +202,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		if (track === undefined) {
 			throw Error('Undefined track reference was given');
 		}
-		const property = ObjectUtils.getProperty(document, propertyPath);
+		let property = ObjectUtils.getProperty(document, propertyPath);
 		/** @type ProgressDataModel[] **/
 		const tracks = foundry.utils.duplicate(property);
 		const newTrack = new this(ObjectUtils.cleanObject(track));
