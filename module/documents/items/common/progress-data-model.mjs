@@ -5,11 +5,22 @@ import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 import { CheckPrompt } from '../../../checks/check-prompt.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
+import { getSelected } from '../../../helpers/target-handler.mjs';
+import { Checks } from '../../../checks/checks.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 
 /**
  * @typedef ProgressSegment
  * @property {Number} id
  * @property {Boolean} checked
+ */
+
+/**
+ * @typedef ProgressUpdateData
+ * @property {Document} document The reference to the document
+ * @property {String} propertyPath The path to the property
+ * @property {Number} increment How much to update for
+ * @property {Number|undefined} index If it's an array, the index of the element
  */
 
 /**
@@ -262,37 +273,97 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		/** @type ProgressDataModel[] **/
 		const tracks = foundry.utils.duplicate(property);
 		const track = tracks[index];
+		const actors = await getSelected(false);
 
-		const prompt = await CheckPrompt.promptForChat(document, {
-			primary: 'dex',
-			secondary: 'ins',
-			label: track.name,
-			increment: true,
-			difficulty: 10,
-			modifier: 0,
-		});
+		const prompt = await CheckPrompt.extended(
+			document,
+			{
+				primary: 'dex',
+				secondary: 'ins',
+				label: track.name,
+				increment: true,
+				difficulty: 10,
+				modifier: 0,
+			},
+			actors,
+		);
 		if (prompt) {
-			console.debug(`Prompting a request to roll a check for progress track at ${propertyPath} from check: ${prompt}`);
-			// Needed because we only have the raw data atm
-			const segments = this.generateProgressArray(track);
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker(),
-				content: await FoundryUtils.renderTemplate('chat/chat-prompt-check', {
-					document: document,
-					uuid: document.uuid,
-					propertyPath: propertyPath,
-					index: index,
-					track: track,
-					segments: segments,
-					label: prompt.label,
-					primary: prompt.primary,
-					secondary: prompt.secondary,
-					difficulty: prompt.difficulty,
-					modifier: prompt.modifier,
-					increment: prompt.increment,
-					verb: StringUtils.localize(prompt.increment ? 'FU.Increment' : 'FU.Decrement').toLowerCase(),
-				}),
-			});
+			// Execute check directly for each actor
+			if (actors.length > 0) {
+				console.debug(`Rolling check for progress track at ${propertyPath} from check: ${prompt} on actors.`);
+				for (const actor of actors) {
+					const attributes = {
+						primary: prompt.primary,
+						secondary: prompt.secondary,
+					};
+					await Checks.attributeCheck(
+						actor,
+						attributes,
+						null,
+						(check) => {
+							const config = CheckConfiguration.configure(check);
+							config.setDifficulty(prompt.difficulty);
+							config.setLabel(prompt.label);
+							config.addModifier('FU.DialogCheckModifier', prompt.modifier);
+						},
+						async (check) => {
+							if (check.fumble || check.result < prompt.difficulty) {
+								return;
+							}
+							let increment = this.calculateChange(check.result, prompt.difficulty, check.critical);
+							if (prompt.increment === 'false') {
+								increment = -increment;
+							}
+							await this.updateAtIndexForDocument(document, propertyPath, index, increment, {
+								source: actor,
+							});
+						},
+					);
+				}
+			} else {
+				console.debug(`Prompting a request to roll a check for progress track at ${propertyPath} from check: ${prompt}`);
+				ChatMessage.create({
+					speaker: ChatMessage.getSpeaker(),
+					content: await FoundryUtils.renderTemplate('chat/chat-prompt-check', {
+						document: document,
+						uuid: document.uuid,
+						propertyPath: propertyPath,
+						index: index,
+						track: track,
+						segments: this.generateProgressArray(track),
+						label: prompt.label,
+						primary: prompt.primary,
+						secondary: prompt.secondary,
+						difficulty: prompt.difficulty,
+						modifier: prompt.modifier,
+						increment: prompt.increment,
+						verb: StringUtils.localize(prompt.increment ? 'FU.Increment' : 'FU.Decrement').toLowerCase(),
+					}),
+				});
+			}
 		}
+	}
+
+	/**
+	 * @description Calculates the change in a clock due to the result of a check
+	 * @param result
+	 * @param difficulty
+	 * @param critical
+	 * @returns {number}
+	 */
+	static calculateChange(result, difficulty, critical) {
+		let change = 1;
+
+		const difference = result - difficulty;
+		if (difference >= 6) {
+			change += 2;
+		} else if (difference >= 3) {
+			change++;
+		}
+
+		if (critical) {
+			change += 2;
+		}
+		return change;
 	}
 }

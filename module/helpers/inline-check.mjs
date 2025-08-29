@@ -160,19 +160,7 @@ async function onRender(element) {
 				}
 
 				// TODO: Factor out into function in checks API?
-				let increment = 1;
-
-				const difference = result - difficulty;
-				if (difference >= 6) {
-					increment += 2;
-				} else if (difference >= 3) {
-					increment++;
-				}
-
-				if (result.critical) {
-					increment += 2;
-				}
-
+				let increment = ProgressDataModel.calculateChange(result, difficulty, result.critical);
 				if (dataset.increment === 'false') {
 					increment = -increment;
 				}

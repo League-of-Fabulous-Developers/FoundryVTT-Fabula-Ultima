@@ -54,10 +54,10 @@ export async function getPrioritizedUserTargeted() {
 /**
  * @returns {Promise<FUActor[]>}
  */
-export async function getSelected() {
+export async function getSelected(warn = true) {
 	const targets = canvas.tokens.controlled.map((token) => token.document.actor).filter((actor) => actor);
 
-	if (targets.length === 0) {
+	if (targets.length === 0 && warn) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsSelected', { localize: true });
 	}
 	return targets || [];

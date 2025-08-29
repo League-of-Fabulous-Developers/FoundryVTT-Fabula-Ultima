@@ -16,8 +16,15 @@
 		</fieldset>
 	</section>
 {{/if}}
+{{#if actors}}
+	<section>
+		<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
+			<legend class="resource-text-m">{{localize 'Actors'}}</legend>
+			{{> 'systems/projectfu/templates/ui/partials/document-carousel.hbs' documents=actors}}
+		</fieldset>
+	</section>
+{{/if}}
 <section>
-
 	<div class="flexrow">
 		{{#if label}}
 			<fieldset class="flex-group-center resource-content">

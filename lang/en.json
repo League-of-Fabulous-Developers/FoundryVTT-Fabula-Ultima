@@ -693,7 +693,7 @@
 		"Breakdown": "Breakdown",
 		"ChatDifficulty": "Difficulty",
 		"DialogCheckTitle": "Configure Check",
-		"DialogPromptCheckTitle": "Prompt Check",
+		"DialogPromptCheck": "Prompt Check",
 		"DialogCheckRoll": "Roll Check",
 		"DialogCheckAttributeCheck": "Attribute Check",
 		"DialogCheckOpenCheck": "Open Check",

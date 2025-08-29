@@ -73,7 +73,7 @@ function initDefaults(type) {
 }
 
 /**
- * @param {Actor} actor
+ * @param {Document} actor
  * @param {"attribute", "open", "group"}type
  * @param {AttributeCheckConfig, OpenCheckConfig, GroupCheckConfig}config
  */
@@ -148,9 +148,10 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
  * @template T
  * @param {Document} document
  * @param {T} initialConfig
+ * @param {FUActor[]} actors
  * @returns {Promise<AttributeCheckConfig>}
  */
-async function promptForChat(document, initialConfig) {
+async function extended(document, initialConfig, actors = undefined) {
 	const type = 'attribute';
 	const recentCheck = retrieveRecentCheck(document, type);
 
@@ -159,9 +160,8 @@ async function promptForChat(document, initialConfig) {
 			recentCheck[key] = initialConfig[key];
 		}
 	});
-
 	const result = await foundry.applications.api.DialogV2.input({
-		window: { title: game.i18n.localize('FU.DialogPromptCheckTitle') },
+		window: { title: game.i18n.localize(actors.length ? 'FU.DialogCheckRoll' : 'FU.DialogPromptCheck') },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		actions: {
 			setDifficulty: onSetDifficulty,
@@ -171,6 +171,7 @@ async function promptForChat(document, initialConfig) {
 			label: initialConfig.label,
 			increment: initialConfig.increment !== undefined,
 			attributes: FU.attributes,
+			actors: actors,
 			attributeAbbr: FU.attributeAbbreviations,
 			primary: recentCheck.primary,
 			secondary: recentCheck.secondary,
@@ -295,5 +296,5 @@ export const CheckPrompt = Object.freeze({
 	attributeCheck,
 	openCheck,
 	groupCheck,
-	promptForChat,
+	extended,
 });

@@ -106,7 +106,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
 		'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 
-		// UI Components
+		// UI FUComponents
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
 		// Applications
@@ -230,6 +230,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// UI
 		'systems/projectfu/templates/ui/study/npc-profile.hbs',
+		'systems/projectfu/templates/ui/partials/document-carousel.hbs',
 
 		// Progress,
 		'systems/projectfu/templates/common/progress/progress-clock.hbs',
