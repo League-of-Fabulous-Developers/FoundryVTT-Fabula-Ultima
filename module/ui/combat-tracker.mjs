@@ -20,10 +20,10 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		classes: ['projectfu'],
 		actions: {
 			// Progress tracks
-			addTrack: this.#onAddProgressTrack,
-			updateProgress: { handler: this.#onUpdateProgress, buttons: [0, 2] },
-			removeProgress: this.#onRemoveProgressTrack,
-			promptProgress: this.#onPromptProgress,
+			addTrack: this.#onAddTrack,
+			removeTrack: this.#onRemoveTrack,
+			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
+			promptTrack: this.#onPromptTrack,
 		},
 	};
 
@@ -193,7 +193,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onAddProgressTrack(event, target) {
+	static async #onAddTrack(event, target) {
 		return this.viewed.addTrack();
 	}
 
@@ -202,7 +202,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onRemoveProgressTrack(event, target) {
+	static async #onRemoveTrack(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
 		return this.viewed.removeTrack(index);
 	}
@@ -212,7 +212,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onUpdateProgress(event, target) {
+	static async #onUpdateTrack(event, target) {
 		//const rightClick = event.which === 3 || event.button === 2;
 		const { updateAmount, index } = target.dataset;
 		const increment = parseInt(updateAmount);
@@ -224,7 +224,7 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onPromptProgress(event, target) {
+	static async #onPromptTrack(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
 		await this.viewed.promptTrack(index);
 	}

@@ -73,7 +73,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			crisisHP: FUStandardActorSheet.CrisisHP,
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
-			updateProgress: { handler: FUStandardActorSheet.UpdateProgress, buttons: [0, 2] },
+			updateTrack: { handler: FUStandardActorSheet.UpdateProgress, buttons: [0, 2] },
 			rest: FUStandardActorSheet.handleRestClick,
 			sortFavorites: FUStandardActorSheet.sortFavorites,
 			levelUp: FUStandardActorSheet.levelUp,

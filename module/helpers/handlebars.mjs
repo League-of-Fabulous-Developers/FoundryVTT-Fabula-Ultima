@@ -274,7 +274,7 @@ function progressCollection(document, path, index, options) {
 function renderProgress(progress, id, path, options, index = undefined) {
 	const type = options.type;
 	const style = options.style ?? progress.style ?? 'clock';
-	const action = options.action ?? 'updateProgress';
+	const action = options.action ?? 'updateTrack';
 	const controls = options.controls ?? true;
 
 	// Render the partial directly using Handlebars
