@@ -1,5 +1,5 @@
 <section class="{{cssClass}} directory flexcol" id="{{cssId}}" data-tab="{{tabName}}">
-    <ol id="combat-tracker" class="directory-list">
+    <ol id="combat-tracker" class="directory-list" style="margin-top: 0;">
         {{#each factions as |combatants faction| }}
             <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}} {{combatants.length}}</h2>
             {{#each combatants}}

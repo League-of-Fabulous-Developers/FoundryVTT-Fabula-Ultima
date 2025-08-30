@@ -144,3 +144,10 @@
 	text-wrap: nowrap !important;
 	font-size: 75% !important;
 }
+
+.projectfu .progress-collection {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0;
+	gap: 4px;
+}

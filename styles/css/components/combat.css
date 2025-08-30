@@ -35,6 +35,8 @@
 .projectfu #combat-tracker .faction {
 	padding: 0.25em;
 	font-size: 1.2em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 .projectfu #combat-tracker .friendly {

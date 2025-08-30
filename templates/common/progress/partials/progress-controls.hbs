@@ -22,20 +22,22 @@
 			'FU.DecreaseTooltip'}} ({{data.step}})">
 			<i class="icon fas fa-minus"></i>
 		</a>
-		{{#if isCollection}}
-			<a data-action="removeProgress"
-			   data-item-id="{{id}}"
-			   data-data-path="{{dataPath}}"
-			   data-index="{{index}}">
-				<i class="icon fas fa-close"></i>
-			</a>
-		{{/if}}
 		{{#if prompt}}
 			<a data-action="promptProgress"
 			   data-item-id="{{id}}"
 			   data-data-path="{{dataPath}}"
+			   data-tooltip="{{localize 'FU.DialogPromptCheck'}}"
 			   data-index="{{index}}">
 				<i class="icon ra ra-perspective-dice-six"></i>
+			</a>
+		{{/if}}
+		{{#if isCollection}}
+			<a data-action="removeProgress"
+			   data-item-id="{{id}}"
+			   data-data-path="{{dataPath}}"
+			   data-tooltip="{{localize 'FU.Delete'}}"
+			   data-index="{{index}}">
+				<i class="icon fas fa-close"></i>
 			</a>
 		{{/if}}
 	</div>

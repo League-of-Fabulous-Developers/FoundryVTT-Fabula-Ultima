@@ -94,7 +94,7 @@
 
 	{{!-- Tracks --}}
 	{{#if combat.system.tracks}}
-		<div class="section-container desc resource-content">
+		<div class="desc resource-content progress-collection" style="background: unset;">
 			{{#each combat.system.tracks }}
 				<div>
 					{{progressCollection ../combat 'system.tracks' @index displayName=true prompt=true controls=../combat.isOwner }}
