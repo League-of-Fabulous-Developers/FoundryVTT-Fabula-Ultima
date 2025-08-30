@@ -334,13 +334,27 @@ function resolveDocument(element) {
 	console.debug(`Failed to resolve the document from ${element.toString()}`);
 }
 
-function appendImageToAnchor(anchor, path) {
+function appendImageToAnchor(anchor, path, margin = true) {
 	const img = document.createElement('img');
 	img.src = path;
 	img.width = 16;
 	img.height = 16;
-	img.style.marginLeft = img.style.marginRight = '2px';
+	if (margin) {
+		img.style.marginLeft = '2px';
+		img.style.marginRight = '4px';
+	}
 	anchor.append(img);
+}
+
+/**
+ * @param {HTMLAnchorElement} anchor
+ * @param {...string} classes
+ */
+function appendVectorIconToAnchor(anchor, ...classes) {
+	const icon = document.createElement(`i`);
+	icon.classList.add(`icon`, ...classes);
+	icon.style.marginLeft = '2px';
+	anchor.append(icon);
 }
 
 /**
@@ -383,6 +397,7 @@ export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
 	appendImageToAnchor,
+	appendVectorIconToAnchor,
 	appendVariableToAnchor,
 	toBase64,
 	fromBase64,

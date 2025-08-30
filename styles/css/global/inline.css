@@ -219,6 +219,15 @@ a.inline-roll i {
 	filter: brightness(1);
 }
 
+.inline.inline-group {
+	display: flex;
+	margin-left: 0.5em;
+	padding: 0 4px 4px 4px;
+	flex-direction: row;
+	gap: 0;
+	background: var(--background-critical);
+}
+
 @-webkit-keyframes recovery-indicator-bobbing {
 	to {
 		translate: 0 -2px;

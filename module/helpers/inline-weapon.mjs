@@ -9,6 +9,7 @@ import { ClassFeatureTypeDataModel } from '../documents/items/classFeature/class
 import { WeaponModuleDataModel } from '../documents/items/classFeature/pilot/weapon-module-data-model.mjs';
 import { InlineEffects } from './inline-effects.mjs';
 import { StringUtils } from './string-utils.mjs';
+import { systemAssetPath } from './system-utils.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
 const className = `inline-weapon`;
@@ -29,7 +30,7 @@ const editorEnricher = {
 			anchor.dataset.choices = match.groups.choices;
 
 			// ICON
-			InlineHelper.appendImageToAnchor(anchor, 'systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_weapon.png');
+			InlineHelper.appendImageToAnchor(anchor, systemAssetPath('icons/weapon-enchant.svg'));
 
 			// TOOLTIP
 			anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineWeapon')} (${choices})`);

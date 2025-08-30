@@ -7,6 +7,7 @@ import { InlineHelper } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { systemAssetPath } from './system-utils.mjs';
 
 /**
  * @typedef InlineCheckDataset
@@ -36,6 +37,13 @@ const inlineCheckEnricher = {
 	onRender: onRender,
 };
 
+const attributeIconPaths = {
+	dex: systemAssetPath('icons/dex.webp'),
+	mig: systemAssetPath('icons/mig.webp'),
+	ins: systemAssetPath('icons/ins.webp'),
+	wlp: systemAssetPath('icons/wlp.webp'),
+};
+
 /**
  * @param {RegExpMatchArray} match The text within a chat message that matches the given pattern
  * @param {*} options
@@ -55,22 +63,11 @@ function checkEnricher(match, options) {
 		let tooltip = game.i18n.localize('FU.InlineRollCheck');
 
 		// ICON
-		const icon = document.createElement('i');
-		icon.classList.add(`icon`, 'fu-check');
-		anchor.prepend(icon);
+		InlineHelper.appendImageToAnchor(anchor, systemAssetPath('icons/check.svg'));
 
 		if (label) {
 			anchor.append(label);
 			anchor.dataset.label = label;
-		} else {
-			// FIRST ATTRIBUTE
-			anchor.append(`${game.i18n.localize(FU.attributeAbbreviations[first])} `);
-			// CONNECTOR
-			const connectorIcon = document.createElement(`i`);
-			connectorIcon.classList.add(`connector`, `fa-plus`);
-			anchor.append(connectorIcon);
-			// SECOND ATTRIBUTE
-			anchor.append(` ${game.i18n.localize(FU.attributeAbbreviations[second])} `);
 		}
 		// [OPTIONAL] Modifier
 		let modifier = (match.groups.modifier ?? '').slice(1, -1);
@@ -99,7 +96,12 @@ function checkEnricher(match, options) {
 		anchor.dataset.propertyPath = match.groups.propertyPath;
 		anchor.dataset.index = match.groups.index;
 		anchor.dataset.increment = match.groups.increment;
-
+		// Show attributes
+		const span = document.createElement('span');
+		span.classList.add(`inline`, 'inline-group');
+		InlineHelper.appendImageToAnchor(span, attributeIconPaths[first], false);
+		InlineHelper.appendImageToAnchor(span, attributeIconPaths[second], false);
+		anchor.append(span);
 		return anchor;
 	}
 	return null;
