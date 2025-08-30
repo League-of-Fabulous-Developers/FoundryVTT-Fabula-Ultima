@@ -30,7 +30,7 @@ const editorEnricher = {
 			anchor.dataset.choices = match.groups.choices;
 
 			// ICON
-			InlineHelper.appendImageToAnchor(anchor, systemAssetPath('icons/weapon-enchant.svg'));
+			InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/weapon.svg'));
 
 			// TOOLTIP
 			anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineWeapon')} (${choices})`);

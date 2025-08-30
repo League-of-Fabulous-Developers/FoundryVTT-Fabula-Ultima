@@ -49,7 +49,7 @@ function createCompendiumEffectAnchor(effect, config, label) {
 	anchor.dataset.config = InlineHelper.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
-	InlineHelper.appendImageToAnchor(anchor, effect.img);
+	InlineHelper.appendImage(anchor, effect.img);
 	anchor.append(label ? label : effect.name);
 	return anchor;
 }
@@ -73,7 +73,7 @@ function createStatusAnchor(effectValue, status, config) {
 	const localizedName = game.i18n.localize(status.name);
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 
-	InlineHelper.appendImageToAnchor(anchor, status.img);
+	InlineHelper.appendImage(anchor, status.img);
 	anchor.append(localizedName);
 	return anchor;
 }

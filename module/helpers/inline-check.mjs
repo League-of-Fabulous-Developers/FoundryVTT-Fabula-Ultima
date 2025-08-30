@@ -38,10 +38,10 @@ const inlineCheckEnricher = {
 };
 
 const attributeIconPaths = {
-	dex: systemAssetPath('icons/dex.webp'),
-	mig: systemAssetPath('icons/mig.webp'),
-	ins: systemAssetPath('icons/ins.webp'),
-	wlp: systemAssetPath('icons/wlp.webp'),
+	dex: systemAssetPath('icons/attributes/dex-glyph.png'),
+	mig: systemAssetPath('icons/attributes/mig-glyph.png'),
+	ins: systemAssetPath('icons/attributes/ins-glyph.png'),
+	wlp: systemAssetPath('icons/attributes/wlp-glyph.png'),
 };
 
 /**
@@ -63,7 +63,7 @@ function checkEnricher(match, options) {
 		let tooltip = game.i18n.localize('FU.InlineRollCheck');
 
 		// ICON
-		InlineHelper.appendImageToAnchor(anchor, systemAssetPath('icons/check.svg'));
+		InlineHelper.appendImage(anchor, systemAssetPath('icons/check.svg'));
 
 		if (label) {
 			anchor.append(label);
@@ -99,8 +99,8 @@ function checkEnricher(match, options) {
 		// Show attributes
 		const span = document.createElement('span');
 		span.classList.add(`inline`, 'inline-group');
-		InlineHelper.appendImageToAnchor(span, attributeIconPaths[first], false);
-		InlineHelper.appendImageToAnchor(span, attributeIconPaths[second], false);
+		InlineHelper.appendImage(span, attributeIconPaths[first], 16, false);
+		InlineHelper.appendImage(span, attributeIconPaths[second], 16, false);
 		anchor.append(span);
 		return anchor;
 	}

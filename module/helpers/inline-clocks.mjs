@@ -4,6 +4,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { FUCombat } from '../ui/combat.mjs';
+import { systemAssetPath } from './system-utils.mjs';
 
 /**
  * @typedef InlineClockDataset
@@ -15,9 +16,10 @@ import { FUCombat } from '../ui/combat.mjs';
  * @property label
  * @property max
  * @property style
+ * @property edit
  */
 
-const creationProperties = [InlineHelper.propertyPattern('max', 'max', '\\d+'), InlineHelper.propertyPattern('style', 'style', '(clock|bar|basic)')];
+const creationProperties = [InlineHelper.propertyPattern('max', 'max', '\\d+'), InlineHelper.propertyPattern('style', 'style', '(clock|bar|basic)'), InlineHelper.propertyPattern('edit', 'edit', '(true|false)')];
 
 /**
  * @type {TextEditorEnricherConfig}
@@ -48,6 +50,11 @@ function checkEnricher(match, options) {
 		anchor.dataset.value = value;
 		anchor.dataset.max = match.groups.max;
 		anchor.dataset.style = match.groups.style;
+		anchor.dataset.edit = match.groups.edit;
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatAddProgressTrackTooltip')}`);
+
+		// ICON
+		InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/clock.svg'));
 
 		if (label) {
 			anchor.append(label);

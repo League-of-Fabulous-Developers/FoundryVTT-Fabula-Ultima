@@ -3,6 +3,7 @@ import { targetHandler } from './target-handler.mjs';
 import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
+import { systemAssetPath } from './system-utils.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -34,6 +35,7 @@ function damageEnricher(text, options) {
 		}
 		anchor.draggable = true;
 
+		InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/damage.svg'));
 		// TOOLTIP
 		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
 		if (label) {
