@@ -146,7 +146,7 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [
-			ItemPartialTemplates.controls,
+			ItemPartialTemplates.standard,
 			ItemPartialTemplates.weaponSettings,
 			ItemPartialTemplates.qualityCost,
 			ItemPartialTemplates.weapon,

@@ -11,7 +11,7 @@ import { systemTemplatePath } from '../../helpers/system-utils.mjs';
  * @remarks Not the nicest way to do it, but...
  */
 export const ItemPartialTemplates = Object.freeze({
-	controls: { template: systemTemplatePath('item/partials/item-controls'), group: 'settings' },
+	standard: { template: systemTemplatePath('item/partials/item-standard'), group: 'settings' },
 	qualityCost: { template: systemTemplatePath('item/partials/item-quality-cost') },
 	accuracy: { template: systemTemplatePath('item/partials/item-accuracy-section'), group: 'grid' },
 	legacyAccuracy: { template: systemTemplatePath('item/partials/item-accuracy-section-legacy'), group: 'grid' },

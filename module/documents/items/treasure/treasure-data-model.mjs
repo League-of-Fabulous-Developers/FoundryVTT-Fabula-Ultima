@@ -54,6 +54,6 @@ export class TreasureDataModel extends FUSubTypedItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.treasure];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.treasure];
 	}
 }
