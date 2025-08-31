@@ -337,8 +337,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'combat':
-				await ActorSheetUtils.prepareAbilities(context);
 				await ActorSheetUtils.prepareNpcCombat(context);
+				await ActorSheetUtils.prepareAbilities(context);
+				await ActorSheetUtils.prepareSkills(context);
 				await ActorSheetUtils.prepareSpells(context);
 				if (this.actor.system.useEquipment.value) {
 					await ActorSheetUtils.prepareInventory(context);

@@ -474,7 +474,7 @@
 
 .projectfu .tag {
 	align-items: center;
-	color: var(--pfu-color-app-control-content);
+	color: var(--color-text-primary);
 	background: var(--pfu-color-app-control-fill);
 	border-radius: 2px;
 	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
