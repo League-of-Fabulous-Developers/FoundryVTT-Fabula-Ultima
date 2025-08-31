@@ -153,6 +153,7 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.attackAccuracy,
 			ItemPartialTemplates.attackDamage,
 			ItemPartialTemplates.behaviorField,
+			ItemPartialTemplates.attackTypeField,
 		];
 	}
 }
