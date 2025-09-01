@@ -1,0 +1,154 @@
+<div class="{{cssClasses}} pixel" id="{{cssId}}">
+    <div class="window-button window-compact">
+        <a class="compact fas pixel-down {{#if isCompact }}hidden{{/if}}" title="Toggle compact mode" data-action="toggleCompact">
+        </a> 
+        <a class="compact fas pixel-up {{#unless isCompact }}hidden{{/unless}}" title="Toggle compact mode" data-action="toggleCompact">
+        </a>
+    </div>
+    <div class="window-button window-popout">
+        <a class="popout" title="Popout Combat HUD" data-target="combat-hud" data-action="popout">
+            <i class="pixel-popout"></i>
+        </a>
+    </div>
+    <div class="window-button window-minimize">
+        <a class="minimize" title="Minimize Combat HUD" data-action="minimize">
+            <i class="pixel-minimize"></i>
+        </a>
+    </div>
+    <div class="window-button window-drag" draggable="true">
+        <a class="drag" title="Drag Combat HUD">
+            <i class="pixel-drag"></i>
+        </a>
+    </div>
+    {{#if isGM}}
+    <div class="window-button window-start">
+        <a class="start" title="Start Combat" data-action="start">
+            <i class="pixel-start"></i>
+        </a>
+    </div>
+    <div class="window-button window-stop hidden">
+        <a class="stop" title="Stop Combat" data-action="stop">
+            <i class="pixel-stop"></i>
+        </a>
+    </div>
+    {{/if}}
+    <div class="window-header" style="display: none;">Combat HUD</div>
+    <div class="faction-list npcs {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
+        {{#each npcs}}
+             <div class="combat-row {{ this.rowClass }} 
+                {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}}
+                {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}
+                {{#if @root.hasCombatStarted}}
+                    {{#if (eq @root.combatant.id this.id)}}active-combatant{{/if}}
+                    {{#if (lookup @root.turnsLeft this.id)}}turns-left
+                    {{else}}no-turns
+                    {{/if}}
+                {{/if}}" 
+                data-type="npc" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
+                 data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
+                 {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
+                <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
+                <div class="combat-info">
+                    <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
+                        <span class="token-name" data-action="clickCombatant" data-token-id="{{this.token.id}}">
+                            {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
+                                <span class="combat-order">{{ this.order }}</span>.&nbsp;
+                            {{/if}}
+                            {{ name }}
+                        </span>
+                    </div>
+                    {{#if this.hasEffects}}
+                        <div class="combat-effects">
+                            {{#if this.shouldEffectsMarquee}}
+                                <div class="marquee"
+                                     style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
+                                    {{#each this.effects as |effect|}}
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
+                                    {{/each}}
+                                    {{#each this.effects as |effect|}}
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
+                                    {{/each}}
+                                </div>
+                            {{else}}
+                                <div class="marquee">
+                                    {{#each this.effects as |effect|}}
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
+                                    {{/each}}
+                                </div>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                </div>
+                {{> "systems/projectfu/templates/ui/partials/combat-hud-turn.hbs"}}
+
+            </div>
+        {{/each}}
+    </div>
+    <div class="faction-list characters {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
+        {{#each characters}}
+            <div class="combat-row {{ this.rowClass }} 
+                {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}}
+                {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}
+                {{#if @root.hasCombatStarted}}
+                    {{#if (eq @root.combatant.id this.id)}}active-combatant{{/if}}
+                    {{#if (lookup @root.turnsLeft this.id)}}turns-left
+                    {{else}}no-turns
+                    {{/if}}
+                {{/if}}" 
+                data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
+                 data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
+                 {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
+                <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
+                <div class="combat-info">
+                    <div class="combat-name">
+                        <span data-action="clickCombatant" data-token-id="{{this.token.id}}">
+                            {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
+                                <span class="combat-order">{{ this.order }}</span>.&nbsp;
+                            {{/if}}
+                            {{ name }}
+                        </span>
+                    </div>
+                    {{#if this.hasEffects}}
+                        <div class="combat-effects">
+                            {{#if this.shouldEffectsMarquee}}
+                                <div class="marquee"
+                                     style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
+                                    {{#each this.effects as |effect|}}
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-action="clickEffect" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
+                                    {{/each}}
+                                </div>
+                            {{else}}
+                                <div class="marquee">
+                                    {{#each this.effects as |effect|}}
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-action="clickEffect" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
+                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
+                                    {{/each}}
+                                </div>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="combat-bars">
+                    {{#if this.trackedResourcePart1}}
+                    {{> (lookup . 'trackedResourcePart1') actor=this.actor}}
+                    {{/if}}
+                    {{#if this.trackedResourcePart2}}
+                    {{> (lookup . 'trackedResourcePart2') actor=this.actor}}
+                    {{/if}}
+                    {{#if this.trackedResourcePart3}}
+                    {{> (lookup . 'trackedResourcePart3') actor=this.actor}}
+                    {{/if}}
+                    {{#if this.trackedResourcePart4}}
+                    {{> (lookup . 'trackedResourcePart4') actor=this.actor}}
+                    {{/if}}
+                </div>
+
+                {{> "systems/projectfu/templates/ui/partials/combat-hud-turn.hbs"}}
+            </div>
+        {{/each}}
+    </div>
+</div>

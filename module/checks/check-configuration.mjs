@@ -1,4 +1,4 @@
-import { SYSTEM, FU } from '../helpers/config.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
@@ -52,10 +52,13 @@ export class DamageData {
 		// eslint-disable-next-line no-unused-vars
 		const { modifierTotal, ..._data } = data;
 		Object.assign(this, _data);
+		if (!this.hrZero) {
+			this.hrZero = false;
+		}
 	}
 
 	/**
-	 * @returns {Number}
+	 * @returns {Number} The sum of all bonus damage modifiers ({@linkcode modifiers})
 	 */
 	get modifierTotal() {
 		return this.modifiers.reduce((agg, curr) => agg + curr.value, 0);
@@ -63,29 +66,15 @@ export class DamageData {
 
 	/**
 	 * @returns {Number}
+	 * @remarks Doesn't account for {@linkcode hrZero}
 	 */
 	get total() {
+		if (this.hrZero) {
+			return this.modifierTotal;
+		}
 		return this.modifierTotal + this.hr;
 	}
 }
-
-/**
- * @typedef TemplateDamageData
- * @property {Object} result - The result attributes from the check.
- * @property {number} result.attr1 - The primary check result.
- * @property {number} result.attr2 - The secondary check result.
- * @property {Object} damage - The damage details.
- * @property {number} damage.hrZero - The HR zero value.
- * @property {number} damage.bonus - The total damage bonus.
- * @property {number} damage.total - The total calculated damage.
- * @property {string} damage.type - The type of damage.
- * @property {String} damage.extra - Additional damage information.
- * @property {Object} translation - Translation details for damage types and icons.
- * @property {Object} translation.damageTypes - The available damage types.
- * @property {Object} translation.damageIcon - The icon representation of damage types.
- * @property {Array} modifiers - Modifiers applied to the damage.
- *
- */
 
 /**
  * @typedef WeaponTraits
@@ -533,74 +522,22 @@ class CheckInspector {
 		return this.getCheck().fumble;
 	}
 
+	// TODO: Figure out how to handle this better
 	/**
-	 * @remarks Used for templating
-	 */
-	getAccuracyData() {
-		const _check = this.getCheck();
-		const accuracyData = {
-			result: {
-				attr1: _check.primary.result,
-				attr2: _check.secondary.result,
-				die1: _check.primary.dice,
-				die2: _check.secondary.dice,
-				modifier: _check.modifierTotal,
-				total: _check.result,
-				crit: _check.critical,
-				fumble: _check.fumble,
-			},
-			check: {
-				attr1: {
-					attribute: _check.primary.attribute,
-				},
-				attr2: {
-					attribute: _check.secondary.attribute,
-				},
-			},
-			modifiers: _check.modifiers,
-			additionalData: _check.additionalData,
-		};
-		return accuracyData;
-	}
-
-	/**
-	 * @returns {TemplateDamageData}
+	 * @returns {DamageData}
 	 * @remarks Used for templating.
 	 */
-	getDamageData() {
-		const _check = this.getCheck();
+	getExtendedDamageData() {
 		const traits = this.getTraits();
 		const isBase = traits.includes(Traits.Base);
 		const damage = this.getDamage();
-		const hrZero = this.getHrZero();
-		const modifierTotal = damage.modifierTotal;
-		const primary = _check.primary.result;
-		const secondary = _check.secondary.result;
-		const total = hrZero ? modifierTotal : Math.max(primary, secondary) + modifierTotal;
 
 		let result = null;
 		if (damage) {
-			result = {
-				result: {
-					attr1: primary,
-					attr2: secondary,
-				},
-				damage: {
-					hrZero: hrZero,
-					bonus: modifierTotal,
-					total: total,
-					type: damage.type,
-					extra: damage.extra,
-					traits: traits,
-				},
-				translation: {
-					damageTypes: FU.damageTypes,
-					damageIcon: FU.affIcon,
-				},
-				modifiers: isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers,
-			};
+			damage.traits = traits;
+			damage.modifiers = isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers;
+			result = damage;
 		}
-
 		return result;
 	}
 }

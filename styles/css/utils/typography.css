@@ -66,7 +66,18 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
+@font-face {
+	font-family: 'ChronoType';
+	src: url('../../fonts/chronotype/ChronoType.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Reactor7';
+	src: url('../../fonts/reactor7/Reactor7.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 @counter-style diamonds {
 	system: cyclic;
 	suffix: ' ';

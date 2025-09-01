@@ -1290,6 +1290,7 @@
 		"CombatHudDefault": "Por defecto (Estilo Retro)",
 		"CombatHudModern": "Moderno",
 		"CombatHudMother": "Mother",
+		"CombatHudPixel": "Pixel",
 		"CombatHudTrackedResource4": "Cuarto Recurso Mostrado",
 		"CombatHudTrackedResource4Hint": "Elige el cuarto recurso que se mostrará como una barra en el HUD de Combate. No es compatible con todos los temas.",
 		"CombatHudShowNPCTurnsLeftMode": "Modo de turnos restantes de PNJ",
@@ -1485,6 +1486,9 @@
 		"DragRulerSettingsEnableGriddedLabel": "Enable Token Drag Ruler for Gridded Scenes",
 		"DragRulerSettingsEnableGriddedHint": "Enable to show distance measurement when dragging a token in a scene with a grid.",
 		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
+		"CostPerTarget": "Cost per Target",
+		"CombatHudResetPosition": "Reset HUD Position",
+		"CombatHudResetPositionHint": "Will reset the position of the combat HUD back to default.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

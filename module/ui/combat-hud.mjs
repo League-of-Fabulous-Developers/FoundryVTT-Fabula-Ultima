@@ -126,6 +126,18 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 				systemTemplatePath('ui/partials/combat-bar-exp-mother'),
 			],
 		},
+		'fu-pixel': {
+			template: systemTemplatePath('ui/combat-hud/combat-hud-pixel'),
+			templates: [
+				systemTemplatePath('ui/partials/combat-bar-hp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-mp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-ip-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-fp-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-zeropower-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-zenit-pixel'),
+				systemTemplatePath('ui/partials/combat-bar-exp-pixel'),
+			],
+		},
 	};
 
 	constructor(options) {
@@ -208,6 +220,12 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 					'0 0 0 12px rgba(247, 232, 168, var(--hud-opacity)), ' +
 					'0 0 0 15px rgba(61, 60, 85, var(--hud-opacity));'
 				);
+			case 'fu-pixel':
+				return (
+					'--hud-opacity: ' +
+					opacity +
+					';'
+				);
 		}
 	}
 
@@ -248,6 +266,43 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 		const basePath = 'systems/projectfu/templates/ui/partials/combat-bar-';
 		return basePath + resource + theme + '.hbs';
+	}
+
+	_getDragPositionBoundaries() {
+		// if (newLeft >= 0 && newLeft < window.innerWidth - buttonRect.width ) elem.style.left = `${newLeft}px`;
+
+		const elem = this.element.querySelector(`#combat-hud`);
+
+		const elemRect = elem.getBoundingClientRect();
+
+		const bounds = {
+			left: 0,
+			top: 0,
+			right: window.innerWidth - elemRect.width,
+			bottom: window.innerHeight - elemRect.height,
+		};
+
+		// Adjust boundaries if our drag button is found (it should always be, but just in case)
+		const dragButton = this.element.querySelector('.window-drag');
+
+		if (dragButton instanceof HTMLElement) {
+			const rect = dragButton.getBoundingClientRect();
+			bounds.right = window.innerWidth - rect.width;
+
+			// Prevent from placing the drag button under the sidebar
+			const sidebarButtons = document.querySelector(`#ui-right nav`);
+			if (sidebarButtons instanceof HTMLElement) bounds.right -= sidebarButtons.getBoundingClientRect().width;
+
+			if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton) === 'top') {
+				bounds.bottom = window.innerHeight - rect.height;
+				bounds.top = rect.height;
+			} else {
+				bounds.top = -elemRect.height + rect.height;
+				bounds.bottom = window.innerHeight - elemRect.height - rect.height;
+			}
+		}
+
+		return bounds;
 	}
 
 	async _prepareContext(options = {}) {
@@ -431,6 +486,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			this.close();
 			return;
 		}
+
 		this._setSizeAndPosition();
 		this._setEffectContextMenus();
 	}
@@ -563,6 +619,13 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			element.style.left = `${position.left}px`;
 		}
 
+		const rect = element.getBoundingClientRect();
+		if (rect) {
+			const bounds = this._getDragPositionBoundaries();
+			if (rect.top <= bounds.top || rect.top >= bounds.bottom) element.style.top = `${bounds.top}px`;
+			if (rect.left <= bounds.left || rect.left >= bounds.right) element.style.left = `${bounds.left}px`;
+		}
+
 		// Apply button position
 		this._applyButtonPosition(positionButton);
 	}
@@ -574,6 +637,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			event.dataTransfer.dropEffect = 'move';
 			const elem = this.element.querySelector(`#combat-hud`);
 			this.dragInitialLeft = event.clientX - elem.offsetLeft;
+
 			this.dragInitialTop = event.clientY - elem.offsetTop;
 
 			this.firefoxDragX = 0;
@@ -619,15 +683,18 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 			this._dragAnimationFrame = requestAnimationFrame(() => {
 				const dragButton = elem.querySelector(`.window-drag`);
+				const buttonPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton);
 
 				const deltaX = dragPosition.x - this.dragInitialX - dragButton.clientWidth;
-				const deltaY = dragPosition.y - this.dragInitialY + dragButton.clientHeight;
+				const deltaY = dragPosition.y - this.dragInitialTop + dragButton.clientHeight;
 
 				const newLeft = this.dragInitialLeft + deltaX;
-				const newTop = this.dragInitialTop + deltaY;
+				const newTop = this.dragInitialTop + deltaY + (buttonPosition === 'top' ? -dragButton.clientHeight : -elem.clientHeight - dragButton.clientHeight);
 
-				elem.style.left = `${newLeft}px`;
-				elem.style.top = `${newTop}px`;
+				const positionBounds = this._getDragPositionBoundaries();
+				if (newTop >= positionBounds.top && newTop <= positionBounds.bottom) elem.style.top = `${newTop}px`;
+				if (newLeft >= positionBounds.left && newLeft <= positionBounds.right) elem.style.left = `${newLeft}px`;
+
 				if (elem.style.bottom !== 'initial') elem.style.bottom = 'initial';
 				cancelAnimationFrame(this._dragAnimationFrame);
 				this._dragAnimationFrame = null;
@@ -918,7 +985,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		if (positionFromTop) {
 			// const uiTop = $('#ui-top');
 			// position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;
-			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : 20;
+			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : 48;
 		} else {
 			// const uiBottom = $('#ui-bottom');
 			const uiBottom = $('#hotbar');
@@ -930,12 +997,10 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const positionButton = {};
 		if (positionButtonFromTop) {
 			// Set button to top if option is set to 'top'
-			positionButton.top = '-2em';
-			positionButton.bottom = 'none';
+			positionButton.position = 'window-button-top';
 		} else {
 			// Set button to bottom if option is set to 'bottom'
-			positionButton.top = 'none';
-			positionButton.bottom = '-2em';
+			positionButton.position = 'window-button-bottom';
 		}
 
 		return { position, positionButton };
@@ -945,8 +1010,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const buttons = this.element.querySelectorAll(`.window-button`);
 		for (const button of buttons) {
 			if (button instanceof HTMLElement) {
-				button.style.setProperty('--window-button-top', positionButton.top);
-				button.style.setProperty('--window-button-bottom', positionButton.bottom);
+				button.classList.add(positionButton.position);
 			}
 		}
 	}

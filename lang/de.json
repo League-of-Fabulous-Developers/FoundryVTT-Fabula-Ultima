@@ -1290,6 +1290,7 @@
 		"CombatHudDefault": "Standard (Retro)",
 		"CombatHudModern": "Modern",
 		"CombatHudMother": "Mother",
+		"CombatHudPixel": "Pixel",
 		"CombatHudTrackedResource4": "Vierte verfolgte Ressource",
 		"CombatHudTrackedResource4Hint": "Wähle welche Ressource als vierte Leiste im Konflikt-HUD angezeigt wird. Nicht für alle Farbschemata verfügbar.",
 		"CombatHudShowNPCTurnsLeftMode": "NSC Verbleibende Züge Modus",
@@ -1485,6 +1486,9 @@
 		"DragRulerSettingsEnableGriddedLabel": "Enable Token Drag Ruler for Gridded Scenes",
 		"DragRulerSettingsEnableGriddedHint": "Enable to show distance measurement when dragging a token in a scene with a grid.",
 		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
+		"CostPerTarget": "Kosten pro Ziel",
+		"CombatHudResetPosition": "Reset HUD Position",
+		"CombatHudResetPositionHint": "Will reset the position of the combat HUD back to default.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

@@ -1290,6 +1290,7 @@
 		"CombatHudDefault": "标准(Retro风格)",
 		"CombatHudModern": "现代",
 		"CombatHudMother": "Mother",
+		"CombatHudPixel": "Pixel",
 		"CombatHudTrackedResource4": "四轨资源风格",
 		"CombatHudTrackedResource4Hint": "选择在战斗HUD中显示的第四个资源，并非所有主题都支持。",
 		"CombatHudShowNPCTurnsLeftMode": "NPC回合留存模式",
@@ -1485,6 +1486,9 @@
 		"DragRulerSettingsEnableGriddedLabel": "Enable Token Drag Ruler for Gridded Scenes",
 		"DragRulerSettingsEnableGriddedHint": "Enable to show distance measurement when dragging a token in a scene with a grid.",
 		"ShowTokenDragRulerKey": "Show Token Drag Ruler",
+		"CostPerTarget": "Cost per Target",
+		"CombatHudResetPosition": "Reset HUD Position",
+		"CombatHudResetPositionHint": "Will reset the position of the combat HUD back to default.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

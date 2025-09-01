@@ -1,0 +1,26 @@
+<div class="bar-container resource-hp">
+    <div class="resource-value">
+        <div class="resource-label">
+            <span>HP</span>
+        </div>
+        <div class="resource-text">
+            <span>{{ this.actor.system.resources.hp.value }} / {{ this.actor.system.resources.hp.max }}</span>
+        </div>
+    </div>
+    <div class="bar bar-progress" data-tooltip="{{localize 'FU.HealthPoints'}}">
+        {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+        <div class="bar-progress-bar bar-hp-crisis"
+            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+        <div class="center-line"></div>
+        {{else}}
+        <div class="bar-progress-bar bar-hp"
+            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+        {{/if}}
+        <span class="bar-value"></span>
+    </div>  
+    <div class="resource-value-compact">
+        <div class="resource-text">
+            <span>{{ this.actor.system.resources.hp.value }} / {{ this.actor.system.resources.hp.max }} HP</span>
+        </div>
+    </div>
+</div>

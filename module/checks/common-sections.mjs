@@ -7,6 +7,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -226,29 +227,30 @@ const opportunity = (sections, opportunity, order) => {
  * @param {FUItem} item
  * @param {TargetData[]} targets
  * @param {Object} flags
- * @param accuracyData
- * @param {TemplateDamageData} damageData
+ * @param {CheckResultV2} checkData
+ * @param {DamageData} damageData
  */
-const targeted = (sections, actor, item, targets, flags, accuracyData = undefined, damageData = undefined) => {
+const targeted = (sections, actor, item, targets, flags, checkData = undefined, damageData = undefined) => {
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
 	if (isTargeted) {
+		const isDamage = checkData && damageData;
 		sections.push(async function () {
 			let actions = [];
 			actions.push(Targeting.defaultAction);
 			let selectedActions = [];
 
-			if (accuracyData && damageData) {
+			if (isDamage) {
 				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
 				actions.push(
 					new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: accuracyData,
+						accuracy: checkData,
 						damage: damageData,
-					}),
+					}).requiresOwner(),
 				);
 
 				selectedActions.push(
 					new TargetAction('applyDamageSelected', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: accuracyData,
+						accuracy: checkData,
 						damage: damageData,
 					}),
 				);
@@ -263,6 +265,16 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 					for (const target of targets) {
 						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 					}
+				}
+
+				if (damageData) {
+					setTimeout(() => {
+						game.projectfu.socket.requestPipeline('damage', {
+							sourceInfo: InlineSourceInfo.fromInstance(actor, item),
+							targets,
+							damageData,
+						});
+					}, 50);
 				}
 			}
 
