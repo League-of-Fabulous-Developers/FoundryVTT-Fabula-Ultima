@@ -2095,9 +2095,9 @@
 		-webkit-box-shadow 0.2s ease-in-out;
 }
 .button-style:hover {
-	background: -webkit-gradient(linear, left bottom, left top, from(rgb(220, 211, 116)), to(rgb(255, 247, 154))) !important;
-	background: linear-gradient(0deg, rgb(220, 211, 116) 0%, rgb(255, 247, 154) 100%) !important;
-	color: #047470 !important;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgb(220, 211, 116)), to(rgb(255, 247, 154)));
+	background: linear-gradient(0deg, rgb(220, 211, 116) 0%, rgb(255, 247, 154) 100%);
+	color: #047470;
 	text-shadow: none;
 }
 .button-style i {
