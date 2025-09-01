@@ -123,6 +123,6 @@ export class ShieldDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.qualityCost, ItemPartialTemplates.shield, ItemPartialTemplates.behaviorField];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.shield, ItemPartialTemplates.behaviorField];
 	}
 }

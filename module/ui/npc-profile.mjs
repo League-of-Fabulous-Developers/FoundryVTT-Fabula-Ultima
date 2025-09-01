@@ -132,7 +132,10 @@ export class NpcProfileWindow extends FUApplication {
 
 		// Ensure expanded state is initialized
 		context._expandedIds = Array.from(this._expanded);
-		await ActorSheetUtils.prepareItems(context);
+		await ActorSheetUtils.prepareNpcCombat(context);
+		await ActorSheetUtils.prepareAbilities(context);
+		await ActorSheetUtils.prepareSkills(context);
+		await ActorSheetUtils.prepareSpells(context);
 		return context;
 	}
 

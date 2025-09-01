@@ -640,6 +640,16 @@ FU.difficultyLevel = {
 };
 
 /**
+ * @type {Object<DifficultyLevel, string>}
+ */
+FU.difficultyLevelIcon = {
+	easy: 'ra ra-sheep',
+	normal: 'ra ra-aware',
+	hard: 'ra ra-monster-skull',
+	veryHard: 'ra ra-player-despair',
+};
+
+/**
  * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
  */
 FU.targetingRules = {
@@ -655,4 +665,10 @@ FU.damageOverrideScope = {
 	attack: 'FU.Attack',
 	spell: 'FU.Spell',
 	skill: 'FU.Skill',
+};
+
+FU.trackStyles = {
+	clock: 'FU.Clock',
+	basic: 'FU.Basic',
+	bar: 'FU.Bar',
 };

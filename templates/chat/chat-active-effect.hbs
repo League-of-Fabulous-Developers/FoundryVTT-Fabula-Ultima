@@ -10,8 +10,6 @@
 		</div>
 	{{/if}}
 	{{#if effect.system.rules.progress.enabled}}
-		<div style="display: grid; margin-top: 4px;">
-			{{> "systems/projectfu/templates/chat/partials/chat-clock-details.hbs" data=effect.system.rules.progress arr=effect.system.rules.progress.progressArray}}
-		</div>
+		{{> "systems/projectfu/templates/chat/partials/chat-clock-details.hbs" data=effect.system.rules.progress arr=effect.system.rules.progress.progressArray}}
 	{{/if}}
 </div>

@@ -73,7 +73,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			crisisHP: FUStandardActorSheet.CrisisHP,
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
-			updateProgress: { handler: FUStandardActorSheet.UpdateProgress, buttons: [0, 2] },
+			updateTrack: { handler: FUStandardActorSheet.UpdateProgress, buttons: [0, 2] },
 			rest: FUStandardActorSheet.handleRestClick,
 			sortFavorites: FUStandardActorSheet.sortFavorites,
 			levelUp: FUStandardActorSheet.levelUp,
@@ -337,8 +337,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'combat':
-				await ActorSheetUtils.prepareAbilities(context);
 				await ActorSheetUtils.prepareNpcCombat(context);
+				await ActorSheetUtils.prepareAbilities(context);
+				await ActorSheetUtils.prepareSkills(context);
 				await ActorSheetUtils.prepareSpells(context);
 				if (this.actor.system.useEquipment.value) {
 					await ActorSheetUtils.prepareInventory(context);
@@ -1150,17 +1151,20 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	static modifyResource(event, target) {
+		const _target = HTMLUtils.findWithDataset(event.target);
+		const dataset = _target.dataset;
+
 		let document;
-		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		const itemId = dataset.itemId;
 		if (itemId) {
 			document = this.actor.items.get(itemId);
 		} else {
-			const effectId = target.closest('[data-effect-id]')?.dataset?.effectId;
-			document = this.actor.effects.get(effectId);
+			const effectId = dataset.effectId;
+			document = this.actor.resolveEffect(effectId);
 		}
-		const dataPath = target.closest('[data-data-path]')?.dataset?.dataPath;
-		const resourceChange = target.closest('[data-resource-action]')?.dataset?.resourceAction === 'decrement' ? -1 : 1;
-		const amount = (Number(target.closest('[data-amount]')?.dataset?.amount) || 1) * resourceChange;
+		const dataPath = dataset.dataPath;
+		const resourceChange = dataset?.resourceAction === 'decrement' ? -1 : 1;
+		const amount = (Number(dataset?.amount) || 1) * resourceChange;
 
 		const step = event.button !== 0;
 

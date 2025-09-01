@@ -331,6 +331,11 @@
 	--species-monster: #6e0f9c;
 	--species-plant: #228b22;
 	--species-undead: #bbbbbb;
+	/* Difficulty */
+	--difficulty-easy: #3d6b3d; /* muted green */
+	--difficulty-normal: #b59f3b; /* muted yellow/ochre */
+	--difficulty-hard: #b87432; /* muted orange/brown */
+	--difficulty-veryHard: #8c2e2e; /* muted deep red */
 	/* ===================== CUSTOMIZATION ALIASES ===================== */
 	--main-bg: var(--color-primary-bg);
 	--accent-bg: var(--color-secondary-bg);

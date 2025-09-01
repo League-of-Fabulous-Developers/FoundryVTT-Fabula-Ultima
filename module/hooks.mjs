@@ -155,4 +155,10 @@ export const FUHooks = {
 	 * @remarks Uses {@link SocketMessage}
 	 */
 	SOCKET_SEND_EVENT: 'projectfu.events.socket.sent',
+	/**
+	 * @description Dispatched after a progress tracker has been updated.
+	 * @example callback(event)
+	 * @remarks Uses {@link ProgressEvent}
+	 */
+	PROGRESS_EVENT: 'projectfu.events.progress',
 };

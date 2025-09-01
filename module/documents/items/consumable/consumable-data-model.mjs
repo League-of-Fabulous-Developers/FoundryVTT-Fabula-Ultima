@@ -38,6 +38,6 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.ipCostField, ItemPartialTemplates.behaviorField];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.ipCostField, ItemPartialTemplates.behaviorField];
 	}
 }

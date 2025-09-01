@@ -137,6 +137,6 @@ export class ProjectDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.flawedField, ItemPartialTemplates.project];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.flawedField, ItemPartialTemplates.project];
 	}
 }

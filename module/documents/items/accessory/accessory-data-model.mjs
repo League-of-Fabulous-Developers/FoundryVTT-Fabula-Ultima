@@ -66,6 +66,6 @@ export class AccessoryDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.initiativeField, ItemPartialTemplates.qualityCost, ItemPartialTemplates.accessory];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.initiativeField, ItemPartialTemplates.qualityCost, ItemPartialTemplates.accessory];
 	}
 }

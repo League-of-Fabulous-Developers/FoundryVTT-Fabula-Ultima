@@ -5,6 +5,7 @@ import { CombatHUD } from './combat-hud.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 
 export const FRIENDLY = 'friendly';
 export const HOSTILE = 'hostile';
@@ -89,6 +90,18 @@ export class CombatEvent {
  * @property {Function<Promise>} endCombat Display a dialog querying the GM whether they wish to end the combat encounter and empty the tracker
  * @remarks {@link https://foundryvtt.com/api/classes/client.Combat.html}
  */
+
+/**
+ * @description Data specific to a conflict in the system, which can includes clocks, etc
+ */
+export class FUCombatDataModel extends foundry.abstract.TypeDataModel {
+	static defineSchema() {
+		const { ArrayField, EmbeddedDataField } = foundry.data.fields;
+		return {
+			tracks: new ArrayField(new EmbeddedDataField(ProgressDataModel, {})),
+		};
+	}
+}
 
 /**
  * @property {Collection<FUCombatant>} combatants
@@ -669,5 +682,42 @@ export class FUCombat extends foundry.documents.Combat {
 	 */
 	static get activeEncounter() {
 		return game.combat;
+	}
+
+	/**
+	 * @param {ProgressDataModel|undefined} track
+	 * @returns {Promise<void>}
+	 */
+	async addTrack(track) {
+		if (track) {
+			return ProgressDataModel.addToDocument(this, 'system.tracks', track);
+		} else {
+			return ProgressDataModel.promptAddToDocument(this, 'system.tracks', true);
+		}
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 */
+	async removeTrack(index) {
+		return ProgressDataModel.removeAtIndexForDocument(this, 'system.tracks', index);
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 * @param {number} increment
+	 */
+	async updateTrack(index, increment) {
+		return ProgressDataModel.updateAtIndexForDocument(this, 'system.tracks', Number.parseInt(index), increment);
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 */
+	async promptTrack(index) {
+		await ProgressDataModel.promptCheckAtIndexForDocument(this, 'system.tracks', index);
 	}
 }

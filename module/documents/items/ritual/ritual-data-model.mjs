@@ -170,6 +170,6 @@ export class RitualDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
 	}
 }

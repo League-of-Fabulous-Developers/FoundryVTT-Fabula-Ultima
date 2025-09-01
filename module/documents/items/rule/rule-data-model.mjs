@@ -38,6 +38,6 @@ export class RuleDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.progressField];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.progressField];
 	}
 }

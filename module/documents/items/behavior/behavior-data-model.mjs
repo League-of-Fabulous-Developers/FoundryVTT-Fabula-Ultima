@@ -29,6 +29,6 @@ export class BehaviorDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.behavior];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.behavior];
 	}
 }
