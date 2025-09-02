@@ -1,0 +1,16 @@
+<fieldset class="title-fieldset desc resource-content {{class}}">
+	<legend class="{{#unless value}}untoggled{{/unless}}">
+		<input type="checkbox"
+			   id="{{name}}"
+			   name="{{name}}"
+			   hidden
+			   {{#if value}}checked{{/if}}>
+		<label class="resource-label-m" for="{{name}}">
+			{{#if icon}}<i class="{{icon}}"></i>{{/if}}
+			{{label}}
+		</label>
+	</legend>
+	<div class="{{#unless value}}untoggled disabled{{/unless}}">
+		{{> @partial-block}}
+	</div>
+</fieldset>

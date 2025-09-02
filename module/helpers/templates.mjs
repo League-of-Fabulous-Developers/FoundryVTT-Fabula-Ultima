@@ -57,6 +57,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',
+		'systems/projectfu/templates/common/fieldset-toggle.hbs',
 
 		// Effects
 		'systems/projectfu/templates/effects/active-effect-details.hbs',

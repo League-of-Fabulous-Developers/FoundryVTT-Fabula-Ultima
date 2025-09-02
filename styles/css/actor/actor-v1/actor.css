@@ -1081,6 +1081,17 @@
 	border: 0.01em solid #148782;
 }
 
+/* Legend when fieldset or legend has .disabled */
+.projectfu .title-fieldset legend.untoggled {
+	background-color: var(--color-text-disabled);
+	border-color: var(--color-text-disabled);
+}
+
+.projectfu .title-fieldset div.untoggled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
 .projectfu .resource-content {
 	color: #2b4a42;
 	background-color: transparent;

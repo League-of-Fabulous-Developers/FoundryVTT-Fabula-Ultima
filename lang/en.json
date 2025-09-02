@@ -94,6 +94,7 @@
 		"Secondary": "Secondary",
 		"IsInitiative": "Roll Initiative",
 		"IsRoll": "Request Rolls?",
+		"PerformCheck": "Perform Check",
 		"RollCheck": "Roll Check",
 		"RollCheckOptions": "Customize Roll",
 		"RollCheckTooltip": "[Shift + Click] for Open Check",

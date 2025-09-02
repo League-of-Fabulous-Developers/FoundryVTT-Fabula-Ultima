@@ -1256,7 +1256,6 @@ function prepareSorting(context) {
 
 function onRenderFUActorSheet(sheet, element) {
 	// Automatically expand elements that are in the _expanded state
-	console.log(sheet._expanded);
 	if (sheet._expanded) {
 		sheet._expanded.forEach((itemId) => {
 			const expandedDescriptions = element.querySelectorAll(`li[data-item-id=${itemId}] .individual-description`);
