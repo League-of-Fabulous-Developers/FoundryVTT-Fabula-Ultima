@@ -1083,8 +1083,14 @@
 
 /* Legend when fieldset or legend has .disabled */
 .projectfu .title-fieldset legend.untoggled {
-	background-color: var(--color-text-disabled);
+	background-color: var(--color-button-disabled-bg);
 	border-color: var(--color-text-disabled);
+}
+
+.projectfu .title-fieldset legend.toggled {
+	background: #3a6b5d;
+	color: #ffffff;
+	transition: background 0.2s;
 }
 
 .projectfu .title-fieldset div.untoggled {

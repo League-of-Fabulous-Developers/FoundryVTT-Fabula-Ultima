@@ -6,12 +6,7 @@
 				{{localize 'FU.Accuracy'}}
 			</label>
 		</legend>
-		<div class="item-settings grid grid2-col">
-			<label class="checkbox resource-label-sm">
-				<span>{{localize 'FU.UseWeaponAccuracy'}}</span>
-				<input type="checkbox" name="system.useWeapon.accuracy" {{ checked system.useWeapon.accuracy }} {{disabled (not system.hasRoll.value)}} />
-			</label>
-		</div>
+
 
 		<div class="grid grid-3col">
 			<div class=" flexcol flex-group-center">
@@ -46,6 +41,13 @@
 				 (not system.useWeapon.accuracy)}}>
 					{{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr" blank="-"}}
 				</select>
+			</div>
+
+			<div class="resource-content flexcol flex-group-center">
+				<label class="checkbox resource-label-sm">
+					<span>{{localize 'FU.UseWeaponAccuracy'}}</span>
+					<input type="checkbox" name="system.useWeapon.accuracy" {{ checked system.useWeapon.accuracy }} {{disabled (not system.hasRoll.value)}} />
+				</label>
 			</div>
 		</div>
 	</fieldset>

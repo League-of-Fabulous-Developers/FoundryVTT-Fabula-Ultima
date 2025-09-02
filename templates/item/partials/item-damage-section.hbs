@@ -1,39 +1,38 @@
-<fieldset class="title-fieldset desc resource-content">
-    <legend>
-        <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize 'FU.Damage'}}</label>
-    </legend>
-    <div class="item-settings grid grid2-col">
-        <label class="checkbox resource-label-sm">
-            <span>{{localize 'FU.HasDamage'}}</span>
-            <input type="checkbox" name="system.damage.hasDamage" {{ checked system.damage.hasDamage }} {{disabled (not system.useWeapon.accuracy)}} />
-        </label>
-        <label class="checkbox resource-label-sm">
-            <span>{{localize 'FU.UseWeaponDamage'}}</span>
-            <input type="checkbox" name="system.useWeapon.damage" {{ checked system.useWeapon.damage }} {{disabled (not system.damage.hasDamage)}} />
-        </label>
-    </div>
-    <div class="grid grid-2col">
-        <div class=" flexcol flex-group-center">
-            <label class="resource-label-m flexlarge">{{localize 'FU.DamageType'}}</label>
-            <select name="system.damage.type" class="resource-inputs select-dropdown-m" {{disabled (not system.damage.hasDamage)}}>
-                {{#if system.useWeapon.damage}}
-                    {{selectOptions damageTypes selected=system.damage.type blank='-' sort=true localize=true}}
-                {{else}}
-                    {{selectOptions damageTypes selected=system.damage.type sort=true localize=true}}
-                {{/if}}
-            </select>
-        </div>
-        <div class=" flexcol flex-group-center">
-            <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-            <input type="number" name="system.damage.value" value="{{ system.damage.value }}" class="resource-inputs" {{disabled (not system.damage.hasDamage)}} />
-        </div>
-        <div class="resource-content flexcol flex-group-center">
-            <label class="resource-label-m">{{localize 'FU.DamageOnRoll'}}</label>
-            <input type="text" name="system.damage.onRoll" value="{{ system.damage.onRoll }}"  class="resource-inputs select-dropdown-l" />
-        </div>
-        <div class="resource-content flexcol flex-group-center">
-            <label class="resource-label-m">{{localize 'FU.DamageOnApply'}}</label>
-            <input type="text" name="system.damage.onApply" value="{{ system.damage.onApply }}"  class="resource-inputs select-dropdown-l" />
-        </div>
-    </div>
-</fieldset>
+{{#> 'systems/projectfu/templates/common/fieldset-toggle.hbs'
+ name="system.damage.hasDamage"
+ value=system.damage.hasDamage
+ icon="fas fa-dice icon"
+ label=(localize "FU.Damage")
+}}
+	<div class="item-settings grid grid2-col">
+		<label class="checkbox resource-label-sm">
+			<span>{{localize 'FU.UseWeaponDamage'}}</span>
+			<input type="checkbox" name="system.useWeapon.damage" {{ checked system.useWeapon.damage }} {{disabled (not system.damage.hasDamage)}} />
+		</label>
+	</div>
+	<div class="grid grid-2col">
+		<div class=" flexcol flex-group-center">
+			<label class="resource-label-m flexlarge">{{localize 'FU.DamageType'}}</label>
+			<select name="system.damage.type" class="resource-inputs select-dropdown-m" {{disabled (not system.damage.hasDamage)}}>
+				{{#if system.useWeapon.damage}}
+					{{selectOptions damageTypes selected=system.damage.type blank='-' sort=true localize=true}}
+				{{else}}
+					{{selectOptions damageTypes selected=system.damage.type sort=true localize=true}}
+				{{/if}}
+			</select>
+		</div>
+		<div class=" flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
+			<input type="number" name="system.damage.value" value="{{ system.damage.value }}" class="resource-inputs" {{disabled (not system.damage.hasDamage)}} />
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.DamageOnRoll'}}</label>
+			<input type="text" name="system.damage.onRoll" value="{{ system.damage.onRoll }}"  class="resource-inputs select-dropdown-l" />
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.DamageOnApply'}}</label>
+			<input type="text" name="system.damage.onApply" value="{{ system.damage.onApply }}"  class="resource-inputs select-dropdown-l" />
+		</div>
+	</div>
+
+{{/ 'systems/projectfu/templates/common/fieldset-toggle.hbs'}}

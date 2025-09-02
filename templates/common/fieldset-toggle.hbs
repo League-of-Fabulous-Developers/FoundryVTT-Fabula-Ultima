@@ -1,11 +1,11 @@
 <fieldset class="title-fieldset desc resource-content {{class}}">
-	<legend class="{{#unless value}}untoggled{{/unless}}">
+	<legend class="{{#if value}}toggled{{else}}untoggled{{/if}}">
 		<input type="checkbox"
 			   id="{{name}}"
 			   name="{{name}}"
 			   hidden
 			   {{#if value}}checked{{/if}}>
-		<label class="resource-label-m" for="{{name}}">
+		<label class="resource-label-m" style="cursor:pointer;" for="{{name}}">
 			{{#if icon}}<i class="{{icon}}"></i>{{/if}}
 			{{label}}
 		</label>
