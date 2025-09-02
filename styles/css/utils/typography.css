@@ -536,14 +536,14 @@
 }
 
 .is-two-weapon {
-	color: #000000 !important;
+	color: #000000;
 	font-family: 'Evilz';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px #000000;
 }
 
 .is-two-weapon.equip {
-	color: var(--color-primary) !important;
+	color: var(--color-primary);
 	-webkit-text-stroke: transparent;
 }
 
