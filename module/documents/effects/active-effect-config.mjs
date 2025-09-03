@@ -7,7 +7,7 @@ import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
 	/** @inheritdoc */
 	static DEFAULT_OPTIONS = {
-		classes: ['projectfu', 'sheet', `backgroundstyle`],
+		classes: ['projectfu', 'sheet', `backgroundstyle`, 'active-effect-sheet'],
 	};
 
 	/** @inheritdoc */
@@ -21,7 +21,8 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 
 		// DEFAULT
 		details: {
-			template: 'templates/sheets/active-effect/details.hbs',
+			// template: 'templates/sheets/active-effect/details.hbs',
+			template: systemTemplatePath('effects/active-effect-details'),
 		},
 		changes: {
 			template: 'templates/sheets/active-effect/changes.hbs',
@@ -93,10 +94,10 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const html = this.element;
 
 		// DETAILS TAB
-		const details = html.querySelector('section[data-tab="details"]');
-		if (details) {
-			details.append(document.createTextNode('HELLO'));
-		}
+		// const details = html.querySelector('section[data-tab="details"]');
+		// if (details) {
+		// 	details.append(document.createTextNode('HELLO'));
+		// }
 
 		// CHANGES Tab
 		if (!html.querySelector('#effect-key-options')) {
