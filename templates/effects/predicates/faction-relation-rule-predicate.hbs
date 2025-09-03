@@ -1,0 +1,6 @@
+<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.TargetRelationHint'}}">
+	<span>{{localize 'FU.FactionRelation'}}</span>
+	<select name="{{pfuConcat path ".relation"}}">
+		{{selectOptions options.factionRelation selected=predicate.relation localize=true}}
+	</select>
+</label>

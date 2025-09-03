@@ -173,4 +173,16 @@ export default class FoundryUtils {
 			},
 		});
 	}
+
+	/**
+	 * @param {Record<String, String>} record
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Maps the localized values (by convention) as the labels, and the keys as the values.
+	 */
+	static getFormOptions(record) {
+		return Object.entries(record).map(([key, value]) => ({
+			label: StringUtils.localize(value),
+			value: key,
+		}));
+	}
 }

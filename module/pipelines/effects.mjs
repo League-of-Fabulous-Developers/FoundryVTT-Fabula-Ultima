@@ -1,7 +1,6 @@
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
-import { InlineHelper } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
@@ -9,6 +8,8 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { FUItem } from '../documents/items/item.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -89,7 +90,7 @@ export async function onManageActiveEffect(event, owner, action) {
 		let effect;
 		// We check allEffects in order to get effects from the ITEMS as well
 		if (owner instanceof FUActor) {
-			effect = owner.resolveEffect(effectId);
+			effect = owner.getEffect(effectId);
 		} else {
 			effect = owner.effects.get(effectId);
 		}
@@ -276,7 +277,7 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 				{
 					...statusEffect,
 					statuses: [statusEffectId],
-					flags: createEffectFlags(statusEffect, sourceInfo),
+					flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
 				},
 				{ parent: actor },
 			);
@@ -312,67 +313,90 @@ export async function disableStatusEffect(actor, statusEffectId) {
 	return false;
 }
 
-function sendToChatEffectRemoved(effect, actor) {
-	console.log(`Removing effect: ${effect.name}`);
-	// TODO: Implement alongside message window
-	if (game.combat) {
-		ChatMessage.create({
-			content: game.i18n.format('FU.EffectRemoveMessage', {
-				effect: effect.name,
-				actor: actor.name,
-			}),
-			speaker: ChatMessage.getSpeaker({ actor }),
-		});
-	}
-}
-
 /**
- * @param {FUActor|FUItem} target
+ * @param {FUActor|FUItem} document
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
  * @param {InlineEffectConfiguration} config
  * @returns {FUActiveEffect}
  */
-async function onApplyEffect(target, effect, sourceInfo, config = undefined) {
-	if (target) {
-		if (target instanceof FUActor && !target.isCharacterType) {
+async function applyEffect(document, effect, sourceInfo, config = undefined) {
+	if (document) {
+		if (document instanceof FUActor && !document.isCharacterType) {
 			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
 			return;
 		}
-		const flags = createEffectFlags(effect, sourceInfo);
+		const flags = createEffectFlags(effect, sourceInfo, sourceInfo.fuid);
 		const instance = await ActiveEffect.create(
 			{
 				...effect,
 				flags: flags,
 			},
-			{ parent: target },
+			{ parent: document },
 		);
 		await applyConfiguration(instance, config);
+		await sendToChatEffectAdded(instance, document, sourceInfo.name);
 		return instance;
 	}
 }
 
 /**
- * @param {FUActor} actor
+ * @param {FUActor|FUItem} document
  * @param source
  * @param {FUActiveEffect} effect
  */
-function onRemoveEffectFromActor(actor, source, effect) {
-	if (!actor) return;
+function removeEffect(document, source, effect) {
+	if (!document) return;
 
-	const existingEffect = actor.effects.find(
+	const existingEffect = document.effects.find(
 		(e) =>
-			e.getFlag(SYSTEM, FUActiveEffect.TEMPORARY_FLAG) &&
+			e.getFlag(SYSTEM, Flags.ActiveEffect.Temporary) &&
 			e.source === source &&
 			e.changes.length === effect.changes.length &&
 			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
 	);
 
 	if (existingEffect) {
-		sendToChatEffectRemoved(effect, actor);
+		sendToChatEffectRemoved(effect, document);
 		existingEffect.delete();
 	} else {
 		console.log('No matching effect found to remove.');
+	}
+}
+
+/**
+ * @param {FUActiveEffect} effect
+ * @param {FUActor|FUItem} document
+ * @param {String} source
+ * @returns {Promise<void>}
+ */
+async function sendToChatEffectAdded(effect, document, source) {
+	console.info(`Added effect: ${effect.uuid} on actor uuid: ${document.uuid}`);
+	if (game.combat) {
+		await ChatMessage.create({
+			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
+			content: await FoundryUtils.renderTemplate('chat/chat-apply-effect', {
+				message: 'FU.ChatApplyEffect',
+				document: document,
+				effect: effect,
+				source: source,
+			}),
+			speaker: ChatMessage.getSpeaker({ actor: document }),
+		});
+	}
+}
+
+function sendToChatEffectRemoved(effect, actor) {
+	console.log(`Removing effect: ${effect.name} from actor ${actor.uuid}`);
+	if (game.combat) {
+		ChatMessage.create({
+			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
+			content: game.i18n.format('FU.EffectRemoveMessage', {
+				effect: effect.name,
+				actor: actor.name,
+			}),
+			speaker: ChatMessage.getSpeaker({ actor }),
+		});
 	}
 }
 
@@ -407,13 +431,15 @@ async function applyConfiguration(effect, configuration) {
 /**
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
+ * @param {String} identifier An unique identifier for the effect
  * @returns {Object}
  */
-function createEffectFlags(effect, sourceInfo) {
+function createEffectFlags(effect, sourceInfo, identifier) {
 	return foundry.utils.mergeObject(effect.flags ?? {}, {
 		[SYSTEM]: {
-			[FUActiveEffect.TEMPORARY_FLAG]: true,
+			[Flags.ActiveEffect.Temporary]: true,
 			[Flags.ActiveEffect.Source]: sourceInfo,
+			[Flags.ActiveEffect.Identifier]: identifier,
 		},
 	});
 }
@@ -523,7 +549,6 @@ async function manageEffectDuration(event) {
 	await Promise.all(updates);
 
 	// TODO: Maybe link to the originals if deletions are about to happen
-
 	ChatMessage.create({
 		//speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
@@ -545,7 +570,7 @@ async function manageEffectDuration(event) {
  * @param {CombatEvent} event
  * @returns {Promise<void>}
  */
-async function promptEffectRemoval(event) {
+async function promptExpiredEffectRemoval(event) {
 	let count = 0;
 	if (
 		event.actors.every((actor) => {
@@ -585,6 +610,34 @@ async function promptEffectRemoval(event) {
 	});
 }
 
+async function promptApplyEffect(actor, effects, source) {
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
+		content: await FoundryUtils.renderTemplate('chat/chat-apply-effect-prompt', {
+			actor: actor,
+			source: source,
+			effects: effects,
+		}),
+	});
+}
+
+async function promptRemoveEffect(actor, source) {
+	const tempEffects = actor.temporaryEffects;
+	if (tempEffects.length === 0) {
+		return;
+	}
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
+		content: await FoundryUtils.renderTemplate('chat/chat-remove-effect-prompt', {
+			actor: actor,
+			source: source,
+			effects: tempEffects,
+		}),
+	});
+}
+
 /**
  * @param {Document} message
  * @param {HTMLElement} element
@@ -594,10 +647,10 @@ function onRenderChatMessage(message, element) {
 		return;
 	}
 
-	Pipeline.handleClick(message, element, 'removeEffect', (dataset) => {
-		const effectId = dataset.id;
+	Pipeline.handleClickRevert(message, element, 'removeEffect', (dataset) => {
+		const effectId = dataset.effectId;
 		const actorId = dataset.actorId;
-		console.debug(`Removing effect ${effectId} on ${actorId}`);
+		console.debug(`Applying effect ${effectId} to ${actorId}`);
 		/** @type FUActor **/
 		const actor = fromUuidSync(actorId);
 		// TODO: Add revert-like behaviour
@@ -605,6 +658,20 @@ function onRenderChatMessage(message, element) {
 		if (effect) {
 			effect.delete();
 		}
+	});
+
+	Pipeline.handleClickRevert(message, element, 'applyEffect', async (dataset) => {
+		const effectId = dataset.effectId;
+		const actorId = dataset.actorId;
+		console.debug(`Removing effect ${effectId} on ${actorId}`);
+		/** @type FUActor **/
+		const actor = fromUuidSync(actorId);
+		// TODO: Add revert-like behaviour
+		let instancedEffect = await fromUuid(effectId);
+		if (instancedEffect instanceof FUItem) {
+			instancedEffect = instancedEffect.effects.entries().next().value[1];
+		}
+		await applyEffect(actor, instancedEffect, InlineSourceInfo.none);
 	});
 
 	Pipeline.handleClick(message, element, 'display', async (dataset) => {
@@ -637,7 +704,7 @@ async function onCombatEvent(event) {
 	switch (event.type) {
 		case FU.combatEvent.startOfCombat:
 		case FU.combatEvent.endOfCombat:
-			await promptEffectRemoval(event);
+			await promptExpiredEffectRemoval(event);
 			break;
 
 		case FU.combatEvent.startOfTurn:
@@ -677,14 +744,16 @@ function initialize() {
  */
 export const Effects = Object.freeze({
 	initialize,
-	onRemoveEffectFromActor,
-	onApplyEffect,
-	onApplyEffectToActor: onApplyEffect,
+	removeEffect,
+	applyEffect,
 	canBeRemoved,
 	toggleStatusEffect,
+	createTemporaryEffect,
 	formatEffect,
+	sendToChatEffectAdded,
+	promptRemoveEffect,
+	promptApplyEffect,
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,
-	createTemporaryEffect,
 });

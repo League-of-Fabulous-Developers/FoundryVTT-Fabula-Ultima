@@ -15,6 +15,7 @@ export const Flags = Object.freeze({
 		Source: 'Source',
 		Suppressed: 'Suppressed',
 		Temporary: 'Temporary',
+		Identifier: 'Identifier',
 	}),
 	ChatMessage: Object.freeze({
 		CheckParams: 'CheckParams',

@@ -1,0 +1,31 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.DamageType'}}</span>
+	<select name="{{pfuConcat path ".damageType"}}">
+		<option value="">-</option>
+		{{selectOptions options.damageTypes selected=trigger.damageType sort=true localize=true}}
+	</select>
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.DamageSource'}}</span>
+	<select name="{{pfuConcat path ".damageSource"}}">
+		<option value="">-</option>
+		{{selectOptions options.damageSource selected=trigger.damageSource sort=true localize=true}}
+	</select>
+</label>
+
+<div class="fu-rule-element__property-row">
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.ComparisonOperator'}}</span>
+		<select name="{{pfuConcat path ".damageThreshold.operator"}}">
+			<option value="">-</option>
+			{{selectOptions options.comparisonOperator selected=trigger.damageThreshold.operator sort=true localize=true}}
+		</select>
+	</label>
+
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Amount'}}</span>
+		<input type="number" name="{{pfuConcat path ".damageThreshold.amount"}}" value="{{ trigger.damageThreshold.amount }}" />
+	</label>
+</div>
+

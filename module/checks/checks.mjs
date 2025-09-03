@@ -515,12 +515,25 @@ reapplyClickListeners();
  */
 const performCheck = async (check, actor, item, initialConfigCallback = undefined, onPerform = undefined) => {
 	const preparedCheck = await prepareCheck(check, actor, item, initialConfigCallback);
+	CommonEvents.performCheck(check, actor, item);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
+	switch (check.type) {
+		case 'accuracy':
+		case 'magic':
+			{
+				const configure = CheckConfiguration.configure(result);
+				if (configure.hasDamage) {
+					await CommonEvents.calculateDamage(actor, item, configure);
+				}
+			}
+			break;
+	}
 	await renderCheck(result, actor, item);
 	if (onPerform) {
 		await onPerform(result);
 	}
+	CommonEvents.resolveCheck(result, actor, item);
 	if (result.critical) {
 		CommonEvents.opportunity(actor, check.type, item, false);
 	} else if (result.fumble) {

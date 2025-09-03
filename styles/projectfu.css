@@ -12,6 +12,7 @@
 @import 'css/global/window.css';
 @import 'css/global/grid.css';
 @import 'css/global/flex.css';
+@import 'css/global/table.css';
 
 @import 'css/components/carousel.css';
 @import 'css/components/affinity.css';
@@ -32,6 +33,7 @@
 @import 'css/features/floralist/index.css';
 @import 'css/features/gourmet/index.css';
 @import 'css/features/invoker/index.css';
+@import 'css/components/rule-element.css';
 
 @import 'css/app/_index.css';
 @import 'css/actor/_index.css';

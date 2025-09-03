@@ -86,4 +86,5 @@ async function prompt(actor, includeWeaponModules = false) {
 
 export const ChooseWeaponDialog = Object.freeze({
 	prompt,
+	getWeapon,
 });

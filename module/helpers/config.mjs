@@ -1,6 +1,3 @@
-import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
-import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
-
 /**
  * @description The system's id
  */
@@ -138,6 +135,10 @@ FU.affValue = {
 	absorption: 3,
 };
 
+/**
+ * @typedef {"beast" | "construct" | "demon" | "elemental" | "humanoid" | "monster" | "plant" | "undead" | "custom"} FUSpeciesKey
+ */
+
 FU.species = {
 	beast: 'FU.Beast',
 	construct: 'FU.Construct',
@@ -237,6 +238,12 @@ FU.temporaryEffects = {
 	enraged: 'FU.Enraged',
 	poisoned: 'FU.Poisoned',
 };
+
+/**
+ * @typedef {"aura" | "barrier" | "crisis" | "cover" | "flying" | "guard" | "provoked" |
+ * "slow" | "dazed" | "weak" | "shaken" | "enraged" | "poisoned" |
+ * "wlp-down" | "wlp-up" | "dex-down" | "dex-up" | "ins-down" | "ins-up" | "mig-down" | "mig-up"} FUStatusEffectKey
+ */
 
 FU.statusEffects = {
 	aura: 'FU.Aura',
@@ -408,8 +415,9 @@ FU.handedness = {
 	'two-handed': 'FU.TwoHanded',
 };
 
-FU.classFeatureRegistry = ClassFeatureRegistry.instance;
-FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
+/**
+ * @typedef {"hp" | "mp" | "ip" | "fp" | "exp" | "zenit"} FUResourceType
+ */
 
 FU.resources = {
 	hp: 'FU.HealthPoints',
@@ -418,6 +426,12 @@ FU.resources = {
 	fp: 'FU.FabulaPoints',
 	exp: 'FU.Exp',
 	zenit: 'FU.Zenit',
+};
+
+FU.resourcesCombat = {
+	hp: 'FU.HealthPoints',
+	mp: 'FU.MindPoints',
+	ip: 'FU.InventoryPoints',
 };
 
 FU.resourcesAbbr = {
@@ -720,3 +734,138 @@ FU.technospheres = {
 		},
 	},
 };
+
+// RULE ELEMENTS
+/**
+ * @typedef {"ally" | "enemy"} FUFactionRelationKey
+ */
+
+FU.factionRelation = Object.freeze({
+	ally: 'FU.Ally',
+	enemy: 'FU.Enemy',
+});
+
+/**
+ * @typedef {"none" | "source" | "target"} FUEventRelationKey
+ */
+
+/**
+ * @description Used to determine the actor's relation to am event
+ */
+FU.eventRelation = Object.freeze({
+	none: 'FU.None',
+	source: 'FU.Source',
+	target: 'FU.Target',
+});
+
+/**
+ * @typedef {"source" | "initial" | "self" | "allies" | "enemies" | "scene"} FUTargetSelectorKey
+ */
+
+/**
+ * @description Used to determine how to select the targets from a given event.
+ */
+FU.targetSelector = Object.freeze({
+	source: 'FU.Source',
+	initial: 'FU.Initial',
+	self: 'FU.Self',
+	allies: 'FU.Allies',
+	enemies: 'FU.Enemies',
+	scene: 'FU.Scene',
+});
+
+/**
+ * @typedef {"attack" | "skill" | "spell" | "item"} FUDamageSource
+ */
+
+FU.damageSource = {
+	attack: 'FU.Attack',
+	skill: 'FU.Skill',
+	spell: 'FU.Spell',
+	item: 'FU.Item',
+};
+
+/**
+ * @typedef {"odd" | "even"} FUCheckResult
+ */
+
+/**
+ * @description Used as a predicate for rules involving accuracy checks
+ */
+FU.checkResult = Object.freeze({
+	even: 'FU.Even',
+	odd: 'FU.Odd',
+});
+
+/**
+ * @typedef {"success" | "failure"} FUCheckOutcome
+ */
+
+/**
+ * @description A predicate based on the outcome of an attack check
+ */
+FU.checkOutcome = Object.freeze({
+	success: 'FU.Success',
+	failure: 'FU.Failure',
+});
+
+/**
+ * @typedef {"any" | "admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondPredicateKey
+ */
+
+FU.bondPredicate = {
+	any: 'FU.Any',
+	admiration: 'FU.Admiration',
+	inferiority: 'FU.Inferiority',
+	loyalty: 'FU.Loyalty',
+	mistrust: 'FU.Mistrust',
+	affection: 'FU.Affection',
+	hatred: 'FU.Hatred',
+};
+
+/**
+ * @remarks Used in order to represent tri-state booleans using a StringField with a blank option
+ */
+FU.booleanOption = {
+	true: 'FU.True',
+	false: 'FU.False',
+};
+
+/**
+ * @typedef {"add" | "remove"} FUChangeSetMode
+ */
+
+FU.changeSetMode = {
+	add: 'FU.Add',
+	remove: 'FU.Remove',
+};
+
+FU.collectionChange = {
+	added: 'FU.Added',
+	removed: 'FU.Removed',
+};
+
+/**
+ * @typedef {"single" | "all"} FUCollectionRemovalRule
+ */
+
+FU.collectionRemovalRule = Object.freeze({
+	single: 'FU.Single',
+	all: 'FU.All',
+});
+
+FU.scalarChange = {
+	increment: 'FU.Increment',
+	decrement: 'FU.Decrement',
+};
+
+/**
+ * @typedef {"greaterThan" | "lessThan"} FUComparisonOperator
+ */
+
+FU.comparisonOperator = {
+	greaterThan: 'FU.GreaterThan',
+	lessThan: 'FU.LessThan',
+};
+
+// --------------

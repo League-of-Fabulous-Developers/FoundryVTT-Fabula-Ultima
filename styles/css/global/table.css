@@ -1,0 +1,39 @@
+table.table-compact {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.85rem;
+	line-height: 1.1;
+	margin: 2px;
+}
+
+table.table-compact td {
+	padding: 2px 4px !important;
+	vertical-align: middle;
+	border: none !important;
+}
+
+table.table-compact tr {
+	height: 1.2rem !important;
+}
+
+table.table-compact img.image-icon-s {
+	width: 16px !important;
+	height: 16px !important;
+	margin-right: 4px !important;
+}
+
+table.table-compact a {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 2px !important;
+}
+
+table.table-compact .fu-tag.button {
+	padding: 0 4px !important;
+	min-width: unset !important;
+	line-height: 1 !important;
+}
+
+table.table-compact i {
+	font-size: 0.75rem !important;
+}

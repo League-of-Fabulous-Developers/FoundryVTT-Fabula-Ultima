@@ -261,3 +261,6 @@ input[type='radio']:checked::after {
 .shown {
 	display: block;
 }
+
+.rule-elements {
+}

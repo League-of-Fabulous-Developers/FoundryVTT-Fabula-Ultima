@@ -1,9 +1,9 @@
-import { SYSTEM } from '../helpers/config.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
 
 export const CheckHooks = Object.freeze({
-	prepareCheck: `${SYSTEM}.prepareCheck`,
-	processCheck: `${SYSTEM}.processCheck`,
-	renderCheck: `${SYSTEM}.renderCheck`,
+	prepareCheck: `${systemId}.prepareCheck`,
+	processCheck: `${systemId}.processCheck`,
+	renderCheck: `${systemId}.renderCheck`,
 });
 
 /**
@@ -16,8 +16,20 @@ export const CheckHooks = Object.freeze({
  * @property {number} value the value of this modifier
  */
 
+// TODO: Rename or..?
 /**
  * @typedef CheckV2 the basic configuration of the check. This object is sealed
+ * @property {CheckType} type the type of the check
+ * @property {CheckId} id a unique identifier for this check
+ * @property {Attribute} primary the first attribute
+ * @property {Attribute} secondary the second attribute
+ * @property {CheckModifier[]} modifiers array of modifiers
+ * @property {number} critThreshold the crit threshold for this check, default 6
+ * @property {Object} additionalData additional data attached to the check, not used by the core check engine, for extension use
+ */
+
+/**
+ * @typedef Check
  * @property {CheckType} type the type of the check
  * @property {CheckId} id a unique identifier for this check
  * @property {Attribute} primary the first attribute

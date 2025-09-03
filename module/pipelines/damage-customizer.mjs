@@ -27,7 +27,7 @@ import { FU, systemPath } from '../helpers/config.mjs';
 /**
  * Displays a dialog to customize damage.
  *
- * @param {DamageData} damage - The damage object containing type and total.
+ * @param {TableDamageData} damage - The damage object containing type and total.
  * @param {FUActor[]} targets - The specified targets.
  * @param {DamageOverrideCallback} callback - The function to call when the user confirms.
  * @param {() => void} onCancel - The function to call when the user cancels.

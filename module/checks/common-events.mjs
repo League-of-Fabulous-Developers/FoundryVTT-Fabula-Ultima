@@ -1,13 +1,8 @@
 import { FUHooks } from '../hooks.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
-
-/**
- * @description Contains information about a target in a combat event
- * @typedef EventTarget
- * @property {Token} token
- * @property {FUActor} actor
- * @property {TargetData|null} data
- */
+import { EventCharacters } from '../helpers/event-character.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
  * @typedef ItemReference
@@ -34,7 +29,9 @@ function toItemReference(item) {
  * @property {Set<String>} traits
  * @property {FUActor} actor
  * @property {Token} token
- * @property {EventTarget[]} targets
+ * @property {EventCharacter} source
+ * @property {EventCharacter[]} targets
+ * @property {Number} result
  */
 
 /**
@@ -46,16 +43,20 @@ function toItemReference(item) {
 function attack(inspector, actor, item) {
 	const traits = inspector.getTraits();
 	const targets = inspector.getTargets();
-	const eventTargets = getEventTargets(targets);
+	const source = EventCharacters.fromActor(actor);
+	const eventTargets = EventCharacters.fromTargetData(targets);
+	const result = inspector.getCheck().result;
 
 	/** @type AttackEvent  **/
 	const event = {
 		item: toItemReference(item),
 		actor: actor,
+		source: source,
 		type: inspector.getDamage()?.type,
-		token: actor.resolveToken(),
+		token: source.token,
 		targets: eventTargets,
 		traits: new Set(traits),
+		result: result,
 	};
 	Hooks.call(FUHooks.ATTACK_EVENT, event);
 }
@@ -63,34 +64,96 @@ function attack(inspector, actor, item) {
 /**
  * @description Dispatched when an actor suffers damage
  * @typedef DamageEvent
- * @property {FU.damageTypes} type
+ * @property {EventCharacter|null} source
+ * @property {DamageType} type
+ * @property {InlineSourceInfo} sourceInfo
+ * @property {FUDamageSource} damageSource
  * @property {Number} amount
+ * @property {EventCharacter} target
  * @property {FUActor} actor
  * @property {Token} token
  * @property {Set<String>} traits
- * @property {EventTarget|null} source
+ * @property {String} origin An id used to prevent cascading.
  */
+
+function getDamageSource(item) {
+	let damageSource;
+	if (item) {
+		/** @type ItemType **/
+		switch (item.type) {
+			case 'spell':
+				damageSource = 'spell';
+				break;
+			case 'basic':
+			case 'weapon':
+			case 'customWeapon':
+				damageSource = 'attack';
+				break;
+			case 'skill':
+			case 'optionalFeature':
+			case 'classFeature':
+			case 'miscAbility':
+				damageSource = 'skill';
+				break;
+			case 'consumable':
+				damageSource = 'item';
+				break;
+		}
+	}
+	return damageSource;
+}
 
 /**
  * @description Dispatches an event to signal damage taken by an actor
  * @param {FU.damageTypes} type
  * @param {Number} amount
  * @param {Set<String>} traits
- * @param {FUActor} actor
  * @param {FUActor} sourceActor
+ * @param {FUActor} targetActor
+ * @param {InlineSourceInfo} sourceInfo
  */
-function damage(type, amount, traits, actor, sourceActor) {
-	const source = getEventTargetFromActor(sourceActor);
+function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, origin) {
+	const source = EventCharacters.fromActor(sourceActor);
+	const target = EventCharacters.fromActor(targetActor);
+	const item = sourceInfo.resolveItem();
+	const damageSource = getDamageSource(item);
+
 	/** @type DamageEvent  **/
 	const damageEvent = {
 		amount: amount,
 		type: type,
-		actor: actor,
-		token: actor.resolveToken(),
 		source: source,
+		sourceActor: sourceInfo,
+		damageSource: damageSource,
+		target: target,
+		actor: target.actor,
+		token: target.token,
 		traits: traits,
+		origin: origin,
 	};
 	Hooks.call(FUHooks.DAMAGE_EVENT, damageEvent);
+}
+
+/**
+ * @typedef CalculateDamageEvent
+ * @property {EventCharacter} source
+ * @property {FUItem} item
+ * @property {FUDamageSource} damageSource
+ * @property {EventCharacter[]} targets
+ * @property {CheckConfigurer} configuration
+ */
+
+async function calculateDamage(actor, item, configuration) {
+	const damageSource = getDamageSource(item);
+	const targets = configuration.getTargets();
+	const event = {
+		source: EventCharacters.fromActor(actor),
+		targets: EventCharacters.fromTargetData(targets),
+		damageSource: damageSource,
+		configuration: configuration,
+	};
+	Hooks.call(FUHooks.CALCULATE_DAMAGE_EVENT, event);
+	await new Promise((resolve) => setTimeout(resolve, 10));
 }
 
 /**
@@ -112,6 +175,7 @@ function damage(type, amount, traits, actor, sourceActor) {
  * @typedef StatusEvent
  * @property {FUActor} actor
  * @property {Token} token
+ * @property {EventCharacter} source
  * @property {String} status The id of the status effect
  * @property {String} enabled Whether the effect is enabled
  */
@@ -123,12 +187,14 @@ function damage(type, amount, traits, actor, sourceActor) {
  * @param {Boolean} enabled
  */
 function status(actor, statusEffectId, enabled) {
+	const source = EventCharacters.fromActor(actor);
 	Hooks.call(
 		FUHooks.STATUS_EVENT,
 		/** @type StatusEvent **/
 		{
+			source: source,
 			actor: actor,
-			token: actor.resolveToken(),
+			token: source.token,
 			status: statusEffectId,
 			enabled: enabled,
 		},
@@ -140,23 +206,20 @@ function status(actor, statusEffectId, enabled) {
  * @typedef GainEvent
  * @property {FU.resources} resource
  * @property {Number} amount
+ * @property {EventCharacter} source
  * @property {FUActor} actor
  * @property {Token} token
+ * @property {String} origin
  */
 
-/**
- *
- * @param {FUActor} actor
- * @param {String} resource
- * @param {Number} amount
- */
-function gain(actor, resource, amount) {
+function gain(actor, resource, amount, origin) {
 	/** @type GainEvent  **/
 	const gainEvent = {
 		amount: amount,
 		resource: resource,
 		actor: actor,
 		token: actor.resolveToken(),
+		origin: origin,
 	};
 	Hooks.call(FUHooks.GAIN_EVENT, gainEvent);
 }
@@ -166,25 +229,53 @@ function gain(actor, resource, amount) {
  * @typedef LossEvent
  * @property {FU.resources} resource
  * @property {Number} amount
+ * @property {EventCharacter} source
  * @property {FUActor} actor
  * @property {Token} token
+ * @property {String} origin
  */
 
-/**
- * @description Dispatched when an actor loses resources (such as HP, MP)
- * @param {FUActor} actor
- * @param {String} resource
- * @param {Number} amount
- */
-function loss(actor, resource, amount) {
+function loss(actor, resource, amount, origin) {
 	/** @type LossEvent  **/
 	const lossEvent = {
 		amount: amount,
 		resource: resource,
 		actor: actor,
 		token: actor.resolveToken(),
+		origin: origin,
 	};
 	Hooks.call(FUHooks.LOSS_EVENT, lossEvent);
+}
+
+/**
+ * @description Dispatched when an actor recovers resources (such as HP, MP)
+ * @typedef ResourceUpdateEvent
+ * @property {FUResourceType} resource
+ * @property {Number} amount
+ * @property {EventCharacter} source
+ * @property {EventCharacter[]} targets
+ * @property {String} origin
+ */
+
+/**
+ * @param {FUActor} sourceActor
+ * @param {FUActor[]} targetActors
+ * @param {FUResourceType} resource
+ * @param {Number} amount
+ * @param {String} origin
+ */
+function resource(sourceActor, targetActors, resource, amount, origin) {
+	const source = EventCharacters.fromActor(sourceActor);
+	const targets = EventCharacters.fromActors(targetActors);
+	/** @type ResourceUpdateEvent  **/
+	const event = {
+		amount: amount,
+		resource: resource,
+		source: source,
+		targets: targets,
+		origin: origin,
+	};
+	Hooks.call(FUHooks.RESOURCE_UPDATE, event);
 }
 
 /**
@@ -192,9 +283,11 @@ function loss(actor, resource, amount) {
  * @typedef SpellEvent
  * @property {ItemReference} item
  * @property {Set<String>} traits
+ * @property {SpellDataModel} spell
+ * @property {EventCharacter} source
  * @property {FUActor} actor
  * @property {Token} token
- * @property {EventTarget[]} targets
+ * @property {EventCharacter[]} targets
  */
 
 /**
@@ -209,14 +302,17 @@ function spell(actor, item) {
 	traits.add('spell');
 	traits.add(spell.cost.resource);
 
+	const source = EventCharacters.fromActor(actor);
 	const targets = Targeting.getSerializedTargetData();
-	const eventTargets = getEventTargets(targets);
+	const eventTargets = EventCharacters.fromTargetData(targets);
 
 	/** @type SpellEvent  **/
 	const event = {
 		item: toItemReference(item),
-		actor: actor,
-		token: actor.resolveToken(),
+		source: source,
+		actor: source.actor,
+		token: source.token,
+		spell: spell,
 		targets: eventTargets,
 		traits: traits,
 	};
@@ -228,9 +324,10 @@ function spell(actor, item) {
  * @typedef SkillEvent
  * @property {ItemReference} item
  * @property {Set<String>} traits
+ * @property {EventCharacter} source
  * @property {FUActor} actor
  * @property {Token} token
- * @property {EventTarget[]} targets
+ * @property {EventCharacter[]} targets
  */
 
 /**
@@ -238,7 +335,7 @@ function spell(actor, item) {
  * @param {FUActor} actor
  * @param {FUItem} item
  */
-function skill(actor, item) {
+function skill(actor, item, targets = undefined) {
 	/** @type SkillDataModel **/
 	const skill = item.system;
 	const traits = new Set();
@@ -247,14 +344,16 @@ function skill(actor, item) {
 		traits.add(skill.cost.resource);
 	}
 
-	const targets = Targeting.getSerializedTargetData();
-	const eventTargets = getEventTargets(targets);
+	const source = EventCharacters.fromActor(actor);
+	targets = targets ?? Targeting.getSerializedTargetData();
+	const eventTargets = EventCharacters.fromTargetData(targets);
 
 	/** @type SpellEvent  **/
 	const event = {
 		item: toItemReference(item),
-		actor: actor,
-		token: actor.resolveToken(),
+		source: source,
+		actor: source.actor,
+		token: source.token,
 		targets: eventTargets,
 		traits: traits,
 	};
@@ -268,7 +367,7 @@ function skill(actor, item) {
  * @property {FUActor} actor
  * @property {String} type The item type
  * @property {Token} token
- * @property {EventTarget[]} targets
+ * @property {EventCharacter[]} targets
  */
 
 /**
@@ -280,7 +379,7 @@ function item(actor, item) {
 	/** @type ConsumableDataModel  **/
 	const consumable = item.system;
 	const targets = Targeting.getSerializedTargetData();
-	const eventTargets = getEventTargets(targets);
+	const eventTargets = EventCharacters.fromTargetData(targets);
 
 	/** @type ItemEvent  **/
 	const event = {
@@ -298,7 +397,7 @@ function item(actor, item) {
  * @typedef StudyEvent
  * @property {FUActor} actor The actor who performed the study action
  * @property {Token} token
- * @property {EventTarget[]} targets
+ * @property {EventCharacter[]} targets
  * @property {Number} result
  */
 
@@ -309,7 +408,7 @@ function item(actor, item) {
  */
 function study(actor, targets, studyValue) {
 	const targetData = Targeting.serializeTargetData(targets);
-	const eventTargets = getEventTargets(targetData);
+	const eventTargets = EventCharacters.fromTargetData(targetData);
 
 	/** @type ItemEvent  **/
 	const event = {
@@ -377,11 +476,6 @@ function opportunity(actor, type, item, fumble) {
 }
 
 /**
- * @type
- *
- */
-
-/**
  * @typedef ProgressEvent
  * @description Dispatched when a progress track has been updated
  * @property {Document} document The document that has the tracker
@@ -403,38 +497,68 @@ function progress(document, progress, action, increment = undefined, source = un
 	Hooks.call(FUHooks.PROGRESS_EVENT, event);
 }
 
-// Helpers
+/**
+ * @typedef PerformCheckEvent
+ * @property {Check} check
+ * @property {EventCharacter} source
+ * @property {InlineSourceInfo} sourceInfo
+ * @property {EventCharacter[]} targets
+ * @remarks Emitted when a check is about to be performed
+ */
 
 /**
- * @param {TargetData[]} targets
- * @returns {EventTarget[]}
+ * @typedef ResolveCheckEvent
+ * @property {CheckResultV2} result
+ * @property {EventCharacter} source
+ * @property {InlineSourceInfo} sourceInfo
+ * @remarks Emitted when a check is about to be performed
  */
-function getEventTargets(targets) {
-	return targets.map((t) => {
-		const actor = fromUuidSync(t.uuid);
-		const token = actor.resolveToken();
-		/** @type EventTarget  **/
-		return {
-			actor: actor,
-			token: token,
-			data: t,
-		};
-	});
+
+function performCheck(check, actor, item) {
+	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+	const source = EventCharacters.fromActor(actor);
+	const inspector = CheckConfiguration.inspect(check);
+	const targetData = inspector.getTargets();
+	let targets = [];
+	if (targetData) {
+		targets = EventCharacters.fromTargetData(targetData);
+	}
+	/** @type PerformCheckEvent  **/
+	const event = {
+		check: check,
+		source: source,
+		sourceInfo: sourceInfo,
+		targets: targets,
+	};
+	Hooks.call(FUHooks.PERFORM_CHECK_EVENT, event);
 }
 
-/** *
- * @param {FUActor} actor
- * @returns {EventTarget}
- */
-function getEventTargetFromActor(actor) {
-	if (!actor) {
-		return null;
-	}
-	const token = actor.resolveToken();
-	return {
-		actor: actor,
-		token: token,
+function resolveCheck(result, actor, item) {
+	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+	const source = EventCharacters.fromActor(actor);
+	/** @type PerformCheckEvent  **/
+	const event = {
+		result: result,
+		source: source,
+		sourceInfo: sourceInfo,
 	};
+	Hooks.call(FUHooks.RESOLVE_CHECK_EVENT, event);
+}
+
+/**
+ * @typedef NotificationEvent
+ * @property {EventCharacter} source
+ * @property {String} id
+ * @property {String} origin
+ */
+
+function notify(source, id, origin) {
+	const event = {
+		source: source,
+		id: id,
+		origin: origin,
+	};
+	Hooks.call(FUHooks.NOTIFICATION_EVENT, event);
 }
 
 export const CommonEvents = Object.freeze({
@@ -443,6 +567,7 @@ export const CommonEvents = Object.freeze({
 	status,
 	gain,
 	loss,
+	resource,
 	spell,
 	skill,
 	item,
@@ -451,4 +576,10 @@ export const CommonEvents = Object.freeze({
 	reveal,
 	opportunity,
 	progress,
+	performCheck,
+	resolveCheck,
+	calculateDamage,
+	notify,
 });
+
+// Helpers

@@ -28,6 +28,11 @@ const enricher = {
 	onRender: onRender,
 };
 
+/**
+ * @param effect
+ * @param label
+ * @returns {HTMLAnchorElement}
+ */
 function createEffectAnchor(effect, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
@@ -46,6 +51,7 @@ function createCompendiumEffectAnchor(effect, config, label) {
 	anchor.draggable = true;
 	anchor.dataset.effect = InlineHelper.toBase64(effect);
 	anchor.dataset.uuid = effect.uuid;
+	anchor.dataset.fuid = effect.parent.system.fuid;
 	anchor.dataset.config = InlineHelper.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
@@ -173,9 +179,9 @@ async function onRender(element) {
 		targets.forEach((actor) => {
 			if (effectData) {
 				if (isCtrlClick) {
-					Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData);
+					Effects.removeEffect(actor, sourceInfo, effectData);
 				} else {
-					Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
+					Effects.applyEffect(actor, effectData, sourceInfo, config);
 				}
 			} else if (status) {
 				if (isCtrlClick) {
@@ -233,10 +239,10 @@ async function onDropActor(actor, sheet, { type, sourceInfo, config, effect, sta
 	if (type === INLINE_EFFECT) {
 		if (status) {
 			if (!actor.statuses.has(status)) {
-				Effects.toggleStatusEffect(actor, status, sourceInfo, config);
+				await Effects.toggleStatusEffect(actor, status, sourceInfo, config);
 			}
 		} else if (effect) {
-			Effects.onApplyEffectToActor(actor, effect, sourceInfo, config);
+			await Effects.applyEffect(actor, effect, sourceInfo, config);
 		}
 		return false;
 	}
@@ -246,13 +252,11 @@ function showEffectConfiguration(state, dispatch, view) {
 	new InlineEffectConfiguration(state, dispatch).render(true);
 }
 
-/**
- * @type {FUInlineCommand}
- */
-export const InlineEffects = {
+export const InlineEffects = Object.freeze({
 	enrichers: [enricher],
 	showEffectConfiguration,
 	parseConfigData,
 	onDropActor,
 	configurationPropertyGroups,
-};
+	createEffectAnchor,
+});

@@ -131,7 +131,7 @@ async function processRecovery(request) {
 				newValue.value = uncappedRecoveryValue;
 				updates.push(
 					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then((result) => {
-						CommonEvents.gain(actor, request.resourceType, amountRecovered);
+						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
 						return result;
 					}),
 				);
@@ -154,7 +154,7 @@ async function processRecovery(request) {
 				}
 				updates.push(
 					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then((result) => {
-						CommonEvents.gain(actor, request.resourceType, amountRecovered);
+						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
 						return result;
 					}),
 				);
@@ -179,6 +179,7 @@ async function processRecovery(request) {
 			}),
 		);
 	}
+	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin));
 	return Promise.all(updates);
 }
 
@@ -212,14 +213,14 @@ async function processLoss(request) {
 			updateData[`system.${request.attributeValuePath}`] = newValue;
 			updates.push(
 				actor.update(updateData).then((result) => {
-					CommonEvents.loss(actor, request.resourceType, amountLost);
+					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
 					return result;
 				}),
 			);
 		} else {
 			updates.push(
 				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then((result) => {
-					CommonEvents.loss(actor, request.resourceType, amountLost);
+					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
 					return result;
 				}),
 			);
@@ -244,6 +245,7 @@ async function processLoss(request) {
 			}),
 		);
 	}
+	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin));
 	return Promise.all(updates);
 }
 

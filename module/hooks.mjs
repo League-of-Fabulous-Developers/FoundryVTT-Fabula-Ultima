@@ -16,16 +16,6 @@ export const FUHooks = {
 	 */
 	DAMAGE_PIPELINE_POST_CALCULATE: 'projectfu.pipelines.damage.postCalculate',
 	/**
-	 * @deprecated Replaced by {DAMAGE_PIPELINE_PRE_CALCULATE}
-	 * @example calllback(data) { ... }
-	 */
-	DAMAGE_APPLY_BEFORE: 'projectfu.damage.beforeApply',
-	/**
-	 * @deprecated Replaced by {DAMAGE_PIPELINE_POST_CALCULATE}
-	 * @example calllback(data) { ... }
-	 */
-	DAMAGE_APPLY_TARGET: 'projectfu.damage.applyTarget',
-	/**
 	 * @description Invoked when the data model for an FUActor is set
 	 * @example callback(actor { ... }
 	 */
@@ -83,6 +73,12 @@ export const FUHooks = {
 	 */
 	LOSS_EVENT: 'projectfu.events.loss',
 	/**
+	 * @description Dispatched after a resource update has been applied to an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link ResourceUpdateEvent}.
+	 */
+	RESOURCE_UPDATE: 'projectfu.events.resource',
+	/**
 	 * @description Dispatched after an actor enters crisis.
 	 * @example callback(event)
 	 * @remarks Uses {@link CrisisEvent}. This can happen after a {@link DAMAGE_EVENT}.
@@ -118,6 +114,18 @@ export const FUHooks = {
 	 * @remarks Uses {@link OpportunityEvent}
 	 */
 	OPPORTUNITY_EVENT: 'projectfu.events.opportunity',
+	/**
+	 * @description Dispatched when a check is about to be performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link PerformCheckEvent}
+	 */
+	PERFORM_CHECK_EVENT: 'projectfu.events.checks.perform',
+	/**
+	 * @description Dispatched when a check has been resolved.
+	 * @example callback(event)
+	 * @remarks Uses {@link ResolveCheckEvent}
+	 */
+	RESOLVE_CHECK_EVENT: 'projectfu.events.checks.resolve',
 	/**
 	 * @description Dispatched whenever there is a change in active wellsprings.
 	 * @remarks Uses {@link WellspringDataModel}
@@ -168,4 +176,16 @@ export const FUHooks = {
 	 * Hook.on("projectfu.getItemContextMenuOptions", callback)
 	 */
 	ITEM_TABLE_CONTEXT_OPTIONS: 'projectfu.getItemTableContextOptions',
+	/**
+	 * @description Dispatched when a request to apply damage is being processed.
+	 * @example callback(event)
+	 * @remarks Uses {@link CalculateDamageEvent}
+	 */
+	CALCULATE_DAMAGE_EVENT: 'projectfu.events.calculateDamage',
+	/**
+	 * @description Dispatched when something happens, tagged by an identifier.
+	 * @example callback(event)
+	 * @remarks Uses {@link NotificationEvent}
+	 */
+	NOTIFICATION_EVENT: 'projectfu.events.notification',
 };

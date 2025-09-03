@@ -1031,7 +1031,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		}
 
 		let document;
-		document = this.actor.resolveEffect(id);
+		document = this.actor.getEffect(id);
 		if (!document) {
 			document = this.actor.getItemById(id);
 		}
@@ -1161,7 +1161,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const allItemTypes = Object.keys(CONFIG.Item.dataModels);
 		const isCharacter = this.actor.type === 'character';
 		const isNPC = this.actor.type === 'npc';
-		const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.all);
+		const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.qualifiedTypes);
 		let types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(CONFIG.Item.typeLabels[type]) }));
 
 		if (isCharacter) {
@@ -1288,7 +1288,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		types = types.map((type) => ({ type, label: game.i18n.localize(CONFIG.Item.typeLabels[type]) }));
 		// Class Features
 		types.push(
-			...Object.entries(CONFIG.FU.classFeatureRegistry.all).map(([key, feature]) => ({
+			...Object.entries(CONFIG.FU.classFeatureRegistry.qualifiedTypes).map(([key, feature]) => ({
 				type: 'classFeature',
 				subtype: key,
 				label: game.i18n.localize(feature.translation),
@@ -1297,7 +1297,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		// Push filtered types to the types array
 		types.push(
-			...Object.entries(CONFIG.FU.optionalFeatureRegistry.all).map(([key, optional]) => ({
+			...Object.entries(CONFIG.FU.optionalFeatureRegistry.qualifiedTypes).map(([key, optional]) => ({
 				type: 'optionalFeature',
 				subtype: key,
 				label: game.i18n.localize(optional.translation),

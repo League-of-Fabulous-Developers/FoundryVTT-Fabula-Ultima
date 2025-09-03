@@ -2,7 +2,7 @@
 /**
  * @description The system's id
  */
-const SYSTEM = 'projectfu';
+export const systemId = 'projectfu';
 
 /**
  * @description Translates a relative path to a system handlebars template path
@@ -10,7 +10,15 @@ const SYSTEM = 'projectfu';
  * @returns {string} The path relative to the Foundry data folder
  */
 export function systemTemplatePath(path) {
-	return `systems/${SYSTEM}/templates/${path}.hbs`;
+	return `systems/${systemId}/templates/${path}.hbs`;
+}
+
+/**
+ * @param {String} type An identifier for a type
+ * @returns {string} A system-prefixed unique identifier for the type
+ */
+export function prefixType(type) {
+	return `${systemId}.${type}`;
 }
 
 /**
@@ -19,5 +27,5 @@ export function systemTemplatePath(path) {
  * @returns {string} The path relative to the Foundry data folder
  */
 export function systemAssetPath(path) {
-	return `systems/${SYSTEM}/styles/static/${path}`;
+	return `systems/${systemId}/styles/static/${path}`;
 }

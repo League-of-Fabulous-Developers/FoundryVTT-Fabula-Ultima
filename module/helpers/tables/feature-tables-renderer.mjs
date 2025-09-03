@@ -27,7 +27,7 @@ export class FeatureTables {
 			return t1.localeCompare(t2);
 		};
 
-		Object.entries(registry.all)
+		Object.entries(registry.qualifiedTypes)
 			.sort(compareTranslations)
 			.forEach(([key, feature]) => {
 				this.#featureTables[key] = new tableImplementation(featureType, key, feature);

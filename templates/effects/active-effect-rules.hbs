@@ -49,4 +49,27 @@
 			</div>
 		</div>
 	</div>
+
+	{{!-- Rule Elements --}}
+	<div class="desc">
+		<div class="item-settings resource-content">
+			<label>{{localize "FU.RuleElementOptions"}}</label>
+			<label class="resource-label-m">
+				<a class="resource-label-m" data-action="addRuleElement">
+					<i class="icon fas fa-circle-plus"></i>
+				</a>
+			</label>
+			<label class="resource-label-m">
+				<a class="resource-label-m" data-action="clearRuleElements">
+					<i class="icon fas fa-circle-trash"></i>
+				</a>
+			</label>
+		</div>
+
+		<div class="rule-element-forms flexcol">
+			{{#each system.rules.elements as |element|}}
+				{{> (lookup (lookup (lookup element "schema") "model") "template") path=(concat "system.rules.elements." element.id) element=element options=../options}}
+			{{/each}}
+		</div>
+	</div>
 </section>

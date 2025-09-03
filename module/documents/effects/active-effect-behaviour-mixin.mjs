@@ -97,6 +97,13 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		}
 
 		/**
+		 * @returns {String} If present, an unique identifier for this effect. (Such as the fuid)
+		 */
+		get identifier() {
+			return this.getFlag(Flags.Scope, Flags.ActiveEffect.Identifier);
+		}
+
+		/**
 		 * @returns {String}
 		 * @remarks Used by the templates
 		 */
@@ -229,11 +236,12 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 */
 		async sendToChat() {
 			// It's okay for it to be empty
-			const description = this.description; // ? this.description : game.i18n.localize('FU.NoItem');
+			const description = this.description;
 			let flags = Pipeline.initializedFlags(Flags.ChatMessage.Effect, this.uuid);
 
 			if (this.parent instanceof FUItem) {
 				Pipeline.setFlag(flags, Flags.ChatMessage.Item, this.parent.uuid);
+				Pipeline.setFlag(flags, Flags.ChatMessage.Fuid, this.parent.system.fuid);
 			}
 
 			// TODO: More information?

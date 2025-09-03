@@ -1,0 +1,28 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Martial'}}</span>
+	<select name="{{pfuConcat path ".martial"}}">
+		<option value="">-</option>
+		{{selectOptions options.booleanOption selected=predicate.martial localize=true}}
+	</select>
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.WeaponType'}}</span>
+	<select name="{{pfuConcat path ".weaponType"}}">
+		<option value="">-</option>
+		{{selectOptions options.weaponTypes selected=predicate.weaponType sort=true localize=true}}
+	</select>
+</label>
+
+<div class="fu-rule-element__property">
+	<span>{{localize 'FU.Category'}}</span>
+	{{formGroup predicate.schema.fields.categories value=predicate.categories options=options.weaponCategoryOptions name=(pfuConcat path ".categories") classes="fu-rule-element__set stacked"}}
+</div>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Hand'}}</span>
+	<select name="{{pfuConcat path ".handedness"}}">
+		<option value="">-</option>
+		{{selectOptions options.handedness selected=predicate.handedness sort=true localize=true}}
+	</select>
+</label>

@@ -254,9 +254,7 @@ async function applyEffect(actor, sourceInfo, type, args, config) {
 	if (actor.system instanceof CharacterDataModel || actor.system instanceof NpcDataModel) {
 		//const source = sourceInfo.resolve();
 		const effectData = composeEffectData(type, args.split(' '));
-		Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config).then((effect) => {
-			console.info(`Created effect: ${effect.uuid} on actor uuid: ${actor.uuid}`);
-		});
+		Effects.applyEffect(actor, effectData, sourceInfo, config);
 	} else {
 		ui.notifications.error('FU.ChatApplyNoCharacterSelected', { localize: true });
 	}

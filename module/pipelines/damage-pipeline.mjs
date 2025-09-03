@@ -71,7 +71,7 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
  */
 
 /**
- * @property {DamageData} damageData
+ * @property {TableDamageData} damageData
  * @property {FU.damageTypes} damageType
  * @property {DamageOverrideInfo} damageOverride
  * @property {ApplyTargetOverrides} overrides *
@@ -81,7 +81,7 @@ export class DamageRequest extends PipelineRequest {
 	/**
 	 * @param {InlineSourceInfo} sourceInfo
 	 * @param {FUActor[]} targets
-	 * @param {DamageData} damageData
+	 * @param {TableDamageData} damageData
 	 * @param {DamageOverrideInfo} damageOverride
 	 */
 	constructor(sourceInfo, targets, damageData, damageOverride = {}) {
@@ -128,7 +128,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {Number} affinity The index of the affinity
  * @property {String} affinityMessage The localized affinity message to use
  * @property {FU.damageTypes} damageType
- * @property {DamageData} damageData
+ * @property {TableDamageData} damageData
  * @property {DamageOverrideInfo} damageOverride
  * @property {String} extra An optional expression to evaluate for onApply damage
  * @property {Number} amount The base amount before bonuses or modifiers are applied
@@ -374,7 +374,6 @@ async function process(request) {
 	if (!request.validate()) {
 		return Promise.reject('Request was not valid');
 	}
-
 	console.debug(`Applying damage from request with traits: ${[...request.traits].join(', ')}`);
 
 	const updates = [];
@@ -394,7 +393,7 @@ async function process(request) {
 
 		// Provide support for targeting MP instead
 		let resource = 'hp';
-		if (request.traits.has(Traits.MindPointLoss)) {
+		if (context.traits.has(Traits.MindPointLoss)) {
 			resource = 'mp';
 		}
 
@@ -429,7 +428,7 @@ async function process(request) {
 
 		updates.push(
 			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then((result) => {
-				CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
+				CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin);
 				return result; // keep the result from modifyTokenAttribute if needed
 			}),
 		);
@@ -466,8 +465,8 @@ async function process(request) {
 					amount: damageTaken,
 					type: affinityString,
 					from: request.sourceInfo.name,
-					resource: resource.toUpperCase(),
 					sourceActorUuid: request.sourceInfo.actorUuid,
+					resource: resource.toUpperCase(),
 					sourceItemUuid: request.sourceInfo.itemUuid,
 					breakdown: context.breakdown,
 				}),
@@ -600,7 +599,7 @@ function onRenderChatMessage(message, html) {
  * @param {Event} event
  * @param {FUActor[]} targets
  * @param {InlineSourceInfo} sourceInfo
- * @param {DamageData} damageData
+ * @param {TableDamageData} damageData
  * @param {DamageOverrideInfo} damageOverride
  * @param {String[]} traits
  * @returns {void}

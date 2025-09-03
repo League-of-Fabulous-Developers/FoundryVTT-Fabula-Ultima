@@ -213,6 +213,7 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 	if (isTargeted) {
 		const isDamage = checkData && damageData;
 		const inspector = CheckConfiguration.inspect(checkData);
+
 		sections.push(async function () {
 			let actions = [];
 			actions.push(Targeting.defaultAction);
@@ -238,16 +239,20 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 					for (const target of targets) {
 						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 					}
-					if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
-						const traits = inspector.getTraits();
-						setTimeout(() => {
-							game.projectfu.socket.requestPipeline('damage', {
-								sourceInfo: InlineSourceInfo.fromInstance(actor, item),
-								targets,
-								damageData,
-								traits,
-							});
-						}, 50);
+					// For any hit targets, attempt to apply damage
+					const hitTargets = targets.filter((t) => t.result === 'hit');
+					if (hitTargets.length > 0) {
+						if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+							const traits = inspector.getTraits();
+							setTimeout(() => {
+								game.projectfu.socket.requestPipeline('damage', {
+									sourceInfo: InlineSourceInfo.fromInstance(actor, item),
+									targets: hitTargets,
+									damageData,
+									traits,
+								});
+							}, 50);
+						}
 					}
 				}
 

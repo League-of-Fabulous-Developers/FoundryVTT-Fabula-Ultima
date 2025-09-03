@@ -1,0 +1,100 @@
+.fu-rule-element {
+	--rule-element-label-width: 120px;
+
+	color: var(--color-primary);
+	font-weight: var(--font-weight-normal);
+
+	.-fu-rule-element__title {
+		display: flex;
+		gap: 4px;
+	}
+
+	.fu-rule-element__section {
+		background: linear-gradient(rgba(240, 246, 232, 0.7), rgba(230, 240, 220, 0.7));
+		border-radius: 5px;
+		border: 1px solid var(--border-primary);
+	}
+
+	.fu-rule-element__header {
+		padding: 0 0.5rem;
+		background: var(--color-tabStyle-gradient);
+		color: var(--color-text-primary);
+		text-shadow: 1px 1px 1px #000000;
+		font-weight: var(--font-weight-bold);
+		border-radius: 4px;
+		box-shadow: 1px 2px var(--color-primary);
+		display: flex;
+		justify-content: space-between;
+
+		label {
+			color: var(--color-text-primary) !important;
+		}
+	}
+
+	.fu-rule-element__content {
+		background: linear-gradient(var(--gradient-button-bg), rgba(230, 240, 220, 0.7));
+		padding: 0.5rem;
+	}
+
+	.fu-rule-element__item {
+		border-radius: 5px;
+		border: 1px solid var(--border-primary);
+	}
+
+	.fu-rule-element__set {
+		background: var(--color-background);
+		flex: 2;
+	}
+
+	.fu-rule-element__item__header {
+		padding: 0 0.5rem;
+		display: flex;
+		justify-content: space-between;
+		background: var(--color-tabStyle-gradient);
+		color: var(--color-text-primary);
+		text-shadow: 1px 1px 1px #000000;
+		font-weight: var(--font-weight-bold);
+		border-bottom: 1px solid var(--border-primary);
+		border-radius: 4px 4px 0 0;
+
+		label {
+			color: var(--color-text-primary) !important;
+		}
+	}
+
+	.fu-rule-element__item__content {
+		background: linear-gradient(var(--gradient-button-bg), rgba(230, 240, 220, 0.7));
+		padding: 0.5rem;
+		backdrop-filter: saturate(200%); /* Vivid colors */
+	}
+
+	.fu-rule-element__property-row {
+		display: flex;
+		gap: 1rem;
+	}
+
+	.fu-rule-element__property {
+		display: flex;
+		flex: 2;
+		align-items: center;
+		white-space: nowrap; /* prevent wrapping */
+		margin-bottom: 0.5rem;
+
+		span {
+			width: var(--rule-element-label-width);
+			font-weight: bold;
+		}
+	}
+
+	/* Any form control inside adapts automatically */
+	.fu-rule-element__property > *:not(:first-child) {
+		flex: 1; /* controls take remaining width */
+		min-width: 0; /* allows proper shrinking inside flex */
+	}
+
+	/* Prevent label text overflow */
+	.fu-rule-element__property > :first-child {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

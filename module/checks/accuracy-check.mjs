@@ -159,6 +159,8 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 		const inspector = CheckConfiguration.inspect(checkResult);
 		const checkData = inspector.getCheck();
 		const damageData = inspector.getExtendedDamageData();
+		/** @type TargetData[] */
+		const targets = inspector.getTargets();
 
 		// Push combined data for accuracy and damage
 		data.push({
@@ -174,8 +176,6 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 			},
 		});
 
-		/** @type TargetData[] */
-		const targets = inspector.getTargets();
 		CommonSections.targeted(data, actor, item, targets, flags, checkData, damageData);
 		CommonEvents.attack(inspector, actor, item);
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();

@@ -1,0 +1,12 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Mode'}}</span>
+	<select name="{{pfuConcat path ".mode"}}">
+		{{selectOptions options.changeSetMode selected=action.mode sort=true localize=true}}
+	</select>
+</label>
+
+<div class="fu-rule-element__property" style="flex: 2; background: var(--color-background);">
+	{{formGroup action.schema.fields.traits value=action.traits options=options.traits name=(pfuConcat path ".traits") classes="flexlarge stacked"}}
+</div>
+
+

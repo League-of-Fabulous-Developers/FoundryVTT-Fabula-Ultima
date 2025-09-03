@@ -36,6 +36,7 @@ Hooks.on('preCreateCombatant', function (document, data, options, userId) {
 /**
  * @extends Combatant
  * @property {FUActor} actor
+ * @property {Object} token
  * @inheritDoc
  */
 export class FUCombatant extends foundry.documents.Combatant {

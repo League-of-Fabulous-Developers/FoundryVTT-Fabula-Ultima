@@ -152,7 +152,7 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 				// The name is modified
 				config.name = effectData.name;
 
-				Effects.onApplyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
+				Effects.applyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
 					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
 				});
 			}

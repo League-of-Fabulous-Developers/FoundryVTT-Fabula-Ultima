@@ -1,4 +1,5 @@
 // TODO: Decide whether to define in config.mjs.
+// TODO: Add character traits, etc..
 
 /**
  * @description A list of traits supported by the damage pipeline
@@ -37,6 +38,12 @@ export const TraitUtils = Object.freeze({
 			separator: '',
 			value: '',
 			show: true,
+		}));
+	},
+	getOptions() {
+		return Object.keys(Traits).map((key) => ({
+			label: key,
+			value: key,
 		}));
 	},
 });

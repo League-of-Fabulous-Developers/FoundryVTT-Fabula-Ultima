@@ -73,6 +73,7 @@ export const SETTINGS = Object.freeze({
 	// Automation
 	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
+	optionAutomationRuleElements: 'optionAutomationRuleElements',
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
 	automationApplyDamage: 'automationApplyDamage',
@@ -729,13 +730,28 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.AutomationOptions'),
 		hint: game.i18n.localize('FU.AutomationHint'),
 		icon: 'fa fa-wrench',
-		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects, SETTINGS.automationApplyDamage]),
+		type: createConfigurationApp('FU.AutomationOptions', [
+			SETTINGS.optionAutomationManageEffects,
+			SETTINGS.optionAutomationRuleElements,
+			SETTINGS.optionAutomationEffectsReminder,
+			SETTINGS.optionAutomationRemoveExpiredEffects,
+			SETTINGS.automationApplyDamage,
+		]),
 		restricted: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionAutomationManageEffects, {
 		name: game.i18n.localize('FU.AutomationManageEffects'),
 		hint: game.i18n.localize('FU.AutomationManageEffectsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationRuleElements, {
+		name: game.i18n.localize('FU.AutomationRuleElements'),
+		hint: game.i18n.localize('FU.AutomationRuleElementsHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
