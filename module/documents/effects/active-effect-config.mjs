@@ -93,10 +93,10 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		await super._onRender(context, options);
 		const html = this.element;
 
+		// TODO: Add other fields in
 		// DETAILS TAB
 		// const details = html.querySelector('section[data-tab="details"]');
 		// if (details) {
-		// 	details.append(document.createTextNode('HELLO'));
 		// }
 
 		// CHANGES Tab

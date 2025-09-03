@@ -2,12 +2,13 @@ import { CHECK_FLAVOR, CHECK_RESULT } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
-import { FU } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @param {CheckRenderData} sections
@@ -255,26 +256,25 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 					}),
 				);
 
-				if (game.dice3d) {
-					Hooks.once('diceSoNiceRollComplete', () => {
-						for (const target of targets) {
-							showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
-						}
-					});
-				} else {
+				function onRoll() {
 					for (const target of targets) {
 						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 					}
+					if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+						setTimeout(() => {
+							game.projectfu.socket.requestPipeline('damage', {
+								sourceInfo: InlineSourceInfo.fromInstance(actor, item),
+								targets,
+								damageData,
+							});
+						}, 50);
+					}
 				}
 
-				if (damageData) {
-					setTimeout(() => {
-						game.projectfu.socket.requestPipeline('damage', {
-							sourceInfo: InlineSourceInfo.fromInstance(actor, item),
-							targets,
-							damageData,
-						});
-					}, 50);
+				if (game.dice3d) {
+					Hooks.once('diceSoNiceRollComplete', onRoll);
+				} else {
+					onRoll();
 				}
 			}
 
