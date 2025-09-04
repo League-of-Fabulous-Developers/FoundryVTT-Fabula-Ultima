@@ -335,6 +335,10 @@
 
 .projectfu .item-settings {
 	margin: 0px 5px 0;
+	display: inline-flex;
+	align-items: center;
+	gap: 1em;
+	padding: .25em 1em 0 1em;
 }
 
 .projectfu .fit-desc .editor {
