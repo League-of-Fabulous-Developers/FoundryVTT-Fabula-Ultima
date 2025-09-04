@@ -1,4 +1,5 @@
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @description Provides utility functions for rendering sheets
@@ -19,7 +20,12 @@ export const SheetUtils = Object.freeze({
 			rollData: sheet.document.getRollData(),
 		};
 		const textProperty = foundry.utils.getProperty(sheet.document, path);
-		const description = await TextEditor.enrichHTML(textProperty, _options);
+		let description = textProperty;
+		try {
+			description = await TextEditor.enrichHTML(textProperty, _options);
+		} catch (err) {
+			ui.notifications.error(`Failed to enrich the text: ${StringUtils.truncate(description, 15)}. Please check it.`, { localize: true });
+		}
 		return {
 			description: description,
 		};
