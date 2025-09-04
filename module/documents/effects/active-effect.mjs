@@ -236,7 +236,10 @@ export class FUActiveEffect extends ActiveEffect {
 	 */
 	apply(target, change) {
 		// Support expressions
-		if (change.value && typeof change.value === 'string') {
+		if (change.key.includes(".hp.max") || change.key.includes(".mp.max") || change.key.includes(".ip.max")) {
+			ui.notifications.warn(`${change.key} is a derived value and cannot be modified directly. If you want to add to the resource's maximum value, use the bonus value.`);
+			return;
+		} else if (change.value && typeof change.value === 'string') {
 			try {
 				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);

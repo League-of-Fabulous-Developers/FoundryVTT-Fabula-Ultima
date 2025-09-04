@@ -146,9 +146,10 @@ function getAttributeKeys() {
 			attributeKeys = attributeKeys.concat(flattenSchemaFields(characterFields, 'system'));
 			// TODO: Derived Keys
 			// Resources
-			for (const res of ['hp', 'mp', 'ip']) {
-				attributeKeys.push(`system.resources.${res}.max`);
-			}
+			// Max values shouldn't be accessible through effects as those are derived variables.
+			// for (const res of ['hp', 'mp', 'ip']) {
+			// 	attributeKeys.push(`system.resources.${res}.max`);
+			// }
 			// Attributes
 			for (const attr of Object.keys(FU.attributes)) {
 				attributeKeys.push(`system.attributes.${attr}.current`);
