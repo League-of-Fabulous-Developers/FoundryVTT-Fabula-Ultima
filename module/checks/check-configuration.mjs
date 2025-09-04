@@ -8,12 +8,14 @@ import { CheckHooks } from './check-hooks.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 
+// Data keys
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
 const TRAITS = 'traits';
 const WEAPON_TRAITS = 'weaponTraits';
+const LABEL_KEY = 'label';
 
 /**
  *
@@ -396,6 +398,14 @@ class CheckConfigurer {
 		}
 		return this;
 	}
+
+	/**
+	 * @desc Set a custom label for the check
+	 * @param {String} label
+	 */
+	setLabel(label) {
+		this.#check.additionalData[LABEL_KEY] = label;
+	}
 }
 
 /**
@@ -539,6 +549,13 @@ class CheckInspector {
 			result = damage;
 		}
 		return result;
+	}
+
+	/**
+	 * @returns {String|undefined}
+	 */
+	getLabel() {
+		return this.#check.additionalData[LABEL_KEY];
 	}
 }
 

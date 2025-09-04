@@ -90,7 +90,7 @@ export async function onManageActiveEffect(event, owner, action) {
 		let effect;
 		// We check allEffects in order to get effects from the ITEMS as well
 		if (owner instanceof FUActor) {
-			effect = Array.from(owner.allEffects()).find((value) => value.id === effectId);
+			effect = owner.resolveEffect(effectId);
 		} else {
 			effect = owner.effects.get(effectId);
 		}

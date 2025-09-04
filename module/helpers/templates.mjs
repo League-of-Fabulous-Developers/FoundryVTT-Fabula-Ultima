@@ -57,6 +57,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',
+		'systems/projectfu/templates/common/fieldset-toggle.hbs',
 
 		// Effects
 		'systems/projectfu/templates/effects/active-effect-details.hbs',
@@ -104,10 +105,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-targets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 		'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
-		'systems/projectfu/templates/chat/chat-advance-clock.hbs',
 		'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 
-		// UI Components
+		// UI FUComponents
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
 		// Applications
@@ -231,10 +231,12 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// UI
 		'systems/projectfu/templates/ui/study/npc-profile.hbs',
+		'systems/projectfu/templates/ui/partials/document-carousel.hbs',
 
 		// Progress,
 		'systems/projectfu/templates/common/progress/progress-clock.hbs',
 		'systems/projectfu/templates/common/progress/progress-basic.hbs',
 		'systems/projectfu/templates/common/progress/progress-bar.hbs',
+		'systems/projectfu/templates/common/progress/partials/progress-controls.hbs',
 	]);
 };

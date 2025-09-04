@@ -274,7 +274,7 @@ let inlineCommands = [];
  * @property {Document} document
  * @property {HTMLElement} target
  * @property {InlineSourceInfo} sourceInfo
- * @property {Object} dataset
+ * @property {DOMStringMap} dataset
  */
 
 /**
@@ -334,13 +334,36 @@ function resolveDocument(element) {
 	console.debug(`Failed to resolve the document from ${element.toString()}`);
 }
 
-function appendImageToAnchor(anchor, path) {
+/**
+ * @param {HTMLElement} anchor
+ * @param {String} path
+ * @param {Number} size
+ * @param margin
+ * @returns {HTMLImageElement}
+ */
+function appendImage(anchor, path, size = 16, margin = true) {
 	const img = document.createElement('img');
 	img.src = path;
-	img.width = 16;
-	img.height = 16;
-	img.style.marginLeft = img.style.marginRight = '2px';
+	img.width = size;
+	img.height = size;
+	if (margin) {
+		img.style.marginLeft = '2px';
+		img.style.marginRight = '4px';
+	}
 	anchor.append(img);
+	return img;
+}
+
+/**
+ * @param {HTMLAnchorElement} anchor
+ * @param {...string} classes
+ */
+function appendVectorIcon(anchor, ...classes) {
+	const icon = document.createElement(`i`);
+	icon.classList.add(`icon`, ...classes);
+	icon.style.marginLeft = '2px';
+	anchor.append(icon);
+	return icon;
 }
 
 /**
@@ -369,18 +392,21 @@ const traitsPattern = '(\\|(?<traits>[a-zA-Z-,]+)\\|)?';
 
 /**
  * @param {String} identifier The name of the regex group
- * @param key The key of the property
- * @param value The value of the property
+ * @param {String} key The key of the property
+ * @param {String} value The pattern for the value of the property
  * @returns {String}
  */
 function propertyPattern(identifier, key, value) {
 	return `(\\s+${key}:(?<${identifier}>${value}))?`;
 }
 
+const documentPropertyGroup = [propertyPattern('document', 'document', '[\\w.-]+'), propertyPattern('propertyPath', 'propertyPath', '[\\w.-]+'), propertyPattern('index', 'index', '\\d')];
+
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
-	appendImageToAnchor,
+	appendImage,
+	appendVectorIcon,
 	appendVariableToAnchor,
 	toBase64,
 	fromBase64,
@@ -389,4 +415,5 @@ export const InlineHelper = {
 	propertyPattern,
 	resolveDocument,
 	getRenderContext,
+	documentPropertyGroup,
 };

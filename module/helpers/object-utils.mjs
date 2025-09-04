@@ -34,7 +34,17 @@ function getProperty(obj, path) {
 	return foundry.utils.getProperty(obj, path);
 }
 
+/**
+ *
+ * @param {Object} obj
+ * @returns {Object} An object without any undefined properties
+ */
+function cleanObject(obj) {
+	return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== undefined));
+}
+
 export const ObjectUtils = Object.freeze({
 	mergeRecursive,
 	getProperty,
+	cleanObject,
 });

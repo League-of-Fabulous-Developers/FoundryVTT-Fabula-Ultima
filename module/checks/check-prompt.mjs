@@ -2,6 +2,7 @@ import { Checks } from './checks.mjs';
 import { FU } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { GroupCheck } from './group-check.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * @typedef AttributeCheckConfig
@@ -31,6 +32,8 @@ import { GroupCheck } from './group-check.mjs';
  * @template T
  * @property {T} [initialConfig]
  * @property {CheckCallback} [checkCallback]
+ * @property {CheckResultCallback} resultCallback
+ * @property
  */
 
 const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
@@ -70,7 +73,7 @@ function initDefaults(type) {
 }
 
 /**
- * @param {Actor} actor
+ * @param {Document} actor
  * @param {"attribute", "open", "group"}type
  * @param {AttributeCheckConfig, OpenCheckConfig, GroupCheckConfig}config
  */
@@ -113,6 +116,9 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 	const result = await foundry.applications.api.DialogV2.input({
 		window: { title: game.i18n.localize('FU.DialogCheckTitle') },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		actions: {
+			setDifficulty: onSetDifficulty,
+		},
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-prompt-unified.hbs', {
 			type: type,
 			attributes: FU.attributes,
@@ -139,6 +145,69 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 }
 
 /**
+ * @template T
+ * @param {Document} document
+ * @param {T} initialConfig
+ * @param {FUActor[]} actors
+ * @returns {Promise<AttributeCheckConfig>}
+ */
+async function extended(document, initialConfig, actors = undefined) {
+	const type = 'attribute';
+	const recentCheck = retrieveRecentCheck(document, type);
+
+	Object.keys(recentCheck).forEach((key) => {
+		if (initialConfig[key] != null) {
+			recentCheck[key] = initialConfig[key];
+		}
+	});
+	const result = await foundry.applications.api.DialogV2.input({
+		window: { title: game.i18n.localize(actors.length ? 'FU.DialogCheckRoll' : 'FU.DialogPromptCheck') },
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		actions: {
+			setDifficulty: onSetDifficulty,
+		},
+		content: await FoundryUtils.renderTemplate('dialog/dialog-check-prompt-unified', {
+			type: type,
+			label: initialConfig.label,
+			increment: initialConfig.increment !== undefined,
+			attributes: FU.attributes,
+			actors: actors,
+			attributeAbbr: FU.attributeAbbreviations,
+			primary: recentCheck.primary,
+			secondary: recentCheck.secondary,
+			modifier: recentCheck.modifier,
+			difficulty: recentCheck.difficulty,
+			supportDifficulty: recentCheck.supportDifficulty,
+			bonus: 0,
+		}),
+		rejectClose: false,
+		ok: {
+			icon: 'fas fa-dice',
+			label: game.i18n.localize('FU.Submit'),
+		},
+	});
+	if (result) {
+		saveRecentCheck(document, type, result);
+		return result;
+	}
+	return null;
+}
+
+/**
+ * @param {PointerEvent} event   The originating click event
+ * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+ * @returns {Promise<void>}
+ */
+async function onSetDifficulty(event, target) {
+	const input = target.closest('fieldset').querySelector("input[name='difficulty']");
+	if (!input) return;
+	input.value = target.dataset.value ?? '';
+	// Let Foundry know it changed
+	input.dispatchEvent(new Event('input', { bubbles: true }));
+	input.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/**
  * @param {Actor} actor
  * @param {CheckPromptOptions<AttributeCheckConfig>} [options]
  * @returns {Promise<void>}
@@ -161,7 +230,6 @@ async function attributeCheck(actor, options = {}) {
 				if (promptResult.modifier) {
 					checkConfigurer.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
 				}
-
 				if (options.checkCallback) {
 					options.checkCallback(check, callbackActor, item);
 				}
@@ -228,4 +296,5 @@ export const CheckPrompt = Object.freeze({
 	attributeCheck,
 	openCheck,
 	groupCheck,
+	extended,
 });

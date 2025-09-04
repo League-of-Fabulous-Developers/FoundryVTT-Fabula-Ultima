@@ -212,13 +212,22 @@ export const FUHandlebars = Object.freeze({
 		});
 
 		Handlebars.registerHelper('progress', progress);
+		Handlebars.registerHelper('progressCollection', progressCollection);
 	},
 });
+
+/* ----------------------------------------- */
+/* PROGRESS TRACKS
+/* ----------------------------------------- */
 
 /**
  * @typedef ProgressHandlebarOptions
  * @property {Boolean} displayName
- * @property {String} type
+ * @property {String} type The type of item for the progress track. (Legacy support)
+ * @property {Boolean} prompt Whether to support prompting a dialog to request a roll to affect this track
+ * @property {Boolean} event Whether to dispatch an event on a change
+ * @property {Boolean} controls
+ * @property action
  * @property {"clock"|"basic"} style
  */
 
@@ -232,15 +241,41 @@ const progressStyleTemplates = Object.freeze({
  * @param {FUActor|FUItem} document
  * @param {String} path
  * @param {ProgressHandlebarOptions} options
+ * @returns {String}
  */
 function progress(document, path, options) {
 	const id = document._id;
 	const progress = foundry.utils.getProperty(document, path);
+	return renderProgress(progress, id, path, options.hash);
+}
 
-	const data = options.hash;
-	const type = data.type;
-	const style = data.style ?? 'clock';
-	const action = data.action ?? 'updateProgress';
+/**
+ * @param {FUActor|FUItem} document
+ * @param {String} path
+ * @param {int} index
+ * @param {ProgressHandlebarOptions} options
+ * @returns {String}
+ */
+function progressCollection(document, path, index, options) {
+	const id = document._id;
+	const array = ObjectUtils.getProperty(document, path);
+	const progress = array[index];
+	return renderProgress(progress, id, path, options.hash, index);
+}
+
+/**
+ * @param {ProgressDataModel} progress
+ * @param {int} id
+ * @param {String} path
+ * @param {int} index
+ * @param {ProgressHandlebarOptions} options
+ * @returns {String}
+ */
+function renderProgress(progress, id, path, options, index = undefined) {
+	const type = options.type;
+	const style = options.style ?? progress.style ?? 'clock';
+	const action = options.action ?? 'updateTrack';
+	const controls = options.controls ?? true;
 
 	// Render the partial directly using Handlebars
 	const template = Handlebars.partials[progressStyleTemplates[style]];
@@ -249,11 +284,15 @@ function progress(document, path, options) {
 			? template({
 					arr: progress.progressArray,
 					id: id,
+					index: index,
+					isCollection: index !== undefined,
 					data: progress,
 					dataPath: path,
 					type: type,
+					controls: controls,
 					action: action,
-					displayName: data.displayName && (progress.name || document.name),
+					prompt: options.prompt,
+					displayName: options.displayName && (progress.name || document.name),
 				})
 			: '';
 

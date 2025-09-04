@@ -80,6 +80,6 @@ export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill, ItemPartialTemplates.resourcePoints];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill, ItemPartialTemplates.resourcePoints];
 	}
 }

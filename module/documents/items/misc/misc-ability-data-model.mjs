@@ -270,7 +270,7 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 
 	get attributePartials() {
 		return [
-			ItemPartialTemplates.controls,
+			ItemPartialTemplates.standard,
 			ItemPartialTemplates.opportunityField,
 			ItemPartialTemplates.actionCost,
 			ItemPartialTemplates.accuracy,

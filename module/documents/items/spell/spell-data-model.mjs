@@ -183,7 +183,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [
-			ItemPartialTemplates.controls,
+			ItemPartialTemplates.standard,
 			ItemPartialTemplates.classField,
 			ItemPartialTemplates.opportunityField,
 			ItemPartialTemplates.durationField,

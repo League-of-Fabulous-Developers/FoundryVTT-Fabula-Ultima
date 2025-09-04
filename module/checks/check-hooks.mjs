@@ -36,6 +36,12 @@ export const CheckHooks = Object.freeze({
  */
 
 /**
+ * @callback CheckResultCallback
+ * @param {CheckResultV2} result
+ * @return {Promise | void}
+ */
+
+/**
  * @callback CheckCallbackRegistration
  * @param {CheckCallback} callback
  * @param {number} [priority=0]

@@ -1,3 +1,18 @@
+{{#if system.schema.fields.hasRoll }}
+	<label class="checkbox resource-label-sm">
+		<span data-tooltip="{{localize 'FU.PerformCheck'}}"><i class="fas fa-dice icon"></i></span>
+		<input type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
+	</label>
+{{/if}}
+
+
+{{#if system.schema.fields.rollInfo.fields.useWeapon.fields.hrZero }}
+	<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span>
+		<input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+		 system.rollInfo.useWeapon.hrZero.value }} />
+	</label>
+{{/if}}
+
 <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.Favorite'}}">
     <span>
 		{{#if item.system.isFavored.value}}
@@ -8,6 +23,7 @@
 	</span>
 	<input type="checkbox" name="system.isFavored.value" {{ checked system.isFavored.value }} />
 </label>
+
 <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.TitleCardInfo'}}">
     <span>
 		{{#if item.system.showTitleCard.value}}
@@ -18,18 +34,6 @@
 	</span>
 	<input type="checkbox" name="system.showTitleCard.value" {{ checked system.showTitleCard.value }} />
 </label>
-{{!-- NPC Relevent Option --}}
-{{#if (eq actor.type "npc")}}
-	<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.BehaviorAdd'}}">
-    <span>
-		{{#if item.system.isBehavior.value}}
-			<i class="fas fa-address-book"></i>
-		{{else}}
-			<i class="far fa-address-book"></i>
-		{{/if}}
-	</span><input type="checkbox" name="system.isBehavior.value" {{ checked system.isBehavior.value }} />
-	</label>
-{{/if}}
 
 {{#if system.schema.fields.hasClock}}
 	<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
@@ -47,13 +51,6 @@
 {{#if system.schema.fields.isMartial }}
 	<label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span>
 		<input type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
-	</label>
-{{/if}}
-
-{{#if system.schema.fields.hasRoll }}
-	<label class="checkbox resource-label-sm">
-		<span data-tooltip="{{localize 'FU.IsRoll'}}"><i class="fas fa-dice icon"></i></span>
-		<input type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
 	</label>
 {{/if}}
 
@@ -76,13 +73,16 @@
 	</label>
 {{/if}}
 
-{{#if system.schema.fields.rollInfo.useWeapon.hrZero }}
-	<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span>
-		<input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-		 system.rollInfo.useWeapon.hrZero.value }} />
-	</label>
-	<label class="checkbox resource-label-sm">
-		<span>{{localize 'FU.IsMartial'}}</span>
-		<input type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
+{{!-- NPC Options --}}
+{{#if system.schema.fields.isBehavior}}
+	<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.BehaviorAdd'}}">    <span>
+		{{#if item.system.isBehavior.value}}
+			<i class="fas fa-address-book"></i>
+		{{else}}
+			<i class="far fa-address-book"></i>
+		{{/if}}
+	</span><input type="checkbox" name="system.isBehavior.value" {{ checked system.isBehavior.value }} />
 	</label>
 {{/if}}
+
+

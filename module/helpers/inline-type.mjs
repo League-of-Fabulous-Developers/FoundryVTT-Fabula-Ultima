@@ -5,6 +5,7 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { InlineEffects } from './inline-effects.mjs';
+import { systemAssetPath } from './system-utils.mjs';
 
 const INLINE_TYPE = 'InlineType';
 const className = `inline-type`;
@@ -38,6 +39,9 @@ const editorEnricher = {
 			const config = InlineEffects.parseConfigData(match);
 			anchor.dataset.config = InlineHelper.toBase64(config);
 			const label = match.groups.label;
+
+			// ICON
+			InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/type.svg'));
 
 			if (type === 'damage') {
 				// TOOLTIP

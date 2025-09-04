@@ -10,7 +10,7 @@ import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { registerSystemSettings } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
-import { FUCombat } from './ui/combat.mjs';
+import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
 import { CharacterDataModel } from './documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from './documents/actors/npc/npc-data-model.mjs';
@@ -150,6 +150,7 @@ Hooks.once('init', async () => {
 		formula: '1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value',
 		decimals: 2,
 	};
+	CONFIG.Combat.dataModels.base = FUCombatDataModel;
 
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = FUActor;

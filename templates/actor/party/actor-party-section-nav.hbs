@@ -23,35 +23,13 @@
 				</a>
 			</legend>
 
-			{{#each system.tracks }}
-				<div class="item clock-m" data-name="{{ this.name }}" data-index="{{@index}}" style="grid-column-gap: 2px;">
-					<a class="progress" style="--segments: {{this.max}};" data-segments="{{this.max}}" data-tooltip="{{localize 'FU.Progress'}}">
-						<div class="foreground"></div>
-						{{#each this.progressArray as |obj key|}}
-							<input disabled class="pie slice{{obj.id}}" type="radio" value="{{obj.id}}" style="--index: {{obj.id}}" {{checked obj.checked}} />
-							<div class="divider" style="--index: {{obj.id}}"></div>
-						{{/each}}
-					</a>
-
-					<a class="increment-button" data-action="incrementProgress" data-increment="1"
-					   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{this.step}})">
-						<i class="fas fa-plus"></i>
-					</a>
-					<a class="decrement-button" data-action="incrementProgress" data-increment="-1"
-					   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{this.step}})"> <i
-					 class="fas fa-minus"></i>
-					</a>
-
-					<h4 class="item-name rollable resource-content"  data-roll-type="item">
-						<a data-action="removeTrack">
-							<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
-						</a>
-						<a data-action="revealTrack" data-tooltip="{{this.name}}"><span class="resource-label-m">{{ this.name }}</span></a>
-					</h4>
-
-				</div>
-				<hr>
-			{{/each}}
+			<div class="progress-collection" style="background: unset;">
+				{{#each system.tracks }}
+					<div>
+						{{progressCollection ../document 'system.tracks' @index displayName=true prompt=true controls=../isGM }}
+					</div>
+				{{/each}}
+			</div>
 
 		</fieldset>
 

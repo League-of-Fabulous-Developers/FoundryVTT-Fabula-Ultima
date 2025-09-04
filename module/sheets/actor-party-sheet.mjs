@@ -5,7 +5,6 @@ import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
-import { MathHelper } from '../helpers/math-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { NpcProfileWindow } from '../ui/npc-profile.mjs';
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
@@ -41,10 +40,11 @@ export class FUPartySheet extends FUActorSheet {
 			restParty: this.#restParty,
 			rewardResource: this.promptAwardResources,
 			refreshSheet: this.#refreshSheet,
-			addTrack: this.promptAddProgressTrack,
-			removeTrack: this.#onRemoveProgressTrack,
-			incrementProgress: this.#onIncrementProgressTrack,
-			revealTrack: this.#onRevealProgressTrack,
+			addTrack: this.#onAddTrack,
+			removeTrack: this.#onRemoveTrack,
+			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
+			promptTrack: this.#onPromptTrack,
+
 			callHook: this.#callHook,
 			activate: this.#activate,
 		},
@@ -257,36 +257,43 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onIncrementProgressTrack(event, target) {
-		const index = target.closest('[data-index]').dataset.index;
-		const increment = target.dataset.increment;
-		this.updateProgressTrack(index, Number.parseInt(increment));
+	static async #onAddTrack(event, target) {
+		await ProgressDataModel.promptAddToDocument(this.actor, 'system.tracks', true);
 	}
 
 	/**
-	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onRevealProgressTrack(event, target) {
-		const index = target.closest('[data-index]').dataset.index;
-		this.revealProgressTrack(index);
+	static async #onRemoveTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		return ProgressDataModel.removeAtIndexForDocument(this.actor, 'system.tracks', index);
 	}
 
 	/**
-	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onRemoveProgressTrack(event, target) {
-		this.removeProgressTrack(Number(target.closest('[data-index]').dataset.index));
+	static async #onUpdateTrack(event, target) {
+		const { updateAmount, index } = target.dataset;
+		const increment = parseInt(updateAmount);
+		return ProgressDataModel.updateAtIndexForDocument(this.actor, 'system.tracks', Number.parseInt(index), increment);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onPromptTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		return ProgressDataModel.promptCheckAtIndexForDocument(this.actor, 'system.tracks', index);
 	}
 
 	/**
@@ -405,72 +412,6 @@ export class FUPartySheet extends FUActorSheet {
 				await ResourcePipeline.processLoss(request);
 			}
 			return this.render(true);
-		}
-	}
-
-	/**
-	 * @description Adds a new progress track
-	 */
-	static async promptAddProgressTrack() {
-		console.debug('Adding a progress track');
-
-		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: game.i18n.localize('FU.ClockAdd') },
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-party-clock.hbs'), {}),
-			rejectClose: false,
-			ok: {
-				label: game.i18n.localize('FU.Confirm'),
-			},
-		});
-
-		if (result) {
-			if (!result.name) {
-				return;
-			}
-			console.log('Creating progress track with name: ', result.name);
-
-			const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-
-			const newTrack = ProgressDataModel.construct(result.name, result.max);
-			tracks.push(newTrack);
-			this.actor.update({ ['system.tracks']: tracks });
-		}
-	}
-
-	/**
-	 * @description  increment button click events for progress tracks
-	 * @param {number} index The index of the progress track
-	 * @param {number} increment
-	 */
-	updateProgressTrack(index, increment) {
-		const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-		const track = tracks[index];
-		if (track) {
-			track.current = MathHelper.clamp(track.current + increment * track.step, 0, track.max);
-			this.actor.update({ ['system.tracks']: tracks });
-		} else {
-			ui.notifications.error(`Failed to update progress track`);
-		}
-	}
-
-	/**
-	 * @param {number} index
-	 */
-	removeProgressTrack(index) {
-		/** @type ProgressDataModel[] **/
-		const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-		tracks.splice(index, 1);
-		this.actor.update({ ['system.tracks']: tracks });
-	}
-
-	/**
-	 * @param {number} index
-	 */
-	revealProgressTrack(index) {
-		const tracks = this.actor.system.tracks;
-		const track = tracks[index];
-		if (track) {
-			ProgressDataModel.sendToChat(this.actor, track);
 		}
 	}
 

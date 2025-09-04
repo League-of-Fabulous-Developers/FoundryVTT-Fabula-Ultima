@@ -18,6 +18,13 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 */
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu'],
+		actions: {
+			// Progress tracks
+			addTrack: this.#onAddTrack,
+			removeTrack: this.#onRemoveTrack,
+			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
+			promptTrack: this.#onPromptTrack,
+		},
 	};
 
 	/** @inheritdoc */
@@ -179,5 +186,46 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		} else {
 			ui.notifications.info('FU.CombatTakeTurnOutOfTurn', { localize: true });
 		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onAddTrack(event, target) {
+		return this.viewed.addTrack();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onRemoveTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		return this.viewed.removeTrack(index);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onUpdateTrack(event, target) {
+		//const rightClick = event.which === 3 || event.button === 2;
+		const { updateAmount, index } = target.dataset;
+		const increment = parseInt(updateAmount);
+		return this.viewed.updateTrack(parseInt(index), increment);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onPromptTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		await this.viewed.promptTrack(index);
 	}
 }

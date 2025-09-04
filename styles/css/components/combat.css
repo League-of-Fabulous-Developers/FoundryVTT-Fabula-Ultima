@@ -35,6 +35,8 @@
 .projectfu #combat-tracker .faction {
 	padding: 0.25em;
 	font-size: 1.2em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 .projectfu #combat-tracker .friendly {
@@ -1431,7 +1433,7 @@
 
 /*default scaling (for 1440p resolution)*/
 .projectfu#combat-hud.pixel {
-/* this value is the multiplier for how many actual pixels are in each of your big crunchy pixels */
+	/* this value is the multiplier for how many actual pixels are in each of your big crunchy pixels */
 	--pixel-hud-scaling: 3px;
 	--pixel-hud-border-image: url(../../static/ui/combat-hud/pixel/pixel-border-3x.png);
 	--combat-info-effects-icon-size: 32px;
@@ -1446,14 +1448,15 @@
 	}
 }
 .projectfu#combat-hud.pixel {
-/* sizing for various elements you probably shouldn't change */
+	/* sizing for various elements you probably shouldn't change */
 	--pixel-hud-font-size: calc(var(--pixel-hud-scaling) * 16);
-/* changing -gradient-step will increase or decrease the spacing on the background gradient */
+	/* changing -gradient-step will increase or decrease the spacing on the background gradient */
 	--pixel-hud-gradient-step: calc(var(--pixel-hud-scaling) * 18);
-/* -background-color is the color of the brightest part of the gradient */
-    --pixel-hud-background-color: #68a894;
-/* if you want to add steps to -background-gradient go ahead but I never needed more than 8 */
-	--pixel-hud-background-gradient: linear-gradient(to bottom,
+	/* -background-color is the color of the brightest part of the gradient */
+	--pixel-hud-background-color: #68a894;
+	/* if you want to add steps to -background-gradient go ahead but I never needed more than 8 */
+	--pixel-hud-background-gradient: linear-gradient(
+		to bottom,
 		#00000000 calc(var(--pixel-hud-gradient-step) * 1),
 		#00000010 calc(var(--pixel-hud-gradient-step) * 1) calc(var(--pixel-hud-gradient-step) * 2),
 		#00000020 calc(var(--pixel-hud-gradient-step) * 2) calc(var(--pixel-hud-gradient-step) * 3),
@@ -1463,7 +1466,7 @@
 		#00000060 calc(var(--pixel-hud-gradient-step) * 6) calc(var(--pixel-hud-gradient-step) * 7),
 		#00000070 calc(var(--pixel-hud-gradient-step) * 7) calc(var(--pixel-hud-gradient-step) * 8)
 	);
-/* combat hud default variable overrides */
+	/* combat hud default variable overrides */
 	--hud-buttons-height: var(--pixel-hud-font-size);
 	--hud-buttons-width: var(--pixel-hud-font-size);
 }
@@ -1472,22 +1475,24 @@
 	display: none;
 }
 /* font settings */
-.projectfu#combat-hud.pixel .faction-list.characters .combat-row .combat-bars .bar-container .resource-value .resource-label, .projectfu#combat-hud.pixel .faction-list .combat-row .combat-info .combat-name, .projectfu#combat-hud.pixel .faction-list.compact .combat-row {
-	font: normal var(--pixel-hud-font-size)/.75 "ChronoType";
+.projectfu#combat-hud.pixel .faction-list.characters .combat-row .combat-bars .bar-container .resource-value .resource-label,
+.projectfu#combat-hud.pixel .faction-list .combat-row .combat-info .combat-name,
+.projectfu#combat-hud.pixel .faction-list.compact .combat-row {
+	font: normal var(--pixel-hud-font-size) / 0.75 'ChronoType';
 }
 .projectfu#combat-hud.pixel .faction-list.characters .combat-row .combat-bars .bar-container .resource-value .resource-text {
-	font: normal var(--pixel-hud-font-size)/.75 "Reactor7";
+	font: normal var(--pixel-hud-font-size) / 0.75 'Reactor7';
 }
 /* styling for the main box and sub-elements */
 .projectfu#combat-hud.pixel .faction-list {
 	height: 100%;
 	padding: calc(var(--pixel-hud-scaling) * 2);
 	gap: calc(var(--pixel-hud-scaling) * 3);
-	border: calc(var(--pixel-hud-scaling) * 4) solid rgba(0,0,0,0);
-    border-image: var(--pixel-hud-border-image) 25% stretch;
+	border: calc(var(--pixel-hud-scaling) * 4) solid rgba(0, 0, 0, 0);
+	border-image: var(--pixel-hud-border-image) 25% stretch;
 	border-radius: 0;
 	align-content: flex-start;
-    background-color: var(--pixel-hud-background-color);
+	background-color: var(--pixel-hud-background-color);
 	background-image: var(--pixel-hud-background-gradient);
 	background-repeat: no-repeat;
 	background-clip: padding-box;
@@ -1519,16 +1524,16 @@
 		left: calc(var(--pixel-hud-scaling) * -16);
 	}
 	to {
-		left: calc(var(--pixel-hud-scaling) * -14)
+		left: calc(var(--pixel-hud-scaling) * -14);
 	}
 }
 .projectfu#combat-hud.pixel .faction-list .combat-row.active-combatant::before {
-	content: "";
+	content: '';
 	position: absolute;
 	left: calc(var(--pixel-hud-scaling) * -16);
 	width: var(--pixel-hud-font-size);
 	height: var(--pixel-hud-font-size);
-	background-image: url("../../static/ui/combat-hud/pixel/glove-pointer.png");
+	background-image: url('../../static/ui/combat-hud/pixel/glove-pointer.png');
 	background-size: contain;
 	image-rendering: pixelated;
 	animation: 0.4s linear infinite alternate cursor-bounce;
@@ -1548,12 +1553,13 @@
 }
 .projectfu#combat-hud.pixel .faction-list .combat-row.ko {
 	color: #777777;
-	filter: grayscale(1.0);
+	filter: grayscale(1);
 }
 .projectfu#combat-hud.pixel .faction-list .combat-row.ko .combat-info .combat-name {
 	text-decoration: none;
 }
-.projectfu#combat-hud.pixel .faction-list .combat-row .combat-info .combat-effects, .projectfu#combat-hud.pixel .faction-list .combat-row .combat-info .combat-effects .marquee {
+.projectfu#combat-hud.pixel .faction-list .combat-row .combat-info .combat-effects,
+.projectfu#combat-hud.pixel .faction-list .combat-row .combat-info .combat-effects .marquee {
 	height: var(--pixel-hud-font-size);
 }
 .projectfu#combat-hud.pixel .faction-list .combat-row img.token-image {
@@ -1585,7 +1591,7 @@
 	background-image: none;
 	box-shadow: none;
 }
-.projectfu#combat-hud.pixel .faction-list.characters .combat-row .combat-bars .bar-container .bar-progress  .center-line {
+.projectfu#combat-hud.pixel .faction-list.characters .combat-row .combat-bars .bar-container .bar-progress .center-line {
 	width: var(--pixel-hud-scaling);
 	background-color: #d1232a;
 }
@@ -1635,7 +1641,7 @@
 }
 .projectfu#combat-hud.pixel .faction-list.compact .combat-row {
 	height: calc(var(--pixel-hud-font-size) * 0.75);
-	line-height: .75;
+	line-height: 0.75;
 	color: #f8f8f8;
 }
 .projectfu#combat-hud.pixel .faction-list.compact .combat-row img.token-image {
@@ -1679,18 +1685,18 @@
 	padding: 0;
 	background: none;
 	box-shadow: none;
-	opacity: .4;
+	opacity: 0.4;
 }
 .projectfu#combat-hud.pixel .window-button:hover {
 	opacity: 1;
 }
 .projectfu#combat-hud.pixel .window-button.window-button-top {
-	top: calc(var(--pixel-hud-scaling) * -17 );
+	top: calc(var(--pixel-hud-scaling) * -17);
 }
 .projectfu#combat-hud.pixel .window-button.window-button-bottom {
-	bottom: calc(var(--pixel-hud-scaling) * -17 );
+	bottom: calc(var(--pixel-hud-scaling) * -17);
 }
-.projectfu#combat-hud.pixel .window-button a{
+.projectfu#combat-hud.pixel .window-button a {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;

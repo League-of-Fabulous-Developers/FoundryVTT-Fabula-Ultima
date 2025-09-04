@@ -11,7 +11,7 @@ import { systemTemplatePath } from '../../helpers/system-utils.mjs';
  * @remarks Not the nicest way to do it, but...
  */
 export const ItemPartialTemplates = Object.freeze({
-	controls: { template: systemTemplatePath('item/partials/item-controls'), group: 'settings' },
+	standard: { template: systemTemplatePath('item/partials/item-standard'), group: 'settings' },
 	qualityCost: { template: systemTemplatePath('item/partials/item-quality-cost') },
 	accuracy: { template: systemTemplatePath('item/partials/item-accuracy-section'), group: 'grid' },
 	legacyAccuracy: { template: systemTemplatePath('item/partials/item-accuracy-section-legacy'), group: 'grid' },
@@ -35,6 +35,7 @@ export const ItemPartialTemplates = Object.freeze({
 	flawedField: { template: systemTemplatePath('item/partials/item-flawed-field'), group: 'settings' },
 	durationField: { template: systemTemplatePath('item/partials/item-duration-field') },
 	ipCostField: { template: systemTemplatePath('item/partials/item-ip-cost-field') },
+	attackTypeField: { template: systemTemplatePath('item/partials/item-attack-type-field') },
 
 	armor: { template: systemTemplatePath('item/partials/item-armor-attributes') },
 	accessory: { template: systemTemplatePath('item/partials/item-accessory-attributes') },

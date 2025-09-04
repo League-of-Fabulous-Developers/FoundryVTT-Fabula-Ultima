@@ -74,7 +74,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 			crisisHP: FUActorSheetV2.CrisisHP,
 			addBond: FUActorSheetV2.AddBond,
 			deleteBond: FUActorSheetV2.DeleteBond,
-			updateProgress: { handler: FUActorSheetV2.UpdateProgress, buttons: [0, 2] },
+			updateTrack: { handler: FUActorSheetV2.UpdateProgress, buttons: [0, 2] },
 			rest: FUActorSheetV2.handleRestClick,
 			sortFavorites: FUActorSheetV2.sortFavorites,
 			levelUp: FUActorSheetV2.levelUp,

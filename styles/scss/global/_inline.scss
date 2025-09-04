@@ -83,6 +83,13 @@ a.inline-roll {
 	}
 }
 
+.inline-group {
+	display: flex;
+	flex-direction: row;
+	gap: 0;
+	background: var(--background-critical);
+}
+
 .inline {
 	display: inline-flex;
 	gap: 0.025em;

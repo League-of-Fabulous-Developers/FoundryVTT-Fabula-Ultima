@@ -339,7 +339,6 @@ async function prepareSpells(context) {
  */
 function prepareClasses(context) {
 	const classes = [];
-	const skills = [];
 	const heroics = [];
 
 	// Iterate through items, allocating to containers
@@ -348,7 +347,25 @@ function prepareClasses(context) {
 			case 'class':
 				classes.push(item);
 				break;
+			case 'heroic':
+				heroics.push(item);
+				break;
+		}
+	}
 
+	prepareSkills(context);
+	context.classes = classes;
+	context.heroics = heroics;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareSkills(context) {
+	const skills = [];
+	// Iterate through items, allocating to containers
+	for (let item of context.items) {
+		switch (item.type) {
 			case 'skill':
 				{
 					const skillData = getSkillDisplayData(item);
@@ -366,16 +383,9 @@ function prepareClasses(context) {
 					item.skillArr = skillArr;
 				}
 				break;
-
-			case 'heroic':
-				heroics.push(item);
-				break;
 		}
 	}
-
-	context.classes = classes;
 	context.skills = skills;
-	context.heroics = heroics;
 }
 
 /**
@@ -1246,7 +1256,6 @@ function prepareSorting(context) {
 
 function onRenderFUActorSheet(sheet, element) {
 	// Automatically expand elements that are in the _expanded state
-	console.log(sheet._expanded);
 	if (sheet._expanded) {
 		sheet._expanded.forEach((itemId) => {
 			const expandedDescriptions = element.querySelectorAll(`li[data-item-id=${itemId}] .individual-description`);
@@ -1274,6 +1283,7 @@ export const ActorSheetUtils = Object.freeze({
 	prepareCharacterData,
 	activateDefaultListeners,
 	prepareClasses,
+	prepareSkills,
 	prepareNpcCombat,
 	prepareInventory,
 	prepareSpells,

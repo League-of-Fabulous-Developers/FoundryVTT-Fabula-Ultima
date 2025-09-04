@@ -94,7 +94,7 @@ export class ClassDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.classBenefits];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.classBenefits];
 	}
 
 	static migrateData(source) {

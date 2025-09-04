@@ -478,7 +478,7 @@
 
 .projectfu .tag {
 	align-items: center;
-	color: var(--pfu-color-app-control-content);
+	color: var(--color-text-primary);
 	background: var(--pfu-color-app-control-fill);
 	border-radius: 2px;
 	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
@@ -1083,6 +1083,23 @@
 	text-align: center;
 	width: auto;
 	border: 0.01em solid #148782;
+}
+
+/* Legend when fieldset or legend has .disabled */
+.projectfu .title-fieldset legend.untoggled {
+	background-color: var(--color-button-disabled-bg);
+	border-color: var(--color-text-disabled);
+}
+
+.projectfu .title-fieldset legend.toggled {
+	background: #3a6b5d;
+	color: #ffffff;
+	transition: background 0.2s;
+}
+
+.projectfu .title-fieldset div.untoggled {
+	opacity: 0.5;
+	pointer-events: none;
 }
 
 .projectfu .resource-content {
