@@ -97,8 +97,15 @@ async function enrichItems(context) {
  * @returns {Promise<void>}
  */
 async function enrichItemDescription(item) {
+	let description = item.system?.description ?? '';
+	try {
+		description = await TextEditor.enrichHTML(description);
+	} catch (err) {
+		ui.notifications.error(`Failed to enrich the text for item ${item.name}. Please check it.`, { localize: true });
+	}
+
 	item.enrichedHtml = {
-		description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+		description: description,
 	};
 }
 
@@ -1258,7 +1265,7 @@ function onRenderFUActorSheet(sheet, element) {
 	// Automatically expand elements that are in the _expanded state
 	if (sheet._expanded) {
 		sheet._expanded.forEach((itemId) => {
-			const expandedDescriptions = element.querySelectorAll(`li[data-item-id=${itemId}] .individual-description`);
+			const expandedDescriptions = element.querySelectorAll(`li[data-item-id="${itemId}"] .individual-description`);
 			console.log(itemId, expandedDescriptions);
 			expandedDescriptions.forEach((el) => {
 				el.classList.remove('hidden');

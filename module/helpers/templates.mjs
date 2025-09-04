@@ -49,7 +49,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-resource-points.hbs',
 		'systems/projectfu/templates/item/partials/item-action-cost.hbs',
 		'systems/projectfu/templates/item/partials/item-targeting.hbs',
-		'systems/projectfu/templates/item/partials/item-controls.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
 		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
 		'systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs',
