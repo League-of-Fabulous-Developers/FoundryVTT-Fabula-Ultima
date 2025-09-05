@@ -335,7 +335,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 
 	setSkillLevel(event, target) {
 		let newLevel = Number(target.closest('[data-level]').dataset.level) || 0;
-		if (event.type === 'contextmenu') {
+		if (event.type === 'contextmenu' || newLevel === this.level.value) {
 			newLevel = Math.max(newLevel - 1, 0);
 		}
 

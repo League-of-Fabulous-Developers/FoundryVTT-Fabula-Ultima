@@ -410,6 +410,9 @@ function renderSkillDetails() {
 		if (item.system.hasResource.value) {
 			resource = {
 				data: item.system.rp,
+				action: 'updateSkillResource',
+				increaseAttributes: { 'data-resource-action': 'increment' },
+				decreaseAttributes: { 'data-resource-action': 'decrement' },
 				layout: 'flat',
 			};
 		}
