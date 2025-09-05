@@ -67,7 +67,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} cost.value
  * @property {boolean} isMartial.value
@@ -124,5 +123,10 @@ export class ShieldDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.shield, ItemPartialTemplates.behaviorField];
+	}
+
+	equipShield(event, target) {
+		// TODO: find better solution, equipment data model maybe?
+		return this.parent.actor.equipmentHandler.handleItemClick(event, target);
 	}
 }

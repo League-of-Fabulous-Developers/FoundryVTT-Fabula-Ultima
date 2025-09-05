@@ -12,6 +12,7 @@ import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { OverridesDataModel } from '../common/overrides-data-model.mjs';
 import { FloralistDataModel } from './floralist-data-model.mjs';
+import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
@@ -143,6 +144,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	prepareDerivedData() {
 		this.tlTracker = new CharacterSkillTracker(this);
+		this.actor.equipmentHandler ??= new EquipmentHandler(this.actor);
 	}
 
 	prepareEmbeddedData() {

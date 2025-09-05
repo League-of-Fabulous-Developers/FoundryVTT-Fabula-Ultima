@@ -88,7 +88,6 @@ const POTENCIES = {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {ItemAttributesDataModelV2} attributes
  * @property {number} modifier
@@ -171,5 +170,32 @@ export class RitualDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
+	}
+
+	updateRitualProgress(event, target) {
+		if (target.closest('[data-progress-action]')) {
+			let amount = target.closest('[data-progress-action]').dataset.progressAction === 'decrease' ? -1 : 1;
+
+			if (event.type === 'contextmenu') {
+				amount = amount * this.progress.step;
+			}
+
+			const newValue = this.progress.current + amount;
+
+			return this.parent.update({
+				'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
+			});
+		}
+
+		if (target.closest('[data-segment]')) {
+			let newValue = target.closest('[data-segment]').dataset.segment;
+			if (event.type === 'contextmenu') {
+				newValue = newValue - 1;
+			}
+
+			return this.parent.update({
+				'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
+			});
+		}
 	}
 }

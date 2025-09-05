@@ -6,23 +6,7 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof AccessoryDataModel) {
-		CommonSections.tags(sections, [
-			{
-				tag: 'FU.DefenseAbbr',
-				value: item.system.def.value,
-				show: item.system.def.value,
-			},
-			{
-				tag: 'FU.MagicDefenseAbbr',
-				value: item.system.mdef.value,
-				show: item.system.mdef.value,
-			},
-			{
-				tag: 'FU.InitiativeAbbr',
-				value: item.system.init.value,
-				show: item.system.init.value,
-			},
-		]);
+		CommonSections.tags(sections, item.system.getTags());
 
 		CommonSections.quality(sections, item.system.quality.value);
 		CommonSections.description(sections, item.system.description, item.system.summary.value);
@@ -33,7 +17,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} cost.value
  * @property {string} quality.value
@@ -67,5 +50,26 @@ export class AccessoryDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.initiativeField, ItemPartialTemplates.qualityCost, ItemPartialTemplates.accessory];
+	}
+
+	getTags() {
+		return [
+			{ key: 'def.value', translation: 'FU.DefenseAbbr' },
+			{ key: 'mdef.value', translation: 'FU.MagicDefenseAbbr' },
+			{ key: 'init.value', translation: 'FU.InitiativeAbbr' },
+		]
+			.filter(({ key }) => foundry.utils.getProperty(this, key) !== 0)
+			.map(({ key, translation }) => {
+				const value = foundry.utils.getProperty(this, key);
+				return {
+					tag: translation,
+					value: value > 0 ? `+ ${value}` : `- ${Math.abs(value)}`,
+				};
+			});
+	}
+
+	equipAccessory(event, target) {
+		// TODO: find better solution, equipment data model maybe?
+		return this.parent.actor.equipmentHandler.handleItemClick(event, target);
 	}
 }

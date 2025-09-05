@@ -1,0 +1,48 @@
+{{#with data}}
+	<div class="cell-clock">
+		{{#if name}}
+			<div class="cell-clock__label">{{ name }}</div>
+		{{/if}}
+		<div class="cell-clock__tracker">
+			<a class="cell-clock__button"
+			   data-action="{{#if ../action}}{{../action}}{{else}}updateClock{{/if}}"
+			{{#with ../fillAttributes~}}
+				{{#each this~}}
+					{{@key}}="{{this}}"
+				{{~/each}}
+			{{else}}
+				data-clock-action="fill"
+			{{~/with}}
+			data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{step}})">
+			<i class="fas fa-plus"></i>
+			</a>
+
+			<div class="cell-clock__clock-container">
+				<div class="cell-clock__clock" style="--segments: {{max}}; --size: {{#if ../clockSize}}{{../clockSize}}px{{else if name}}30px{{else}}50px{{/if}};"
+					 data-segments="{{max}}"
+					 data-tooltip="{{localize 'FU.Progress'}}">
+					<div class="cell-clock__clock-foreground"></div>
+					{{#each clockSegments}}
+						<a class="cell-clock__clock-segment {{#if filled}} cell-clock__clock-segment--filled {{/if}}"
+						   data-action="{{#if ../action}}{{../action}}{{else}}updateClock{{/if}}" data-segment="{{segment}}"
+						   style="--index: {{segment}}"></a>
+						<div class="cell-clock__clock-divider" style="--index: {{segment}}"></div>
+					{{/each}}
+				</div>
+			</div>
+
+			<a class="cell-clock__button"
+			   data-action="{{#if ../action}}{{../action}}{{else}}updateClock{{/if}}"
+			{{#with ../eraseAttributes~}}
+				{{#each this~}}
+					{{@key}}="{{this}}"
+				{{~/each}}
+			{{else}}
+				data-clock-action="erase"
+			{{~/with}}
+			data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{step}})">
+			<i class="fas fa-minus"></i>
+			</a>
+		</div>
+	</div>
+{{/with}}

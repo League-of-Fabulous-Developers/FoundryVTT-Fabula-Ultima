@@ -91,15 +91,6 @@ export class FUActor extends Actor {
 		this.items.forEach((item) => item.applyActiveEffects());
 	}
 
-	/**
-	 * @override
-	 */
-	toObject() {
-		const result = super.toObject();
-		result.uuid = this.uuid;
-		return result;
-	}
-
 	get tlTracker() {
 		return this.system.tlTracker;
 	}

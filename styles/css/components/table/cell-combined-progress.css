@@ -1,0 +1,9 @@
+.cell-combined-progress {
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+
+	.cell-combined-progress__container {
+		flex: 0 0 fit-content;
+	}
+}

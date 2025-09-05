@@ -1501,6 +1501,7 @@
 		"CostPerTarget": "Cost per Target",
 		"CombatHudResetPosition": "Reset HUD Position",
 		"CombatHudResetPositionHint": "Will reset the position of the combat HUD back to default.",
+		"CostPerTargetAbbreviation": "x T",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

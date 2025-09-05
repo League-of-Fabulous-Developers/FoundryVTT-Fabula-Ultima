@@ -1,0 +1,54 @@
+<div class="cell-item-controls">
+	{{#unless disableFavorite}}
+		<a class="cell-item-controls__control {{#if isFavorite~}} cell-item-controls__control--active {{~/if}}"
+		   data-tooltip="{{#if isFavorite~}}
+			   {{ localize 'FU.FavoriteRemove' }}
+			   {{~else~}}
+			   {{ localize 'FU.Favorite' }}
+		   {{~/if}}"
+		   aria-describedby="tooltip"
+		   data-action="toggleFavorite">
+			<i class="{{#if isFavorite}}fas{{else}}far{{/if}} fa-star"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableShare}}
+		<a class="cell-item-controls__control"
+		   data-tooltip="{{ localize 'FU.Share' }}"
+		   aria-describedby="tooltip"
+		   data-action="shareItem">
+			<i class="fa fa-share"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableSell}}
+		<a class="cell-item-controls__control"
+		   data-tooltip="{{ localize 'FU.Sell' }}"
+		   aria-describedby="tooltip"
+		   data-action="sellItem">
+			<i class="fa fa-balance-scale"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableLoot}}
+		<a class="cell-item-controls__control"
+		   data-tooltip="{{ localize 'FU.Loot' }}<br>{{ localize 'FU.LootDelete' }}"
+		   aria-describedby="tooltip"
+		   data-action="lootItem">
+			<i class="fa fa-hand button-style"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableEdit}}
+		<a class="cell-item-controls__control"
+		   data-action="editItem"
+		   data-tooltip="{{ localize 'FU.Edit' }}"
+		   aria-describedby="tooltip">
+			<i class="fas fa-edit"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableMenu}}
+		<a class="cell-item-controls__control"
+		   data-context-menu="item"
+		   data-tooltip="{{ localize 'FU.Settings' }}"
+		   aria-describedby="tooltip">
+			<i class="fas fa-bars"></i>
+		</a>
+	{{/unless}}
+</div>

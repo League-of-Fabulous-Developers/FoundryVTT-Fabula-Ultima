@@ -15,6 +15,7 @@ import { Flags } from '../../../helpers/flags.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -27,20 +28,8 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 function onRenderCheck(data, result, actor, item, flags) {
 	if (item && item.system instanceof SpellDataModel) {
 		// TODO: Replace with CommonSections.tags
-		data.push(async () => ({
-			order: CHECK_DETAILS,
-			partial: 'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
-			data: {
-				spell: {
-					duration: item.system.duration.value,
-					target: item.system.targeting.rule,
-					max: item.system.targeting.max,
-					mpCost: item.system.cost.amount,
-					opportunity: item.system.opportunity,
-				},
-			},
-		}));
-
+		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
+		CommonSections.opportunity(data, item.system.opportunity, CHECK_DETAILS);
 		CommonSections.traits(data, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
@@ -62,7 +51,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {string} class.value
  * @property {UseWeaponDataModel} useWeapon
@@ -74,7 +62,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {number} weight.value
  * @property {string} mpCost.value
  * @property {string} target.value
- * @property {string} duration.value
+ * @property {"instantaneous", "scene", "special"} duration.value
  * @property {boolean} isOffensive.value
  * @property {string} opportunity
  * @property {string} source.value
@@ -100,7 +88,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			duration: new SchemaField({ value: new StringField() }),
+			duration: new SchemaField({ value: new StringField({ initial: 'instantaneous', choices: Object.keys(FU.duration) }) }),
 			isOffensive: new SchemaField({ value: new BooleanField() }),
 			opportunity: new StringField(),
 			rollInfo: new SchemaField({
@@ -192,6 +180,24 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.legacyAccuracy,
 			ItemPartialTemplates.legacyDamage,
 			ItemPartialTemplates.behaviorField,
+		];
+	}
+
+	/**
+	 * @return {Tag[]}
+	 */
+	getTags() {
+		return [
+			{
+				tag: FU.duration[this.duration.value],
+			},
+			{
+				tag: this.targeting.getTargetTranslationKey(),
+			},
+			{
+				tag: `${this.cost.amount} ${game.i18n.localize(FU.resourcesAbbr[this.cost.resource])}`,
+				value: this.cost.perTarget ? game.i18n.localize('FU.CostPerTargetAbbreviation') : '',
+			},
 		];
 	}
 }

@@ -1,0 +1,12 @@
+<div class="cell-combined-progress">
+	{{#with resource}}
+		<div class="cell-combined-progress__container">
+			{{> "systems/projectfu/templates/table/cell/cell-resource.hbs" data=data}}
+		</div>
+	{{/with}}
+	{{#with clock}}
+		<div class="cell-combined-progress__container">
+			{{> "systems/projectfu/templates/table/cell/cell-clock.hbs" data=data}}
+		</div>
+	{{/with}}
+</div>

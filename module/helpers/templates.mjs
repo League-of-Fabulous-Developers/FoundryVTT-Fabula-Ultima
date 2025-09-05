@@ -6,11 +6,7 @@
 export const preloadHandlebarsTemplates = async function () {
 	return foundry.applications.handlebars.loadTemplates([
 		// Actor Section partials.
-		'systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-inventory.hbs',
-		'systems/projectfu/templates/actor/sections/actor-spell-list.hbs',
-		'systems/projectfu/templates/actor/sections/actor-attack-list.hbs',
 
 		// Actor Component partials.
 		'systems/projectfu/templates/actor/partials/actor-charname.hbs',
@@ -19,7 +15,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-creatures.hbs',
 		'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
 		'systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs',
-		'systems/projectfu/templates/actor/partials/actor-study.hbs',
 		'systems/projectfu/templates/actor/partials/actor-affinities.hbs',
 		'systems/projectfu/templates/actor/partials/actor-attributes.hbs',
 		'systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs',
@@ -28,19 +23,14 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-traits.hbs',
 		'systems/projectfu/templates/actor/partials/actor-derived-stats.hbs',
 
-		'systems/projectfu/templates/actor/partials/actor-item-name.hbs',
-		'systems/projectfu/templates/actor/partials/actor-item-description.hbs',
 		'systems/projectfu/templates/actor/partials/actor-actions.hbs',
 		'systems/projectfu/templates/actor/partials/actor-vehicle.hbs',
 		'systems/projectfu/templates/actor/partials/actor-garden.hbs',
 		'systems/projectfu/templates/actor/partials/actor-clocks.hbs',
-		'systems/projectfu/templates/actor/partials/actor-npc-items.hbs',
 		'systems/projectfu/templates/actor/partials/actor-npc-skills.hbs',
 		'systems/projectfu/templates/actor/partials/actor-favorite.hbs',
 		'systems/projectfu/templates/actor/partials/actor-bonds.hbs',
 
-		'systems/projectfu/templates/actor/partials/actor-equip.hbs',
-		'systems/projectfu/templates/actor/partials/actor-control.hbs',
 		'systems/projectfu/templates/actor/partials/actor-progress-clock.hbs',
 		'systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs',
 
@@ -237,5 +227,10 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/common/progress/progress-basic.hbs',
 		'systems/projectfu/templates/common/progress/progress-bar.hbs',
 		'systems/projectfu/templates/common/progress/partials/progress-controls.hbs',
+
+		// Table
+		'systems/projectfu/templates/table/cell/cell-resource.hbs',
+		'systems/projectfu/templates/table/cell/cell-progress-bar.hbs',
+		'systems/projectfu/templates/table/cell/cell-clock.hbs',
 	]);
 };

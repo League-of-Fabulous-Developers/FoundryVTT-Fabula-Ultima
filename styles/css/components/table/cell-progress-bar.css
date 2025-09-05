@@ -1,0 +1,28 @@
+.cell-progress-bar {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.cell-progress-bar__track {
+		height: 20px;
+		border: 1px solid var(--color-inset);
+		background-color: #656565;
+		box-shadow: 0.125em 0.125em 0 0.0625em rgba(0, 0, 0, 0.5) inset;
+		position: relative;
+	}
+
+	.cell-progress-bar__bar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+
+		box-shadow: 0.125em 0.125em 0 0.0625em rgba(0, 0, 0, 0.5) inset;
+
+		background-color: #d68931;
+		background-image: linear-gradient(90deg, #d68931, rgba(255, 255, 255, 0.5));
+		transition: width 500ms ease-in-out;
+		width: calc(100% * (var(--current-progress) / var(--max-progress)));
+	}
+}

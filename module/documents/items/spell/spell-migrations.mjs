@@ -44,7 +44,7 @@ function migrateCostAndTargets(source) {
 
 function migratePerTargetCost(source) {
 	if (source.cost && source.targeting) {
-		if (source.targeting.rule === Targeting.rule.multiple) {
+		if (source.cost.perTarget == null && source.targeting.rule === Targeting.rule.multiple) {
 			source.cost.perTarget = true;
 		}
 	}

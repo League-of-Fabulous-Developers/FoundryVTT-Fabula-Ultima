@@ -1,0 +1,41 @@
+.cell-text {
+	color: var(--color-primary);
+	height: 100%;
+	width: 100%;
+
+	display: inline-block;
+	vertical-align: sub;
+
+	&.cell-text--start {
+		text-align: start;
+	}
+
+	&.cell-text--center {
+		text-align: center;
+	}
+
+	&.cell-text--end {
+		text-align: end;
+	}
+
+	&.cell-text--importance-low {
+		font-weight: calc(var(--font-weight-normal) - 100);
+		font-size: 90%;
+	}
+
+	&.cell-text--importance-normal {
+		font-weight: var(--font-weight-normal);
+		font-size: 100%;
+	}
+
+	&.cell-text--importance-high {
+		font-weight: var(--font-weight-bold);
+		font-size: 110%;
+	}
+
+	&.cell-text--no-overflow {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

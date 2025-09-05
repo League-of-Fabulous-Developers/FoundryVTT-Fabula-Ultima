@@ -29,6 +29,26 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 
 	/**
 	 * @param {FUItem} item
+	 * @return {null,"mainHand","offHand","phantom","armor","accessory","arcanum"}
+	 */
+	getEquippedSlot(item) {
+		const equippedSlots = Object.entries(this)
+			.filter(([, id]) => item.id === id)
+			.map(([slot]) => slot);
+		if (equippedSlots.length === 0) {
+			return null;
+		}
+		if (equippedSlots.length === 1) {
+			return equippedSlots[0];
+		}
+		if (equippedSlots.includes('mainHand') && equippedSlots.includes('offHand')) {
+			return 'bothHands';
+		}
+		return equippedSlots[0];
+	}
+
+	/**
+	 * @param {FUItem} item
 	 * @returns {string}
 	 */
 	getClass(item) {

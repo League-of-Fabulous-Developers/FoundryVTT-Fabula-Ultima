@@ -15,13 +15,13 @@
 
 <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.Favorite'}}">
     <span>
-		{{#if item.system.isFavored.value}}
+		{{#if item.isFavorite}}
 			<i class="fas fa-star"></i>
 		{{else}}
 			<i class="far fa-star"></i>
 		{{/if}}
 	</span>
-	<input type="checkbox" name="system.isFavored.value" {{ checked system.isFavored.value }} />
+	<input type="checkbox" name="flags.projectfu.favorite" {{ checked item.isFavorite }} />
 </label>
 
 <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.TitleCardInfo'}}">

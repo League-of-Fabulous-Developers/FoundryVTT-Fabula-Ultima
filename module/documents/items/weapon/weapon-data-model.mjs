@@ -69,7 +69,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} cost.value
  * @property {boolean} isMartial.value
@@ -155,5 +154,10 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.behaviorField,
 			ItemPartialTemplates.attackTypeField,
 		];
+	}
+
+	equipWeapon(event, target) {
+		// TODO: find better solution, equipment data model maybe?
+		return this.parent.actor.equipmentHandler.handleItemClick(event, target);
 	}
 }

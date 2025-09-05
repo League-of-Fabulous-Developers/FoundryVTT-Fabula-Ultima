@@ -1,0 +1,29 @@
+.cell-class-level {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+
+	font-weight: var(--font-weight-bold);
+	font-size: 110%;
+
+	background: var(--color-transparent-gradient);
+	border-radius: 10px;
+	border: 1px solid var(--color-border-secondary);
+	padding: 3px;
+
+	> * {
+		flex: 0 0 auto;
+	}
+
+	.cell-class-level__button {
+		width: 20px;
+		height: 20px;
+		text-align: center;
+
+		&:hover {
+			border-radius: 30%;
+			background: var(--color-button-hover-bg);
+		}
+	}
+}

@@ -66,6 +66,15 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		return ProgressDataModel.generateProgressArray(this);
 	}
 
+	get clockSegments() {
+		return Array(this.max)
+			.fill(null)
+			.map((_, i) => ({
+				segment: i + 1,
+				filled: this.current > i,
+			}));
+	}
+
 	/**
 	 * @param {String} name
 	 * @param {Number} max

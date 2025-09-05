@@ -1,5 +1,3 @@
-import { HTMLUtils } from './html-utils.mjs';
-
 export class EquipmentHandler {
 	constructor(actor) {
 		this.actor = actor;
@@ -14,11 +12,11 @@ export class EquipmentHandler {
 	 */
 	async handleItemClick(ev, target) {
 		ev.preventDefault();
-		const li = HTMLUtils.findWithDataset(target);
+		const li = target.closest('[data-item-id]');
 
 		if (!li) return;
 
-		const itemId = li.dataset.id;
+		const itemId = li.dataset.itemId;
 		const item = this.actor.items.get(itemId);
 
 		if (!item) return;
@@ -88,6 +86,12 @@ export class EquipmentHandler {
 
 	handleShield(item, equippedData, event) {
 		const dualShieldActive = this.actor.getSingleItemByFuid('dual-shieldbearer');
+
+		if (equippedData.mainHand === equippedData.offHand && equippedData.mainHand !== item.id) {
+			// two-handed weapon equipped, can't be equipped at the same time as a shield
+			equippedData.mainHand = null;
+			equippedData.offHand = null;
+		}
 
 		const unequipped = [];
 		if (equippedData.mainHand === item.id) {

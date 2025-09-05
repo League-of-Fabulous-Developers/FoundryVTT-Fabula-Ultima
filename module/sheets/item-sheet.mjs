@@ -4,6 +4,7 @@ import { FU, systemPath } from '../helpers/config.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import * as CONFIG from '../helpers/config.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -62,6 +63,10 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		effects: { template: systemPath(`templates/item/parts/item-effects.hbs`) },
 	};
 
+	#temporaryEffectsTable = new ActiveEffectsTableRenderer('temporary');
+	#passiveEffectsTable = new ActiveEffectsTableRenderer('passive');
+	#inactiveEffectsTable = new ActiveEffectsTableRenderer('inactive');
+
 	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
 		const context = await super._preparePartContext(partId, ctx, options);
@@ -89,25 +94,9 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				break;
 
 			case 'effects':
-				{
-					// Prepare active effects for easier access
-					context.effects = prepareActiveEffectCategories(this.item.effects);
-
-					// Combine all effects into a single array
-					context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
-
-					// Enrich each effect's description
-					const actor = this.object?.parent ?? null;
-					for (const effect of context.allEffects) {
-						effect.enrichedDescription = effect.description
-							? await TextEditor.enrichHTML(effect.description, {
-									secrets: actor?.isOwner ?? false,
-									rollData: actor ? actor.getRollData() : {},
-									relativeTo: actor,
-								})
-							: '';
-					}
-				}
+				context.temporaryEffectsTable = await this.#temporaryEffectsTable.renderTable(this.document);
+				context.passiveEffectsTable = await this.#passiveEffectsTable.renderTable(this.document);
+				context.inactiveEffectsTable = await this.#inactiveEffectsTable.renderTable(this.document);
 				break;
 		}
 		return context;
@@ -135,6 +124,13 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		context.effects = prepareActiveEffectCategories(this.item.effects);
 
 		return context;
+	}
+
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		this.#temporaryEffectsTable.activateListeners(this);
+		this.#passiveEffectsTable.activateListeners(this);
+		this.#inactiveEffectsTable.activateListeners(this);
 	}
 
 	/**
@@ -247,6 +243,37 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				drop: this._onDrop.bind(this),
 			},
 		}).bind(this.element);
+	}
+
+	/**
+	 * @override
+	 */
+	_onClickAction(event, target) {
+		if (this.#dispatchClickActionToItem(event, target)) {
+			event.stopPropagation();
+			event.preventDefault();
+			return;
+		}
+
+		console.warn('Unhandled action:', target.dataset.action, event, target);
+	}
+
+	#dispatchClickActionToItem(event, target) {
+		let success = false;
+
+		const system = this.item.system;
+
+		if (system[target.dataset.action] instanceof Function) {
+			system[target.dataset.action](event, target);
+			success = true;
+		} else if (['classFeature', 'optionalFeature'].includes(this.item.type)) {
+			if (system.data[target.dataset.action] instanceof Function) {
+				system.data[target.dataset.action](event, target);
+				success = true;
+			}
+		}
+
+		return success;
 	}
 
 	/**

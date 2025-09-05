@@ -1,0 +1,11 @@
+.header-item-controls {
+	height: 100%;
+
+	display: flex;
+	justify-content: end;
+	align-items: center;
+
+	> * {
+		flex: 0 0 auto;
+	}
+}

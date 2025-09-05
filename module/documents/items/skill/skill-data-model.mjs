@@ -122,7 +122,6 @@ function getTags(skill) {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} level.value
  * @property {number} level.min
@@ -332,5 +331,29 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.targeting,
 			ItemPartialTemplates.resourcePoints,
 		];
+	}
+
+	setSkillLevel(event, target) {
+		let newLevel = Number(target.closest('[data-level]').dataset.level) || 0;
+		if (event.type === 'contextmenu') {
+			newLevel = Math.max(newLevel - 1, 0);
+		}
+
+		this.parent.update({
+			'system.level.value': newLevel,
+		});
+	}
+
+	updateSkillResource(event, target) {
+		let change = target.dataset.resourceAction === 'decrement' ? -1 : 1;
+		if (event.type === 'contextmenu') {
+			change *= this.rp.step;
+		}
+
+		const newValue = Math.clamp(this.rp.current + change, 0, this.rp.max || Number.MAX_SAFE_INTEGER);
+
+		this.parent.update({
+			'system.rp.current': newValue,
+		});
 	}
 }

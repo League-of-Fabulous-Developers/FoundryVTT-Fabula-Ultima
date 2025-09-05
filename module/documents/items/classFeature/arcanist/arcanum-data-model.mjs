@@ -77,4 +77,13 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 	transferEffects() {
 		return this.item?.isEquipped ?? false;
 	}
+
+	toggleActiveArcanum(event, target) {
+		const currentArcanumId = this.actor.system.equipped.arcanum;
+		// Toggle arcanum slot
+		const newArcanumId = currentArcanumId === this.item.id ? null : this.item.id;
+		this.actor.update({
+			'system.equipped.arcanum': newArcanumId,
+		});
+	}
 }

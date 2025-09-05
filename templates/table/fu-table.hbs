@@ -1,0 +1,31 @@
+<ol class="fu-table {{presets.tableClass}} {{cssClass}}" data-table-id="{{tableId}}">
+	<li class="fu-table__header">
+		{{#each columns}}
+			{{#unless hideHeader}}
+				<div class="fu-table__header-cell {{#if headerAlignment}} fu-table__header-cell--{{headerAlignment}} {{/if}}" data-column="{{@key}}" style="--fu-table-column-span: {{headerSpan}}">
+					{{{header}}}
+				</div>
+			{{/unless}}
+		{{/each}}
+	</li>
+	{{#each items as |item|}}
+		<li class="fu-table__row-container {{@root.presets.rowClass}} {{#if @root.presets.draggable}}draggable{{/if}}" {{@root.presets.dataTypeId}}="{{ id }}" data-uuid="{{ uuid }}">
+			<div class="fu-table__row">
+				{{#each ../columns}}
+					<div class="fu-table__cell" data-column="{{@key}}">
+						{{{lookup cells item.uuid}}}
+					</div>
+				{{/each}}
+			</div>
+			{{#with (lookup @root.rowCaptions item.uuid)}}
+				<div class="fu-table__row-caption">
+					{{{this}}}
+				</div>
+			{{/with}}
+
+			<div class="fu-table__row-expand {{#if (lookup @root.expandedItems item.uuid)}}fu-table__row-expand--visible{{/if}}">
+				<div class="fu-table__row-expand-content">{{{lookup @root.descriptions uuid}}}</div>
+			</div>
+		</li>
+	{{/each}}
+</ol>

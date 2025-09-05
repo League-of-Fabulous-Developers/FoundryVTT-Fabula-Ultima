@@ -1,0 +1,10 @@
+<div class="cell-equip-status">
+	<a data-action="{{action}}"
+	   data-tooltip="{{#if slot}}{{localize unequipTooltip}}{{else}}{{localize equipTooltip}}{{/if}}">
+		{{#with (lookup icons slot) as |icon|}}
+			<i class="{{icon}}"></i>
+		{{else}}
+			<i class="far fa-circle ra-1xh"></i>
+		{{/with}}
+	</a>
+</div>

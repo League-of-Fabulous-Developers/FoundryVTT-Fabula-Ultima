@@ -10,6 +10,7 @@ export const Flags = Object.freeze({
 	CombatantId: 'CombatantId',
 	CurrentTurn: 'CurrentTurn',
 	FirstTurn: 'FirstTurn',
+	Favorite: 'favorite',
 	ActiveEffect: Object.freeze({
 		Source: 'Source',
 	}),

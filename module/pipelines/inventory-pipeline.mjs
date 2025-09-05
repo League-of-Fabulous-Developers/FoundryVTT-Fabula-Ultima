@@ -81,10 +81,14 @@ async function distributeZenit(actor, targets) {
 		return;
 	}
 	if (!targets) {
-		// Resolve using the party characters
-		const party = await FUPartySheet.getActiveModel();
-		if (party) {
-			targets = await party.getCharacterActors();
+		if (actor.type === 'party') {
+			targets = await actor.system.getCharacterActors();
+		} else {
+			// Resolve using the party characters
+			const party = await FUPartySheet.getActiveModel();
+			if (party) {
+				targets = await party.getCharacterActors();
+			}
 		}
 		if (!targets) {
 			console.warn(`Could not find any characters or party`);

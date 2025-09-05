@@ -1,7 +1,8 @@
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { FU } from '../helpers/config.mjs';
-import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
 import FUApplication from './application.mjs';
+import { NpcProfileBasicAttacksTableRenderer } from '../helpers/tables/npc-profile-basic-attacks-table-renderer.mjs';
+import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spells-table-renderer.mjs';
 
 /**
  * @typedef NpcProfileRevealData
@@ -66,6 +67,9 @@ export class NpcProfileWindow extends FUApplication {
 			template: 'systems/projectfu/templates/ui/study/npc-profile.hbs',
 		},
 	};
+
+	#basicAttacksTable = new NpcProfileBasicAttacksTableRenderer();
+	#spellsTable = new NpcProfileSpellsTableRenderer();
 
 	/** @override */
 	async _prepareContext(options) {
@@ -132,20 +136,15 @@ export class NpcProfileWindow extends FUApplication {
 
 		// Ensure expanded state is initialized
 		context._expandedIds = Array.from(this._expanded);
-		await ActorSheetUtils.prepareNpcCombat(context);
-		await ActorSheetUtils.prepareAbilities(context);
-		await ActorSheetUtils.prepareSkills(context);
-		await ActorSheetUtils.prepareSpells(context);
+		context.basicAttacksTable = await this.#basicAttacksTable.renderTable(actor);
+		context.spellsTable = await this.#spellsTable.renderTable(actor);
 		return context;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @override
-	 */
-	_attachFrameListeners() {
-		super._attachFrameListeners();
-		ActorSheetUtils.activateExpandedItemListener(this.element, this._expanded);
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		this.#basicAttacksTable.activateListeners(this);
+		this.#spellsTable.activateListeners(this);
 	}
 
 	static async #revealActor() {

@@ -160,7 +160,7 @@ export const FUHandlebars = Object.freeze({
 
 		Handlebars.registerHelper('inArray', function (item, array, options) {
 			if (Array.isArray(array) && array.includes(item)) {
-				return options.fn(this);
+				return options.fn ? options.fn(this) : true;
 			} else {
 				return options.inverse ? options.inverse(this) : '';
 			}

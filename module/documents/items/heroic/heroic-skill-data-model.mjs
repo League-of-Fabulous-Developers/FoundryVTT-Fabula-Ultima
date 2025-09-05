@@ -40,7 +40,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {string} class.value
  * @property {string} requirement.value
@@ -81,5 +80,18 @@ export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill, ItemPartialTemplates.resourcePoints];
+	}
+
+	updateHeroicResource(event, target) {
+		let change = target.dataset.resourceAction === 'decrement' ? -1 : 1;
+		if (event.type === 'contextmenu') {
+			change *= this.rp.step;
+		}
+
+		const newValue = Math.clamp(this.rp.current + change, 0, this.rp.max || Number.MAX_SAFE_INTEGER);
+
+		this.parent.update({
+			'system.rp.current': newValue,
+		});
 	}
 }

@@ -9,29 +9,7 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ProjectDataModel) {
-		CommonSections.tags(sections, [
-			{
-				tag: game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency),
-				value: item.system.cost.value - item.system.discount.value,
-				flip: true,
-				tooltip: item.system.discount.value && `${item.system.cost.value} - ${item.system.discount.value} = ${item.system.cost.value - item.system.discount.value}`,
-			},
-			{
-				tag: 'FU.Progress',
-				value: `${item.system.progress.current} / ${item.system.progress.max}`,
-				flip: true,
-			},
-			{
-				tag: 'FU.Days',
-				value: item.system.days.value,
-				flip: true,
-			},
-			{
-				tag: 'FU.ProgressPerDay',
-				value: item.system.progressPerDay.value,
-				flip: true,
-			},
-		]);
+		CommonSections.tags(sections, item.system.getTags());
 
 		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
@@ -45,7 +23,6 @@ const usesCosts = { consumable: 1, permanent: 5 };
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {boolean} hasClock.value
  * @property {ProgressDataModel} progress
@@ -138,5 +115,43 @@ export class ProjectDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.flawedField, ItemPartialTemplates.project];
+	}
+
+	getTags() {
+		return [
+			{
+				tag: game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency),
+				value: this.cost.value - this.discount.value,
+				flip: true,
+				tooltip: this.discount.value && `${this.cost.value} - ${this.discount.value} = ${this.cost.value - this.discount.value}`,
+			},
+			{
+				tag: 'FU.Progress',
+				value: `${this.progress.current} / ${this.progress.max}`,
+				flip: true,
+			},
+			{
+				tag: 'FU.Days',
+				value: this.days.value,
+				flip: true,
+			},
+			{
+				tag: 'FU.ProgressPerDay',
+				value: this.progressPerDay.value,
+				flip: true,
+			},
+		];
+	}
+
+	updateProgress(event, target) {
+		let amount = target.closest('[data-progress-action]')?.dataset?.progressAction === 'decrease' ? -1 : 1;
+
+		amount = amount * this.progressPerDay.value;
+
+		const newValue = this.progress.current + amount;
+
+		return this.parent.update({
+			'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
+		});
 	}
 }

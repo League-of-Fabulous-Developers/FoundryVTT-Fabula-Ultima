@@ -18,7 +18,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
@@ -39,5 +38,32 @@ export class RuleDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.progressField];
+	}
+
+	updateClock(event, target) {
+		if (target.closest('[data-clock-action]')) {
+			let amount = target.closest('[data-clock-action]').dataset.clockAction === 'erase' ? -1 : 1;
+
+			if (event.type === 'contextmenu') {
+				amount *= this.progress.step;
+			}
+
+			const newValue = this.progress.current + amount;
+
+			return this.parent.update({
+				'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
+			});
+		}
+
+		if (target.closest('[data-segment]')) {
+			let newValue = target.closest('[data-segment]').dataset.segment;
+			if (event.type === 'contextmenu') {
+				newValue = newValue - 1;
+			}
+
+			return this.parent.update({
+				'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
+			});
+		}
 	}
 }
