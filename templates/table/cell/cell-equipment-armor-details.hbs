@@ -1,0 +1,49 @@
+<div class="cell-equipment-armor-details">
+	<div class="cell-equipment-armor-details__defense">
+		{{#with defense}}
+			<span>{{localize "FU.DefenseAbbr"}}:</span>
+			<span class="cell-equipment-armor-details__value">
+				{{#if attribute}}
+					{{localize (lookup @root.FU.attributeAbbreviations attribute)}}
+					{{#if value}}
+						{{signum}}
+						{{value}}
+					{{/if}}
+				{{else}}
+					{{value}}
+				{{/if}}
+			</span>
+		{{/with}}
+	</div>
+	<div class="cell-equipment-armor-details__divider"></div>
+	<div class="cell-equipment-armor-details__magic-defense">
+		{{#with magicDefense}}
+			<span>{{localize "FU.MagicDefenseAbbr"}}:</span>
+			<span class="cell-equipment-armor-details__value">
+				{{#if attribute}}
+					{{localize (lookup @root.FU.attributeAbbreviations attribute)}}
+					{{#if value}}
+						{{signum}}
+						{{value}}
+					{{/if}}
+				{{else}}
+					{{value}}
+				{{/if}}
+			</span>
+		{{/with}}
+	</div>
+	<div class="cell-equipment-armor-details__divider"></div>
+	<div class="cell-equipment-armor-details__initiative">
+		{{#with initiative}}
+			<span>{{localize "FU.InitiativeAbbr"}}:</span>
+			<span class="cell-equipment-armor-details__value">
+				{{#if value}}
+					{{signum}}
+					{{value}}
+				{{else}}
+					—
+				{{/if}}
+			</span>
+		{{/with}}
+	</div>
+</div>

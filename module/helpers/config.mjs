@@ -672,3 +672,5 @@ FU.trackStyles = {
 	basic: 'FU.Basic',
 	bar: 'FU.Bar',
 };
+
+FU.unarmedStrike = 'unarmed-strike';

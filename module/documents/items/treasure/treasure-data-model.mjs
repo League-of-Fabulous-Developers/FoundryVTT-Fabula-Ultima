@@ -36,7 +36,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} cost.value
  * @property {number} quantity.value

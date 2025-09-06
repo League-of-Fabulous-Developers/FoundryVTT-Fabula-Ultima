@@ -5,10 +5,9 @@ import { FUItemDataModel } from './item-data-model.mjs';
  */
 export class EmbeddedFeatureDataModel extends FUItemDataModel {
 	static defineSchema() {
-		const { StringField, SchemaField, BooleanField } = foundry.data.fields;
+		const { StringField, SchemaField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			summary: new SchemaField({ value: new StringField() }),
-			isFavored: new SchemaField({ value: new BooleanField() }),
 		});
 	}
 

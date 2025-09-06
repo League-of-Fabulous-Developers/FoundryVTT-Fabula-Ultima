@@ -122,7 +122,6 @@ function getTags(skill) {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} level.value
  * @property {number} level.min
@@ -332,5 +331,38 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.targeting,
 			ItemPartialTemplates.resourcePoints,
 		];
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	setSkillLevel(event, target) {
+		let newLevel = Number(target.closest('[data-level]').dataset.level) || 0;
+		if (event.type === 'contextmenu' || newLevel === this.level.value) {
+			newLevel = Math.max(newLevel - 1, 0);
+		}
+
+		this.parent.update({
+			'system.level.value': newLevel,
+		});
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	updateSkillResource(event, target) {
+		return this.parent.update({
+			'system.rp': this.rp.getProgressUpdate(event, target, {
+				indirect: {
+					dataAttribute: 'data-resource-action',
+					attributeValueIncrement: 'increment',
+					attributeValueDecrement: 'decrement',
+				},
+			}),
+		});
 	}
 }

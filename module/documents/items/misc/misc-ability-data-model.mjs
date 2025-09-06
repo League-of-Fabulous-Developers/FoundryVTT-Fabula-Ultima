@@ -80,7 +80,6 @@ const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {boolean} isMartial.value
  * @property {string} opportunity
@@ -280,5 +279,42 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 			ItemPartialTemplates.behaviorField,
 			ItemPartialTemplates.progressClock,
 		];
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	updateResource(event, target) {
+		return this.parent.update({
+			'system.rp': this.rp.getProgressUpdate(event, target, {
+				indirect: {
+					dataAttribute: 'data-resource-action',
+					attributeValueIncrement: 'plus',
+					attributeValueDecrement: 'minus',
+				},
+			}),
+		});
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	updateClock(event, target) {
+		return this.parent.update({
+			'system.progress': this.progress.getProgressUpdate(event, target, {
+				direct: {
+					dataAttribute: 'data-segment',
+				},
+				indirect: {
+					dataAttribute: 'data-clock-action',
+					attributeValueIncrement: 'fill',
+					attributeValueDecrement: 'erase',
+				},
+			}),
+		});
 	}
 }

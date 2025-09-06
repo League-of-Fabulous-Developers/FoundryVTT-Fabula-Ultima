@@ -66,6 +66,15 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		return ProgressDataModel.generateProgressArray(this);
 	}
 
+	get clockSegments() {
+		return Array(this.max)
+			.fill(null)
+			.map((_, i) => ({
+				segment: i + 1,
+				filled: this.current > i,
+			}));
+	}
+
 	/**
 	 * @param {String} name
 	 * @param {Number} max
@@ -365,5 +374,102 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 			change += 2;
 		}
 		return change;
+	}
+
+	/**
+	 * @typedef ClockUpdateOptions
+	 * @property {DirectProgressUpdateOptions} [direct] if provided checks for direct updates
+	 * @property {IndirectProgressUpdateOptions} [indirect] if provided checks for indirect updates
+	 */
+
+	/**
+	 * @typedef IndirectProgressUpdateOptions
+	 * @description an indirect update changes the value relative to its current value (increase/decrease operations)
+	 * @property {string} [dataAttribute="data-progress-action"] the data attribute signifying an indirect operation
+	 * @property {string} [attributeValueIncrement="increase"] which value signifies an increment operation
+	 * @property {string} [attributeValueDecrement="decrease"] which value signifies a decrement operation
+	 * @property {number} [changeAmountOverride] if provided changes will always be this amount irrespective of clicked mouse button or step size
+	 */
+
+	/**
+	 * @typedef DirectProgressUpdateOptions
+	 * @description a direct update changes the value to a specific new value
+	 * @property {string} [dataAttribute="data-segment"] the data attribute signifying a direct value assignment operation
+	 */
+
+	/**
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 * @param {ClockUpdateOptions} [options]
+	 * @return Object
+	 */
+	getProgressUpdate(event, target, options = {}) {
+		/**
+		 * @param {string} dataAttribute
+		 * @return string
+		 */
+		function asDataSetAttribute(dataAttribute) {
+			return dataAttribute
+				.split('-')
+				.filter((value, index) => index > 0)
+				.map((value, index) => {
+					if (index === 0) return value;
+					return value.substring(0, 1).toUpperCase() + value.substring(1);
+				})
+				.join('');
+		}
+
+		const { direct, indirect } = options;
+
+		if (direct) {
+			const { dataAttribute = 'data-segment' } = direct;
+
+			const segmentElement = target.closest(`[${dataAttribute}]`);
+			if (segmentElement) {
+				const segmentDataSetAttribute = asDataSetAttribute(dataAttribute);
+				let newValue = Number(segmentElement.dataset[segmentDataSetAttribute]);
+
+				if (isNaN(newValue)) {
+					newValue = this.current;
+				} else {
+					if ((event.button === 0 && newValue === this.current) || event.button === 2) {
+						newValue -= 1;
+					}
+				}
+				return {
+					current: Math.clamp(newValue, 0, this.max || Number.MAX_SAFE_INTEGER),
+				};
+			}
+		}
+
+		if (indirect) {
+			const { dataAttribute = 'data-progress-action', attributeValueIncrement = 'increase', attributeValueDecrement = 'decrease', changeAmountOverride } = indirect;
+
+			const buttonElement = target.closest(`[${dataAttribute}]`);
+			if (buttonElement) {
+				const buttonDataSetAttribute = asDataSetAttribute(dataAttribute);
+
+				let amount = 0;
+				const operation = buttonElement.dataset[buttonDataSetAttribute];
+				if (operation === attributeValueIncrement) amount = 1;
+				if (operation === attributeValueDecrement) amount = -1;
+
+				if (Number.isInteger(changeAmountOverride)) {
+					amount *= changeAmountOverride;
+				} else {
+					if (event.button === 2) {
+						amount *= this.step;
+					}
+				}
+
+				const newValue = this.current + amount;
+
+				return {
+					current: Math.clamp(newValue, 0, this.max || Number.MAX_SAFE_INTEGER),
+				};
+			}
+		}
+
+		return {};
 	}
 }

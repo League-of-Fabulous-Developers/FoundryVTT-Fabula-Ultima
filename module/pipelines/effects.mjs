@@ -9,7 +9,6 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
-import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -79,14 +78,14 @@ function createTemporaryEffect(owner, effectType, name) {
  */
 export async function onManageActiveEffect(event, owner, action) {
 	event.preventDefault();
-	const anchor = HTMLUtils.findWithDataset(event.target);
-	const listItem = anchor.closest('li');
+	const actionElement = event.target.closest('[data-action]');
+	const effectIdElement = event.target.closest('[data-effect-id]');
 
 	/**
 	 * @returns {FUActiveEffect}
 	 */
 	const resolveEffect = () => {
-		const effectId = listItem.dataset.effectId;
+		const effectId = effectIdElement.dataset.effectId;
 		let effect;
 		// We check allEffects in order to get effects from the ITEMS as well
 		if (owner instanceof FUActor) {
@@ -97,9 +96,9 @@ export async function onManageActiveEffect(event, owner, action) {
 		return effect;
 	};
 
-	switch (action ?? anchor.dataset.action) {
+	switch (action ?? actionElement.dataset.action) {
 		case 'create':
-			return createTemporaryEffect(owner, listItem.dataset.effectType);
+			return createTemporaryEffect(owner, actionElement.dataset.effectType);
 		case 'edit':
 			return resolveEffect().sheet.render(true);
 		case 'delete': {

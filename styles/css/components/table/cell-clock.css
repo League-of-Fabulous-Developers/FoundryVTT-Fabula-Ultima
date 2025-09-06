@@ -1,0 +1,155 @@
+.cell-clock {
+	color: var(--color-primary);
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.cell-clock__label {
+		font-weight: var(--font-weight-bold);
+		font-size: 110%;
+		text-align: center;
+	}
+
+	.cell-clock__button {
+		width: 20px;
+		height: 20px;
+		text-align: center;
+
+		&:hover {
+			border-radius: 30%;
+			background: var(--color-button-hover-bg);
+		}
+	}
+
+	.cell-clock__tracker {
+		background: var(--color-transparent-gradient);
+		border-radius: 10px;
+		border: 1px solid var(--color-border-secondary);
+		padding: 3px;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		align-items: start;
+
+		> * {
+			flex: 0 0 auto;
+		}
+	}
+
+	.cell-clock__clock {
+		--size: 50px;
+		--border-width: 2px;
+		width: var(--size);
+		height: var(--size);
+		position: relative;
+
+		&[data-segments='2'] .cell-clock__clock-segment {
+			clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
+		}
+
+		&[data-segments='3'] .cell-clock__clock-segment {
+			clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
+		}
+
+		&[data-segments='4'] .cell-clock__clock-segment {
+			clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
+		}
+
+		&[data-segments='5'] .cell-clock__clock-segment {
+			clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
+		}
+
+		&[data-segments='6'] .cell-clock__clock-segment {
+			clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
+		}
+
+		&[data-segments='7'] .cell-clock__clock-segment {
+			clip-path: polygon(50% 0, 50% 50%, 110% 0);
+		}
+
+		&[data-segments='8'] .cell-clock__clock-segment {
+			clip-path: polygon(50% 0, 50% 50%, 100% 0);
+		}
+
+		&[data-segments='9'] .cell-clock__clock-segment {
+			clip-path: polygon(50% 0, 50% 50%, 95% 0);
+		}
+
+		&[data-segments='10'] .cell-clock__clock-segment {
+			clip-path: polygon(50% 0, 50% 50%, 85% 0);
+		}
+
+		&[data-segments='11'] .cell-clock__clock-segment {
+			clip-path: polygon(50% 0, 50% 50%, 85% 0);
+		}
+
+		&[data-segments='12'] .cell-clock__clock-segment {
+			clip-path: polygon(50% 0, 50% 50%, 80% 0);
+		}
+	}
+
+	.cell-clock__clock-foreground {
+		pointer-events: none;
+		position: absolute;
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+		border: var(--border-width) solid var(--color-border-primary);
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+		z-index: 2;
+	}
+
+	.cell-clock__clock-divider {
+		pointer-events: none;
+		position: absolute;
+		width: var(--border-width);
+		height: calc(50% - 0.5 * var(--border-width));
+		top: calc(0.5 * var(--border-width));
+		right: calc(50% - var(--border-width) / 2);
+		background: var(--color-secondary);
+		transform-origin: center bottom;
+		transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+		z-index: 2;
+	}
+
+	.cell-clock__clock-segment {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+		-webkit-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+		-ms-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+		transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+		z-index: 1;
+
+		&.cell-clock__clock-segment--filled {
+			background-color: var(--color-border-primary);
+		}
+
+		&:hover {
+			background-color: var(--color-text-primary);
+
+			&.cell-clock__clock-segment--filled {
+				background-color: var(--color-text-primary);
+			}
+
+			& ~ .cell-clock__clock-segment--filled {
+				background-color: var(--color-text-primary);
+			}
+		}
+
+		&:not(.cell-clock__clock-segment--filled):has(~ .cell-clock__clock-segment:hover) {
+			background-color: var(--color-text-primary);
+		}
+	}
+}

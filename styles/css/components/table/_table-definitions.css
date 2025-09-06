@@ -1,0 +1,95 @@
+.favorites-table {
+	grid-template-columns: [name] 1fr [details] 2fr [controls] 100px;
+}
+
+.classes-table {
+	grid-template-columns: [name] auto [level] 100px [controls] 100px;
+}
+
+.skills-table {
+	grid-template-columns: [name] auto [resource] 100px [level] 150px [controls] 100px;
+}
+
+.heroics-table {
+	grid-template-columns: [name] auto [resource] 100px [type] 100px [controls] 100px;
+}
+
+.features-table {
+	grid-template-columns: [name] 30% [preview] auto [controls] 100px;
+}
+
+.abilities-table {
+	grid-template-columns: [name] auto [combined-resources] 200px [controls] 100px;
+}
+
+.projects-table {
+	grid-template-columns: [name] 1fr [progress-bar] 2fr [progress] 100px [controls] 100px;
+}
+
+.rules-table {
+	grid-template-columns: [name] auto [clock] 100px [controls] 100px;
+}
+
+.rituals-table {
+	grid-template-columns: [name] auto [mpCost] 80px [difficulty] 80px [clock] 100px [controls] 100px;
+}
+
+.spells-table {
+	grid-template-columns: [name] auto [duration] 100px [targets] 150px [mpCost] 100px [controls] 100px;
+}
+
+.weapons-table {
+	grid-template-columns: [name] auto [check] 150px [damage] 150px [equipStatus] 64px [controls] 100px;
+}
+
+.shields-table {
+	grid-template-columns: [name] auto [def] 64px [mDef] 64px [init] 64px [equipStatus] 64px [controls] 100px;
+}
+
+.armors-table {
+	grid-template-columns: [name] auto [def] 64px [mDef] 64px [init] 64px [equipStatus] 64px [controls] 100px;
+}
+
+.accessories-table {
+	grid-template-columns: [name] auto [equipStatus] 64px [controls] 100px;
+}
+
+.consumables-table {
+	grid-template-columns: [name] 200px [effect] auto [ipCost] 64px [controls] 100px;
+}
+
+.treasures-table {
+	grid-template-columns: [name] 200px [effect] auto [quantity] 64px [cost] 64px [controls] 100px;
+}
+
+.other-items-table {
+	grid-template-columns: [name] auto [type] 100px [controls] 100px;
+}
+
+.basic-attacks-table {
+	grid-template-columns: [name] auto [check] 150px [damage] 150px [controls] 100px;
+}
+
+.behaviors-table {
+	grid-template-columns: [name] 1fr [summary] 2fr [weight] 80px [controls] 100px;
+}
+
+.equipment-table {
+	grid-template-columns: [name] 2fr [details] 5fr [cost] 100px [controls] 100px;
+
+	.fu-table__row-caption {
+		grid-column-end: -3;
+	}
+}
+
+.npc-profile-basic-attacks-table {
+	grid-template-columns: [name] auto [check] 150px [damage] 150px;
+}
+
+.npc-profile-spells-table {
+	grid-template-columns: [name] auto [duration] 100px [targets] 150px [mpCost] 100px;
+}
+
+.active-effects-table {
+	grid-template-columns: [name] auto [source] 150px [duration] 150px [controls] 130px;
+}

@@ -24,6 +24,7 @@
 @import 'css/components/resource.css';
 /* @import 'css/components/items.css';  */
 @import 'css/components/effects.css';
+@import 'css/components/table/_index.css';
 
 @import 'css/features/floralist/index.css';
 @import 'css/features/gourmet/index.css';

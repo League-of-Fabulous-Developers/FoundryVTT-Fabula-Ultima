@@ -1,110 +1,22 @@
-
 {{!-- FUID Field --}}
 {{> "systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs"}}
 <section class="desc drop-zone">
-    {{#unless hideHeader}}
-        <header class="items-main-header">
+	{{#unless hideHeader}}
+		<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Effects"}}</label>
 		</span>
-            <span class="effects-clear items-main total-level w-25" data-action="clearTempEffects"
-                  data-tooltip="{{localize 'FU.ClearTemp'}}">
+			<span class="effects-clear items-main total-level w-25" data-action="clearTempEffects"
+				  data-tooltip="{{localize 'FU.ClearTemp'}}">
 			<a>{{localize 'FU.Clear'}} <i class="fas fa-eraser"></i></a>
 		</span>
-        </header>
-    {{/unless}}
-    <ol class="items-list effects-list">
-        {{#each effects as |section sid|}}
-            <li class="effect items-header flexrow" data-effect-type="{{ section.type }}">
-                <div class="item-name">{{localize section.label}}</div>
-                <div class="item-lg">{{localize 'FU.Source'}}</div>
-                <div class="item-lg">{{localize 'FU.Duration'}}</div>
-                <div class="item-s end flexrow">
-                    <a class="effect-control" data-action="createEffect" title="{{localize 'FU.EffectCreate'}}"> <i
-                     class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
-                </div>
-            </li>
+		</header>
+	{{/unless}}
 
-            <ol class="item-list">
-                {{#each section.effects as |effect|}}
-                    <li class="effect {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}"
-                        data-effect-id="{{ effect.id }}" data-type="effect">
-                        <div class="flexrow">
-                            {{!-- Name--}}
-                            <div class="item-name">
-                                <div class="item-name"
-                                    {{~#if (and effect.isSuppressed (not effect.disabled))~}}
-                                     data-tooltip="
-                                        {{~#if (eq effect.flags.projectfu.CrisisInteraction "active")~}}
-                                         {{~localize "FU.EffectCrisisInteractionActiveTooltip"~}}
-                                         {{~else~}}
-                                         {{~localize "FU.EffectCrisisInteractionInactiveTooltip"~}}
-                                     {{~/if}}"
-                                    {{~/if}}>
-									{{!-- Image--}}
-									{{> "systems/projectfu/templates/effects/active-effect-image.hbs" effect=effect}}
-									<h4 class="click-item resource-content">
-										<span class="resource-text-m gap-3" style="display: flex; align-items: center;">
-                                    {{ effect.name }}
-										</span>
-                                    </h4>
-                                </div>
-                                {{!-- Source --}}
-                                <div class="item-lg">{{ effect.sourceName }}</div>
-                                {{!-- Duration--}}
-                                <div class="item-lg">{{effect.system.eventLabel}}</div>
-                                {{!-- Controls--}}
-                                <div class="item-m end flexrow">
-                                    <a class="effect-control" data-action="toggleEffect"
-                                       title="{{localize 'FU.EffectToggle'}}">
-                                        <i
-                                         class="{{#if
-                                          effect.disabled}}far fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
-                                    </a>
-                                    <a class="effect-control" data-action="copyInline" title="{{localize 'FU.EffectCopy'}}">
-                                        <i class="fas fa-copy"></i>
-                                    </a>
-                                    <a class="effect-control" data-action="editEffect" title="{{localize 'FU.EffectEdit'}}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a class="effect-control" data-action="deleteEffect"
-                                       title="{{localize 'FU.EffectDelete'}}">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-									{{#if effect.system.rules.progress.enabled }}
-										<div class="effect-control buttons-inc">
-											<a class="decrement-button" style="color:unset"
-											   data-action="modifyResource"
-											   data-effect-id="{{ effect.id }}"
-											   data-data-path="system.rules.progress"
-											   data-resource-action="decrement">
-												-
-											</a>
-											<span data-resource="progress">{{ effect.system.rules.progress.current }}</span>
-											{{#if (gt effect.system.rules.progress.max 0)}}
-												<span>/</span>
-												<span>{{ effect.system.rules.progress.max }}</span>
-											{{/if}}
-											<a class="increment-button" style="color:unset"
-											   data-action="modifyResource"
-											   data-effect-id="{{ effect.id }}"
-											   data-data-path="system.rules.progress"
-											   data-resource-action="increment">
-												+
-											</a>
-										</div>
-									{{/if}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="individual-description align-left {{#unless (inArray effect.id _expandedIds)}}hidden{{/unless}}" data-item-id="{{ effect.id }}">
-							{{#if effect.enrichedDescription}}
-								{{{effect.enrichedDescription}}}
-							{{/if}}
-                        </div>
-                    </li>
-                {{/each}}
-            </ol>
-        {{/each}}
-    </ol>
+	{{{temporaryEffectsTable}}}
+
+	{{{passiveEffectsTable}}}
+
+	{{{inactiveEffectsTable}}}
+
 </section>

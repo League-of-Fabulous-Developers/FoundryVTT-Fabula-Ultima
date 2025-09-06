@@ -1,0 +1,97 @@
+.cell-item-name {
+	.cell-item-name__main {
+		display: flex;
+		gap: 0.25rem;
+		align-items: center;
+		height: 100%;
+
+		> * {
+			flex: 0 0 auto;
+		}
+
+		.cell-item-name__image {
+			width: 24px;
+			height: 24px;
+			border-radius: 5px;
+			background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+			transition:
+				transform 0.3s ease,
+				opacity 0.3s ease;
+
+			&:hover {
+				transform: scale(1.1);
+				transform-origin: center;
+				opacity: 0.75;
+			}
+		}
+
+		.cell-item-name__name {
+			font-size: var(--font-size-base);
+			font-family: var(--font-primary) sans-serif;
+			color: var(--color-primary);
+			font-weight: var(--font-weight-bold);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			flex-shrink: 1;
+		}
+	}
+
+	.cell-item-name__caption {
+		font-weight: var(--font-weight-bold);
+		font-size: 90%;
+	}
+
+	.before-ability-icon::before {
+		font-family: 'Fabula Ultima icons';
+		content: 's';
+		font-size: 1.5rem;
+		display: inline-block;
+		line-height: 0;
+		vertical-align: middle;
+	}
+
+	.before-melee-icon::before {
+		font-family: 'Fabula Ultima icons';
+		content: 'M';
+		font-size: 1.5rem;
+		display: inline-block;
+		line-height: 0;
+		vertical-align: middle;
+	}
+
+	.before-ranged-icon::before {
+		font-family: 'Fabula Ultima icons';
+		content: 'R';
+		font-size: 1.5rem;
+		display: inline-block;
+		line-height: 0;
+		vertical-align: middle;
+	}
+
+	.before-spell-icon::before {
+		font-family: 'Fabula Ultima icons';
+		content: 'C';
+		font-size: 1.5rem;
+		display: inline-block;
+		line-height: 0;
+		vertical-align: middle;
+	}
+
+	.after-offensive-spell-icon::after {
+		font-family: 'Fabula Ultima icons';
+		content: 'O';
+		font-size: 1.5rem;
+		line-height: 0;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.after-martial-item-icon::after {
+		font-family: 'Fabula Ultima icons';
+		content: 'W';
+		font-size: 1.5rem;
+		display: inline-block;
+		line-height: 0;
+		vertical-align: middle;
+	}
+}

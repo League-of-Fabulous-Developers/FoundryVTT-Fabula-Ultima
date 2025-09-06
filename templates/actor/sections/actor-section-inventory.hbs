@@ -7,7 +7,7 @@
 				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}" data-dtype="Number" />
 			</span>
 			{{#if actor.isOwner}}
-				<a class="item-control zenit-distribute" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(getGameSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
+				<a class="item-control zenit-distribute" data-action="distributeZenit" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(getGameSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
 					<i class="fa fa-university button-style"></i>
 				</a>
 				{{#if system.merchant}}
@@ -27,38 +27,11 @@
 		</span>
 	</header>
 
-	{{!-- Equipment  --}}
-	<ol class="items-list">
-		<li class="item flexrow items-header">
-			{{!-- Name --}}
-			<div class="item-name">{{localize "FU.Equipment"}}</div>
-			{{!-- Cost --}}
-			<div class="item-xs">{{localize "FU.Cost"}}</div>
-			{{!-- Control --}}
-			<div class="item-sm end">
-				<a class="item-control item-create" data-tooltip="{{localize 'FU.WeaponCreate'}}" data-type="weapon"><i
-				 class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
-			</div>
-		</li>
-		{{#each equipment as |item id|}}
-			<li class="item draggable" data-item-id="{{ item._id }}">
-				<div class="flexrow">
-					{{!-- Item Name--}}
-					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-					{{!-- Item Cost --}}
-					<div class="item-xs">{{ item.system.cost.value }}</div>
-					{{!-- Item Control--}}
-					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" actor=actor item=item}}
-				</div>
-				<span class="item-quality">{{ item.quality }}</span>
-				{{> "systems/projectfu/templates/actor/partials/actor-item-description.hbs" item=item _expandedIds=_expandedIds}}
-			</li>
-		{{/each}}
-	</ol>
+	{{{equipmentTable}}}
 
-	{{!-- Treasure partial --}}
-	{{> "systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs"}}
+	{{{treasuresTable}}}
 
-	<!-- Consumable Section -->
-	{{> "systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs"}}
+	{{{consumablesTable}}}
+
+	{{{otherItemsTable}}}
 </section>

@@ -36,7 +36,6 @@ export class FUStandardItemDataModel extends FUItemDataModel {
 		return Object.assign(super.defineSchema(), {
 			description: new HTMLField(),
 			summary: new SchemaField({ value: new StringField() }),
-			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 		});
 	}

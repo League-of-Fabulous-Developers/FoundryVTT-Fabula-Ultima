@@ -40,7 +40,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {string} class.value
  * @property {string} requirement.value
@@ -81,5 +80,16 @@ export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill, ItemPartialTemplates.resourcePoints];
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	updateHeroicResource(event, target) {
+		return this.parent.update({
+			'system.rp': this.rp.getProgressUpdate(event, target, { indirect: { dataAttribute: 'data-resource-action', attributeValueIncrement: 'increment', attributeValueDecrement: 'decrement' } }),
+		});
 	}
 }

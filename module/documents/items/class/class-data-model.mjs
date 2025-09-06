@@ -22,7 +22,7 @@ const tagProperties = {
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ClassDataModel) {
-		const tags = Object.entries(tagProperties).map(([key, translation]) => ({ tag: translation, show: foundry.utils.getProperty(item.system, key) }));
+		const tags = item.system.getTags();
 		CommonSections.tags(sections, tags);
 
 		CommonSections.description(sections, item.system.description, item.system.summary.value);
@@ -33,7 +33,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} level.value
  * @property {number} level.min
@@ -101,5 +100,30 @@ export class ClassDataModel extends FUStandardItemDataModel {
 		source = super.migrateData(source) ?? source;
 		ClassMigrations.run(source);
 		return source;
+	}
+
+	/**
+	 * @return Tag[]
+	 */
+	getTags() {
+		return Object.entries(tagProperties)
+			.filter(([key]) => foundry.utils.getProperty(this, key))
+			.map(([, translation]) => ({ tag: translation }));
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	modifyClassLevel(event, target) {
+		const change = target.closest('[data-level-action]')?.dataset?.levelAction === 'decrement' ? -1 : 1;
+
+		const { value, min, max } = this.level;
+		const newValue = value + change;
+
+		return this.parent.update({
+			'system.level.value': Math.clamp(newValue, min, max),
+		});
 	}
 }

@@ -20,4 +20,45 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			submitOnChange: true,
 		},
 	};
+
+	/**
+	 * @override
+	 */
+	_onClickAction(event, target) {
+		if (this.#dispatchClickActionToItem(event, target)) {
+			event.stopPropagation();
+			event.preventDefault();
+			return;
+		}
+
+		console.warn('Unhandled action:', target.dataset.action, event, target);
+	}
+
+	#dispatchClickActionToItem(event, target) {
+		let success = false;
+
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item;
+
+		if (itemId) {
+			item = this.actor.items.get(itemId);
+		}
+
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+
+		if (item && item.system[target.dataset.action] instanceof Function) {
+			item.system[target.dataset.action](event, target);
+			success = true;
+		} else if (item && ['classFeature', 'optionalFeature'].includes(item.type)) {
+			if (item.system.data[target.dataset.action] instanceof Function) {
+				item.system.data[target.dataset.action](event, target);
+				success = true;
+			}
+		}
+
+		return success;
+	}
 }

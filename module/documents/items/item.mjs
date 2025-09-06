@@ -2,6 +2,11 @@ import { Checks } from '../../checks/checks.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { FUActor } from '../actors/actor.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
+import { Flags } from '../../helpers/flags.mjs';
+import { ItemMigrations } from './item-migrations.mjs';
+
+const stashableTypes = new Set(['accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon']);
 
 /**
  * @typedef Item
@@ -21,6 +26,12 @@ import { FUActor } from '../actors/actor.mjs';
  */
 export class FUItem extends Item {
 	overrides = this.overrides ?? {};
+
+	static migrateData(source) {
+		super.migrateData(source);
+		ItemMigrations.run(source);
+		return source;
+	}
 
 	/**
 	 * Augment the basic Item data model with additional dynamic data.
@@ -50,15 +61,6 @@ export class FUItem extends Item {
 	}
 
 	/**
-	 * @override
-	 */
-	toObject() {
-		const result = super.toObject();
-		result.uuid = this.uuid;
-		return result;
-	}
-
-	/**
 	 * @returns {ProgressDataModel}
 	 * @remarks Returns clocks before resources
 	 */
@@ -85,21 +87,8 @@ export class FUItem extends Item {
 		return null;
 	}
 
-	// TODO: Yes this is janky, but still performant okay?
 	get canStash() {
-		switch (this.type) {
-			case 'weapon':
-			case 'armor':
-			case 'shield':
-			case 'treasure':
-			case 'material':
-			case 'artifact':
-			case 'accessory':
-			case 'consumable': {
-				return true;
-			}
-		}
-		return false;
+		return stashableTypes.has(this.type);
 	}
 
 	/**
@@ -197,6 +186,18 @@ export class FUItem extends Item {
 			return this.actor.system.equipped.isEquipped(this);
 		}
 		return false;
+	}
+
+	get isFavorite() {
+		return !!this.getFlag(SYSTEM, Flags.Favorite);
+	}
+
+	/**
+	 * @param {boolean} [force] if present sets that value, if absent toggles
+	 * @return {Promise<void>}
+	 */
+	async toggleFavorite(force) {
+		await this.setFlag(SYSTEM, Flags.Favorite, force ?? !this.isFavorite);
 	}
 }
 

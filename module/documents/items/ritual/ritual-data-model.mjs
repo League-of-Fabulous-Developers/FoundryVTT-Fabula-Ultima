@@ -88,7 +88,6 @@ const POTENCIES = {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {ItemAttributesDataModelV2} attributes
  * @property {number} modifier
@@ -171,5 +170,25 @@ export class RitualDataModel extends FUStandardItemDataModel {
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	updateRitualProgress(event, target) {
+		return this.parent.update({
+			'system.progress': this.progress.getProgressUpdate(event, target, {
+				direct: {
+					dataAttribute: 'data-segment',
+				},
+				indirect: {
+					dataAttribute: 'data-progress-action',
+					attributeValueIncrement: 'increase',
+					attributeValueDecrement: 'decrease',
+				},
+			}),
+		});
 	}
 }

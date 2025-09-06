@@ -8,6 +8,7 @@ import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
 import { Role } from '../../../helpers/roles.mjs';
+import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 
 Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
@@ -145,6 +146,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	prepareDerivedData() {
 		this.spTracker = new NpcSkillTracker(this);
+		this.actor.equipmentHandler ??= new EquipmentHandler(this.actor);
 	}
 
 	#prepareReplacedSoldiers() {

@@ -411,10 +411,8 @@ Hooks.once('ready', async function () {
 	Hooks.on('createItem', (item, options, userId) => {
 		if (!item.parent) return; // Make sure the item belongs to an actor or entity
 		if (!game.settings.get('projectfu', 'optionAlwaysFavorite')) return;
-		if (item.system?.isFavored?.value === true) return; // Already favored
-		if (Object.prototype.hasOwnProperty.call(item.system.isFavored, 'value')) {
-			item.update({ 'system.isFavored.value': true });
-		}
+		if (item.isFavorite === true) return; // Already favored
+		item.toggleFavorite(true);
 	});
 });
 
