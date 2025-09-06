@@ -110,8 +110,8 @@ export class VersesApplication extends FUApplication {
 		}
 
 		this.#verse = verse;
-		// this.#verse = verse.clone({}, { keepId: true });
 		verse.app = this;
+		verse.volume = this.defaultVolume;
 
 		// Set predefined key and tone if provided in options
 		this.#defaultKey = options.predefinedKey ? verse.actor.items.get(options.predefinedKey) : this.keys[Object.keys(this.keys)[0]];
@@ -198,8 +198,9 @@ export class VersesApplication extends FUApplication {
 		await this.#verse.updateSource({
 			key: selectedKey,
 			tone: selectedTone,
-			volume: selectedVolume,
 		});
+		this.#verse.volume = selectedVolume;
+
 		this.render();
 	}
 
