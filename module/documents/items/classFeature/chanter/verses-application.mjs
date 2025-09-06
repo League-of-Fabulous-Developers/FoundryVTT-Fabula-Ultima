@@ -1,6 +1,6 @@
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
-import { FU, SYSTEM } from '../../../../helpers/config.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { Targeting } from '../../../../helpers/targeting.mjs';
@@ -13,7 +13,7 @@ import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
  * @param {VerseDataModel} model
  * @return {Promise<string|string>}
  */
-async function getDescription(model) {
+async function enrichDescription(model) {
 	const key = model.key;
 	const tone = model.tone;
 
@@ -34,14 +34,8 @@ async function getDescription(model) {
 
 	let rollData = {};
 
-	// Set rollData based on the key
 	const keyData = key.system.data;
-	rollData.key = {
-		type: game.i18n.localize(FU.damageTypes[keyData.type]),
-		status: game.i18n.localize(FU.statusEffects[keyData.status]),
-		attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
-		recovery: game.i18n.localize(FU.resources[keyData.recovery]),
-	};
+	rollData.key = KeyDataModel.getRollData(keyData);
 
 	const actor = model.parent?.parent?.actor;
 	if (actor) {
@@ -169,7 +163,7 @@ export class VersesApplication extends FUApplication {
 		}
 
 		// Fetch the initial description
-		const effects = await getDescription(this.#verse);
+		const effects = await enrichDescription(this.#verse);
 
 		// Current key, tone, and volume selections
 		let performance = {
@@ -247,6 +241,8 @@ export class VersesApplication extends FUApplication {
 		CommonSections.spendResource(sections, actor, item, expense, targets, flags);
 		CommonEvents.skill(actor, item);
 
+		const enriched = await enrichDescription(this.#verse);
+
 		// Data for the template
 		const data = {
 			verse: this.#verse,
@@ -255,7 +251,7 @@ export class VersesApplication extends FUApplication {
 			targets: volumeTargets[volumeSelection],
 			key: this.#verse.key?.name || '',
 			tone: this.#verse.tone?.name || '',
-			description: await getDescription(this.#verse, true),
+			description: enriched,
 			sections: sections,
 		};
 

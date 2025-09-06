@@ -8,6 +8,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { systemAssetPath } from './system-utils.mjs';
+import { InlineIcon } from './inline-icons.mjs';
 
 /**
  * @typedef InlineCheckDataset
@@ -35,13 +36,6 @@ const inlineCheckEnricher = {
 	),
 	enricher: checkEnricher,
 	onRender: onRender,
-};
-
-const attributeIconPaths = {
-	dex: systemAssetPath('icons/attributes/dex-glyph.png'),
-	mig: systemAssetPath('icons/attributes/mig-glyph.png'),
-	ins: systemAssetPath('icons/attributes/ins-glyph.png'),
-	wlp: systemAssetPath('icons/attributes/wlp-glyph.png'),
 };
 
 /**
@@ -99,8 +93,8 @@ function checkEnricher(match, options) {
 		// Show attributes
 		const span = document.createElement('span');
 		span.classList.add(`inline`, 'inline-group');
-		InlineHelper.appendImage(span, attributeIconPaths[first], 16, false);
-		InlineHelper.appendImage(span, attributeIconPaths[second], 16, false);
+		InlineHelper.appendImage(span, InlineIcon.attributeIconPaths[first], 16, false);
+		InlineHelper.appendImage(span, InlineIcon.attributeIconPaths[second], 16, false);
 		anchor.append(span);
 		return anchor;
 	}

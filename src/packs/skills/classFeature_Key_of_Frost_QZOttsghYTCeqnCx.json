@@ -8,15 +8,12 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.key",
     "data": {
       "type": "ice",
       "status": "weak",
       "attribute": "wlp",
-      "recovery": "mp"
+      "resource": "mp"
     },
     "source": "FUHF138",
     "fuid": "key-of-frost"
@@ -33,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1710038273661,
-    "modifiedTime": 1744458886281,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1757356658497,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
