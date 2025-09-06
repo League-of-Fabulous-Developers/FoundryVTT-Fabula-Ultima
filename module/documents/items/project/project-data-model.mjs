@@ -143,15 +143,16 @@ export class ProjectDataModel extends FUStandardItemDataModel {
 		];
 	}
 
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
 	updateProgress(event, target) {
-		let amount = target.closest('[data-progress-action]')?.dataset?.progressAction === 'decrease' ? -1 : 1;
-
-		amount = amount * this.progressPerDay.value;
-
-		const newValue = this.progress.current + amount;
-
 		return this.parent.update({
-			'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
+			'system.progress': this.progress.getProgressUpdate(event, target, {
+				indirect: { dataAttribute: 'data-progress-action', attributeValueIncrement: 'increase', attributeValueDecrement: 'decrease', changeAmountOverride: this.progressPerDay.value },
+			}),
 		});
 	}
 }

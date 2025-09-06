@@ -94,6 +94,11 @@ export class ArmorDataModel extends FUStandardItemDataModel {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.initiativeField, ItemPartialTemplates.armor];
 	}
 
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
 	equipArmor(event, target) {
 		// TODO: find better solution, equipment data model maybe?
 		return this.parent.actor.equipmentHandler.handleItemClick(event, target);

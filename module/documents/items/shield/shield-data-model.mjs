@@ -125,6 +125,11 @@ export class ShieldDataModel extends FUStandardItemDataModel {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.shield, ItemPartialTemplates.behaviorField];
 	}
 
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
 	equipShield(event, target) {
 		// TODO: find better solution, equipment data model maybe?
 		return this.parent.actor.equipmentHandler.handleItemClick(event, target);

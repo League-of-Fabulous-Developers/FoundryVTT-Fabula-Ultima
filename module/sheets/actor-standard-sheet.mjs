@@ -1104,11 +1104,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 			types = types.filter((item) => !dontShowNPC.includes(item.type));
 		}
 
-		const buttons = types.map((item) => ({
-			action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
-			label: item.label,
-			callback: () => item,
-		}));
+		const buttons = types
+			.map((item) => ({
+				action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
+				label: item.label,
+				callback: () => item,
+			}))
+			.sort((a, b) => a.label.localeCompare(b.label));
 
 		const choice = await foundry.applications.api.DialogV2.wait({
 			window: { title: 'Select Item Type' },
@@ -1123,10 +1125,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 			};
 			if (choice.type === 'classFeature') {
 				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system.featureType = choice.subtype;
+				(itemData.system ??= {}).featureType = choice.subtype;
 			} else if (choice.type === 'optionalFeature') {
 				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
-				itemData.system.optionalType = choice.subtype;
+				(itemData.system ??= {}).optionalType = choice.subtype;
 			} else {
 				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
 			}

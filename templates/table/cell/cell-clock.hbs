@@ -24,7 +24,7 @@
 					<div class="cell-clock__clock-foreground"></div>
 					{{#each clockSegments}}
 						<a class="cell-clock__clock-segment {{#if filled}} cell-clock__clock-segment--filled {{/if}}"
-						   data-action="{{#if ../action}}{{../action}}{{else}}updateClock{{/if}}" data-segment="{{segment}}"
+						   data-action="{{#if @root.action}}{{@root.action}}{{else}}updateClock{{/if}}" data-segment="{{segment}}"
 						   style="--index: {{segment}}"></a>
 						<div class="cell-clock__clock-divider" style="--index: {{segment}}"></div>
 					{{/each}}

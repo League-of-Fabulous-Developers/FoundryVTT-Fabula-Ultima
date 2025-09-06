@@ -82,16 +82,14 @@ export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill, ItemPartialTemplates.resourcePoints];
 	}
 
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
 	updateHeroicResource(event, target) {
-		let change = target.dataset.resourceAction === 'decrement' ? -1 : 1;
-		if (event.type === 'contextmenu') {
-			change *= this.rp.step;
-		}
-
-		const newValue = Math.clamp(this.rp.current + change, 0, this.rp.max || Number.MAX_SAFE_INTEGER);
-
-		this.parent.update({
-			'system.rp.current': newValue,
+		return this.parent.update({
+			'system.rp': this.rp.getProgressUpdate(event, target, { indirect: { dataAttribute: 'data-resource-action', attributeValueIncrement: 'increment', attributeValueDecrement: 'decrement' } }),
 		});
 	}
 }

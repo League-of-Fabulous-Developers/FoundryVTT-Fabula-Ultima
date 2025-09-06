@@ -111,6 +111,11 @@ export class ClassDataModel extends FUStandardItemDataModel {
 			.map(([, translation]) => ({ tag: translation }));
 	}
 
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
 	modifyClassLevel(event, target) {
 		const change = target.closest('[data-level-action]')?.dataset?.levelAction === 'decrement' ? -1 : 1;
 

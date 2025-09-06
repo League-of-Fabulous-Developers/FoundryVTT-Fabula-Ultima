@@ -40,30 +40,23 @@ export class RuleDataModel extends FUStandardItemDataModel {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.progressField];
 	}
 
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
 	updateClock(event, target) {
-		if (target.closest('[data-clock-action]')) {
-			let amount = target.closest('[data-clock-action]').dataset.clockAction === 'erase' ? -1 : 1;
-
-			if (event.type === 'contextmenu') {
-				amount *= this.progress.step;
-			}
-
-			const newValue = this.progress.current + amount;
-
-			return this.parent.update({
-				'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
-			});
-		}
-
-		if (target.closest('[data-segment]')) {
-			let newValue = target.closest('[data-segment]').dataset.segment;
-			if (event.type === 'contextmenu') {
-				newValue = newValue - 1;
-			}
-
-			return this.parent.update({
-				'system.progress.current': Math.clamp(newValue, 0, this.progress.max),
-			});
-		}
+		return this.parent.update({
+			'system.progress': this.progress.getProgressUpdate(event, target, {
+				direct: {
+					dataAttribute: 'data-segment',
+				},
+				indirect: {
+					dataAttribute: 'data-clock-action',
+					attributeValueIncrement: 'fill',
+					attributeValueDecrement: 'erase',
+				},
+			}),
+		});
 	}
 }

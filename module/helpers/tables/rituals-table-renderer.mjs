@@ -15,7 +15,8 @@ export class RitualsTableRenderer extends FUTableRenderer {
 			clock: CommonColumns.ifElseColumn({
 				columnName: 'FU.Clock',
 				condition: (item) => item.system.hasClock.value,
-				ifTrue: CommonColumns.clockColumn({ getClock: (item) => item.system.progress }).renderCell,
+				ifTrue: CommonColumns.clockColumn({ action: 'updateRitualProgress', fillAttributes: { 'data-progress-action': 'increase' }, eraseAttributes: { 'data-progress-action': 'decrease' }, getClock: (item) => item.system.progress })
+					.renderCell,
 				otherwise: CommonColumns.textColumn({ getText: (item) => item.system.progress.max, importance: 'high' }).renderCell,
 			}),
 			controls: CommonColumns.itemControlsColumn({ label: 'FU.Ritual', type: 'ritual' }),
