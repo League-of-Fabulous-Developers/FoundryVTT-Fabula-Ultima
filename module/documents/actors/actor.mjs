@@ -323,19 +323,6 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @description Apply any transformations to the Actor data which are caused by ActiveEffects.
-	 * @override
-	 */
-	applyActiveEffects() {
-		// Evaluate all AEs on self
-		super.applyActiveEffects();
-		// For character types, add new properties
-		if (this.isCharacterType) {
-			this.system.prepareEmbeddedData();
-		}
-	}
-
-	/**
 	 * @returns {Token}
 	 * @remarks https://foundryvtt.com/api/classes/client.TokenDocument.html
 	 */

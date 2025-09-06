@@ -136,6 +136,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	prepareBaseData() {
 		this.#prepareReplacedSoldiers();
+		this.#prepareBasicResource();
 		this.derived.prepareData();
 	}
 
@@ -144,10 +145,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	prepareDerivedData() {
 		this.spTracker = new NpcSkillTracker(this);
-	}
-
-	prepareEmbeddedData() {
-		this.#prepareBasicResource();
 	}
 
 	#prepareReplacedSoldiers() {
@@ -178,12 +175,10 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 					const refActor = data.references.actor;
 					const refSkill = data.references.skill ? fromUuidSync(data.references.skill) : null;
 					const skillLevel = refSkill?.system?.level?.value ?? 0;
-					const maxHP = Math.floor(skillLevel * data.attributes.mig.base + (refActor?.system?.level.value ? refActor.system.level.value / 2 : 0) + (data.resources.hp.bonus ?? 0));
-					return maxHP;
+					return Math.floor(skillLevel * data.attributes.mig.base + (refActor?.system?.level.value ? refActor.system.level.value / 2 : 0) + (data.resources.hp.bonus ?? 0));
 				}
 				if (data.rank.value === 'custom') {
-					const maxHP = Math.floor(data.resources.hp.bonus);
-					return maxHP;
+					return Math.floor(data.resources.hp.bonus);
 				}
 				// Default calculation
 				const hpMultiplier = data.rank.replacedSoldiers;
@@ -200,11 +195,10 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			configurable: true,
 			enumerable: true,
 			get() {
-				const mpMultiplier = data.rank.value === 'champion' ? 2 : 1;
 				if (data.rank.value === 'custom') {
-					const maxMP = Math.floor(data.resources.mp.bonus);
-					return maxMP;
+					return Math.floor(data.resources.mp.bonus);
 				}
+				const mpMultiplier = data.rank.value === 'champion' ? 2 : 1;
 				return (data.attributes.wlp.base * 5 + data.level.value + data.resources.mp.bonus) * mpMultiplier;
 			},
 			set(newValue) {

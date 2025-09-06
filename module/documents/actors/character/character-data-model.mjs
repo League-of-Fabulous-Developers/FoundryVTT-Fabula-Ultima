@@ -16,15 +16,6 @@ import { FloralistDataModel } from './floralist-data-model.mjs';
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
 const CLASS_IP_BENEFITS = 2;
-const HEROIC_IP_BENEFITS = 4;
-
-function heroicHpBenefits(dataModel) {
-	return dataModel.level.value >= 40 ? 20 : 10;
-}
-
-function heroicMpBenefits(dataModel) {
-	return dataModel.level.value >= 40 ? 20 : 10;
-}
 
 /**
  * @property {number} level.value
@@ -134,6 +125,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	prepareBaseData() {
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
+		this.#prepareBasicResources();
 		this.vehicle.prepareData();
 		this.derived.prepareData();
 	}
@@ -145,42 +137,54 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		this.tlTracker = new CharacterSkillTracker(this);
 	}
 
-	prepareEmbeddedData() {
-		this.#prepareBasicResources();
-	}
-
 	#prepareBasicResources() {
-		const itemTypes = this.actor.itemTypes;
-		let benefits = itemTypes.class.reduce(
-			(agg, curr) => {
-				if (curr.system.benefits.resources.hp.value) {
-					agg.hp += CLASS_HP_BENEFITS;
-				}
-				if (curr.system.benefits.resources.mp.value) {
-					agg.mp += CLASS_MP_BENEFITS;
-				}
-				if (curr.system.benefits.resources.ip.value) {
-					agg.ip += CLASS_IP_BENEFITS;
-				}
-				return agg;
-			},
-			{ hp: 0, mp: 0, ip: 0 },
-		);
-		benefits = itemTypes.heroic.reduce((agg, curr) => {
-			if (curr.system.benefits.resources.hp.value) {
-				agg.hp += heroicHpBenefits(this);
-			}
-			if (curr.system.benefits.resources.mp.value) {
-				agg.mp += heroicMpBenefits(this);
-			}
-			if (curr.system.benefits.resources.ip.value) {
-				agg.ip += HEROIC_IP_BENEFITS;
-			}
-			return agg;
-		}, benefits);
+		const data = this;
+
+		const benefits = {};
+		const initializeBenefits = (resource) => () => {
+			const itemTypes = data.actor.itemTypes;
+
+			const computed = itemTypes.class.reduce(
+				(agg, curr) => {
+					if (curr.system.benefits.resources.hp.value) {
+						agg.hp += CLASS_HP_BENEFITS;
+					}
+					if (curr.system.benefits.resources.mp.value) {
+						agg.mp += CLASS_MP_BENEFITS;
+					}
+					if (curr.system.benefits.resources.ip.value) {
+						agg.ip += CLASS_IP_BENEFITS;
+					}
+					return agg;
+				},
+				{ hp: 0, mp: 0, ip: 0 },
+			);
+
+			benefits.hp = computed.hp;
+			benefits.mp = computed.mp;
+			benefits.ip = computed.ip;
+			return benefits[resource];
+		};
+
+		const setBenefit = (resource) => (value) => {
+			delete benefits[resource];
+			benefits[resource] = value;
+		};
+
+		const benefitPropertyDescriptor = (resource) => ({
+			configurable: true,
+			get: initializeBenefits(resource),
+			set: setBenefit(resource),
+		});
+
+		Object.defineProperties(benefits, {
+			hp: benefitPropertyDescriptor('hp'),
+			mp: benefitPropertyDescriptor('mp'),
+			ip: benefitPropertyDescriptor('ip'),
+		});
 
 		// Calculate multipliers based on actor type and attributes.
-		const data = this;
+
 		// Define maximum hit points (hp) calculation, replace calculation with actual value on write.
 		Object.defineProperty(this.resources.hp, 'max', {
 			configurable: true,
