@@ -8,7 +8,6 @@
 					}} />
 				<i class="toggle-icon fa fa-clock"></i>
 			</label>
-
 			<!-- Identifier -->
 			<div>
 				<label class="resource-label-m">{{localize 'FU.Identifier'}}</label>
@@ -29,17 +28,24 @@
 				<input type="number" name="system.rules.progress.current" value="{{ system.rules.progress.current }}"
 					class="resource-inputs select-dropdown-m" />
 			</div>
-			<!-- Step -->
-			<div>
-				<label class="resource-label-m">{{localize 'FU.Step'}}</label>
-				<input type="number" name="system.rules.progress.step" value="{{ system.rules.progress.step }}"
-					class="resource-inputs select-dropdown-m" />
-			</div>
+			<!-- Step (Don't think anyone actually modifiers this) -->
+<!--			<div>-->
+<!--				<label class="resource-label-m">{{localize 'FU.Step'}}</label>-->
+<!--				<input type="number" name="system.rules.progress.step" value="{{ system.rules.progress.step }}"-->
+<!--					class="resource-inputs select-dropdown-m" />-->
+<!--			</div>-->
 			<!-- Maximum -->
 			<div>
 				<label class="resource-label-m">{{localize 'FU.Max'}}</label>
 				<input type="number" name="system.rules.progress.max" value="{{ system.rules.progress.max }}"
 					class="resource-inputs select-dropdown-m" />
+			</div>
+			<!-- Style -->
+			<div>
+				<label class="resource-label-m">{{localize 'Style'}}</label>
+				<select name="system.rules.progress.style" class="resource-inputs select-dropdown">
+					{{selectOptions trackStyles selected=system.rules.progress.style sort=true localize=true}}
+				</select>
 			</div>
 		</div>
 	</div>

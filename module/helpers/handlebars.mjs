@@ -265,9 +265,9 @@ function progressCollection(document, path, index, options) {
 
 /**
  * @param {ProgressDataModel} progress
- * @param {int} id
- * @param {String} path
- * @param {int} index
+ * @param {String} id The id of the document
+ * @param {String} path The path of the property
+ * @param {int} index Optionally, the index of the data model inside an array
  * @param {ProgressHandlebarOptions} options
  * @returns {String}
  */
@@ -292,7 +292,7 @@ function renderProgress(progress, id, path, options, index = undefined) {
 					controls: controls,
 					action: action,
 					prompt: options.prompt,
-					displayName: options.displayName && (progress.name || document.name),
+					displayName: options.displayName && (progress.name || id.name),
 				})
 			: '';
 

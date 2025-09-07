@@ -2,7 +2,7 @@
 	<div class="progress-controls">
 		<a class="increment-button"
 		   data-type="{{type}}"
-		   data-item-id="{{id}}"
+		   data-id="{{id}}"
 		   data-action="{{action}}"
 		   data-data-path="{{dataPath}}"
 		   data-index="{{index}}"
@@ -13,7 +13,7 @@
 		</a>
 		<a class="decrement-button"
 		   data-type="{{type}}"
-		   data-item-id="{{id}}"
+		   data-id="{{id}}"
 		   data-action="{{action}}"
 		   data-data-path="{{dataPath}}"
 		   data-index="{{index}}"
@@ -24,7 +24,7 @@
 		</a>
 		{{#if prompt}}
 			<a data-action="promptTrack"
-			   data-item-id="{{id}}"
+			   data-id="{{id}}"
 			   data-data-path="{{dataPath}}"
 			   data-tooltip="{{localize 'FU.DialogPromptCheck'}}"
 			   data-index="{{index}}">
@@ -33,7 +33,7 @@
 		{{/if}}
 		{{#if isCollection}}
 			<a data-action="removeTrack"
-			   data-item-id="{{id}}"
+			   data-id="{{id}}"
 			   data-data-path="{{dataPath}}"
 			   data-tooltip="{{localize 'FU.Delete'}}"
 			   data-index="{{index}}">

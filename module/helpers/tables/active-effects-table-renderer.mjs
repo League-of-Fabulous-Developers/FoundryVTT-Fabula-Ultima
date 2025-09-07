@@ -111,6 +111,6 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 	}
 
 	static #renderControls(effect) {
-		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-effect-controls'), { active: !effect.disabled });
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-effect-controls'), { active: !effect.disabled, effect: effect, system: effect.system });
 	}
 }
