@@ -214,8 +214,12 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 */
 	static async #onUpdateTrack(event, target) {
 		//const rightClick = event.which === 3 || event.button === 2;
-		const { updateAmount, index } = target.dataset;
-		const increment = parseInt(updateAmount);
+		const { updateAmount, index, alternate } = target.dataset;
+		let increment = parseInt(updateAmount);
+		if (alternate && event.button === 2) {
+			increment = -increment;
+		}
+
 		return this.viewed.updateTrack(parseInt(index), increment);
 	}
 

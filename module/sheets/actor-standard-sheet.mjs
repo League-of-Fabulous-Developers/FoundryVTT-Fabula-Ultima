@@ -85,7 +85,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			createItem: FUStandardActorSheet.#onCreate,
 			createFavorite: FUStandardActorSheet.#onCreateFavorite,
 			createClock: FUStandardActorSheet.#onCreateClock,
-			updateTrack: FUStandardActorSheet.#onUpdateTrack,
+			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
 			createClassFeature: FUStandardActorSheet.#onCreateClassFeature,
 			editItem: FUStandardActorSheet.#onEdit,
 			toggleFavorite: FUStandardActorSheet.#onToggleFavorite,
@@ -986,8 +986,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onUpdateTrack(event, target) {
-		const { updateAmount, id, dataPath } = target.dataset;
-		const increment = parseInt(updateAmount);
+		const { updateAmount, id, dataPath, alternate } = target.dataset;
+		let increment = parseInt(updateAmount);
+		if (alternate && event.button === 2) {
+			increment = -increment;
+		}
 
 		let document;
 		document = this.actor.resolveEffect(id);
