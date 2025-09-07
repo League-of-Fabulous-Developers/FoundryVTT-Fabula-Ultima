@@ -715,6 +715,15 @@ export class FUCombat extends foundry.documents.Combat {
 
 	/**
 	 * @returns {Promise<void>}
+	 * @param {String} id
+	 * @param {Number} increment
+	 */
+	async updateTrackById(id, increment) {
+		return ProgressDataModel.updateAtIdForDocument(this, 'system.tracks', id, increment);
+	}
+
+	/**
+	 * @returns {Promise<void>}
 	 * @param {number} index
 	 */
 	async promptTrack(index) {
