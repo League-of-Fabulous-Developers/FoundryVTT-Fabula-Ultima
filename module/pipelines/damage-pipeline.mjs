@@ -427,12 +427,17 @@ async function process(request) {
 			continue;
 		}
 
-		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
+		updates.push(
+			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then((result) => {
+				CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
+				return result; // keep the result from modifyTokenAttribute if needed
+			}),
+		);
+
 		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
 
 		// Dispatch event
 		damageTaken = Math.abs(damageTaken);
-		CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
 
 		// Chat message
 		const affinityString = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {

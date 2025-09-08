@@ -129,7 +129,12 @@ async function processRecovery(request) {
 				// Clone attribute
 				const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr));
 				newValue.value = uncappedRecoveryValue;
-				updates.push(actor.modifyTokenAttribute(request.attributeKey, newValue, false, false));
+				updates.push(
+					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then((result) => {
+						CommonEvents.gain(actor, request.resourceType, amountRecovered);
+						return result;
+					}),
+				);
 			}
 			// Normal recovery
 			else {
@@ -147,12 +152,14 @@ async function processRecovery(request) {
 					});
 					continue;
 				}
-				updates.push(actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true));
+				updates.push(
+					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then((result) => {
+						CommonEvents.gain(actor, request.resourceType, amountRecovered);
+						return result;
+					}),
+				);
 			}
 		}
-
-		CommonEvents.gain(actor, request.resourceType, amountRecovered);
-
 		TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 		updates.push(
 			ChatMessage.create({
@@ -201,16 +208,22 @@ async function processLoss(request) {
 		if (request.isMetaCurrency) {
 			const currentValue = foundry.utils.getProperty(actor.system, request.attributeValuePath) || 0;
 			const newValue = currentValue + amountLost;
-			// Update the actor's resource directly
 			const updateData = {};
 			updateData[`system.${request.attributeValuePath}`] = newValue;
-			updates.push(actor.update(updateData));
+			updates.push(
+				actor.update(updateData).then((result) => {
+					CommonEvents.loss(actor, request.resourceType, amountLost);
+					return result;
+				}),
+			);
 		} else {
-			updates.push(actor.modifyTokenAttribute(request.attributeKey, amountLost, true));
+			updates.push(
+				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then((result) => {
+					CommonEvents.loss(actor, request.resourceType, amountLost);
+					return result;
+				}),
+			);
 		}
-
-		// Dispatch event
-		CommonEvents.loss(actor, request.resourceType, amountLost);
 
 		TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
 		updates.push(
