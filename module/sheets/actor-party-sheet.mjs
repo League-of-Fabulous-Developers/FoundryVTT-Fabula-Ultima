@@ -634,6 +634,10 @@ export class FUPartySheet extends FUActorSheet {
 	}
 }
 
+////////////////////////////////////
+// HOOKS
+////////////////////////////////////
+
 /**
  * @typedef PartySheetActionHook
  * @property {String} name The name to display
@@ -738,3 +742,18 @@ async function onRevealEvent(event) {
 	}
 }
 Hooks.on(FUHooks.REVEAL_EVENT, onRevealEvent);
+
+async function onResourceChangeEvent(event) {
+	if (event.actor) {
+		const party = await FUPartySheet.getActive();
+		if (party && party.system.characters.has(event.actor.uuid)) {
+			party.sheet.render({
+				parts: ['overview'],
+			});
+		}
+	}
+}
+
+Hooks.on(FUHooks.DAMAGE_EVENT, onResourceChangeEvent);
+Hooks.on(FUHooks.GAIN_EVENT, onResourceChangeEvent);
+Hooks.on(FUHooks.LOSS_EVENT, onResourceChangeEvent);
