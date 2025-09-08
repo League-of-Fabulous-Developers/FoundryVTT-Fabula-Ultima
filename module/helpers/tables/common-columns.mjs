@@ -53,6 +53,7 @@ function renderNameCell(renderCaption, cssClass) {
  * @property {boolean, ((item: FUItem) => boolean)} [disableShare=() => true]
  * @property {boolean, ((item: FUItem) => boolean)} [disableSell=() => true]
  * @property {boolean, ((item: FUItem) => boolean)} [disableLoot=() => true]
+ * @property {boolean, ((item: FUItem) => boolean)} [disableProgress=() => false]
  */
 
 /**

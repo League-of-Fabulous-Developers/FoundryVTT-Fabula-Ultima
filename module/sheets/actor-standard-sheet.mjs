@@ -39,6 +39,7 @@ import { FavoritesTableRenderer } from '../helpers/tables/favorites-table-render
 import { BehaviorTableRenderer } from '../helpers/tables/behavior-table-renderer.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -84,6 +85,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			createItem: FUStandardActorSheet.#onCreate,
 			createFavorite: FUStandardActorSheet.#onCreateFavorite,
 			createClock: FUStandardActorSheet.#onCreateClock,
+			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
 			createClassFeature: FUStandardActorSheet.#onCreateClassFeature,
 			editItem: FUStandardActorSheet.#onEdit,
 			toggleFavorite: FUStandardActorSheet.#onToggleFavorite,
@@ -976,6 +978,29 @@ export class FUStandardActorSheet extends FUActorSheet {
 			return;
 		}
 		actor.clearTemporaryEffects();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onUpdateTrack(event, target) {
+		const { updateAmount, id, dataPath, alternate } = target.dataset;
+		let increment = parseInt(updateAmount);
+		if (alternate && event.button === 2) {
+			increment = -increment;
+		}
+
+		let document;
+		document = this.actor.resolveEffect(id);
+		if (!document) {
+			document = this.actor.getItemById(id);
+		}
+
+		if (document) {
+			return ProgressDataModel.updateForDocument(document, dataPath, increment);
+		}
 	}
 
 	// TODO: Re-use with the ones from item sheet?

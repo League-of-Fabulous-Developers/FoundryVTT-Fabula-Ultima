@@ -84,6 +84,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		context.systemFields = this.document.system.schema.fields;
 		context.system = this.document.system;
 		context.effectType = FU.effectType;
+		context.trackStyles = FU.trackStyles;
 		context.crisisInteractions = FU.crisisInteractions;
 		return context;
 	}

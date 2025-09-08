@@ -306,8 +306,11 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onUpdateTrack(event, target) {
-		const { updateAmount, index } = target.dataset;
-		const increment = parseInt(updateAmount);
+		const { updateAmount, index, alternate } = target.dataset;
+		let increment = parseInt(updateAmount);
+		if (alternate && event.button === 2) {
+			increment = -increment;
+		}
 		return ProgressDataModel.updateAtIndexForDocument(this.actor, 'system.tracks', Number.parseInt(index), increment);
 	}
 

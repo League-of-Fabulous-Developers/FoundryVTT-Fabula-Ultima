@@ -366,6 +366,14 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @param {String} id
+	 * @returns {FUItem}
+	 */
+	getItemById(id) {
+		return this.items.filter((i) => i.id === id)[0];
+	}
+
+	/**
 	 * @description Deletes all temporary effects on the actor
 	 * @property includeStatus Whether to also clear status effects
 	 * @property includeWithoutDuration Include effects without a duration

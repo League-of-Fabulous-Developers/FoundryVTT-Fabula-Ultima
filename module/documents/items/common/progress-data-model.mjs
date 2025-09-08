@@ -77,15 +77,13 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 
 	/**
 	 * @param {String} name
-	 * @param {Number} max
-	 * @param {String} style
+	 * @param {Object} options
 	 * @returns {ProgressDataModel}
 	 */
-	static construct(name, max, style = undefined) {
+	static construct(name, options = {}) {
 		return new this({
 			name: name,
-			max: max,
-			style: style,
+			...options,
 		});
 	}
 
@@ -150,6 +148,45 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 * @typedef ProgressUpdateOptions
 	 * @property {FUActor|FUItem} source
 	 */
+
+	/**
+	 * @description Updates a progress track at an index
+	 * @param {Document} document
+	 * @param {String} propertyPath
+	 * @param {String} id The id of the track
+	 * @param {number} increment
+	 * @param {ProgressUpdateOptions} options
+	 */
+	static async updateAtIdForDocument(document, propertyPath, id, increment, options = undefined) {
+		if (id === undefined) {
+			throw Error('Undefined track id was given');
+		}
+
+		const property = ObjectUtils.getProperty(document, propertyPath);
+		// If it's an array
+		if (Array.isArray(property)) {
+			/** @type ProgressDataModel[] **/
+			const tracks = foundry.utils.duplicate(property);
+			const track = tracks.find((track) => track.id === id);
+			if (track) {
+				track.current = MathHelper.clamp(track.current + increment * track.step, 0, track.max);
+				document.update({ [propertyPath]: tracks });
+				if (options) {
+					await this.notifyUpdate(document, track, increment, options.source);
+				}
+			}
+		} else if (property instanceof ProgressDataModel) {
+			/** @type ProgressDataModel **/
+			const track = foundry.utils.duplicate(property);
+			track.current = MathHelper.clamp(track.current + increment * track.step, 0, track.max);
+			await document.update({ [propertyPath]: track });
+			if (options) {
+				await this.notifyUpdate(document, track, increment, options.source);
+			}
+		} else {
+			ui.notifications.error(`Failed to update progress track for ${document.name}`);
+		}
+	}
 
 	/**
 	 * @description Updates a progress track at an index
@@ -263,7 +300,11 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 				return;
 			}
 			console.log('Creating progress track with name: ', result.name);
-			const newTrack = ProgressDataModel.construct(result.name, result.max, result.style);
+			const newTrack = ProgressDataModel.construct(result.name, {
+				id: result.id,
+				max: result.max,
+				style: result.style,
+			});
 			await this.addToDocument(document, propertyPath, newTrack);
 		}
 	}

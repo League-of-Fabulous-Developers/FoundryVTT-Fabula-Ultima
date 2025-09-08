@@ -2,6 +2,11 @@
 
 	<div class="progress-container">
 		<div class="progress" style="--segments: {{data.max}};" data-segments="{{data.max}}" data-index="{{index}}"
+			 data-action="{{action}}"
+			 data-id="{{id}}"
+			 data-index="{{index}}"
+			 data-update-amount="1"
+			 data-alternate="true"
 			 data-tooltip="{{localize 'FU.Progress'}}"
 			 {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}>
 
