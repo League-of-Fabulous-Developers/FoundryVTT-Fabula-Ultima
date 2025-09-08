@@ -1238,6 +1238,7 @@
 		"ImprovisedEffectHeavy": "Heavy",
 		"ImprovisedEffectMassive": "Massive",
 		"CombatTokenWithoutActor": "Token does not represent an actor. Unable to add to combat.",
+		"CombatTokenInvalidActor": "Token does not represent a valid character type.",
 		"AccuracyCheck": "Accuracy Check",
 		"AttributeCheck": "Attribute Check",
 		"MagicCheck": "Magic Check",
