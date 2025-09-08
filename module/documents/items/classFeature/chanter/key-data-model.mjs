@@ -1,8 +1,9 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU, SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
+import { VerseMigrations } from './verse-migrations.mjs';
 
-const recoveryOptions = {
+const resourceOptions = {
 	hp: 'FU.HealthPoints',
 	mp: 'FU.MindPoints',
 };
@@ -21,11 +22,11 @@ const statuses = {
  * @property {DamageType} type
  * @property {"slow","dazed","weak","shaken","enraged","poisoned"} status
  * @property {Attribute} attribute
- * @property {"hp","mp"} recovery
+ * @property {"hp","mp"} resource
  */
 export class KeyDataModel extends RollableClassFeatureDataModel {
-	static get recoveryOptions() {
-		return recoveryOptions;
+	static get resourceOptions() {
+		return resourceOptions;
 	}
 
 	static get statuses() {
@@ -38,8 +39,14 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 			type: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }),
 			status: new StringField({ initial: 'slow', choices: Object.keys(statuses) }),
 			attribute: new StringField({ initial: 'dex', choices: Object.keys(FU.attributeAbbreviations) }),
-			recovery: new StringField({ initial: 'hp', choices: Object.keys(recoveryOptions) }),
+			resource: new StringField({ initial: 'hp', choices: Object.keys(resourceOptions) }),
 		};
+	}
+
+	static migrateData(source) {
+		source = super.migrateData(source) ?? source;
+		VerseMigrations.run(source);
+		return source;
 	}
 
 	static get translation() {
@@ -60,7 +67,24 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 			statuses: KeyDataModel.statuses,
 			attributes: FU.attributes,
 			attributeAbbreviations: FU.attributeAbbreviations,
-			recoveryOptions: KeyDataModel.recoveryOptions,
+			resourceOptions: KeyDataModel.resourceOptions,
+		};
+	}
+
+	/**
+	 * @param keyData
+	 * @remarks We keep distinct raw and localized versions of the keys because data entries by both our compendiums and users want to use either.
+	 */
+	static getRollData(keyData) {
+		return {
+			type: keyData.type,
+			typeLocal: game.i18n.localize(FU.damageTypes[keyData.type]),
+			status: keyData.status,
+			statusLocal: game.i18n.localize(FU.statusEffects[keyData.status]),
+			attribute: keyData.attribute,
+			attributeLocal: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
+			resource: keyData.resource,
+			resourceLocal: game.i18n.localize(FU.resources[keyData.resource]),
 		};
 	}
 
@@ -75,7 +99,7 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 			statuses: KeyDataModel.statuses[model.status],
 			attributes: FU.attributes[model.attribute],
 			attributeAbbreviations: FU.attributeAbbreviations[model.attribute],
-			recoveryOptions: KeyDataModel.recoveryOptions[model.recovery],
+			resourceOptions: KeyDataModel.resourceOptions[model.resource],
 		};
 
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });

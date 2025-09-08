@@ -3,7 +3,6 @@ import { FUItem } from '../../item.mjs';
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
 import { FUActor } from '../../../actors/actor.mjs';
-import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { VersesApplication } from './verses-application.mjs';
 import { LocallyEmbeddedDocumentField } from '../../../../fields/locally-embedded-document-field.mjs';
@@ -20,7 +19,7 @@ const volumes = {
  * @param {VerseDataModel} model
  * @returns {Promise<string>}
  */
-async function getDescription(model) {
+async function enrichDescription(model) {
 	const key = model.key;
 	const tone = model.tone;
 
@@ -33,12 +32,7 @@ async function getDescription(model) {
 	} else {
 		rollData = {};
 		const keyData = key.system.data;
-		rollData.key = {
-			type: game.i18n.localize(FU.damageTypes[keyData.type]),
-			status: `@EFFECT[${keyData.status}]`,
-			attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
-			recovery: game.i18n.localize(KeyDataModel.recoveryOptions[keyData.recovery]),
-		};
+		rollData.key = KeyDataModel.getRollData(keyData);
 
 		const actor = model.actor;
 		if (actor) {
@@ -103,7 +97,7 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 			volumes: volumes,
 			keys: model.parent.parent?.actor?.itemTypes.classFeature.filter((item) => item.system.data instanceof KeyDataModel) ?? [],
 			tones: model.parent.parent?.actor?.itemTypes.classFeature.filter((item) => item.system.data instanceof ToneDataModel) ?? [],
-			description: await getDescription(model),
+			description: await enrichDescription(model),
 		};
 	}
 

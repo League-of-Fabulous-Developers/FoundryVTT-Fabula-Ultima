@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target recovers from<strong>【@DATA[key.statusLocal]】</strong>and also gains <strong>【</strong>@TYPE[affinity @DATA[key.type] resistance e:sot i:1 t:source]{Solemn Tone}<strong>】</strong>until the <strong>start of your next turn</strong>.</p>"
+      "description": "<p>Each <strong>target recovers</strong> from<strong> @EFFECT[@DATA[key.status]] </strong>and <strong>also gains</strong> @TYPE[affinity @DATA[key.type] resistance e:sot i:1 t:source]{Solemn Tone}<strong> </strong>until the <strong>start of your next turn</strong>.</p>"
     },
     "source": "FUHF139",
     "fuid": "solemn-tone"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1710040272509,
-    "modifiedTime": 1742581274064,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1757184771764,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
