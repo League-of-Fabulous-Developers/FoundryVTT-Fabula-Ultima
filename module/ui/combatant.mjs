@@ -4,10 +4,18 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 
 Hooks.on('preCreateCombatant', function (document, data, options, userId) {
-	if (document instanceof FUCombatant && document.actorId === null) {
+	if (!(document instanceof FUCombatant)) {
+		return false;
+	}
+	if (document.actorId == null || document.actor == null) {
 		ui.notifications.info('FU.CombatTokenWithoutActor', { localize: true });
 		return false;
 	}
+	if (!document.actor.isCharacterType) {
+		ui.notifications.info('FU.CombatTokenInvalidActor', { localize: true });
+		return false;
+	}
+	return true;
 });
 
 /**
