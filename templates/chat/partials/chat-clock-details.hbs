@@ -16,8 +16,10 @@
 				{{/each}}
 			</div>
 		</div>
-		<div class="flexcol" style="display: flex; width: 100%;">
-			<div class="rp-label">{{progress.name}}</div>
+		<div class="flexcol flex-group-center" style="display: flex; width: 100%;">
+			{{#if displayName}}
+				<div class="rp-label">{{progress.name}}</div>
+			{{/if}}
 			<div class="flex-group-center stats">
 				<span class="stat-current">{{progress.current}}</span>
 				<span class="stat-divider">/</span>

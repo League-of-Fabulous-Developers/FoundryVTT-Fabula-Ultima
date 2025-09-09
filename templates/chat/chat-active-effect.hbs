@@ -1,7 +1,7 @@
 <div class="chat-effect-message">
 	<header class="title-desc chat-header flexrow">
 		{{!-- Image--}}
-		{{> "systems/projectfu/templates/effects/active-effect-image.hbs" effect=effect}}
+		{{> "systems/projectfu/templates/effects/active-effect-image.hbs" img=effect.img}}
 		<h2 style="flex-grow: 8;">{{effect.name}}</h2>
 	</header>
 	{{#if description}}
@@ -10,6 +10,6 @@
 		</div>
 	{{/if}}
 	{{#if effect.system.rules.progress.enabled}}
-		{{> "systems/projectfu/templates/chat/partials/chat-clock-details.hbs" data=effect.system.rules.progress arr=effect.system.rules.progress.progressArray}}
+		{{> "systems/projectfu/templates/chat/partials/chat-clock-details.hbs" progress=effect.system.rules.progress segments=effect.system.rules.progress.segments displayName=true}}
 	{{/if}}
 </div>

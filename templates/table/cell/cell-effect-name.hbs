@@ -1,7 +1,7 @@
 <div class="cell-effect-name">
 	<div class="cell-effect-name__main">
 		<a data-action="rollEffect">
-			<img class="cell-effect-name__image" src="{{img}}" alt="{{name}}" data-tooltip="{{localize 'FU.RollIconToolTip' name=name}}" />
+			{{> "systems/projectfu/templates/effects/active-effect-image.hbs" effect=effect}}
 		</a>
 		<div class="cell-effect-name__name {{#if suppressed}}cell-effect-name__name--suppressed{{/if}}">
 			<span class="{{cssClass}}">{{name}}</span>
