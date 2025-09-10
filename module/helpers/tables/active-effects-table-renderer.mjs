@@ -95,7 +95,7 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 	static #renderEffectName(effect) {
 		const suppressed = effect.suppressed && !effect.disabled;
 
-		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-effect-name.hbs', { name: effect.name, img: effect.img, suppressed: suppressed });
+		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-effect-name.hbs', { name: effect.name, img: effect.img, suppressed: suppressed, progress: effect.system.rules.progress });
 	}
 
 	static #getSource(effect) {

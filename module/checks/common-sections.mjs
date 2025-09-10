@@ -79,8 +79,9 @@ const clock = (sections, clock, order) => {
 	sections.push(async () => ({
 		partial: 'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
 		data: {
-			data: clock,
-			arr: clock.progressArray,
+			progress: clock,
+			segments: clock.progressArray,
+			displayName: true,
 		},
 		order: order,
 	}));
