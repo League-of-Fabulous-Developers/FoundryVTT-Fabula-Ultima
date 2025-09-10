@@ -43,7 +43,7 @@ export class CombatEvent {
 	}
 
 	get actors() {
-		return Array.from(this.combatants.map((c) => c.actor));
+		return Array.from(this.combatants.filter((c) => !!c.actor).map((c) => c.actor));
 	}
 
 	/**

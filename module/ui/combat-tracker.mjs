@@ -66,10 +66,13 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		combat.populateData(context);
 		// We add more data to the turns objects
 		context.turns = context.turns?.map((turn) => {
-			turn.statusEffects = combat.combatants.get(turn.id)?.actor.temporaryEffects.map((effect) => ({
-				name: effect.name,
-				img: effect.img,
-			}));
+			const combatant = combat.combatants.get(turn.id);
+			if (combatant.actor) {
+				turn.statusEffects = combatant?.actor.temporaryEffects.map((effect) => ({
+					name: effect.name,
+					img: effect.img,
+				}));
+			}
 			turn.css = turn.css.replace('active', '');
 			return turn;
 		});
