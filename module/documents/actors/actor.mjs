@@ -440,15 +440,13 @@ export class FUActor extends Actor {
 		const maxIP = this.system.resources.ip?.max;
 
 		// Prepare the update data using mergeObject to avoid overwriting other fields
-		let updateData = foundry.utils.mergeObject(this.toObject(false), {
+		const updateData = {
 			'system.resources.hp.value': maxHP,
 			'system.resources.mp.value': maxMP,
-		});
+		};
 
 		if (recoverInventoryPoints) {
-			updateData = foundry.utils.mergeObject(updateData, {
-				'system.resources.ip.value': maxIP,
-			});
+			updateData['system.resources.ip.value'] = maxIP;
 		}
 
 		// Update the actor
@@ -456,11 +454,6 @@ export class FUActor extends Actor {
 
 		// Dispatch the event
 		CommonEvents.rest(this);
-
-		// Rerender the actor's sheet if necessary
-		if (recoverInventoryPoints || updateData['system.resources.ip.value']) {
-			this.sheet.render(true);
-		}
 	}
 
 	// TODO: Move out

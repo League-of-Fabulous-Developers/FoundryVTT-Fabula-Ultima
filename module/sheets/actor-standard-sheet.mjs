@@ -100,7 +100,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			crisisHP: FUStandardActorSheet.CrisisHP,
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
-			rest: FUStandardActorSheet.handleRestClick,
+			rest: { buttons: [0, 2], handler: FUStandardActorSheet.handleRestClick },
 			levelUp: FUStandardActorSheet.levelUp,
 
 			// Features
