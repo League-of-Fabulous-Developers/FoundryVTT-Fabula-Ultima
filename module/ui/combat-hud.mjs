@@ -1354,16 +1354,28 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		return options;
 	}
 
-	static StartTurn(e) {
-		ui.combat.handleStartTurn(e);
+	static StartTurn(event, target) {
+		const combatantId = target.closest('[data-combatant-id]')?.dataset?.combatantId;
+		const combatant = game.combat.combatants.get(combatantId);
+		if (combatant) {
+			return ui.combat.handleStartTurn(combatant);
+		}
 	}
 
-	static EndTurn(e) {
-		ui.combat.handleEndTurn(e);
+	static EndTurn(event, target) {
+		const combatantId = target.closest('[data-combatant-id]')?.dataset?.combatantId;
+		const combatant = game.combat.combatants.get(combatantId);
+		if (combatant) {
+			return ui.combat.handleEndTurn(combatant);
+		}
 	}
 
-	static TakeTurnOutOfTurn(e) {
-		ui.combat.handleTakeTurnOutOfTurn(e);
+	static TakeTurnOutOfTurn(event, target) {
+		const combatantId = target.closest('[data-combatant-id]')?.dataset?.combatantId;
+		const combatant = game.combat.combatants.get(combatantId);
+		if (combatant) {
+			return ui.combat.handleTakeTurnOutOfTurn(combatant, event.shiftKey);
+		}
 	}
 
 	static async ClickEffect(e, elem) {

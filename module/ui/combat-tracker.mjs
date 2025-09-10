@@ -19,6 +19,10 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu'],
 		actions: {
+			// Turn actions
+			startTurn: FUCombatTracker.#onStartTurn,
+			endTurn: FUCombatTracker.#onEndTurn,
+			takeTurnOutOfTurn: FUCombatTracker.#onTakeTurnOutOfTurn,
 			// Progress tracks
 			addTrack: this.#onAddTrack,
 			removeTrack: this.#onRemoveTrack,
@@ -82,22 +86,11 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @override
-	 * */
-	_attachFrameListeners() {
-		super._attachFrameListeners();
-		this.element.addEventListener('click', async (ev) => {
-			const target = ev.target;
-			if (target.closest('.start-turn')) {
-				return this.handleStartTurn(ev);
-			} else if (target.closest('.end-turn')) {
-				return this.handleEndTurn(ev);
-			} else if (target.closest('.take-turn.out-of-turn')) {
-				return this.handleTakeTurnOutOfTurn(ev);
-			}
-		});
+	_onCombatantMouseDown(event, target) {
+		if (event.type === 'dblclick' && event.target.closest('[data-action]')) {
+			return;
+		}
+		return super._onCombatantMouseDown(event, target);
 	}
 
 	/**
@@ -153,41 +146,68 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		}
 	}
 
-	#getCombatantFromEvent(event) {
-		const parent = event.target.closest('[data-combatant-id]');
-		if (!parent) return;
+	/**
+	 * @param {FUCombatant} combatant
+	 * @return {Promise<void>}
+	 */
+	async handleStartTurn(combatant) {
+		if (combatant && combatant.combat) {
+			if (combatant.isDefeated) {
+				const takeTurn = await foundry.applications.api.DialogV2.confirm({
+					window: { title: game.i18n.localize('FU.DialogDefeatedTurnTitle') },
+					content: game.i18n.localize('FU.DialogDefeatedTurnContent'),
+				});
+				if (!takeTurn) return;
+			}
 
-		const combatantId = parent.dataset.combatantId;
-		return this.viewed.combatants.get(combatantId);
-	}
-
-	async handleStartTurn(event) {
-		const combatant = this.#getCombatantFromEvent(event);
-		if (combatant) {
-			await this.viewed.startTurn(combatant);
+			await combatant.combat.startTurn(combatant);
 		}
 	}
 
-	async handleEndTurn(event) {
-		const combatant = this.#getCombatantFromEvent(event);
-		if (!combatant) return;
-
-		if (combatant.isDefeated) {
-			const takeTurn = await foundry.applications.api.DialogV2.confirm({
-				window: { title: game.i18n.localize('FU.DialogDefeatedTurnTitle') },
-				content: game.i18n.localize('FU.DialogDefeatedTurnContent'),
-			});
-			if (!takeTurn) return;
+	/**
+	 * @param {FUCombatant} combatant
+	 * @return {Promise<void>}
+	 */
+	async handleEndTurn(combatant) {
+		if (combatant && combatant.combat) {
+			await combatant.combat.endTurn(combatant);
 		}
-
-		await this.viewed.endTurn(combatant);
 	}
 
-	async handleTakeTurnOutOfTurn(event) {
-		if (event.shiftKey) {
-			await this.handleStartTurn(event);
+	/**
+	 * @param {FUCombatant} combatant
+	 * @param {boolean} force
+	 * @return {Promise<void>}
+	 */
+	async handleTakeTurnOutOfTurn(combatant, force = false) {
+		if (force) {
+			await this.handleStartTurn(combatant);
 		} else {
 			ui.notifications.info('FU.CombatTakeTurnOutOfTurn', { localize: true });
+		}
+	}
+
+	static #onStartTurn(event, target) {
+		const combatantId = target.closest('[data-combatant-id]')?.dataset?.combatantId;
+		const combatant = this.viewed.combatants.get(combatantId);
+		if (combatant) {
+			return this.handleStartTurn(combatant);
+		}
+	}
+
+	static #onEndTurn(event, target) {
+		const combatantId = target.closest('[data-combatant-id]')?.dataset?.combatantId;
+		const combatant = this.viewed.combatants.get(combatantId);
+		if (combatant) {
+			return this.handleEndTurn(combatant);
+		}
+	}
+
+	static #onTakeTurnOutOfTurn(event, target) {
+		const combatantId = target.closest('[data-combatant-id]')?.dataset?.combatantId;
+		const combatant = this.viewed.combatants.get(combatantId);
+		if (combatant) {
+			return this.handleTakeTurnOutOfTurn(combatant, event.shiftKey);
 		}
 	}
 
