@@ -25,6 +25,7 @@ export const ItemPartialTemplates = Object.freeze({
 	attackAccuracy: { template: systemTemplatePath('item/partials/item-attack-accuracy'), group: 'grid' },
 	attackDamage: { template: systemTemplatePath('item/partials/item-attack-damage'), group: 'grid' },
 	weaponSettings: { template: systemTemplatePath('item/partials/item-weapon-settings'), group: 'settings' },
+	traits: { template: systemTemplatePath('item/partials/item-traits'), group: 'grid' },
 
 	opportunityField: { template: systemTemplatePath('item/partials/item-opportunity-field') },
 	initiativeField: { template: systemTemplatePath('item/partials/item-initiative-field') },

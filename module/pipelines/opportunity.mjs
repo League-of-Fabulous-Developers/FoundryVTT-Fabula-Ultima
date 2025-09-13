@@ -19,19 +19,27 @@ async function onOpportunity(event) {
 		console.debug(`${event.actor} has gained an opportunity!`);
 	}
 
-	const actor = event.actor;
-	const message = event.fumble ? 'FU.ChatFumbleOpportunity' : 'FU.ChatOpportunity';
+	async function postChatMessage() {
+		const actor = event.actor;
+		const message = event.fumble ? 'FU.ChatFumbleOpportunity' : 'FU.ChatOpportunity';
 
-	ChatMessage.create({
-		flags: Pipeline.initializedFlags(Flags.ChatMessage.Opportunity, true),
-		speaker: ChatMessage.getSpeaker({ actor }),
-		content: await FoundryUtils.renderTemplate('chat/chat-apply-opportunity', {
-			actor: actor,
-			item: event.item,
-			message: message,
-			type: event.type,
-		}),
-	});
+		ChatMessage.create({
+			flags: Pipeline.initializedFlags(Flags.ChatMessage.Opportunity, true),
+			speaker: ChatMessage.getSpeaker({ actor }),
+			content: await FoundryUtils.renderTemplate('chat/chat-apply-opportunity', {
+				actor: actor,
+				item: event.item,
+				message: message,
+				type: event.type,
+			}),
+		});
+	}
+
+	if (game.dice3d) {
+		Hooks.once('diceSoNiceRollComplete', postChatMessage);
+	} else {
+		await postChatMessage();
+	}
 }
 
 /**
@@ -54,15 +62,17 @@ async function promptOpportunity(actor, type, item = undefined) {
 			}
 		}
 		const selected = await FoundryUtils.promptStringChoice('FU.Opportunities', choices);
-		console.debug(`Selected opportunity: ${selected}`);
+		if (selected) {
+			console.debug(`Selected opportunity: ${selected}`);
 
-		ChatMessage.create({
-			speaker: ChatMessage.getSpeaker(),
-			content: await FoundryUtils.renderTemplate('chat/chat-opportunity', {
-				actor: actor,
-				opportunity: selected,
-			}),
-		});
+			ChatMessage.create({
+				speaker: ChatMessage.getSpeaker(),
+				content: await FoundryUtils.renderTemplate('chat/chat-opportunity', {
+					actor: actor,
+					opportunity: selected,
+				}),
+			});
+		}
 	} else {
 		ui.notifications.warn('FU.ChatOpportunitySettingMissing', { localize: true });
 	}

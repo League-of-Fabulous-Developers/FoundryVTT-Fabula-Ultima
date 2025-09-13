@@ -7,6 +7,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @param {CheckV2} check
@@ -52,6 +53,7 @@ function onRenderCheck(data, result, actor, item) {
 				},
 			},
 		}));
+		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 }
@@ -78,7 +80,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  */
 export class BasicItemDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
@@ -95,6 +97,7 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 					hrZero: new SchemaField({ value: new BooleanField() }),
 				}),
 			}),
+			traits: new SetField(new StringField()),
 		});
 	}
 
@@ -103,13 +106,33 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
 	}
 
 	/**
 	 * @override
 	 */
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.traits, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality];
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeAccuracyCheck(modifiers) {
+		return async (check, actor, item) => {
+			const configure = CheckConfiguration.configure(check);
+			configure.setHrZero(modifiers.shift);
+			configure.addTraits('attack');
+			configure.addTraitsFromItemModel(this.traits);
+		};
+	}
+
+	/**
+	 * @return {Tag[]}
+	 */
+	getTags() {
+		return [...TraitUtils.toTags(this.traits)];
 	}
 }

@@ -487,6 +487,7 @@
 		"Damage": "Damage",
 		"HasDamage": "Has Damage?",
 		"UseWeaponDamage": "Use Weapon Damage",
+		"UseWeaponTraits": "Use Weapon Traits",
 		"DamageBonus": "Damage Bonus",
 		"DamageExtra": "Extra Damage",
 		"DamageTypeExtra": "Extra Damage Type",

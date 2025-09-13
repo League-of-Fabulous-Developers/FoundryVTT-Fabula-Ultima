@@ -1,15 +1,3 @@
-<div class="toggle-section tags {{#if (getGameSetting 'optionChatMessageHideTags')}}hidden{{/if}}">
-    <div class="fu-tags">
-        <div class="fu-tag">{{localize (concat 'FU.' (capitalize weapon.category))}}</div>
-        {{#if (eq weapon.hands 'two-handed')}}
-            <div class="fu-tag">{{localize (concat 'FU.TwoHanded')}}</div>
-        {{else}}
-            <div class="fu-tag">{{localize (concat 'FU.OneHanded')}}</div>
-        {{/if}}
-        <div class="fu-tag">{{localize (concat 'FU.' (capitalize weapon.type))}}</div>
-    </div>
-</div>
-
 {{#if weapon.quality}}
     <div class="toggle-section quality {{#if (getGameSetting 'optionChatMessageHideQuality')}}hidden{{/if}}">
         {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=weapon.quality}}

@@ -8,6 +8,8 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { StringUtils } from '../../../helpers/string-utils.mjs';
 
 /**
  * @param {CheckV2} check
@@ -31,6 +33,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				handedness: weapon.hands.value,
 			})
 			.addTraits(weapon.damageType.value)
+			.addTraitsFromItemModel(weapon.traits)
 			.setTargetedDefense(weapon.defense)
 			.setDamageOverride(actor, 'attack')
 			.modifyHrZero((hrZero) => hrZero || weapon.rollInfo.useWeapon.hrZero.value);
@@ -52,13 +55,12 @@ function onRenderCheck(data, result, actor, item) {
 			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
 			data: {
 				weapon: {
-					category: item.system.category.value,
-					hands: item.system.hands.value,
 					type: item.system.type.value,
 					quality: item.system.quality.value,
 				},
 			},
 		}));
+		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 }
@@ -90,7 +92,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  */
 export class WeaponDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
@@ -115,6 +117,7 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 					hrZero: new SchemaField({ value: new BooleanField() }),
 				}),
 			}),
+			traits: new SetField(new StringField()),
 		});
 	}
 
@@ -140,12 +143,24 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers.shift));
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeAccuracyCheck(modifiers) {
+		return async (check, actor, item) => {
+			const configure = CheckConfiguration.configure(check);
+			configure.setHrZero(modifiers.shift);
+		};
 	}
 
 	get attributePartials() {
 		return [
 			ItemPartialTemplates.standard,
+			ItemPartialTemplates.traits,
 			ItemPartialTemplates.weaponSettings,
 			ItemPartialTemplates.qualityCost,
 			ItemPartialTemplates.weapon,
@@ -164,5 +179,27 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	equipWeapon(event, target) {
 		// TODO: find better solution, equipment data model maybe?
 		return this.parent.actor.equipmentHandler.handleItemClick(event, target);
+	}
+
+	/**
+	 * @param {Boolean} includeTraits
+	 * @return {Tag[]}
+	 */
+	getTags(includeTraits = true) {
+		let result = [
+			{
+				tag: `FU.${StringUtils.capitalize(this.category.value)}`,
+			},
+			{
+				tag: `FU.${StringUtils.capitalize(this.type.value)}`,
+			},
+			{
+				tag: `FU.${this.hands.value === 'two-handed' ? 'TwoHanded' : 'OneHanded'}`,
+			},
+		];
+		if (includeTraits) {
+			result.push(...TraitUtils.toTags(this.traits));
+		}
+		return result;
 	}
 }

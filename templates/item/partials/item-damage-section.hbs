@@ -9,6 +9,10 @@
 			<span>{{localize 'FU.UseWeaponDamage'}}</span>
 			<input type="checkbox" name="system.useWeapon.damage" {{ checked system.useWeapon.damage }} {{disabled (not system.damage.hasDamage)}} />
 		</label>
+		<label class="checkbox resource-label-sm">
+			<span>{{localize 'FU.UseWeaponTraits'}}</span>
+			<input type="checkbox" name="system.useWeapon.traits" {{ checked system.useWeapon.traits }} {{disabled (not system.damage.hasDamage)}} />
+		</label>
 	</div>
 	<div class="grid grid-2col">
 		<div class=" flexcol flex-group-center">

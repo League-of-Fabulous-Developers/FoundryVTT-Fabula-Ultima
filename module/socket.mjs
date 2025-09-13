@@ -275,7 +275,10 @@ export class FUSocketHandler {
 							}
 							const sourceInfo = InlineSourceInfo.fromObject(data.sourceInfo);
 							const damageData = new DamageData(data.damageData);
+							/** @type String[] **/
+							const traits = data.traits;
 							const request = new DamageRequest(sourceInfo, actors, damageData);
+							request.addTraits(traits);
 							await DamagePipeline.process(request);
 						}
 						break;
