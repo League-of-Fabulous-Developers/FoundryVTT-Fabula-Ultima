@@ -5,7 +5,7 @@
     <div class="foreground"></div>
 
     {{#each arr as |obj key|}}
-        <input class="pie slice{{obj.id}}" type="radio" value="{{obj.id}}" style="--index: {{obj.id}}" {{checked obj.checked}} />
+        <input class="pie slice{{obj.id}}" type="radio" value="{{obj.id}}" style="--index: {{obj.id}}" {{checked obj.checked}} {{#if ../action}}data-action="{{../action}}" data-segment="{{obj.id}}"{{/if}}/>
         <div class="divider" style="--index: {{obj.id}}"></div>
     {{/each}}
 </div>

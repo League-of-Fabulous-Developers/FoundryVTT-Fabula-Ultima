@@ -67,4 +67,17 @@ export class GardenDataModel extends ClassFeatureDataModel {
 			el.addEventListener('contextmenu', (e) => item.update({ 'system.data.clock.current': 0 }));
 		});
 	}
+
+	modifyClock(event, target) {
+		return this.item.update({
+			'system.data.clock': this.clock.getProgressUpdate(event, target, {
+				indirect: {
+					dataAttribute: 'data-resource-action',
+					attributeValueIncrement: 'increment',
+					attributeValueDecrement: 'decrement',
+				},
+				direct: {},
+			}),
+		});
+	}
 }
