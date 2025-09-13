@@ -5,7 +5,7 @@
  * @property {string} cssClass
  * @property {"item", "effect"} [tablePreset="item"]
  * @property {(document: D, options: FUTableRendererRenderOptions) => T[]} getItems
- * @property {true, ((a: D, b: D) => number)} [sort] sorting function to determine the order of entries, true means sort using foundry sort order
+ * @property {boolean, ((a: D, b: D) => number)} [sort=true] sorting function to determine the order of entries, true means sort using foundry sort order, false means don't sort
  * @property {(element: HTMLElement) => void} activateListeners
  * @property {boolean} [hideIfEmpty=false]
  * @property {((T) => string | Promise<string>)} [renderDescription]
@@ -58,7 +58,7 @@ export class FUTableRenderer {
 		config.getItems = config.getItems.bind(this);
 		if (config.sort instanceof Function) {
 			config.sort = config.sort.bind(this);
-		} else if (config.sort === true) {
+		} else if (!('sort' in config) || config.sort === true) {
 			config.sort = (a, b) => a.sort - b.sort;
 		}
 		if (config.renderDescription instanceof Function) {
