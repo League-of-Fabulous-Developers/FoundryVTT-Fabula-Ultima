@@ -236,7 +236,11 @@ export class FUActiveEffect extends ActiveEffect {
 			}
 		}
 
-		return super.apply(target, change);
+		const changes = super.apply(target, change);
+		if (change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM && changes[change.key] == null) {
+			delete changes[change.key];
+		}
+		return changes;
 	}
 
 	/**
