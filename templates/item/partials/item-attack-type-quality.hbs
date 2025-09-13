@@ -1,0 +1,16 @@
+<div class="resource-content flex1">
+	<label class="resource-label-m flexcol align-left">
+		{{localize 'FU.ItemType'}}
+		<select name="system.type.value" class="resource-inputs select-dropdown-full">
+			{{selectOptions wpnType selected=system.type.value sort=true localize=true}}
+		</select>
+	</label>
+</div>
+
+<div class="resource-content flexlarge">
+	<label class="resource-label-m flexcol align-left">
+		{{localize 'FU.Quality'}}
+
+		<input type="text" name="system.quality.value" value="{{system.quality.value}}" class="resource-inputs" style="width: unset">
+	</label>
+</div>

@@ -36,6 +36,7 @@ export const ItemPartialTemplates = Object.freeze({
 	durationField: { template: systemTemplatePath('item/partials/item-duration-field') },
 	ipCostField: { template: systemTemplatePath('item/partials/item-ip-cost-field') },
 	attackTypeField: { template: systemTemplatePath('item/partials/item-attack-type-field') },
+	attackTypeAndQuality: { template: systemTemplatePath('item/partials/item-attack-type-quality') },
 
 	armor: { template: systemTemplatePath('item/partials/item-armor-attributes') },
 	accessory: { template: systemTemplatePath('item/partials/item-accessory-attributes') },

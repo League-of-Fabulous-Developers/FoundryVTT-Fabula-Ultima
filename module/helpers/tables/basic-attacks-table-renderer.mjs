@@ -26,6 +26,7 @@ export class BasicAttacksTableRenderer extends FUTableRenderer {
 		const data = {
 			type: FU.weaponTypes[item.system.type.value],
 			defense: FU.defenses[item.system.defense].abbr,
+			quality: item.system.quality.value,
 		};
 
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/caption/caption-basic-attack'), data);
