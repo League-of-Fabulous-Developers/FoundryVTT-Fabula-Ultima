@@ -1,4 +1,10 @@
 <div class="cell-equip-status">
+	{{#with transform}}
+		<a data-action="{{action}}"
+		   data-tooltip="{{tooltip}}">
+			<i class="mats-s">transform</i>
+		</a>
+	{{/with}}
 	<a data-action="{{action}}"
 	   data-tooltip="{{#if slot}}{{localize unequipTooltip}}{{else}}{{localize equipTooltip}}{{/if}}">
 		{{#with (lookup icons slot) as |icon|}}

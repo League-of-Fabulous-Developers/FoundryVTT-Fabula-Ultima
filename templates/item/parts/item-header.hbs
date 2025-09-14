@@ -2,12 +2,12 @@
 	<div class="profile desc" style="display: flex; align-items: stretch;">
 		{{!-- <img class="item-profile-img" src="{{ item.img }}" data-edit="img" data-action="editImage" title="{{ item.name }}" /> --}}
 		<img class="item-profile-img"
-			src="{{ item.img }}"
-			data-edit="img"
-			data-action="editImage"
-			data-tooltip="{{ item.name }}"
-			style="flex-shrink: 0;" />
-		
+			 src="{{ item.img }}"
+			 data-edit="img"
+			 data-action="editImage"
+			 data-tooltip="{{ item.name }}"
+			 style="flex-shrink: 0;" />
+
 		<div class="header-fields">
 			<div class="header-start grid grid-6col">
 				<div class="charname-container flexrow grid-span-4">
@@ -66,15 +66,27 @@
 			</div>
 
 			{{!-- Center Header --}}
-			{{#if system.schema.fields.summary}}
+			{{#if system.schema.fields.summary.fields.value}}
 				<div class="item-header header-field header-center grid grid-3col desc">
 					<div class="resource-content summary grid-span-3">
-						<label class="resource-label-sm" for="system.summary.value"> <i
+						<label class="resource-label-sm"> <i
 						 class="fas fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
 						<blockquote>
 							<input type="text" name="system.summary.value" value="{{ system.summary.value }}"
 								   data-dtype="String" class="flex-group-center resource-inputs summary"
 								   data-tooltip="{{ system.summary.value }}" />
+						</blockquote>
+					</div>
+				</div>
+			{{else if system.schema.fields.summary}}
+				<div class="item-header header-field header-center grid grid-3col desc">
+					<div class="resource-content summary grid-span-3">
+						<label class="resource-label-sm"> <i
+						 class="fas fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
+						<blockquote>
+							<input type="text" name="system.summary" value="{{ system.summary }}"
+								   class="flex-group-center resource-inputs summary"
+								   data-tooltip="{{ system.summary }}" />
 						</blockquote>
 					</div>
 				</div>

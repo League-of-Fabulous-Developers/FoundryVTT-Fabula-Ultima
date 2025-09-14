@@ -287,7 +287,7 @@ FU.statusEffectRule = {
 };
 
 /**
- * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown", "custom"} WeaponCategory
+ * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown"} WeaponCategory
  */
 /**
  * @type {Object.<WeaponCategory, string>}
@@ -303,7 +303,6 @@ FU.weaponCategories = {
 	spear: 'FU.Spear',
 	sword: 'FU.Sword',
 	thrown: 'FU.Thrown',
-	custom: 'FU.Custom',
 };
 
 /**

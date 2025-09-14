@@ -33,6 +33,7 @@
 	.fu-table__row-expand {
 		grid-column: 1 / -1;
 		display: grid;
+		grid-template-columns: subgrid;
 		grid-template-rows: 0fr;
 
 		transition: grid-template-rows 0.3s ease;
@@ -42,6 +43,9 @@
 		}
 
 		.fu-table__row-expand-content {
+			grid-column: 1 / -1;
+			display: grid;
+			grid-template-columns: subgrid;
 			overflow: hidden;
 		}
 	}

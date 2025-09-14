@@ -85,6 +85,8 @@ import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
 import { OpportunityHandler } from './pipelines/opportunity.mjs';
 import { FUTokenRuler } from './ui/token-ruler.mjs';
+import { CustomWeaponDataModel } from './documents/items/customWeapon/custom-weapon-data-model.mjs';
+import { CustomWeaponSheet } from './sheets/custom-weapon-sheet.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -191,6 +193,7 @@ Hooks.once('init', async () => {
 		treasure: TreasureDataModel,
 		weapon: WeaponDataModel,
 		effect: EffectDataModel,
+		customWeapon: CustomWeaponDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
@@ -242,27 +245,34 @@ Hooks.once('init', async () => {
 	});
 
 	const itemTypesWithSpecialSheets = ['effect', 'classFeature', 'optionalFeature'];
-	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
-	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
+	const Items = foundry.documents.collections.Items;
+	Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+	Items.registerSheet('projectfu', FUStandardItemSheet, {
 		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
 		label: 'Class Feature Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUEffectItemSheet, {
+	Items.registerSheet(SYSTEM, FUEffectItemSheet, {
 		types: ['effect'],
 		makeDefault: true,
 		label: 'Effect Item Sheet',
 	});
+	Items.registerSheet(SYSTEM, CustomWeaponSheet, {
+		types: ['customWeapon'],
+		makeDefault: true,
+		label: 'Custom Weapon Receptacle Sheet',
+	});
+
 	const { DocumentSheetConfig } = foundry.applications.apps;
 	DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
 	DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
