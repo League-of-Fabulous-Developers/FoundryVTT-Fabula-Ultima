@@ -1,7 +1,8 @@
-import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { CharacterDataModel } from '../../actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
+
+const weaponTypes = new Set(['weapon', 'customWeapon']);
 
 /**
  * @param {FUActor} actor
@@ -14,7 +15,7 @@ function getWeapon(actor, slot) {
 			.filter((value) => value)
 			.map((value) => actor.items.get(value))
 			.filter((value) => value)
-			.filter((value) => value.system instanceof WeaponDataModel)
+			.filter((value) => weaponTypes.has(value.type))
 			.at(0) ?? null
 	);
 }

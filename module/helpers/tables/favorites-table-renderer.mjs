@@ -6,12 +6,18 @@ import { FU, SYSTEM } from '../config.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ProgressDataModel } from '../../documents/items/common/progress-data-model.mjs';
 
+const customWeaponFormTranslations = {
+	primaryForm: 'FU.CustomWeaponFormPrimary',
+	secondaryForm: 'FU.CustomWeaponFormSecondary',
+};
+
 /**
  * @type {Record<string, ((FUItem) => string)>}
  */
 const nameCssClassCustomizers = {
 	armor: (item) => (item.system.isMartial.value ? 'after-martial-item-icon' : ''),
 	basic: (item) => (item.system.type.value === 'melee' ? 'before-melee-icon' : 'before-ranged-icon'),
+	customWeapon: (item) => (item.system.isMartial ? 'after-martial-item-icon' : ''),
 	miscAbility: (item) => (item.actor.type === 'npc' ? 'before-ability-icon' : ''),
 	shield: (item) => (item.system.isMartial.value ? 'after-martial-item-icon' : ''),
 	spell: (item) => {
@@ -79,6 +85,25 @@ const descriptionRenderers = {
 	behavior: CommonDescriptions.descriptionWithTags((item) => (item.system.weight.value ? [{ tag: 'FU.BehaviorWeight', separator: ':', value: item.system.weight.value }] : [])),
 	class: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
 	classFeature: renderFeatureDescription,
+	customWeapon: CommonDescriptions.descriptionWithTags((item) => {
+		const tags = [];
+		tags.push({ tag: FU.weaponTypes[item.system.type] });
+		tags.push({ tag: FU.weaponCategories[item.system.category] });
+		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
+		tags.push({
+			tag: 'FU.Cost',
+			separator: ':',
+			value: item.system.cost,
+		});
+		if (item.system.quality.value) {
+			tags.push({
+				tag: 'FU.Quality',
+				separator: ':',
+				value: item.system.quality,
+			});
+		}
+		return tags;
+	}),
 	optionalFeature: renderFeatureDescription,
 	consumable: CommonDescriptions.descriptionWithTags((item) => [{ tag: 'FU.InventoryCost', separator: ':', value: item.system.ipCost.value }]),
 	heroic: CommonDescriptions.simpleDescription(),
@@ -204,6 +229,30 @@ const captionRenderers = {
 			hrZero: item.system.rollInfo.useWeapon.hrZero.value,
 		};
 		return renderCheck(check) + ' ⬥' + renderDamage(damage);
+	},
+	customWeapon: (item) => {
+		const parts = [];
+		const check = {
+			primary: item.system.attributes.primary,
+			secondary: item.system.attributes.secondary,
+			bonus: item.system.accuracy,
+		};
+		parts.push(renderCheck(check));
+		const damage = {
+			value: item.system.damage.value,
+			type: item.system.damage.type,
+			hrZero: false,
+		};
+		parts.push(renderDamage(damage));
+
+		if (item.system.isTransforming) {
+			if (item.system[item.system.activeForm].name) {
+				parts.unshift(item.system[item.system.activeForm].name);
+			} else {
+				parts.unshift(game.i18n.localize(customWeaponFormTranslations[item.system.activeForm]));
+			}
+		}
+		return parts.join(' ⬥');
 	},
 	miscAbility: (item) => {
 		const blocks = [];
@@ -459,6 +508,32 @@ const detailsRenderers = {
 	behavior: renderSummary(),
 	class: classDetailsRenderer,
 	classFeature: renderFeatureDetails,
+	customWeapon: (item) => {
+		const data = {
+			summary: item.system.summary,
+			action: 'equipWeapon',
+			equipTooltip: 'FU.EquipWeapon',
+			unequipTooltip: 'FU.UnequipWeapon',
+			icons: {
+				mainHand: 'ra ra-sword ra-1xh ra-flip-horizontal',
+				offHand: 'ra ra-plain-dagger ra-1xh ra-rotate-180',
+				bothHands: 'is-two-weapon equip ra-1xh',
+				phantom: 'ra ra-daggers ra-1xh',
+			},
+			slot: item.actor.system.equipped.getEquippedSlot(item),
+		};
+
+		if (item.system.isTransforming) {
+			const activeForm = item.system.activeForm;
+			const newForm = activeForm === 'primaryForm' ? 'secondaryForm' : 'primaryForm';
+			data.transform = {
+				action: 'switchForm',
+				tooltip: game.i18n.format('FU.CustomWeaponFormSwitchTooltip', { newForm: item.system[newForm].name || game.i18n.localize(customWeaponFormTranslations[newForm]) }),
+			};
+		}
+
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-favorite-details-equip-status'), data);
+	},
 	optionalFeature: renderFeatureDetails,
 	consumable: renderSummary(),
 	heroic: heroicDetailsRenderer,

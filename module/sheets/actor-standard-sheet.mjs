@@ -201,6 +201,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		'ritual',
 		'spell',
 		'weapon',
+		'customWeapon',
 		'shield',
 		'armor',
 		'accessory',

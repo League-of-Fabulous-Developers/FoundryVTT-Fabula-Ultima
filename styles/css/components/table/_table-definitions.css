@@ -39,19 +39,19 @@
 }
 
 .weapons-table {
-	grid-template-columns: [name] auto [check] 150px [damage] 150px [equipStatus] 64px [controls] 100px;
+	grid-template-columns: [name] auto [check] 120px [damage] 130px [equipStatus] 80px [controls] 100px;
 }
 
 .shields-table {
-	grid-template-columns: [name] auto [def] 64px [mDef] 64px [init] 64px [equipStatus] 64px [controls] 100px;
+	grid-template-columns: [name] auto [def] 64px [mDef] 64px [init] 64px [equipStatus] 80px [controls] 100px;
 }
 
 .armors-table {
-	grid-template-columns: [name] auto [def] 64px [mDef] 64px [init] 64px [equipStatus] 64px [controls] 100px;
+	grid-template-columns: [name] auto [def] 64px [mDef] 64px [init] 64px [equipStatus] 80px [controls] 100px;
 }
 
 .accessories-table {
-	grid-template-columns: [name] auto [equipStatus] 64px [controls] 100px;
+	grid-template-columns: [name] auto [equipStatus] 80px [controls] 100px;
 }
 
 .consumables-table {

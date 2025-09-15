@@ -1,0 +1,280 @@
+<main class="tab attributes {{tab.cssClass}}" data-tab="attributes" data-group="primary">
+	<section class="settings">
+		<div class="item-settings desc resource-content">
+			{{!-- General Info Section --}}
+			<label data-tooltip="{{localize 'FU.Favorite'}}">
+				<i class="{{#if item.system.isFavored}}fas{{else}}far{{/if}} fa-star"></i>
+				<input type="checkbox" name="system.isFavored" {{ checked system.isFavored }} />
+			</label>
+			<label data-tooltip="{{localize 'FU.TitleCardInfo'}}">
+				<i class="{{#if item.system.showTitleCard}}fas{{else}}far{{/if}} fa-message"></i>
+				<input type="checkbox" name="system.showTitleCard" {{ checked system.showTitleCard }} />
+			</label>
+			<label>
+				<span>{{localize 'FU.IsMartial'}}</span>
+				<input type="checkbox" name="system.isMartial" {{ checked system.isMartial }} />
+			</label>
+			<label>
+				<span>{{localize 'FU.CustomWeaponTransforming'}}</span>
+				<input type="checkbox" name="system.isTransforming" {{ checked system.isTransforming }} />
+			</label>
+		</div>
+	</section>
+
+	<section class="global">
+		<fieldset class="title-fieldset desc resource-content grid-2col gap-5">
+			<legend class="resource-label-sm">
+				<i class="fa fa-wrench icon"></i>
+				{{localize "FU.CustomWeaponAttributesGlobal"}}
+			</legend>
+			<label class="resource-label-sm grid-span-2">
+				{{localize 'FU.Quality'}}
+				<input type="text" name="system.quality" value="{{ system.quality }}"
+					   class="resource-inputs select-dropdown-full" />
+			</label>
+			<label class="resource-label-sm">
+				{{localize 'FU.Defense'}}
+				<select name="system.defense" class="resource-inputs select-dropdown-full">
+					{{selectOptions FU.defenses selected=system.defense sort=true localize=true labelAttr="abbr"}}
+				</select>
+			</label>
+			<label class="resource-label-sm">
+				{{localize 'FU.Cost'}}
+				<input type="number" name="system.cost" value="{{ system.cost }}"
+					   class="resource-inputs select-dropdown-full" />
+			</label>
+		</fieldset>
+	</section>
+
+	{{#if system.isTransforming}}
+		<section class="navigation">
+			<nav class="tabs sheet-tabs desc" data-action="tab">
+				<a class="item button-style {{formTabs.primaryForm.cssClass}}" data-tab="primaryForm" data-group="form">
+					{{localize 'FU.CustomWeaponFormPrimary'}}
+				</a>
+				<a class="item button-style {{formTabs.secondaryForm.cssClass}}" data-tab="secondaryForm"
+				   data-group="form">
+					{{localize 'FU.CustomWeaponFormSecondary'}}
+				</a>
+
+				<label class="resource-content flexrow gap-5">
+					{{localize "FU.CustomWeaponFormActive"}}
+					<select name="system.activeForm" class="resource-inputs select-dropdown-full">
+						<option value="primaryForm" {{#if (eq system.activeForm "primaryForm")}}selected{{/if}}>
+							{{localize 'FU.CustomWeaponFormPrimary'}}
+						</option>
+						<option value="secondaryForm" {{#if (eq system.activeForm "secondaryForm")}}selected{{/if}}>
+							{{localize 'FU.CustomWeaponFormSecondary'}}
+						</option>
+					</select>
+				</label>
+			</nav>
+		</section>
+	{{/if}}
+
+	<section class="primaryForm tab {{formTabs.primaryForm.cssClass}}" data-tab="primaryForm" data-group="form">
+		<div class="resource-content">
+			{{!-- General Section --}}
+			<fieldset class="title-fieldset desc grid-2col gap-5">
+				<legend class="resource-label-sm">
+					<i class="fas fa-gears"></i>
+					{{localize 'FU.General'}}
+				</legend>
+				{{#if system.isTransforming}}
+					<label class="resource-label-sm grid-span-2">
+						{{localize 'FU.CustomWeaponFormName'}}
+						<input type="text" name="system.primaryForm.name" value="{{system.primaryForm.name}}"
+							   class="resource-inputs select-dropdown-full">
+					</label>
+				{{/if}}
+				<label class="resource-label-sm">
+					{{localize 'FU.WeaponType'}}
+					<select name="system.primaryForm.type" class="resource-inputs select-dropdown-full">
+						{{selectOptions FU.weaponTypes selected=system.primaryForm.type localize=true}}
+					</select>
+				</label>
+				<label class="resource-label-sm">
+					{{localize 'FU.Category'}}
+					<select name="system.primaryForm.category" class="resource-inputs select-dropdown-full">
+						{{selectOptions FU.weaponCategories selected=system.primaryForm.category localize=true}}
+					</select>
+				</label>
+			</fieldset>
+
+			{{!-- Accuracy Section --}}
+			<fieldset class="title-fieldset desc grid grid-3col gap-5">
+				<legend class="resource-label-sm">
+					<i class="fas fa-dice icon"></i>
+					{{localize 'FU.Accuracy'}}
+				</legend>
+				<label class="resource-label-sm grid-span-2">
+					{{localize 'FU.Attributes'}}
+					<span class="grid-2col gap-5">
+						<select name="system.primaryForm.attributes.primary"
+								class="resource-inputs select-dropdown-full">
+							{{selectOptions FU.attributeAbbreviations selected=system.primaryForm.attributes.primary
+											sort=true
+											localize=true}}
+						</select>
+						<select name="system.primaryForm.attributes.secondary"
+								class="resource-inputs select-dropdown-full">
+							{{selectOptions FU.attributeAbbreviations selected=system.primaryForm.attributes.secondary
+											sort=true
+											localize=true}}
+						</select>
+					</span>
+				</label>
+				<label class="resource-label-sm">
+					{{localize 'FU.Bonus'}}
+					<input type="number" name="system.primaryForm.accuracy" value="{{ system.primaryForm.accuracy }}"
+						   class="resource-inputs select-dropdown-full" />
+				</label>
+			</fieldset>
+
+			{{!-- Damage Section --}}
+			<fieldset class="title-fieldset desc grid-2col gap-5">
+				<legend class="resource-label-sm">
+					<i class="fas fa-bullseye icon"></i>
+					{{localize 'FU.Damage'}}
+				</legend>
+				<label class="resource-label-sm">
+					{{localize 'FU.DamageType'}}
+					<select name="system.primaryForm.damage.type" class="resource-inputs select-dropdown-full">
+						{{selectOptions FU.damageTypes selected=system.primaryForm.damage.type sort=true localize=true}}
+					</select>
+				</label>
+
+				<label class="resource-label-sm">
+					{{localize 'FU.Bonus'}}
+					<input type="number" name="system.primaryForm.damage.value"
+						   value="{{ system.primaryForm.damage.value }}" class="resource-inputs select-dropdown-full" />
+				</label>
+			</fieldset>
+
+			{{!-- Defenses Section --}}
+			<fieldset class="title-fieldset desc grid-2col gap-5">
+				<legend class="resource-label-sm">
+					<i class="fas fa-shield-halved icon"></i>
+					{{localize 'FU.Defenses'}}
+				</legend>
+				<label class="resource-label-sm">
+					{{localize 'FU.Defense'}}
+					<input type="number" name="system.primaryForm.def" value="{{ system.primaryForm.def }}"
+						   class="resource-inputs select-dropdown-full">
+				</label>
+
+				<label class="resource-label-sm">
+					{{localize 'FU.MagicDefense'}}
+					<input type="number" name="system.primaryForm.mdef" value="{{ system.primaryForm.mdef }}"
+						   class="resource-inputs select-dropdown-full" />
+				</label>
+			</fieldset>
+		</div>
+	</section>
+
+	{{#if system.isTransforming}}
+		<section class="secondaryForm tab {{formTabs.secondaryForm.cssClass}}" data-tab="secondaryForm"
+				 data-group="form">
+			<div class="resource-content">
+				{{!-- General Section --}}
+				<fieldset class="title-fieldset desc grid-2col gap-5">
+					<legend class="resource-label-sm">
+						<i class="fas fa-gears"></i>
+						{{localize 'FU.General'}}
+					</legend>
+					<label class="resource-label-sm grid-span-2">
+						{{localize 'FU.CustomWeaponFormName'}}
+						<input type="text" name="system.secondaryForm.name" value="{{system.secondaryForm.name}}"
+							   class="resource-inputs select-dropdown-full">
+					</label>
+					<label class="resource-label-sm">
+						{{localize 'FU.WeaponType'}}
+						<select name="system.secondaryForm.type" class="resource-inputs select-dropdown-full">
+							{{selectOptions FU.weaponTypes selected=system.secondaryForm.type localize=true}}
+						</select>
+					</label>
+					<label class="resource-label-sm">
+						{{localize 'FU.Category'}}
+						<select name="system.secondaryForm.category" class="resource-inputs select-dropdown-full">
+							{{selectOptions FU.weaponCategories selected=system.secondaryForm.category localize=true}}
+						</select>
+					</label>
+				</fieldset>
+
+				{{!-- Accuracy Section --}}
+				<fieldset class="title-fieldset desc grid grid-3col gap-5">
+					<legend class="resource-label-sm">
+						<i class="fas fa-dice icon"></i>
+						{{localize 'FU.Accuracy'}}
+					</legend>
+					<label class="resource-label-sm grid-span-2">
+						{{localize 'FU.Attributes'}}
+						<span class="grid-2col gap-5">
+							<select name="system.secondaryForm.attributes.primary"
+									class="resource-inputs select-dropdown-full">
+								{{selectOptions FU.attributeAbbreviations
+												selected=system.secondaryForm.attributes.primary
+												sort=true
+												localize=true}}
+							</select>
+							<select name="system.secondaryForm.attributes.secondary"
+									class="resource-inputs select-dropdown-full">
+								{{selectOptions FU.attributeAbbreviations
+												selected=system.secondaryForm.attributes.secondary
+												sort=true
+												localize=true}}
+							</select>
+						</span>
+					</label>
+					<label class="resource-label-sm">
+						{{localize 'FU.Bonus'}}
+						<input type="number" name="system.secondaryForm.accuracy"
+							   value="{{ system.secondaryForm.accuracy }}"
+							   class="resource-inputs select-dropdown-full" />
+					</label>
+				</fieldset>
+
+				{{!-- Damage Section --}}
+				<fieldset class="title-fieldset desc grid-2col gap-5">
+					<legend class="resource-label-sm">
+						<i class="fas fa-bullseye icon"></i>
+						{{localize 'FU.Damage'}}
+					</legend>
+					<label class="resource-label-sm">
+						{{localize 'FU.DamageType'}}
+						<select name="system.secondaryForm.damage.type" class="resource-inputs select-dropdown-full">
+							{{selectOptions FU.damageTypes selected=system.secondaryForm.damage.type sort=true
+											localize=true}}
+						</select>
+					</label>
+
+					<label class="resource-label-sm">
+						{{localize 'FU.Bonus'}}
+						<input type="number" name="system.secondaryForm.damage.value"
+							   value="{{ system.secondaryForm.damage.value }}"
+							   class="resource-inputs select-dropdown-full" />
+					</label>
+				</fieldset>
+
+				{{!-- Defenses Section --}}
+				<fieldset class="title-fieldset desc grid-2col gap-5">
+					<legend class="resource-label-sm">
+						<i class="fas fa-shield-halved icon"></i>
+						{{localize 'FU.Defenses'}}
+					</legend>
+					<label class="resource-label-sm">
+						{{localize 'FU.Defense'}}
+						<input type="number" name="system.secondaryForm.def" value="{{ system.secondaryForm.def }}"
+							   class="resource-inputs select-dropdown-full">
+					</label>
+
+					<label class="resource-label-sm">
+						{{localize 'FU.MagicDefense'}}
+						<input type="number" name="system.secondaryForm.mdef" value="{{ system.secondaryForm.mdef }}"
+							   class="resource-inputs select-dropdown-full" />
+					</label>
+				</fieldset>
+			</div>
+		</section>
+	{{/if}}
+</main>

@@ -10,6 +10,7 @@ import { WeaponModuleDataModel } from '../documents/items/classFeature/pilot/wea
 import { InlineEffects } from './inline-effects.mjs';
 import { StringUtils } from './string-utils.mjs';
 import { systemAssetPath } from './system-utils.mjs';
+import { CustomWeaponDataModel } from '../documents/items/customWeapon/custom-weapon-data-model.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
 const className = `inline-weapon`;
@@ -105,6 +106,8 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	let key = null;
 	if (weapon.system instanceof WeaponDataModel) {
 		key = 'system.damageType.value';
+	} else if (weapon.system instanceof CustomWeaponDataModel) {
+		key = 'system.damage.type';
 	} else if (weapon.system instanceof ClassFeatureTypeDataModel && weapon.system.data instanceof WeaponModuleDataModel) {
 		key = 'system.data.damage.type';
 	}

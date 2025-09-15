@@ -92,6 +92,9 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				if (item?.type === 'shield') {
 					total += getValue(item, isMagic ? 'mdef.value' : 'def.value');
 				}
+				if (item?.type === 'customWeapon' && slot === 'mainHand') {
+					total += getValue(item, isMagic ? 'mdef' : 'def');
+				}
 			});
 		}
 
@@ -150,15 +153,15 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 
 		if (!actor.system.vehicle?.weaponsActive) {
 			if (equippedItems.mainHand) {
-				const shield = actor.items.get(equippedItems.mainHand);
-				if (shield) {
-					initMod += shield.system.init.value;
+				const mainHandItem = actor.items.get(equippedItems.mainHand);
+				if (mainHandItem && mainHandItem.type === 'shield') {
+					initMod += mainHandItem.system.init.value;
 				}
 			}
 			if (equippedItems.offHand) {
-				const shield = actor.items.get(equippedItems.offHand);
-				if (shield) {
-					initMod += shield.system.init.value;
+				const offHandItem = actor.items.get(equippedItems.offHand);
+				if (offHandItem && offHandItem.type === 'shield') {
+					initMod += offHandItem.system.init.value;
 				}
 			}
 		}

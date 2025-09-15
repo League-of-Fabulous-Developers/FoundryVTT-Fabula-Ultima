@@ -6,6 +6,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TextEditor } from '../../../helpers/text-editor.mjs';
+import { ShieldMigrations } from './shield-migrations.mjs';
 
 /**
  * @param {CheckV2} check
@@ -115,6 +116,11 @@ export class ShieldDataModel extends FUStandardItemDataModel {
 				}),
 			}),
 		});
+	}
+
+	static migrateData(source) {
+		ShieldMigrations.run(source);
+		return source;
 	}
 
 	transferEffects() {

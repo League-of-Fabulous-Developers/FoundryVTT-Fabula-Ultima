@@ -27,6 +27,8 @@ export class EquipmentHandler {
 
 		if (itemType === 'weapon') {
 			this.handleWeapon(item, equippedData, ev);
+		} else if (itemType === 'customWeapon') {
+			this.handleCustomWeapon(item, equippedData, ev);
 		} else if (itemType === 'shield') {
 			this.handleShield(item, equippedData, ev);
 		} else if (itemType === 'armor') {
@@ -40,6 +42,29 @@ export class EquipmentHandler {
 
 		this.autoEquipUnarmedStrike(equippedData);
 		await this.actor.update({ 'system.equipped': equippedData });
+	}
+
+	handleCustomWeapon(item, equippedData, event) {
+		const unequipped = [];
+		if (equippedData.mainHand === item.id) {
+			equippedData.mainHand = null;
+			unequipped.push('mainHand');
+		}
+		if (equippedData.offHand === item.id) {
+			equippedData.offHand = null;
+			unequipped.push('offHand');
+		}
+		if (equippedData.phantom === item.id) {
+			equippedData.phantom = null;
+			unequipped.push('phantom');
+		}
+
+		if (event.ctrlKey && !unequipped.includes('phantom')) {
+			equippedData.phantom = item.id;
+		} else if (!unequipped.includes('mainHand')) {
+			equippedData.mainHand = item.id;
+			equippedData.offHand = item.id;
+		}
 	}
 
 	handleWeapon(item, equippedData, event) {
@@ -63,13 +88,13 @@ export class EquipmentHandler {
 				equippedData.phantom = item.id;
 			} else if (event.button === 2 /* right click */ && !unequipped.includes('offHand')) {
 				const previouslyEquipped = this.actor.items.get(equippedData.offHand);
-				if (previouslyEquipped && previouslyEquipped.system?.hands.value === 'two-handed') {
+				if (previouslyEquipped && (previouslyEquipped.system?.hands?.value === 'two-handed' || previouslyEquipped.type === 'customWeapon')) {
 					equippedData.mainHand = null;
 				}
 				equippedData.offHand = item.id;
 			} else if (!unequipped.includes('mainHand')) {
 				const previouslyEquipped = this.actor.items.get(equippedData.offHand);
-				if (previouslyEquipped && previouslyEquipped.system?.hands.value === 'two-handed') {
+				if (previouslyEquipped && (previouslyEquipped.system?.hands?.value === 'two-handed' || previouslyEquipped.type === 'customWeapon')) {
 					equippedData.offHand = null;
 				}
 				equippedData.mainHand = item.id;

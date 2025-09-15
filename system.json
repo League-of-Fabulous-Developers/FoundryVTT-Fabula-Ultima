@@ -294,16 +294,16 @@
 	"documentTypes": {
 		"Actor": {
 			"character": {
-				"htmlFields": ["biography.value", "biography.gm"]
+				"htmlFields": ["description"]
 			},
 			"npc": {
-				"htmlFields": ["biography.value", "biography.gm"]
+				"htmlFields": ["description"]
 			},
 			"party": {
-				"htmlFields": ["biography.value", "biography.gm"]
+				"htmlFields": ["description"]
 			},
 			"stash": {
-				"htmlFields": ["biography.value", "biography.gm"]
+				"htmlFields": ["description"]
 			}
 		},
 		"ChatMessage": {
@@ -311,68 +311,71 @@
 		},
 		"Item": {
 			"basic": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"weapon": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"shield": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"armor": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"accessory": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"consumable": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"treasure": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"class": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"classFeature": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["data.description"]
 			},
 			"optionalFeature": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["data.description"]
 			},
 			"skill": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"heroic": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"spell": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"miscAbility": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"rule": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"behavior": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"ritual": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"project": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
 			},
 			"effect": {
-				"htmlFields": ["description.value", "description.gm"]
+				"htmlFields": ["description"]
+			},
+			"customWeapon": {
+				"htmlFields": ["description"]
 			}
 		}
 	},
 	"flags": {
 		"hotReload": {
 			"extensions": ["css", "hbs", "json"],
-			"paths": ["css", "lang", "templates"]
+			"paths": ["styles", "lang", "templates"]
 		}
 	},
 	"socket": true,

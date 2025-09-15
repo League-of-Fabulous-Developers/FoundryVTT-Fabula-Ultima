@@ -1,8 +1,8 @@
 import { Effects, onManageActiveEffect, prepareActiveEffectCategories } from '../pipelines/effects.mjs';
 import { Checks } from '../checks/checks.mjs';
+import * as CONFIG from '../helpers/config.mjs';
 import { FU, systemPath } from '../helpers/config.mjs';
 import { Traits } from '../pipelines/traits.mjs';
-import * as CONFIG from '../helpers/config.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
 
@@ -243,6 +243,21 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				drop: this._onDrop.bind(this),
 			},
 		}).bind(this.element);
+
+		const flattenedOverrides = foundry.utils.flattenObject(this.item.overrides);
+		Array.from(this.element.querySelectorAll('input[name], textarea[name], button[name], select[name]'))
+			.filter((element) => element.name in flattenedOverrides)
+			.forEach((element) => this.disableElement(element));
+	}
+
+	disableElement(element) {
+		element.classList.add('disabled');
+		if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+			element.readOnly = true;
+		} else {
+			element.disabled = true;
+		}
+		element.parentElement.dataset.tooltip = game.i18n.localize('FU.DisabledByActiveEffect');
 	}
 
 	/**
@@ -488,12 +503,12 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	/**
 	 * @override
 	 */
-	_getSubmitData(updateData = {}) {
-		const data = super._getSubmitData(updateData);
+	_prepareSubmitData(event, form, formData, updateData) {
+		const data = super._prepareSubmitData(event, form, formData, updateData);
 		// Prevent submitting overridden values
-		const overrides = foundry.utils.flattenObject(this.item.overrides);
-		for (let k of Object.keys(overrides)) {
-			delete data[k];
+
+		for (let k of Object.keys(foundry.utils.flattenObject(this.item.overrides))) {
+			foundry.utils.deleteProperty(data, k);
 		}
 		return data;
 	}

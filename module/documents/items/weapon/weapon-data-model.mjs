@@ -10,6 +10,7 @@ import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 
 /**
  * @param {CheckV2} check
@@ -86,11 +87,14 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {DamageType} damageType.value
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
- * @property {boolean} isCustomWeapon.value
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
 export class WeaponDataModel extends FUStandardItemDataModel {
+	static {
+		deprecationNotice(this, 'isCustomWeapon.value');
+	}
+
 	static defineSchema() {
 		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
@@ -111,7 +115,6 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			isCustomWeapon: new SchemaField({ value: new BooleanField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
 					hrZero: new SchemaField({ value: new BooleanField() }),
@@ -125,13 +128,6 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 		source = super.migrateData(source) ?? source;
 		WeaponMigrations.run(source);
 		return source;
-	}
-
-	prepareBaseData() {
-		if (this.isCustomWeapon.value) {
-			this.hands.value = 'two-handed';
-			this.cost.value = Math.max(300, this.cost.value);
-		}
 	}
 
 	transferEffects() {
@@ -161,7 +157,6 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 		return [
 			ItemPartialTemplates.standard,
 			ItemPartialTemplates.traits,
-			ItemPartialTemplates.weaponSettings,
 			ItemPartialTemplates.qualityCost,
 			ItemPartialTemplates.weapon,
 			ItemPartialTemplates.attackAccuracy,
