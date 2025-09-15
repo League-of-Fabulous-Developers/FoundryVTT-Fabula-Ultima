@@ -5,6 +5,7 @@ import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 const sellAction = 'inventorySell';
 const lootAction = 'inventoryLoot';
@@ -121,23 +122,16 @@ async function distributeZenit(actor, targets) {
 
 	console.debug(`Distributing ${zenit} zenit from ${actor.name} to ${characterCount} characters`);
 	const targetString = targets.map((t) => t.name).join(', ');
-	const confirmed = await foundry.applications.api.DialogV2.confirm({
-		window: { title: game.i18n.format('FU.InventoryDistributeZenit', { currence: game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency) }) },
-		content: game.i18n.format('FU.ChatInventoryDistributeZenit', {
+	const confirmed = await FoundryUtils.confirmDialog(
+		StringUtils.localize('FU.InventoryDistributeZenit', { currency: game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency) }),
+		StringUtils.localize('FU.ChatInventoryDistributeZenit', {
 			actor: actor.name,
 			zenit: distributed,
 			share: share,
 			targets: targetString,
 			currency: getCurrencyString(),
 		}),
-		rejectClose: false,
-		yes: {
-			label: 'FU.Confirm',
-		},
-		no: {
-			label: 'FU.Cancel',
-		},
-	});
+	);
 	if (confirmed) {
 		await updateResources(actor, -distributed);
 
