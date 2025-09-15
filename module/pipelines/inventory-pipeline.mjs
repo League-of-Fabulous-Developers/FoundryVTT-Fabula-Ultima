@@ -209,24 +209,16 @@ async function rechargeIP(actor) {
 	}
 
 	console.debug(`Recharging the IP of ${target.name}`);
-	const confirmed = foundry.applications.api.DialogV2.confirm({
-		window: { title: game.i18n.localize('FU.InventoryRechargeIP') },
-		content: game.i18n.format('FU.ChatInventoryRechargePrompt', {
+	const confirmed = await FoundryUtils.confirmDialog(
+		StringUtils.localize('FU.InventoryRechargeIP'),
+		StringUtils.localize('FU.ChatInventoryRechargePrompt', {
 			cost: cost,
 			ip: missingIP,
 			currency: getCurrencyString(),
 		}),
-		rejectClose: false,
-		yes: {
-			label: 'FU.Confirm',
-		},
-		no: {
-			label: 'FU.Cancel',
-		},
-	});
+	);
 
 	if (confirmed) {
-		//await updateZenit(actor, cost);
 		await updateResources(target, -cost, missingIP);
 
 		ChatMessage.create({
