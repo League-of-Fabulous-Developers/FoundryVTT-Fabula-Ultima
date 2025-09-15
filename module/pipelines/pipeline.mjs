@@ -29,8 +29,17 @@ export class PipelineRequest {
 		this.sourceActor = sourceInfo.resolveActor();
 	}
 
+	/**
+	 * @param {string | string[]} traits
+	 */
 	addTraits(...traits) {
-		traits.forEach((t) => this.traits.add(t));
+		// If the caller passed a single array, unwrap it
+		if (traits.length === 1 && Array.isArray(traits[0])) {
+			traits = traits[0];
+		}
+		for (const t of traits) {
+			this.traits.add(t);
+		}
 	}
 }
 

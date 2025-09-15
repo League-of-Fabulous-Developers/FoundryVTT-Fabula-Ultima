@@ -16,6 +16,7 @@ import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -30,7 +31,6 @@ function onRenderCheck(data, result, actor, item, flags) {
 		// TODO: Replace with CommonSections.tags
 		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
 		CommonSections.opportunity(data, item.system.opportunity, CHECK_DETAILS);
-		CommonSections.traits(data, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();
@@ -172,6 +172,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	get attributePartials() {
 		return [
 			ItemPartialTemplates.standard,
+			ItemPartialTemplates.traits,
 			ItemPartialTemplates.classField,
 			ItemPartialTemplates.opportunityField,
 			ItemPartialTemplates.durationField,
@@ -198,6 +199,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 				tag: `${this.cost.amount} ${game.i18n.localize(FU.resourcesAbbr[this.cost.resource])}`,
 				value: this.cost.perTarget ? game.i18n.localize('FU.CostPerTargetAbbreviation') : '',
 			},
+			...TraitUtils.toTags(this.traits),
 		];
 	}
 }

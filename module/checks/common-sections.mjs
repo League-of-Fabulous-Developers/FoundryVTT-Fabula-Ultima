@@ -9,6 +9,7 @@ import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
+import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -104,29 +105,6 @@ const clock = (sections, clock, order) => {
  */
 const tags = (sections, tags = [], order) => {
 	tags = tags.filter((tag) => !('show' in tag) || tag.show);
-	if (tags.length > 0) {
-		sections.push(async () => ({
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
-			data: {
-				tags: tags,
-			},
-			order: order,
-		}));
-	}
-};
-
-/**
- * @param {CheckRenderData} sections
- * @param {Set<String>} traits
- * @param {number} [order]
- */
-const traits = (sections, traits = [], order) => {
-	const tags = [...traits].map((trait) => ({
-		tag: `FU.${trait}`,
-		separator: '',
-		value: '',
-		show: true,
-	}));
 	if (tags.length > 0) {
 		sections.push(async () => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
@@ -236,6 +214,7 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
 	if (isTargeted) {
 		const isDamage = checkData && damageData;
+		const inspector = CheckConfiguration.inspect(checkData);
 		sections.push(async function () {
 			let actions = [];
 			actions.push(Targeting.defaultAction);
@@ -262,11 +241,13 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 					}
 					if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+						const traits = inspector.getTraits();
 						setTimeout(() => {
 							game.projectfu.socket.requestPipeline('damage', {
 								sourceInfo: InlineSourceInfo.fromInstance(actor, item),
 								targets,
 								damageData,
+								traits,
 							});
 						}, 50);
 					}
@@ -357,7 +338,6 @@ export const CommonSections = {
 	collapsibleDescription,
 	clock,
 	tags,
-	traits,
 	quality,
 	resource,
 	itemFlavor,

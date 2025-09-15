@@ -17,6 +17,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -34,7 +35,6 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 			}
 		}
 		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
-		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (weapon) {
 			sections.push(() => ({
@@ -44,25 +44,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 				},
 				order: CHECK_DETAILS,
 			}));
-			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
-			CommonSections.tags(
-				sections,
-				[
-					{
-						tag: `FU.${weaponTraits.weaponCategory?.capitalize()}`,
-						show: weaponTraits.weaponCategory,
-					},
-					{
-						tag: weaponTraits.handedness === 'one-handed' ? 'FU.OneHanded' : 'FU.TwoHanded',
-						show: !!weaponTraits.handedness,
-					},
-					{
-						tag: `FU.${weaponTraits.weaponType?.capitalize()}`,
-						show: weaponTraits.weaponType,
-					},
-				],
-				CHECK_DETAILS,
-			);
+			CommonSections.tags(sections, weapon.system.getTags(item.system.useWeapon.traits), CHECK_DETAILS);
 		}
 
 		const inspector = CheckConfiguration.inspect(check);
@@ -80,7 +62,6 @@ let onRenderAttributeCheck = (sections, check, actor, item) => {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
 		CommonSections.itemFlavor(sections, skill);
 		CommonSections.tags(sections, getTags(skill), CHECK_DETAILS);
-		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		if (skill.system.hasResource.value) {
 			CommonSections.resource(sections, skill.system.rp, CHECK_DETAILS);
 		}
@@ -95,7 +76,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
 const onRenderDisplay = (sections, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system instanceof SkillDataModel) {
 		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
-		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		if (item.system.hasResource.value) {
 			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
 		}
@@ -112,10 +92,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
  * @return Tag[]
  */
 function getTags(skill) {
-	return [
-		{ tag: 'FU.Class', separator: ':', value: skill.system.class.value, show: skill.system.class.value },
-		{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: skill.system.level.value },
-	];
+	return [{ tag: 'FU.Class', separator: ':', value: skill.system.class.value, show: skill.system.class.value }, { tag: 'FU.SkillLevelAbbr', separator: ' ', value: skill.system.level.value }, ...TraitUtils.toTags(skill.system.traits)];
 }
 
 /**
@@ -232,6 +209,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	/**
 	 * @param {KeyboardModifiers} modifiers
 	 * @return {CheckCallback}
+	 * @remarks Expects a weapon
 	 */
 	#initializeAccuracyCheck(modifiers) {
 		return async (check, actor, item) => {
@@ -258,6 +236,9 @@ export class SkillDataModel extends FUStandardItemDataModel {
 
 			configure.addTraits('skill');
 			configure.addTraitsFromItemModel(this.traits);
+			if (item.system.useWeapon.traits) {
+				configure.addTraitsFromItemModel(weapon.system.traits);
+			}
 			configure.setWeaponTraits(inspect.getWeaponTraits());
 
 			if (this.accuracy) {
@@ -323,6 +304,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	get attributePartials() {
 		return [
 			ItemPartialTemplates.standard,
+			ItemPartialTemplates.traits,
 			ItemPartialTemplates.classField,
 			ItemPartialTemplates.actionCost,
 			ItemPartialTemplates.skillAttributes,

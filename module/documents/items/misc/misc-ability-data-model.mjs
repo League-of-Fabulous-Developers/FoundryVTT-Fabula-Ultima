@@ -15,6 +15,7 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof MiscAbilityDataModel) {
@@ -26,7 +27,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 			}
 		}
-		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (item.system.hasClock.value) {
 			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
@@ -51,6 +51,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 					{
 						tag: `FU.${weapon.system.type.value.capitalize()}`,
 					},
+					...TraitUtils.toTags(this.traits),
 				],
 				CHECK_DETAILS,
 			);
@@ -270,6 +271,7 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 	get attributePartials() {
 		return [
 			ItemPartialTemplates.standard,
+			ItemPartialTemplates.traits,
 			ItemPartialTemplates.opportunityField,
 			ItemPartialTemplates.actionCost,
 			ItemPartialTemplates.accuracy,

@@ -1,11 +1,11 @@
 // TODO: Decide whether to define in config.mjs.
 
 /**
- * @description A non-comprehensive list of traits supported by the damage, resource, and effects pipelines.
+ * @description A list of traits supported by the damage pipeline
  * @remarks Automatically converted to kebab case.
  * @remarks These are generally used by items and inline actions.
  */
-export const Traits = Object.freeze({
+export const DamageTraits = Object.freeze({
 	IgnoreResistances: 'ignore-resistances',
 	IgnoreImmunities: 'ignore-immunities',
 	IgnoreAbsorption: 'ignore-absorption',
@@ -15,4 +15,28 @@ export const Traits = Object.freeze({
 	MindPointAbsorption: 'mind-point-absorption',
 	NonLethal: 'non-lethal',
 	Base: 'base',
+});
+
+/**
+ * @description Al traits supported by the system
+ * @remarks Automatically converted to kebab case.
+ * @remarks These are generally used by items and inline actions.
+ */
+export const Traits = Object.freeze({
+	...DamageTraits,
+});
+
+export const TraitUtils = Object.freeze({
+	/**
+	 * @param {Set<String>} traits
+	 * @returns {{tag: string, separator: string, value: string, show: boolean}[]}
+	 */
+	toTags(traits) {
+		return [...traits].map((trait) => ({
+			tag: `FU.${trait}`,
+			separator: '',
+			value: '',
+			show: true,
+		}));
+	},
 });
