@@ -6,11 +6,12 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 const sellAction = 'inventorySell';
 const lootAction = 'inventoryLoot';
 const rechargeAction = 'inventoryRecharge';
-const costPerIP = 10;
+const defaultRechargeCost = 10;
 
 function getCurrencyLocalizationKey() {
 	return game.settings.get('projectfu', 'optionRenameCurrency') || 'FU.Zenit';
@@ -44,6 +45,9 @@ async function tradeItem(actor, item, sale) {
 		actionLabel = 'FU.ChatInventoryBuy';
 		action = sellAction;
 		cost = item.system.cost.value;
+		if (actor.type === 'stash') {
+			cost *= actor.system.rates.item;
+		}
 	} else {
 		message = 'FU.ChatInventoryLootMessage';
 		actionLabel = 'FU.ChatInventoryLoot';
@@ -182,6 +186,8 @@ async function requestRecharge(actor) {
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-recharge-ip.hbs', {
 			actorName: actor.name,
 			actorId: actor.uuid,
+			currency: getCurrencyString(),
+			cost: actor.system.rates.recharge,
 		}),
 	});
 }
@@ -189,9 +195,10 @@ async function requestRecharge(actor) {
 // TODO: In order to use actor we will need another socket-go-round
 /**
  * @param {FUActor} actor
+ * @param {Number} recharge
  * @returns {Promise<void>}
  */
-async function rechargeIP(actor) {
+async function rechargeIP(actor, recharge) {
 	const targets = await getPrioritizedUserSelected();
 	if (targets.length !== 1) {
 		return false;
@@ -203,7 +210,8 @@ async function rechargeIP(actor) {
 		return false;
 	}
 
-	const cost = missingIP * costPerIP;
+	recharge = recharge ?? defaultRechargeCost;
+	const cost = missingIP * recharge;
 	if (!validateFunds(target, cost)) {
 		return false;
 	}
@@ -379,8 +387,11 @@ async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 
 	let cost = 0;
 	if (sale) {
-		console.debug(`${target.name} is buying ${item.name} from ${actor.name}`);
 		cost = item.system.cost.value;
+		if (actor.type === 'stash') {
+			cost *= actor.system.rates.item;
+		}
+		console.debug(`${target.name} is buying ${item.name} from ${actor.name} for ${cost}`);
 		if (!validateFunds(target, cost)) {
 			return false;
 		}
@@ -441,28 +452,22 @@ async function onRenderChatMessage(message, html) {
 		return;
 	}
 
-	const getModifiers = (ev) => ({
-		shift: ev?.shiftKey ?? false,
-		ctrl: ev?.ctrlKey ?? false,
-		alt: ev?.altKey ?? false,
-		meta: ev?.metaKey ?? false,
-	});
-
 	Pipeline.handleClick(message, html, sellAction, async (dataset, ev) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
-		const modifiers = getModifiers(ev);
+		const modifiers = HTMLUtils.getKeyboardModifiers(ev);
 		return requestTrade(actor, item, true, undefined, modifiers);
 	});
 
 	Pipeline.handleClick(message, html, rechargeAction, async (dataset) => {
 		const actor = fromUuidSync(dataset.actor);
-		return rechargeIP(actor);
+		const cost = dataset.cost;
+		return rechargeIP(actor, cost);
 	});
 
 	Pipeline.handleClick(message, html, lootAction, async (dataset, ev) => {
 		const { actor, item } = dataset;
-		const modifiers = getModifiers(ev);
+		const modifiers = HTMLUtils.getKeyboardModifiers(ev);
 		return requestTrade(actor, item, false, undefined, modifiers);
 	});
 }

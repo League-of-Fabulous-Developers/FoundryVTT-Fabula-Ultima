@@ -1451,7 +1451,7 @@
 		"Base": "Base",
 		"ChatInventorySellMessage": "<strong>{actor}</strong> is selling <strong>{item}</strong> for <strong>{cost} {currency}</strong>.",
 		"ChatInventoryLootMessage": "<strong>{item}</strong> can be acquired from <strong>{actor}</strong>.",
-		"ChatInventoryRechargeMessage": "<strong>{actor}</strong> is offering to recharge your inventory points... at a price.",
+		"ChatInventoryRechargeMessage": "<strong>{actor}</strong> is offering to recharge your inventory points for <strong>{cost} {currency}</strong> per point.",
 		"ChatInventoryRechargePrompt": "Would you like to recharge <strong>{ip}</strong> inventory points for <strong>{cost} {currency}</strong>?",
 		"ChatInventoryRechargeCompleted": "<strong>{target}</strong> has recharged <strong>{ip} inventory points</strong>.",
 		"ChatInventoryDistributeZenit": "Would you like to evenly distribute <strong>{zenit} {currency}</strong> from <strong>{actor}</strong>? <strong>{targets}</strong> will each receive <strong>{share} {currency}</strong>.",
