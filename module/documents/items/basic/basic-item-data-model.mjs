@@ -26,9 +26,11 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		CheckConfiguration.configure(check)
 			.setDamage(item.system.damageType.value, item.system.damage.value)
 			.setTargetedDefense(item.system.defense)
+			.addTraits('attack')
 			.setWeaponTraits({
 				weaponType: item.system.type.value,
 			})
+			.addTraitsFromItemModel(item.system.traits)
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
 	}
 };
@@ -106,7 +108,7 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
+		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
 	}
 
 	/**
@@ -114,19 +116,6 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 */
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.traits, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality];
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {CheckCallback}
-	 */
-	#initializeAccuracyCheck(modifiers) {
-		return async (check, actor, item) => {
-			const configure = CheckConfiguration.configure(check);
-			configure.setHrZero(modifiers.shift);
-			configure.addTraits('attack');
-			configure.addTraitsFromItemModel(this.traits);
-		};
 	}
 
 	/**
