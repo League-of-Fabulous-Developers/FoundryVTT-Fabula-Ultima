@@ -84,7 +84,7 @@ const descriptionRenderers = {
 	basic: CommonDescriptions.simpleDescription(),
 	behavior: CommonDescriptions.descriptionWithTags((item) => (item.system.weight.value ? [{ tag: 'FU.BehaviorWeight', separator: ':', value: item.system.weight.value }] : [])),
 	class: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
-	classFeature: renderFeatureDescription,
+	classFeature: CommonDescriptions.descriptionWithCustomEnrichment(renderFeatureDescription),
 	customWeapon: CommonDescriptions.descriptionWithTags((item) => {
 		const tags = [];
 		tags.push({ tag: FU.weaponTypes[item.system.type] });
@@ -104,7 +104,7 @@ const descriptionRenderers = {
 		}
 		return tags;
 	}),
-	optionalFeature: renderFeatureDescription,
+	optionalFeature: CommonDescriptions.descriptionWithCustomEnrichment(renderFeatureDescription),
 	consumable: CommonDescriptions.descriptionWithTags((item) => [{ tag: 'FU.InventoryCost', separator: ':', value: item.system.ipCost.value }]),
 	heroic: CommonDescriptions.simpleDescription(),
 	miscAbility: CommonDescriptions.simpleDescription(),

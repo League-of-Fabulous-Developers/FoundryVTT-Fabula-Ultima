@@ -1,6 +1,7 @@
 import { FUTableRenderer } from './table-renderer.mjs';
 import { FU } from '../config.mjs';
 import { CommonColumns } from './common-columns.mjs';
+import { CommonDescriptions } from './common-descriptions.mjs';
 
 export class FeatureTables {
 	#featureTables = {};
@@ -55,7 +56,7 @@ class FeatureTablesRenderer extends FUTableRenderer {
 	static TABLE_CONFIG = {
 		cssClass: 'features-table',
 		getItems: FeatureTablesRenderer.#getItems,
-		renderDescription: FeatureTablesRenderer.#renderDescription,
+		renderDescription: CommonDescriptions.descriptionWithCustomEnrichment(FeatureTablesRenderer.#renderDescription),
 		hideIfEmpty: true,
 		columns: {
 			name: CommonColumns.itemNameColumn({ columnName: FeatureTablesRenderer.#getNameColumnName, headerSpan: 2 }),
