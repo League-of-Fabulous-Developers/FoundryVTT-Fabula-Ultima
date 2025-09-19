@@ -7,7 +7,7 @@
             <span class="bond">
                 <span>{{localize 'FU.DialogPushBond'}}</span>
                 {{#each this.feelings}}
-                <strong>{{localize (concat 'FU.' (capitalize this))}}</strong>
+                <strong>{{localize (pfuConcat 'FU.' (pfuCapitalize this))}}</strong>
                 {{#unless @last}}<span>{{localize 'FU.DialogPushAnd'}}</span>{{/unless}}
                 {{/each}}
                 <span>{{localize 'FU.DialogPushWith'}}<strong>{{this.with}}</strong></span>

@@ -79,7 +79,7 @@
             {{localize "FU.Skill"}}
         </span>
 
-        {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
+        {{#if (eq (pfuGetSetting 'optionBehaviorRoll') true)}}
         <span id="behavior-action" class="action-style button-style spin2win rollable grid-span-2" data-roll-type="behavior" data-action="roll">
             <i class="fas fa-dice-d20 ra-1x icon"></i>
             <label class="items-label">{{ localize "FU.Behavior" }}</label>

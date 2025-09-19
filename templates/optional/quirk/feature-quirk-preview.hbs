@@ -4,10 +4,10 @@
 
 {{!-- Resource Points --}}
 {{#if system.data.hasResource.value}}
-	{{progress item 'system.data.rp' style='basic' type='optionalRPCounter'}}
+	{{pfuProgress item 'system.data.rp' style='basic' type='optionalRPCounter'}}
 {{/if}}
 
 {{!-- Clocks --}}
 {{#if system.data.hasClock.value}}
-	{{progress item 'system.data.progress' type='featureCounter'}}
+	{{pfuProgress item 'system.data.progress' type='featureCounter'}}
 {{/if}}

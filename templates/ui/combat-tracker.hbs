@@ -1,7 +1,7 @@
 <section class="{{cssClass}} directory flexcol" id="{{cssId}}" data-tab="{{tabName}}">
     <ol id="combat-tracker" class="directory-list" style="margin-top: 0;">
         {{#each factions as |combatants faction| }}
-            <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}} {{combatants.length}}</h2>
+            <h2 class="faction">{{localize (pfuConcat 'FU.CombatFaction' (pfuCapitalize faction))}} {{combatants.length}}</h2>
             {{#each combatants}}
                 <li class="combatant actor directory-item flexrow {{faction}} {{this.css}} {{#if (eq @root.combatant.id this.id)}}started-turn{{/if}}" data-combatant-id="{{this.id}}">
                     <img class="token-image" data-action="inspectCombatant"  src="{{this.img}}" alt="{{this.name}}" loading="lazy"/>

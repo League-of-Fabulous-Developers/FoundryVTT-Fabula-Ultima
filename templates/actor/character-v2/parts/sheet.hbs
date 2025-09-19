@@ -93,10 +93,10 @@
                         {{#if (gt system.resources.hp.value system.resources.hp.max)}}
                             <!-- Overflow bar system: Current > Max, so show full bar + overflow -->
                             <div class="bar-fill" style="width: 100%"></div>
-                            <div class="bar-overflow" style="width: {{calculateOverflowPercentage system.resources.hp.value system.resources.hp.max}}"></div>
+                            <div class="bar-overflow" style="width: {{pfuOverflowPercentage system.resources.hp.value system.resources.hp.max}}"></div>
                         {{else}}
                             <!-- Normal bar: Current <= Max -->
-                            <div class="bar-fill" style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}}"></div>
+                            <div class="bar-fill" style="width: {{pfuPercentage system.resources.hp.value system.resources.hp.max}}"></div>
                         {{/if}}
                         <div class="crisis-marker" title="Crisis"></div>
                     </div>
@@ -119,10 +119,10 @@
                         {{#if (gt system.resources.mp.value system.resources.mp.max)}}
                             <!-- Overflow bar system: Current > Max, so show full bar + overflow -->
                             <div class="bar-fill" style="width: 100%"></div>
-                            <div class="bar-overflow" style="width: {{calculateOverflowPercentage system.resources.mp.value system.resources.mp.max}}"></div>
+                            <div class="bar-overflow" style="width: {{pfuOverflowPercentage system.resources.mp.value system.resources.mp.max}}"></div>
                         {{else}}
                             <!-- Normal bar: Current <= Max -->
-                            <div class="bar-fill" style="width: {{calculatePercentage system.resources.mp.value system.resources.mp.max}}"></div>
+                            <div class="bar-fill" style="width: {{pfuPercentage system.resources.mp.value system.resources.mp.max}}"></div>
                         {{/if}}
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="bar-container">
                     <div class="bar ip-bar">
-                        <div class="bar-fill" style="width: {{calculatePercentage system.resources.ip.value system.resources.ip.max}}"></div>
+                        <div class="bar-fill" style="width: {{pfuPercentage system.resources.ip.value system.resources.ip.max}}"></div>
                     </div>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                 </div>
                 <div class="bar-container">
                     <div class="bar exp-bar">
-                        <div class="bar-fill" style="width: {{calculatePercentage system.resources.exp.value 10}}"></div>
+                        <div class="bar-fill" style="width: {{pfuPercentage system.resources.exp.value 10}}"></div>
                     </div>
                 </div>
             </div>
@@ -268,7 +268,7 @@
                     </button>
                     
                     <!-- Behavior Roll for NPCs (conditional) -->
-                    {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
+                    {{#if (eq (pfuGetSetting 'optionBehaviorRoll') true)}}
                     <button class="btn-base action-btn behavior rollable behavior-roll" id="behavior-action" data-roll-type="behavior" data-action="roll">
                         <i class="fas fa-dice-d20"></i>
                         {{localize "FU.Behavior"}}

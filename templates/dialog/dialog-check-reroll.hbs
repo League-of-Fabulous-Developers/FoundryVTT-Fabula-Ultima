@@ -6,7 +6,7 @@
 				<input id="trait-{{@index}}" type="radio" name="trait" value="{{this.type}}"
 					   data-value="{{this.value}}">
 				<label for="trait-{{@index}}">
-					<span>{{localize (concat 'FU.' (capitalize this.type))}}</span>
+					<span>{{localize (pfuConcat 'FU.' (pfuCapitalize this.type))}}</span>
 					<strong class="trait">{{this.value}}</strong>
 				</label>
 			</label>
@@ -20,7 +20,7 @@
         <span class="roll-container">
             <span class="roll">{{attr1.result}}</span>
         </span>
-			<span>{{localize (concat 'FU.Attribute' (capitalize attr1.attribute))}}</span>
+			<span>{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attr1.attribute))}}</span>
 		</label>
 	</div>
 	<div class="flexrow">
@@ -29,7 +29,7 @@
         <span class="roll-container">
             <span class="roll">{{attr2.result}}</span>
         </span>
-			<span>{{localize (concat 'FU.Attribute' (capitalize attr2.attribute))}}</span>
+			<span>{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attr2.attribute))}}</span>
 		</label>
 	</div>
 </fieldset>

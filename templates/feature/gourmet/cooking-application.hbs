@@ -8,7 +8,7 @@
                 {{#each recipe}}
                     <div>
                         <label>
-                            <span class="resource-label-sm">{{localize "FU.ClassFeatureIngredient"}} {{math @index "+" 1}}</span><br>
+                            <span class="resource-label-sm">{{localize "FU.ClassFeatureIngredient"}} {{pfuMath @index "+" 1}}</span><br>
                             <select class="resource-inputs select-dropdown-full grid-span-4" name="ingredients.{{@index}}">
                                 {{selectOptions (lookup @root.options @index) selected=this valueAttr="value"
                                                 labelAttr="label" blank="-"}}

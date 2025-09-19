@@ -10,7 +10,7 @@
 
 {{#if results}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyTargets'}}</summary>
             {{#each results}}
                 <div>
@@ -23,7 +23,7 @@
 
 {{#if results}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyEffects'}}</summary>
             {{#each results}}
                 <div>
@@ -36,7 +36,7 @@
 
 {{#if alwaysAvailableEffects}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyAlwaysAvailableEffectsSection'}}</summary>
         {{#each alwaysAvailableEffects}}
             <div>

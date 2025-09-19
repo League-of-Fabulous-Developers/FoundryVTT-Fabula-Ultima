@@ -3,21 +3,9 @@ import { ObjectUtils } from './object-utils.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
-		Handlebars.registerHelper('concat', function () {
-			var outStr = '';
-			for (var arg in arguments) {
-				if (typeof arguments[arg] != 'object') {
-					outStr += arguments[arg];
-				}
-			}
-			return outStr;
-		});
+		Handlebars.registerHelper('pfuConcat', (...args) => args.join(''));
 
-		Handlebars.registerHelper('toLowerCase', function (str) {
-			return str.toLowerCase();
-		});
-
-		Handlebars.registerHelper('translate', function (str) {
+		Handlebars.registerHelper('pfuTranslate', function (str) {
 			const result = Object.assign(
 				{
 					spell: 'FU.Spell',
@@ -40,40 +28,25 @@ export const FUHandlebars = Object.freeze({
 			return result?.[str] ?? str;
 		});
 
-		Handlebars.registerHelper('getGameSetting', function (settingKey) {
+		Handlebars.registerHelper('pfuGetSetting', function (settingKey) {
 			return game.settings.get('projectfu', settingKey);
 		});
 
-		Handlebars.registerHelper('capitalize', function (str) {
+		Handlebars.registerHelper('pfuCapitalize', function (str) {
 			if (str && typeof str === 'string') {
 				return str.charAt(0).toUpperCase() + str.slice(1);
 			}
 			return str;
 		});
 
-		Handlebars.registerHelper('uppercase', function (str) {
+		Handlebars.registerHelper('pfuUppercase', function (str) {
 			if (str && typeof str === 'string') {
 				return str.toUpperCase();
 			}
 			return str;
 		});
 
-		Handlebars.registerHelper('neq', function (a, b, options) {
-			if (a !== b) {
-				return options.fn(this);
-			}
-			return '';
-		});
-
-		Handlebars.registerHelper('ifEquals', function (a, b, options) {
-			if (a === b) {
-				return options.fn(this);
-			} else {
-				return options.inverse ? options.inverse(this) : '';
-			}
-		});
-
-		Handlebars.registerHelper('half', function (value) {
+		Handlebars.registerHelper('pfuHalf', function (value) {
 			var num = Number(value);
 			if (isNaN(num)) {
 				return '';
@@ -81,7 +54,7 @@ export const FUHandlebars = Object.freeze({
 			return Math.floor(num / 2);
 		});
 
-		Handlebars.registerHelper('calculatePercentage', function (value, max) {
+		Handlebars.registerHelper('pfuPercentage', function (value, max) {
 			value = parseFloat(value);
 			max = parseFloat(max);
 			const percentage = (value / max) * 100;
@@ -89,7 +62,7 @@ export const FUHandlebars = Object.freeze({
 		});
 
 		// TODO: Needs a attribute like maxPercent
-		Handlebars.registerHelper('calculateOverflowPercentage', function (value, max) {
+		Handlebars.registerHelper('pfuOverflowPercentage', function (value, max) {
 			value = parseFloat(value);
 			max = parseFloat(max);
 
@@ -102,54 +75,30 @@ export const FUHandlebars = Object.freeze({
 			return percentage.toFixed(2) + '%';
 		});
 
-		Handlebars.registerHelper('crisis', function (value, max) {
+		Handlebars.registerHelper('pfuCrisis', function (value, max) {
 			value = parseFloat(value);
 			max = parseFloat(max);
 			const half = max / 2;
 			return value <= half;
 		});
 
-		Handlebars.registerHelper('lookupItemById', function (items, itemId) {
+		Handlebars.registerHelper('pfuLookupById', function (items, itemId) {
 			return items.find((item) => item._id === itemId);
 		});
 
-		Handlebars.registerHelper('isItemEquipped', function (item, equippedItems) {
-			if (!item || !equippedItems) {
-				console.error('Item or equippedItems is missing.');
-				return false;
-			}
-			return equippedItems.isEquipped(item);
-		});
-
 		// Define a Handlebars helper to get the icon class based on item properties
-		Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
+		Handlebars.registerHelper('pfuIconClass', function (item, equippedItems) {
 			if (!equippedItems) {
 				return '';
 			}
 			return equippedItems.getClass(item);
 		});
 
-		Handlebars.registerHelper('getSlot', function (item) {
-			if (!item || !item.system) {
-				return '';
-			}
-			if (item.type === 'weapon') {
-				return item.system.hands.value === 'two-handed' ? 'mainHand' : 'offHand';
-			} else if (item.type === 'shield') {
-				return 'offHand';
-			} else if (item.type === 'armor') {
-				return 'armor';
-			} else if (item.type === 'accessory') {
-				return 'accessory';
-			}
-			return '';
-		});
-
-		Handlebars.registerHelper('mathAbs', function (value) {
+		Handlebars.registerHelper('pfuMathAbs', function (value) {
 			return Math.abs(value);
 		});
 
-		Handlebars.registerHelper('formatMod', function (value) {
+		Handlebars.registerHelper('pfuFormatMod', function (value) {
 			if (value > 0) {
 				return '+' + value;
 			} else if (value < 0) {
@@ -158,19 +107,23 @@ export const FUHandlebars = Object.freeze({
 			return value;
 		});
 
-		Handlebars.registerHelper('inArray', function (item, array, options) {
-			if (Array.isArray(array) && array.includes(item)) {
-				return options.fn ? options.fn(this) : true;
-			} else {
-				return options.inverse ? options.inverse(this) : '';
+		Handlebars.registerHelper('pfuCollectionContains', function (item, collection) {
+			if (Array.isArray(collection)) {
+				return collection.includes(item);
 			}
+			if (collection instanceof Map) {
+				return collection.has(item);
+			}
+			if (collection instanceof Set) {
+				return collection.has(item);
+			}
+			if (collection instanceof Object) {
+				return item in collection;
+			}
+			return false;
 		});
 
-		Handlebars.registerHelper('inSet', function (item, set) {
-			return set.has(item);
-		});
-
-		Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax, resourceName) {
+		Handlebars.registerHelper('pfuFormatResource', function (resourceValue, resourceMax, resourceName) {
 			// Convert value to a string to split into 3 digits
 			const valueString = resourceValue.toString().padStart(3, '0');
 			const isCrisis = resourceValue <= resourceMax / 2 && resourceName == 'HP';
@@ -189,7 +142,7 @@ export const FUHandlebars = Object.freeze({
 			return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
 		});
 
-		Handlebars.registerHelper('math', function (left, operator, right) {
+		Handlebars.registerHelper('pfuMath', function (left, operator, right) {
 			left = parseFloat(left);
 			right = parseFloat(right);
 			return {
@@ -201,18 +154,12 @@ export const FUHandlebars = Object.freeze({
 			}[operator];
 		});
 
-		Handlebars.registerHelper('includes', function (array, value) {
-			return Array.isArray(array) && array.includes(value);
+		Handlebars.registerHelper('pfuClamp', (val, min, max) => {
+			return Math.clamp(val, min, max);
 		});
 
-		Handlebars.registerHelper('get', (map, key) => ObjectUtils.getProperty(map, key));
-
-		Handlebars.registerHelper('clamp', (val, min, max) => {
-			return Math.max(Math.min(val, max), min);
-		});
-
-		Handlebars.registerHelper('progress', progress);
-		Handlebars.registerHelper('progressCollection', progressCollection);
+		Handlebars.registerHelper('pfuProgress', progress);
+		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 	},
 });
 

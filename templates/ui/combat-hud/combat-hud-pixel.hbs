@@ -36,8 +36,8 @@
     <div class="faction-list npcs {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each npcs}}
              <div class="combat-row {{ this.rowClass }} 
-                {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}}
-                {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}
+                {{#if (pfuCollectionContains "crisis" this.actor.statuses)}}crisis{{/if}}
+                {{#if (pfuCollectionContains "ko" this.actor.statuses)}}ko{{/if}}
                 {{#if @root.hasCombatStarted}}
                     {{#if (eq @root.combatant.id this.id)}}active-combatant{{/if}}
                     {{#if (lookup @root.turnsLeft this.id)}}turns-left
@@ -46,12 +46,12 @@
                 {{/if}}" 
                 data-type="npc" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
-                 {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
+                 {{#if (pfuGetSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
                 <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
                 <div class="combat-info">
                     <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
                         <span class="token-name" data-action="clickCombatant" data-token-id="{{this.token.id}}">
-                            {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
+                            {{#if (pfuGetSetting "optionCombatHudShowOrderNumbers")}}
                                 <span class="combat-order">{{ this.order }}</span>.&nbsp;
                             {{/if}}
                             {{ name }}
@@ -90,8 +90,8 @@
     <div class="faction-list characters {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each characters}}
             <div class="combat-row {{ this.rowClass }} 
-                {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}}
-                {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}
+                {{#if (pfuCollectionContains "crisis" this.actor.statuses)}}crisis{{/if}}
+                {{#if (pfuCollectionContains "ko" this.actor.statuses)}}ko{{/if}}
                 {{#if @root.hasCombatStarted}}
                     {{#if (eq @root.combatant.id this.id)}}active-combatant{{/if}}
                     {{#if (lookup @root.turnsLeft this.id)}}turns-left
@@ -100,12 +100,12 @@
                 {{/if}}" 
                 data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
-                 {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
+                 {{#if (pfuGetSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
                 <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
                 <div class="combat-info">
                     <div class="combat-name">
                         <span data-action="clickCombatant" data-token-id="{{this.token.id}}">
-                            {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
+                            {{#if (pfuGetSetting "optionCombatHudShowOrderNumbers")}}
                                 <span class="combat-order">{{ this.order }}</span>.&nbsp;
                             {{/if}}
                             {{ name }}

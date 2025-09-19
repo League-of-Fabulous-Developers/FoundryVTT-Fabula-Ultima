@@ -5,11 +5,11 @@
     <div class='detail-desc flex-group-center grid grid-2col desc'>
         <div class='spin2win'>
             <i class='fas fa-dice-d6 ra-2x rollable'></i>
-            {{localize (concat 'FU.Attribute' (capitalize attributes.attr1) 'Abbr')}}
+            {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attributes.attr1) 'Abbr')}}
         </div>
         <div class='spin2win'>
             <i class='fas fa-dice-d6 ra-2x rollable'></i>
-            {{localize (concat 'FU.Attribute' (capitalize attributes.attr2) 'Abbr')}}
+            {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attributes.attr2) 'Abbr')}}
         </div>
     </div>
     {{#if supporters}}
@@ -36,7 +36,7 @@
                         </div>
                         <div>
                             {{#each bond}}
-                                <span>{{localize (concat 'FU.' this)}}</span>{{#unless @last}}<span>,</span>{{/unless}}
+                                <span>{{localize (pfuConcat 'FU.' this)}}</span>{{#unless @last}}<span>,</span>{{/unless}}
                             {{/each}}
                         </div>
                     </div>

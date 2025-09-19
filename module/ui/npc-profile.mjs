@@ -168,7 +168,7 @@ export class NpcProfileWindow extends FUApplication {
 		/** @type FUActor **/
 		const actor = await fromUuid(existing.uuid);
 		const studyDifficulties = StudyRollHandler.getStudyDifficulties();
-		const affinities = Object.keys(FU.damageTypes);
+		const affinities = Object.keys(FU.damageTypes).filter((value) => value !== 'untyped');
 		const affinityMap = Object.fromEntries(Object.entries(actor.system.affinities).map(([key, aff]) => [key, FU.affTypeAbbr[aff.current]]));
 		/** @type String **/
 		const traits = actor.system.traits.value;
@@ -187,6 +187,7 @@ export class NpcProfileWindow extends FUApplication {
 				affinities: affinities,
 				affinityMap: affinityMap,
 				traits: traitsArray,
+				FU: FU,
 			}),
 			render: (event, dialog) => {
 				const studyValueDisplay = dialog.element.querySelector('#study-value');

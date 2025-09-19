@@ -10,7 +10,7 @@
 	<div class="flex-group-left resource-content">
 		<label class="resource-label-l flexcol">{{localize 'FU.Benefits'}}</label>
 		{{#each system.benefits.resources as |benefit key|}}
-			<label class="checkbox"> <span class="resource-label-sm">{{localize (translate
+			<label class="checkbox"> <span class="resource-label-sm">{{localize (pfuTranslate
 																				 key)}}</span><input type="checkbox" name="system.benefits.resources.{{ key }}.value" {{
 			checked benefit.value }} />
 			</label>
@@ -20,7 +20,7 @@
 	<div class="flex-group-left resource-content">
 		<label class="resource-label-l flexcol">{{localize 'FU.BenefitMartial'}}</label>
 		{{#each system.benefits.martials as |benefit key|}}
-			<label class="checkbox"> <span class="resource-label-sm">{{localize (translate
+			<label class="checkbox"> <span class="resource-label-sm">{{localize (pfuTranslate
 																				 key)}}</span><input type="checkbox" name="system.benefits.martials.{{ key }}.value" {{
 			checked benefit.value }} />
 			</label>
@@ -30,7 +30,7 @@
 	<div class="flex-group-left resource-content">
 		<label class="resource-label-l flexcol">{{localize 'FU.BenefitRitual'}}</label>
 		{{#each system.benefits.rituals as |benefit key|}}
-			<label class="checkbox"> <span class="resource-label-sm">{{localize (translate
+			<label class="checkbox"> <span class="resource-label-sm">{{localize (pfuTranslate
 																				 key)}}</span><input type="checkbox" name="system.benefits.rituals.{{ key }}.value" {{
 			checked benefit.value }} />
 			</label>

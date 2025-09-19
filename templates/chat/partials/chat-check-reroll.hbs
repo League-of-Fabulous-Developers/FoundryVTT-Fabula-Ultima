@@ -1,11 +1,11 @@
 <div class='detail-desc flexrow flex-group-center desc' style='padding: 0 2px;'>
     <div>
-        {{{localize 'FU.ChatCheckReroll' trait=(localize (concat 'FU.' (capitalize reroll.trait)))
-                    value=(concat '<u>' reroll.value '</u>')}}}
+        {{{localize 'FU.ChatCheckReroll' trait=(localize (pfuConcat 'FU.' (pfuCapitalize reroll.trait)))
+                    value=(pfuConcat '<u>' reroll.value '</u>')}}}
     </div>
 </div>
 
-{{#if (includes reroll.selection "ignore-fp")}}
+{{#if (pfuCollectionContains reroll.selection "ignore-fp")}}
 <div class="detail-desc flexrow flex-group-center desc" style="padding: 0 2px;">
     <div>
         {{localize 'FU.DialogIgnoreFPCost'}}

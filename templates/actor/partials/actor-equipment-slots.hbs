@@ -20,10 +20,10 @@
 		{{/with}}
     {{else}}
         <!-- Regular Armor Slot -->
-		{{#with (lookupItemById actor.items actor.system.equipped.armor) as |item|}}
+		{{#with (pfuLookupById actor.items actor.system.equipped.armor) as |item|}}
 			<div class="armor-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}">
 				<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.Armor'}}<br>{{ item.name }}">
-					<i class="{{ getIconClass item @root.actor.system.equipped }}"></i>
+					<i class="{{ pfuIconClass item @root.actor.system.equipped }}"></i>
 					<span class="equipped-item-content">{{ item.name }}</span>
 				</div>
 			</div>
@@ -51,7 +51,7 @@
             </div>
         {{/each}}
         <!-- Phantom Hand Slot -->
-		{{#with (lookupItemById actor.items actor.system.equipped.phantom) as |item|}}
+		{{#with (pfuLookupById actor.items actor.system.equipped.phantom) as |item|}}
 			<div class="phantom-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}" style="flex: none;">
 				<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.PhantomHand'}}<br>{{item.name}}"
 					style="margin:-1px;">
@@ -62,18 +62,18 @@
     {{else}}
         <!-- Regular Main Hand and Off Hand Slot Combined -->
         {{#if (and actor.system.equipped.mainHand actor.system.equipped.offHand (eq actor.system.equipped.mainHand actor.system.equipped.offHand))}}
-			{{#with (lookupItemById actor.items actor.system.equipped.mainHand) as |item|}}
+			{{#with (pfuLookupById actor.items actor.system.equipped.mainHand) as |item|}}
 				<div class="two-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}"
 					data-tooltip="{{localize 'FU.TwoHanded'}}<br>{{ item.name }}">
 					<div class="equipped-item gap-5">
-						<i class="{{ getIconClass item @root.actor.system.equipped }}"
+						<i class="{{ pfuIconClass item @root.actor.system.equipped }}"
 							style="color: inherit !important; font-size: 1.25rem; -webkit-text-stroke: transparent;"></i>
 						<span class="equipped-item-content">{{ item.name }}</span>
 					</div>
 				</div>
         	{{/with}}
         <!-- Phantom Hand Slot -->
-			{{#with (lookupItemById actor.items actor.system.equipped.phantom) as |item|}}
+			{{#with (pfuLookupById actor.items actor.system.equipped.phantom) as |item|}}
 				<div class="phantom-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}" style="flex: none;">
 					<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.PhantomHand'}}<br>{{item.name}}"
 						style="margin: -1px;">
@@ -83,10 +83,10 @@
 			{{/with}}
         {{else}}
         <!-- Main Hand Slot -->
-			{{#with (lookupItemById actor.items actor.system.equipped.mainHand) as |item|}}
+			{{#with (pfuLookupById actor.items actor.system.equipped.mainHand) as |item|}}
 				<div class="left-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}">
 					<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.MainHand'}}<br>{{ item.name }}">
-						<i class="{{ getIconClass item @root.actor.system.equipped }}"></i>
+						<i class="{{ pfuIconClass item @root.actor.system.equipped }}"></i>
 						<span class="equipped-item-content">{{ item.name }}</span>
 					</div>
 				</div>
@@ -99,7 +99,7 @@
 				</div>
 			{{/with}}
         <!-- Phantom Hand Slot -->
-			{{#with (lookupItemById actor.items actor.system.equipped.phantom) as |item|}}
+			{{#with (pfuLookupById actor.items actor.system.equipped.phantom) as |item|}}
 				<div class="phantom-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}" style="flex: none;">
 					<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.PhantomHand'}}<br>{{item.name}}"
 						style="margin:-1px;">
@@ -108,7 +108,7 @@
 				</div>
 			{{/with}}
         <!-- Off Hand Slot -->
-			{{#with (lookupItemById actor.items actor.system.equipped.offHand) as |item|}}
+			{{#with (pfuLookupById actor.items actor.system.equipped.offHand) as |item|}}
 				<div class="right-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}">
 					<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.OffHand'}}<br>{{ item.name }}">
 						{{#if (eq item.type "shield")}}
@@ -130,10 +130,10 @@
         {{/if}}
     {{/if}}
     <!-- Accessory Slot -->
-	{{#with (lookupItemById actor.items actor.system.equipped.accessory) as |item|}}
+	{{#with (pfuLookupById actor.items actor.system.equipped.accessory) as |item|}}
 		<div class="acc-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}">
 			<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.Accessory'}}<br>{{ item.name }}">
-				<i class="{{ getIconClass item @root.actor.system.equipped }}"></i>
+				<i class="{{ pfuIconClass item @root.actor.system.equipped }}"></i>
 				<span class="equipped-item-content">{{ item.name }}</span>
 			</div>
 		</div>

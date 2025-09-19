@@ -115,7 +115,7 @@
 							   data-dtype="String" />
 					</li>
 					<section class="flex2 npc-desc resource-content">
-						{{#if (eq (getGameSetting 'optionNPCNotesTab') true)}}
+						{{#if (eq (pfuGetSetting 'optionNPCNotesTab') true)}}
 							{{{enrichedHtml.description}}}
 						{{else}}
 							<prose-mirror name="system.description" value="{{system.description}}" toggled>
@@ -125,7 +125,7 @@
 					</section>
 				</section>
 
-				{{#if (getGameSetting 'showAssociatedTherioforms')}}
+				{{#if (pfuGetSetting 'showAssociatedTherioforms')}}
 					<fieldset class="desc resource-content title-fieldset associated-therioforms">
 						<legend class="resource-label-m">
 							<label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>

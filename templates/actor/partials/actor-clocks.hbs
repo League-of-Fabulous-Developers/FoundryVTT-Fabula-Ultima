@@ -8,7 +8,7 @@
 	</legend>
 	{{#each items as |item id|}}
 		{{#if (and item.isFavorite item.system.hasClock.value)}}
-			{{progress item 'system.progress' displayName=true type='clockCounter' }}
+			{{pfuProgress item 'system.progress' displayName=true type='clockCounter' }}
 		{{/if}}
 	{{/each}}
 
@@ -16,7 +16,7 @@
 	{{#each optionalFeatures}}
 		{{#each items }}
 			{{#if (and item.isFavorite item.system.data.hasClock.value)}}
-				{{progress item 'system.data.progress' displayName=true type='featureCounter' }}
+				{{pfuProgress item 'system.data.progress' displayName=true type='featureCounter' }}
 			{{/if}}
 		{{/each}}
 	{{/each}}

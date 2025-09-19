@@ -1,6 +1,6 @@
 <div>
     <div class='chat-desc'>
-        <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}{{open}}{{/unless}}>
+        <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}{{open}}{{/unless}}>
             <summary class="collapsible-description align-center">{{title}}</summary>
             {{{description}}}
         </details>

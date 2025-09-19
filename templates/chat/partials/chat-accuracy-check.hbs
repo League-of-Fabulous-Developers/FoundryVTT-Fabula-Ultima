@@ -16,21 +16,21 @@
         {{#if fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
     >
         <div class="startcap"></div>
-        <div class="" style="flex: 0 1 auto;">{{result}} <label>vs</label> {{uppercase additionalData.targetedDefense}}{{uppercase details.defense}}</div>
+        <div class="" style="flex: 0 1 auto;">{{result}} <label>vs</label> {{pfuUppercase additionalData.targetedDefense}}{{pfuUppercase details.defense}}</div>
         <div class="endcap"></div>
     </label>
 </div>
 
 <!-- Roll Details Section -->
-<div class="toggle-section accuracy-check-results {{#if (getGameSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
+<div class="toggle-section accuracy-check-results {{#if (pfuGetSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
     <div class="flexrow gap-5">
         <div class='detail-desc flex-group-center grid grid-3col flex3'>
             <div data-tooltip="(Die Size: {{primary.dice}})">
-                <label class="title">{{localize (concat 'FU.Attribute' (capitalize primary.attribute) 'Abbr')}}</label>
+                <label class="title">{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize primary.attribute) 'Abbr')}}</label>
                 <label class="detail">{{primary.result}}</label>
             </div>
             <div data-tooltip="(Die Size: {{secondary.dice}})">
-                <label class="title">{{localize (concat 'FU.Attribute' (capitalize secondary.attribute) 'Abbr')}}</label>
+                <label class="title">{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize secondary.attribute) 'Abbr')}}</label>
                 <label class="detail">{{secondary.result}}</label>
             </div>
             <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}" {{/if}}>

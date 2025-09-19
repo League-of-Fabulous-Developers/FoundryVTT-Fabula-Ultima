@@ -8,13 +8,13 @@
         </div>
     </div>
     <div class="bar bar-progress" data-tooltip="{{localize 'FU.HealthPoints'}}">
-        {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+        {{#if (pfuCrisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
         <div class="bar-progress-bar bar-hp-crisis"
-            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+            style="width: {{pfuPercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
         <div class="center-line"></div>
         {{else}}
         <div class="bar-progress-bar bar-hp"
-            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+            style="width: {{pfuPercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
         {{/if}}
         <span class="bar-value"></span>
     </div>  

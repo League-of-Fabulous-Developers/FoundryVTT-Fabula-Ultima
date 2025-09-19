@@ -2,12 +2,12 @@
 	<header class="items-main-header">
 		<!-- Zenit -->
 		<span class="item-sm end">
-			<span class="item tab button-style zenit-style" style="width: 150px; height:20px;" data-tooltip="{{getGameSetting 'optionRenameCurrency'}}">
+			<span class="item tab button-style zenit-style" style="width: 150px; height:20px;" data-tooltip="{{pfuGetSetting 'optionRenameCurrency'}}">
 				<i class="fuk fu-zenit"></i>
 				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}" data-dtype="Number" />
 			</span>
 			{{#if actor.isOwner}}
-				<a class="item-control zenit-distribute" data-action="distributeZenit" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(getGameSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
+				<a class="item-control zenit-distribute" data-action="distributeZenit" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(pfuGetSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
 					<i class="fa fa-university button-style"></i>
 				</a>
 				{{#if system.merchant}}
