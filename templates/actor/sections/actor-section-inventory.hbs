@@ -1,19 +1,41 @@
 <section>
 	<header class="items-main-header">
 		<!-- Zenit -->
-		<span class="item-sm end">
-			<span class="item tab button-style zenit-style" style="width: 150px; height:20px;" data-tooltip="{{pfuGetSetting 'optionRenameCurrency'}}">
+		<span class="stash-controls">
+			<span class="button-style zenit-style" data-tooltip="{{pfuGetSetting 'optionRenameCurrency'}}">
 				<i class="fuk fu-zenit"></i>
 				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}" data-dtype="Number" />
 			</span>
+			<div class="spacer"></div>
 			{{#if actor.isOwner}}
 				<a class="item-control zenit-distribute" data-action="distributeZenit" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(pfuGetSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
 					<i class="fa fa-university button-style"></i>
 				</a>
 				{{#if system.merchant}}
-					<a class="item-control recharge-ip" data-tooltip="{{ localize 'FU.InventoryRechargeIP' }}" aria-describedby="tooltip">
-						<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/winds_of_trade.png" />
+					<a class="item-control recharge-ip" data-action="rechargeInventoryPoints" data-tooltip="{{ localize 'FU.InventoryRechargeIP' }}" aria-describedby="tooltip">
+						<i class="ra ra-potion button-style"></i>
 					</a>
+
+				<div class="spacer"></div>
+
+					<div class="resource-content ip-recharge-rate">
+						<label class="resource-label-m" data-tooltip="{{localize 'FU.Recharge' }}">
+							<i class="icon ra ra-repair"></i>
+							<input type="number" name="system.rates.recharge" value="{{ system.rates.recharge }}" class="resource-inputs"/>
+						</label>
+					</div>
+
+				<div class="spacer"></div>
+
+					<div class="resource-content item-price-rate" data-tooltip="{{localize 'FU.ItemRate' rate=system.itemRateString }}">
+						<label class="resource-label-m">
+							 <i class="icon ra ra-book"></i>
+							<input type="range" name="system.rates.item" value="{{ system.rates.item }}" class="resource-inputs"
+								   min="0.5"
+								   max="2"
+								   step="0.1"/>
+						</label>
+					</div>
 				{{/if}}
 			{{/if}}
 		</span>

@@ -31,6 +31,7 @@ export class FUStashSheet extends FUActorSheet {
 			lootItem: this.#onLootItem,
 			sellItem: this.#onSellItem,
 			distributeZenit: this.#onDistributeZenit,
+			rechargeInventoryPoints: this.#onRechargeInventoryPoints,
 		},
 	};
 
@@ -189,5 +190,9 @@ export class FUStashSheet extends FUActorSheet {
 
 	static #onDistributeZenit() {
 		return InventoryPipeline.distributeZenit(this.actor);
+	}
+
+	static #onRechargeInventoryPoints() {
+		return InventoryPipeline.requestRecharge(this.actor);
 	}
 }

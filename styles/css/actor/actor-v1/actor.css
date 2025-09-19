@@ -2435,3 +2435,7 @@
 	-webkit-filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
 	filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
 }
+
+.projectfu .rate {
+	width: 120px;
+}

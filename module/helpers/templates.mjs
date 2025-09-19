@@ -53,6 +53,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/effects/active-effect-image.hbs',
 
 		// Dialogs
+		'systems/projectfu/templates/dialog/dialog-common.hbs',
 		'systems/projectfu/templates/dialog/dialog-check.hbs',
 		'systems/projectfu/templates/dialog/dialog-check-push.hbs',
 		'systems/projectfu/templates/dialog/dialog-check-reroll.hbs',

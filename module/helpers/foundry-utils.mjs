@@ -146,4 +146,29 @@ export default class FoundryUtils {
 	static async promptStringChoice(title, options) {
 		return this.promptChoice(title, options, (opt) => opt);
 	}
+
+	/**
+	 *
+	 * @param {String} title
+	 * @param {String} message
+	 * @returns {Promise<void>}
+	 */
+	static async confirmDialog(title, message) {
+		return foundry.applications.api.DialogV2.confirm({
+			window: {
+				title: title,
+			},
+			classes: ['projectfu', 'sheet', 'backgroundstyle'],
+			content: await this.renderTemplate('dialog/dialog-common', {
+				message: message,
+			}),
+			rejectClose: false,
+			yes: {
+				label: 'FU.Confirm',
+			},
+			no: {
+				label: 'FU.Cancel',
+			},
+		});
+	}
 }

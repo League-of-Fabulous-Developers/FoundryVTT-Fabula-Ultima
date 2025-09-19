@@ -142,7 +142,11 @@ export class EquipmentTableRenderer extends FUTableRenderer {
 	}
 
 	static #getCost(item) {
-		return foundry.utils.getProperty(item, costFields[item.type]);
+		let cost = foundry.utils.getProperty(item, costFields[item.type]);
+		if (item.actor.type === 'stash') {
+			cost = Math.floor(cost * item.actor.system.rates.item);
+		}
+		return cost;
 	}
 
 	static #renderCustomControlsHeader() {

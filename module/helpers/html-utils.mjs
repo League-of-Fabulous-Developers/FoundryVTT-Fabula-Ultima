@@ -23,10 +23,10 @@ export const HTMLUtils = Object.freeze({
 	 */
 	getKeyboardModifiers: (event) => {
 		return {
-			shift: event.shiftKey,
-			alt: event.altKey,
-			ctrl: event.ctrlKey,
-			meta: event.metaKey,
+			shift: event?.shiftKey ?? false,
+			alt: event?.altKey ?? false,
+			ctrl: event?.ctrlKey ?? false,
+			meta: event?.metaKey ?? false,
 		};
 	},
 });
