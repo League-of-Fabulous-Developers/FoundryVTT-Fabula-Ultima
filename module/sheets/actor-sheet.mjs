@@ -21,6 +21,29 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		},
 	};
 
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		this.element.addEventListener('auxclick', this.#onAuxClick.bind(this));
+	}
+
+	/**
+	 * @param {PointerEvent} event
+	 */
+	#onAuxClick(event) {
+		if (event.button === 1) {
+			const target = event.target;
+			let item = this.actor.items.get(target.closest('[data-item-id]')?.dataset?.itemId);
+
+			if (!item) {
+				item = foundry.utils.fromUuidSync(target.closest('[data-uuid]')?.dataset?.uuid);
+			}
+
+			if (item) {
+				item.sheet.render(true);
+			}
+		}
+	}
+
 	/**
 	 * @override
 	 */
