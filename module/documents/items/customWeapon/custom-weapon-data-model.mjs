@@ -32,6 +32,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				handedness: 'two-handed',
 			})
 			.addTraits(item.system.damage.type)
+			.addTraits(...item.system.traits)
 			.setTargetedDefense(item.system.defense)
 			.setDamageOverride(actor, 'attack');
 	}
@@ -133,7 +134,7 @@ class CustomWeaponFormDataModel extends foundry.abstract.DataModel {
  */
 export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { StringField, HTMLField, SchemaField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { StringField, HTMLField, SchemaField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return {
 			summary: new StringField(),
 			description: new HTMLField(),
@@ -148,6 +149,7 @@ export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
 			activeForm: new StringField({ initial: 'primaryForm', choices: ['primaryForm', 'secondaryForm'] }),
 			primaryForm: new EmbeddedDataField(CustomWeaponFormDataModel),
 			secondaryForm: new EmbeddedDataField(CustomWeaponFormDataModel),
+			traits: new SetField(new StringField()),
 		};
 	}
 

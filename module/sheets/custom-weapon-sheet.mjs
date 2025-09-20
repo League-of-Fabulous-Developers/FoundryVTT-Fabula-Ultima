@@ -1,6 +1,7 @@
 import { FU } from '../helpers/config.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { FUItemSheet } from './item-sheet.mjs';
+import { Traits } from '../pipelines/traits.mjs';
 
 export class CustomWeaponSheet extends FUItemSheet {
 	/**
@@ -97,6 +98,11 @@ export class CustomWeaponSheet extends FUItemSheet {
 		context.FU = FU;
 		context.tabs = this._prepareTabs('primary');
 		context.formTabs = this._prepareTabs('form');
+
+		context.traits = Object.keys(Traits).map((key) => ({
+			label: key,
+			value: key,
+		}));
 
 		return context;
 	}

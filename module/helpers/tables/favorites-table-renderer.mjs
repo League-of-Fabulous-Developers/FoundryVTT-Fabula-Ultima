@@ -211,6 +211,80 @@ function renderDamage(damage) {
 }
 
 /**
+ * @typedef CheckData
+ * @property {Attribute} primary
+ * @property {Attribute} secondary
+ * @property {number} bonus
+ */
+
+/**
+ * @type {Record<string, ((item: FUItem, base: CheckData) => CheckData)>}
+ */
+const checkDataGetter = {
+	weapon: (weapon, baseCheck) => ({
+		primary: weapon.system.attributes.primary.value,
+		secondary: weapon.system.attributes.secondary.value,
+		bonus: weapon.system.accuracy.value + baseCheck.bonus,
+	}),
+	customWeapon: (customWeapon, baseCheck) => ({
+		primary: customWeapon.system.attributes.primary,
+		secondary: customWeapon.system.attributes.secondary,
+		bonus: customWeapon.system.accuracy + baseCheck.bonus,
+	}),
+};
+
+/**
+ * @param {FUItem} item
+ * @param {CheckData} baseCheck
+ * @return {CheckData|null}
+ */
+function getCheckData(item, baseCheck) {
+	const getter = checkDataGetter[item?.type];
+	if (getter) {
+		return getter(item, baseCheck);
+	} else {
+		return null;
+	}
+}
+
+/**
+ * @typedef DamageData
+ * @property {number} value
+ * @property {DamageType} type
+ * @property {boolean} hrZero
+ */
+
+/**
+ * @type {Record<string, ((item: FUItem, base: DamageData) => DamageData)>}
+ */
+const damageDataGetter = {
+	weapon: (weapon, baseDamage) => ({
+		value: baseDamage.value + weapon.system.damage.value,
+		type: baseDamage.type || weapon.system.damageType.value,
+		hrZero: baseDamage.hrZero,
+	}),
+	customWeapon: (customWeapon, baseDamage) => ({
+		value: baseDamage.value + customWeapon.system.damage.value,
+		type: baseDamage.type || customWeapon.system.damage.type,
+		hrZero: baseDamage.hrZero,
+	}),
+};
+
+/**
+ * @param {FUItem} item
+ * @param {DamageData} base
+ * @return {null|DamageData}
+ */
+function getDamageData(item, base) {
+	const getter = damageDataGetter[item?.type];
+	if (getter) {
+		return getter(item, base);
+	} else {
+		return null;
+	}
+}
+
+/**
  * Maps from Item type to a renderer that should be used.
  * Favorite captions should only be used for absolutely essential information like checks and damage values.
  * Other information should be accessible through the collapsible description as to not bloat the height of the table.
@@ -257,43 +331,32 @@ const captionRenderers = {
 	miscAbility: (item) => {
 		const blocks = [];
 		if (item.system.hasRoll.value) {
-			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
-			const weapon = mainHandItem?.type === 'weapon' ? mainHandItem : null;
+			const baseCheck = {
+				primary: item.system.attributes.primary,
+				secondary: item.system.attributes.secondary,
+				bonus: item.system.accuracy,
+			};
 
-			if (item.system.useWeapon.accuracy && weapon) {
-				blocks.push(
-					renderCheck({
-						primary: weapon.system.attributes.primary.value,
-						secondary: weapon.system.attributes.secondary.value,
-						bonus: weapon.system.accuracy.value + item.system.accuracy,
-					}),
-				);
+			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
+
+			const weaponCheck = getCheckData(mainHandItem, baseCheck);
+			if (item.system.useWeapon.accuracy && weaponCheck) {
+				blocks.push(renderCheck(weaponCheck));
 			} else {
-				blocks.push(
-					renderCheck({
-						primary: item.system.attributes.primary,
-						secondary: item.system.attributes.secondary,
-						bonus: item.system.accuracy,
-					}),
-				);
+				blocks.push(renderCheck(baseCheck));
 			}
 			if (item.system.damage.hasDamage) {
-				if (item.system.useWeapon.damage && weapon) {
-					blocks.push(
-						renderDamage({
-							value: item.system.damage.value + weapon.system.damage.value,
-							type: item.system.damage.type || weapon.system.damageType.value,
-							hrZero: item.system.damage.hrZero,
-						}),
-					);
+				const baseDamage = {
+					value: item.system.damage.value,
+					type: item.system.damage.type,
+					hrZero: item.system.damage.hrZero,
+				};
+
+				const weaponDamage = getDamageData(mainHandItem, baseDamage);
+				if (item.system.useWeapon.damage && weaponDamage) {
+					blocks.push(renderDamage(weaponDamage));
 				} else {
-					blocks.push(
-						renderDamage({
-							value: item.system.damage.value,
-							type: item.system.damage.type,
-							hrZero: item.system.damage.hrZero,
-						}),
-					);
+					blocks.push(renderDamage(baseDamage));
 				}
 			}
 		}
@@ -302,43 +365,32 @@ const captionRenderers = {
 	skill: (item) => {
 		const blocks = [];
 		if (item.system.hasRoll.value) {
-			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
-			const weapon = mainHandItem?.type === 'weapon' ? mainHandItem : null;
+			const baseCheck = {
+				primary: item.system.attributes.primary,
+				secondary: item.system.attributes.secondary,
+				bonus: item.system.accuracy,
+			};
 
-			if (item.system.useWeapon.accuracy && weapon) {
-				blocks.push(
-					renderCheck({
-						primary: weapon.system.attributes.primary.value,
-						secondary: weapon.system.attributes.secondary.value,
-						bonus: weapon.system.accuracy.value + item.system.accuracy,
-					}),
-				);
+			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
+
+			const weaponCheck = getCheckData(mainHandItem, baseCheck);
+			if (item.system.useWeapon.accuracy && weaponCheck) {
+				blocks.push(renderCheck(weaponCheck));
 			} else {
-				blocks.push(
-					renderCheck({
-						primary: item.system.attributes.primary,
-						secondary: item.system.attributes.secondary,
-						bonus: item.system.accuracy,
-					}),
-				);
+				blocks.push(renderCheck(baseCheck));
 			}
 			if (item.system.damage.hasDamage) {
-				if (item.system.useWeapon.damage && weapon) {
-					blocks.push(
-						renderDamage({
-							value: item.system.damage.value + weapon.system.damage.value,
-							type: item.system.damage.type || weapon.system.damageType.value,
-							hrZero: item.system.damage.hrZero,
-						}),
-					);
+				const baseDamage = {
+					value: item.system.damage.value,
+					type: item.system.damage.type,
+					hrZero: item.system.damage.hrZero,
+				};
+
+				const weaponDamage = getDamageData(mainHandItem, baseDamage);
+				if (item.system.useWeapon.damage && weaponDamage) {
+					blocks.push(renderDamage(weaponDamage));
 				} else {
-					blocks.push(
-						renderDamage({
-							value: item.system.damage.value,
-							type: item.system.damage.type,
-							hrZero: item.system.damage.hrZero,
-						}),
-					);
+					blocks.push(renderDamage(baseDamage));
 				}
 			}
 		}

@@ -673,3 +673,8 @@ FU.trackStyles = {
 };
 
 FU.unarmedStrike = 'unarmed-strike';
+
+FU.weaponItemTypes = {
+	weapon: 'FU.Weapon',
+	customWeapon: 'FU.CustomWeapon',
+};

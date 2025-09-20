@@ -3,7 +3,11 @@ import { ObjectUtils } from './object-utils.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
-		Handlebars.registerHelper('pfuConcat', (...args) => args.join(''));
+		Handlebars.registerHelper('pfuConcat', (...args) => {
+			// remove hash argument
+			args.pop();
+			return args.join('');
+		});
 
 		Handlebars.registerHelper('pfuTranslate', function (str) {
 			const result = Object.assign(

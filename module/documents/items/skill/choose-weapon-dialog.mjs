@@ -2,8 +2,6 @@ import { FU } from '../../../helpers/config.mjs';
 import { CharacterDataModel } from '../../actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
 
-const weaponTypes = new Set(['weapon', 'customWeapon']);
-
 /**
  * @param {FUActor} actor
  * @param {'mainHand', 'offHand', 'phantom', 'armor'} slot
@@ -15,7 +13,7 @@ function getWeapon(actor, slot) {
 			.filter((value) => value)
 			.map((value) => actor.items.get(value))
 			.filter((value) => value)
-			.filter((value) => weaponTypes.has(value.type))
+			.filter((value) => value.type in FU.weaponItemTypes)
 			.at(0) ?? null
 	);
 }

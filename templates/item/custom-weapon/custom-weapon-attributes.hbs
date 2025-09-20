@@ -43,6 +43,12 @@
 				<input type="number" name="system.cost" value="{{ system.cost }}"
 					   class="resource-inputs select-dropdown-full" />
 			</label>
+			<label class="resource-label-sm grid-span-2">
+				{{localize 'FU.Traits'}}
+				<multi-select name="system.traits" class="resource-inputs select-dropdown-full">
+					{{selectOptions traits selected=system.traits}}
+				</multi-select>
+			</label>
 		</fieldset>
 	</section>
 

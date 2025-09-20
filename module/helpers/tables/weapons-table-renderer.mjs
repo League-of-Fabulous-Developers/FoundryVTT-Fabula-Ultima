@@ -4,8 +4,6 @@ import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
 
-const weaponTypes = new Set(['weapon', 'customWeapon']);
-
 const customWeaponFormTranslations = {
 	primaryForm: 'FU.CustomWeaponFormPrimary',
 	secondaryForm: 'FU.CustomWeaponFormSecondary',
@@ -71,7 +69,7 @@ export class WeaponsTableRenderer extends FUTableRenderer {
 	static #getItems(actor) {
 		const weapons = [];
 		for (const item of actor.items) {
-			if (weaponTypes.has(item.type)) {
+			if (item.type in FU.weaponItemTypes) {
 				weapons.push(item);
 			}
 		}

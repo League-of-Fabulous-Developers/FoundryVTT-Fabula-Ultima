@@ -32,18 +32,35 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 			if (item.system.useWeapon.accuracy) {
 				data.useWeapon = true;
 
-				if (mainHandItem && mainHandItem.type === 'weapon') {
+				if (mainHandItem && mainHandItem.type in FU.weaponItemTypes) {
 					mainWeapon = mainHandItem;
 					data.weapon = mainWeapon.name;
 				}
 			}
-
+			let weaponDamage;
 			if (item.system.useWeapon.accuracy && mainWeapon) {
-				data.roll = {
-					primary: mainWeapon.system.attributes.primary.value,
-					secondary: mainWeapon.system.attributes.secondary.value,
-					modifier: mainWeapon.system.accuracy.value + item.system.accuracy,
-				};
+				if (mainWeapon.type === 'weapon') {
+					data.roll = {
+						primary: mainWeapon.system.attributes.primary.value,
+						secondary: mainWeapon.system.attributes.secondary.value,
+						modifier: mainWeapon.system.accuracy.value + item.system.accuracy,
+					};
+					weaponDamage = {
+						value: mainWeapon.system.damage.value,
+						type: mainWeapon.system.damageType.value,
+					};
+				}
+				if (mainWeapon.type === 'customWeapon') {
+					data.roll = {
+						primary: mainWeapon.system.attributes.primary,
+						secondary: mainWeapon.system.attributes.secondary,
+						modifier: mainWeapon.system.accuracy,
+					};
+					weaponDamage = {
+						value: mainWeapon.system.damage.value,
+						type: mainWeapon.system.damage.type,
+					};
+				}
 			} else {
 				data.roll = {
 					primary: item.system.attributes.primary,
@@ -54,9 +71,11 @@ export class AbilitiesTableRenderer extends FUTableRenderer {
 
 			if (item.system.damage.hasDamage) {
 				if (item.system.useWeapon.damage && mainWeapon) {
+					if (!weaponDamage) throw new Error('Missing weapon damage data. This is a bug, please report it to the maintainers of the system.');
+					const { value: damageValue, type: damageType } = weaponDamage;
 					data.damage = {
-						value: item.system.damage.value + mainWeapon.system.damage.value,
-						type: item.system.damage.type || mainWeapon.system.damageType.value,
+						value: item.system.damage.value + damageValue,
+						type: item.system.damage.type || damageType,
 						hrZero: item.system.damage.hrZero,
 					};
 				} else {

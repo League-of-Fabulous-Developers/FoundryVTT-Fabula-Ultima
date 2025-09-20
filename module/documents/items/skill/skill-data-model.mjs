@@ -27,13 +27,12 @@ const skillForAttributeCheck = 'skillForAttributeCheck';
  */
 let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
-		let weapon;
-		if (check.type === 'accuracy') {
-			weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
-			if (check.critical) {
-				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
-			}
+		const weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
+
+		if (check.critical) {
+			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 		}
+
 		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (weapon) {
@@ -44,7 +43,10 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 				},
 				order: CHECK_DETAILS,
 			}));
-			CommonSections.tags(sections, weapon.system.getTags(item.system.useWeapon.traits), CHECK_DETAILS);
+
+			if (weapon.system.getTags instanceof Function) {
+				CommonSections.tags(sections, weapon.system.getTags(item.system.useWeapon.traits), CHECK_DETAILS);
+			}
 		}
 
 		const inspector = CheckConfiguration.inspect(check);
