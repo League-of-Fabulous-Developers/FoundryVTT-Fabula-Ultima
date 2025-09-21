@@ -460,7 +460,6 @@ async function renderCheck(result, actor, item, flags = {}) {
 		flavor: flavor,
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
 		rolls: rolls,
-		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: speaker,
 		flags: foundry.utils.mergeObject(
 			{
@@ -473,7 +472,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 			{ overwrite: false, recursive: true },
 		),
 	};
-	return void ChatMessage.create(chatMessage);
+	return void ChatMessage.create(chatMessage, { rollMode: 'roll' });
 }
 
 /**
