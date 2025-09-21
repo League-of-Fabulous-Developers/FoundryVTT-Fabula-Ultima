@@ -36,7 +36,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: [],
+		classes: ['party'],
 		actions: {
 			createItem: this.#onCreate,
 			editItem: this.#onEdit,
