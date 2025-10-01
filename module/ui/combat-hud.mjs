@@ -60,7 +60,7 @@ Hooks.once('setup', () => {
 			createButton(containerElement, CombatHUD.getResetControlButton());
 
 			const combatTrackerSection = element.querySelector('#combat-tracker-controls');
-			combatTrackerSection.prepend(containerElement);
+			if (combatTrackerSection instanceof HTMLElement) combatTrackerSection.prepend(containerElement);
 		}
 	});
 });
