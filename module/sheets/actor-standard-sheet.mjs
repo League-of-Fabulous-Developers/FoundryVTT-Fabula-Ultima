@@ -1139,7 +1139,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 			.sort((a, b) => a.label.localeCompare(b.label));
 
 		const choice = await foundry.applications.api.DialogV2.wait({
-			window: { title: 'Select Item Type' },
+			window: { title: 'Select Item Type', contentClasses: ['dialog-buttons-grid'] },
+			position: { width: 400 },
 			content: `<p>Select the type of item you want to create:</p>`,
 			buttons: buttons,
 		});
@@ -1189,16 +1190,19 @@ export class FUStandardActorSheet extends FUActorSheet {
 			}));
 		}
 
-		const buttons = types.map((item) => {
-			return {
-				action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
-				label: item.label,
-				callback: () => item,
-			};
-		});
+		const buttons = types
+			.map((item) => {
+				return {
+					action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
+					label: item.label,
+					callback: () => item,
+				};
+			})
+			.sort((a, b) => a.label.localeCompare(b.label));
 
 		const choice = await foundry.applications.api.DialogV2.wait({
-			window: { title: 'Select Item Type' },
+			window: { title: 'Select Item Type', contentClasses: ['dialog-buttons-grid'] },
+			position: { width: 400 },
 			content: `<p>Select the type of item you want to create:</p>`,
 			buttons: buttons,
 		});
@@ -1244,16 +1248,19 @@ export class FUStandardActorSheet extends FUActorSheet {
 			})),
 		);
 
-		const buttons = types.map((item) => {
-			return {
-				action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
-				label: item.label,
-				callback: () => item,
-			};
-		});
+		const buttons = types
+			.map((item) => {
+				return {
+					action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
+					label: item.label,
+					callback: () => item,
+				};
+			})
+			.sort((a, b) => a.label.localeCompare(b.label));
 
 		const choice = await foundry.applications.api.DialogV2.wait({
-			window: { title: 'Select Item Type' },
+			window: { title: 'Select Item Type', contentClasses: ['dialog-buttons-grid'] },
+			position: { width: 400 },
 			rejectClose: false,
 			content: `<p>Select the type of item you want to create:</p>`,
 			buttons: buttons,
