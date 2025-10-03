@@ -1,5 +1,6 @@
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
+import { FUHooks } from '../hooks.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -149,6 +150,8 @@ function activateDefaultListeners(html, sheet) {
 			},
 		});
 	}
+
+	Hooks.callAll(FUHooks.ITEM_TABLE_CONTEXT_OPTIONS, contextMenuOptions, sheet, sheet.actor);
 
 	new foundry.applications.ux.ContextMenu.implementation(html, '[data-context-menu="item"]', contextMenuOptions, {
 		eventName: 'click',

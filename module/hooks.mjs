@@ -161,4 +161,11 @@ export const FUHooks = {
 	 * @remarks Uses {@link ProgressEvent}
 	 */
 	PROGRESS_EVENT: 'projectfu.events.progress',
+	/**
+	 * @description Dispatched on first render of a character sheet
+	 * @example
+	 * const callback = (contextOptions: ContextMenuOption[], sheet: ActorSheet, actor: Actor) => {...};
+	 * Hook.on("projectfu.getItemContextMenuOptions", callback)
+	 */
+	ITEM_TABLE_CONTEXT_OPTIONS: 'projectfu.getItemTableContextOptions',
 };
