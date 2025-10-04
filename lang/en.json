@@ -1521,6 +1521,8 @@
 			"ChangeWarning1": "Proceed with caution!"
 		},
 		"Recharge": "Recharge",
-		"ItemRate": "Item Prices: {rate}"
+		"ItemRate": "Item Prices: {rate}",
+		"AutomaticAdversaryRegistration": "Automatic Adversary Registration",
+		"AutomaticAdversaryRegistrationHint": "Whether to automatically register adversaries to the party sheet in combat"
 	}
 }

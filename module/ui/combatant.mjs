@@ -2,6 +2,8 @@ import { FRIENDLY, HOSTILE } from './combat.mjs';
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
 
 Hooks.on('preCreateCombatant', function (document, data, options, userId) {
 	if (!(document instanceof FUCombatant)) {
@@ -43,9 +45,11 @@ export class FUCombatant extends foundry.documents.Combatant {
 	async _onCreate(createData, options, userId) {
 		if (userId !== game.user.id) return;
 		if (this.actor.type === 'npc') {
-			const party = await FUPartySheet.getActiveModel();
-			if (party) {
-				await party.addOrUpdateAdversary(this.actor, 0);
+			if (game.settings.get(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration)) {
+				const party = await FUPartySheet.getActiveModel();
+				if (party) {
+					await party.addOrUpdateAdversary(this.actor, 0);
+				}
 			}
 		}
 	}

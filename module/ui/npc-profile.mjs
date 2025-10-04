@@ -163,7 +163,7 @@ export class NpcProfileWindow extends FUApplication {
 	 * @returns {Promise<void>}
 	 */
 	static async updateNpcProfile(party, uuid) {
-		const existing = await party.getAdversary(uuid);
+		const existing = party.getAdversary(uuid);
 
 		/** @type FUActor **/
 		const actor = await fromUuid(existing.uuid);

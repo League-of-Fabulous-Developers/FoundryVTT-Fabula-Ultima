@@ -234,7 +234,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 		// Resolve the source actor uuid
 		let uuid = actor.resolveUuid();
 		// Already exists
-		let entry = await this.getAdversary(uuid);
+		let entry = this.getAdversary(uuid);
 		if (entry) {
 			if (studyResult > entry.study) {
 				entry.study = studyResult;
@@ -280,9 +280,9 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 
 	/**
 	 * @param {String} uuid
-	 * @returns {Promise<NpcProfileData>}
+	 * @returns {NpcProfileData}
 	 */
-	async getAdversary(uuid) {
+	getAdversary(uuid) {
 		return this.adversaries.find((a) => a.uuid === uuid);
 	}
 
