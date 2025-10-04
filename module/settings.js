@@ -63,11 +63,12 @@ export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
 	useRevisedStudyRule: 'useRevisedStudyRule',
-	// Sheets
+	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	optionNPCNotesTab: 'optionNPCNotesTab',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
+	optionAutomaticAdversaryRegistration: 'optionRegisterAdversaries',
 	// Automation
 	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
@@ -661,13 +662,13 @@ export const registerSystemSettings = async function () {
 			]),
 	});
 
-	// SHEETS
+	// DOCUMENT SHEETS
 	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
 		name: game.i18n.localize('FU.SheetOptionsTitle'),
 		label: game.i18n.localize('FU.SheetOptions'),
 		hint: game.i18n.localize('FU.SheetOptionsHint'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms]),
+		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms, SETTINGS.optionAutomaticAdversaryRegistration]),
 		restricted: true,
 	});
 
@@ -697,6 +698,16 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration, {
+		name: game.i18n.localize('FU.AutomaticAdversaryRegistration'),
+		hint: game.i18n.localize('FU.AutomaticAdversaryRegistrationHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
 	});
 
 	// AUTOMATION

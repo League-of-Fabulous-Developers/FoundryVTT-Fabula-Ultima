@@ -382,7 +382,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	async revealNpc(uuid) {
-		const data = await this.party.getAdversary(uuid);
+		const data = this.party.getAdversary(uuid);
 		if (data) {
 			new NpcProfileWindow(data, {
 				title: data.name,
@@ -726,7 +726,7 @@ async function onRevealEvent(event) {
 	const party = await FUPartySheet.getActiveModel();
 	if (party) {
 		console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
-		const adversary = await party.getAdversary(event.actor.resolveUuid());
+		const adversary = party.getAdversary(event.actor.resolveUuid());
 		// Not added if it was outside of combat, for example
 		if (!adversary) {
 			return;
