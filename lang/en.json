@@ -1527,7 +1527,7 @@
 		"Recharge": "Recharge",
 		"ItemRate": "Item Prices: {rate}",
 		"AutomaticAdversaryRegistration": "Automatic Adversary Registration",
-		"AutomaticAdversaryRegistrationHint": "Whether to automatically register adversaries to the party sheet in combat"
+		"AutomaticAdversaryRegistrationHint": "Whether to automatically register adversaries to the party sheet in combat",
 		"ItemDeeplyNested": "This item belongs to <strong>{parent}</strong>.",
 		"Technospheres": "Technospheres",
 		"TechnospheresSlots": "Slots",
