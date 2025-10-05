@@ -20,12 +20,21 @@
 		</a>
 	{{/unless}}
 	{{#unless disableSell}}
-		<a class="cell-item-controls__control"
-		   data-tooltip="{{ localize 'FU.Sell' }}"
-		   aria-describedby="tooltip"
-		   data-action="sellItem">
-			<i class="fa fa-balance-scale"></i>
-		</a>
+		{{#if isGM}}
+			<a class="cell-item-controls__control"
+			   data-tooltip="{{ localize 'FU.Sell' }}"
+			   aria-describedby="tooltip"
+			   data-action="sellItem">
+				<i class="fa fa-balance-scale"></i>
+			</a>
+		{{else}}
+			<a class="cell-item-controls__control"
+			   data-tooltip="{{ localize 'FU.Buy' }}"
+			   aria-describedby="tooltip"
+			   data-action="buyItem">
+				<i class="fa fa-balance-scale"></i>
+			</a>
+		{{/if}}
 	{{/unless}}
 	{{#unless disableLoot}}
 		<a class="cell-item-controls__control"

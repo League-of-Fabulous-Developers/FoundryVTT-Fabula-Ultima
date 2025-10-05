@@ -25,33 +25,41 @@ export function getCurrencyString() {
 }
 
 /**
+ * @typedef {"sell" | "loot"} FUTradeActionType
+ */
+
+/**
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {Boolean }sale
+ * @param {FUTradeActionType} type
  * @returns {Promise<void>}
  */
-async function tradeItem(actor, item, sale) {
+async function tradeItem(actor, item, type) {
 	if (!actor.isOwner) {
 		return;
 	}
-	console.debug(`Prompting ${sale ? 'sale' : 'loot'} of ${item.name} from ${actor.name}`);
+	console.debug(`Prompting ${type} of ${item.name} from ${actor.name}`);
 	let message;
 	let actionLabel;
 	let action;
 	let cost = 0;
 
-	if (sale) {
-		message = 'FU.ChatInventorySellMessage';
-		actionLabel = 'FU.ChatInventoryBuy';
-		action = sellAction;
-		cost = item.system.cost.value;
-		if (actor.type === 'stash') {
-			cost *= actor.system.rates.item;
-		}
-	} else {
-		message = 'FU.ChatInventoryLootMessage';
-		actionLabel = 'FU.ChatInventoryLoot';
-		action = lootAction;
+	switch (type) {
+		case 'sell':
+			message = 'FU.ChatInventorySellMessage';
+			actionLabel = 'FU.ChatInventoryBuy';
+			action = sellAction;
+			cost = item.system.cost.value;
+			if (actor.type === 'stash') {
+				cost *= actor.system.rates.item;
+			}
+			break;
+
+		case 'loot':
+			message = 'FU.ChatInventoryLootMessage';
+			actionLabel = 'FU.ChatInventoryLoot';
+			action = lootAction;
+			break;
 	}
 
 	ChatMessage.create({
@@ -66,11 +74,10 @@ async function tradeItem(actor, item, sale) {
 			itemImg: item.img,
 			itemDescription: item.system.description,
 			currency: getCurrencyString(),
-			sale: sale,
+			sale: type === 'sell',
 			cost: cost,
 			action: action,
 			actionLabel: actionLabel,
-			tooltip: 'Boop',
 		}),
 	});
 }

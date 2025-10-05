@@ -1440,6 +1440,7 @@
 		"ActivePartyNotAssigned": "No party has been assigned in the system settings.",
 		"ActivePartySheetOpen": "Open Party Sheet",
 		"Identifier": "Identifier",
+		"Buy": "Buy",
 		"Sell": "Sell",
 		"Loot": "Loot",
 		"LootDelete": "[Shift + Click] Loot & Delete",

@@ -625,7 +625,7 @@ export class FUPartySheet extends FUActorSheet {
 			item = foundry.utils.fromUuidSync(uuid);
 		}
 		if (item) {
-			return InventoryPipeline.tradeItem(this.actor, item, false);
+			return InventoryPipeline.tradeItem(this.actor, item, 'loot');
 		}
 	}
 
