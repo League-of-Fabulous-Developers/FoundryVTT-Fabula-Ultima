@@ -85,29 +85,34 @@ const descriptionRenderers = {
 	behavior: CommonDescriptions.descriptionWithTags((item) => (item.system.weight.value ? [{ tag: 'FU.BehaviorWeight', separator: ':', value: item.system.weight.value }] : [])),
 	class: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
 	classFeature: CommonDescriptions.descriptionWithCustomEnrichment(renderFeatureDescription),
-	customWeapon: CommonDescriptions.descriptionWithTags((item) => {
-		const tags = [];
-		tags.push({ tag: FU.weaponTypes[item.system.type] });
-		tags.push({ tag: FU.weaponCategories[item.system.category] });
-		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
-		tags.push({
-			tag: 'FU.Cost',
-			separator: ':',
-			value: item.system.cost,
-		});
-		if (item.system.quality.value) {
+	customWeapon: CommonDescriptions.descriptionWithTechnospheres(
+		(item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.mnemosphereSlots }),
+		(item) => {
+			const tags = [];
+			if (item.system.quality) {
+				tags.push({
+					tag: 'FU.Quality',
+					separator: ':',
+					value: item.system.quality,
+				});
+			}
+			tags.push({ tag: FU.weaponTypes[item.system.type] });
+			tags.push({ tag: FU.weaponCategories[item.system.category] });
+			tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
 			tags.push({
-				tag: 'FU.Quality',
+				tag: 'FU.Cost',
 				separator: ':',
-				value: item.system.quality,
+				value: item.system.cost,
 			});
-		}
-		return tags;
-	}),
+			return tags;
+		},
+		'flex',
+	),
 	optionalFeature: CommonDescriptions.descriptionWithCustomEnrichment(renderFeatureDescription),
 	consumable: CommonDescriptions.descriptionWithTags((item) => [{ tag: 'FU.InventoryCost', separator: ':', value: item.system.ipCost.value }]),
 	heroic: CommonDescriptions.simpleDescription(),
 	miscAbility: CommonDescriptions.simpleDescription(),
+	mnemosphereReceptacle: CommonDescriptions.descriptionWithTechnospheres((item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.slotCount }), null, 'flex'),
 	project: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
 	ritual: CommonDescriptions.descriptionWithTags((item) => [
 		{ tag: 'FU.MindPointCost', separator: ':', value: item.system.mpCost.value },
@@ -681,7 +686,13 @@ export class FavoritesTableRenderer extends FUTableRenderer {
 	#sortOrder = 1;
 
 	static #getItems(actor) {
-		return actor.items.filter((item) => item.isFavorite);
+		const favorites = [];
+		for (const item of actor.allItems()) {
+			if (item.isFavorite) {
+				favorites.push(item);
+			}
+		}
+		return favorites;
 	}
 
 	static #sort(a, b) {

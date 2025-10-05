@@ -26,22 +26,25 @@ const weaponDescriptionRenderer = CommonDescriptions.descriptionWithTags((item) 
 	return tags;
 });
 
-const customWeaponDescriptionRenderer = CommonDescriptions.descriptionWithTags((item) => {
-	const tags = [];
-	tags.push({
-		tag: 'FU.Cost',
-		separator: ':',
-		value: item.system.cost,
-	});
-	if (item.system.quality) {
+const customWeaponDescriptionRenderer = CommonDescriptions.descriptionWithTechnospheres(
+	(item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.mnemosphereSlots }),
+	(item) => {
+		const tags = [];
 		tags.push({
-			tag: 'FU.Quality',
+			tag: 'FU.Cost',
 			separator: ':',
-			value: item.system.quality,
+			value: item.system.cost,
 		});
-	}
-	return tags;
-});
+		if (item.system.quality) {
+			tags.push({
+				tag: 'FU.Quality',
+				separator: ':',
+				value: item.system.quality,
+			});
+		}
+		return tags;
+	},
+);
 
 const renderDescriptionByType = {
 	weapon: weaponDescriptionRenderer,
@@ -62,13 +65,13 @@ export class WeaponsTableRenderer extends FUTableRenderer {
 				renderHeader: () => game.i18n.localize('FU.EquipStatus'),
 				renderCell: WeaponsTableRenderer.#renderEquipStatus,
 			},
-			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: 'weapon' }, { disableEdit: WeaponsTableRenderer.#isUnarmedAttack, disableMenu: WeaponsTableRenderer.#isUnarmedAttack }),
+			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: 'weapon,customWeapon' }, { disableEdit: WeaponsTableRenderer.#isUnarmedAttack, disableMenu: WeaponsTableRenderer.#isUnarmedAttack }),
 		},
 	};
 
 	static #getItems(actor) {
 		const weapons = [];
-		for (const item of actor.items) {
+		for (const item of actor.allItems()) {
 			if (item.type in FU.weaponItemTypes) {
 				weapons.push(item);
 			}

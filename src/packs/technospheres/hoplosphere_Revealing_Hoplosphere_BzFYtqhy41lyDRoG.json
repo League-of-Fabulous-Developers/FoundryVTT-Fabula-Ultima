@@ -1,0 +1,40 @@
+{
+  "name": "Revealing Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/revealing.png",
+  "system": {
+    "fuid": "revealing-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "increaseAttributeDieSize",
+        "coagulationLevel": 1,
+        "attribute": "ins"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658508062,
+    "modifiedTime": 1759658508062,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "BzFYtqhy41lyDRoG",
+  "sort": 0,
+  "_key": "!items!BzFYtqhy41lyDRoG"
+}

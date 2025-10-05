@@ -8,6 +8,7 @@
 
 import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
+import { FUActor } from '../../documents/actors/actor.mjs';
 
 /**
  * @param {ItemNameColumnRenderOptions} [options]
@@ -38,7 +39,7 @@ function renderNameCell(renderCaption, cssClass) {
 
 /**
  * @typedef ItemControlsColumnHeaderRenderOptions
- * @property {string} [type]
+ * @property {string, (() => string)} [type]
  * @property {string} [subtype]
  * @property {string} [label]
  * @property {"start", "center", "end"} [headerAlignment]
@@ -49,11 +50,18 @@ function renderNameCell(renderCaption, cssClass) {
  * @typedef ItemControlsColumnCellRenderOptions
  * @property {boolean, ((item: FUItem) => boolean)} [disableFavorite=() => false]
  * @property {boolean, ((item: FUItem) => boolean)} [disableEdit=() => false]
- * @property {boolean, ((item: FUItem) => boolean)} [disableMenu=() => false]
- * @property {boolean, ((item: FUItem) => boolean)} [disableShare=() => true]
- * @property {boolean, ((item: FUItem) => boolean)} [disableSell=() => true]
- * @property {boolean, ((item: FUItem) => boolean)} [disableLoot=() => true]
- * @property {boolean, ((item: FUItem) => boolean)} [disableProgress=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [disableMenu] if not set defaults to disabling the menu for deeply nested items
+ * @property {boolean, ((item: FUItem) => boolean)} [disableShare=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [disableSell=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [disableLoot=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [disableDelete=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [hideFavorite=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [hideEdit=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [hideMenu=() => false]
+ * @property {boolean, ((item: FUItem) => boolean)} [hideShare=() => true]
+ * @property {boolean, ((item: FUItem) => boolean)} [hideSell=() => true]
+ * @property {boolean, ((item: FUItem) => boolean)} [hideLoot=() => true]
+ * @property {boolean, ((item: FUItem) => boolean)} [hideDelete=() => true]
  */
 
 /**
@@ -78,6 +86,9 @@ function renderControlsHeader(options) {
 		return options.custom;
 	} else {
 		return async () => {
+			if (options.type instanceof Function) {
+				options.type = options.type();
+			}
 			return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/header/header-item-controls.hbs', options);
 		};
 	}
@@ -88,19 +99,46 @@ function renderControlsHeader(options) {
  * @return {(FUItem) => Promise<string>}
  */
 function renderControls(options) {
-	const { disableFavorite = false, disableEdit = false, disableMenu = false, disableShare = true, disableLoot = true, disableSell = true } = options;
-	return async (item) => {
+	const {
+		disableFavorite = false,
+		disableEdit = false,
+		disableMenu,
+		disableShare = false,
+		disableLoot = false,
+		disableSell = false,
+		disableDelete = false,
+		hideFavorite = false,
+		hideEdit = false,
+		hideMenu = false,
+		hideShare = true,
+		hideLoot = true,
+		hideSell = true,
+		hideDelete = true,
+	} = options;
+	return async function (item) {
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-item-controls.hbs', {
 			isFavorite: item.isFavorite,
 			isGM: game.user.isGM,
-			disableFavorite: disableFavorite instanceof Function ? disableFavorite(item) : disableFavorite,
-			disableEdit: disableEdit instanceof Function ? disableEdit(item) : disableEdit,
-			disableMenu: disableMenu instanceof Function ? disableMenu(item) : disableMenu,
-			disableShare: disableShare instanceof Function ? disableShare(item) : disableShare,
-			disableLoot: disableLoot instanceof Function ? disableLoot(item) : disableLoot,
-			disableSell: disableSell instanceof Function ? disableSell(item) : disableSell,
+			disableFavorite: disableFavorite instanceof Function ? disableFavorite.call(this, item) : disableFavorite,
+			disableEdit: disableEdit instanceof Function ? disableEdit.call(this, item) : disableEdit,
+			disableMenu: disableMenu instanceof Function ? disableMenu.call(this, item) : itemIsDeeplyNested(item),
+			disableShare: disableShare instanceof Function ? disableShare.call(this, item) : disableShare,
+			disableLoot: disableLoot instanceof Function ? disableLoot.call(this, item) : disableLoot,
+			disableSell: disableSell instanceof Function ? disableSell.call(this, item) : disableSell,
+			disableDelete: disableDelete instanceof Function ? disableDelete.call(this, item) : disableDelete,
+			hideFavorite: hideFavorite instanceof Function ? hideFavorite.call(this, item) : hideFavorite,
+			hideEdit: hideEdit instanceof Function ? hideEdit.call(this, item) : hideEdit,
+			hideMenu: hideMenu instanceof Function ? hideMenu.call(this, item) : hideMenu,
+			hideShare: hideShare instanceof Function ? hideShare.call(this, item) : hideShare,
+			hideLoot: hideLoot instanceof Function ? hideLoot.call(this, item) : hideLoot,
+			hideSell: hideSell instanceof Function ? hideSell.call(this, item) : hideSell,
+			hideDelete: hideDelete instanceof Function ? hideDelete.call(this, item) : hideDelete,
 		});
 	};
+}
+
+function itemIsDeeplyNested(item) {
+	return item.parent && !(item.parent instanceof FUActor);
 }
 
 /**

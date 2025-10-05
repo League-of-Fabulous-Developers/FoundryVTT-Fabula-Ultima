@@ -50,5 +50,18 @@
 		&:active {
 			transform: translateY(1px);
 		}
+
+		&.cell-effect-controls__control--disabled,
+		&.cell-effect-controls__control--active.cell-effect-controls__control--disabled {
+			pointer-events: none;
+			color: var(--color-button-active-text);
+			border: 1px solid var(--color-button-active-border-secondary);
+			background: var(--gradient-button-disabled-bg);
+			box-shadow: none;
+			text-shadow: 0 0 5px var(--color-shadow-inverted);
+
+			&:hover {
+			}
+		}
 	}
 }

@@ -1,0 +1,930 @@
+{
+  "name": "Random Hoplospheres",
+  "description": "<p>A random table created from the contents of the Hoplospheres Folder.</p>",
+  "results": [
+    {
+      "name": "Agile Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.OMKRkWaSkcrGgFBQ",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/agile.png",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_id": "xcPoZ4GYtqk7ROFv",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.xcPoZ4GYtqk7ROFv"
+    },
+    {
+      "name": "Arctic Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.qV7snvrLQ9HR0NZD",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/arctic.png",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_id": "m4qPcyWVpGDVR8N4",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.m4qPcyWVpGDVR8N4"
+    },
+    {
+      "name": "Blessed Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.YGSlCtPQIkOvyt6Q",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/blessed.png",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_id": "yJQYHljHJiZSKPLR",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.yJQYHljHJiZSKPLR"
+    },
+    {
+      "name": "Brave Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.rdD4S7c6nQWdAoPL",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/brave.png",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_id": "cwPKerkuuhIO1xnd",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.cwPKerkuuhIO1xnd"
+    },
+    {
+      "name": "Crystalline Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.fhCD5VKKds47hpVx",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/crystaline.png",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_id": "sO9iZdAVEs79ELE9",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.sO9iZdAVEs79ELE9"
+    },
+    {
+      "name": "Cyclonic Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.7BdsfbStLbA1Kr1n",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/cyclonic.png",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_id": "BUX1lzOSmZlkfO4s",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.BUX1lzOSmZlkfO4s"
+    },
+    {
+      "name": "Dark Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.M4YJ5dzHgnHMPBH6",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/dark.png",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_id": "NXPDJcfhMj2DIMUV",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.NXPDJcfhMj2DIMUV"
+    },
+    {
+      "name": "Dazing Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.RYG8edT6q5Q3NQmY",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/dazing.png",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_id": "vR9psbDM1KMATnNz",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.vR9psbDM1KMATnNz"
+    },
+    {
+      "name": "Disrupting Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.on4KiQR4xilvo0ek",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/disrupting.png",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_id": "VRHUbBsWvSELDTcR",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.VRHUbBsWvSELDTcR"
+    },
+    {
+      "name": "Draining Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.FoHrh3orFT700nSe",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/draining.png",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_id": "CVB6sKUeD4lygRa4",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.CVB6sKUeD4lygRa4"
+    },
+    {
+      "name": "Energizing Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.bgAagFaUscYZKpL4",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/energizing.png",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_id": "598QCWl9uZpOQOWO",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.598QCWl9uZpOQOWO"
+    },
+    {
+      "name": "Expansive Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.g0tBoK611L5ufggR",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/expansive.png",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_id": "AOpHkcNZp3ujfBRa",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.AOpHkcNZp3ujfBRa"
+    },
+    {
+      "name": "Ghastly Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.0jDCgvHTXy04XKUU",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/ghastly.png",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_id": "ZTBsZJaYxNPZ1JQb",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.ZTBsZJaYxNPZ1JQb"
+    },
+    {
+      "name": "Gladiator Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.89uLKuG6scn4WpzW",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/gladiator.png",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_id": "kwkI4i9Eew4JYVFD",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.kwkI4i9Eew4JYVFD"
+    },
+    {
+      "name": "Knightly Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.NBMHSWk2QQCpoy7A",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/knightly.png",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_id": "UeuJTGDyQ7gzeWrE",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.UeuJTGDyQ7gzeWrE"
+    },
+    {
+      "name": "Medical Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.RlBSNSmJQog2rMTf",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/medical.png",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "_id": "USNuRegXhqXEnvu2",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.USNuRegXhqXEnvu2"
+    },
+    {
+      "name": "Mighty Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.HHo9oo6heFKhXLWI",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/mighty.png",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "_id": "RBOgH6ocONG2yKXF",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.RBOgH6ocONG2yKXF"
+    },
+    {
+      "name": "Occult Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.I7i4oSUnpJCDQtPH",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/occult.png",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "_id": "ByDF2zTn4zM6xagg",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.ByDF2zTn4zM6xagg"
+    },
+    {
+      "name": "Piercing Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.0xQyUTmzDPNI3goa",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/piercing.png",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "_id": "TzIhx7KqvqlCHZ1w",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.TzIhx7KqvqlCHZ1w"
+    },
+    {
+      "name": "Poisonous Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.YBCPtIdKCvGBmprc",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/poisonous.png",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "_id": "uvjOSEB1F49VkQXe",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.uvjOSEB1F49VkQXe"
+    },
+    {
+      "name": "Predator Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.RPgJzQ7MoJHLTN0K",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/predator.png",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "_id": "Yw1qIkgY646rQwye",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.Yw1qIkgY646rQwye"
+    },
+    {
+      "name": "Quick Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.8EyPl8SKvC0B9a57",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/quick.png",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "_id": "Ra6VcDK0DYRU3f6M",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.Ra6VcDK0DYRU3f6M"
+    },
+    {
+      "name": "Radiant Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.xAsuQpewN6UllU0G",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/radiant.png",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "_id": "mQynSuoIQNkC49J9",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.mQynSuoIQNkC49J9"
+    },
+    {
+      "name": "Reaping Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.nxUcHwvCTKcFcvDc",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/reaping.png",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "_id": "443irK2w6qywTrUR",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.443irK2w6qywTrUR"
+    },
+    {
+      "name": "Revealing Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.BzFYtqhy41lyDRoG",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/revealing.png",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "_id": "LT4Ja2OLbcknKwWm",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.LT4Ja2OLbcknKwWm"
+    },
+    {
+      "name": "Scornful Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.3VH8h0jFYmnaV9mO",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/scornful.png",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "_id": "CBP1oVPHuSd2eauf",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.CBP1oVPHuSd2eauf"
+    },
+    {
+      "name": "Seismic Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.25uO4pBTy61X1el1",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/seismic.png",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "_id": "ic80VRtCtfu0c2nq",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.ic80VRtCtfu0c2nq"
+    },
+    {
+      "name": "Sharpening Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.HxePnVs8yvVUdxFV",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/sharpening.png",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "_id": "cmaGYFxCYLsWzJca",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.cmaGYFxCYLsWzJca"
+    },
+    {
+      "name": "Skeptical Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.5JHQhsADcXo3TfiP",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/skeptical.png",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "_id": "FAd25RgEZeEY9c4P",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.FAd25RgEZeEY9c4P"
+    },
+    {
+      "name": "Snaring Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.3GQwV701OITMSfTS",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/snaring.png",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "_id": "eW2WFKNCS2ZTZ5Cp",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.eW2WFKNCS2ZTZ5Cp"
+    },
+    {
+      "name": "Sorcerous Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.cET4z4zo14dbn5sz",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/sorcerous.png",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "_id": "p2s1DFN9dGHtEikN",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.p2s1DFN9dGHtEikN"
+    },
+    {
+      "name": "Steadfast Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.k57mGWuP5dJRUHac",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/steadfast.png",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "_id": "tDCokgXmLl1PLF1g",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.tDCokgXmLl1PLF1g"
+    },
+    {
+      "name": "Tiring Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.r0DaQ0mxQxy7e64h",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/tiring.png",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "_id": "iqx6oBAWrCBxfyjG",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.iqx6oBAWrCBxfyjG"
+    },
+    {
+      "name": "Toxic Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.XUCtjZGyV4Xs7jMp",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/toxic.png",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "_id": "5aup596bAJb0MQat",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.5aup596bAJb0MQat"
+    },
+    {
+      "name": "Volcanic Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.APwQ4qCUi857YHYD",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/volcanic.png",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "_id": "Z9pcNYs73JhR8CUK",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.Z9pcNYs73JhR8CUK"
+    },
+    {
+      "name": "Voltaic Hoplosphere",
+      "type": "document",
+      "documentUuid": "Compendium.projectfu.technospheres.Item.NA9m8pN9N6fIly1B",
+      "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/voltaic.png",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "_id": "gZfzNX83fSeM79n9",
+      "description": "",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!tables.results!qcTmft9RHNDX57BS.gZfzNX83fSeM79n9"
+    }
+  ],
+  "formula": "1d36",
+  "img": "icons/commodities/gems/pearl-fire-swirl.webp",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658744114,
+    "modifiedTime": 1759658751805,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "qcTmft9RHNDX57BS",
+  "sort": 200000,
+  "_key": "!tables!qcTmft9RHNDX57BS"
+}

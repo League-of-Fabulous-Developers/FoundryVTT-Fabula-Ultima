@@ -40,6 +40,7 @@ import { BehaviorTableRenderer } from '../helpers/tables/behavior-table-renderer
 import { Flags } from '../helpers/flags.mjs';
 import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -189,6 +190,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	#projectsTable = new ProjectsTableRenderer();
 	#ritualsTable = new RitualsTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
+	#technospheresTable = new TechnospheresTableRenderer();
 	#characterOtherItemsTable = new OtherItemsTableRenderer(
 		'class',
 		'skill',
@@ -207,6 +209,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 		'accessory',
 		'consumable',
 		'treasure',
+		'hoplosphere',
+		'mnemosphere',
+		'mnemosphereReceptacle',
 	);
 
 	// tables required for npcs
@@ -422,6 +427,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 					context.shieldsTable = await this.#shieldsTable.renderTable(this.document);
 					context.armorsTable = await this.#armorsTable.renderTable(this.document);
 					context.accessoriesTable = await this.#accessoriesTable.renderTable(this.document);
+					context.showTechnospheres = game.settings.get(SYSTEM, SETTINGS.technospheres) || this.actor.itemTypes.hoplosphere.length > 0 || this.actor.itemTypes.mnemosphere.length > 0;
+					context.technospheresTable = await this.#technospheresTable.renderTable(this.document);
 					context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
 					context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 					context.otherItemsTable = await this.#characterOtherItemsTable.renderTable(this.document);
@@ -501,6 +508,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		this.#consumablesTable.activateListeners(this);
 		this.#treasuresTable.activateListeners(this);
 		this.#characterOtherItemsTable.activateListeners(this);
+		this.#technospheresTable.activateListeners(this);
 		this.#basicAttacksTable.activateListeners(this);
 		this.#npcOtherItemsTable.activateListeners(this);
 		this.#activeBehaviorsTable.activateListeners(this);
@@ -644,6 +652,32 @@ export class FUStandardActorSheet extends FUActorSheet {
 		dropZone.removeClass('highlight-drop-zone');
 	}
 
+	async _onDragStart(ev) {
+		const target = ev.currentTarget;
+
+		// Owned Items
+		if (target.dataset.itemId) {
+			let item = this.actor.items.get(target.dataset.itemId);
+			if (!item) {
+				item = fromUuidSync(target.dataset.uuid);
+			}
+			ev.dataTransfer.setData('text/plain', JSON.stringify(item.toDragData()));
+			return;
+		}
+
+		// Active Effect
+		if (target.dataset.effectId) {
+			let effect = this.actor.effects.get(target.dataset.effectId);
+			if (!effect) {
+				effect = fromUuidSync(target.dataset.uuid);
+			}
+			ev.dataTransfer.setData('text/plain', JSON.stringify(effect.toDragData()));
+			return;
+		}
+
+		return super._onDragStart(ev);
+	}
+
 	/* -------------------------------------------- */
 
 	/**
@@ -692,7 +726,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		if (dataset.rollType === 'item' || target.closest('[data-item-id]')) {
 			const itemId = target.closest('[data-item-id]').dataset.itemId;
-			const item = this.actor.items.get(itemId);
+			let item = this.actor.items.get(itemId);
+			if (!item && target.closest('.item').dataset.uuid) {
+				item = await fromUuid(target.closest('.item').dataset.uuid);
+			}
 			if (item) {
 				if (modifiers.ctrl) {
 					return new ItemCustomizer(this.actor, item).render(true);
@@ -1052,13 +1089,32 @@ export class FUStandardActorSheet extends FUActorSheet {
 		}
 	}
 
-	static #onCreate(event, target) {
-		const type = target.dataset.type;
-		const subType = target.dataset.subType;
+	static async #onCreate(event, target) {
+		let type = target.dataset.type;
+		let subType = target.dataset.subType;
+
+		if (type && type.indexOf(',') >= 0) {
+			const knownItemTypes = new Set(Object.keys(CONFIG.Item.dataModels));
+			const choices = type
+				.split(',')
+				.map((itemType) => itemType.trim())
+				.filter((itemType) => knownItemTypes.has(itemType))
+				.map((itemType) => ({
+					action: itemType,
+					label: game.i18n.localize(CONFIG.Item.typeLabels[itemType]),
+				}));
+
+			type = await foundry.applications.api.DialogV2.wait({
+				window: { title: 'Select Item Type' },
+				content: `<p>Select the type of item you want to create:</p>`,
+				buttons: choices,
+			});
+		}
 
 		if (!type) {
 			return;
 		}
+
 		const itemData = {
 			type: type,
 		};

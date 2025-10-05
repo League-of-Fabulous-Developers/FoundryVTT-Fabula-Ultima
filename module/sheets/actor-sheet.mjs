@@ -1,3 +1,5 @@
+import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
+
 const { api, sheets } = foundry.applications;
 
 /**
@@ -24,6 +26,12 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	_attachFrameListeners() {
 		super._attachFrameListeners();
 		this.element.addEventListener('auxclick', this.#onAuxClick.bind(this));
+		this.element.addEventListener('mousedown', (ev) => {
+			if (ev.button === 1) {
+				// prevent "scroll nub" from showing up
+				ev.preventDefault();
+			}
+		});
 	}
 
 	/**
@@ -83,5 +91,40 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		}
 
 		return success;
+	}
+
+	async _onDropItem(event, item) {
+		if (item instanceof PseudoDocument && item.parentFoundryDocument?.parent === this.actor) {
+			const result = await this._onSortItem(event, item);
+			return result?.length ? item : null;
+		}
+
+		return super._onDropItem(event, item);
+	}
+
+	async _onSortItem(event, item) {
+		const { fromUuidSync } = foundry.utils;
+		const source = fromUuidSync(item.uuid);
+
+		// Confirm the drop target
+		const dropTarget = event.target.closest('[data-uuid]');
+		if (!dropTarget) return;
+		const target = fromUuidSync(dropTarget.dataset.uuid);
+		if (source.uuid === target.uuid) return;
+
+		// Identify sibling items based on adjacent HTML elements
+		const siblings = [];
+		for (const element of dropTarget.parentElement.children) {
+			const siblingId = element.dataset.uuid;
+			if (siblingId && siblingId !== source.uuid) siblings.push(fromUuidSync(element.dataset.uuid));
+		}
+
+		// Perform the sort
+		const sortUpdates = foundry.utils.performIntegerSort(source, { target, siblings });
+		sortUpdates.sort((a, b) => b.target.uuid.length - a.target.uuid.length);
+		for (let { target, update } of sortUpdates) {
+			await target.update(update);
+		}
+		return sortUpdates.map((value) => value.target);
 	}
 }

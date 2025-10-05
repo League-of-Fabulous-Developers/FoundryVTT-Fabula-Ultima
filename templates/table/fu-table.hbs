@@ -9,7 +9,10 @@
 		{{/each}}
 	</li>
 	{{#each items as |item|}}
-		<li class="fu-table__row-container {{@root.presets.rowClass}} {{#if @root.presets.draggable}}draggable{{/if}}" {{@root.presets.dataTypeId}}="{{ id }}" data-uuid="{{ uuid }}">
+		<li class="fu-table__row-container {{@root.presets.rowClass}} {{#if @root.presets.draggable}}draggable{{/if}} {{lookup @root.rowCssClasses item.uuid}}"
+			{{@root.presets.dataTypeId}}="{{ id }}"
+			data-uuid="{{ uuid }}"
+			{{#with (lookup @root.rowTooltips item.uuid)}}data-tooltip="{{this}}"{{/with}}>
 			<div class="fu-table__row">
 				{{#each ../columns}}
 					<div class="fu-table__cell" data-column="{{@key}}">

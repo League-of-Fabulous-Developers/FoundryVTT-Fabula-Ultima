@@ -93,3 +93,15 @@
 .active-effects-table {
 	grid-template-columns: [name] auto [source] 150px [duration] 150px [controls] 130px;
 }
+
+.technospheres-table {
+	grid-template-columns: [name] auto [details] 200px [controls] 100px;
+}
+
+.mnemosphere-skills-table {
+	grid-template-columns: [name] auto [level] 150px [controls] 100px;
+}
+
+.mnemosphere-heroics-table {
+	grid-template-columns: [name] auto [type] 100px [controls] 100px;
+}

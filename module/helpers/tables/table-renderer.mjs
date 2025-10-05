@@ -2,7 +2,7 @@
  * @typedef TableConfig
  * @template {Object} D the document of the sheet being rendered
  * @template {Object} T the type of the items in the table
- * @property {string} cssClass
+ * @property {string, (() => string)} cssClass
  * @property {"item", "effect"} [tablePreset="item"]
  * @property {(document: D, options: FUTableRendererRenderOptions) => T[]} getItems
  * @property {boolean, ((a: D, b: D) => number)} [sort=true] sorting function to determine the order of entries, true means sort using foundry sort order, false means don't sort
@@ -13,6 +13,9 @@
  * @property {Record<string, ColumnConfig<T>>} columns
  * @property {Record<string, ((event: PointerEvent, target: HTMLElement) => void)>} actions
  */
+
+import { FUItem } from '../../documents/items/item.mjs';
+import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
 
 /**
  * @typedef ColumnConfig
@@ -113,6 +116,8 @@ export class FUTableRenderer {
 		const columns = {};
 		const rowCaptions = {};
 		const descriptions = {};
+		const rowCssClasses = {};
+		const rowTooltips = {};
 		const { getItems, tablePreset, sort, columns: columnConfigs = {}, cssClass, renderDescription, renderRowCaption, hideIfEmpty: configHideIfEmpty } = this.tableConfig;
 
 		const items = getItems(document, options);
@@ -144,11 +149,31 @@ export class FUTableRenderer {
 		}
 
 		for (let item of items) {
-			for (let [columnKey, columnConfig] of Object.entries(columnConfigs)) {
-				columns[columnKey].cells[item.uuid] = columnConfig.renderCell instanceof Function ? columnConfig.renderCell(item) : columnConfig.renderCell;
+			const uuid = item.uuid;
+
+			if (document !== item.parent && document !== item.parentFoundryDocument) {
+				let directParentItem = item.parent;
+				while (!(directParentItem instanceof FUItem || directParentItem instanceof PseudoItem)) {
+					directParentItem = directParentItem.parent;
+				}
+				let parentItem = directParentItem;
+				let parentage = [];
+				while (!(parentItem instanceof Actor || parentItem == null)) {
+					if (parentItem instanceof FUItem || parentItem instanceof PseudoItem) {
+						parentage.unshift(parentItem);
+					}
+					parentItem = parentItem.parent;
+				}
+				parentage = parentage.map((item) => item.name).join(' → ');
+				rowCssClasses[uuid] = 'fu-table__row--deeply-nested';
+				rowTooltips[uuid] = game.i18n.format('FU.ItemDeeplyNested', { parent: parentage });
 			}
-			rowCaptions[item.uuid] = rowCaptionRenderer(item);
-			descriptions[item.uuid] = descriptionRenderer(item);
+
+			for (let [columnKey, columnConfig] of Object.entries(columnConfigs)) {
+				columns[columnKey].cells[uuid] = columnConfig.renderCell instanceof Function ? columnConfig.renderCell(item) : columnConfig.renderCell;
+			}
+			rowCaptions[uuid] = rowCaptionRenderer(item);
+			descriptions[uuid] = descriptionRenderer(item);
 		}
 
 		for (const column of Object.values(columns)) {
@@ -183,7 +208,18 @@ export class FUTableRenderer {
 			};
 		}
 
-		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/fu-table.hbs', { tableId: this.#tableId, presets, items, cssClass, columns, rowCaptions, descriptions, expandedItems: this.#expandedItems });
+		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/fu-table.hbs', {
+			tableId: this.#tableId,
+			presets,
+			items,
+			cssClass: cssClass instanceof Function ? cssClass() : cssClass,
+			columns,
+			rowCssClasses,
+			rowTooltips,
+			rowCaptions,
+			descriptions,
+			expandedItems: this.#expandedItems,
+		});
 	}
 
 	/**

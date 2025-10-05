@@ -1,0 +1,39 @@
+<main class="skills tab {{tab.cssClass}}" data-tab="skills" data-group="primary">
+	<section>
+		<fieldset class="title-fieldset desc resource-content grid-2col gap-5">
+			<legend class="resource-label-sm">
+				<i class="fa fa-wrench icon"></i>
+				{{localize "FU.Settings"}}
+			</legend>
+			<label class="resource-label-sm">
+				{{localize 'FU.Class'}}
+				<input type="text" name="system.class" value="{{system.class}}"
+					   class="resource-inputs select-dropdown-full">
+			</label>
+			<label class="resource-label-sm">
+				{{localize 'FU.Level'}}
+				<span class="flexrow resource-inputs select-dropdown-full">
+					<input type="number" name="system.level" value="{{item.system.level}}" min="1"
+						   max="{{item.system.maxLevel}}" class="resource-inputs select-dropdown-full">
+					<span class="flex0">/</span>
+					<span>{{item.system.maxLevel}}</span>
+				</span>
+			</label>
+		</fieldset>
+	</section>
+	<section class="desc resource-content">
+		<header class="items-main-header">
+			<span class="items-main">{{localize "FU.Skills"}}</span>
+			<span class="items-main total-level"> {{ totalSkillLevels }} / {{ item.system.level }} </span>
+		</header>
+		{{{skillsTable}}}
+		{{#if (or item.system.heroics.length mastered)}}
+			<header class="items-main-header">
+				<span class="items-main">{{localize "FU.Heroic"}}</span>
+				<span class="items-main total-level"> {{ item.system.heroics.length }} / {{#if mastered }}
+					1{{else}}0{{/if}} </span>
+			</header>
+			{{{heroicsTable}}}
+		{{/if}}
+	</section>
+</main>

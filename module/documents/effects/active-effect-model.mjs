@@ -42,12 +42,14 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 /**
  * @description Used to toggle the active effect on/off based on the state
  * @property {String} crisisInteraction
+ * @property {boolean} suppressed
  */
 export class ActiveEffectPredicateModel extends foundry.abstract.DataModel {
 	static defineSchema() {
-		const { StringField } = foundry.data.fields;
+		const { StringField, BooleanField } = foundry.data.fields;
 		return {
 			crisisInteraction: new StringField({ initial: 'none', choices: Object.keys(FU.crisisInteractions) }),
+			suppressed: new BooleanField({ initial: false }),
 		};
 	}
 }

@@ -1,6 +1,6 @@
 <div class="cell-item-controls">
-	{{#unless disableFavorite}}
-		<a class="cell-item-controls__control {{#if isFavorite~}} cell-item-controls__control--active {{~/if}}"
+	{{#unless hideFavorite}}
+		<a class="cell-item-controls__control {{#if isFavorite~}} cell-item-controls__control--active {{~/if}} {{#if disableFavorite ~}} cell-item-controls__control--disabled {{~/if}}"
 		   data-tooltip="{{#if isFavorite~}}
 			   {{ localize 'FU.FavoriteRemove' }}
 			   {{~else~}}
@@ -11,24 +11,24 @@
 			<i class="{{#if isFavorite}}fas{{else}}far{{/if}} fa-star"></i>
 		</a>
 	{{/unless}}
-	{{#unless disableShare}}
-		<a class="cell-item-controls__control"
+	{{#unless hideShare}}
+		<a class="cell-item-controls__control {{#if disableShare ~}} cell-item-controls__control--disabled {{~/if}}"
 		   data-tooltip="{{ localize 'FU.Share' }}"
 		   aria-describedby="tooltip"
 		   data-action="shareItem">
 			<i class="fa fa-share"></i>
 		</a>
 	{{/unless}}
-	{{#unless disableSell}}
+	{{#unless hideSell}}
 		{{#if isGM}}
-			<a class="cell-item-controls__control"
+			<a class="cell-item-controls__control {{#if disableSell ~}} cell-item-controls__control--disabled {{~/if}}"
 			   data-tooltip="{{ localize 'FU.Sell' }}"
 			   aria-describedby="tooltip"
 			   data-action="sellItem">
 				<i class="fa fa-balance-scale"></i>
 			</a>
 		{{else}}
-			<a class="cell-item-controls__control"
+			<a class="cell-item-controls__control {{#if disableSell ~}} cell-item-controls__control--disabled {{~/if}}"
 			   data-tooltip="{{ localize 'FU.Buy' }}"
 			   aria-describedby="tooltip"
 			   data-action="buyItem">
@@ -36,25 +36,33 @@
 			</a>
 		{{/if}}
 	{{/unless}}
-	{{#unless disableLoot}}
-		<a class="cell-item-controls__control"
+	{{#unless hideLoot}}
+		<a class="cell-item-controls__control {{#if disableLoot ~}} cell-item-controls__control--disabled {{~/if}}"
 		   data-tooltip="{{ localize 'FU.Loot' }}<br>{{ localize 'FU.LootDelete' }}"
 		   aria-describedby="tooltip"
 		   data-action="lootItem">
 			<i class="fa fa-hand button-style"></i>
 		</a>
 	{{/unless}}
-	{{#unless disableEdit}}
-		<a class="cell-item-controls__control"
+	{{#unless hideEdit}}
+		<a class="cell-item-controls__control {{#if disableEdit ~}} cell-item-controls__control--disabled {{~/if}}"
 		   data-action="editItem"
 		   data-tooltip="{{ localize 'FU.Edit' }}"
 		   aria-describedby="tooltip">
 			<i class="fas fa-edit"></i>
 		</a>
 	{{/unless}}
-	{{#unless disableMenu}}
-		<a class="cell-item-controls__control"
-		   data-context-menu="item"
+	{{#unless hideDelete}}
+		<a class="cell-item-controls__control {{#if disableDelete ~}} cell-item-controls__control--disabled {{~/if}}"
+		   data-action="deleteItem"
+		   data-tooltip="{{ localize 'FU.Delete' }}"
+		   aria-describedby="tooltip">
+			<i class="fas fa-trash"></i>
+		</a>
+	{{/unless}}
+	{{#unless hideMenu}}
+		<a class="cell-item-controls__control {{#if disableMenu ~}} cell-item-controls__control--disabled {{~/if}}"
+		   {{#unless disableMenu}}data-context-menu="item"{{/unless}}
 		   data-tooltip="{{ localize 'FU.Settings' }}"
 		   aria-describedby="tooltip">
 			<i class="fas fa-bars"></i>

@@ -1,0 +1,47 @@
+{
+  "name": "Gladiator Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/gladiator.png",
+  "system": {
+    "fuid": "gladiator-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "addExtraDamageToSpecies",
+        "coagulationLevel": 1,
+        "species": "humanoid",
+        "amount": 2
+      },
+      {
+        "type": "increaseDefense",
+        "coagulationLevel": 2,
+        "defense": "def",
+        "amount": 1
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658494639,
+    "modifiedTime": 1759658503805,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "89uLKuG6scn4WpzW",
+  "sort": 900000,
+  "_key": "!items!89uLKuG6scn4WpzW"
+}

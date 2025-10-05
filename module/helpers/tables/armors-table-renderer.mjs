@@ -9,7 +9,7 @@ export class ArmorsTableRenderer extends FUTableRenderer {
 	static TABLE_CONFIG = {
 		cssClass: 'armors-table',
 		getItems: (d) => d.itemTypes.armor,
-		renderDescription: CommonDescriptions.simpleDescription(),
+		renderDescription: CommonDescriptions.descriptionWithTechnospheres((item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.mnemosphereSlots })),
 		columns: {
 			name: CommonColumns.itemNameColumn({ columnName: 'FU.Armors', cssClass: (item) => (item.system.isMartial.value ? 'after-martial-item-icon' : ''), renderCaption: ArmorsTableRenderer.#renderCaption }),
 			def: CommonColumns.textColumn({ columnLabel: 'FU.DefenseAbbr', getText: ArmorsTableRenderer.#getDefenseText, importance: 'high' }),

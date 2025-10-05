@@ -34,7 +34,7 @@ export class SkillsTableRenderer extends FUTableRenderer {
 		};
 
 		let mainWeapon;
-		{
+		if (item.actor) {
 			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
 			if (item.system.useWeapon.accuracy) {
 				data.useWeapon = true;

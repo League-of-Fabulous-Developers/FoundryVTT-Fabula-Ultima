@@ -1,4 +1,3 @@
-import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { Effects, prepareActiveEffectCategories } from '../../pipelines/effects.mjs';
 import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
@@ -244,15 +243,11 @@ export class FUActor extends Actor {
 	 * @override
 	 */
 	*allApplicableEffects() {
-		for (const effect of super.allApplicableEffects()) {
-			const item = effect.parent;
-
-			if (item instanceof FUItem) {
-				if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
-					yield effect;
-				}
-			} else {
-				// Effects exist directly on the actor
+		for (const effect of this.effects) {
+			yield effect;
+		}
+		for (const item of this.items) {
+			for (const effect of item.transferredEffects) {
 				yield effect;
 			}
 		}
@@ -267,7 +262,8 @@ export class FUActor extends Actor {
 			yield effect;
 		}
 		for (const item of this.items) {
-			for (const effect of item.effects) {
+			const effects = item.allEffects ? item.allEffects() : item.effects;
+			for (const effect of effects) {
 				yield effect;
 			}
 		}
@@ -523,5 +519,32 @@ export class FUActor extends Actor {
 		// Update this instance for tracking, though it is not the same as the one that just got replaced in the model
 		progress.current = current;
 		return progress;
+	}
+
+	/**
+	 * @returns {Generator<Item | PseudoItem, void, *>}
+	 */
+	*allItems() {
+		for (const item of this.items) {
+			yield item;
+			if ('allItems' in item) {
+				for (const nestedItem of item.allItems()) {
+					if (item.system.transferNestedItem ? item.system.transferNestedItem(nestedItem) : true) {
+						yield nestedItem;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @type {Record<string, (Item | PseudoItem)[]>}
+	 */
+	get itemTypes() {
+		const types = Object.fromEntries(game.documentTypes.Item.map((t) => [t, []]));
+		for (const item of this.allItems()) {
+			types[item.type].push(item);
+		}
+		return types;
 	}
 }

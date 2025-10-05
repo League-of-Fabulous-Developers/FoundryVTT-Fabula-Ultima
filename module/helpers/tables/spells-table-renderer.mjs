@@ -87,7 +87,7 @@ export class SpellsTableRenderer extends FUTableRenderer {
 		if (item.system.hasRoll.value) {
 			classes.push('after-offensive-spell-icon');
 		}
-		if (item.actor.type === 'npc') {
+		if (item.actor?.type === 'npc') {
 			classes.push('before-spell-icon');
 		}
 		return classes.join(' ');

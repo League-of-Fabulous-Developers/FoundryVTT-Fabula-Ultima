@@ -34,11 +34,17 @@ export class OtherItemsTableRenderer extends FUTableRenderer {
 	}
 
 	static #getItems(document, options) {
-		const includedTypes = new Set(this.#excludedTypes);
+		const excludedTypes = new Set(this.#excludedTypes);
 
-		(options.exclude ?? []).forEach((excludedType) => includedTypes.add(excludedType));
-		(options.include ?? []).forEach((excludedType) => includedTypes.delete(excludedType));
+		(options.exclude ?? []).forEach((excludedType) => excludedTypes.add(excludedType));
+		(options.include ?? []).forEach((excludedType) => excludedTypes.delete(excludedType));
 
-		return document.items.filter((item) => !includedTypes.has(item.type));
+		const items = [];
+		for (let item of document.allItems()) {
+			if (!excludedTypes.has(item.type)) {
+				items.push(item);
+			}
+		}
+		return items;
 	}
 }

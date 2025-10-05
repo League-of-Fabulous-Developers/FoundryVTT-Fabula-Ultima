@@ -1,0 +1,7 @@
+{{ log "in single choice" this }}
+<label class="resource-label-sm">
+	{{localize templateData.label}}
+	<select name="{{fieldPrefix}}.{{templateData.name}}" class="resource-inputs select-dropdown-full">
+		{{selectOptions templateData.choices selected=(lookup effect templateData.name) localize=true}}
+	</select>
+</label>

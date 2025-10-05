@@ -1,0 +1,30 @@
+<main>
+	<section>
+		<fieldset class="desc title-fieldset resource-content technosphere-slots">
+			<legend class="resource-label-sm">
+				{{localize 'FU.Technospheres'}}
+			</legend>
+			<label class="resource-label-sm">
+				{{localize "FU.TechnospheresSlots"}}
+				<select name="system.slotCount" class="resource-inputs select-dropdown-full">
+					{{selectOptions slotOptions selected=system.slotCount localize=true}}
+				</select>
+			</label>
+			<hr />
+			{{> 'projectfu.technospheres.slots' slots=slots}}
+		</fieldset>
+	</section>
+	<section>
+		<fieldset class="desc title-fieldset resource-content">
+			<legend>
+				<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+					{{localize 'FU.Description'}}
+					<i class="fas fa-info-circle"></i>
+				</label>
+			</legend>
+			<prose-mirror name="system.description" value="{{system.description}}" toggled>
+				{{{enrichedHtml.description}}}
+			</prose-mirror>
+		</fieldset>
+	</section>
+</main>

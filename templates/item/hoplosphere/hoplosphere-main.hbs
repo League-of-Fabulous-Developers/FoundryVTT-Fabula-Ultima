@@ -1,0 +1,77 @@
+{{log this}}
+<main class="main">
+	<fieldset class="title-fieldset desc resource-content">
+		<legend class="resource-label-sm">{{localize "FU.General"}}</legend>
+		<div class="grid grid-2col gap-5">
+			<label class="resource-label-sm">
+				{{localize "FU.HoplosphereSocketable"}}
+				<select name="system.socketable" class="resource-inputs select-dropdown-full">
+					{{selectOptions socketableOptions selected=system.socketable localize=true}}
+				</select>
+			</label>
+			<label class="resource-label-sm">
+				{{localize "FU.HoplosphereSlots"}}
+				<select name="system.requiredSlots" class="resource-inputs select-dropdown-full">
+					{{selectOptions requiredSlotsOptions selected=system.requiredSlots localize=true}}
+				</select>
+			</label>
+		</div>
+	</fieldset>
+	<fieldset class="title-fieldset desc resource-content">
+		<legend class="resource-label-sm grid-2col gap-5">
+			{{localize "FU.Effects"}}
+			{{#if @root.editable}}
+				<a data-action="addEffect"><i class="fas fa-plus"></i></a>
+			{{/if}}
+		</legend>
+		{{#if editable}}
+			{{#each system.effects}}
+				<fieldset class="title-fieldset desc">
+					<legend class="resource-label-sm grid-2col gap-5">
+						<span>{{localize "FU.Effect"}} {{pfuMath @index '+' 1}}</span>
+						<a data-action="removeEffect" data-index="{{@index}}">
+							<i class="fas fa-trash"></i>
+						</a>
+					</legend>
+					<div class="flexrow gap-5">
+						<label class="resource-label-sm">
+							{{localize "FU.HoplosphereEffectType"}}
+							<select name="system.effects.{{@index}}.type" class="resource-inputs select-dropdown-full">
+								{{selectOptions @root.effectOptions selected=type labelAttr="label" localize=true}}
+							</select>
+						</label>
+						<label class="resource-label-sm">
+							{{localize "FU.HoplosphereEffectCoagLevel"}}
+							<input type="number" name="system.effects.{{@index}}.coagulationLevel"
+								   value="{{coagulationLevel}}" class="resource-inputs select-dropdown-full">
+						</label>
+					</div>
+					<hr />
+					<div>
+						{{> (lookup this "template") null effect=this templateData=templateData fieldPrefix=(concat "system.effects." @index)}}
+					</div>
+				</fieldset>
+			{{/each}}
+		{{else}}
+			{{#each system.effects}}
+				<fieldset class="title-fieldset desc">
+					<legend class="resource-label-sm grid-2col gap-5">
+						<span>{{localize "FU.Effect"}} {{pfuMath @index '+' 1}}</span>
+					</legend>
+					<div class="flexrow gap-5">
+						<span class="resource-label-sm">
+							{{localize effectLabel}}
+						</span>
+						{{#if (gte coagulationLevel 2)}}
+							<span>
+								<i class="fas fa-droplet"></i>
+								{{localize "FU.HoplosphereEffectCoagLevelRequired" level=coagulationLevel}}
+							</span>
+						{{/if}}
+					</div>
+					<div>{{{summary}}}</div>
+				</fieldset>
+			{{/each}}
+		{{/if}}
+	</fieldset>
+</main>

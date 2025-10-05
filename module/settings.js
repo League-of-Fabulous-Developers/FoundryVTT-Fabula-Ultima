@@ -63,6 +63,7 @@ export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
 	useRevisedStudyRule: 'useRevisedStudyRule',
+	technospheres: 'useTechnospheres',
 	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
@@ -164,7 +165,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule]),
+		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule, SETTINGS.technospheres]),
 		restricted: true,
 	});
 
@@ -205,6 +206,16 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.technospheres, {
+		name: game.i18n.localize('FU.OptionTechnospheres'),
+		hint: game.i18n.localize('FU.OptionTechnospheresHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
 	});
 
 	// BEHAVIOR ROLLS

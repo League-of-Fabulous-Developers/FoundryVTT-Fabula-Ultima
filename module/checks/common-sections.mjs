@@ -332,6 +332,19 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 	}
 };
 
+/**
+ * @param {CheckRenderData} sections
+ * @param {FUItem[]} slottedTechnospheres
+ * @param {number} [order]
+ */
+const slottedTechnospheres = (sections, slottedTechnospheres, order) => {
+	sections.push({
+		partial: 'projectfu.technospheres.chatSlotted',
+		data: { slotted: slottedTechnospheres },
+		order,
+	});
+};
+
 export const CommonSections = {
 	description,
 	genericText,
@@ -345,4 +358,5 @@ export const CommonSections = {
 	opportunity,
 	targeted,
 	spendResource,
+	slottedTechnospheres,
 };

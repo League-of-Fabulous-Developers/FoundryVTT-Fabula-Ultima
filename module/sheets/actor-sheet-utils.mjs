@@ -1,6 +1,8 @@
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
 import { FUHooks } from '../hooks.mjs';
+import { FUItem } from '../documents/items/item.mjs';
+import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -103,7 +105,10 @@ function activateDefaultListeners(html, sheet) {
 			icon: '<i class="fa fa-paper-plane"></i>',
 			callback: (html) => onSendItemToPartyStash(html, sheet),
 			condition: (html) => {
-				const item = sheet.actor.items.get(html.closest('[data-item-id]')?.dataset?.itemId);
+				let item = sheet.actor.items.get(html.closest('[data-item-id]')?.dataset?.itemId);
+				if (!item) {
+					item = fromUuidSync(html.dataset.uuid);
+				}
 				return item?.canStash;
 			},
 		});
@@ -161,6 +166,36 @@ function activateDefaultListeners(html, sheet) {
 		},
 		onClose: () => console.log('Context menu closed'),
 		fixed: true,
+	});
+
+	html.querySelectorAll('li.item, li.effect').forEach((li) => {
+		const item = fromUuidSync(li.dataset.uuid);
+		if (item && item.parent !== sheet.actor) {
+			let directParentItem = item.parent;
+			while (!(directParentItem instanceof FUItem || directParentItem instanceof PseudoItem)) {
+				directParentItem = directParentItem.parent;
+			}
+			let parentItem = directParentItem;
+			let parentage = [];
+			while (!(parentItem instanceof Actor || parentItem == null)) {
+				if (parentItem instanceof FUItem || parentItem instanceof PseudoItem) {
+					parentage.unshift(parentItem);
+				}
+				parentItem = parentItem.parent;
+			}
+			parentage = parentage.map((item) => item.name).join(' → ');
+			li.classList.add('deeply-nested');
+			li.dataset.tooltip = game.i18n.format('FU.ItemDeeplyNested', { parent: parentage });
+			const contextMenuAnchor = li.querySelector('.item-option');
+			if (contextMenuAnchor) {
+				contextMenuAnchor.classList.add('disabled');
+			}
+			const deleteEffectAnchor = li.querySelector('.effect-control[data-action="delete"]');
+			if (deleteEffectAnchor) {
+				deleteEffectAnchor.classList.add('disabled');
+				deleteEffectAnchor.querySelector('.fas')?.classList?.replace('fas', 'far');
+			}
+		}
 	});
 }
 

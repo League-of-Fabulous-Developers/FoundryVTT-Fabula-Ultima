@@ -1,0 +1,494 @@
+{
+  "folder": "ghKKGdGJfB1dO8GY",
+  "name": "Mnemosphere: Elementalist",
+  "type": "mnemosphere",
+  "_id": "OPLZ5iJop7M93Lj2",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/elementalist.png",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "level": 1,
+    "maxLevel": 5,
+    "items": [
+      {
+        "name": "Spellblade",
+        "type": "skill",
+        "_id": "llJKL7tEku94XJl8",
+        "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_spellblade.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you cast an offensive ( @ICON[offensive] ) spell targeting <strong>a single creature</strong>, if the spell has a <strong>total Mind Point cost of 【SL × 10】 or lower</strong> and you have one or more <strong>bow, brawling, dagger, flail, spear, or sword weapons</strong> equipped, you may choose one of those weapons. If you do, your Magic Check for the spell will use the chosen weapon's Accuracy Check formula; for instance, the Magic Check for an Elementalist spell cast through a <strong>bronze sword</strong> (<strong>Core Rulebook</strong>, page <strong>131</strong>) will be <strong>【DEX + MIG】 + 1</strong> instead of <strong>【INS + WLP】</strong>.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 4,
+            "min": 0
+          },
+          "class": {
+            "value": "Elementalist"
+          },
+          "useWeapon": {
+            "accuracy": true,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR187",
+          "hasRoll": {
+            "value": true
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "spellblade",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [
+          {
+            "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_spellblade.png",
+            "duration": {
+              "rounds": null,
+              "startTime": null,
+              "seconds": null,
+              "combat": null,
+              "turns": null,
+              "startRound": null,
+              "startTurn": null
+            },
+            "disabled": false,
+            "name": "Spellblade",
+            "_id": "DhBhEANF8jRMaBo4",
+            "type": "base",
+            "system": {
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none",
+                "suppressed": false
+              },
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "rules": {}
+            },
+            "changes": [
+              {
+                "key": "flags.projectfu.weaponMagicCheck",
+                "mode": 5,
+                "value": "true",
+                "priority": null
+              }
+            ],
+            "description": "<p>Your <strong>Magic Check</strong> for spells will use the <em>chosen weapon'</em>s <strong>Accuracy Check</strong> formula.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
+        "flags": {
+          "core": {}
+        },
+        "sort": 500000
+      },
+      {
+        "name": "Ritual Elementalism",
+        "type": "skill",
+        "_id": "1K1WsttHmWitxDjU",
+        "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_ritual_elementalism.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You may perform Rituals whose effects fall within the <strong>Elementalism</strong> discipline.</p><p>Elementalism Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Elementalist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR187",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "ritual-elementalism",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": 400000
+      },
+      {
+        "name": "Magic Artillery",
+        "type": "skill",
+        "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_magical_artillery.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you cast an offensive ( @ICON[offensive] ) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 3,
+            "min": 0
+          },
+          "class": {
+            "value": "Elementalist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR187",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "magic-artillery",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [
+          {
+            "name": "Magic Artillery",
+            "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_magical_artillery.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none",
+                "suppressed": false
+              },
+              "rules": {
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "step": 1,
+                  "max": 6
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "qHjYR6862sVRMKSg",
+            "type": "base",
+            "changes": [
+              {
+                "key": "system.bonuses.accuracy.magicCheck",
+                "mode": 2,
+                "value": "2*@system.level.value",
+                "priority": null
+              }
+            ],
+            "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
+        "flags": {
+          "core": {}
+        },
+        "_id": "zHSr0SiJe3N3kipt",
+        "sort": 300000
+      },
+      {
+        "name": "Elemental Magic",
+        "type": "skill",
+        "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_elemental_magic.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>Each time you acquire this Skill, learn one Elementalist spell (see <strong>Core Rulebook</strong>, page <strong>188</strong>).</p><p>Offensive ( @ICON[offensive] ) Elementalist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><ul><li><p>For <strong>spell</strong> breakdown and a list of Elemental Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.hK8r8lsQNaknSqdq]{Elementalist Rules}</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 10,
+            "min": 0
+          },
+          "class": {
+            "value": "Elementalist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR187",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "elemental-magic",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "_id": "6cx3iFEYO0ytL0et",
+        "sort": 0
+      },
+      {
+        "name": "Cataclysm",
+        "type": "skill",
+        "_id": "YxDyHL1vCI25xxrI",
+        "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_cataclysm.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you cast an <strong>instantaneous</strong> spell, if you have an <strong>arcane</strong> weapon equipped, you may increase the spell's total MP cost by up to <strong>【SL × 10】</strong> Mind Points. If you do so and the spell deals damage to one or more creatures, it will deal 5 extra damage to each creature for every 10 Mind Points by which you increased its total MP cost.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 3,
+            "min": 0
+          },
+          "class": {
+            "value": "Elementalist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR187",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "cataclysm",
+          "cost": {
+            "amount": 10,
+            "resource": "mp",
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": -100000
+      }
+    ],
+    "source": "",
+    "class": "Elementalist",
+    "summary": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745491348230,
+    "modifiedTime": 1759655013745,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "exportSource": null
+  },
+  "_key": "!items!OPLZ5iJop7M93Lj2"
+}

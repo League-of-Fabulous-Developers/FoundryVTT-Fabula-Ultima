@@ -1,0 +1,56 @@
+{
+  "name": "Arctic Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/arctic.png",
+  "system": {
+    "fuid": "arctic-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainResistance",
+        "coagulationLevel": 1,
+        "damageType": "ice"
+      },
+      {
+        "type": "changeWeaponDamageType",
+        "coagulationLevel": 1,
+        "damageType": "ice"
+      },
+      {
+        "type": "gainImmunity",
+        "coagulationLevel": 2,
+        "damageType": "ice"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 3,
+        "name": "Ice Mastery",
+        "text": "Any ice damage you deal ignores Resistances. When you deal damage, you max change its type to ice."
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658474458,
+    "modifiedTime": 1759658503805,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "qV7snvrLQ9HR0NZD",
+  "sort": 2300000,
+  "_key": "!items!qV7snvrLQ9HR0NZD"
+}

@@ -87,6 +87,13 @@ import { OpportunityHandler } from './pipelines/opportunity.mjs';
 import { FUTokenRuler } from './ui/token-ruler.mjs';
 import { CustomWeaponDataModel } from './documents/items/customWeapon/custom-weapon-data-model.mjs';
 import { CustomWeaponSheet } from './sheets/custom-weapon-sheet.mjs';
+import { MnemosphereDataModel } from './documents/items/mnemosphere/mnemosphere-data-model.mjs';
+import { MnemosphereSheet } from './documents/items/mnemosphere/mnemosphere-sheet.mjs';
+import { HoplosphereDataModel } from './documents/items/hoplosphere/hoplosphere-data-model.mjs';
+import { HoplosphereSheet } from './documents/items/hoplosphere/hoplosphere-sheet.mjs';
+import { MnemosphereReceptacleDataModel } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-data-model.mjs';
+import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-sheet.mjs';
+import { FUItemArmorSheet } from './sheets/item-armor-sheet.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -194,6 +201,9 @@ Hooks.once('init', async () => {
 		weapon: WeaponDataModel,
 		effect: EffectDataModel,
 		customWeapon: CustomWeaponDataModel,
+		mnemosphere: MnemosphereDataModel,
+		hoplosphere: HoplosphereDataModel,
+		mnemosphereReceptacle: MnemosphereReceptacleDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
@@ -244,13 +254,18 @@ Hooks.once('init', async () => {
 		label: 'Standard Stash Sheet',
 	});
 
-	const itemTypesWithSpecialSheets = ['effect', 'classFeature', 'optionalFeature'];
+	const itemTypesWithSpecialSheets = ['armor', 'classFeature', 'customWeapon', 'effect', 'hoplosphere', 'mnemosphere', 'mnemosphereReceptacle', 'optionalFeature'];
 	const Items = foundry.documents.collections.Items;
 	Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
 	Items.registerSheet('projectfu', FUStandardItemSheet, {
 		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
 		makeDefault: true,
 		label: 'Standard Item Sheet',
+	});
+	Items.registerSheet(SYSTEM, FUItemArmorSheet, {
+		types: ['armor'],
+		makeDefault: true,
+		label: 'Armor Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
@@ -270,7 +285,22 @@ Hooks.once('init', async () => {
 	Items.registerSheet(SYSTEM, CustomWeaponSheet, {
 		types: ['customWeapon'],
 		makeDefault: true,
-		label: 'Custom Weapon Receptacle Sheet',
+		label: 'Custom Weapon Sheet',
+	});
+	Items.registerSheet(SYSTEM, MnemosphereSheet, {
+		types: ['mnemosphere'],
+		makeDefault: true,
+		label: 'Mnemosphere Sheet',
+	});
+	Items.registerSheet(SYSTEM, HoplosphereSheet, {
+		types: ['hoplosphere'],
+		makeDefault: true,
+		label: 'Hoplosphere Sheet',
+	});
+	Items.registerSheet(SYSTEM, MnemosphereReceptacleSheet, {
+		types: ['mnemosphereReceptacle'],
+		makeDefault: true,
+		label: 'Mnemosphere Receptacle Sheet',
 	});
 
 	const { DocumentSheetConfig } = foundry.applications.apps;
@@ -328,6 +358,17 @@ Hooks.once('setup', () => {});
 /* -------------------------------------------- */
 
 FUHandlebars.registerHelpers();
+
+Handlebars.registerHelper('times', function (n, block) {
+	let accum = '';
+	for (let i = 0; i < n; ++i) {
+		block.data.index = i;
+		block.data.first = i === 0;
+		block.data.last = i === n - 1;
+		accum += block.fn(this);
+	}
+	return accum;
+});
 
 /* -------------------------------------------- */
 /*  Ready Hook                                  */

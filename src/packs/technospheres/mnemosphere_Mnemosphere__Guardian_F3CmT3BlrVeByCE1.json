@@ -1,0 +1,496 @@
+{
+  "folder": "ghKKGdGJfB1dO8GY",
+  "name": "Mnemosphere: Guardian",
+  "type": "mnemosphere",
+  "_id": "F3CmT3BlrVeByCE1",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/guardian.png",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "level": 1,
+    "maxLevel": 5,
+    "items": [
+      {
+        "name": "Protect",
+        "type": "skill",
+        "_id": "7ReG1kLNfYzHWOqN",
+        "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_protect.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When another creature is threatened by an <strong>attack</strong>, <strong>spell</strong>, or other <strong>danger</strong>, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill <strong>before</strong> or <strong>after</strong> the Checks have been made). If the danger already affected you, it affects you <strong>twice</strong> (resolve both instances separately); you also cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Guardian"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR196",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "protect",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": 500000
+      },
+      {
+        "name": "Fortress",
+        "type": "skill",
+        "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_fortress.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "Guardian"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR196",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "fortress",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [
+          {
+            "duration": {
+              "startTime": null,
+              "seconds": null,
+              "combat": null,
+              "rounds": null,
+              "turns": null,
+              "startRound": null,
+              "startTurn": null
+            },
+            "disabled": false,
+            "name": "Fortress",
+            "_id": "6qHoygYUxyY8biDV",
+            "changes": [
+              {
+                "key": "system.resources.hp.bonus",
+                "mode": 2,
+                "value": "3*@system.level.value",
+                "priority": null
+              }
+            ],
+            "description": "<p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p>",
+            "transfer": true,
+            "statuses": [],
+            "flags": {
+              "projectfu": {}
+            },
+            "tint": "#ffffff",
+            "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_fortress.png",
+            "type": "base",
+            "system": {
+              "predicate": {
+                "crisisInteraction": "none",
+                "suppressed": false
+              },
+              "type": "default",
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 0
+              },
+              "rules": {}
+            },
+            "origin": null,
+            "sort": 0
+          }
+        ],
+        "flags": {
+          "core": {}
+        },
+        "_id": "Gu8eQGkwCtRyf0lL",
+        "sort": 400000
+      },
+      {
+        "name": "Dual Shieldbearer",
+        "type": "skill",
+        "_id": "BtLSZ6MQsxlMdxjJ",
+        "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_dual_shieldbearer.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee <strong>brawling</strong> weapon:</p><table style=\"width:98.7597%\" border=\"1\"><colgroup><col style=\"width:14.4654%\"></col><col style=\"width:20.7547%\"></col><col style=\"width:23.2618%\"></col><col style=\"width:41.5181%\"></col></colgroup><tbody><tr><td><strong>WEAPON</strong></td><td><strong>ACCURACY</strong></td><td><strong>DAMAGE</strong></td><td><strong>QUALITY</strong></td></tr><tr><td><strong>Twin Shields</strong></td><td><strong>【MIG + MIG】</strong></td><td><strong>【HR + 5】</strong> <strong>physical</strong></td><td>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</td></tr></tbody></table><hr /><ul><li><p>To <strong>automate</strong>, add the following @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} to your character sheet. Navigate to the '<strong>Items</strong>\" tab where <strong>Twin Shields</strong> is located and press <strong>Ctrl+Click</strong> the icon in <strong>Equip?</strong> column. The item will be added to the <strong>Phantom Slot</strong>. Make sure this skill is added to your character sheet. Now you can equip shields on both your main and off hand slot.</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Guardian"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR196",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "dual-shieldbearer",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": 300000
+      },
+      {
+        "name": "Defensive Mastery",
+        "type": "skill",
+        "_id": "N698OQm54Tw74Yk3",
+        "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_defensive_mastery.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "Guardian"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR196",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "defensive-mastery",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [
+          {
+            "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_defensive_mastery.png",
+            "origin": "Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF",
+            "duration": {
+              "rounds": null,
+              "startTime": null,
+              "seconds": null,
+              "combat": null,
+              "turns": null,
+              "startRound": null,
+              "startTurn": null
+            },
+            "disabled": false,
+            "name": "Defensive Mastery",
+            "_id": "w7qI5rqewX56TrEC",
+            "type": "base",
+            "system": {
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none",
+                "suppressed": false
+              },
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 0
+              },
+              "rules": {}
+            },
+            "changes": [
+              {
+                "key": "system.bonuses.incomingDamage.all",
+                "mode": 2,
+                "value": "-@system.level.value",
+                "priority": null
+              }
+            ],
+            "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p>",
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {
+              "projectfu": {
+                "source": "FUCR196"
+              }
+            }
+          }
+        ],
+        "flags": {
+          "core": {}
+        },
+        "sort": 200000
+      },
+      {
+        "name": "Bodyguard",
+        "type": "skill",
+        "_id": "t1WjMBIDKG4bTnYV",
+        "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_bodyguard.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>If you perform the <strong>Guard</strong> action and choose to provide cover to another creature, that creature gains Resistance to all damage types until the start of your next turn.</p><hr /><ul><li><p><strong>Target Receive:</strong> @EFFECT[cover] + @TYPE[affinity all resistance e:sot i:1 t:source]</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Guardian"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR196",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "bodyguard",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": 100000
+      }
+    ],
+    "source": "",
+    "class": "Guardian",
+    "summary": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745491348230,
+    "modifiedTime": 1759655192024,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "exportSource": null
+  },
+  "_key": "!items!F3CmT3BlrVeByCE1"
+}

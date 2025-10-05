@@ -1,0 +1,56 @@
+{
+  "name": "Seismic Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/seismic.png",
+  "system": {
+    "fuid": "seismic-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainResistance",
+        "coagulationLevel": 1,
+        "damageType": "earth"
+      },
+      {
+        "type": "changeWeaponDamageType",
+        "coagulationLevel": 1,
+        "damageType": "earth"
+      },
+      {
+        "type": "gainImmunity",
+        "coagulationLevel": 2,
+        "damageType": "earth"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 3,
+        "name": "Earth Mastery",
+        "text": "Any earth damage you deal ignores Resistances. When you deal damage, you may change its type to earth."
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658510446,
+    "modifiedTime": 1759658510446,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "25uO4pBTy61X1el1",
+  "sort": 0,
+  "_key": "!items!25uO4pBTy61X1el1"
+}

@@ -13,6 +13,8 @@ export const Flags = Object.freeze({
 	Favorite: 'favorite',
 	ActiveEffect: Object.freeze({
 		Source: 'Source',
+		Suppressed: 'Suppressed',
+		Temporary: 'Temporary',
 	}),
 	ChatMessage: Object.freeze({
 		CheckParams: 'CheckParams',
