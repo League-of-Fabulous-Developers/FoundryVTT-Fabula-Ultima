@@ -30,6 +30,7 @@ export class FUStashSheet extends FUActorSheet {
 			createEquipment: this.#onCreateEquipment,
 			lootItem: this.#onLootItem,
 			sellItem: this.#onSellItem,
+			buyItem: this.#onBuyItem,
 			distributeZenit: this.#onDistributeZenit,
 			rechargeInventoryPoints: this.#onRechargeInventoryPoints,
 		},
@@ -157,12 +158,7 @@ export class FUStashSheet extends FUActorSheet {
 	}
 
 	static #onLootItem(event, target) {
-		const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
-		let item = this.actor.items.get(dataItemId);
-		if (!item) {
-			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
-			item = foundry.utils.fromUuidSync(uuid);
-		}
+		const item = FUStashSheet.#resolveItem(this.actor, target);
 		if (item) {
 			const targetActor = getPrioritizedUserTargeted();
 			if (!targetActor) return;
@@ -177,15 +173,27 @@ export class FUStashSheet extends FUActorSheet {
 	}
 
 	static #onSellItem(event, target) {
+		const item = FUStashSheet.#resolveItem(this.actor, target);
+		if (item) {
+			return InventoryPipeline.tradeItem(this.actor, item, 'sell');
+		}
+	}
+
+	static #onBuyItem(event, target) {
+		const item = FUStashSheet.#resolveItem(this.actor, target);
+		if (item) {
+			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, true, undefined);
+		}
+	}
+
+	static #resolveItem(actor, target) {
 		const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
-		let item = this.actor.items.get(dataItemId);
+		let item = actor.items.get(dataItemId);
 		if (!item) {
 			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
 			item = foundry.utils.fromUuidSync(uuid);
 		}
-		if (item) {
-			return InventoryPipeline.tradeItem(this.actor, item, true);
-		}
+		return item;
 	}
 
 	static #onDistributeZenit() {

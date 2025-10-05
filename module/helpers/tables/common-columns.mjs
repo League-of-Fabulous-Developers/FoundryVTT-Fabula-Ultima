@@ -92,6 +92,7 @@ function renderControls(options) {
 	return async (item) => {
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-item-controls.hbs', {
 			isFavorite: item.isFavorite,
+			isGM: game.user.isGM,
 			disableFavorite: disableFavorite instanceof Function ? disableFavorite(item) : disableFavorite,
 			disableEdit: disableEdit instanceof Function ? disableEdit(item) : disableEdit,
 			disableMenu: disableMenu instanceof Function ? disableMenu(item) : disableMenu,
