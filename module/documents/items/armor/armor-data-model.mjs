@@ -141,4 +141,13 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 		// TODO: find better solution, equipment data model maybe?
 		return this.parent.actor.equipmentHandler.handleItemClick(event, target);
 	}
+
+	inspectTechnosphere(event, target) {
+		if (event.button !== 0) return;
+		const itemId = target.closest('[data-technosphere-id]')?.dataset?.technosphereId;
+		const item = this.items.get(itemId);
+		if (item) {
+			item.sheet.render({ force: true });
+		}
+	}
 }

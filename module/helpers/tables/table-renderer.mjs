@@ -151,7 +151,7 @@ export class FUTableRenderer {
 		for (let item of items) {
 			const uuid = item.uuid;
 
-			if (document !== item.parent && document !== item.parentFoundryDocument) {
+			if (document !== item.parent && document !== item.parentDocument) {
 				let directParentItem = item.parent;
 				while (!(directParentItem instanceof FUItem || directParentItem instanceof PseudoItem)) {
 					directParentItem = directParentItem.parent;

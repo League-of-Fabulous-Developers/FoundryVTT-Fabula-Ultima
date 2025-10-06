@@ -4,6 +4,8 @@ import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/enable-pseudo-d
 import { SkillDataModel } from '../skill/skill-data-model.mjs';
 import { SYSTEM } from '../../../helpers/config.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
 
 /**
  * @property {string} source
@@ -64,3 +66,30 @@ export class MnemosphereDataModel extends PseudoDocumentEnabledTypeDataModel {
 		});
 	}
 }
+
+/** @type {RenderCheckHook} */
+const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
+	if (check.type === 'display' && item?.type === 'mnemosphere') {
+		CommonSections.tags(sections, [
+			{
+				tag: 'FU.Class',
+				value: item.system.class,
+				show: !!item.system.class,
+			},
+		]);
+
+		let skillText;
+		if (item.system.activeSkills.length) {
+			skillText = item.system.activeSkills
+				.map((skill) => {
+					return `<div><strong>${skill.name}</strong> (${skill.system.level.value} / ${skill.system.level.max})</div>`;
+				})
+				.join('\n');
+		} else {
+			skillText = '<div><strong>—</strong></div>';
+		}
+		CommonSections.genericText(sections, `<p><strong>${game.i18n.localize('FU.Skills')}</strong></p>` + skillText);
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderDisplay);

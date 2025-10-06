@@ -9,6 +9,7 @@ const technosphereTypes = ['mnemosphere', 'hoplosphere'];
  * @property {FUItem} item
  * @property {boolean} occupied
  * @property {boolean} overCapacity
+ * @property {string} [tooltip]
  */
 
 /**
@@ -63,6 +64,31 @@ export const getTechnosphereSlotInfo = (slottedTechnospheres, totalSlots, maxMne
 		if (unusedMnemosphereSlots && (!currentSlot.item || unusedSlots === unusedMnemosphereSlots)) {
 			currentSlot.type = 'mnemosphere';
 			unusedMnemosphereSlots--;
+		}
+	}
+
+	for (let slot of slots) {
+		if (slot.item) {
+			const item = slot.item;
+
+			if (item.type === 'hoplosphere') {
+				const tooltipParts = [`${item.name} ${item.system.coagLevel > 1 ? `<i class='fas fa-droplet'></i>${item.system.coagLevel}` : ''}`];
+				for (let effect of item.system.activeEffects) {
+					tooltipParts.push(effect.summary);
+				}
+				slot.tooltip = tooltipParts.join('<br>');
+			}
+
+			if (item.type === 'mnemosphere') {
+				const tooltipParts = [`${item.name} ${item.system.class.trim() ? `(${item.system.class})` : ''}`];
+				for (let skill of item.system.activeSkills) {
+					tooltipParts.push(`${skill.name} (${skill.system.level.value} / ${skill.system.level.value})`);
+				}
+				for (let heroic of item.system.heroics) {
+					tooltipParts.push(heroic.name);
+				}
+				slot.tooltip = tooltipParts.join('<br>');
+			}
 		}
 	}
 

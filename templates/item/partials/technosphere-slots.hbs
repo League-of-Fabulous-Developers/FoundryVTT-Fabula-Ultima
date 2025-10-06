@@ -16,15 +16,8 @@
 						<img class="item-icon" src="{{slot.item.img}}" alt="Item icon">
 					</a>
 				</span>
-				<span class="technosphere-slots__slot-name">
+				<span class="technosphere-slots__slot-name" data-tooltip="{{{slot.tooltip}}}">
 					{{slot.item.name}}
-				</span>
-				<span class="technosphere-slots__slot-info">
-				{{#if (eq slot.item.type "mnemosphere")}}
-						<span>{{ slot.item.system.class }}</span>
-						<span>{{ slot.item.system.level }} / {{slot.item.system.maxLevel}}</span>
-
-				{{/if}}
 				</span>
 				<span class="technosphere-slots__slot-actions">
 					<a data-action="edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">

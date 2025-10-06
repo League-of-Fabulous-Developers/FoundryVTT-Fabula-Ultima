@@ -1,6 +1,8 @@
 import { FU } from '../../../helpers/config.mjs';
 import { FUItem } from '../item.mjs';
 import { CustomWeaponDataModel } from '../customWeapon/custom-weapon-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 /*
 Hoplosphere Changes:
@@ -557,3 +559,24 @@ export class HoplosphereDataModel extends foundry.abstract.TypeDataModel {
 		return item.system instanceof HoplosphereDataModel && item.system.fuid === this.fuid;
 	}
 }
+
+/** @type {RenderCheckHook} */
+const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
+	if (check.type === 'display' && item?.type === 'hoplosphere') {
+		CommonSections.genericText(
+			sections,
+			item.system.effects
+				.map((effect) => {
+					let coagulationInfo = '';
+					if (effect.coagulationLevel > 1) {
+						const tooltip = game.i18n.format('FU.HoplosphereEffectCoagLevelRequired', { level: effect.coagulationLevel });
+						coagulationInfo = `<span data-tooltip="${tooltip}"><i class="fas fa-droplet"></i> ${effect.coagulationLevel}</span>`;
+					}
+					return `<p><strong>${effect.effectLabel} ${coagulationInfo}</strong><br/>${effect.summary}</p>`;
+				})
+				.join('\n'),
+		);
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderDisplay);

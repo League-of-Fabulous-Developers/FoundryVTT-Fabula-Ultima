@@ -25,6 +25,7 @@ const equipStatusRenderers = {
 		};
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equip-status'), data);
 	},
+	mnemosphereReceptacle: CommonColumns.textColumn({ getText: (item) => `${item.system.usedSlots} / ${item.system.slotCount}`, alignment: 'center', importance: 'high' }).renderCell,
 };
 
 export class AccessoriesTableRenderer extends FUTableRenderer {

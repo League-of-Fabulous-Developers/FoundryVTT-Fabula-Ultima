@@ -39,4 +39,13 @@ export class MnemosphereReceptacleDataModel extends PseudoDocumentEnabledTypeDat
 	get slotted() {
 		return this.items.filter((item) => item.type === 'mnemosphere');
 	}
+
+	inspectTechnosphere(event, target) {
+		if (event.button !== 0) return;
+		const itemId = target.closest('[data-technosphere-id]')?.dataset?.technosphereId;
+		const item = this.items.get(itemId);
+		if (item) {
+			item.sheet.render({ force: true });
+		}
+	}
 }

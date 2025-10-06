@@ -88,6 +88,10 @@
 			}
 		}
 
+		.technosphere-slots__slot-name {
+			font-weight: var(--font-weight-bold);
+		}
+
 		.technosphere-slots__slot-actions {
 			flex: 0 0 auto;
 		}
