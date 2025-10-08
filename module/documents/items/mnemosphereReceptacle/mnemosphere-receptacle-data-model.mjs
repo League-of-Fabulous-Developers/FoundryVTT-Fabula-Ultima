@@ -1,8 +1,8 @@
 import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-collection-field.mjs';
 import { PseudoItem } from '../pseudo-item.mjs';
-import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/enable-pseudo-documents-mixin.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
 
 /** @type RenderCheckHook */
 const onRenderCheck = (sections, check, actor, item, additionalFlags, targets) => {

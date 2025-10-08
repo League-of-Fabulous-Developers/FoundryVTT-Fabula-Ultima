@@ -5,10 +5,10 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { Checks } from '../../../checks/checks.mjs';
-import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/enable-pseudo-documents-mixin.mjs';
 import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-collection-field.mjs';
 import { PseudoItem } from '../pseudo-item.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
 
 const slotsByQuality = {
 	alpha: 1,

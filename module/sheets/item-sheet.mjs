@@ -5,9 +5,9 @@ import { FU, systemPath } from '../helpers/config.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
-import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/enable-pseudo-documents-mixin.mjs';
 import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
+import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/pseudo-document-enabled-type-data-model.mjs';
 
 const { api, sheets } = foundry.applications;
 

@@ -1,6 +1,4 @@
-import { PseudoDocumentTypeField } from '../pseudo/pseudo-document-type-field.mjs';
 import { PseudoDocumentCollectionField } from '../pseudo/pseudo-document-collection-field.mjs';
-import { PseudoDocumentTypeDataField } from '../pseudo/pseudo-document-type-data-field.mjs';
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
 import { PseudoActiveEffect } from '../effects/pseudo-active-effect.mjs';
 import { FUItem } from './item.mjs';
@@ -10,18 +8,18 @@ class BasePseudoItem extends PseudoDocument {
 	static documentName = 'Item';
 
 	static defineSchema() {
-		const { FilePathField, ObjectField, StringField, IntegerSortField } = foundry.data.fields;
+		const { FilePathField, ObjectField, StringField, IntegerSortField, DocumentTypeField, TypeDataField } = foundry.data.fields;
 		return {
 			_id: new StringField({ initial: () => foundry.utils.randomID(), validate: foundry.data.validators.isValidId }),
 			name: new StringField({ initial: () => game.i18n.format('DOCUMENT.New', { type: game.i18n.localize(this.metadata.label) }), required: true, blank: false, textSearch: true }),
-			type: new PseudoDocumentTypeField(this),
+			type: new DocumentTypeField(this),
 			img: new FilePathField({
 				categories: ['IMAGE'],
 				initial: (data) => {
 					return FUItem.getDefaultArtwork(data).img;
 				},
 			}),
-			system: new PseudoDocumentTypeDataField(this),
+			system: new TypeDataField(this),
 			effects: new PseudoDocumentCollectionField(PseudoActiveEffect),
 			flags: new ObjectField(),
 			sort: new IntegerSortField(),

@@ -464,7 +464,7 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		}
 		await parent.parentFoundryDocument.update(changeObject);
 		const updated = updates.map((value) => collection.get(value._id));
-		setTimeout(() => updated.forEach((document) => document.render()));
+		setTimeout(() => updated.forEach((document) => document.render(false, { renderContext: 'update', renderData: document })));
 		console.log('PseudoDocuments updated', updates, updated);
 		return updated;
 	}
@@ -534,8 +534,8 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		 * @type {{type: "object"|"array", index: string|number, value: any}[]}
 		 */
 		const traversalLog = [];
-		const rootDocument = parent.parentFoundryDocument.toObject(true);
-		current = rootDocument;
+		current = parent.parentFoundryDocument.toObject(true);
+
 		for (let { type, index } of traversalInstructions) {
 			if (type === 'object') {
 				current = current[index];

@@ -5,10 +5,10 @@ import { ArmorMigrations } from './armor-migrations.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/enable-pseudo-documents-mixin.mjs';
 import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-collection-field.mjs';
 import { PseudoItem } from '../pseudo-item.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ArmorDataModel) {

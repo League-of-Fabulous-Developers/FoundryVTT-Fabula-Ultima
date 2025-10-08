@@ -2,6 +2,7 @@ import { PseudoItem } from '../pseudo-item.mjs';
 import { MnemosphereDataModel } from '../mnemosphere/mnemosphere-data-model.mjs';
 import { FUItemSheet } from '../../../sheets/item-sheet.mjs';
 import { getTechnosphereSlotInfo } from '../../../helpers/technospheres.mjs';
+import { TextEditor } from '../../../helpers/text-editor.mjs';
 
 export class MnemosphereReceptacleSheet extends FUItemSheet {
 	/**

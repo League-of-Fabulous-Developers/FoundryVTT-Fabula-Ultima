@@ -1529,6 +1529,8 @@
 		"AutomaticAdversaryRegistration": "Automatic Adversary Registration",
 		"AutomaticAdversaryRegistrationHint": "Whether to automatically register adversaries to the party sheet in combat",
 		"ItemDeeplyNested": "This item belongs to <strong>{parent}</strong>.",
+		"OptionTechnospheres": "Enable Technospheres?",
+		"OptionTechnospheresHint": "Enables the Technosphere rules from Techno Fantasy Atlas p130. Armor and Custom Weapons will have slots instead of qualities. Hoplospheres, Mnemospheres and Mnemosphere Receptacles can be created.",
 		"Technospheres": "Technospheres",
 		"TechnospheresSlots": "Slots",
 		"TechnospheresSlotEmpty": "Empty slot",

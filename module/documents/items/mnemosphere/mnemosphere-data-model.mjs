@@ -1,11 +1,11 @@
 import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-collection-field.mjs';
 import { PseudoItem } from '../pseudo-item.mjs';
-import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/enable-pseudo-documents-mixin.mjs';
 import { SkillDataModel } from '../skill/skill-data-model.mjs';
 import { SYSTEM } from '../../../helpers/config.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
 
 /**
  * @property {string} source

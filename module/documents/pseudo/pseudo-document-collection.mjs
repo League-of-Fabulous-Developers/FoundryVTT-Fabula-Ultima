@@ -61,12 +61,11 @@ export default class PseudoDocumentCollection extends foundry.utils.Collection {
 	 * @returns {PseudoDocument}
 	 */
 	createDocument(data, context = {}) {
-		const pseudoDocument = new this.documentClass(data, {
+		return new this.documentClass(data, {
 			...context,
 			parent: this.model,
 			parentCollection: this.name,
 		});
-		return pseudoDocument;
 	}
 
 	/* -------------------------------------------- */
@@ -242,60 +241,6 @@ export default class PseudoDocumentCollection extends foundry.utils.Collection {
 	_delete(key, options = {}) {
 		if (this.has(key) || this.invalidDocumentIds.has(key)) {
 			this._source.findSplice((d) => d._id === key);
-		}
-	}
-
-	/* ---------------------------------------- */
-
-	/**
-	 * Update an EmbeddedCollection using an array of provided document data.
-	 * @param {DataModel[]} changes         An array of provided Document data
-	 * @param {object} [options={}]         Additional options which modify how the collection is updated
-	 * @return PseudoDocument[]
-	 */
-	async update(changes, options = {}) {
-		const updated = [];
-
-		// Create or update documents within the collection
-		for (let data of changes) {
-			if (!data._id) {
-				data._id = foundry.utils.randomID(16);
-			}
-			let doc = await this._createOrUpdate(data, options);
-			updated.push(doc);
-		}
-
-		// If the update was not recursive, remove all non-updated documents
-		if (options.recursive === false) {
-			const updatedIds = new Set(updated.map((d) => d._id));
-			for (const id of this._source.map((d) => d._id)) {
-				if (!updatedIds.has(id)) {
-					this.delete(id, options);
-				}
-			}
-		}
-	}
-
-	/* -------------------------------------------- */
-
-	/**
-	 * Create or update an embedded Document in this collection.
-	 * @param {DataModel} data       The update delta.
-	 * @param {object} [options={}]  Additional options which modify how the collection is updated.
-	 * @protected
-	 * @return PseudoDocument
-	 */
-	async _createOrUpdate(data, options) {
-		const current = this.get(data._id);
-		if (current) {
-			const changes = current.updateSource(data, options);
-			changes._id = data._id;
-			const [updated] = await this.documentClass.updateDocuments([changes], { parent: this.model });
-			return updated;
-		} else {
-			const [newDoc] = await this.documentClass.createDocuments([data], { parent: this.model });
-			this.set(newDoc._id, newDoc);
-			return newDoc;
 		}
 	}
 

@@ -382,10 +382,10 @@
 				"htmlFields": ["description"]
 			},
 			"hoplosphere": {
-				"htmlFields": ["description"]
+				"htmlFields": []
 			},
 			"mnemosphere": {
-				"htmlFields": ["description"]
+				"htmlFields": []
 			},
 			"mnemosphereReceptacle": {
 				"htmlFields": ["description"]
