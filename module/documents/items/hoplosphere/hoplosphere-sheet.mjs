@@ -44,6 +44,7 @@ export class HoplosphereSheet extends FUItemSheet {
 		},
 		main: {
 			template: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-main.hbs',
+			scrollable: '',
 		},
 	};
 

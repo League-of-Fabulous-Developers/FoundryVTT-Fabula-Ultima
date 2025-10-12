@@ -27,6 +27,8 @@
 @import 'css/components/table/_index.css';
 @import 'css/components/technosphere-slots.css';
 
+@import 'css/item/_index.css';
+
 @import 'css/features/floralist/index.css';
 @import 'css/features/gourmet/index.css';
 @import 'css/features/invoker/index.css';
