@@ -5,14 +5,6 @@ import { SETTINGS } from '../../settings.js';
 import { ItemBehaviourMixin } from './item-behaviour-mixin.mjs';
 
 /**
- * @typedef KeyboardModifiers
- * @property {boolean} shift
- * @property {boolean} alt
- * @property {boolean} ctrl
- * @property {boolean} meta
- */
-
-/**
  * @typedef Item
  * @property {Actor} actor
  * @property {String} uuid
