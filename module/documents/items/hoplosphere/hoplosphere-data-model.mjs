@@ -565,16 +565,13 @@ const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.type === 'hoplosphere') {
 		CommonSections.genericText(
 			sections,
-			item.system.effects
-				.map((effect) => {
-					let coagulationInfo = '';
-					if (effect.coagulationLevel > 1) {
-						const tooltip = game.i18n.format('FU.HoplosphereEffectCoagLevelRequired', { level: effect.coagulationLevel });
-						coagulationInfo = `<span data-tooltip="${tooltip}"><i class="fas fa-droplet"></i> ${effect.coagulationLevel}</span>`;
-					}
-					return `<p><strong>${effect.effectLabel} ${coagulationInfo}</strong><br/>${effect.summary}</p>`;
-				})
-				.join('\n'),
+			foundry.applications.handlebars.renderTemplate('projectfu.hoplosphere.displayEffects', {
+				effects: item.system.effects.map((effect) => ({
+					name: effect.effectLabel,
+					summary: effect.summary,
+					coagulationLevel: effect.coagulationLevel,
+				})),
+			}),
 		);
 	}
 };

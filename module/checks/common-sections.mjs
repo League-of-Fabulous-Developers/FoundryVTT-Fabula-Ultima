@@ -35,16 +35,14 @@ const description = (sections, description, summary, order, open = true) => {
 
 /**
  * @param {CheckRenderData} sections
- * @param {string} text
- * @param {string} summary
+ * @param {string, Promise<string>} text
  * @param {number} [order]
- * @param {Boolean} open Defaults to true
  */
 const genericText = (sections, text, order) => {
 	sections.push(async () => ({
 		partial: 'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 		data: {
-			text: await TextEditor.enrichHTML(text),
+			text: await TextEditor.enrichHTML(await text),
 		},
 		order,
 	}));

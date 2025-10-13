@@ -246,10 +246,14 @@ export const preloadHandlebarsTemplates = async function () {
 						effectAmount: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-amount.hbs',
 						notification: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-notification.hbs',
 						freeText: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-effect-free-text.hbs',
+						displayEffects: 'systems/projectfu/templates/item/hoplosphere/hoplosphere-display-effects.hbs',
 					},
 					technospheres: {
 						slots: 'systems/projectfu/templates/item/partials/technosphere-slots.hbs',
 						chatSlotted: 'systems/projectfu/templates/item/partials/technosphere-chat-slotted.hbs',
+					},
+					mnemosphere: {
+						tableDescription: 'systems/projectfu/templates/item/mnemosphere/mnemosphere-table-description.hbs',
 					},
 				},
 			}),

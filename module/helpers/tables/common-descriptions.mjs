@@ -23,13 +23,15 @@ function descriptionWithTags(getTags, descriptionKey) {
 }
 
 /**
- * @param {((document: any) => string|Promise<string>)} [descriptionEnricher]
+ * @param {((document: any) => string|Promise<string>)} descriptionEnricher
+ * @param {(FUItem) => Tag[]} [getTags]
  * @return {(FUItem) => Promise<string>}
  */
-function descriptionWithCustomEnrichment(descriptionEnricher) {
+function descriptionWithCustomEnrichment(descriptionEnricher, getTags) {
 	return async function (item) {
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/expand/expand-item-description-with-tags.hbs', {
 			description: await descriptionEnricher.call(this, item),
+			tags: getTags ? getTags.call(this, item) : [],
 		});
 	};
 }

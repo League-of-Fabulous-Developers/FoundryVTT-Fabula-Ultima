@@ -3,6 +3,7 @@ import { PseudoItem } from '../pseudo-item.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
+import { MnemosphereDataModel } from '../mnemosphere/mnemosphere-data-model.mjs';
 
 /** @type RenderCheckHook */
 const onRenderCheck = (sections, check, actor, item, additionalFlags, targets) => {
@@ -40,12 +41,27 @@ export class MnemosphereReceptacleDataModel extends PseudoDocumentEnabledTypeDat
 		return this.items.filter((item) => item.type === 'mnemosphere');
 	}
 
-	inspectTechnosphere(event, target) {
-		if (event.button !== 0) return;
-		const itemId = target.closest('[data-technosphere-id]')?.dataset?.technosphereId;
-		const item = this.items.get(itemId);
-		if (item) {
-			item.sheet.render({ force: true });
+	slotMnemosphere(item) {
+		if (item?.type === 'mnemosphere') {
+			const promises = [];
+			promises.push(this.createEmbeddedDocuments(PseudoItem.documentName, [item.toObject(true)]));
+			if (item.isEmbedded) {
+				promises.push(item.delete());
+			}
+			return Promise.all(promises);
+		} else {
+			ui.notifications.error('FU.TechnospheresSlottingErrorMnemosphereOnly', { localize: true });
 		}
+	}
+
+	removeMnemosphere(mnemosphere) {
+		const promises = [];
+		const item = this.items.get(mnemosphere.id);
+		if (item.actor && item.system instanceof MnemosphereDataModel) {
+			const itemObject = item.toObject(true);
+			promises.push(this.parent.actor.createEmbeddedDocuments('Item', [itemObject]));
+		}
+		promises.push(item.delete());
+		return Promise.all(promises);
 	}
 }

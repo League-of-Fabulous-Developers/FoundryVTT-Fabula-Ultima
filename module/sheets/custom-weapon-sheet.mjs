@@ -4,9 +4,6 @@ import { FUItemSheet } from './item-sheet.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import { SETTINGS } from '../settings.js';
 import { getTechnosphereSlotInfo } from '../helpers/technospheres.mjs';
-import { PseudoItem } from '../documents/items/pseudo-item.mjs';
-import { MnemosphereDataModel } from '../documents/items/mnemosphere/mnemosphere-data-model.mjs';
-import { HoplosphereDataModel } from '../documents/items/hoplosphere/hoplosphere-data-model.mjs';
 
 export class CustomWeaponSheet extends FUItemSheet {
 	/**
@@ -86,16 +83,13 @@ export class CustomWeaponSheet extends FUItemSheet {
 		this.item.system.items.get(id).sheet.render({ force: true });
 	}
 
-	static #removeNested(event, element) {
-		const id = element.closest('[data-item-id]').dataset.itemId;
-		const promises = [];
-		const item = this.item.system.items.get(id);
-		if (item.actor && (item.system instanceof MnemosphereDataModel || item.system instanceof HoplosphereDataModel)) {
-			const itemObject = item.toObject(true);
-			promises.push(this.item.actor.createEmbeddedDocuments('Item', [itemObject]));
+	static async #removeNested(event, element) {
+		const uuid = element.closest('[data-uuid]').dataset.uuid;
+		const technosphere = await fromUuid(uuid);
+
+		if (technosphere) {
+			return this.item.system.removeTechnosphere(technosphere);
 		}
-		promises.push(item.delete());
-		return Promise.all(promises);
 	}
 
 	static #onItemRoll(event, element) {
@@ -114,17 +108,7 @@ export class CustomWeaponSheet extends FUItemSheet {
 		const data = TextEditor.getDragEventData(event);
 		if (data.type === 'Item') {
 			const item = await fromUuid(data.uuid);
-
-			if (['mnemosphere', 'hoplosphere'].includes(item.type)) {
-				const promises = [];
-				promises.push(this.item.system.createEmbeddedDocuments(PseudoItem.documentName, [item.toObject(true)]));
-				if (item.isEmbedded) {
-					promises.push(item.delete());
-				}
-				return Promise.all(promises);
-			} else {
-				ui.notifications.error('Only Technospheres can be slotted in this item.');
-			}
+			return this.item.system.slotTechnosphere(item);
 		}
 	}
 

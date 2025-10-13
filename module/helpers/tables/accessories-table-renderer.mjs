@@ -4,6 +4,7 @@ import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { SYSTEM } from '../config.mjs';
 import { SETTINGS } from '../../settings.js';
+import { TextEditor } from '../text-editor.mjs';
 
 const accessoryItemTypes = new Set(['accessory', 'mnemosphereReceptacle']);
 
@@ -42,6 +43,20 @@ export class AccessoriesTableRenderer extends FUTableRenderer {
 			},
 			controls: CommonColumns.itemControlsColumn({ label: 'FU.Accessory', type: () => (game.settings.get(SYSTEM, SETTINGS.technospheres) ? 'accessory,mnemosphereReceptacle' : 'accessory') }),
 		},
+		actions: {
+			technosphere: AccessoriesTableRenderer.#technosphereAction,
+		},
+		dragDrop: [
+			{
+				dropSelector: '.description-with-slots__slots-container .description-with-slots__slot--empty',
+				permissions: {
+					drop: AccessoriesTableRenderer.#canDrop,
+				},
+				callbacks: {
+					drop: AccessoriesTableRenderer.#onDrop,
+				},
+			},
+		],
 	};
 
 	static #renderDescription(item) {
@@ -56,5 +71,41 @@ export class AccessoriesTableRenderer extends FUTableRenderer {
 	static #renderEquipStatus(item) {
 		const equipStatusRenderer = equipStatusRenderers[item.type];
 		return equipStatusRenderer ? equipStatusRenderer(item) : null;
+	}
+
+	static async #technosphereAction(event, target) {
+		const item = await fromUuid(target.closest('[data-uuid]')?.dataset?.uuid);
+		const mnemosphere = await fromUuid(target.closest('[data-technosphere-uuid]')?.dataset?.technosphereUuid);
+
+		if (event.button === 0) {
+			if (mnemosphere) {
+				return mnemosphere.sheet.render({ force: true });
+			}
+		}
+
+		if (event.button === 2) {
+			if (item && mnemosphere) {
+				return item.system.removeMnemosphere(mnemosphere);
+			}
+		}
+	}
+
+	static #canDrop() {
+		return this.application.isEditable;
+	}
+
+	static async #onDrop(dragEvent) {
+		const eventData = TextEditor.getDragEventData(dragEvent);
+
+		if (eventData.type === 'Item') {
+			dragEvent.preventDefault();
+			dragEvent.stopPropagation();
+
+			const item = await fromUuid(dragEvent.target.closest('[data-uuid]')?.dataset?.uuid);
+			if (item && item.type === 'mnemosphereReceptacle') {
+				const droppedItem = await fromUuid(eventData.uuid);
+				return item.system.slotMnemosphere(droppedItem);
+			}
+		}
 	}
 }

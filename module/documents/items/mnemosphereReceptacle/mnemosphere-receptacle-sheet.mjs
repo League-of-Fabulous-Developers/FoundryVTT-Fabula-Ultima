@@ -1,5 +1,3 @@
-import { PseudoItem } from '../pseudo-item.mjs';
-import { MnemosphereDataModel } from '../mnemosphere/mnemosphere-data-model.mjs';
 import { FUItemSheet } from '../../../sheets/item-sheet.mjs';
 import { getTechnosphereSlotInfo } from '../../../helpers/technospheres.mjs';
 import { TextEditor } from '../../../helpers/text-editor.mjs';
@@ -53,16 +51,13 @@ export class MnemosphereReceptacleSheet extends FUItemSheet {
 		this.item.system.items.get(id).sheet.render({ force: true });
 	}
 
-	static #deleteNested(event, element) {
-		const id = element.closest('[data-item-id]').dataset.itemId;
-		const promises = [];
-		const item = this.item.system.items.get(id);
-		if (item.actor && item.system instanceof MnemosphereDataModel) {
-			const itemObject = item.toObject(true);
-			promises.push(this.item.actor.createEmbeddedDocuments('Item', [itemObject]));
+	static async #deleteNested(event, element) {
+		const uuid = element.closest('[data-uuid]').dataset.uuid;
+		const mnemosphere = await fromUuid(uuid);
+
+		if (mnemosphere) {
+			return this.item.system.removeMnemosphere(mnemosphere);
 		}
-		promises.push(item.delete());
-		return Promise.all(promises);
 	}
 
 	static #onItemRoll(event, element) {
@@ -92,20 +87,9 @@ export class MnemosphereReceptacleSheet extends FUItemSheet {
 
 	async #addNested(event) {
 		const data = TextEditor.getDragEventData(event);
-		console.log(data);
 		if (data.type === 'Item') {
 			const item = await fromUuid(data.uuid);
-
-			if (item.system instanceof MnemosphereDataModel) {
-				const promises = [];
-				promises.push(this.item.system.createEmbeddedDocuments(PseudoItem.documentName, [item.toObject(true)]));
-				if (item.isEmbedded) {
-					promises.push(item.delete());
-				}
-				return Promise.all(promises);
-			} else {
-				ui.notifications.error('Only Mnemospheres can be slotted in this item.');
-			}
+			return this.item.system.slotMnemosphere(item);
 		}
 	}
 

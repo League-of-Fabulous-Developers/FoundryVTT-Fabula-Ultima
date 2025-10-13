@@ -422,13 +422,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 			case 'items':
 				{
+					const technosphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
 					// Set up item data
 					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
-					context.shieldsTable = await this.#shieldsTable.renderTable(this.document);
+					context.shieldsTable = await this.#shieldsTable.renderTable(this.document, { hideIfEmpty: technosphereMode });
 					context.armorsTable = await this.#armorsTable.renderTable(this.document);
 					context.accessoriesTable = await this.#accessoriesTable.renderTable(this.document);
-					context.showTechnospheres = game.settings.get(SYSTEM, SETTINGS.technospheres) || this.actor.itemTypes.hoplosphere.length > 0 || this.actor.itemTypes.mnemosphere.length > 0;
-					context.technospheresTable = await this.#technospheresTable.renderTable(this.document);
+					context.technospheresTable = await this.#technospheresTable.renderTable(this.document, { hideIfEmpty: !technosphereMode });
 					context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
 					context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 					context.otherItemsTable = await this.#characterOtherItemsTable.renderTable(this.document);

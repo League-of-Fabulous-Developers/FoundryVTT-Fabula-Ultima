@@ -26,7 +26,8 @@
 						{{~#if
 						 (eq slot.type "mnemosphere")}} description-with-slots__slot--mnemosphere {{else}} description-with-slots__slot--hoplosphere {{/if~}}"
 					   data-technosphere-id="{{ slot.item.id }}"
-					   data-action="inspectTechnosphere"
+					   data-technosphere-uuid="{{ slot.item.uuid }}"
+					   data-action="technosphere"
 					   data-tooltip="{{{ slot.tooltip }}}{{#if slot.overCapacity}}<br/>{{localize "FU.TechnospheresOverCapacity"}}{{/if}}"
 					>
 						<img class="description-with-slots__item-icon" src="{{slot.item.img}}"

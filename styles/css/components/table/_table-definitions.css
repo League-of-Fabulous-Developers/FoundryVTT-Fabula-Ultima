@@ -95,7 +95,7 @@
 }
 
 .technospheres-table {
-	grid-template-columns: [name] auto [details] 200px [controls] 100px;
+	grid-template-columns: [name] 1fr [summary] 1fr [details] 80px [controls] 100px;
 }
 
 .mnemosphere-skills-table {

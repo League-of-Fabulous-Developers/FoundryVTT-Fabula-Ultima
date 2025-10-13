@@ -1,3 +1,7 @@
+import { FUItem } from '../../documents/items/item.mjs';
+
+import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
+
 /**
  * @typedef TableConfig
  * @template {Object} D the document of the sheet being rendered
@@ -12,10 +16,8 @@
  * @property {string, (() => string | Promise<string>)} [renderRowCaption] renders always visible content between the main table row and the collapsible description. Will bloat vertical size of tables, use sparingly.
  * @property {Record<string, ColumnConfig<T>>} columns
  * @property {Record<string, ((event: PointerEvent, target: HTMLElement) => void)>} actions
+ * @property {DragDropConfiguration[]} [dragDrop]
  */
-
-import { FUItem } from '../../documents/items/item.mjs';
-import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
 
 /**
  * @typedef ColumnConfig
@@ -34,7 +36,7 @@ export class FUTableRenderer {
 	static TABLE_CONFIG = {};
 
 	/**
-	 * @type TableConfig
+	 * @type {Omit<TableConfig, "dragDrop"> & {dragDrop: DragDrop[]}}
 	 */
 	#tableConfig;
 
@@ -77,6 +79,19 @@ export class FUTableRenderer {
 		for (const [action, handler] of Object.entries(config.actions ?? {})) {
 			config.actions[action] = handler.bind(this);
 		}
+		config.dragDrop = (config.dragDrop ?? []).map((dragDropConfig) => {
+			dragDropConfig.permissions ??= {};
+			for (let key in dragDropConfig.permissions) {
+				dragDropConfig.permissions[key] = dragDropConfig.permissions[key].bind(this);
+			}
+
+			dragDropConfig.callbacks ??= {};
+			for (let key in dragDropConfig.callbacks) {
+				dragDropConfig.callbacks[key] = dragDropConfig.callbacks[key].bind(this);
+			}
+
+			return new foundry.applications.ux.DragDrop.implementation(dragDropConfig);
+		});
 
 		this.initializeOptions(config);
 
@@ -84,7 +99,7 @@ export class FUTableRenderer {
 	}
 
 	/**
-	 * @return TableConfig
+	 * @return {Omit<TableConfig, "dragDrop"> & {dragDrop: DragDrop[]}}
 	 */
 	get tableConfig() {
 		return this.#tableConfig;
@@ -227,8 +242,24 @@ export class FUTableRenderer {
 	 */
 	activateListeners(application) {
 		this.#application = application;
-		application.element.addEventListener('click', this.#clickHandler);
-		application.element.addEventListener('contextmenu', this.#clickHandler);
+
+		const renderHookId = Hooks.on('renderApplicationV2', (application, element) => {
+			if (application === this.application) {
+				const tables = element.querySelectorAll(`.fu-table[data-table-id="${this.#tableId}"]`);
+				tables.forEach((table) => {
+					table.addEventListener('click', this.#clickHandler);
+					table.addEventListener('contextmenu', this.#clickHandler);
+					this.tableConfig.dragDrop.forEach((dragDrop) => dragDrop.bind(table));
+				});
+			}
+		});
+
+		const closeHookId = Hooks.on('closeApplicationV2', (application) => {
+			if (application === this.application) {
+				Hooks.off('renderApplicationV2', renderHookId);
+				Hooks.off('closeApplicationV2', closeHookId);
+			}
+		});
 	}
 
 	#onClick(event) {

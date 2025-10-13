@@ -325,12 +325,29 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 		});
 	}
 
-	inspectTechnosphere(event, target) {
-		if (event.button !== 0) return;
-		const itemId = target.closest('[data-technosphere-id]')?.dataset?.technosphereId;
-		const item = this.items.get(itemId);
-		if (item) {
-			item.sheet.render({ force: true });
+	slotTechnosphere(technosphere) {
+		if (['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+			const promises = [];
+			promises.push(this.createEmbeddedDocuments(PseudoItem.documentName, [technosphere.toObject(true)]));
+			if (technosphere.isEmbedded) {
+				promises.push(technosphere.delete());
+			}
+			return Promise.all(promises);
+		} else {
+			ui.notifications.error('FU.TechnospheresSlottingErrorNotTechnosphere', { localize: true });
 		}
+	}
+
+	removeTechnosphere(technosphere) {
+		const promises = [];
+		const item = this.items.get(technosphere.id);
+		if (item) {
+			if (item.actor && ['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+				const itemObject = item.toObject(true);
+				promises.push(this.parent.actor.createEmbeddedDocuments('Item', [itemObject]));
+			}
+			promises.push(item.delete());
+		}
+		return Promise.all(promises);
 	}
 }
