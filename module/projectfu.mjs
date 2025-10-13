@@ -359,17 +359,6 @@ Hooks.once('setup', () => {});
 
 FUHandlebars.registerHelpers();
 
-Handlebars.registerHelper('times', function (n, block) {
-	let accum = '';
-	for (let i = 0; i < n; ++i) {
-		block.data.index = i;
-		block.data.first = i === 0;
-		block.data.last = i === n - 1;
-		accum += block.fn(this);
-	}
-	return accum;
-});
-
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */

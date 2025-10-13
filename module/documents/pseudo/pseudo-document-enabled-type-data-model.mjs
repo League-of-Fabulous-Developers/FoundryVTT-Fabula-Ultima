@@ -1,5 +1,13 @@
 import { PseudoDocumentCollectionField } from './pseudo-document-collection-field.mjs';
 
+/**
+ * Specialized subclass of TypeDataModel with added support for PseudoDocumentCollectionFields in their schema.
+ * Document subtypes that do not support embedding PseudoDocuments should still prefer TypeDataModel.
+ * @see ArmorDataModel
+ * @see CustomWeaponDataModel
+ * @see MnemosphereDataModel
+ * @see MnemosphereReceptacleDataModel
+ */
 export class PseudoDocumentEnabledTypeDataModel extends foundry.abstract.TypeDataModel {
 	_configure() {
 		// Construct Embedded Collections
