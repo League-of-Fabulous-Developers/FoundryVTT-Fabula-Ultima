@@ -1,0 +1,17 @@
+<div>
+	{{#each effects}}
+		<p>
+			<strong>
+				<span>{{name}}</span>
+				{{#if (gt coagulationLevel 1)}}
+					<span data-tooltip="{{localize 'FU.HoplosphereEffectCoagLevelRequired' level=coagulationLevel}}">
+						<i class="fas fa-droplet"></i>
+						{{coagulationLevel}}
+					</span>
+				{{/if}}
+			</strong>
+			<br/>
+			<span>{{{summary}}}</span>
+		</p>
+	{{/each}}
+</div>

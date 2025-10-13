@@ -1,0 +1,46 @@
+{
+  "name": "Steadfast Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/steadfast.png",
+  "system": {
+    "fuid": "steadfast-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainStatusImmunity",
+        "coagulationLevel": 1,
+        "status": "shaken"
+      },
+      {
+        "type": "increaseResourceRecovery",
+        "coagulationLevel": 2,
+        "resource": "mp",
+        "amount": 2
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658516826,
+    "modifiedTime": 1759658516826,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "k57mGWuP5dJRUHac",
+  "sort": 0,
+  "_key": "!items!k57mGWuP5dJRUHac"
+}

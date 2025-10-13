@@ -30,11 +30,3 @@ export const HTMLUtils = Object.freeze({
 		};
 	},
 });
-
-/**
- * @typedef KeyboardModifiers
- * @property {boolean} shift
- * @property {boolean} alt
- * @property {boolean} ctrl
- * @property {boolean} meta
- */

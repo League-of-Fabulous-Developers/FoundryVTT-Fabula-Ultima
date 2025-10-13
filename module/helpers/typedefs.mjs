@@ -264,3 +264,11 @@ export {};
  *                                        used when the return type of the validate function is a boolean. If an Error
  *                                        is thrown in the validate function, the string message of that Error is used.
  */
+
+/**
+ * @typedef KeyboardModifiers
+ * @property {boolean} shift
+ * @property {boolean} alt
+ * @property {boolean} ctrl
+ * @property {boolean} meta
+ */

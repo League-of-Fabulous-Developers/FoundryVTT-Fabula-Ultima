@@ -1,0 +1,5 @@
+.hoplosphere-sheet__main {
+	margin-top: var(--spacing-md);
+	height: 100%;
+	overflow-y: scroll;
+}

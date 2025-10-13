@@ -173,12 +173,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742677029227,
-    "modifiedTime": 1745431389871,
-    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "modifiedTime": 1759658744144,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
     "exportSource": null
   },
   "formula": "1d6",
@@ -187,6 +187,6 @@
     "aylHtMTxbnWEKFH9": 3
   },
   "_id": "sKStLRxDOy1yZkuJ",
-  "sort": 0,
+  "sort": 400000,
   "_key": "!tables!sKStLRxDOy1yZkuJ"
 }

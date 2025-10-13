@@ -1,0 +1,40 @@
+{
+  "name": "Snaring Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/snaring.png",
+  "system": {
+    "fuid": "snaring-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "hitsCauseStatus",
+        "coagulationLevel": 1,
+        "status": "slow"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658514271,
+    "modifiedTime": 1759658514271,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "3GQwV701OITMSfTS",
+  "sort": 0,
+  "_key": "!items!3GQwV701OITMSfTS"
+}

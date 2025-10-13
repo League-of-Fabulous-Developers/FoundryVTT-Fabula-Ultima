@@ -1,0 +1,31 @@
+<div class="mnemosphere-table-description">
+	<div class="mnemosphere-table-description__skill-table">
+		<div class="mnemosphere-table-description__table-header">{{localize "FU.Skills"}}</div>
+		{{#each skills}}
+			<div class="mnemosphere-table-description__skill">
+				<img src="{{img}}" alt="{{name}}" class="mnemosphere-table-description__image-cell">
+				<span class="mnemosphere-table-description__name-cell">{{name}}</span>
+				<span class="mnemosphere-table-description__level-cell">
+					<span class="mnemosphere-table-description__level-cell-inner">
+						{{#each stars}}
+							<span>
+								<i class="mnemosphere-table-description__star {{#if this}} fus-sl-star {{else}} ful-sl-star {{/if}}"></i>
+							</span>
+						{{/each}}
+					</span>
+				</span>
+			</div>
+		{{/each}}
+	</div>
+	{{#if heroics}}
+		<div class="mnemosphere-table-description__heroic-table">
+			<div class="mnemosphere-table-description__table-header">{{localize "FU.Heroics"}}</div>
+			{{#each heroics}}
+				<div class="mnemosphere-table-description__heroic">
+					<img src="{{img}}" alt="{{name}}" class="mnemosphere-table-description__image-cell">
+					<span class="mnemosphere-table-description__name-cell">{{name}}</span>
+				</div>
+			{{/each}}
+		</div>
+	{{/if}}
+</div>

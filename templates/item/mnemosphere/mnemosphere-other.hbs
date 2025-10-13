@@ -1,0 +1,14 @@
+<main class="other tab {{tab.cssClass}}" data-tab="other" data-group="primary">
+	{{#each otherCategories}}
+		{{#if table}}
+			<section class="desc resource-content">
+				<header class="items-main-header">
+				<span class="items-main">
+					{{localize label}}
+				</span>
+				</header>
+				{{{table}}}
+			</section>
+		{{/if}}
+	{{/each}}
+</main>

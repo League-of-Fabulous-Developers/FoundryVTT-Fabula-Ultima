@@ -138,7 +138,7 @@
   "replacement": true,
   "displayRoll": true,
   "folder": null,
-  "sort": 0,
+  "sort": 300000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -147,12 +147,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744494259294,
-    "modifiedTime": 1747177729091,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1759658744144,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
     "exportSource": null
   },
   "formula": "1d10",

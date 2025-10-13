@@ -108,7 +108,7 @@ function getTags(skill) {
  * @property {string} class.value
  * @property {UseWeaponDataModelV2} useWeapon
  * @property {ItemAttributesDataModelV2} attributes
- * @property {number} accuracy.value
+ * @property {number} accuracy
  * @property {Defense} defense
  * @property {DamageDataModelV2} damage
  * @property {ImprovisedDamageDataModel} impdamage
@@ -301,6 +301,10 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			});
 			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
 		};
+	}
+
+	shouldApplyEffect(effect) {
+		return this.level.value > 0;
 	}
 
 	get attributePartials() {

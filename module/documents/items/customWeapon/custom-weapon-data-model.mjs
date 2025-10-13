@@ -1,10 +1,28 @@
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { Checks } from '../../../checks/checks.mjs';
+import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-collection-field.mjs';
+import { PseudoItem } from '../pseudo-item.mjs';
+import { SETTINGS } from '../../../settings.js';
+import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
+
+const slotsByQuality = {
+	alpha: 1,
+	beta: 2,
+	gamma: 3,
+	delta: 4,
+};
+
+const mnemospheresByQuality = {
+	alpha: 1,
+	beta: 1,
+	gamma: 2,
+	delta: 2,
+};
 
 /**
  * @param {CheckV2} check
@@ -67,13 +85,25 @@ function onRenderCheck(sections, result, actor, item) {
 					tag: `FU.${item.system.category.capitalize()}`,
 				},
 				{
+					tag: 'FU.TwoHanded',
+				},
+				{
 					tag: `FU.${item.system.type.capitalize()}`,
 				},
 			],
 			CHECK_DETAILS,
 		);
 		CommonSections.quality(sections, item.system.quality, CHECK_DETAILS);
-		CommonSections.description(sections, item.system.description, item.system.summary, CHECK_DETAILS);
+
+		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
+			sections.push({
+				partial: 'projectfu.technospheres.chatSlotted',
+				data: { slotted: item.system.slotted },
+				order: CHECK_DETAILS,
+			});
+		} else {
+			CommonSections.description(sections, item.system.description, item.system.summary, CHECK_DETAILS);
+		}
 	}
 }
 
@@ -108,6 +138,7 @@ class CustomWeaponFormDataModel extends foundry.abstract.DataModel {
 				type: new StringField({
 					initial: 'physical',
 					choices: Object.keys(FU.damageTypes),
+					blank: true,
 					nullable: false,
 				}),
 			}),
@@ -131,8 +162,10 @@ class CustomWeaponFormDataModel extends foundry.abstract.DataModel {
  * @property {'primaryForm', 'secondaryForm'} activeForm
  * @property {CustomWeaponFormDataModel} primaryForm
  * @property {CustomWeaponFormDataModel} secondaryForm
+ * @property {'alpha','beta','gamma','delta'} slots
+ * @property {PseudoDocumentCollection} items
  */
-export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
+export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField, SchemaField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return {
@@ -150,6 +183,8 @@ export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
 			primaryForm: new EmbeddedDataField(CustomWeaponFormDataModel),
 			secondaryForm: new EmbeddedDataField(CustomWeaponFormDataModel),
 			traits: new SetField(new StringField()),
+			slots: new StringField({ initial: 'alpha', choices: ['alpha', 'beta', 'gamma', 'delta'] }),
+			items: new PseudoDocumentCollectionField(PseudoItem),
 		};
 	}
 
@@ -172,6 +207,24 @@ export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
 		if (!this.isTransforming) {
 			this.activeForm = 'primaryForm';
 		}
+
+		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
+			this.quality = game.i18n.localize(FU.technospheres.weaponSlots[this.slots].label);
+		}
+	}
+
+	prepareDerivedData() {
+		this.slotted = this.items
+			.filter((item) => ['mnemosphere', 'hoplosphere'].includes(item.type))
+			.sort((left, right) => {
+				if (left.type === 'mnemosphere' && right.type === 'hoplosphere') {
+					return -1;
+				}
+				if (right.type === 'mnemosphere' && left.type === 'hoplosphere') {
+					return 1;
+				}
+				return 0;
+			});
 	}
 
 	/**
@@ -180,6 +233,14 @@ export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	async roll(modifiers) {
 		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+	}
+
+	get slotCount() {
+		return slotsByQuality[this.slots];
+	}
+
+	get mnemosphereSlots() {
+		return mnemospheresByQuality[this.slots];
 	}
 
 	/**
@@ -250,6 +311,10 @@ export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.weaponsActive;
 	}
 
+	afterApplyActiveEffects() {
+		foundry.utils.mergeObject(this.parent.overrides, this.#computedPropertiesSetByActiveEffect);
+	}
+
 	equipWeapon(event, target) {
 		this.parent.actor.equipmentHandler.handleItemClick(event, target);
 	}
@@ -258,5 +323,31 @@ export class CustomWeaponDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent.update({
 			'system.activeForm': this.activeForm === 'primaryForm' ? 'secondaryForm' : 'primaryForm',
 		});
+	}
+
+	slotTechnosphere(technosphere) {
+		if (['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+			const promises = [];
+			promises.push(this.createEmbeddedDocuments(PseudoItem.documentName, [technosphere.toObject(true)]));
+			if (technosphere.isEmbedded) {
+				promises.push(technosphere.delete());
+			}
+			return Promise.all(promises);
+		} else {
+			ui.notifications.error('FU.TechnospheresSlottingErrorNotTechnosphere', { localize: true });
+		}
+	}
+
+	removeTechnosphere(technosphere) {
+		const promises = [];
+		const item = this.items.get(technosphere.id);
+		if (item) {
+			if (item.actor && ['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+				const itemObject = item.toObject(true);
+				promises.push(this.parent.actor.createEmbeddedDocuments('Item', [itemObject]));
+			}
+			promises.push(item.delete());
+		}
+		return Promise.all(promises);
 	}
 }

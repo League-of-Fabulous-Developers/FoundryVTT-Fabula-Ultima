@@ -197,6 +197,17 @@
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
 			}
+		},
+		{
+			"label": "Technospheres",
+			"type": "Item",
+			"name": "technospheres",
+			"path": "packs/technospheres",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
 		}
 	],
 	"packFolders": [
@@ -222,7 +233,7 @@
 			"name": "Equipment",
 			"sorting": "a",
 			"color": "#005390",
-			"packs": ["basic-equipment", "consumables", "vehicle-modules"]
+			"packs": ["basic-equipment", "consumables", "vehicle-modules", "technospheres"]
 		},
 		{
 			"name": "GM Tools",
@@ -368,6 +379,15 @@
 				"htmlFields": ["description"]
 			},
 			"customWeapon": {
+				"htmlFields": ["description"]
+			},
+			"hoplosphere": {
+				"htmlFields": []
+			},
+			"mnemosphere": {
+				"htmlFields": []
+			},
+			"mnemosphereReceptacle": {
 				"htmlFields": ["description"]
 			}
 		}

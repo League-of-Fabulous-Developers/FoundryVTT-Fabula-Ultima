@@ -1,5 +1,6 @@
 import { FU } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
+import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
 
 /**
  * The Application responsible for configuring a single ActiveEffect document within a parent Actor or Item.
@@ -57,6 +58,13 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			labelPrefix: 'EFFECT.TABS',
 		},
 	};
+
+	static _migrateConstructorParams(first, rest) {
+		if (first?.document instanceof PseudoDocument) {
+			return first;
+		}
+		return super._migrateConstructorParams(first, rest);
+	}
 
 	/** @inheritDoc */
 	async _preparePartContext(partId, context) {

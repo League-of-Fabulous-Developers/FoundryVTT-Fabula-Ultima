@@ -1,0 +1,54 @@
+<div class="description-with-slots {{#if (eq layout 'flex')}} description-with-slots--flex {{/if}}">
+	<div class="description-with-slots__description-container">
+		{{#if tags}}
+			<div class="fu-tags">
+				{{#each tags}}
+					{{#if flip}}
+						<div class="fu-tag" data-tooltip="{{localize tooltip}}">{{value}}{{separator}} {{localize
+						 tag}}</div>
+					{{else}}
+						<div class="fu-tag" data-tooltip="{{localize tooltip}}">{{localize
+						 tag}}{{separator}} {{value}}</div>
+					{{/if}}
+				{{/each}}
+			</div>
+		{{/if}}
+		<div>
+			{{{description}}}
+		</div>
+	</div>
+	<div class="description-with-slots__slots-container">
+		<div class="description-with-slots__slots">
+			{{#each slots as | slot |}}
+				{{#if slot.item}}
+					<a class="description-with-slots__slot
+					{{~#if slot.overCapacity}} description-with-slots__slot--over-capacity {{/if~}}
+						{{~#if
+						 (eq slot.type "mnemosphere")}} description-with-slots__slot--mnemosphere {{else}} description-with-slots__slot--hoplosphere {{/if~}}"
+					   data-technosphere-id="{{ slot.item.id }}"
+					   data-technosphere-uuid="{{ slot.item.uuid }}"
+					   data-action="technosphere"
+					   data-tooltip="{{{ slot.tooltip }}}{{#if slot.overCapacity}}<br/>{{localize "FU.TechnospheresOverCapacity"}}{{/if}}"
+					>
+						<img class="description-with-slots__item-icon" src="{{slot.item.img}}"
+							 alt="{{slot.item.name}}">
+					</a>
+				{{else}}
+					<span class="description-with-slots__slot
+						{{~#if slot.occupied}} description-with-slots__slot--occupied {{else}} description-with-slots__slot--empty {{/if~}}
+						{{~#if slot.overCapacity}} description-with-slots__slot--over-capacity {{/if~}}
+						{{~#if (eq slot.type "mnemosphere")}} description-with-slots__slot--mnemosphere {{else}} description-with-slots__slot--hoplosphere {{/if~}}"
+						{{~#if (or slot.occupied slot.overCapacity)}}
+						  data-tooltip="
+							  {{~#if slot.occupied}}{{localize "FU.HoplosphereRequiresTwoSlots"}}{{/if~}}
+							  {{#if (and slot.overCapacity slot.occupied)}}<br/>{{/if}}
+							  {{~#if slot.overCapacity}}{{localize "FU.TechnospheresOverCapacity"}}{{/if~}}
+							"
+						{{~/if}}
+					>
+					</span>
+				{{/if}}
+			{{/each}}
+		</div>
+	</div>
+</div>

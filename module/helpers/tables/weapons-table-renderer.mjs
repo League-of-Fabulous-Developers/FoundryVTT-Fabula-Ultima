@@ -3,6 +3,7 @@ import { CommonDescriptions } from './common-descriptions.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
+import { TextEditor } from '../text-editor.mjs';
 
 const customWeaponFormTranslations = {
 	primaryForm: 'FU.CustomWeaponFormPrimary',
@@ -26,22 +27,25 @@ const weaponDescriptionRenderer = CommonDescriptions.descriptionWithTags((item) 
 	return tags;
 });
 
-const customWeaponDescriptionRenderer = CommonDescriptions.descriptionWithTags((item) => {
-	const tags = [];
-	tags.push({
-		tag: 'FU.Cost',
-		separator: ':',
-		value: item.system.cost,
-	});
-	if (item.system.quality) {
+const customWeaponDescriptionRenderer = CommonDescriptions.descriptionWithTechnospheres(
+	(item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.mnemosphereSlots }),
+	(item) => {
+		const tags = [];
 		tags.push({
-			tag: 'FU.Quality',
+			tag: 'FU.Cost',
 			separator: ':',
-			value: item.system.quality,
+			value: item.system.cost,
 		});
-	}
-	return tags;
-});
+		if (item.system.quality) {
+			tags.push({
+				tag: 'FU.Quality',
+				separator: ':',
+				value: item.system.quality,
+			});
+		}
+		return tags;
+	},
+);
 
 const renderDescriptionByType = {
 	weapon: weaponDescriptionRenderer,
@@ -62,13 +66,27 @@ export class WeaponsTableRenderer extends FUTableRenderer {
 				renderHeader: () => game.i18n.localize('FU.EquipStatus'),
 				renderCell: WeaponsTableRenderer.#renderEquipStatus,
 			},
-			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: 'weapon' }, { disableEdit: WeaponsTableRenderer.#isUnarmedAttack, disableMenu: WeaponsTableRenderer.#isUnarmedAttack }),
+			controls: CommonColumns.itemControlsColumn({ label: 'FU.Weapon', type: 'weapon,customWeapon' }, { disableEdit: WeaponsTableRenderer.#isUnarmedAttack, disableMenu: WeaponsTableRenderer.#isUnarmedAttack }),
 		},
+		actions: {
+			technosphere: WeaponsTableRenderer.#technosphereAction,
+		},
+		dragDrop: [
+			{
+				dropSelector: '.description-with-slots__slots-container .description-with-slots__slot--empty',
+				permissions: {
+					drop: WeaponsTableRenderer.#canDrop,
+				},
+				callbacks: {
+					drop: WeaponsTableRenderer.#onDrop,
+				},
+			},
+		],
 	};
 
 	static #getItems(actor) {
 		const weapons = [];
-		for (const item of actor.items) {
+		for (const item of actor.allItems()) {
 			if (item.type in FU.weaponItemTypes) {
 				weapons.push(item);
 			}
@@ -195,5 +213,41 @@ export class WeaponsTableRenderer extends FUTableRenderer {
 		}
 
 		return classes.join(' ');
+	}
+
+	static async #technosphereAction(event, target) {
+		const item = await fromUuid(target.closest('[data-uuid]')?.dataset?.uuid);
+		const technosphere = await fromUuid(target.closest('[data-technosphere-uuid]')?.dataset?.technosphereUuid);
+
+		if (event.button === 0) {
+			if (technosphere) {
+				return technosphere.sheet.render({ force: true });
+			}
+		}
+
+		if (event.button === 2) {
+			if (item && technosphere) {
+				return item.system.removeTechnosphere(technosphere);
+			}
+		}
+	}
+
+	static #canDrop() {
+		return this.application.isEditable;
+	}
+
+	static async #onDrop(dragEvent) {
+		const eventData = TextEditor.getDragEventData(dragEvent);
+
+		if (eventData.type === 'Item') {
+			dragEvent.preventDefault();
+			dragEvent.stopPropagation();
+
+			const item = await fromUuid(dragEvent.target.closest('[data-uuid]')?.dataset?.uuid);
+			if (item && item.type === 'customWeapon') {
+				const droppedItem = await fromUuid(eventData.uuid);
+				return item.system.slotTechnosphere(droppedItem);
+			}
+		}
 	}
 }

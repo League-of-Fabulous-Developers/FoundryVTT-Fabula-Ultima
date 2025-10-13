@@ -8,8 +8,9 @@ export class FeatureTables {
 
 	/**
 	 * @param {"classFeature", "optionalFeature"} featureType
+	 * @param {typeof FUTableRenderer} [tableImplementation]
 	 */
-	constructor(featureType) {
+	constructor(featureType, tableImplementation = FeaturesTableRenderer) {
 		const registries = {
 			classFeature: FU.classFeatureRegistry,
 			optionalFeature: FU.optionalFeatureRegistry,
@@ -29,18 +30,20 @@ export class FeatureTables {
 		Object.entries(registry.all)
 			.sort(compareTranslations)
 			.forEach(([key, feature]) => {
-				this.#featureTables[key] = new FeatureTablesRenderer(featureType, key, feature);
+				this.#featureTables[key] = new tableImplementation(featureType, key, feature);
 			});
 	}
 
-	async renderTable(document) {
-		const tables = Object.fromEntries(Object.entries(this.#featureTables).map(([key, table]) => [key, table.renderTable(document)]));
+	async renderTable(document, options) {
+		const tables = Object.fromEntries(Object.entries(this.#featureTables).map(([key, table]) => [key, table.renderTable(document, options)]));
 
 		for (let key of Object.keys(tables)) {
 			tables[key] = await tables[key];
 		}
 
-		return Object.values(tables).join('\n');
+		return Object.values(tables)
+			.filter((table) => !!table)
+			.join('\n');
 	}
 
 	/**
@@ -51,20 +54,20 @@ export class FeatureTables {
 	}
 }
 
-class FeatureTablesRenderer extends FUTableRenderer {
+export class FeaturesTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: 'features-table',
-		getItems: FeatureTablesRenderer.#getItems,
-		renderDescription: CommonDescriptions.descriptionWithCustomEnrichment(FeatureTablesRenderer.#renderDescription),
+		getItems: FeaturesTableRenderer.#getItems,
+		renderDescription: CommonDescriptions.descriptionWithCustomEnrichment(FeaturesTableRenderer.#renderDescription),
 		hideIfEmpty: true,
 		columns: {
-			name: CommonColumns.itemNameColumn({ columnName: FeatureTablesRenderer.#getNameColumnName, headerSpan: 2 }),
+			name: CommonColumns.itemNameColumn({ columnName: FeaturesTableRenderer.#getNameColumnName, headerSpan: 2 }),
 			inlay: {
 				hideHeader: true,
-				renderCell: FeatureTablesRenderer.#renderFeatureInlay,
+				renderCell: FeaturesTableRenderer.#renderFeatureInlay,
 			},
-			controls: CommonColumns.itemControlsColumn({ custom: FeatureTablesRenderer.#renderControlsHeader }),
+			controls: CommonColumns.itemControlsColumn({ custom: FeaturesTableRenderer._renderControlsHeader }),
 		},
 	};
 
@@ -82,6 +85,18 @@ class FeatureTablesRenderer extends FUTableRenderer {
 		this.#itemType = itemType;
 		this.#featureKey = featureKey;
 		this.#featureDataModel = featureDataModel;
+	}
+
+	get itemType() {
+		return this.#itemType;
+	}
+
+	get featureKey() {
+		return this.#featureKey;
+	}
+
+	get featureDataModel() {
+		return this.#featureDataModel;
 	}
 
 	static #getItems(document) {
@@ -105,7 +120,7 @@ class FeatureTablesRenderer extends FUTableRenderer {
 	/**
 	 * @return {Promise<string>}
 	 */
-	static async #renderControlsHeader() {
+	static async _renderControlsHeader() {
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/header/header-item-controls.hbs', {
 			label: this.#featureDataModel.translation,
 			type: this.#itemType,

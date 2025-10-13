@@ -103,7 +103,7 @@ export class LocallyEmbeddedDocumentField extends foundry.data.fields.DocumentId
 			let current = model;
 			while (current) {
 				if (current instanceof this.parentType) {
-					collection = current[this.embeddedType.metadata.collection];
+					collection = current.getEmbeddedCollection(this.embeddedType.documentName);
 					break;
 				} else {
 					current = current.parent;
@@ -115,10 +115,14 @@ export class LocallyEmbeddedDocumentField extends foundry.data.fields.DocumentId
 			if (!document) {
 				return this.options.fallback ? value : null;
 			} else {
-				try {
-					return this.userValidate(document) ? document : null;
-				} catch (e) {
-					return null;
+				if (this.userValidate) {
+					try {
+						return this.userValidate(document) ? document : null;
+					} catch (e) {
+						return null;
+					}
+				} else {
+					return document;
 				}
 			}
 		};

@@ -35,16 +35,14 @@ const description = (sections, description, summary, order, open = true) => {
 
 /**
  * @param {CheckRenderData} sections
- * @param {string} text
- * @param {string} summary
+ * @param {string, Promise<string>} text
  * @param {number} [order]
- * @param {Boolean} open Defaults to true
  */
 const genericText = (sections, text, order) => {
 	sections.push(async () => ({
 		partial: 'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 		data: {
-			text: await TextEditor.enrichHTML(text),
+			text: await TextEditor.enrichHTML(await text),
 		},
 		order,
 	}));
@@ -332,6 +330,19 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 	}
 };
 
+/**
+ * @param {CheckRenderData} sections
+ * @param {FUItem[]} slottedTechnospheres
+ * @param {number} [order]
+ */
+const slottedTechnospheres = (sections, slottedTechnospheres, order) => {
+	sections.push({
+		partial: 'projectfu.technospheres.chatSlotted',
+		data: { slotted: slottedTechnospheres },
+		order,
+	});
+};
+
 export const CommonSections = {
 	description,
 	genericText,
@@ -345,4 +356,5 @@ export const CommonSections = {
 	opportunity,
 	targeted,
 	spendResource,
+	slottedTechnospheres,
 };

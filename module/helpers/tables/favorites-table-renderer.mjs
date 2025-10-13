@@ -5,6 +5,7 @@ import { systemTemplatePath } from '../system-utils.mjs';
 import { FU, SYSTEM } from '../config.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ProgressDataModel } from '../../documents/items/common/progress-data-model.mjs';
+import { TextEditor } from '../text-editor.mjs';
 
 const customWeaponFormTranslations = {
 	primaryForm: 'FU.CustomWeaponFormPrimary',
@@ -55,59 +56,89 @@ const descriptionRenderers = {
 		}
 		return tags;
 	}),
-	armor: CommonDescriptions.descriptionWithTags((item) => {
-		const tags = [];
-		tags.push({
-			tag: 'FU.DefenseAbbr',
-			separator: ':',
-			value: item.system.def.attribute ? `${game.i18n.localize(FU.attributeAbbreviations[item.system.def.attribute])} + ${item.system.def.value}` : `${item.system.def.value}`,
-		});
-		tags.push({
-			tag: 'FU.MagicDefenseAbbr',
-			separator: ':',
-			value: item.system.mdef.attribute ? `${game.i18n.localize(FU.attributeAbbreviations[item.system.mdef.attribute])} + ${item.system.mdef.value}` : `${item.system.def.value}`,
-		});
-		tags.push({
-			tag: 'FU.InitiativeAbbr',
-			separator: ':',
-			value: item.system.init.value,
-		});
-		if (item.system.quality.value) {
+	armor: CommonDescriptions.descriptionWithTechnospheres(
+		(item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.mnemosphereSlots }),
+		(item) => {
+			const tags = [];
 			tags.push({
-				tag: 'FU.Quality',
+				tag: 'FU.DefenseAbbr',
 				separator: ':',
-				value: item.system.quality.value,
+				value: item.system.def.attribute ? `${game.i18n.localize(FU.attributeAbbreviations[item.system.def.attribute])} + ${item.system.def.value}` : `${item.system.def.value}`,
 			});
-		}
-		return tags;
-	}),
+			tags.push({
+				tag: 'FU.MagicDefenseAbbr',
+				separator: ':',
+				value: item.system.mdef.attribute ? `${game.i18n.localize(FU.attributeAbbreviations[item.system.mdef.attribute])} + ${item.system.mdef.value}` : `${item.system.def.value}`,
+			});
+			tags.push({
+				tag: 'FU.InitiativeAbbr',
+				separator: ':',
+				value: item.system.init.value,
+			});
+			if (item.system.quality.value) {
+				tags.push({
+					tag: 'FU.Quality',
+					separator: ':',
+					value: item.system.quality.value,
+				});
+			}
+			return tags;
+		},
+		'flex',
+	),
 	basic: CommonDescriptions.simpleDescription(),
 	behavior: CommonDescriptions.descriptionWithTags((item) => (item.system.weight.value ? [{ tag: 'FU.BehaviorWeight', separator: ':', value: item.system.weight.value }] : [])),
 	class: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
 	classFeature: CommonDescriptions.descriptionWithCustomEnrichment(renderFeatureDescription),
-	customWeapon: CommonDescriptions.descriptionWithTags((item) => {
-		const tags = [];
-		tags.push({ tag: FU.weaponTypes[item.system.type] });
-		tags.push({ tag: FU.weaponCategories[item.system.category] });
-		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
-		tags.push({
-			tag: 'FU.Cost',
-			separator: ':',
-			value: item.system.cost,
-		});
-		if (item.system.quality.value) {
+	customWeapon: CommonDescriptions.descriptionWithTechnospheres(
+		(item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.mnemosphereSlots }),
+		(item) => {
+			const tags = [];
+			if (item.system.quality) {
+				tags.push({
+					tag: 'FU.Quality',
+					separator: ':',
+					value: item.system.quality,
+				});
+			}
+			tags.push({ tag: FU.weaponTypes[item.system.type] });
+			tags.push({ tag: FU.weaponCategories[item.system.category] });
+			tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
 			tags.push({
-				tag: 'FU.Quality',
+				tag: 'FU.Cost',
 				separator: ':',
-				value: item.system.quality,
+				value: item.system.cost,
 			});
-		}
-		return tags;
-	}),
+			return tags;
+		},
+		'flex',
+	),
 	optionalFeature: CommonDescriptions.descriptionWithCustomEnrichment(renderFeatureDescription),
 	consumable: CommonDescriptions.descriptionWithTags((item) => [{ tag: 'FU.InventoryCost', separator: ':', value: item.system.ipCost.value }]),
 	heroic: CommonDescriptions.simpleDescription(),
+	hoplosphere: CommonDescriptions.descriptionWithCustomEnrichment((item) =>
+		foundry.applications.handlebars.renderTemplate('projectfu.hoplosphere.displayEffects', {
+			effects: item.system.effects.map((effect) => ({
+				name: effect.effectLabel,
+				summary: effect.summary,
+				coagulationLevel: effect.coagulationLevel,
+			})),
+		}),
+	),
 	miscAbility: CommonDescriptions.simpleDescription(),
+	mnemosphere: CommonDescriptions.descriptionWithCustomEnrichment(
+		(item) =>
+			foundry.applications.handlebars.renderTemplate('projectfu.mnemosphere.tableDescription', {
+				skills: item.system.activeSkills.map((skill) => ({
+					name: skill.name,
+					img: skill.img,
+					stars: Array.fromRange(skill.system.level.max, 1).map((level) => level <= skill.system.level.value),
+				})),
+				heroics: item.system.heroics.map((heroic) => ({ name: heroic.name, img: heroic.img })),
+			}),
+		(item) => [{ tag: 'FU.Class', separator: ':', value: item.system.class, show: !!item.system.class }],
+	),
+	mnemosphereReceptacle: CommonDescriptions.descriptionWithTechnospheres((item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.slotCount }), null, 'flex'),
 	project: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
 	ritual: CommonDescriptions.descriptionWithTags((item) => [
 		{ tag: 'FU.MindPointCost', separator: ':', value: item.system.mpCost.value },
@@ -589,7 +620,24 @@ const detailsRenderers = {
 	optionalFeature: renderFeatureDetails,
 	consumable: renderSummary(),
 	heroic: heroicDetailsRenderer,
+	hoplosphere: CommonColumns.textColumn({
+		getText: (item) => {
+			const icons = [];
+			if (item.system.socketable === 'weapon') {
+				icons.push(`<i class="ra ra-sword ra-1xh" data-tooltip="${game.i18n.localize('FU.HoplosphereTooltipSocketableWeaponOnly')}"></i>`);
+			}
+			if (item.system.requiredSlots === 2) {
+				icons.push(`<i class="ra ra-kettlebell ra-1xh" data-tooltip="${game.i18n.localize('FU.HoplosphereTooltipRequiresTwoSlots')}"></i>`);
+			}
+			if (item.system.effects.some((effect) => effect.coagulationLevel > 1)) {
+				icons.push(`<i class="ra ra-droplet ra-1xh" data-tooltip="${game.i18n.localize('FU.HoplosphereTooltipHasCoagulationEffects')}"></i>`);
+			}
+			return icons.join('');
+		},
+		alignment: 'end',
+	}).renderCell,
 	miscAbility: renderAbilityDetails(),
+	mnemosphere: CommonColumns.textColumn({ getText: (item) => `${item.system.level} / ${item.system.maxLevel}`, alignment: 'end', importance: 'high' }).renderCell,
 	project: renderProjectDetails(),
 	ritual: renderSummary(),
 	rule: renderSummary(),
@@ -667,7 +715,19 @@ export class FavoritesTableRenderer extends FUTableRenderer {
 		},
 		actions: {
 			sortFavorites: FavoritesTableRenderer.#toggleSort,
+			technosphere: FavoritesTableRenderer.#technosphereAction,
 		},
+		dragDrop: [
+			{
+				dropSelector: '.description-with-slots__slots-container .description-with-slots__slot--empty',
+				permissions: {
+					drop: FavoritesTableRenderer.#canDrop,
+				},
+				callbacks: {
+					drop: FavoritesTableRenderer.#onDrop,
+				},
+			},
+		],
 	};
 
 	/**
@@ -681,7 +741,13 @@ export class FavoritesTableRenderer extends FUTableRenderer {
 	#sortOrder = 1;
 
 	static #getItems(actor) {
-		return actor.items.filter((item) => item.isFavorite);
+		const favorites = [];
+		for (const item of actor.allItems()) {
+			if (item.isFavorite) {
+				favorites.push(item);
+			}
+		}
+		return favorites;
 	}
 
 	static #sort(a, b) {
@@ -749,5 +815,53 @@ export class FavoritesTableRenderer extends FUTableRenderer {
 	<i class="fas ${icon} icon"></i>
 	${game.i18n.localize('FU.Sort')}
 </a>`;
+	}
+
+	static async #technosphereAction(event, target) {
+		const item = await fromUuid(target.closest('[data-uuid]')?.dataset?.uuid);
+		const technosphere = await fromUuid(target.closest('[data-technosphere-uuid]')?.dataset?.technosphereUuid);
+
+		if (event.button === 0) {
+			if (technosphere) {
+				return technosphere.sheet.render({ force: true });
+			}
+		}
+
+		if (event.button === 2) {
+			if (item && technosphere) {
+				if (item.type === 'mnemosphereReceptacle') {
+					return item.system.removeMnemosphere(technosphere);
+				}
+
+				if (['customWeapon', 'armor'].includes(item.type)) {
+					return item.system.removeTechnosphere(technosphere);
+				}
+			}
+		}
+	}
+
+	static #canDrop() {
+		return this.application.isEditable;
+	}
+
+	static async #onDrop(dragEvent) {
+		const eventData = TextEditor.getDragEventData(dragEvent);
+
+		if (eventData.type === 'Item') {
+			dragEvent.preventDefault();
+			dragEvent.stopPropagation();
+
+			const item = await fromUuid(dragEvent.target.closest('[data-uuid]')?.dataset?.uuid);
+			if (item) {
+				const droppedItem = await fromUuid(eventData.uuid);
+				if (item.type === 'mnemosphereReceptacle') {
+					return item.system.slotMnemosphere(droppedItem);
+				}
+
+				if (['customWeapon', 'armor'].includes(item.type)) {
+					return item.system.slotTechnosphere(droppedItem);
+				}
+			}
+		}
 	}
 }

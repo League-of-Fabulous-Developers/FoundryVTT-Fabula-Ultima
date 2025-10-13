@@ -1,0 +1,40 @@
+{
+  "name": "Scornful Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/scornful.png",
+  "system": {
+    "fuid": "scornful-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "hitsCauseStatus",
+        "coagulationLevel": 1,
+        "status": "enraged"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658509491,
+    "modifiedTime": 1759658509491,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "3VH8h0jFYmnaV9mO",
+  "sort": 0,
+  "_key": "!items!3VH8h0jFYmnaV9mO"
+}

@@ -2,28 +2,19 @@ import { FUTableRenderer } from './table-renderer.mjs';
 import { CommonDescriptions } from './common-descriptions.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
+import { SYSTEM } from '../config.mjs';
+import { SETTINGS } from '../../settings.js';
+import { TextEditor } from '../text-editor.mjs';
 
-export class AccessoriesTableRenderer extends FUTableRenderer {
-	/** @type TableConfig */
-	static TABLE_CONFIG = {
-		cssClass: 'accessories-table',
-		getItems: (d) => d.itemTypes.accessory,
-		renderDescription: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
-		columns: {
-			name: CommonColumns.itemNameColumn({ columnName: 'FU.Accessories', renderCaption: AccessoriesTableRenderer.#renderCaption }),
-			equipStatus: {
-				renderHeader: () => game.i18n.localize('FU.EquipStatus'),
-				renderCell: AccessoriesTableRenderer.#renderEquipStatus,
-			},
-			controls: CommonColumns.itemControlsColumn({ label: 'FU.Accessory', type: 'accessory' }),
-		},
-	};
+const accessoryItemTypes = new Set(['accessory', 'mnemosphereReceptacle']);
 
-	static #renderCaption(item) {
-		return item.system.quality.value;
-	}
+const descriptionRenderers = {
+	accessory: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
+	mnemosphereReceptacle: CommonDescriptions.descriptionWithTechnospheres((item) => ({ slotted: item.system.slotted, totalSlots: item.system.slotCount, maxMnemospheres: item.system.slotCount })),
+};
 
-	static #renderEquipStatus(item) {
+const equipStatusRenderers = {
+	accessory: (item) => {
 		const data = {
 			action: 'equipAccessory',
 			equipTooltip: 'FU.EquipArmor',
@@ -34,5 +25,87 @@ export class AccessoriesTableRenderer extends FUTableRenderer {
 			slot: item.actor.system.equipped.getEquippedSlot(item),
 		};
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equip-status'), data);
+	},
+	mnemosphereReceptacle: CommonColumns.textColumn({ getText: (item) => `${item.system.usedSlots} / ${item.system.slotCount}`, alignment: 'center', importance: 'high' }).renderCell,
+};
+
+export class AccessoriesTableRenderer extends FUTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		cssClass: 'accessories-table',
+		getItems: (d) => d.items.filter((item) => accessoryItemTypes.has(item.type)),
+		renderDescription: AccessoriesTableRenderer.#renderDescription,
+		columns: {
+			name: CommonColumns.itemNameColumn({ columnName: 'FU.Accessories', renderCaption: AccessoriesTableRenderer.#renderCaption }),
+			equipStatus: {
+				renderHeader: () => game.i18n.localize('FU.EquipStatus'),
+				renderCell: AccessoriesTableRenderer.#renderEquipStatus,
+			},
+			controls: CommonColumns.itemControlsColumn({ label: 'FU.Accessory', type: () => (game.settings.get(SYSTEM, SETTINGS.technospheres) ? 'accessory,mnemosphereReceptacle' : 'accessory') }),
+		},
+		actions: {
+			technosphere: AccessoriesTableRenderer.#technosphereAction,
+		},
+		dragDrop: [
+			{
+				dropSelector: '.description-with-slots__slots-container .description-with-slots__slot--empty',
+				permissions: {
+					drop: AccessoriesTableRenderer.#canDrop,
+				},
+				callbacks: {
+					drop: AccessoriesTableRenderer.#onDrop,
+				},
+			},
+		],
+	};
+
+	static #renderDescription(item) {
+		const descriptionRenderer = descriptionRenderers[item.type];
+		return descriptionRenderer ? descriptionRenderer(item) : null;
+	}
+
+	static #renderCaption(item) {
+		return item.system?.quality?.value;
+	}
+
+	static #renderEquipStatus(item) {
+		const equipStatusRenderer = equipStatusRenderers[item.type];
+		return equipStatusRenderer ? equipStatusRenderer(item) : null;
+	}
+
+	static async #technosphereAction(event, target) {
+		const item = await fromUuid(target.closest('[data-uuid]')?.dataset?.uuid);
+		const mnemosphere = await fromUuid(target.closest('[data-technosphere-uuid]')?.dataset?.technosphereUuid);
+
+		if (event.button === 0) {
+			if (mnemosphere) {
+				return mnemosphere.sheet.render({ force: true });
+			}
+		}
+
+		if (event.button === 2) {
+			if (item && mnemosphere) {
+				return item.system.removeMnemosphere(mnemosphere);
+			}
+		}
+	}
+
+	static #canDrop() {
+		return this.application.isEditable;
+	}
+
+	static async #onDrop(dragEvent) {
+		const eventData = TextEditor.getDragEventData(dragEvent);
+
+		if (eventData.type === 'Item') {
+			dragEvent.preventDefault();
+			dragEvent.stopPropagation();
+
+			const item = await fromUuid(dragEvent.target.closest('[data-uuid]')?.dataset?.uuid);
+			if (item && item.type === 'mnemosphereReceptacle') {
+				const droppedItem = await fromUuid(eventData.uuid);
+				return item.system.slotMnemosphere(droppedItem);
+			}
+		}
 	}
 }

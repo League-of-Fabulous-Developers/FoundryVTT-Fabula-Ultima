@@ -1,0 +1,5 @@
+.chat-slotted-technospheres {
+	.chat-slotted-technospheres__details[open] + .chat-slotted-technospheres__simple {
+		display: none;
+	}
+}

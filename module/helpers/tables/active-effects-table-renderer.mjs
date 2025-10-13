@@ -3,6 +3,7 @@ import { CommonDescriptions } from './common-descriptions.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { TextEditor } from '../text-editor.mjs';
+import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
 
 /**
  * @typedef {"temporary", "passive", "inactive"} ActiveEffectState
@@ -55,7 +56,7 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 		if (document instanceof Actor) {
 			effects = [...document.allApplicableEffects()];
 		}
-		if (document instanceof Item) {
+		if (document instanceof Item || document instanceof PseudoItem) {
 			effects = [...document.effects];
 		}
 

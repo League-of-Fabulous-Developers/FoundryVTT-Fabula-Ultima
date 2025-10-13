@@ -1,0 +1,40 @@
+{
+  "name": "Dazing Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/dazing.png",
+  "system": {
+    "fuid": "dazing-hoplosphere",
+    "source": "",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "hitsCauseStatus",
+        "coagulationLevel": 1,
+        "status": "dazed"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658488925,
+    "modifiedTime": 1759658503805,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_id": "RYG8edT6q5Q3NQmY",
+  "sort": 1200000,
+  "_key": "!items!RYG8edT6q5Q3NQmY"
+}

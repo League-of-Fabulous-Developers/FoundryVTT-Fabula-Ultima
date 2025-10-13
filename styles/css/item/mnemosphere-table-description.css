@@ -1,0 +1,71 @@
+.mnemosphere-table-description {
+	width: 100%;
+	padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-xl);
+
+	--pfu-image-size: 24px;
+	--pfu-star-size: 20px;
+
+	.mnemosphere-table-description__table-header {
+		grid-column: 1 / -1;
+		padding: 0 0.5rem;
+		background: var(--color-tabStyle-gradient);
+		color: var(--color-text-primary);
+		text-shadow: 1px 1px 1px #000000;
+		border-radius: 4px;
+		box-shadow: 1px 2px var(--color-primary);
+		font-weight: var(--font-weight-bold);
+	}
+
+	.mnemosphere-table-description__skill-table {
+		display: grid;
+		grid-template-columns: max-content 2fr 1fr;
+		column-gap: var(--spacing-md);
+		row-gap: var(--spacing-sm);
+
+		.mnemosphere-table-description__skill {
+			display: grid;
+			grid-template-columns: subgrid;
+			grid-column: 1 / -1;
+			align-items: center;
+		}
+	}
+
+	.mnemosphere-table-description__heroic-table {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		margin-top: var(--spacing-md);
+		column-gap: var(--spacing-md);
+		row-gap: var(--spacing-sm);
+
+		.mnemosphere-table-description__heroic {
+			display: grid;
+			grid-template-columns: subgrid;
+			grid-column: 1 / -1;
+			align-items: center;
+		}
+	}
+
+	.mnemosphere-table-description__image-cell {
+		width: var(--pfu-image-size);
+		height: var(--pfu-image-size);
+		border-radius: calc(var(--pfu-image-size) / 4);
+		background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+	}
+
+	.mnemosphere-table-description__name-cell {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.mnemosphere-table-description__level-cell-inner {
+		display: grid;
+		grid-template-columns: repeat(5, max-content);
+		gap: var(--spacing-sm);
+	}
+
+	.mnemosphere-table-description__star {
+		display: inline-block;
+		background-size: cover;
+		width: var(--pfu-star-size);
+		height: var(--pfu-star-size);
+	}
+}

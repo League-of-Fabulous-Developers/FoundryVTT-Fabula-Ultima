@@ -1,0 +1,398 @@
+{
+  "folder": "ghKKGdGJfB1dO8GY",
+  "name": "Mnemosphere: Entropist",
+  "type": "mnemosphere",
+  "_id": "r0Lrj12njZdHkYFH",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/mnemospheres/entropist.png",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "level": 1,
+    "maxLevel": 5,
+    "items": [
+      {
+        "name": "Stolen Time",
+        "type": "skill",
+        "_id": "fgkySADkJU8xl458",
+        "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_stolen_time.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>During a conflict, you may use an action to interfere with the flow of time by spending up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers <strong>slow</strong>; or one creature you can see recovers from <strong>slow</strong>; or one creature you can see may immediately perform the <strong>Equipment action</strong> for free; <strong>or</strong> choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</p><p>Each option can only be chosen once per use of this Skill.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[slow]</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 4,
+            "min": 0
+          },
+          "class": {
+            "value": "Entropist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR191",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "stolen-time",
+          "cost": {
+            "amount": 5,
+            "resource": "mp",
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": 100000
+      },
+      {
+        "name": "Ritual Entropism",
+        "type": "skill",
+        "_id": "egpo7ph1k1574pHO",
+        "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_ritual_entropism.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You may perform Rituals whose effects fall within the <strong>Entropism </strong>discipline.</p><p><strong>Entropism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Entropist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR191",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "ritual-entropism",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": 87500
+      },
+      {
+        "name": "Lucky Seven",
+        "type": "skill",
+        "_id": "BP5l7c0HpSsraG0G",
+        "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_lucky_seven.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You have a <strong>lucky number</strong>; at the beginning of each session, that number is <strong>7</strong>. Once per scene after you perform a Check, you may replace the value shown on one of the dice you rolled with your lucky number (even if this would give an impossible Result, such as a value of 7 on a d6). If you do, the replaced value becomes your <strong>new</strong> lucky number.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Entropist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR191",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": true
+          },
+          "rp": {
+            "name": "Lucky Number",
+            "current": 7,
+            "step": 1,
+            "max": 12,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "lucky-seven",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "sort": 75000
+      },
+      {
+        "name": "Entropic Magic",
+        "type": "skill",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>Each time you acquire this Skill, learn one Entropist spell (see <strong>Core Rulebook</strong>, page <strong>192</strong>).</p><p>Offensive ( @ICON[offensive] ) Entropist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><ul><li><p>For <strong>spell</strong> breakdown and a list of Entropist Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.jZeTJrK0mFsRyz8S]{Entropist Rules}</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 10,
+            "min": 0
+          },
+          "class": {
+            "value": "Entropist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR191",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "entropic-magic",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_entropic_magic.png",
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "_id": "0lCHD4hFVUI9UMCC",
+        "sort": 50000
+      },
+      {
+        "name": "Absorb MP",
+        "type": "skill",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>After you suffer damage, you may immediately recover <strong>【SL × 2】 </strong>Mind Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[2*$sl mp]{SL × 2 MP}</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "Entropist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR191",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "absorb-mp",
+          "cost": {
+            "resource": "mp",
+            "amount": 0,
+            "perTarget": false
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_absorb_mp.png",
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "_id": "ZqoRBEoX92CEasbg",
+        "sort": 0
+      }
+    ],
+    "source": "",
+    "class": "Entropist",
+    "summary": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745491348230,
+    "modifiedTime": 1759655063118,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "exportSource": null
+  },
+  "_key": "!items!r0Lrj12njZdHkYFH"
+}

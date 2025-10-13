@@ -1,0 +1,49 @@
+<div class="chat-desc chat-slotted-technospheres">
+	<details class="chat-slotted-technospheres__details">
+		<summary>{{localize "FU.Technospheres"}}</summary>
+		{{#each slotted}}
+			{{#if (eq type "mnemosphere")}}
+				<div>
+					<div>
+						<strong>{{name}}</strong>
+						<br>
+						<span>{{localize "FU.Class"}}: {{system.class}}</span>
+					</div>
+					{{#each system.activeSkills}}
+						<div>
+							<span>{{name}}: {{system.level.value}}/{{system.level.max}}</span>
+						</div>
+					{{/each}}
+				</div>
+			{{/if}}
+
+			{{#if (eq type "hoplosphere")}}
+				<div>
+					<strong>{{name}}</strong>
+					{{#each system.activeEffects}}
+						<div class="flexrow">
+							<span class="flex0"><i class="fa fa-fw {{#if
+							 (and (gt coagulationLevel 1) (gte ../system.coagLevel coagulationLevel))}}fa-droplet{{/if}}"></i></span>
+							<span>{{summary}}</span>
+						</div>
+					{{/each}}
+				</div>
+			{{/if}}
+		{{/each}}
+	</details>
+	<div class="chat-slotted-technospheres__simple">
+		{{#each slotted}}
+			{{#if (eq type "mnemosphere")}}
+				<div>
+					<strong>{{name}}</strong>
+				</div>
+			{{/if}}
+
+			{{#if (eq type "hoplosphere")}}
+				<div>
+					<strong>{{name}}</strong>
+				</div>
+			{{/if}}
+		{{/each}}
+	</div>
+</div>

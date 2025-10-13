@@ -1,7 +1,9 @@
-import { FU } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { FUItemSheet } from './item-sheet.mjs';
 import { Traits } from '../pipelines/traits.mjs';
+import { SETTINGS } from '../settings.js';
+import { getTechnosphereSlotInfo } from '../helpers/technospheres.mjs';
 
 export class CustomWeaponSheet extends FUItemSheet {
 	/**
@@ -10,7 +12,9 @@ export class CustomWeaponSheet extends FUItemSheet {
 	static DEFAULT_OPTIONS = {
 		actions: {
 			debug: CustomWeaponSheet.#printDebug,
-			changeForm: CustomWeaponSheet.#onChangeForm,
+			edit: CustomWeaponSheet.#editNested,
+			delete: CustomWeaponSheet.#removeNested,
+			roll: CustomWeaponSheet.#onItemRoll,
 		},
 		window: {
 			controls: [
@@ -28,6 +32,16 @@ export class CustomWeaponSheet extends FUItemSheet {
 		position: {
 			width: 700,
 		},
+		dragDrop: [
+			{
+				dragSelector: null,
+				dropSelector: '.technosphere-slots__slot--empty',
+				permissions: {
+					drop: CustomWeaponSheet.#canSlotTechnospheres,
+				},
+				callbacks: { drop: CustomWeaponSheet.#onTechnosphereDrop },
+			},
+		],
 	};
 
 	static PARTS = {
@@ -60,12 +74,42 @@ export class CustomWeaponSheet extends FUItemSheet {
 		console.log(this);
 	}
 
-	static #onChangeForm() {
-		const newForm = this.item.system.activeForm === 'primaryForm' ? 'secondaryForm' : 'primaryForm';
-		this.item.update({
-			'system.activeForm': newForm,
-		});
-		this.tabGroups.form = newForm;
+	/**
+	 * @param {Event} event
+	 * @param {HTMLElement} element
+	 */
+	static #editNested(event, element) {
+		const id = element.closest('[data-item-id]').dataset.itemId;
+		this.item.system.items.get(id).sheet.render({ force: true });
+	}
+
+	static async #removeNested(event, element) {
+		const uuid = element.closest('[data-uuid]').dataset.uuid;
+		const technosphere = await fromUuid(uuid);
+
+		if (technosphere) {
+			return this.item.system.removeTechnosphere(technosphere);
+		}
+	}
+
+	static #onItemRoll(event, element) {
+		const itemId = element.closest('[data-item-id]').dataset.itemId;
+		const item = this.item.system.items.get(itemId);
+		if (item) {
+			item.roll();
+		}
+	}
+
+	static #canSlotTechnospheres() {
+		return this.isEditable;
+	}
+
+	static async #onTechnosphereDrop(event) {
+		const data = TextEditor.getDragEventData(event);
+		if (data.type === 'Item') {
+			const item = await fromUuid(data.uuid);
+			return this.item.system.slotTechnosphere(item);
+		}
 	}
 
 	constructor(options = {}) {
@@ -88,6 +132,7 @@ export class CustomWeaponSheet extends FUItemSheet {
 
 		const context = await super._prepareContext(options);
 
+		const technosphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
 		const description = await TextEditor.enrichHTML(this.item.system.description);
 
 		context.item = this.item;
@@ -96,6 +141,7 @@ export class CustomWeaponSheet extends FUItemSheet {
 			description,
 		};
 		context.FU = FU;
+		context.technosphereMode = technosphereMode;
 		context.tabs = this._prepareTabs('primary');
 		context.formTabs = this._prepareTabs('form');
 
@@ -104,7 +150,16 @@ export class CustomWeaponSheet extends FUItemSheet {
 			value: key,
 		}));
 
+		if (technosphereMode) {
+			context.slots = this.#createSlotArray();
+		}
+
 		return context;
+	}
+
+	#createSlotArray() {
+		const { mnemosphereSlots, slotted, slotCount } = this.item.system;
+		return getTechnosphereSlotInfo(slotted, slotCount, mnemosphereSlots);
 	}
 
 	async _preparePartContext(partId, context, options) {

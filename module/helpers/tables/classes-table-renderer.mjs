@@ -8,8 +8,8 @@ export class ClassesTableRenderer extends FUTableRenderer {
 	 */
 	static TABLE_CONFIG = {
 		cssClass: 'classes-table',
-		getItems: (actor) => actor.itemTypes.class,
-		renderDescription: CommonDescriptions.descriptionWithTags((item) => item.system.getTags()),
+		getItems: ClassesTableRenderer.#getItems,
+		renderDescription: CommonDescriptions.descriptionWithTags(ClassesTableRenderer.#getTags),
 		columns: {
 			name: CommonColumns.itemNameColumn(),
 			level: {
@@ -21,7 +21,34 @@ export class ClassesTableRenderer extends FUTableRenderer {
 		},
 	};
 
+	static #getItems(actor) {
+		const items = [];
+		for (const item of actor.allItems()) {
+			if (item.type === 'class') {
+				items.push(item);
+			}
+			if (item.type === 'mnemosphere' && item.system.socketed) {
+				items.push(item);
+			}
+		}
+		return items;
+	}
+
+	static #getTags(item) {
+		if (item.type === 'class') {
+			return item.system.getTags();
+		}
+		return [];
+	}
+
 	static async #renderLevelCell(item) {
-		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-class-level.hbs', item);
+		let data;
+		if (item.type === 'class') {
+			data = { current: item.system.level.value, max: item.system.level.max, action: 'modifyClassLevel' };
+		}
+		if (item.type === 'mnemosphere') {
+			data = { current: item.system.level, max: item.system.maxLevel, action: 'modifyLevel' };
+		}
+		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-class-level.hbs', data);
 	}
 }

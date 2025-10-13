@@ -1,0 +1,5 @@
+{{ log "in amount" this }}
+<label class="resource-label-sm">
+	{{localize templateData.label}}
+	<input type="number" name="{{fieldPrefix}}.{{templateData.name}}" value="{{lookup effect templateData.name}}" class="resource-inputs select-dropdown-full" />
+</label>

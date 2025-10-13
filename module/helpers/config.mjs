@@ -678,3 +678,45 @@ FU.weaponItemTypes = {
 	weapon: 'FU.Weapon',
 	customWeapon: 'FU.CustomWeapon',
 };
+
+FU.technospheres = {
+	armorSlots: {
+		alpha: {
+			label: 'FU.TechnospheresSlotsAlpha',
+			slots: 1,
+			mnemospheres: 1,
+		},
+		beta: {
+			label: 'FU.TechnospheresSlotsBeta',
+			slots: 2,
+			mnemospheres: 1,
+		},
+		gamma: {
+			label: 'FU.TechnospheresSlotsGamma',
+			slots: 3,
+			mnemospheres: 2,
+		},
+	},
+	weaponSlots: {
+		alpha: {
+			label: 'FU.TechnospheresSlotsAlpha',
+			slots: 1,
+			mnemospheres: 1,
+		},
+		beta: {
+			label: 'FU.TechnospheresSlotsBeta',
+			slots: 2,
+			mnemospheres: 1,
+		},
+		gamma: {
+			label: 'FU.TechnospheresSlotsGamma',
+			slots: 3,
+			mnemospheres: 2,
+		},
+		delta: {
+			label: 'FU.TechnospheresSlotsDelta',
+			slots: 4,
+			mnemospheres: 2,
+		},
+	},
+};

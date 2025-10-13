@@ -1,0 +1,13 @@
+{{ log "in choice and amount" this }}
+<div class="grid-2col gap-5">
+	<label class="resource-label-sm">
+		{{localize templateData.choice.label}}
+		<select name="{{fieldPrefix}}.{{templateData.choice.name}}" class="resource-inputs select-dropdown-full">
+			{{selectOptions templateData.choice.choices selected=(lookup effect templateData.choice.name) localize=true}}
+		</select>
+	</label>
+	<label class="resource-label-sm">
+		{{localize templateData.amount.label}}
+		<input type="number" name="{{fieldPrefix}}.{{templateData.amount.name}}" value="{{lookup effect templateData.amount.name}}" class="resource-inputs select-dropdown-full"/>
+	</label>
+</div>

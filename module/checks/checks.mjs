@@ -536,7 +536,7 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 	const check = Object.freeze({
 		type: 'display',
 		id: foundry.utils.randomID(),
-		actorUuid: actor.uuid,
+		actorUuid: actor?.uuid,
 		itemUuid: item?.uuid,
 		itemName: item?.name,
 		roll: null,

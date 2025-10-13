@@ -27,11 +27,20 @@
 				<i class="fa fa-wrench icon"></i>
 				{{localize "FU.CustomWeaponAttributesGlobal"}}
 			</legend>
-			<label class="resource-label-sm grid-span-2">
-				{{localize 'FU.Quality'}}
-				<input type="text" name="system.quality" value="{{ system.quality }}"
-					   class="resource-inputs select-dropdown-full" />
-			</label>
+			{{#unless technosphereMode}}
+				<label class="resource-label-sm grid-span-2">
+					{{localize 'FU.Quality'}}
+					<input type="text" name="system.quality" value="{{ system.quality }}"
+						   class="resource-inputs select-dropdown-full" />
+				</label>
+			{{else}}
+				<label class="resource-label-sm grid-span-2">
+					{{localize "FU.TechnospheresSlots"}}
+					<select name="system.slots" class="resource-inputs select-dropdown-full">
+						{{selectOptions @root.FU.technospheres.weaponSlots selected=system.slots labelAttr="label" localize=true}}
+					</select>
+				</label>
+			{{/unless}}
 			<label class="resource-label-sm">
 				{{localize 'FU.Defense'}}
 				<select name="system.defense" class="resource-inputs select-dropdown-full">
