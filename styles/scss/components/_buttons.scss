@@ -139,17 +139,6 @@
 	color: #ebf7af;
 }
 
-.disabled {
-	pointer-events: none;
-	cursor: default;
-
-	.button-style {
-		background: transparent;
-		border-color: rgb(80, 80, 80);
-		color: rgb(230, 230, 230);
-	}
-}
-
 .button-style {
 	// padding: 0 !important;
 	display: inline-flex;
