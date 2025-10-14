@@ -529,9 +529,7 @@ export class FUActor extends Actor {
 			yield item;
 			if ('allItems' in item) {
 				for (const nestedItem of item.allItems()) {
-					if (item.system.transferNestedItem ? item.system.transferNestedItem(nestedItem) : true) {
-						yield nestedItem;
-					}
+					yield nestedItem;
 				}
 			}
 		}
