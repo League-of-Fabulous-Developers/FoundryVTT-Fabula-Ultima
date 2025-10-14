@@ -22,7 +22,7 @@
         "type": "freeText",
         "coagulationLevel": 2,
         "name": "Improved Healing Spells",
-        "text": "Spells you cast that cause creatures to recover Hit Points cause them to recover 2 extra Hit Points."
+        "text": "Extra Healing +2"
       }
     ]
   },

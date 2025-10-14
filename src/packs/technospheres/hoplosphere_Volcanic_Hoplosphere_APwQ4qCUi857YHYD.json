@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Fire Mastery",
-        "text": "Any fire damage you deal ignores Resistances. When you deal damage, you may change its type to fire."
+        "text": "Ignore Resistances (Fire); Alter Damage Type (Fire)"
       }
     ]
   },

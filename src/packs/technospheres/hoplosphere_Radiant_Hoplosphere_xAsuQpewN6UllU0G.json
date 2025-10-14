@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Light Mastery",
-        "text": "Any light damage you deal ignores Resistances. When you deal damage, you may change its type to light."
+        "text": "Ignore Resistances (Light); Alter Damage Type (Light)"
       }
     ]
   },

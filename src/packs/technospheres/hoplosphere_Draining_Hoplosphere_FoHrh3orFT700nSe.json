@@ -13,7 +13,7 @@
         "type": "freeText",
         "coagulationLevel": 1,
         "name": "Drain",
-        "text": "When you hit one or more creatures with this weapon, you may recover 3 Hit Points and 3 Mind Points."
+        "text": "Recover 3 HP/MP on hit"
       }
     ]
   },

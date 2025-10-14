@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Bolt Mastery",
-        "text": "Any bolt damage you deal ignores Resistances. When you deal damage, you may change its type to bolt."
+        "text": "Ignore Resistances (Bolt); Alter Damage Type (Bolt)"
       }
     ]
   },

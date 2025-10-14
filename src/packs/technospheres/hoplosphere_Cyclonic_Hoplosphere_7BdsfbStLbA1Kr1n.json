@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Air Mastery",
-        "text": "Any air damage you deal ignores Resistances. When you deal damage, you may change its type to air."
+        "text": "Ignore Resistances (Air); Alter Damage Type (Air)"
       }
     ]
   },

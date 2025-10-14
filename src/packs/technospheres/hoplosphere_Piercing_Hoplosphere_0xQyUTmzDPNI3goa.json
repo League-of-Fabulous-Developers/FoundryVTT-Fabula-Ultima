@@ -13,13 +13,13 @@
         "type": "freeText",
         "coagulationLevel": 1,
         "name": "Piercing Strikes",
-        "text": "Damage dealt by this weapon ignores Resistances."
+        "text": "Ignore Resistances"
       },
       {
         "type": "freeText",
         "coagulationLevel": 2,
         "name": "Improved Piercing Strikes",
-        "text": "Damage dealt by this weapon ignores Resistances and Immunities."
+        "text": "Ignore Resistances and Immunities"
       }
     ]
   },

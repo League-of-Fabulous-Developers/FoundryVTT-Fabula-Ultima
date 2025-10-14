@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Ice Mastery",
-        "text": "Any ice damage you deal ignores Resistances. When you deal damage, you may change its type to ice."
+        "text": "Ignore Resistances (Ice); Alter Damage Type (Ice)"
       }
     ]
   },

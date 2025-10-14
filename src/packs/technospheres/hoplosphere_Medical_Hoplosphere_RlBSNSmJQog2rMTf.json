@@ -13,13 +13,13 @@
         "type": "freeText",
         "coagulationLevel": 1,
         "name": "Improved Potions",
-        "text": "When you cause one or more creatures to recover Hit Points and/or Mind Points with a potion, that potion causes them to recover 2 extra HP and/or MP, respectively."
+        "text": "Extra Healing +2 HP/MP"
       },
       {
         "type": "freeText",
         "coagulationLevel": 2,
         "name": "Further Improved Potions",
-        "text": "When you cause one or more creatures to recover Hit Points and/or Mind Points with a potion, that potion causes them to recover 1 extra HP and/or MP, respectively."
+        "text": "Extra Healing +1 HP/MP"
       }
     ]
   },

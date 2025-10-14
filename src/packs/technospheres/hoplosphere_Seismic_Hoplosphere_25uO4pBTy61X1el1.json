@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Earth Mastery",
-        "text": "Any earth damage you deal ignores Resistances. When you deal damage, you may change its type to earth."
+        "text": "Ignore Resistances (Earth); Alter Damage Type (Earth)"
       }
     ]
   },

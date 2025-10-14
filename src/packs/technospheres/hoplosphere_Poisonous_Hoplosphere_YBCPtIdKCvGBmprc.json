@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Poison Mastery",
-        "text": "Any poison damage you deal ignores Resistances. When you deal damage, you may change its type to poison."
+        "text": "Ignore Resistances (Poison); Alter Damage Type (Poison)"
       }
     ]
   },

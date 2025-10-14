@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Dark Mastery",
-        "text": "Any dark damage you deal ignores Resistances. When you deal damage, you may change its type to dark."
+        "text": "Ignore Resistances (Dark); Alter Damage Type (Dark)"
       }
     ]
   },
