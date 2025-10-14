@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/draining.png",
   "system": {
     "fuid": "draining-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -32,8 +32,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658490813,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404536413,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "FoHrh3orFT700nSe",
   "sort": 1500000,

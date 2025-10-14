@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/disrupting.png",
   "system": {
     "fuid": "disrupting-hoplosphere",
-    "source": "",
+    "source": "FUTF140",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658489738,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404531510,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "on4KiQR4xilvo0ek",
   "sort": 1400000,

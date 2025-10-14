@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/gladiator.png",
   "system": {
     "fuid": "gladiator-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658494639,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404557472,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "89uLKuG6scn4WpzW",
   "sort": 900000,

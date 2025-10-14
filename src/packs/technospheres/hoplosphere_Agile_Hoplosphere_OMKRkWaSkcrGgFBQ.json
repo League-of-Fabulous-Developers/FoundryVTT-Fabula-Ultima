@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/agile.png",
   "system": {
     "fuid": "agile-hoplosphere",
-    "source": "",
+    "source": "FUTF139",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 2,
@@ -31,8 +31,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658472522,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404487797,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "OMKRkWaSkcrGgFBQ",
   "sort": 2100000,

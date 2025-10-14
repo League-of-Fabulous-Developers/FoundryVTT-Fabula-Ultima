@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/blessed.png",
   "system": {
     "fuid": "blessed-hoplosphere",
-    "source": "",
+    "source": "FUTF139",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658478469,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404498568,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "YGSlCtPQIkOvyt6Q",
   "sort": 2200000,

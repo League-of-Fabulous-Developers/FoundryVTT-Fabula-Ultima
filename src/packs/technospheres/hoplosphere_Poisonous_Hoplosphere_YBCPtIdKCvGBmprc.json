@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/poisonous.png",
   "system": {
     "fuid": "poisonous-hoplosphere",
-    "source": "",
+    "source": "FUTF142",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658500532,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404587026,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "YBCPtIdKCvGBmprc",
   "sort": 400000,

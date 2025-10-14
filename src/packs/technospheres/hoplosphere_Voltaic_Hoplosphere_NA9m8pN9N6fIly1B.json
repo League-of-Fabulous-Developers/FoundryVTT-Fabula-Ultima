@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/voltaic.png",
   "system": {
     "fuid": "voltaic-hoplosphere",
-    "source": "",
+    "source": "FUTF143",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658522485,
-    "modifiedTime": 1759658522485,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404456085,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "NA9m8pN9N6fIly1B",
   "sort": 0,

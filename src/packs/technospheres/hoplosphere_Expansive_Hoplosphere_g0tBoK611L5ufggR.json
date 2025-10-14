@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/expansive.png",
   "system": {
     "fuid": "expansive-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 2,
@@ -32,8 +32,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658492787,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404547143,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "g0tBoK611L5ufggR",
   "sort": 1300000,

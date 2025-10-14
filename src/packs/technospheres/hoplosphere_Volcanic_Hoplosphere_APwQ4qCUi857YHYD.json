@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/volcanic.png",
   "system": {
     "fuid": "volcanic-hoplosphere",
-    "source": "",
+    "source": "FUTF143",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658519958,
-    "modifiedTime": 1759658519958,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404405647,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "APwQ4qCUi857YHYD",
   "sort": 0,

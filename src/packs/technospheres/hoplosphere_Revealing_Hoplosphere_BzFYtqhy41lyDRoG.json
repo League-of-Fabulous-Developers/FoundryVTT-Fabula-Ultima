@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/revealing.png",
   "system": {
     "fuid": "revealing-hoplosphere",
-    "source": "",
+    "source": "FUTF142",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 2,
@@ -31,8 +31,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658508062,
-    "modifiedTime": 1759658508062,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404410359,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "BzFYtqhy41lyDRoG",
   "sort": 0,
