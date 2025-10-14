@@ -3,16 +3,17 @@
   "name": "Effect: Mercy",
   "type": "effect",
   "_id": "87su2PuI6rSMblmN",
-  "img": "icons/magic/life/ankh-shadow-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/effects/effect_mercy.png",
   "system": {
     "fuid": "effect-mercy",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
-      "img": "icons/magic/life/ankh-shadow-green.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/effects/effect_mercy.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -37,7 +38,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
       "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly @GAIN[1 hp]. Once that happens, this spell ends.</p>",
@@ -50,12 +61,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.350",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744722453780,
-        "modifiedTime": 1744722557295,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1760481636367,
+        "lastModifiedBy": "93RRHGE4s1SwaU2P",
         "exportSource": null
       },
       "_key": "!items.effects!87su2PuI6rSMblmN.C6pRUA9cFTWSGauX"
@@ -70,12 +81,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744722451665,
-    "modifiedTime": 1744722567497,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1760481627668,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P",
     "exportSource": null
   },
   "_key": "!items!87su2PuI6rSMblmN"

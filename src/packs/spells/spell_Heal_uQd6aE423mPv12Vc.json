@@ -3,7 +3,7 @@
   "name": "Heal",
   "type": "spell",
   "_id": "uQd6aE423mPv12Vc",
-  "img": "icons/magic/life/heart-cross-strong-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/heal.png",
   "system": {
     "subtype": {
       "value": ""
@@ -128,15 +128,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "createdTime": 1706572719338,
-    "modifiedTime": 1744722266659,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1760481692337,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

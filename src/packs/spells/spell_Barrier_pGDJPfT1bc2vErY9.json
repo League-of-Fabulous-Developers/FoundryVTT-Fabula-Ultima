@@ -3,7 +3,7 @@
   "name": "Barrier",
   "type": "spell",
   "_id": "pGDJPfT1bc2vErY9",
-  "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/barrier.png",
   "system": {
     "subtype": {
       "value": ""
@@ -128,15 +128,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "createdTime": 1706572145678,
-    "modifiedTime": 1744722071175,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1760481662425,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
