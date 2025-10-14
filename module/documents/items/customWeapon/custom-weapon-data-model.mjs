@@ -148,6 +148,8 @@ class CustomWeaponFormDataModel extends foundry.abstract.DataModel {
 	}
 }
 
+const slottableTypes = new Set(['mnemosphere', 'hoplosphere']);
+
 /**
  * @property {string} summary
  * @property {string} description
@@ -215,7 +217,7 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 
 	prepareDerivedData() {
 		this.slotted = this.items
-			.filter((item) => ['mnemosphere', 'hoplosphere'].includes(item.type))
+			.filter((item) => slottableTypes.has(item.type))
 			.sort((left, right) => {
 				if (left.type === 'mnemosphere' && right.type === 'hoplosphere') {
 					return -1;
@@ -311,6 +313,16 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.weaponsActive;
 	}
 
+	transferNestedItem(item) {
+		if (!game.settings.get(SYSTEM, SETTINGS.technospheres)) {
+			return false;
+		}
+		if (!this.transferEffects()) {
+			return false;
+		}
+		return slottableTypes.has(item.type);
+	}
+
 	afterApplyActiveEffects() {
 		foundry.utils.mergeObject(this.parent.overrides, this.#computedPropertiesSetByActiveEffect);
 	}
@@ -326,7 +338,7 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 	}
 
 	slotTechnosphere(technosphere) {
-		if (['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+		if (slottableTypes.has(technosphere.type)) {
 			const promises = [];
 			promises.push(this.createEmbeddedDocuments(PseudoItem.documentName, [technosphere.toObject(true)]));
 			if (technosphere.isEmbedded) {
@@ -342,7 +354,7 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 		const promises = [];
 		const item = this.items.get(technosphere.id);
 		if (item) {
-			if (item.actor && ['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+			if (item.actor && slottableTypes.has(technosphere.type)) {
 				const itemObject = item.toObject(true);
 				promises.push(this.parent.actor.createEmbeddedDocuments('Item', [itemObject]));
 			}

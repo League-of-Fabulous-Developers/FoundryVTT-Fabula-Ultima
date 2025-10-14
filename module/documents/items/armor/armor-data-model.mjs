@@ -41,6 +41,8 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	}
 });
 
+const slottableTypes = new Set(['mnemosphere', 'hoplosphere']);
+
 /**
  * @property {string} subtype.value
  * @property {string} summary.value
@@ -104,7 +106,7 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 
 	prepareDerivedData() {
 		this.slotted = this.items
-			.filter((item) => ['mnemosphere', 'hoplosphere'].includes(item.type))
+			.filter((item) => slottableTypes.has(item.type))
 			.sort((left, right) => {
 				if (left.type === 'mnemosphere' && right.type === 'hoplosphere') {
 					return -1;
@@ -128,6 +130,16 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.armorActive;
 	}
 
+	transferNestedItem(item) {
+		if (!game.settings.get(SYSTEM, SETTINGS.technospheres)) {
+			return false;
+		}
+		if (!this.transferEffects()) {
+			return false;
+		}
+		return slottableTypes.has(item.type);
+	}
+
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.initiativeField, ItemPartialTemplates.armor];
 	}
@@ -143,7 +155,7 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 	}
 
 	slotTechnosphere(technosphere) {
-		if (['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+		if (slottableTypes.has(technosphere.type)) {
 			if (technosphere.type === 'hoplosphere' && technosphere.system.socketable === 'weapon') {
 				ui.notifications.error('FU.TechnospheresSlottingErrorWeaponOnly', { localize: true });
 				return;
@@ -164,7 +176,7 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 		const promises = [];
 		const item = this.items.get(technosphere.id);
 		if (item) {
-			if (item.actor && ['mnemosphere', 'hoplosphere'].includes(technosphere.type)) {
+			if (item.actor && slottableTypes.has(technosphere.type)) {
 				const itemObject = item.toObject(true);
 				promises.push(this.parent.actor.createEmbeddedDocuments('Item', [itemObject]));
 			}
