@@ -786,6 +786,7 @@
 /* Scoped CSS specifically for ProseMirror element */
 .application.journal-sheet,
 .application.projectfu {
+	.journal-entry-page,
 	.editor-content {
 		h1 {
 			font-family: var(--font-title);
