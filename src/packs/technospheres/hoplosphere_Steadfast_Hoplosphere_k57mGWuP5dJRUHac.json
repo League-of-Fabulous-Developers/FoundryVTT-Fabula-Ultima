@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/steadfast.png",
   "system": {
     "fuid": "steadfast-hoplosphere",
-    "source": "",
+    "source": "FUTF143",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -37,8 +37,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658516826,
-    "modifiedTime": 1759658516826,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404441726,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "k57mGWuP5dJRUHac",
   "sort": 0,

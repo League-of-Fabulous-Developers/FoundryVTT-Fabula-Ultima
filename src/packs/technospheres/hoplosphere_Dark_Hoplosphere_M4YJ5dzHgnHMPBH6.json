@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/dark.png",
   "system": {
     "fuid": "dark-hoplosphere",
-    "source": "",
+    "source": "FUTF140",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Dark Mastery",
-        "text": "Any dark damage you deal ignores Resistances. When you deal damage, you may change its type to dark."
+        "text": "Ignore Resistances (Dark); Alter Damage Type (Dark)"
       }
     ]
   },
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658488005,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404520263,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "M4YJ5dzHgnHMPBH6",
   "sort": 1800000,

@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/occult.png",
   "system": {
     "fuid": "occult-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658498474,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404577301,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "I7i4oSUnpJCDQtPH",
   "sort": 100000,

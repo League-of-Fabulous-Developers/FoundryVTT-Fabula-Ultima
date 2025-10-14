@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/piercing.png",
   "system": {
     "fuid": "piercing-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -13,13 +13,13 @@
         "type": "freeText",
         "coagulationLevel": 1,
         "name": "Piercing Strikes",
-        "text": "Damage dealt by this weapon ignores Resistances."
+        "text": "Ignore Resistances"
       },
       {
         "type": "freeText",
         "coagulationLevel": 2,
         "name": "Improved Piercing Strikes",
-        "text": "Damage dealt by this weapon ignores Resistances and Immunities."
+        "text": "Ignore Resistances and Immunities"
       }
     ]
   },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658499507,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404582654,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "0xQyUTmzDPNI3goa",
   "sort": 300000,

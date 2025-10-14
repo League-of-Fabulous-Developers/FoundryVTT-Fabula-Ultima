@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/energizing.png",
   "system": {
     "fuid": "energizing-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -37,8 +37,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658491663,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404542204,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "bgAagFaUscYZKpL4",
   "sort": 1600000,

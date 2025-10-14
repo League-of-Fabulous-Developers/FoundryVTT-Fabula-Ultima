@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/sharpening.png",
   "system": {
     "fuid": "sharpening-hoplosphere",
-    "source": "",
+    "source": "FUTF143",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -37,8 +37,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658511413,
-    "modifiedTime": 1759658511413,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404420025,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "HxePnVs8yvVUdxFV",
   "sort": 0,

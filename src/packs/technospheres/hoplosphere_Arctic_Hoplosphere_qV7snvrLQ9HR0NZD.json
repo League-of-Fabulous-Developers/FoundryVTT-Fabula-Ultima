@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/arctic.png",
   "system": {
     "fuid": "arctic-hoplosphere",
-    "source": "",
+    "source": "FUTF139",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Ice Mastery",
-        "text": "Any ice damage you deal ignores Resistances. When you deal damage, you may change its type to ice."
+        "text": "Ignore Resistances (Ice); Alter Damage Type (Ice)"
       }
     ]
   },
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658474458,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404493274,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "qV7snvrLQ9HR0NZD",
   "sort": 2300000,

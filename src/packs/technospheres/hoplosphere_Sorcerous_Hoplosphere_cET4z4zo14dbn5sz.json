@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/sorcerous.png",
   "system": {
     "fuid": "sorcerous-hoplosphere",
-    "source": "",
+    "source": "FUTF143",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -22,7 +22,7 @@
         "type": "freeText",
         "coagulationLevel": 2,
         "name": "Improved Healing Spells",
-        "text": "Spells you cast that cause creatures to recover Hit Points cause them to recover 2 extra Hit Points."
+        "text": "Extra Healing +2"
       }
     ]
   },
@@ -41,8 +41,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658515153,
-    "modifiedTime": 1759658515153,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404395032,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "cET4z4zo14dbn5sz",
   "sort": 0,

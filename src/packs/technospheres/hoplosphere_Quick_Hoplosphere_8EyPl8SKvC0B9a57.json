@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/quick.png",
   "system": {
     "fuid": "quick-hoplosphere",
-    "source": "",
+    "source": "FUTF142",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -37,8 +37,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658502675,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404596330,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "8EyPl8SKvC0B9a57",
   "sort": 600000,

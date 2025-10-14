@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/seismic.png",
   "system": {
     "fuid": "seismic-hoplosphere",
-    "source": "",
+    "source": "FUTF142",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Earth Mastery",
-        "text": "Any earth damage you deal ignores Resistances. When you deal damage, you may change its type to earth."
+        "text": "Ignore Resistances (Earth); Alter Damage Type (Earth)"
       }
     ]
   },
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658510446,
-    "modifiedTime": 1759658510446,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404387583,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "25uO4pBTy61X1el1",
   "sort": 0,

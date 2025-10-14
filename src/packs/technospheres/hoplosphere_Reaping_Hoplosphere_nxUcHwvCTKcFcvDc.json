@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/reaping.png",
   "system": {
     "fuid": "reaping-hoplosphere",
-    "source": "",
+    "source": "FUTF142",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 1,
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658504967,
-    "modifiedTime": 1759658504967,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404400649,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "nxUcHwvCTKcFcvDc",
   "sort": 0,

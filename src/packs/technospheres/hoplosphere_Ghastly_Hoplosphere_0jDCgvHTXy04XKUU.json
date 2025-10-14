@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/ghastly.png",
   "system": {
     "fuid": "ghastly-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "weapon",
     "requiredSlots": 2,
@@ -31,8 +31,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658493694,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404551832,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "0jDCgvHTXy04XKUU",
   "sort": 700000,

@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/crystaline.png",
   "system": {
     "fuid": "crystalline-hoplosphere",
-    "source": "",
+    "source": "FUTF140",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -18,7 +18,7 @@
         "type": "freeText",
         "coagulationLevel": 2,
         "name": "Open Check Bonus",
-        "text": "You gain a +2 bonus to Open Checks made to examine creatures, items and locations."
+        "text": "Open Check +2 (Examiine)"
       }
     ]
   },
@@ -37,8 +37,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658480725,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404509804,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "fhCD5VKKds47hpVx",
   "sort": 1900000,

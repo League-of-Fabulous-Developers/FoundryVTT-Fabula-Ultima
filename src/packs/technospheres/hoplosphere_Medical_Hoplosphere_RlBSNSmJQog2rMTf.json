@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/medical.png",
   "system": {
     "fuid": "medical-hoplosphere",
-    "source": "",
+    "source": "FUTF141",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -13,13 +13,13 @@
         "type": "freeText",
         "coagulationLevel": 1,
         "name": "Improved Potions",
-        "text": "When you cause one or more creatures to recover Hit Points and/or Mind Points with a potion, that potion causes them to recover 2 extra HP and/or MP, respectively."
+        "text": "Extra Healing +2 HP/MP"
       },
       {
         "type": "freeText",
         "coagulationLevel": 2,
         "name": "Further Improved Potions",
-        "text": "When you cause one or more creatures to recover Hit Points and/or Mind Points with a potion, that potion causes them to recover 1 extra HP and/or MP, respectively."
+        "text": "Extra Healing +1 HP/MP"
       }
     ]
   },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658496583,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404567867,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "RlBSNSmJQog2rMTf",
   "sort": 1100000,

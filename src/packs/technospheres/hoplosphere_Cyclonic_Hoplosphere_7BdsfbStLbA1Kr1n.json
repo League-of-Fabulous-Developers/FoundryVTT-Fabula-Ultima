@@ -4,7 +4,7 @@
   "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/cyclonic.png",
   "system": {
     "fuid": "cyclonic-hoplosphere",
-    "source": "",
+    "source": "FUTF140",
     "summary": "",
     "socketable": "all",
     "requiredSlots": 1,
@@ -28,7 +28,7 @@
         "type": "freeText",
         "coagulationLevel": 3,
         "name": "Air Mastery",
-        "text": "Any air damage you deal ignores Resistances. When you deal damage, you may change its type to air."
+        "text": "Ignore Resistances (Air); Alter Damage Type (Air)"
       }
     ]
   },
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1759658481496,
-    "modifiedTime": 1759658503805,
-    "lastModifiedBy": "VpDy3go69LzoCFsX"
+    "modifiedTime": 1760404514793,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
   },
   "_id": "7BdsfbStLbA1Kr1n",
   "sort": 2000000,
