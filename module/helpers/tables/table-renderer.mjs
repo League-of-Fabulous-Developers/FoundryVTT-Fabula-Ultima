@@ -267,12 +267,14 @@ export class FUTableRenderer {
 		if (table) {
 			const row = event.target.closest(`.fu-table__row-container[data-uuid]`);
 			const actionElement = event.target.closest('[data-action]');
-			if (event.button === 0 && row && !actionElement) {
+			const contextMenuTrigger = event.target.closest(`[data-context-menu]`);
+			if (event.button === 0 && row && !actionElement && !contextMenuTrigger) {
 				const uuid = row.dataset.uuid;
 				const expand = row.querySelector('.fu-table__row-expand');
 				if (expand) {
 					this.#expandedItems[uuid] = expand.classList.toggle('fu-table__row-expand--visible');
 				}
+				return;
 			}
 			const { actions } = this.tableConfig;
 			if (actions && actionElement && actionElement.dataset.action in actions) {
