@@ -17,8 +17,8 @@ export class ConsumablesTableRenderer extends FUTableRenderer {
 				{
 					hideFavorite: (item) => !item.actor.isCharacterType,
 					hideShare: (item) => item.actor.type !== 'party',
-					hideSell: (item) => item.actor.type !== 'stash' || !item.actor.system.merchant,
-					hideLoot: (item) => item.actor.type !== 'stash' || item.actor.system.merchant,
+					hideSell: (item) => !(item.actor.type === 'stash' && item.actor.system.merchant),
+					hideLoot: (item) => !(item.actor.type === 'stash' && !item.actor.system.merchant),
 				},
 			),
 		},

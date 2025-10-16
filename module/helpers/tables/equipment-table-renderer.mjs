@@ -117,10 +117,10 @@ export class EquipmentTableRenderer extends FUTableRenderer {
 			controls: CommonColumns.itemControlsColumn(
 				{ headerAlignment: 'end', custom: EquipmentTableRenderer.#renderCustomControlsHeader },
 				{
-					disableFavorite: (item) => !item.actor.isCharacterType,
-					disableShare: (item) => item.actor.type !== 'party',
-					disableSell: (item) => item.actor.type !== 'stash' || !item.actor.system.merchant,
-					disableLoot: (item) => item.actor.type !== 'stash' || item.actor.system.merchant,
+					hideFavorite: (item) => !item.actor.isCharacterType,
+					hideShare: (item) => item.actor.type !== 'party',
+					hideSell: (item) => !(item.actor.type === 'stash' && item.actor.system.merchant),
+					hideLoot: (item) => !(item.actor.type === 'stash' && !item.actor.system.merchant),
 				},
 			),
 		},
