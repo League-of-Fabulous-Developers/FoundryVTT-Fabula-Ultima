@@ -141,7 +141,11 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.initiativeField, ItemPartialTemplates.armor];
+		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
+			return [ItemPartialTemplates.standard, ItemPartialTemplates.slotSelectArmor, ItemPartialTemplates.costStandalone, ItemPartialTemplates.initiativeField, ItemPartialTemplates.armor];
+		} else {
+			return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.initiativeField, ItemPartialTemplates.armor];
+		}
 	}
 
 	/**

@@ -13,6 +13,8 @@ import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 export const ItemPartialTemplates = Object.freeze({
 	standard: { template: systemTemplatePath('item/partials/item-standard'), group: 'settings' },
 	qualityCost: { template: systemTemplatePath('item/partials/item-quality-cost') },
+	costStandalone: { template: systemTemplatePath('item/partials/item-cost-standalone') },
+	slotSelectArmor: { template: systemTemplatePath('item/partials/item-slot-select-armor') },
 	accuracy: { template: systemTemplatePath('item/partials/item-accuracy-section'), group: 'grid' },
 	legacyAccuracy: { template: systemTemplatePath('item/partials/item-accuracy-section-legacy'), group: 'grid' },
 	damage: { template: systemTemplatePath('item/partials/item-damage-section'), group: 'grid' },
