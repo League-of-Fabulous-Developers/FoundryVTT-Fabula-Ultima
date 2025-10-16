@@ -7,6 +7,9 @@ import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-render
 import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
 import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
+import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @property {FUActor} actor
@@ -47,6 +50,7 @@ export class FUStashSheet extends FUActorSheet {
 	};
 
 	#equipmentTable = new EquipmentTableRenderer();
+	#technospheresTable = new TechnospheresTableRenderer();
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
@@ -65,16 +69,21 @@ export class FUStashSheet extends FUActorSheet {
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		await ActorSheetUtils.prepareData(context, this);
+		const technoSphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
 		context.equipmentTable = await this.#equipmentTable.renderTable(this.document);
+		if (technoSphereMode) {
+			context.technospheresTable = await this.#technospheresTable.renderTable(this.document);
+		}
 		context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 		context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
-		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document);
+		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 		return context;
 	}
 
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options);
 		this.#equipmentTable.activateListeners(this);
+		this.#technospheresTable.activateListeners(this);
 		this.#treasuresTable.activateListeners(this);
 		this.#consumablesTable.activateListeners(this);
 		this.#otherItemsTable.activateListeners(this);
