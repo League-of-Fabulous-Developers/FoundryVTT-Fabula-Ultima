@@ -397,3 +397,7 @@
 .d-contents {
 	display: contents;
 }
+
+.w-100 {
+	width: 100%;
+}

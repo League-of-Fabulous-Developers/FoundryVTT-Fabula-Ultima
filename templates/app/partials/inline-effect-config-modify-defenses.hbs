@@ -1,7 +1,7 @@
 <div>
     <label>
         <span class="d-block">{{localize "FU.InlineEffectConfigImproveDefensesDefense"}}</span>
-        <select name="guided.changes.{{@index}}.defense" class="w-100">
+        <select name="guided.changes.{{@index}}.defense">
             {{selectOptions templateData.defenses selected=defense localize=true labelAttr="name"}}
         </select>
     </label>
