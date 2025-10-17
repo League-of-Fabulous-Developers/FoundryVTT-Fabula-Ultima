@@ -142,6 +142,7 @@ const checkFromCheckResult = (check) => {
 		primary: check.primary.attribute,
 		secondary: check.secondary.attribute,
 		modifiers: check.modifiers,
+		critThreshold: check.critThreshold,
 		additionalData: { ...check.additionalData },
 	};
 };
@@ -334,6 +335,8 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 	const primary = extractDieResults(roll.terms[0], actor);
 	const secondary = extractDieResults(roll.terms[2], actor);
 
+	const critThreshold = check.critThreshold ?? CRITICAL_THRESHOLD;
+
 	/**
 	 * @type {Readonly<CheckResultV2>}
 	 */
@@ -357,10 +360,10 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 		}),
 		modifiers: Object.freeze(check.modifiers.map(Object.freeze)),
 		modifierTotal: check.modifiers.reduce((agg, curr) => agg + curr.value, 0),
-		critThreshold: check.critThreshold,
+		critThreshold: critThreshold,
 		result: roll.total,
 		fumble: primary.result === 1 && secondary.result === 1,
-		critical: primary.result === secondary.result && primary.result >= Math.max(2, check.critThreshold),
+		critical: primary.result === secondary.result && primary.result >= Math.max(2, critThreshold),
 		additionalData: check.additionalData,
 	});
 
