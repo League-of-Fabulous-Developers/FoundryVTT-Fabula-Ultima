@@ -42,22 +42,13 @@
 }
 
 .projectfu .sheet-header .profile-img {
-	/* height: 200px;
-  width: 200px;
-  margin-right: 0;
-  -ms-flex-item-align: start;
-  align-self: start;
-  background-image: -webkit-gradient(linear, left top, right top, from(#2b4a42), to(#3d665a));
-  background-image: linear-gradient(to right, #2b4a42, #3d665a);
-  background-clip: content-box;
-  border: 1px solid #aeb8a8;
-  border-radius: 10px 0 0 10px; */
+	flex: 0 0 auto;
 	height: 100%;
+	max-height: 220px;
 	/* This makes the image fill the height of .profile */
 	width: 200px;
 	/* Maintains aspect ratio */
 	margin-right: 0;
-	-ms-flex-item-align: start;
 	align-self: stretch;
 	/* Also ensures it stretches in flex container */
 
@@ -65,15 +56,20 @@
 	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
+
+	object-fit: cover;
+	object-position: top;
+	aspect-ratio: 1;
 }
 
 .projectfu .sheet-header .item-profile-img {
+	flex: 0 0 auto;
 	height: 100%;
+	max-height: 144px;
 	/* This makes the image fill the height of .profile */
 	width: 144px;
 	/* Maintains aspect ratio */
 	margin-right: 0;
-	-ms-flex-item-align: start;
 	align-self: stretch;
 	/* Also ensures it stretches in flex container */
 
@@ -81,6 +77,10 @@
 	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
+
+	object-fit: cover;
+	object-position: top;
+	aspect-ratio: 1;
 }
 
 .projectfu .sheet-header .charname-container {
@@ -562,6 +562,13 @@
 	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
+	clip-path: rect(auto auto auto auto round 10px 0 0 10px);
+
+	img {
+		object-fit: cover;
+		object-position: top;
+		aspect-ratio: 1;
+	}
 }
 
 .projectfu .party .name-container {
@@ -835,6 +842,7 @@
 	height: 200px;
 	-o-object-fit: cover;
 	object-fit: cover;
+	object-position: top;
 	border: 4px solid #3a3a3a;
 	/* or another color that fits your theme */
 	border-radius: 8px;
