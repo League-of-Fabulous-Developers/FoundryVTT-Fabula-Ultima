@@ -52,8 +52,9 @@ const initHrZero = (hrZero) => (check) => {
 export class DamageData {
 	constructor(data = {}) {
 		// eslint-disable-next-line no-unused-vars
-		const { modifierTotal, ..._data } = data;
+		const { modifierTotal, modifiers, ..._data } = data;
 		Object.assign(this, _data);
+		this.modifiers = modifiers ?? [];
 		if (!this.hrZero) {
 			this.hrZero = false;
 		}
