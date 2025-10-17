@@ -1,7 +1,7 @@
 <div>
     <label>
         <span class="d-block">{{localize "FU.InlineEffectConfigModifyDamageBonusesType"}}</span>
-        <select name="guided.changes.{{@index}}.damageType" class="w-100">
+        <select name="guided.changes.{{@index}}.damageType">
             {{selectOptions templateData.types selected=damageType localize=true}}
         </select>
     </label>
