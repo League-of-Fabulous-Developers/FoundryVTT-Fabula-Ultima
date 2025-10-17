@@ -545,7 +545,7 @@ class CheckInspector {
 		let result = null;
 		if (damage) {
 			damage.traits = traits;
-			damage.modifiers = isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers;
+			damage.modifiers = isBase ? damage.modifiers.slice(0, 1) : damage.modifiers;
 			result = damage;
 		}
 		return result;
