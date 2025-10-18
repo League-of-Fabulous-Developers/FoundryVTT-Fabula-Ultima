@@ -1,4 +1,4 @@
-<main>
+<main class="flexcol flexgrow-1">
 	<section>
 		<fieldset class="desc title-fieldset resource-content technosphere-slots">
 			<legend class="resource-label-sm">
@@ -14,17 +14,19 @@
 			{{> 'projectfu.technospheres.slots' slots=slots}}
 		</fieldset>
 	</section>
-	<section>
-		<fieldset class="desc title-fieldset resource-content">
+	<section class="flexcol flexgrow-1">
+		<fieldset class="desc title-fieldset resource-content flexcol flexgrow-1">
 			<legend>
 				<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
 					{{localize 'FU.Description'}}
 					<i class="fas fa-info-circle"></i>
 				</label>
 			</legend>
-			<prose-mirror name="system.description" value="{{system.description}}" toggled>
-				{{{enrichedHtml.description}}}
-			</prose-mirror>
+			<div class="flexgrow-1">
+				<prose-mirror name="system.description" value="{{system.description}}" toggled>
+					{{{enrichedHtml.description}}}
+				</prose-mirror>
+			</div>
 		</fieldset>
 	</section>
 </main>

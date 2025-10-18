@@ -323,6 +323,11 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	 * @override
 	 */
 	_onClickAction(event, target) {
+		if (target.closest('prose-mirror') || !target.closest('body')) {
+			// prose mirror action button
+			return;
+		}
+
 		if (this.#dispatchClickActionToItem(event, target)) {
 			event.stopPropagation();
 			event.preventDefault();

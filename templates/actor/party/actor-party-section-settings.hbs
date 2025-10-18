@@ -33,14 +33,14 @@
 	</main>
 
 	<!-- Notes -->
-	<main class="grid-span-4">
+	<main class="grid-span-4 party-notes">
 		<fieldset class="section-container title-fieldset desc resource-content">
 			<legend class="resource-label-m" aria-describedby="tooltip">
 				<a class="resource-inputs resource-label-m">
 					{{localize 'FU.Notes'}}
 				</a>
 			</legend>
-			<div style="max-height: 400px; overflow-y: scroll;">
+			<div class="party-notes-container">
 				<prose-mirror name="system.notes" value="{{system.notes}}"></prose-mirror>
 			</div>
 		</fieldset>

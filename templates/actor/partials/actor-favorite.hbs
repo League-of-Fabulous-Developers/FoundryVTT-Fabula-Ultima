@@ -1,12 +1,12 @@
 {{!-- Favorite Template --}}
-<fieldset class="section-container title-fieldset desc resource-content">
+<fieldset class="section-container title-fieldset desc resource-content flexgrow-1">
 	<legend class="resource-label-m" aria-describedby="tooltip">
 		<a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.FavoriteAdd'}}"
 		   data-type="newFavorite" data-action="createFavorite"><i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}</a>
 	</legend>
 
 	{{!-- Equipped Item Header--}}
-	{{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs" item=item}}
+	{{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs"}}
 
 	{{{favoritesTable}}}
 </fieldset>
