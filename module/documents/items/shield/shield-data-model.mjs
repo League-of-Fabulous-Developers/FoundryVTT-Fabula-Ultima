@@ -119,6 +119,7 @@ export class ShieldDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
 		ShieldMigrations.run(source);
 		return source;
 	}

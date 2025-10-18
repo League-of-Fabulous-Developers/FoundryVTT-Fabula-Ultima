@@ -89,7 +89,7 @@ export class ArmorDataModel extends PseudoDocumentEnabledTypeDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		ArmorMigrations.run(source);
 		return source;
 	}

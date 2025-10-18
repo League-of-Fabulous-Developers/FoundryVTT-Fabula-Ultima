@@ -138,7 +138,7 @@ export class RitualDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		RitualMigrations.run(source);
 		return source;
 	}

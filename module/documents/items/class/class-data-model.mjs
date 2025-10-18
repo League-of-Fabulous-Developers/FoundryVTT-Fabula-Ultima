@@ -97,7 +97,7 @@ export class ClassDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		ClassMigrations.run(source);
 		return source;
 	}

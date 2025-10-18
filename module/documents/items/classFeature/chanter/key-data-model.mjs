@@ -1,7 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU, SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
-import { VerseMigrations } from './verse-migrations.mjs';
+import { KeyMigrations } from './key-migrations.mjs';
 
 const resourceOptions = {
 	hp: 'FU.HealthPoints',
@@ -44,8 +44,8 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
-		VerseMigrations.run(source);
+		source = super.migrateData(source);
+		KeyMigrations.run(source);
 		return source;
 	}
 

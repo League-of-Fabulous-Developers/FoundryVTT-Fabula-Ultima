@@ -1,13 +1,12 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
-import { FUItem } from '../../item.mjs';
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
-import { FUActor } from '../../../actors/actor.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { VersesApplication } from './verses-application.mjs';
-import { LocallyEmbeddedDocumentField } from '../../../../fields/locally-embedded-document-field.mjs';
+import { EmbeddedItemUuidField } from '../../../../fields/embedded-item-uuid-field.mjs';
 import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { VerseMigrations } from './verse-migrations.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',
@@ -66,10 +65,10 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { SchemaField, NumberField } = foundry.data.fields;
 		return {
-			key: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			key: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof KeyDataModel,
 			}),
-			tone: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			tone: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof ToneDataModel,
 			}),
 			config: new SchemaField({
@@ -78,6 +77,12 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 				high: new NumberField({ initial: 30, min: 0 }),
 			}),
 		};
+	}
+
+	static migrateData(source) {
+		source = super.migrateData(source);
+		VerseMigrations.run(source);
+		return source;
 	}
 
 	static get translation() {

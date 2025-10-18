@@ -125,7 +125,7 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		WeaponMigrations.run(source);
 		return source;
 	}
