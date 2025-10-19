@@ -66,6 +66,13 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		return super._migrateConstructorParams(first, rest);
 	}
 
+	get isEditable() {
+		if ('editable' in this.options) {
+			return this.options.editable;
+		}
+		return super.isEditable;
+	}
+
 	/** @inheritDoc */
 	async _preparePartContext(partId, context) {
 		const partContext = await super._preparePartContext(partId, context);
@@ -109,12 +116,18 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		// }
 
 		// CHANGES Tab
-		if (!html.querySelector('#effect-key-options')) {
-			const options = getAttributeKeys();
+		const effectKeyOptions = html.querySelector('#effect-key-options');
+
+		if (!effectKeyOptions || this.#requiresUpdate(effectKeyOptions)) {
+			effectKeyOptions?.remove();
+			const targetDocument = this.document.target;
+			const attributeKeys = getAttributeKeys(targetDocument);
 			const datalist = document.createElement('datalist');
 			datalist.id = 'effect-key-options';
+			datalist.dataset.documentName = targetDocument.documentName;
+			datalist.dataset.documentType = targetDocument.type;
 
-			options.forEach((opt) => {
+			attributeKeys.forEach((opt) => {
 				const option = document.createElement('option');
 				option.value = opt;
 				datalist.appendChild(option);
@@ -124,66 +137,73 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		}
 
 		html.querySelectorAll('.key input').forEach((el) => {
-			const name = el.getAttribute('name');
-			const value = el.value;
-
-			const newInput = document.createElement('input');
-			newInput.type = 'text';
-			newInput.name = name;
-			newInput.value = value;
-			newInput.setAttribute('list', 'effect-key-options');
-
-			el.parentNode.replaceChild(newInput, el);
+			el.setAttribute('list', 'effect-key-options');
 		});
 
 		// Remove assigning statuses since we don't do that
 		const statusForm = html.querySelector('div.form-group.statuses');
 		statusForm.remove();
 	}
-}
 
-let attributeKeys = undefined;
+	_onChangeForm(formConfig, event) {
+		super._onChangeForm(formConfig, event);
+
+		if (event.target instanceof HTMLInputElement && event.target.name === 'transfer') {
+			this.submit({ updateData: { transfer: event.target.checked } });
+		}
+	}
+
+	#requiresUpdate(effectKeyOptions) {
+		const targetDocument = this.document.target;
+		const targetDocumentName = targetDocument.documentName;
+		const targetDocumentType = targetDocument.type;
+
+		const { documentName, documentType } = effectKeyOptions.dataset;
+
+		return documentName !== targetDocumentName || documentType !== targetDocumentType;
+	}
+}
 
 /**
  * @returns {String[]}
  */
-function getAttributeKeys() {
-	if (!attributeKeys) {
-		attributeKeys = [];
-		const characterFields = CONFIG.Actor.dataModels.character.schema.fields;
-		if (characterFields) {
-			attributeKeys = attributeKeys.concat(flattenSchemaFields(characterFields, 'system'));
-			// TODO: Derived Keys
-			// Resources
-			for (const res of ['hp', 'mp', 'ip']) {
-				attributeKeys.push(`system.resources.${res}.max`);
-			}
-			// Attributes
-			for (const attr of Object.keys(FU.attributes)) {
-				attributeKeys.push(`system.attributes.${attr}.current`);
-			}
-			// Stats
-			// for (const stat of ['def', 'mdef', 'init']) {
-			// 	attributeKeys.push(`system.derived.${stat}.value`);
-			// }
-			// Affinities
-			for (const aff of Object.keys(FU.damageTypes)) {
-				attributeKeys.push(`system.affinities.${aff}.current`);
-			}
-		}
-		attributeKeys = attributeKeys.sort((a, b) => b.localeCompare(a));
-	}
-	return attributeKeys;
-}
+function getAttributeKeys(document) {
+	let attributeKeys = [];
 
-function flattenSchemaFields(obj, prefix = '', result = []) {
-	for (const [key, value] of Object.entries(obj)) {
-		const path = prefix ? `${prefix}.${key}` : key;
-		if (value.fields) {
-			flattenSchemaFields(value.fields, path, result);
-		} else {
-			result.push(path);
+	if (document) {
+		if (document.system) {
+			document.system.schema.apply(function () {
+				if (this.constructor.recursive) return;
+				attributeKeys.push(this.fieldPath);
+			});
+		}
+
+		if (document.documentName === 'Actor') {
+			if (document.isCharacterType) {
+				// TODO: Derived Keys
+				// Resources
+				const resources = ['hp', 'mp'];
+				if (document.type === 'character') resources.push('ip');
+				for (const res of resources) {
+					attributeKeys.push(`system.resources.${res}.max`);
+				}
+				// Attributes
+				for (const attr of Object.keys(FU.attributes)) {
+					attributeKeys.push(`system.attributes.${attr}`);
+					attributeKeys.push(`system.attributes.${attr}.current`);
+				}
+				// Stats
+				// for (const stat of ['def', 'mdef', 'init']) {
+				// 	attributeKeys.push(`system.derived.${stat}.value`);
+				// }
+				// Affinities
+				for (const aff of Object.keys(FU.damageTypes)) {
+					attributeKeys.push(`system.affinities.${aff}`);
+					attributeKeys.push(`system.affinities.${aff}.current`);
+				}
+			}
 		}
 	}
-	return result;
+	attributeKeys = attributeKeys.sort((a, b) => a.localeCompare(b));
+	return attributeKeys;
 }

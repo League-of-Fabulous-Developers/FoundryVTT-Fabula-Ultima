@@ -53,13 +53,13 @@ class BasePseudoActiveEffect extends PseudoDocument {
 		),
 	);
 
+	static LOCALIZATION_PREFIXES = ['DOCUMENT', 'EFFECT'];
+
 	/**
 	 * Retrieve the Document that this ActiveEffect targets for modification.
 	 * @type {Document|null}
 	 */
 	get target() {
-		if (this.parent instanceof Actor) return this.parent;
-		if (CONFIG.ActiveEffect.legacyTransferral) return this.transfer ? null : this.parent;
 		return this.transfer ? this.parent.actor ?? null : this.parent;
 	}
 
