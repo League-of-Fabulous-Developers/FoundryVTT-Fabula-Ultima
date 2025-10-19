@@ -64,6 +64,8 @@ export class PseudoDocument extends foundry.abstract.DataModel {
 		Object.defineProperty(this, 'nestedCollections', { value: {}, writable: false });
 	}
 
+	static LOCALIZATION_PREFIXES = foundry.abstract.Document.LOCALIZATION_PREFIXES;
+
 	_initialize(options) {
 		super._initialize(options);
 		if (!game._documentsReady) return;

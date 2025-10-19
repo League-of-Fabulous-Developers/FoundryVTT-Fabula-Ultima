@@ -94,6 +94,8 @@ import { HoplosphereSheet } from './documents/items/hoplosphere/hoplosphere-shee
 import { MnemosphereReceptacleDataModel } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-data-model.mjs';
 import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-sheet.mjs';
 import { FUItemArmorSheet } from './sheets/item-armor-sheet.mjs';
+import { PseudoItem } from './documents/items/pseudo-item.mjs';
+import { PseudoActiveEffect } from './documents/effects/pseudo-active-effect.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -349,6 +351,14 @@ Hooks.once('init', async () => {
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
+});
+
+const pseudoDocuments = [PseudoItem, PseudoActiveEffect];
+
+Hooks.once('i18nInit', () => {
+	for (const pseudoDocumentClass of pseudoDocuments) {
+		game.i18n.constructor.localizeDataModel(pseudoDocumentClass);
+	}
 });
 
 Hooks.once('setup', () => {});

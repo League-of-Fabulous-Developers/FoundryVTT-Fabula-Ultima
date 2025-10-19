@@ -1,28 +1,27 @@
 import { PseudoDocumentCollectionField } from '../pseudo/pseudo-document-collection-field.mjs';
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
 import { PseudoActiveEffect } from '../effects/pseudo-active-effect.mjs';
-import { FUItem } from './item.mjs';
 import { ItemBehaviourMixin } from './item-behaviour-mixin.mjs';
 
 class BasePseudoItem extends PseudoDocument {
 	static documentName = 'Item';
 
 	static defineSchema() {
-		const { FilePathField, ObjectField, StringField, IntegerSortField, DocumentTypeField, TypeDataField } = foundry.data.fields;
+		const fields = foundry.data.fields;
 		return {
-			_id: new StringField({ initial: () => foundry.utils.randomID(), validate: foundry.data.validators.isValidId }),
-			name: new StringField({ initial: () => game.i18n.format('DOCUMENT.New', { type: game.i18n.localize(this.metadata.label) }), required: true, blank: false, textSearch: true }),
-			type: new DocumentTypeField(this),
-			img: new FilePathField({
+			_id: new fields.StringField({ initial: () => foundry.utils.randomID(), validate: foundry.data.validators.isValidId }),
+			name: new fields.StringField({ initial: () => game.i18n.format('DOCUMENT.New', { type: game.i18n.localize(this.metadata.label) }), required: true, blank: false, textSearch: true }),
+			type: new fields.DocumentTypeField(this),
+			img: new fields.FilePathField({
 				categories: ['IMAGE'],
 				initial: (data) => {
-					return FUItem.getDefaultArtwork(data).img;
+					return foundry.documents.Item.implementation.getDefaultArtwork(data).img;
 				},
 			}),
-			system: new TypeDataField(this),
+			system: new fields.TypeDataField(this),
 			effects: new PseudoDocumentCollectionField(PseudoActiveEffect),
-			flags: new ObjectField(),
-			sort: new IntegerSortField(),
+			sort: new fields.IntegerSortField(),
+			flags: new fields.DocumentFlagsField(),
 		};
 	}
 
