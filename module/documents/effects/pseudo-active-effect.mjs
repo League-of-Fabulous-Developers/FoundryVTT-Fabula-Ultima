@@ -53,8 +53,6 @@ class BasePseudoActiveEffect extends PseudoDocument {
 		),
 	);
 
-	static LOCALIZATION_PREFIXES = ['DOCUMENT', 'EFFECT'];
-
 	/**
 	 * Retrieve the Document that this ActiveEffect targets for modification.
 	 * @type {Document|null}
