@@ -1,23 +1,23 @@
-<div class="invocations-sheet">
+<div class="invocations-sheet flexcol flexgrow-1">
     <nav class='desc invocations-tabs tabs flexrow' data-group='invocationsTabs'>
         <a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
         {{#each additionalData.wellsprings}}
             <a class='item tab-style' data-tab='{{@key}}'>{{localize nameShort}}</a>
         {{/each}}
     </nav>
-    <div class="invocations-content">
-        <div class='tab' data-group='invocationsTabs' data-tab='description'>
-            <fieldset class="desc title-fieldset resource-content">
+    <div class="invocations-content flexcol flexgrow-1">
+        <div class='tab flexcol flexgrow-1' data-group='invocationsTabs' data-tab='description'>
+            <fieldset class="desc title-fieldset resource-content flexcol flexgrow-1">
                 <legend class="resource-label-m">{{localize "FU.Description"}}</legend>
                 <div>
                     <label class="resource-label-sm">
                         <span class="resource-label-m">{{localize "FU.Rank"}}</span>
-                        <select name="system.data.level">
+                        <select name="system.data.level" class="resource-inputs select-dropdown-full">
                             {{selectOptions additionalData.levels selected=system.data.level localize=true}}
                         </select>
                     </label>
                 </div>
-                <div>
+                <div class="flexgrow-1">
 					<prose-mirror name="system.data.description" value="{{system.data.description}}" toggled>
 						{{{enrichedHtml.description}}}
 					</prose-mirror>
@@ -26,16 +26,16 @@
         </div>
         {{#each additionalData.wellsprings}}
             {{#with (lookup @root.system.data @key)}}
-                <div class='tab' data-group='invocationsTabs' data-tab='{{@key}}'>
+                <div class='tab flexcol flexgrow-1' data-group='invocationsTabs' data-tab='{{@key}}'>
 					<!-- Basic -->
-                    <fieldset class="desc title-fieldset resource-content">
+                    <fieldset class="desc title-fieldset resource-content flexgrow-1">
                         <legend class="resource-label-m">{{localize ../name}}</legend>
                         <fieldset class="desc title-fieldset resource-content">
                             <legend class="resource-label-sm">{{localize "FU.ClassFeatureInvocationsBasic"}}</legend>
                             <div>
                                 <label class="resource-label-sm">
                                     <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
-                                    <input type="text" name="system.data.{{@key}}.basic.name" value="{{basic.name}}"/>
+                                    <input type="text" name="system.data.{{@key}}.basic.name" value="{{basic.name}}" class="resource-inputs select-dropdown-full"/>
                                 </label>
                             </div>
                             <div class="invocation-description">
@@ -53,7 +53,7 @@
                                     <label class="resource-label-sm">
                                         <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
                                         <input type="text" name="system.data.{{@key}}.advanced.name"
-                                               value="{{advanced.name}}"/>
+                                               value="{{advanced.name}}" class="resource-inputs select-dropdown-full"/>
                                     </label>
                                 </div>
                                 <div class="invocation-description">
@@ -71,7 +71,7 @@
                                         <label class="resource-label-sm">
                                             <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
                                             <input type="text" name="system.data.{{@key}}.superior1.name"
-                                                   value="{{superior1.name}}"/>
+                                                   value="{{superior1.name}}" class="resource-inputs select-dropdown-full"/>
                                         </label>
                                     </div>
                                     <div class="invocation-description">
@@ -84,7 +84,7 @@
                                         <label class="resource-label-sm">
                                             <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
                                             <input type="text" name="system.data.{{@key}}.superior2.name"
-                                                   value="{{superior2.name}}"/>
+                                                   value="{{superior2.name}}" class="resource-inputs select-dropdown-full"/>
                                         </label>
                                     </div>
                                     <div class="invocation-description">

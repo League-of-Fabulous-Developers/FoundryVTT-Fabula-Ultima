@@ -1,22 +1,20 @@
-<div class="tab {{tab.cssClass}}" data-group="primary" data-tab="features">
-	<section class="desc">
-		<header class="items-main-header">
+<div class="tab desc {{tab.cssClass}}" data-group="primary" data-tab="features">
+	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Features"}}</label>
 		</span>
-			<span class="item-create-dialog items-main total-level w-25" data-type="newClassFeatures"
-				  data-tooltip="{{localize 'FU.Add'}} {{localize 'FU.Feature'}}" data-action="createClassFeature">
+		<span class="item-create-dialog items-main total-level w-25" data-type="newClassFeatures"
+			  data-tooltip="{{localize 'FU.Add'}} {{localize 'FU.Feature'}}" data-action="createClassFeature">
 			<a>{{localize 'FU.Add'}} <i class="fas fa-circle-plus"></i></a>
 		</span>
-		</header>
-		{{{classFeatureTables}}}
+	</header>
+	{{{classFeatureTables}}}
 
-		{{{optionalFeatureTables}}}
+	{{{optionalFeatureTables}}}
 
-		{{{abilitiesTable}}}
+	{{{abilitiesTable}}}
 
-		{{{projectsTable}}}
+	{{{projectsTable}}}
 
-		{{{rulesTable}}}
-	</section>
+	{{{rulesTable}}}
 </div>

@@ -371,6 +371,7 @@
 	overflow-y: auto;
 	min-height: 16em;
 	padding: 0.5em;
+	flex-grow: 1;
 }
 
 .projectfu .editor {
@@ -494,8 +495,8 @@
 }
 
 .projectfu .party .editor-menu {
-	color: var(--pfu-color-app-control-content) !important;
-	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content, var(--button-text-color)) !important;
+	background: var(--pfu-color-app-control-fill, var(--menu-background));
 }
 
 .projectfu .party .side {
@@ -637,9 +638,29 @@
 .projectfu .party .settings {
 	height: 100%;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	align-items: stretch;
+	justify-content: start;
 	text-align: center;
+
+	&.active {
+		display: flex;
+	}
+
+	.party-notes {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+
+		& > fieldset {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+
+			.party-notes-container {
+				flex-grow: 1;
+			}
+		}
+	}
 }
 
 .projectfu .party .adversaries {

@@ -1,4 +1,4 @@
-<div class="resource-content desc">
+<div class="resource-content desc flexcol flexgrow-1">
     <!-- Tab Navigation -->
     <nav class="cookbook-tabs tabs flexrow gap-5" data-group="cookbookTabs">
         <a class="item tab button-style" data-tab="summaryTab">{{localize 'FU.Summary'}}</a>
@@ -8,9 +8,9 @@
     <hr />
 
     <!-- Tab Content -->
-    <div class="cookbook-content">
+    <div class="cookbook-content flexcol flexgrow-1">
         <!-- Summary Tab -->
-        <div class="tab" data-group="cookbookTabs" data-tab="summaryTab">
+        <div class="tab flexcol flexgrow-1" data-group="cookbookTabs" data-tab="summaryTab">
             {{#each system.data.combinations}}
             <fieldset class="title-fieldset desc resource-content combination" data-taste1="{{taste1}}"
                 data-taste2="{{taste2}}">
@@ -37,8 +37,8 @@
         </div>
 
         <!-- Edit Tab -->
-        <div class="tab" data-group="cookbookTabs" data-tab="editTab">
-            <div class="cookbook-sheet">
+        <div class="tab flexcol flexgrow-1" data-group="cookbookTabs" data-tab="editTab">
+            <div class="cookbook-sheet flexcol flexgrow-1">
                 <fieldset class="title-fieldset desc resource-content">
                     <legend class="resource-label-full">
                         <label class="resource-label-m">{{localize "FU.ClassFeatureIngredient"}}</label>
@@ -62,14 +62,14 @@
                 </fieldset>
 
                 {{#each system.data.combinations}}
-                <fieldset class="title-fieldset desc resource-content combination" data-taste1="{{taste1}}"
+                <fieldset class="title-fieldset desc resource-content combination flexcol flexgrow-1" data-taste1="{{taste1}}"
                     data-taste2="{{taste2}}">
                     <legend class="resource-label-full">
                         <label class="resource-label-m">
                             {{localize (lookup @root/additionalData.tastes taste1)}} + {{localize (lookup @root/additionalData.tastes taste2)}}
                         </label>
                     </legend>
-                    <div>
+                    <div class="flexgrow-1">
 						<prose-mirror name="system.data.combinations.{{@key}}.effect" value="{{effect}}" toggled>
 							{{{lookup (lookup @root/enrichedHtml.combinations @key) 'effect'}}}
 						</prose-mirror>

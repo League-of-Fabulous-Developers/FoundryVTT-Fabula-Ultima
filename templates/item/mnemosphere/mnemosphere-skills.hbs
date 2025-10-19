@@ -1,4 +1,4 @@
-<main class="skills tab {{tab.cssClass}}" data-tab="skills" data-group="primary">
+<main class="skills tab flexcol {{tab.cssClass}}" data-tab="skills" data-group="primary">
 	<section>
 		<fieldset class="title-fieldset desc resource-content grid-2col gap-5">
 			<legend class="resource-label-sm">
@@ -21,7 +21,7 @@
 			</label>
 		</fieldset>
 	</section>
-	<section class="desc resource-content">
+	<section class="desc resource-content flexgrow-1">
 		<header class="items-main-header">
 			<span class="items-main">{{localize "FU.Skills"}}</span>
 			<span class="items-main total-level"> {{ totalSkillLevels }} / {{ item.system.level }} </span>

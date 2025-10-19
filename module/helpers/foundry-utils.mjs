@@ -37,13 +37,15 @@ export default class FoundryUtils {
 	/**
 	 * @param {String} title
 	 * @param {FormSelectOption[]} options
+	 * @param {string} [selected] the default selected value
 	 * @returns {Promise<String|null>} The single selected option
 	 */
-	static async selectOptionDialog(title, options) {
+	static async selectOptionDialog(title, options, selected) {
 		const selectInput = fields.createSelectInput({
 			options: options,
 			name: 'option',
 			type: 'checkboxes',
+			value: selected,
 		});
 
 		const selectGroup = fields.createFormGroup({

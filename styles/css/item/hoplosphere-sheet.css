@@ -1,5 +1,15 @@
 .hoplosphere-sheet__main {
 	margin-top: var(--spacing-md);
-	height: 100%;
+	flex-grow: 1;
 	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
+
+	& > * {
+		flex: 0 0 auto;
+	}
+
+	.hoplosphere-sheet__effects {
+		flex-grow: 1;
+	}
 }
