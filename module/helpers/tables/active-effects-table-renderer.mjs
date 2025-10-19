@@ -54,7 +54,11 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 
 		let effects = [];
 		if (document instanceof Actor) {
-			effects = [...document.allApplicableEffects()];
+			if (this.#effectState === 'temporary') {
+				effects = [...document.allEffects()];
+			} else {
+				effects = [...document.allApplicableEffects()];
+			}
 		}
 		if (document instanceof Item || document instanceof PseudoItem) {
 			effects = [...document.effects];
