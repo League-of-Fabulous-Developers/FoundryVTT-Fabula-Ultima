@@ -82,6 +82,11 @@
 	}
 }
 
+.invocations-table {
+	grid-template-columns: [name] auto [controls] 100px;
+	cursor: inherit;
+}
+
 .npc-profile-basic-attacks-table {
 	grid-template-columns: [name] auto [check] 150px [damage] 150px;
 }
