@@ -121,6 +121,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
 		NpcMigrations.run(source);
 		return source;
 	}

@@ -1,9 +1,8 @@
 import { FUItem } from '../../items/item.mjs';
-import { FUActor } from '../actor.mjs';
 import { ClassFeatureTypeDataModel } from '../../items/classFeature/class-feature-type-data-model.mjs';
 import { MagiseedDataModel } from '../../items/classFeature/floralist/magiseed-data-model.mjs';
 import { GardenDataModel } from '../../items/classFeature/floralist/garden-data-model.mjs';
-import { LocallyEmbeddedDocumentField } from '../../../fields/locally-embedded-document-field.mjs';
+import { EmbeddedItemUuidField } from '../../../fields/embedded-item-uuid-field.mjs';
 
 /**
  * @property {FUItem} planted
@@ -12,17 +11,24 @@ import { LocallyEmbeddedDocumentField } from '../../../fields/locally-embedded-d
 export class FloralistDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
-			planted: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			planted: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof MagiseedDataModel,
 			}),
-			garden: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			garden: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof GardenDataModel,
 			}),
 		};
 	}
 
+	prepareData() {
+		if (!this.garden) {
+			// need to use Object#defineProperty here because `planted` and `garden` get defined as a getter/setter with no-op setter
+			Object.defineProperty(this, 'planted', { value: null, configurable: true });
+		}
+	}
+
 	async togglePlantedMagiseed(magiseed) {
-		if (this.#isMagiseed(magiseed)) {
+		if (this.garden && this.#isMagiseed(magiseed)) {
 			if (this.planted === magiseed) {
 				await this.parent.actor.update({
 					'system.floralist.planted': null,
@@ -30,7 +36,7 @@ export class FloralistDataModel extends foundry.abstract.DataModel {
 				return magiseed.system.data.postRemoved();
 			} else {
 				await this.parent.actor.update({
-					'system.floralist.planted': magiseed.id,
+					'system.floralist.planted': magiseed.uuid,
 				});
 				return magiseed.system.data.postPlanted();
 			}
@@ -49,10 +55,11 @@ export class FloralistDataModel extends foundry.abstract.DataModel {
 			if (this.garden === garden) {
 				await this.parent.actor.update({
 					'system.floralist.garden': null,
+					'system.floralist.planted': null,
 				});
 			} else {
 				await this.parent.actor.update({
-					'system.floralist.garden': garden.id,
+					'system.floralist.garden': garden.uuid,
 				});
 			}
 		} else {

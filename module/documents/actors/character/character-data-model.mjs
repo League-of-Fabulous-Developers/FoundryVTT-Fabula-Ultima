@@ -108,6 +108,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
 		CharacterMigrations.run(source);
 
 		return source;
@@ -128,6 +129,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		this.resources.mp.attribute = 'wlp';
 		this.#prepareBasicResources();
 		this.vehicle.prepareData();
+		this.floralist.prepareData();
 		this.derived.prepareData();
 	}
 

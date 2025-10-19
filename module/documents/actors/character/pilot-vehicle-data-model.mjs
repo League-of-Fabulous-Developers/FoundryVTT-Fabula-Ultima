@@ -1,11 +1,9 @@
-import { FUItem } from '../../items/item.mjs';
-import { FUActor } from '../actor.mjs';
 import { ClassFeatureTypeDataModel } from '../../items/classFeature/class-feature-type-data-model.mjs';
 import { VehicleDataModel } from '../../items/classFeature/pilot/vehicle-data-model.mjs';
 import { WeaponModuleDataModel } from '../../items/classFeature/pilot/weapon-module-data-model.mjs';
 import { ArmorModuleDataModel } from '../../items/classFeature/pilot/armor-module-data-model.mjs';
 import { SupportModuleDataModel } from '../../items/classFeature/pilot/support-module-data-model.mjs';
-import { LocallyEmbeddedDocumentField } from '../../../fields/locally-embedded-document-field.mjs';
+import { EmbeddedItemUuidField } from '../../../fields/embedded-item-uuid-field.mjs';
 
 /**
  * @property {FUItem | null} vehicle
@@ -18,21 +16,21 @@ export class PilotVehicleDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { ArrayField, BooleanField } = foundry.data.fields;
 		return {
-			vehicle: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			vehicle: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof VehicleDataModel,
 			}),
 			embarked: new BooleanField({ initial: false }),
 			weapons: new ArrayField(
-				new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+				new EmbeddedItemUuidField({
 					validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof WeaponModuleDataModel,
 				}),
 				{},
 			),
-			armor: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			armor: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof ArmorModuleDataModel,
 			}),
 			supports: new ArrayField(
-				new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+				new EmbeddedItemUuidField({
 					validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof SupportModuleDataModel,
 				}),
 				{},

@@ -129,7 +129,7 @@ export class MagiseedDataModel extends RollableClassFeatureDataModel {
 	static async getAdditionalData(model) {
 		// Provide any additional data needed for the template rendering
 		return {
-			isCharacter: model.actor?.type === 'character',
+			garden: model.actor?.system.floralist.garden,
 			active: model.actor?.system?.floralist?.planted === model.item,
 			effects: await Promise.all(model.effects.map((effect) => TextEditor.enrichHTML(effect.effect, { rollData: model.item?.rollData ?? {} }))),
 		};

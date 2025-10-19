@@ -17,7 +17,7 @@ const stashableTypes = new Set(['accessory', 'armor', 'consumable', 'customWeapo
 export function ItemBehaviourMixin(BaseClass) {
 	return class FUItemBehaviourMixin extends BaseClass {
 		static migrateData(source) {
-			super.migrateData(source);
+			source = super.migrateData(source);
 			ItemMigrations.run(source);
 			return source;
 		}

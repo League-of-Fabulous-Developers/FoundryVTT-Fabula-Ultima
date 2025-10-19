@@ -39,6 +39,41 @@ function migrateBonds(source) {
 	}
 }
 
+function migrateLocallyEmbeddedDocumentFieldToEmbeddedItemUuidField(source) {
+	function migrate(id) {
+		if (typeof id === 'string' && !id.includes('.')) {
+			return `.Item.${id}`;
+		} else {
+			return id;
+		}
+	}
+
+	if (source.vehicle) {
+		if ('vehicle' in source.vehicle) {
+			source.vehicle.vehicle = migrate(source.vehicle.vehicle);
+		}
+		if ('armor' in source.vehicle) {
+			source.vehicle.armor = migrate(source.vehicle.armor);
+		}
+
+		if (Array.isArray(source.vehicle.weapons)) {
+			source.vehicle.weapons = source.vehicle.weapons.map((value) => migrate(value));
+		}
+		if (Array.isArray(source.vehicle.supports)) {
+			source.vehicle.supports = source.vehicle.supports.map((value) => migrate(value));
+		}
+	}
+
+	if (source.floralist) {
+		if (source.floralist.garden) {
+			source.floralist.garden = migrate(source.floralist.garden);
+		}
+		if (source.floralist.planted) {
+			source.floralist.planted = migrate(source.floralist.planted);
+		}
+	}
+}
+
 export class CharacterMigrations {
 	static run(source) {
 		migrateLegacyBonds(source);
@@ -48,5 +83,7 @@ export class CharacterMigrations {
 		migratePhysicalAffinity(source);
 
 		migrateBonds(source);
+
+		migrateLocallyEmbeddedDocumentFieldToEmbeddedItemUuidField(source);
 	}
 }

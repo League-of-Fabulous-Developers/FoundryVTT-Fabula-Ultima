@@ -73,8 +73,14 @@ const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
 		CommonSections.tags(sections, [
 			{
 				tag: 'FU.Class',
+				separator: ':',
 				value: item.system.class,
 				show: !!item.system.class,
+			},
+			{
+				tag: 'FU.Level',
+				separator: ':',
+				value: `${item.system.level} / ${item.system.maxLevel}`,
 			},
 		]);
 

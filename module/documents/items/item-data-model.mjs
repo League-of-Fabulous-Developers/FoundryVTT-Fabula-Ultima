@@ -20,6 +20,7 @@ export class FUItemDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
 		if (source.source?.value) {
 			source.source = source.source.value;
 		}

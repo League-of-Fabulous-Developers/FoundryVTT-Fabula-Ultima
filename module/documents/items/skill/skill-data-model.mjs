@@ -164,7 +164,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		SkillMigrations.run(source);
 		return source;
 	}
