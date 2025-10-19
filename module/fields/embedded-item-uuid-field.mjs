@@ -2,7 +2,7 @@ import { FUItem } from '../documents/items/item.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 
 /**
- * @typedef {StringFieldOptions} LocallyEmbeddedDocumentFieldOptions
+ * @typedef {StringFieldOptions} EmbeddedItemUuidFieldOptions
  * @property {boolean} [fallback=false]  Display the string value if no matching item is found.
  */
 
@@ -22,7 +22,7 @@ import { PseudoItem } from '../documents/items/pseudo-item.mjs';
  */
 export class EmbeddedItemUuidField extends foundry.data.fields.StringField {
 	/**
-	 * @param {LocallyEmbeddedDocumentFieldOptions} options  Options which configure the behavior of the field.
+	 * @param {EmbeddedItemUuidFieldOptions} options  Options which configure the behavior of the field.
 	 */
 	constructor({ validate, ...options } = {}) {
 		super(options);
