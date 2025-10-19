@@ -1,4 +1,4 @@
-import { systemAssetPath, systemTemplatePath } from '../../../../helpers/system-utils.mjs';
+import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { InvocationTableRenderer } from '../../../../helpers/tables/invocation-table-renderer.mjs';
 import { WELLSPRINGS } from './invoker-integration.mjs';
@@ -32,7 +32,6 @@ export class InvocationSelectionApplication extends FUApplication {
 
 	#model;
 	#invocationTable = new InvocationTableRenderer();
-	#tableData = {};
 
 	constructor(model) {
 		super();
@@ -44,46 +43,15 @@ export class InvocationSelectionApplication extends FUApplication {
 	async _prepareContext(options = {}) {
 		const activeWellsprings = Object.entries(this.#model.actor.wellspringManager.activeWellsprings)
 			.filter(([, value]) => value)
-			.reduce((agg, [key, value]) => (agg[key] = value) && agg, {});
-		const availableInvocations = {
-			basic: ['basic'],
-			advanced: ['basic', 'advanced'],
-			superior: ['basic', 'advanced', 'superior1', 'superior2'],
-		}[this.#model.level];
-
-		this.#tableData = {};
+			.map(([key]) => key);
 
 		return {
 			buttons: [{ type: 'submit', icon: 'fa-solid fa-times', label: 'Close' }],
 			wellsprings: await Promise.all(
-				Object.keys(activeWellsprings).map(async (element) => {
-					const tableData = availableInvocations.map((invocation) => {
-						const id = foundry.utils.randomID();
-
-						const data = {
-							...this.#model[element][invocation],
-							img: systemAssetPath(`affinities/icons/${this.getHexIcon(element)}.png`),
-							parent: this.#model.actor,
-							uuid: id,
-							id,
-							element,
-							invocation,
-						};
-						this.#tableData[id] = data;
-						return data;
-					});
-
+				activeWellsprings.map(async (element) => {
 					return {
 						wellspring: WELLSPRINGS[element],
-						invocations: availableInvocations.map((invocation) => ({
-							...this.#model[element][invocation],
-							icon: WELLSPRINGS[element].icon,
-							parent: this.#model.actor,
-						})),
-						table: await this.#invocationTable.renderTable(this.#model.actor, {
-							invocations: tableData,
-							tablePreset: 'invocation',
-						}),
+						table: await this.#invocationTable.renderTable(this.#model, { wellspring: element }),
 					};
 				}),
 			),
@@ -101,39 +69,8 @@ export class InvocationSelectionApplication extends FUApplication {
 		});
 	}
 
-	async _onRender(context, options) {
-		await super._onRender(context, options);
-
-		// Attach our dataset properties for the element and invocation
-		// which are used by the useInvocation function
-		Object.values(this.#tableData).map((item) => {
-			const container = this.element.querySelector(`[data-uuid="${item.uuid}"]`);
-			if (container instanceof HTMLElement) {
-				container.dataset.element = item.element;
-				container.dataset.invocation = item.invocation;
-			}
-		});
-
+	async _onFirstRender(context, options) {
 		this.#invocationTable.activateListeners(this);
-	}
-
-	/**
-	 * Retrieve the file name for the icon to use for a given invocation.
-	 *
-	 * This is primarily to translate 'lightning' and 'water' wellspring elements to damage type icons
-	 * @param {string} element
-	 * @param {string} invocation
-	 * @returns {string}
-	 */
-	getHexIcon(element, invocation) {
-		switch (element) {
-			case 'lightning':
-				return 'bolt';
-			case 'water':
-				return 'ice';
-			default:
-				return element;
-		}
 	}
 
 	useInvocation(event) {
