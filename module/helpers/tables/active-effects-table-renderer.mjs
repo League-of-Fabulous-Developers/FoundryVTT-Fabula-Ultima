@@ -66,11 +66,11 @@ export class ActiveEffectsTableRenderer extends FUTableRenderer {
 
 		switch (this.#effectState) {
 			case 'temporary':
-				return effects.filter((effect) => effect.isTemporary && effect.active);
+				return effects.filter((effect) => effect.isTemporary);
 			case 'passive':
-				return effects.filter((effect) => effect.active && !effect.isTemporary);
+				return effects.filter((effect) => !effect.isTemporary && effect.active);
 			case 'inactive':
-				return effects.filter((effect) => !effect.active);
+				return effects.filter((effect) => !effect.isTemporary && !effect.active);
 			default:
 				return [];
 		}
