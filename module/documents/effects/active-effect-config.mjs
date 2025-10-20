@@ -66,6 +66,19 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		return super._migrateConstructorParams(first, rest);
 	}
 
+	static #dummyActor;
+
+	static get dummyActor() {
+		if (!this.#dummyActor) {
+			this.#dummyActor = new foundry.documents.Actor.implementation({ type: 'character', name: 'Temp Actor' });
+		}
+		return this.#dummyActor;
+	}
+
+	get dummyActor() {
+		return this.constructor.dummyActor;
+	}
+
 	get isEditable() {
 		if ('editable' in this.options) {
 			return this.options.editable;
@@ -117,10 +130,10 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 
 		// CHANGES Tab
 		const effectKeyOptions = html.querySelector('#effect-key-options');
+		const targetDocument = this.document.target ?? this.dummyActor;
 
-		if (!effectKeyOptions || this.#requiresUpdate(effectKeyOptions)) {
+		if (this.#effectKeysRequireUpdate(effectKeyOptions, targetDocument)) {
 			effectKeyOptions?.remove();
-			const targetDocument = this.document.target;
 			const attributeKeys = getAttributeKeys(targetDocument);
 			const datalist = document.createElement('datalist');
 			datalist.id = 'effect-key-options';
@@ -153,8 +166,11 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		}
 	}
 
-	#requiresUpdate(effectKeyOptions) {
-		const targetDocument = this.document.target;
+	#effectKeysRequireUpdate(effectKeyOptions, targetDocument) {
+		if (!effectKeyOptions) {
+			return true;
+		}
+
 		const targetDocumentName = targetDocument.documentName;
 		const targetDocumentType = targetDocument.type;
 
@@ -170,40 +186,39 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 function getAttributeKeys(document) {
 	let attributeKeys = [];
 
-	if (document) {
-		if (document.system) {
-			document.system.schema.apply(function () {
-				if (this.constructor.recursive) return;
-				attributeKeys.push(this.fieldPath);
-			});
-		}
+	if (document.system) {
+		document.system.schema.apply(function () {
+			if (this.constructor.recursive) return;
+			attributeKeys.push(this.fieldPath);
+		});
+	}
 
-		if (document.documentName === 'Actor') {
-			if (document.isCharacterType) {
-				// TODO: Derived Keys
-				// Resources
-				const resources = ['hp', 'mp'];
-				if (document.type === 'character') resources.push('ip');
-				for (const res of resources) {
-					attributeKeys.push(`system.resources.${res}.max`);
-				}
-				// Attributes
-				for (const attr of Object.keys(FU.attributes)) {
-					attributeKeys.push(`system.attributes.${attr}`);
-					attributeKeys.push(`system.attributes.${attr}.current`);
-				}
-				// Stats
-				// for (const stat of ['def', 'mdef', 'init']) {
-				// 	attributeKeys.push(`system.derived.${stat}.value`);
-				// }
-				// Affinities
-				for (const aff of Object.keys(FU.damageTypes)) {
-					attributeKeys.push(`system.affinities.${aff}`);
-					attributeKeys.push(`system.affinities.${aff}.current`);
-				}
+	if (document.documentName === 'Actor') {
+		if (document.isCharacterType) {
+			// TODO: Derived Keys
+			// Resources
+			const resources = ['hp', 'mp'];
+			if (document.type === 'character') resources.push('ip');
+			for (const res of resources) {
+				attributeKeys.push(`system.resources.${res}.max`);
+			}
+			// Attributes
+			for (const attr of Object.keys(FU.attributes)) {
+				attributeKeys.push(`system.attributes.${attr}`);
+				attributeKeys.push(`system.attributes.${attr}.current`);
+			}
+			// Stats
+			// for (const stat of ['def', 'mdef', 'init']) {
+			// 	attributeKeys.push(`system.derived.${stat}.value`);
+			// }
+			// Affinities
+			for (const aff of Object.keys(FU.damageTypes)) {
+				attributeKeys.push(`system.affinities.${aff}`);
+				attributeKeys.push(`system.affinities.${aff}.current`);
 			}
 		}
 	}
+
 	attributeKeys = attributeKeys.sort((a, b) => a.localeCompare(b));
 	return attributeKeys;
 }
