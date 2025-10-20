@@ -56,7 +56,7 @@ export class InvocationTableRenderer extends FUTableRenderer {
 	}
 
 	static #renderNameHeader() {
-		return 'FU.Name';
+		return game.i18n.localize('FU.Name');
 	}
 
 	static async #renderName(invocation) {
