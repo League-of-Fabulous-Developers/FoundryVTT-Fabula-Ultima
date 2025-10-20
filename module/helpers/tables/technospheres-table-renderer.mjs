@@ -67,7 +67,15 @@ export class TechnospheresTableRenderer extends FUTableRenderer {
 				hideHeader: true,
 				renderCell: TechnospheresTableRenderer.#renderDetails,
 			},
-			controls: CommonColumns.itemControlsColumn({ label: 'FU.Technospheres', type: 'mnemosphere,hoplosphere' }),
+			controls: CommonColumns.itemControlsColumn(
+				{ label: 'FU.Technospheres', type: 'mnemosphere,hoplosphere' },
+				{
+					hideFavorite: (item) => !item.actor.isCharacterType,
+					hideShare: (item) => item.actor.type !== 'party',
+					hideSell: (item) => !(item.actor.type === 'stash' && item.actor.system.merchant),
+					hideLoot: (item) => !(item.actor.type === 'stash' && !item.actor.system.merchant),
+				},
+			),
 		},
 	};
 
