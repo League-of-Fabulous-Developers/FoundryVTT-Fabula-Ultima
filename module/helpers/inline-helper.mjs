@@ -141,17 +141,33 @@ function determineSource(document, element) {
 	if (document instanceof FUActor) {
 		actorUuid = document.uuid;
 		console.debug(`Determining source document as Actor ${actorUuid}`);
-		const itemId = element.closest('[data-item-id]')?.dataset?.itemId;
+		const itemElement = element.closest('[data-item-id]');
+		const itemId = itemElement?.dataset.itemId;
 		if (itemId) {
 			let item = document.items.get(itemId);
-			itemUuid = item.uuid;
-			name = item.name;
+			if (!item) {
+				const uuid = itemElement.dataset.uuid;
+				if (uuid) {
+					item = fromUuidSync(uuid);
+				}
+			}
+			if (item) {
+				itemUuid = item.uuid;
+				name = item.name;
+			}
 		} else {
 			name = document.name;
 		}
-		const effectId = element.closest('[data-effect-id]')?.dataset?.effectId;
+		const effectElement = element.closest('[data-effect-id]');
+		const effectId = effectElement?.dataset.effectId;
 		if (effectId) {
-			const effect = document.effects.get(effectId);
+			let effect = document.effects.get(effectId);
+			if (!effect) {
+				const uuid = effectElement.dataset.uuid;
+				if (uuid) {
+					effect = fromUuidSync(uuid, { strict: false });
+				}
+			}
 			if (effect) {
 				effectUuid = effect.uuid;
 			}
@@ -161,7 +177,7 @@ function determineSource(document, element) {
 		name = document.name;
 		itemUuid = document.uuid;
 		if (document.isEmbedded) {
-			actorUuid = document.parent.uuid;
+			actorUuid = document.actor.uuid;
 		}
 		console.debug(`Determining source document as Item ${itemUuid}`);
 	}
