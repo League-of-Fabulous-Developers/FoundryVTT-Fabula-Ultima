@@ -9,36 +9,36 @@ class BasePseudoActiveEffect extends PseudoDocument {
 	static defineSchema() {
 		const fields = foundry.data.fields;
 		return {
-			_id: new fields.DocumentIdField(),
-			name: new fields.StringField({ initial: () => game.i18n.format('DOCUMENT.New', { type: game.i18n.localize(this.metadata.label) }), required: true, blank: false, label: 'EFFECT.Name', textSearch: true }),
-			img: new fields.FilePathField({ categories: ['IMAGE'], label: 'EFFECT.Image' }),
+			_id: new fields.StringField({ initial: () => foundry.utils.randomID(), validate: foundry.data.validators.isValidId }),
+			name: new fields.StringField({ initial: () => game.i18n.format('DOCUMENT.New', { type: game.i18n.localize(this.metadata.label) }), required: true, blank: false, textSearch: true }),
+			img: new fields.FilePathField({ categories: ['IMAGE'] }),
 			type: new fields.DocumentTypeField(this, { initial: CONST.BASE_DOCUMENT_TYPE }),
 			system: new fields.TypeDataField(this),
 			changes: new fields.ArrayField(
 				new fields.SchemaField({
-					key: new fields.StringField({ required: true, label: 'EFFECT.ChangeKey' }),
-					value: new fields.StringField({ required: true, label: 'EFFECT.ChangeValue' }),
-					mode: new fields.NumberField({ integer: true, initial: CONST.ACTIVE_EFFECT_MODES.ADD, label: 'EFFECT.ChangeMode' }),
+					key: new fields.StringField({ required: true }),
+					value: new fields.StringField({ required: true }),
+					mode: new fields.NumberField({ required: true, nullable: false, integer: true, initial: CONST.ACTIVE_EFFECT_MODES.ADD }),
 					priority: new fields.NumberField(),
 				}),
 			),
 			disabled: new fields.BooleanField(),
 			duration: new fields.SchemaField({
-				startTime: new fields.NumberField({ initial: null, label: 'EFFECT.StartTime' }),
-				seconds: new fields.NumberField({ integer: true, min: 0, label: 'EFFECT.DurationSecs' }),
-				combat: new fields.ForeignDocumentField(foundry.documents.BaseCombat, { label: 'EFFECT.Combat' }),
+				startTime: new fields.NumberField({ initial: null }),
+				seconds: new fields.NumberField({ integer: true, min: 0 }),
+				combat: new fields.ForeignDocumentField(foundry.documents.BaseCombat),
 				rounds: new fields.NumberField({ integer: true, min: 0 }),
-				turns: new fields.NumberField({ integer: true, min: 0, label: 'EFFECT.DurationTurns' }),
+				turns: new fields.NumberField({ integer: true, min: 0 }),
 				startRound: new fields.NumberField({ integer: true, min: 0 }),
-				startTurn: new fields.NumberField({ integer: true, min: 0, label: 'EFFECT.StartTurns' }),
+				startTurn: new fields.NumberField({ integer: true, min: 0 }),
 			}),
-			description: new fields.HTMLField({ label: 'EFFECT.Description', textSearch: true }),
-			origin: new fields.StringField({ nullable: true, blank: false, initial: null, label: 'EFFECT.Origin' }),
-			tint: new fields.ColorField({ nullable: false, initial: '#ffffff', label: 'EFFECT.Tint' }),
-			transfer: new fields.BooleanField({ initial: true, label: 'EFFECT.Transfer' }),
+			description: new fields.HTMLField({ textSearch: true }),
+			origin: new fields.StringField({ nullable: true, blank: false, initial: null }),
+			tint: new fields.ColorField({ nullable: false, initial: '#ffffff' }),
+			transfer: new fields.BooleanField({ initial: true }),
 			statuses: new fields.SetField(new fields.StringField({ required: true, blank: false })),
 			sort: new fields.IntegerSortField(),
-			flags: new fields.ObjectField(),
+			flags: new fields.DocumentFlagsField(),
 		};
 	}
 
@@ -52,6 +52,8 @@ class BasePseudoActiveEffect extends PseudoDocument {
 			{ inplace: false },
 		),
 	);
+
+	static LOCALIZATION_PREFIXES = foundry.documents.ActiveEffect.LOCALIZATION_PREFIXES;
 
 	/**
 	 * Retrieve the Document that this ActiveEffect targets for modification.
