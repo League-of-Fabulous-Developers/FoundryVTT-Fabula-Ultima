@@ -52,7 +52,7 @@ export class InvocationTableRenderer extends FUTableRenderer {
 	}
 
 	static #renderControls(invocation) {
-		return `<div class="cell-item-controls"><a class="cell-item-controls__control" data-action="roll"><i class="fa-solid fa-share"></i></a></div>`;
+		return `<div class="cell-item-controls"><a class="cell-item-controls__control" data-action="roll" data-tooltip="${game.i18n.localize('FU.ChatMessageSendHint')}"><i class="fa-solid fa-share"></i></a></div>`;
 	}
 
 	static #renderNameHeader() {
