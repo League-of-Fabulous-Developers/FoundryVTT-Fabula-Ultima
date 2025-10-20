@@ -220,18 +220,11 @@ async function onRender(element) {
 		if (effectData) {
 			effectData.sourceInfo = sourceInfo;
 
-			const cls = getDocumentClass('ActiveEffect');
-			delete effectData.id;
-
-			cls.migrateDataSafe(effectData);
-			cls.cleanData(effectData);
-
-			Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true })
-				.then((value) => cls.create(effectData, { temporary: true, render: true, parent: value }))
-				.then((value) => {
-					const activeEffectConfig = new foundry.applications.sheets.ActiveEffectConfig(value);
-					activeEffectConfig.render(true, { editable: false });
-				});
+			const tempActor = new foundry.documents.Actor.implementation({ name: 'Temp Actor', type: 'character' });
+			const tempEffect = new foundry.documents.ActiveEffect.implementation(effectData, { temporary: true, parent: tempActor });
+			const ActiveEffectSheetClass = tempEffect._getSheetClass();
+			const sheet = new ActiveEffectSheetClass({ document: tempEffect, editable: false });
+			sheet.render({ force: true });
 		}
 	});
 }
@@ -249,7 +242,7 @@ async function onDropActor(actor, sheet, { type, sourceInfo, config, effect, sta
 	}
 }
 
-function showEffectConfiguration(state, dispatch, view, ...rest) {
+function showEffectConfiguration(state, dispatch, view) {
 	new InlineEffectConfiguration(state, dispatch).render(true);
 }
 

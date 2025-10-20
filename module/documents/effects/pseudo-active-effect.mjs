@@ -60,8 +60,6 @@ class BasePseudoActiveEffect extends PseudoDocument {
 	 * @type {Document|null}
 	 */
 	get target() {
-		if (this.parent instanceof Actor) return this.parent;
-		if (CONFIG.ActiveEffect.legacyTransferral) return this.transfer ? null : this.parent;
 		return this.transfer ? this.parent.actor ?? null : this.parent;
 	}
 
