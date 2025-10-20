@@ -220,7 +220,7 @@ export function ItemBehaviourMixin(BaseClass) {
 			}
 			// Search among active effects in the item
 			for (const effect of this.effects.values()) {
-				if (effect.system.rules.progress.enabled) {
+				if (effect.system.rules.progress?.enabled) {
 					return effect.system.rules.progress;
 				}
 			}
