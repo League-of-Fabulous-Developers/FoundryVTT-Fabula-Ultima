@@ -74,7 +74,7 @@
 {{/if}}
 
 {{!-- NPC Options --}}
-{{#if system.schema.fields.isBehavior}}
+{{#if (and (eq actor.type "npc") system.schema.fields.isBehavior)}}
 	<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.BehaviorAdd'}}">    <span>
 		{{#if item.system.isBehavior.value}}
 			<i class="fas fa-address-book"></i>
