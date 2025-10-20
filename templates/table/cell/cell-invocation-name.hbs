@@ -1,0 +1,16 @@
+<div class="cell-item-name">
+  {{log this}}
+	<div class="cell-item-name__main">
+		<a data-action="roll">
+			<img class="cell-item-name__image" src="{{img}}" alt="{{name}}" data-tooltip="{{name}}" />
+		</a>
+		<div class="cell-item-name__name">
+			<span class="{{cssClass}}">{{name}}</span>
+		</div>
+	</div>
+	{{#if caption}}
+		<div class="cell-item-name__caption">
+			{{{caption}}}
+		</div>
+	{{/if}}
+</div>
