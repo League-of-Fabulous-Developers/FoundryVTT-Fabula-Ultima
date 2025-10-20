@@ -7,7 +7,7 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  * @template {Object} D the document of the sheet being rendered
  * @template {Object} T the type of the items in the table
  * @property {string, (() => string)} cssClass
- * @property {"item", "effect"} [tablePreset="item"]
+ * @property {"item", "effect", "custom"} [tablePreset="item"]
  * @property {(document: D, options: FUTableRendererRenderOptions) => T[]} getItems
  * @property {boolean, ((a: D, b: D) => number)} [sort=true] sorting function to determine the order of entries, true means sort using foundry sort order, false means don't sort
  * @property {(element: HTMLElement) => void} activateListeners
@@ -17,6 +17,7 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  * @property {Record<string, ColumnConfig<T>>} columns
  * @property {Record<string, ((event: PointerEvent, target: HTMLElement) => void)>} actions
  * @property {DragDropConfiguration[]} [dragDrop]
+ * @property {AdvancedTableConfig<T>} [advancedConfig]
  */
 
 /**
@@ -27,6 +28,24 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  * @property {"start", "center", "end"} [headerAlignment]
  * @property {string, (() => string | Promise<string>)} [renderHeader]
  * @property {string, ((T) => string | Promise<string>)} renderCell
+ */
+
+/**
+ * @typedef AdvancedTableConfig
+ * @template T
+ * @property {(T) => string | number} getKey
+ * @property {string} [keyDataAttribute] the data attribute representing each rows key, defaults to 'data-key'
+ * @property {AdditionalRowAttribute<T>[]} additionalRowAttributes
+ * @property {string} tableClass
+ * @property {string} rowClass
+ * @property {boolean} draggable defaults to false
+ */
+
+/**
+ * @template T
+ * @typedef AdditionalRowAttribute
+ * @property {string} attributeName
+ * @property {(T) => string} getAttributeValue
  */
 
 export class FUTableRenderer {
@@ -92,6 +111,38 @@ export class FUTableRenderer {
 
 			return new foundry.applications.ux.DragDrop.implementation(dragDropConfig);
 		});
+		config.tablePreset ??= 'item';
+		if (config.tablePreset === 'item') {
+			config.advancedConfig = {
+				getKey: (item) => item.uuid,
+				keyDataAttribute: 'data-uuid',
+				additionalRowAttributes: [{ attributeName: 'data-item-id', getAttributeValue: (item) => item.id }],
+				tableClass: 'item-list',
+				rowClass: 'item',
+				draggable: true,
+			};
+		} else if (config.tablePreset === 'effect') {
+			config.advancedConfig = {
+				getKey: (effect) => effect.uuid,
+				keyDataAttribute: 'data-uuid',
+				additionalRowAttributes: [{ attributeName: 'data-effect-id', getAttributeValue: (item) => item.id }],
+				tableClass: '',
+				rowClass: '',
+				draggable: false,
+			};
+		} else {
+			const advancedConfig = config.advancedConfig;
+			advancedConfig.getKey = advancedConfig.getKey.bind(this);
+			advancedConfig.keyDataAttribute ??= 'data-key';
+			if (!advancedConfig.keyDataAttribute.startsWith('data-')) {
+				advancedConfig.keyDataAttribute = `data-${advancedConfig.keyDataAttribute}`;
+			}
+			advancedConfig.additionalRowAttributes ??= [];
+			advancedConfig.additionalRowAttributes.forEach((value) => (value.getAttributeValue = value.getAttributeValue.bind(this)));
+			advancedConfig.tableClass ??= '';
+			advancedConfig.rowClass ??= '';
+			advancedConfig.draggable ??= false;
+		}
 
 		this.initializeOptions(config);
 
@@ -133,7 +184,7 @@ export class FUTableRenderer {
 		const descriptions = {};
 		const rowCssClasses = {};
 		const rowTooltips = {};
-		const { getItems, tablePreset, sort, columns: columnConfigs = {}, cssClass, renderDescription, renderRowCaption, hideIfEmpty: configHideIfEmpty } = this.tableConfig;
+		const { getItems, tablePreset, sort, columns: columnConfigs = {}, cssClass, renderDescription, renderRowCaption, hideIfEmpty: configHideIfEmpty, advancedConfig } = this.tableConfig;
 
 		const items = getItems(document, options);
 
@@ -163,32 +214,42 @@ export class FUTableRenderer {
 			};
 		}
 
+		const rows = [];
 		for (let item of items) {
-			const uuid = item.uuid;
+			const rowKey = advancedConfig.getKey(item);
 
-			if (document !== item.parent && document !== item.parentDocument) {
-				let directParentItem = item.parent;
-				while (!(directParentItem instanceof FUItem || directParentItem instanceof PseudoItem)) {
-					directParentItem = directParentItem.parent;
-				}
-				let parentItem = directParentItem;
-				let parentage = [];
-				while (!(parentItem instanceof Actor || parentItem == null)) {
-					if (parentItem instanceof FUItem || parentItem instanceof PseudoItem) {
-						parentage.unshift(parentItem);
+			if (tablePreset !== 'custom') {
+				if (document !== item.parent && document !== item.parentDocument) {
+					let directParentItem = item.parent;
+					while (!(directParentItem instanceof FUItem || directParentItem instanceof PseudoItem)) {
+						directParentItem = directParentItem.parent;
 					}
-					parentItem = parentItem.parent;
+					let parentItem = directParentItem;
+					let parentage = [];
+					while (!(parentItem instanceof Actor || parentItem == null)) {
+						if (parentItem instanceof FUItem || parentItem instanceof PseudoItem) {
+							parentage.unshift(parentItem);
+						}
+						parentItem = parentItem.parent;
+					}
+					parentage = parentage.map((item) => item.name).join(' → ');
+					rowCssClasses[rowKey] = 'fu-table__row--deeply-nested';
+					rowTooltips[rowKey] = game.i18n.format('FU.ItemDeeplyNested', { parent: parentage });
 				}
-				parentage = parentage.map((item) => item.name).join(' → ');
-				rowCssClasses[uuid] = 'fu-table__row--deeply-nested';
-				rowTooltips[uuid] = game.i18n.format('FU.ItemDeeplyNested', { parent: parentage });
 			}
 
 			for (let [columnKey, columnConfig] of Object.entries(columnConfigs)) {
-				columns[columnKey].cells[uuid] = columnConfig.renderCell instanceof Function ? columnConfig.renderCell(item) : columnConfig.renderCell;
+				columns[columnKey].cells[rowKey] = columnConfig.renderCell instanceof Function ? columnConfig.renderCell(item) : columnConfig.renderCell;
 			}
-			rowCaptions[uuid] = rowCaptionRenderer(item);
-			descriptions[uuid] = descriptionRenderer(item);
+			rowCaptions[rowKey] = rowCaptionRenderer(item);
+			descriptions[rowKey] = descriptionRenderer(item);
+
+			const additionalAttributes = {};
+			for (const { attributeName, getAttributeValue } of advancedConfig.additionalRowAttributes) {
+				additionalAttributes[attributeName] = getAttributeValue(item);
+			}
+
+			rows.push({ key: rowKey, item, additionalAttributes });
 		}
 
 		for (const column of Object.values(columns)) {
@@ -206,27 +267,10 @@ export class FUTableRenderer {
 			descriptions[key] = await value;
 		}
 
-		let presets;
-		if (tablePreset === 'effect') {
-			presets = {
-				dataTypeId: 'data-effect-id',
-				tableClass: '',
-				rowClass: '',
-				draggable: false,
-			};
-		} else {
-			presets = {
-				dataTypeId: 'data-item-id',
-				tableClass: 'item-list',
-				rowClass: 'item',
-				draggable: true,
-			};
-		}
-
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/fu-table.hbs', {
 			tableId: this.#tableId,
-			presets,
-			items,
+			config: advancedConfig,
+			items: rows,
 			cssClass: cssClass instanceof Function ? cssClass() : cssClass,
 			columns,
 			rowCssClasses,
@@ -265,14 +309,15 @@ export class FUTableRenderer {
 	#onClick(event) {
 		const table = event.target.closest(`[data-table-id="${this.#tableId}"]`);
 		if (table) {
-			const row = event.target.closest(`.fu-table__row-container[data-uuid]`);
+			const keyDataAttribute = this.tableConfig.advancedConfig.keyDataAttribute;
+			const row = event.target.closest(`.fu-table__row-container[${keyDataAttribute}]`);
 			const actionElement = event.target.closest('[data-action]');
 			const contextMenuTrigger = event.target.closest(`[data-context-menu]`);
 			if (event.button === 0 && row && !actionElement && !contextMenuTrigger) {
-				const uuid = row.dataset.uuid;
+				const rowKey = row.dataset[this.#convertToDatasetKey(keyDataAttribute)];
 				const expand = row.querySelector('.fu-table__row-expand');
 				if (expand) {
-					this.#expandedItems[uuid] = expand.classList.toggle('fu-table__row-expand--visible');
+					this.#expandedItems[rowKey] = expand.classList.toggle('fu-table__row-expand--visible');
 				}
 				return;
 			}
@@ -284,5 +329,13 @@ export class FUTableRenderer {
 				actions[action](event, actionElement);
 			}
 		}
+	}
+
+	#convertToDatasetKey(keyDataAttribute) {
+		return keyDataAttribute
+			.substring(5) //strip 'data-' prefix
+			.split('-') // split at dashes
+			.map((value, index) => (index > 0 ? value.capitalize() : value)) // capitalize parts beyond first
+			.join(''); // join parts
 	}
 }
