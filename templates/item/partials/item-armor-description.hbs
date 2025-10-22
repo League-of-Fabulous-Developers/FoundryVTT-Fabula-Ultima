@@ -1,10 +1,12 @@
 <div class="tab description flexcol {{tab.cssClass}}" data-group="primary" data-tab="description">
-	<fieldset class="desc title-fieldset resource-content">
-		<legend class='resource-label-m'>
-			{{localize "FU.TechnospheresSlots"}}
-		</legend>
-		{{> "projectfu.technospheres.slots" slots=slots }}
-	</fieldset>
+	{{#if technosphereMode}}
+		<fieldset class="desc title-fieldset resource-content">
+			<legend class='resource-label-m'>
+				{{localize "FU.TechnospheresSlots"}}
+			</legend>
+			{{> "projectfu.technospheres.slots" slots=slots }}
+		</fieldset>
+	{{/if}}
 	<fieldset class="desc title-fieldset resource-content flexgrow-1">
 			<legend class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
 				{{localize 'FU.Description'}}
