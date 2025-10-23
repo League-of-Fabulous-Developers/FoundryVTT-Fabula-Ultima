@@ -105,10 +105,7 @@ function activateDefaultListeners(html, sheet) {
 			icon: '<i class="fa fa-paper-plane"></i>',
 			callback: (html) => onSendItemToPartyStash(html, sheet),
 			condition: (html) => {
-				let item = sheet.actor.items.get(html.closest('[data-item-id]')?.dataset?.itemId);
-				if (!item) {
-					item = fromUuidSync(html.dataset.uuid);
-				}
+				const item = getItemFromHtml(html, sheet.actor);
 				return item?.canStash;
 			},
 		});
@@ -119,14 +116,7 @@ function activateDefaultListeners(html, sheet) {
 			callback: (html) => _onItemBehavior(html, sheet),
 			condition: (html) => {
 				if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
-					const itemId = html.closest('[data-item-id]');
-					let item = sheet.actor.items.get(itemId);
-
-					if (!item) {
-						const uuid = html.closest('[data-uuid]').dataset.uuid;
-						item = fromUuidSync(uuid);
-					}
-
+					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && item.system.isBehavior.value;
 				} else {
 					return false;
@@ -140,14 +130,7 @@ function activateDefaultListeners(html, sheet) {
 			callback: (html) => _onItemBehavior(html, sheet),
 			condition: (html) => {
 				if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
-					const itemId = html.closest('[data-item-id]');
-					let item = sheet.actor.items.get(itemId);
-
-					if (!item) {
-						const uuid = html.closest('[data-uuid]').dataset.uuid;
-						item = fromUuidSync(uuid);
-					}
-
+					const item = getItemFromHtml(html, sheet.actor);
 					return item && item.system.isBehavior && !item.system.isBehavior.value;
 				} else {
 					return false;
@@ -200,9 +183,9 @@ function activateDefaultListeners(html, sheet) {
 }
 
 async function onSendItemToPartyStash(element, sheet) {
-	const item = sheet.actor.items.get(element.dataset.itemId);
+	const item = getItemFromHtml(element, sheet.actor);
 	const party = await FUPartySheet.getActiveModel();
-	if (party) {
+	if (item && party) {
 		return InventoryPipeline.requestTrade(sheet.actor.uuid, item.uuid, false, party.parent.uuid);
 	}
 }
@@ -213,11 +196,7 @@ async function onSendItemToPartyStash(element, sheet) {
  * @param {ActorSheet} sheet
  */
 function _onItemEdit(element, sheet) {
-	const itemId = element.closest('[data-item-id]')?.dataset?.itemId;
-	let item = sheet.actor.items.get(itemId);
-	if (!item) {
-		item = foundry.utils.fromUuidSync(element.closest('[data-uuid]')?.dataset?.uuid);
-	}
+	const item = getItemFromHtml(element, sheet.actor);
 	if (item) item.sheet.render(true);
 }
 
@@ -228,12 +207,7 @@ function _onItemEdit(element, sheet) {
  * @returns {Promise<void>}
  */
 async function _onItemBehavior(element, sheet) {
-	const itemId = element.closest('[data-item-id]')?.dataset?.itemId;
-	let item = sheet.actor.items.get(itemId);
-	if (!item) {
-		const uuid = element.closest('[data-uuid]')?.dataset?.uuid;
-		item = fromUuidSync(uuid);
-	}
+	const item = getItemFromHtml(element, sheet.actor);
 	if (item) {
 		const isBehavior = foundry.utils.getProperty(item, 'system.isBehavior.value');
 		return item.update({ 'system.isBehavior.value': !isBehavior });
@@ -247,13 +221,7 @@ async function _onItemBehavior(element, sheet) {
  * @returns {Promise<void>}
  */
 async function _onItemDelete(element, sheet) {
-	const itemId = element.closest('[data-item-id]')?.dataset?.itemId;
-	let item = sheet.actor.items.get(itemId);
-
-	if (!item) {
-		const uuid = element.closest('[data-uuid]')?.dataset?.uuid;
-		item = foundry.utils.fromUuidSync(uuid);
-	}
+	const item = getItemFromHtml(element, sheet.actor);
 
 	if (!item) {
 		return;
@@ -272,17 +240,26 @@ async function _onItemDelete(element, sheet) {
 }
 
 /**
+ * @param {HTMLElement} htmlElement
+ * @param {FUActor} actor
+ * @return {FUItem, PseudoItem, null}
+ */
+function getItemFromHtml(htmlElement, actor) {
+	let item = actor?.items.get(htmlElement.closest('[data-item-id]')?.dataset.itemId);
+	if (!item) {
+		item = foundry.utils.fromUuidSync(htmlElement.closest('[data-uuid]')?.dataset?.uuid);
+	}
+	return item;
+}
+
+/**
  * Duplicates the specified item and adds it to the actor's item list.
  * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
  * @returns {Promise<void>}
  */
 async function _onItemDuplicate(element, sheet) {
-	const itemId = element.dataset.itemId;
-	let item = sheet.actor.items.get(itemId);
-	if (!item) {
-		item = foundry.utils.fromUuidSync(element.closest('[data-uuid]')?.dataset?.uuid);
-	}
+	let item = getItemFromHtml(element, sheet.actor);
 	if (item) {
 		const dupData = item.toObject(true);
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
