@@ -42,44 +42,24 @@
 }
 
 .projectfu .sheet-header .profile-img {
-	flex: 0 0 auto;
-	height: 100%;
+	flex: 0 0 200px;
 	max-height: 220px;
-	/* This makes the image fill the height of .profile */
-	width: 200px;
-	/* Maintains aspect ratio */
-	margin-right: 0;
-	align-self: stretch;
-	/* Also ensures it stretches in flex container */
-
 	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
-
-	object-fit: cover;
-	object-position: top;
-	aspect-ratio: 1;
+	object-fit: contain;
+	object-position: center;
+	aspect-ratio: 200 / 220;
 }
 
 .projectfu .sheet-header .item-profile-img {
-	flex: 0 0 auto;
-	height: 100%;
+	flex: 0 0 144px;
 	max-height: 144px;
-	/* This makes the image fill the height of .profile */
-	width: 144px;
-	/* Maintains aspect ratio */
-	margin-right: 0;
-	align-self: stretch;
-	/* Also ensures it stretches in flex container */
-
 	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
-
-	object-fit: cover;
-	object-position: top;
+	object-fit: contain;
+	object-position: center;
 	aspect-ratio: 1;
 }
 
@@ -116,7 +96,7 @@
 .projectfu .sheet-header .header-fields .header-center.item-header {
 	border-radius: 0 0 12px 0;
 	padding: 10px;
-	height: 84px !important;
+	height: 83px !important;
 }
 
 .projectfu .sheet-header .header-fields .header-center.item-feature-header {
