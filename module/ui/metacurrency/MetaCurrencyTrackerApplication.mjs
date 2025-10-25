@@ -126,12 +126,12 @@ export class MetaCurrencyTrackerApplication extends FUApplication {
 	}
 
 	static async #updateMetaCurrency(event, form, formData) {
-		const fabula = formData.get('fabula');
+		const fabula = parseInt(formData.get('fabula')) || 0;
 		if (game.settings.get(SYSTEM, SETTINGS.metaCurrencyFabula) !== fabula) {
 			game.settings.set(SYSTEM, SETTINGS.metaCurrencyFabula, fabula);
 		}
 
-		const ultima = formData.get('ultima');
+		const ultima = parseInt(formData.get('ultima')) || 0;
 		if (game.settings.get(SYSTEM, SETTINGS.metaCurrencyUltima) !== ultima) {
 			game.settings.set(SYSTEM, SETTINGS.metaCurrencyUltima, ultima);
 		}
