@@ -10,7 +10,7 @@ export class TargetingDataModel extends foundry.abstract.DataModel {
 		const { NumberField, StringField } = foundry.data.fields;
 		return {
 			rule: new StringField({ initial: Targeting.rule.special, choices: Object.keys(Targeting.rule), required: true }),
-			max: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }),
+			max: new NumberField({ initial: 0, min: 0, max: 5, integer: true, nullable: false }),
 		};
 	}
 
