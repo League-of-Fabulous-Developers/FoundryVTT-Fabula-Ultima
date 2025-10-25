@@ -3,6 +3,7 @@ import { CheckConfiguration } from './check-configuration.mjs';
 import { Checks } from './checks.mjs';
 import { getTargeted } from '../helpers/target-handler.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
+import { Pipeline } from '../pipelines/pipeline.mjs';
 
 function addRetargetEntry(application, menuItems) {
 	menuItems.unshift({
@@ -51,8 +52,19 @@ async function retarget(messageId) {
 	}
 }
 
+function onRenderChatMessage(message, html) {
+	if (!Checks.isCheck(message)) {
+		return;
+	}
+
+	Pipeline.handleClick(message, html, 'retarget', async (dataset) => {
+		return retarget(message.id);
+	});
+}
+
 function initialize() {
 	Hooks.on('getChatMessageContextOptions', addRetargetEntry);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 export const CheckRetarget = Object.freeze({
