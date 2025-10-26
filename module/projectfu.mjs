@@ -96,6 +96,7 @@ import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereRecepta
 import { FUItemArmorSheet } from './sheets/item-armor-sheet.mjs';
 import { PseudoItem } from './documents/items/pseudo-item.mjs';
 import { PseudoActiveEffect } from './documents/effects/pseudo-active-effect.mjs';
+import { PdfPagerIntegration } from './integration/pdf-pager-integration.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -339,6 +340,7 @@ Hooks.once('init', async () => {
 	TextEditorCommandDropdown.initialize();
 	SystemControls.initialize();
 	PlayerListEnhancements.initialize();
+	PdfPagerIntegration.initialize();
 
 	// // Disable the token drag ruler measurement, unless they've specifically
 	// // gone in and enabled it for some reason.
