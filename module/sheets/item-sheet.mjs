@@ -257,44 +257,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @override
-	 */
-	_attachFrameListeners() {
-		super._attachFrameListeners();
-
-		// [PDFPager Support] Opening Journal PDF pages from PDF Code
-		document.getElementById('pdfLink')?.addEventListener('click', () => {
-			const input = document.querySelector('input[name="system.source.value"]');
-			const inputValue = input?.value || '';
-			const match = inputValue.match(/([A-Za-z]+)\s*(\d+)/);
-
-			if (match) {
-				const pdfCode = match[1];
-				const pageNumber = match[2];
-
-				// Check if the openPDFByCode function exists
-				if (ui.pdfpager && ui.pdfpager.openPDFByCode) {
-					ui.pdfpager.openPDFByCode(pdfCode, { page: pageNumber });
-				} else {
-					// TODO: Create Fallback method using a normal Foundry link
-				}
-			} else {
-				console.error('Invalid input format. Please use proper syntax "PDFCode PageNumber"');
-			}
-		});
-	}
-
-	/**
-	 * Modify the provided options passed to a render request.
-	 * @param {RenderOptions} options                 Options which configure application rendering behavior
-	 * @protected
-	 */
-	_configureRenderOptions(options) {
-		super._configureRenderOptions(options);
-	}
-
 	/* -------------------------------------------- */
 	/*  Drag and Drop Support (as it's not implemented by default on ItemSheetV2
 	/* -------------------------------------------- */
