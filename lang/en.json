@@ -1534,6 +1534,7 @@
 		"Technospheres": "Technospheres",
 		"TechnospheresSlots": "Slots",
 		"TechnospheresSlotEmpty": "Empty slot",
+		"TechnospheresSlotOverCapacity": "Over capacity.",
 		"TechnosphereRemove": "Remove Technosphere",
 		"TechnospheresSlotsAlpha": "Slots α",
 		"TechnospheresSlotsBeta": "Slots β",

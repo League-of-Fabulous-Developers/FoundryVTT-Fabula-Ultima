@@ -33,6 +33,11 @@
 		line-height: 0;
 		width: max-content;
 		cursor: default;
+
+		display: grid;
+		grid-template-columns: repeat(5, min-content);
+		--pfu-technosphere-slot-spacing: 1px;
+		gap: var(--pfu-technosphere-slot-spacing);
 	}
 
 	.description-with-slots__slot {
