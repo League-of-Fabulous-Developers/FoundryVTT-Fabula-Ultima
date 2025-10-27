@@ -21,17 +21,17 @@
 	"license": "MIT",
 	"private": true,
 	"dependencies": {
-		"rpg-awesome": "^0.2.0"
+		"rpg-awesome": "0.2.0"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.38.0",
-		"@foundryvtt/foundryvtt-cli": "^3.0.0",
-		"axios": "^1.13.0",
-		"eslint": "^9.38.0",
-		"eslint-config-prettier": "^10.1.8",
-		"globals": "^16.4.0",
-		"husky": "^9.1.7",
-		"papaparse": "^5.5.3",
-		"prettier": "^3.6.2"
+		"@eslint/js": "9.38.0",
+		"@foundryvtt/foundryvtt-cli": "3.0.0",
+		"axios": "1.13.0",
+		"eslint": "9.38.0",
+		"eslint-config-prettier": "10.1.8",
+		"globals": "16.4.0",
+		"husky": "9.1.7",
+		"papaparse": "5.5.3",
+		"prettier": "3.6.2"
 	}
 }
