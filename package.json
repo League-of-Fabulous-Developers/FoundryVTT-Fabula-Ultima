@@ -4,12 +4,8 @@
 	"description": "CSS compiler for the Fabula Ultima system",
 	"type": "module",
 	"scripts": {
-		"build": "gulp build",
-		"compile": "gulp css",
 		"prettier": "prettier --write .",
 		"lint": "eslint --fix .",
-		"watch": "gulp",
-		"gulp": "gulp",
 		"unpack": "node ./tools/pushLDBtoYML.mjs",
 		"pack": "node ./tools/pullYMLtoLDB.mjs",
 		"downloadcsv": "node ./tools/csvtojson/download-csv.mjs",
@@ -24,24 +20,18 @@
 	"author": "League of Fabulous Developers",
 	"license": "MIT",
 	"private": true,
-	"devDependencies": {
-		"@eslint/js": "^9.2.0",
-		"@foundryvtt/foundryvtt-cli": "^1.0.2",
-		"eslint": "^9.2.0",
-		"eslint-config-prettier": "^9.1.0",
-		"globals": "^15.2.0",
-		"gulp": "^5.0.0",
-		"gulp-autoprefixer": "^9.0.0",
-		"gulp-sass": "^5.1.0",
-		"gulp-sourcemaps": "^3.0.0",
-		"husky": "^9.0.11",
-		"prettier": "^3.2.5",
-		"sass": "^1.77.1"
-	},
 	"dependencies": {
-		"animate.css": "^4.1.1",
-		"rpg-awesome": "^0.2.0",
-		"papaparse": "^5.4.1",
-		"axios": "^1.7.9"
+		"rpg-awesome": "^0.2.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.38.0",
+		"@foundryvtt/foundryvtt-cli": "^3.0.0",
+		"axios": "^1.13.0",
+		"eslint": "^9.38.0",
+		"eslint-config-prettier": "^10.1.8",
+		"globals": "^16.4.0",
+		"husky": "^9.1.7",
+		"papaparse": "^5.5.3",
+		"prettier": "^3.6.2"
 	}
 }

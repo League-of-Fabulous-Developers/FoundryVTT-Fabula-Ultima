@@ -197,7 +197,7 @@ export class MetaCurrencyTrackerApplication extends FUApplication {
 		const userId = element.dataset.userId;
 		const user = game.users.get(userId);
 		const currentOverride = this.#state.activityOverride[actorId];
-		this.#state.activityOverride[actorId] = currentOverride ?? user.active ? 0 : 1;
+		this.#state.activityOverride[actorId] = (currentOverride ?? user.active) ? 0 : 1;
 		this.render();
 	}
 
