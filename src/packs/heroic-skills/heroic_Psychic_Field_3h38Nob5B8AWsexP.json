@@ -93,9 +93,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF176"
-    },
+    "source": "FUTF176",
     "fuid": "psychic-field"
   },
   "effects": [],

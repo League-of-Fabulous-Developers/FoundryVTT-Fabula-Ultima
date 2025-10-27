@@ -19,9 +19,7 @@
     "ipCost": {
       "value": 2
     },
-    "source": {
-      "value": "FUCR104"
-    },
+    "source": "FUCR104",
     "fuid": "tonic"
   },
   "effects": [],

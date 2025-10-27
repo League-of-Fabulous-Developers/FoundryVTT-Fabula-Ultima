@@ -74,9 +74,7 @@
     "isCustomWeapon": {
       "value": false
     },
-    "source": {
-      "value": "FUTF155"
-    },
+    "source": "FUTF155",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

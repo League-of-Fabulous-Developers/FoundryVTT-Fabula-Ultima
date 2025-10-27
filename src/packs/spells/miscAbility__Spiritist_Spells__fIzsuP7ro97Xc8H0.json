@@ -86,9 +86,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUCR208"
-    },
+    "source": "FUCR208",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {

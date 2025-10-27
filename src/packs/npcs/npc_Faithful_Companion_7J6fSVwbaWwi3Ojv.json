@@ -390,9 +390,7 @@
         "isCustomWeapon": {
           "value": false
         },
-        "source": {
-          "value": "FUCR130"
-        },
+        "source": "FUCR130",
         "rollInfo": {
           "useWeapon": {
             "hrZero": {

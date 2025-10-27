@@ -66,9 +66,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF150"
-    },
+    "source": "FUTF150",
     "fuid": "esper"
   },
   "effects": [],

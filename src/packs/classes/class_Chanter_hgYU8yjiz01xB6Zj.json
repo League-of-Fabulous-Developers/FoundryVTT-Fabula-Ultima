@@ -68,9 +68,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUHF136"
-    },
+    "source": "FUHF136",
     "fuid": "chanter"
   },
   "effects": [],

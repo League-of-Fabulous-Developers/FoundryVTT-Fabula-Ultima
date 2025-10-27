@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF161"
-    },
+    "source": "FUNF161",
     "fuid": "all-you-can-eat"
   },
   "effects": [

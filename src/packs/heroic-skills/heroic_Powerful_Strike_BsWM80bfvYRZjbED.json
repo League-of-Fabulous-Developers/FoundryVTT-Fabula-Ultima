@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR239"
-    },
+    "source": "FUCR239",
     "hasResource": {
       "value": false
     },

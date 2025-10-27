@@ -66,9 +66,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF154"
-    },
+    "source": "FUTF154",
     "fuid": "mutant"
   },
   "effects": [],

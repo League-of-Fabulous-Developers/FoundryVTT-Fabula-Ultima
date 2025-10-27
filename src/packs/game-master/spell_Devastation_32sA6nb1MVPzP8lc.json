@@ -107,9 +107,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR310"
-    },
+    "source": "FUCR310",
     "subtype": {},
     "opportunity": "",
     "fuid": "devastation"

@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF168"
-    },
+    "source": "FUNF168",
     "fuid": "specialty-of-the-house"
   },
   "effects": [],

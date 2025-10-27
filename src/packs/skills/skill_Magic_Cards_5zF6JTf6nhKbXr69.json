@@ -68,9 +68,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUAC3"
-    },
+    "source": "FUAC3",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {

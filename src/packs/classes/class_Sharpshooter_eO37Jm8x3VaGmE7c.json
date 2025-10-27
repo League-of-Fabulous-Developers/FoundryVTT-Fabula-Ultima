@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR204"
-    },
+    "source": "FUCR204",
     "fuid": "sharpshooter"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter.png",

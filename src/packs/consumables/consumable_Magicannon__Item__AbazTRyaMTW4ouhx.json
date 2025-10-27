@@ -21,9 +21,7 @@
     "ipCost": {
       "value": 3
     },
-    "source": {
-      "value": "FUCR215"
-    },
+    "source": "FUCR215",
     "fuid": "magicannon-item"
   },
   "effects": [],

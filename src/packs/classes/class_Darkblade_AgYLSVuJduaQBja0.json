@@ -68,9 +68,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR184"
-    },
+    "source": "FUCR184",
     "fuid": "darkblade"
   },
   "effects": [],

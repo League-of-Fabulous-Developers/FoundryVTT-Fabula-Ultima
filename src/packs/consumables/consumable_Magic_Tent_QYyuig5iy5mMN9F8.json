@@ -19,9 +19,7 @@
     "ipCost": {
       "value": 4
     },
-    "source": {
-      "value": "FUCR104"
-    },
+    "source": "FUCR104",
     "fuid": "magic-tent"
   },
   "effects": [],

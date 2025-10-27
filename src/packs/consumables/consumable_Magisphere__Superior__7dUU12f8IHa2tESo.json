@@ -21,9 +21,7 @@
     "ipCost": {
       "value": 2
     },
-    "source": {
-      "value": "FUCR215"
-    },
+    "source": "FUCR215",
     "fuid": "magisphere-superior"
   },
   "effects": [],

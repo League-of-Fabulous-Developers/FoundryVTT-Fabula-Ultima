@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR203"
-    },
+    "source": "FUCR203",
     "fuid": "rogue"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue.png",

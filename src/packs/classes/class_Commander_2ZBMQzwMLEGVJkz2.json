@@ -68,9 +68,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUHF140"
-    },
+    "source": "FUHF140",
     "fuid": "commander"
   },
   "effects": [],

@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR186"
-    },
+    "source": "FUCR186",
     "fuid": "elementalist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist.png",

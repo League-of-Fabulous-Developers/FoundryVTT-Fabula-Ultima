@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR190"
-    },
+    "source": "FUCR190",
     "fuid": "entropist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist.png",

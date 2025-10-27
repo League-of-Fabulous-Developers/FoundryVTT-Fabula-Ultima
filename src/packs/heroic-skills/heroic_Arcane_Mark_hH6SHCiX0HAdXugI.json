@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUHF153"
-    },
+    "source": "FUHF153",
     "hasResource": {
       "value": false
     },

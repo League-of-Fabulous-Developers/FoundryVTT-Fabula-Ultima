@@ -66,9 +66,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF158"
-    },
+    "source": "FUTF158",
     "fuid": "pilot"
   },
   "effects": [],

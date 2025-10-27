@@ -73,9 +73,7 @@
     "weight": {
       "value": 1
     },
-    "source": {
-      "value": "FUCR133"
-    },
+    "source": "FUCR133",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

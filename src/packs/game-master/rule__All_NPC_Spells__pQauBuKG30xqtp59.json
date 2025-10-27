@@ -30,9 +30,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUCR310"
-    },
+    "source": "FUCR310",
     "fuid": "all-npc-spells"
   },
   "effects": [],

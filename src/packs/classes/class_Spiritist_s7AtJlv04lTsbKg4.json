@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR206"
-    },
+    "source": "FUCR206",
     "fuid": "spiritist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist.png",

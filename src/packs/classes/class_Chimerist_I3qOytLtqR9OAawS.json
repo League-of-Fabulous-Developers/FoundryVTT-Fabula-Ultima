@@ -68,9 +68,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR182"
-    },
+    "source": "FUCR182",
     "fuid": "chimerist"
   },
   "effects": [],

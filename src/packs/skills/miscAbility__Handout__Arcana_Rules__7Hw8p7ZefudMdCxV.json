@@ -77,9 +77,7 @@
       "max": 6,
       "name": "Name"
     },
-    "source": {
-      "value": "FUCR178"
-    },
+    "source": "FUCR178",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

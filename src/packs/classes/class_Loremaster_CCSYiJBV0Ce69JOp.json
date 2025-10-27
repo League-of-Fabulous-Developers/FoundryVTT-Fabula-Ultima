@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR198"
-    },
+    "source": "FUCR198",
     "fuid": "loremaster"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster.png",

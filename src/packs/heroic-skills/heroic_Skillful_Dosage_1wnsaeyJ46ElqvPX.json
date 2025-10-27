@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF167"
-    },
+    "source": "FUNF167",
     "fuid": "skillful-dosage"
   },
   "effects": [],

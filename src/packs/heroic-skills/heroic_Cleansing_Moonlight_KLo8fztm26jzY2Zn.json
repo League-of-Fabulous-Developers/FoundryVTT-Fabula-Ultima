@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF164"
-    },
+    "source": "FUNF164",
     "fuid": "cleansing-moonlight"
   },
   "effects": [],

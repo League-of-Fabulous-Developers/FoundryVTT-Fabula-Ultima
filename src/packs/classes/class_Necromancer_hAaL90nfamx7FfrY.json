@@ -62,9 +62,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNM2"
-    },
+    "source": "FUNM2",
     "subtype": {},
     "showTitleCard": {
       "value": false

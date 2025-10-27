@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR194"
-    },
+    "source": "FUCR194",
     "fuid": "fury"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/fury/fury.png",

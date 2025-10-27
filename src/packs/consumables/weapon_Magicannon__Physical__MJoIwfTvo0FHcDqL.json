@@ -5,9 +5,7 @@
   "_id": "MJoIwfTvo0FHcDqL",
   "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/magicannon/magicannon-physical.png",
   "system": {
-    "source": {
-      "value": "FUCR215"
-    },
+    "source": "FUCR215",
     "summary": {
       "value": "A magitech firearm that deals physical damage."
     },

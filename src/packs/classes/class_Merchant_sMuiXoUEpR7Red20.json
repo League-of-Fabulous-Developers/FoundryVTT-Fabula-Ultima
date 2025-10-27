@@ -66,9 +66,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF158"
-    },
+    "source": "FUNF158",
     "fuid": "merchant"
   },
   "effects": [],

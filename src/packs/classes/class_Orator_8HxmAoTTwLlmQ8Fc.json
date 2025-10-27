@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR200"
-    },
+    "source": "FUCR200",
     "fuid": "orator"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/orator/orator.png",

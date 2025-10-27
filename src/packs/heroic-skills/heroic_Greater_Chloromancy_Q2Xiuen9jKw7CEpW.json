@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF165"
-    },
+    "source": "FUNF165",
     "fuid": "greater-chloromancy"
   },
   "effects": [],

@@ -101,9 +101,7 @@
         "value": 0
       }
     },
-    "source": {
-      "value": "FUNM3"
-    },
+    "source": "FUNM3",
     "subtype": {},
     "defense": "def",
     "hasResource": {
