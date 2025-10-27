@@ -173,6 +173,7 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 		return {
 			summary: new StringField(),
 			description: new HTMLField(),
+			fuid: new StringField(),
 			source: new StringField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
