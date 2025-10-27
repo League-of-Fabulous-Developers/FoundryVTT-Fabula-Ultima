@@ -36,7 +36,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
 			CommonSections.slottedTechnospheres(sections, item.system.slotted);
 		} else {
-			CommonSections.description(sections, item.system.description, item.system.summary);
+			CommonSections.description(sections, item.system.description, item.system.summary.value);
 		}
 	}
 });
