@@ -60,7 +60,7 @@ class BasePseudoActiveEffect extends PseudoDocument {
 	 * @type {Document|null}
 	 */
 	get target() {
-		return this.transfer ? this.parent.actor ?? null : this.parent;
+		return this.transfer ? (this.parent.actor ?? null) : this.parent;
 	}
 
 	/* -------------------------------------------- */

@@ -72,7 +72,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 
 		// Determine resource display status
 		const resourceDisplay =
-			hasResource?.value ?? true
+			(hasResource?.value ?? true)
 				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
 						data: rp,
 					})
