@@ -7,7 +7,7 @@
 		 	{{#if slot.occupied}} technosphere-slots__slot--occupied {{/if}}
 		 	{{#if (eq slot.type "mnemosphere")}} technosphere-slots__slot--mnemosphere {{else}} technosphere-slots__slot--hoplosphere {{/if}}"
 			{{#if slot.item}}data-item-id="{{ slot.item.id }}" data-uuid="{{ slot.item.uuid }}"{{/if}}
-			{{#if slot.overCapacity}}data-tooltip="{{localize "FU.TechnospheresOverCapacity"}}"{{/if}}
+			{{#if slot.overCapacity}}data-tooltip="{{localize "FU.TechnospheresSlotOverCapacity"}}"{{/if}}
 		>
 			{{#if slot.item}}
 				<span class="technosphere-slots__slot-image">
@@ -30,7 +30,7 @@
 				</span>
 			{{else if slot.occupied}}
 				<span class="technosphere-slots__slot-image"></span>
-				<span>{{localize "FU.HoplosphereRequiresTwoSlots"}}</span>
+				<span>{{localize "FU.HoplosphereTooltipRequiresTwoSlots"}}</span>
 			{{else}}
 				<span class="technosphere-slots__slot-image"></span>
 				<span>{{localize "FU.TechnospheresSlotEmpty"}}</span>

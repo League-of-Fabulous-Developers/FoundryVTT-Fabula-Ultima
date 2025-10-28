@@ -61,7 +61,7 @@ export const getTechnosphereSlotInfo = (slottedTechnospheres, totalSlots, maxMne
 			}
 		}
 
-		if (unusedMnemosphereSlots && (!currentSlot.item || unusedSlots === unusedMnemosphereSlots)) {
+		if (unusedMnemosphereSlots > 0 && (!currentSlot.item || unusedSlots === unusedMnemosphereSlots)) {
 			currentSlot.type = 'mnemosphere';
 			unusedMnemosphereSlots--;
 		}
