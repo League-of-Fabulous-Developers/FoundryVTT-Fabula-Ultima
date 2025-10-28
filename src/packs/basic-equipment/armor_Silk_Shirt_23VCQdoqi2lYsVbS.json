@@ -52,9 +52,7 @@
         "value": "ins"
       }
     },
-    "source": {
-      "value": "FUCR132"
-    },
+    "source": "FUCR132",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

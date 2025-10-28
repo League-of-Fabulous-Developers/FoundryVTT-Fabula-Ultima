@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF137"
-    },
+    "source": "FUHF137",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

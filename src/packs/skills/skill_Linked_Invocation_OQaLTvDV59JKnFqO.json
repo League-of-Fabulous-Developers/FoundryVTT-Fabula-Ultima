@@ -49,9 +49,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUNF155"
-    },
+    "source": "FUNF155",
     "hasRoll": {
       "value": false
     },

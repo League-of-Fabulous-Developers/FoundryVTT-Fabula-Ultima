@@ -93,9 +93,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF171"
-    },
+    "source": "FUTF171",
     "fuid": "arcane-soldier"
   },
   "effects": [],

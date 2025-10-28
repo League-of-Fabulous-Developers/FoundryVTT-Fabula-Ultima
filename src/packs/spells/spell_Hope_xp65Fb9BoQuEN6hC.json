@@ -80,9 +80,7 @@
     "isOffensive": {
       "value": false
     },
-    "source": {
-      "value": "FUCR237"
-    },
+    "source": "FUCR237",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

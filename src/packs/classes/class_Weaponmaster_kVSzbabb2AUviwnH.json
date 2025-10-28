@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR218"
-    },
+    "source": "FUCR218",
     "fuid": "weaponmaster"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster.png",

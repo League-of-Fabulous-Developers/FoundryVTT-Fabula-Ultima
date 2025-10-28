@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR176"
-    },
+    "source": "FUCR176",
     "fuid": "arcanist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist.png",

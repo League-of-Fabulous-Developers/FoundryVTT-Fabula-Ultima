@@ -77,9 +77,7 @@
       "max": 6,
       "name": "Name"
     },
-    "source": {
-      "value": "FUAC5"
-    },
+    "source": "FUAC5",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {

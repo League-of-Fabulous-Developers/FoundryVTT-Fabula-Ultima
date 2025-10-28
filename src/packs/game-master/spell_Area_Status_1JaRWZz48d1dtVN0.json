@@ -108,9 +108,7 @@
       }
     },
     "subtype": {},
-    "source": {
-      "value": "FUCR310"
-    },
+    "source": "FUCR310",
     "opportunity": "",
     "fuid": "area-status"
   },

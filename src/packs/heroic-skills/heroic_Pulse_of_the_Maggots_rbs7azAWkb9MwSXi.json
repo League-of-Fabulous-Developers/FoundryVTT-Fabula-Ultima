@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNM5"
-    },
+    "source": "FUNM5",
     "hasResource": {
       "value": false
     },

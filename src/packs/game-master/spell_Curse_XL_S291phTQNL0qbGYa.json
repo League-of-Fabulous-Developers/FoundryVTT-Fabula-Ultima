@@ -108,9 +108,7 @@
       }
     },
     "subtype": {},
-    "source": {
-      "value": "FUCR310"
-    },
+    "source": "FUCR310",
     "opportunity": "",
     "maxTargets": {
       "value": 1

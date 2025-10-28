@@ -93,9 +93,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF173"
-    },
+    "source": "FUTF173",
     "fuid": "dreamslice"
   },
   "effects": [],

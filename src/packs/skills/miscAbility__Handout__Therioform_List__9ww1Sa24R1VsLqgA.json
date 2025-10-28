@@ -86,9 +86,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUTF156"
-    },
+    "source": "FUTF156",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {

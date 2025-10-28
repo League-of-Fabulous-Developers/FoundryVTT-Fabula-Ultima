@@ -4,9 +4,7 @@
   "type": "weapon",
   "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/magicannon/magicannon-bolt.png",
   "system": {
-    "source": {
-      "value": "FUCR215"
-    },
+    "source": "FUCR215",
     "summary": {
       "value": "A magitech firearm that deals bolt damage."
     },

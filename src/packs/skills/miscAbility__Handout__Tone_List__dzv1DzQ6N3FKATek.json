@@ -78,9 +78,7 @@
       "max": 6,
       "name": "Name"
     },
-    "source": {
-      "value": "FUHF139"
-    },
+    "source": "FUHF139",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {

@@ -20,9 +20,7 @@
     "ipCost": {
       "value": 2
     },
-    "source": {
-      "value": "FUCR114"
-    },
+    "source": "FUCR114",
     "fuid": "infusion-basic"
   },
   "effects": [],

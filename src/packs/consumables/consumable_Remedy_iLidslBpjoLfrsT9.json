@@ -19,9 +19,7 @@
     "ipCost": {
       "value": 3
     },
-    "source": {
-      "value": "FUCR104"
-    },
+    "source": "FUCR104",
     "fuid": "remedy"
   },
   "effects": [],

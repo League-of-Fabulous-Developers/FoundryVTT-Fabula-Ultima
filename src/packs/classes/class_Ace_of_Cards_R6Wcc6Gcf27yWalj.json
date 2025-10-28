@@ -62,9 +62,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUAC2"
-    },
+    "source": "FUAC2",
     "subtype": {},
     "showTitleCard": {
       "value": false

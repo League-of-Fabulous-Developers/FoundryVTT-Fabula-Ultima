@@ -66,9 +66,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF138"
-    },
+    "source": "FUNF138",
     "fuid": "floralist"
   },
   "effects": [],

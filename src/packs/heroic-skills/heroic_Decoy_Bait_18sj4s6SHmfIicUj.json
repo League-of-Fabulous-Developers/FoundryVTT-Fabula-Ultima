@@ -93,9 +93,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF172"
-    },
+    "source": "FUTF172",
     "fuid": "decoy-bait"
   },
   "effects": [],

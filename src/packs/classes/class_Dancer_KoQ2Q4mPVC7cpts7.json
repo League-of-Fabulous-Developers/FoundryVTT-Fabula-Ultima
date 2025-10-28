@@ -68,9 +68,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUHF142"
-    },
+    "source": "FUHF142",
     "fuid": "dancer"
   },
   "effects": [],

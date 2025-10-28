@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR216"
-    },
+    "source": "FUCR216",
     "fuid": "wayfarer"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer.png",

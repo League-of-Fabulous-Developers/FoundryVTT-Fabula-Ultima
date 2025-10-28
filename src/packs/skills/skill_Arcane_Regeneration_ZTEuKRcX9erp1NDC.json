@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR177"
-    },
+    "source": "FUCR177",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

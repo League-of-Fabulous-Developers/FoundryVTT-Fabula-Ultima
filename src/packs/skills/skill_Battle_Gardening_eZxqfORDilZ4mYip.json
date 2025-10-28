@@ -50,9 +50,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUNF139"
-    },
+    "source": "FUNF139",
     "hasRoll": {
       "value": true
     },

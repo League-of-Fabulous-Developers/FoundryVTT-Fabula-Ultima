@@ -67,9 +67,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR210"
-    },
+    "source": "FUCR210",
     "fuid": "tinkerer"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer.png",

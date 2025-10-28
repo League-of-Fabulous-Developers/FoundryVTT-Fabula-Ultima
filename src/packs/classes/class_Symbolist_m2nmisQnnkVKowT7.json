@@ -68,9 +68,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUHF146"
-    },
+    "source": "FUHF146",
     "fuid": "symbolist"
   },
   "effects": [],
