@@ -7,8 +7,6 @@ import { MathHelper } from '../../helpers/math-helper.mjs';
 import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs';
 import { ZeroPowerDataModel } from '../items/optionalFeature/zeropower/zeropower-data-model.mjs';
 import { CommonEvents } from '../../checks/common-events.mjs';
-import { SETTINGS } from '../../settings.js';
-import { SYSTEM } from '../../helpers/config.mjs';
 
 /**
  * @typedef Actor
@@ -201,8 +199,7 @@ export class FUActor extends Actor {
 			const { hp } = this.system?.resources || {};
 
 			if (hp && userId === game.userId) {
-				const crisisThreshold = Math.floor(hp.max * game.settings.get(SYSTEM, SETTINGS.optionCrisisMultiplier ?? 0.5));
-				const shouldBeInCrisis = hp.value <= crisisThreshold;
+				const shouldBeInCrisis = hp.value <= hp.crisis;
 				const isInCrisis = this.statuses.has('crisis');
 				if (shouldBeInCrisis !== isInCrisis) {
 					Hooks.call(
