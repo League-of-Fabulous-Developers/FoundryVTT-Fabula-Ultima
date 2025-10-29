@@ -3,7 +3,7 @@
         <span style="padding-left: 3px;">{{ localize "FU.HealthAbbr" }}</span>
     </div>
     <div class="bar bar-progress diag">
-        {{#if (pfuCrisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+        {{#if (pfuCrisis this.actor)}}
         <div class="bar-progress-bar diag bar-hp-crisis"
             style="width: {{pfuPercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
         <div class="center-line diag"></div>

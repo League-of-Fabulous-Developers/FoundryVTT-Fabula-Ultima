@@ -895,8 +895,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async CrisisHP(event, target) {
-		const maxHP = this.actor.system.resources.hp.max;
-		const crisisHP = Math.floor(maxHP / 2);
+		const crisisHP = this.actor.system.resources.hp.crisis;
+
 		const updateData = {
 			'system.resources.hp.value': crisisHP,
 		};
