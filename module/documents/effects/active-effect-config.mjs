@@ -202,6 +202,7 @@ function getAttributeKeys(document) {
 			for (const res of resources) {
 				attributeKeys.push(`system.resources.${res}.max`);
 			}
+			attributeKeys.push(`system.resources.hp.crisis`);
 			// Attributes
 			for (const attr of Object.keys(FU.attributes)) {
 				attributeKeys.push(`system.attributes.${attr}`);
