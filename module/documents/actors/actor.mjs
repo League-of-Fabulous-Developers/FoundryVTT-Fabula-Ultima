@@ -189,18 +189,13 @@ export class FUActor extends Actor {
 		await super._preUpdate(changed, options, user);
 	}
 
-	/**
-	 * @returns {Promise<void>}
-	 * @private
-	 * @override
-	 */
-	async _onUpdate(changed, options, userId) {
+	async applyCrisis() {
 		if (this.isCharacterType) {
 			const { hp } = this.system?.resources || {};
-
-			if (hp && userId === game.userId) {
+			if (hp) {
 				const shouldBeInCrisis = hp.value <= hp.crisis;
 				const isInCrisis = this.statuses.has('crisis');
+
 				if (shouldBeInCrisis !== isInCrisis) {
 					Hooks.call(
 						FUHooks.CRISIS_EVENT,
@@ -212,6 +207,21 @@ export class FUActor extends Actor {
 					);
 					await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
 				}
+			}
+		}
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @private
+	 * @override
+	 */
+	async _onUpdate(changed, options, userId) {
+		if (this.isCharacterType) {
+			const { hp } = this.system?.resources || {};
+
+			if (hp && userId === game.userId) {
+				await this.applyCrisis();
 
 				// Handle KO status
 				const shouldBeKO = hp.value === 0; // KO when HP is 0
