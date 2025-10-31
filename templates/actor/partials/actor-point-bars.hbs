@@ -19,7 +19,7 @@
         {{#if (pfuCrisis actor)}}
             <div class="bar-progress-bar bar-hp-crisis"
                  style="width: {{pfuPercentage system.resources.hp.value system.resources.hp.max}};"></div>
-            <div class="center-line" style="left:{{pfuCrisisPerc actor}}%"></div>
+            <div class="center-line" style="left:calc({{actor.system.resources.hp.crisis}} / {{actor.system.resources.hp.max}} * 100%);"></div>
         {{else}}
             <div class="bar-progress-bar bar-hp"
                  style="width: {{pfuPercentage system.resources.hp.value system.resources.hp.max}};"></div>

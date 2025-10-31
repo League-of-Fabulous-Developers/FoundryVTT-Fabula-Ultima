@@ -99,12 +99,6 @@ export const FUHandlebars = Object.freeze({
 			}
 		});
 
-		Handlebars.registerHelper('pfuCrisisPerc', function (actor, normalized) {
-			const perc = actor.system.resources.hp.crisis / actor.system.resources.hp.max;
-			if (typeof normalized === 'boolean' && normalized) return perc;
-			else return perc * 100;
-		});
-
 		Handlebars.registerHelper('pfuLookupById', function (items, itemId) {
 			return items.find((item) => item._id === itemId);
 		});
