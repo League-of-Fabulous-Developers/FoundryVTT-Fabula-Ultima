@@ -445,6 +445,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const hoverIn = this._onHoverIn.bind(this);
 		const hoverOut = this._onHoverOut.bind(this);
 		const dragCombatantStart = this._doCombatantDragStart.bind(this);
+		const dragCombatantOver = this._doDragOver.bind(this);
 		const dragCombatantDrop = this._doCombatantDrop.bind(this);
 
 		for (const row of rows) {
@@ -454,6 +455,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 				if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering) && game.user.isGM) {
 					row.addEventListener('dragstart', dragCombatantStart);
+					row.addEventListener('dragover', dragCombatantOver);
 					row.addEventListener('drop', dragCombatantDrop);
 				}
 			}
@@ -465,6 +467,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 				if (image instanceof HTMLElement) {
 					image.setAttribute('draggable', true);
 					image.addEventListener('dragstart', dragCombatantStart);
+					image.addEventListener('dragover', dragCombatantOver);
 					image.addEventListener('drop', dragCombatantDrop);
 				}
 			}
@@ -633,9 +636,10 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			event.dataTransfer.effectAllowed = 'move';
 			event.dataTransfer.dropEffect = 'move';
 			const elem = this.element.querySelector(`#combat-hud`);
-			this.dragInitialLeft = event.clientX - elem.offsetLeft;
-
-			this.dragInitialTop = event.clientY - elem.offsetTop;
+			this.dragInitialX = event.clientX;
+			this.dragInitialY = event.clientY;
+			this.dragInitialLeft = elem.offsetLeft;
+			this.dragInitialTop = elem.offsetTop;
 
 			this.firefoxDragX = 0;
 			this.firefoxDragY = 0;
@@ -679,14 +683,11 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			if (this._dragAnimationFrame) cancelAnimationFrame(this._dragAnimationFrame);
 
 			this._dragAnimationFrame = requestAnimationFrame(() => {
-				const dragButton = elem.querySelector(`.window-drag`);
-				const buttonPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton);
-
-				const deltaX = dragPosition.x - this.dragInitialX - dragButton.clientWidth;
-				const deltaY = dragPosition.y - this.dragInitialTop + dragButton.clientHeight;
+				const deltaX = dragPosition.x - this.dragInitialX;
+				const deltaY = dragPosition.y - this.dragInitialY;
 
 				const newLeft = this.dragInitialLeft + deltaX;
-				const newTop = this.dragInitialTop + deltaY + (buttonPosition === 'top' ? -dragButton.clientHeight : -elem.clientHeight - dragButton.clientHeight);
+				const newTop = this.dragInitialTop + deltaY;
 
 				const positionBounds = this._getDragPositionBoundaries();
 				if (newTop >= positionBounds.top && newTop <= positionBounds.bottom) elem.style.top = `${newTop}px`;
@@ -789,7 +790,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 		const actualEvent = event.originalEvent ?? event;
 
-		actualEvent.dataTransfer.dropEffect = 'move';
+		actualEvent.dataTransfer.effectAllowed = 'move';
 
 		const dropData = {
 			token: event.currentTarget.dataset.tokenId,
@@ -799,7 +800,14 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		actualEvent.dataTransfer.setData('text/plain', JSON.stringify(dropData));
 	}
 
-	_doDragOver(event) {}
+	_doDragOver(event) {
+		// Prevent default to allow drop
+		event.preventDefault();
+		const actualEvent = event.originalEvent ?? event;
+		if (actualEvent.dataTransfer) {
+			actualEvent.dataTransfer.dropEffect = 'move';
+		}
+	}
 
 	_doCombatantDrop(event) {
 		if (!event.currentTarget.classList.contains('combat-row')) return;
