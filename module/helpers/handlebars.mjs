@@ -1,8 +1,5 @@
 import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
-import { SYSTEM } from './config.mjs';
-import { SETTINGS } from '../settings.js';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -80,23 +77,6 @@ export const FUHandlebars = Object.freeze({
 			const percentage = Math.min((overflow / overflowMax) * 100, 100); // Cap at 100%
 
 			return percentage.toFixed(2) + '%';
-		});
-
-		/**
-		 * Helper to determine if a given Actor is in Crisis.
-		 * When given an FUActor, it will respect the Actor's Crisis modifiers
-		 * When given two numeric values, it will respect the global Crisis modifier but NOT an Actor's specific modifier(s)
-		 */
-		Handlebars.registerHelper('pfuCrisis', function (...args) {
-			if (args[0] instanceof FUActor) {
-				const actor = args[0];
-				return actor.system.resources.hp.value <= actor.system.resources.hp.crisis;
-			} else if (typeof args[0] === 'number' && typeof args[1] === 'number') {
-				const value = parseFloat(args[0]);
-				const max = parseFloat(args[1]);
-				const crisis = max * (game.settings.get(SYSTEM, SETTINGS.optionCrisisMultiplier) ?? 0.5);
-				return value <= crisis;
-			}
 		});
 
 		Handlebars.registerHelper('pfuLookupById', function (items, itemId) {

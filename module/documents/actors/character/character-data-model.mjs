@@ -203,17 +203,28 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			},
 		});
 
-		Object.defineProperty(this.resources.hp, 'crisis', {
+		Object.defineProperty(this.resources.hp, 'crisisScore', {
 			configurable: true,
 			enumerable: true,
 			get() {
-				const max = this.max;
 				const multiplier = game.settings.get(SYSTEM, SETTINGS.optionCrisisMultiplier) ?? 0.5;
-				return Math.floor(max * multiplier);
+				return Math.floor(this.max * multiplier);
 			},
 			set(newValue) {
-				delete this.crisis;
-				this.crisis = newValue;
+				delete this.crisisScore;
+				this.crisisScore = newValue;
+			},
+		});
+
+		Object.defineProperty(this.resources.hp, 'inCrisis', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				return this.value <= this.crisisScore;
+			},
+			set(newValue) {
+				delete this.inCrisis;
+				this.inCrisis = newValue;
 			},
 		});
 

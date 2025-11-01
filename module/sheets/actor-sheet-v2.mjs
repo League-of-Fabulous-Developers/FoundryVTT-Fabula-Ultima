@@ -946,7 +946,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async CrisisHP(event, target) {
-		const crisisHP = this.actor.system.resources.hp.crisis;
+		const crisisHP = this.actor.system.resources.hp.crisisScore;
 		const updateData = {
 			'system.resources.hp.value': crisisHP,
 		};
