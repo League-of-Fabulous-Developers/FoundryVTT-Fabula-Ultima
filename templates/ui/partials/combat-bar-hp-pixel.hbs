@@ -11,7 +11,7 @@
         {{#if this.actor.system.resources.hp.inCrisis}}
         <div class="bar-progress-bar bar-hp-crisis"
             style="width: {{pfuPercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
-        <div class="center-line"></div>
+        <div class="center-line" style="left: calc({{this.actor.system.resources.hp.crisisScore}} / {{this.actor.system.resources.hp.max}} * 100%)"></div>
         {{else}}
         <div class="bar-progress-bar bar-hp"
             style="width: {{pfuPercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
