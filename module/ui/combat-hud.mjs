@@ -911,9 +911,12 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		if (typeof PopoutModule !== 'undefined' && PopoutModule.singleton) {
 			ui.windows[this.appId] = this;
 			this._poppedOut = true;
-			this.element.find('.window-popout').css('display', 'none');
-			this.element.find('.window-compact').css('display', 'none');
-			this.element.find('.window-minimize').css('display', 'none');
+			const popoutButton = this.element.querySelector('.window-popout');
+			const compactButton = this.element.querySelector('.window-compact');
+			const minimizeButton = this.element.querySelector('.window-minimize');
+			if (popoutButton) popoutButton.style.display = 'none';
+			if (compactButton) compactButton.style.display = 'none';
+			if (minimizeButton) minimizeButton.style.display = 'none';
 			PopoutModule.singleton.onPopoutClicked(this);
 		} else {
 			ui.notifications.warn('FU.CombatHudPopoutNotInstalled', { localize: true });
