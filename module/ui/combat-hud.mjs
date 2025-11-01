@@ -810,7 +810,18 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const actorTypeOver = combatRowOver.dataset.type;
 
 		const actualEvent = event.originalEvent ?? event;
-		const data = JSON.parse(actualEvent.dataTransfer.getData('text/plain'));
+		const rawData = actualEvent.dataTransfer.getData('text/plain');
+
+		if (!rawData) return;
+
+		let data;
+		try {
+			data = JSON.parse(rawData);
+		} catch (error) {
+			console.warn('Combat HUD: Invalid JSON data in drop event', error);
+			return;
+		}
+
 		const actorTypeDragged = data.type;
 
 		if (actorTypeOver !== actorTypeDragged) {
