@@ -193,10 +193,7 @@ export class FUActor extends Actor {
 		if (this.isCharacterType) {
 			const { hp } = this.system?.resources || {};
 			if (hp) {
-				const shouldBeInCrisis = hp.value <= hp.crisis;
-				const isInCrisis = this.statuses.has('crisis');
-
-				if (shouldBeInCrisis !== isInCrisis) {
+				if (hp.inCrisis !== this.statuses.has('crisis')) {
 					Hooks.call(
 						FUHooks.CRISIS_EVENT,
 						/** @type CrisisEvent **/
