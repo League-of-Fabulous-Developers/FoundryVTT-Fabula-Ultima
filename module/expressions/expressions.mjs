@@ -533,19 +533,12 @@ function resolveActorFromLabel(match, label, context) {
 function evaluateReferencedFunctions(expression, context) {
 	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
 
-	function evaluate(match, label, path, p3, args, groups) {
-		const actor = resolveActorFromLabel(match, label, context);
-		if (actor) {
-			let splitArgs = args.split(',');
-			const functionPath = `system.${path}`;
-			const resolvedFunction = getFunctionFromPath(actor, functionPath);
-			if (resolvedFunction === undefined) {
-				throw new Error(`No function in path "${functionPath}" of object ${actor}`);
-			}
-			const result = resolvedFunction.apply(actor.system, splitArgs);
-			console.info(`Resolved function ${functionPath}: ${result}`);
-			return result;
-		}
+	function evaluate(match) {
+		ui.notifications.warn(
+			`Function expressions are deprecated for removal. Until removal, they will evaluate to 0. <br/>Expression '<strong>${match}</strong>' in effect '<strong>${context.effect.name}</strong>' on actor '<strong>${context.actor.name}</strong>'.`,
+			{ permanent: true },
+		);
+		return '0';
 	}
 
 	return expression.replace(pattern, evaluate);
@@ -702,39 +695,8 @@ function getAttributeSize(actor, key) {
 	return attributes[key].current;
 }
 
-/**
- * @param obj The object to resolve the function  from
- * @param path The path to the function, in dot notation
- * @returns {Function} The resolved function
- */
-function getFunctionFromPath(obj, path) {
-	if (typeof path !== 'string') {
-		throw new Error('Path must be a string');
-	}
-	if (typeof obj !== 'object' || obj === null) {
-		throw new Error('Invalid object provided');
-	}
-
-	const parts = path.split('.');
-	let current = obj;
-
-	for (const part of parts) {
-		if (current[part] === undefined) {
-			throw new Error(`Path not found in ${obj}: ${path}`);
-		}
-		current = current[part];
-	}
-
-	if (typeof current !== 'function') {
-		throw new Error(`Path does not resolve to a function: ${path}`);
-	}
-
-	return current;
-}
-
 export const Expressions = {
 	evaluate,
 	evaluateAsync,
 	requiresContext,
-	getFunctionFromPath,
 };
