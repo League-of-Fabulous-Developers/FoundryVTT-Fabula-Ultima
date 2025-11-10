@@ -195,9 +195,8 @@ const progressStyleTemplates = Object.freeze({
  * @returns {String}
  */
 function progress(document, path, options) {
-	const id = document._id;
 	const progress = foundry.utils.getProperty(document, path);
-	return renderProgress(progress, id, path, options.hash);
+	return renderProgress(progress, document, path, options.hash);
 }
 
 /**
@@ -208,21 +207,20 @@ function progress(document, path, options) {
  * @returns {String}
  */
 function progressCollection(document, path, index, options) {
-	const id = document._id;
 	const array = ObjectUtils.getProperty(document, path);
 	const progress = array[index];
-	return renderProgress(progress, id, path, options.hash, index);
+	return renderProgress(progress, document, path, options.hash, index);
 }
 
 /**
  * @param {ProgressDataModel} progress
- * @param {String} id The id of the document
+ * @param {FUActor, FUItem} document The document
  * @param {String} path The path of the property
  * @param {int} index Optionally, the index of the data model inside an array
  * @param {ProgressHandlebarOptions} options
  * @returns {String}
  */
-function renderProgress(progress, id, path, options, index = undefined) {
+function renderProgress(progress, document, path, options, index = undefined) {
 	const type = options.type;
 	const style = options.style ?? progress.style ?? 'clock';
 	const action = options.action ?? 'updateTrack';
@@ -234,7 +232,7 @@ function renderProgress(progress, id, path, options, index = undefined) {
 		typeof template === 'function'
 			? template({
 					arr: progress.progressArray,
-					id: id,
+					id: document._id,
 					index: index,
 					isCollection: index !== undefined,
 					data: progress,
@@ -243,7 +241,7 @@ function renderProgress(progress, id, path, options, index = undefined) {
 					controls: controls,
 					action: action,
 					prompt: options.prompt,
-					displayName: options.displayName && (progress.name || id.name),
+					displayName: options.displayName && (progress.name || document.name),
 				})
 			: '';
 

@@ -151,6 +151,12 @@ export class RitualDataModel extends FUStandardItemDataModel {
 		(this.dLevel ??= {}).value = potency.difficulty;
 		(this.clock ??= {}).value = potency.clock;
 		this.progress.max = potency.clock;
+
+		foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
+	}
+
+	afterApplyActiveEffects() {
+		foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
 	}
 
 	async _preUpdate(changes, options, user) {
