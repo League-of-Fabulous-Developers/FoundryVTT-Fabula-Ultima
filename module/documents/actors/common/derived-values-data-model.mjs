@@ -140,7 +140,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 	 * @param {FUActor} actor
 	 */
 	#prepareInitiative(actor) {
-		const initBonus = this.init.bonus;
+		const initData = this.init;
 		const equippedItems = actor.system.equipped;
 
 		let initMod = 0;
@@ -175,7 +175,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		}
 
 		let initCalculation = function () {
-			return initMod + initBonus;
+			return initMod + initData.bonus;
 		};
 
 		if (actor.type === 'npc') {
@@ -184,7 +184,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				if (actor.system.rank.value === 'companion' || actor.system.rank.value === 'custom') {
 					return 0;
 				}
-				return initMod + initBonus + (actor.system.attributes.dex.base + actor.system.attributes.ins.base) / 2 + eliteOrChampBonus;
+				return initMod + initData.bonus + (actor.system.attributes.dex.base + actor.system.attributes.ins.base) / 2 + eliteOrChampBonus;
 			};
 		}
 
