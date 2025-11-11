@@ -213,10 +213,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			get() {
 				return this.value <= this.crisisScore;
 			},
-			set(newValue) {
-				delete this.inCrisis;
-				this.inCrisis = newValue;
-			},
 		});
 
 		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
