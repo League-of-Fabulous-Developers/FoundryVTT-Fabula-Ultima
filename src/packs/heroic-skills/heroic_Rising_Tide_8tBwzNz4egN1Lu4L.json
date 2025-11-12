@@ -113,7 +113,7 @@
         {
           "key": "system.bonuses.damage.brawling",
           "mode": 2,
-          "value": "$pg",
+          "value": "@system.rp.current",
           "priority": null
         }
       ],
