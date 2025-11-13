@@ -79,13 +79,6 @@ export const FUHandlebars = Object.freeze({
 			return percentage.toFixed(2) + '%';
 		});
 
-		Handlebars.registerHelper('pfuCrisis', function (value, max) {
-			value = parseFloat(value);
-			max = parseFloat(max);
-			const half = max / 2;
-			return value <= half;
-		});
-
 		Handlebars.registerHelper('pfuLookupById', function (items, itemId) {
 			return items.find((item) => item._id === itemId);
 		});

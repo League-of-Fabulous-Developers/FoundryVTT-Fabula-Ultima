@@ -1,4 +1,4 @@
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { NpcMigrations } from './npc-migrations.mjs';
 import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
@@ -9,6 +9,7 @@ import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
 import { Role } from '../../../helpers/roles.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
+import { SETTINGS } from '../../../settings.js';
 
 Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
@@ -190,6 +191,27 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			set(newValue) {
 				delete this.max;
 				this.max = newValue;
+			},
+		});
+
+		Object.defineProperty(this.resources.hp, 'crisisScore', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const multiplier = game.settings.get(SYSTEM, SETTINGS.optionCrisisMultiplier) ?? 0.5;
+				return Math.floor(this.max * multiplier);
+			},
+			set(newValue) {
+				delete this.crisisScore;
+				this.crisisScore = newValue;
+			},
+		});
+
+		Object.defineProperty(this.resources.hp, 'inCrisis', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				return this.value <= this.crisisScore;
 			},
 		});
 

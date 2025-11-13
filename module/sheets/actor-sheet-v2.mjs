@@ -946,8 +946,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async CrisisHP(event, target) {
-		const maxHP = this.actor.system.resources.hp.max;
-		const crisisHP = Math.floor(maxHP / 2);
+		const crisisHP = this.actor.system.resources.hp.crisisScore;
 		const updateData = {
 			'system.resources.hp.value': crisisHP,
 		};

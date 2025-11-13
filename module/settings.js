@@ -90,6 +90,8 @@ export const SETTINGS = Object.freeze({
 
 	optionEnableDragRulerGridless: 'optionEnableDragRulerGridless',
 	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
+
+	optionCrisisMultiplier: 'optionCrisisMultiplier',
 });
 
 /**
@@ -773,7 +775,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.HomebrewOptions'),
 		hint: game.i18n.localize('FU.HomebrewHint'),
 		icon: 'fa fa-coffee',
-		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability, SETTINGS.opportunities]),
+		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability, SETTINGS.opportunities, SETTINGS.optionCrisisMultiplier]),
 		restricted: true,
 	});
 
@@ -836,6 +838,21 @@ export const registerSystemSettings = async function () {
 			blank: true,
 			idOnly: true,
 		}),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCrisisMultiplier, {
+		name: 'FU.CrisisMultiplier',
+		hint: 'FU.CrisisMultiplierHint',
+		scope: 'world',
+		config: true,
+		type: Number,
+		default: 0.5,
+		requiresReload: false,
+		range: {
+			min: 0,
+			max: 1,
+			step: 0.05,
+		},
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridless, {

@@ -1,9 +1,9 @@
 <div class="bar-container">
     <div class="bar bar-progress" data-tooltip="{{localize 'FU.HealthPoints'}}">
-        {{#if (pfuCrisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+        {{#if this.actor.system.resources.hp.inCrisis}}
         <div class="bar-progress-bar bar-hp-crisis"
             style="width: {{pfuPercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
-        <div class="center-line"></div>
+        <div class="center-line" style="left: calc({{this.actor.system.resources.hp.crisisScore}} / {{this.actor.system.resources.hp.max}} * 100%)"></div>
         {{else}}
         <div class="bar-progress-bar bar-hp"
             style="width: {{pfuPercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
@@ -17,7 +17,7 @@
         </div>
     </div>  
     <div class="resource-value">
-        {{#if (lte this.actor.system.resources.hp.value (pfuHalf this.actor.system.resources.hp.max))}}
+        {{#if this.actor.system.resources.hp.inCrisis }}
         <i class="fa-solid fa-heart-crack is-crisis"></i>
         {{else}}
         <i class="fa-solid fa-heart"></i>

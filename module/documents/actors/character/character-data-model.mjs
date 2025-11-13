@@ -203,6 +203,27 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			},
 		});
 
+		Object.defineProperty(this.resources.hp, 'crisisScore', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const multiplier = game.settings.get(SYSTEM, SETTINGS.optionCrisisMultiplier) ?? 0.5;
+				return Math.floor(this.max * multiplier);
+			},
+			set(newValue) {
+				delete this.crisisScore;
+				this.crisisScore = newValue;
+			},
+		});
+
+		Object.defineProperty(this.resources.hp, 'inCrisis', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				return this.value <= this.crisisScore;
+			},
+		});
+
 		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
 		Object.defineProperty(this.resources.mp, 'max', {
 			configurable: true,

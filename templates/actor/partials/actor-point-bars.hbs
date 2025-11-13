@@ -3,23 +3,23 @@
     <div class="grid grid-3col" style="padding: 0 5px;">
         <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
                aria-describedby="tooltip">
-            {{#if (lte system.resources.hp.value (pfuHalf system.resources.hp.max))}}
+            {{#if actor.system.resources.hp.inCrisis }}
                 <i class="fas fa-heart-crack is-crisis"></i>
             {{else}}
                 <i class="fas fa-heart"></i>
             {{/if}} {{localize 'FU.HealthAbbr'}}
         </label>
         <label class="align-right grid-start-2 grid-span-2 is-crisis" aria-describedby="tooltip">
-            {{#if (lte system.resources.hp.value (pfuHalf system.resources.hp.max))}}
+            {{#if actor.system.resources.hp.inCrisis }}
                 {{localize 'FU.Crisis'}}
             {{/if}}
         </label>
     </div>
     <div class="bar bar-progress">
-        {{#if (pfuCrisis system.resources.hp.value system.resources.hp.max)}}
+        {{#if actor.system.resources.hp.inCrisis}}
             <div class="bar-progress-bar bar-hp-crisis"
                  style="width: {{pfuPercentage system.resources.hp.value system.resources.hp.max}};"></div>
-            <div class="center-line"></div>
+            <div class="center-line" style="left:calc({{actor.system.resources.hp.crisisScore}} / {{actor.system.resources.hp.max}} * 100%);"></div>
         {{else}}
             <div class="bar-progress-bar bar-hp"
                  style="width: {{pfuPercentage system.resources.hp.value system.resources.hp.max}};"></div>
@@ -32,15 +32,15 @@
                value="{{ system.resources.hp.value }}" data-dtype="Number" />
         <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.HealthPoints'}}<br>Current: {{
         system.resources.hp.value
-        }}<br>Crisis: {{pfuHalf system.resources.hp.max}}
+        }}<br>Crisis: {{system.resources.hp.crisisScore}}
                 <br>Bonus: {{ system.resources.hp.bonus }} <br>Max: {{
         system.resources.hp.max
         }}" aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
-                {{#if (lte system.resources.hp.value (pfuHalf system.resources.hp.max))}}
+                {{#if actor.system.resources.hp.inCrisis }}
                     <i class="fas fa-caret-up is-crisis crisisHP float-text" data-action="crisisHP"></i>
                 {{else}}
-                    <i class="fas fa-caret-up crisisHP" data-action="crisisHP"></i>
+                    <i class="fas fa-caret-up crisisHP pointer" data-action="crisisHP"></i>
                 {{/if}}
             </div>
         </span>
