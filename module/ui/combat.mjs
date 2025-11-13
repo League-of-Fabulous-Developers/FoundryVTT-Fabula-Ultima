@@ -322,6 +322,7 @@ export class FUCombat extends foundry.documents.Combat {
 			const turns = this.combatants.contents.sort(this._sortCombatants);
 			if (this.turn !== null) this.turn = Math.clamp(this.turn, 0, turns.length - 1);
 			this.current = this._getCurrentState(combatant);
+
 			// Notify
 			this.setupTurns();
 			this.notifyCombatTurnChange();
@@ -334,6 +335,7 @@ export class FUCombat extends foundry.documents.Combat {
 			}
 		}
 
+		await combatant.clearMovementHistory();
 		await this._onStartTurn(combatant);
 	}
 
@@ -372,6 +374,8 @@ export class FUCombat extends foundry.documents.Combat {
 				// TODO: Inform user?
 			}
 		}
+
+		await combatant.clearMovementHistory();
 	}
 
 	/**
