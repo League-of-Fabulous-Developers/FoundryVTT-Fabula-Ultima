@@ -1,7 +1,7 @@
 <div>
     <label>
-        <span class="d-block">{{localize "FU.DamageType"}}</span>
-        <select name="guided.changes.{{@index}}.damageType">
+        <span>{{localize "FU.DamageType"}}</span>
+        <select name="guided.changes.{{@index}}.damageType" class="resource-current-input">
             {{selectOptions templateData.damageTypes selected=damageType localize=true}}
         </select>
     </label>

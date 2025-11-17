@@ -1,52 +1,54 @@
 <div class="inline-effect-config">
-    <fieldset class="title-fieldset resource-content flex-group-center">
+    <fieldset class="title-fieldset resource-content flex-group-center desc">
         <legend class="resource-label-sm">{{localize "FU.InlineEffectType"}}</legend>
-        <select name="type" class="resource-inputs select-dropdown-xl">
+        <select name="type" class="resource-current-input">
             {{selectOptions effectTypes selected=data.type localize=true}}
         </select>
     </fieldset>
     {{#if (eq data.type "status")}}
-        <fieldset class="title-fieldset resource-content flex-group-center">
+        <fieldset class="title-fieldset resource-content flex-group-center desc">
             <legend class="resource-label-sm">{{localize "FU.InlineEffectStatus"}}</legend>
-            <select name="status" class="resource-inputs select-dropdown-xl">
+            <select name="status" class="resource-current-input">
                 {{selectOptions statuses selected=data.status localize=true}}
             </select>
         </fieldset>
     {{/if}}
     {{#if (eq data.type "boonOrBane")}}
-        <fieldset class="title-fieldset resource-content flex-group-center">
+        <fieldset class="title-fieldset resource-content flex-group-center desc">
             <legend class="resource-label-sm">{{localize "FU.Effect"}}</legend>
-            <select name="status" class="resource-inputs select-dropdown-xl">
+            <select name="status" class="resource-current-input">
                 {{selectOptions boonsAndBanes selected=data.status localize=true}}
             </select>
         </fieldset>
     {{/if}}
     {{#if (eq data.type "guided")}}
-        <fieldset class="title-fieldset resource-content flex-group-center">
+        <fieldset class="title-fieldset resource-content flex-group-center desc">
             <legend class="resource-label-sm">{{localize "FU.InlineEffectGuidedBasicInformation"}}</legend>
-            <header class="flexrow">
-                <img src="{{#if data.guided.icon}}{{data.guided.icon}}{{else}}{{defaultIcon}}{{/if}}"
-                     data-action="editImage" class="effect-icon flex0" />
+            <header class="flexrow gap-5">
+				<img src="{{data.guided.icon}}"
+					 data-action="editImage" class="effect-icon flex0" data-edit="guided.icon" />
                 <h1>
                     <input name="guided.name" type="text"
                            value="{{#if data.guided.name}}{{data.guided.name}}{{else}}{{defaultName}}{{/if}}"
-                           placeholder="Name">
+                           placeholder="Name"
+						   class="resource-current-input custom-effect-name"
+					>
                 </h1>
             </header>
         </fieldset>
-        <fieldset class="title-fieldset resource-content flex-group-center">
+        <fieldset class="title-fieldset resource-content flex-group-center desc">
             <legend class="resource-label-sm changes-legend">
                 <span class="change-controls flex0">
                     <a class="change-control" data-action="add">
                         {{localize "FU.InlineEffectGuidedChangesConfig"}}
-                        <i class="far fa-plus-square">                        </i>
+                        <i class="far fa-plus-square"></i>
                     </a>
                 </span>
             </legend>
             <div class="changes-list">
                 {{#each data.guided.changes as |change i|}}
                     <div class="flexcol change" data-index="{{i}}">
-                        <fieldset class="title-fieldset resource-content">
+                        <fieldset class="title-fieldset resource-content desc">
                             <legend class="resource-label-t guided-change-legend">
                                 <select name="guided.changes.{{i}}.type" class="resource-inputs select-dropdown-full">
                                     {{selectOptions ../changeTypes selected=change.type localize=true
@@ -56,7 +58,7 @@
                                     <a class="change-control" data-action="delete"><i class="fas fa-trash"></i></a>
                                 </span>
                             </legend>
-                            <div>
+                            <div class="change-data">
                                 {{> (lookup (lookup ../changeTypes change.type) "template") templateData=(lookup (lookup ../changeTypes change.type) "templateData") }}
                             </div>
                         </fieldset>
@@ -66,7 +68,7 @@
 
         </fieldset>
     {{/if}}
-    <footer class="sheet-footer">
+    <footer class="flexrow desc">
         <button type="button" data-action="finish">
             <i class="fas fa-check"></i>
             {{localize "FU.TextEditorDialogButtonInsert"}}
