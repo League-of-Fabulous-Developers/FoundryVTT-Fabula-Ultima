@@ -236,7 +236,7 @@
 
 .active-effect-sheet input[type='checkbox']:checked::after,
 input[type='radio']:checked::after {
-	color: rgba(46, 110, 110, 0.9) !important;
+	--checkbox-checked-color: rgba(46, 110, 110, 0.9);
 }
 
 /*Adjusting spacing to avoid icon clipping*/
