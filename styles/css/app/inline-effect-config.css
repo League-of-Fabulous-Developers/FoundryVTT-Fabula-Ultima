@@ -1,0 +1,30 @@
+.projectfu .inline-effect-config {
+	.effect-icon {
+		background-color: var(--color-background);
+		border: var(--border);
+		border-radius: var(--radius-lg);
+		width: 48px;
+		height: 48px;
+		flex: 0 0 auto;
+		cursor: pointer;
+	}
+
+	.custom-effect-name {
+		height: 100%;
+	}
+
+	.changes-list {
+		width: 100%;
+
+		.change .change-data {
+			label {
+				display: inline-block;
+				width: 100%;
+
+				font-weight: var(--font-weight-bold);
+				font-size: var(--font-size-md);
+				text-align: start;
+			}
+		}
+	}
+}

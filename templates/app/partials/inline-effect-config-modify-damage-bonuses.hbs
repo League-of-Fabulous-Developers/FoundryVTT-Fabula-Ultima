@@ -1,15 +1,16 @@
 <div>
     <label>
-        <span class="d-block">{{localize "FU.InlineEffectConfigModifyDamageBonusesType"}}</span>
-        <select name="guided.changes.{{@index}}.damageType">
+        <span>{{localize "FU.InlineEffectConfigModifyDamageBonusesType"}}</span>
+        <select name="guided.changes.{{@index}}.damageType" class="resource-current-input">
             {{selectOptions templateData.types selected=damageType localize=true}}
         </select>
     </label>
 </div>
 <div>
     <label>
-        <span class="d-block">{{localize "FU.InlineEffectConfigBonusMalus"}}</span>
+        <span>{{localize "FU.InlineEffectConfigBonusMalus"}}</span>
         <input type="number" name="guided.changes.{{@index}}.value"
-               value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}">
+               value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}"
+			   class="resource-current-input">
     </label>
 </div>

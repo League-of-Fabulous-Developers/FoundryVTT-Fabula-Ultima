@@ -253,19 +253,17 @@ export class InlineEffectConfiguration extends FUApplication {
 			statuses: Effects.STATUS_EFFECTS,
 			boonsAndBanes: Effects.BOONS_AND_BANES,
 			changeTypes: SUPPORTED_CHANGE_TYPES,
-			defaultIcon: this.#defaultIcon,
-			defaultName: this.#defaultName,
 		};
 	}
 
 	static #onFormSubmit(event, form, formData) {
-		this._updateObject(event, formData);
-	}
-
-	async _updateObject(event, formData) {
 		formData = foundry.utils.expandObject(Object.fromEntries(formData.entries()));
 		if (formData.type === 'guided' && formData.type !== this.#object.type) {
-			formData.guided ??= { changes: [{ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) }] };
+			formData.guided ??= {
+				name: this.#defaultName,
+				icon: this.#defaultIcon,
+				changes: [{ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) }],
+			};
 		}
 		this.#object = formData;
 		if (this.#object?.guided?.changes) {
@@ -292,17 +290,14 @@ export class InlineEffectConfiguration extends FUApplication {
 	}
 
 	static #onAdd() {
-		const idx = this.#object?.guided?.changes?.length ?? 0;
-		return this.submit({
-			updateData: {
-				[`guided.changes.${idx}`]: { type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) },
-			},
-		});
+		this.#object.guided.changes.push({ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) });
+		this.render();
 	}
 
 	static #onDelete(event) {
-		event.currentTarget.closest('.change').remove();
-		return this.submit().then(() => this.render());
+		const index = event.target.closest('.change[data-index]').dataset.index;
+		this.#object.guided.changes.splice(index, 1);
+		this.render();
 	}
 
 	static async #onFinish() {
