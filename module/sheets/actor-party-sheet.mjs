@@ -157,6 +157,12 @@ export class FUPartySheet extends FUActorSheet {
 		return tabs;
 	}
 
+	_configureRenderParts(options) {
+		const parts = super._configureRenderParts(options);
+		if (!game.user.isGM) delete parts.settings;
+		return parts;
+	}
+
 	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
 		const context = await super._preparePartContext(partId, ctx, options);
