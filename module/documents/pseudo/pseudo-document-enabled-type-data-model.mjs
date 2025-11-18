@@ -12,12 +12,14 @@ export class PseudoDocumentEnabledTypeDataModel extends foundry.abstract.TypeDat
 	_configure() {
 		// Construct Embedded Collections
 		const collections = {};
+		// Fall back to empty object in case of Adventure, packing adventures uses BaseItem instead of the world item class.
+		const nestedCollections = this.parent.nestedCollections ?? {};
 		for (const [fieldName, field] of Object.entries(this.constructor.schema.fields)) {
 			if (field instanceof PseudoDocumentCollectionField) {
 				const data = this._source[fieldName];
-				const collection = this.parent.nestedCollections[fieldName] ?? new field.constructor.implementation(fieldName, this, data);
+				const collection = nestedCollections[fieldName] ?? new field.constructor.implementation(fieldName, this, data);
 				collections[fieldName] = collection;
-				this.parent.nestedCollections[fieldName] = collection;
+				nestedCollections[fieldName] = collection;
 				Object.defineProperty(this, fieldName, { value: collection, writable: true });
 			}
 		}
