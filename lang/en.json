@@ -1516,14 +1516,6 @@
 		"CustomWeaponFormSwitchTooltip": "Switch to {newForm}",
 		"CustomWeaponAttributesGlobal": "Global",
 		"CustomWeaponTransforming": "Is Transforming?",
-		"FUID": {
-			"Long": "Fabula Ultima ID",
-			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
-		},
 		"Recharge": "Recharge",
 		"ItemRate": "Item Prices: {rate}",
 		"AutomaticAdversaryRegistration": "Automatic Adversary Registration",
@@ -1584,6 +1576,14 @@
 		"HoplosphereEffectIncreaseSpellDamage": "Increase Spell Damage",
 		"HoplosphereEffectIncreaseSpellDamageSummary": "Spells deal {amount} extra damage.",
 		"HoplosphereEffectFreeText": "Free Text",
-		"HoplosphereEffectFreeTextDefaultName": "Effect Name"
+		"HoplosphereEffectFreeTextDefaultName": "Effect Name",
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }
