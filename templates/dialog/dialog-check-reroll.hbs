@@ -2,39 +2,36 @@
 	<legend>{{localize 'FU.ChatContextRerollFabula'}}</legend>
 	{{#each traits}}
 		<fieldset>
-			<label>
-				<input id="trait-{{@index}}" type="radio" name="trait" value="{{this.type}}"
-					   data-value="{{this.value}}">
-				<label for="trait-{{@index}}">
-					<span>{{localize (pfuConcat 'FU.' (pfuCapitalize this.type))}}</span>
-					<strong class="trait">{{this.value}}</strong>
-				</label>
+			<label class="checkbox">
+				<input type="radio" name="trait" value="{{this.type}}">
+				<span>{{localize (pfuConcat 'FU.' (pfuCapitalize this.type))}}:</span>
+				<strong class="trait">{{this.value}}</strong>
 			</label>
 		</fieldset>
 	{{/each}}
 </fieldset>
 <fieldset class="resource-content flexrow">
 	<div class="flexrow">
-		<input type="checkbox" id="attr1-result" name="results" value="attr1" class="flex0">
-		<label for="attr1-result">
-        <span class="roll-container">
-            <span class="roll">{{attr1.result}}</span>
-        </span>
+		<label class="checkbox">
+			<input type="checkbox" name="results" value="attr1" class="flex0">
+			<span class="roll-container">
+				<span class="roll">{{attr1.result}}</span>
+			</span>
 			<span>{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attr1.attribute))}}</span>
 		</label>
 	</div>
 	<div class="flexrow">
-		<input type="checkbox" id="attr2-result" name="results" value="attr2" class="flex0">
-		<label for="attr2-result">
-        <span class="roll-container">
-            <span class="roll">{{attr2.result}}</span>
-        </span>
+		<label class="checkbox">
+			<input type="checkbox" name="results" value="attr2" class="flex0">
+			<span class="roll-container">
+				<span class="roll">{{attr2.result}}</span>
+			</span>
 			<span>{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attr2.attribute))}}</span>
 		</label>
 	</div>
 </fieldset>
 <fieldset class="resource-content">
-	<label>
+	<label class="checkbox">
 		<input type="checkbox" name="ignore-fp">
 		<span>{{localize 'FU.DialogIgnoreFPCost'}}</span>
 	</label>
