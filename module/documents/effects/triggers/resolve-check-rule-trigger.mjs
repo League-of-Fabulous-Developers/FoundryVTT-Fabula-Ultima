@@ -1,6 +1,5 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
-import { FU } from '../../../helpers/config.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { ItemAttributesDataModel } from '../../items/common/item-attributes-data-model.mjs';
 
@@ -9,7 +8,7 @@ const fields = foundry.data.fields;
 /**
  * @extends RuleTriggerDataModel
  * @inheritDoc
- * @property {CheckType} checkType
+ * @property {Set<CheckType>} checkTypes
  * @property {ItemAttributesDataModel} attributes
  * @property {Number} result
  */
@@ -28,7 +27,7 @@ export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			checkType: new fields.StringField({ initial: 'accuracy', blank: true, choices: Object.keys(FU.checkTypes) }),
+			checkTypes: new fields.SetField(new fields.StringField()),
 			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
 			result: new fields.NumberField({ initial: 0, integer: true }),
 		});
@@ -53,7 +52,7 @@ export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (this.checkType !== context.event.result.type) {
+		if (!this.checkTypes.has(context.event.result.type)) {
 			return false;
 		}
 
