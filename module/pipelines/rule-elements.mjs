@@ -36,6 +36,7 @@ import { NotifyRuleAction } from '../documents/effects/actions/notify-rule-actio
 import { NotificationRuleTrigger } from '../documents/effects/triggers/notification-rule-trigger.mjs';
 import { ResourceExpendRuleTrigger } from '../documents/effects/triggers/resource-expend-rule-trigger.mjs';
 import { ModifyExpenseRuleAction } from '../documents/effects/actions/modify-expense-rule-action.mjs';
+import { TargetingRulePredicate } from '../documents/effects/predicates/targeting-rule-predicate.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -67,6 +68,7 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, SpeciesRulePredicate.TYPE, SpeciesRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, WeaponRulePredicate.TYPE, WeaponRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, ResourceRulePredicate.TYPE, ResourceRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, TargetingRulePredicate.TYPE, TargetingRulePredicate);
 }
 
 /**

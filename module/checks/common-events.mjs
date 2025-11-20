@@ -1,7 +1,7 @@
 import { FUHooks } from '../hooks.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { EventCharacters } from '../helpers/event-character.mjs';
-import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
@@ -76,33 +76,6 @@ function attack(inspector, actor, item) {
  * @property {String} origin An id used to prevent cascading.
  */
 
-function getDamageSource(item) {
-	let damageSource;
-	if (item) {
-		/** @type ItemType **/
-		switch (item.type) {
-			case 'spell':
-				damageSource = 'spell';
-				break;
-			case 'basic':
-			case 'weapon':
-			case 'customWeapon':
-				damageSource = 'attack';
-				break;
-			case 'skill':
-			case 'optionalFeature':
-			case 'classFeature':
-			case 'miscAbility':
-				damageSource = 'skill';
-				break;
-			case 'consumable':
-				damageSource = 'item';
-				break;
-		}
-	}
-	return damageSource;
-}
-
 /**
  * @description Dispatches an event to signal damage taken by an actor
  * @param {FU.damageTypes} type
@@ -116,7 +89,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
 	const source = EventCharacters.fromActor(sourceActor);
 	const target = EventCharacters.fromActor(targetActor);
 	const item = sourceInfo.resolveItem();
-	const damageSource = getDamageSource(item);
+	const damageSource = InlineHelper.resolveItemGroup(item);
 
 	/** @type DamageEvent  **/
 	const damageEvent = {
@@ -144,7 +117,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
  */
 
 async function calculateDamage(actor, item, configuration) {
-	const damageSource = getDamageSource(item);
+	const damageSource = InlineHelper.resolveItemGroup(item);
 	const targets = configuration.getTargets();
 	const event = {
 		source: EventCharacters.fromActor(actor),
@@ -287,7 +260,7 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
  * @property {String} origin
  */
 
-async function expendResource(sourceActor, targetActors, expense) {
+async function expendResource(sourceActor, targetActors, expense, item) {
 	const source = EventCharacters.fromActor(sourceActor);
 	const targets = EventCharacters.fromTargetData(targetActors);
 	/** @type ResourceUpdateEvent  **/

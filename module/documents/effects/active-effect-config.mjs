@@ -170,6 +170,8 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						collectionRemovalRule: FU.collectionRemovalRule,
 						scalarChange: FU.scalarChange,
 						comparisonOperator: FU.comparisonOperator,
+						targetingPredicate: FU.targetingPredicate,
+						predicateQuantifier: FU.predicateQuantifier,
 					};
 				}
 				break;

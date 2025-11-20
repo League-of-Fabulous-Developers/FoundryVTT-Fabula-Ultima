@@ -253,6 +253,7 @@ async function processLoss(request) {
  * @typedef ResourceExpense
  * @property {String} resource
  * @property {Number} amount
+ * @property {FUExpenseSource} source
  */
 
 /**
@@ -260,10 +261,11 @@ async function processLoss(request) {
  * @param {TargetData[]} targets
  * @return {ResourceExpense}
  */
-function calculateExpense(cost, targets) {
+function calculateExpense(cost, targets, source) {
 	return {
 		resource: cost.resource,
 		amount: cost.amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
+		source: source,
 	};
 }
 

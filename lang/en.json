@@ -1632,6 +1632,7 @@
 		"RulePredicateSpecies": "Species",
 		"RulePredicateWeapon": "Weapon",
 		"RulePredicateResource": "Resource",
+		"RulePredicateTargeting": "Targeting",
 		"AccuracyCheckRule": "Accuracy Check Rule",
 		"Type": "Type",
 		"Mode": "Mode",
@@ -1656,6 +1657,7 @@
 		"ComparisonOperator": "ComparisonOperator",
 		"GreaterThan": "Greater Than",
 		"LessThan": "Less Than",
-		"ExpenseSource": "Expense Source"
+		"ExpenseSource": "Expense Source",
+		"Quantifier": "Quantifier"
 	}
 }

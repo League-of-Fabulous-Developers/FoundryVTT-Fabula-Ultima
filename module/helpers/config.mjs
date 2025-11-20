@@ -758,6 +758,7 @@ FU.eventRelation = Object.freeze({
 	target: 'FU.Target',
 });
 
+// TODO: Rename actor?subject?entity?object?
 /**
  * @typedef {"source" | "initial" | "self" | "allies" | "enemies" | "scene"} FUTargetSelectorKey
  */
@@ -874,7 +875,23 @@ FU.scalarChange = {
 
 FU.comparisonOperator = {
 	greaterThan: 'FU.GreaterThan',
+	equals: 'FU.Equals',
 	lessThan: 'FU.LessThan',
+};
+
+/**
+ * @typedef {"any" | "all" | "none"} FUPredicateQuantifier
+ */
+
+FU.predicateQuantifier = {
+	any: 'FU.Any',
+	all: 'FU.All',
+	none: 'FU.None',
+};
+
+FU.targetingPredicate = {
+	single: 'FU.Single',
+	multiple: 'FU.Multiple',
 };
 
 // --------------

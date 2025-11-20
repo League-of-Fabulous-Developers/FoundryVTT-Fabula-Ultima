@@ -7,7 +7,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
-import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { CommonEvents } from './common-events.mjs';
@@ -315,7 +315,8 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 	if (cost.amount === 0) {
 		return;
 	}
-	const expense = ResourcePipeline.calculateExpense(cost, targets);
+	const itemGroup = InlineHelper.resolveItemGroup(item);
+	const expense = ResourcePipeline.calculateExpense(cost, targets, itemGroup);
 	if (expense.amount === 0) {
 		return;
 	}

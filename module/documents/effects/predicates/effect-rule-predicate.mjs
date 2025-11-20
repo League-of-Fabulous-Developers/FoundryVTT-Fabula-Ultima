@@ -5,8 +5,9 @@ import { FU } from '../../../helpers/config.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @property {FUStatusEffectKey} effect
+ * @property {FUStatusEffectKey} effect *
  * @property {FUTargetSelectorKey} selector
+ * @property {FUPredicateQuantifier} quantifier
  */
 export class EffectRulePredicate extends RulePredicateDataModel {
 	static {
@@ -19,6 +20,11 @@ export class EffectRulePredicate extends RulePredicateDataModel {
 				initial: 'initial',
 				blank: true,
 				choices: Object.keys(FU.targetSelector),
+			}),
+			quantifier: new fields.StringField({
+				initial: 'any',
+				blank: true,
+				choices: Object.keys(FU.predicateQuantifier),
 			}),
 			effect: new fields.StringField({
 				initial: 'slow',
@@ -36,11 +42,18 @@ export class EffectRulePredicate extends RulePredicateDataModel {
 
 	validateContext(context) {
 		const selected = context.selectTargets(this.selector);
-		for (const character of selected) {
-			const resolvedEffect = character.actor.resolveEffect(this.effect);
-			if (resolvedEffect) {
-				return true;
-			}
+		switch (this.quantifier) {
+			case 'all':
+				// All selected actors must have the effect
+				return selected.every((character) => character.actor.resolveEffect(this.effect));
+
+			case 'any':
+				// At least one actor must have the effect
+				return selected.some((character) => character.actor.resolveEffect(this.effect));
+
+			case 'none':
+				// No actor should have the effect
+				return selected.every((character) => !character.actor.resolveEffect(this.effect));
 		}
 		return false;
 	}

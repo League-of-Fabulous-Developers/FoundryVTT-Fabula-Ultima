@@ -9,6 +9,8 @@ const fields = foundry.data.fields;
 /**
  * @description Trigger based on a {@linkcode CalculateDamageEvent}
  * @extends RuleTriggerDataModel
+ * @property {FUResourceType} resource
+ * @property {FUExpenseSource} expenseSource
  * @inheritDoc
  */
 export class ResourceExpendRuleTrigger extends RuleTriggerDataModel {
@@ -49,10 +51,16 @@ export class ResourceExpendRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	/**
-	 * @param {RuleElementContext<DamageEvent>} context
+	 * @param {RuleElementContext<ResourceExpendEvent>} context
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
+		if (context.event.expense.resource !== this.resource) {
+			return false;
+		}
+		if (context.event.expense.source !== this.expenseSource) {
+			return false;
+		}
 		return true;
 	}
 }
