@@ -34,6 +34,8 @@ import { ResolveCheckRuleTrigger } from '../documents/effects/triggers/resolve-c
 import { ModifyDamageRuleAction } from '../documents/effects/actions/modify-damage-rule-action.mjs';
 import { NotifyRuleAction } from '../documents/effects/actions/notify-rule-action.mjs';
 import { NotificationRuleTrigger } from '../documents/effects/triggers/notification-rule-trigger.mjs';
+import { ResourceExpendRuleTrigger } from '../documents/effects/triggers/resource-expend-rule-trigger.mjs';
+import { ModifyExpenseRuleAction } from '../documents/effects/actions/modify-expense-rule-action.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -42,6 +44,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, DamageRuleTrigger.TYPE, DamageRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, CalculateDamageRuleTrigger.TYPE, CalculateDamageRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResourceUpdateRuleTrigger.TYPE, ResourceUpdateRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, ResourceExpendRuleTrigger.TYPE, ResourceExpendRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, SpellRuleTrigger.TYPE, SpellRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, PerformCheckRuleTrigger.TYPE, PerformCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResolveCheckRuleTrigger.TYPE, ResolveCheckRuleTrigger);
@@ -55,6 +58,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, ChangeTraitsRuleAction.TYPE, ChangeTraitsRuleAction);
 	RuleActionRegistry.instance.register(systemId, ModifyCheckRuleAction.TYPE, ModifyCheckRuleAction);
 	RuleActionRegistry.instance.register(systemId, ModifyDamageRuleAction.TYPE, ModifyDamageRuleAction);
+	RuleActionRegistry.instance.register(systemId, ModifyExpenseRuleAction.TYPE, ModifyExpenseRuleAction);
 	RuleActionRegistry.instance.register(systemId, NotifyRuleAction.TYPE, NotifyRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
@@ -113,6 +117,14 @@ async function onSpellEvent(event) {
  */
 async function onCalculateDamageEvent(event) {
 	await evaluate(FUHooks.CALCULATE_DAMAGE_EVENT, event, event.source, event.targets);
+}
+
+/**
+ * @param {CalculateDamageEvent} event
+ * @returns {Promise<void>}
+ */
+async function onResourceExpenditureEvent(event) {
+	await evaluate(FUHooks.RESOURCE_EXPEND_EVENT, event, event.source, event.targets);
 }
 
 /**
@@ -218,6 +230,7 @@ function initialize() {
 	Hooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);
 	Hooks.on(FUHooks.RESOLVE_CHECK_EVENT, onResolveCheckEvent);
 	Hooks.on(FUHooks.NOTIFICATION_EVENT, onNotificationEvent);
+	Hooks.on(FUHooks.RESOURCE_EXPEND_EVENT, onResourceExpenditureEvent);
 }
 
 export const RuleElements = Object.freeze({

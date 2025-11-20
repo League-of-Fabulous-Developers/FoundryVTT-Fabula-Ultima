@@ -1611,6 +1611,7 @@
 		"RuleActionClearEffect": "Clear Effect",
 		"RuleActionChangeTraits": "Change Traits",
 		"RuleActionModifyCheck": "Modify Check",
+		"RuleActionModifyExpense": "Modify Expense",
 		"RuleActionNotify": "Notify",
 		"RuleTrigger": "Rule Trigger",
 		"RuleTriggerCombat": "Combat",
@@ -1621,6 +1622,7 @@
 		"RuleTriggerDamage": "Damage",
 		"RuleTriggerStatus": "Status",
 		"RuleTriggerResourceUpdate": "Resource Update",
+		"RuleTriggerResourceExpend": "Resource Expenditure",
 		"RuleTriggerCalculateDamage": "Calculate Damage",
 		"RuleTriggerNotify": "Notify",
 		"RulePredicates": "Rule Predicates",
@@ -1653,6 +1655,7 @@
 		"Result": "Result",
 		"ComparisonOperator": "ComparisonOperator",
 		"GreaterThan": "Greater Than",
-		"LessThan": "Less Than"
+		"LessThan": "Less Than",
+		"ExpenseSource": "Expense Source"
 	}
 }

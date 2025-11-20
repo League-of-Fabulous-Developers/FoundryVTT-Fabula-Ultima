@@ -145,6 +145,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						duration: FU.duration,
 						damageTypes: FU.damageTypes,
 						damageSource: FU.damageSource,
+						expenseSource: FU.expenseSource,
 						checkTypes: FU.checkTypes,
 						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
 						attributes: FU.attributes,

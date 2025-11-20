@@ -10,6 +10,7 @@ import { TextEditor } from '../helpers/text-editor.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { CommonEvents } from './common-events.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -321,16 +322,20 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 
 	if (expense) {
 		Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-		sections.push({
-			order: CHECK_RESULT,
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
-			data: {
-				name: item.name,
-				actor: actor.uuid,
-				item: item.uuid,
-				expense: expense,
-				icon: FU.resourceIcons[expense.resource],
-			},
+		sections.push(async () => {
+			// This can be modified here...
+			await CommonEvents.expendResource(actor, targets, expense);
+			return {
+				order: CHECK_RESULT,
+				partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+				data: {
+					name: item.name,
+					actor: actor.uuid,
+					item: item.uuid,
+					expense: expense,
+					icon: FU.resourceIcons[expense.resource],
+				},
+			};
 		});
 	}
 };

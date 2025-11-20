@@ -117,10 +117,10 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
+		CommonEvents.spell(this.parent.actor, this.parent);
 		if (this.hasRoll.value) {
 			return Checks.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
 		} else {
-			CommonEvents.spell(this.parent.actor, this.parent);
 			return Checks.display(this.parent.actor, this.parent);
 		}
 	}

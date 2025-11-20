@@ -786,6 +786,15 @@ FU.damageSource = {
 };
 
 /**
+ * @typedef {"skill" | "spell" | "item"} FUExpenseSource
+ */
+FU.expenseSource = {
+	skill: 'FU.Skill',
+	spell: 'FU.Spell',
+	item: 'FU.Item',
+};
+
+/**
  * @typedef {"odd" | "even"} FUCheckResult
  */
 

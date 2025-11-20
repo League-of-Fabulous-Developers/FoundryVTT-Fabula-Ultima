@@ -248,7 +248,7 @@ function loss(actor, resource, amount, origin) {
 }
 
 /**
- * @description Dispatched when an actor recovers resources (such as HP, MP)
+ * @description Dispatched when an actor updates its resources (such as HP, MP)
  * @typedef ResourceUpdateEvent
  * @property {FUResourceType} resource
  * @property {Number} amount
@@ -276,6 +276,28 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
 		origin: origin,
 	};
 	Hooks.call(FUHooks.RESOURCE_UPDATE, event);
+}
+
+/**
+ * @description Dispatched when an actor updates its resources (such as HP, MP)
+ * @typedef ResourceExpendEvent
+ * @property {ResourceExpense} expense
+ * @property {EventCharacter} source
+ * @property {EventCharacter[]} targets
+ * @property {String} origin
+ */
+
+async function expendResource(sourceActor, targetActors, expense) {
+	const source = EventCharacters.fromActor(sourceActor);
+	const targets = EventCharacters.fromTargetData(targetActors);
+	/** @type ResourceUpdateEvent  **/
+	const event = {
+		expense: expense,
+		source: source,
+		targets: targets,
+	};
+	Hooks.call(FUHooks.RESOURCE_EXPEND_EVENT, event);
+	await new Promise((resolve) => setTimeout(resolve, 10));
 }
 
 /**
@@ -568,6 +590,7 @@ export const CommonEvents = Object.freeze({
 	gain,
 	loss,
 	resource,
+	expendResource,
 	spell,
 	skill,
 	item,
