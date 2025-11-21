@@ -1577,6 +1577,8 @@
 		"HoplosphereEffectIncreaseSpellDamageSummary": "Os feitiços causam {amount} de dano extra.",
 		"HoplosphereEffectFreeText": "Texto Livre",
 		"HoplosphereEffectFreeTextDefaultName": "Nome do Efeito",
+		"CrisisMultiplier": "Crisis Multiplier",
+		"CrisisMultiplierHint": "Multiplier used to calculate base Crisis Score",
 		"FUID": {
 			"Long": "ID Fabula Ultima",
 			"Short": "FUID",
