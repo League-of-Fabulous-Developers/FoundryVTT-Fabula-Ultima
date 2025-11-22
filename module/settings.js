@@ -102,18 +102,18 @@ export const SETTINGS = Object.freeze({
  * @param {any} def - Default value to return
  * @returns
  */
-function getClientSetting(setting, def) {
+function getClientSetting(setting, defaultValue) {
 	const val = game.settings.storage.get('client')[`${SYSTEM}.${setting}`];
 
 	// If this setting was never set in the client scope, it will be undefined,
 	// which JSON.parse will fail to parse
-	if (val === undefined) return def;
+	if (val === undefined) return defaultValue;
 
 	try {
-		return JSON.parse(val ?? def);
+		return JSON.parse(val ?? defaultValue);
 	} catch (err) {
 		console.warn(`Unable to parse client setting!  Setting:`, setting, `Value:`, val);
-		return def;
+		return defaultValue;
 	}
 }
 
