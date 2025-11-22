@@ -1,8 +1,9 @@
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { DamagePipeline, DamageRequest } from '../../../pipelines/damage-pipeline.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
+import { SETTINGS } from '../../../settings.js';
 
 const fields = foundry.data.fields;
 
@@ -44,6 +45,10 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 			total: amount,
 		});
 		request.fromOrigin(context.origin);
-		await DamagePipeline.process(request);
+		if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+			await DamagePipeline.process(request);
+		} else {
+			await DamagePipeline.promptApply(request);
+		}
 	}
 }

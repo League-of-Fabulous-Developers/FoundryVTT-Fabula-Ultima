@@ -9,7 +9,7 @@
 	</thead>
 	<tbody>
 	{{#each effects as |effect|}}
-		<tr>
+		<tr class="table-compact__row">
 			<td>
 				{{effect.actorName}}
 			</td>
@@ -21,7 +21,7 @@
 				</a>
 			</td>
 
-			<td>
+			<td class="flex-group-center">
 				{{#if (lt effect.remaining 1)}}
 					<span>Expired</span>
 					<a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect.id}}" data-actor-id="{{effect.actorId}}">

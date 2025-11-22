@@ -4,12 +4,19 @@ table.table-compact {
 	font-size: 0.85rem;
 	line-height: 1.1;
 	margin: 2px;
+	background: #ecefe4;
+	border: 2px solid #c8ccb8;
+	border-radius: 4px;
+}
+
+table.table-compact thead th {
+	background: #dce2cd;
+	font-weight: bold;
 }
 
 table.table-compact td {
 	padding: 2px 4px !important;
 	vertical-align: middle;
-	border: none !important;
 }
 
 table.table-compact tr {

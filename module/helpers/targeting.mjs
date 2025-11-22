@@ -1,6 +1,7 @@
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 import { Flags } from './flags.mjs';
 import { getTargeted } from './target-handler.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 /**
  * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
@@ -81,7 +82,7 @@ export class TargetAction {
 		this.name = name;
 		this.icon = icon;
 		this.tooltip = tooltip;
-		this.fields = fields ?? {};
+		this.fields = StringUtils.toBase64(fields ?? {});
 		this.owner = false;
 	}
 

@@ -5,7 +5,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
-import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
@@ -16,6 +16,8 @@ import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SETTINGS } from '../settings.js';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -71,7 +73,7 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
  */
 
 /**
- * @property {TableDamageData} damageData
+ * @property {DamageData} damageData
  * @property {FU.damageTypes} damageType
  * @property {DamageOverrideInfo} damageOverride
  * @property {ApplyTargetOverrides} overrides *
@@ -81,7 +83,7 @@ export class DamageRequest extends PipelineRequest {
 	/**
 	 * @param {InlineSourceInfo} sourceInfo
 	 * @param {FUActor[]} targets
-	 * @param {TableDamageData} damageData
+	 * @param {DamageData} damageData
 	 * @param {DamageOverrideInfo} damageOverride
 	 */
 	constructor(sourceInfo, targets, damageData, damageOverride = {}) {
@@ -512,7 +514,6 @@ function onRenderChatMessage(message, html) {
 		const inspector = CheckConfiguration.inspect(message);
 		const damageData = inspector.getDamage();
 		const traits = inspector.getTraits();
-
 		const sourceInfo = getSourceInfoFromChatMessage(message);
 
 		const customizeDamage = async (event, targets) => {
@@ -570,7 +571,21 @@ function onRenderChatMessage(message, html) {
 			}
 		});
 	}
+	// If not using the check API
+	else {
+		Pipeline.handleClick(message, html, 'applyDamage', async (dataset) => {
+			/** @type {FUActor} **/
+			const actor = await fromUuid(dataset.id);
+			const fields = InlineHelper.fromBase64(dataset.fields);
+			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+			const damageData = fields.damageData;
+			const targets = [actor];
+			const request = new DamageRequest(sourceInfo, targets, damageData, {});
+			return process(request);
+		});
+	}
 
+	// Always do these
 	Pipeline.handleClick(message, html, 'inspectActor', async (dataset) => {
 		const uuid = dataset.uuid;
 		return FUPartySheet.inspectAdversary(uuid);
@@ -628,6 +643,34 @@ async function absorbDamage(resource, amount, sourceInfo, targets) {
 	await ResourcePipeline.processRecovery(request);
 }
 
+/**
+ * @param {DamageRequest} request
+ * @returns {Promise<void>}
+ */
+async function promptApply(request) {
+	const targets = Targeting.serializeTargetData(request.targets);
+	const damageData = request.damageData;
+	const actions = [
+		new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
+			damageData: damageData,
+			sourceInfo: request.sourceInfo,
+		}).requiresOwner(),
+	];
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ user: game.users.activeGM }),
+		flags: flags,
+		content: await FoundryUtils.renderTemplate('chat/chat-apply-damage-prompt', {
+			type: damageData.type,
+			amount: damageData.total,
+			source: request.sourceInfo.name,
+			targets: targets,
+			actions: actions,
+		}),
+	});
+}
+
 // TODO: Memoize if needed
 /**
  * @type {Record<Number, Function<Number>>}
@@ -665,4 +708,5 @@ function initialize() {
 export const DamagePipeline = {
 	initialize,
 	process,
+	promptApply,
 };

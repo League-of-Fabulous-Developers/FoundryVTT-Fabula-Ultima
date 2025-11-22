@@ -3,16 +3,16 @@
 <table class="table-compact">
 	<tbody>
 	{{#each effects as |effect|}}
-		<tr class="table-compact__row">
-			<td class="table">
+		<tr>
+			<td>
 				<a data-action="display" data-description="{{effect.description}}" data-actor-id="{{../actor.uuid}}">
 					<img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
 				</a>
 				<span>{{effect.name}}</span>
 			</td>
-			<td>
+			<td class="flex-group-center">
 				<a data-action="applyEffect" data-name="{{effect.name}}" data-effect-id="{{effect.uuid}}" data-actor-id="{{../actor.uuid}}">
-					<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-plus }"></i></span>
+					<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon ra ra-anchor"></i></span>
 				</a>
 			</td>
 		</tr>
