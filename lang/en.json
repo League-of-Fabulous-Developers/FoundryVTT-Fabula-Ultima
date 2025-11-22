@@ -1624,6 +1624,7 @@
 		"RuleTriggerResourceUpdate": "Resource Update",
 		"RuleTriggerResourceExpend": "Resource Expenditure",
 		"RuleTriggerCalculateDamage": "Calculate Damage",
+		"RuleTriggerToggle": "Toggle",
 		"RuleTriggerNotify": "Notify",
 		"RulePredicates": "Rule Predicates",
 		"RulePredicateBond": "Bond",
@@ -1658,6 +1659,7 @@
 		"GreaterThan": "Greater Than",
 		"LessThan": "Less Than",
 		"ExpenseSource": "Expense Source",
-		"Quantifier": "Quantifier"
+		"Quantifier": "Quantifier",
+		"Enabled": "Enabled"
 	}
 }

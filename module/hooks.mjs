@@ -194,4 +194,10 @@ export const FUHooks = {
 	 * @remarks Uses {@link NotificationEvent}
 	 */
 	NOTIFICATION_EVENT: 'projectfu.events.notification',
+	/**
+	 * @description Dispatched when an active effect is toggled.
+	 * @example callback(event)
+	 * @remarks Uses {@link NotificationEvent}
+	 */
+	EFFECT_TOGGLED_EVENT: 'projectfu.events.effectToggled',
 };

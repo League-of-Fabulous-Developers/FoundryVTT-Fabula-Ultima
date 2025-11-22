@@ -37,6 +37,7 @@ import { NotificationRuleTrigger } from '../documents/effects/triggers/notificat
 import { ResourceExpendRuleTrigger } from '../documents/effects/triggers/resource-expend-rule-trigger.mjs';
 import { ModifyExpenseRuleAction } from '../documents/effects/actions/modify-expense-rule-action.mjs';
 import { TargetingRulePredicate } from '../documents/effects/predicates/targeting-rule-predicate.mjs';
+import { ToggleRuleTrigger } from '../documents/effects/triggers/toggle-rule-trigger.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -50,6 +51,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, PerformCheckRuleTrigger.TYPE, PerformCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResolveCheckRuleTrigger.TYPE, ResolveCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, NotificationRuleTrigger.TYPE, NotificationRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, ToggleRuleTrigger.TYPE, ToggleRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -162,6 +164,14 @@ async function onNotificationEvent(event) {
 }
 
 /**
+ * @param {NotificationEvent} event
+ * @returns {Promise<void>}
+ */
+async function onEffectToggledEvent(event) {
+	await evaluate(FUHooks.EFFECT_TOGGLED_EVENT, event, event.source, []);
+}
+
+/**
  * @param {CharacterInfo[]} targets
  * @returns {CharacterInfo[]}
  */
@@ -233,6 +243,7 @@ function initialize() {
 	Hooks.on(FUHooks.RESOLVE_CHECK_EVENT, onResolveCheckEvent);
 	Hooks.on(FUHooks.NOTIFICATION_EVENT, onNotificationEvent);
 	Hooks.on(FUHooks.RESOURCE_EXPEND_EVENT, onResourceExpenditureEvent);
+	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
 }
 
 export const RuleElements = Object.freeze({

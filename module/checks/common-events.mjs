@@ -531,7 +531,7 @@ function performCheck(check, actor, item) {
 function resolveCheck(result, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
-	/** @type PerformCheckEvent  **/
+	/** @type ResolveCheckEvent  **/
 	const event = {
 		result: result,
 		source: source,
@@ -548,12 +548,31 @@ function resolveCheck(result, actor, item) {
  */
 
 function notify(source, id, origin) {
+	/** @type NotificationEvent  **/
 	const event = {
 		source: source,
 		id: id,
 		origin: origin,
 	};
 	Hooks.call(FUHooks.NOTIFICATION_EVENT, event);
+}
+
+/**
+ * @typedef EffectToggledEvent
+ * @property {CharacterInfo} source
+ * @property {String} uuid The uuid of the effect
+ * @property {Boolean} enabled
+ */
+
+function toggleEffect(actor, uuid, enabled) {
+	const source = CharacterInfo.fromActor(actor);
+	/** @type EffectToggledEvent  **/
+	const event = {
+		source: source,
+		uuid: uuid,
+		enabled: enabled,
+	};
+	Hooks.call(FUHooks.EFFECT_TOGGLED_EVENT, event);
 }
 
 export const CommonEvents = Object.freeze({
@@ -576,6 +595,7 @@ export const CommonEvents = Object.freeze({
 	resolveCheck,
 	calculateDamage,
 	notify,
+	toggleEffect,
 });
 
 // Helpers
