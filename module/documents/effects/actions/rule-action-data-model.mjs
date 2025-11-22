@@ -48,7 +48,7 @@ export class RuleActionDataModel extends SubDocumentDataModel {
 
 	/**
 	 * @param {RuleElementContext} context
-	 * @param {EventCharacter[]} selected
+	 * @param {CharacterInfo[]} selected
 	 * @returns {Promise<void>}
 	 */
 	async execute(context, selected) {

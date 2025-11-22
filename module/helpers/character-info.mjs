@@ -1,6 +1,6 @@
 /**
  * @description Contains information about a target in a combat event
- * @typedef EventCharacter
+ * @typedef CharacterInfo
  * @property {Token} token
  * @property {FUActor} actor
  * @property {null|"friendly"|"hostile"} disposition
@@ -26,7 +26,7 @@ function resolveDisposition(actor, token) {
 
 /**
  * @param {FUActor} actor
- * @returns {EventCharacter|null}
+ * @returns {CharacterInfo|null}
  */
 function fromActor(actor) {
 	if (!actor) return null;
@@ -41,10 +41,10 @@ function fromActor(actor) {
 
 /**
  * @param {FUCombatant} combatant
- * @returns {EventCharacter}
+ * @returns {CharacterInfo}
  */
 function fromCombatant(combatant) {
-	/** @type {EventCharacter} */
+	/** @type {CharacterInfo} */
 	return {
 		actor: combatant.actor,
 		token: combatant.token,
@@ -53,17 +53,17 @@ function fromCombatant(combatant) {
 	};
 }
 
-export const EventCharacters = Object.freeze({
+export const CharacterInfo = Object.freeze({
 	/**
 	 * @param {TargetData[]} targets
-	 * @returns {EventCharacter[]}
+	 * @returns {CharacterInfo[]}
 	 */
 	fromTargetData(targets) {
 		return targets.map((t) => {
 			const actor = fromUuidSync(t.uuid);
 			const token = actor.resolveToken();
 			const disposition = resolveDisposition(actor, token);
-			/** @type {EventCharacter} */
+			/** @type {CharacterInfo} */
 			return {
 				actor: actor,
 				token: token,
@@ -77,7 +77,7 @@ export const EventCharacters = Object.freeze({
 
 	/**
 	 * @param {FUActor[]} actors
-	 * @returns {EventCharacter[]}
+	 * @returns {CharacterInfo[]}
 	 */
 	fromActors(actors) {
 		return actors.map(fromActor);
@@ -87,11 +87,11 @@ export const EventCharacters = Object.freeze({
 
 	/**
 	 * @param {FUCombatant[]} combatants
-	 * @returns {EventCharacter[]}
+	 * @returns {CharacterInfo[]}
 	 */
 	fromCombatants(combatants) {
 		return combatants.map((c) => {
-			/** @type {EventCharacter} */
+			/** @type {CharacterInfo} */
 			return {
 				actor: c.actor,
 				token: c.token,

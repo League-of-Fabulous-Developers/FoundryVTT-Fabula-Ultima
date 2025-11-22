@@ -12,7 +12,7 @@ import { ApplyEffectRuleAction } from '../documents/effects/actions/apply-effect
 import { ClearEffectRuleAction } from '../documents/effects/actions/clear-effect-rule-action.mjs';
 import { StatusRuleTrigger } from '../documents/effects/triggers/status-rule-trigger.mjs';
 import { FUCombat } from '../ui/combat.mjs';
-import { EventCharacters } from '../helpers/event-character.mjs';
+import { CharacterInfo } from '../helpers/character-info.mjs';
 import { DamageRuleTrigger } from '../documents/effects/triggers/damage-rule-trigger.mjs';
 import { RuleActionRegistry } from '../documents/effects/actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from '../documents/effects/triggers/rule-trigger-data-model.mjs';
@@ -76,9 +76,9 @@ function register() {
  * @returns {Promise<void>}
  */
 async function onCombatEvent(event) {
-	const source = event.combatant ? EventCharacters.fromCombatant(event.combatant) : null;
+	const source = event.combatant ? CharacterInfo.fromCombatant(event.combatant) : null;
 	const combatants = event.combatant ? [event.combatant] : event.combatants;
-	await evaluate(FUHooks.COMBAT_EVENT, event, source, EventCharacters.fromCombatants(combatants));
+	await evaluate(FUHooks.COMBAT_EVENT, event, source, CharacterInfo.fromCombatants(combatants));
 }
 
 /**
@@ -94,7 +94,7 @@ async function onAttackEvent(event) {
  * @returns {Promise<void>}
  */
 async function onDamageEvent(event) {
-	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [EventCharacters.fromActor(event.actor)]);
+	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)]);
 }
 
 /**
@@ -162,15 +162,15 @@ async function onNotificationEvent(event) {
 }
 
 /**
- * @param {EventCharacter[]} targets
- * @returns {EventCharacter[]}
+ * @param {CharacterInfo[]} targets
+ * @returns {CharacterInfo[]}
  */
 function getSceneCharacters(targets) {
-	/** @type EventCharacter[] **/
+	/** @type CharacterInfo[] **/
 	let sceneCharacters = [];
 	if (FUCombat.hasActiveEncounter) {
 		const combatants = Array.from(FUCombat.activeEncounter.combatants.values());
-		const combatCharacters = EventCharacters.fromCombatants(combatants);
+		const combatCharacters = CharacterInfo.fromCombatants(combatants);
 		sceneCharacters.push(...combatCharacters);
 	}
 	const uuids = new Set(sceneCharacters.map((c) => c.actor.uuid));
@@ -180,8 +180,8 @@ function getSceneCharacters(targets) {
 /**
  * @param {String} type
  * @param {*} event
- * @param {EventCharacter} source
- * @param {EventCharacter[]} targets
+ * @param {CharacterInfo} source
+ * @param {CharacterInfo[]} targets
  */
 async function evaluate(type, event, source, targets) {
 	const sceneCharacters = getSceneCharacters(targets);
