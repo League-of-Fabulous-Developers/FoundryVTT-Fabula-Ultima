@@ -99,7 +99,7 @@ export const SETTINGS = Object.freeze({
  * Used for the defaults for some user scope settings later, to migrate
  * them to user scope.
  * @param {string} setting - Key for the setting to retrieve
- * @param {any} def - Default value to return
+ * @param {any} defaultValue - Default value to return
  * @returns
  */
 function getClientSetting(setting, defaultValue) {
