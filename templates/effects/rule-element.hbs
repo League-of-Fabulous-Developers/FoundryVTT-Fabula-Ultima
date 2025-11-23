@@ -27,7 +27,8 @@
 			<!-- 1.2 Base Properties -->
 			<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.EventRelationHint'}}">
 				<span>{{localize 'FU.EventRelation'}}</span>
-				<select name="{{pfuConcat path ".trigger.eventRelation"}}" class="">
+				<select name="{{pfuConcat path ".trigger.eventRelation"}}">
+					<option value="">-</option>
 					{{selectOptions options.eventRelation selected=element.trigger.eventRelation localize=true}}
 				</select>
 			</label>

@@ -184,7 +184,7 @@ function getSceneCharacters(targets) {
 		sceneCharacters.push(...combatCharacters);
 	}
 	const uuids = new Set(sceneCharacters.map((c) => c.actor.uuid));
-	return [...sceneCharacters, ...targets.filter((ec) => !uuids.has(ec.name))];
+	return [...sceneCharacters, ...targets.filter((ec) => !uuids.has(ec.actor.uuid))];
 }
 
 /**
@@ -198,7 +198,7 @@ async function evaluate(type, event, source, targets) {
 	for (const character of sceneCharacters) {
 		for (const effect of character.actor.allEffects()) {
 			const disabled = effect.suppressed || effect.disabled;
-			if (disabled) {
+			if (disabled || effect.system.rules.elements.size === 0) {
 				continue;
 			}
 			/** @type RuleElementContext **/

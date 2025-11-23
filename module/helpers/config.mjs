@@ -746,14 +746,13 @@ FU.factionRelation = Object.freeze({
 });
 
 /**
- * @typedef {"none" | "source" | "target"} FUEventRelationKey
+ * @typedef {"source" | "target"} FUEventRelationKey
  */
 
 /**
  * @description Used to determine the actor's relation to am event
  */
 FU.eventRelation = Object.freeze({
-	none: 'FU.None',
 	source: 'FU.Source',
 	target: 'FU.Target',
 });

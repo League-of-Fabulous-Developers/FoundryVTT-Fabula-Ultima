@@ -24,7 +24,8 @@ export class RuleTriggerDataModel extends SubDocumentDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			eventRelation: new fields.StringField({
-				initial: 'none',
+				initial: '',
+				blank: true,
 				choices: Object.keys(FU.eventRelation),
 			}),
 		});
@@ -32,14 +33,8 @@ export class RuleTriggerDataModel extends SubDocumentDataModel {
 
 	// TODO: Remove once design is done
 	static migrateData(source) {
-		if (source.type === 'damageEventRuleTrigger') {
-			source.type = 'damageRuleTrigger';
-		} else if (source.type === 'attackEventRuleTrigger') {
-			source.type = 'attackRuleTrigger';
-		} else if (source.type === 'statusEventRuleTrigger') {
-			source.type = 'statusRuleTrigger';
-		} else if (source.type === 'combatEventRuleTrigger') {
-			source.type = 'combatRuleTrigger';
+		if (source.eventRelation === 'none') {
+			source.eventRelation = '';
 		}
 		return super.migrateData(source);
 	}

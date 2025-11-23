@@ -1,9 +1,12 @@
 import { Pipeline, PipelineRequest } from './pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
+import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @property {Number} amount
@@ -249,6 +252,14 @@ async function processLoss(request) {
 	return Promise.all(updates);
 }
 
+async function process(request) {
+	if (request.amount >= 0) {
+		return processRecovery(request);
+	} else {
+		return processLoss(request);
+	}
+}
+
 /**
  * @typedef ResourceExpense
  * @property {String} resource
@@ -310,6 +321,50 @@ function onRenderChatMessage(message, html) {
 		TokenUtils.showFloatyText(actor, `${amount} ${dataset.resource.toUpperCase()}`, `red`);
 		return Promise.all(updates);
 	});
+
+	Pipeline.handleClick(message, html, 'updateResource', async (dataset) => {
+		/** @type {FUActor} **/
+		const actor = await fromUuid(dataset.id);
+		const fields = InlineHelper.fromBase64(dataset.fields);
+		const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+		const amount = fields.amount;
+		const type = fields.type;
+		const targets = [actor];
+		const request = new ResourceRequest(sourceInfo, targets, type, amount, {});
+		return process(request);
+	});
+}
+
+/**
+ * @param {ResourceRequest} request
+ * @returns {Promise<void>}
+ */
+async function prompt(request) {
+	const targets = Targeting.serializeTargetData(request.targets);
+	const resourceIcon = FU.resourceIcons[request.resourceType];
+	const gain = request.amount > 0;
+	const actions = [
+		new TargetAction('updateResource', resourceIcon, 'FU.ChatUpdateResourceTooltip', {
+			amount: request.amount,
+			type: request.resourceType,
+			sourceInfo: request.sourceInfo,
+		}).requiresOwner(),
+	];
+	const message = gain > 0 ? 'FU.ChatResourceGainPrompt' : 'FU.ChatResourceLossPrompt';
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ user: game.users.activeGM }),
+		flags: flags,
+		content: await FoundryUtils.renderTemplate('chat/chat-update-resource-prompt', {
+			message: message,
+			amount: request.amount,
+			type: StringUtils.localize(FU.resources[request.resourceType]),
+			source: request.sourceInfo.name,
+			targets: targets,
+			actions: actions,
+		}),
+	});
 }
 
 /**
@@ -323,6 +378,8 @@ export const ResourcePipeline = {
 	initialize,
 	processRecovery,
 	processLoss,
+	process,
 	calculateExpense,
 	calculateMissingResource,
+	prompt,
 };

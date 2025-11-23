@@ -659,7 +659,6 @@ async function promptApply(request) {
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, true);
 	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
 	ChatMessage.create({
-		speaker: ChatMessage.getSpeaker({ user: game.users.activeGM }),
 		flags: flags,
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-damage-prompt', {
 			type: damageData.type,
