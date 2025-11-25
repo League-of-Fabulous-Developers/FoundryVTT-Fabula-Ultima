@@ -844,7 +844,7 @@ export const registerSystemSettings = async function () {
 		name: 'FU.CrisisMultiplier',
 		hint: 'FU.CrisisMultiplierHint',
 		scope: 'world',
-		config: true,
+		config: false,
 		type: Number,
 		default: 0.5,
 		requiresReload: false,

@@ -1577,6 +1577,8 @@
 		"HoplosphereEffectIncreaseSpellDamageSummary": "Zauber verursachen {amount} Bonusschaden.",
 		"HoplosphereEffectFreeText": "Freitext",
 		"HoplosphereEffectFreeTextDefaultName": "Effektname",
+		"CrisisMultiplier": "Crisis Multiplier",
+		"CrisisMultiplierHint": "Multiplier used to calculate base Crisis Score",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

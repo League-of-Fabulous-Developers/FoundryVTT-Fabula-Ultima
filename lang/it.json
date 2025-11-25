@@ -1577,6 +1577,8 @@
 		"HoplosphereEffectIncreaseSpellDamageSummary": "Gli incantesimi infliggono {amount} danni extra.",
 		"HoplosphereEffectFreeText": "Testo libero",
 		"HoplosphereEffectFreeTextDefaultName": "Nome effetto",
+		"CrisisMultiplier": "Crisis Multiplier",
+		"CrisisMultiplierHint": "Multiplier used to calculate base Crisis Score",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

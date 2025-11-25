@@ -1577,6 +1577,8 @@
 		"HoplosphereEffectIncreaseSpellDamageSummary": "Spells deal {amount} extra damage.",
 		"HoplosphereEffectFreeText": "Free Text",
 		"HoplosphereEffectFreeTextDefaultName": "Effect Name",
+		"CrisisMultiplier": "Crisis Multiplier",
+		"CrisisMultiplierHint": "Multiplier used to calculate base Crisis Score",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
