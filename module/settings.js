@@ -95,6 +95,29 @@ export const SETTINGS = Object.freeze({
 });
 
 /**
+ * Attempts to retrieve a setting from the client scope specifically
+ * Used for the defaults for some user scope settings later, to migrate
+ * them to user scope.
+ * @param {string} setting - Key for the setting to retrieve
+ * @param {any} defaultValue - Default value to return
+ * @returns
+ */
+function getClientSetting(setting, defaultValue) {
+	const val = game.settings.storage.get('client')[`${SYSTEM}.${setting}`];
+
+	// If this setting was never set in the client scope, it will be undefined,
+	// which JSON.parse will fail to parse
+	if (val === undefined) return defaultValue;
+
+	try {
+		return JSON.parse(val ?? defaultValue);
+	} catch (err) {
+		console.warn(`Unable to parse client setting!  Setting:`, setting, `Value:`, val);
+		return defaultValue;
+	}
+}
+
+/**
  * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
  * @returns {Promise<void>}
  */
@@ -304,48 +327,54 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
 		hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
 		label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
-		scope: 'client',
+		scope: 'user',
 		icon: 'fas fa-book',
 		type: CombatHudSettings,
 	});
 
+	/**
+	 * The combat HUD options have been migrated from the client scope to user scope
+	 * In order to maintain backwards compatibility with the previous client-scoped settings,
+	 * the default values check for a key in localStorage, to bring old settings forward
+	 */
+
 	game.settings.register(SYSTEM, SETTINGS.experimentalCombatHud, {
 		name: game.i18n.localize('FU.ExperimentalCombatHud'),
 		hint: game.i18n.localize('FU.ExperimentalCombatHudHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.experimentalCombatHud, false),
 		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudOpacity, {
 		name: game.i18n.localize('FU.CombatHudOpacity'),
 		hint: game.i18n.localize('FU.CombatHudOpacityHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Number,
-		default: 100,
+		default: getClientSetting(SETTINGS.optionCombatHudOpacity, 100),
 		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudWidth, {
 		name: game.i18n.localize('FU.CombatHudWidth'),
 		hint: game.i18n.localize('FU.CombatHudWidthHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Number,
-		default: 100,
+		default: getClientSetting(SETTINGS.optionCombatHudWidth, 100),
 		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPositionButton, {
 		name: game.i18n.localize('FU.CombatHudPositionButton'),
 		hint: game.i18n.localize('FU.CombatHudPositionButtonHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'top',
+		default: getClientSetting(SETTINGS.optionCombatHudPositionButton, 'top'),
 		choices: {
 			top: game.i18n.localize('FU.CombatHudPositionButtonTop'),
 			bottom: game.i18n.localize('FU.CombatHudPositionButtonBottom'),
@@ -356,10 +385,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPosition, {
 		name: game.i18n.localize('FU.CombatHudPosition'),
 		hint: game.i18n.localize('FU.CombatHudPositionHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'bottom',
+		default: getClientSetting(SETTINGS.optionCombatHudPosition, 'bottom'),
 		choices: {
 			bottom: game.i18n.localize('FU.CombatHudPositionBottom'),
 			top: game.i18n.localize('FU.CombatHudPositionTop'),
@@ -370,10 +399,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPortrait, {
 		name: game.i18n.localize('FU.CombatHudPortrait'),
 		hint: game.i18n.localize('FU.CombatHudPortraitHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'actor',
+		default: getClientSetting(SETTINGS.optionCombatHudPortrait, 'actor'),
 		choices: {
 			actor: game.i18n.localize('FU.CombatHudPortraitActor'),
 			token: game.i18n.localize('FU.CombatHudPortraitToken'),
@@ -383,53 +412,53 @@ export const registerSystemSettings = async function () {
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudCompact, {
 		name: 'CombatHudCompact',
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudCompact, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudMinimized, {
 		name: 'CombatHudMinimized',
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudMinimized, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudSaved, {
 		name: 'CombatHudSaved',
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudSaved, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowEffects, {
 		name: game.i18n.localize('FU.CombatHudShowEffects'),
 		hint: game.i18n.localize('FU.CombatHudShowEffectsHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: true,
+		default: getClientSetting(SETTINGS.optionCombatHudShowEffects, true),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, {
 		name: game.i18n.localize('FU.CombatHudEffectsMarqueeDuration'),
 		hint: game.i18n.localize('FU.CombatHudEffectsMarqueeDurationHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Number,
-		default: 15,
+		default: getClientSetting(SETTINGS.optionCombatHudEffectsMarqueeDuration, 15),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, {
 		name: game.i18n.localize('FU.CombatHudEffectsMarqueeMode'),
 		hint: game.i18n.localize('FU.CombatHudEffectsMarqueeModeHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'alternate',
+		default: getClientSetting(SETTINGS.optionCombatHudEffectsMarqueeMode, 'alternate'),
 		choices: {
 			normal: game.i18n.localize('FU.CombatHudEffectsMarqueeModeNormal'),
 			alternate: game.i18n.localize('FU.CombatHudEffectsMarqueeModeAlternate'),
@@ -449,10 +478,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, {
 		name: game.i18n.localize('FU.CombatHudShowOrderNumbers'),
 		hint: game.i18n.localize('FU.CombatHudShowOrderNumbersHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudShowOrderNumbers, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudActorOrdering, {
@@ -471,10 +500,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, {
 		name: game.i18n.localize('FU.CombatHudDraggedPosition'),
 		hint: game.i18n.localize('FU.CombatHudDraggedPositionHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Object,
-		default: {},
+		default: getClientSetting(SETTINGS.optionCombatHudDraggedPosition, {}),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {
