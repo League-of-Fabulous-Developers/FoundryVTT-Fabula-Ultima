@@ -3,6 +3,7 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { CharacterInfo } from '../helpers/character-info.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { AsyncHooks } from '../helpers/async-hooks.mjs';
 
 /**
  * @typedef ItemReference
@@ -125,8 +126,7 @@ async function calculateDamage(actor, item, configuration) {
 		damageSource: damageSource,
 		configuration: configuration,
 	};
-	Hooks.call(FUHooks.CALCULATE_DAMAGE_EVENT, event);
-	await new Promise((resolve) => setTimeout(resolve, 10));
+	await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
 }
 
 /**

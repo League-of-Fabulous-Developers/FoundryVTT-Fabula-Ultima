@@ -43,8 +43,13 @@ function cleanObject(obj) {
 	return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== undefined));
 }
 
+function selectKeys(record, keys) {
+	return Object.fromEntries(keys.filter((key) => key in record).map((key) => [key, record[key]]));
+}
+
 export const ObjectUtils = Object.freeze({
 	mergeRecursive,
 	getProperty,
 	cleanObject,
+	selectKeys,
 });

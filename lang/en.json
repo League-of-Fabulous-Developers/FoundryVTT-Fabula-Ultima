@@ -1667,6 +1667,7 @@
 		"Quantifier": "Quantifier",
 		"Enabled": "Enabled",
 		"Update": "Update",
-		"Reset": "Reset"
+		"Reset": "Reset",
+		"Equals": "Equals"
 	}
 }

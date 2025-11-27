@@ -3,12 +3,15 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
+import { ObjectUtils } from '../../../helpers/object-utils.mjs';
 
 const fields = foundry.data.fields;
 
 /**
  * @property {DamageType} damageType
  * @property {String} amount
+ * @property {Set<DamageType>} damageTypes
  */
 export class ModifyDamageRuleAction extends RuleActionDataModel {
 	static {
@@ -31,6 +34,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				blank: true,
 				nullable: false,
 			}),
+			damageTypes: new fields.SetField(new fields.StringField()),
 		});
 	}
 
@@ -48,8 +52,15 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async execute(context, selected) {
-		if (this.damageType) {
-			context.event.data.type = this.damageType;
+		if (this.damageTypes.size > 0) {
+			// TODO: Fix as a record
+			const choices = new Set([context.event.configuration.getDamage().type, ...this.damageTypes]);
+			const types = ObjectUtils.selectKeys(FU.damageTypes, choices);
+			const options = FoundryUtils.generateConfigOptions(types);
+			const selected = await FoundryUtils.selectOptionDialog('FU.DamageType', options);
+			if (selected) {
+				context.event.configuration.setDamageType(selected);
+			}
 		}
 
 		if (this.amount) {

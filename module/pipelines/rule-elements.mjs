@@ -39,6 +39,7 @@ import { ModifyExpenseRuleAction } from '../documents/effects/actions/modify-exp
 import { TargetingRulePredicate } from '../documents/effects/predicates/targeting-rule-predicate.mjs';
 import { ToggleRuleTrigger } from '../documents/effects/triggers/toggle-rule-trigger.mjs';
 import { UpdateTrackRuleAction } from '../documents/effects/actions/update-track-rule-action.mjs';
+import { AsyncHooks } from '../helpers/async-hooks.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -238,7 +239,7 @@ function initialize() {
 	Hooks.on(FUHooks.ATTACK_EVENT, onAttackEvent);
 	Hooks.on(FUHooks.STATUS_EVENT, onStatusEvent);
 	Hooks.on(FUHooks.DAMAGE_EVENT, onDamageEvent);
-	Hooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
+	AsyncHooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
 	Hooks.on(FUHooks.RESOURCE_UPDATE, onResourceEvent);
 	Hooks.on(FUHooks.SPELL_EVENT, onSpellEvent);
 	Hooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);

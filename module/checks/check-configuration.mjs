@@ -542,10 +542,17 @@ class CheckConfigurer extends CheckInspector {
 				resolvedType = actor.system.overrides.damageType.all.resolve();
 			}
 			if (resolvedType) {
-				this.check.additionalData[DAMAGE].type = resolvedType;
+				this.setDamageType(resolvedType);
 			}
 		}
 		return this;
+	}
+
+	/**
+	 * @param {DamageType} type
+	 */
+	setDamageType(type) {
+		this.check.additionalData[DAMAGE].type = type;
 	}
 
 	/**

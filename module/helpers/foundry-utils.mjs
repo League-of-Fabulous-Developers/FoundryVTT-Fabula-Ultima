@@ -153,7 +153,7 @@ export default class FoundryUtils {
 	 *
 	 * @param {String} title
 	 * @param {String} message
-	 * @returns {Promise<void>}
+	 * @returns {Promise<Boolean>}
 	 */
 	static async confirmDialog(title, message) {
 		return foundry.applications.api.DialogV2.confirm({
