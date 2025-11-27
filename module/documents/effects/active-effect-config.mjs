@@ -156,6 +156,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						weaponCategories: FU.weaponCategories,
 						weaponCategoryOptions: FoundryUtils.getFormOptions(FU.weaponCategories),
 						targetingRules: FU.targetingRules,
+						trackAction: FU.trackAction,
 						statusEffects: FU.statusEffects,
 						eventRelation: FU.eventRelation,
 						factionRelation: FU.factionRelation,

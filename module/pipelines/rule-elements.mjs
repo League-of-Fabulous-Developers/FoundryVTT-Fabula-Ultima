@@ -38,6 +38,7 @@ import { ResourceExpendRuleTrigger } from '../documents/effects/triggers/resourc
 import { ModifyExpenseRuleAction } from '../documents/effects/actions/modify-expense-rule-action.mjs';
 import { TargetingRulePredicate } from '../documents/effects/predicates/targeting-rule-predicate.mjs';
 import { ToggleRuleTrigger } from '../documents/effects/triggers/toggle-rule-trigger.mjs';
+import { UpdateTrackRuleAction } from '../documents/effects/actions/update-track-rule-action.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -63,6 +64,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, ModifyDamageRuleAction.TYPE, ModifyDamageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ModifyExpenseRuleAction.TYPE, ModifyExpenseRuleAction);
 	RuleActionRegistry.instance.register(systemId, NotifyRuleAction.TYPE, NotifyRuleAction);
+	RuleActionRegistry.instance.register(systemId, UpdateTrackRuleAction.TYPE, UpdateTrackRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);

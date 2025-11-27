@@ -893,4 +893,13 @@ FU.targetingPredicate = {
 	multiple: 'FU.Multiple',
 };
 
+/**
+ * @typedef {"update" | "reset"} FUTrackAction
+ */
+
+FU.trackAction = {
+	update: 'FU.Update',
+	reset: 'FU.Reset',
+};
+
 // --------------

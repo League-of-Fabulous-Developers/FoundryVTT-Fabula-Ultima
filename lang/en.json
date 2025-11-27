@@ -567,6 +567,7 @@
 		"EnemyTurn": "Enemy Turn",
 		"Round": "Round",
 		"SurpriseRound": "Surprise Round",
+		"StartOfCombat": "Start of Combat",
 		"StartOfTurn": "Start of Turn",
 		"EndOfTurn": "End Of Turn",
 		"EndOfRound": "End of Round",
@@ -1616,6 +1617,7 @@
 		"RuleActionModifyCheck": "Modify Check",
 		"RuleActionModifyExpense": "Modify Expense",
 		"RuleActionNotify": "Notify",
+		"RuleActionUpdateTrack": "Update Track",
 		"RuleTrigger": "Rule Trigger",
 		"RuleTriggerCombat": "Combat",
 		"RuleTriggerAttack": "Attack",
@@ -1663,6 +1665,8 @@
 		"LessThan": "Less Than",
 		"ExpenseSource": "Expense Source",
 		"Quantifier": "Quantifier",
-		"Enabled": "Enabled"
+		"Enabled": "Enabled",
+		"Update": "Update",
+		"Reset": "Reset"
 	}
 }
