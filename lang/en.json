@@ -1619,6 +1619,7 @@
 		"RuleActionNotify": "Notify",
 		"RuleActionUpdateTrack": "Update Track",
 		"RuleActionUpdateToken": "Update Token",
+		"RuleActionPlaySoundEffect": "Play Sound Effect",
 		"RuleTrigger": "Rule Trigger",
 		"RuleTriggerCombat": "Combat",
 		"RuleTriggerAttack": "Attack",
@@ -1672,6 +1673,8 @@
 		"Equals": "Equals",
 		"SelectDamageType": "Damage Type Selection",
 		"Scale": "Scale",
-		"Image": "Image"
+		"Image": "Image",
+		"Asset": "Asset",
+		"Volume": "Volume"
 	}
 }

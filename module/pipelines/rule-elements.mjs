@@ -41,6 +41,7 @@ import { ToggleRuleTrigger } from '../documents/effects/triggers/toggle-rule-tri
 import { UpdateTrackRuleAction } from '../documents/effects/actions/update-track-rule-action.mjs';
 import { AsyncHooks } from '../helpers/async-hooks.mjs';
 import { UpdateTokenRuleAction } from '../documents/effects/actions/update-token-rule-action.mjs';
+import { PlaySoundEffectRuleAction } from '../documents/effects/actions/play-sound-effect-rule-action.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -68,6 +69,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, NotifyRuleAction.TYPE, NotifyRuleAction);
 	RuleActionRegistry.instance.register(systemId, UpdateTrackRuleAction.TYPE, UpdateTrackRuleAction);
 	RuleActionRegistry.instance.register(systemId, UpdateTokenRuleAction.TYPE, UpdateTokenRuleAction);
+	RuleActionRegistry.instance.register(systemId, PlaySoundEffectRuleAction.TYPE, PlaySoundEffectRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);
