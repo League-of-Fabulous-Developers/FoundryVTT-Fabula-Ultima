@@ -806,6 +806,8 @@
 
 .projectfu .party .overview .plate .name {
 	margin-top: 4px;
+	margin-bottom: -8px;
+	padding-bottom: 8px;
 	font-size: 2rem;
 	text-align: center;
 	font-weight: 800;
