@@ -6,7 +6,7 @@ import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
 
 const fields = foundry.data.fields;
 /**
- * @property {FUTrackAction} action
+ * @property {FUCommandAction} action
  * @property {String} identifier
  * @property {String} amount
  * @property {Boolean} notify
@@ -20,7 +20,7 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 		return Object.assign(super.defineSchema(), {
 			action: new fields.StringField({
 				initial: 'update',
-				choices: Object.keys(FU.trackAction),
+				choices: Object.keys(FU.commandAction),
 				required: true,
 			}),
 			identifier: new fields.StringField(),

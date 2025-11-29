@@ -1618,6 +1618,7 @@
 		"RuleActionModifyExpense": "Modify Expense",
 		"RuleActionNotify": "Notify",
 		"RuleActionUpdateTrack": "Update Track",
+		"RuleActionUpdateToken": "Update Token",
 		"RuleTrigger": "Rule Trigger",
 		"RuleTriggerCombat": "Combat",
 		"RuleTriggerAttack": "Attack",
@@ -1669,6 +1670,8 @@
 		"Update": "Update",
 		"Reset": "Reset",
 		"Equals": "Equals",
-		"SelectDamageType": "Damage Type Selection"
+		"SelectDamageType": "Damage Type Selection",
+		"Scale": "Scale",
+		"Image": "Image"
 	}
 }

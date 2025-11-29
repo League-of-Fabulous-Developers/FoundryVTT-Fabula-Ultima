@@ -1,0 +1,19 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Action'}}</span>
+	<select name="{{pfuConcat path ".command"}}">
+		{{selectOptions options.commandAction selected=action.command sort=true localize=true}}
+	</select>
+</label>
+
+
+{{#if (eq action.command 'update')}}
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Scale'}}</span>
+		<input type="number" name="{{pfuConcat path ".tokenScale"}}" value="{{ action.tokenScale }}" />
+	</label>
+
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Image'}}</span>
+		{{formGroup action.schema.fields.tokenImage value=action.tokenImage name=(pfuConcat path ".tokenImage")}}
+	</label>
+{{/if}}

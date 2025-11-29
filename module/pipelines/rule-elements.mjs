@@ -40,6 +40,7 @@ import { TargetingRulePredicate } from '../documents/effects/predicates/targetin
 import { ToggleRuleTrigger } from '../documents/effects/triggers/toggle-rule-trigger.mjs';
 import { UpdateTrackRuleAction } from '../documents/effects/actions/update-track-rule-action.mjs';
 import { AsyncHooks } from '../helpers/async-hooks.mjs';
+import { UpdateTokenRuleAction } from '../documents/effects/actions/update-token-rule-action.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -66,6 +67,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, ModifyExpenseRuleAction.TYPE, ModifyExpenseRuleAction);
 	RuleActionRegistry.instance.register(systemId, NotifyRuleAction.TYPE, NotifyRuleAction);
 	RuleActionRegistry.instance.register(systemId, UpdateTrackRuleAction.TYPE, UpdateTrackRuleAction);
+	RuleActionRegistry.instance.register(systemId, UpdateTokenRuleAction.TYPE, UpdateTokenRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);
