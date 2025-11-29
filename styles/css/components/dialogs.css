@@ -176,3 +176,42 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 0.5rem;
 }
+
+/* Container */
+.fu-dialog__text {
+	text-align: center;
+}
+
+.fu-dialog__icon-group {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	gap: 8px;
+}
+
+.fu-dialog__icon-option {
+	display: inline-flex;
+	width: 64px;
+	height: 64px;
+	align-items: center;
+	justify-content: center;
+	padding: 6px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition:
+		outline 0.15s ease,
+		background 0.15s ease;
+
+	&.selected {
+		background: var(--background-critical);
+	}
+}
+
+.fu-dialog__icon {
+	font-size: 48px; /* this controls icon size */
+	line-height: 1; /* prevent tall vertical boxes */
+	width: 100%;
+	height: 100%;
+	pointer-events: none; /* ensure clicking triggers label */
+}

@@ -1668,6 +1668,7 @@
 		"Enabled": "Enabled",
 		"Update": "Update",
 		"Reset": "Reset",
-		"Equals": "Equals"
+		"Equals": "Equals",
+		"SelectDamageType": "Damage Type Selection"
 	}
 }

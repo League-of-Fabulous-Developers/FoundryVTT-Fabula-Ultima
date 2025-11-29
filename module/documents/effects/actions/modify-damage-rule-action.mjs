@@ -4,7 +4,7 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
-import { ObjectUtils } from '../../../helpers/object-utils.mjs';
+import { StringUtils } from '../../../helpers/string-utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -53,11 +53,14 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	 */
 	async execute(context, selected) {
 		if (this.damageTypes.size > 0) {
-			// TODO: Fix as a record
 			const choices = new Set([context.event.configuration.getDamage().type, ...this.damageTypes]);
-			const types = ObjectUtils.selectKeys(FU.damageTypes, choices);
-			const options = FoundryUtils.generateConfigOptions(types);
-			const selected = await FoundryUtils.selectOptionDialog('FU.DamageType', options);
+			const options = FoundryUtils.generateConfigIconOptions(choices, FU.damageTypes, FU.affIcon);
+			// TODO: Localize
+			const message = `You are able to change the damage type due to <strong>${context.label}</strong>.`;
+			const title = `${context.event.configuration.check.itemName} : ${StringUtils.localize('FU.SelectDamageType')}`;
+			const selected = await FoundryUtils.selectIconOptionDialog(title, options, {
+				message: message,
+			});
 			if (selected) {
 				context.event.configuration.setDamageType(selected);
 			}

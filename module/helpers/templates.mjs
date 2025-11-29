@@ -64,6 +64,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/dialog/dialog_first_turn.hbs',
 			'systems/projectfu/templates/dialog/dialog-group-check.hbs',
 			'systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs',
+			'systems/projectfu/templates/dialog/dialog-select-option-icon.hbs',
 
 			// Chat Messages
 			'systems/projectfu/templates/chat/chat-check-container.hbs',
