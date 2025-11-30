@@ -1,4 +1,8 @@
 <label class="fu-rule-element__property">
 	<span>{{localize 'FU.Message'}}</span>
-	<input type="text" name={{pfuConcat path ".message"}} value="{{ action.message }}" />
 </label>
+<div class="fu-rule-element__editor">
+	<prose-mirror name={{pfuConcat path ".message"}} value="{{action.message}}" toggled>
+		{{{action.enrichedMessage}}}
+	</prose-mirror>
+</div>

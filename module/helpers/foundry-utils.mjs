@@ -245,4 +245,13 @@ export default class FoundryUtils {
 			value: key,
 		}));
 	}
+
+	/**
+	 * @param {String} text
+	 * @param {Object} context
+	 * @returns {Promise<*>}
+	 */
+	static async enrichText(text, context) {
+		return TextEditor.implementation.enrichHTML(text, context);
+	}
 }

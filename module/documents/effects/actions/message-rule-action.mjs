@@ -2,6 +2,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { Pipeline } from '../../../pipelines/pipeline.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 
 const { StringField } = foundry.data.fields;
 
@@ -26,6 +27,18 @@ export class MessageRuleAction extends RuleActionDataModel {
 
 	static get template() {
 		return systemTemplatePath('effects/actions/message-rule-action');
+	}
+
+	#enrichedMessage;
+
+	async renderContext(context) {
+		this.#enrichedMessage = await FoundryUtils.enrichText(this.message, {
+			relativeTo: context.actor,
+		});
+	}
+
+	get enrichedMessage() {
+		return this.#enrichedMessage;
 	}
 
 	async execute(context, selected) {

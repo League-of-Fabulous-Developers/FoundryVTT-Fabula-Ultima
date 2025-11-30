@@ -182,14 +182,34 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		return partContext;
 	}
 
+	/**
+	 * @returns {FUActiveEffectModel}
+	 */
+	get system() {
+		return this.document.system;
+	}
+
 	/** @inheritdoc */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.systemFields = this.document.system.schema.fields;
+		context.effect = this.document;
 		context.system = this.document.system;
 		context.effectType = FU.effectType;
 		context.trackStyles = FU.trackStyles;
 		context.crisisInteractions = FU.crisisInteractions;
+		let parent = this.document.parent;
+		while (parent != null) {
+			if (parent.type === 'character' || parent.type === 'npc') {
+				context.actor = parent;
+			} else if (parent.type === 'item') {
+				context.item = parent;
+			}
+			parent = parent.parent;
+		}
+		for (const re of this.system.rules.elements) {
+			await re.prepareContext(context);
+		}
 		return context;
 	}
 

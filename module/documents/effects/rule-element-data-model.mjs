@@ -163,6 +163,17 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 		}
 		return true;
 	}
+
+	/**
+	 * @description Adds to a rendering context
+	 * @param {Object} context
+	 * @returns {Promise<void>}
+	 */
+	async prepareContext(context) {
+		for (const action of this.actions) {
+			await action.renderContext(context);
+		}
+	}
 }
 
 /**

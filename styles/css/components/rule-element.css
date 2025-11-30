@@ -86,6 +86,13 @@
 		}
 	}
 
+	.fu-rule-element__editor {
+		height: 160px;
+		padding: 4px;
+		background: var(--gradient-button-bg);
+		border: 1px solid var(--border-primary);
+	}
+
 	/* Any form control inside adapts automatically */
 	.fu-rule-element__property > *:not(:first-child) {
 		flex: 1; /* controls take remaining width */
