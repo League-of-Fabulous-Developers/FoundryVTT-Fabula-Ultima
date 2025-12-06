@@ -149,6 +149,9 @@ Hooks.once('init', async () => {
 			return Checks;
 		},
 		socket: new FUSocketHandler(),
+		get party() {
+			return FUPartySheet;
+		},
 	};
 
 	// Add custom constants for configuration.
