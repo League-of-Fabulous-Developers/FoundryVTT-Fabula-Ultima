@@ -946,6 +946,8 @@
 		"ChatApplyDamagePrompt": "The followings characters have <strong>suffered {amount} {type} damage</strong> due to <strong>{source}</strong>.",
 		"ChatResourceGainPrompt": "The followings characters have <strong>gained {amount} {type}</strong> due to <strong>{source}</strong>.",
 		"ChatResourceLossPrompt": "The followings characters have <strong>lost {amount} {type}</strong> due to <strong>{source}</strong>.",
+		"ChatResourceGainTooltip": "Gain {amount} {resource}",
+		"ChatResourceLossTooltip": "Lose {amount} {resource}",
 		"Increment": "Increment",
 		"Decrement": "Decrement",
 		"TotalAvailableSkills": "Total Available Skills",

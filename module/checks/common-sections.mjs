@@ -291,7 +291,14 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 			}
 
 			// Additional actions
-			actions.push(...inspector.getTargetedActions());
+			for (const action of inspector.getTargetedActions()) {
+				actions.push(action);
+				if (action.selected) {
+					selectedActions.push(action);
+				}
+			}
+
+			// Set any flags
 			for (const action of actions) {
 				if (action.flag) {
 					Pipeline.toggleFlag(flags, action.flag);

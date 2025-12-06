@@ -77,6 +77,7 @@ async function filterTargetsByRule(actor, item, targets) {
  * @property {Boolean} owner Whether this action can only be applied the owner
  * @property {String|undefined} flag
  * @property {DOMStringMap|undefined} dataset
+ * @property {Boolean} selected Whether this action can be used on selected tokens instead.
  * @remarks Expects an action handler where dataset.id is a reference to an actor
  */
 export class TargetAction {
@@ -87,6 +88,7 @@ export class TargetAction {
 		this.fields = StringUtils.toBase64(fields ?? {});
 		this.dataset = {};
 		this.owner = false;
+		this.selected = false;
 	}
 
 	/**
@@ -112,6 +114,14 @@ export class TargetAction {
 	 */
 	withDataset(dataset) {
 		this.dataset = dataset;
+		return this;
+	}
+
+	/**
+	 * @returns {TargetAction}
+	 */
+	withSelected() {
+		this.selected = true;
 		return this;
 	}
 }

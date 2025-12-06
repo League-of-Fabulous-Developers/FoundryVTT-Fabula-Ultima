@@ -7,6 +7,7 @@ import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { getSelected } from '../helpers/target-handler.mjs';
 
 /**
  * @property {Number} amount
@@ -324,12 +325,20 @@ function onRenderChatMessage(message, html) {
 
 	Pipeline.handleClick(message, html, 'updateResource', async (dataset) => {
 		/** @type {FUActor} **/
-		const actor = await fromUuid(dataset.id);
 		const fields = InlineHelper.fromBase64(dataset.fields);
 		const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 		const amount = fields.amount;
 		const type = fields.type;
-		const targets = [actor];
+
+		// Targeting
+		let targets = [];
+		if (dataset.id) {
+			const actor = await fromUuid(dataset.id);
+			targets.push(actor);
+		} else {
+			targets = await getSelected();
+		}
+
 		const request = new ResourceRequest(sourceInfo, targets, type, amount, {});
 		return process(request);
 	});
@@ -362,11 +371,17 @@ async function prompt(request) {
 
 function getTargetedAction(request) {
 	const resourceIcon = FU.resourceIcons[request.resourceType];
-	return new TargetAction('updateResource', resourceIcon, 'FU.ChatUpdateResourceTooltip', {
+	const tooltip = StringUtils.localize(request.amount > 0 ? 'FU.ChatResourceGainTooltip' : 'FU.ChatResourceLossTooltip', {
+		amount: request.amount,
+		resource: StringUtils.localize(FU.resources[request.resourceType]),
+	});
+	return new TargetAction('updateResource', resourceIcon, tooltip, {
 		amount: request.amount,
 		type: request.resourceType,
 		sourceInfo: request.sourceInfo,
-	}).requiresOwner();
+	})
+		.requiresOwner()
+		.withSelected();
 }
 
 /**
