@@ -133,6 +133,12 @@ export const FUHooks = {
 	 */
 	RESOLVE_CHECK_EVENT: 'projectfu.events.checks.resolve',
 	/**
+	 * @description Dispatched when a check is about to be rendered.
+	 * @example callback(event)
+	 * @remarks Uses {@link RenderCheckEvent}
+	 */
+	RENDER_CHECK_EVENT: 'projectfu.events.checks.render',
+	/**
 	 * @description Dispatched whenever there is a change in active wellsprings.
 	 * @remarks Uses {@link WellspringDataModel}
 	 */

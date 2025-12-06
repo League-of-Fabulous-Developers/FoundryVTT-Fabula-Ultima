@@ -389,6 +389,8 @@ async function renderCheck(result, actor, item, flags = {}) {
 	const additionalFlags = {};
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
+	// Optional hook
+	await CommonEvents.renderCheck(renderData, result, actor, item);
 
 	/**
 	 * @type {CheckSection[]}

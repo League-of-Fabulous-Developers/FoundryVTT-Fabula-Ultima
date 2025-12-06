@@ -30,6 +30,26 @@ export class RuleElementContext {
 	}
 
 	/**
+	 * @param {String} id
+	 * @return {Boolean}
+	 */
+	matchesItem(id) {
+		if (this.item) {
+			if (id) {
+				if (this.item.system.fuid === id) {
+					return true;
+				}
+				if (this.item.name === id) {
+					return true;
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @param {FUTargetSelectorKey} selector
 	 * @returns {CharacterInfo[]}
 	 */

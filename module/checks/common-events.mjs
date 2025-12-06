@@ -501,14 +501,6 @@ function progress(document, progress, action, increment = undefined, source = un
  * @remarks Emitted when a check is about to be performed
  */
 
-/**
- * @typedef ResolveCheckEvent
- * @property {CheckResultV2} result
- * @property {CharacterInfo} source
- * @property {InlineSourceInfo} sourceInfo
- * @remarks Emitted when a check is about to be performed
- */
-
 function performCheck(check, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
@@ -528,6 +520,14 @@ function performCheck(check, actor, item) {
 	Hooks.call(FUHooks.PERFORM_CHECK_EVENT, event);
 }
 
+/**
+ * @typedef ResolveCheckEvent
+ * @property {CheckResultV2} result
+ * @property {CharacterInfo} source
+ * @property {InlineSourceInfo} sourceInfo
+ * @remarks Emitted when a check is about to be performed
+ */
+
 function resolveCheck(result, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
@@ -538,6 +538,28 @@ function resolveCheck(result, actor, item) {
 		sourceInfo: sourceInfo,
 	};
 	Hooks.call(FUHooks.RESOLVE_CHECK_EVENT, event);
+}
+
+/**
+ * @typedef RenderCheckEvent
+ * @property {CheckRenderData} renderData
+ * @property {CheckResultV2} result
+ * @property {CharacterInfo} source
+ * @property {InlineSourceInfo} sourceInfo
+ * @remarks Emitted when a check is about to be rendered.
+ */
+
+async function renderCheck(renderData, result, actor, item) {
+	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+	const source = CharacterInfo.fromActor(actor);
+	/** @type RenderCheckEvent  **/
+	const event = {
+		renderData: renderData,
+		result: result,
+		source: source,
+		sourceInfo: sourceInfo,
+	};
+	return AsyncHooks.callSequential(FUHooks.RENDER_CHECK_EVENT, event);
 }
 
 /**
@@ -593,6 +615,7 @@ export const CommonEvents = Object.freeze({
 	progress,
 	performCheck,
 	resolveCheck,
+	renderCheck,
 	calculateDamage,
 	notify,
 	toggleEffect,
