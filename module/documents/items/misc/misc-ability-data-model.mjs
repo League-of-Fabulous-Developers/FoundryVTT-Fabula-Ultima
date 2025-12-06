@@ -163,7 +163,7 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 			this.useWeapon.damage = false;
 		}
 		if (!this.useWeapon.damage && !this.damage.type) {
-			this.damage.type = 'physical';
+			this.damage.type = '';
 		}
 	}
 

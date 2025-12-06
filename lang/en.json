@@ -488,6 +488,7 @@
 		"DamageCollateral": "Collateral Damage",
 		"DamageTypeCollateral": "Collateral Damage Type",
 		"DamageType": "Damage Type",
+		"DamageTypeInherit": "Inherit",
 		"Damage": "Damage",
 		"HasDamage": "Has Damage?",
 		"UseWeaponDamage": "Use Weapon Damage",

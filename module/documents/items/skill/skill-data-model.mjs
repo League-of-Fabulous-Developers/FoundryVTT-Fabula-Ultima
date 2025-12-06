@@ -181,7 +181,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			this.useWeapon.damage = false;
 		}
 		if (!this.useWeapon.damage && !this.damage.type) {
-			this.damage.type = 'physical';
+			this.damage.type = '';
 		}
 	}
 
