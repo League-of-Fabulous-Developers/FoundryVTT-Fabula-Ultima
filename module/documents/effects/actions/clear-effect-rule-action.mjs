@@ -33,13 +33,6 @@ export class ClearEffectRuleAction extends RuleActionDataModel {
 		return systemTemplatePath('effects/actions/clear-effect-rule-action');
 	}
 
-	/**
-	 * @returns {string}
-	 */
-	get preview() {
-		return '';
-	}
-
 	async execute(context, selected) {
 		for (const target of selected) {
 			const actor = target.actor;

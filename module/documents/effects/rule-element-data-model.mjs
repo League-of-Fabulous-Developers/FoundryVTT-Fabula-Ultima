@@ -86,8 +86,10 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 			subTypes = Object.fromEntries(
 				Object.entries(subTypes).filter(([key, value]) => {
 					const model = RuleActionRegistry.instance.types[key];
-					if (model.metadata.eventType) {
-						if (triggerEventType !== model.metadata.eventType) {
+					/** @type RuleActionMetaData **/
+					const modelMetaData = model.metadata;
+					if (modelMetaData.eventTypes) {
+						if (modelMetaData.eventTypes.find((t) => t === triggerEventType) === undefined) {
 							return false;
 						}
 					}
@@ -96,7 +98,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 			);
 		}
 		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog('FU.AddRuleElement', options);
+		const type = await FoundryUtils.selectOptionDialog('FU.RuleElementNew', options);
 		if (type) {
 			await TypedCollectionField.addModel(this.actions, type, this);
 		}
@@ -117,7 +119,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async addRulePredicate() {
-		const subTypes = RulePredicateRegistry.instance.localizedEntries;
+		let subTypes = RulePredicateRegistry.instance.localizedEntries;
 		const options = FoundryUtils.generateConfigOptions(subTypes);
 		const type = await FoundryUtils.selectOptionDialog('FU.Add', options);
 		if (type) {

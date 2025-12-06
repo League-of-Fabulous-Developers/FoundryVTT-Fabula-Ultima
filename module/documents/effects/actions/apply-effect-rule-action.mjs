@@ -37,7 +37,6 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 		}
 		for (const sel of selected) {
 			await Effects.promptApplyEffect(sel.actor, [instancedEffect], context.label);
-			//await Effects.applyEffect(sel.actor, instancedEffect, context.sourceInfo);
 		}
 	}
 }

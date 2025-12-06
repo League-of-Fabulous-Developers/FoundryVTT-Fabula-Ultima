@@ -21,7 +21,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventType: FUHooks.CALCULATE_DAMAGE_EVENT,
+			eventTypes: [FUHooks.CALCULATE_DAMAGE_EVENT],
 		};
 	}
 

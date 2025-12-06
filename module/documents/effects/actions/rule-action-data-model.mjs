@@ -2,7 +2,7 @@ import { SubDocumentDataModel } from '../../sub/sub-document-data-model.mjs';
 import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
 
 /**
- * @typedef RuleMetaData
+ * @typedef RuleActionMetaData
  * @extends SubDocumentMetadata
  * @property {string[]} eventTypes
  */
@@ -14,7 +14,7 @@ import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
 export class RuleActionDataModel extends SubDocumentDataModel {
 	/**
 	 * @inheritdoc
-	 * @returns RuleMetaData
+	 * @returns RuleActionMetaData
 	 * */
 	static get metadata() {
 		return {

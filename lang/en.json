@@ -1662,7 +1662,7 @@
 		"Removed": "Removed",
 		"CheckType": "Check Type",
 		"Result": "Result",
-		"ComparisonOperator": "ComparisonOperator",
+		"ComparisonOperator": "Comparison Operator",
 		"GreaterThan": "Greater Than",
 		"LessThan": "Less Than",
 		"ExpenseSource": "Expense Source",

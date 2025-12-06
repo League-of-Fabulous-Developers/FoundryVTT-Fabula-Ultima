@@ -15,6 +15,14 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 		Object.defineProperty(this, 'TYPE', { value: 'changeTraitsRuleAction' });
 	}
 
+	/** @inheritdoc */
+	static get metadata() {
+		return {
+			...super.metadata,
+			eventTypes: [FUHooks.PERFORM_CHECK_EVENT],
+		};
+	}
+
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			traits: new fields.SetField(new fields.StringField()),

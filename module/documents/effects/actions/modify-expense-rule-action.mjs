@@ -17,7 +17,7 @@ export class ModifyExpenseRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventType: FUHooks.RESOURCE_EXPEND_EVENT,
+			eventTypes: [FUHooks.RESOURCE_EXPEND_EVENT],
 		};
 	}
 

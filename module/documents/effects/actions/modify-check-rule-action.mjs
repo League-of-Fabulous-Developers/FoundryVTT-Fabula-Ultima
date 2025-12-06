@@ -11,7 +11,7 @@ export class ModifyCheckRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventType: FUHooks.PERFORM_CHECK_EVENT,
+			eventTypes: [FUHooks.PERFORM_CHECK_EVENT],
 		};
 	}
 

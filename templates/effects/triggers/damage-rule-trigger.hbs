@@ -6,13 +6,10 @@
 	</select>
 </label>
 
-<label class="fu-rule-element__property">
+<div class="fu-rule-element__property">
 	<span>{{localize 'FU.DamageSource'}}</span>
-	<select name="{{pfuConcat path ".damageSource"}}">
-		<option value="">-</option>
-		{{selectOptions options.damageSource selected=trigger.damageSource sort=true localize=true}}
-	</select>
-</label>
+	{{formGroup trigger.schema.fields.damageSources value=trigger.damageSources options=options.damageSourceOptions name=(pfuConcat path ".damageSources") classes="fu-rule-element__set stacked"}}
+</div>
 
 <div class="fu-rule-element__property-row">
 	<label class="fu-rule-element__property">
