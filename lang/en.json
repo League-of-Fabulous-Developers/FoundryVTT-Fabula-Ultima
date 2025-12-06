@@ -1625,6 +1625,7 @@
 		"RuleTriggerCombat": "Combat",
 		"RuleTriggerAttack": "Attack",
 		"RuleTriggerSpell": "Spell",
+		"RuleTriggerInitializeCheck": "Initialize Check",
 		"RuleTriggerPerformCheck": "Perform Check",
 		"RuleTriggerResolveCheck": "Resolve Check",
 		"RuleTriggerRenderCheck": "Render Check",

@@ -16,6 +16,7 @@ const DAMAGE = 'damage';
 const TRAITS = 'traits';
 const WEAPON_TRAITS = 'weaponTraits';
 const LABEL_KEY = 'label';
+const TARGETED_ACTIONS = 'targetedActions';
 
 /**
  *
@@ -234,10 +235,17 @@ class CheckInspector {
 	}
 
 	/**
-	 * @returns {String|undefined}
+	 * @returns {String|undefined} Optional label for this check
 	 */
 	getLabel() {
 		return this.#check.additionalData[LABEL_KEY];
+	}
+
+	/**
+	 *@returns {TargetAction[]}
+	 */
+	getTargetedActions() {
+		return this.#check.additionalData[TARGETED_ACTIONS] ?? [];
 	}
 }
 
@@ -561,6 +569,16 @@ class CheckConfigurer extends CheckInspector {
 	 */
 	setLabel(label) {
 		this.check.additionalData[LABEL_KEY] = label;
+	}
+
+	/**
+	 * @param {TargetAction} action
+	 */
+	addTargetedAction(action) {
+		if (!this.check.additionalData[TARGETED_ACTIONS]) {
+			this.check.additionalData[TARGETED_ACTIONS] = [];
+		}
+		this.check.additionalData[TARGETED_ACTIONS].push(action);
 	}
 }
 

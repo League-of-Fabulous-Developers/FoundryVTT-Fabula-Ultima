@@ -1,4 +1,4 @@
-import { CHECK_FLAVOR, CHECK_RESULT } from './default-section-order.mjs';
+import { CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
@@ -9,7 +9,6 @@ import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
-import { CheckConfiguration } from './check-configuration.mjs';
 import { CommonEvents } from './common-events.mjs';
 
 /**
@@ -206,31 +205,55 @@ const opportunity = (sections, opportunity, order) => {
  * @param {FUItem} item
  * @param {TargetData[]} targets
  * @param {Object} flags
- * @param {CheckResultV2} checkData
- * @param {DamageData} damageData
+ * @param {CheckInspector} inspector
  */
-const targeted = (sections, actor, item, targets, flags, checkData = undefined, damageData = undefined) => {
+const targeted = (sections, actor, item, targets, flags, inspector = undefined) => {
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
+
+	let checkData;
+	let damageData;
+
+	if (inspector) {
+		//const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
+		checkData = inspector.getCheck();
+		damageData = inspector.getExtendedDamageData();
+
+		sections.push({
+			order: CHECK_ROLL,
+			partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
+			data: {
+				check: checkData,
+				damage: damageData,
+				translation: {
+					damageTypes: FU.damageTypes,
+					damageIcon: FU.affIcon,
+				},
+			},
+		});
+	}
+
 	if (isTargeted) {
 		const isDamage = checkData && damageData;
-		const inspector = CheckConfiguration.inspect(checkData);
 
 		sections.push(async function () {
+			/** @type {TargetAction[]} **/
 			let actions = [];
 			actions.push(Targeting.defaultAction);
 			let selectedActions = [];
 
+			// TODO: Refactor
+			// Damage action
 			if (isDamage) {
 				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
 				actions.push(
-					new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
+					new TargetAction('applyDamage', 'fas fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
 						accuracy: checkData,
 						damage: damageData,
 					}).requiresOwner(),
 				);
 
 				selectedActions.push(
-					new TargetAction('applyDamageSelected', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
+					new TargetAction('applyDamageSelected', 'fas fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
 						accuracy: checkData,
 						damage: damageData,
 					}),
@@ -261,6 +284,14 @@ const targeted = (sections, actor, item, targets, flags, checkData = undefined, 
 					Hooks.once('diceSoNiceRollComplete', onRoll);
 				} else {
 					onRoll();
+				}
+			}
+
+			// Additional actions
+			actions.push(...inspector.getTargetedActions());
+			for (const action of actions) {
+				if (action.flag) {
+					Pipeline.toggleFlag(flags, action.flag);
 				}
 			}
 

@@ -1,6 +1,5 @@
-import { FU, SYSTEM } from '../helpers/config.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { CheckHooks } from './check-hooks.mjs';
-import { CHECK_ROLL } from './default-section-order.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
@@ -157,26 +156,9 @@ const onProcessCheck = (check, actor, item) => {
 function onRenderCheck(data, checkResult, actor, item, flags) {
 	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-		const checkData = inspector.getCheck();
-		const damageData = inspector.getExtendedDamageData();
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-
-		// Push combined data for accuracy and damage
-		data.push({
-			order: CHECK_ROLL,
-			partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
-			data: {
-				check: checkData,
-				damage: damageData,
-				translation: {
-					damageTypes: FU.damageTypes,
-					damageIcon: FU.affIcon,
-				},
-			},
-		});
-
-		CommonSections.targeted(data, actor, item, targets, flags, checkData, damageData);
+		CommonSections.targeted(data, actor, item, targets, flags, inspector);
 		CommonEvents.attack(inspector, actor, item);
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
 	}

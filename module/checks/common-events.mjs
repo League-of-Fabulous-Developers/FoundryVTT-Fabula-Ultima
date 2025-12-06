@@ -563,6 +563,27 @@ async function renderCheck(renderData, result, actor, item) {
 }
 
 /**
+ * @typedef InitializeCheckEvent
+ * @property {CheckConfigurer} configuration
+ * @property {CharacterInfo} source
+ * @property {InlineSourceInfo} sourceInfo
+ * @property {Object} flags
+ * @remarks Emitted when a check is about to be rendered.
+ */
+
+async function initializeCheck(configuration, actor, item) {
+	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+	const source = CharacterInfo.fromActor(actor);
+	/** @type InitializeCheckEvent  **/
+	const event = {
+		configuration: configuration,
+		source: source,
+		sourceInfo: sourceInfo,
+	};
+	return AsyncHooks.callSequential(FUHooks.INITIALIZE_CHECK_EVENT, event);
+}
+
+/**
  * @typedef NotificationEvent
  * @property {CharacterInfo} source
  * @property {String} id
@@ -613,6 +634,7 @@ export const CommonEvents = Object.freeze({
 	reveal,
 	opportunity,
 	progress,
+	initializeCheck,
 	performCheck,
 	resolveCheck,
 	renderCheck,

@@ -121,6 +121,12 @@ export const FUHooks = {
 	 */
 	OPPORTUNITY_EVENT: 'projectfu.events.opportunity',
 	/**
+	 * @description Dispatched when a check is being initialized.
+	 * @example callback(event)
+	 * @remarks Uses {@link InitializeCheckEvent}
+	 */
+	INITIALIZE_CHECK_EVENT: 'projectfu.events.checks.initialize',
+	/**
 	 * @description Dispatched when a check is about to be performed.
 	 * @example callback(event)
 	 * @remarks Uses {@link PerformCheckEvent}

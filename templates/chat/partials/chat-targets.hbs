@@ -38,7 +38,14 @@
                 {{#each ../actions as |action|}}
 					{{#if (or (not action.owner) (and action.owner target.isOwner))}}
 						<span class="fu-tags" style="flex: 0 1 auto;padding: 2px;">
-							<a data-action="{{name}}" data-id="{{target.uuid}}" data-fields={{fields}} data-tooltip="{{localize tooltip}}">
+							<a data-action="{{name}}"
+							   data-id="{{target.uuid}}"
+							   data-fields="{{fields}}"
+							   data-tooltip="{{localize tooltip}}"
+								{{#each dataset}}
+							   data-{{@key}}="{{this}}"
+								{{/each}}
+							>
 								<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas {{icon}}"></i></span>
 							</a>
 						</span>

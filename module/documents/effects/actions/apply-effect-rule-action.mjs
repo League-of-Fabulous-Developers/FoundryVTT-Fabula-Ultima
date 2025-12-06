@@ -2,6 +2,9 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FUItem } from '../../items/item.mjs';
 import { Effects } from '../../../pipelines/effects.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
+import { FUHooks } from '../../../hooks.mjs';
+import { TargetAction } from '../../../helpers/targeting.mjs';
+import { Flags } from '../../../helpers/flags.mjs';
 
 const { DocumentUUIDField } = foundry.data.fields;
 
@@ -35,8 +38,23 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 		if (instancedEffect instanceof FUItem) {
 			instancedEffect = instancedEffect.effects.entries().next().value[1];
 		}
-		for (const sel of selected) {
-			await Effects.promptApplyEffect(sel.actor, [instancedEffect], context.label);
+
+		if (context.type === FUHooks.INITIALIZE_CHECK_EVENT) {
+			/** @type InitializeCheckEvent **/
+			const ice = context.event;
+			const targetAction = new TargetAction('applyEffect', 'ra ra-biohazard', 'FU.ChatApplyEffect', {
+				sourceInfo: context.sourceInfo,
+			})
+				.requiresOwner()
+				.setFlag(Flags.ChatMessage.Effects)
+				.withDataset({
+					['effect-id']: this.effect,
+				});
+			ice.configuration.addTargetedAction(targetAction);
+		} else {
+			for (const sel of selected) {
+				await Effects.promptApplyEffect(sel.actor, [instancedEffect], context.label);
+			}
 		}
 	}
 }

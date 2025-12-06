@@ -648,8 +648,8 @@ function onRenderChatMessage(message, element) {
 	}
 
 	Pipeline.handleClickRevert(message, element, 'removeEffect', (dataset) => {
+		const actorId = dataset.actorId ?? dataset.id;
 		const effectId = dataset.effectId;
-		const actorId = dataset.actorId;
 		console.debug(`Applying effect ${effectId} to ${actorId}`);
 		/** @type FUActor **/
 		const actor = fromUuidSync(actorId);
@@ -660,18 +660,25 @@ function onRenderChatMessage(message, element) {
 		}
 	});
 
-	Pipeline.handleClickRevert(message, element, 'applyEffect', async (dataset) => {
+	Pipeline.handleClick(message, element, 'applyEffect', async (dataset) => {
 		const effectId = dataset.effectId;
-		const actorId = dataset.actorId;
-		console.debug(`Removing effect ${effectId} on ${actorId}`);
+		const actorId = dataset.actorId ?? dataset.id;
+		console.debug(`Applying effect ${effectId} on ${actorId}`);
+		let sourceInfo = InlineSourceInfo.none;
+		if (dataset.fields) {
+			const fields = InlineHelper.fromBase64(dataset.fields);
+			if (fields.sourceInfo) {
+				sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+			}
+		}
+
 		/** @type FUActor **/
 		const actor = fromUuidSync(actorId);
-		// TODO: Add revert-like behaviour
 		let instancedEffect = await fromUuid(effectId);
 		if (instancedEffect instanceof FUItem) {
 			instancedEffect = instancedEffect.effects.entries().next().value[1];
 		}
-		await applyEffect(actor, instancedEffect, InlineSourceInfo.none);
+		await applyEffect(actor, instancedEffect, sourceInfo);
 	});
 
 	Pipeline.handleClick(message, element, 'display', async (dataset) => {

@@ -75,6 +75,8 @@ async function filterTargetsByRule(actor, item, targets) {
  * @property {String} tooltip The localized tooltip to use
  * @property {Object} fields The fields to use for the action's dataset
  * @property {Boolean} owner Whether this action can only be applied the owner
+ * @property {String|undefined} flag
+ * @property {DOMStringMap|undefined} dataset
  * @remarks Expects an action handler where dataset.id is a reference to an actor
  */
 export class TargetAction {
@@ -83,6 +85,7 @@ export class TargetAction {
 		this.icon = icon;
 		this.tooltip = tooltip;
 		this.fields = StringUtils.toBase64(fields ?? {});
+		this.dataset = {};
 		this.owner = false;
 	}
 
@@ -93,13 +96,31 @@ export class TargetAction {
 		this.owner = true;
 		return this;
 	}
+
+	/**	 *
+	 * @param {String} flag
+	 * @returns {TargetAction}
+	 */
+	setFlag(flag) {
+		this.flag = flag;
+		return this;
+	}
+
+	/**
+	 * @param {Record<string, string>} dataset
+	 * @return {TargetAction}
+	 */
+	withDataset(dataset) {
+		this.dataset = dataset;
+		return this;
+	}
 }
 
 /**
  * @type {TargetAction}
  * @description Target the token
  */
-const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatPingTarget');
+const defaultAction = new TargetAction('targetSingle', 'fas fa-bullseye', 'FU.ChatPingTarget');
 
 /**
  * @returns {TargetData[]}

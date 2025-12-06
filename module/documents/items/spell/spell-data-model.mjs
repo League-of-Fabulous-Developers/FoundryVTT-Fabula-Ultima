@@ -28,7 +28,6 @@ import { TraitUtils } from '../../../pipelines/traits.mjs';
  */
 function onRenderCheck(data, result, actor, item, flags) {
 	if (item && item.system instanceof SpellDataModel) {
-		// TODO: Replace with CommonSections.tags
 		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
 		CommonSections.opportunity(data, item.system.opportunity, CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
@@ -37,7 +36,7 @@ function onRenderCheck(data, result, actor, item, flags) {
 
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.targeted(data, actor, item, targets, flags, null, null);
+			CommonSections.targeted(data, actor, item, targets, flags);
 		}
 
 		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
@@ -166,6 +165,8 @@ export class SpellDataModel extends FUStandardItemDataModel {
 				.setDamageOverride(actor, 'spell')
 				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
 				.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+
+			await CommonEvents.initializeCheck(configure, actor, item);
 		};
 	}
 

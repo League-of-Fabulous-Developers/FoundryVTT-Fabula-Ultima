@@ -44,6 +44,7 @@ import { UpdateTokenRuleAction } from '../documents/effects/actions/update-token
 import { PlaySoundEffectRuleAction } from '../documents/effects/actions/play-sound-effect-rule-action.mjs';
 import { ExecuteMacroRuleAction } from '../documents/effects/actions/execute-macro-rule-action.mjs';
 import { RenderCheckRuleTrigger } from '../documents/effects/triggers/render-check-rule-trigger.mjs';
+import { InitializeCheckRuleTrigger } from '../documents/effects/triggers/initialize-check-rule-trigger.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -54,6 +55,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, ResourceUpdateRuleTrigger.TYPE, ResourceUpdateRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResourceExpendRuleTrigger.TYPE, ResourceExpendRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, SpellRuleTrigger.TYPE, SpellRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, InitializeCheckRuleTrigger.TYPE, InitializeCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, PerformCheckRuleTrigger.TYPE, PerformCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResolveCheckRuleTrigger.TYPE, ResolveCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, RenderCheckRuleTrigger.TYPE, RenderCheckRuleTrigger);
@@ -148,6 +150,14 @@ async function onResourceExpenditureEvent(event) {
  */
 async function onStatusEvent(event) {
 	await evaluate(FUHooks.STATUS_EVENT, event, event.source, [event.source]);
+}
+
+/**
+ * @param {InitializeCheckEvent} event
+ * @returns {Promise<void>}
+ */
+async function onInitializeCheckEvent(event) {
+	await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, []);
 }
 
 /**
@@ -264,6 +274,7 @@ function initialize() {
 	Hooks.on(FUHooks.RESOURCE_EXPEND_EVENT, onResourceExpenditureEvent);
 	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
 	AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);
+	AsyncHooks.on(FUHooks.INITIALIZE_CHECK_EVENT, onInitializeCheckEvent);
 }
 
 export const RuleElements = Object.freeze({
