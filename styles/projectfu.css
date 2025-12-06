@@ -13,6 +13,7 @@
 @import 'css/global/grid.css';
 @import 'css/global/flex.css';
 @import 'css/global/table.css';
+@import 'css/global/foldout.css';
 
 @import 'css/components/carousel.css';
 @import 'css/components/affinity.css';

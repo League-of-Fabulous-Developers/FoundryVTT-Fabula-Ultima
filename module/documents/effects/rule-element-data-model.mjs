@@ -8,6 +8,7 @@ import { RuleActionDataModel, RuleActionRegistry } from './actions/rule-action-d
 import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
 import { RulePredicateDataModel, RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
 import { FU } from '../../helpers/config.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -173,6 +174,13 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 		for (const action of this.actions) {
 			await action.renderContext(context);
 		}
+	}
+
+	/**
+	 * @returns {String}
+	 */
+	get header() {
+		return `${StringUtils.localize(this.trigger.schema.model.localization)}`;
 	}
 }
 
