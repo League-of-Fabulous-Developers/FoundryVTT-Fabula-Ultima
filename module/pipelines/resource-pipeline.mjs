@@ -341,15 +341,8 @@ function onRenderChatMessage(message, html) {
  */
 async function prompt(request) {
 	const targets = Targeting.serializeTargetData(request.targets);
-	const resourceIcon = FU.resourceIcons[request.resourceType];
 	const gain = request.amount > 0;
-	const actions = [
-		new TargetAction('updateResource', resourceIcon, 'FU.ChatUpdateResourceTooltip', {
-			amount: request.amount,
-			type: request.resourceType,
-			sourceInfo: request.sourceInfo,
-		}).requiresOwner(),
-	];
+	const actions = [getTargetedAction(request)];
 	const message = gain > 0 ? 'FU.ChatResourceGainPrompt' : 'FU.ChatResourceLossPrompt';
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true);
 	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
@@ -367,6 +360,15 @@ async function prompt(request) {
 	});
 }
 
+function getTargetedAction(request) {
+	const resourceIcon = FU.resourceIcons[request.resourceType];
+	return new TargetAction('updateResource', resourceIcon, 'FU.ChatUpdateResourceTooltip', {
+		amount: request.amount,
+		type: request.resourceType,
+		sourceInfo: request.sourceInfo,
+	}).requiresOwner();
+}
+
 /**
  * @description Initialize the pipeline's hooks
  */
@@ -382,4 +384,5 @@ export const ResourcePipeline = {
 	calculateExpense,
 	calculateMissingResource,
 	prompt,
+	getTargetedAction,
 };

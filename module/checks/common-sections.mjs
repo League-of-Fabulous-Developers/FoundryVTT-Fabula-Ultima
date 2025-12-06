@@ -214,22 +214,25 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 	let damageData;
 
 	if (inspector) {
-		//const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
 		checkData = inspector.getCheck();
 		damageData = inspector.getExtendedDamageData();
-
-		sections.push({
-			order: CHECK_ROLL,
-			partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
-			data: {
-				check: checkData,
-				damage: damageData,
-				translation: {
-					damageTypes: FU.damageTypes,
-					damageIcon: FU.affIcon,
-				},
-			},
-		});
+		switch (checkData.type) {
+			case 'accuracy':
+			case 'magic':
+				sections.push({
+					order: CHECK_ROLL,
+					partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
+					data: {
+						check: checkData,
+						damage: damageData,
+						translation: {
+							damageTypes: FU.damageTypes,
+							damageIcon: FU.affIcon,
+						},
+					},
+				});
+				break;
+		}
 	}
 
 	if (isTargeted) {

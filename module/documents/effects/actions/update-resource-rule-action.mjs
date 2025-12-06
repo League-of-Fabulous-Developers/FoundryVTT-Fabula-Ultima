@@ -4,6 +4,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { ResourcePipeline, ResourceRequest } from '../../../pipelines/resource-pipeline.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;
 /**
@@ -43,10 +44,18 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 		}
 		const request = new ResourceRequest(context.sourceInfo, targets, this.resource, amount);
 		request.fromOrigin(context.origin);
-		if (game.settings.get(SYSTEM, SETTINGS.automationUpdateResource)) {
-			await ResourcePipeline.process(request);
+
+		if (context.type === FUHooks.INITIALIZE_CHECK_EVENT) {
+			/** @type InitializeCheckEvent **/
+			const ice = context.event;
+			const targetAction = ResourcePipeline.getTargetedAction(request);
+			ice.configuration.addTargetedAction(targetAction);
 		} else {
-			await ResourcePipeline.prompt(request);
+			if (game.settings.get(SYSTEM, SETTINGS.automationUpdateResource)) {
+				await ResourcePipeline.process(request);
+			} else {
+				await ResourcePipeline.prompt(request);
+			}
 		}
 	}
 }

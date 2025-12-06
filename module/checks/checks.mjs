@@ -569,7 +569,9 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 		additionalData: {},
 	});
 	// Set initial targets (actions without rolls can have targeting)
-	CheckConfiguration.configure(check).setDefaultTargets();
+	const config = CheckConfiguration.configure(check);
+	config.setDefaultTargets();
+	await CommonEvents.initializeCheck(config, actor, item);
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 
 	Hooks.callAll(CheckHooks.processCheck, check, actor, item);

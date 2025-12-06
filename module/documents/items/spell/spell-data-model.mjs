@@ -32,11 +32,12 @@ function onRenderCheck(data, result, actor, item, flags) {
 		CommonSections.opportunity(data, item.system.opportunity, CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
-		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();
+		const inspector = CheckConfiguration.inspect(result);
+		const targets = inspector.getTargetsOrDefault();
 
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.targeted(data, actor, item, targets, flags);
+			CommonSections.targeted(data, actor, item, targets, flags, inspector);
 		}
 
 		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
@@ -45,7 +46,7 @@ function onRenderCheck(data, result, actor, item, flags) {
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
-/**
+/**tt
  * @property {String} fuid
  * @property {string} subtype.value
  * @property {string} summary.value

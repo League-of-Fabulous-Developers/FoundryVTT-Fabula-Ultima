@@ -38,11 +38,11 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	/**
-	 * @param {RuleElementContext<PerformCheckEvent>} context
+	 * @param {RuleElementContext<InitializeCheckEvent>} context
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		switch (context.event.check.type) {
+		switch (context.event.configuration.check.type) {
 			case 'accuracy':
 			case 'magic':
 			case 'display':
