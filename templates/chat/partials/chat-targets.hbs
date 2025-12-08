@@ -46,7 +46,7 @@
 								{{/each}}
 							   data-tooltip="{{localize tooltip}}">
 								<span class='fu-tag button flex-group-center' style="font-size: 1rem;">
-									<i class="icon {{icon}}"></i>
+									<i class="icon {{icon}}" style="{{#if color}}color: {{color}};{{/if}}"></i>
 								</span>
 							</a>
 						</span>
@@ -64,8 +64,9 @@
 		   data-{{@key}}="{{this}}"
 			{{/each}}
 		   data-tooltip="{{localize tooltip}}">
-            <span class='fu-tag button flex-group-center gap-5' style="width: 100%;white-space: nowrap;">
-				{{~localize 'FU.ChatApplySelected'}}<i class="icon {{icon}}"></i>
+            <span class='fu-tag button flex-group-center gap-5'
+				  style="width: 100%;white-space: nowrap;">
+				{{~localize 'FU.ChatApplySelected'}}<i class="icon {{icon}}" style="{{#if color}}color: {{color}};{{/if}}"></i>
 			</span>
         </a>
     </div>
