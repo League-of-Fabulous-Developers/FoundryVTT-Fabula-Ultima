@@ -74,26 +74,31 @@ function createTemporaryEffect(owner, effectType, name) {
 	]);
 }
 
+/**
+ * @param {String} id
+ * @return {ActiveEffectData}
+ */
+function resolveBaseEffect(id) {
+	return statusEffects.find((value) => value.id === id);
+}
+
 /** *
  * @param {String} id An uuid or fuid
  * @returns {Promise<ActiveEffectData>}
  */
-async function instantiateEffect(id) {
+async function getEffectData(id) {
 	let effect;
 	// TODO: Add flags?
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
-		const effectData = statusEffects.find((value) => value.id === id);
-		effect = await ActiveEffect.create(
-			{
-				...effectData,
-			},
-			//{ parent: document },
-		);
+		effect = statusEffects.find((value) => value.id === id);
 	} else {
 		effect = await fromUuid(id);
 		if (effect instanceof FUItem) {
 			effect = effect.effects.entries().next().value[1];
 		}
+	}
+	if (!effect) {
+		console.error(`No effect with id ${this.effect} could be resolved.`);
 	}
 	return effect;
 }
@@ -666,23 +671,27 @@ async function promptRemoveEffect(actor, source) {
 }
 
 /**
- * @param {String }name
- * @param {String }uuid
+ * @param {String} id An uuid or fuid.
  * @param {InlineSourceInfo} sourceInfo
  * @returns {TargetAction}
  */
-function getTargetedAction(name, uuid, sourceInfo) {
-	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {
-		effect: name,
-	});
-	return new TargetAction('applyEffect', 'ra ra-biohazard', tooltip, {
+function getTargetedAction(id, sourceInfo) {
+	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {});
+	let icon;
+	const effectData = resolveBaseEffect(id);
+	if (effectData) {
+		icon = `fuk fu-${id}`;
+	} else {
+		icon = 'ra ra-biohazard';
+	}
+	return new TargetAction('applyEffect', icon, tooltip, {
 		sourceInfo: sourceInfo,
 	})
 		.requiresOwner()
 		.setFlag(Flags.ChatMessage.Effects)
 		.withSelected()
 		.withDataset({
-			['effect-id']: uuid,
+			['effect-id']: id,
 		});
 }
 
@@ -709,6 +718,11 @@ function onRenderChatMessage(message, element) {
 
 	Pipeline.handleClick(message, element, 'applyEffect', async (dataset) => {
 		const effectId = dataset.effectId;
+		const effect = await getEffectData(effectId);
+		if (!effect) {
+			return;
+		}
+
 		let sourceInfo = InlineSourceInfo.none;
 		if (dataset.fields) {
 			const fields = InlineHelper.fromBase64(dataset.fields);
@@ -717,8 +731,6 @@ function onRenderChatMessage(message, element) {
 			}
 		}
 
-		/** @type FUActor **/
-		// Targeting
 		let targets = [];
 		const actorId = dataset.actorId ?? dataset.id;
 		if (actorId) {
@@ -729,7 +741,6 @@ function onRenderChatMessage(message, element) {
 		}
 
 		console.debug(`Applying effect ${effectId} to ${targets}`);
-		const effect = await instantiateEffect(effectId);
 		for (const target of targets) {
 			await applyEffect(target, effect, sourceInfo);
 		}
@@ -805,7 +816,7 @@ function initialize() {
  */
 export const Effects = Object.freeze({
 	initialize,
-	instantiateEffect,
+	instantiateEffect: getEffectData,
 	removeEffect,
 	applyEffect,
 	canBeRemoved,

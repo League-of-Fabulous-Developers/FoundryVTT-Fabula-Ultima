@@ -3,7 +3,8 @@ import { Effects } from '../../../pipelines/effects.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 
-const { DocumentUUIDField } = foundry.data.fields;
+const fields = foundry.data.fields;
+//const { DocumentUUIDField } =
 
 /**
  * @property {String} effect The uuid of the effect
@@ -15,7 +16,8 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			effect: new DocumentUUIDField({ nullable: true, fieldType: 'ActiveEffect' }),
+			effect: new fields.StringField({ nullable: true }),
+			//effect: new DocumentUUIDField({ nullable: true, fieldType: 'ActiveEffect' }),
 		});
 	}
 
@@ -32,18 +34,17 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 			return;
 		}
 
-		const instancedEffect = await Effects.instantiateEffect(this.effect);
-		if (!instancedEffect) {
-			console.error(`No effect with id ${this.effect} could be resolved.`);
-			return;
-		}
 		if (context.type === FUHooks.INITIALIZE_CHECK_EVENT) {
 			/** @type InitializeCheckEvent **/
 			const ice = context.event;
-			const targetAction = Effects.getTargetedAction(instancedEffect.name, this.effect, context.sourceInfo);
+			const targetAction = Effects.getTargetedAction(this.effect, context.sourceInfo);
 			ice.configuration.addTargetedAction(targetAction);
 		} else {
 			for (const sel of selected) {
+				const instancedEffect = await Effects.instantiateEffect(this.effect);
+				if (!instancedEffect) {
+					return;
+				}
 				await Effects.promptApplyEffect(sel.actor, [instancedEffect], context.label);
 			}
 		}
