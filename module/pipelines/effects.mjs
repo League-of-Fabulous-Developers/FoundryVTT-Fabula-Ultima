@@ -665,6 +665,12 @@ async function promptRemoveEffect(actor, source) {
 	});
 }
 
+/**
+ * @param {String }name
+ * @param {String }uuid
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {TargetAction}
+ */
 function getTargetedAction(name, uuid, sourceInfo) {
 	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {
 		effect: name,
@@ -690,12 +696,11 @@ function onRenderChatMessage(message, element) {
 	}
 
 	Pipeline.handleClickRevert(message, element, 'removeEffect', (dataset) => {
-		const actorId = dataset.actorId ?? dataset.id;
-		const effectId = dataset.effectId;
-		console.debug(`Applying effect ${effectId} to ${actorId}`);
+		const actorId = dataset.actorId;
+		const effectId = dataset.id;
+		console.debug(`Removing effect ${effectId} from ${actorId}`);
 		/** @type FUActor **/
 		const actor = fromUuidSync(actorId);
-		// TODO: Add revert-like behaviour
 		const effect = actor.effects.get(effectId);
 		if (effect) {
 			effect.delete();
