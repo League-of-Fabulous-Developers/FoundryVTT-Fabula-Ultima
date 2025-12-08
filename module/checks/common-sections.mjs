@@ -291,10 +291,12 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 			}
 
 			// Additional actions
-			for (const action of inspector.getTargetedActions()) {
-				actions.push(action);
-				if (action.selected) {
-					selectedActions.push(action);
+			if (inspector) {
+				for (const action of inspector.getTargetedActions()) {
+					actions.push(action);
+					if (action.selected) {
+						selectedActions.push(action);
+					}
 				}
 			}
 
