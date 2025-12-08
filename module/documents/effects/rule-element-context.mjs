@@ -34,7 +34,9 @@ export class RuleElementContext {
 	 * @return {Boolean}
 	 */
 	matchesItem(id) {
+		// If there's an item
 		if (this.item) {
+			// If we have provided an identifier, check against it
 			if (id) {
 				if (this.item.system.fuid === id) {
 					return true;
@@ -42,8 +44,6 @@ export class RuleElementContext {
 				if (this.item.name === id) {
 					return true;
 				}
-			} else {
-				return true;
 			}
 		}
 		return false;

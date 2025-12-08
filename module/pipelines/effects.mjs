@@ -4,12 +4,15 @@ import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { Targeting } from '../helpers/targeting.mjs';
+import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { statusEffects } from '../documents/effects/statuses.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { getSelected } from '../helpers/target-handler.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -69,6 +72,30 @@ function createTemporaryEffect(owner, effectType, name) {
 			disabled: effectType === 'inactive',
 		},
 	]);
+}
+
+/** *
+ * @param {String} id An uuid or fuid
+ * @returns {Promise<ActiveEffectData>}
+ */
+async function instantiateEffect(id) {
+	let effect;
+	// TODO: Add flags?
+	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
+		const effectData = statusEffects.find((value) => value.id === id);
+		effect = await ActiveEffect.create(
+			{
+				...effectData,
+			},
+			//{ parent: document },
+		);
+	} else {
+		effect = await fromUuid(id);
+		if (effect instanceof FUItem) {
+			effect = effect.effects.entries().next().value[1];
+		}
+	}
+	return effect;
 }
 
 /**
@@ -638,6 +665,21 @@ async function promptRemoveEffect(actor, source) {
 	});
 }
 
+function getTargetedAction(name, uuid, sourceInfo) {
+	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {
+		effect: name,
+	});
+	return new TargetAction('applyEffect', 'ra ra-biohazard', tooltip, {
+		sourceInfo: sourceInfo,
+	})
+		.requiresOwner()
+		.setFlag(Flags.ChatMessage.Effects)
+		.withSelected()
+		.withDataset({
+			['effect-id']: uuid,
+		});
+}
+
 /**
  * @param {Document} message
  * @param {HTMLElement} element
@@ -662,8 +704,6 @@ function onRenderChatMessage(message, element) {
 
 	Pipeline.handleClick(message, element, 'applyEffect', async (dataset) => {
 		const effectId = dataset.effectId;
-		const actorId = dataset.actorId ?? dataset.id;
-		console.debug(`Applying effect ${effectId} on ${actorId}`);
 		let sourceInfo = InlineSourceInfo.none;
 		if (dataset.fields) {
 			const fields = InlineHelper.fromBase64(dataset.fields);
@@ -673,12 +713,21 @@ function onRenderChatMessage(message, element) {
 		}
 
 		/** @type FUActor **/
-		const actor = fromUuidSync(actorId);
-		let instancedEffect = await fromUuid(effectId);
-		if (instancedEffect instanceof FUItem) {
-			instancedEffect = instancedEffect.effects.entries().next().value[1];
+		// Targeting
+		let targets = [];
+		const actorId = dataset.actorId ?? dataset.id;
+		if (actorId) {
+			const actor = await fromUuid(actorId);
+			targets.push(actor);
+		} else {
+			targets = await getSelected();
 		}
-		await applyEffect(actor, instancedEffect, sourceInfo);
+
+		console.debug(`Applying effect ${effectId} to ${targets}`);
+		const effect = await instantiateEffect(effectId);
+		for (const target of targets) {
+			await applyEffect(target, effect, sourceInfo);
+		}
 	});
 
 	Pipeline.handleClick(message, element, 'display', async (dataset) => {
@@ -751,6 +800,7 @@ function initialize() {
  */
 export const Effects = Object.freeze({
 	initialize,
+	instantiateEffect,
 	removeEffect,
 	applyEffect,
 	canBeRemoved,
@@ -760,6 +810,8 @@ export const Effects = Object.freeze({
 	sendToChatEffectAdded,
 	promptRemoveEffect,
 	promptApplyEffect,
+	getTargetedAction,
+
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,

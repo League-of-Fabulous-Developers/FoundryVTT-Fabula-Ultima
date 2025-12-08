@@ -45,8 +45,13 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 		switch (context.event.configuration.check.type) {
 			case 'accuracy':
 			case 'magic':
-			case 'display':
-				return context.matchesItem(this.identifier);
+			case 'display': {
+				if (context.item) {
+					if (context.event.sourceInfo.itemUuid === context.sourceInfo.itemUuid) {
+						return true;
+					}
+				}
+			}
 		}
 		return false;
 	}

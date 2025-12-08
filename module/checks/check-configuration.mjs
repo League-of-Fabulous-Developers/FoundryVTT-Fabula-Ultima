@@ -573,11 +573,13 @@ class CheckConfigurer extends CheckInspector {
 
 	/**
 	 * @param {TargetAction} action
+	 * @remarks Will reject adding duplicates.
 	 */
 	addTargetedAction(action) {
 		if (!this.check.additionalData[TARGETED_ACTIONS]) {
 			this.check.additionalData[TARGETED_ACTIONS] = [];
 		}
+		if (this.check.additionalData[TARGETED_ACTIONS].some((a) => a.name === action.name)) return;
 		this.check.additionalData[TARGETED_ACTIONS].push(action);
 	}
 }
