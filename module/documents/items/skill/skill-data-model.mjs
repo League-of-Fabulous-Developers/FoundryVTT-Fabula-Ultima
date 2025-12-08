@@ -82,8 +82,13 @@ const onRenderDisplay = (sections, check, actor, item, flags) => {
 			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
 		}
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargetsOrDefault();
 		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
+		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
+		if (!item.system.hasRoll.value) {
+			CommonSections.targeted(sections, actor, item, targets, flags, inspector);
+		}
 		CommonEvents.skill(actor, item);
 	}
 };

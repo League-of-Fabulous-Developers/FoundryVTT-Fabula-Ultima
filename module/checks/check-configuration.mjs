@@ -579,7 +579,7 @@ class CheckConfigurer extends CheckInspector {
 		if (!this.check.additionalData[TARGETED_ACTIONS]) {
 			this.check.additionalData[TARGETED_ACTIONS] = [];
 		}
-		if (this.check.additionalData[TARGETED_ACTIONS].some((a) => a.name === action.name)) return;
+		//if (this.check.additionalData[TARGETED_ACTIONS].some((a) => a.name === action.name)) return;
 		this.check.additionalData[TARGETED_ACTIONS].push(action);
 	}
 }

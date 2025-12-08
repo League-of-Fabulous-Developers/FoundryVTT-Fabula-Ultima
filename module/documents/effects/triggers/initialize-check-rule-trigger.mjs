@@ -6,7 +6,7 @@ const fields = foundry.data.fields;
 
 /**
  * @extends RuleTriggerDataModel
- * @property {String} identifier The id of the item
+ * @property {Set<CheckType>} checkTypes
  * @inheritDoc
  */
 export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
@@ -24,7 +24,7 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			identifier: new fields.StringField(),
+			checkTypes: new fields.SetField(new fields.StringField()),
 		});
 		return schema;
 	}
@@ -42,14 +42,27 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		switch (context.event.configuration.check.type) {
+		/** @type {CheckType} **/
+		const checkType = context.event.configuration.check.type;
+
+		// Support only specific check types
+		switch (checkType) {
 			case 'accuracy':
 			case 'magic':
 			case 'display': {
+				// If we are filtering by check types, and it's not there.
+				if (this.checkTypes.size > 0 && !this.checkTypes.has(checkType)) {
+					return false;
+				}
+				// If this RE is on an item, and it doesn't match the item in the event.
 				if (context.item) {
 					if (context.event.sourceInfo.itemUuid === context.sourceInfo.itemUuid) {
 						return true;
 					}
+				}
+				// If not on an item, will apply to all items
+				else {
+					return true;
 				}
 			}
 		}

@@ -13,6 +13,7 @@ import { getSelected } from '../helpers/target-handler.mjs';
  * @property {Number} amount
  * @property {String} resourceType
  * @property {Boolean} uncapped
+ * @property {Boolean} gain
  * @extends PipelineRequest
  * @inheritDoc
  */
@@ -20,7 +21,8 @@ export class ResourceRequest extends PipelineRequest {
 	constructor(sourceInfo, targets, resourceType, amount, uncapped = false) {
 		super(sourceInfo, targets);
 		this.resourceType = resourceType;
-		this.amount = Math.abs(amount);
+		this.gain = amount >= 0;
+		this.amount = amount;
 		this.uncapped = uncapped;
 	}
 
@@ -205,10 +207,11 @@ async function processLoss(request) {
 
 	const updates = [];
 	console.debug(`Applying loss from request with traits: ${[...request.traits].join(', ')}`);
+	const amount = Math.abs(request.amount);
 	for (const actor of request.targets) {
 		const incomingLossMultiplier = actor.system.multipliers.incomingLoss[request.resourceType] || 1;
 		const incomingLossBonus = actor.system.bonuses.incomingLoss[request.resourceType] || 0;
-		const amountLost = -Math.max(0, Math.floor((request.amount + incomingLossBonus) * incomingLossMultiplier));
+		const amountLost = -Math.max(0, Math.floor((amount + incomingLossBonus) * incomingLossMultiplier));
 
 		if (request.isMetaCurrency) {
 			const currentValue = foundry.utils.getProperty(actor.system, request.attributeValuePath) || 0;
@@ -249,7 +252,7 @@ async function processLoss(request) {
 			}),
 		);
 	}
-	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin));
+	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, amount, request.origin));
 	return Promise.all(updates);
 }
 
@@ -371,7 +374,7 @@ async function prompt(request) {
 
 function getTargetedAction(request) {
 	const resourceIcon = FU.resourceIcons[request.resourceType];
-	const tooltip = StringUtils.localize(request.amount > 0 ? 'FU.ChatResourceGainTooltip' : 'FU.ChatResourceLossTooltip', {
+	const tooltip = StringUtils.localize(request.gain ? 'FU.ChatResourceGainTooltip' : 'FU.ChatResourceLossTooltip', {
 		amount: request.amount,
 		resource: StringUtils.localize(FU.resources[request.resourceType]),
 	});
@@ -381,6 +384,7 @@ function getTargetedAction(request) {
 		sourceInfo: request.sourceInfo,
 	})
 		.requiresOwner()
+		.setFlag(request.gain ? Flags.ChatMessage.ResourceGain : Flags.ChatMessage.ResourceLoss)
 		.withSelected();
 }
 
