@@ -46,9 +46,9 @@ const initHrZero = (hrZero) => (check) => {
  * @property {Number} hr The high roll
  * @property {DamageType} type
  * @property {BonusDamage[]} modifiers
- * @property {Number} modifierTotal
  * @property {String} extra An expression to evaluate to add extra damage
  * @property {Boolean} hrZero Whether to treat the high roll as zero
+ * @property {String[]|null} traits
  */
 export class DamageData {
 	constructor(data = {}) {
@@ -59,6 +59,17 @@ export class DamageData {
 		if (!this.hrZero) {
 			this.hrZero = false;
 		}
+		if (!this.hr) {
+			this.hr = 0;
+		}
+	}
+
+	static construct(type, amount) {
+		let data = new DamageData({
+			type: type,
+		});
+		data.addModifier('FU.Amount', amount);
+		return data;
 	}
 
 	/**

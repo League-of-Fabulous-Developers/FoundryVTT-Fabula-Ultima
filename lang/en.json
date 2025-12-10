@@ -1682,6 +1682,8 @@
 		"Image": "Image",
 		"Asset": "Asset",
 		"Volume": "Volume",
-		"Macro": "Macro"
+		"Macro": "Macro",
+		"OnApply": "On Apply",
+		"OnRoll": "On Roll"
 	}
 }

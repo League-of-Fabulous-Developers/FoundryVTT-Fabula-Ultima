@@ -2,7 +2,7 @@ import { FUHooks } from '../hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Pipeline, PipelineContext, PipelineRequest } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { CheckConfiguration, DamageData } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
@@ -578,7 +578,7 @@ function onRenderChatMessage(message, html) {
 			const actor = await fromUuid(dataset.id);
 			const fields = InlineHelper.fromBase64(dataset.fields);
 			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
-			const damageData = fields.damageData;
+			const damageData = new DamageData(fields.damageData);
 			const targets = [actor];
 			const request = new DamageRequest(sourceInfo, targets, damageData, {});
 			return process(request);
@@ -670,6 +670,21 @@ async function promptApply(request) {
 	});
 }
 
+/**
+ * @param {DamageData} damageData *
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {TargetAction}
+ */
+function getTargetedAction(damageData, sourceInfo) {
+	const icon = FU.affIcon[damageData.type];
+	return new TargetAction('applyDamage', icon, 'FU.ChatApplyDamageTooltip', {
+		damageData: damageData,
+		sourceInfo: sourceInfo,
+	})
+		.setFlag(Flags.ChatMessage.Damage)
+		.requiresOwner();
+}
+
 // TODO: Memoize if needed
 /**
  * @type {Record<Number, Function<Number>>}
@@ -708,4 +723,5 @@ export const DamagePipeline = {
 	initialize,
 	process,
 	promptApply,
+	getTargetedAction,
 };

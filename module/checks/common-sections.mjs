@@ -10,6 +10,7 @@ import { TextEditor } from '../helpers/text-editor.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
 import { CommonEvents } from './common-events.mjs';
+import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -247,17 +248,10 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 			// TODO: Refactor
 			// Damage action
 			if (isDamage) {
-				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
-				actions.push(
-					new TargetAction('applyDamage', 'fas fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: checkData,
-						damage: damageData,
-					}).requiresOwner(),
-				);
-
+				actions.push(DamagePipeline.getTargetedAction(damageData));
+				// TODO: Remove
 				selectedActions.push(
 					new TargetAction('applyDamageSelected', 'fas fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: checkData,
 						damage: damageData,
 					}),
 				);
