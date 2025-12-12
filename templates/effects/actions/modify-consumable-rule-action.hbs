@@ -1,0 +1,9 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Bonus'}}</span>
+	<input type="text" name="{{pfuConcat path ".bonus"}}" value="{{ action.bonus }}" />
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Multiplier'}}</span>
+	<input type="number" step="0.1" name="{{pfuConcat path ".multiplier"}}" value="{{ action.multiplier }}" />
+</label>

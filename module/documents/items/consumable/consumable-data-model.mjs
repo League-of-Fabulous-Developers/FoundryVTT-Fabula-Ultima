@@ -10,26 +10,18 @@ import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ResourcePipeline, ResourceRequest } from '../../../pipelines/resource-pipeline.mjs';
 import { InlineSourceInfo } from '../../../helpers/inline-helper.mjs';
 import { DamagePipeline } from '../../../pipelines/damage-pipeline.mjs';
+import { Checks } from '../../../checks/checks.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
+import { ConsumableTraits } from '../../../pipelines/traits.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof ConsumableDataModel) {
 		/** @type ConsumableDataModel **/
-		const consumable = item.system;
 
 		CommonSections.tags(sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
 		CommonSections.description(sections, item.system.description, item.system.summary.value);
 		const config = CheckConfiguration.configure(check);
-		const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
-		if (consumable.resource.enabled) {
-			const request = new ResourceRequest(sourceInfo, config.getTargets(), consumable.resource.type, consumable.resource.amount);
-			config.addTargetedAction(ResourcePipeline.getTargetedAction(request));
-		}
-		if (consumable.damage.enabled) {
-			for (const type of consumable.damage.types) {
-				const data = DamageData.construct(type, consumable.damage.amount);
-				config.addTargetedAction(DamagePipeline.getTargetedAction(data, sourceInfo));
-			}
-		}
+
 		const targets = config.getTargetsOrDefault();
 		CommonSections.targeted(sections, actor, item, targets, flags, config);
 		const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
@@ -58,6 +50,18 @@ export class BasicDamageDataModel extends foundry.abstract.DataModel {
 }
 
 /**
+ * @typedef {"damage", "restore"} FUConsumableAction
+
+ */
+
+/**
+ * @property {FUConsumableAction} action
+ * @property {Number} amount
+ * @property {FUResourceType} resourceType
+ */
+export class ConsumableBuilder {}
+
+/**
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
@@ -66,18 +70,64 @@ export class BasicDamageDataModel extends foundry.abstract.DataModel {
  * @property {string} source.value
  * @property {BasicDamageDataModel} damage
  * @property {ResourceDataModel} resource
+ * @property {Set<String>} traits
  */
 export class ConsumableDataModel extends FUSubTypedItemDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, NumberField, EmbeddedDataField, SetField, StringField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			ipCost: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
 			damage: new EmbeddedDataField(BasicDamageDataModel, {}),
 			resource: new EmbeddedDataField(ResourceDataModel, {}),
+			traits: new SetField(new StringField()),
 		});
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.ipCostField, ItemPartialTemplates.behaviorField, ItemPartialTemplates.damageBasic, ItemPartialTemplates.resource];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.ipCostField, ItemPartialTemplates.behaviorField, ItemPartialTemplates.damageBasic, ItemPartialTemplates.resource, ItemPartialTemplates.traits];
+	}
+
+	get traitOptions() {
+		return FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k);
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		return Checks.display(this.parent.actor, this.parent, this.#initializeCheck(modifiers));
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeCheck(modifiers) {
+		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			const consumable = item.system;
+			const targets = config.getTargetsOrDefault();
+			const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+
+			let builder = new ConsumableBuilder();
+			if (consumable.resource.enabled) {
+				builder.action = 'resource';
+				builder.amount = consumable.resource.amount;
+				builder.resourceType = consumable.resource.type;
+				await CommonEvents.createConsumable(actor, item, targets, builder);
+				const request = new ResourceRequest(sourceInfo, targets, consumable.resource.type, builder.amount);
+				config.addTargetedAction(ResourcePipeline.getTargetedAction(request));
+			}
+			if (consumable.damage.enabled) {
+				builder.action = 'damage';
+				builder.amount = consumable.damage.amount;
+				await CommonEvents.createConsumable(actor, item, targets, builder);
+				for (const type of consumable.damage.types) {
+					const data = DamageData.construct(type, builder.amount);
+					config.addTargetedAction(DamagePipeline.getTargetedAction(data, sourceInfo));
+				}
+			}
+		};
 	}
 }

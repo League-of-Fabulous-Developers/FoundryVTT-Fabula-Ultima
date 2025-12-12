@@ -236,12 +236,13 @@ export default class FoundryUtils {
 
 	/**
 	 * @param {Record<String, String>} record
+	 * @param {((key: string, value: string) => string)} labelSelector
 	 * @returns {{label: *, value: *}[]}
 	 * @remarks Maps the localized values (by convention) as the labels, and the keys as the values.
 	 */
-	static getFormOptions(record) {
+	static getFormOptions(record, labelSelector = undefined) {
 		return Object.entries(record).map(([key, value]) => ({
-			label: StringUtils.localize(value),
+			label: StringUtils.localize(labelSelector ? labelSelector(key, value) : value),
 			value: key,
 		}));
 	}

@@ -6,6 +6,18 @@
  * @remarks Automatically converted to kebab case.
  * @remarks These are generally used by items and inline actions.
  */
+export const ConsumableTraits = Object.freeze({
+	Potion: 'potion',
+	ElementalShard: 'elemental-shard',
+	Magisphere: 'magisphere',
+	Infusion: 'infusion',
+});
+
+/**
+ * @description A list of traits supported by the damage pipeline
+ * @remarks Automatically converted to kebab case.
+ * @remarks These are generally used by items and inline actions.
+ */
 export const DamageTraits = Object.freeze({
 	IgnoreResistances: 'ignore-resistances',
 	IgnoreImmunities: 'ignore-immunities',

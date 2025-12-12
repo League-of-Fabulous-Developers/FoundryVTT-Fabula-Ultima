@@ -795,6 +795,15 @@ FU.expenseSource = {
 };
 
 /**
+ * @typedef {"damage" | "resource" | "effect" } FUConsumableAction
+ */
+FU.consumableAction = {
+	damage: 'FU.Damage',
+	resource: 'FU.Resource',
+	effect: 'FU.Effect',
+};
+
+/**
  * @typedef {"odd" | "even"} FUCheckResult
  */
 

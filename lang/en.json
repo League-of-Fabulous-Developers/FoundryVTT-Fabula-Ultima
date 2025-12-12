@@ -1624,6 +1624,7 @@
 		"RuleActionUpdateToken": "Update Token",
 		"RuleActionPlaySoundEffect": "Play Sound Effect",
 		"RuleActionExecuteMacro": "Execute Macro",
+		"RuleActionModifyConsumable": "Modify Consumable",
 		"RuleTrigger": "Rule Trigger",
 		"RuleTriggerCombat": "Combat",
 		"RuleTriggerAttack": "Attack",
@@ -1639,6 +1640,7 @@
 		"RuleTriggerCalculateDamage": "Calculate Damage",
 		"RuleTriggerToggle": "Toggle",
 		"RuleTriggerNotify": "Notify",
+		"RuleTriggerCreateConsumable": "Create Consumable",
 		"RulePredicates": "Rule Predicates",
 		"RulePredicateBond": "Bond",
 		"RulePredicateFactionRelation": "Faction Relation",
@@ -1684,6 +1686,8 @@
 		"Volume": "Volume",
 		"Macro": "Macro",
 		"OnApply": "On Apply",
-		"OnRoll": "On Roll"
+		"OnRoll": "On Roll",
+		"Multiplier": "Multiplier",
+		"Targeting": "Targeting"
 	}
 }

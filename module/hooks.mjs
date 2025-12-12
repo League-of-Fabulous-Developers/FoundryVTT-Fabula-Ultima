@@ -212,4 +212,10 @@ export const FUHooks = {
 	 * @remarks Uses {@link NotificationEvent}
 	 */
 	EFFECT_TOGGLED_EVENT: 'projectfu.events.effectToggled',
+	/**
+	 * @description Dispatched when a consumable is created.
+	 * @example callback(event)
+	 * @remarks Uses {@link CreateConsumableEvent}
+	 */
+	CONSUMABLE_CREATE_EVENT: 'projectfu.events.consumables.create',
 };

@@ -1,6 +1,6 @@
 import { systemId } from '../helpers/system-utils.mjs';
 import { SETTINGS } from '../settings.js';
-import { FUHooks } from '../hooks.mjs';
+import { FUHooks as FUhooks, FUHooks } from '../hooks.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 
 import { CombatEventRuleTrigger } from '../documents/effects/triggers/combat-event-rule-trigger.mjs';
@@ -45,6 +45,8 @@ import { PlaySoundEffectRuleAction } from '../documents/effects/actions/play-sou
 import { ExecuteMacroRuleAction } from '../documents/effects/actions/execute-macro-rule-action.mjs';
 import { RenderCheckRuleTrigger } from '../documents/effects/triggers/render-check-rule-trigger.mjs';
 import { InitializeCheckRuleTrigger } from '../documents/effects/triggers/initialize-check-rule-trigger.mjs';
+import { ModifyConsumableRuleAction } from '../documents/effects/actions/modify-consumable-rule-action.mjs';
+import { CreateConsumableRuleTrigger } from '../documents/effects/triggers/create-consumable-rule-trigger.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -61,6 +63,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, RenderCheckRuleTrigger.TYPE, RenderCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, NotificationRuleTrigger.TYPE, NotificationRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ToggleRuleTrigger.TYPE, ToggleRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, CreateConsumableRuleTrigger.TYPE, CreateConsumableRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -76,6 +79,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, UpdateTokenRuleAction.TYPE, UpdateTokenRuleAction);
 	RuleActionRegistry.instance.register(systemId, PlaySoundEffectRuleAction.TYPE, PlaySoundEffectRuleAction);
 	RuleActionRegistry.instance.register(systemId, ExecuteMacroRuleAction.TYPE, ExecuteMacroRuleAction);
+	RuleActionRegistry.instance.register(systemId, ModifyConsumableRuleAction.TYPE, ModifyConsumableRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);
@@ -158,6 +162,14 @@ async function onStatusEvent(event) {
  */
 async function onInitializeCheckEvent(event) {
 	await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, []);
+}
+
+/**
+ * @param {CreateConsumableEvent} event
+ * @returns {Promise<void>}
+ */
+async function onCreateConsumableEvent(event) {
+	await evaluate(FUHooks.CONSUMABLE_CREATE_EVENT, event, event.source, event.targets);
 }
 
 /**
@@ -275,6 +287,7 @@ function initialize() {
 	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
 	AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);
 	AsyncHooks.on(FUHooks.INITIALIZE_CHECK_EVENT, onInitializeCheckEvent);
+	AsyncHooks.on(FUhooks.CONSUMABLE_CREATE_EVENT, onCreateConsumableEvent);
 }
 
 export const RuleElements = Object.freeze({

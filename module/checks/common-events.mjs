@@ -618,6 +618,27 @@ function toggleEffect(actor, uuid, enabled) {
 	Hooks.call(FUHooks.EFFECT_TOGGLED_EVENT, event);
 }
 
+/**
+ * @typedef CreateConsumableEvent
+ * @property {CharacterInfo} source
+ * @property {ConsumableDataModel} consumable
+ * @property {ConsumableBuilder} builder
+ * @property {CharacterInfo[]} targets
+ */
+
+async function createConsumable(actor, item, targetData, builder) {
+	const source = CharacterInfo.fromActor(actor);
+	const targets = CharacterInfo.fromTargetData(targetData);
+	/** @type CreateConsumableEvent  **/
+	const event = {
+		source: source,
+		consumable: item.system,
+		builder: builder,
+		targets: targets,
+	};
+	await AsyncHooks.callSequential(FUHooks.CONSUMABLE_CREATE_EVENT, event);
+}
+
 export const CommonEvents = Object.freeze({
 	attack,
 	damage,
@@ -641,6 +662,7 @@ export const CommonEvents = Object.freeze({
 	calculateDamage,
 	notify,
 	toggleEffect,
+	createConsumable,
 });
 
 // Helpers

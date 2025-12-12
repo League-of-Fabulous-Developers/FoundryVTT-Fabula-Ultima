@@ -335,6 +335,10 @@ function evaluateVariables(expression, context) {
 				context.assertEffect(match);
 				return context.effect.system.rules.progress.current;
 			}
+			// Target Count
+			case 'tc': {
+				return context.targets.length;
+			}
 			// Target status count
 			case 'tsc': {
 				context.assertActor(match);
