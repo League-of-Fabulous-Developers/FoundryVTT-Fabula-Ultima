@@ -4,7 +4,6 @@ import { FU } from '../../../helpers/config.mjs';
  * @description Used when rolls are performed.
  * @property {Set<String>} values
  * @property {FUPredicateQuantifier} quantifier
- * @property {Record<String, String>} entries
  */
 export class TraitsDataModel extends foundry.abstract.DataModel {
 	/**
@@ -26,21 +25,38 @@ export class TraitsDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
-	get options() {
-		return this.schema.options?.options ?? {};
-	}
-
 	/**
-	 * @returns {SetIterator<String>}
+	 * @param {Iterable<String>} traits
 	 */
-	get selected() {
-		return this.values.values();
-	}
+	evaluate(traits) {
+		if (this.values.length === 0) {
+			return true;
+		}
+		switch (this.quantifier) {
+			case 'any':
+				for (const t of traits) {
+					if (this.values.has(t)) {
+						return true;
+					}
+				}
+				return false;
 
-	/**
-	 * @returns {boolean}
-	 */
-	get assigned() {
-		return this.values.length > 0;
+			case 'all':
+				for (const t of traits) {
+					if (!this.values.has(t)) {
+						return false;
+					}
+				}
+				return false;
+
+			case 'none':
+				for (const t of traits) {
+					if (this.values.has(t)) {
+						return false;
+					}
+				}
+				return true;
+		}
+		return false;
 	}
 }

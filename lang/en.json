@@ -1649,6 +1649,7 @@
 		"RulePredicateWeapon": "Weapon",
 		"RulePredicateResource": "Resource",
 		"RulePredicateTargeting": "Targeting",
+		"RulePredicateTraits": "Traits",
 		"AccuracyCheckRule": "Accuracy Check Rule",
 		"Type": "Type",
 		"Mode": "Mode",

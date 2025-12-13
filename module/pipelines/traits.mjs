@@ -38,6 +38,7 @@ export const DamageTraits = Object.freeze({
  * @remarks These are generally used by items and inline actions.
  */
 export const Traits = Object.freeze({
+	...ConsumableTraits,
 	...DamageTraits,
 });
 

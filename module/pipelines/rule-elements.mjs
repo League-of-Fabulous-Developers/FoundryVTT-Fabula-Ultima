@@ -47,6 +47,7 @@ import { RenderCheckRuleTrigger } from '../documents/effects/triggers/render-che
 import { InitializeCheckRuleTrigger } from '../documents/effects/triggers/initialize-check-rule-trigger.mjs';
 import { ModifyConsumableRuleAction } from '../documents/effects/actions/modify-consumable-rule-action.mjs';
 import { CreateConsumableRuleTrigger } from '../documents/effects/triggers/create-consumable-rule-trigger.mjs';
+import { TraitsRulePredicate } from '../documents/effects/predicates/traits-rule-predicate.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -88,6 +89,7 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, WeaponRulePredicate.TYPE, WeaponRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, ResourceRulePredicate.TYPE, ResourceRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, TargetingRulePredicate.TYPE, TargetingRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, TraitsRulePredicate.TYPE, TraitsRulePredicate);
 }
 
 /**

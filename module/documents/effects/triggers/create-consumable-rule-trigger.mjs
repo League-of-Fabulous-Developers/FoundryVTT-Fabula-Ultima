@@ -47,14 +47,6 @@ export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		// TODO: Use the data model..
-		if (this.traits.assigned) {
-			for (const trait of this.traits.selected) {
-				if (!context.event.consumable.traits.has(trait)) {
-					return false;
-				}
-			}
-		}
-		return true;
+		return this.traits.evaluate(context.event.consumable.traits);
 	}
 }
