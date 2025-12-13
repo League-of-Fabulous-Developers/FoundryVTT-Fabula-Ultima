@@ -1,0 +1,13 @@
+<div class="fu-rule-element__group">
+	<div class="fu-rule-element__property">
+		<span>{{localize 'FU.Traits'}}</span>
+		{{formGroup model.schema.fields.values value=model.values name=(pfuConcat path ".values") options=traitOptions classes="fu-rule-element__set stacked"}}
+	</div>
+
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Quantifier'}}</span>
+		<select name="{{pfuConcat path ".quantifier"}}">
+			{{selectOptions quantifierOptions selected=model.quantifier localize=true}}
+		</select>
+	</label>
+</div>

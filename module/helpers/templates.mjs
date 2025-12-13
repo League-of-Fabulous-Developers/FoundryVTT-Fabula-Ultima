@@ -51,6 +51,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/common/active-effects.hbs',
 			'systems/projectfu/templates/common/fieldset-toggle.hbs',
 			'systems/projectfu/templates/common/auto-complete.hbs',
+			'systems/projectfu/templates/common/traits.hbs',
 
 			// Effects
 			'systems/projectfu/templates/effects/active-effect-details.hbs',

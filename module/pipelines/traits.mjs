@@ -11,6 +11,8 @@ export const ConsumableTraits = Object.freeze({
 	ElementalShard: 'elemental-shard',
 	Magisphere: 'magisphere',
 	Infusion: 'infusion',
+	Damage: 'damage',
+	Restore: 'restore',
 });
 
 /**

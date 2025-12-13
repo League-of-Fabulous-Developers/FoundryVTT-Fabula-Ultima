@@ -1,12 +1,15 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
+import { ConsumableTraits } from '../../../pipelines/traits.mjs';
 
 const fields = foundry.data.fields;
 
 /**
  * @extends RuleTriggerDataModel
- * @property {Set<String>} traits
+ * @property {TraitsDataModel} traits
  * @inheritDoc
  */
 export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
@@ -24,7 +27,9 @@ export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			traits: new fields.SetField(new fields.StringField()),
+			traits: new fields.EmbeddedDataField(TraitsDataModel, {
+				options: FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k),
+			}),
 		});
 		return schema;
 	}
@@ -42,8 +47,9 @@ export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (this.traits.size > 0) {
-			for (const trait of this.traits.values()) {
+		// TODO: Use the data model..
+		if (this.traits.assigned) {
+			for (const trait of this.traits.selected) {
 				if (!context.event.consumable.traits.has(trait)) {
 					return false;
 				}

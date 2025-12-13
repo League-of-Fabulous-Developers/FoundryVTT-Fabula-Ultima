@@ -7,7 +7,7 @@ const fields = foundry.data.fields;
 
 /**
  * @property {String} bonus
- * @property {Number} multiplier
+ * @property {String} multiplier
  */
 export class ModifyConsumableRuleAction extends RuleActionDataModel {
 	/** @inheritdoc */
@@ -25,7 +25,7 @@ export class ModifyConsumableRuleAction extends RuleActionDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			bonus: new fields.StringField({ blank: true, nullable: false }),
-			multiplier: new fields.NumberField({ blank: true, nullable: false }),
+			multiplier: new fields.StringField({ blank: true, nullable: false }),
 		});
 	}
 
@@ -46,13 +46,14 @@ export class ModifyConsumableRuleAction extends RuleActionDataModel {
 		// TODO: Do different things based on the item traits?
 		if (context.event.builder) {
 			let amount = context.event.builder.amount;
+			const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, context.targetActors);
 			if (this.bonus) {
-				const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, []);
-				const evaluatedBonus = await Expressions.evaluateAsync(this.bonus, expressionContext);
-				amount += evaluatedBonus;
+				const evalBonus = await Expressions.evaluateAsync(this.bonus, expressionContext);
+				amount += evalBonus;
 			}
-			if (this.multiplier !== 0) {
-				amount *= this.multiplier;
+			if (this.multiplier) {
+				const evalMultiplier = await Expressions.evaluateAsync(this.multiplier, expressionContext);
+				amount *= evalMultiplier;
 			}
 			context.event.builder.amount = amount;
 		}

@@ -1,5 +1,6 @@
 import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
+import { FU } from './config.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -158,6 +159,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
+		Handlebars.registerHelper('pfuTraits', traits);
 	},
 });
 
@@ -256,6 +258,20 @@ function autoComplete(context) {
 					name: dataset.name,
 					value: dataset.value,
 					options: options,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+function traits(model, path) {
+	const template = Handlebars.partials[systemTemplatePath('common/traits')];
+	const html =
+		typeof template === 'function'
+			? template({
+					model: model,
+					path: path,
+					traitOptions: model.schema.options?.options ?? {},
+					quantifierOptions: FU.predicateQuantifier,
 				})
 			: '';
 	return new Handlebars.SafeString(html);
