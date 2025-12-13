@@ -2,7 +2,7 @@
 // TODO: Add character traits, etc..
 
 /**
- * @description A list of traits supported by the damage pipeline
+ * @description A list of traits supported by items
  * @remarks Automatically converted to kebab case.
  * @remarks These are generally used by items and inline actions.
  */
@@ -13,6 +13,15 @@ export const ConsumableTraits = Object.freeze({
 	Infusion: 'infusion',
 	Damage: 'damage',
 	Restore: 'restore',
+});
+
+/**
+ * @description A list of traits supported by items
+ * @remarks Automatically converted to kebab case.
+ * @remarks These are generally used by items and inline actions.
+ */
+export const CharacterTraits = Object.freeze({
+	Flying: 'flying',
 });
 
 /**

@@ -28,12 +28,6 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			amount: new fields.StringField({ blank: true }),
-			damageType: new fields.StringField({
-				initial: '',
-				choices: Object.keys(FU.damageTypes),
-				blank: true,
-				nullable: false,
-			}),
 			damageTypes: new fields.SetField(new fields.StringField()),
 		});
 	}

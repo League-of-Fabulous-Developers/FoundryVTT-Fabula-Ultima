@@ -3,6 +3,8 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { Traits } from '../../../pipelines/traits.mjs';
+import { TraitsDataModel } from '../../items/common/traits-predicate-data-model.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -25,7 +27,9 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			traits: new fields.SetField(new fields.StringField()),
+			traits: new fields.EmbeddedDataField(TraitsDataModel, {
+				options: FoundryUtils.getFormOptions(Traits, (k, v) => k),
+			}),
 			mode: new fields.StringField({
 				initial: 'add',
 				choices: Object.keys(FU.changeSetMode),
@@ -43,7 +47,7 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 	}
 
 	async execute(context, selected) {
-		const values = this.traits.map((t) => Traits[t]);
+		const values = this.traits.values();
 		if (context.type === FUHooks.CALCULATE_DAMAGE_EVENT) {
 			/** @type CalculateDamageEvent **/
 			const event = context.event;

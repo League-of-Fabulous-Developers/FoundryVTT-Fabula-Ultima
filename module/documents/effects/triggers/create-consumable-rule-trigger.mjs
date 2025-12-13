@@ -1,7 +1,7 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
-import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
+import { TraitsPredicateDataModel } from '../../items/common/traits-predicate-data-model.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 import { ConsumableTraits } from '../../../pipelines/traits.mjs';
 
@@ -9,7 +9,7 @@ const fields = foundry.data.fields;
 
 /**
  * @extends RuleTriggerDataModel
- * @property {TraitsDataModel} traits
+ * @property {TraitsPredicateDataModel} traits
  * @inheritDoc
  */
 export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
@@ -27,7 +27,7 @@ export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			traits: new fields.EmbeddedDataField(TraitsDataModel, {
+			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
 				options: FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k),
 			}),
 		});

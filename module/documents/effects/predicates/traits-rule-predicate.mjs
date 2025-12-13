@@ -1,6 +1,6 @@
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
-import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
+import { TraitsPredicateDataModel } from '../../items/common/traits-predicate-data-model.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 import { Traits } from '../../../pipelines/traits.mjs';
 import { FUHooks } from '../../../hooks.mjs';
@@ -8,7 +8,7 @@ import { FUHooks } from '../../../hooks.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @property {TraitsDataModel} traits
+ * @property {TraitsPredicateDataModel} traits
  */
 export class TraitsRulePredicate extends RulePredicateDataModel {
 	static {
@@ -17,7 +17,7 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			traits: new fields.EmbeddedDataField(TraitsDataModel, {
+			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
 				options: FoundryUtils.getFormOptions(Traits, (k, v) => k),
 			}),
 		});
