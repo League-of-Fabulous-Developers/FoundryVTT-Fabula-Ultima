@@ -37,7 +37,7 @@
                 <!-- Actions -->
                 {{#each ../actions as |action|}}
 					{{#if (or (not action.owner) (and action.owner target.isOwner))}}
-						<span class="fu-tags" style="flex: 0 1 auto;padding: 2px;">
+						<span class="fu-tags fu-target-action">
 							<a data-action="{{name}}"
 							   data-id="{{target.uuid}}"
 							   data-fields="{{fields}}"
@@ -46,7 +46,7 @@
 								{{/each}}
 							   data-tooltip="{{localize tooltip}}">
 								<span class='fu-tag button flex-group-center' style="font-size: 1rem;">
-									<i class="icon {{icon}}" style="{{#if color}}color: {{color}};{{/if}}"></i>
+									<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
 								</span>
 							</a>
 						</span>
@@ -66,7 +66,7 @@
 		   data-tooltip="{{localize tooltip}}">
             <span class='fu-tag button flex-group-center gap-5'
 				  style="width: 100%;white-space: nowrap;">
-				{{~localize 'FU.ChatApplySelected'}}<i class="icon {{icon}}" style="{{#if color}}color: {{color}};{{/if}}"></i>
+				{{~localize 'FU.ChatApplySelected'}}<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
 			</span>
         </a>
     </div>

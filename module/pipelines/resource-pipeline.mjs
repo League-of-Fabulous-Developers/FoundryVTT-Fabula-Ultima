@@ -331,7 +331,7 @@ function onRenderChatMessage(message, html) {
 		const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 		const amount = fields.amount;
 		const type = fields.type;
-		const targets = Pipeline.getTargetsFromAction(dataset);
+		const targets = await Pipeline.getTargetsFromAction(dataset);
 		const request = new ResourceRequest(sourceInfo, targets, type, amount, {});
 		return process(request);
 	});

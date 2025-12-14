@@ -1,0 +1,9 @@
+.fu-target-action {
+	flex: 0 1;
+	padding: 1px;
+}
+
+.fu-target-action__icon {
+	width: 16px;
+	height: 16px;
+}

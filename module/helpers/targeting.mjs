@@ -77,6 +77,7 @@ async function filterTargetsByRule(actor, item, targets) {
  * @property {Boolean} owner Whether this action can only be applied the owner
  * @property {String|undefined} flag
  * @property {DOMStringMap|undefined} dataset
+ * @property {String} style
  * @property {String} color
  * @property {Boolean} selected Whether this action can be used on selected tokens instead.
  * @remarks Expects an action handler where dataset.id is a reference to an actor
@@ -127,11 +128,20 @@ export class TargetAction {
 	}
 
 	/**
-	 * @param color
+	 * @param {String} color
 	 * @return {TargetAction}
 	 */
 	withColor(color) {
 		this.color = color;
+		return this;
+	}
+
+	/**
+	 * @param {String} style
+	 * @returns {TargetAction}
+	 */
+	withStyle(style) {
+		this.style = style;
 		return this;
 	}
 }

@@ -35,6 +35,7 @@
 @import 'css/features/gourmet/index.css';
 @import 'css/features/invoker/index.css';
 @import 'css/components/rule-element.css';
+@import 'css/components/targeting.css';
 
 @import 'css/app/_index.css';
 @import 'css/actor/_index.css';

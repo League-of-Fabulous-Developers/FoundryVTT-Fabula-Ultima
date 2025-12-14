@@ -45,6 +45,52 @@
 	--icon-fu-monster: url('../../static/icons/monster.svg');
 	--icon-fu-plant: url('../../static/icons/plant.svg');
 	--icon-fu-undead: url('../../static/icons/undead.svg');
+
+	--icon-fu--air: url('../../static/icons/affinities/air.png');
+	--icon-fu--bolt: url('../../static/icons/affinities/bolt.png');
+	--icon-fu--dark: url('../../static/icons/affinities/dark.png');
+	--icon-fu--earth: url('../../static/icons/affinities/earth.png');
+	--icon-fu--fire: url('../../static/icons/affinities/fire.png');
+	--icon-fu--ice: url('../../static/icons/affinities/ice.png');
+	--icon-fu--light: url('../../static/icons/affinities/light.png');
+	--icon-fu--physical: url('../../static/icons/affinities/physical.png');
+	--icon-fu--poison: url('../../static/icons/affinities/poison.png');
+}
+
+.fu-air {
+	background-image: var(--icon-fu--air);
+}
+
+.fu-bolt {
+	background-image: var(--icon-fu--bolt);
+}
+
+.fu-dark {
+	background-image: var(--icon-fu--dark);
+}
+
+.fu-earth {
+	background-image: var(--icon-fu--earth);
+}
+
+.fu-fire {
+	background-image: var(--icon-fu--fire);
+}
+
+.fu-ice {
+	background-image: var(--icon-fu--ice);
+}
+
+.fu-light {
+	background-image: var(--icon-fu--light);
+}
+
+.fu-physical {
+	background-image: var(--icon-fu--physical);
+}
+
+.fu-poison {
+	background-image: var(--icon-fu--poison);
 }
 
 .fu-fp {

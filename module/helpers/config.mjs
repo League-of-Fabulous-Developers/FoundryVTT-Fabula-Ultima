@@ -75,8 +75,8 @@ FU.damageTypes = {
  * @type {Object<DamageType, string>}
  */
 FU.affIcon = {
-	physical: 'fua fu-phys',
-	air: 'fua fu-wind',
+	physical: 'fua fu-physical',
+	air: 'fua fu-air',
 	bolt: 'fua fu-bolt',
 	dark: 'fua fu-dark',
 	earth: 'fua fu-earth',
@@ -99,7 +99,7 @@ FU.allIcon = {
 	club: 'is-club',
 	heart: 'is-heart',
 	spade: 'is-spade',
-	physical: 'fua fu-phys',
+	physical: 'fua fu-physical',
 	air: 'fua fu-wind',
 	bolt: 'fua fu-bolt',
 	dark: 'fua fu-dark',

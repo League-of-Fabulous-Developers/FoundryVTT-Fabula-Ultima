@@ -126,7 +126,7 @@ function getSingleTarget(event) {
 
 /**
  * @param {DOMStringMap} dataset
- * @return {FUActor[]}
+ * @return {Promise<FUActor[]>}
  */
 async function getTargetsFromAction(dataset) {
 	let targets = [];

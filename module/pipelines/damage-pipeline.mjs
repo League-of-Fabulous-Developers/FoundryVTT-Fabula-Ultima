@@ -576,7 +576,7 @@ function onRenderChatMessage(message, html) {
 			const fields = InlineHelper.fromBase64(dataset.fields);
 			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 			const damageData = new DamageData(fields.damageData);
-			const targets = Pipeline.getTargetsFromAction(dataset);
+			const targets = await Pipeline.getTargetsFromAction(dataset);
 			const request = new DamageRequest(sourceInfo, targets, damageData, {});
 			return process(request);
 		});
