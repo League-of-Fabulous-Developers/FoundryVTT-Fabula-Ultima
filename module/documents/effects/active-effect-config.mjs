@@ -7,7 +7,7 @@ import { RuleElementDataModel } from './rule-element-data-model.mjs';
 import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
 import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
-import { ConsumableTraits, TraitUtils } from '../../pipelines/traits.mjs';
+import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 
 RuleElements.register();
@@ -167,7 +167,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						targetSelector: FU.targetSelector,
 						checkResult: FU.checkResult,
 						checkOutcome: FU.checkOutcome,
-						traits: TraitUtils.getOptions(),
+						traits: TraitUtils.getOptions(Traits),
 						changeSetMode: FU.changeSetMode,
 						booleanOption: FU.booleanOption,
 						collectionChange: FU.collectionChange,

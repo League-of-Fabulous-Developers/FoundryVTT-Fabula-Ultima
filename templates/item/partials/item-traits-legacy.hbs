@@ -8,7 +8,7 @@
 	</legend>
 
 	<div style="background: var(--color-background); border-style: inset; border-width: thin; padding: 4px; width: 100%;">
-		{{pfuTraits system.traits 'system.traits' showLabel=false}}
+		{{formGroup system.schema.fields.traits value=system.traits options=damageTraitOptions classes="resource-label-m stacked"}}
 	</div>
 </fieldset>
 

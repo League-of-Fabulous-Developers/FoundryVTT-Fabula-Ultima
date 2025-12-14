@@ -1,6 +1,6 @@
 import { CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
-import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
@@ -238,6 +238,7 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 
 	if (isTargeted) {
 		const isDamage = checkData && damageData;
+		const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 
 		sections.push(async function () {
 			/** @type {TargetAction[]} **/
@@ -248,13 +249,7 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 			// TODO: Refactor
 			// Damage action
 			if (isDamage) {
-				actions.push(DamagePipeline.getTargetedAction(damageData));
-				// TODO: Remove
-				selectedActions.push(
-					new TargetAction('applyDamageSelected', 'fas fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						damage: damageData,
-					}),
-				);
+				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo));
 
 				function onRoll() {
 					for (const target of targets) {

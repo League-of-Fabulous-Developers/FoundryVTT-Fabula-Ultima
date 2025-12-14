@@ -1,8 +1,7 @@
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { TraitsPredicateDataModel } from '../../items/common/traits-predicate-data-model.mjs';
-import FoundryUtils from '../../../helpers/foundry-utils.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
+import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;
@@ -18,7 +17,7 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
-				options: FoundryUtils.getFormOptions(Traits, (k, v) => k),
+				options: TraitUtils.getOptions(Traits),
 			}),
 		});
 	}
@@ -40,7 +39,7 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 		if (context.type === FUHooks.CONSUMABLE_CREATE_EVENT) {
 			/** @type CreateConsumableEvent **/
 			const cre = context.event;
-			_traits = cre.consumable.traits;
+			_traits = cre.consumable.traits.selected;
 		}
 		// If the event has an item reference, check it for traits
 		else if (context.event.item?.traits) {

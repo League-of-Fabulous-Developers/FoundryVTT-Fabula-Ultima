@@ -549,7 +549,6 @@ function onRenderChatMessage(message, html) {
 		};
 
 		html.querySelectorAll(`a[data-action="applyDamage"]`).forEach((element) => element.addEventListener('click', (event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage)));
-		html.querySelector(`a[data-action="applyDamageSelected"]`)?.addEventListener('click', (event) => handleClick(event, getSelected, applyDefaultDamage, customizeDamage));
 		html.querySelector(`a[data-action="selectDamageCustomizer"]`)?.addEventListener('click', async (event) => {
 			event.preventDefault();
 			if (!disabled) {
@@ -574,12 +573,10 @@ function onRenderChatMessage(message, html) {
 	// If not using the check API
 	else {
 		Pipeline.handleClick(message, html, 'applyDamage', async (dataset) => {
-			/** @type {FUActor} **/
-			const actor = await fromUuid(dataset.id);
 			const fields = InlineHelper.fromBase64(dataset.fields);
 			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 			const damageData = new DamageData(fields.damageData);
-			const targets = [actor];
+			const targets = Pipeline.getTargetsFromAction(dataset);
 			const request = new DamageRequest(sourceInfo, targets, damageData, {});
 			return process(request);
 		});

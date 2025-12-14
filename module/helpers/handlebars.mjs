@@ -263,7 +263,8 @@ function autoComplete(context) {
 	return new Handlebars.SafeString(html);
 }
 
-function traits(model, path) {
+function traits(model, path, options) {
+	options = options.hash;
 	const template = Handlebars.partials[systemTemplatePath('common/traits')];
 	const html =
 		typeof template === 'function'
@@ -272,6 +273,7 @@ function traits(model, path) {
 					path: path,
 					traitOptions: model.schema.options?.options ?? {},
 					quantifierOptions: FU.predicateQuantifier,
+					showLabel: options.showLabel ?? true,
 				})
 			: '';
 	return new Handlebars.SafeString(html);

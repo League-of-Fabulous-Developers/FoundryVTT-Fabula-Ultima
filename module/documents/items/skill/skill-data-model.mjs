@@ -317,7 +317,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	get attributePartials() {
 		return [
 			ItemPartialTemplates.standard,
-			ItemPartialTemplates.traits,
+			ItemPartialTemplates.traitsLegacy,
 			ItemPartialTemplates.classField,
 			ItemPartialTemplates.actionCost,
 			ItemPartialTemplates.skillAttributes,

@@ -2,7 +2,7 @@ import { Effects, onManageActiveEffect, prepareActiveEffectCategories } from '..
 import { Checks } from '../checks/checks.mjs';
 import * as CONFIG from '../helpers/config.mjs';
 import { FU, systemPath } from '../helpers/config.mjs';
-import { Traits } from '../pipelines/traits.mjs';
+import { DamageTraits, Traits, TraitUtils } from '../pipelines/traits.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
 import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
@@ -126,10 +126,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		switch (partId) {
 			case 'header':
 				context.traits = Object.keys(Traits);
-				context.traitOptions = context.traits.map((key) => ({
-					label: key,
-					value: key,
-				}));
+				context.damageTraitOptions = TraitUtils.getOptions(DamageTraits);
 				break;
 
 			case 'tabs':

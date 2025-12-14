@@ -11,8 +11,9 @@ import { ResourcePipeline, ResourceRequest } from '../../../pipelines/resource-p
 import { InlineSourceInfo } from '../../../helpers/inline-helper.mjs';
 import { DamagePipeline } from '../../../pipelines/damage-pipeline.mjs';
 import { Checks } from '../../../checks/checks.mjs';
-import FoundryUtils from '../../../helpers/foundry-utils.mjs';
-import { ConsumableTraits } from '../../../pipelines/traits.mjs';
+import { ConsumableTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+
+import { TraitsDataModel } from '../common/traits-data-model.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof ConsumableDataModel) {
@@ -70,25 +71,23 @@ export class ConsumableBuilder {}
  * @property {string} source.value
  * @property {BasicDamageDataModel} damage
  * @property {ResourceDataModel} resource
- * @property {Set<String>} traits
+ * @property {TraitsDataModel} traits
  */
 export class ConsumableDataModel extends FUSubTypedItemDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, EmbeddedDataField, SetField, StringField } = foundry.data.fields;
+		const { SchemaField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			ipCost: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
 			damage: new EmbeddedDataField(BasicDamageDataModel, {}),
 			resource: new EmbeddedDataField(ResourceDataModel, {}),
-			traits: new SetField(new StringField()),
+			traits: new EmbeddedDataField(TraitsDataModel, {
+				options: TraitUtils.getOptions(ConsumableTraits),
+			}),
 		});
 	}
 
 	get attributePartials() {
 		return [ItemPartialTemplates.standard, ItemPartialTemplates.ipCostField, ItemPartialTemplates.behaviorField, ItemPartialTemplates.damageBasic, ItemPartialTemplates.resource, ItemPartialTemplates.traits];
-	}
-
-	get traitOptions() {
-		return FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k);
 	}
 
 	/**

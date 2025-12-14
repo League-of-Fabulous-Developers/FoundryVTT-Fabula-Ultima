@@ -128,7 +128,7 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 * @override
 	 */
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.traits, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.traitsLegacy, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality];
 	}
 
 	/**

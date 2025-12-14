@@ -1,22 +1,17 @@
-{{#if model.quantifier}}
-	<div class="fu-rule-element__group">
-		<div class="fu-rule-element__property">
-			<span>{{localize 'FU.Traits'}}</span>
-			{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-rule-element__set stacked"}}
-		</div>
-
-		<label class="fu-rule-element__property">
-			<span>{{localize 'FU.Quantifier'}}</span>
-			<select name="{{pfuConcat path ".quantifier"}}">
-				{{selectOptions quantifierOptions selected=model.quantifier localize=true}}
-			</select>
-		</label>
-	</div>
-{{else}}
-	<div class="fu-rule-element__property">
+<div class="fu-rule-element__property">
+	{{#if showLabel}}
 		<span>{{localize 'FU.Traits'}}</span>
-		{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-rule-element__set stacked"}}
-	</div>
+	{{/if}}
+	{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-rule-element__set stacked"}}
+</div>
+
+{{#if model.quantifier}}
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Quantifier'}}</span>
+		<select name="{{pfuConcat path ".quantifier"}}">
+			{{selectOptions quantifierOptions selected=model.quantifier localize=true}}
+		</select>
+	</label>
 {{/if}}
 
 

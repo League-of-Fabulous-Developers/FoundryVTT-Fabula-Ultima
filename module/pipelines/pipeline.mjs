@@ -7,6 +7,7 @@
 
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { getSelected } from '../helpers/target-handler.mjs';
 
 /**
  * @property {InlineSourceInfo} sourceInfo
@@ -124,6 +125,21 @@ function getSingleTarget(event) {
 }
 
 /**
+ * @param {DOMStringMap} dataset
+ * @return {FUActor[]}
+ */
+async function getTargetsFromAction(dataset) {
+	let targets = [];
+	if (dataset.id) {
+		const actor = await fromUuid(dataset.id);
+		targets.push(actor);
+	} else {
+		targets = await getSelected();
+	}
+	return targets;
+}
+
+/**
  * @param {ChatMessage} message
  * @param {HTMLElement} html
  * @param {String} actionName - The name of the data-action, e.g: "roll"
@@ -208,4 +224,5 @@ export const Pipeline = {
 	toggleFlag,
 	setFlag,
 	initializedFlags,
+	getTargetsFromAction,
 };

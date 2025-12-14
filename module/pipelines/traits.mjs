@@ -64,8 +64,13 @@ export const TraitUtils = Object.freeze({
 			show: true,
 		}));
 	},
-	getOptions() {
-		return Object.keys(Traits).map((key) => ({
+
+	/**
+	 * @param {Record<String, String>} traits
+	 * @returns {{label: *, value: *}[]}
+	 */
+	getOptions(traits) {
+		return Object.keys(traits).map((key) => ({
 			label: key,
 			value: key,
 		}));

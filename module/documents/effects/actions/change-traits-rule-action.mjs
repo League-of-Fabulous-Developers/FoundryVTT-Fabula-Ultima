@@ -3,8 +3,8 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { Traits } from '../../../pipelines/traits.mjs';
-import { TraitsDataModel } from '../../items/common/traits-predicate-data-model.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 
 const fields = foundry.data.fields;
 
