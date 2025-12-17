@@ -9,6 +9,12 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
+ * @typedef UpdateResourceData
+ * @property {Number} amount
+ * @property {String} type
+ */
+
+/**
  * @property {Number} amount
  * @property {String} resourceType
  * @property {Boolean} uncapped

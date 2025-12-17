@@ -30,6 +30,7 @@ export const ItemPartialTemplates = Object.freeze({
 	attackDamage: { template: systemTemplatePath('item/partials/item-attack-damage'), group: 'grid' },
 	traits: { template: systemTemplatePath('item/partials/item-traits'), group: 'grid' },
 	traitsLegacy: { template: systemTemplatePath('item/partials/item-traits-legacy'), group: 'grid' },
+	effects: { template: systemTemplatePath('item/partials/item-effect-application-section'), group: 'grid' },
 
 	opportunityField: { template: systemTemplatePath('item/partials/item-opportunity-field') },
 	initiativeField: { template: systemTemplatePath('item/partials/item-initiative-field') },

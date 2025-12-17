@@ -13,6 +13,7 @@ const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
+const RESOURCE = 'resource';
 const TRAITS = 'traits';
 const WEAPON_TRAITS = 'weaponTraits';
 const LABEL_KEY = 'label';
@@ -144,6 +145,31 @@ class CheckInspector {
 			raw.hr = this.getHighRoll();
 			raw.hrZero = this.getHrZero();
 			return new DamageData(foundry.utils.duplicate(raw));
+		}
+		return null;
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasDamage() {
+		return this.check.additionalData[DAMAGE] !== undefined;
+	}
+
+	/**
+	 * @returns {DamageData}
+	 */
+	get damage() {
+		return this.check.additionalData[DAMAGE];
+	}
+
+	/**
+	 * @returns {UpdateResourceData}
+	 */
+	getResource() {
+		const data = this.#check.additionalData[RESOURCE];
+		if (data) {
+			return data;
 		}
 		return null;
 	}
@@ -287,17 +313,16 @@ class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @returns {Boolean}
+	 * @param {FUResourceType} type
+	 * @param {Number} amount
+	 * @return {CheckConfigurer}
 	 */
-	get hasDamage() {
-		return this.check.additionalData[DAMAGE] !== undefined;
-	}
-
-	/**
-	 * @returns {DamageData}
-	 */
-	get damage() {
-		return this.check.additionalData[DAMAGE];
+	setResource(type, amount) {
+		this.check.additionalData[RESOURCE] = {
+			type: type,
+			amount: amount,
+		};
+		return this;
 	}
 
 	/**
@@ -441,13 +466,6 @@ class CheckConfigurer extends CheckInspector {
 	modifyTargetedDefense(callback) {
 		const targetedDefense = this.check.additionalData[TARGETED_DEFENSE] ?? null;
 		return this.setTargetedDefense(callback(targetedDefense));
-	}
-
-	/**
-	 * @return {Defense|null}
-	 */
-	getTargetedDefense() {
-		return this.check.additionalData[TARGETED_DEFENSE] ?? null;
 	}
 
 	/**

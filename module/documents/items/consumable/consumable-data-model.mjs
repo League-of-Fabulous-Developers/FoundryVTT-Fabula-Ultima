@@ -7,7 +7,6 @@ import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
-import { ResourcePipeline, ResourceRequest } from '../../../pipelines/resource-pipeline.mjs';
 import { InlineSourceInfo } from '../../../helpers/inline-helper.mjs';
 import { DamagePipeline } from '../../../pipelines/damage-pipeline.mjs';
 import { Checks } from '../../../checks/checks.mjs';
@@ -56,7 +55,6 @@ export class BasicDamageDataModel extends foundry.abstract.DataModel {
  */
 
 /**
- * @property {FUConsumableAction} action
  * @property {Number} amount
  * @property {FUResourceType} resourceType
  */
@@ -115,8 +113,7 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 				builder.amount = consumable.resource.amount;
 				builder.resourceType = consumable.resource.type;
 				await CommonEvents.createConsumable(actor, item, targets, builder);
-				const request = new ResourceRequest(sourceInfo, targets, consumable.resource.type, builder.amount);
-				config.addTargetedAction(ResourcePipeline.getTargetedAction(request));
+				config.setResource(consumable.resource.type, builder.amount);
 			}
 			if (consumable.damage.enabled) {
 				builder.action = 'damage';

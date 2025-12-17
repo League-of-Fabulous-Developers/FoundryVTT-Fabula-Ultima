@@ -17,6 +17,8 @@ import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
+import { ResourceDataModel } from '../common/resource-data-model.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -57,6 +59,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
  * @property {DamageDataModel} damage
+ * @property {ResourceDataModel} resource
  * @property {ImprovisedDamageDataModel} impdamage
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
@@ -85,6 +88,8 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			damage: new EmbeddedDataField(DamageDataModel, {}),
+			resource: new EmbeddedDataField(ResourceDataModel, {}),
+			effects: new EmbeddedDataField(EffectApplicationDataModel, {}),
 			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
@@ -121,8 +126,19 @@ export class SpellDataModel extends FUStandardItemDataModel {
 		if (this.hasRoll.value) {
 			return Checks.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
 		} else {
-			return Checks.display(this.parent.actor, this.parent);
+			return Checks.display(this.parent.actor, this.parent, this.#initializeMagicDisplay(modifiers));
 		}
+	}
+
+	#initializeMagicDisplay(modifiers) {
+		return async (check, actor, item) => {
+			/** @type SpellDataModel **/
+			const spell = item.system;
+			if (spell.resource.enabled) {
+				const config = CheckConfiguration.configure(check);
+				config.setResource(spell.resource.type, spell.resource.amount);
+			}
+		};
 	}
 
 	/**
@@ -182,6 +198,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.targeting,
 			ItemPartialTemplates.legacyAccuracy,
 			ItemPartialTemplates.legacyDamage,
+			ItemPartialTemplates.resource,
 			ItemPartialTemplates.behaviorField,
 		];
 	}

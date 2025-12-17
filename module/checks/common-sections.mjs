@@ -1,7 +1,7 @@
 import { CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
-import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
+import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
@@ -244,7 +244,13 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 			/** @type {TargetAction[]} **/
 			let actions = [];
 			actions.push(Targeting.defaultAction);
-			let selectedActions = [];
+
+			// Resource action
+			const resourceData = inspector.getResource();
+			if (resourceData) {
+				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, resourceData.amount);
+				actions.push(ResourcePipeline.getTargetedAction(request));
+			}
 
 			// TODO: Refactor
 			// Damage action
@@ -279,7 +285,8 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 				}
 			}
 
-			// Additional actions
+			// Selected actions
+			let selectedActions = [];
 			if (inspector) {
 				for (const action of inspector.getTargetedActions()) {
 					actions.push(action);
