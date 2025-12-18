@@ -10,7 +10,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @typedef UpdateResourceData
- * @property {Number} amount
+ * @property {Number|String} amount
  * @property {String} type
  */
 

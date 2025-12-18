@@ -206,7 +206,7 @@ const opportunity = (sections, opportunity, order) => {
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targetData
- * @param {Object} flags
+ * @param {Map} flags
  * @param {CheckInspector} inspector
  */
 const targeted = (sections, actor, item, targetData, flags, inspector = undefined) => {
@@ -251,7 +251,7 @@ const targeted = (sections, actor, item, targetData, flags, inspector = undefine
 			const resourceData = inspector.getResource();
 			if (resourceData) {
 				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targetData);
-				const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
+				const amount = await Expressions.evaluateAsync(resourceData.amount, expressionContext);
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, amount);
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}
@@ -288,15 +288,10 @@ const targeted = (sections, actor, item, targetData, flags, inspector = undefine
 					onRoll();
 				}
 			}
-
-			// Selected actions
-			let selectedActions = [];
+			// Remaining actions
 			if (inspector) {
 				for (const action of inspector.getTargetedActions()) {
 					actions.push(action);
-					if (action.selected) {
-						selectedActions.push(action);
-					}
 				}
 			}
 
@@ -325,7 +320,7 @@ const targeted = (sections, actor, item, targetData, flags, inspector = undefine
 					rule: rule,
 					targets: targetData,
 					actions: actions,
-					selectedActions: selectedActions,
+					selectedActions: actions.filter((a) => a.selected),
 				},
 			};
 		});
