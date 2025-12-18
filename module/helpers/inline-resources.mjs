@@ -30,11 +30,22 @@ const inlineLossEnricher = {
 	onRender: onRender,
 };
 
+function getCurrencyLocalizationKey() {
+	return game.settings.get('projectfu', 'optionRenameCurrency') || 'FU.Zenit';
+}
+
 function createReplacementElement(amount, type, elementClass, uncapped, tooltip, label) {
 	if (type in FU.resources) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
-		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount} ${type})`);
+
+		let typeName = game.i18n.localize(FU.resourcesAbbr[type]);
+		if (type === 'zenit') {
+			const currencyKey = getCurrencyLocalizationKey();
+			typeName = game.i18n.localize(currencyKey);
+		}
+
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount} ${typeName})`);
 
 		// Used to enable over-healing
 		if (uncapped === true) {
@@ -55,7 +66,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 			// AMOUNT
 			InlineHelper.appendAmountToAnchor(anchor, amount);
 			// TYPE
-			anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
+			anchor.append(` ${typeName}`);
 		}
 		// ICON
 		const icon = document.createElement('i');
