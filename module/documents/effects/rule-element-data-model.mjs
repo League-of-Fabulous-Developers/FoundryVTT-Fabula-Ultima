@@ -196,9 +196,10 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 
 	/**
 	 * @returns {String}
+	 * @remarks Used by handlebars templates.
 	 */
 	get header() {
-		return `${StringUtils.localize(this.trigger.schema.model.localization)}`;
+		return StringUtils.localize(this.trigger.schema.model.localization);
 	}
 }
 

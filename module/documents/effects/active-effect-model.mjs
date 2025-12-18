@@ -22,7 +22,6 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 	 */
 	static get metadata() {
 		return {
-			...super.metadata,
 			embedded: {
 				ruleElement: 'system.rules.elements',
 			},
