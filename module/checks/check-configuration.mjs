@@ -314,7 +314,7 @@ class CheckConfigurer extends CheckInspector {
 
 	/**
 	 * @param {FUResourceType} type
-	 * @param {Number} amount
+	 * @param {String} amount
 	 * @return {CheckConfigurer}
 	 */
 	setResource(type, amount) {

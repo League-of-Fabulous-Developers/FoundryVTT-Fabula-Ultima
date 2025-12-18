@@ -9,6 +9,7 @@ import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
 import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
 import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 RuleElements.register();
 
@@ -279,9 +280,13 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	static async #deleteRuleElement(event, target) {
 		const { id } = target.dataset;
 		console.debug(`Deleting rule element ${id}`);
-		const ruleElement = this.document.system.rules.elements.get(id);
-		if (ruleElement) {
-			await ruleElement.delete();
+		/** @type RuleElementDataModel **/
+		const re = this.document.system.rules.elements.get(id);
+		if (re) {
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: re.localization }));
+			if (confirm) {
+				await re.delete();
+			}
 		}
 	}
 
@@ -291,9 +296,12 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 * @returns {Promise<void>}
 	 */
 	static async #clearRuleElements(event, target) {
-		const { type } = target.dataset;
-		await TypedCollectionField.addModel(this.document.system.rules.elements, type, this.document);
-		console.debug(this.document.system.rules.elements);
+		const confirm = await FoundryUtils.confirmDialog('FU.Clear', `FU.DialogClearMessage`);
+		if (confirm) {
+			await this.document.update({
+				'system.rules.==elements': {},
+			});
+		}
 	}
 
 	/**
@@ -330,7 +338,11 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const { id, actionId } = target.dataset;
 		console.debug(`Removing rule action ${actionId} from ${id}`);
 		const re = this.document.system.getRuleElement(id);
-		await re.removeRuleAction(actionId);
+		const action = re.getAction(actionId);
+		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: action.localization }));
+		if (confirm) {
+			await re.removeRuleAction(actionId);
+		}
 	}
 
 	/**
@@ -354,7 +366,11 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const { id, predicateId } = target.dataset;
 		console.debug(`Removing rule predicate ${predicateId} from ${id}`);
 		const re = this.document.system.getRuleElement(id);
-		await re.removeRulePredicate(predicateId);
+		const predicate = re.getPredicate(predicateId);
+		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: predicate.localization }));
+		if (confirm) {
+			await re.removeRulePredicate(predicateId);
+		}
 	}
 
 	_onChangeForm(formConfig, event) {

@@ -1,4 +1,5 @@
 import { FU } from '../../helpers/config.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 const { DocumentIdField, StringField } = foundry.data.fields;
 
@@ -13,6 +14,7 @@ const { DocumentIdField, StringField } = foundry.data.fields;
 /**
  * A special subclass of data model that can be treated as a system-defined embedded document.
  * @property {String} id
+ * @property {String} localization
  */
 export class SubDocumentDataModel extends foundry.abstract.DataModel {
 	/**
@@ -100,6 +102,16 @@ export class SubDocumentDataModel extends foundry.abstract.DataModel {
 	 */
 	get documentName() {
 		return this.constructor.metadata.documentName;
+	}
+
+	/**
+	 * @returns {String}
+	 */
+	get localization() {
+		if (this.constructor.localization) {
+			return StringUtils.localize(this.constructor.localization);
+		}
+		return this.type;
 	}
 
 	/**

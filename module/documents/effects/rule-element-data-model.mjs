@@ -109,10 +109,26 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async removeRuleAction(id) {
-		const action = this.actions.get(id);
+		const action = this.getAction(id);
 		if (action) {
 			await action.delete();
 		}
+	}
+
+	/**
+	 * @param {String} id
+	 * @returns {RuleActionDataModel}
+	 */
+	getAction(id) {
+		return this.actions.get(id);
+	}
+
+	/**
+	 * @param {String} id
+	 * @returns {RulePredicateDataModel}
+	 */
+	getPredicate(id) {
+		return this.predicates.get(id);
 	}
 
 	/**

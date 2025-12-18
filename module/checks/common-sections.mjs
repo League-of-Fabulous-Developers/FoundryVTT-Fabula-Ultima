@@ -11,6 +11,7 @@ import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
 import { CommonEvents } from './common-events.mjs';
 import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -204,12 +205,12 @@ const opportunity = (sections, opportunity, order) => {
  * @param {CheckRenderData} sections
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {TargetData[]} targets
+ * @param {TargetData[]} targetData
  * @param {Object} flags
  * @param {CheckInspector} inspector
  */
-const targeted = (sections, actor, item, targets, flags, inspector = undefined) => {
-	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
+const targeted = (sections, actor, item, targetData, flags, inspector = undefined) => {
+	const isTargeted = targetData?.length > 0 || !Targeting.STRICT_TARGETING;
 
 	let checkData;
 	let damageData;
@@ -239,6 +240,7 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 	if (isTargeted) {
 		const isDamage = checkData && damageData;
 		const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+		const targets = Targeting.deserializeTargetData(targetData);
 
 		sections.push(async function () {
 			/** @type {TargetAction[]} **/
@@ -248,7 +250,9 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 			// Resource action
 			const resourceData = inspector.getResource();
 			if (resourceData) {
-				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, resourceData.amount);
+				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targetData);
+				const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
+				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, amount);
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}
 
@@ -258,11 +262,11 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo));
 
 				function onRoll() {
-					for (const target of targets) {
+					for (const target of targetData) {
 						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 					}
 					// For any hit targets, attempt to apply damage
-					const hitTargets = targets.filter((t) => t.result === 'hit');
+					const hitTargets = targetData.filter((t) => t.result === 'hit');
 					if (hitTargets.length > 0) {
 						if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
 							const traits = inspector.getTraits();
@@ -306,9 +310,9 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 			let rule;
 			if (item.system.targeting) {
 				rule = item.system.targeting.rule ?? Targeting.rule.multiple;
-				targets = await Targeting.filterTargetsByRule(actor, item, targets);
+				targetData = await Targeting.filterTargetsByRule(actor, item, targetData);
 			} else {
-				rule = targets?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
+				rule = targetData?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
 			}
 
 			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
@@ -319,7 +323,7 @@ const targeted = (sections, actor, item, targets, flags, inspector = undefined) 
 				data: {
 					retarget: true,
 					rule: rule,
-					targets: targets,
+					targets: targetData,
 					actions: actions,
 					selectedActions: selectedActions,
 				},

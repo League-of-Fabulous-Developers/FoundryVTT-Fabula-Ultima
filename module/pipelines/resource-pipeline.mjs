@@ -23,6 +23,13 @@ import { StringUtils } from '../helpers/string-utils.mjs';
  * @inheritDoc
  */
 export class ResourceRequest extends PipelineRequest {
+	/**
+	 * @param {InlineSourceInfo} sourceInfo
+	 * @param {FUActor[]} targets
+	 * @param {FUResourceType} resourceType
+	 * @param {Number} amount
+	 * @param {Boolean} uncapped
+	 */
 	constructor(sourceInfo, targets, resourceType, amount, uncapped = false) {
 		super(sourceInfo, targets);
 		this.resourceType = resourceType;
