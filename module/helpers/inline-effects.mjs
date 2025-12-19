@@ -4,6 +4,7 @@ import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
@@ -36,7 +37,7 @@ const enricher = {
 function createEffectAnchor(effect, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
-	anchor.dataset.effect = InlineHelper.toBase64(effect);
+	anchor.dataset.effect = StringUtils.toBase64(effect);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 	const icon = document.createElement('i');
@@ -49,10 +50,10 @@ function createEffectAnchor(effect, label) {
 function createCompendiumEffectAnchor(effect, config, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
-	anchor.dataset.effect = InlineHelper.toBase64(effect);
+	anchor.dataset.effect = StringUtils.toBase64(effect);
 	anchor.dataset.uuid = effect.uuid;
 	anchor.dataset.fuid = effect.parent.system.fuid;
-	anchor.dataset.config = InlineHelper.toBase64(config);
+	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 	InlineHelper.appendImage(anchor, effect.img);
@@ -74,7 +75,7 @@ function createStatusAnchor(effectValue, status, config) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
 	anchor.dataset.status = effectValue;
-	anchor.dataset.config = InlineHelper.toBase64(config);
+	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	const localizedName = game.i18n.localize(status.name);
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
@@ -147,7 +148,7 @@ async function inlineEffectEnricher(match, options) {
 		}
 
 		// TODO: Deprecate someday
-		const decodedEffect = InlineHelper.fromBase64(id);
+		const decodedEffect = StringUtils.fromBase64(id);
 		if (decodedEffect && decodedEffect.name && decodedEffect.changes) {
 			return createEffectAnchor(decodedEffect, label);
 		}
@@ -166,9 +167,9 @@ async function onRender(element) {
 	const sourceInfo = InlineHelper.determineSource(document, target);
 	const dataset = target.dataset;
 
-	const effectData = InlineHelper.fromBase64(dataset.effect);
+	const effectData = StringUtils.fromBase64(dataset.effect);
 	const status = dataset.status;
-	const config = InlineHelper.fromBase64(dataset.config);
+	const config = StringUtils.fromBase64(dataset.config);
 
 	// Click handler
 	element.addEventListener('click', async function (event) {
@@ -198,8 +199,8 @@ async function onRender(element) {
 		const data = {
 			type: INLINE_EFFECT,
 			sourceInfo: sourceInfo,
-			config: InlineHelper.fromBase64(dataset.config),
-			effect: InlineHelper.fromBase64(dataset.effect),
+			config: StringUtils.fromBase64(dataset.config),
+			effect: StringUtils.fromBase64(dataset.effect),
 			status: dataset.status,
 		};
 
@@ -220,7 +221,7 @@ async function onRender(element) {
 				effectData = { ...statusEffect, statuses: [status] };
 			}
 		} else {
-			effectData = InlineHelper.fromBase64(dataset.effect);
+			effectData = StringUtils.fromBase64(dataset.effect);
 		}
 
 		if (effectData) {

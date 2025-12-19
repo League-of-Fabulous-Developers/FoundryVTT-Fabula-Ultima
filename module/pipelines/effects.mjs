@@ -1,6 +1,6 @@
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
@@ -231,7 +231,7 @@ function canBeRemoved(effect) {
 
 // Helper function to generate the @EFFECT format string
 function formatEffect(effect) {
-	const encodedEffect = InlineHelper.toBase64(effect.toJSON());
+	const encodedEffect = StringUtils.toBase64(effect.toJSON());
 	return `@EFFECT[${encodedEffect}]`;
 }
 
@@ -725,7 +725,7 @@ function onRenderChatMessage(message, element) {
 
 		let sourceInfo = InlineSourceInfo.none;
 		if (dataset.fields) {
-			const fields = InlineHelper.fromBase64(dataset.fields);
+			const fields = StringUtils.fromBase64(dataset.fields);
 			if (fields.sourceInfo) {
 				sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 			}

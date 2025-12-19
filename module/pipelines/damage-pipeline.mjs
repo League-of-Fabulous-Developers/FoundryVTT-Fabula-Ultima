@@ -5,7 +5,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CheckConfiguration, DamageData } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
@@ -573,7 +573,7 @@ function onRenderChatMessage(message, html) {
 	// If not using the check API
 	else {
 		Pipeline.handleClick(message, html, 'applyDamage', async (dataset) => {
-			const fields = InlineHelper.fromBase64(dataset.fields);
+			const fields = StringUtils.fromBase64(dataset.fields);
 			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 			const damageData = new DamageData(fields.damageData);
 			const targets = await Pipeline.getTargetsFromAction(dataset);

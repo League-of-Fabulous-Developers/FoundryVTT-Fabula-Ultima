@@ -4,7 +4,6 @@ import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { Expressions } from '../expressions/expressions.mjs';
 import { ChatMessageHelper } from './chat-message-helper.mjs';
-import { StringUtils } from './string-utils.mjs';
 
 /**
  * @description Information about a lookup for the source of an inline element
@@ -252,14 +251,6 @@ function appendVariableToAnchor(anchor, key, expression, localization = 'FU.Vari
 	}
 }
 
-function toBase64(value) {
-	return StringUtils.toBase64(value);
-}
-
-function fromBase64(base64) {
-	return StringUtils.fromBase64(base64);
-}
-
 /**
  * @typedef InlineEventListener
  * @param {ChatMessage|Document} document  The ChatMessage document being rendered.
@@ -447,8 +438,6 @@ export const InlineHelper = {
 	appendImage,
 	appendVectorIcon,
 	appendVariableToAnchor,
-	toBase64,
-	fromBase64,
 	registerCommand,
 	compose,
 	propertyPattern,

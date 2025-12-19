@@ -1,6 +1,6 @@
 import { Pipeline, PipelineRequest } from './pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
@@ -340,7 +340,7 @@ function onRenderChatMessage(message, html) {
 
 	Pipeline.handleClick(message, html, 'updateResource', async (dataset) => {
 		/** @type {FUActor} **/
-		const fields = InlineHelper.fromBase64(dataset.fields);
+		const fields = StringUtils.fromBase64(dataset.fields);
 		const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 		const amount = fields.amount;
 		const type = fields.type;

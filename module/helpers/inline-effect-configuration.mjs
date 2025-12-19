@@ -1,8 +1,8 @@
 import { FU } from './config.mjs';
-import { InlineHelper } from './inline-helper.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import FUApplication from '../ui/application.mjs';
 import { FUActiveEffectConfig } from '../documents/effects/active-effect-config.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 /*
 possible changes from official effects:
@@ -314,7 +314,7 @@ export class InlineEffectConfiguration extends FUApplication {
 			if (this.#object.type === 'guided') {
 				const effectData = { ...this.#object.guided };
 				effectData.changes = (effectData.changes ?? []).flatMap((value) => SUPPORTED_CHANGE_TYPES[value.type].toChange(value));
-				const encodedEffect = InlineHelper.toBase64(effectData);
+				const encodedEffect = StringUtils.toBase64(effectData);
 				this.#dispatch(this.#state.tr.insertText(` @EFFECT[${encodedEffect}] `));
 			}
 			if (this.#object.type === 'custom') {
@@ -341,7 +341,7 @@ export class InlineEffectConfiguration extends FUApplication {
 				if (sheet.wasSubmitted) {
 					const effectData = sheet.document.toObject();
 					delete effectData._id;
-					const encodedEffect = InlineHelper.toBase64(effectData);
+					const encodedEffect = StringUtils.toBase64(effectData);
 					dispatch(state.tr.insertText(` @EFFECT[${encodedEffect}] `));
 				}
 			}
