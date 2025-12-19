@@ -43,7 +43,7 @@ export class SubDocumentDataModel extends foundry.abstract.DataModel {
 	}
 
 	/** @inheritdoc */
-	renderContext() {
+	prepareRenderContext() {
 		super.prepareDerivedData();
 		if (!this.name) {
 			this.name = game.i18n.localize(`TYPES.${this.documentName}.${this.type}`);

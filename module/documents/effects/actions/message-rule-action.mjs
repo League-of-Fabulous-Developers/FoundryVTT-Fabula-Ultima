@@ -33,7 +33,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 
 	#enrichedMessage;
 
-	async renderContext(context) {
+	async prepareRenderContext(context) {
 		this.#enrichedMessage = await FoundryUtils.enrichText(this.message, {
 			relativeTo: context.actor,
 		});

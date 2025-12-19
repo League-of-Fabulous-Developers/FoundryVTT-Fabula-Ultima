@@ -54,12 +54,6 @@ export class RuleActionDataModel extends SubDocumentDataModel {
 	async execute(context, selected) {
 		throw new Error('Not implemented');
 	}
-
-	/**
-	 * @param {Object} context
-	 * @virtual
-	 */
-	async renderContext(context) {}
 }
 
 /**

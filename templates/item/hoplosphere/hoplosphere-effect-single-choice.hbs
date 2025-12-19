@@ -2,6 +2,6 @@
 <label class="resource-label-sm">
 	{{localize templateData.label}}
 	<select name="{{fieldPrefix}}.{{templateData.name}}" class="resource-inputs select-dropdown-full">
-		{{selectOptions templateData.qualifiedChoices selected=(lookup effect templateData.name) localize=true}}
+		{{selectOptions templateData.choices selected=(lookup effect templateData.name) localize=true}}
 	</select>
 </label>

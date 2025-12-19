@@ -56,14 +56,6 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 		});
 	}
 
-	static migrateData(source) {
-		if (source.trigger.selector) {
-			source.selector = source.trigger.selector;
-			delete source.trigger.selector;
-		}
-		return super.migrateData(source);
-	}
-
 	/**
 	 * @param {String} type
 	 */
@@ -190,7 +182,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 */
 	async prepareContext(context) {
 		for (const action of this.actions) {
-			await action.renderContext(context);
+			await action.prepareRenderContext(context);
 		}
 	}
 
@@ -198,7 +190,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 * @returns {String}
 	 * @remarks Used by handlebars templates.
 	 */
-	get header() {
+	get templateHeader() {
 		return StringUtils.localize(this.trigger.schema.model.localization);
 	}
 }
