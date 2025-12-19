@@ -40,6 +40,30 @@ function fromActor(actor) {
 }
 
 /**
+ * @param {FUActor[]} actors
+ * @returns {CharacterInfo[]}
+ */
+function fromActors(actors) {
+	return actors.map(fromActor);
+}
+
+/**
+ * @param {FUCombatant[]} combatants
+ * @returns {CharacterInfo[]}
+ */
+function fromCombatants(combatants) {
+	return combatants.map((c) => {
+		/** @type {CharacterInfo} */
+		return {
+			actor: c.actor,
+			token: c.token,
+			combatant: c,
+			disposition: resolveDisposition(c.actor, c.token),
+		};
+	});
+}
+
+/**
  * @param {FUCombatant} combatant
  * @returns {CharacterInfo}
  */
@@ -53,51 +77,29 @@ function fromCombatant(combatant) {
 	};
 }
 
+/**
+ * @param {TargetData[]} targets
+ * @returns {CharacterInfo[]}
+ */
+function fromTargetData(targets) {
+	return targets.map((t) => {
+		const actor = fromUuidSync(t.uuid);
+		const token = actor.resolveToken();
+		const disposition = resolveDisposition(actor, token);
+		/** @type {CharacterInfo} */
+		return {
+			actor: actor,
+			token: token,
+			data: t,
+			disposition: disposition,
+		};
+	});
+}
+
 export const CharacterInfo = Object.freeze({
-	/**
-	 * @param {TargetData[]} targets
-	 * @returns {CharacterInfo[]}
-	 */
-	fromTargetData(targets) {
-		return targets.map((t) => {
-			const actor = fromUuidSync(t.uuid);
-			const token = actor.resolveToken();
-			const disposition = resolveDisposition(actor, token);
-			/** @type {CharacterInfo} */
-			return {
-				actor: actor,
-				token: token,
-				data: t,
-				disposition: disposition,
-			};
-		});
-	},
-
-	fromActor: fromActor,
-
-	/**
-	 * @param {FUActor[]} actors
-	 * @returns {CharacterInfo[]}
-	 */
-	fromActors(actors) {
-		return actors.map(fromActor);
-	},
-
-	fromCombatant: fromCombatant,
-
-	/**
-	 * @param {FUCombatant[]} combatants
-	 * @returns {CharacterInfo[]}
-	 */
-	fromCombatants(combatants) {
-		return combatants.map((c) => {
-			/** @type {CharacterInfo} */
-			return {
-				actor: c.actor,
-				token: c.token,
-				combatant: c,
-				disposition: resolveDisposition(c.actor, c.token),
-			};
-		});
-	},
+	fromTargetData,
+	fromActor,
+	fromActors,
+	fromCombatant,
+	fromCombatants,
 });
