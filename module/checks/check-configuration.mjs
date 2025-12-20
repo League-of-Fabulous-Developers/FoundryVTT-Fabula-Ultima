@@ -430,8 +430,10 @@ class CheckConfigurer extends CheckInspector {
 	 * @return {CheckConfigurer}
 	 */
 	modifyDamage(callback) {
-		const damage = this.check.additionalData[DAMAGE] ?? new DamageData();
-		this.check.additionalData[DAMAGE] = callback(damage);
+		const damage = this.getDamage();
+		if (damage) {
+			this.check.additionalData[DAMAGE] = callback(damage);
+		}
 		return this;
 	}
 
