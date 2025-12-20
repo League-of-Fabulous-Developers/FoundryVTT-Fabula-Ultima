@@ -679,6 +679,7 @@ function getTargetedAction(damageData, sourceInfo) {
 		sourceInfo: sourceInfo,
 	})
 		.setFlag(Flags.ChatMessage.Damage)
+		.withSelected()
 		.requiresOwner();
 }
 

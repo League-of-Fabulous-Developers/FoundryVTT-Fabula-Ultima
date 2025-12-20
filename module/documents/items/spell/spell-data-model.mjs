@@ -166,28 +166,28 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			const spell = item.system;
 
 			if (!attributeOverride) {
-				check.primary = item.system.rollInfo.attributes.primary.value;
-				check.secondary = item.system.rollInfo.attributes.secondary.value;
+				check.primary = spell.rollInfo.attributes.primary.value;
+				check.secondary = spell.rollInfo.attributes.secondary.value;
 			}
 
 			check.modifiers.push({
 				label: 'FU.MagicCheckBaseAccuracy',
-				value: item.system.rollInfo.accuracy.value,
+				value: spell.rollInfo.accuracy.value,
 			});
 
-			check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
+			check.additionalData.hasDamage = spell.rollInfo.damage.hasDamage.value;
 
-			if (spell.damage.hasDamage.value) {
+			if (check.additionalData.hasDamage) {
 				config
-					.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
+					.setDamage(spell.rollInfo.damage.type.value, spell.rollInfo.damage.value)
 					.setDamageOverride(actor, 'spell')
 					.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
-					.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value)
-					.addTraits(item.system.rollInfo.damage.type.value);
+					.modifyHrZero((hrZero) => hrZero || spell.rollInfo.useWeapon.hrZero.value)
+					.addTraits(spell.rollInfo.damage.type.value);
 			}
 
 			// Add typical bonuses
-			config.addTraits('spell').addTraitsFromItemModel(item.system.traits).setTargetedDefense('mdef').addEffects(item.system.effects.entries);
+			config.addTraits('spell').addTraitsFromItemModel(spell.traits).setTargetedDefense('mdef').addEffects(spell.effects.entries);
 		};
 	}
 

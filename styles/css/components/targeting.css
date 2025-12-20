@@ -3,6 +3,13 @@
 	padding: 1px;
 }
 
+.fu-target-action__icon__container {
+	flex: 0 1;
+	padding: 1px;
+	font-size: 1rem;
+	width: 24px;
+}
+
 .fu-target-action__icon {
 	width: 16px;
 	height: 16px;

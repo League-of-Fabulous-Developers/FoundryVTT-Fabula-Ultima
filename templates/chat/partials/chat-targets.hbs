@@ -36,8 +36,7 @@
                 </span>
                 <!-- Actions -->
                 {{#each ../actions as |action|}}
-					{{#if (or (not action.owner) (and action.owner target.isOwner))}}
-						<span class="fu-tags fu-target-action">
+					<span class="fu-tags fu-target-action {{#unless (and action.owner target.isOwner)}}disabled{{/unless}}">
 							<a data-action="{{name}}"
 							   data-id="{{target.uuid}}"
 							   data-fields="{{fields}}"
@@ -45,7 +44,7 @@
 							   data-{{@key}}="{{this}}"
 								{{/each}}
 							   data-tooltip="{{localize tooltip}}">
-								<span class='fu-tag button flex-group-center' style="font-size: 1rem;">
+								<span class='fu-tag button flex-group-center fu-target-action__icon__container'>
 									{{#if img}}
 										<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
 									{{else}}
@@ -54,7 +53,6 @@
 								</span>
 							</a>
 						</span>
-					{{/if}}
                 {{/each}}
             </span>
         {{/each}}
@@ -68,9 +66,14 @@
 		   data-{{@key}}="{{this}}"
 			{{/each}}
 		   data-tooltip="{{localize tooltip}}">
-            <span class='fu-tag button flex-group-center gap-5'
+            <span class='fu-tag button flex-group-center gap-5 fu-target-action__icon__container'
 				  style="width: 100%;white-space: nowrap;">
-				{{~localize 'FU.ChatApplySelected'}}<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+				{{~localize 'FU.ChatApplySelected'}}
+				{{#if img}}
+					<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
+				{{else}}
+					<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+				{{/if}}
 			</span>
         </a>
     </div>
