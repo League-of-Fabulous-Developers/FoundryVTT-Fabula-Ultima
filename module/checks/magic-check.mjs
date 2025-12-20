@@ -34,22 +34,20 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 
 /**
  * Hook called to process the result of the roll
- * @param {CheckResultV2} check
- * @param {FUActor} actor
- * @param {FUItem} [item]
+ * @type ProcessCheckHook
  */
-const onProcessCheck = (check, actor, item) => {
+const onProcessCheck = (check, actor, item, registerCallback) => {
 	const { type, critical, fumble } = check;
 	if (type === 'magic') {
-		const configurer = CheckConfiguration.configure(check);
-		configurer.setTargetedDefense('mdef');
+		const config = CheckConfiguration.configure(check);
+		config.setTargetedDefense('mdef');
 		// TODO: Refactor alongside accuracy-checks
 		if (critical) {
-			configurer.addTraits('critical');
+			config.addTraits('critical');
 		} else if (fumble) {
-			configurer.addTraits('fumble');
+			config.addTraits('fumble');
 		}
-		configurer.modifyDamage((damage) => {
+		config.modifyDamage((damage) => {
 			if (damage) {
 				// All Damage
 				const globalBonus = actor.system.bonuses.damage.all;
@@ -71,6 +69,12 @@ const onProcessCheck = (check, actor, item) => {
 				}
 			}
 			return damage;
+		});
+
+		registerCallback(async (check, actor, item) => {
+			if (config.hasDamage) {
+				await CommonEvents.calculateDamage(actor, item, config);
+			}
 		});
 	}
 };

@@ -105,6 +105,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {};
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
  */
 
 /**

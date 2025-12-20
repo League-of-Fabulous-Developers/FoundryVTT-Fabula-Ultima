@@ -96,22 +96,20 @@ const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
 
 /**
  * Hook called to process the result of the roll
- * @param {CheckResultV2} check
- * @param {FUActor} actor
- * @param {FUItem} [item]
+ * @type ProcessCheckHook
  */
-const onProcessCheck = (check, actor, item) => {
+const onProcessCheck = (check, actor, item, registerCallback) => {
 	const { type, critical, fumble } = check;
 	if (type === 'accuracy') {
-		const configurer = CheckConfiguration.configure(check);
-		configurer.modifyTargetedDefense((value) => value ?? 'def');
+		const config = CheckConfiguration.configure(check);
+		config.modifyTargetedDefense((value) => value ?? 'def');
 		// TODO: Refactor alongside magic-checks
 		if (critical) {
-			configurer.addTraits('critical');
+			config.addTraits('critical');
 		} else if (fumble) {
-			configurer.addTraits('fumble');
+			config.addTraits('fumble');
 		}
-		configurer.modifyDamage((damage) => {
+		config.modifyDamage((damage) => {
 			if (damage) {
 				const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
 
@@ -142,6 +140,12 @@ const onProcessCheck = (check, actor, item) => {
 				}
 			}
 			return damage;
+		});
+
+		registerCallback(async (check, actor, item) => {
+			if (config.hasDamage) {
+				await CommonEvents.calculateDamage(actor, item, config);
+			}
 		});
 	}
 };
