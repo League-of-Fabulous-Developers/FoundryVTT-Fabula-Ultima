@@ -72,6 +72,7 @@ async function filterTargetsByRule(actor, item, targets) {
 /**
  * @property {String} name The name of the action to be used
  * @property {String} icon The font awesome icon
+ * @property {String} img An image to use
  * @property {String} tooltip The localized tooltip to use
  * @property {Object} fields The fields to use for the action's dataset
  * @property {Boolean} owner Whether this action can only be applied the owner
@@ -142,6 +143,15 @@ export class TargetAction {
 	 */
 	withStyle(style) {
 		this.style = style;
+		return this;
+	}
+
+	/**
+	 * @param {String} img
+	 * @returns {TargetAction}
+	 */
+	withImage(img) {
+		this.img = img;
 		return this;
 	}
 }

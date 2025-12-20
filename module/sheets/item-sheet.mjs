@@ -8,6 +8,7 @@ import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-tab
 import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/pseudo-document-enabled-type-data-model.mjs';
+import { ObjectUtils } from '../helpers/object-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -64,6 +65,9 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			toggleEffect: FUItemSheet.ToggleEffect,
 			copyInline: FUItemSheet.CopyInline,
 			rollEffect: FUItemSheet.RollEffect,
+			// Partials
+			addArrayElement: FUItemSheet.#addArrayElement,
+			removeArrayElement: FUItemSheet.#removeArrayElement,
 		},
 		scrollY: ['.sheet-body'],
 		position: { width: 700, height: 'auto' },
@@ -579,6 +583,46 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		const newFUID = await this.item.regenerateFUID();
 		if (newFUID) {
 			this.render();
+		}
+	}
+
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addArrayElement(event, target) {
+		const path = target.dataset.path;
+		if (path) {
+			const array = ObjectUtils.getProperty(this.item, path);
+			if (array) {
+				array.push(null);
+				await this.item.update({
+					[`${path}`]: array,
+				});
+			}
+		}
+	}
+
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeArrayElement(event, target) {
+		const path = target.dataset.path;
+		const index = Number.parseInt(target.dataset.index);
+		if (path) {
+			/** @type [] **/
+			const array = ObjectUtils.getProperty(this.item, path);
+			if (array && index) {
+				array.splice(index, 1);
+				await this.item.update({
+					[`${path}`]: array,
+				});
+			}
 		}
 	}
 

@@ -46,7 +46,11 @@
 								{{/each}}
 							   data-tooltip="{{localize tooltip}}">
 								<span class='fu-tag button flex-group-center' style="font-size: 1rem;">
-									<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+									{{#if img}}
+										<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
+									{{else}}
+										<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+									{{/if}}
 								</span>
 							</a>
 						</span>

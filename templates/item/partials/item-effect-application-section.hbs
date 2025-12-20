@@ -1,21 +1,28 @@
 <fieldset class="section-container title-fieldset desc resource-content">
-	<legend class="bond-add resource-label-m" data-tooltip="{{localize 'FU.Add'}}" data-action="addEffectEntry">
+	<legend class="resource-label-m"
+			data-tooltip="{{localize 'FU.Add'}}"
+			data-path="system.effects.entries"
+			data-action="addArrayElement">
 		<a class="flex-group-center resource-inputs resource-label-m select-dropdown-m"
 		   data-tooltip="{{localize 'FU.Effect'}}">
 			<i class="fas fa-plus icon"></i>{{localize 'FU.Effect'}}
 		</a>
 	</legend>
-	<div class="bonds resource-content grid">
-		{{#each system.effect.entries as |entry index|}}
-			<label class="fu-rule-element__property">
-				<span>{{localize 'FU.Effect'}}</span>
+	{{#each system.effects.entries as |entry index|}}
+		<div class="fu-form__array__element">
+			<label class="fu-form__array__element__input">
 				<input
 				 type="text"
-				 name="{{pfuConcat path ".effect"}}"
-				 value="{{action.effect}}"
-				 placeholder="e.g. Item.XYZ123.ActiveEffect.ABC123"
+				 name="system.effects.entries.{{index}}"
+				 value="{{entry}}"
+				 placeholder="e.g. dazed|Item.XYZ123.ActiveEffect.ABC123"
 				/>
 			</label>
-		{{/each}}
-	</div>
+			<a data-path="system.effects.entries" data-index="{{ index }}" data-action="removeArrayElement">
+				<button type="button" class="resource-inputs">
+					<i class="fas fa-xmark"></i>
+				</button>
+			</a>
+		</div>
+	{{/each}}
 </fieldset>

@@ -12,6 +12,7 @@ import { SETTINGS } from '../settings.js';
 import { CommonEvents } from './common-events.mjs';
 import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { Effects } from '../pipelines/effects.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -254,6 +255,13 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				const amount = await Expressions.evaluateAsync(resourceData.amount, expressionContext);
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, amount);
 				actions.push(ResourcePipeline.getTargetedAction(request));
+			}
+
+			const effectData = inspector.getEffects();
+			if (effectData) {
+				for (const entry of effectData.entries) {
+					actions.push(Effects.getTargetedAction(entry, sourceInfo));
+				}
 			}
 
 			// TODO: Refactor

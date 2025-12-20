@@ -147,8 +147,8 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeMagicCheck(modifiers) {
 		return async (check, actor, item) => {
-			const configure = CheckConfiguration.configure(check);
-			configure.setHrZero(modifiers.shift);
+			const config = CheckConfiguration.configure(check);
+			config.setHrZero(modifiers.shift);
 
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
@@ -157,9 +157,12 @@ export class SpellDataModel extends FUStandardItemDataModel {
 					check.primary = weapon.system.attributes.primary.value;
 					check.secondary = weapon.system.attributes.secondary.value;
 					attributeOverride = true;
-					configure.addWeaponAccuracy(weapon.system);
+					config.addWeaponAccuracy(weapon.system);
 				}
 			}
+
+			/** @type SpellDataModel **/
+			const spell = item.system;
 
 			if (!attributeOverride) {
 				check.primary = item.system.rollInfo.attributes.primary.value;
@@ -173,15 +176,17 @@ export class SpellDataModel extends FUStandardItemDataModel {
 
 			check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
 
+			if (spell.damage.hasDamage.value) {
+				config
+					.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
+					.setDamageOverride(actor, 'spell')
+					.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
+					.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value)
+					.addTraits(item.system.rollInfo.damage.type.value);
+			}
+
 			// Add typical bonuses
-			configure
-				.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
-				.addTraits(item.system.rollInfo.damage.type.value, 'spell')
-				.addTraitsFromItemModel(item.system.traits)
-				.setTargetedDefense('mdef')
-				.setDamageOverride(actor, 'spell')
-				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
-				.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+			config.addTraits('spell').addTraitsFromItemModel(item.system.traits).setTargetedDefense('mdef').addEffects(item.system.effects.entries);
 		};
 	}
 
@@ -196,6 +201,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.targeting,
 			ItemPartialTemplates.legacyAccuracy,
 			ItemPartialTemplates.legacyDamage,
+			ItemPartialTemplates.effects,
 			ItemPartialTemplates.resource,
 			ItemPartialTemplates.behaviorField,
 		];

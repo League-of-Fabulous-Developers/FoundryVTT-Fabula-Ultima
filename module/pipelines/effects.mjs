@@ -50,6 +50,11 @@ import { getSelected } from '../helpers/target-handler.mjs';
  */
 
 /**
+ * @typedef ApplyEffectData
+ * @property {String[]} entries
+ */
+
+/**
  * @param {Actor|Item} owner The owning document which manages this effect
  * @param {String} effectType
  * @param {String} name
@@ -676,20 +681,31 @@ async function promptRemoveEffect(actor, source) {
  * @returns {TargetAction}
  */
 function getTargetedAction(id, sourceInfo) {
-	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {});
+	let label;
 	let icon;
+	let img;
 	const effectData = resolveBaseEffect(id);
 	if (effectData) {
 		icon = `fuk fu-${id}`;
+		label = StringUtils.localize(effectData.name);
 	} else {
+		const effect = fromUuidSync(id);
+		img = effect.img;
+		label = effect.name;
 		icon = 'ra ra-biohazard';
 	}
+
+	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {
+		effect: label,
+	});
+
 	return new TargetAction('applyEffect', icon, tooltip, {
 		sourceInfo: sourceInfo,
 	})
 		.requiresOwner()
 		.setFlag(Flags.ChatMessage.Effects)
 		.withSelected()
+		.withImage(img)
 		.withDataset({
 			['effect-id']: id,
 		});

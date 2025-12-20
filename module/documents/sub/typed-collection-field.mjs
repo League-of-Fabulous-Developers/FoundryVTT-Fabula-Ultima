@@ -7,6 +7,7 @@ const { TypedObjectField, EmbeddedDataField } = foundry.data.fields;
 /**
  * @desc A collection that houses sub-documents, which can have different types.
  * @inheritDoc ModelCollection
+ * @remarks Uses a custom internal field for its elements.
  */
 export class TypedCollectionField extends TypedObjectField {
 	/**

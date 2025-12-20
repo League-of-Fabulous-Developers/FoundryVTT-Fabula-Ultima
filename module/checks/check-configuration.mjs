@@ -14,6 +14,7 @@ const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
 const RESOURCE = 'resource';
+const EFFECTS = 'effects';
 const TRAITS = 'traits';
 const WEAPON_TRAITS = 'weaponTraits';
 const LABEL_KEY = 'label';
@@ -175,6 +176,17 @@ class CheckInspector {
 	}
 
 	/**
+	 * @returns {ApplyEffectData|null}
+	 */
+	getEffects() {
+		const data = this.#check.additionalData[EFFECTS];
+		if (data) {
+			return data;
+		}
+		return null;
+	}
+
+	/**
 	 * @return {boolean|null}
 	 */
 	getHrZero() {
@@ -322,6 +334,30 @@ class CheckConfigurer extends CheckInspector {
 			type: type,
 			amount: amount,
 		};
+		return this;
+	}
+
+	/**
+	 * @param {...(string|string[])} effects
+	 * @return {CheckConfigurer}
+	 */
+	addEffects(...effects) {
+		if (this.getEffects() === null) {
+			this.check.additionalData[EFFECTS] = {
+				entries: [],
+			};
+		}
+
+		const entries = this.check.additionalData[EFFECTS].entries;
+
+		for (const effect of effects) {
+			if (Array.isArray(effect)) {
+				entries.push(...effect);
+			} else {
+				entries.push(effect);
+			}
+		}
+
 		return this;
 	}
 

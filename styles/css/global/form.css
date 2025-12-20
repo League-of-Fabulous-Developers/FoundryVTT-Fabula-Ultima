@@ -1,0 +1,8 @@
+.fu-form__array__element {
+	display: flex;
+	margin: 2px;
+}
+
+.fu-form__array__element__input {
+	width: 100%;
+}
