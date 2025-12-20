@@ -182,8 +182,6 @@ export class SpellDataModel extends FUStandardItemDataModel {
 				.setDamageOverride(actor, 'spell')
 				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
 				.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
-
-			await CommonEvents.initializeCheck(configure, actor, item);
 		};
 	}
 

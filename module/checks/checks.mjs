@@ -203,7 +203,8 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.critThreshold = CRITICAL_THRESHOLD;
 	Object.seal(check);
 	// Set initial targets (actions without rolls can have targeting)
-	CheckConfiguration.configure(check).setDefaultTargets();
+	const config = CheckConfiguration.configure(check);
+	config.setDefaultTargets();
 	// Initial callback
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	Object.defineProperty(check, 'type', {
@@ -238,6 +239,8 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	for (let callbackObj of callbacks) {
 		await callbackObj.callback(check, actor, item);
 	}
+
+	await CommonEvents.initializeCheck(config, actor, item);
 
 	if (!check.primary || !check.secondary) {
 		throw new Error('check attribute missing');

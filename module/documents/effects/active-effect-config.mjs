@@ -210,7 +210,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			parent = parent.parent;
 		}
 		for (const re of this.system.rules.elements) {
-			await re.prepareContext(context);
+			await re.prepareRenderContext(context);
 		}
 		return context;
 	}

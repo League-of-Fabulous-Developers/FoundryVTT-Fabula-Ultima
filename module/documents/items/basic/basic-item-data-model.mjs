@@ -8,7 +8,6 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
-import { CommonEvents } from '../../../checks/common-events.mjs';
 
 /**
  * @param {CheckV2} check
@@ -120,7 +119,6 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 		return async (check, actor, item) => {
 			const configure = CheckConfiguration.configure(check);
 			configure.setHrZero(modifiers.shift);
-			await CommonEvents.initializeCheck(configure, actor, item);
 		};
 	}
 

@@ -180,7 +180,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 * @param {Object} context
 	 * @returns {Promise<void>}
 	 */
-	async prepareContext(context) {
+	async prepareRenderContext(context) {
 		for (const action of this.actions) {
 			await action.prepareRenderContext(context);
 		}

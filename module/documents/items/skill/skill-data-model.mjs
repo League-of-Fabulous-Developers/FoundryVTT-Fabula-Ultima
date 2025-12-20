@@ -292,8 +292,6 @@ export class SkillDataModel extends FUStandardItemDataModel {
 					configure.setExtraDamage(onApply);
 				}
 			}
-
-			await CommonEvents.initializeCheck(configure, actor, item);
 		};
 	}
 

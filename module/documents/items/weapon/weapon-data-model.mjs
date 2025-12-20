@@ -11,7 +11,6 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
-import { CommonEvents } from '../../../checks/common-events.mjs';
 
 /**
  * @param {CheckV2} check
@@ -151,7 +150,6 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 		return async (check, actor, item) => {
 			const configure = CheckConfiguration.configure(check);
 			configure.setHrZero(modifiers.shift);
-			await CommonEvents.initializeCheck(configure, actor, item);
 		};
 	}
 
