@@ -209,7 +209,7 @@ const opportunity = (sections, opportunity, order) => {
  * @param {Map} flags
  * @param {CheckInspector} inspector
  */
-const targeted = (sections, actor, item, targetData, flags, inspector = undefined) => {
+const actions = (sections, actor, item, targetData, flags, inspector = undefined) => {
 	const isTargeted = targetData?.length > 0 || !Targeting.STRICT_TARGETING;
 
 	let checkData;
@@ -401,7 +401,7 @@ export const CommonSections = {
 	itemFlavor,
 	genericFlavor,
 	opportunity,
-	targeted,
+	actions,
 	spendResource,
 	slottedTechnospheres,
 };

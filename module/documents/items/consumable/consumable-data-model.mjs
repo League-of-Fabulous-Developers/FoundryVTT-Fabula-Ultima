@@ -23,7 +23,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 		const config = CheckConfiguration.configure(check);
 
 		const targets = config.getTargetsOrDefault();
-		CommonSections.targeted(sections, actor, item, targets, flags, config);
+		CommonSections.actions(sections, actor, item, targets, flags, config);
 		const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
 		CommonSections.spendResource(sections, actor, item, cost, [], flags);
 

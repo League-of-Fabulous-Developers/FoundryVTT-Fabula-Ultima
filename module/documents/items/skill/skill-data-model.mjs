@@ -87,7 +87,7 @@ const onRenderDisplay = (sections, check, actor, item, flags) => {
 		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.targeted(sections, actor, item, targets, flags, inspector);
+			CommonSections.actions(sections, actor, item, targets, flags, inspector);
 		}
 		CommonEvents.skill(actor, item);
 	}
