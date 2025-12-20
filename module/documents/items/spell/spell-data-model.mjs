@@ -59,6 +59,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
  * @property {DamageDataModel} damage
+ * @property {EffectApplicationDataModel} effects
  * @property {ResourceDataModel} resource
  * @property {ImprovisedDamageDataModel} impdamage
  * @property {boolean} isBehavior.value
@@ -134,8 +135,8 @@ export class SpellDataModel extends FUStandardItemDataModel {
 		return async (check, actor, item) => {
 			/** @type SpellDataModel **/
 			const spell = item.system;
+			const config = CheckConfiguration.configure(check);
 			if (spell.resource.enabled) {
-				const config = CheckConfiguration.configure(check);
 				config.setResource(spell.resource.type, spell.resource.amount);
 			}
 		};
@@ -201,8 +202,8 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.targeting,
 			ItemPartialTemplates.legacyAccuracy,
 			ItemPartialTemplates.legacyDamage,
-			ItemPartialTemplates.effects,
 			ItemPartialTemplates.resource,
+			ItemPartialTemplates.effects,
 			ItemPartialTemplates.behaviorField,
 		];
 	}

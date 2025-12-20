@@ -10,7 +10,7 @@ export class ResourceDataModel extends foundry.abstract.DataModel {
 		const { BooleanField, StringField } = foundry.data.fields;
 		return {
 			enabled: new BooleanField(),
-			amount: new StringField({ initial: 0, integer: true, nullable: false }),
+			amount: new StringField({ initial: '', nullable: false }),
 			type: new StringField({ initial: 'hp', choices: Object.keys(FU.resources), blank: true, nullable: false }),
 		};
 	}
