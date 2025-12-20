@@ -1,7 +1,7 @@
 /**
- * AsyncHooks — A simple async/await–aware hook system.
- *
- * Usage:
+ * @desc A simple async/await–aware hook system.
+ * @remarks Not to be mixed with Foundry's default {@code Hooks} API.
+ * @example
  *   AsyncHooks.on("myHook", async (data) => { ... });
  *   await AsyncHooks.call("myHook", { foo: "bar" });
  */
