@@ -84,10 +84,11 @@ export class SubDocumentDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * The uuid of this document.
+	 * A unique identifier for this document.
 	 * @type {string}
+	 * @remarks As this is not an actual Foundry Document type, it cannot be loaded directly through the 'fromUuid*' methods.
 	 */
-	get uuid() {
+	get guid() {
 		let parent = this.parent;
 		while (!(parent instanceof SubDocumentDataModel) && !(parent instanceof foundry.abstract.Document)) parent = parent.parent;
 		return [parent.uuid, this.documentName, this.id].join('.');
@@ -159,7 +160,7 @@ export class SubDocumentDataModel extends foundry.abstract.DataModel {
 	 */
 	async delete(operation = {}) {
 		if (!this.isSource) throw new Error('You cannot delete a non-source pseudo-document!');
-		Object.assign(operation, { pseudo: { operation: 'delete', type: this.constructor.documentName, uuid: this.uuid } });
+		Object.assign(operation, { pseudo: { operation: 'delete', type: this.constructor.documentName, uuid: this.guid } });
 		const update = { [`${this.fieldPath}.-=${this.id}`]: null };
 		this.constructor._configureUpdates('delete', this.document, update, operation);
 		return this.document.update(update, operation);
