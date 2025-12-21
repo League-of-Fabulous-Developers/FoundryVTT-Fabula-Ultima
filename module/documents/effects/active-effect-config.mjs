@@ -1,7 +1,7 @@
 import { FU } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
-import { TypedCollectionField } from '../sub/typed-collection-field.mjs';
+import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 import { RuleElements } from '../../pipelines/rule-elements.mjs';
 import { RuleElementDataModel } from './rule-element-data-model.mjs';
 import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
@@ -268,7 +268,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	 */
 	static async #addRuleElement(event, target) {
 		const type = RuleElementDataModel.TYPE;
-		await TypedCollectionField.addModel(this.document.system.rules.elements, type, this.document);
+		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, type, this.document);
 		console.debug(`Added rule element`);
 	}
 

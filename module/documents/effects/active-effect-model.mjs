@@ -1,7 +1,7 @@
 import { FU } from '../../helpers/config.mjs';
 import { ProgressDataModel } from '../items/common/progress-data-model.mjs';
 import { RuleElementDataModel } from './rule-element-data-model.mjs';
-import { TypedCollectionField } from '../sub/typed-collection-field.mjs';
+import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 
 /**
  * @description THe active effect model for this system
@@ -41,7 +41,7 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 			}),
 			rules: new SchemaField({
 				progress: new EmbeddedDataField(ProgressDataModel, { required: false }),
-				elements: new TypedCollectionField(RuleElementDataModel),
+				elements: new SubDocumentCollectionField(RuleElementDataModel),
 			}),
 		};
 	}

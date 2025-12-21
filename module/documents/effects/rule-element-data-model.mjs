@@ -1,7 +1,7 @@
 import { SubDocumentDataModel } from '../sub/sub-document-data-model.mjs';
 import { CombatEventRuleTrigger } from './triggers/combat-event-rule-trigger.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
-import { TypedCollectionField } from '../sub/typed-collection-field.mjs';
+import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 import { DataModelRegistry } from '../../fields/data-model-registry.mjs';
 import { systemId, systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { RuleActionDataModel, RuleActionRegistry } from './actions/rule-action-data-model.mjs';
@@ -15,7 +15,7 @@ const fields = foundry.data.fields;
 /**
  * @description A modular automation component for use in active effects
  * @property {RuleTriggerDataModel} trigger
- * @property {TypedCollectionField, RuleActionDataModel[]} actions
+ * @property {SubDocumentCollectionField, RuleActionDataModel[]} actions
  * @property {RulePredicateDataModel[]} predicates
  * @property {FUTargetSelectorKey} selector
  * @property {Boolean} enabled
@@ -49,8 +49,8 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 				initial: new CombatEventRuleTrigger(),
 				nullable: true,
 			}),
-			actions: new TypedCollectionField(RuleActionDataModel),
-			predicates: new TypedCollectionField(RulePredicateDataModel),
+			actions: new SubDocumentCollectionField(RuleActionDataModel),
+			predicates: new SubDocumentCollectionField(RulePredicateDataModel),
 			selector: new fields.StringField({ initial: 'initial', choices: Object.keys(FU.targetSelector) }),
 			enabled: new fields.BooleanField({ initial: true }),
 		});
@@ -92,7 +92,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 		const options = FoundryUtils.generateConfigOptions(subTypes);
 		const type = await FoundryUtils.selectOptionDialog('FU.RuleElementNew', options);
 		if (type) {
-			await TypedCollectionField.addModel(this.actions, type, this);
+			await SubDocumentCollectionField.addModel(this.actions, type, this);
 		}
 	}
 
@@ -131,7 +131,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 		const options = FoundryUtils.generateConfigOptions(subTypes);
 		const type = await FoundryUtils.selectOptionDialog('FU.Add', options);
 		if (type) {
-			await TypedCollectionField.addModel(this.predicates, type, this);
+			await SubDocumentCollectionField.addModel(this.predicates, type, this);
 		}
 	}
 

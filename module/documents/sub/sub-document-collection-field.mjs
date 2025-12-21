@@ -5,11 +5,11 @@ import { SubDocumentDataModel } from './sub-document-data-model.mjs';
 const { TypedObjectField, EmbeddedDataField } = foundry.data.fields;
 
 /**
- * @desc A collection that houses sub-documents, which can have different types.
+ * @desc A collection that houses {@linkcode SubDocumentDataModel}, which can have different types.
  * @inheritDoc ModelCollection
  * @remarks Uses a custom internal field for its elements.
  */
-export class TypedCollectionField extends TypedObjectField {
+export class SubDocumentCollectionField extends TypedObjectField {
 	/**
 	 * The pseudo-document class.
 	 * @type {typeof SubDocumentDataModel}
@@ -50,7 +50,7 @@ export class TypedCollectionField extends TypedObjectField {
 	}
 
 	/**
-	 * @param {TypedCollectionField} field
+	 * @param {SubDocumentCollectionField} field
 	 * @param {String} type
 	 * @param document
 	 */
