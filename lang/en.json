@@ -691,6 +691,7 @@
 		"ChatContextRerollFabula": "Invoke Trait to Reroll",
 		"ChatContextPush": "Invoke Bond to Push",
 		"ChatContextRerollUltima": "Invoke Trait to Reroll",
+		"ChatActorOwnershipWarning": "You cannot perform that action on that actor as you do not own it.",
 		"DialogPushBond": "Bond of ",
 		"DialogPushAnd": " and ",
 		"DialogPushWith": " with ",

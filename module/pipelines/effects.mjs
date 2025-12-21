@@ -12,7 +12,6 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { statusEffects } from '../documents/effects/statuses.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
-import { getSelected } from '../helpers/target-handler.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -747,17 +746,13 @@ function onRenderChatMessage(message, element) {
 			}
 		}
 
-		let targets = [];
-		const actorId = dataset.actorId ?? dataset.id;
-		if (actorId) {
-			const actor = await fromUuid(actorId);
-			targets.push(actor);
-		} else {
-			targets = await getSelected();
-		}
-
+		const targets = await Pipeline.getTargetsFromAction(dataset);
 		console.debug(`Applying effect ${effectId} to ${targets}`);
 		for (const target of targets) {
+			if (!target.isOwner) {
+				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+				continue;
+			}
 			await applyEffect(target, effect, sourceInfo);
 		}
 	});
@@ -775,6 +770,10 @@ function onRenderChatMessage(message, element) {
 	Pipeline.handleClick(message, element, 'clearEffects', (dataset) => {
 		const actors = Targeting.deserializeTargetData(dataset.actors);
 		actors.forEach((actor) => {
+			if (!actor.isOwner) {
+				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+				return;
+			}
 			actor.clearTemporaryEffects();
 		});
 	});

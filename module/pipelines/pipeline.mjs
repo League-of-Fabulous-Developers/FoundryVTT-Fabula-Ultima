@@ -130,8 +130,9 @@ function getSingleTarget(event) {
  */
 async function getTargetsFromAction(dataset) {
 	let targets = [];
-	if (dataset.id) {
-		const actor = await fromUuid(dataset.id);
+	let actorId = dataset.actorId ?? dataset.id;
+	if (actorId) {
+		const actor = await fromUuid(actorId);
 		targets.push(actor);
 	} else {
 		targets = await getSelected();

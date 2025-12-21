@@ -36,7 +36,7 @@
                 </span>
                 <!-- Actions -->
                 {{#each ../actions as |action|}}
-					<span class="fu-tags fu-target-action {{#unless (and action.owner target.isOwner)}}disabled{{/unless}}">
+					<span class="fu-tags fu-target-action">
 							<a data-action="{{name}}"
 							   data-id="{{target.uuid}}"
 							   data-fields="{{fields}}"

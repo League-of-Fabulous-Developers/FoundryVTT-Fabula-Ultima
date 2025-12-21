@@ -380,6 +380,11 @@ async function process(request) {
 
 	const updates = [];
 	for (const actor of request.targets) {
+		if (!actor.isOwner) {
+			ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+			continue;
+		}
+
 		// Create an initial context then run the pipeline
 		let context = new DamagePipelineContext(request, actor);
 

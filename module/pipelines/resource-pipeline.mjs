@@ -132,6 +132,10 @@ async function processRecovery(request) {
 	const updates = [];
 	console.debug(`Applying recovery from request with traits: ${[...request.traits].join(', ')}`);
 	for (const actor of request.targets) {
+		if (!actor.isOwner) {
+			ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+			continue;
+		}
 		const incomingRecoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
 		const incomingRecoveryMultiplier = actor.system.multipliers.incomingRecovery[request.resourceType] || 1;
 		let amountRecovered = Math.max(0, Math.floor((request.amount + incomingRecoveryBonus + outgoingRecoveryBonus) * (incomingRecoveryMultiplier * outgoingRecoveryMultiplier)));
@@ -221,6 +225,10 @@ async function processLoss(request) {
 	console.debug(`Applying loss from request with traits: ${[...request.traits].join(', ')}`);
 	const amount = Math.abs(request.amount);
 	for (const actor of request.targets) {
+		if (!actor.isOwner) {
+			ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+			continue;
+		}
 		const incomingLossMultiplier = actor.system.multipliers.incomingLoss[request.resourceType] || 1;
 		const incomingLossBonus = actor.system.bonuses.incomingLoss[request.resourceType] || 0;
 		const amountLost = -Math.max(0, Math.floor((amount + incomingLossBonus) * incomingLossMultiplier));
