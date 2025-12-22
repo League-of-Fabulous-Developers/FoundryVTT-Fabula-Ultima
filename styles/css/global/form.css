@@ -1,6 +1,13 @@
+.fu-form__button {
+	background-color: var(--color-primary);
+	color: #ebf7af;
+}
+
 .fu-form__array__element {
 	display: flex;
 	margin: 2px;
+	gap: 4px;
+	align-items: center;
 }
 
 .fu-form__array__element__input {

@@ -617,7 +617,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		if (path) {
 			/** @type [] **/
 			const array = ObjectUtils.getProperty(this.item, path);
-			if (array && index) {
+			if (array && index !== undefined) {
 				array.splice(index, 1);
 				await this.item.update({
 					[`${path}`]: array,
