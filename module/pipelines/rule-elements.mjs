@@ -27,7 +27,7 @@ import { SpeciesRulePredicate } from '../documents/effects/predicates/species-ru
 import { WeaponRulePredicate } from '../documents/effects/predicates/weapon-rule-predicate.mjs';
 import { ResourceRulePredicate } from '../documents/effects/predicates/resource-rule-predicate.mjs';
 import { ResourceUpdateRuleTrigger } from '../documents/effects/triggers/resource-update-rule-trigger.mjs';
-import { SpellRuleTrigger } from '../documents/effects/triggers/spell-rule-trigger.mjs';
+import { SpellRulePredicate } from '../documents/effects/predicates/spell-rule-predicate.mjs';
 import { PerformCheckRuleTrigger } from '../documents/effects/triggers/perform-check-rule-trigger.mjs';
 import { ModifyCheckRuleAction } from '../documents/effects/actions/modify-check-rule-action.mjs';
 import { ResolveCheckRuleTrigger } from '../documents/effects/triggers/resolve-check-rule-trigger.mjs';
@@ -57,7 +57,6 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, CalculateDamageRuleTrigger.TYPE, CalculateDamageRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResourceUpdateRuleTrigger.TYPE, ResourceUpdateRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResourceExpendRuleTrigger.TYPE, ResourceExpendRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, SpellRuleTrigger.TYPE, SpellRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, InitializeCheckRuleTrigger.TYPE, InitializeCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, PerformCheckRuleTrigger.TYPE, PerformCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResolveCheckRuleTrigger.TYPE, ResolveCheckRuleTrigger);
@@ -90,6 +89,7 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, ResourceRulePredicate.TYPE, ResourceRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, TargetingRulePredicate.TYPE, TargetingRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, TraitsRulePredicate.TYPE, TraitsRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, SpellRulePredicate.TYPE, SpellRulePredicate);
 }
 
 /**

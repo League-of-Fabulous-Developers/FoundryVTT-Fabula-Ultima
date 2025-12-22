@@ -1,28 +1,19 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
-import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { FUHooks } from '../../../hooks.mjs';
+import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
+import { SpellDataModel } from '../../items/spell/spell-data-model.mjs';
 
 const fields = foundry.data.fields;
 
 /**
- * @description Trigger based on a spell event
- * @extends RuleTriggerDataModel
+ * @extends RulePredicateDataModel
  * @inheritDoc
- * @property {FUCheckResult} result
  * @property {Boolean} offensive
+ * @property {FUDurationType} duration
  */
-export class SpellRuleTrigger extends RuleTriggerDataModel {
-	/** @inheritdoc */
-	static get metadata() {
-		return {
-			...super.metadata,
-			eventType: FUHooks.SPELL_EVENT,
-		};
-	}
-
+export class SpellRulePredicate extends RulePredicateDataModel {
 	static {
-		Object.defineProperty(this, 'TYPE', { value: 'spellRuleTrigger' });
+		Object.defineProperty(this, 'TYPE', { value: 'spellRulePredicate' });
 	}
 
 	static defineSchema() {
@@ -39,11 +30,11 @@ export class SpellRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static get localization() {
-		return 'FU.RuleTriggerSpell';
+		return 'FU.RulePredicateSpell';
 	}
 
 	static get template() {
-		return systemTemplatePath('effects/triggers/spell-rule-trigger');
+		return systemTemplatePath('effects/predicates/spell-rule-predicate');
 	}
 
 	/**
@@ -51,7 +42,14 @@ export class SpellRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		const spell = context.event.spell;
+		if (!context.item) {
+			return false;
+		}
+		if (context.item.system instanceof SpellDataModel) {
+			return false;
+		}
+		/** @type SpellDataModel **/
+		const spell = context.item.system;
 		if (this.offensive && !spell.isOffensive.value) {
 			return false;
 		}

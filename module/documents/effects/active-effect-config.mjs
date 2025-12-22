@@ -29,6 +29,9 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 			addRulePredicate: this.#addRulePredicate,
 			removeRulePredicate: this.#removeRulePredicate,
 		},
+		form: {
+			closeOnSubmit: false,
+		},
 	};
 
 	/** @inheritdoc */

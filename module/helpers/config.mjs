@@ -459,6 +459,7 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 /**
  * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "initiative", "display"} CheckType
  */
+
 /**
  * @type {Object<CheckType, string>}
  */
@@ -528,6 +529,10 @@ FU.improvisedEffect = {
 	heavy: 'FU.ImprovisedEffectHeavy',
 	massive: 'FU.ImprovisedEffectMassive',
 };
+
+/**
+ * @typedef {"instantaneous", "scene", "special"} FUDurationType
+ */
 
 /**
  * @description Spell durations
