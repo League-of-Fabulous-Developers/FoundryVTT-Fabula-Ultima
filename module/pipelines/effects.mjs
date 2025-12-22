@@ -646,14 +646,23 @@ async function promptExpiredEffectRemoval(event) {
 	});
 }
 
-async function promptApplyEffect(actor, effects, source) {
+/**
+ * @param {FUActor} actor
+ * @param {FUActiveEffect[]} effects
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<void>}
+ */
+async function promptApplyEffect(actor, effects, sourceInfo) {
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-effect-prompt', {
 			actor: actor,
-			source: source,
+			source: sourceInfo.name,
 			effects: effects,
+			fields: StringUtils.toBase64({
+				sourceInfo: sourceInfo,
+			}),
 		}),
 	});
 }

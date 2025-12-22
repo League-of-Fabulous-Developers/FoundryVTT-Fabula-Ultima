@@ -45,7 +45,7 @@ export class SpellRulePredicate extends RulePredicateDataModel {
 		if (!context.item) {
 			return false;
 		}
-		if (context.item.system instanceof SpellDataModel) {
+		if (!(context.item.system instanceof SpellDataModel)) {
 			return false;
 		}
 		/** @type SpellDataModel **/
