@@ -7,6 +7,7 @@ import { Traits } from '../pipelines/traits.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
+import { DamageData } from './damage-data.mjs';
 
 // Data keys
 const TARGETS = 'targets';
@@ -36,70 +37,6 @@ const HR_ZERO = 'hrZero';
 const initHrZero = (hrZero) => (check) => {
 	hrZero && (check.additionalData[HR_ZERO] = true);
 };
-
-/**
- * @typedef BonusDamage
- * @property {string} label
- * @property {number} value
- */
-
-/**
- * @class DamageData
- * @property {Number} hr The high roll
- * @property {DamageType} type
- * @property {BonusDamage[]} modifiers
- * @property {String} extra An expression to evaluate to add extra damage
- * @property {Boolean} hrZero Whether to treat the high roll as zero
- * @property {String[]|null} traits
- */
-export class DamageData {
-	constructor(data = {}) {
-		// eslint-disable-next-line no-unused-vars
-		const { modifierTotal, modifiers, ..._data } = data;
-		Object.assign(this, _data);
-		this.modifiers = modifiers ?? [];
-		if (!this.hrZero) {
-			this.hrZero = false;
-		}
-		if (!this.hr) {
-			this.hr = 0;
-		}
-	}
-
-	static construct(type, amount) {
-		let data = new DamageData({
-			type: type,
-		});
-		data.addModifier('FU.Amount', amount);
-		return data;
-	}
-
-	/**
-	 * @returns {Number} The sum of all bonus damage modifiers ({@linkcode modifiers})
-	 */
-	get modifierTotal() {
-		return this.modifiers.reduce((agg, curr) => agg + curr.value, 0);
-	}
-
-	/**
-	 * @returns {Number}
-	 * @remarks Doesn't account for {@linkcode hrZero}
-	 */
-	get total() {
-		if (this.hrZero) {
-			return this.modifierTotal;
-		}
-		return this.modifierTotal + this.hr;
-	}
-
-	/**
-	 * @param {String} label
-	 * @param {Number} value
-	 */
-	addModifier(label, value) {
-		this.modifiers.push({ label: label, value: value });
-	}
-}
 
 /**
  * @typedef WeaponTraits
@@ -141,11 +78,17 @@ class CheckInspector {
 	 * @remarks Embeds the high roll into the data
 	 */
 	getDamage() {
-		const raw = this.#check.additionalData[DAMAGE];
-		if (raw) {
-			raw.hr = this.getHighRoll();
-			raw.hrZero = this.getHrZero();
-			return new DamageData(foundry.utils.duplicate(raw));
+		const data = this.#check.additionalData[DAMAGE];
+		if (data) {
+			data.hr = this.getHighRoll();
+			data.hrZero = this.getHrZero();
+			if (this.hasTrait(Traits.Base)) {
+				data.base = true;
+			}
+			if (data instanceof DamageData) {
+				return data;
+			}
+			return new DamageData(foundry.utils.duplicate(data));
 		}
 		return null;
 	}
@@ -262,25 +205,6 @@ class CheckInspector {
 	 */
 	isFumble() {
 		return this.getCheck().fumble;
-	}
-
-	// TODO: Figure out how to handle this better
-	/**
-	 * @returns {DamageData}
-	 * @remarks Used for templating.
-	 */
-	getExtendedDamageData() {
-		const traits = this.getTraits();
-		const isBase = traits.includes(Traits.Base);
-		const damage = this.getDamage();
-
-		let result = null;
-		if (damage) {
-			damage.traits = traits;
-			damage.modifiers = isBase ? damage.modifiers.slice(0, 1) : damage.modifiers;
-			result = damage;
-		}
-		return result;
 	}
 
 	/**
@@ -646,7 +570,6 @@ class CheckConfigurer extends CheckInspector {
 		if (!this.check.additionalData[TARGETED_ACTIONS]) {
 			this.check.additionalData[TARGETED_ACTIONS] = [];
 		}
-		//if (this.check.additionalData[TARGETED_ACTIONS].some((a) => a.name === action.name)) return;
 		this.check.additionalData[TARGETED_ACTIONS].push(action);
 	}
 }

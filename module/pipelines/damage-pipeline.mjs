@@ -2,7 +2,7 @@ import { FUHooks } from '../hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Pipeline, PipelineContext, PipelineRequest } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { CheckConfiguration, DamageData } from '../checks/check-configuration.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
@@ -18,6 +18,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 import { SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import { DamageData } from '../checks/damage-data.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage

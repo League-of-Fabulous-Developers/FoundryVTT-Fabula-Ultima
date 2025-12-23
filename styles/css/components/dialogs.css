@@ -178,6 +178,10 @@
 }
 
 /* Container */
+.fu-dialog {
+	color: var(--color-text-dark);
+}
+
 .fu-dialog__text {
 	text-align: center;
 }

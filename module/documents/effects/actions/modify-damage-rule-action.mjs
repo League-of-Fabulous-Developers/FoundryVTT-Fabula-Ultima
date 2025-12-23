@@ -1,10 +1,7 @@
-import { FU } from '../../../helpers/config.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
-import FoundryUtils from '../../../helpers/foundry-utils.mjs';
-import { StringUtils } from '../../../helpers/string-utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -47,17 +44,23 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	 */
 	async execute(context, selected) {
 		if (this.damageTypes.size > 0) {
-			const choices = new Set([context.event.configuration.getDamage().type, ...this.damageTypes]);
-			const options = FoundryUtils.generateConfigIconOptions(choices, FU.damageTypes, FU.affIcon);
-			// TODO: Localize
-			const message = `You are able to change the damage type due to <strong>${context.label}</strong>.`;
-			const title = `${context.event.configuration.check.itemName} : ${StringUtils.localize('FU.SelectDamageType')}`;
-			const selected = await FoundryUtils.selectIconOptionDialog(title, options, {
-				message: message,
+			// const choices = new Set([context.event.configuration.getDamage().type, ...this.damageTypes]);
+			// const options = FoundryUtils.generateConfigIconOptions(choices, FU.damageTypes, FU.affIcon);
+			// // TODO: Localize
+			// const message = `You are able to change the damage type due to <strong>${context.label}</strong>.`;
+			// const title = `${context.event.configuration.check.itemName} : ${StringUtils.localize('FU.SelectDamageType')}`;
+			// const selected = await FoundryUtils.selectIconOptionDialog(title, options, {
+			// 	message: message,
+			// });
+			// if (selected) {
+			// 	context.event.configuration.setDamageType(selected);
+			// }
+			context.event.configuration.getDamage().addChange({
+				key: context.label,
+				enabled: true,
+				types: Array.from(this.damageTypes),
+				modifier: 0,
 			});
-			if (selected) {
-				context.event.configuration.setDamageType(selected);
-			}
 		}
 
 		if (this.amount) {

@@ -1,7 +1,7 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { CheckConfiguration, DamageData } from '../../../checks/check-configuration.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
@@ -13,6 +13,7 @@ import { Checks } from '../../../checks/checks.mjs';
 import { ConsumableTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 import { TraitsDataModel } from '../common/traits-data-model.mjs';
+import { DamageData } from '../../../checks/damage-data.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof ConsumableDataModel) {

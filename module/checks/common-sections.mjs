@@ -218,7 +218,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 
 	if (inspector) {
 		checkData = inspector.getCheck();
-		damageData = inspector.getExtendedDamageData();
+		damageData = inspector.getDamage();
 		switch (checkData.type) {
 			case 'accuracy':
 			case 'magic':
@@ -251,7 +251,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			// Resource action
 			const resourceData = inspector.getResource();
 			if (resourceData) {
-				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targetData);
+				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(resourceData.amount, expressionContext);
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, amount);
 				actions.push(ResourcePipeline.getTargetedAction(request));

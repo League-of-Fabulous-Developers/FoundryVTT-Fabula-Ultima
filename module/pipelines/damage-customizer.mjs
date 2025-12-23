@@ -1,11 +1,6 @@
 import { FU, systemPath } from '../helpers/config.mjs';
 
 /**
- * @typedef DamageType
- * @type {import('../helpers/config.mjs').DamageType}
- */
-
-/**
  * @typedef DamageOverrideInfo
  * @prop {DamageType} damageType
  * @prop {number} extraDamage

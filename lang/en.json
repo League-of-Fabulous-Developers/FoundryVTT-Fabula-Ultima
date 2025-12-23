@@ -1693,6 +1693,9 @@
 		"OnApply": "On Apply",
 		"OnRoll": "On Roll",
 		"Multiplier": "Multiplier",
-		"Targeting": "Targeting"
+		"Targeting": "Targeting",
+		"Changes": "Changes",
+		"Types": "Types",
+		"Expense": "Expense"
 	}
 }
