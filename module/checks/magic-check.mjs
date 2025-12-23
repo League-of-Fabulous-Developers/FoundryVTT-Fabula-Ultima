@@ -52,13 +52,13 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				// All Damage
 				const globalBonus = actor.system.bonuses.damage.all;
 				if (globalBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
+					damage.addModifier(`FU.DamageBonusAll`, globalBonus);
 				}
 
 				// Damage Type
 				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
 				if (damageTypeBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
+					damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
 				}
 
 				// TODO: Refactor this and others all the way to the end

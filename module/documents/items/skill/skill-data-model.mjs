@@ -288,7 +288,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 				config.setTargetedDefense(this.defense || config.getTargetedDefense());
 				config.modifyDamage(() => {
 					const damage = config.getDamage();
-					/** @type BonusDamage[] */
+					/** @type DamageModifier[] */
 					const damageMods = [];
 					if (item.system.damage.value) {
 						damageMods.push({

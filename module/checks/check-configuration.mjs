@@ -241,10 +241,10 @@ class CheckConfigurer extends CheckInspector {
 	 * @return {CheckConfigurer}
 	 */
 	setDamage(type, baseDamage) {
-		this.check.additionalData[DAMAGE] = new DamageData({
-			modifiers: [{ label: 'FU.BaseDamage', value: baseDamage }],
-			type,
-		});
+		const data = new DamageData();
+		data.addModifier('FU.BaseDamage', baseDamage, [type]);
+		data.type = type;
+		this.check.additionalData[DAMAGE] = data;
 		return this;
 	}
 
@@ -367,7 +367,7 @@ class CheckConfigurer extends CheckInspector {
 	 * @return CheckConfigurer
 	 */
 	addDamageBonus(label, value) {
-		this.check.additionalData[DAMAGE]?.modifiers.push({ label, value });
+		this.check.additionalData[DAMAGE]?.addModifier(label, value);
 		return this;
 	}
 

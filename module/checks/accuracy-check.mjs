@@ -117,27 +117,27 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				// All Damage
 				const globalBonus = actor.system.bonuses.damage.all;
 				if (globalBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
+					damage.addModifier(`FU.DamageBonusAll`, globalBonus);
 				}
 				// Attack Type
 				if (weaponTraits.weaponType) {
 					const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
 					if (attackTypeBonus) {
-						damage.modifiers.push({ label: `FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, value: attackTypeBonus });
+						damage.addModifier(`FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, attackTypeBonus);
 					}
 				}
 				// Weapon Category
 				if (weaponTraits.weaponCategory) {
 					const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
 					if (weaponCategoryBonus) {
-						damage.modifiers.push({ label: `FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, value: weaponCategoryBonus });
+						damage.addModifier(`FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, weaponCategoryBonus);
 					}
 				}
 
 				// Damage Type
 				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
 				if (damageTypeBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
+					damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
 				}
 			}
 			return damage;
@@ -147,7 +147,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 			if (config.hasDamage) {
 				await CommonEvents.calculateDamage(actor, item, config);
 				const damage = config.getDamage();
-				if (damage.hasChanges) {
+				if (damage.customizable) {
 					await DamageCustomizerV2.open(damage);
 				}
 			}

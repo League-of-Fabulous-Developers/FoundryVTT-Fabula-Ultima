@@ -235,7 +235,7 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 				configure.setTargetedDefense(this.defense || inspect.getTargetedDefense());
 				configure.modifyDamage(() => {
 					const damage = inspect.getDamage();
-					/** @type BonusDamage[] */
+					/** @type DamageModifier[] */
 					const damageMods = [];
 					if (item.system.damage.value) {
 						damageMods.push({

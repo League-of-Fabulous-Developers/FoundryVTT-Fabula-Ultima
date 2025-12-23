@@ -2,28 +2,28 @@
 
 	<fieldset class="title-fieldset desc resource-content">
 		<legend class="resource-label-full">
-			<label class="resource-label-m">{{localize 'FU.Changes'}}</label>
+			<label class="resource-label-m">{{localize 'FU.Modifiers'}}</label>
 		</legend>
 		<table class="table-compact">
 			<thead>
 			<tr>
 				<th>{{localize 'FU.Source'}}</th>
 				<th>{{localize 'FU.Types'}}</th>
-				<th>{{localize 'FU.Modifier'}}</th>
+				<th>{{localize 'FU.Amount'}}</th>
 				<th>{{localize 'FU.Expense'}}</th>
 				<th>{{localize 'FU.Enabled'}}</th>
 			</tr>
 			</thead>
 			<tbody>
-			{{#each context.changes as |change|}}
+			{{#each context.damage.allModifiers as |change index|}}
 				<tr>
-					<th>{{localize this.key}}</th>
+					<th>{{localize this.label}}</th>
 					<td>
 						{{#each this.types as |type| }}
 							<i class="icon {{lookup @root.FU.affIcon type}}" style="flex: 0 1 auto;"></i>
 						{{/each}}
 					</td>
-					<td>{{this.modifier}}</td>
+					<td>{{this.amount}}</td>
 					<td>
 						{{#if this.expense}}
 							{{this.expense}}
@@ -32,7 +32,7 @@
 					<td>
 						<label>
 							<input type="checkbox"
-								   name="context.changes.{{@index}}.enabled"
+								   name="context.damage._modifiers.{{index}}.enabled"
 								{{checked this.enabled}} />
 						</label>
 
@@ -64,7 +64,7 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Amount'}}</label>
 		</legend>
-		<span class="fu-dialog__text" id="total-damage" style="font-size: large">
+		<span class="fu-dialog__text" id="total-damage" style="font-size: medium">
 			<b>{{damage.total}}</b>
 		</span>
 	</fieldset>

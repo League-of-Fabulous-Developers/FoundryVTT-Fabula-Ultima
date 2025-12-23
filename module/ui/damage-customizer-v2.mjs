@@ -1,5 +1,6 @@
 import { FU } from '../helpers/config.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 export class DamageCustomizerV2 {
 	/**
@@ -11,18 +12,21 @@ export class DamageCustomizerV2 {
 			damage: damageData,
 			/** @type FormSelectOption[] **/
 			types: [],
-			/** @type DamageChangeData[] **/
-			changes: damageData.changes,
 			/** @type DamageType **/
 			selectedType: damageData.type,
 		};
 
 		function updateOptions() {
-			/** @type DamageType[] **/
-			let choices = [context.damage.type];
-			for (const change of context.changes) {
-				if (change.types) {
-					choices.push(...change.types);
+			/** @type Set<DamageType> **/
+			let choices = new Set([context.damage.type]);
+			for (const modifier of context.damage.allModifiers) {
+				if (!modifier.enabled) {
+					continue;
+				}
+				if (modifier.types) {
+					modifier.types.forEach((type) => {
+						choices.add(type);
+					});
 				}
 			}
 			context.types = FoundryUtils.generateConfigIconOptions(choices, FU.damageTypes, FU.affIcon);
@@ -78,7 +82,13 @@ export class DamageCustomizerV2 {
 				// Function to update total damage and icons based on HR Zero status, and extra damage
 				const totalDamageSpan = dialog.element.querySelector('#total-damage');
 				function updateTotalDamage() {
-					totalDamageSpan.textContent = `${context.damage.total}`;
+					let sumString = `${context.damage.hr}`;
+					context.damage.modifiers.forEach((modifier) => {
+						if (modifier.amount > 0) {
+							sumString += ` + ${modifier.amount} (${StringUtils.localize(modifier.label)})`;
+						}
+					});
+					totalDamageSpan.textContent = sumString;
 				}
 				updateTotalDamage();
 			},

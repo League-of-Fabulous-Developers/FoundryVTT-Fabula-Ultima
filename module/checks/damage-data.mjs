@@ -1,15 +1,9 @@
 /**
- * @typedef BonusDamage
+ * @typedef DamageModifier
  * @property {string} label
- * @property {number} value
- */
-
-/**
- * @typedef DamageChangeData
- * @property {String} key
  * @property {Boolean} enabled
+ * @property {number} amount
  * @property {DamageType[]} types
- * @property {String} modifier
  * @property {ResourceExpense} expense
  */
 
@@ -17,42 +11,38 @@
  * @class DamageData
  * @property {Number} hr The high roll
  * @property {DamageType} type
- * @property {BonusDamage[]} modifiers
+ * @property {DamageModifier[]} modifiers
  * @property {String} extra An expression to evaluate to add extra damage
  * @property {Boolean} hrZero Whether to treat the high roll as zero.
  * @property {Boolean} base Whether to return the total damage without any modifiers.
- * @property {DamageChangeData[]} changes
  */
 export class DamageData {
 	constructor(data = {}) {
 		// eslint-disable-next-line no-unused-vars
 		const { modifierTotal, modifiers, ..._data } = data;
 		Object.assign(this, _data);
-		this.modifiers = modifiers ?? [];
+		this._modifiers = modifiers ?? [];
 		if (!this.hrZero) {
 			this.hrZero = false;
 		}
 		if (!this.hr) {
 			this.hr = 0;
 		}
-		if (this.changes === undefined) {
-			this.changes = [];
-		}
-	}
-
-	static construct(type, amount) {
-		let data = new DamageData({
-			type: type,
-		});
-		data.addModifier('FU.Amount', amount);
-		return data;
 	}
 
 	/**
-	 * @returns {boolean}
+	 * @returns {DamageModifier[]}
 	 */
-	get hasChanges() {
-		return this.changes.length > 0;
+	get allModifiers() {
+		return this._modifiers;
+	}
+
+	/**
+	 * @returns {DamageModifier[]}
+	 * @remarks Returns only those modifiers that have been enabled.
+	 */
+	get modifiers() {
+		return this._modifiers.filter((m) => m.enabled);
 	}
 
 	/**
@@ -62,7 +52,14 @@ export class DamageData {
 		if (this.base) {
 			return 0;
 		}
-		return this.modifiers.reduce((agg, curr) => agg + curr.value, 0);
+		return this.modifiers.reduce((agg, curr) => agg + curr.amount, 0);
+	}
+
+	/**
+	 * @returns {boolean}
+	 */
+	get customizable() {
+		return this.modifiers.length > 1;
 	}
 
 	/**
@@ -78,16 +75,27 @@ export class DamageData {
 
 	/**
 	 * @param {String} label
-	 * @param {Number} value
+	 * @param {Number} amount
+	 * @param {DamageType[]} types
 	 */
-	addModifier(label, value) {
-		this.modifiers.push({ label: label, value: value });
+	addModifier(label, amount, types = []) {
+		/** @type DamageModifier **/
+		const modifier = {
+			label: label,
+			amount: amount,
+			value: amount, // legacy
+			types: types,
+			enabled: true,
+			expense: undefined,
+		};
+		this._modifiers.push(modifier);
 	}
 
-	/**
-	 * @param {DamageChangeData} data
-	 */
-	addChange(data) {
-		this.changes.push(data);
+	static construct(type, amount) {
+		let data = new DamageData({
+			type: type,
+		});
+		data.addModifier('FU.Amount', amount);
+		return data;
 	}
 }

@@ -43,6 +43,14 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async execute(context, selected) {
+		let _amount = 0;
+		if (this.amount) {
+			const targets = selected.map((t) => t.actor);
+			const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
+			_amount = await Expressions.evaluateAsync(this.amount, expressionContext);
+		}
+
+		// If there's damage types, we must provide options
 		if (this.damageTypes.size > 0) {
 			// const choices = new Set([context.event.configuration.getDamage().type, ...this.damageTypes]);
 			// const options = FoundryUtils.generateConfigIconOptions(choices, FU.damageTypes, FU.affIcon);
@@ -55,19 +63,17 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 			// if (selected) {
 			// 	context.event.configuration.setDamageType(selected);
 			// }
-			context.event.configuration.getDamage().addChange({
-				key: context.label,
-				enabled: true,
-				types: Array.from(this.damageTypes),
-				modifier: 0,
-			});
-		}
 
-		if (this.amount) {
-			const targets = selected.map((t) => t.actor);
-			const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
-			const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
-			context.event.configuration.addDamageBonus(context.label, amount);
+			// context.event.configuration.modifyDamage((data) => {
+			// 	data.addModifier(context.label, _amount, {
+			// 		enabled: true,
+			// 		types: Array.from(this.damageTypes),
+			// 	});
+			// });
+
+			context.event.configuration.getDamage().addModifier(context.label, _amount, Array.from(this.damageTypes));
+		} else {
+			context.event.configuration.addDamageBonus(context.label, _amount);
 		}
 	}
 }
