@@ -59,17 +59,7 @@ export class DamageCustomizerV2 {
 				const typeButtons = dialog.element.querySelectorAll('.fu-dialog__icon-option');
 				function updateTypeOptions() {
 					/** @type Set<DamageType> **/
-					let available = new Set([context.damage.type]);
-					for (const modifier of context.damage.rawModifiers) {
-						if (!modifier.enabled) {
-							continue;
-						}
-						if (modifier.types) {
-							modifier.types.forEach((type) => {
-								available.add(type);
-							});
-						}
-					}
+					let available = context.damage.getAvailableTypes();
 
 					if (!available.has(context.selectedType)) {
 						context.selectedType = context.initialType;

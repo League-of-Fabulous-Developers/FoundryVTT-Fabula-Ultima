@@ -17,11 +17,14 @@
  * @property {Boolean} base Whether to return the total damage without any modifiers.
  */
 export class DamageData {
+	/** @type DamageModifier[] **/
+	#modifiers;
+
 	constructor(data = {}) {
 		// eslint-disable-next-line no-unused-vars
 		const { modifierTotal, modifiers, ..._data } = data;
 		Object.assign(this, _data);
-		this._modifiers = modifiers ?? [];
+		this.#modifiers = modifiers ?? [];
 		if (!this.hrZero) {
 			this.hrZero = false;
 		}
@@ -34,7 +37,7 @@ export class DamageData {
 	 * @returns {DamageModifier[]}
 	 */
 	get rawModifiers() {
-		return this._modifiers;
+		return this.#modifiers;
 	}
 
 	/**
@@ -42,7 +45,7 @@ export class DamageData {
 	 * @remarks Returns only those modifiers that have been enabled.
 	 */
 	get modifiers() {
-		return this._modifiers.filter((m) => m.enabled && m.amount > 0);
+		return this.#modifiers.filter((m) => m.enabled && m.amount > 0);
 	}
 
 	/**
@@ -56,10 +59,37 @@ export class DamageData {
 	}
 
 	/**
+	 * @returns {Set<DamageType>}
+	 */
+	getAvailableTypes() {
+		let available = new Set([this.type]);
+		for (const modifier of this.#modifiers) {
+			if (!modifier.enabled) {
+				continue;
+			}
+			if (modifier.types) {
+				modifier.types.forEach((type) => {
+					available.add(type);
+				});
+			}
+		}
+		return available;
+	}
+
+	/**
 	 * @returns {boolean}
 	 */
 	get customizable() {
-		return this.rawModifiers.length > 1;
+		// If there's more than one available type
+		const available = this.getAvailableTypes();
+		if (available.size > 1) {
+			return true;
+		}
+		// If at least one ot te modifiers has a cost
+		if (this.modifiers.some((m) => m.expense && m.expense.amount > 0)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -89,9 +119,14 @@ export class DamageData {
 			enabled: true,
 			...data,
 		};
-		this._modifiers.push(modifier);
+		this.#modifiers.push(modifier);
 	}
 
+	/**
+	 * @param {DamageType} type
+	 * @param {Number} amount
+	 * @returns {DamageData}
+	 */
 	static construct(type, amount) {
 		let data = new DamageData({
 			type: type,
