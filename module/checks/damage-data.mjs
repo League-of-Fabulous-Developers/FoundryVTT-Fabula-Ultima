@@ -33,7 +33,7 @@ export class DamageData {
 	/**
 	 * @returns {DamageModifier[]}
 	 */
-	get allModifiers() {
+	get rawModifiers() {
 		return this._modifiers;
 	}
 

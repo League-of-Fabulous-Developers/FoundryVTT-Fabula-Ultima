@@ -19,7 +19,7 @@ export class DamageCustomizerV2 {
 		function updateOptions() {
 			/** @type Set<DamageType> **/
 			let choices = new Set([context.damage.type]);
-			for (const modifier of context.damage.allModifiers) {
+			for (const modifier of context.damage.rawModifiers) {
 				if (!modifier.enabled) {
 					continue;
 				}
@@ -72,13 +72,11 @@ export class DamageCustomizerV2 {
 			/** @param {Event} event
 			 *  @param {HTMLElement} dialog **/
 			render: (event, dialog) => {
-				// Cache selectors
-				const damageTypeInput = dialog.element.querySelector("input[name='damageType']");
-				const buttons = damageTypeInput.querySelectorAll('.fu-dialog__icon-option');
-				for (const button of buttons) {
+				// Select type
+				const typeButtons = dialog.element.querySelectorAll('.fu-dialog__icon-option');
+				for (const button of typeButtons) {
 					button.classList.toggle('selected', button.dataset.value === context.selectedType);
 				}
-
 				// Function to update total damage and icons based on HR Zero status, and extra damage
 				const totalDamageSpan = dialog.element.querySelector('#total-damage');
 				function updateTotalDamage() {
@@ -91,6 +89,17 @@ export class DamageCustomizerV2 {
 					totalDamageSpan.textContent = sumString;
 				}
 				updateTotalDamage();
+				// Modifier toggles
+				const modifierCheckboxes = dialog.element.querySelectorAll("input[type='checkbox'][name^='context.damage._modifiers.']");
+				for (const checkbox of modifierCheckboxes) {
+					checkbox.addEventListener('change', (ev) => {
+						const dataset = ev.target.dataset;
+						const enabled = ev.target.checked;
+						console.debug(`Changed ${dataset.index}`);
+						context.damage.rawModifiers[dataset.index].enabled = enabled;
+						updateTotalDamage();
+					});
+				}
 			},
 		});
 

@@ -15,7 +15,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			{{#each context.damage.allModifiers as |change index|}}
+			{{#each context.damage.rawModifiers as |change index|}}
 				<tr>
 					<th>{{localize this.label}}</th>
 					<td>
@@ -32,10 +32,11 @@
 					<td>
 						<label>
 							<input type="checkbox"
+								   id="{{this.label}}"
+								   data-index="{{index}}"
 								   name="context.damage._modifiers.{{index}}.enabled"
 								{{checked this.enabled}} />
 						</label>
-
 					</td>
 				</tr>
 			{{/each}}
@@ -47,7 +48,7 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Type'}}</label>
 		</legend>
-		<div class="fu-dialog__icon-group">
+		<div class="fu-dialog__icon-group grid-4col" style="display: grid;">
 			<input type="hidden" name="damageType" value="{{selected}}">
 			{{#each context.types as |type| }}
 				<button type="button"
