@@ -2,6 +2,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { SpellDataModel } from '../../items/spell/spell-data-model.mjs';
+import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;
 
@@ -45,15 +46,26 @@ export class SpellRulePredicate extends RulePredicateDataModel {
 		if (!context.item) {
 			return false;
 		}
-		if (!(context.item.system instanceof SpellDataModel)) {
+
+		// Resolve the item among events...
+		let item;
+		if (context.type === FUHooks.CALCULATE_DAMAGE_EVENT) {
+			item = context.event.item;
+		}
+
+		if (!item) {
 			return false;
 		}
+		if (!(item.system instanceof SpellDataModel)) {
+			return false;
+		}
+
 		/** @type SpellDataModel **/
-		const spell = context.item.system;
+		const spell = item.system;
 		if (this.offensive && !spell.isOffensive.value) {
 			return false;
 		}
-		if (this.duration && !spell.duration.value !== this.duration) {
+		if (this.duration && this.duration !== spell.duration.value) {
 			return false;
 		}
 		return true;

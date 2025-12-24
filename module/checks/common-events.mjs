@@ -123,6 +123,7 @@ async function calculateDamage(actor, item, configuration) {
 	const event = {
 		source: CharacterInfo.fromActor(actor),
 		targets: CharacterInfo.fromTargetData(targets),
+		item: item,
 		damageSource: damageSource,
 		configuration: configuration,
 	};

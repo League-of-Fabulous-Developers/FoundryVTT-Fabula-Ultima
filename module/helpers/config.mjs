@@ -919,4 +919,8 @@ FU.commandAction = {
 	reset: 'FU.Reset',
 };
 
+FU.modifyDamageVariant = {
+	overChannel: 'FU.OverChannel',
+};
+
 // --------------

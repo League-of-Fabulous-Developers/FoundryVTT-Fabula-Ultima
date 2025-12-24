@@ -180,6 +180,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						comparisonOperator: FU.comparisonOperator,
 						targetingPredicate: FU.targetingPredicate,
 						predicateQuantifier: FU.predicateQuantifier,
+						modifyDamageVariant: FU.modifyDamageVariant,
 					};
 				}
 				break;

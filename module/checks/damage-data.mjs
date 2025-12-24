@@ -4,7 +4,7 @@
  * @property {Boolean} enabled
  * @property {number} amount
  * @property {DamageType[]} types
- * @property {ActionCostDataModel} expense
+ * @property {ResourceExpense} expense
  */
 
 /**
@@ -86,7 +86,7 @@ export class DamageData {
 			return true;
 		}
 		// If at least one ot te modifiers has a cost
-		if (this.modifiers.some((m) => m.expense && m.expense.amount > 0)) {
+		if (this.#modifiers.some((m) => m.expense && m.expense.amount > 0)) {
 			return true;
 		}
 		return false;

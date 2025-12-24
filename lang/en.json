@@ -1697,6 +1697,8 @@
 		"Changes": "Changes",
 		"Types": "Types",
 		"Expense": "Expense",
-		"Modifiers": "Modifiers"
+		"Modifiers": "Modifiers",
+		"Variant": "Variant",
+		"OverChannel": "Over Channel"
 	}
 }

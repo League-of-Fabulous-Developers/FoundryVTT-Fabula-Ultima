@@ -42,6 +42,14 @@ export const DamageTraits = Object.freeze({
 });
 
 /**
+ * @description A list of traits in use for certain skills.
+ * @remarks Automatically converted to kebab case.
+ */
+export const SkillTraits = Object.freeze({
+	OverChannel: 'over-channel',
+});
+
+/**
  * @description Al traits supported by the system
  * @remarks Automatically converted to kebab case.
  * @remarks These are generally used by items and inline actions.

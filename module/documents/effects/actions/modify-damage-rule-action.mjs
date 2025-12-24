@@ -3,6 +3,8 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ActionCostDataModel } from '../../items/common/action-cost-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
+import { SkillDataModel } from '../../items/skill/skill-data-model.mjs';
 
 const fields = foundry.data.fields;
 
@@ -11,6 +13,7 @@ const fields = foundry.data.fields;
  * @property {String} amount
  * @property {Set<DamageType>} damageTypes
  * @property {ActionCostDataModel} cost
+ * @property {String} variant
  */
 export class ModifyDamageRuleAction extends RuleActionDataModel {
 	static {
@@ -31,6 +34,11 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 			cost: new fields.EmbeddedDataField(ActionCostDataModel, {
 				resource: '',
 			}),
+			variant: new fields.StringField({
+				initial: '',
+				blank: true,
+				choices: Object.keys(FU.modifyDamageVariant),
+			}),
 		});
 	}
 
@@ -49,6 +57,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	 */
 	async execute(context, selected) {
 		let _amount = 0;
+		const types = Array.from(this.damageTypes);
 
 		if (this.amount) {
 			const targets = selected.map((t) => t.actor);
@@ -56,15 +65,34 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 			_amount = await Expressions.evaluateAsync(this.amount, expressionContext);
 		}
 
-		// If there's damage types, we must provide options
-		if (this.damageTypes.size > 0 || this.cost.amount > 0) {
-			const types = Array.from(this.damageTypes);
-			context.event.configuration.getDamage().addModifier(context.label, _amount, types, {
-				expense: this.cost,
-				enabled: this.cost.amount === 0,
-			});
+		if (this.variant) {
+			switch (this.variant) {
+				case 'overChannel': {
+					/** @type SkillDataModel **/
+					const skill = context.item.system;
+					if (!(skill instanceof SkillDataModel)) {
+						return;
+					}
+					for (let sl = 1; sl <= skill.level.value; sl++) {
+						context.event.configuration.getDamage().addModifier(context.label, _amount * sl, types, {
+							expense: {
+								amount: this.cost.amount * sl,
+								resource: this.cost.resource,
+							},
+							enabled: false,
+						});
+					}
+				}
+			}
 		} else {
-			context.event.configuration.addDamageBonus(context.label, _amount);
+			if (this.damageTypes.size > 0 || this.cost.amount > 0) {
+				context.event.configuration.getDamage().addModifier(context.label, _amount, types, {
+					expense: this.cost,
+					enabled: this.cost.amount === 0,
+				});
+			} else {
+				context.event.configuration.addDamageBonus(context.label, _amount);
+			}
 		}
 	}
 }
