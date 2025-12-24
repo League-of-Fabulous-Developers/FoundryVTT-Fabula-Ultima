@@ -206,10 +206,16 @@
 	transition:
 		outline 0.15s ease,
 		background 0.15s ease;
+}
 
-	&.selected {
-		background: var(--background-critical);
-	}
+.fu-dialog__icon-option.selected {
+	background: var(--background-critical);
+}
+
+.fu-dialog__icon-option:disabled {
+	opacity: 0.5;
+	background: dimgrey;
+	pointer-events: none;
 }
 
 .fu-dialog__icon {

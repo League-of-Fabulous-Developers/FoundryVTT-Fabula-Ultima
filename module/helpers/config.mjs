@@ -85,6 +85,7 @@ FU.affIcon = {
 	ice: 'fua fu-ice',
 	light: 'fua fu-light',
 	poison: 'fua fu-poison',
+	untyped: 'fua fu-untyped',
 };
 
 FU.allIcon = {

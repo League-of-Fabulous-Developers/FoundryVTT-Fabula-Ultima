@@ -11,31 +11,10 @@ export class DamageCustomizerV2 {
 		const context = {
 			damage: damageData,
 			/** @type FormSelectOption[] **/
-			types: [],
+			types: FoundryUtils.generateConfigIconOptions(Object.keys(FU.damageTypes), FU.damageTypes, FU.affIcon),
 			/** @type DamageType **/
 			selectedType: damageData.type,
 		};
-
-		function updateOptions() {
-			/** @type Set<DamageType> **/
-			let choices = new Set([context.damage.type]);
-			for (const modifier of context.damage.rawModifiers) {
-				if (!modifier.enabled) {
-					continue;
-				}
-				if (modifier.types) {
-					modifier.types.forEach((type) => {
-						choices.add(type);
-					});
-				}
-			}
-			context.types = FoundryUtils.generateConfigIconOptions(choices, FU.damageTypes, FU.affIcon);
-			context.types.forEach((option) => {
-				option.selected = option.value === context.selectedType;
-			});
-		}
-
-		updateOptions();
 
 		const result = await foundry.applications.api.DialogV2.input({
 			window: {
@@ -74,9 +53,33 @@ export class DamageCustomizerV2 {
 			render: (event, dialog) => {
 				// Select type
 				const typeButtons = dialog.element.querySelectorAll('.fu-dialog__icon-option');
-				for (const button of typeButtons) {
-					button.classList.toggle('selected', button.dataset.value === context.selectedType);
+				function updateTypeOptions() {
+					/** @type Set<DamageType> **/
+					let available = new Set([context.damage.type]);
+					for (const modifier of context.damage.rawModifiers) {
+						if (!modifier.enabled) {
+							continue;
+						}
+						if (modifier.types) {
+							modifier.types.forEach((type) => {
+								available.add(type);
+							});
+						}
+					}
+
+					context.types.forEach((option) => {
+						option.disabled = available.has(option.value);
+						option.selected = option.value === context.selectedType;
+					});
+
+					for (const button of typeButtons) {
+						const type = button.dataset.value;
+						button.disabled = !available.has(type);
+						button.classList.toggle('selected', type === context.selectedType);
+					}
 				}
+				updateTypeOptions();
+
 				// Function to update total damage and icons based on HR Zero status, and extra damage
 				const totalDamageSpan = dialog.element.querySelector('#total-damage');
 				function updateTotalDamage() {
@@ -89,6 +92,7 @@ export class DamageCustomizerV2 {
 					totalDamageSpan.textContent = sumString;
 				}
 				updateTotalDamage();
+
 				// Modifier toggles
 				const modifierCheckboxes = dialog.element.querySelectorAll("input[type='checkbox'][name^='context.damage._modifiers.']");
 				for (const checkbox of modifierCheckboxes) {
@@ -97,6 +101,7 @@ export class DamageCustomizerV2 {
 						const enabled = ev.target.checked;
 						console.debug(`Changed ${dataset.index}`);
 						context.damage.rawModifiers[dataset.index].enabled = enabled;
+						updateTypeOptions();
 						updateTotalDamage();
 					});
 				}

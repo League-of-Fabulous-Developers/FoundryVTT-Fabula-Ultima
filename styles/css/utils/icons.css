@@ -55,6 +55,7 @@
 	--icon-fu--light: url('../../static/affinities/icons/light.png');
 	--icon-fu--physical: url('../../static/affinities/icons/physical.png');
 	--icon-fu--poison: url('../../static/affinities/icons/poison.png');
+	--icon-fu--untyped: url('../../static/affinities/icons/untyped.png');
 }
 
 .fu-air {
@@ -91,6 +92,10 @@
 
 .fu-poison {
 	background-image: var(--icon-fu--poison);
+}
+
+.fu-untyped {
+	background-image: var(--icon-fu--untyped);
 }
 
 .fu-fp {
