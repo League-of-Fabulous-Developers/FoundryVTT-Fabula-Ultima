@@ -4,11 +4,13 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 
 export class DamageCustomizerV2 {
 	/**
-	 * @desc Displays a dialog to customize damage.
 	 * @param {DamageData} damageData
+	 * @param {FUItem} item
+	 * @remarks Will modify the given damage data.
 	 */
-	async #open(damageData) {
+	static async open(damageData, item) {
 		const context = {
+			item: item,
 			damage: damageData,
 			/** @type FormSelectOption[] **/
 			types: FoundryUtils.generateConfigIconOptions(Object.keys(FU.damageTypes), FU.damageTypes, FU.affIcon),
@@ -111,18 +113,10 @@ export class DamageCustomizerV2 {
 				}
 			},
 		});
-
 		if (result) {
 			damageData.type = context.selectedType;
+		} else {
+			throw Error('Canceled by user');
 		}
-	}
-
-	/**
-	 * @param {DamageData} damageData
-	 * @remarks Will modify the given damage data.
-	 */
-	static async open(damageData) {
-		const window = new DamageCustomizerV2();
-		return window.#open(damageData);
 	}
 }

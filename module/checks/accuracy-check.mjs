@@ -4,7 +4,6 @@ import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
-import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
 
 /**
  * @param {CheckV2} check
@@ -141,16 +140,6 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				}
 			}
 			return damage;
-		});
-
-		registerCallback(async (check, actor, item) => {
-			if (config.hasDamage) {
-				await CommonEvents.calculateDamage(actor, item, config);
-				const damage = config.getDamage();
-				if (damage.customizable) {
-					await DamageCustomizerV2.open(damage);
-				}
-			}
 		});
 	}
 };

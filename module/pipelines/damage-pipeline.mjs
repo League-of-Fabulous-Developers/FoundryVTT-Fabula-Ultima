@@ -19,6 +19,8 @@ import { SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from '../checks/damage-data.mjs';
+import { CheckHooks } from '../checks/check-hooks.mjs';
+import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -689,7 +691,6 @@ function getTargetedAction(damageData, sourceInfo) {
 		.requiresOwner();
 }
 
-// TODO: Memoize if needed
 /**
  * @type {Record<Number, Function<Number>>}
  * @description Index : Multiplier
@@ -702,11 +703,25 @@ let affinityDamageModifier = {
 	[FU.affValue.absorption]: () => -1,
 };
 
+const onProcessCheck = (check, actor, item, registerCallback) => {
+	registerCallback(async (check, actor, item) => {
+		const config = CheckConfiguration.configure(check);
+		if (config.hasDamage) {
+			await CommonEvents.calculateDamage(actor, item, config);
+			const damage = config.getDamage();
+			if (damage.customizable) {
+				await DamageCustomizerV2.open(damage, item);
+			}
+		}
+	});
+};
+
 /**
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
 	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
+	Hooks.on(CheckHooks.processCheck, onProcessCheck);
 
 	const onAbsorbDamage = async (message, resource) => {
 		const targets = await getSelected();

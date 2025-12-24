@@ -70,12 +70,6 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 			}
 			return damage;
 		});
-
-		registerCallback(async (check, actor, item) => {
-			if (config.hasDamage) {
-				await CommonEvents.calculateDamage(actor, item, config);
-			}
-		});
 	}
 };
 

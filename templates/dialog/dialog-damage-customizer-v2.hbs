@@ -4,6 +4,13 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Modifiers'}}</label>
 		</legend>
+		<span class="fu-dialog-item_label flex-group-center">
+				<img class="fu-dialog__icon__small"
+					 src="{{ context.item.img }}"
+					 alt="{{context.item.name}}"
+					 data-tooltip="{{ context.item.name }}" />
+			{{context.item.name}}
+			</span>
 		<table class="table-compact">
 			<thead>
 			<tr>
@@ -48,13 +55,13 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Type'}}</label>
 		</legend>
-		<div class="fu-dialog__icon-group grid-5col" style="display: grid; gap: 2px;">
+		<div class="fu-dialog__icon-group flex-group-center grid-5col">
 			<input type="hidden" name="damageType" value="{{selected}}">
 			{{#each context.types as |type| }}
 				<button type="button"
 						class="fu-dialog__icon-option"
 						data-tooltip="{{label}}"
-						data-action="selectType" data-value="{{value}}">
+						 data-action="selectType" data-value="{{value}}">
 					<i class="fu-dialog__icon {{icon}}"></i>
 				</button>
 			{{/each}}
@@ -65,8 +72,10 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Amount'}}</label>
 		</legend>
-		<span class="fu-dialog__text" id="total-damage" style="font-size: medium">
-			<b>{{damage.total}}</b>
-		</span>
+		<div class="flexcol">
+			<span class="fu-dialog__output" id="total-damage">
+				<b>{{damage.total}}</b>
+			</span>
+		</div>
 	</fieldset>
 </main>
