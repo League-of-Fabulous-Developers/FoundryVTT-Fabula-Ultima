@@ -4,7 +4,7 @@
  * @property {Boolean} enabled
  * @property {number} amount
  * @property {DamageType[]} types
- * @property {ResourceExpense} expense
+ * @property {ActionCostDataModel} expense
  */
 
 /**
@@ -42,7 +42,7 @@ export class DamageData {
 	 * @remarks Returns only those modifiers that have been enabled.
 	 */
 	get modifiers() {
-		return this._modifiers.filter((m) => m.enabled);
+		return this._modifiers.filter((m) => m.enabled && m.amount > 0);
 	}
 
 	/**
@@ -59,7 +59,7 @@ export class DamageData {
 	 * @returns {boolean}
 	 */
 	get customizable() {
-		return this.modifiers.length > 1;
+		return this.rawModifiers.length > 1;
 	}
 
 	/**
@@ -77,8 +77,9 @@ export class DamageData {
 	 * @param {String} label
 	 * @param {Number} amount
 	 * @param {DamageType[]} types
+	 * @param {DamageModifier} data
 	 */
-	addModifier(label, amount, types = []) {
+	addModifier(label, amount, types = [], data = {}) {
 		/** @type DamageModifier **/
 		const modifier = {
 			label: label,
@@ -86,7 +87,7 @@ export class DamageData {
 			value: amount, // legacy
 			types: types,
 			enabled: true,
-			expense: undefined,
+			...data,
 		};
 		this._modifiers.push(modifier);
 	}

@@ -2,6 +2,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
+import { ActionCostDataModel } from '../../items/common/action-cost-data-model.mjs';
 
 const fields = foundry.data.fields;
 
@@ -9,6 +10,7 @@ const fields = foundry.data.fields;
  * @property {DamageType} damageType
  * @property {String} amount
  * @property {Set<DamageType>} damageTypes
+ * @property {ActionCostDataModel} cost
  */
 export class ModifyDamageRuleAction extends RuleActionDataModel {
 	static {
@@ -26,6 +28,9 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 		return Object.assign(super.defineSchema(), {
 			amount: new fields.StringField({ blank: true }),
 			damageTypes: new fields.SetField(new fields.StringField()),
+			cost: new fields.EmbeddedDataField(ActionCostDataModel, {
+				resource: '',
+			}),
 		});
 	}
 
@@ -44,6 +49,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 	 */
 	async execute(context, selected) {
 		let _amount = 0;
+
 		if (this.amount) {
 			const targets = selected.map((t) => t.actor);
 			const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
@@ -51,27 +57,12 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 		}
 
 		// If there's damage types, we must provide options
-		if (this.damageTypes.size > 0) {
-			// const choices = new Set([context.event.configuration.getDamage().type, ...this.damageTypes]);
-			// const options = FoundryUtils.generateConfigIconOptions(choices, FU.damageTypes, FU.affIcon);
-			// // TODO: Localize
-			// const message = `You are able to change the damage type due to <strong>${context.label}</strong>.`;
-			// const title = `${context.event.configuration.check.itemName} : ${StringUtils.localize('FU.SelectDamageType')}`;
-			// const selected = await FoundryUtils.selectIconOptionDialog(title, options, {
-			// 	message: message,
-			// });
-			// if (selected) {
-			// 	context.event.configuration.setDamageType(selected);
-			// }
-
-			// context.event.configuration.modifyDamage((data) => {
-			// 	data.addModifier(context.label, _amount, {
-			// 		enabled: true,
-			// 		types: Array.from(this.damageTypes),
-			// 	});
-			// });
-
-			context.event.configuration.getDamage().addModifier(context.label, _amount, Array.from(this.damageTypes));
+		if (this.damageTypes.size > 0 || this.cost.amount > 0) {
+			const types = Array.from(this.damageTypes);
+			context.event.configuration.getDamage().addModifier(context.label, _amount, types, {
+				expense: this.cost,
+				enabled: this.cost.amount === 0,
+			});
 		} else {
 			context.event.configuration.addDamageBonus(context.label, _amount);
 		}

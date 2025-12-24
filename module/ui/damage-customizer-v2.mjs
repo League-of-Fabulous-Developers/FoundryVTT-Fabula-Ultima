@@ -13,6 +13,8 @@ export class DamageCustomizerV2 {
 			/** @type FormSelectOption[] **/
 			types: FoundryUtils.generateConfigIconOptions(Object.keys(FU.damageTypes), FU.damageTypes, FU.affIcon),
 			/** @type DamageType **/
+			initialType: damageData.type,
+			/** @type DamageType **/
 			selectedType: damageData.type,
 		};
 
@@ -51,7 +53,7 @@ export class DamageCustomizerV2 {
 			/** @param {Event} event
 			 *  @param {HTMLElement} dialog **/
 			render: (event, dialog) => {
-				// Select type
+				// Update type options accordingly
 				const typeButtons = dialog.element.querySelectorAll('.fu-dialog__icon-option');
 				function updateTypeOptions() {
 					/** @type Set<DamageType> **/
@@ -67,6 +69,9 @@ export class DamageCustomizerV2 {
 						}
 					}
 
+					if (!available.has(context.selectedType)) {
+						context.selectedType = context.initialType;
+					}
 					context.types.forEach((option) => {
 						option.disabled = available.has(option.value);
 						option.selected = option.value === context.selectedType;
@@ -79,7 +84,6 @@ export class DamageCustomizerV2 {
 					}
 				}
 				updateTypeOptions();
-
 				// Function to update total damage and icons based on HR Zero status, and extra damage
 				const totalDamageSpan = dialog.element.querySelector('#total-damage');
 				function updateTotalDamage() {

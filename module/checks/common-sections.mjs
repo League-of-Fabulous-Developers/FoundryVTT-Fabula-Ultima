@@ -214,6 +214,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 	const isTargeted = targetData?.length > 0 || !Targeting.STRICT_TARGETING;
 
 	let checkData;
+	/** @type DamageData **/
 	let damageData;
 
 	if (inspector) {
@@ -268,6 +269,11 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			// Damage action
 			if (isDamage) {
 				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo));
+				for (const mod of damageData.modifiers) {
+					if (mod.expense && mod.expense.amount > 0) {
+						CommonSections.spendResource(sections, actor, item, mod.expense, targets, flags);
+					}
+				}
 
 				function onRoll() {
 					for (const target of targetData) {

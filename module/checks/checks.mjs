@@ -400,6 +400,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 	 */
 	const renderData = [];
 	const additionalFlags = {};
+	const inspector = CheckConfiguration.inspect(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
 	await CommonEvents.renderCheck(renderData, result, actor, item);
@@ -437,7 +438,6 @@ async function renderCheck(result, actor, item, flags = {}) {
 
 	bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-	const inspector = CheckConfiguration.inspect(result);
 	let flavor;
 	if (flavorSections.length) {
 		flavor = '';
