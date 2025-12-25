@@ -21,25 +21,23 @@
 </section>
 
 <section id="breakdown" class="hidden">
-    <div class='projectfu'>
-        <table>
-            <caption>{{localize 'FU.Breakdown'}}</caption>
-            <thead>
-            <tr>
-                <th>{{localize 'FU.Step'}}</th>
-                <th>{{localize 'FU.Effect'}}</th>
-                <th>{{localize 'FU.Total'}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each breakdown}}
-                <tr>
-                    <th>{{localize this.step}}</th>
-                    <td>{{this.effect}}</td>
-                    <td>{{this.total}}</td>
-                </tr>
-            {{/each}}
-            </tbody>
-        </table>
-    </div>
+	<table class="table-compact">
+		<caption>{{localize 'FU.Breakdown'}}</caption>
+		<thead>
+			<tr>
+				<th>{{localize 'FU.Step'}}</th>
+				<th>{{localize 'FU.Effect'}}</th>
+				<th>{{localize 'FU.Total'}}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{{#each breakdown}}
+			<tr>
+				<th>{{localize this.step}}</th>
+				<td>{{this.effect}}</td>
+				<td>{{this.total}}</td>
+			</tr>
+		{{/each}}
+		</tbody>
+	</table>
 </section>

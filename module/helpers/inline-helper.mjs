@@ -11,28 +11,31 @@ import { ChatMessageHelper } from './chat-message-helper.mjs';
  * @property {String} itemUuid
  * @property {String} actorUuid
  * @property {String} effectUuid
+ * @property {String} fuid If an item is provided.
  */
 export class InlineSourceInfo {
-	constructor(name, actorUuid, itemUuid, effectUuid) {
+	constructor(name, actorUuid, itemUuid, effectUuid, fuid) {
 		this.name = name;
 		this.actorUuid = actorUuid;
 		this.itemUuid = itemUuid;
 		this.effectUuid = effectUuid;
+		this.fuid = fuid;
 	}
 
 	/**
 	 * @param {FUActor} actor
 	 * @param {FUItem} item
+	 * @param {String} name
 	 * @return {InlineSourceInfo}
 	 */
-	static fromInstance(actor, item) {
+	static fromInstance(actor, item, name = undefined) {
 		if (actor) {
 			if (item) {
-				return new InlineSourceInfo(item.name, actor.uuid, item.uuid);
+				return new InlineSourceInfo(name ?? item.name, actor.uuid, item.uuid);
 			}
-			return new InlineSourceInfo(actor.name, actor.uuid, null);
+			return new InlineSourceInfo(name ?? actor.name, actor.uuid, null);
 		} else if (item) {
-			return new InlineSourceInfo(item.name, null, item.uuid);
+			return new InlineSourceInfo(name ?? item.name, null, item.uuid);
 		}
 	}
 
@@ -136,6 +139,7 @@ function determineSource(document, element) {
 	let itemUuid = null;
 	let actorUuid = null;
 	let effectUuid = null;
+	let fuid = element?.dataset?.fuid;
 
 	// ACTOR SHEET
 	if (document instanceof FUActor) {
@@ -153,6 +157,7 @@ function determineSource(document, element) {
 			}
 			if (item) {
 				itemUuid = item.uuid;
+				fuid ??= item.system.fuid;
 				name = item.name;
 			}
 		} else {
@@ -170,12 +175,14 @@ function determineSource(document, element) {
 			}
 			if (effect) {
 				effectUuid = effect.uuid;
+				fuid ??= effect.system.fuid;
 			}
 		}
 	} // ITEM SHEET
 	else if (document instanceof FUItem) {
 		name = document.name;
 		itemUuid = document.uuid;
+		fuid ??= document.system.fuid;
 		if (document.isEmbedded) {
 			actorUuid = document.actor.uuid;
 		}
@@ -195,7 +202,6 @@ function determineSource(document, element) {
 				name = check.itemName;
 			}
 		} else {
-			// No need to check 'instanceof FUItem;
 			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 			if (item) {
 				// It's possible the dispatcher didn't encode this information
@@ -210,10 +216,9 @@ function determineSource(document, element) {
 				effectUuid = effect;
 			}
 		}
-
 		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
-	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid);
+	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid);
 }
 
 /**
@@ -243,28 +248,6 @@ function appendVariableToAnchor(anchor, key, expression, localization = 'FU.Vari
 		anchor.append(game.i18n.localize(localization));
 	} else {
 		anchor.append(expression);
-	}
-}
-
-function toBase64(value) {
-	try {
-		const string = JSON.stringify(value);
-		const bytes = new TextEncoder().encode(string);
-		const binString = Array.from(bytes, (byte) => String.fromCodePoint(byte)).join('');
-		return btoa(binString);
-	} catch (e) {
-		return null;
-	}
-}
-
-function fromBase64(base64) {
-	try {
-		const binString = atob(base64);
-		const uint8Array = Uint8Array.from(binString, (m) => m.codePointAt(0));
-		const decodedValue = new TextDecoder().decode(uint8Array);
-		return JSON.parse(decodedValue);
-	} catch (e) {
-		return null;
 	}
 }
 
@@ -418,18 +401,48 @@ function propertyPattern(identifier, key, value) {
 
 const documentPropertyGroup = [propertyPattern('document', 'document', '[\\w.-]+'), propertyPattern('propertyPath', 'propertyPath', '[\\w.-]+'), propertyPattern('index', 'index', '\\d')];
 
+/**
+ * @param {FUItem} item
+ * @returns {string}
+ */
+function resolveItemGroup(item) {
+	let source;
+	if (item) {
+		/** @type ItemType **/
+		switch (item.type) {
+			case 'spell':
+				source = 'spell';
+				break;
+			case 'basic':
+			case 'weapon':
+			case 'customWeapon':
+				source = 'attack';
+				break;
+			case 'skill':
+			case 'optionalFeature':
+			case 'classFeature':
+			case 'miscAbility':
+				source = 'skill';
+				break;
+			case 'consumable':
+				source = 'item';
+				break;
+		}
+	}
+	return source;
+}
+
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
 	appendImage,
 	appendVectorIcon,
 	appendVariableToAnchor,
-	toBase64,
-	fromBase64,
 	registerCommand,
 	compose,
 	propertyPattern,
 	resolveDocument,
 	getRenderContext,
 	documentPropertyGroup,
+	resolveItemGroup,
 };

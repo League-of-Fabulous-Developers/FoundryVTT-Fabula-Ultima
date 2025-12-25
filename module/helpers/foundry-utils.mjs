@@ -31,6 +31,12 @@ const { api, fields, handlebars } = foundry.applications;
  */
 
 /**
+ * @typedef FUSelectDialogConfiguration
+ * @property {String} selected
+ * @property {String} message
+ */
+
+/**
  * @remarks Helper usage examples can also be found here: https://foundryvtt.wiki/en/development/api/helpers
  */
 export default class FoundryUtils {
@@ -57,9 +63,63 @@ export default class FoundryUtils {
 
 		const data = await api.DialogV2.input({
 			window: { title: title },
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 			content: content,
 		});
 		return data?.option ?? null;
+	}
+
+	/**
+	 * Show a dialog using radio buttons with optional icons.
+	 *
+	 * @param {String} title
+	 * @param {{ value: string, label: string, icon?: string }[]} options
+	 * @param {FUSelectDialogConfiguration} configuration
+	 * @returns {Promise<String|null>}
+	 */
+	static async selectIconOptionDialog(title, options, configuration = {}) {
+		const content = await FoundryUtils.renderTemplate('dialog/dialog-select-option-icon', {
+			options: options,
+			message: configuration.message,
+		});
+
+		// TODO: Set initial selected
+		const data = await api.DialogV2.input({
+			window: { title: title },
+			actions: {
+				/** @param {Event} event
+				 *  @param {HTMLElement} dialog **/
+				selectOption: (event, dialog) => {
+					const value = event.target.dataset.value;
+					const parent = dialog.closest('div');
+					const option = parent.querySelector("input[name='option']");
+					option.value = value;
+					parent.querySelectorAll('button').forEach((button) => {
+						button.classList.remove('selected');
+					});
+					dialog.classList.add('selected');
+				},
+			},
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+			content: content,
+		});
+
+		return data?.option ?? null;
+	}
+
+	/**
+	 * @remarks This follows the 'key:value' format used in the system's CONFIG file
+	 * @param {Iterator<string>} keys
+	 * @param {Record<string, string>} labelRecord
+	 * @param {Record<string, string>} iconRecord
+	 * @returns {FormSelectOption[]}
+	 */
+	static generateConfigIconOptions(keys, labelRecord, iconRecord) {
+		return Array.from(keys).map((key) => ({
+			label: StringUtils.localize(labelRecord[key]),
+			icon: iconRecord[key],
+			value: key,
+		}));
 	}
 
 	/**
@@ -153,7 +213,7 @@ export default class FoundryUtils {
 	 *
 	 * @param {String} title
 	 * @param {String} message
-	 * @returns {Promise<void>}
+	 * @returns {Promise<Boolean>}
 	 */
 	static async confirmDialog(title, message) {
 		return foundry.applications.api.DialogV2.confirm({
@@ -172,5 +232,27 @@ export default class FoundryUtils {
 				label: 'FU.Cancel',
 			},
 		});
+	}
+
+	/**
+	 * @param {Record<String, String>} record
+	 * @param {((key: string, value: string) => string)} labelSelector
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Maps the localized values (by convention) as the labels, and the keys as the values.
+	 */
+	static getFormOptions(record, labelSelector = undefined) {
+		return Object.entries(record).map(([key, value]) => ({
+			label: StringUtils.localize(labelSelector ? labelSelector(key, value) : value),
+			value: key,
+		}));
+	}
+
+	/**
+	 * @param {String} text
+	 * @param {Object} context
+	 * @returns {Promise<*>}
+	 */
+	static async enrichText(text, context) {
+		return TextEditor.implementation.enrichHTML(text, context);
 	}
 }

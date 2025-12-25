@@ -16,6 +16,11 @@ import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SETTINGS } from '../settings.js';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import { DamageData } from '../checks/damage-data.mjs';
+import { CheckHooks } from '../checks/check-hooks.mjs';
+import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -128,7 +133,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {Number} affinity The index of the affinity
  * @property {String} affinityMessage The localized affinity message to use
  * @property {FU.damageTypes} damageType
- * @property {DamageData} damageData
+ * @property {TableDamageData} damageData
  * @property {DamageOverrideInfo} damageOverride
  * @property {String} extra An optional expression to evaluate for onApply damage
  * @property {Number} amount The base amount before bonuses or modifiers are applied
@@ -374,11 +379,15 @@ async function process(request) {
 	if (!request.validate()) {
 		return Promise.reject('Request was not valid');
 	}
-
 	console.debug(`Applying damage from request with traits: ${[...request.traits].join(', ')}`);
 
 	const updates = [];
 	for (const actor of request.targets) {
+		if (!actor.isOwner) {
+			ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+			continue;
+		}
+
 		// Create an initial context then run the pipeline
 		let context = new DamagePipelineContext(request, actor);
 
@@ -394,7 +403,7 @@ async function process(request) {
 
 		// Provide support for targeting MP instead
 		let resource = 'hp';
-		if (request.traits.has(Traits.MindPointLoss)) {
+		if (context.traits.has(Traits.MindPointLoss)) {
 			resource = 'mp';
 		}
 
@@ -429,7 +438,7 @@ async function process(request) {
 
 		updates.push(
 			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then((result) => {
-				CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
+				CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin);
 				return result; // keep the result from modifyTokenAttribute if needed
 			}),
 		);
@@ -466,8 +475,8 @@ async function process(request) {
 					amount: damageTaken,
 					type: affinityString,
 					from: request.sourceInfo.name,
-					resource: resource.toUpperCase(),
 					sourceActorUuid: request.sourceInfo.actorUuid,
+					resource: resource.toUpperCase(),
 					sourceItemUuid: request.sourceInfo.itemUuid,
 					breakdown: context.breakdown,
 				}),
@@ -513,7 +522,6 @@ function onRenderChatMessage(message, html) {
 		const inspector = CheckConfiguration.inspect(message);
 		const damageData = inspector.getDamage();
 		const traits = inspector.getTraits();
-
 		const sourceInfo = getSourceInfoFromChatMessage(message);
 
 		const customizeDamage = async (event, targets) => {
@@ -549,7 +557,6 @@ function onRenderChatMessage(message, html) {
 		};
 
 		html.querySelectorAll(`a[data-action="applyDamage"]`).forEach((element) => element.addEventListener('click', (event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage)));
-		html.querySelector(`a[data-action="applyDamageSelected"]`)?.addEventListener('click', (event) => handleClick(event, getSelected, applyDefaultDamage, customizeDamage));
 		html.querySelector(`a[data-action="selectDamageCustomizer"]`)?.addEventListener('click', async (event) => {
 			event.preventDefault();
 			if (!disabled) {
@@ -571,7 +578,19 @@ function onRenderChatMessage(message, html) {
 			}
 		});
 	}
+	// If not using the check API
+	else {
+		Pipeline.handleClick(message, html, 'applyDamage', async (dataset) => {
+			const fields = StringUtils.fromBase64(dataset.fields);
+			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+			const damageData = new DamageData(fields.damageData);
+			const targets = await Pipeline.getTargetsFromAction(dataset);
+			const request = new DamageRequest(sourceInfo, targets, damageData, {});
+			return process(request);
+		});
+	}
 
+	// Always do these
 	Pipeline.handleClick(message, html, 'inspectActor', async (dataset) => {
 		const uuid = dataset.uuid;
 		return FUPartySheet.inspectAdversary(uuid);
@@ -600,7 +619,7 @@ function onRenderChatMessage(message, html) {
  * @param {Event} event
  * @param {FUActor[]} targets
  * @param {InlineSourceInfo} sourceInfo
- * @param {DamageData} damageData
+ * @param {TableDamageData} damageData
  * @param {DamageOverrideInfo} damageOverride
  * @param {String[]} traits
  * @returns {void}
@@ -629,7 +648,49 @@ async function absorbDamage(resource, amount, sourceInfo, targets) {
 	await ResourcePipeline.processRecovery(request);
 }
 
-// TODO: Memoize if needed
+/**
+ * @param {DamageRequest} request
+ * @returns {Promise<void>}
+ */
+async function promptApply(request) {
+	const targets = Targeting.serializeTargetData(request.targets);
+	const damageData = request.damageData;
+	const actions = [
+		new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
+			damageData: damageData,
+			sourceInfo: request.sourceInfo,
+		}).requiresOwner(),
+	];
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	ChatMessage.create({
+		flags: flags,
+		content: await FoundryUtils.renderTemplate('chat/chat-apply-damage-prompt', {
+			type: damageData.type,
+			amount: damageData.total,
+			source: request.sourceInfo.name,
+			targets: targets,
+			actions: actions,
+		}),
+	});
+}
+
+/**
+ * @param {DamageData} damageData *
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {TargetAction}
+ */
+function getTargetedAction(damageData, sourceInfo) {
+	const icon = FU.affIcon[damageData.type];
+	return new TargetAction('applyDamage', icon, 'FU.ChatApplyDamageTooltip', {
+		damageData: damageData,
+		sourceInfo: sourceInfo,
+	})
+		.setFlag(Flags.ChatMessage.Damage)
+		.withSelected()
+		.requiresOwner();
+}
+
 /**
  * @type {Record<Number, Function<Number>>}
  * @description Index : Multiplier
@@ -642,11 +703,25 @@ let affinityDamageModifier = {
 	[FU.affValue.absorption]: () => -1,
 };
 
+const onProcessCheck = (check, actor, item, registerCallback) => {
+	registerCallback(async (check, actor, item) => {
+		const config = CheckConfiguration.configure(check);
+		if (config.hasDamage) {
+			await CommonEvents.calculateDamage(actor, item, config);
+			const damage = config.getDamage();
+			if (damage.customizable) {
+				await DamageCustomizerV2.open(damage, item);
+			}
+		}
+	});
+};
+
 /**
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
 	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
+	Hooks.on(CheckHooks.processCheck, onProcessCheck);
 
 	const onAbsorbDamage = async (message, resource) => {
 		const targets = await getSelected();
@@ -666,4 +741,6 @@ function initialize() {
 export const DamagePipeline = {
 	initialize,
 	process,
+	promptApply,
+	getTargetedAction,
 };

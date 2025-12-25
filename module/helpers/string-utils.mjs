@@ -1,3 +1,5 @@
+// NOTE: This should have no dependencies
+
 /**
  * @param {String} str
  * @returns {string}
@@ -62,10 +64,34 @@ function truncate(text, maxLength) {
 	return truncated + '…';
 }
 
+function toBase64(value) {
+	try {
+		const string = JSON.stringify(value);
+		const bytes = new TextEncoder().encode(string);
+		const binString = Array.from(bytes, (byte) => String.fromCodePoint(byte)).join('');
+		return btoa(binString);
+	} catch (e) {
+		return null;
+	}
+}
+
+function fromBase64(base64) {
+	try {
+		const binString = atob(base64);
+		const uint8Array = Uint8Array.from(binString, (m) => m.codePointAt(0));
+		const decodedValue = new TextDecoder().decode(uint8Array);
+		return JSON.parse(decodedValue);
+	} catch (e) {
+		return null;
+	}
+}
+
 export const StringUtils = Object.freeze({
 	kebabToPascal,
 	titleToKebab,
 	localize,
 	capitalize,
 	truncate,
+	toBase64,
+	fromBase64,
 });

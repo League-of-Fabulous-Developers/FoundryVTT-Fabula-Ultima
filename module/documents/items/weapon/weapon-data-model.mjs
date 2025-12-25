@@ -139,13 +139,24 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeWeaponCheck(modifiers));
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeWeaponCheck(modifiers) {
+		return async (check, actor, item) => {
+			const configure = CheckConfiguration.configure(check);
+			configure.setHrZero(modifiers.shift);
+		};
 	}
 
 	get attributePartials() {
 		return [
 			ItemPartialTemplates.standard,
-			ItemPartialTemplates.traits,
+			ItemPartialTemplates.traitsLegacy,
 			ItemPartialTemplates.qualityCost,
 			ItemPartialTemplates.weapon,
 			ItemPartialTemplates.attackAccuracy,

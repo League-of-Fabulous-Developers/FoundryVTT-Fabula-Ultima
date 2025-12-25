@@ -18,7 +18,9 @@ export const ItemPartialTemplates = Object.freeze({
 	accuracy: { template: systemTemplatePath('item/partials/item-accuracy-section'), group: 'grid' },
 	legacyAccuracy: { template: systemTemplatePath('item/partials/item-accuracy-section-legacy'), group: 'grid' },
 	damage: { template: systemTemplatePath('item/partials/item-damage-section'), group: 'grid' },
+	damageBasic: { template: systemTemplatePath('item/partials/item-damage-basic-section'), group: 'grid' },
 	legacyDamage: { template: systemTemplatePath('item/partials/item-damage-section-legacy'), group: 'grid' },
+	resource: { template: systemTemplatePath('item/partials/item-resource-section'), group: 'grid' },
 	resourcePoints: { template: systemTemplatePath('item/partials/item-resource-points') },
 	classBenefits: { template: systemTemplatePath('item/partials/item-class-benefits') },
 	skillAttributes: { template: systemTemplatePath('item/partials/item-skill-attributes') },
@@ -27,6 +29,8 @@ export const ItemPartialTemplates = Object.freeze({
 	attackAccuracy: { template: systemTemplatePath('item/partials/item-attack-accuracy'), group: 'grid' },
 	attackDamage: { template: systemTemplatePath('item/partials/item-attack-damage'), group: 'grid' },
 	traits: { template: systemTemplatePath('item/partials/item-traits'), group: 'grid' },
+	traitsLegacy: { template: systemTemplatePath('item/partials/item-traits-legacy'), group: 'grid' },
+	effects: { template: systemTemplatePath('item/partials/item-effect-application-section'), group: 'grid' },
 
 	opportunityField: { template: systemTemplatePath('item/partials/item-opportunity-field') },
 	initiativeField: { template: systemTemplatePath('item/partials/item-initiative-field') },

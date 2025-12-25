@@ -203,7 +203,8 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.critThreshold = CRITICAL_THRESHOLD;
 	Object.seal(check);
 	// Set initial targets (actions without rolls can have targeting)
-	CheckConfiguration.configure(check).setDefaultTargets();
+	const config = CheckConfiguration.configure(check);
+	config.setDefaultTargets();
 	// Initial callback
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	Object.defineProperty(check, 'type', {
@@ -224,6 +225,24 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 		throw new Error('check id missing');
 	}
 
+	await invokeWithCallbacks(CheckHooks.prepareCheck, check, actor, item);
+	await CommonEvents.initializeCheck(config, actor, item);
+
+	if (!check.primary || !check.secondary) {
+		throw new Error('check attribute missing');
+	}
+
+	return check;
+}
+
+/**
+ * @param {String} hook The name of the hook
+ * @param {Partial<CheckV2>} check
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @returns {Promise<void>}
+ */
+async function invokeWithCallbacks(hook, check, actor, item) {
 	/**
 	 * @type {{callback: Promise | (() => Promise | void), priority: number}[]}
 	 */
@@ -232,18 +251,12 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 		callbacks.push({ callback, priority });
 	};
 
-	Hooks.callAll(CheckHooks.prepareCheck, check, actor, item, registerCallbacks);
+	Hooks.callAll(hook, check, actor, item, registerCallbacks);
 
 	callbacks.sort((a, b) => a.priority - b.priority);
 	for (let callbackObj of callbacks) {
 		await callbackObj.callback(check, actor, item);
 	}
-
-	if (!check.primary || !check.secondary) {
-		throw new Error('check attribute missing');
-	}
-
-	return check;
 }
 
 /**
@@ -368,7 +381,7 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 	});
 
 	if (callHook) {
-		Hooks.callAll(CheckHooks.processCheck, result, actor, item);
+		await invokeWithCallbacks(CheckHooks.processCheck, result, actor, item);
 	}
 
 	return result;
@@ -387,8 +400,10 @@ async function renderCheck(result, actor, item, flags = {}) {
 	 */
 	const renderData = [];
 	const additionalFlags = {};
+	const inspector = CheckConfiguration.inspect(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
+	await CommonEvents.renderCheck(renderData, result, actor, item);
 
 	/**
 	 * @type {CheckSection[]}
@@ -423,7 +438,6 @@ async function renderCheck(result, actor, item, flags = {}) {
 
 	bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-	const inspector = CheckConfiguration.inspect(result);
 	let flavor;
 	if (flavorSections.length) {
 		flavor = '';
@@ -510,17 +524,19 @@ reapplyClickListeners();
  * @param {Partial<import('./check-hooks.mjs').CheckV2>} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {CheckCallback} [initialConfigCallback]
- * @param {CheckResultCallback} onPerform
+ * @param {CheckCallback} [prepareCheckCallback]
+ * @param {CheckResultCallback} renderCheckCallback
  */
-const performCheck = async (check, actor, item, initialConfigCallback = undefined, onPerform = undefined) => {
-	const preparedCheck = await prepareCheck(check, actor, item, initialConfigCallback);
+const performCheck = async (check, actor, item, prepareCheckCallback = undefined, renderCheckCallback = undefined) => {
+	const preparedCheck = await prepareCheck(check, actor, item, prepareCheckCallback);
+	CommonEvents.performCheck(check, actor, item);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
 	await renderCheck(result, actor, item);
-	if (onPerform) {
-		await onPerform(result);
+	if (renderCheckCallback) {
+		await renderCheckCallback(result);
 	}
+	CommonEvents.resolveCheck(result, actor, item);
 	if (result.critical) {
 		CommonEvents.opportunity(actor, check.type, item, false);
 	} else if (result.fumble) {
@@ -554,10 +570,13 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 		additionalData: {},
 	});
 	// Set initial targets (actions without rolls can have targeting)
-	CheckConfiguration.configure(check).setDefaultTargets();
+	const config = CheckConfiguration.configure(check);
+	config.setDefaultTargets();
+	await CommonEvents.initializeCheck(config, actor, item);
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 
-	Hooks.callAll(CheckHooks.processCheck, check, actor, item);
+	//Hooks.callAll(CheckHooks.processCheck, check, actor, item);
+	await invokeWithCallbacks(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
 };
 

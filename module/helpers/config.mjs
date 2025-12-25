@@ -1,6 +1,3 @@
-import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
-import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
-
 /**
  * @description The system's id
  */
@@ -55,6 +52,7 @@ FU.currencies = {
 /**
  * @typedef {"untyped" | "physical" | "air" | "bolt" | "dark" | "earth" | "fire" | "ice" | "light" | "poison"} DamageType
  */
+
 /**
  * @type {Object<DamageType, string>}
  */
@@ -78,8 +76,8 @@ FU.damageTypes = {
  * @type {Object<DamageType, string>}
  */
 FU.affIcon = {
-	physical: 'fua fu-phys',
-	air: 'fua fu-wind',
+	physical: 'fua fu-physical',
+	air: 'fua fu-air',
 	bolt: 'fua fu-bolt',
 	dark: 'fua fu-dark',
 	earth: 'fua fu-earth',
@@ -87,6 +85,7 @@ FU.affIcon = {
 	ice: 'fua fu-ice',
 	light: 'fua fu-light',
 	poison: 'fua fu-poison',
+	untyped: 'fua fu-untyped',
 };
 
 FU.allIcon = {
@@ -102,7 +101,7 @@ FU.allIcon = {
 	club: 'is-club',
 	heart: 'is-heart',
 	spade: 'is-spade',
-	physical: 'fua fu-phys',
+	physical: 'fua fu-physical',
 	air: 'fua fu-wind',
 	bolt: 'fua fu-bolt',
 	dark: 'fua fu-dark',
@@ -137,6 +136,10 @@ FU.affValue = {
 	immunity: 2,
 	absorption: 3,
 };
+
+/**
+ * @typedef {"beast" | "construct" | "demon" | "elemental" | "humanoid" | "monster" | "plant" | "undead" | "custom"} FUSpeciesKey
+ */
 
 FU.species = {
 	beast: 'FU.Beast',
@@ -237,6 +240,12 @@ FU.temporaryEffects = {
 	enraged: 'FU.Enraged',
 	poisoned: 'FU.Poisoned',
 };
+
+/**
+ * @typedef {"aura" | "barrier" | "crisis" | "cover" | "flying" | "guard" | "provoked" |
+ * "slow" | "dazed" | "weak" | "shaken" | "enraged" | "poisoned" |
+ * "wlp-down" | "wlp-up" | "dex-down" | "dex-up" | "ins-down" | "ins-up" | "mig-down" | "mig-up"} FUStatusEffectKey
+ */
 
 FU.statusEffects = {
 	aura: 'FU.Aura',
@@ -408,8 +417,9 @@ FU.handedness = {
 	'two-handed': 'FU.TwoHanded',
 };
 
-FU.classFeatureRegistry = ClassFeatureRegistry.instance;
-FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
+/**
+ * @typedef {"hp" | "mp" | "ip" | "fp" | "exp" | "zenit"} FUResourceType
+ */
 
 FU.resources = {
 	hp: 'FU.HealthPoints',
@@ -418,6 +428,12 @@ FU.resources = {
 	fp: 'FU.FabulaPoints',
 	exp: 'FU.Exp',
 	zenit: 'FU.Zenit',
+};
+
+FU.resourcesCombat = {
+	hp: 'FU.HealthPoints',
+	mp: 'FU.MindPoints',
+	ip: 'FU.InventoryPoints',
 };
 
 FU.resourcesAbbr = {
@@ -445,6 +461,7 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 /**
  * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "initiative", "display"} CheckType
  */
+
 /**
  * @type {Object<CheckType, string>}
  */
@@ -514,6 +531,10 @@ FU.improvisedEffect = {
 	heavy: 'FU.ImprovisedEffectHeavy',
 	massive: 'FU.ImprovisedEffectMassive',
 };
+
+/**
+ * @typedef {"instantaneous", "scene", "special"} FUDurationType
+ */
 
 /**
  * @description Spell durations
@@ -720,3 +741,186 @@ FU.technospheres = {
 		},
 	},
 };
+
+// RULE ELEMENTS
+/**
+ * @typedef {"ally" | "enemy"} FUFactionRelationKey
+ */
+
+FU.factionRelation = Object.freeze({
+	ally: 'FU.Ally',
+	enemy: 'FU.Enemy',
+});
+
+/**
+ * @typedef {"source" | "target"} FUEventRelationKey
+ */
+
+/**
+ * @description Used to determine the actor's relation to am event
+ */
+FU.eventRelation = Object.freeze({
+	source: 'FU.Source',
+	target: 'FU.Target',
+});
+
+// TODO: Rename actor?subject?entity?object?
+/**
+ * @typedef {"source" | "initial" | "self" | "allies" | "enemies" | "scene"} FUTargetSelectorKey
+ */
+
+/**
+ * @description Used to determine how to select the targets from a given event.
+ */
+FU.targetSelector = Object.freeze({
+	source: 'FU.Source',
+	initial: 'FU.Initial',
+	self: 'FU.Self',
+	allies: 'FU.Allies',
+	enemies: 'FU.Enemies',
+	scene: 'FU.Scene',
+});
+
+/**
+ * @typedef {"attack" | "skill" | "spell" | "item"} FUDamageSource
+ */
+
+FU.damageSource = {
+	attack: 'FU.Attack',
+	skill: 'FU.Skill',
+	spell: 'FU.Spell',
+	item: 'FU.Item',
+};
+
+/**
+ * @typedef {"skill" | "spell" | "item"} FUExpenseSource
+ */
+FU.expenseSource = {
+	skill: 'FU.Skill',
+	spell: 'FU.Spell',
+	item: 'FU.Item',
+};
+
+/**
+ * @typedef {"damage" | "resource" | "effect" } FUConsumableAction
+ */
+FU.consumableAction = {
+	damage: 'FU.Damage',
+	resource: 'FU.Resource',
+	effect: 'FU.Effect',
+};
+
+/**
+ * @typedef {"odd" | "even"} FUCheckResult
+ */
+
+/**
+ * @description Used as a predicate for rules involving accuracy checks
+ */
+FU.checkResult = Object.freeze({
+	even: 'FU.Even',
+	odd: 'FU.Odd',
+});
+
+/**
+ * @typedef {"success" | "failure"} FUCheckOutcome
+ */
+
+/**
+ * @description A predicate based on the outcome of an attack check
+ */
+FU.checkOutcome = Object.freeze({
+	success: 'FU.Success',
+	failure: 'FU.Failure',
+});
+
+/**
+ * @typedef {"any" | "admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondPredicateKey
+ */
+
+FU.bondPredicate = {
+	any: 'FU.Any',
+	admiration: 'FU.Admiration',
+	inferiority: 'FU.Inferiority',
+	loyalty: 'FU.Loyalty',
+	mistrust: 'FU.Mistrust',
+	affection: 'FU.Affection',
+	hatred: 'FU.Hatred',
+};
+
+/**
+ * @remarks Used in order to represent tri-state booleans using a StringField with a blank option
+ */
+FU.booleanOption = {
+	true: 'FU.True',
+	false: 'FU.False',
+};
+
+/**
+ * @typedef {"add" | "remove"} FUChangeSetMode
+ */
+
+FU.changeSetMode = {
+	add: 'FU.Add',
+	remove: 'FU.Remove',
+};
+
+FU.collectionChange = {
+	added: 'FU.Added',
+	removed: 'FU.Removed',
+};
+
+/**
+ * @typedef {"single" | "all"} FUCollectionRemovalRule
+ */
+
+FU.collectionRemovalRule = Object.freeze({
+	single: 'FU.Single',
+	all: 'FU.All',
+});
+
+FU.scalarChange = {
+	increment: 'FU.Increment',
+	decrement: 'FU.Decrement',
+};
+
+/**
+ * @typedef {"greaterThan" | "lessThan"} FUComparisonOperator
+ */
+
+FU.comparisonOperator = {
+	greaterThan: 'FU.GreaterThan',
+	equals: 'FU.Equals',
+	lessThan: 'FU.LessThan',
+};
+
+/**
+ * @typedef {"any" | "all" | "none"} FUPredicateQuantifier
+ */
+
+FU.predicateQuantifier = {
+	any: 'FU.Any',
+	all: 'FU.All',
+	none: 'FU.None',
+};
+
+FU.targetingPredicate = {
+	single: 'FU.Single',
+	multiple: 'FU.Multiple',
+};
+
+// TODO: Better name?
+/**
+ * @typedef {"update" | "reset"} FUCommand
+ */
+
+FU.commandAction = {
+	update: 'FU.Update',
+	reset: 'FU.Reset',
+};
+
+FU.modifyDamageVariant = {
+	overChannel: 'FU.OverChannel',
+};
+
+// --------------

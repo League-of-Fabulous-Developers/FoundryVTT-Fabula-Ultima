@@ -1,5 +1,6 @@
 import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
+import { FU } from './config.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -157,6 +158,8 @@ export const FUHandlebars = Object.freeze({
 
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
+		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
+		Handlebars.registerHelper('pfuTraits', traits);
 	},
 });
 
@@ -239,5 +242,39 @@ function renderProgress(progress, document, path, options, index = undefined) {
 			: '';
 
 	// Begin constructing HTML
+	return new Handlebars.SafeString(html);
+}
+
+function autoComplete(context) {
+	const dataset = context.hash;
+	let options = dataset.options;
+	if (typeof options === 'object') {
+		options = Object.keys(options);
+	}
+	const template = Handlebars.partials[systemTemplatePath('common/auto-complete')];
+	const html =
+		typeof template === 'function'
+			? template({
+					name: dataset.name,
+					value: dataset.value,
+					options: options,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+function traits(model, path, options) {
+	options = options.hash;
+	const template = Handlebars.partials[systemTemplatePath('common/traits')];
+	const html =
+		typeof template === 'function'
+			? template({
+					model: model,
+					path: path,
+					traitOptions: model.schema.options?.options ?? {},
+					quantifierOptions: FU.predicateQuantifier,
+					showLabel: options.showLabel ?? true,
+				})
+			: '';
 	return new Handlebars.SafeString(html);
 }

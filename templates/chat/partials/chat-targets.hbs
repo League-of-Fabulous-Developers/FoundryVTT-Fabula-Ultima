@@ -1,19 +1,20 @@
 {{#if targets}}
     <div style="clear: both"></div>
-    <header class="title-desc chat-header flexrow">
-        <h2>
-			<a data-action="retarget" data-tooltip="{{localize 'FU.ChatContextRetarget'}}">
+	{{#if retarget}}
+		<header class="title-desc chat-header flexrow">
+			<h2>
+				<a data-action="retarget" data-tooltip="{{localize 'FU.ChatContextRetarget'}}">
 				<span class="fu-tag button flex-group-center" style="font-size:1rem">
 					<i class="icon fa fa-refresh"></i>
 				</span>
-			</a>
-            {{localize "FU.Target"}}
-            {{#if (gt targets.length 1)}}
-                <span>: {{localize rule}}({{targets.length}})</span>
-            {{/if}}
-        </h2>
-
-    </header>
+				</a>
+				{{localize "FU.Target"}}
+				{{#if (gt targets.length 1)}}
+					<span>: {{localize rule}}({{targets.length}})</span>
+				{{/if}}
+			</h2>
+		</header>
+	{{/if}}
     <section class="targets">
         {{#each targets as |target|}}
             <span class="flexrow">
@@ -35,13 +36,23 @@
                 </span>
                 <!-- Actions -->
                 {{#each ../actions as |action|}}
-					{{#if (or (not action.owner) (and action.owner target.isOwner))}}
-						<span class="fu-tags" style="flex: 0 1 auto;padding: 2px;">
-							<a data-action="{{name}}" data-id="{{target.uuid}}" data-fields={{fields}} data-tooltip="{{localize tooltip}}">
-								<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas {{icon}}"></i></span>
+					<span class="fu-tags fu-target-action">
+							<a data-action="{{name}}"
+							   data-id="{{target.uuid}}"
+							   data-fields="{{fields}}"
+								{{#each dataset}}
+							   data-{{@key}}="{{this}}"
+								{{/each}}
+							   data-tooltip="{{localize tooltip}}">
+								<span class='fu-tag button flex-group-center fu-target-action__icon__container'>
+									{{#if img}}
+										<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
+									{{else}}
+										<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+									{{/if}}
+								</span>
 							</a>
 						</span>
-					{{/if}}
                 {{/each}}
             </span>
         {{/each}}
@@ -49,8 +60,21 @@
 {{/if}}
 {{#each selectedActions as |action|}}
     <div class="fu-tags flexrow gap-5">
-        <a data-action="{{name}}" data-fields={{fields}} data-tooltip="{{localize tooltip}}">
-            <span class='fu-tag button flex-group-center gap-5' style="width: 100%;white-space: nowrap;">{{localize 'FU.ChatApplySelected'}}<i class="icon fas {{icon}}"></i></span>
+        <a data-action="{{name}}"
+		   data-fields="{{fields}}"
+			{{#each dataset}}
+		   data-{{@key}}="{{this}}"
+			{{/each}}
+		   data-tooltip="{{localize tooltip}}">
+            <span class='fu-tag button flex-group-center gap-5 fu-target-action__icon__container'
+				  style="width: 100%;white-space: nowrap;">
+				{{~localize 'FU.ChatApplySelected'}}
+				{{#if img}}
+					<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
+				{{else}}
+					<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+				{{/if}}
+			</span>
         </a>
     </div>
 {{/each}}

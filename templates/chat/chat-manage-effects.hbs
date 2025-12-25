@@ -1,41 +1,37 @@
-<section>
-        <div class='projectfu'>
-            <table>
-            <caption>{{localize event}}, {{localize 'FU.Round'}} {{round}}</caption>
-                <thead>
-                <tr>
-                    <th>{{localize 'FU.Actor'}}</th>
-                    <th>{{localize 'FU.Effect'}}</th>
-                    <th>{{localize 'FU.Remaining'}}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each effects as |effect|}}
-                    <tr>
-                        <td>
-                            {{effect.actorName}}
-                        </td>
+<table class="table-compact">
+	<caption>{{localize event}}, {{localize 'FU.Round'}} {{round}}</caption>
+	<thead>
+	<tr>
+		<th>{{localize 'FU.Actor'}}</th>
+		<th>{{localize 'FU.Effect'}}</th>
+		<th>{{localize 'FU.Remaining'}}</th>
+	</tr>
+	</thead>
+	<tbody>
+	{{#each effects as |effect|}}
+		<tr class="table-compact__row">
+			<td>
+				{{effect.actorName}}
+			</td>
 
-                        <td>
-                            <a data-action="display" data-description="{{effect.description}}" data-actor-id="{{effect.actorId}}">
-                                <img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
-                                {{effect.name}}
-                            </a>
-                        </td>
+			<td>
+				<a data-action="display" data-description="{{effect.description}}" data-actor-id="{{effect.actorId}}">
+					<img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
+					{{effect.name}}
+				</a>
+			</td>
 
-                        <td>
-                            {{#if (lt effect.remaining 1)}}
-                                <span>Expired</span>
-                                <a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect.id}}" data-actor-id="{{effect.actorId}}">
-                                    <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
-                                </a>
-                            {{else}}
-                                <span>{{effect.remaining}}</span>
-                            {{/if}}
-                        </td>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
-        </div>
-</section>
+			<td class="flex-group-center">
+				{{#if (lt effect.remaining 1)}}
+					<span>Expired</span>
+					<a data-action="removeEffect" data-name="{{effect.name}}" data-effect-id="{{effect.id}}" data-actor-id="{{effect.actorId}}">
+						<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
+					</a>
+				{{else}}
+					<span>{{effect.remaining}}</span>
+				{{/if}}
+			</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>

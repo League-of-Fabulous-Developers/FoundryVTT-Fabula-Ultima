@@ -328,13 +328,16 @@ function evaluateVariables(expression, context) {
 			case 'dex':
 			case 'wlp':
 			case 'ins': {
-				context.assertActorOrTargets(match);
 				return getAttributeSize(context.resolveActorOrHighestLevelTarget(), symbol);
 			}
-			// Progress (From
+			// Progress (From effect)
 			case 'pg': {
 				context.assertEffect(match);
 				return context.effect.system.rules.progress.current;
+			}
+			// Target Count
+			case 'tc': {
+				return context.targets.length;
 			}
 			// Target status count
 			case 'tsc': {
@@ -344,19 +347,20 @@ function evaluateVariables(expression, context) {
 			}
 			// Bond Count
 			case 'bc': {
-				return countBonds(context.actor);
+				context.assertActorOrTargets(match);
+				return countBonds(context.resolveActorOrHighestLevelTarget());
 			}
 			// Maximum bond strength
 			case 'mbs': {
-				return maximumBondStrength(context.actor);
+				return maximumBondStrength(context.resolveActorOrHighestLevelTarget());
 			}
 			// Number of classes
 			case 'cc': {
-				return countClasses(context.actor);
+				return countClasses(context.resolveActorOrHighestLevelTarget());
 			}
 			// Number of mastered classes
 			case 'mcc': {
-				return countMasteredClasses(context.actor);
+				return countMasteredClasses(context.resolveActorOrHighestLevelTarget());
 			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);

@@ -1,0 +1,34 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.DamageType'}}</span>
+	{{formGroup action.schema.fields.damageTypes value=action.damageTypes options=options.damageTypeOptions name=(pfuConcat path ".damageTypes") classes="fu-rule-element__set stacked"}}
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Amount'}}</span>
+	<input type="text" name="{{pfuConcat path ".amount"}}" value="{{ action.amount }}" />
+</label>
+
+<label class="fu-rule-element__group"><i class="fas fa-hat-wizard"></i>{{localize 'FU.Cost'}}</label>
+
+<div class="fu-rule-element__property-row">
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Resource'}}</span>
+		<select name="{{pfuConcat path ".cost.resource"}}">
+			<option value="">-</option>
+			{{selectOptions options.resources selected=action.cost.resource sort=true localize=true}}
+		</select>
+	</label>
+
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Amount'}}</span>
+		<input type="number" name="{{pfuConcat path ".cost.amount"}}" value="{{ action.cost.amount }}" />
+	</label>
+</div>
+
+<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.Variant'}}">
+	<span>{{localize 'FU.Variant'}}</span>
+	<select name="{{pfuConcat path ".variant"}}">
+		<option value="">-</option>
+		{{selectOptions options.modifyDamageVariant selected=action.variant localize=true}}
+	</select>
+</label>

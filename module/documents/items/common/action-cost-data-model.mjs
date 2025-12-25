@@ -9,7 +9,7 @@ export class ActionCostDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { NumberField, StringField, BooleanField } = foundry.data.fields;
 		return {
-			resource: new StringField({ initial: 'mp', choices: Object.keys(FU.resources), required: true }),
+			resource: new StringField({ initial: 'mp', blank: true, choices: Object.keys(FU.resources), required: true }),
 			amount: new NumberField({ initial: 0, integer: true, nullable: false }),
 			perTarget: new BooleanField({ initial: false }),
 		};

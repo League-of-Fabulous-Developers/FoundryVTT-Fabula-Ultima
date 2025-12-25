@@ -1,6 +1,17 @@
 import { FU } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
+import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
+import { RuleElements } from '../../pipelines/rule-elements.mjs';
+import { RuleElementDataModel } from './rule-element-data-model.mjs';
+import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
+import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
+import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
+import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
+import FoundryUtils from '../../helpers/foundry-utils.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
+
+RuleElements.register();
 
 /**
  * The Application responsible for configuring a single ActiveEffect document within a parent Actor or Item.
@@ -9,6 +20,18 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 	/** @inheritdoc */
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu', 'sheet', `backgroundstyle`, 'active-effect-sheet'],
+		actions: {
+			addRuleElement: this.#addRuleElement,
+			deleteRuleElement: this.#deleteRuleElement,
+			clearRuleElements: this.#clearRuleElements,
+			addRuleAction: this.#addRuleAction,
+			removeRuleAction: this.#removeRuleAction,
+			addRulePredicate: this.#addRulePredicate,
+			removeRulePredicate: this.#removeRulePredicate,
+		},
+		form: {
+			closeOnSubmit: false,
+		},
 	};
 
 	/** @inheritdoc */
@@ -22,7 +45,6 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 
 		// DEFAULT
 		details: {
-			// template: 'templates/sheets/active-effect/details.hbs',
 			template: systemTemplatePath('effects/active-effect-details'),
 		},
 		changes: {
@@ -37,6 +59,21 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		},
 		rules: {
 			template: systemTemplatePath('effects/active-effect-rules'),
+			templates: Object.values(RuleActionRegistry.instance.qualifiedTypes)
+				.map((pt) => {
+					return pt.template;
+				})
+				.concat(
+					Object.values(RuleTriggerRegistry.instance.qualifiedTypes).map((pt) => {
+						return pt.template;
+					}),
+				)
+				.concat(
+					Object.values(RulePredicateRegistry.instance.qualifiedTypes).map((pt) => {
+						return pt.template;
+					}),
+				)
+				.concat([RuleElementDataModel.template]),
 		},
 
 		footer: {
@@ -102,31 +139,101 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 					context.crisisInteractions = FU.crisisInteractions;
 				}
 				break;
+
+			case 'rules':
+				{
+					context.options = {
+						ruleActions: RuleActionRegistry.instance.localizedEntries,
+						ruleTriggers: RuleTriggerRegistry.instance.localizedEntries,
+						combatEvent: FU.combatEvent,
+						duration: FU.duration,
+						damageTypes: FU.damageTypes,
+						damageTypeOptions: FoundryUtils.getFormOptions(FU.damageTypes),
+						damageSource: FU.damageSource,
+						damageSourceOptions: FoundryUtils.getFormOptions(FU.damageSource),
+						expenseSource: FU.expenseSource,
+						checkTypes: FU.checkTypes,
+						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
+						attributes: FU.attributes,
+						resources: FU.resourcesCombat,
+						species: FU.species,
+						weaponTypes: FU.weaponTypes,
+						handedness: FU.handedness,
+						weaponCategories: FU.weaponCategories,
+						weaponCategoryOptions: FoundryUtils.getFormOptions(FU.weaponCategories),
+						consumableTraitOptions: FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k),
+						targetingRules: FU.targetingRules,
+						commandAction: FU.commandAction,
+						statusEffects: FU.statusEffects,
+						eventRelation: FU.eventRelation,
+						factionRelation: FU.factionRelation,
+						bondPredicate: FU.bondPredicate,
+						targetSelector: FU.targetSelector,
+						checkResult: FU.checkResult,
+						checkOutcome: FU.checkOutcome,
+						traits: TraitUtils.getOptions(Traits),
+						changeSetMode: FU.changeSetMode,
+						booleanOption: FU.booleanOption,
+						collectionChange: FU.collectionChange,
+						collectionRemovalRule: FU.collectionRemovalRule,
+						scalarChange: FU.scalarChange,
+						comparisonOperator: FU.comparisonOperator,
+						targetingPredicate: FU.targetingPredicate,
+						predicateQuantifier: FU.predicateQuantifier,
+						modifyDamageVariant: FU.modifyDamageVariant,
+					};
+				}
+				break;
 		}
 		return partContext;
+	}
+
+	/**
+	 * @returns {FUActiveEffectModel}
+	 */
+	get system() {
+		return this.document.system;
 	}
 
 	/** @inheritdoc */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.systemFields = this.document.system.schema.fields;
+		context.effect = this.document;
 		context.system = this.document.system;
 		context.effectType = FU.effectType;
 		context.trackStyles = FU.trackStyles;
 		context.crisisInteractions = FU.crisisInteractions;
+		let parent = this.document.parent;
+		while (parent != null) {
+			if (parent.type === 'character' || parent.type === 'npc') {
+				context.actor = parent;
+			} else if (parent.type === 'item') {
+				context.item = parent;
+			}
+			parent = parent.parent;
+		}
+		for (const re of this.system.rules.elements) {
+			await re.prepareRenderContext(context);
+		}
 		return context;
+	}
+
+	/** @inheritdoc */
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		// Wire up all rule trigger selectors
+		this.element.addEventListener('change', (evt) => {
+			const target = evt.target.closest("[data-action='updateRuleTrigger']");
+			if (!target) return;
+			this.#updateRuleTrigger(evt, target);
+		});
 	}
 
 	/** @inheritDoc */
 	async _onRender(context, options) {
 		await super._onRender(context, options);
 		const html = this.element;
-
-		// TODO: Add other fields in
-		// DETAILS TAB
-		// const details = html.querySelector('section[data-tab="details"]');
-		// if (details) {
-		// }
 
 		// CHANGES Tab
 		const effectKeyOptions = html.querySelector('#effect-key-options');
@@ -156,6 +263,118 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		// Remove assigning statuses since we don't do that
 		const statusForm = html.querySelector('div.form-group.statuses');
 		statusForm.remove();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addRuleElement(event, target) {
+		const type = RuleElementDataModel.TYPE;
+		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, type, this.document);
+		console.debug(`Added rule element`);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #deleteRuleElement(event, target) {
+		const { id } = target.dataset;
+		console.debug(`Deleting rule element ${id}`);
+		/** @type RuleElementDataModel **/
+		const re = this.document.system.rules.elements.get(id);
+		if (re) {
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: re.localization }));
+			if (confirm) {
+				await re.delete();
+			}
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #clearRuleElements(event, target) {
+		const confirm = await FoundryUtils.confirmDialog('FU.Clear', `FU.DialogClearMessage`);
+		if (confirm) {
+			await this.document.update({
+				'system.rules.==elements': {},
+			});
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	async #updateRuleTrigger(event, target) {
+		const { id } = target.dataset;
+		const type = target.value;
+		console.debug(`Updating rule trigger of ${id} to: ${type} (${event.type})`);
+		const re = this.document.system.getRuleElement(id);
+		await re.changeRuleTrigger(type);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addRuleAction(event, target) {
+		const { id } = target.dataset;
+		console.debug(`Adding rule action to ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		await re.addRuleAction();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeRuleAction(event, target) {
+		const { id, actionId } = target.dataset;
+		console.debug(`Removing rule action ${actionId} from ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		const action = re.getAction(actionId);
+		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: action.localization }));
+		if (confirm) {
+			await re.removeRuleAction(actionId);
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addRulePredicate(event, target) {
+		const { id } = target.dataset;
+		console.debug(`Adding rule predicate to ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		await re.addRulePredicate();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeRulePredicate(event, target) {
+		const { id, predicateId } = target.dataset;
+		console.debug(`Removing rule predicate ${predicateId} from ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		const predicate = re.getPredicate(predicateId);
+		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: predicate.localization }));
+		if (confirm) {
+			await re.removeRulePredicate(predicateId);
+		}
 	}
 
 	_onChangeForm(formConfig, event) {

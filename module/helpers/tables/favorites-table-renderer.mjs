@@ -279,14 +279,14 @@ function getCheckData(item, baseCheck) {
 }
 
 /**
- * @typedef DamageData
+ * @typedef TableDamageData
  * @property {number} value
  * @property {DamageType} type
  * @property {boolean} hrZero
  */
 
 /**
- * @type {Record<string, ((item: FUItem, base: DamageData) => DamageData)>}
+ * @type {Record<string, ((item: FUItem, base: TableDamageData) => TableDamageData)>}
  */
 const damageDataGetter = {
 	weapon: (weapon, baseDamage) => ({
@@ -303,8 +303,8 @@ const damageDataGetter = {
 
 /**
  * @param {FUItem} item
- * @param {DamageData} base
- * @return {null|DamageData}
+ * @param {TableDamageData} base
+ * @return {null|TableDamageData}
  */
 function getDamageData(item, base) {
 	const getter = damageDataGetter[item?.type];

@@ -4,19 +4,37 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
+import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+
+/**
+ * @typedef UpdateResourceData
+ * @property {Number|String} amount
+ * @property {String} type
+ */
 
 /**
  * @property {Number} amount
  * @property {String} resourceType
  * @property {Boolean} uncapped
+ * @property {Boolean} gain
  * @extends PipelineRequest
  * @inheritDoc
  */
 export class ResourceRequest extends PipelineRequest {
+	/**
+	 * @param {InlineSourceInfo} sourceInfo
+	 * @param {FUActor[]} targets
+	 * @param {FUResourceType} resourceType
+	 * @param {Number} amount
+	 * @param {Boolean} uncapped
+	 */
 	constructor(sourceInfo, targets, resourceType, amount, uncapped = false) {
 		super(sourceInfo, targets);
 		this.resourceType = resourceType;
-		this.amount = Math.abs(amount);
+		this.gain = amount >= 0;
+		this.amount = amount;
 		this.uncapped = uncapped;
 	}
 
@@ -114,6 +132,10 @@ async function processRecovery(request) {
 	const updates = [];
 	console.debug(`Applying recovery from request with traits: ${[...request.traits].join(', ')}`);
 	for (const actor of request.targets) {
+		if (!actor.isOwner) {
+			ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+			continue;
+		}
 		const incomingRecoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
 		const incomingRecoveryMultiplier = actor.system.multipliers.incomingRecovery[request.resourceType] || 1;
 		let amountRecovered = Math.max(0, Math.floor((request.amount + incomingRecoveryBonus + outgoingRecoveryBonus) * (incomingRecoveryMultiplier * outgoingRecoveryMultiplier)));
@@ -131,7 +153,7 @@ async function processRecovery(request) {
 				newValue.value = uncappedRecoveryValue;
 				updates.push(
 					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then((result) => {
-						CommonEvents.gain(actor, request.resourceType, amountRecovered);
+						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
 						return result;
 					}),
 				);
@@ -154,7 +176,7 @@ async function processRecovery(request) {
 				}
 				updates.push(
 					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then((result) => {
-						CommonEvents.gain(actor, request.resourceType, amountRecovered);
+						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
 						return result;
 					}),
 				);
@@ -179,6 +201,7 @@ async function processRecovery(request) {
 			}),
 		);
 	}
+	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin));
 	return Promise.all(updates);
 }
 
@@ -200,10 +223,15 @@ async function processLoss(request) {
 
 	const updates = [];
 	console.debug(`Applying loss from request with traits: ${[...request.traits].join(', ')}`);
+	const amount = Math.abs(request.amount);
 	for (const actor of request.targets) {
+		if (!actor.isOwner) {
+			ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+			continue;
+		}
 		const incomingLossMultiplier = actor.system.multipliers.incomingLoss[request.resourceType] || 1;
 		const incomingLossBonus = actor.system.bonuses.incomingLoss[request.resourceType] || 0;
-		const amountLost = -Math.max(0, Math.floor((request.amount + incomingLossBonus) * incomingLossMultiplier));
+		const amountLost = -Math.max(0, Math.floor((amount + incomingLossBonus) * incomingLossMultiplier));
 
 		if (request.isMetaCurrency) {
 			const currentValue = foundry.utils.getProperty(actor.system, request.attributeValuePath) || 0;
@@ -212,14 +240,14 @@ async function processLoss(request) {
 			updateData[`system.${request.attributeValuePath}`] = newValue;
 			updates.push(
 				actor.update(updateData).then((result) => {
-					CommonEvents.loss(actor, request.resourceType, amountLost);
+					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
 					return result;
 				}),
 			);
 		} else {
 			updates.push(
 				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then((result) => {
-					CommonEvents.loss(actor, request.resourceType, amountLost);
+					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
 					return result;
 				}),
 			);
@@ -244,13 +272,23 @@ async function processLoss(request) {
 			}),
 		);
 	}
+	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, amount, request.origin));
 	return Promise.all(updates);
+}
+
+async function process(request) {
+	if (request.amount >= 0) {
+		return processRecovery(request);
+	} else {
+		return processLoss(request);
+	}
 }
 
 /**
  * @typedef ResourceExpense
  * @property {String} resource
  * @property {Number} amount
+ * @property {FUExpenseSource} source
  */
 
 /**
@@ -258,10 +296,11 @@ async function processLoss(request) {
  * @param {TargetData[]} targets
  * @return {ResourceExpense}
  */
-function calculateExpense(cost, targets) {
+function calculateExpense(cost, targets, source) {
 	return {
 		resource: cost.resource,
 		amount: cost.amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
+		source: source,
 	};
 }
 
@@ -306,6 +345,59 @@ function onRenderChatMessage(message, html) {
 		TokenUtils.showFloatyText(actor, `${amount} ${dataset.resource.toUpperCase()}`, `red`);
 		return Promise.all(updates);
 	});
+
+	Pipeline.handleClick(message, html, 'updateResource', async (dataset) => {
+		/** @type {FUActor} **/
+		const fields = StringUtils.fromBase64(dataset.fields);
+		const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+		const amount = fields.amount;
+		const type = fields.type;
+		const targets = await Pipeline.getTargetsFromAction(dataset);
+		const request = new ResourceRequest(sourceInfo, targets, type, amount, {});
+		return process(request);
+	});
+}
+
+/**
+ * @param {ResourceRequest} request
+ * @returns {Promise<void>}
+ */
+async function prompt(request) {
+	const targets = Targeting.serializeTargetData(request.targets);
+	const gain = request.amount > 0;
+	const actions = [getTargetedAction(request)];
+	const message = gain > 0 ? 'FU.ChatResourceGainPrompt' : 'FU.ChatResourceLossPrompt';
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ user: game.users.activeGM }),
+		flags: flags,
+		content: await FoundryUtils.renderTemplate('chat/chat-update-resource-prompt', {
+			message: message,
+			amount: request.amount,
+			type: StringUtils.localize(FU.resources[request.resourceType]),
+			source: request.sourceInfo.name,
+			targets: targets,
+			actions: actions,
+		}),
+	});
+}
+
+function getTargetedAction(request) {
+	const resourceIcon = FU.resourceIcons[request.resourceType];
+	const tooltip = StringUtils.localize(request.gain ? 'FU.ChatResourceGainTooltip' : 'FU.ChatResourceLossTooltip', {
+		amount: request.amount,
+		resource: StringUtils.localize(FU.resources[request.resourceType]),
+	});
+	return new TargetAction('updateResource', resourceIcon, tooltip, {
+		amount: request.amount,
+		type: request.resourceType,
+		sourceInfo: request.sourceInfo,
+	})
+		.requiresOwner()
+		.setFlag(request.gain ? Flags.ChatMessage.ResourceGain : Flags.ChatMessage.ResourceLoss)
+		.withColor(request.gain ? 'var(--color-hp)' : 'var(--color-hp-crisis)')
+		.withSelected();
 }
 
 /**
@@ -319,6 +411,9 @@ export const ResourcePipeline = {
 	initialize,
 	processRecovery,
 	processLoss,
+	process,
 	calculateExpense,
 	calculateMissingResource,
+	prompt,
+	getTargetedAction,
 };

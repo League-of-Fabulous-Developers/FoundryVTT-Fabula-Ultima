@@ -1,5 +1,6 @@
 import { FUActor } from '../actors/actor.mjs';
 import { ActiveEffectBehaviourMixin } from './active-effect-behaviour-mixin.mjs';
+import { CommonEvents } from '../../checks/common-events.mjs';
 
 /**
  * @typedef ActiveEffect
@@ -91,10 +92,13 @@ Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
 	return true; // Allow the effect to be created
 });
 
-Hooks.on('updateActiveEffect', (effect, delta, options, userId) => {
+Hooks.on('updateActiveEffect', (effect, changes, options, userId) => {
 	if (game.userId === userId && effect.target instanceof FUActor && effect.target.canUserModify(game.user, 'update')) {
 		if (effect.changes.some((change) => change.key.startsWith('system.resources.hp'))) {
 			effect.target.applyCrisis();
+		}
+		if ('disabled' in changes) {
+			CommonEvents.toggleEffect(effect.target, effect.uuid, !changes.disabled);
 		}
 	}
 });

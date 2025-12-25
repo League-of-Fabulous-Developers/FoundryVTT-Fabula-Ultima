@@ -1,0 +1,11 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Resource'}}</span>
+	<select name="{{pfuConcat path ".resource"}}">
+		{{selectOptions options.resources selected=action.resource sort=true localize=true}}
+	</select>
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Amount'}}</span>
+	<input type="text" name="{{pfuConcat path ".amount"}}" value="{{ action.amount }}" />
+</label>

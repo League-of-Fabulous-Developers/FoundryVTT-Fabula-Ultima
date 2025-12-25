@@ -296,11 +296,32 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @param {String} id
+	 * @param {String} id The id of the effect
 	 * @returns {FUActiveEffect}
 	 */
-	resolveEffect(id) {
+	getEffect(id) {
 		return Array.from(this.allEffects()).find((value) => value.id === id);
+	}
+
+	/**
+	 * @param {String} name The name of the effect, one of its statuses, or its fuid
+	 * @returns {FUActiveEffect}
+	 */
+	resolveEffect(name) {
+		name = name.toLowerCase();
+		return Array.from(this.allEffects()).find((effect) => {
+			if (effect.name.toLowerCase() === name) {
+				return true;
+			}
+			if (effect.statuses.has(name)) {
+				return true;
+			}
+			if (effect.identifier === name) {
+				return true;
+			}
+
+			return false;
+		});
 	}
 
 	/**

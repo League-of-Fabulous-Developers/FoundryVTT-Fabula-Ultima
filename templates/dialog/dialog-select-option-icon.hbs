@@ -1,0 +1,15 @@
+{{#if message}}
+	<div class="fu-dialog__text">
+		{{{message}}}
+	</div>
+{{/if}}
+<div class="fu-dialog__icon-group">
+	<input type="hidden" name="option" value="{{selected}}">
+	{{#each options as |option| }}
+		<button type="button" class="fu-dialog__icon-option"
+				data-tooltip="{{label}}"
+				data-action="selectOption" data-value="{{value}}">
+			<i class="fu-dialog__icon {{icon}}"></i>
+		</button>
+	{{/each}}
+</div>

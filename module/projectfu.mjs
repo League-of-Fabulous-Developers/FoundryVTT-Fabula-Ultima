@@ -94,9 +94,16 @@ import { HoplosphereSheet } from './documents/items/hoplosphere/hoplosphere-shee
 import { MnemosphereReceptacleDataModel } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-data-model.mjs';
 import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-sheet.mjs';
 import { FUItemArmorSheet } from './sheets/item-armor-sheet.mjs';
+import { RuleElements } from './pipelines/rule-elements.mjs';
 import { PseudoItem } from './documents/items/pseudo-item.mjs';
 import { PseudoActiveEffect } from './documents/effects/pseudo-active-effect.mjs';
 import { PdfPagerIntegration } from './integration/pdf-pager-integration.mjs';
+import { ClassFeatureRegistry } from './documents/items/classFeature/class-feature-registry.mjs';
+import { OptionalFeatureRegistry } from './documents/items/optionalFeature/optional-feature-registry.mjs';
+import { RuleElementRegistry } from './documents/effects/rule-element-data-model.mjs';
+import { RuleActionRegistry } from './documents/effects/actions/rule-action-data-model.mjs';
+import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-data-model.mjs';
+import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -154,7 +161,25 @@ Hooks.once('init', async () => {
 		},
 	};
 
-	// Add custom constants for configuration.
+	// (!) Data Models: Moved here due to lexical declaration issues otherwise
+	FU.classFeatureRegistry = ClassFeatureRegistry.instance;
+	FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
+	FU.ruleElementRegistry = RuleElementRegistry.instance;
+	FU.ruleActionRegistry = RuleActionRegistry.instance;
+	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
+	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
+
+	/**
+	 * @type {Record<string, DataModelRegistry>}
+	 */
+	FU.dataModelRegistries = {
+		optionalFeature: FU.optionalFeatureRegistry,
+		classFeature: FU.classFeatureRegistry,
+		ruleElement: FU.ruleElementRegistry,
+		ruleAction: FU.ruleActionRegistry,
+		ruleTrigger: FU.ruleTriggerRegistry,
+		rulePredicate: FU.rulePredicateRegistry,
+	};
 	CONFIG.FU = FU;
 
 	/**
@@ -318,6 +343,7 @@ Hooks.once('init', async () => {
 	DamagePipeline.initialize();
 	ResourcePipeline.initialize();
 	Effects.initialize();
+	RuleElements.initialize();
 	InventoryPipeline.initialize();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);

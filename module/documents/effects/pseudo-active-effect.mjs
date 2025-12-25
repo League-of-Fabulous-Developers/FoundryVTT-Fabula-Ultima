@@ -1,7 +1,7 @@
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
-import { FUActiveEffect } from './active-effect.mjs';
 import { ActiveEffectBehaviourMixin } from './active-effect-behaviour-mixin.mjs';
+import { Flags } from '../../helpers/flags.mjs';
 
 class BasePseudoActiveEffect extends PseudoDocument {
 	static documentName = 'ActiveEffect';
@@ -87,7 +87,7 @@ class BasePseudoActiveEffect extends PseudoDocument {
 
 	get isTemporary() {
 		const duration = this.duration.seconds ?? (this.duration.rounds || this.duration.turns) ?? 0;
-		return duration > 0 || this.statuses.size > 0 || !!this.getFlag(SYSTEM, FUActiveEffect.TEMPORARY_FLAG);
+		return duration > 0 || this.statuses.size > 0 || !!this.getFlag(SYSTEM, Flags.ActiveEffect.Temporary);
 	}
 
 	/**

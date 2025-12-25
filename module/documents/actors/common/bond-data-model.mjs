@@ -27,4 +27,46 @@ export class BondDataModel extends foundry.abstract.DataModel {
 			return 0;
 		}
 	}
+
+	/**
+	 * @param {FUBondPredicateKey} bond
+	 */
+	matches(bond) {
+		if (bond === 'any') {
+			return true;
+		}
+		switch (bond) {
+			case 'admiration':
+				if (this.admInf === 'Admiration') {
+					return true;
+				}
+				break;
+			case 'inferiority':
+				if (this.admInf === 'Inferiority') {
+					return true;
+				}
+				break;
+			case 'loyalty':
+				if (this.admInf === 'Loyalty') {
+					return true;
+				}
+				break;
+			case 'mistrust':
+				if (this.admInf === 'Mistrust') {
+					return true;
+				}
+				break;
+			case 'affection':
+				if (this.admInf === 'Affection') {
+					return true;
+				}
+				break;
+			case 'hatred':
+				if (this.admInf === 'Hatred') {
+					return true;
+				}
+				break;
+		}
+		return false;
+	}
 }

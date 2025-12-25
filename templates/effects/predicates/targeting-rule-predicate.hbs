@@ -1,0 +1,6 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Targeting'}}</span>
+	<select name="{{pfuConcat path ".rule"}}">
+		{{selectOptions options.targetingPredicate selected=predicate.rule sort=true localize=true}}
+	</select>
+</label>

@@ -18,8 +18,8 @@ export class ClassFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 		return Object.assign(super.defineSchema(), {
 			featureType: new StringField({
 				nullable: false,
-				initial: () => CONFIG.FU.classFeatureRegistry.choices[0],
-				choices: () => CONFIG.FU.classFeatureRegistry.choices,
+				initial: () => CONFIG.FU.classFeatureRegistry.qualifiedChoices[0],
+				choices: () => CONFIG.FU.classFeatureRegistry.qualifiedChoices,
 			}),
 			data: new RegistryDataField(ClassFeatureRegistry.instance, 'featureType'), //  new FeatureDataField('featureType'),
 		});

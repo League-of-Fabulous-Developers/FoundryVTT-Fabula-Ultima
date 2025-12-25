@@ -50,6 +50,8 @@ export const preloadHandlebarsTemplates = async function () {
 			// Common partials
 			'systems/projectfu/templates/common/active-effects.hbs',
 			'systems/projectfu/templates/common/fieldset-toggle.hbs',
+			'systems/projectfu/templates/common/auto-complete.hbs',
+			'systems/projectfu/templates/common/traits.hbs',
 
 			// Effects
 			'systems/projectfu/templates/effects/active-effect-details.hbs',
@@ -63,6 +65,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/dialog/dialog_first_turn.hbs',
 			'systems/projectfu/templates/dialog/dialog-group-check.hbs',
 			'systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs',
+			'systems/projectfu/templates/dialog/dialog-select-option-icon.hbs',
 
 			// Chat Messages
 			'systems/projectfu/templates/chat/chat-check-container.hbs',
@@ -74,6 +77,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/chat/chat-distribute-zenit.hbs',
 			'systems/projectfu/templates/chat/chat-item-acquired.hbs',
 			'systems/projectfu/templates/chat/chat-recharge-ip.hbs',
+			'systems/projectfu/templates/chat/chat-apply-effect.hbs',
 
 			// Chat Message Partials
 			'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
