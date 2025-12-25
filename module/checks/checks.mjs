@@ -575,7 +575,8 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 	await CommonEvents.initializeCheck(config, actor, item);
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 
-	Hooks.callAll(CheckHooks.processCheck, check, actor, item);
+	//Hooks.callAll(CheckHooks.processCheck, check, actor, item);
+	await invokeWithCallbacks(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
 };
 

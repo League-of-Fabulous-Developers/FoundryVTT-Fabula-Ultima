@@ -112,7 +112,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {};
  * @type ProcessCheckHook
  */
 // eslint-disable-next-line no-unused-vars
-const processCheck = (check, actor, item) => {};
+const processCheck = (check, actor, item, registerCallback) => {};
 
 /**
  * @typedef CheckSection
