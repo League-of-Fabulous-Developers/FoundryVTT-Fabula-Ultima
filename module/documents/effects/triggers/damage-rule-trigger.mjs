@@ -9,7 +9,7 @@ const fields = foundry.data.fields;
  * @description Trigger based on a {@linkcode DamageEvent}
  * @extends RuleTriggerDataModel
  * @property {DamageType} damageTypes
- * @property {Set<FUDamageSource>} damageSource
+ * @property {Set<FUItemGroup>} damageSource
  * @property {FUComparisonOperator} damageThreshold.operator
  * @property {Number} damageThreshold.amount
  * @inheritDoc

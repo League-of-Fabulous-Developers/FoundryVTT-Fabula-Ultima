@@ -489,6 +489,7 @@
 		"DamageTypeCollateral": "Collateral Damage Type",
 		"DamageType": "Damage Type",
 		"DamageSource": "Damage Source",
+		"ItemGroup": "Item Group",
 		"Damage": "Damage",
 		"HasDamage": "Has Damage?",
 		"UseWeaponDamage": "Use Weapon Damage",
@@ -1702,6 +1703,7 @@
 		"Modifiers": "Modifiers",
 		"Variant": "Variant",
 		"OverChannel": "Over Channel",
-		"IncubationWarning": "The following feature is currently incubating and there may be issues present. Please bear that in mind."
+		"IncubationWarning": "The following feature is currently incubating and there may be issues present. Please bear that in mind.",
+		"Local": "Local"
 	}
 }

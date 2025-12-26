@@ -136,6 +136,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			/** @type SpellDataModel **/
 			const spell = item.system;
 			const config = CheckConfiguration.configure(check);
+			config.addTraits('spell').addTraitsFromItemModel(spell.traits).addEffects(spell.effects.entries);
 			if (spell.resource.enabled) {
 				config.setResource(spell.resource.type, spell.resource.amount);
 			}

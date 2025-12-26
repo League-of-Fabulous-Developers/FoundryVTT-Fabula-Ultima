@@ -7,7 +7,7 @@ const fields = foundry.data.fields;
 /**
  * @description Trigger based on a {@linkcode CalculateDamageEvent}
  * @extends RuleTriggerDataModel
- * @property {Set<FUDamageSource>} damageSources
+ * @property {Set<FUItemGroup>} damageSources
  * @inheritDoc
  */
 export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {

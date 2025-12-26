@@ -782,15 +782,17 @@ FU.targetSelector = Object.freeze({
 });
 
 /**
- * @typedef {"attack" | "skill" | "spell" | "item"} FUDamageSource
+ * @typedef {"attack" | "skill" | "spell" | "item"} FUItemGroup
  */
 
-FU.damageSource = {
+FU.itemGroup = {
 	attack: 'FU.Attack',
 	skill: 'FU.Skill',
 	spell: 'FU.Spell',
 	item: 'FU.Item',
 };
+
+FU.damageSource = FU.itemGroup;
 
 /**
  * @typedef {"skill" | "spell" | "item"} FUExpenseSource

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: you inflict the chosen status effect on each target hit by this spell.</p><hr /><ul><li><p><strong>Targets Suffers</strong>: @EFFECT[slow] or @EFFECT[weak]</p></li></ul>",
+    "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: you inflict the chosen status effect on each target hit by this spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,13 @@
     "maxTargets": {
       "value": 3
     },
-    "fuid": "torpor"
+    "fuid": "torpor",
+    "effects": {
+      "entries": [
+        "slow",
+        "weak"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,10 +140,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.350",
+    "coreVersion": "13.348",
     "createdTime": 1706573295761,
-    "modifiedTime": 1760481750696,
-    "lastModifiedBy": "93RRHGE4s1SwaU2P",
+    "modifiedTime": 1766775566520,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
