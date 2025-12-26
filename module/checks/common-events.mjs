@@ -68,7 +68,7 @@ function attack(inspector, actor, item) {
  * @property {CharacterInfo|null} source
  * @property {DamageType} type
  * @property {InlineSourceInfo} sourceInfo
- * @property {FUDamageSource} damageSource
+ * @property {FUItemGroup} damageSource
  * @property {Number} amount
  * @property {CharacterInfo} target
  * @property {FUActor} actor
@@ -112,7 +112,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
  * @typedef CalculateDamageEvent
  * @property {CharacterInfo} source
  * @property {FUItem} item
- * @property {FUDamageSource} damageSource
+ * @property {FUItemGroup} damageSource
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} configuration
  */
@@ -568,6 +568,7 @@ async function renderCheck(renderData, result, actor, item) {
  * @property {CheckConfigurer} configuration
  * @property {CharacterInfo} source
  * @property {InlineSourceInfo} sourceInfo
+ * @property {FUItemGroup} itemGroup
  * @property {Object} flags
  * @remarks Emitted when a check is about to be rendered.
  */
@@ -580,6 +581,7 @@ async function initializeCheck(configuration, actor, item) {
 		configuration: configuration,
 		source: source,
 		sourceInfo: sourceInfo,
+		itemGroup: InlineHelper.resolveItemGroup(item),
 	};
 	return AsyncHooks.callSequential(FUHooks.INITIALIZE_CHECK_EVENT, event);
 }
