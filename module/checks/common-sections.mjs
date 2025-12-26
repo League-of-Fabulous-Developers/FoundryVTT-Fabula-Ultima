@@ -265,7 +265,6 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				}
 			}
 
-			// TODO: Refactor
 			// Damage action
 			if (isDamage) {
 				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo));

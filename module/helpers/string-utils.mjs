@@ -64,6 +64,10 @@ function truncate(text, maxLength) {
 	return truncated + '…';
 }
 
+/**
+ * @param {Object} value
+ * @returns {null|string}
+ */
 function toBase64(value) {
 	try {
 		const string = JSON.stringify(value);
@@ -75,6 +79,10 @@ function toBase64(value) {
 	}
 }
 
+/**
+ * @param {String} base64
+ * @returns {Object|null}
+ */
 function fromBase64(base64) {
 	try {
 		const binString = atob(base64);

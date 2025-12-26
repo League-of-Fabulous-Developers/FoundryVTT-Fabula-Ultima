@@ -106,7 +106,6 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 			const config = CheckConfiguration.configure(check);
 			const consumable = item.system;
 			const targets = config.getTargetsOrDefault();
-			const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 
 			let builder = new ConsumableBuilder();
 			if (consumable.resource.enabled) {
@@ -119,10 +118,14 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 			if (consumable.damage.enabled) {
 				builder.action = 'damage';
 				builder.amount = consumable.damage.amount;
+				const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+
 				await CommonEvents.createConsumable(actor, item, targets, builder);
+				//config.setDamage(consumable.damage.types, builder.amount);
 				for (const type of consumable.damage.types) {
 					const data = DamageData.construct(type, builder.amount);
-					config.addTargetedAction(DamagePipeline.getTargetedAction(data, sourceInfo));
+					const action = DamagePipeline.getTargetedAction(data, sourceInfo);
+					config.addTargetedAction(action);
 				}
 			}
 		};

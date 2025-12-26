@@ -10,21 +10,24 @@
 /**
  * @class DamageData
  * @property {Number} hr The high roll
- * @property {DamageType} type
+ * @property {DamageType} type The selected damage type if there's multiple choices.
  * @property {DamageModifier[]} modifiers
  * @property {String} extra An expression to evaluate to add extra damage
  * @property {Boolean} hrZero Whether to treat the high roll as zero.
  * @property {Boolean} base Whether to return the total damage without any modifiers.
  */
 export class DamageData {
+	static get baseDamageModifier() {
+		return 'FU.BaseDamage';
+	}
+
 	/** @type DamageModifier[] **/
-	#modifiers;
+	_modifiers;
 
 	constructor(data = {}) {
-		// eslint-disable-next-line no-unused-vars
-		const { modifierTotal, modifiers, ..._data } = data;
+		const { _modifiers, ..._data } = data;
 		Object.assign(this, _data);
-		this.#modifiers = modifiers ?? [];
+		this._modifiers = _modifiers ?? [];
 		if (!this.hrZero) {
 			this.hrZero = false;
 		}
@@ -34,10 +37,23 @@ export class DamageData {
 	}
 
 	/**
+	 * @param {DamageType|DamageType[]} types
+	 * @param {number} baseDamage
+	 * @returns {DamageData}
+	 */
+	static construct(types, baseDamage) {
+		const data = new DamageData();
+		types = Array.isArray(types) ? types : [types];
+		data.addModifier(this.baseDamageModifier, baseDamage, types);
+		data.type = types[0];
+		return data;
+	}
+
+	/**
 	 * @returns {DamageModifier[]}
 	 */
 	get rawModifiers() {
-		return this.#modifiers;
+		return this._modifiers;
 	}
 
 	/**
@@ -45,7 +61,7 @@ export class DamageData {
 	 * @remarks Returns only those modifiers that have been enabled.
 	 */
 	get modifiers() {
-		return this.#modifiers.filter((m) => m.enabled && m.amount > 0);
+		return this._modifiers.filter((m) => m.enabled && m.amount > 0);
 	}
 
 	/**
@@ -63,7 +79,7 @@ export class DamageData {
 	 */
 	getAvailableTypes() {
 		let available = new Set([this.type]);
-		for (const modifier of this.#modifiers) {
+		for (const modifier of this._modifiers) {
 			if (!modifier.enabled) {
 				continue;
 			}
@@ -86,7 +102,7 @@ export class DamageData {
 			return true;
 		}
 		// If at least one ot te modifiers has a cost
-		if (this.#modifiers.some((m) => m.expense && m.expense.amount > 0)) {
+		if (this._modifiers.some((m) => m.expense && m.expense.amount > 0)) {
 			return true;
 		}
 		return false;
@@ -119,19 +135,6 @@ export class DamageData {
 			enabled: true,
 			...data,
 		};
-		this.#modifiers.push(modifier);
-	}
-
-	/**
-	 * @param {DamageType} type
-	 * @param {Number} amount
-	 * @returns {DamageData}
-	 */
-	static construct(type, amount) {
-		let data = new DamageData({
-			type: type,
-		});
-		data.addModifier('FU.Amount', amount);
-		return data;
+		this._modifiers.push(modifier);
 	}
 }

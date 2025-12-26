@@ -236,15 +236,12 @@ class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {DamageType} type
+	 * @param {DamageType|DamageType[]} types
 	 * @param {number} baseDamage
 	 * @return {CheckConfigurer}
 	 */
-	setDamage(type, baseDamage) {
-		const data = new DamageData();
-		data.addModifier('FU.BaseDamage', baseDamage, [type]);
-		data.type = type;
-		this.check.additionalData[DAMAGE] = data;
+	setDamage(types, baseDamage) {
+		this.check.additionalData[DAMAGE] = DamageData.construct(types, baseDamage);
 		return this;
 	}
 
