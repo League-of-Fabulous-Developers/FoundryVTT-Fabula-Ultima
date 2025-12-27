@@ -173,7 +173,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						factionRelation: FU.factionRelation,
 						bondPredicate: FU.bondPredicate,
 						targetSelector: FU.targetSelector,
-						checkParity: FU.checkParity,
+						checkResult: FU.checkResult,
 						checkOutcome: FU.checkOutcome,
 						traits: TraitUtils.getOptions(Traits),
 						changeSetMode: FU.changeSetMode,
