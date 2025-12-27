@@ -28,7 +28,7 @@ export class StudyRollHandler {
 			return this.#studyValueOverride;
 		}
 		if (this.checkResult) {
-			return this.checkResult.result;
+			return this.checkResult.check;
 		}
 		return 0;
 	}
@@ -68,7 +68,7 @@ export class StudyRollHandler {
 				return fromUuid(target);
 			}),
 		);
-		CommonEvents.study(actor, targets, data.checkResult.result);
+		CommonEvents.study(actor, targets, data.checkResult.check);
 	}
 
 	/**

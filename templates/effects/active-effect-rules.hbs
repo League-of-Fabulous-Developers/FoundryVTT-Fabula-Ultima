@@ -70,7 +70,7 @@
 
 		<div class="rule-element-forms flexcol">
 			{{#each system.rules.elements as |element|}}
-				{{> (lookup (lookup (lookup element "schema") "model") "template") path=(concat "system.rules.elements." element.id) element=element options=../options}}
+				{{> (lookup (lookup (lookup element "schema") "model") "template") path=(concat "system.rules.elements." element.id) element=element options=../options expanded=(lookup ../expandedRuleElements id)}}
 			{{/each}}
 		</div>
 

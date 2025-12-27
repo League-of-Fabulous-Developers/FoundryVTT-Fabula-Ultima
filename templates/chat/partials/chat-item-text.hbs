@@ -2,6 +2,11 @@
 		  style="display: flex; flex-wrap: wrap; justify-content: space-around;">
 	<legend class="resource-label-full">
 		<label class="flexrow gap-4">
+			{{#if actor}}
+				<img src="{{actor.img}}" alt="{{actor.name}}"
+					 data-actor-id="{{actor.uuid}}"
+					 class="fu-dialog__icon__small">
+			{{/if}}
 			<img src="{{item.img}}" alt="{{item.name}}"
 				 data-item-id="{{item.uuid}}"
 				 class="fu-dialog__icon__small">

@@ -9,6 +9,7 @@ import { AsyncHooks } from '../helpers/async-hooks.mjs';
  * @typedef ItemReference
  * @property {String} name
  * @property {String} fuid
+ * @property {String} uuid
  */
 
 /**
@@ -19,6 +20,7 @@ function toItemReference(item) {
 	return {
 		name: item.name,
 		fuid: item.system.fuid,
+		uuid: item.uuid,
 	};
 }
 
@@ -46,13 +48,14 @@ function attack(inspector, actor, item) {
 	const targets = inspector.getTargets();
 	const source = CharacterInfo.fromActor(actor);
 	const eventTargets = CharacterInfo.fromTargetData(targets);
-	const result = inspector.getCheck().result;
+	const result = inspector.getCheck().check;
 	const check = inspector.getCheck();
 	const config = CheckConfiguration.configure(check);
 
 	/** @type AttackEvent  **/
 	const event = {
 		item: toItemReference(item),
+		_item: item,
 		actor: actor,
 		source: source,
 		config: config,
@@ -527,23 +530,25 @@ function performCheck(check, actor, item) {
 
 /**
  * @typedef ResolveCheckEvent
- * @property {CheckResultV2} result
+ * @property {CheckResultV2} check
  * @property {CharacterInfo} source
+ * @property {FUItem} item
  * @property {CharacterInfo[]} targets
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Emitted when a check is about to be performed
  */
 
-function resolveCheck(result, actor, item) {
+function resolveCheck(check, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
-	const inspector = CheckConfiguration.inspect(result);
+	const inspector = CheckConfiguration.inspect(check);
 	const targets = inspector.getTargets();
 
 	/** @type ResolveCheckEvent  **/
 	const event = {
-		result: result,
+		check: check,
 		source: source,
+		item: item,
 		sourceInfo: sourceInfo,
 		targets: CharacterInfo.fromTargetData(targets),
 	};
@@ -557,6 +562,7 @@ function resolveCheck(result, actor, item) {
  * @property {CheckResultV2} check
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
+ * @property {FUItem} item
  * @property {FUItemGroup} itemGroup
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Emitted when a check is about to be rendered.
@@ -582,6 +588,7 @@ async function renderCheck(renderData, inspector, actor, item) {
 		sourceInfo: sourceInfo,
 		inspector: inspector,
 		targets: CharacterInfo.fromTargetData(inspector.getTargets()),
+		item: item,
 		itemGroup: InlineHelper.resolveItemGroup(item),
 	};
 	return AsyncHooks.callSequential(FUHooks.RENDER_CHECK_EVENT, event);

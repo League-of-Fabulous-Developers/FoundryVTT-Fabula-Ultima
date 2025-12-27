@@ -58,7 +58,7 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 		}
 		if (this.outcome) {
 			for (const target of context.event.targets) {
-				switch (target.result) {
+				switch (target.check) {
 					case 'hit':
 						if (this.outcome !== 'success') {
 							return false;

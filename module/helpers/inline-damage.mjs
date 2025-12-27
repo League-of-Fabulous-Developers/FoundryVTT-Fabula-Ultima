@@ -1,9 +1,10 @@
-import { FU } from './config.mjs';
+import { FU, SYSTEM } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
 import { systemAssetPath } from './system-utils.mjs';
+import { Flags } from './flags.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -69,7 +70,11 @@ async function onRender(element) {
 	element.addEventListener('click', async function (event) {
 		let targets = await targetHandler();
 		if (targets.length > 0) {
-			const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+			let context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+			let check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			if (check) {
+				context = context.withCheck(check);
+			}
 			const amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
 			const damageData = { type, total: amount, modifierTotal: 0 };
 			const request = new DamageRequest(renderContext.sourceInfo, targets, damageData);

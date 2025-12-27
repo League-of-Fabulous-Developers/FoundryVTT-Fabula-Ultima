@@ -38,6 +38,9 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 	async execute(context, selected) {
 		const targets = selected.map((t) => t.actor);
 		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
+		if (context.check) {
+			expressionContext.withCheck(context.check);
+		}
 		const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
 		if (amount === 0) {
 			return;
@@ -45,7 +48,7 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 		const request = new ResourceRequest(context.sourceInfo, targets, this.resource, amount);
 		request.fromOrigin(context.origin);
 
-		if (context.type === FUHooks.INITIALIZE_CHECK_EVENT) {
+		if (context.eventType === FUHooks.INITIALIZE_CHECK_EVENT) {
 			/** @type InitializeCheckEvent **/
 			const ice = context.event;
 			const targetAction = ResourcePipeline.getTargetedAction(request);

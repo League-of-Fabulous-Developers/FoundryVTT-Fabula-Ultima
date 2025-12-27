@@ -1,8 +1,9 @@
-import { FU } from './config.mjs';
+import { FU, SYSTEM } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { Flags } from './flags.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -116,7 +117,11 @@ async function onRender(element) {
 	element.addEventListener('click', async function () {
 		const targets = await targetHandler();
 		if (targets.length > 0) {
-			const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+			let context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+			let check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			if (check) {
+				context = context.withCheck(check);
+			}
 			const amount = await Expressions.evaluateAsync(dataset.amount, context);
 
 			if (target.classList.contains(classInlineRecovery)) {

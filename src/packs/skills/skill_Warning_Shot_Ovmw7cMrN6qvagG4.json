@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict <strong>shaken</strong> on each target hit by the attack; <strong>or</strong> inflicts <strong>slow</strong> on each target hit by the attack; or each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points. Describe your maneuver!</p><hr><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[shaken], @EFFECT[slow], or @LOSS[10*$sl mp]{SL × 10 MP}</p></li></ul>",
+    "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict <strong>shaken</strong> on each target hit by the attack; <strong>or</strong> inflicts <strong>slow</strong> on each target hit by the attack; or each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points. Describe your maneuver!</p>",
     "isFavored": {
       "value": false
     },
@@ -120,22 +120,112 @@
     "defense": "def",
     "fuid": "warning-shot"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Warning Shot",
+      "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_warning_shot.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "paoUIB9kpHZM7lPC": {
+              "type": "ruleElement",
+              "_id": "paoUIB9kpHZM7lPC",
+              "trigger": {
+                "_id": "PKfluDPVu4hI9ClO",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "identifier": ""
+              },
+              "actions": {
+                "wctGWCNNFyK5NSh4": {
+                  "type": "messageRuleAction",
+                  "_id": "wctGWCNNFyK5NSh4",
+                  "message": "<p>Instead, targets can suffer from one of the following: @EFFECT[shaken], @EFFECT[slow], or @LOSS[10*$sl mp]{SL × 10 MP}</p>"
+                }
+              },
+              "predicates": {
+                "4vKUaXH8DGqR6Sr8": {
+                  "type": "checkRulePredicate",
+                  "_id": "4vKUaXH8DGqR6Sr8",
+                  "outcome": "success",
+                  "result": null
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3KfzmQiRr49axQxk",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766862777392,
+        "modifiedTime": 1766863632831,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!Ovmw7cMrN6qvagG4.3KfzmQiRr49axQxk"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706506787857,
-    "modifiedTime": 1745169545112,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1766868608826,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

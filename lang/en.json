@@ -1707,6 +1707,7 @@
 		"OverChannel": "Over Channel",
 		"IncubationWarning": "The following feature is currently incubating and there may be issues present. Please bear that in mind.",
 		"Local": "Local",
+		"Inclusive": "Inclusive",
 		"SkillConditionMet": "The condition for this skill has been met."
 	}
 }
