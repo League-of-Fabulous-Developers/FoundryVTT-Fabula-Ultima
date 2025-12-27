@@ -1,7 +1,6 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { Effects } from '../../../pipelines/effects.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
-import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;
 //const { DocumentUUIDField } =
@@ -34,11 +33,16 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 			return;
 		}
 
-		if (context.type === FUHooks.INITIALIZE_CHECK_EVENT) {
-			/** @type InitializeCheckEvent **/
-			const ice = context.event;
-			const targetAction = Effects.getTargetedAction(this.effect, context.sourceInfo);
-			ice.configuration.addTargetedAction(targetAction);
+		// If there's a configuration provided
+		if (context.event.config) {
+			/** @type CheckConfigurer **/
+			const config = context.event.config;
+			config.addEffects(this.effect);
+
+			// /** @type InitializeCheckEvent **/
+			// const ice = context.event;
+			// const targetAction = Effects.getTargetedAction(this.effect, context.sourceInfo);
+			// ice.config.addTargetedAction(targetAction);
 		} else {
 			for (const sel of selected) {
 				const instancedEffect = await Effects.instantiateEffect(this.effect);

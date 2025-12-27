@@ -49,7 +49,7 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 			/** @type InitializeCheckEvent **/
 			const ice = context.event;
 			const targetAction = ResourcePipeline.getTargetedAction(request);
-			ice.configuration.addTargetedAction(targetAction);
+			ice.config.addTargetedAction(targetAction);
 		} else {
 			if (game.settings.get(SYSTEM, SETTINGS.automationUpdateResource)) {
 				await ResourcePipeline.process(request);

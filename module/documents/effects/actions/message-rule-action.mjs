@@ -1,6 +1,4 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
-import { Pipeline } from '../../../pipelines/pipeline.mjs';
-import { Flags } from '../../../helpers/flags.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 import { FUHooks } from '../../../hooks.mjs';
@@ -47,13 +45,16 @@ export class MessageRuleAction extends RuleActionDataModel {
 		if (context.type === FUHooks.RENDER_CHECK_EVENT) {
 			/** @type RenderCheckEvent **/
 			const rce = context.event;
-			CommonSections.genericText(rce.renderData, this.message);
+			CommonSections.itemText(rce.renderData, this.message, context.item);
 		} else {
 			const actor = context.character.actor;
+			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {
+				item: context.item,
+				text: this.message,
+			});
 			ChatMessage.create({
-				flags: Pipeline.initializedFlags(Flags.ChatMessage.Opportunity, true),
 				speaker: ChatMessage.getSpeaker({ actor }),
-				content: this.message,
+				content: content,
 			});
 		}
 	}

@@ -1,7 +1,6 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
-import { ItemAttributesDataModel } from '../../items/common/item-attributes-data-model.mjs';
 
 const fields = foundry.data.fields;
 
@@ -9,7 +8,6 @@ const fields = foundry.data.fields;
  * @extends RuleTriggerDataModel
  * @inheritDoc
  * @property {Set<CheckType>} checkTypes
- * @property {ItemAttributesDataModel} attributes
  * @property {Number} result
  */
 export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
@@ -28,8 +26,6 @@ export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),
-			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
-			result: new fields.NumberField({ initial: 0, integer: true }),
 		});
 		return schema;
 	}
@@ -55,19 +51,6 @@ export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
 		if (!this.checkTypes.has(context.event.result.type)) {
 			return false;
 		}
-
-		const a = [this.attributes.primary.value, this.attributes.secondary.value].filter(Boolean);
-		const b = [context.event.result.primary, context.event.result.secondary];
-		if (a.length > 0) {
-			if (!a.every((v) => b.includes(v))) {
-				return false;
-			}
-		}
-
-		if (this.result > 0 && context.event.result.result <= this.result) {
-			return false;
-		}
-
 		return true;
 	}
 }

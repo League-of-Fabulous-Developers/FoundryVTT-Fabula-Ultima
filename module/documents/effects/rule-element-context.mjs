@@ -30,6 +30,13 @@ export class RuleElementContext {
 	}
 
 	/**
+	 * @returns {String} The event type, found in {@linkcode FUHooks}
+	 */
+	get eventType() {
+		return this.type;
+	}
+
+	/**
 	 * @param {String} id
 	 * @return {Boolean}
 	 */

@@ -30,13 +30,13 @@ function toItemReference(item) {
  * @property {Set<String>} traits
  * @property {FUActor} actor
  * @property {Token} token
+ * @property {CheckResultV2} check
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
  * @property {Number} result
  */
 
 /**
- * @description Dispatches an event to signal an attack event
  * @param {CheckInspector} inspector
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -47,12 +47,16 @@ function attack(inspector, actor, item) {
 	const source = CharacterInfo.fromActor(actor);
 	const eventTargets = CharacterInfo.fromTargetData(targets);
 	const result = inspector.getCheck().result;
+	const check = inspector.getCheck();
+	const config = CheckConfiguration.configure(check);
 
 	/** @type AttackEvent  **/
 	const event = {
 		item: toItemReference(item),
 		actor: actor,
 		source: source,
+		config: config,
+		check: check,
 		type: inspector.getDamage()?.type,
 		token: source.token,
 		targets: eventTargets,
@@ -525,6 +529,7 @@ function performCheck(check, actor, item) {
  * @typedef ResolveCheckEvent
  * @property {CheckResultV2} result
  * @property {CharacterInfo} source
+ * @property {CharacterInfo[]} targets
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Emitted when a check is about to be performed
  */
@@ -532,11 +537,15 @@ function performCheck(check, actor, item) {
 function resolveCheck(result, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
+	const inspector = CheckConfiguration.inspect(result);
+	const targets = inspector.getTargets();
+
 	/** @type ResolveCheckEvent  **/
 	const event = {
 		result: result,
 		source: source,
 		sourceInfo: sourceInfo,
+		targets: CharacterInfo.fromTargetData(targets),
 	};
 	Hooks.call(FUHooks.RESOLVE_CHECK_EVENT, event);
 }
@@ -544,28 +553,43 @@ function resolveCheck(result, actor, item) {
 /**
  * @typedef RenderCheckEvent
  * @property {CheckRenderData} renderData
- * @property {CheckResultV2} result
+ * @property {CheckInspector} inspector
+ * @property {CheckResultV2} check
  * @property {CharacterInfo} source
+ * @property {CharacterInfo[]} targets
+ * @property {FUItemGroup} itemGroup
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Emitted when a check is about to be rendered.
  */
 
-async function renderCheck(renderData, result, actor, item) {
+/**
+ * @param {CheckRenderData} renderData
+ * @param {CheckInspector} inspector
+ * @param actor
+ * @param item
+ * @returns {Promise<[]|*>}
+ */
+async function renderCheck(renderData, inspector, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+	const check = inspector.check;
 	const source = CharacterInfo.fromActor(actor);
+
 	/** @type RenderCheckEvent  **/
 	const event = {
 		renderData: renderData,
-		result: result,
+		check: check,
 		source: source,
 		sourceInfo: sourceInfo,
+		inspector: inspector,
+		targets: CharacterInfo.fromTargetData(inspector.getTargets()),
+		itemGroup: InlineHelper.resolveItemGroup(item),
 	};
 	return AsyncHooks.callSequential(FUHooks.RENDER_CHECK_EVENT, event);
 }
 
 /**
  * @typedef InitializeCheckEvent
- * @property {CheckConfigurer} configuration
+ * @property {CheckConfigurer} config
  * @property {CharacterInfo} source
  * @property {InlineSourceInfo} sourceInfo
  * @property {FUItemGroup} itemGroup
@@ -578,7 +602,7 @@ async function initializeCheck(configuration, actor, item) {
 	const source = CharacterInfo.fromActor(actor);
 	/** @type InitializeCheckEvent  **/
 	const event = {
-		configuration: configuration,
+		config: configuration,
 		source: source,
 		sourceInfo: sourceInfo,
 		itemGroup: InlineHelper.resolveItemGroup(item),
