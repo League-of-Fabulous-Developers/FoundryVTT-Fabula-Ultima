@@ -140,6 +140,10 @@ class CheckInspector {
 	 * @return {Number}
 	 */
 	getHighRoll() {
+		// Not always checks involved
+		if (this.#check.primary == null || this.#check.secondary == null) {
+			return 0;
+		}
 		return Math.max(this.#check.primary.result, this.#check.secondary.result);
 	}
 

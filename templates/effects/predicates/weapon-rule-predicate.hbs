@@ -1,11 +1,11 @@
-<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.SelectorHint'}}">
-	<span>{{localize 'FU.Selector'}}</span>
-	<select name="{{pfuConcat path ".selector"}}" class="">
-		{{selectOptions options.targetSelector selected=predicate.selector localize=true}}
-	</select>
-</label>
-
 <div class="fu-rule-element__property-row">
+	<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.SelectorHint'}}">
+		<span>{{localize 'FU.Selector'}}</span>
+		<select name="{{pfuConcat path ".selector"}}" class="">
+			{{selectOptions options.targetSelector selected=predicate.selector localize=true}}
+		</select>
+	</label>
+
 	<label class="fu-rule-element__property">
 		<span>{{localize 'FU.Martial'}}</span>
 		<select name="{{pfuConcat path ".martial"}}">
@@ -13,7 +13,9 @@
 			{{selectOptions options.booleanOption selected=predicate.martial localize=true}}
 		</select>
 	</label>
+</div>
 
+<div class="fu-rule-element__property-row">
 	<label class="fu-rule-element__property">
 		<span>{{localize 'FU.WeaponType'}}</span>
 		<select name="{{pfuConcat path ".weaponType"}}">
@@ -21,13 +23,6 @@
 			{{selectOptions options.weaponTypes selected=predicate.weaponType sort=true localize=true}}
 		</select>
 	</label>
-</div>
-
-<div class="fu-rule-element__property-row">
-	<div class="fu-rule-element__property">
-		<span>{{localize 'FU.Category'}}</span>
-		{{formGroup predicate.schema.fields.categories value=predicate.categories options=options.weaponCategoryOptions name=(pfuConcat path ".categories") classes="fu-rule-element__set stacked"}}
-	</div>
 
 	<label class="fu-rule-element__property">
 		<span>{{localize 'FU.Hand'}}</span>
@@ -38,5 +33,9 @@
 	</label>
 </div>
 
+<div class="fu-rule-element__property">
+	<span>{{localize 'FU.Category'}}</span>
+	{{formGroup predicate.schema.fields.categories value=predicate.categories options=options.weaponCategoryOptions name=(pfuConcat path ".categories") classes="fu-rule-element__set stacked"}}
+</div>
 
 

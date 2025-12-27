@@ -38,7 +38,7 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 
 	async execute(context, selected) {
 		const targets = selected.map((t) => t.actor);
-		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
+		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets).withCheck(context.check);
 		const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
 		const request = new DamageRequest(context.sourceInfo, targets, {
 			type: this.damageType,
@@ -48,7 +48,24 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 		if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
 			await DamagePipeline.process(request);
 		} else {
-			await DamagePipeline.promptApply(request);
+			if (context.event.config) {
+				/** @type CheckConfigurer **/
+				const config = context.event.config;
+				if (context.check) {
+					switch (context.check.type) {
+						case 'display':
+							config.setDamage(this.damageType, amount);
+							break;
+
+						case 'accuracy':
+						case 'magic':
+							config.damage.addModifier(context.label, amount, [this.damageType]);
+							break;
+					}
+				}
+			} else {
+				await DamagePipeline.promptApply(request);
+			}
 		}
 	}
 }

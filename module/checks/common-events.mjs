@@ -599,6 +599,7 @@ async function renderCheck(renderData, inspector, actor, item) {
  * @property {CheckConfigurer} config
  * @property {CharacterInfo} source
  * @property {InlineSourceInfo} sourceInfo
+ * @property {CharacterInfo[]} targets
  * @property {FUItemGroup} itemGroup
  * @property {Object} flags
  * @remarks Emitted when a check is about to be rendered.
@@ -611,6 +612,7 @@ async function initializeCheck(configuration, actor, item) {
 	const event = {
 		config: configuration,
 		source: source,
+		targets: CharacterInfo.fromTargetData(configuration.getTargets()),
 		sourceInfo: sourceInfo,
 		itemGroup: InlineHelper.resolveItemGroup(item),
 	};

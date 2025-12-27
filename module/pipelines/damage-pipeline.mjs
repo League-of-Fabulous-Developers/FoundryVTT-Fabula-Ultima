@@ -682,7 +682,11 @@ async function promptApply(request) {
  */
 function getTargetedAction(damageData, sourceInfo) {
 	const icon = FU.affIcon[damageData.type];
-	return new TargetAction('applyDamage', icon, 'FU.ChatApplyDamageTooltip', {
+	const tooltip = StringUtils.localize('FU.ChatApplyDamageTooltip', {
+		amount: damageData.total,
+		type: StringUtils.localize(FU.damageTypes[damageData.type]),
+	});
+	return new TargetAction('applyDamage', icon, tooltip, {
 		damageData: damageData,
 		sourceInfo: sourceInfo,
 	})

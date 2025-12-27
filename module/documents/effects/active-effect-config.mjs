@@ -159,7 +159,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						checkTypes: FU.checkTypes,
 						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
 						attributes: FU.attributes,
-						resources: FU.resourcesCombat,
+						resources: FU.resources,
 						species: FU.species,
 						weaponTypes: FU.weaponTypes,
 						handedness: FU.handedness,

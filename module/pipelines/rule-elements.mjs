@@ -161,19 +161,19 @@ async function onStatusEvent(event) {
 }
 
 /**
- * @param {InitializeCheckEvent} event
- * @returns {Promise<void>}
- */
-async function onInitializeCheckEvent(event) {
-	await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, []);
-}
-
-/**
  * @param {CreateConsumableEvent} event
  * @returns {Promise<void>}
  */
 async function onCreateConsumableEvent(event) {
 	await evaluate(FUHooks.CONSUMABLE_CREATE_EVENT, event, event.source, event.targets);
+}
+
+/**
+ * @param {InitializeCheckEvent} event
+ * @returns {Promise<void>}
+ */
+async function onInitializeCheckEvent(event) {
+	await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, event.targets, event.config.check);
 }
 
 /**
