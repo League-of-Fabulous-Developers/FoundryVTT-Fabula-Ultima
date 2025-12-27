@@ -47,7 +47,7 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 	 */
 	validateContext(context) {
 		/** @type {CheckType} **/
-		const checkType = context.event.configuration.check.type;
+		const checkType = context.event.config.check.type;
 
 		if (this.itemGroups.size > 0) {
 			if (!this.itemGroups.has(context.event.itemGroup)) {

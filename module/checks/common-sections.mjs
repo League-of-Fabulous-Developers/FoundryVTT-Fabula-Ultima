@@ -52,6 +52,23 @@ const genericText = (sections, text, order) => {
 };
 
 /**
+ * @param {CheckRenderData} sections
+ * @param {string, Promise<string>} text
+ * @param {FUItem} item
+ * @param {number} [order]
+ */
+const itemText = (sections, text, item, order) => {
+	sections.push(async () => ({
+		partial: 'systems/projectfu/templates/chat/partials/chat-item-text.hbs',
+		data: {
+			item: item,
+			text: await TextEditor.enrichHTML(await text),
+		},
+		order,
+	}));
+};
+
+/**
  * A description section with customizable title and without summary.
  * @param {CheckRenderData} sections
  * @param {string} title
@@ -406,6 +423,7 @@ const slottedTechnospheres = (sections, slottedTechnospheres, order) => {
 export const CommonSections = {
 	description,
 	genericText,
+	itemText,
 	collapsibleDescription,
 	clock,
 	tags,

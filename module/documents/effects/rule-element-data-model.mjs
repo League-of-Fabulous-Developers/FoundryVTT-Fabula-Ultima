@@ -72,23 +72,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async addRuleAction() {
-		let subTypes = RuleActionRegistry.instance.localizedEntries;
-		const triggerEventType = this.trigger.schema.model.metadata.eventType;
-		if (triggerEventType) {
-			subTypes = Object.fromEntries(
-				Object.entries(subTypes).filter(([key, value]) => {
-					const model = RuleActionRegistry.instance.types[key];
-					/** @type RuleActionMetaData **/
-					const modelMetaData = model.metadata;
-					if (modelMetaData.eventTypes) {
-						if (modelMetaData.eventTypes.find((t) => t === triggerEventType) === undefined) {
-							return false;
-						}
-					}
-					return true;
-				}),
-			);
-		}
+		let subTypes = this.getMatchingSubTypes(RuleActionRegistry.instance);
 		const options = FoundryUtils.generateConfigOptions(subTypes);
 		const type = await FoundryUtils.selectOptionDialog('FU.RuleElementNew', options);
 		if (type) {
@@ -127,7 +111,7 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	 * @returns {Promise<void>}
 	 */
 	async addRulePredicate() {
-		let subTypes = RulePredicateRegistry.instance.localizedEntries;
+		let subTypes = this.getMatchingSubTypes(RulePredicateRegistry.instance);
 		const options = FoundryUtils.generateConfigOptions(subTypes);
 		const type = await FoundryUtils.selectOptionDialog('FU.Add', options);
 		if (type) {
@@ -144,6 +128,31 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 		if (predicate) {
 			await predicate.delete();
 		}
+	}
+
+	/**
+	 * @param {DataModelRegistry} registry
+	 * @returns {Record<string, string>}
+	 */
+	getMatchingSubTypes(registry) {
+		let subTypes = registry.localizedEntries;
+		const triggerEventType = this.trigger.schema.model.metadata.eventType;
+		if (triggerEventType) {
+			subTypes = Object.fromEntries(
+				Object.entries(subTypes).filter(([key, value]) => {
+					const model = registry.types[key];
+					/** @type RuleActionMetaData **/
+					const modelMetaData = model.metadata;
+					if (modelMetaData.eventTypes) {
+						if (modelMetaData.eventTypes.find((t) => t === triggerEventType) === undefined) {
+							return false;
+						}
+					}
+					return true;
+				}),
+			);
+		}
+		return subTypes;
 	}
 
 	/**

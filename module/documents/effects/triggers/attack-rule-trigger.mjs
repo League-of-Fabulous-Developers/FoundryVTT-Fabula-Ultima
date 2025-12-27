@@ -1,16 +1,11 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
-import { FU } from '../../../helpers/config.mjs';
 import { FUHooks } from '../../../hooks.mjs';
-
-const fields = foundry.data.fields;
 
 /**
  * @description Trigger based on an attack event
  * @extends RuleTriggerDataModel
  * @inheritDoc
- * @property {FUCheckResult} result
- * @property {FUCheckOutcome} outcome
  */
 export class AttackRuleTrigger extends RuleTriggerDataModel {
 	/** @inheritdoc */
@@ -26,10 +21,7 @@ export class AttackRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static defineSchema() {
-		const schema = Object.assign(super.defineSchema(), {
-			result: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkResult) }),
-			outcome: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkOutcome) }),
-		});
+		const schema = Object.assign(super.defineSchema(), {});
 		return schema;
 	}
 
@@ -51,29 +43,6 @@ export class AttackRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (this.result) {
-			const a = this.result === 'even';
-			const b = context.event.result % 2 === 0;
-			if (a !== b) {
-				return false;
-			}
-		}
-		if (this.outcome) {
-			for (const target of context.event.targets) {
-				switch (target.data.result) {
-					case 'hit':
-						if (this.outcome !== 'success') {
-							return false;
-						}
-						break;
-					case 'miss':
-						if (this.outcome !== 'failure') {
-							return false;
-						}
-						break;
-				}
-			}
-		}
 		return true;
 	}
 }

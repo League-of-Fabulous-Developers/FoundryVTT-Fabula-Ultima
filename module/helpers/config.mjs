@@ -813,13 +813,13 @@ FU.consumableAction = {
 };
 
 /**
- * @typedef {"odd" | "even"} FUCheckResult
+ * @typedef {"odd" | "even"} FUCheckParity
  */
 
 /**
  * @description Used as a predicate for rules involving accuracy checks
  */
-FU.checkResult = Object.freeze({
+FU.checkParity = Object.freeze({
 	even: 'FU.Even',
 	odd: 'FU.Odd',
 });

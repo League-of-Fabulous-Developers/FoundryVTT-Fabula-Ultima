@@ -6,7 +6,9 @@ const fields = foundry.data.fields;
 
 /**
  * @extends RuleTriggerDataModel
- * @property {String} identifier The id of the item
+ * @property {String} identifier The id of an Item to match.
+ * @property {Set<CheckType>} checkTypes
+ * @property {Set<FUItemGroup>} itemGroups
  * @inheritDoc
  */
 export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
@@ -24,6 +26,8 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
+			checkTypes: new fields.SetField(new fields.StringField()),
+			itemGroups: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
 		});
 		return schema;
@@ -38,10 +42,39 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	/**
-	 * @param {RuleElementContext<PerformCheckEvent>} context
+	 * @param {RuleElementContext<RenderCheckEvent>} context
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		return context.matchesItem(this.identifier);
+		if (this.itemGroups.size > 0) {
+			if (!this.itemGroups.has(context.event.itemGroup)) {
+				return false;
+			}
+		}
+		/** @type {CheckType} **/
+		const checkType = context.event.inspector.check.type;
+		if (this.checkTypes.size > 0 && !this.checkTypes.has(checkType)) {
+			return false;
+		}
+		if (this.outcome) {
+			for (const target of context.event.targets) {
+				switch (target.result) {
+					case 'hit':
+						if (this.outcome !== 'success') {
+							return false;
+						}
+						break;
+					case 'miss':
+						if (this.outcome !== 'failure') {
+							return false;
+						}
+						break;
+				}
+			}
+		}
+		if (this.identifier) {
+			return context.matchesItem(this.identifier);
+		}
+		return true;
 	}
 }

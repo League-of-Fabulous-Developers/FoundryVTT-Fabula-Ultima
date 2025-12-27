@@ -48,6 +48,7 @@ import { InitializeCheckRuleTrigger } from '../documents/effects/triggers/initia
 import { ModifyConsumableRuleAction } from '../documents/effects/actions/modify-consumable-rule-action.mjs';
 import { CreateConsumableRuleTrigger } from '../documents/effects/triggers/create-consumable-rule-trigger.mjs';
 import { TraitsRulePredicate } from '../documents/effects/predicates/traits-rule-predicate.mjs';
+import { CheckRulePredicate } from '../documents/effects/predicates/check-rule-predicate.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -90,6 +91,7 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, TargetingRulePredicate.TYPE, TargetingRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, TraitsRulePredicate.TYPE, TraitsRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, SpellRulePredicate.TYPE, SpellRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, CheckRulePredicate.TYPE, CheckRulePredicate);
 }
 
 /**
@@ -187,7 +189,7 @@ async function onPerformCheckEvent(event) {
  * @returns {Promise<void>}
  */
 async function onResolveCheckEvent(event) {
-	await evaluate(FUHooks.RESOLVE_CHECK_EVENT, event, event.source, [event.source]);
+	await evaluate(FUHooks.RESOLVE_CHECK_EVENT, event, event.source, event.targets);
 }
 
 /**
@@ -195,7 +197,7 @@ async function onResolveCheckEvent(event) {
  * @returns {Promise<void>}
  */
 async function onRenderCheckEvent(event) {
-	await evaluate(FUHooks.RENDER_CHECK_EVENT, event, event.source, [event.source]);
+	await evaluate(FUHooks.RENDER_CHECK_EVENT, event, event.source, event.targets);
 }
 
 /**

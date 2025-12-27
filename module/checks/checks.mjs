@@ -403,7 +403,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 	const inspector = CheckConfiguration.inspect(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
-	await CommonEvents.renderCheck(renderData, result, actor, item);
+	await CommonEvents.renderCheck(renderData, inspector, actor, item);
 
 	/**
 	 * @type {CheckSection[]}

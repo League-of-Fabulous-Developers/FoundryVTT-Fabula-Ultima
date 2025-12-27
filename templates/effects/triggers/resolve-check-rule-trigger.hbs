@@ -2,28 +2,3 @@
 	<span>{{localize 'FU.CheckType'}}</span>
 	{{formGroup trigger.schema.fields.checkTypes value=trigger.checkTypes options=options.checkTypeOptions name=(pfuConcat path ".checkTypes") classes="fu-rule-element__set stacked"}}
 </div>
-
-<label class="fu-rule-element__property">
-	<span>{{localize 'FU.Result'}}</span>
-	<input type="number" name="{{pfuConcat path ".result"}}" value="{{ trigger.result }}" />
-</label>
-
-<div class="grid grid-2col">
-	<div class="flexcol flex-group-center">
-		<label>
-			{{localize 'FU.Primary'}}
-			<select name="{{pfuConcat path ".attributes.primary.value"}}">
-				{{selectOptions options.attributes selected=trigger.attributes.primary.value blank='-' sort=true localize=true}}
-			</select>
-		</label>
-	</div>
-	<div class=" flexcol flex-group-center">
-		<label>
-			{{localize 'FU.Secondary'}}
-			<select name="{{pfuConcat path ".attributes.secondary.value"}}">
-				{{selectOptions options.attributes selected=trigger.attributes.secondary.value blank='-' sort=true localize=true}}
-			</select>
-		</label>
-	</div>
-</div>
-

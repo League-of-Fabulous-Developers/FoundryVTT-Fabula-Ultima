@@ -51,7 +51,7 @@ export class StudyRollHandler {
 			await game.projectfu.socket.studyRoll({
 				actorUuid: this.actor.uuid,
 				targetUuids: targets.map((t) => t.uuid),
-				checkResult: this.checkResult,
+				checkParity: this.checkResult,
 			});
 			return false;
 		}

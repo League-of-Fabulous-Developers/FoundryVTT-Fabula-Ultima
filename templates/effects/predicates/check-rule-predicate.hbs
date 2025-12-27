@@ -1,0 +1,41 @@
+<div class="fu-rule-element__property-row">
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Outcome'}}</span>
+		<select name="{{pfuConcat path ".outcome"}}">
+			<option value="">-</option>
+			{{selectOptions options.checkOutcome selected=predicate.outcome localize=true}}
+		</select>
+	</label>
+
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.CheckParity'}}</span>
+		<select name="{{pfuConcat path ".parity"}}">
+			<option value="">-</option>
+			{{selectOptions options.checkParity selected=predicate.checkParity localize=true}}
+		</select>
+	</label>
+</div>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Result'}}</span>
+	<input type="number" name="{{pfuConcat path ".result"}}" value="{{ predicate.result }}" />
+</label>
+
+<div class="grid grid-2col">
+	<div class="flexcol flex-group-center">
+		<label>
+			{{localize 'FU.Primary'}}
+			<select name="{{pfuConcat path ".attributes.primary.value"}}">
+				{{selectOptions options.attributes selected=predicate.attributes.primary.value blank='-' sort=true localize=true}}
+			</select>
+		</label>
+	</div>
+	<div class=" flexcol flex-group-center">
+		<label>
+			{{localize 'FU.Secondary'}}
+			<select name="{{pfuConcat path ".attributes.secondary.value"}}">
+				{{selectOptions options.attributes selected=predicate.attributes.secondary.value blank='-' sort=true localize=true}}
+			</select>
+		</label>
+	</div>
+</div>
