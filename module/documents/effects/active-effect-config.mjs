@@ -17,6 +17,8 @@ RuleElements.register();
  * The Application responsible for configuring a single ActiveEffect document within a parent Actor or Item.
  */
 export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
+	#expandedRuleElements = {};
+
 	/** @inheritdoc */
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu', 'sheet', `backgroundstyle`, 'active-effect-sheet'],
@@ -171,7 +173,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						factionRelation: FU.factionRelation,
 						bondPredicate: FU.bondPredicate,
 						targetSelector: FU.targetSelector,
-						checkParity: FU.checkParity,
+						checkResult: FU.checkResult,
 						checkOutcome: FU.checkOutcome,
 						traits: TraitUtils.getOptions(Traits),
 						changeSetMode: FU.changeSetMode,
@@ -218,6 +220,8 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		for (const re of this.system.rules.elements) {
 			await re.prepareRenderContext(context);
 		}
+
+		context.expandedRuleElements = this.#expandedRuleElements;
 		return context;
 	}
 
@@ -265,6 +269,16 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		// Remove assigning statuses since we don't do that
 		const statusForm = html.querySelector('div.form-group.statuses');
 		statusForm.remove();
+
+		// Add toggle handler to track expanded/contracted state for RE summaries
+		const reElements = this.element.querySelectorAll(`.fu-foldout-item[data-rule-element]:not([data-rule-element=""])`); // Selector should grab only items with a *non-empty* data-rule-element
+		for (const elem of reElements) {
+			if (elem instanceof HTMLDetailsElement) {
+				elem.addEventListener('toggle', () => {
+					this.#expandedRuleElements[elem.dataset.ruleElement] = elem.open;
+				});
+			}
+		}
 	}
 
 	/**
@@ -377,6 +391,13 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		if (confirm) {
 			await re.removeRulePredicate(predicateId);
 		}
+	}
+
+	/** @inheritdoc */
+	_onClose(options) {
+		// Reset all expanded elements
+		this.#expandedRuleElements = {};
+		return super._onClose(options);
 	}
 
 	_onChangeForm(formConfig, event) {
