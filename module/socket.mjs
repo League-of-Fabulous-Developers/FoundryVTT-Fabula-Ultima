@@ -269,7 +269,7 @@ export class FUSocketHandler {
 				switch (name) {
 					case 'damage':
 						{
-							const actors = data.targets.filter((t) => t.result === 'hit').map((t) => fromUuidSync(t.uuid));
+							const actors = data.targets.filter((t) => t.check === 'hit').map((t) => fromUuidSync(t.uuid));
 							if (actors.length === 0) {
 								console.debug('No valid targets to automate damage application for');
 								return;

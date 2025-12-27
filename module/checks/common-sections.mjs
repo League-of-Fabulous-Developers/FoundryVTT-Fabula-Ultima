@@ -54,14 +54,18 @@ const genericText = (sections, text, order) => {
 /**
  * @param {CheckRenderData} sections
  * @param {string, Promise<string>} text
+ * @param {FUActor} actor
  * @param {FUItem} item
+ * @param {Map} flags
  * @param {number} [order]
  */
-const itemText = (sections, text, item, order) => {
+const itemText = (sections, text, actor, item, flags, order) => {
 	sections.push(async () => ({
 		partial: 'systems/projectfu/templates/chat/partials/chat-item-text.hbs',
 		data: {
+			actor: actor,
 			item: item,
+			flags: flags,
 			text: await TextEditor.enrichHTML(await text),
 		},
 		order,

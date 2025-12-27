@@ -48,7 +48,7 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 
 	async execute(context, selected) {
 		const values = this.traits.values();
-		if (context.type === FUHooks.CALCULATE_DAMAGE_EVENT) {
+		if (context.eventType === FUHooks.CALCULATE_DAMAGE_EVENT) {
 			/** @type CalculateDamageEvent **/
 			const event = context.event;
 			switch (this.mode) {

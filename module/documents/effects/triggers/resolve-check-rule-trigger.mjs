@@ -48,7 +48,7 @@ export class ResolveCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (!this.checkTypes.has(context.event.result.type)) {
+		if (!this.checkTypes.has(context.event.check.type)) {
 			return false;
 		}
 		return true;

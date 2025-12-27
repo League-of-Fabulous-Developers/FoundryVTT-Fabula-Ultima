@@ -36,7 +36,7 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 	validateContext(context) {
 		let _traits;
 
-		if (context.type === FUHooks.CONSUMABLE_CREATE_EVENT) {
+		if (context.eventType === FUHooks.CONSUMABLE_CREATE_EVENT) {
 			/** @type CreateConsumableEvent **/
 			const cre = context.event;
 			_traits = cre.consumable.traits.selected;

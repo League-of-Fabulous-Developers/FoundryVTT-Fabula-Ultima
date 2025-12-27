@@ -6,6 +6,7 @@ const fields = foundry.data.fields;
 
 /**
  * @property {FUFactionRelationKey} relation
+ * @property {Boolean} inclusive
  */
 export class FactionRelationRulePredicate extends RulePredicateDataModel {
 	static {
@@ -18,6 +19,7 @@ export class FactionRelationRulePredicate extends RulePredicateDataModel {
 				initial: 'enemy',
 				choices: Object.keys(FU.factionRelation),
 			}),
+			inclusive: new fields.BooleanField(),
 		});
 	}
 
@@ -35,12 +37,12 @@ export class FactionRelationRulePredicate extends RulePredicateDataModel {
 	validateContext(context) {
 		switch (this.relation) {
 			case 'ally':
-				if (context.targets.find((t) => t.actor !== context.character.actor && t.disposition === context.character.disposition) === undefined) {
+				if (context.targets.find((t) => this.inclusive === (t.actor === context.character.actor) && t.disposition === context.character.disposition) === undefined) {
 					return false;
 				}
 				break;
 			case 'enemy':
-				if (context.targets.find((t) => t.actor !== context.character.actor && t.disposition !== context.character.disposition) === undefined) {
+				if (context.targets.find((t) => this.inclusive === (t.actor === context.character.actor) && t.disposition !== context.character.disposition) === undefined) {
 					return false;
 				}
 				break;

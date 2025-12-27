@@ -18,6 +18,7 @@ import { ObjectUtils } from '../helpers/object-utils.mjs';
  * @property {FUActiveEffect} effect  The effect the expression is evaluated on
  * @property {FUActor[]} targets The targets the expression is evaluated on
  * @property {FUActor} source Optionally, can be used to execute evaluations on
+ * @property {CheckResultV2|null} check The result of a check.
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Do not serialize this class, as it references full objects. Instead, store their uuids
  * and resolve them with the static constructor
@@ -58,18 +59,28 @@ export class ExpressionContext {
 		return context;
 	}
 
-	setSourceUuid(sourceId) {
-		this.#sourceUuid = sourceId;
-	}
-
 	/**
 	 * @property {FUActor} actor The source of the action
 	 * @property {FUItem} item
 	 * @param {FUActor[]} targets
+	 * @param {CheckV2} check
 	 * @returns {ExpressionContext}
 	 */
 	static fromTargetData(actor, item, targets) {
 		return new ExpressionContext(actor, item, Targeting.deserializeTargetData(targets));
+	}
+
+	/**
+	 * @param {CheckResultV2} check
+	 * @returns {ExpressionContext}
+	 */
+	withCheck(check) {
+		this.check = check;
+		return this;
+	}
+
+	setSourceUuid(sourceId) {
+		this.#sourceUuid = sourceId;
 	}
 
 	/**
@@ -361,6 +372,13 @@ function evaluateVariables(expression, context) {
 			// Number of mastered classes
 			case 'mcc': {
 				return countMasteredClasses(context.resolveActorOrHighestLevelTarget());
+			}
+			// Check Result
+			case 'chk': {
+				if (context.check) {
+					return context.check.result;
+				}
+				return 0;
 			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);

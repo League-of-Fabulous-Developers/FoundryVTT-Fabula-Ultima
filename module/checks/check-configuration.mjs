@@ -457,7 +457,7 @@ class CheckConfigurer extends CheckInspector {
 				} else {
 					targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
 				}
-				target.result = targetResult;
+				target.check = targetResult;
 			});
 		}
 	}

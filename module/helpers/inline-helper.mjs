@@ -195,26 +195,29 @@ function determineSource(document, element) {
 			actorUuid = speakerActor.uuid;
 			name = speakerActor.name;
 		}
-		const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
-		if (check) {
-			itemUuid = check.itemUuid;
-			if (check.itemName) {
-				name = check.itemName;
+		// If an item was provided
+		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+		if (item) {
+			// It's possible the dispatcher didn't encode this information
+			if (item.name) {
+				name = item.name;
 			}
-		} else {
-			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-			if (item) {
-				// It's possible the dispatcher didn't encode this information
-				if (item.name) {
-					name = item.name;
+			itemUuid = item.uuid;
+		}
+		// Get the item from the check data
+		else {
+			const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			if (check) {
+				itemUuid = check.itemUuid;
+				if (check.itemName) {
+					name = check.itemName;
 				}
-				itemUuid = item.uuid;
 			}
-			// Could come from an effect
-			const effect = document.getFlag(SYSTEM, Flags.ChatMessage.Effect);
-			if (effect) {
-				effectUuid = effect;
-			}
+		}
+		// Could come from an effect
+		const effect = document.getFlag(SYSTEM, Flags.ChatMessage.Effect);
+		if (effect) {
+			effectUuid = effect;
 		}
 		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
