@@ -123,7 +123,101 @@
       "amount": 10
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cataclysm",
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_cataclysm.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "mwqxq5RZ2uX5Iyzv": {
+              "type": "ruleElement",
+              "_id": "mwqxq5RZ2uX5Iyzv",
+              "trigger": {
+                "_id": "Pc2XVX08qsypdnQR",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ]
+              },
+              "predicates": {
+                "3i8OFA8Qwk5Lqqz5": {
+                  "type": "weaponRulePredicate",
+                  "_id": "3i8OFA8Qwk5Lqqz5",
+                  "categories": [
+                    "arcane"
+                  ]
+                },
+                "hBGetuaUyjiB9K3S": {
+                  "type": "spellRulePredicate",
+                  "_id": "hBGetuaUyjiB9K3S",
+                  "offensive": "true",
+                  "duration": "instantaneous"
+                }
+              },
+              "actions": {
+                "pEDv6onCfA8WnUKB": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "pEDv6onCfA8WnUKB",
+                  "amount": "5",
+                  "cost": {
+                    "amount": 10
+                  },
+                  "variant": "overChannel"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Dd03wzpbYRkqDcq9",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766869378193,
+        "modifiedTime": 1766869480153,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!muhtqtJ6av32K34Z.Dd03wzpbYRkqDcq9"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

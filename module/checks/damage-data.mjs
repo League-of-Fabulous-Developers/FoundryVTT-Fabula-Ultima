@@ -110,7 +110,6 @@ export class DamageData {
 
 	/**
 	 * @returns {Number}
-	 * @remarks Doesn't account for {@linkcode hrZero}
 	 */
 	get total() {
 		if (this.hrZero) {

@@ -289,6 +289,8 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			// Damage action
 			if (isDamage) {
 				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo));
+
+				// TODO: Combine expenses among all actions?
 				for (const mod of damageData.modifiers) {
 					if (mod.expense && mod.expense.amount > 0) {
 						CommonSections.spendResource(sections, actor, item, mod.expense, targets, flags);

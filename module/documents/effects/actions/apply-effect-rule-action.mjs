@@ -38,11 +38,6 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 			/** @type CheckConfigurer **/
 			const config = context.event.config;
 			config.addEffects(this.effect);
-
-			// /** @type InitializeCheckEvent **/
-			// const ice = context.event;
-			// const targetAction = Effects.getTargetedAction(this.effect, context.sourceInfo);
-			// ice.config.addTargetedAction(targetAction);
 		} else {
 			for (const sel of selected) {
 				const instancedEffect = await Effects.instantiateEffect(this.effect);
