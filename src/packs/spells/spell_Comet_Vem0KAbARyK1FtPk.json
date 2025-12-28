@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Comet</h4><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: one creature you can see suffers @DMG[60 untyped] damage; or you choose any number of creatures you can see, and each of them suffers @DMG[40 untyped] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>. Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p><hr /><ul><li><p><strong>Target Loses:</strong> @DMG[60+&amp;step(0,5,10) untyped]{60|65|70 untyped (single)}, or @DMG[40+&amp;step(0,5,10) untyped]{40|45|50 untyped (multi)}</p></li></ul>",
+    "description": "<h4>Required Heroic Skill: Comet</h4><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: one creature you can see suffers <strong>60 untyped damage</strong>; or you choose any number of creatures you can see, and each of them suffers <strong>40 untyped damage</strong>. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>. Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p>",
     "isFavored": {
       "value": false
     },
@@ -113,7 +113,124 @@
     "opportunity": "",
     "fuid": "comet-multi-target"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Comet",
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/comet.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "CoR1jyfKzPYZu0UK": {
+              "type": "ruleElement",
+              "_id": "CoR1jyfKzPYZu0UK",
+              "trigger": {
+                "_id": "395fSgy9eYR09Ou2",
+                "type": "initializeCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": true
+              },
+              "predicates": {
+                "VHcYdgzP3G35aWUH": {
+                  "type": "targetingRulePredicate",
+                  "_id": "VHcYdgzP3G35aWUH"
+                }
+              },
+              "actions": {
+                "5UdRNclWvgXm4XSI": {
+                  "type": "applyDamageRuleAction",
+                  "_id": "5UdRNclWvgXm4XSI",
+                  "damageType": "untyped",
+                  "amount": "&step(60,65,70)"
+                }
+              }
+            },
+            "tI4N8LT6RTeRECcB": {
+              "type": "ruleElement",
+              "_id": "tI4N8LT6RTeRECcB",
+              "trigger": {
+                "_id": "uuIk2ySmgQwdqeMh",
+                "type": "initializeCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": true
+              },
+              "predicates": {
+                "dhS3ciD0FaimwJHS": {
+                  "type": "targetingRulePredicate",
+                  "_id": "dhS3ciD0FaimwJHS",
+                  "rule": "multiple"
+                }
+              },
+              "actions": {
+                "M8Z4VifZdLnXFZio": {
+                  "type": "applyDamageRuleAction",
+                  "_id": "M8Z4VifZdLnXFZio",
+                  "damageType": "untyped",
+                  "amount": "&step(40,45,50)"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "wscCbuVvN366MDvB",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766925762344,
+        "modifiedTime": 1766925891865,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!Vem0KAbARyK1FtPk.wscCbuVvN366MDvB"
+    }
+  ],
   "sort": 0,
   "ownership": {
     "default": 2,
@@ -121,15 +238,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1710548744272,
-    "modifiedTime": 1747173267212,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1766925938384,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

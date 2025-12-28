@@ -15,10 +15,18 @@ export class BondRulePredicate extends RulePredicateDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			bond: new fields.StringField({
-				initial: 'any',
+				initial: '',
+				blank: true,
 				choices: Object.keys(FU.bondPredicate),
 			}),
 		});
+	}
+
+	static migrateData(source) {
+		if (source.bond === 'any') {
+			source.bond = '';
+		}
+		return super.migrateData(source);
 	}
 
 	static get localization() {
@@ -43,7 +51,8 @@ export class BondRulePredicate extends RulePredicateDataModel {
 			if (bondsOnTarget.length === 0) {
 				continue;
 			}
-			if (this.bond === 'any') {
+			// If no particular bond is selected
+			if (!this.bond) {
 				return true;
 			} else {
 				for (const bond of bondsOnTarget) {

@@ -837,11 +837,10 @@ FU.checkOutcome = Object.freeze({
 });
 
 /**
- * @typedef {"any" | "admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondPredicateKey
+ * @typedef {"admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondPredicateKey
  */
 
 FU.bondPredicate = {
-	any: 'FU.Any',
 	admiration: 'FU.Admiration',
 	inferiority: 'FU.Inferiority',
 	loyalty: 'FU.Loyalty',
