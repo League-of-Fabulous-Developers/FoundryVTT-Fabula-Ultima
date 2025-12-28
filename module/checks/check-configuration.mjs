@@ -228,6 +228,8 @@ class CheckInspector {
 
 /**
  * @desc Provides an interface for configuring a check as it is processed
+ * @extends CheckInspector
+ * @inheritDoc
  */
 class CheckConfigurer extends CheckInspector {
 	/**

@@ -49,6 +49,7 @@ import { ModifyConsumableRuleAction } from '../documents/effects/actions/modify-
 import { CreateConsumableRuleTrigger } from '../documents/effects/triggers/create-consumable-rule-trigger.mjs';
 import { TraitsRulePredicate } from '../documents/effects/predicates/traits-rule-predicate.mjs';
 import { CheckRulePredicate } from '../documents/effects/predicates/check-rule-predicate.mjs';
+import { PerformCheckRuleAction } from '../documents/effects/actions/perform-check-rule-action.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -81,6 +82,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, PlaySoundEffectRuleAction.TYPE, PlaySoundEffectRuleAction);
 	RuleActionRegistry.instance.register(systemId, ExecuteMacroRuleAction.TYPE, ExecuteMacroRuleAction);
 	RuleActionRegistry.instance.register(systemId, ModifyConsumableRuleAction.TYPE, ModifyConsumableRuleAction);
+	RuleActionRegistry.instance.register(systemId, PerformCheckRuleAction.TYPE, PerformCheckRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);

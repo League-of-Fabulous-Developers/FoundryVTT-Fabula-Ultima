@@ -3,6 +3,9 @@ import { FU } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { GroupCheck } from './group-check.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { TargetAction } from '../helpers/targeting.mjs';
+import { Flags } from '../helpers/flags.mjs';
 
 /**
  * @typedef AttributeCheckConfig
@@ -133,7 +136,7 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 		}),
 		rejectClose: false,
 		ok: {
-			icon: 'fas fa-dice',
+			icon: FU.allIcon.roll,
 			label: game.i18n.localize('FU.DialogCheckRoll'),
 		},
 	});
@@ -182,7 +185,7 @@ async function extended(document, initialConfig, actors = undefined) {
 		}),
 		rejectClose: false,
 		ok: {
-			icon: 'fas fa-dice',
+			icon: FU.allIcon.roll,
 			label: game.i18n.localize('FU.Submit'),
 		},
 	});
@@ -292,9 +295,26 @@ async function groupCheck(actor, options = {}) {
 	}
 }
 
+function getRitualCheckAction(actor, item) {
+	const icon = FU.allIcon.roll;
+	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
+	return new TargetAction('ritualCheck', icon, tooltip, {}).setFlag(Flags.ChatMessage.RitualCheck).notTargeted().withSelected().requiresOwner().withLabel('FU.ChatPerformRitual');
+}
+
+/**
+ * @param {Actor} actor
+ * @param {CheckPromptOptions<GroupCheckConfig>} [options]
+ * @returns {Promise<void>}
+ */
+async function ritualCheck(actor, options = {}) {
+	// TODO: Implement
+}
+
 export const CheckPrompt = Object.freeze({
 	attributeCheck,
 	openCheck,
 	groupCheck,
+	ritualCheck,
 	extended,
+	getRitualCheckAction,
 });

@@ -70,9 +70,11 @@ async function filterTargetsByRule(actor, item, targets) {
 }
 
 /**
+ * @description Actions that can be executed from chat messages.
  * @property {String} name The name of the action to be used
  * @property {String} icon The font awesome icon
  * @property {String} img An image to use
+ * @property {String} label An optional label to use.
  * @property {String} tooltip The localized tooltip to use
  * @property {Object} fields The fields to use for the action's dataset
  * @property {Boolean} owner Whether this action can only be applied the owner
@@ -80,6 +82,7 @@ async function filterTargetsByRule(actor, item, targets) {
  * @property {DOMStringMap|undefined} dataset
  * @property {String} style
  * @property {String} color
+ * @property {Boolean} targeted Whether this action can be used on targeted tokens (during the chat message generation)
  * @property {Boolean} selected Whether this action can be used on selected tokens instead.
  * @remarks Expects an action handler where dataset.id is a reference to an actor
  */
@@ -90,7 +93,9 @@ export class TargetAction {
 		this.tooltip = tooltip;
 		this.fields = StringUtils.toBase64(fields ?? {});
 		this.dataset = {};
+		this.label = 'FU.ChatApplySelected';
 		this.owner = false;
+		this.targeted = true;
 		this.selected = false;
 	}
 
@@ -123,8 +128,25 @@ export class TargetAction {
 	/**
 	 * @returns {TargetAction}
 	 */
+	notTargeted() {
+		this.targeted = false;
+		return this;
+	}
+
+	/**
+	 * @returns {TargetAction}
+	 */
 	withSelected() {
 		this.selected = true;
+		return this;
+	}
+
+	/**
+	 * @param {String} label
+	 * @returns {TargetAction}
+	 */
+	withLabel(label) {
+		this.label = label;
 		return this;
 	}
 

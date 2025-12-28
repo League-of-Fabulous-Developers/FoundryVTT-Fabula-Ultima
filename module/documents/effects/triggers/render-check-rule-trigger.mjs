@@ -52,7 +52,7 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 			}
 		}
 		/** @type {CheckType} **/
-		const checkType = context.event.inspector.check.type;
+		const checkType = context.event.config.check.type;
 		if (this.checkTypes.size > 0 && !this.checkTypes.has(checkType)) {
 			return false;
 		}

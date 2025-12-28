@@ -356,6 +356,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 					rule: rule,
 					targets: targetData,
 					actions: actions,
+					targetedActions: actions.filter((a) => a.targeted),
 					selectedActions: actions.filter((a) => a.selected),
 				},
 			};

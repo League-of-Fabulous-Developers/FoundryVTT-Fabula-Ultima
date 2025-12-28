@@ -400,10 +400,10 @@ async function renderCheck(result, actor, item, flags = {}) {
 	 */
 	const renderData = [];
 	const additionalFlags = {};
-	const inspector = CheckConfiguration.inspect(result);
+	const config = CheckConfiguration.configure(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
-	await CommonEvents.renderCheck(renderData, inspector, actor, item);
+	await CommonEvents.renderCheck(renderData, config, actor, item);
 
 	/**
 	 * @type {CheckSection[]}
@@ -460,7 +460,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 			: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 					title: FU.checkTypes[result.type] || 'FU.RollCheck',
 					type: result.type,
-					label: inspector.getLabel(),
+					label: config.getLabel(),
 				});
 	}
 

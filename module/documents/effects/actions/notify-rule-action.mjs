@@ -2,8 +2,6 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 
-//const { StringField } = foundry.data.fields;
-
 /**
  * @description Sends a message to chat
  * @property {String} message

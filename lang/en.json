@@ -711,6 +711,7 @@
 		"DialogCheckAttributeCheck": "Attribute Check",
 		"DialogCheckOpenCheck": "Open Check",
 		"DialogCheckOpposedCheck": "Opposed Check",
+		"DialogCheckRitualCheck": "Ritual Check",
 		"HighRollAbbr": "HR",
 		"ExperimentalCombatTracker": "Enable Experimental Combat Tracker",
 		"ExperimentalCombatTrackerHint": "Experimental combat tracker featuring back and forth initiative.",
@@ -1266,6 +1267,7 @@
 		"MagicCheck": "Magic Check",
 		"OpenCheck": "Open Check",
 		"OpposedCheck": "Opposed Check",
+		"RitualCheck": "Ritual Check",
 		"DisplayItem": "Item Details",
 		"SettingChecksV2": "Checks V2",
 		"SettingChecksV2Hint": "Activate the new (and hopefully improved) Check implementation. Be sure to report bugs you find.",
@@ -1629,6 +1631,7 @@
 		"RuleActionNotify": "Notify",
 		"RuleActionUpdateTrack": "Update Track",
 		"RuleActionUpdateToken": "Update Token",
+		"RuleActionPerformCheck": "Perform Check",
 		"RuleActionPlaySoundEffect": "Play Sound Effect",
 		"RuleActionExecuteMacro": "Execute Macro",
 		"RuleActionModifyConsumable": "Modify Consumable",
@@ -1674,6 +1677,7 @@
 		"True": "True",
 		"False": "False",
 		"Status": "Status",
+		"Check": "Check",
 		"Change": "Change",
 		"CheckParity": "Parity",
 		"Added": "Added",
@@ -1708,6 +1712,7 @@
 		"IncubationWarning": "The following feature is currently incubating and there may be issues present. Please bear that in mind.",
 		"Local": "Local",
 		"Inclusive": "Inclusive",
-		"SkillConditionMet": "The condition for this skill has been met."
+		"SkillConditionMet": "The condition for this skill has been met.",
+		"ChatPerformRitual": "Perform Ritual"
 	}
 }

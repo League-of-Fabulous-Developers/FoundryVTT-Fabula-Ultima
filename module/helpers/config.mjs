@@ -111,6 +111,7 @@ FU.allIcon = {
 	light: 'fua fu-light',
 	poison: 'fua fu-poison',
 	weaponEnchant: 'fu-weapon-enchant',
+	roll: 'fas fa-dice',
 };
 
 FU.affType = {
@@ -459,7 +460,7 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 });
 
 /**
- * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "initiative", "display"} CheckType
+ * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "ritual", "initiative", "display"} CheckType
  */
 
 /**
@@ -475,6 +476,15 @@ FU.checkTypes = {
 	support: 'FU.SupportCheck',
 	initiative: 'FU.InitiativeCheck',
 	display: 'FU.DisplayItem',
+};
+
+/**
+ * @description Check types for which a dialog is opened.
+ * @type {Object<CheckType, string>}
+ */
+FU.dialogCheckTypes = {
+	opposed: 'FU.OpposedCheck',
+	ritual: 'FU.RitualCheck',
 };
 
 FU.classFeatures = {};
