@@ -55,47 +55,69 @@
 		<span class="radio-container">{{radioBoxes 'secondary' attributes checked=secondary localize=true }}</span>
 	</fieldset>
 
-	<div class="flexrow">
-		<fieldset class="flex-group-left resource-content">
-			<legend class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</legend>
-			{{#if (eq type 'open')}}
-				<label class="resource-text-m">
-					<span>{{localize 'FU.DialogCheckOpenCheck'}} {{localize 'FU.Bonus'}}: {{bonus}}</span>
-				</label>
-			{{/if}}
-			<label class="resource-text-m">
-				{{localize 'FU.DialogCheckModifier'}}
-				<input name="modifier" type="number" value="{{modifier}}">
-			</label>
+	{{#if (eq type 'ritual')}}
+		<fieldset class="flexrow resource-content">
+			<legend class="resource-text-m">{{localize 'FU.Potency'}}</legend>
 		</fieldset>
 
-		{{#if (ne type 'open')}}
-			<fieldset class="flex-group-left resource-content">
-				<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
+		<fieldset class="flexrow resource-content">
+			<legend class="resource-text-m">{{localize 'FU.Area'}}</legend>
+		</fieldset>
 
-				{{#if (eq type 'group')}}
+		<fieldset class="title-fieldset desc resource-content">
+			<legend class="resource-label-full">
+				<label class="resource-label-m">{{localize 'FU.Cost'}}</label>
+			</legend>
+			<div class="flexcol">
+			<span class="fu-dialog__output" id="ritual-cost">
+				0
+			</span>
+			</div>
+		</fieldset>
+	{{else}}
+		<div class="flexrow">
+			<fieldset class="flex-group-left resource-content">
+				<legend class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</legend>
+				{{#if (eq type 'open')}}
 					<label class="resource-text-m">
-						{{localize 'FU.DialogGroupCheckDifficulty'}}
-						<input name="difficulty" type="number" value="{{difficulty}}" min="0">
-					</label>
-					<label class="resource-text-m">
-						{{localize 'FU.DialogGroupCheckSupportDifficulty'}}
-						<input name="supportDifficulty" type="number" value="{{supportDifficulty}}" min="0">
-					</label>
-				{{else}}
-					<label class="resource-text-m">
-						{{localize 'FU.DialogCheckDifficulty'}}
-						<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+						<span>{{localize 'FU.DialogCheckOpenCheck'}} {{localize 'FU.Bonus'}}: {{bonus}}</span>
 					</label>
 				{{/if}}
-
-				<div class="flexrow" style="flex-wrap: nowrap;">
-					<button type="button" style="background: var(--difficulty-easy)" data-action="setDifficulty" data-value="7" data-tooltip="{{localize 'FU.Easy'}}"><i class="icon ra ra-sheep"></i></button>
-					<button type="button" style="background: var(--difficulty-normal)" data-action="setDifficulty" data-value="10" data-tooltip="{{localize 'FU.Normal'}}"><i class="icon ra ra-aware"></i></button>
-					<button type="button" style="background: var(--difficulty-hard)" data-action="setDifficulty" data-value="13" data-tooltip="{{localize 'FU.Hard'}}"><i class="icon ra ra-monster-skull"></i></button>
-					<button type="button" style="background: var(--difficulty-veryHard)" data-action="setDifficulty" data-value="16" data-tooltip="{{localize 'FU.VeryHard'}}"><i class="icon ra ra-player-despair"></i></button>
-				</div>
+				<label class="resource-text-m">
+					{{localize 'FU.DialogCheckModifier'}}
+					<input name="modifier" type="number" value="{{modifier}}">
+				</label>
 			</fieldset>
-		{{/if}}
-	</div>
+			{{#if (ne type 'open')}}
+				<fieldset class="flex-group-left resource-content">
+					<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
+
+					{{#if (eq type 'group')}}
+						<label class="resource-text-m">
+							{{localize 'FU.DialogGroupCheckDifficulty'}}
+							<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+						</label>
+						<label class="resource-text-m">
+							{{localize 'FU.DialogGroupCheckSupportDifficulty'}}
+							<input name="supportDifficulty" type="number" value="{{supportDifficulty}}" min="0">
+						</label>
+					{{else}}
+						<label class="resource-text-m">
+							{{localize 'FU.DialogCheckDifficulty'}}
+							<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+						</label>
+					{{/if}}
+
+					{{#unless (eq type 'ritual')}}
+						<div class="flexrow" style="flex-wrap: nowrap;">
+							<button type="button" style="background: var(--difficulty-easy)" data-action="setDifficulty" data-value="7" data-tooltip="{{localize 'FU.Easy'}}"><i class="icon ra ra-sheep"></i></button>
+							<button type="button" style="background: var(--difficulty-normal)" data-action="setDifficulty" data-value="10" data-tooltip="{{localize 'FU.Normal'}}"><i class="icon ra ra-aware"></i></button>
+							<button type="button" style="background: var(--difficulty-hard)" data-action="setDifficulty" data-value="13" data-tooltip="{{localize 'FU.Hard'}}"><i class="icon ra ra-monster-skull"></i></button>
+							<button type="button" style="background: var(--difficulty-veryHard)" data-action="setDifficulty" data-value="16" data-tooltip="{{localize 'FU.VeryHard'}}"><i class="icon ra ra-player-despair"></i></button>
+						</div>
+					{{/unless}}
+				</fieldset>
+			{{/if}}
+		</div>
+	{{/if}}
 </section>

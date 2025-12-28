@@ -18,9 +18,10 @@ export function systemPath(path) {
 }
 
 /**
- * The set of Ability Scores used within the system.
+ * @desc The set of Ability Scores used within the system.
  * @typedef {"dex", "ins", "mig", "wlp"} Attribute
  */
+
 /**
  * @type {Object<Attribute, string>}
  */
@@ -39,6 +40,16 @@ FU.attributeAbbreviations = {
 	ins: 'FU.AttributeInsAbbr',
 	mig: 'FU.AttributeMigAbbr',
 	wlp: 'FU.AttributeWlpAbbr',
+};
+
+/**
+ * @type {Object<Attribute, string>}
+ */
+FU.attributeIcons = {
+	dex: 'fu-dex',
+	ins: 'fu-ins',
+	mig: 'fu-mig',
+	wlp: 'fu-wlp',
 };
 
 FU.currencies = {

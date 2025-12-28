@@ -55,7 +55,7 @@ export class PerformCheckRuleAction extends RuleActionDataModel {
 		if (this.check) {
 			switch (this.check) {
 				case 'ritual':
-					action = CheckPrompt.getRitualCheckAction(context.character.actor, context.item);
+					action = CheckPrompt.getRitualCheckAction(context.character.actor, context.item, this.attributes.primary.value, this.attributes.secondary.value);
 					break;
 
 				case 'opposed':

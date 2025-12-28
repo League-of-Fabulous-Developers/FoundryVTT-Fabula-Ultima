@@ -6,6 +6,8 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { TargetAction } from '../helpers/targeting.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
+import { Pipeline } from '../pipelines/pipeline.mjs';
 
 /**
  * @typedef AttributeCheckConfig
@@ -93,7 +95,7 @@ function saveRecentCheck(actor, type, config) {
 /**
  * @template T
  * @param {Actor} actor
- * @param {"attribute", "open", "group"} type
+ * @param {"attribute", "open", "group", "ritual"} type
  * @param {T} initialConfig
  * @returns {Promise<AttributeCheckConfig | OpenCheckConfig | GroupCheckConfig>}
  */
@@ -154,7 +156,7 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
  * @param {FUActor[]} actors
  * @returns {Promise<AttributeCheckConfig>}
  */
-async function extended(document, initialConfig, actors = undefined) {
+async function promptForConfigurationExtended(document, initialConfig, actors = undefined) {
 	const type = 'attribute';
 	const recentCheck = retrieveRecentCheck(document, type);
 
@@ -295,19 +297,99 @@ async function groupCheck(actor, options = {}) {
 	}
 }
 
-function getRitualCheckAction(actor, item) {
-	const icon = FU.allIcon.roll;
-	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
-	return new TargetAction('ritualCheck', icon, tooltip, {}).setFlag(Flags.ChatMessage.RitualCheck).notTargeted().withSelected().requiresOwner().withLabel('FU.ChatPerformRitual');
-}
-
 /**
  * @param {Actor} actor
  * @param {CheckPromptOptions<GroupCheckConfig>} [options]
  * @returns {Promise<void>}
  */
 async function ritualCheck(actor, options = {}) {
-	// TODO: Implement
+	const promptResult = await promptForConfiguration(actor, 'ritual', options.initialConfig);
+	if (promptResult) {
+		return Checks.groupCheck(actor, (check, callbackActor, item) => {
+			const checkConfigurer = CheckConfiguration.configure(check);
+			checkConfigurer.setAttributes(promptResult.primary, promptResult.secondary);
+			if (promptResult.difficulty) {
+				checkConfigurer.setDifficulty(promptResult.difficulty);
+			}
+			if (promptResult.modifier) {
+				checkConfigurer.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
+			}
+			GroupCheck.setSupportCheckDifficulty(check, promptResult.supportDifficulty);
+
+			if (options.checkCallback) {
+				options.checkCallback(check, callbackActor, item);
+			}
+		});
+	}
+}
+
+/**
+ * @typedef RitualCheckData
+ * @property actorId
+ * @property itemId
+ * @property primary
+ * @property secondary
+ */
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {Attribute} primary
+ * @param {Attribute} secondary
+ * @returns {TargetAction}
+ */
+function getRitualCheckAction(actor, item, primary, secondary) {
+	const icon = FU.allIcon.roll;
+	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
+	return new TargetAction(
+		'ritualCheck',
+		icon,
+		tooltip,
+		/** @type RitualCheckData **/ {
+			actorId: actor.uuid,
+			itemId: item.uuid,
+			primary: primary,
+			secondary: secondary,
+		},
+	)
+		.setFlag(Flags.ChatMessage.PromptCheck)
+		.notTargeted()
+		.withSelected()
+		.requiresOwner()
+		.withLabel('FU.ChatPerformRitual');
+}
+
+/**
+ * @param {ChatMessage} message
+ * @param {HTMLElement} html
+ */
+function onRenderChatMessage(message, html) {
+	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
+		Pipeline.handleClick(message, html, 'ritualCheck', async (dataset) => {
+			/** @type RitualCheckData **/
+			const fields = StringUtils.fromBase64(dataset.fields);
+			const actor = await fromUuid(fields.actorId);
+			if (!actor) {
+				return;
+			}
+			const item = await fromUuid(fields.itemId);
+			if (!item) {
+				return;
+			}
+			return ritualCheck(actor, {
+				primary: fields.primary,
+				secondary: fields.secondary,
+				label: item.name,
+			});
+		});
+	}
+}
+
+/**
+ * @description Initialize the pipeline's hooks
+ */
+function initialize() {
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 export const CheckPrompt = Object.freeze({
@@ -315,6 +397,7 @@ export const CheckPrompt = Object.freeze({
 	openCheck,
 	groupCheck,
 	ritualCheck,
-	extended,
+	promptForConfigurationExtended,
 	getRitualCheckAction,
+	initialize,
 });

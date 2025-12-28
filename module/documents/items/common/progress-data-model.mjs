@@ -336,7 +336,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		const track = tracks[index];
 		const actors = await getSelected(false);
 
-		const prompt = await CheckPrompt.extended(
+		const prompt = await CheckPrompt.promptForConfigurationExtended(
 			document,
 			{
 				primary: 'dex',

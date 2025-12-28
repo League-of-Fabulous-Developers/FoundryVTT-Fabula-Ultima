@@ -24,7 +24,7 @@ export const Flags = Object.freeze({
 		GroupCheckV2: 'GroupCheckV2',
 		GroupCheckConfig: 'GroupCheckConfig',
 		SupportCheck: 'Supporter',
-		RitualCheck: 'RitualCheck',
+		PromptCheck: 'PromptCheck',
 		GroupCheckSupporters: 'GroupCheckSupporters',
 		Item: 'Item',
 		Effect: 'Effect',

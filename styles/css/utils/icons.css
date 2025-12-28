@@ -28,6 +28,11 @@
 	--icon-fu-aura: url('../../static/statuses/Aura.webp');
 	--icon-fu-barrier: url('../../static/statuses/Barrier.webp');
 
+	--icon-fu-dex: url('../../static/icons/attributes/dex-glyph.png');
+	--icon-fu-ins: url('../../static/icons/attributes/ins-glyph.png');
+	--icon-fu-mig: url('../../static/icons/attributes/mig-glyph.png');
+	--icon-fu-wlp: url('../../static/icons/attributes/wlp-glyph.png');
+
 	--icon-fu-ins-up: url('../../static/statuses/InsUp.webp');
 	--icon-fu-ins-down: url('../../static/statuses/InsDown.webp');
 	--icon-fu-dex-up: url('../../static/statuses/DexUp.webp');
@@ -56,6 +61,22 @@
 	--icon-fu--physical: url('../../static/affinities/icons/physical.png');
 	--icon-fu--poison: url('../../static/affinities/icons/poison.png');
 	--icon-fu--untyped: url('../../static/affinities/icons/untyped.png');
+}
+
+.fu-dex {
+	background-image: var(--icon-fu-dex);
+}
+
+.fu-mig {
+	background-image: var(--icon-fu-mig);
+}
+
+.fu-wlp {
+	background-image: var(--icon-fu-wlp);
+}
+
+.fu-ins {
+	background-image: var(--icon-fu-ins);
 }
 
 .fu-air {
