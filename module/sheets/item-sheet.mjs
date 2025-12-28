@@ -700,6 +700,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		const item = this.item.getEmbeddedDocument('Item', itemId);
 		if (item) {
 			if (this.item.actor) {
+				// TODO: Set up event to replace the roll action.
 				return item.roll();
 			} else {
 				return Checks.display(null, item);

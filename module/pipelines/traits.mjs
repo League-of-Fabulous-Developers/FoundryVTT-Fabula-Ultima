@@ -47,6 +47,8 @@ export const DamageTraits = Object.freeze({
  */
 export const SkillTraits = Object.freeze({
 	OverChannel: 'over-channel',
+	Verse: 'verse',
+	Dance: 'dance',
 });
 
 /**
