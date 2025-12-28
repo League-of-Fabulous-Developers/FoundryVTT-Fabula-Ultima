@@ -338,6 +338,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 
 		const prompt = await CheckPrompt.promptForConfigurationExtended(
 			document,
+			'attribute',
 			{
 				primary: 'dex',
 				secondary: 'ins',

@@ -35,7 +35,7 @@ import { Pipeline } from '../pipelines/pipeline.mjs';
 /**
  * @typedef CheckPromptOptions
  * @template T
- * @property {T} [initialConfig]
+ * @property {T} [initialConfig] The configuration for the specific check.
  * @property {CheckCallback} [checkCallback]
  * @property {CheckResultCallback} resultCallback
  * @property
@@ -93,6 +93,75 @@ function saveRecentCheck(actor, type, config) {
 }
 
 /**
+ * @typedef RitualPotency
+ * @property key
+ * @property label
+ * @property {Number} cost
+ * @property {Number} difficulty
+ */
+
+/** @type RitualPotency[] **/
+const potencyList = [
+	{
+		key: 'minor',
+		label: FU.potency.minor,
+		cost: 20,
+		difficulty: 7,
+		selected: true,
+	},
+	{
+		key: 'medium',
+		label: FU.potency.medium,
+		cost: 30,
+		difficulty: 10,
+	},
+	{
+		key: 'major',
+		label: FU.potency.major,
+		cost: 40,
+		difficulty: 13,
+	},
+	{
+		key: 'extreme',
+		label: FU.potency.extreme,
+		cost: 50,
+		difficulty: 16,
+	},
+];
+
+/**
+ * @typedef RitualArea
+ * @property key
+ * @property label
+ * @property {Number} multiplier
+ */
+
+/** @type RitualArea[] **/
+const areaList = [
+	{
+		key: 'individual',
+		label: FU.area.individual,
+		multiplier: 1,
+		selected: true,
+	},
+	{
+		key: 'small',
+		label: FU.area.small,
+		multiplier: 2,
+	},
+	{
+		key: 'large',
+		label: FU.area.large,
+		multiplier: 3,
+	},
+	{
+		key: 'huge',
+		label: FU.area.huge,
+		multiplier: 4,
+	},
+];
+
+/**
  * @template T
  * @param {Actor} actor
  * @param {"attribute", "open", "group", "ritual"} type
@@ -133,6 +202,8 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 			secondary: recentCheck.secondary,
 			modifier: recentCheck.modifier,
 			difficulty: recentCheck.difficulty,
+			potencyList: potencyList,
+			areaList: areaList,
 			supportDifficulty: recentCheck.supportDifficulty,
 			bonus: actor.system.bonuses.accuracy.openCheck,
 		}),
@@ -152,12 +223,12 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 /**
  * @template T
  * @param {Document} document
+ * @param {CheckType} type
  * @param {T} initialConfig
  * @param {FUActor[]} actors
  * @returns {Promise<AttributeCheckConfig>}
  */
-async function promptForConfigurationExtended(document, initialConfig, actors = undefined) {
-	const type = 'attribute';
+async function promptForConfigurationExtended(document, type, initialConfig, actors = undefined) {
 	const recentCheck = retrieveRecentCheck(document, type);
 
 	Object.keys(recentCheck).forEach((key) => {
@@ -165,26 +236,47 @@ async function promptForConfigurationExtended(document, initialConfig, actors = 
 			recentCheck[key] = initialConfig[key];
 		}
 	});
+
+	let context = {
+		type: type,
+		label: initialConfig.label,
+		increment: initialConfig.increment !== undefined,
+		attributes: FU.attributes,
+		actors: actors,
+		attributeAbbr: FU.attributeAbbreviations,
+		attributeIcons: FU.attributeIcons,
+		primary: recentCheck.primary,
+		secondary: recentCheck.secondary,
+		modifier: recentCheck.modifier,
+		difficulty: recentCheck.difficulty,
+		supportDifficulty: recentCheck.supportDifficulty,
+		bonus: 0,
+	};
+
+	switch (type) {
+		case 'ritual':
+			{
+				const potency = potencyList[0];
+				const area = areaList[0];
+				context = Object.assign(context, {
+					potency: potency,
+					area: area,
+					cost: potency.cost * area.multiplier,
+					potencyList: potencyList,
+					areaList: areaList,
+				});
+			}
+			break;
+	}
+
 	const result = await foundry.applications.api.DialogV2.input({
 		window: { title: game.i18n.localize(actors.length ? 'FU.DialogCheckRoll' : 'FU.DialogPromptCheck') },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		actions: {
 			setDifficulty: onSetDifficulty,
+			updateRitual: onUpdateRitual,
 		},
-		content: await FoundryUtils.renderTemplate('dialog/dialog-check-prompt-unified', {
-			type: type,
-			label: initialConfig.label,
-			increment: initialConfig.increment !== undefined,
-			attributes: FU.attributes,
-			actors: actors,
-			attributeAbbr: FU.attributeAbbreviations,
-			primary: recentCheck.primary,
-			secondary: recentCheck.secondary,
-			modifier: recentCheck.modifier,
-			difficulty: recentCheck.difficulty,
-			supportDifficulty: recentCheck.supportDifficulty,
-			bonus: 0,
-		}),
+		content: await FoundryUtils.renderTemplate('dialog/dialog-check-prompt-unified', context),
 		rejectClose: false,
 		ok: {
 			icon: FU.allIcon.roll,
@@ -207,9 +299,36 @@ async function onSetDifficulty(event, target) {
 	const input = target.closest('fieldset').querySelector("input[name='difficulty']");
 	if (!input) return;
 	input.value = target.dataset.value ?? '';
-	// Let Foundry know it changed
 	input.dispatchEvent(new Event('input', { bubbles: true }));
 	input.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/**
+ * @param {PointerEvent} event   The originating click event
+ * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+ * @returns {Promise<void>}
+ */
+async function onUpdateRitual(event, target) {
+	const form = target.closest('form') ?? this.element;
+
+	// Selected radios
+	const potencyKey = form.querySelector('input[name="potency"]:checked')?.value ?? null;
+	const areaKey = form.querySelector('input[name="area"]:checked')?.value ?? null;
+
+	const potency = potencyList.find((potency) => potency.key === potencyKey);
+	const area = areaList.find((area) => area.key === areaKey);
+	const cost = potency.cost * area.multiplier;
+
+	// Update hidden difficulty input
+	const diffInput = form.querySelector('input[name="difficulty"]');
+	if (diffInput && potency) {
+		diffInput.value = potency.difficulty;
+	}
+
+	const costEl = form.querySelector('#ritual-cost');
+	if (costEl) {
+		costEl.textContent = cost.toString();
+	}
 }
 
 /**
@@ -298,12 +417,20 @@ async function groupCheck(actor, options = {}) {
 }
 
 /**
+ * @typedef RitualCheckData
+ * @property actorId
+ * @property itemId
+ * @property primary
+ * @property secondary
+ */
+
+/**
  * @param {Actor} actor
  * @param {CheckPromptOptions<GroupCheckConfig>} [options]
  * @returns {Promise<void>}
  */
 async function ritualCheck(actor, options = {}) {
-	const promptResult = await promptForConfiguration(actor, 'ritual', options.initialConfig);
+	const promptResult = await promptForConfigurationExtended(actor, 'ritual', options, [actor]);
 	if (promptResult) {
 		return Checks.groupCheck(actor, (check, callbackActor, item) => {
 			const checkConfigurer = CheckConfiguration.configure(check);
@@ -322,14 +449,6 @@ async function ritualCheck(actor, options = {}) {
 		});
 	}
 }
-
-/**
- * @typedef RitualCheckData
- * @property actorId
- * @property itemId
- * @property primary
- * @property secondary
- */
 
 /**
  * @param {FUActor} actor
@@ -379,7 +498,7 @@ function onRenderChatMessage(message, html) {
 			return ritualCheck(actor, {
 				primary: fields.primary,
 				secondary: fields.secondary,
-				label: item.name,
+				//label: item.name,
 			});
 		});
 	}
