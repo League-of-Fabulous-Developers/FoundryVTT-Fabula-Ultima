@@ -137,15 +137,9 @@
 			</div>
 		</fieldset>
 
-		<label>
-			<input
-			 name="difficulty"
-			 type="number"
-			 value="{{potency.difficulty}}"
-			 min="0"
-			 hidden
-			/>
-		</label>
+		<!-- Hidden: used by the result-->
+		<label><input name="difficulty" type="number" value="{{potency.difficulty}}" min="0" hidden/></label>
+		<label><input name="cost" type="number" value="{{cost}}" min="0" hidden/></label>
 
 	{{else}}
 		<div class="flexrow">

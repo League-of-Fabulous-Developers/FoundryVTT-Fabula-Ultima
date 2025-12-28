@@ -258,6 +258,12 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				});
 				break;
 		}
+
+		// Expense action
+		const expenseData = inspector.getExpense();
+		if (expenseData) {
+			CommonSections.spendResource(sections, actor, item, expenseData, targetData, flags);
+		}
 	}
 
 	if (isTargeted) {
@@ -293,7 +299,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				// TODO: Combine expenses among all actions?
 				for (const mod of damageData.modifiers) {
 					if (mod.expense && mod.expense.amount > 0) {
-						CommonSections.spendResource(sections, actor, item, mod.expense, targets, flags);
+						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
 					}
 				}
 

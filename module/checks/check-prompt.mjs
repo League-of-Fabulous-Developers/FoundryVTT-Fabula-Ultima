@@ -8,6 +8,8 @@ import { TargetAction } from '../helpers/targeting.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
+import { CheckHooks } from './check-hooks.mjs';
+import { CommonSections } from './common-sections.mjs';
 
 /**
  * @typedef AttributeCheckConfig
@@ -321,9 +323,10 @@ async function onUpdateRitual(event, target) {
 
 	// Update hidden difficulty input
 	const diffInput = form.querySelector('input[name="difficulty"]');
-	if (diffInput && potency) {
-		diffInput.value = potency.difficulty;
-	}
+	if (diffInput) diffInput.value = potency.difficulty;
+
+	const costInput = form.querySelector('input[name="cost"]');
+	if (costInput) costInput.value = cost;
 
 	const costEl = form.querySelector('#ritual-cost');
 	if (costEl) {
@@ -425,30 +428,48 @@ async function groupCheck(actor, options = {}) {
  */
 
 /**
- * @param {Actor} actor
+ * @param {FUActor} actor
+ * @param {FUItem} item
  * @param {CheckPromptOptions<GroupCheckConfig>} [options]
  * @returns {Promise<void>}
  */
-async function ritualCheck(actor, options = {}) {
+async function ritualCheck(actor, item, options = {}) {
 	const promptResult = await promptForConfigurationExtended(actor, 'ritual', options, [actor]);
 	if (promptResult) {
-		return Checks.groupCheck(actor, (check, callbackActor, item) => {
-			const checkConfigurer = CheckConfiguration.configure(check);
-			checkConfigurer.setAttributes(promptResult.primary, promptResult.secondary);
-			if (promptResult.difficulty) {
-				checkConfigurer.setDifficulty(promptResult.difficulty);
-			}
-			if (promptResult.modifier) {
-				checkConfigurer.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
-			}
-			GroupCheck.setSupportCheckDifficulty(check, promptResult.supportDifficulty);
+		return Checks.groupCheck(
+			actor,
+			(check, callbackActor, item) => {
+				const config = CheckConfiguration.configure(check);
+				config.setAttributes(promptResult.primary, promptResult.secondary);
+				if (promptResult.difficulty) {
+					config.setDifficulty(promptResult.difficulty);
+				}
+				if (promptResult.modifier) {
+					config.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
+				}
+				config.addExpense('mp', promptResult.cost);
+				GroupCheck.setSupportCheckDifficulty(check, promptResult.supportDifficulty);
 
-			if (options.checkCallback) {
-				options.checkCallback(check, callbackActor, item);
-			}
-		});
+				if (options.checkCallback) {
+					options.checkCallback(check, callbackActor, item);
+				}
+			},
+			item,
+		);
 	}
 }
+
+/**
+ * @type RenderCheckHook
+ */
+const onRenderGroupCheck = (sections, check, actor, item, flags) => {
+	if (check.type === 'group') {
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargets();
+		CommonSections.actions(sections, actor, item, targets, flags, inspector);
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderGroupCheck);
 
 /**
  * @param {FUActor} actor
@@ -495,7 +516,7 @@ function onRenderChatMessage(message, html) {
 			if (!item) {
 				return;
 			}
-			return ritualCheck(actor, {
+			return ritualCheck(actor, item, {
 				primary: fields.primary,
 				secondary: fields.secondary,
 				//label: item.name,

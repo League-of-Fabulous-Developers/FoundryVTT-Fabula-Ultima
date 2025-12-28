@@ -63,18 +63,20 @@ const attributeCheck = async (actor, attributes, item, configCallback, onPerform
 	return performCheck(check, actor, item, configCallback, onPerform);
 };
 
+// TODO: Fix param order
 /**
  * @param {FUActor} actor
  * @param {CheckCallback} configCallback
+ * @param item
  * @return {Promise<void>}
  */
-const groupCheck = async (actor, configCallback) => {
+const groupCheck = async (actor, configCallback, item = undefined) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'group',
 	};
 
-	return performCheck(check, actor, undefined, configCallback);
+	return performCheck(check, actor, item, configCallback);
 };
 
 /**
