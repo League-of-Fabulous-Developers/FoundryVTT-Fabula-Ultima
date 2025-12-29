@@ -10,6 +10,7 @@ import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CommonSections } from './common-sections.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 /**
  * @typedef AttributeCheckConfig
@@ -189,30 +190,39 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 		{},
 	);
 
+	let context = {
+		type: type,
+		attributes: FU.attributes,
+		attributeAbbr: FU.attributeAbbreviations,
+		attributeValues: attributeValues,
+		attributeOptions: FoundryUtils.generateConfigIconOptions(Object.keys(FU.attributes), FU.attributes, FU.attributeIcons),
+		attributeIcons: FU.attributeIcons,
+		primary: recentCheck.primary,
+		secondary: recentCheck.secondary,
+		modifier: recentCheck.modifier,
+		difficulty: recentCheck.difficulty,
+		potencyList: potencyList,
+		areaList: areaList,
+		supportDifficulty: recentCheck.supportDifficulty,
+		bonus: actor.system.bonuses.accuracy.openCheck,
+	};
+
 	const result = await foundry.applications.api.DialogV2.input({
 		window: { title: game.i18n.localize('FU.DialogCheckTitle') },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		actions: {
 			setDifficulty: onSetDifficulty,
 		},
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-prompt-unified.hbs', {
-			type: type,
-			attributes: FU.attributes,
-			attributeAbbr: FU.attributeAbbreviations,
-			attributeValues: attributeValues,
-			primary: recentCheck.primary,
-			secondary: recentCheck.secondary,
-			modifier: recentCheck.modifier,
-			difficulty: recentCheck.difficulty,
-			potencyList: potencyList,
-			areaList: areaList,
-			supportDifficulty: recentCheck.supportDifficulty,
-			bonus: actor.system.bonuses.accuracy.openCheck,
-		}),
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-prompt-unified.hbs', context),
 		rejectClose: false,
 		ok: {
 			icon: FU.allIcon.roll,
 			label: game.i18n.localize('FU.DialogCheckRoll'),
+		},
+		/** @param {Event} event
+		 *  @param {HTMLElement} dialog **/
+		render: (event, dialog) => {
+			HTMLUtils.initializeIconRadioGroups(dialog.element, context);
 		},
 	});
 	if (result) {
@@ -244,8 +254,8 @@ async function promptForConfigurationExtended(document, type, initialConfig, act
 		label: initialConfig.label,
 		increment: initialConfig.increment !== undefined,
 		attributes: FU.attributes,
-		attributeOptions: FoundryUtils.generateConfigIconOptions(Object.keys(FU.attributes), FU.attributes, FU.attributeIcons),
 		attributeAbbr: FU.attributeAbbreviations,
+		attributeOptions: FoundryUtils.generateConfigIconOptions(Object.keys(FU.attributes), FU.attributes, FU.attributeIcons),
 		attributeIcons: FU.attributeIcons,
 		primary: recentCheck.primary,
 		secondary: recentCheck.secondary,
@@ -288,21 +298,7 @@ async function promptForConfigurationExtended(document, type, initialConfig, act
 		/** @param {Event} event
 		 *  @param {HTMLElement} dialog **/
 		render: (event, dialog) => {
-			// Add handlers for selecting them
-			const radioGroups = dialog.element.querySelectorAll('div .fu-icon__radio-group');
-			radioGroups.forEach((radioGroup) => {
-				const buttons = radioGroup.querySelectorAll('.fu-icon__radio__label input[type="radio"]');
-				buttons.forEach((radio) => {
-					// TODO: Set initial
-					radio.addEventListener('change', () => {
-						buttons.forEach((r) => r.parentElement.classList.remove('selected'));
-						if (radio.checked) {
-							const label = radio.parentElement;
-							label.classList.add('selected');
-						}
-					});
-				});
-			});
+			HTMLUtils.initializeIconRadioGroups(dialog.element, context);
 		},
 	});
 	if (result) {

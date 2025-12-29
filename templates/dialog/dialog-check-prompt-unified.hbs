@@ -54,7 +54,7 @@
 					{{localize 'FU.Primary'}}
 					<div class="fu-icon__radio-group">
 						{{#each attributeOptions as |attr| }}
-							<label class="fu-icon__radio__label fu-icon fu-icon--s {{icon}}" for="{{label}}">
+							<label class="fu-icon__radio__label fu-icon fu-icon--s {{icon}}" data-tooltip="{{localize label}}" for="{{label}}">
 								<input checked="checked" id="{{label}}" type="radio" name="primary" value="{{value}}">
 							</label>
 						{{/each}}
@@ -64,7 +64,7 @@
 					{{localize 'FU.Secondary'}}
 					<div class="fu-icon__radio-group">
 						{{#each attributeOptions as |attr| }}
-							<label class="fu-icon__radio__label fu-icon fu-icon--s {{icon}}" for="{{label}}">
+							<label class="fu-icon__radio__label fu-icon fu-icon--s {{icon}}" data-tooltip="{{localize label}}" for="{{label}}">
 								<input checked="checked" id="{{label}}" type="radio" name="secondary" value="{{value}}">
 							</label>
 						{{/each}}
