@@ -104,20 +104,46 @@
 	--icon-size: 64px;
 }
 
-.cc-selector input {
+.fu-icon__radio-group input {
 	margin: 0;
+	content: none;
 	padding: 0;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 }
 
+.fu-icon__radio-group label {
+	pointer-events: auto;
+}
+
+.fu-icon__radio-group label input {
+	margin: 0;
+	content: none;
+	padding: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	opacity: 0;
+}
+
+.fu-icon__radio-group input:before,
+.fu-icon__radio-group input:after {
+	/*content: unset;*/
+}
+
+/* Highlight the selected label */
+.fu-icon__radio-group label input:checked + .fu-icon__radio-group label {
+	border: 2px solid blue; /* or any highlight */
+	box-shadow: 0 0 4px blue;
+}
+
 .cc-selector-2 input:active + .drinkcard-cc,
-.cc-selector input:active + .drinkcard-cc {
+.fu-icon__radio-group input:active + .drinkcard-cc {
 	opacity: 0.9;
 }
 .cc-selector-2 input:checked + .drinkcard-cc,
-.cc-selector input:checked + .drinkcard-cc {
+.fu-icon__radio-group input:checked + .drinkcard-cc {
 	-webkit-filter: none;
 	-moz-filter: none;
 	filter: none;
