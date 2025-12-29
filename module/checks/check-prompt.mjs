@@ -287,7 +287,23 @@ async function promptForConfigurationExtended(document, type, initialConfig, act
 		},
 		/** @param {Event} event
 		 *  @param {HTMLElement} dialog **/
-		render: (event, dialog) => {},
+		render: (event, dialog) => {
+			// Add handlers for selecting them
+			const radioGroups = dialog.element.querySelectorAll('div .fu-icon__radio-group');
+			radioGroups.forEach((radioGroup) => {
+				const buttons = radioGroup.querySelectorAll('.fu-icon__radio__label input[type="radio"]');
+				buttons.forEach((radio) => {
+					// TODO: Set initial
+					radio.addEventListener('change', () => {
+						buttons.forEach((r) => r.parentElement.classList.remove('selected'));
+						if (radio.checked) {
+							const label = radio.parentElement;
+							label.classList.add('selected');
+						}
+					});
+				});
+			});
+		},
 	});
 	if (result) {
 		saveRecentCheck(document, type, result);

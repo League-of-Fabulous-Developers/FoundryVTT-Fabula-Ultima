@@ -136,20 +136,19 @@
 .fu-icon__radio-group label input:checked + .fu-icon__radio-group label {
 	border: 2px solid blue; /* or any highlight */
 	box-shadow: 0 0 4px blue;
+	background-color: red;
 }
 
-.cc-selector-2 input:active + .drinkcard-cc,
-.fu-icon__radio-group input:active + .drinkcard-cc {
+.fu-icon__radio-group input:active + .fu-icon__radio__label {
 	opacity: 0.9;
 }
-.cc-selector-2 input:checked + .drinkcard-cc,
-.fu-icon__radio-group input:checked + .drinkcard-cc {
+.fu-icon__radio-group input:checked + .fu-icon__radio__label {
 	-webkit-filter: none;
 	-moz-filter: none;
 	filter: none;
 }
 
-.drinkcard-cc {
+.fu-icon__radio__label {
 	cursor: pointer;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -161,7 +160,12 @@
 	filter: brightness(1.8) grayscale(1) opacity(0.7);
 }
 
-.drinkcard-cc:hover {
+.fu-icon__radio__label:hover {
 	-webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
 	filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+.fu-icon__radio__label.selected {
+	-webkit-filter: unset;
+	filter: unset;
 }
