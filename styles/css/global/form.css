@@ -32,11 +32,6 @@
 	text-align: center;
 }
 
-.fu-dialog__icon-group {
-	display: grid;
-	gap: 2px;
-}
-
 .fu-dialog__output {
 	font-size: large;
 	color: var(--color-text-primary);
@@ -54,18 +49,30 @@
 	gap: 4px;
 }
 
+.-fu-form__row {
+	display: flex;
+}
+
 .fu-dialog__icon-option {
 	display: inline-flex;
-	width: 64px;
-	height: 64px;
+	--icon-size: 100%;
+	width: var(--icon-size);
+	height: var(--icon-size);
 	align-items: center;
 	justify-content: center;
-	padding: 6px;
+	padding: 0;
 	border-radius: 6px;
 	cursor: pointer;
 	transition:
 		outline 0.15s ease,
 		background 0.15s ease;
+}
+
+.fu-dialog__icon-option img {
+	display: block; /* removes inline spacing */
+	width: 100%; /* scale to container */
+	height: 100%;
+	object-fit: contain; /* maintain aspect ratio */
 }
 
 .fu-dialog__icon-option.selected {
@@ -78,15 +85,57 @@
 	pointer-events: none;
 }
 
-.fu-dialog__icon {
-	font-size: 48px; /* this controls icon size */
-	line-height: 1; /* prevent tall vertical boxes */
-	width: 100%;
-	height: 100%;
-	pointer-events: none; /* ensure clicking triggers label */
+.fu-icon {
+	--icon-size: 100%;
+	line-height: 1;
+	font-size: var(--icon-size);
+	width: var(--icon-size);
+	height: var(--icon-size);
+	pointer-events: none;
 }
 
-.fu-dialog__icon__small {
-	width: 24px;
-	height: auto;
+.fu-icon--s {
+	--icon-size: 24px;
+}
+.fu-icon--m {
+	--icon-size: 48px;
+}
+.fu-icon--l {
+	--icon-size: 64px;
+}
+
+.cc-selector input {
+	margin: 0;
+	padding: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.cc-selector-2 input:active + .drinkcard-cc,
+.cc-selector input:active + .drinkcard-cc {
+	opacity: 0.9;
+}
+.cc-selector-2 input:checked + .drinkcard-cc,
+.cc-selector input:checked + .drinkcard-cc {
+	-webkit-filter: none;
+	-moz-filter: none;
+	filter: none;
+}
+
+.drinkcard-cc {
+	cursor: pointer;
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-flex;
+	-webkit-transition: all 100ms ease-in;
+	-moz-transition: all 100ms ease-in;
+	transition: all 100ms ease-in;
+	-webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+	filter: brightness(1.8) grayscale(1) opacity(0.7);
+}
+
+.drinkcard-cc:hover {
+	-webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+	filter: brightness(1.2) grayscale(0.5) opacity(0.9);
 }

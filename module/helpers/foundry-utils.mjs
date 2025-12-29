@@ -109,7 +109,7 @@ export default class FoundryUtils {
 
 	/**
 	 * @remarks This follows the 'key:value' format used in the system's CONFIG file
-	 * @param {Iterator<string>} keys
+	 * @param {string[]} keys
 	 * @param {Record<string, string>} labelRecord
 	 * @param {Record<string, string>} iconRecord
 	 * @returns {FormSelectOption[]}

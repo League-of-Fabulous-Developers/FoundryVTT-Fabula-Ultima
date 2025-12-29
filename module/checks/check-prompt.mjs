@@ -244,7 +244,7 @@ async function promptForConfigurationExtended(document, type, initialConfig, act
 		label: initialConfig.label,
 		increment: initialConfig.increment !== undefined,
 		attributes: FU.attributes,
-		actors: actors,
+		attributeOptions: FoundryUtils.generateConfigIconOptions(Object.keys(FU.attributes), FU.attributes, FU.attributeIcons),
 		attributeAbbr: FU.attributeAbbreviations,
 		attributeIcons: FU.attributeIcons,
 		primary: recentCheck.primary,
@@ -253,6 +253,7 @@ async function promptForConfigurationExtended(document, type, initialConfig, act
 		difficulty: recentCheck.difficulty,
 		supportDifficulty: recentCheck.supportDifficulty,
 		bonus: 0,
+		actors: actors,
 	};
 
 	switch (type) {
@@ -284,6 +285,9 @@ async function promptForConfigurationExtended(document, type, initialConfig, act
 			icon: FU.allIcon.roll,
 			label: game.i18n.localize('FU.Submit'),
 		},
+		/** @param {Event} event
+		 *  @param {HTMLElement} dialog **/
+		render: (event, dialog) => {},
 	});
 	if (result) {
 		saveRecentCheck(document, type, result);

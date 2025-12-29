@@ -5,7 +5,7 @@
 			<label class="resource-label-m">{{localize 'FU.Modifiers'}}</label>
 		</legend>
 		<span class="fu-dialog-item_label flex-group-center">
-				<img class="fu-dialog__icon__small"
+				<img class="fu-icon fu-icon--s"
 					 src="{{ context.item.img }}"
 					 alt="{{context.item.name}}"
 					 data-tooltip="{{ context.item.name }}" />
@@ -55,14 +55,14 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Type'}}</label>
 		</legend>
-		<div class="fu-dialog__icon-group flex-group-center grid-5col">
+		<div class="grid flex-group-center grid-5col">
 			<input type="hidden" name="damageType" value="{{selected}}">
 			{{#each context.types as |type| }}
 				<button type="button"
-						class="fu-dialog__icon-option"
+						class="fu-dialog__icon-option fu-icon--m"
 						data-tooltip="{{label}}"
 						 data-action="selectType" data-value="{{value}}">
-					<i class="fu-dialog__icon {{icon}}"></i>
+					<i class="fu-icon {{icon}}"></i>
 				</button>
 			{{/each}}
 		</div>
