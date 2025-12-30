@@ -18,9 +18,10 @@ export function systemPath(path) {
 }
 
 /**
- * The set of Ability Scores used within the system.
+ * @desc The set of Ability Scores used within the system.
  * @typedef {"dex", "ins", "mig", "wlp"} Attribute
  */
+
 /**
  * @type {Object<Attribute, string>}
  */
@@ -39,6 +40,16 @@ FU.attributeAbbreviations = {
 	ins: 'FU.AttributeInsAbbr',
 	mig: 'FU.AttributeMigAbbr',
 	wlp: 'FU.AttributeWlpAbbr',
+};
+
+/**
+ * @type {Object<Attribute, string>}
+ */
+FU.attributeIcons = {
+	dex: 'fu-dex',
+	ins: 'fu-ins',
+	mig: 'fu-mig',
+	wlp: 'fu-wlp',
 };
 
 FU.currencies = {
@@ -111,6 +122,7 @@ FU.allIcon = {
 	light: 'fua fu-light',
 	poison: 'fua fu-poison',
 	weaponEnchant: 'fu-weapon-enchant',
+	roll: 'fas fa-dice',
 };
 
 FU.affType = {
@@ -459,7 +471,7 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 });
 
 /**
- * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "initiative", "display"} CheckType
+ * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "ritual", "initiative", "display"} CheckType
  */
 
 /**
@@ -472,9 +484,19 @@ FU.checkTypes = {
 	magic: 'FU.MagicCheck',
 	open: 'FU.OpenCheck',
 	opposed: 'FU.OpposedCheck',
+	ritual: 'FU.RitualCheck',
 	support: 'FU.SupportCheck',
 	initiative: 'FU.InitiativeCheck',
 	display: 'FU.DisplayItem',
+};
+
+/**
+ * @description Check types for which a dialog is opened.
+ * @type {Object<CheckType, string>}
+ */
+FU.dialogCheckTypes = {
+	opposed: 'FU.OpposedCheck',
+	ritual: 'FU.RitualCheck',
 };
 
 FU.classFeatures = {};

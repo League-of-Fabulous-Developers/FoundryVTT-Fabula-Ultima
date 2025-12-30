@@ -158,6 +158,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						expenseSource: FU.expenseSource,
 						checkTypes: FU.checkTypes,
 						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
+						dialogCheckTypes: FU.dialogCheckTypes,
 						attributes: FU.attributes,
 						resources: FU.resources,
 						species: FU.species,

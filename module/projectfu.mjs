@@ -345,6 +345,7 @@ Hooks.once('init', async () => {
 	Effects.initialize();
 	RuleElements.initialize();
 	InventoryPipeline.initialize();
+	CheckPrompt.initialize();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();

@@ -558,7 +558,7 @@ function resolveCheck(check, actor, item) {
 /**
  * @typedef RenderCheckEvent
  * @property {CheckRenderData} renderData
- * @property {CheckInspector} inspector
+ * @property {CheckConfigurer} config
  * @property {CheckResultV2} check
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
@@ -570,14 +570,14 @@ function resolveCheck(check, actor, item) {
 
 /**
  * @param {CheckRenderData} renderData
- * @param {CheckInspector} inspector
+ * @param {CheckConfigurer} config
  * @param actor
  * @param item
  * @returns {Promise<[]|*>}
  */
-async function renderCheck(renderData, inspector, actor, item) {
+async function renderCheck(renderData, config, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
-	const check = inspector.check;
+	const check = config.check;
 	const source = CharacterInfo.fromActor(actor);
 
 	/** @type RenderCheckEvent  **/
@@ -586,8 +586,8 @@ async function renderCheck(renderData, inspector, actor, item) {
 		check: check,
 		source: source,
 		sourceInfo: sourceInfo,
-		inspector: inspector,
-		targets: CharacterInfo.fromTargetData(inspector.getTargets()),
+		config: config,
+		targets: CharacterInfo.fromTargetData(config.getTargets()),
 		item: item,
 		itemGroup: InlineHelper.resolveItemGroup(item),
 	};

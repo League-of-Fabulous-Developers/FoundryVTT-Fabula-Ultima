@@ -63,18 +63,35 @@ const attributeCheck = async (actor, attributes, item, configCallback, onPerform
 	return performCheck(check, actor, item, configCallback, onPerform);
 };
 
+// TODO: Fix param order
 /**
  * @param {FUActor} actor
  * @param {CheckCallback} configCallback
+ * @param item
  * @return {Promise<void>}
  */
-const groupCheck = async (actor, configCallback) => {
+const groupCheck = async (actor, configCallback, item = undefined) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'group',
 	};
 
-	return performCheck(check, actor, undefined, configCallback);
+	return performCheck(check, actor, item, configCallback);
+};
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {CheckCallback} configCallback
+ * @return {Promise<void>}
+ */
+const ritualCheck = async (actor, item, configCallback) => {
+	/** @type Partial<CheckV2> */
+	const check = {
+		type: 'ritual',
+	};
+
+	return performCheck(check, actor, item, configCallback);
 };
 
 /**
@@ -400,10 +417,10 @@ async function renderCheck(result, actor, item, flags = {}) {
 	 */
 	const renderData = [];
 	const additionalFlags = {};
-	const inspector = CheckConfiguration.inspect(result);
+	const config = CheckConfiguration.configure(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
-	await CommonEvents.renderCheck(renderData, inspector, actor, item);
+	await CommonEvents.renderCheck(renderData, config, actor, item);
 
 	/**
 	 * @type {CheckSection[]}
@@ -460,7 +477,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 			: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 					title: FU.checkTypes[result.type] || 'FU.RollCheck',
 					type: result.type,
-					label: inspector.getLabel(),
+					label: config.getLabel(),
 				});
 	}
 
@@ -656,6 +673,7 @@ export const Checks = Object.freeze({
 	accuracyCheck,
 	attributeCheck,
 	groupCheck,
+	ritualCheck,
 	magicCheck,
 	openCheck,
 	opposedCheck,

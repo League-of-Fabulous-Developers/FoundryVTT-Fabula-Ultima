@@ -32,11 +32,6 @@
 	text-align: center;
 }
 
-.fu-dialog__icon-group {
-	display: grid;
-	gap: 2px;
-}
-
 .fu-dialog__output {
 	font-size: large;
 	color: var(--color-text-primary);
@@ -54,18 +49,30 @@
 	gap: 4px;
 }
 
+.-fu-form__row {
+	display: flex;
+}
+
 .fu-dialog__icon-option {
 	display: inline-flex;
-	width: 64px;
-	height: 64px;
+	--icon-size: 100%;
+	width: var(--icon-size);
+	height: var(--icon-size);
 	align-items: center;
 	justify-content: center;
-	padding: 6px;
+	padding: 0;
 	border-radius: 6px;
 	cursor: pointer;
 	transition:
 		outline 0.15s ease,
 		background 0.15s ease;
+}
+
+.fu-dialog__icon-option img {
+	display: block; /* removes inline spacing */
+	width: 100%; /* scale to container */
+	height: 100%;
+	object-fit: contain; /* maintain aspect ratio */
 }
 
 .fu-dialog__icon-option.selected {
@@ -78,15 +85,127 @@
 	pointer-events: none;
 }
 
-.fu-dialog__icon {
-	font-size: 48px; /* this controls icon size */
-	line-height: 1; /* prevent tall vertical boxes */
-	width: 100%;
-	height: 100%;
-	pointer-events: none; /* ensure clicking triggers label */
+.fu-icon__container {
+	display: flex;
+	flex-direction: column;
 }
 
-.fu-dialog__icon__small {
-	width: 24px;
-	height: auto;
+.fu-icon__badge {
+	--icon-size: 24px;
+	width: var(--icon-size);
+	height: var(--icon-size);
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	outline: none;
+	border-radius: 50%;
+}
+
+.fu-icon__badge-overlay {
+	position: absolute;
+	--icon-size: 18px;
+	top: -10px;
+	right: -10px;
+	width: var(--icon-size);
+	height: var(--icon-size);
+	background: var(--color-background);
+	color: var(--color-text-light);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+}
+
+.fu-icon,
+.fu-icon--m,
+.fu-icon--s,
+.fu-icon--l {
+	display: inline-flex;
+	--icon-size: 100%;
+	line-height: 1;
+	font-size: var(--icon-size);
+	width: var(--icon-size);
+	height: var(--icon-size);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	pointer-events: none;
+}
+
+.fu-icon--s {
+	--icon-size: 24px;
+}
+.fu-icon--m {
+	--icon-size: 48px;
+}
+.fu-icon--l {
+	--icon-size: 64px;
+}
+
+.fu-icon__radio-group input {
+	margin: 0;
+	content: none;
+	padding: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.fu-icon__radio-group label {
+	pointer-events: auto;
+}
+
+.fu-icon__radio-group label input {
+	margin: 0;
+	content: none;
+	padding: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	opacity: 0;
+}
+
+.fu-icon__radio-group input:before,
+.fu-icon__radio-group input:after {
+	/*content: unset;*/
+}
+
+/* Highlight the selected label */
+.fu-icon__radio-group label input:checked + .fu-icon__radio-group label {
+	border: 2px solid blue; /* or any highlight */
+	box-shadow: 0 0 4px blue;
+	background-color: red;
+}
+
+.fu-icon__radio-group input:active + .fu-icon__radio__label {
+	opacity: 0.9;
+}
+.fu-icon__radio-group input:checked + .fu-icon__radio__label {
+	-webkit-filter: none;
+	-moz-filter: none;
+	filter: none;
+}
+
+.fu-icon__radio__label {
+	cursor: pointer;
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-flex;
+	-webkit-transition: all 100ms ease-in;
+	-moz-transition: all 100ms ease-in;
+	transition: all 100ms ease-in;
+	-webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+	filter: brightness(1.8) grayscale(1) opacity(0.7);
+}
+
+.fu-icon__radio__label:hover {
+	-webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+	filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+.fu-icon__radio__label.selected {
+	-webkit-filter: unset;
+	filter: unset;
 }

@@ -29,6 +29,7 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 			checkTypes: new fields.SetField(new fields.StringField()),
 			itemGroups: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
+			local: new fields.BooleanField({ initial: true }),
 		});
 		return schema;
 	}
@@ -51,11 +52,21 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 				return false;
 			}
 		}
+
+		// Validate check types
 		/** @type {CheckType} **/
-		const checkType = context.event.inspector.check.type;
+		const checkType = context.event.config.check.type;
 		if (this.checkTypes.size > 0 && !this.checkTypes.has(checkType)) {
 			return false;
 		}
+
+		// If this RE is on an item, and it doesn't match the item in the event.
+		if (this.local && context.item) {
+			if (context.event.sourceInfo.itemUuid === context.sourceInfo.itemUuid) {
+				return true;
+			}
+		}
+
 		if (this.outcome) {
 			for (const target of context.event.targets) {
 				switch (target.check) {

@@ -160,6 +160,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
 		Handlebars.registerHelper('pfuTraits', traits);
+		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
 	},
 });
 
@@ -274,6 +275,40 @@ function traits(model, path, options) {
 					traitOptions: model.schema.options?.options ?? {},
 					quantifierOptions: FU.predicateQuantifier,
 					showLabel: options.showLabel ?? true,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @typedef {"compact"} AttributeIconVariant
+ */
+
+/**
+ * @typedef AttributeIconOptions
+ * @property {Number} die
+ * @property {Boolean} compact
+ */
+
+/**
+ * @param {Attribute} attribute
+ * @param {AttributeIconOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function attributeIcon(attribute, options) {
+	if (options) {
+		options = options.hash;
+	}
+	const label = FU.attributeAbbreviations[attribute];
+	const icon = FU.attributeIcons[attribute];
+	const template = Handlebars.partials[systemTemplatePath('common/icons/icon-attribute')];
+	const html =
+		typeof template === 'function'
+			? template({
+					label: label,
+					icon: icon,
+					die: options.die,
+					compact: options.compact,
 				})
 			: '';
 	return new Handlebars.SafeString(html);

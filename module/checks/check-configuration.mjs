@@ -15,6 +15,7 @@ const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
 const RESOURCE = 'resource';
+const EXPENSE = 'expenses';
 const EFFECTS = 'effects';
 const TRAITS = 'traits';
 const WEAPON_TRAITS = 'weaponTraits';
@@ -224,10 +225,19 @@ class CheckInspector {
 	getTargetedActions() {
 		return this.#check.additionalData[TARGETED_ACTIONS] ?? [];
 	}
+
+	/**
+	 * @returns {ResourceExpense}
+	 */
+	getExpense() {
+		return this.#check.additionalData[EXPENSE];
+	}
 }
 
 /**
  * @desc Provides an interface for configuring a check as it is processed
+ * @extends CheckInspector
+ * @inheritDoc
  */
 class CheckConfigurer extends CheckInspector {
 	/**
@@ -572,6 +582,20 @@ class CheckConfigurer extends CheckInspector {
 			this.check.additionalData[TARGETED_ACTIONS] = [];
 		}
 		this.check.additionalData[TARGETED_ACTIONS].push(action);
+	}
+
+	/**
+	 * @param {FUResourceType} resource
+	 * @param {Number} amount
+	 */
+	addExpense(resource, amount) {
+		if (!this.check.additionalData[EXPENSE]) {
+			this.check.additionalData[EXPENSE] = /** @type ResourceExpense* **/ {
+				resource: resource,
+				amount: 0,
+			};
+		}
+		this.check.additionalData[EXPENSE].amount += amount;
 	}
 }
 

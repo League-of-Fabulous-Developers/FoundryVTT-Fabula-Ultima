@@ -35,7 +35,7 @@
 					{{/if}}
                 </span>
                 <!-- Actions -->
-                {{#each ../actions as |action|}}
+                {{#each ../targetedActions as |action|}}
 					<span class="fu-tags fu-target-action">
 							<a data-action="{{name}}"
 							   data-id="{{target.uuid}}"
@@ -68,7 +68,7 @@
 		   data-tooltip="{{localize tooltip}}">
             <span class='fu-tag button flex-group-center gap-5 fu-target-action__icon__container'
 				  style="width: 100%;white-space: nowrap;">
-				{{~localize 'FU.ChatApplySelected'}}
+				{{~localize action.label}}
 				{{#if img}}
 					<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
 				{{else}}
