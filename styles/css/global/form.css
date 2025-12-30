@@ -85,12 +85,18 @@
 	pointer-events: none;
 }
 
-.fu-icon {
+.fu-icon,
+.fu-icon--m,
+.fu-icon--s,
+.fu-icon--l {
 	--icon-size: 100%;
 	line-height: 1;
 	font-size: var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 	pointer-events: none;
 }
 

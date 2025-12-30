@@ -240,7 +240,7 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
  * @param {FUActor[]} actors
  * @returns {Promise<AttributeCheckConfig>}
  */
-async function promptForConfigurationExtended(document, type, initialConfig, actors = undefined) {
+async function promptForConfigurationV2(document, type, initialConfig, actors = undefined) {
 	const recentCheck = retrieveRecentCheck(document, type);
 
 	Object.keys(recentCheck).forEach((key) => {
@@ -282,8 +282,9 @@ async function promptForConfigurationExtended(document, type, initialConfig, act
 			break;
 	}
 
+	let title = initialConfig.title ?? FU.checkTypes[type];
 	const result = await foundry.applications.api.DialogV2.input({
-		window: { title: game.i18n.localize(actors.length ? 'FU.DialogCheckRoll' : 'FU.DialogPromptCheck') },
+		window: { title: game.i18n.localize(title) },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		actions: {
 			setDifficulty: onSetDifficulty,
@@ -450,7 +451,7 @@ async function groupCheck(actor, options = {}) {
  * @returns {Promise<void>}
  */
 async function ritualCheck(actor, item, options = {}) {
-	const promptResult = await promptForConfigurationExtended(actor, 'ritual', options, [actor]);
+	const promptResult = await promptForConfigurationV2(actor, 'ritual', options, [actor]);
 	if (promptResult) {
 		return Checks.groupCheck(
 			actor,
@@ -478,14 +479,14 @@ async function ritualCheck(actor, item, options = {}) {
 /**
  * @type RenderCheckHook
  */
-const onRenderGroupCheck = (sections, check, actor, item, flags) => {
+const onRenderCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'group') {
 		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargets();
 		CommonSections.actions(sections, actor, item, targets, flags, inspector);
 	}
 };
-Hooks.on(CheckHooks.renderCheck, onRenderGroupCheck);
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @param {FUActor} actor
@@ -553,7 +554,7 @@ export const CheckPrompt = Object.freeze({
 	openCheck,
 	groupCheck,
 	ritualCheck,
-	promptForConfigurationExtended,
+	promptForConfigurationV2,
 	getRitualCheckAction,
 	initialize,
 });

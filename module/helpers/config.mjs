@@ -484,6 +484,7 @@ FU.checkTypes = {
 	magic: 'FU.MagicCheck',
 	open: 'FU.OpenCheck',
 	opposed: 'FU.OpposedCheck',
+	ritual: 'FU.RitualCheck',
 	support: 'FU.SupportCheck',
 	initiative: 'FU.InitiativeCheck',
 	display: 'FU.DisplayItem',

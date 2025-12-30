@@ -727,7 +727,7 @@
 		"CombatFactionHostile": "Opponents",
 		"SupportCheck": "Support Check",
 		"GroupCheck": "Group Check",
-		"ChatGroupCheckInitiated": "{name} has initiated a Group Check!",
+		"ChatGroupCheckInitiated": "{name} has initiated a {type}!",
 		"ChatGroupCheckCanceled": "Group Check canceled",
 		"ChatGroupCheckCompleted": "Group Check completed",
 		"ChatGroupCheckSupport": "Support Group Check",

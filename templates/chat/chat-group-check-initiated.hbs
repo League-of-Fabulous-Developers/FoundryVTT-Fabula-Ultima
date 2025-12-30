@@ -1,14 +1,14 @@
 <div>
     <div class='detail-desc flexrow flex-group-center desc' style='padding: 0 2px;'>
-        <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name}}</div>
+        <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name type=type}}</div>
     </div>
     <div class='detail-desc flex-group-center grid grid-2col desc'>
-        <div class='spin2win'>
-            <i class='fas fa-dice-d6 ra-2x rollable'></i>
+        <div class='flex-group-center'>
+            <i class='fu-icon--m {{lookup icons attributes.attr1 }} '></i>
             {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attributes.attr1) 'Abbr')}}
         </div>
-        <div class='spin2win'>
-            <i class='fas fa-dice-d6 ra-2x rollable'></i>
+        <div class='flex-group-center'>
+			<i class='fu-icon--m {{lookup icons attributes.attr2 }} '></i>
             {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attributes.attr2) 'Abbr')}}
         </div>
     </div>

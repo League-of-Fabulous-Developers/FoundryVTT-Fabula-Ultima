@@ -6,6 +6,7 @@ import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { SupportCheck } from './support-check.mjs';
 import FUApplication from '../ui/application.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @typedef SupporterV2
@@ -20,6 +21,7 @@ import FUApplication from '../ui/application.mjs';
  * @property {string} id
  * @property {string} initiatingUser
  * @property {string} leader
+ * @property {'ritual'|'group'} type
  * @property {Attribute} primary
  * @property {Attribute} secondary
  * @property {number} checkDifficulty
@@ -296,8 +298,10 @@ class GroupCheckApp extends FUApplication {
 	async #renderChatMessage(groupCheck) {
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-group-check-initiated.hbs', {
 			groupCheckId: groupCheck.id,
+			type: StringUtils.localize(FU.checkTypes[groupCheck.type ?? 'group']),
 			leader: game.actors.get(groupCheck.leader),
 			attributes: { attr1: groupCheck.primary, attr2: groupCheck.secondary },
+			icons: FU.attributeIcons,
 			supporters: groupCheck.supporters.map((value) => ({
 				name: game.actors.get(value.id).name,
 				result: value.result,

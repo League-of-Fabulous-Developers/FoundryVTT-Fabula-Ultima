@@ -336,12 +336,13 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		const track = tracks[index];
 		const actors = await getSelected(false);
 
-		const prompt = await CheckPrompt.promptForConfigurationExtended(
+		const prompt = await CheckPrompt.promptForConfigurationV2(
 			document,
 			'attribute',
 			{
 				primary: 'dex',
 				secondary: 'ins',
+				title: `FU.DialogCheckRoll`,
 				label: track.name,
 				increment: true,
 				difficulty: 10,
