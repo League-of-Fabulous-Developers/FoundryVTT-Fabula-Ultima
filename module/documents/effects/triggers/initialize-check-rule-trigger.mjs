@@ -46,36 +46,26 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		/** @type {CheckType} **/
-		const checkType = context.event.config.check.type;
-
 		if (this.itemGroups.size > 0) {
 			if (!this.itemGroups.has(context.event.itemGroup)) {
 				return false;
 			}
 		}
 
-		// Support only specific check types
-		switch (checkType) {
-			case 'accuracy':
-			case 'magic':
-			case 'display': {
-				// If we are filtering by check types, and it's not there.
-				if (this.checkTypes.size > 0 && !this.checkTypes.has(checkType)) {
-					return false;
-				}
-				// If this RE is on an item, and it doesn't match the item in the event.
-				if (this.local && context.item) {
-					if (context.event.sourceInfo.itemUuid === context.sourceInfo.itemUuid) {
-						return true;
-					}
-				}
-				// If not on an item, will apply to all items
-				else {
-					return true;
-				}
+		// Validate check types
+		/** @type {CheckType} **/
+		const checkType = context.event.config.check.type;
+		if (this.checkTypes.size > 0 && !this.checkTypes.has(checkType)) {
+			return false;
+		}
+
+		// If this RE is on an item, and it doesn't match the item in the event.
+		if (this.local && context.item) {
+			if (context.event.sourceInfo.itemUuid === context.sourceInfo.itemUuid) {
+				return true;
 			}
 		}
-		return false;
+
+		return true;
 	}
 }
