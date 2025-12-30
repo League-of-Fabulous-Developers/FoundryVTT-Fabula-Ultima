@@ -73,7 +73,7 @@ function initDefaults(type) {
 	if (type === 'open') {
 		delete defaults.difficulty;
 	}
-	if (type === 'group') {
+	if (GroupCheck.isGroupCheck(type)) {
 		defaults.supportDifficulty = 10;
 	}
 
@@ -453,26 +453,22 @@ async function groupCheck(actor, options = {}) {
 async function ritualCheck(actor, item, options = {}) {
 	const promptResult = await promptForConfigurationV2(actor, 'ritual', options, [actor]);
 	if (promptResult) {
-		return Checks.groupCheck(
-			actor,
-			(check, callbackActor, item) => {
-				const config = CheckConfiguration.configure(check);
-				config.setAttributes(promptResult.primary, promptResult.secondary);
-				if (promptResult.difficulty) {
-					config.setDifficulty(promptResult.difficulty);
-				}
-				if (promptResult.modifier) {
-					config.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
-				}
-				config.addExpense('mp', promptResult.cost);
-				GroupCheck.setSupportCheckDifficulty(check, promptResult.supportDifficulty);
+		return Checks.ritualCheck(actor, item, (check, callbackActor, item) => {
+			const config = CheckConfiguration.configure(check);
+			config.setAttributes(promptResult.primary, promptResult.secondary);
+			if (promptResult.difficulty) {
+				config.setDifficulty(promptResult.difficulty);
+			}
+			if (promptResult.modifier) {
+				config.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
+			}
+			config.addExpense('mp', promptResult.cost);
+			GroupCheck.setSupportCheckDifficulty(check, promptResult.supportDifficulty);
 
-				if (options.checkCallback) {
-					options.checkCallback(check, callbackActor, item);
-				}
-			},
-			item,
-		);
+			if (options.checkCallback) {
+				options.checkCallback(check, callbackActor, item);
+			}
+		});
 	}
 }
 
@@ -480,7 +476,7 @@ async function ritualCheck(actor, item, options = {}) {
  * @type RenderCheckHook
  */
 const onRenderCheck = (sections, check, actor, item, flags) => {
-	if (check.type === 'group') {
+	if (GroupCheck.isGroupCheck(check.type)) {
 		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargets();
 		CommonSections.actions(sections, actor, item, targets, flags, inspector);

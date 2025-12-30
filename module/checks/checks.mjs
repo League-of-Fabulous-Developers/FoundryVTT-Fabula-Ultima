@@ -82,6 +82,21 @@ const groupCheck = async (actor, configCallback, item = undefined) => {
 /**
  * @param {FUActor} actor
  * @param {FUItem} item
+ * @param {CheckCallback} configCallback
+ * @return {Promise<void>}
+ */
+const ritualCheck = async (actor, item, configCallback) => {
+	/** @type Partial<CheckV2> */
+	const check = {
+		type: 'ritual',
+	};
+
+	return performCheck(check, actor, item, configCallback);
+};
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
  * @param {CheckCallback} [configCallback]
  */
 const magicCheck = async (actor, item, configCallback) => {
@@ -658,6 +673,7 @@ export const Checks = Object.freeze({
 	accuracyCheck,
 	attributeCheck,
 	groupCheck,
+	ritualCheck,
 	magicCheck,
 	openCheck,
 	opposedCheck,

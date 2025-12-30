@@ -880,7 +880,7 @@
 		"ClassFeatureDanceDurationNextTurn": "Until the start of your next turn",
 		"ClassFeatureSymbol": "Symbol",
 		"GroupCheckTooltip": "[Shift + Click] for Initiative Check",
-		"RollGroupCheck": "Roll Group Check",
+		"RollGroupCheck": "Roll {type}",
 		"Confirm": "Confirm",
 		"Cancel": "Cancel",
 		"ClassFeature": "Class Feature",
