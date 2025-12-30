@@ -7,6 +7,7 @@ import { CHECK_ROLL } from './default-section-order.mjs';
 import { SupportCheck } from './support-check.mjs';
 import FUApplication from '../ui/application.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * @typedef SupporterV2
@@ -86,6 +87,7 @@ const initGroupCheck = async (check, actor) => {
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
 			attributes: FU.attributes,
+			type: check.type,
 			difficulty: {
 				check: 10,
 				support: 10,
@@ -260,6 +262,7 @@ class GroupCheckApp extends FUApplication {
 				id: groupCheck.id,
 				initiatingUser: game.user.id,
 				leader: actor.id,
+				type: groupCheck.type,
 				initiative: groupCheck.type === 'initiative',
 				primary: groupCheck.primary,
 				secondary: groupCheck.secondary,
@@ -327,6 +330,7 @@ class GroupCheckApp extends FUApplication {
 					attr2: groupCheck.secondary,
 				},
 			},
+			type: groupCheck.type,
 			leader: game.actors.get(groupCheck.leader),
 			supporters: Object.fromEntries(groupCheck.supporters.map((supporter) => [supporter.id, game.actors.get(supporter.id)])),
 		};
@@ -368,7 +372,9 @@ class GroupCheckApp extends FUApplication {
 			const cancel = await foundry.applications.api.DialogV2.confirm({
 				window: { title: game.i18n.localize('FU.GroupCheckCancelDialogTitle') },
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
+				content: await FoundryUtils.renderTemplate('dialog/dialog-group-check-cancel', {
+					type: StringUtils.localize(options.type ?? 'FU.GroupCheck'),
+				}),
 				rejectClose: false,
 			});
 			if (!cancel) {
