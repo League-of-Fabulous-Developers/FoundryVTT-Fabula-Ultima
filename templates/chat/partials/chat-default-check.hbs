@@ -1,11 +1,11 @@
 <div class="flexrow gap-5">
     <div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
         <div>
-            <label class="title">{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize check.attr1.attribute) 'Abbr')}} ({{result.die1}})</label>
+			{{pfuIconAttribute check.attr1.attribute die=result.die1 compact=true}}
             <label class="detail">{{result.attr1}}</label>
         </div>
         <div>
-            <label class="title">{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize check.attr2.attribute) 'Abbr')}} ({{result.die2}})</label>
+			{{pfuIconAttribute check.attr2.attribute die=result.die2 compact=true}}
             <label class="detail">{{result.attr2}}</label>
         </div>
         <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>

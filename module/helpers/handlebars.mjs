@@ -280,8 +280,25 @@ function traits(model, path, options) {
 	return new Handlebars.SafeString(html);
 }
 
+/**
+ * @typedef {"compact"} AttributeIconVariant
+ */
+
+/**
+ * @typedef AttributeIconOptions
+ * @property {Number} die
+ * @property {Boolean} compact
+ */
+
+/**
+ * @param {Attribute} attribute
+ * @param {AttributeIconOptions} options
+ * @returns {Handlebars.SafeString}
+ */
 function attributeIcon(attribute, options) {
-	options = options.hash;
+	if (options) {
+		options = options.hash;
+	}
 	const label = FU.attributeAbbreviations[attribute];
 	const icon = FU.attributeIcons[attribute];
 	const template = Handlebars.partials[systemTemplatePath('common/icons/icon-attribute')];
@@ -290,6 +307,8 @@ function attributeIcon(attribute, options) {
 			? template({
 					label: label,
 					icon: icon,
+					die: options.die,
+					compact: options.compact,
 				})
 			: '';
 	return new Handlebars.SafeString(html);
