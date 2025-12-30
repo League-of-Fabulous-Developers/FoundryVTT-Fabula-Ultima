@@ -148,12 +148,15 @@
 	font-family: 'PT Sans';
 	font-size: 20px;
 }
+
+.detail-desc .value {
+	height: 64px;
+}
+
 .detail-desc .multi-target-label {
 	font-size: 15px;
 }
-.detail-desc .difficulty {
-	border: 2px solid #dc6773;
-}
+
 .detail-desc .summary {
 	font-size: 16px;
 	color: #2b4a42;
