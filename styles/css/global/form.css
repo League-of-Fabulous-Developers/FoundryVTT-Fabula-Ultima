@@ -105,7 +105,7 @@
 
 .fu-icon__badge-overlay {
 	position: absolute;
-	--icon-size: 100%;
+	--icon-size: 18px;
 	top: -10px;
 	right: -10px;
 	width: var(--icon-size);

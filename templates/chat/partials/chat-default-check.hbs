@@ -26,11 +26,11 @@
 
 {{#if (or (gt difficulty 0) result.crit result.fumble)}}
     <div style="clear: both;"></div>
-    <div class='detail-desc flexrow flex-group-center desc'>
-        <label class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}{{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}success{{else}}failure{{/if}}{{/if}}{{/if}} flexrow">
-		</label>
-            <div class="" style="flex: 0 1 auto;">{{result.total}}</div>
-            <div class="endcap gap-5">
+    <div class='detail-desc flexrow flex-group-center desc total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}{{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}success{{else}}failure{{/if}}{{/if}}{{/if}}'>
+            <div>
+				<span>{{result.total}}</span>
+			</div>
+            <div class="">
                 {{#if result.crit}}
                     <span>{{localize 'FU.Critical'}}!</span>
                 {{else if result.fumble}}
@@ -43,18 +43,18 @@
             </div>
     </div>
 {{else}}
-    <div class='detail-desc flexrow'>
-        <div>
-        	<label class="total {{#if result.crit}}critical{{else if result.fumble}}fumble{{else}}default{{/if}}">
-			</label>
-			<div>{{result.total}}</div>
-			<div class="endcap gap-5">
+    <div class='detail-desc flexrow total {{#if result.crit}}critical{{else if result.fumble}}fumble{{else}}default{{/if}}'>
+		<div>
+			<span>{{result.total}}</span>
+		</div>
+		{{#if (or result.crit result.fumble)}}
+			<div class="">
 				{{#if result.crit}}
 					<span>{{localize 'FU.Critical'}}!</span>
 				{{else if result.fumble}}
 					<span>{{localize 'FU.Fumble'}}</span>
 				{{/if}}
 			</div>
-        </div>
+		{{/if}}
     </div>
 {{/if}}
