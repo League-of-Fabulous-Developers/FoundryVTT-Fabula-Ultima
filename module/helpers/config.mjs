@@ -121,6 +121,9 @@ FU.checkIcons = {
 	accuracy: 'ra ra-targeted',
 	magic: '',
 	damage: '',
+	difficulty: 'ra ra-perspective-dice-random',
+	mod: 'fas fa-plus-minus',
+	hr: 'ra  ra-perspective-dice-six',
 };
 
 FU.allIcon = {
@@ -138,9 +141,6 @@ FU.allIcon = {
 	spade: 'is-spade',
 	weaponEnchant: 'fu-weapon-enchant',
 	roll: 'fas fa-dice',
-	mod: 'fas fa-plus-minus ',
-	hr: 'ra ra-dice-six',
-	difficulty: 'ra ra-dice-six',
 	...FU.checkIcons,
 	...FU.affinityIcons,
 	...FU.attributeIcons,

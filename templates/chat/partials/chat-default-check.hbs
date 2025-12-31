@@ -1,11 +1,11 @@
 <div class="flexrow gap-5">
     <div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
         <div>
-			{{pfuIconAttribute check.attr1.attribute die=result.die1}}
+			{{pfuIconAttribute check.attr1.attribute value=result.die1}}
             <label class="detail">{{result.attr1}}</label>
         </div>
         <div>
-			{{pfuIconAttribute check.attr2.attribute die=result.die2}}
+			{{pfuIconAttribute check.attr2.attribute value=result.die2}}
             <label class="detail">{{result.attr2}}</label>
         </div>
         <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
@@ -17,7 +17,7 @@
     {{#if (gt difficulty 0)}}
     <div class="detail-desc fu-check__difficulty flex-group-center">
 		<div>
-			{{pfuBadge 'difficulty' label='FU.ChatDifficulty' }}
+			{{pfuBadge 'difficulty' label='FU.DifficultyLevelAbbr' tooltip='FU.ChatDifficulty' }}
 			<label class="detail">{{difficulty}}</label>
 		</div>
     </div>

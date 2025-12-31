@@ -1235,6 +1235,7 @@
 		"ClassFeatureWeaponModuleWeaponType": "Type",
 		"ClassFeatureWeaponModuleWeaponCategory": "Category",
 		"ClassFeatureWeaponModuleComplex": "Complex Module",
+		"DifficultyLevelAbbr": "DL",
 		"ModAbbr": "MOD",
 		"Modifier": "Modifier",
 		"Martial": "Martial",

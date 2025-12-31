@@ -148,6 +148,11 @@
 	--icon-size: 16px;
 }
 
+/* Used for background image icons since they won't reserve advance width */
+.fu-icon--bg {
+	padding-inline: var(--icon-size);
+}
+
 .fu-icon__radio-group input {
 	margin: 0;
 	content: none;
