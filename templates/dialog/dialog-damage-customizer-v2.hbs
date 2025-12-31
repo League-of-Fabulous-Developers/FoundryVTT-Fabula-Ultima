@@ -55,14 +55,14 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Type'}}</label>
 		</legend>
-		<div class="grid flex-group-center grid-5col">
+		<div class="grid flex-group-center grid-5col gap-5">
 			<input type="hidden" name="damageType" value="{{selected}}">
 			{{#each context.types as |type| }}
 				<button type="button"
-						class="fu-dialog__icon-option fu-icon--m"
+						class="fu-dialog__icon-option"
 						data-tooltip="{{label}}"
-						 data-action="selectType" data-value="{{value}}">
-					<i class="fu-icon {{icon}}"></i>
+						data-action="selectType" data-value="{{value}}">
+					<i class="fu-icon--m {{icon}}"></i>
 				</button>
 			{{/each}}
 		</div>

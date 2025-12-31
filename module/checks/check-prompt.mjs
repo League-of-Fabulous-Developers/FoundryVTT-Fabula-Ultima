@@ -191,7 +191,9 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 	);
 
 	let context = {
+		actor: actor,
 		type: type,
+		typeLabel: StringUtils.localize(FU.checkTypes[type]),
 		attributes: FU.attributes,
 		attributeAbbr: FU.attributeAbbreviations,
 		attributeValues: attributeValues,
@@ -207,8 +209,9 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 		bonus: actor.system.bonuses.accuracy.openCheck,
 	};
 
+	const title = initialConfig.title ?? FU.checkTypes[type];
 	const result = await foundry.applications.api.DialogV2.input({
-		window: { title: game.i18n.localize('FU.DialogCheckTitle') },
+		window: { title: game.i18n.localize(title) },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		actions: {
 			setDifficulty: onSetDifficulty,
@@ -249,11 +252,22 @@ async function promptForConfigurationV2(document, type, initialConfig, actors = 
 		}
 	});
 
+	const attributeValues = Object.entries(document.system.attributes).reduce(
+		(previousValue, [attribute, { current }]) => ({
+			...previousValue,
+			[attribute]: current,
+		}),
+		{},
+	);
+
 	let context = {
+		actor: document,
 		type: type,
+		typeLabel: StringUtils.localize(FU.checkTypes[type]),
 		label: initialConfig.label,
 		increment: initialConfig.increment !== undefined,
 		attributes: FU.attributes,
+		attributeValues: attributeValues,
 		attributeAbbr: FU.attributeAbbreviations,
 		attributeOptions: FoundryUtils.generateConfigIconOptions(Object.keys(FU.attributes), FU.attributes, FU.attributeIcons),
 		attributeIcons: FU.attributeIcons,
@@ -263,7 +277,6 @@ async function promptForConfigurationV2(document, type, initialConfig, actors = 
 		difficulty: recentCheck.difficulty,
 		supportDifficulty: recentCheck.supportDifficulty,
 		bonus: 0,
-		actors: actors,
 	};
 
 	switch (type) {
@@ -282,7 +295,7 @@ async function promptForConfigurationV2(document, type, initialConfig, actors = 
 			break;
 	}
 
-	let title = initialConfig.title ?? FU.checkTypes[type];
+	const title = initialConfig.title ?? FU.checkTypes[type];
 	const result = await foundry.applications.api.DialogV2.input({
 		window: { title: game.i18n.localize(title) },
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
@@ -451,7 +464,7 @@ async function groupCheck(actor, options = {}) {
  * @returns {Promise<void>}
  */
 async function ritualCheck(actor, item, options = {}) {
-	const promptResult = await promptForConfigurationV2(actor, 'ritual', options, [actor]);
+	const promptResult = await promptForConfigurationV2(actor, 'ritual', options);
 	if (promptResult) {
 		return Checks.ritualCheck(actor, item, (check, callbackActor, item) => {
 			const config = CheckConfiguration.configure(check);

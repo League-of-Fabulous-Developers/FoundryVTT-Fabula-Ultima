@@ -1,18 +1,12 @@
 {{#if attributeValues}}
 	<section>
 		<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
-			<legend class="resource-text-m">{{localize 'FU.Attributes'}}</legend>
+			<legend class="resource-text-m">{{localize 'FU.Actor'}}</legend>
+			<img class="profile-img flexcol" src="{{actor.img}}"
+				 data-edit="img" title="{{actor.name}}"
+				 style="height: 96px; width: auto; object-fit: contain;" />
 			{{#each attributes}}
-				<fieldset>
-					<label class="resource-label-sm">
-						<span class='fu-tag'><i class="icon {{lookup @root.attributeIcons @key}}"></i></span>
-						<abbr title="{{localize this}}">
-							{{localize (lookup @root/attributeAbbr @key)}}
-						</abbr>
-						<span>:</span>
-						<span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
-					</label>
-				</fieldset>
+				{{pfuIconAttribute @key value=(lookup @root/attributeValues @key)}}
 			{{/each}}
 		</fieldset>
 	</section>
@@ -163,7 +157,8 @@
 				<legend class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</legend>
 				{{#if (eq type 'open')}}
 					<label class="resource-text-m">
-						<span>{{localize 'FU.DialogCheckOpenCheck'}} {{localize 'FU.Bonus'}}: {{bonus}}</span>
+						{{localize 'FU.DialogCheckOpenCheck'}} {{localize 'FU.Bonus'}}
+						<input type="number" value="{{bonus}}" readonly>
 					</label>
 				{{/if}}
 				<label class="resource-text-m">
@@ -177,7 +172,7 @@
 
 					{{#if (eq type 'group')}}
 						<label class="resource-text-m">
-							{{localize 'FU.DialogGroupCheckDifficulty'}}
+							{{localize 'FU.DialogGroupCheckDifficulty' type=typeLabel}}
 							<input name="difficulty" type="number" value="{{difficulty}}" min="0">
 						</label>
 						<label class="resource-text-m">
