@@ -1,40 +1,30 @@
-<header class="title-desc chat-header flexrow">
-    <h2 style="flex-grow: 4;">{{localize 'FU.Accuracy'}}</h2>
-    <section class="targets" style="align-items: end;">
-        <div class="fu-tags flexrow gap-5">
-            <a data-action="selectCheckCustomizer">
-                <span class='fu-tag button flex-group-center gap-5' style="filter: grayscale(100%);" data-tooltip="{{localize 'FU.CheckCustomizer'}}"><i class="icon fas fa-gear"></i></span>
-            </a>
-        </div>
-    </section>
-</header>
-
-<div class='detail-desc flexrow flex-group-center desc'>
+<header class='detail-desc flexrow flex-group-center desc' data-tooltip="{{localize 'FU.Accuracy'}}">
     <label
         class="total {{#if critical}}critical{{else}}{{#if fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow"
         {{#if critical}}data-tooltip="{{localize 'FU.Critical'}}"{{/if}}
         {{#if fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
     >
+		<i class="fu-icon--s ra ra-archery-target"></i>
         <div class="startcap"></div>
         <div class="" style="flex: 0 1 auto;">{{result}} <label>vs</label> {{pfuUppercase additionalData.targetedDefense}}{{pfuUppercase details.defense}}</div>
         <div class="endcap"></div>
     </label>
-</div>
+</header>
 
 <!-- Roll Details Section -->
 <div class="toggle-section accuracy-check-results {{#if (pfuGetSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
     <div class="flexrow gap-5">
         <div class='detail-desc flex-group-center grid grid-3col flex3'>
             <div data-tooltip="(Die Size: {{primary.dice}})">
-                <label class="title">{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize primary.attribute) 'Abbr')}}</label>
+				{{pfuIconAttribute primary.attribute}}
                 <label class="detail">{{primary.result}}</label>
             </div>
             <div data-tooltip="(Die Size: {{secondary.dice}})">
-                <label class="title">{{localize (pfuConcat 'FU.Attribute' (pfuCapitalize secondary.attribute) 'Abbr')}}</label>
+				{{pfuIconAttribute secondary.attribute}}
                 <label class="detail">{{secondary.result}}</label>
             </div>
             <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}" {{/if}}>
-                <label class="title">{{localize 'FU.ModAbbr'}}</label>
+				{{pfuBadge 'mod' label='FU.ModAbbr' }}
                 <label class="detail">{{modifierTotal}}</label>
             </div>
         </div>

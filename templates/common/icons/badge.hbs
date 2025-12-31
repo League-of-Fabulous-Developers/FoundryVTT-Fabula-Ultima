@@ -1,8 +1,8 @@
 <div class='fu-icon__container flex-group-center' data-tooltip="{{localize label}}">
 	<div class='fu-icon__badge'>
-		<i class='fu-icon--s {{icon}}'></i>
-		{{#if die}}
-			<span class="fu-icon__badge-overlay">{{die}}</span>
+		<i class='fu-icon--{{size}} {{icon}}'></i>
+		{{#if value}}
+			<span class="fu-icon__badge-overlay">{{value}}</span>
 		{{/if}}
 	</div>
 	{{#unless compact}}

@@ -1,23 +1,23 @@
 <div class="flexrow gap-5">
     <div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
         <div>
-			{{pfuIconAttribute check.attr1.attribute die=result.die1 compact=true}}
+			{{pfuIconAttribute check.attr1.attribute die=result.die1}}
             <label class="detail">{{result.attr1}}</label>
         </div>
         <div>
-			{{pfuIconAttribute check.attr2.attribute die=result.die2 compact=true}}
+			{{pfuIconAttribute check.attr2.attribute die=result.die2}}
             <label class="detail">{{result.attr2}}</label>
         </div>
         <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-            <label class="title">{{localize 'FU.ModAbbr'}}</label>
+			{{pfuBadge 'mod' label='FU.ModAbbr' }}
             <label class="detail">{{#unless (lt result.modifier 0)}}+{{/unless}}{{result.modifier}}</label>
         </div>
 
     </div>
     {{#if (gt difficulty 0)}}
-    <div class="detail-desc fu-check__difficulty fu-check__result-container flex-group-center">
-		<div class="value">
-			<label class="title" data-tooltip="{{localize 'FU.ChatDifficulty'}}">{{localize 'FU.ChatDifficulty'}}</label>
+    <div class="detail-desc fu-check__difficulty flex-group-center">
+		<div>
+			{{pfuBadge 'difficulty' label='FU.ChatDifficulty' }}
 			<label class="detail">{{difficulty}}</label>
 		</div>
     </div>

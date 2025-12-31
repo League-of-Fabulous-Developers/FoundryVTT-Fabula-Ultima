@@ -252,7 +252,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 						damage: damageData,
 						translation: {
 							damageTypes: FU.damageTypes,
-							damageIcon: FU.affIcon,
+							damageIcon: FU.affinityIcons,
 						},
 					},
 				});

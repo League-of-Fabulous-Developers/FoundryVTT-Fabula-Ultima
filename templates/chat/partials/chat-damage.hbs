@@ -1,31 +1,24 @@
-<header class="title-desc chat-header flexrow desc">
-    <h2 style="flex-grow: 4;">{{localize 'FU.Damage'}}</h2>
-    <section class="targets" style="align-items: end;">
-        <div class="fu-tags flexrow gap-5">
-            <a data-action="selectDamageCustomizer">
-                <span class='fu-tag button flex-group-center gap-5' data-tooltip="{{localize 'FU.DamageCustomizer'}}"><i class="icon fas fa-gear"></i></span>
-            </a>
-        </div>
-    </section>
-</header>
-
-<div class='detail-desc flex-group-center flexrow desc'>
-    <a>
-        <label class="damageType {{damage.type}} grid grid-3col">
-            <div class="startcap"></div>
-            <div>{{damage.total}}</div>
-            <div class="endcap" data-tooltip="{{localize (lookup translation.damageTypes damage.type)}}">
-                <i class="{{localize (lookup translation.damageIcon damage.type)}}"></i>
+<header class='detail-desc flexrow flex-group-center desc'>
+	<label class="total damageType {{damage.type}} flexrow" data-tooltip="{{localize 'FU.Damage'}}">
+		<i class="fu-icon--s {{lookup translation.damageIcon damage.type}}" data-tooltip="{{localize (lookup translation.damageTypes damage.type)}}"></i>
+		<div class="startcap"></div>
+		<div style="flex: 0 1 auto;">{{damage.total}}</div>
+		<div class="endcap"></div>
+		<section class="targets" style="align-items: end;">
+			<div class="fu-tags flexrow gap-5">
+				<a data-action="selectDamageCustomizer">
+					<span class='fu-tag button flex-group-center gap-5' data-tooltip="{{localize 'FU.DamageCustomizer'}}"><i class="icon fas fa-gear"></i></span>
+				</a>
 			</div>
-        </label>
-    </a>
-</div>
+		</section>
+	</label>
+</header>
 
 <div class="toggle-section accuracy-check-results {{#if (pfuGetSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
     <div class="flexrow gap-5">
         <div class='detail-desc flex-group-center grid grid-2col desc flex2'>
             <div>
-                <label class="title">{{localize 'FU.HighRollAbbr'}}</label>
+				{{pfuBadge 'hr' label='FU.HighRollAbbr' }}
                 <label class="detail">
                     {{#if (not damage.hrZero)}}
                         {{#if (gte check.primary.result check.secondary.result)}}
@@ -37,7 +30,7 @@
                 </label>
             </div>
             <div {{#if damage.modifiers}}data-tooltip="{{#each damage.modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-                <label class="title">{{localize 'FU.ModAbbr'}}</label>
+				{{pfuBadge 'mod' label='FU.ModAbbr' }}
                 <label class="detail">{{damage.modifierTotal}}</label>
             </div>
         </div>

@@ -121,8 +121,9 @@
 .fu-icon,
 .fu-icon--m,
 .fu-icon--s,
+.fu-icon--xs,
 .fu-icon--l {
-	display: inline-flex;
+	/*display: inline-flex;*/
 	--icon-size: 100%;
 	line-height: 1;
 	font-size: var(--icon-size);
@@ -142,6 +143,9 @@
 }
 .fu-icon--l {
 	--icon-size: 64px;
+}
+.fu-icon--xs {
+	--icon-size: 16px;
 }
 
 .fu-icon__radio-group input {

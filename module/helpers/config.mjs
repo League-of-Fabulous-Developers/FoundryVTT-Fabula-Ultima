@@ -83,6 +83,7 @@ FU.damageTypes = {
 /**
  * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} AffIcon
  */
+
 /**
  * @type {Object<DamageType, string>}
  */
@@ -99,6 +100,29 @@ FU.affIcon = {
 	untyped: 'fua fu-untyped',
 };
 
+/**
+ * @type {Object<DamageType, string>}
+ * @remarks Since the original `affIcon` includes a prestyle.
+ */
+FU.affinityIcons = {
+	physical: 'fu-physical',
+	air: 'fu-air',
+	bolt: 'fu-bolt',
+	dark: 'fu-dark',
+	earth: 'fu-earth',
+	fire: 'fu-fire',
+	ice: 'fu-ice',
+	light: 'fu-light',
+	poison: 'fu-poison',
+	untyped: 'fu-untyped',
+};
+
+FU.checkIcons = {
+	accuracy: 'ra ra-targeted',
+	magic: '',
+	damage: '',
+};
+
 FU.allIcon = {
 	offensive: 'is-offensive',
 	martial: 'is-martial',
@@ -112,17 +136,14 @@ FU.allIcon = {
 	club: 'is-club',
 	heart: 'is-heart',
 	spade: 'is-spade',
-	physical: 'fua fu-physical',
-	air: 'fua fu-wind',
-	bolt: 'fua fu-bolt',
-	dark: 'fua fu-dark',
-	earth: 'fua fu-earth',
-	fire: 'fua fu-fire',
-	ice: 'fua fu-ice',
-	light: 'fua fu-light',
-	poison: 'fua fu-poison',
 	weaponEnchant: 'fu-weapon-enchant',
 	roll: 'fas fa-dice',
+	mod: 'fas fa-plus-minus ',
+	hr: 'ra ra-dice-six',
+	difficulty: 'ra ra-dice-six',
+	...FU.checkIcons,
+	...FU.affinityIcons,
+	...FU.attributeIcons,
 };
 
 FU.affType = {

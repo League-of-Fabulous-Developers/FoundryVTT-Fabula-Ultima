@@ -161,6 +161,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
 		Handlebars.registerHelper('pfuTraits', traits);
 		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
+		Handlebars.registerHelper('pfuBadge', badge);
 	},
 });
 
@@ -281,33 +282,42 @@ function traits(model, path, options) {
 }
 
 /**
- * @typedef {"compact"} AttributeIconVariant
- */
-
-/**
- * @typedef AttributeIconOptions
- * @property {Number} die
+ * @typedef BadgeOptions
+ * @property {String} label
+ * @property {Number} value
  * @property {Boolean} compact
+ * @property {'xs'|'s'|'m'|'l'|'xl'} size
  */
 
 /**
  * @param {Attribute} attribute
- * @param {AttributeIconOptions} options
+ * @param {BadgeOptions} options
  * @returns {Handlebars.SafeString}
  */
 function attributeIcon(attribute, options) {
+	options.hash.label = FU.attributeAbbreviations[attribute];
+	return badge(attribute, options);
+}
+
+/**
+ * @param {String} key
+ * @param {BadgeOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function badge(key, options) {
 	if (options) {
 		options = options.hash;
 	}
-	const label = FU.attributeAbbreviations[attribute];
-	const icon = FU.attributeIcons[attribute];
-	const template = Handlebars.partials[systemTemplatePath('common/icons/icon-attribute')];
+	const icon = FU.allIcon[key];
+	const size = options.size ?? 's';
+	const template = Handlebars.partials[systemTemplatePath('common/icons/badge')];
 	const html =
 		typeof template === 'function'
 			? template({
-					label: label,
 					icon: icon,
-					die: options.die,
+					label: options.label,
+					size: size,
+					value: options.value,
 					compact: options.compact,
 				})
 			: '';
