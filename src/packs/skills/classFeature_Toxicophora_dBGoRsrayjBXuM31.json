@@ -12,12 +12,128 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>poison</strong>. While your <strong>unarmed strikes</strong> deal poison damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>poisoned</strong>.</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[damage all poison]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[poisoned]</p></li></ul>"
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>poison</strong>. While your <strong>unarmed strikes</strong> deal poison damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>poisoned</strong>.</p>"
     },
     "source": "FUTF157",
     "fuid": "toxicophora"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Toxicophora",
+      "img": "icons/creatures/invertebrates/spider-skull-green.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Zj59zdbbLObBQ1iU": {
+              "type": "ruleElement",
+              "_id": "Zj59zdbbLObBQ1iU",
+              "trigger": {
+                "_id": "1RCfX0FP2rUSIuJb",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "poison",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "predicates": {
+                "evALmcDykBCshtv3": {
+                  "type": "weaponRulePredicate",
+                  "_id": "evALmcDykBCshtv3",
+                  "weaponType": "melee",
+                  "categories": [
+                    "brawling"
+                  ]
+                }
+              },
+              "actions": {
+                "r1qK5DFzQw0h4sSE": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "r1qK5DFzQw0h4sSE",
+                  "effect": "poisoned"
+                }
+              }
+            },
+            "VJ27V6HimPJu548O": {
+              "type": "ruleElement",
+              "_id": "VJ27V6HimPJu548O",
+              "trigger": {
+                "_id": "REhihRuK4ut5uyfR",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack",
+                  "spell"
+                ]
+              },
+              "actions": {
+                "nIzyToIe1TLuL6Ol": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "nIzyToIe1TLuL6Ol",
+                  "damageTypes": [
+                    "poison"
+                  ],
+                  "amount": "",
+                  "cost": {
+                    "resource": ""
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": true,
+      "_id": "onvm9tIEydrW2Ypc",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767290972187,
+        "modifiedTime": 1767291809593,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!dBGoRsrayjBXuM31.onvm9tIEydrW2Ypc"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -29,10 +145,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744595005226,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767291807723,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

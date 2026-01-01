@@ -12,12 +12,102 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p><span>You treat your <strong>Insight</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</span></p><p>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p><hr><ul><li><p><span><strong>You Receive:</strong> @EFFECT[ins-up]</span></p></li></ul>"
+      "description": "<p><span>You treat your <strong>Insight</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</span></p><p>When you deal damage to one or more creatures for the first time during your turn, if at least one of them is in <strong>Crisis</strong>, you deal 5 extra damage to each of those creatures.</p>"
     },
     "source": "FUTF156",
     "fuid": "arpaktida"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Arpaktida",
+      "img": "icons/creatures/eyes/humanoid-single-red-brown.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "XlZuLj2evAwg9Lgj": {
+              "type": "ruleElement",
+              "_id": "XlZuLj2evAwg9Lgj",
+              "trigger": {
+                "_id": "z7mWlYoUpBbWS1ze",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": []
+              },
+              "predicates": {
+                "XsOS2n2q5TnaoBkF": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "XsOS2n2q5TnaoBkF",
+                  "effect": "crisis"
+                }
+              },
+              "actions": {
+                "cHpLhpTvcCFkEZF2": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "cHpLhpTvcCFkEZF2",
+                  "amount": "5",
+                  "cost": {
+                    "resource": ""
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": true,
+      "_id": "OKAIP7W9NuJUYMRY",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.ins",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767290294355,
+        "modifiedTime": 1767291742822,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!hm5LaJoCgBZo398G.OKAIP7W9NuJUYMRY"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -29,10 +119,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744557531087,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767290361517,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

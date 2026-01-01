@@ -12,12 +12,128 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses 20 or more Hit Points due to one of your <strong>unarmed strikes</strong> also suffers <strong>dazed</strong>.</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[damage all fire]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[dazed]</p></li></ul>"
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses 20 or more Hit Points due to one of your <strong>unarmed strikes</strong> also suffers <strong>dazed</strong>.</p>"
     },
     "source": "FUTF157",
     "fuid": "pyrophora"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Pyrophora",
+      "img": "icons/magic/fire/flame-burning-eye.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "WgEXH0jHyFr0WuI8": {
+              "type": "ruleElement",
+              "_id": "WgEXH0jHyFr0WuI8",
+              "trigger": {
+                "_id": "ie6aCGTYT9YGfveU",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "fire",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "predicates": {
+                "HdWoNqiFG1m5SoNQ": {
+                  "type": "weaponRulePredicate",
+                  "_id": "HdWoNqiFG1m5SoNQ",
+                  "weaponType": "melee",
+                  "categories": [
+                    "brawling"
+                  ]
+                }
+              },
+              "actions": {
+                "6WS5MdyEbXq3m2wx": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "6WS5MdyEbXq3m2wx",
+                  "effect": "dazed"
+                }
+              }
+            },
+            "6OtMTW6gUc40PJj1": {
+              "type": "ruleElement",
+              "_id": "6OtMTW6gUc40PJj1",
+              "trigger": {
+                "_id": "5Q55csJ2E60nK6sy",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack",
+                  "spell"
+                ]
+              },
+              "actions": {
+                "N1JQjKeSRl9mWjK5": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "N1JQjKeSRl9mWjK5",
+                  "damageTypes": [
+                    "fire"
+                  ],
+                  "amount": "",
+                  "cost": {
+                    "resource": ""
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": true,
+      "_id": "E4pX64KsC8R9wbvX",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767290794691,
+        "modifiedTime": 1767291798219,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!guVvGJaNqpi2A4WR.E4pX64KsC8R9wbvX"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -29,10 +145,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744594938827,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767290882367,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

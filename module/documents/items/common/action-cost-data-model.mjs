@@ -3,11 +3,12 @@ import { FU } from '../../../helpers/config.mjs';
 /**
  * @typedef ResourceExpense
  * @property {FUResourceType} resource
- * @property {Number} amount
+ * @property {String} amount
  * @property {String[]} traits
  * @property {FUExpenseSource} source
  */
 
+// TODO: Change to string across the board
 /**
  * @property {FUResourceType} resource The resource type
  * @property {Number} amount The resource cost

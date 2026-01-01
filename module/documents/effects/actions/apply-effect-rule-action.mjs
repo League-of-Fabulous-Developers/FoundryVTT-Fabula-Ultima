@@ -32,6 +32,7 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 			return;
 		}
 
+		const targets = selected.map((c) => c.actor);
 		// If there's a configuration provided
 		if (context.event.config) {
 			/** @type CheckConfigurer **/
@@ -43,7 +44,7 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 				if (!instancedEffect) {
 					return;
 				}
-				await Effects.promptApplyEffect(sel.actor, [], [instancedEffect], context.sourceInfo);
+				await Effects.promptApplyEffect(sel.actor, targets, [instancedEffect], context.sourceInfo);
 			}
 		}
 	}
