@@ -692,6 +692,7 @@ function getTargetedAction(damageData, sourceInfo) {
 	})
 		.setFlag(Flags.ChatMessage.Damage)
 		.withSelected()
+		.withLabel('FU.ChatApplyDamage')
 		.requiresOwner();
 }
 

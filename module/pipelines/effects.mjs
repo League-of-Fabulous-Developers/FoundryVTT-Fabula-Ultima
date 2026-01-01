@@ -821,7 +821,7 @@ async function onRestEvent(event) {
 }
 
 const BOONS_AND_BANES = Object.freeze(
-	Object.fromEntries(['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'].map((value) => [value, FU.statusEffects[value]])),
+	Object.fromEntries(['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked', 'focus'].map((value) => [value, FU.statusEffects[value]])),
 );
 const DAMAGE_TYPES = Object.freeze((({ untyped, ...rest }) => rest)(FU.damageTypes));
 const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });

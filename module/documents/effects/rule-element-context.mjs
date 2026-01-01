@@ -71,6 +71,8 @@ export class RuleElementContext {
 				return [this.character];
 			case 'scene':
 				return this.scene.characters;
+			case 'none':
+				return [];
 		}
 		return null;
 	}

@@ -913,6 +913,7 @@
 		"ChatApplyEffectNoActorsTargeted": "No actors targeted. Unable to apply effect.",
 		"ChatApplyMaxTargetWarning": "Too many actors targeted!",
 		"ChatApplyDamageTooltip": "Click to apply <strong>{amount} {type}</strong> damage to selected tokens.<br>[Ctrl + Click] to Open Damage Customizer<br>[Shift + Click] to ignore Resistances.<br>[Ctrl + Shift] + Click to ignore Resistances and Immunities.",
+		"ChatApplyDamage": "Apply Damage",
 		"ChatApplyDamageNoActorsSelected": "No actors selected. Unable to apply damage.",
 		"ChatApplyDamageVulnerable": "<strong>{actor}</strong> was <strong>vulnerable</strong> to <strong>{type}</strong> and lost <strong>{damage} {resource}</strong> from <strong>{from}</strong>",
 		"ChatApplyDamageNormal": "<strong>{actor}</strong> was dealt <strong>{type}</strong> damage and lost <strong>{damage} {resource}</strong> from <strong>{from}</strong>",

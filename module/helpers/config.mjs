@@ -275,8 +275,7 @@ FU.temporaryEffects = {
 };
 
 /**
- * @typedef {"aura" | "barrier" | "crisis" | "cover" | "flying" | "guard" | "provoked" |
- * "slow" | "dazed" | "weak" | "shaken" | "enraged" | "poisoned" |
+ * @typedef {"aura" | "barrier" | "crisis" | "cover" | "flying" | "guard" | "provoked" | "focus"|"slow" | "dazed" | "weak" | "shaken" | "enraged" | "poisoned" |
  * "wlp-down" | "wlp-up" | "dex-down" | "dex-up" | "ins-down" | "ins-up" | "mig-down" | "mig-up"} FUStatusEffectKey
  */
 
@@ -809,7 +808,7 @@ FU.eventRelation = Object.freeze({
 
 // TODO: Rename actor?subject?entity?object?
 /**
- * @typedef {"source" | "initial" | "self" | "allies" | "enemies" | "scene"} FUTargetSelectorKey
+ * @typedef {"source" | "initial" | "self" | "allies" | "enemies" | "scene" | "none"} FUTargetSelectorKey
  */
 
 /**
@@ -822,6 +821,7 @@ FU.targetSelector = Object.freeze({
 	allies: 'FU.Allies',
 	enemies: 'FU.Enemies',
 	scene: 'FU.Scene',
+	none: 'FU.None',
 });
 
 /**
