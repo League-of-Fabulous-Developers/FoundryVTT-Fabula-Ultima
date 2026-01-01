@@ -3,6 +3,8 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
+import { ProgressPipeline } from '../../../pipelines/progress.mjs';
+import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;
 /**
@@ -65,9 +67,25 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 				return;
 			}
 
-			await actor.updateProgress(id, step);
-			if (this.notify) {
-				await ProgressDataModel.notifyUpdate(actor, progress, step, context.item);
+			switch (context.eventType) {
+				case FUHooks.RENDER_CHECK_EVENT:
+					{
+						/** @type CheckConfigurer **/
+						const config = context.event.config;
+						const action = ProgressPipeline.getAdvanceTargetedAction(actor, id, step, context.label);
+						config.addTargetedAction(action);
+					}
+					break;
+
+				default:
+					{
+						// TODO: Add automatic application variant
+						await actor.updateProgress(id, step);
+						if (this.notify) {
+							await ProgressDataModel.notifyUpdate(actor, progress, step, context.item);
+						}
+					}
+					break;
 			}
 		}
 	}
