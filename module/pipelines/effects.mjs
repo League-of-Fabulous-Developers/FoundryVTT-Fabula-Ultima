@@ -4,7 +4,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
@@ -12,6 +12,7 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { statusEffects } from '../documents/effects/statuses.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -648,18 +649,26 @@ async function promptExpiredEffectRemoval(event) {
 
 /**
  * @param {FUActor} actor
+ * @param {FUActor[]} targets
  * @param {FUActiveEffect[]} effects
  * @param {InlineSourceInfo} sourceInfo
  * @returns {Promise<void>}
  */
-async function promptApplyEffect(actor, effects, sourceInfo) {
+async function promptApplyEffect(actor, targets, effects, sourceInfo) {
+	const actions = effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo));
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Targets, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Effects, true);
+	const targetData = Targeting.serializeTargetData(targets);
+
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
+		flags: flags,
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-effect-prompt', {
 			actor: actor,
 			source: sourceInfo.name,
 			effects: effects,
+			actions: actions,
+			targets: targetData,
 			fields: StringUtils.toBase64({
 				sourceInfo: sourceInfo,
 			}),
@@ -686,7 +695,7 @@ async function promptRemoveEffect(actor, source) {
 /**
  * @param {String} id An uuid or fuid.
  * @param {InlineSourceInfo} sourceInfo
- * @returns {TargetAction}
+ * @returns {ChatAction}
  */
 function getTargetedAction(id, sourceInfo) {
 	let label;
@@ -707,7 +716,7 @@ function getTargetedAction(id, sourceInfo) {
 		effect: label,
 	});
 
-	return new TargetAction('applyEffect', icon, tooltip, {
+	return new ChatAction('applyEffect', icon, tooltip, {
 		sourceInfo: sourceInfo,
 	})
 		.requiresOwner()

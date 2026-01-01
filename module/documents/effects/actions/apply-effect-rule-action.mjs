@@ -43,7 +43,7 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 				if (!instancedEffect) {
 					return;
 				}
-				await Effects.promptApplyEffect(sel.actor, [instancedEffect], context.sourceInfo);
+				await Effects.promptApplyEffect(sel.actor, [], [instancedEffect], context.sourceInfo);
 			}
 		}
 	}

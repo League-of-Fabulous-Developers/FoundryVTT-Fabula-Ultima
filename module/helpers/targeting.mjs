@@ -1,7 +1,7 @@
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 import { Flags } from './flags.mjs';
 import { getTargeted } from './target-handler.mjs';
-import { StringUtils } from './string-utils.mjs';
+import { ChatAction } from './chat-action.mjs';
 
 /**
  * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
@@ -70,119 +70,10 @@ async function filterTargetsByRule(actor, item, targets) {
 }
 
 /**
- * @description Actions that can be executed from chat messages.
- * @property {String} name The name of the action to be used
- * @property {String} icon The font awesome icon
- * @property {String} img An image to use
- * @property {String} label An optional label to use.
- * @property {String} tooltip The localized tooltip to use
- * @property {Object} fields The fields to use for the action's dataset
- * @property {Boolean} owner Whether this action can only be applied the owner
- * @property {String|undefined} flag
- * @property {DOMStringMap|undefined} dataset
- * @property {String} style
- * @property {String} color
- * @property {Boolean} targeted Whether this action can be used on targeted tokens (during the chat message generation)
- * @property {Boolean} selected Whether this action can be used on selected tokens instead.
- * @remarks Expects an action handler where dataset.id is a reference to an actor
- */
-export class TargetAction {
-	constructor(name, icon, tooltip, fields) {
-		this.name = name;
-		this.icon = icon;
-		this.tooltip = tooltip;
-		this.fields = StringUtils.toBase64(fields ?? {});
-		this.dataset = {};
-		this.label = 'FU.ChatApplySelected';
-		this.owner = false;
-		this.targeted = true;
-		this.selected = false;
-	}
-
-	/**
-	 * @returns {TargetAction}
-	 */
-	requiresOwner() {
-		this.owner = true;
-		return this;
-	}
-
-	/**	 *
-	 * @param {String} flag
-	 * @returns {TargetAction}
-	 */
-	setFlag(flag) {
-		this.flag = flag;
-		return this;
-	}
-
-	/**
-	 * @param {Record<string, string>} dataset
-	 * @return {TargetAction}
-	 */
-	withDataset(dataset) {
-		this.dataset = dataset;
-		return this;
-	}
-
-	/**
-	 * @returns {TargetAction}
-	 */
-	notTargeted() {
-		this.targeted = false;
-		return this;
-	}
-
-	/**
-	 * @returns {TargetAction}
-	 */
-	withSelected() {
-		this.selected = true;
-		return this;
-	}
-
-	/**
-	 * @param {String} label
-	 * @returns {TargetAction}
-	 */
-	withLabel(label) {
-		this.label = label;
-		return this;
-	}
-
-	/**
-	 * @param {String} color
-	 * @return {TargetAction}
-	 */
-	withColor(color) {
-		this.color = color;
-		return this;
-	}
-
-	/**
-	 * @param {String} style
-	 * @returns {TargetAction}
-	 */
-	withStyle(style) {
-		this.style = style;
-		return this;
-	}
-
-	/**
-	 * @param {String} img
-	 * @returns {TargetAction}
-	 */
-	withImage(img) {
-		this.img = img;
-		return this;
-	}
-}
-
-/**
- * @type {TargetAction}
+ * @type {ChatAction}
  * @description Target the token
  */
-const defaultAction = new TargetAction('targetSingle', 'fas fa-bullseye', 'FU.ChatPingTarget');
+const defaultAction = new ChatAction('targetSingle', 'fas fa-bullseye', 'FU.ChatPingTarget');
 
 /**
  * @returns {TargetData[]}

@@ -42,6 +42,8 @@
 	--icon-fu-wlp-up: url('../../static/statuses/WlpUp.webp');
 	--icon-fu-wlp-down: url('../../static/statuses/WlpDown.webp');
 
+	--icon-fu-focus: url('../../static/statuses/Focus.webp');
+
 	--icon-fu-beast: url('../../static/icons/beast.svg');
 	--icon-fu-construct: url('../../static/icons/construct.svg');
 	--icon-fu-demon: url('../../static/icons/demon.svg');
@@ -209,6 +211,10 @@
 
 .fu-zenit {
 	background-image: var(--icon-fu-zenit);
+}
+
+.fu-focus {
+	background-image: var(--icon-fu-focus);
 }
 
 .fus-offensive {

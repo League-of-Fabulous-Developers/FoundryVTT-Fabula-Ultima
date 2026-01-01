@@ -17,10 +17,11 @@ import { Checks } from '../checks/checks.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
-import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from '../checks/damage-data.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -656,7 +657,7 @@ async function promptApply(request) {
 	const targets = Targeting.serializeTargetData(request.targets);
 	const damageData = request.damageData;
 	const actions = [
-		new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
+		new ChatAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
 			damageData: damageData,
 			sourceInfo: request.sourceInfo,
 		}).requiresOwner(),
@@ -678,7 +679,7 @@ async function promptApply(request) {
 /**
  * @param {DamageData} damageData *
  * @param {InlineSourceInfo} sourceInfo
- * @returns {TargetAction}
+ * @returns {ChatAction}
  */
 function getTargetedAction(damageData, sourceInfo) {
 	const icon = FU.affIcon[damageData.type];
@@ -686,7 +687,7 @@ function getTargetedAction(damageData, sourceInfo) {
 		amount: damageData.total,
 		type: StringUtils.localize(FU.damageTypes[damageData.type]),
 	});
-	return new TargetAction('applyDamage', icon, tooltip, {
+	return new ChatAction('applyDamage', icon, tooltip, {
 		damageData: damageData,
 		sourceInfo: sourceInfo,
 	})

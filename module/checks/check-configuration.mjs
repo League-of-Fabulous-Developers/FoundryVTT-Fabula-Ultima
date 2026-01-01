@@ -228,7 +228,7 @@ class CheckInspector {
 	}
 
 	/**
-	 *@returns {TargetAction[]}
+	 *@returns {ChatAction[]}
 	 */
 	getTargetedActions() {
 		return this.#check.additionalData[TARGETED_ACTIONS] ?? [];
@@ -460,13 +460,14 @@ class CheckConfigurer extends CheckInspector {
 	 * @remarks Invoked whenever targets or targeted defense change
 	 */
 	updateTargetResults() {
-		const targets = this.check.additionalData[TARGETS];
+		const targets = this.getTargets();
 		if (targets?.length) {
 			if (!this.check.result) {
 				return;
 			}
 			const targetedDefense = this.getTargetedDefense();
-			targets.forEach((target) => {
+			for (let t = 0; t < targets.length; t++) {
+				const target = targets[t];
 				const difficulty = target[targetedDefense];
 				let targetResult;
 				if (this.check.critical) {
@@ -476,8 +477,9 @@ class CheckConfigurer extends CheckInspector {
 				} else {
 					targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
 				}
-				target.check = targetResult;
-			});
+				// Update the original
+				this.check.additionalData[TARGETS][t].result = targetResult;
+			}
 		}
 	}
 
@@ -579,7 +581,7 @@ class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {TargetAction} action
+	 * @param {ChatAction} action
 	 * @remarks Will reject adding duplicates.
 	 */
 	addTargetedAction(action) {

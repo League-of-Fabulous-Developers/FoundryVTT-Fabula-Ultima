@@ -1,19 +1,19 @@
 /**
- * @returns {TargetAction}
+ * @returns {ChatAction}
  */
 import { StringUtils } from '../helpers/string-utils.mjs';
-import { TargetAction } from '../helpers/targeting.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @param {FUActor} actor
  * @param {String} id
  * @param {Number} increment
  * @param {String} source
- * @returns {TargetAction}
+ * @returns {ChatAction}
  */
 function getAdvanceTargetedAction(actor, id, increment, source) {
 	const icon = 'fa fa-clock';
@@ -21,7 +21,7 @@ function getAdvanceTargetedAction(actor, id, increment, source) {
 	const tooltip = StringUtils.localize('FU.ProgressAdvance', {
 		name: progress.name,
 	});
-	return new TargetAction('advanceProgress', icon, tooltip, {
+	return new ChatAction('advanceProgress', icon, tooltip, {
 		id: id,
 		increment: increment,
 		source: source,

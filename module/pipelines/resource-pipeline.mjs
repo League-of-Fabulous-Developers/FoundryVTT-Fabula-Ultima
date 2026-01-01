@@ -4,11 +4,12 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
-import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef UpdateResourceData
@@ -423,7 +424,7 @@ function getTargetedAction(request) {
 		amount: request.amount,
 		resource: StringUtils.localize(FU.resources[request.resourceType]),
 	});
-	return new TargetAction('updateResource', resourceIcon, tooltip, {
+	return new ChatAction('updateResource', resourceIcon, tooltip, {
 		amount: request.amount,
 		type: request.resourceType,
 		sourceInfo: request.sourceInfo,
