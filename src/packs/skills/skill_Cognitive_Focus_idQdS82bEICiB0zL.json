@@ -217,6 +217,23 @@
                   "effect": "focus"
                 }
               }
+            },
+            "mcr0Ct3QQjrsek8E": {
+              "type": "ruleElement",
+              "_id": "mcr0Ct3QQjrsek8E",
+              "trigger": {
+                "_id": "g5HpN1BwCrnS2s5H",
+                "type": "combatRuleTrigger",
+                "eventRelation": "source",
+                "eventType": "startOfTurn"
+              },
+              "actions": {
+                "JjuQxsQe3VjS7C7L": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "JjuQxsQe3VjS7C7L",
+                  "effect": "focus"
+                }
+              }
             }
           },
           "progress": {
@@ -252,7 +269,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767260254243,
-        "modifiedTime": 1767265722989,
+        "modifiedTime": 1767287979950,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!idQdS82bEICiB0zL.3vHmCpjussdJcEgM"
