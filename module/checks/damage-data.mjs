@@ -1,4 +1,10 @@
 /**
+ * @typedef ScalarModifier
+ * @property {Boolean} enabled
+ * @property {Number|String} amount
+ */
+
+/**
  * @typedef DamageModifier
  * @property {string} label
  * @property {Boolean} enabled

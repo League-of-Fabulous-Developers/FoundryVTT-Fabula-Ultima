@@ -140,6 +140,9 @@ async function inlineEffectEnricher(match, options) {
 		/** @type ActiveEffect **/
 		if (id.includes('.')) {
 			let instancedEffect = await fromUuid(id);
+			if (!instancedEffect) {
+				return createBrokenAnchor();
+			}
 			if (instancedEffect instanceof FUItem) {
 				const firstEffect = instancedEffect.effects.entries().next().value[1];
 				instancedEffect = firstEffect;

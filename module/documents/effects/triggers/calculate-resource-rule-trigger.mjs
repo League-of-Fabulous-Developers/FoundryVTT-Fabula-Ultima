@@ -6,22 +6,33 @@ import { FU } from '../../../helpers/config.mjs';
 const fields = foundry.data.fields;
 
 /**
+ * @description Trigger based on a {@linkcode CalculateResourceEvent}
  * @extends RuleTriggerDataModel
  * @property {FUResourceType} resource
  * @property {FUScalarChange} change
  * @inheritDoc
  */
-export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
+export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 	/** @inheritdoc */
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventType: FUHooks.RESOURCE_UPDATE,
+			eventType: FUHooks.CALCULATE_RESOURCE_EVENT,
+			resource: new fields.StringField({
+				initial: 'hp',
+				choices: Object.keys(FU.resources),
+				required: true,
+			}),
+			change: new fields.StringField({
+				initial: 'increment',
+				choices: Object.keys(FU.scalarChange),
+				required: true,
+			}),
 		};
 	}
 
 	static {
-		Object.defineProperty(this, 'TYPE', { value: 'resourceUpdateRuleTrigger' });
+		Object.defineProperty(this, 'TYPE', { value: 'calculateResourceRuleTrigger' });
 	}
 
 	static defineSchema() {
@@ -41,27 +52,22 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static get localization() {
-		return 'FU.RuleTriggerResourceUpdate';
+		return 'FU.RuleTriggerCalculateResource';
 	}
 
 	static get template() {
-		return systemTemplatePath('effects/triggers/resource-update-rule-trigger');
+		return systemTemplatePath('effects/triggers/calculate-resource-rule-trigger');
 	}
 
 	/**
-	 * @param {RuleElementContext<ResourceUpdateEvent>} context
+	 * @param {RuleElementContext<CalculateResourceEvent>} context
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		// Prevent [action > trigger> cascading
-		if (context.origin === context.event.origin) {
+		if (context.event.data.type !== this.resource) {
 			return false;
 		}
-
-		if (context.event.resource !== this.resource) {
-			return false;
-		}
-		const amount = context.event.amount;
+		const amount = context.event.data.amount;
 		switch (this.change) {
 			case 'decrement':
 				if (amount > 0) {

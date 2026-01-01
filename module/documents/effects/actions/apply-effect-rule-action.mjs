@@ -3,7 +3,6 @@ import { Effects } from '../../../pipelines/effects.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 
 const fields = foundry.data.fields;
-//const { DocumentUUIDField } =
 
 /**
  * @property {String} effect The uuid of the effect
@@ -44,7 +43,7 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 				if (!instancedEffect) {
 					return;
 				}
-				await Effects.promptApplyEffect(sel.actor, [instancedEffect], context.sourceInfo);
+				await Effects.promptApplyEffect(sel.actor, [], [instancedEffect], context.sourceInfo);
 			}
 		}
 	}

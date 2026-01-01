@@ -4,13 +4,13 @@ import { CheckConfiguration } from './check-configuration.mjs';
 import { GroupCheck } from './group-check.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
-import { TargetAction } from '../helpers/targeting.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef AttributeCheckConfig
@@ -502,12 +502,12 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @param {FUItem} item
  * @param {Attribute} primary
  * @param {Attribute} secondary
- * @returns {TargetAction}
+ * @returns {ChatAction}
  */
 function getRitualCheckAction(actor, item, primary, secondary) {
 	const icon = FU.allIcon.roll;
 	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
-	return new TargetAction(
+	return new ChatAction(
 		'ritualCheck',
 		icon,
 		tooltip,

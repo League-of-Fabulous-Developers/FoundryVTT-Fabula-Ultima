@@ -121,20 +121,41 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
  * @property {FUItem} item
  * @property {FUItemGroup} damageSource
  * @property {CharacterInfo[]} targets
- * @property {CheckConfigurer} configuration
+ * @property {CheckConfigurer} config
  */
 
-async function calculateDamage(actor, item, configuration) {
+async function calculateDamage(actor, item, config) {
 	const damageSource = InlineHelper.resolveItemGroup(item);
-	const targets = configuration.getTargets();
+	const targets = config.getTargets();
 	const event = {
 		source: CharacterInfo.fromActor(actor),
 		targets: CharacterInfo.fromTargetData(targets),
 		item: item,
 		damageSource: damageSource,
-		configuration: configuration,
+		config: config,
 	};
 	await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
+}
+
+/**
+ * @typedef CalculateResourceEvent
+ * @property {CharacterInfo} source
+ * @property {UpdateResourceData} data
+ * @property {FUItem} item
+ * @property {CharacterInfo[]} targets
+ * @property {CheckConfigurer} config
+ */
+
+async function calculateResource(actor, item, config, data) {
+	const targets = config.getTargets();
+	const event = {
+		source: CharacterInfo.fromActor(actor),
+		targets: CharacterInfo.fromTargetData(targets),
+		item: item,
+		data: data,
+		config: config,
+	};
+	await AsyncHooks.callSequential(FUHooks.CALCULATE_RESOURCE_EVENT, event);
 }
 
 /**
@@ -696,6 +717,7 @@ export const CommonEvents = Object.freeze({
 	resolveCheck,
 	renderCheck,
 	calculateDamage,
+	calculateResource,
 	notify,
 	toggleEffect,
 	createConsumable,

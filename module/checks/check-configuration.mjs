@@ -8,6 +8,7 @@ import { CheckHooks } from './check-hooks.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from './damage-data.mjs';
+import { UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
 
 // Data keys
 const TARGETS = 'targets';
@@ -99,6 +100,13 @@ class CheckInspector {
 	 */
 	get hasDamage() {
 		return this.check.additionalData[DAMAGE] !== undefined;
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasResource() {
+		return this.check.additionalData[RESOURCE] !== undefined;
 	}
 
 	/**
@@ -220,7 +228,7 @@ class CheckInspector {
 	}
 
 	/**
-	 *@returns {TargetAction[]}
+	 *@returns {ChatAction[]}
 	 */
 	getTargetedActions() {
 		return this.#check.additionalData[TARGETED_ACTIONS] ?? [];
@@ -261,14 +269,11 @@ class CheckConfigurer extends CheckInspector {
 
 	/**
 	 * @param {FUResourceType} type
-	 * @param {String} amount
+	 * @param {Number} amount
 	 * @return {CheckConfigurer}
 	 */
 	setResource(type, amount) {
-		this.check.additionalData[RESOURCE] = {
-			type: type,
-			amount: amount,
-		};
+		this.check.additionalData[RESOURCE] = UpdateResourceData.construct(type, amount);
 		return this;
 	}
 
@@ -455,13 +460,14 @@ class CheckConfigurer extends CheckInspector {
 	 * @remarks Invoked whenever targets or targeted defense change
 	 */
 	updateTargetResults() {
-		const targets = this.check.additionalData[TARGETS];
+		const targets = this.getTargets();
 		if (targets?.length) {
 			if (!this.check.result) {
 				return;
 			}
 			const targetedDefense = this.getTargetedDefense();
-			targets.forEach((target) => {
+			for (let t = 0; t < targets.length; t++) {
+				const target = targets[t];
 				const difficulty = target[targetedDefense];
 				let targetResult;
 				if (this.check.critical) {
@@ -471,8 +477,9 @@ class CheckConfigurer extends CheckInspector {
 				} else {
 					targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
 				}
-				target.check = targetResult;
-			});
+				// Update the original
+				this.check.additionalData[TARGETS][t].result = targetResult;
+			}
 		}
 	}
 
@@ -574,7 +581,7 @@ class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {TargetAction} action
+	 * @param {ChatAction} action
 	 * @remarks Will reject adding duplicates.
 	 */
 	addTargetedAction(action) {

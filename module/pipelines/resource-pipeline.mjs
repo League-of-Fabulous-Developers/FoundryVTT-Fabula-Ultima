@@ -4,15 +4,57 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
-import { TargetAction, Targeting } from '../helpers/targeting.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { CheckHooks } from '../checks/check-hooks.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef UpdateResourceData
- * @property {Number|String} amount
  * @property {String} type
+ * @property {ScalarModifier[]} modifiers
  */
+
+export class UpdateResourceData {
+	static get baseModifier() {
+		return 'FU.Base';
+	}
+
+	constructor(data = {}) {
+		Object.assign(this, data);
+		if (!this.modifiers) {
+			this.modifiers = [];
+		}
+	}
+
+	/**
+	 * @param {FUResourceType} type
+	 * @param {number} amount
+	 * @returns {DamageData}
+	 */
+	static construct(type, amount) {
+		const data = new UpdateResourceData();
+		data.addModifier(this.baseModifier, amount);
+		data.type = type;
+		return data;
+	}
+
+	/**
+	 * @param {String} label
+	 * @param {Number} amount
+	 */
+	addModifier(label, amount) {
+		/** @type DamageModifier **/
+		const modifier = {
+			label: label,
+			amount: amount,
+			enabled: true,
+		};
+		this.modifiers.push(modifier);
+	}
+}
 
 /**
  * @property {Number} amount
@@ -285,13 +327,6 @@ async function process(request) {
 }
 
 /**
- * @typedef ResourceExpense
- * @property {String} resource
- * @property {Number} amount
- * @property {FUExpenseSource} source
- */
-
-/**
  * @param {ActionCostDataModel} cost
  * @param {TargetData[]} targets
  * @return {ResourceExpense}
@@ -389,7 +424,7 @@ function getTargetedAction(request) {
 		amount: request.amount,
 		resource: StringUtils.localize(FU.resources[request.resourceType]),
 	});
-	return new TargetAction('updateResource', resourceIcon, tooltip, {
+	return new ChatAction('updateResource', resourceIcon, tooltip, {
 		amount: request.amount,
 		type: request.resourceType,
 		sourceInfo: request.sourceInfo,
@@ -400,11 +435,22 @@ function getTargetedAction(request) {
 		.withSelected();
 }
 
+const onProcessCheck = (check, actor, item, registerCallback) => {
+	registerCallback(async (check, actor, item) => {
+		const config = CheckConfiguration.configure(check);
+		if (config.hasResource) {
+			const data = config.getResource();
+			await CommonEvents.calculateResource(actor, item, config, data);
+		}
+	});
+};
+
 /**
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
 	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
+	Hooks.on(CheckHooks.processCheck, onProcessCheck);
 }
 
 export const ResourcePipeline = {

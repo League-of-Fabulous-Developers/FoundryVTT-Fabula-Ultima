@@ -13,6 +13,8 @@ import { CommonEvents } from './common-events.mjs';
 import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Effects } from '../pipelines/effects.mjs';
+import { SkillTraits } from '../pipelines/traits.mjs';
+import { ProgressPipeline } from '../pipelines/progress.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -272,7 +274,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		const targets = Targeting.deserializeTargetData(targetData);
 
 		sections.push(async function () {
-			/** @type {TargetAction[]} **/
+			/** @type {ChatAction[]} **/
 			let actions = [];
 			actions.push(Targeting.defaultAction);
 
@@ -280,8 +282,11 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			const resourceData = inspector.getResource();
 			if (resourceData) {
 				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-				const amount = await Expressions.evaluateAsync(resourceData.amount, expressionContext);
-				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, amount);
+				let ra = 0;
+				for (const mod of resourceData.modifiers) {
+					ra += await Expressions.evaluateAsync(mod.amount, expressionContext);
+				}
+				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}
 
@@ -300,6 +305,12 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				for (const mod of damageData.modifiers) {
 					if (mod.expense && mod.expense.amount > 0) {
 						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
+						if (mod.expense.traits) {
+							const expenseTraits = new Set(mod.expense.traits);
+							if (expenseTraits.has(SkillTraits.Gift)) {
+								actions.push(ProgressPipeline.getAdvanceTargetedAction(actor, 'brainwave-clock', 1, mod.label));
+							}
+						}
 					}
 				}
 
@@ -338,12 +349,14 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			}
 
 			// Set any flags
+			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
 			for (const action of actions) {
 				if (action.flag) {
 					Pipeline.toggleFlag(flags, action.flag);
 				}
 			}
 
+			/** @type FUTargetSelectorKey **/
 			let rule;
 			if (item.system.targeting) {
 				rule = item.system.targeting.rule ?? Targeting.rule.multiple;
@@ -351,8 +364,6 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			} else {
 				rule = targetData?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
 			}
-
-			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
 
 			return {
 				order: CHECK_RESULT,
@@ -362,8 +373,6 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 					rule: rule,
 					targets: targetData,
 					actions: actions,
-					targetedActions: actions.filter((a) => a.targeted),
-					selectedActions: actions.filter((a) => a.selected),
 				},
 			};
 		});

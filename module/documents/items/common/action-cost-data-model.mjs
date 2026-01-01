@@ -1,7 +1,15 @@
 import { FU } from '../../../helpers/config.mjs';
 
 /**
- * @property {"hp", "mp", "ip", "fp", "exp", "zenit"} resource The resource type
+ * @typedef ResourceExpense
+ * @property {FUResourceType} resource
+ * @property {Number} amount
+ * @property {String[]} traits
+ * @property {FUExpenseSource} source
+ */
+
+/**
+ * @property {FUResourceType} resource The resource type
  * @property {Number} amount The resource cost
  * @property {boolean} perTarget Is the cost static or per target
  */

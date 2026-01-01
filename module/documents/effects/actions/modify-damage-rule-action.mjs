@@ -5,6 +5,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { ActionCostDataModel } from '../../items/common/action-cost-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { SkillDataModel } from '../../items/skill/skill-data-model.mjs';
+import { SkillTraits } from '../../../pipelines/traits.mjs';
 
 const fields = foundry.data.fields;
 
@@ -32,7 +33,9 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 			amount: new fields.StringField({ blank: true }),
 			damageTypes: new fields.SetField(new fields.StringField()),
 			cost: new fields.EmbeddedDataField(ActionCostDataModel, {
-				resource: '',
+				resource: {
+					initial: '',
+				},
 			}),
 			variant: new fields.StringField({
 				initial: '',
@@ -74,7 +77,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 						return;
 					}
 					for (let sl = 1; sl <= skill.level.value; sl++) {
-						context.event.configuration.getDamage().addModifier(context.label, _amount * sl, types, {
+						context.event.config.getDamage().addModifier(context.label, _amount * sl, types, {
 							expense: {
 								amount: this.cost.amount * sl,
 								resource: this.cost.resource,
@@ -82,16 +85,30 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 							enabled: false,
 						});
 					}
+					break;
+				}
+
+				case 'psychicGift': {
+					const brainwave = context.character.actor.resolveProgress('brainwave-clock');
+					context.event.config.getDamage().addModifier(context.label, _amount, types, {
+						expense: {
+							amount: Math.max(5, this.cost.amount * brainwave.current),
+							resource: this.cost.resource,
+							traits: [SkillTraits.Gift],
+						},
+						enabled: false,
+					});
+					break;
 				}
 			}
 		} else {
 			if (this.damageTypes.size > 0 || this.cost.amount > 0) {
-				context.event.configuration.getDamage().addModifier(context.label, _amount, types, {
+				context.event.config.getDamage().addModifier(context.label, _amount, types, {
 					expense: this.cost,
 					enabled: this.cost.amount === 0,
 				});
 			} else {
-				context.event.configuration.addDamageBonus(context.label, _amount);
+				context.event.config.addDamageBonus(context.label, _amount);
 			}
 		}
 	}

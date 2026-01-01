@@ -35,8 +35,9 @@
 					{{/if}}
                 </span>
                 <!-- Actions -->
-                {{#each ../targetedActions as |action|}}
-					<span class="fu-tags fu-target-action">
+                {{#each ../actions as |action|}}
+					{{#if targeted}}
+						<span class="fu-tags fu-target-action">
 							<a data-action="{{name}}"
 							   data-id="{{target.uuid}}"
 							   data-fields="{{fields}}"
@@ -52,20 +53,22 @@
 									{{/if}}
 								</span>
 							</a>
-						</span>
+					</span>
+					{{/if}}
                 {{/each}}
             </span>
         {{/each}}
     </section>
 {{/if}}
-{{#each selectedActions as |action|}}
-    <div class="fu-tags flexrow gap-5">
-        <a data-action="{{name}}"
-		   data-fields="{{fields}}"
-			{{#each dataset}}
-		   data-{{@key}}="{{this}}"
-			{{/each}}
-		   data-tooltip="{{localize tooltip}}">
+{{#each actions as |action|}}
+	{{#if selected}}
+		<div class="fu-tags flexrow gap-5">
+			<a data-action="{{name}}"
+			   data-fields="{{fields}}"
+				{{#each dataset}}
+			   data-{{@key}}="{{this}}"
+				{{/each}}
+			   data-tooltip="{{localize tooltip}}">
             <span class='fu-tag button flex-group-center gap-5 fu-target-action__icon__container'
 				  style="width: 100%;white-space: nowrap;">
 				{{~localize action.label}}
@@ -75,6 +78,7 @@
 					<i class="icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
 				{{/if}}
 			</span>
-        </a>
-    </div>
+			</a>
+		</div>
+	{{/if}}
 {{/each}}
