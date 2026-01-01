@@ -641,6 +641,7 @@
 		"LvlVision": "Level in Visionary",
 		"PaidVision": "Paid by Visionary",
 		"Progress": "Progress",
+		"ProgressAdvance": "Advance {name}",
 		"ProgressPerDay": "Progress Per Day",
 		"ProjectStatus": "Project Status",
 		"CurrentProgress": "Current Progress",

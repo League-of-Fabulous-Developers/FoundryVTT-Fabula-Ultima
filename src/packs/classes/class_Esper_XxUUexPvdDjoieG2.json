@@ -69,7 +69,78 @@
     "source": "FUTF150",
     "fuid": "esper"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Brainwave Clock",
+      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "ye79D7Lub4SCfskB": {
+              "type": "ruleElement",
+              "_id": "ye79D7Lub4SCfskB",
+              "trigger": {
+                "eventType": "startOfCombat"
+              },
+              "actions": {
+                "Dv0fL89pGY9Xu73r": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "Dv0fL89pGY9Xu73r",
+                  "identifier": "brainwave-clock",
+                  "action": "reset"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": true,
+            "id": "brainwave-clock",
+            "name": "Brainwave Clock",
+            "current": 0,
+            "max": 4,
+            "style": "clock"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "e8Zy8E0jtOFY23zP",
+      "type": "base",
+      "changes": [],
+      "description": "<ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767259814001,
+        "modifiedTime": 1767266565957,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!XxUUexPvdDjoieG2.e8Zy8E0jtOFY23zP"
+    }
+  ],
   "folder": null,
   "ownership": {
     "default": 0,

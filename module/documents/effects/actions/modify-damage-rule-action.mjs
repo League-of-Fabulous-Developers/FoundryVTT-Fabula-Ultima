@@ -5,6 +5,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { ActionCostDataModel } from '../../items/common/action-cost-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { SkillDataModel } from '../../items/skill/skill-data-model.mjs';
+import { SkillTraits } from '../../../pipelines/traits.mjs';
 
 const fields = foundry.data.fields;
 
@@ -91,8 +92,9 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 					const brainwave = context.character.actor.resolveProgress('brainwave-clock');
 					context.event.config.getDamage().addModifier(context.label, _amount, types, {
 						expense: {
-							amount: this.cost.amount * brainwave.current,
+							amount: Math.max(5, this.cost.amount * brainwave.current),
 							resource: this.cost.resource,
+							traits: [SkillTraits.Gift],
 						},
 						enabled: false,
 					});

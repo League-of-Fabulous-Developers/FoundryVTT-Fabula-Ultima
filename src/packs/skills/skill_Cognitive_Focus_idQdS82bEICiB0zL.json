@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells ( <span>@ICON[offensive] </span>) that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p><hr><ul><li><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.skills.TnDgm6eYgHSKNkDT]{Cognitive Focus (Check Bonus)}</p></li><li><p><strong>Focus Recovers: </strong>@GAIN[2*$sl hp]{SL × 2 HP}, and/or @GAIN[2*$sl mp]{SL × 2 MP}</p></li><li><p><strong>Target Receives: </strong>@EFFECT[Compendium.projectfu.skills.GqxqSdf1UMKkJH1U]{Effect: Cognitive Focus}</p></li></ul>",
+    "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells ( <span>@ICON[offensive] </span>) that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p>",
     "isFavored": {
       "value": false
     },
@@ -116,7 +116,148 @@
     "defense": "def",
     "fuid": "cognitive-focus"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cognitive Focus",
+      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "DOBtjnZdanXuPRqy": {
+              "type": "ruleElement",
+              "_id": "DOBtjnZdanXuPRqy",
+              "trigger": {
+                "_id": "Sry2ltMpAYvYkBUa",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy",
+                  "magic"
+                ],
+                "attributes": {
+                  "primary": {
+                    "value": ""
+                  },
+                  "secondary": {
+                    "value": ""
+                  }
+                }
+              },
+              "predicates": {
+                "Lw3YvRTsOnUBPy1h": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "Lw3YvRTsOnUBPy1h",
+                  "effect": "focus"
+                }
+              },
+              "actions": {
+                "xWiwmlyWgSjX6m8K": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "xWiwmlyWgSjX6m8K",
+                  "bonus": "$sl"
+                }
+              }
+            },
+            "A7MrxrxfDKnAqbnm": {
+              "type": "ruleElement",
+              "_id": "A7MrxrxfDKnAqbnm",
+              "trigger": {
+                "_id": "u6AjRktMwCaJfd13",
+                "type": "calculateResourceRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "increment"
+              },
+              "predicates": {
+                "mjxbVDAi3pjY51Tc": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "mjxbVDAi3pjY51Tc",
+                  "effect": "focus"
+                }
+              },
+              "actions": {
+                "5GTWgNn2AhVEqwVK": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "5GTWgNn2AhVEqwVK",
+                  "amount": "$sl*2"
+                }
+              }
+            },
+            "R1OHDd7sJEu9967V": {
+              "type": "ruleElement",
+              "_id": "R1OHDd7sJEu9967V",
+              "trigger": {
+                "_id": "6Na9slMQvWaVF0CZ",
+                "type": "calculateResourceRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "change": "increment"
+              },
+              "actions": {
+                "kOP4dT13ZRPGlyGO": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "kOP4dT13ZRPGlyGO",
+                  "amount": "$sl*2"
+                }
+              },
+              "predicates": {
+                "2hVcpxTfAMd4x1op": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "2hVcpxTfAMd4x1op",
+                  "effect": "focus"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3vHmCpjussdJcEgM",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767260254243,
+        "modifiedTime": 1767265722989,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!idQdS82bEICiB0zL.3vHmCpjussdJcEgM"
+    }
+  ],
   "folder": "KIqoW0FNwwyC7ygb",
   "ownership": {
     "default": 0,
@@ -124,15 +265,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711424945464,
-    "modifiedTime": 1745172686133,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767265983679,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

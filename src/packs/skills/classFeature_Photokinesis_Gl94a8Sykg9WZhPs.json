@@ -13,12 +13,93 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When you deal damage",
-      "description": "<p>That damage becomes <strong>dark</strong> or <strong>light</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】.</strong></p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.kwBgOJxf69hODsfJ]{Effect: Photokinesis (Dark)}, or @EFFECT[Compendium.projectfu.skills.jZoViUGfjiiJYHpD]{Effect: Photokinesis (Light)}</p></li><li><p><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p></li></ul>"
+      "description": "<p>That damage becomes <strong>dark</strong> or <strong>light</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】.</strong></p>"
     },
     "source": "FUTF153",
     "fuid": "photokinesis"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Photokinesis",
+      "img": "icons/magic/light/hand-sparks-smoke-green.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "ERSnozs2Y75ANHHG": {
+              "type": "ruleElement",
+              "_id": "ERSnozs2Y75ANHHG",
+              "trigger": {
+                "_id": "a4XSSTvXy2acKqq9",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": []
+              },
+              "actions": {
+                "jOTlS7SFtcbA40Yw": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "jOTlS7SFtcbA40Yw",
+                  "amount": "2+&pg('brainwave-clock')",
+                  "damageTypes": [
+                    "dark",
+                    "light"
+                  ],
+                  "cost": {
+                    "amount": 5
+                  },
+                  "variant": "psychicGift"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "qmvdqZA0nVFslWTr",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767268677165,
+        "modifiedTime": 1767268707700,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!Gl94a8Sykg9WZhPs.qmvdqZA0nVFslWTr"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -30,10 +111,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711423314741,
-    "modifiedTime": 1744507723779,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767268675681,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

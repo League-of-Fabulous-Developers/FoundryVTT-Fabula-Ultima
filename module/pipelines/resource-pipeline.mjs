@@ -326,13 +326,6 @@ async function process(request) {
 }
 
 /**
- * @typedef ResourceExpense
- * @property {String} resource
- * @property {Number} amount
- * @property {FUExpenseSource} source
- */
-
-/**
  * @param {ActionCostDataModel} cost
  * @param {TargetData[]} targets
  * @return {ResourceExpense}

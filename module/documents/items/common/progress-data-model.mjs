@@ -230,14 +230,14 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 * @param {Document} document
 	 * @param {ProgressDataModel} progress
 	 * @param {Number} increment
-	 * @param {FUActor|FUItem} source
+	 * @param {FUActor|FUItem|String} source
 	 * @returns {Promise}
 	 */
 	static async notifyUpdate(document, progress, increment, source) {
 		CommonEvents.progress(document, progress, 'update', increment, source);
 		const message = StringUtils.localize(increment > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock', {
 			clock: progress.name ?? progress.parent.parent.name,
-			source: source.name,
+			source: source.name ?? source,
 			step: increment,
 		});
 		return this.sendToChat(document, progress, message);
