@@ -74,7 +74,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 						return;
 					}
 					for (let sl = 1; sl <= skill.level.value; sl++) {
-						context.event.configuration.getDamage().addModifier(context.label, _amount * sl, types, {
+						context.event.config.getDamage().addModifier(context.label, _amount * sl, types, {
 							expense: {
 								amount: this.cost.amount * sl,
 								resource: this.cost.resource,
@@ -86,12 +86,12 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 			}
 		} else {
 			if (this.damageTypes.size > 0 || this.cost.amount > 0) {
-				context.event.configuration.getDamage().addModifier(context.label, _amount, types, {
+				context.event.config.getDamage().addModifier(context.label, _amount, types, {
 					expense: this.cost,
 					enabled: this.cost.amount === 0,
 				});
 			} else {
-				context.event.configuration.addDamageBonus(context.label, _amount);
+				context.event.config.addDamageBonus(context.label, _amount);
 			}
 		}
 	}

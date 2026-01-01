@@ -923,6 +923,10 @@ FU.collectionRemovalRule = Object.freeze({
 	all: 'FU.All',
 });
 
+/**
+ * @typedef {"increment" | "decrement"} FUScalarChange
+ */
+
 FU.scalarChange = {
 	increment: 'FU.Increment',
 	decrement: 'FU.Decrement',

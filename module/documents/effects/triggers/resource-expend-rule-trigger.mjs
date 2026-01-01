@@ -7,7 +7,6 @@ import { FU } from '../../../helpers/config.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @description Trigger based on a {@linkcode CalculateDamageEvent}
  * @extends RuleTriggerDataModel
  * @property {FUResourceType} resource
  * @property {FUExpenseSource} expenseSource

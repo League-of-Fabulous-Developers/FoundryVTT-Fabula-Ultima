@@ -7,6 +7,8 @@ import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TargetAction, Targeting } from '../helpers/targeting.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { CheckHooks } from '../checks/check-hooks.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
 
 /**
  * @typedef UpdateResourceData
@@ -400,11 +402,22 @@ function getTargetedAction(request) {
 		.withSelected();
 }
 
+const onProcessCheck = (check, actor, item, registerCallback) => {
+	registerCallback(async (check, actor, item) => {
+		const config = CheckConfiguration.configure(check);
+		if (config.hasResource) {
+			const data = config.getResource();
+			await CommonEvents.calculateResource(actor, item, config, data);
+		}
+	});
+};
+
 /**
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
 	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
+	Hooks.on(CheckHooks.processCheck, onProcessCheck);
 }
 
 export const ResourcePipeline = {

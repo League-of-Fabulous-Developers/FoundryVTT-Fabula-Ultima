@@ -350,4 +350,16 @@ export const statusEffects = [
 		name: 'FU.Crisis',
 		img: 'systems/projectfu/styles/static/statuses/Crisis.webp',
 	},
+	{
+		id: 'focus',
+		name: 'FU.Focus',
+		img: 'systems/projectfu/styles/static/statuses/Focus.webp',
+		system: {
+			duration: {
+				event: 'startOfTurn',
+				tracking: 'source',
+				interval: 1,
+			},
+		},
+	},
 ];

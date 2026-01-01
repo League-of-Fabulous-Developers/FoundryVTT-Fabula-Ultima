@@ -79,7 +79,7 @@ export const FUHooks = {
 	 */
 	RESOURCE_UPDATE: 'projectfu.events.resource',
 	/**
-	 * @description Dispatched after a resource update has been applied to an actor
+	 * @description Dispatched after a resource update has been expended to perform an action/
 	 * @example callback(event)
 	 * @remarks Uses {@link ResourceExpendEvent}.
 	 */
@@ -200,6 +200,12 @@ export const FUHooks = {
 	 * @remarks Uses {@link CalculateDamageEvent}
 	 */
 	CALCULATE_DAMAGE_EVENT: 'projectfu.events.calculateDamage',
+	/**
+	 * @description Dispatched when a request to apply a resource change is being processed.
+	 * @example callback(event)
+	 * @remarks Uses {@link CalculateResourceEvent}
+	 */
+	CALCULATE_RESOURCE_EVENT: 'projectfu.events.calculateResource',
 	/**
 	 * @description Dispatched when something happens, tagged by an identifier.
 	 * @example callback(event)

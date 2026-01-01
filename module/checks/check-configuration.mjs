@@ -102,6 +102,13 @@ class CheckInspector {
 	}
 
 	/**
+	 * @returns {Boolean}
+	 */
+	get hasResource() {
+		return this.check.additionalData[RESOURCE] !== undefined;
+	}
+
+	/**
 	 * @returns {DamageData}
 	 */
 	get damage() {
@@ -261,7 +268,7 @@ class CheckConfigurer extends CheckInspector {
 
 	/**
 	 * @param {FUResourceType} type
-	 * @param {String} amount
+	 * @param {Number} amount
 	 * @return {CheckConfigurer}
 	 */
 	setResource(type, amount) {
@@ -269,6 +276,17 @@ class CheckConfigurer extends CheckInspector {
 			type: type,
 			amount: amount,
 		};
+		return this;
+	}
+
+	/**
+	 * @param {Number} amount
+	 * @return {CheckConfigurer}
+	 */
+	addResource(amount) {
+		if (this.check.additionalData[RESOURCE]) {
+			this.check.additionalData[RESOURCE].amount += amount;
+		}
 		return this;
 	}
 
