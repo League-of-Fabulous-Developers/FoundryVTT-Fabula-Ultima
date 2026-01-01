@@ -41,6 +41,6 @@ export class ModifyResourceRuleAction extends RuleActionDataModel {
 
 		/** @type CheckConfigurer **/
 		const config = context.event.config;
-		config.addResource(_amount);
+		config.getResource().addModifier(context.label, _amount);
 	}
 }

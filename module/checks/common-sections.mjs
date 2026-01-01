@@ -280,8 +280,11 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			const resourceData = inspector.getResource();
 			if (resourceData) {
 				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-				const amount = await Expressions.evaluateAsync(resourceData.amount, expressionContext);
-				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, amount);
+				let ra = 0;
+				for (const mod of resourceData.modifiers) {
+					ra += await Expressions.evaluateAsync(mod.amount, expressionContext);
+				}
+				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}
 

@@ -32,7 +32,9 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 			amount: new fields.StringField({ blank: true }),
 			damageTypes: new fields.SetField(new fields.StringField()),
 			cost: new fields.EmbeddedDataField(ActionCostDataModel, {
-				resource: '',
+				resource: {
+					initial: '',
+				},
 			}),
 			variant: new fields.StringField({
 				initial: '',
@@ -82,6 +84,19 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 							enabled: false,
 						});
 					}
+					break;
+				}
+
+				case 'psychicGift': {
+					const brainwave = context.character.actor.resolveProgress('brainwave-clock');
+					context.event.config.getDamage().addModifier(context.label, _amount, types, {
+						expense: {
+							amount: this.cost.amount * brainwave.current,
+							resource: this.cost.resource,
+						},
+						enabled: false,
+					});
+					break;
 				}
 			}
 		} else {

@@ -12,9 +12,48 @@ import { CheckConfiguration } from '../checks/check-configuration.mjs';
 
 /**
  * @typedef UpdateResourceData
- * @property {Number|String} amount
  * @property {String} type
+ * @property {ScalarModifier[]} modifiers
  */
+
+export class UpdateResourceData {
+	static get baseModifier() {
+		return 'FU.Base';
+	}
+
+	constructor(data = {}) {
+		Object.assign(this, data);
+		if (!this.modifiers) {
+			this.modifiers = [];
+		}
+	}
+
+	/**
+	 * @param {FUResourceType} type
+	 * @param {number} amount
+	 * @returns {DamageData}
+	 */
+	static construct(type, amount) {
+		const data = new UpdateResourceData();
+		data.addModifier(this.baseModifier, amount);
+		data.type = type;
+		return data;
+	}
+
+	/**
+	 * @param {String} label
+	 * @param {Number} amount
+	 */
+	addModifier(label, amount) {
+		/** @type DamageModifier **/
+		const modifier = {
+			label: label,
+			amount: amount,
+			enabled: true,
+		};
+		this.modifiers.push(modifier);
+	}
+}
 
 /**
  * @property {Number} amount

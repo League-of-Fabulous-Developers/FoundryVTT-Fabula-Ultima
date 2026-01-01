@@ -969,6 +969,7 @@ FU.commandAction = {
 
 FU.modifyDamageVariant = {
 	overChannel: 'FU.OverChannel',
+	psychicGift: 'FU.ClassFeaturePsychicGiftLabel',
 };
 
 // --------------

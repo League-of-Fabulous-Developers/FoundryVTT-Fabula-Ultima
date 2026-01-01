@@ -1,7 +1,6 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
-import { ItemAttributesDataModel } from '../../items/common/item-attributes-data-model.mjs';
 
 const fields = foundry.data.fields;
 
@@ -9,7 +8,6 @@ const fields = foundry.data.fields;
  * @extends RuleTriggerDataModel
  * @inheritDoc
  * @property {Set<CheckType>} checkTypes
- * @property {ItemAttributesDataModel} attributes
  */
 export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
 	/** @inheritdoc */
@@ -27,7 +25,6 @@ export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),
-			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
 		});
 		return schema;
 	}
@@ -53,11 +50,6 @@ export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
 		if (!this.checkTypes.has(context.event.check.type)) {
 			return false;
 		}
-
-		// Check attributes in either order
-		const a = [this.attributes.primary.value, this.attributes.secondary.value].filter(Boolean);
-		const b = [context.event.check.primary, context.event.check.secondary];
-		if (a.length === 0) return true;
-		return a.every((v) => b.includes(v));
+		return true;
 	}
 }

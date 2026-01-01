@@ -8,6 +8,7 @@ import { CheckHooks } from './check-hooks.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from './damage-data.mjs';
+import { UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
 
 // Data keys
 const TARGETS = 'targets';
@@ -272,21 +273,7 @@ class CheckConfigurer extends CheckInspector {
 	 * @return {CheckConfigurer}
 	 */
 	setResource(type, amount) {
-		this.check.additionalData[RESOURCE] = {
-			type: type,
-			amount: amount,
-		};
-		return this;
-	}
-
-	/**
-	 * @param {Number} amount
-	 * @return {CheckConfigurer}
-	 */
-	addResource(amount) {
-		if (this.check.additionalData[RESOURCE]) {
-			this.check.additionalData[RESOURCE].amount += amount;
-		}
+		this.check.additionalData[RESOURCE] = UpdateResourceData.construct(type, amount);
 		return this;
 	}
 
