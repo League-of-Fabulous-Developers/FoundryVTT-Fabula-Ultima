@@ -10,6 +10,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 /**
  * @typedef UpdateResourceData
@@ -328,13 +329,18 @@ async function process(request) {
 
 /**
  * @param {ActionCostDataModel} cost
+ * @param {FUActor} actor
+ * @param {FUItem} item
  * @param {TargetData[]} targets
+ * @param source
  * @return {ResourceExpense}
  */
-function calculateExpense(cost, targets, source) {
+async function calculateExpense(cost, actor, item, targets, source) {
+	const context = ExpressionContext.fromTargetData(actor, item, targets);
+	const amount = await Expressions.evaluateAsync(cost.amount, context);
 	return {
 		resource: cost.resource,
-		amount: cost.amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
+		amount: amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
 		source: source,
 	};
 }

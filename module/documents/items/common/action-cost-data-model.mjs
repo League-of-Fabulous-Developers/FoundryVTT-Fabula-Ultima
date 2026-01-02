@@ -3,7 +3,7 @@ import { FU } from '../../../helpers/config.mjs';
 /**
  * @typedef ResourceExpense
  * @property {FUResourceType} resource
- * @property {String} amount
+ * @property {String|Number} amount If it's an expression, it will be a string.
  * @property {String[]} traits
  * @property {FUExpenseSource} source
  */
@@ -11,15 +11,15 @@ import { FU } from '../../../helpers/config.mjs';
 // TODO: Change to string across the board
 /**
  * @property {FUResourceType} resource The resource type
- * @property {Number} amount The resource cost
+ * @property {String} amount The resource cost
  * @property {boolean} perTarget Is the cost static or per target
  */
 export class ActionCostDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
-		const { NumberField, StringField, BooleanField } = foundry.data.fields;
+		const { StringField, BooleanField } = foundry.data.fields;
 		return {
 			resource: new StringField({ initial: 'mp', blank: true, choices: Object.keys(FU.resources), required: true }),
-			amount: new NumberField({ initial: 0, integer: true, nullable: false }),
+			amount: new StringField({ initial: '', blank: true, nullable: false }),
 			perTarget: new BooleanField({ initial: false }),
 		};
 	}

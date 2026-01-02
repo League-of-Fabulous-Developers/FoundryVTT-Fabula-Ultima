@@ -400,33 +400,29 @@ async function showFloatyText(targetData, localizedText) {
  * @param {Object} flags
  */
 const spendResource = (sections, actor, item, cost, targets, flags) => {
-	if (cost.amount === 0) {
-		return;
-	}
-	const itemGroup = InlineHelper.resolveItemGroup(item);
-	const expense = ResourcePipeline.calculateExpense(cost, targets, itemGroup);
-	if (expense.amount === 0) {
+	if (!cost.amount) {
 		return;
 	}
 
-	if (expense) {
-		Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-		sections.push(async () => {
-			// This can be modified here...
-			await CommonEvents.expendResource(actor, targets, expense);
-			return {
-				order: CHECK_RESULT,
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
-				data: {
-					name: item.name,
-					actor: actor.uuid,
-					item: item.uuid,
-					expense: expense,
-					icon: FU.resourceIcons[expense.resource],
-				},
-			};
-		});
-	}
+	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
+	sections.push(async () => {
+		const itemGroup = InlineHelper.resolveItemGroup(item);
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
+
+		// This can be modified here...
+		await CommonEvents.expendResource(actor, targets, expense);
+		return {
+			order: CHECK_RESULT,
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+			data: {
+				name: item.name,
+				actor: actor.uuid,
+				item: item.uuid,
+				expense: expense,
+				icon: FU.resourceIcons[expense.resource],
+			},
+		};
+	});
 };
 
 /**
