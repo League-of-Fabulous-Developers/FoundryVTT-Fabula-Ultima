@@ -7,6 +7,7 @@ import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
  * @property {CharacterInfo} character The character the rule element is being evaluated on.
  * @property {InlineSourceInfo} sourceInfo
  * @property {CheckResultV2|null} check Some events may have check information.
+ * @property {CheckConfigurer|null} config Configuration for a check, available in some events.
  * @property {FUItem|null} item The item the rule element could be on.
  * @property {CharacterInfo} source The source character of the event.
  * @property {CharacterInfo[]} targets The targets of the event.

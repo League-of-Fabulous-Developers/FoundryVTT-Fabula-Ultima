@@ -3,7 +3,7 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
-import { ProgressPipeline } from '../../../pipelines/progress.mjs';
+import { ProgressPipeline } from '../../../pipelines/progress-pipeline.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;

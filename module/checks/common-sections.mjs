@@ -14,7 +14,7 @@ import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { SkillTraits } from '../pipelines/traits.mjs';
-import { ProgressPipeline } from '../pipelines/progress.mjs';
+import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 
 /**
  * @param {CheckRenderData} sections

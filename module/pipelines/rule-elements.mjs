@@ -52,6 +52,7 @@ import { CheckRulePredicate } from '../documents/effects/predicates/check-rule-p
 import { PerformCheckRuleAction } from '../documents/effects/actions/perform-check-rule-action.mjs';
 import { ModifyResourceRuleAction } from '../documents/effects/actions/modify-resource-rule-action.mjs';
 import { CalculateResourceRuleTrigger } from '../documents/effects/triggers/calculate-resource-rule-trigger.mjs';
+import { OpenApplicationRuleAction } from '../documents/effects/actions/open-application-rule-action.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -87,6 +88,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, ModifyConsumableRuleAction.TYPE, ModifyConsumableRuleAction);
 	RuleActionRegistry.instance.register(systemId, PerformCheckRuleAction.TYPE, PerformCheckRuleAction);
 	RuleActionRegistry.instance.register(systemId, ModifyResourceRuleAction.TYPE, ModifyResourceRuleAction);
+	RuleActionRegistry.instance.register(systemId, OpenApplicationRuleAction.TYPE, OpenApplicationRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);
@@ -187,7 +189,10 @@ async function onCreateConsumableEvent(event) {
  * @returns {Promise<void>}
  */
 async function onInitializeCheckEvent(event) {
-	await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, event.targets, event.config.check);
+	await evaluate(FUHooks.INITIALIZE_CHECK_EVENT, event, event.source, event.targets, {
+		check: event.config.check,
+		config: event.config,
+	});
 }
 
 /**
@@ -195,7 +200,9 @@ async function onInitializeCheckEvent(event) {
  * @returns {Promise<void>}
  */
 async function onPerformCheckEvent(event) {
-	await evaluate(FUHooks.PERFORM_CHECK_EVENT, event, event.source, event.targets, event.check);
+	await evaluate(FUHooks.PERFORM_CHECK_EVENT, event, event.source, event.targets, {
+		check: event.check,
+	});
 }
 
 /**
@@ -203,7 +210,9 @@ async function onPerformCheckEvent(event) {
  * @returns {Promise<void>}
  */
 async function onResolveCheckEvent(event) {
-	await evaluate(FUHooks.RESOLVE_CHECK_EVENT, event, event.source, event.targets, event.check);
+	await evaluate(FUHooks.RESOLVE_CHECK_EVENT, event, event.source, event.targets, {
+		check: event.check,
+	});
 }
 
 /**
@@ -211,7 +220,10 @@ async function onResolveCheckEvent(event) {
  * @returns {Promise<void>}
  */
 async function onRenderCheckEvent(event) {
-	await evaluate(FUHooks.RENDER_CHECK_EVENT, event, event.source, event.targets, event.check);
+	await evaluate(FUHooks.RENDER_CHECK_EVENT, event, event.source, event.targets, {
+		check: event.check,
+		config: event.config,
+	});
 }
 
 /**
@@ -251,9 +263,9 @@ function getSceneCharacters(targets) {
  * @param {*} event
  * @param {CharacterInfo} source
  * @param {CharacterInfo[]} targets
- * @param {CheckResultV2|CheckV2} check
+ * @param {RuleElementContext} data Properties for the rule element context.
  */
-async function evaluate(type, event, source, targets, check = undefined) {
+async function evaluate(type, event, source, targets, data) {
 	const sceneCharacters = getSceneCharacters(targets);
 	for (const character of sceneCharacters) {
 		for (const effect of character.actor.allEffects()) {
@@ -269,10 +281,10 @@ async function evaluate(type, event, source, targets, check = undefined) {
 				character: character,
 				source: source,
 				targets: targets,
-				check: check,
 				scene: {
 					characters: sceneCharacters,
 				},
+				...data,
 			};
 			if (effect.parent instanceof FUItem) {
 				contextData.item = effect.parent;

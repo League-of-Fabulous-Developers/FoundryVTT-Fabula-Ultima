@@ -104,7 +104,7 @@ import { RuleElementRegistry } from './documents/effects/rule-element-data-model
 import { RuleActionRegistry } from './documents/effects/actions/rule-action-data-model.mjs';
 import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-data-model.mjs';
 import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
-import { ProgressPipeline } from './pipelines/progress.mjs';
+import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
