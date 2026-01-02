@@ -12,12 +12,93 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover an 5 additional Hit Points and you may immediately recover from a single status effect of your choice.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[5 hp]</p></li></ul>"
+      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover an 5 additional Hit Points and you may immediately recover from a single status effect of your choice.</p>"
     },
     "source": "FUTF156",
     "fuid": "amphibia"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Amphibia",
+      "img": "icons/creatures/amphibians/frog-water-teal.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Rbn4ehZj3wW6eCwr": {
+              "type": "ruleElement",
+              "_id": "Rbn4ehZj3wW6eCwr",
+              "trigger": {
+                "_id": "DUhcpnA0eyfqKIR1",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "target",
+                "resource": "hp",
+                "change": "increment"
+              },
+              "actions": {
+                "upcvpAUzVWITjOKa": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "upcvpAUzVWITjOKa",
+                  "identifier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": true,
+      "_id": "RfljzCCy3mfkZEzo",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingRecovery.hp",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767290101882,
+        "modifiedTime": 1767291754096,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!R2Opf7lWAOrOiiC6.RfljzCCy3mfkZEzo"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -29,10 +110,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744557530044,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767291752195,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

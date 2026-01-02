@@ -33,6 +33,7 @@ export const Flags = Object.freeze({
 		ResourceGain: 'ResourceGain',
 		ResourceLoss: 'ResourceLoss',
 		Progress: 'Progress',
+		Application: 'Application',
 		UseMetaCurrency: 'UseMetaCurrency',
 		Targets: 'Targets',
 		RevertedAction: 'RevertedAction',

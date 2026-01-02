@@ -156,6 +156,10 @@ export const FUHandlebars = Object.freeze({
 			return Math.clamp(val, min, max);
 		});
 
+		Handlebars.registerHelper('pfuLookupByIndex', function (array, index) {
+			return array[index];
+		});
+
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);

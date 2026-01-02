@@ -43,7 +43,7 @@ async function filterTargetsByRule(actor, item, targets) {
 
 	switch (targeting.rule) {
 		case 'self':
-			return [actor];
+			return [];
 		case 'single':
 			if (targets.length === 0) {
 				return [];

@@ -12,12 +12,123 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>bolt</strong>. While your <strong>unarmed strikes</strong> deal <strong>bolt</strong> damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>slow</strong>.</p><hr><ul><li><p><strong>You Receive: </strong>@TYPE[damage all bolt]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[slow]</p></li></ul>"
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>bolt</strong>. While your <strong>unarmed strikes</strong> deal <strong>bolt</strong> damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>slow</strong>.</p>"
     },
     "source": "FUTF156",
     "fuid": "electrophora"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Electrophora",
+      "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "9KknfP21Rpx6Brln": {
+              "type": "ruleElement",
+              "_id": "9KknfP21Rpx6Brln",
+              "trigger": {
+                "_id": "blMKWHxR7zBW2WNX",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "bolt",
+                "damageSources": [],
+                "damageThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                }
+              },
+              "predicates": {
+                "l5MuPDUo18ZYXlut": {
+                  "type": "weaponRulePredicate",
+                  "_id": "l5MuPDUo18ZYXlut",
+                  "weaponType": "melee"
+                }
+              },
+              "actions": {
+                "Li6gJ5pUT1wTs9FB": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "Li6gJ5pUT1wTs9FB",
+                  "effect": "slow"
+                }
+              }
+            },
+            "s2E4rfw3xK7jV4tT": {
+              "type": "ruleElement",
+              "_id": "s2E4rfw3xK7jV4tT",
+              "trigger": {
+                "_id": "yS3b9QZ1b3gw08Ge",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack",
+                  "spell"
+                ]
+              },
+              "actions": {
+                "jZhO7rgLXRDNn5K0": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "jZhO7rgLXRDNn5K0",
+                  "damageTypes": [
+                    "bolt"
+                  ],
+                  "amount": "",
+                  "cost": {
+                    "resource": ""
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": true,
+      "_id": "rpmUEDujHcoMFtnv",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767290441788,
+        "modifiedTime": 1767291768265,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!vNgf1mOEsQSpbOiv.rpmUEDujHcoMFtnv"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -29,10 +140,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744565454570,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767290543217,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1214,6 +1214,8 @@
 		"ClassFeaturePsychicGiftLabel": "Psychic Gift",
 		"ClassFeaturePsychicGiftTrigger": "Trigger",
 		"ClassFeatureTherioformLabel": "Therioform",
+		"ClassFeatureTherioformHint": "You may manifest up to two therioforms that you have learned.",
+		"ClassFeatureTherioformManifest": "The following therioforms have been manifested",
 		"ClassFeatureTherioformAssociatedTherioforms": "Associated Therioforms",
 		"ClassFeatureTherioformOptionShowAssociatedTherioformsName": "Show associated Therioforms section?",
 		"ClassFeatureTherioformOptionShowAssociatedTherioformsHint": "Show the section for the NPCs associated therioforms on the NPC sheet?",
@@ -1641,6 +1643,7 @@
 		"RuleActionPlaySoundEffect": "Play Sound Effect",
 		"RuleActionExecuteMacro": "Execute Macro",
 		"RuleActionModifyConsumable": "Modify Consumable",
+		"RuleActionOpenApplication": "Open Application",
 		"RuleTrigger": "Rule Trigger",
 		"RuleTriggerCombat": "Combat",
 		"RuleTriggerAttack": "Attack",
@@ -1720,6 +1723,9 @@
 		"Local": "Local",
 		"Inclusive": "Inclusive",
 		"SkillConditionMet": "The condition for this skill has been met.",
-		"ChatPerformRitual": "Perform Ritual"
+		"ChatPerformRitual": "Perform Ritual",
+		"Application": "Application",
+		"Transform": "Transform",
+		"Selection": "Selection"
 	}
 }

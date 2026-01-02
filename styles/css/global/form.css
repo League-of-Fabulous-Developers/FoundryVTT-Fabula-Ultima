@@ -19,6 +19,22 @@
 	gap: 4px;
 }
 
+.fu-form__message {
+	font-size: var(--font-size-base);
+	font-family: var(--font-primary) sans-serif;
+	color: var(--color-text-dark);
+
+	text-align: left;
+	padding: 0.313rem 0.5rem;
+	margin: 5px 0;
+	-webkit-box-shadow: 1px 2px #2b4a42;
+	box-shadow: 1px 2px #2b4a42;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
+	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+	border-radius: 10px;
+	border-top: 1px solid #c9c7b8;
+}
+
 .fu-form__array__element__input {
 	width: 100%;
 }

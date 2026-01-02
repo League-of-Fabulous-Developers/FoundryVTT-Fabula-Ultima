@@ -244,11 +244,14 @@ function evaluate(expression, context) {
 	}
 
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
-	const result = MathHelper.evaluate(substitutedExpression);
+	let result = MathHelper.evaluate(substitutedExpression);
 
 	if (Number.isNaN(result)) {
 		throw new Error(`Failed to evaluate expression ${substitutedExpression}`);
 	}
+
+	// FU always rounds down numbers
+	result = round(result);
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
 	return result;
@@ -281,11 +284,14 @@ async function evaluateAsync(expression, context) {
 	}
 
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
-	const result = MathHelper.evaluate(substitutedExpression);
+	let result = MathHelper.evaluate(substitutedExpression);
 
 	if (Number.isNaN(result)) {
 		throw new Error(`Failed to evaluate expression ${substitutedExpression}`);
 	}
+
+	// FU always rounds down numbers
+	result = round(result);
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
 	return result;
@@ -341,6 +347,16 @@ function evaluateVariables(expression, context) {
 			case 'ins': {
 				return getAttributeSize(context.resolveActorOrHighestLevelTarget(), symbol);
 			}
+			// Resource: Current
+			case 'hp':
+			case 'mp': {
+				return context.resolveActorOrHighestLevelTarget().system.resources[symbol].value;
+			}
+			// Resource: Max
+			case 'mhp':
+			case 'mmp': {
+				return context.resolveActorOrHighestLevelTarget().system.resources[symbol].max;
+			}
 			// Progress (From effect)
 			case 'pg': {
 				context.assertEffect(match);
@@ -385,6 +401,14 @@ function evaluateVariables(expression, context) {
 		}
 	}
 	return expression.replace(pattern, evaluate);
+}
+
+/**
+ * @param {Number} value
+ * @remarks In FU, numbers are always rounded down>
+ */
+function round(value) {
+	return Math.floor(value);
 }
 
 /**

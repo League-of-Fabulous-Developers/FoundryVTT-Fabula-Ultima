@@ -3,9 +3,11 @@
  */
 export class DataModelRegistry {
 	/** @type {Map<String, DataModel>} */
-	#qualifiedTypes = new Map();
-	/** @type {Map<String, DataModel>} */
 	#types = new Map();
+	/** @type {Map<String, DataModel>} */
+	#qualifiedTypes = new Map();
+	/** @type {Map<String, String>} */
+	#typeQualification = new Map();
 
 	/**
 	 * @param {object} config
@@ -63,6 +65,14 @@ export class DataModelRegistry {
 	}
 
 	/**
+	 * @param {String} type An unqualified type.
+	 * @returns {String} A qualified type
+	 */
+	qualify(type) {
+		return this.#typeQualification.get(type);
+	}
+
+	/**
 	 * @returns {Record<string, string>}
 	 * @remarks Fully qualified
 	 */
@@ -112,8 +122,9 @@ export class DataModelRegistry {
 			throw new Error(`${this.kind} ${qualifiedType} is already registered`);
 		}
 
-		this.#qualifiedTypes.set(qualifiedType, model);
 		this.#types.set(type, model);
+		this.#qualifiedTypes.set(qualifiedType, model);
+		this.#typeQualification.set(type, qualifiedType);
 		return qualifiedType;
 	}
 }
