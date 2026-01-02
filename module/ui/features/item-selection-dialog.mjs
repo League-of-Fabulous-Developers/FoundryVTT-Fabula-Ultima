@@ -4,13 +4,11 @@ import FoundryUtils from '../../helpers/foundry-utils.mjs';
  * @typedef ItemSelectionData
  * @property {String} title
  * @property {String} message
- * @property {Object[]} items
+ * @property {FUItem[]|FUActiveEffect[]} items
  * @property {Number} max
- * @property {function(Object): string} getName   Function to get the name of an item
- * @property {function(Object): string} getImage  Function to get the image URL of an item
  */
 
-export class SelectionGridDialog {
+export class ItemSelectionDialog {
 	/**
 	 * @param {ItemSelectionData} data
 	 * @returns {Object[]} selected
@@ -18,8 +16,6 @@ export class SelectionGridDialog {
 	static async open(data) {
 		const context = {
 			...data,
-			names: data.items.map((item) => data.getName(item)),
-			images: data.items.map((item) => data.getImage(item)),
 			/** @type Object[] **/
 			selected: [],
 		};

@@ -7,7 +7,7 @@ import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
-import { SelectionGridDialog } from '../ui/features/selection-grid-dialog.mjs';
+import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
@@ -37,14 +37,11 @@ async function handleTheriomorphosis(actor, item) {
 		message: StringUtils.localize('FU.ClassFeatureTherioformHint'),
 		max: 2, // TODO: Check for heroic skill
 		items: formEffects,
-		getName: (effect) => effect.name,
-		getImage: (effect) => effect.img,
 	};
-
 	for (const effect of formEffects) {
 		await effect.update({ disabled: true });
 	}
-	const selectedForms = await SelectionGridDialog.open(data);
+	const selectedForms = await ItemSelectionDialog.open(data);
 	if (selectedForms) {
 		for (const effect of selectedForms) {
 			await effect.update({ disabled: !effect.disabled });
