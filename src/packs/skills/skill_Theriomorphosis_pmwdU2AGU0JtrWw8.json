@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, you learn a <strong>therioform </strong>(see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>).</p><p>You may use an action and spend <strong>one third of your current Hit Points</strong> (rounded down) to manifest the effects of <strong>up to two therioforms</strong> you have learned. The details of this transformation are explained on the next page.</p><hr /><ul><li><p><span style=\"font-family:'PT Sans Narrow', sans-serif\">For </span><strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</p></li><li><p><strong>Cost:</strong> @LOSS[(@target.resources.hp.value/3) hp]{1/3rd Current HP}</p></li></ul>",
+    "description": "<p>Each time you acquire this Skill, you learn a <strong>therioform </strong>(see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>).</p><p>You may use an action and spend <strong>one third of your current Hit Points</strong> (rounded down) to manifest the effects of <strong>up to two therioforms</strong> you have learned. The details of this transformation are explained on the next page.</p>",
     "isFavored": {
       "value": false
     },
@@ -115,17 +115,102 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "theriomorphosis"
+    "fuid": "theriomorphosis",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
-  "flags": {},
+  "effects": [
+    {
+      "name": "Theriomorphosis",
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_teriomorphosis.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Yec5OUMbfBFwQprM": {
+              "type": "ruleElement",
+              "_id": "Yec5OUMbfBFwQprM",
+              "trigger": {
+                "_id": "6NZsFOuogUqYmdDp",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "eHEFcn8gfT0481xK": {
+                  "type": "openApplicationRuleAction",
+                  "_id": "eHEFcn8gfT0481xK",
+                  "application": "theriomorphosis"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "RPlOX0C6CSWtmnFM",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767389458707,
+        "modifiedTime": 1767389487122,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!pmwdU2AGU0JtrWw8.RPlOX0C6CSWtmnFM"
+    }
+  ],
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711429218464,
-    "modifiedTime": 1744559520638,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767389552006,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -47,8 +47,8 @@
                   "spell"
                 ],
                 "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
+                  "operator": "greaterThan",
+                  "amount": 20
                 }
               },
               "predicates": {
@@ -128,7 +128,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767290612844,
-        "modifiedTime": 1767291787648,
+        "modifiedTime": 1767389771710,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!1QqNBwC1WQKDxk3s.hExkPSM44Mphgtmr"

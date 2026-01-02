@@ -46,8 +46,8 @@
                   "attack"
                 ],
                 "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
+                  "operator": "greaterThan",
+                  "amount": 20
                 }
               },
               "predicates": {
@@ -128,7 +128,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767290972187,
-        "modifiedTime": 1767291809593,
+        "modifiedTime": 1767389718547,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!dBGoRsrayjBXuM31.onvm9tIEydrW2Ypc"
