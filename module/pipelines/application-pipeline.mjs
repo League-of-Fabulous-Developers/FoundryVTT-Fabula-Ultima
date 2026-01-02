@@ -6,6 +6,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
+import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 
 /**
  * @desc An application used for specific class features.
@@ -15,14 +16,27 @@ import { ChatAction } from '../helpers/chat-action.mjs';
  */
 
 /**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @returns {Promise<void>}
+ */
+async function handleTheriomorphosis(actor, item) {
+	// TODO: Implement...
+	const items = actor.itemTypes;
+	const subtype = ClassFeatureRegistry.instance.qualify('therioform');
+	/** @type {FUItem[]} **/
+	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
+	const formEffects = classFeatures.flatMap((it) => [...it.effects.values()]);
+	console.debug(`Forms: ${formEffects}`);
+}
+
+/**
  * @type {Record<string, FeatureApplication>}
  */
 const applications = Object.freeze({
 	theriomorphosis: {
 		label: 'FU.Transform',
-		open: async (actor, item) => {
-			// TODO: Implement...
-		},
+		open: handleTheriomorphosis,
 	},
 });
 
