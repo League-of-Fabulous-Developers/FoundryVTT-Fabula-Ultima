@@ -26,29 +26,32 @@
 
 {{#if (or (gt difficulty 0) result.crit result.fumble)}}
     <div style="clear: both;"></div>
-    <div class='detail-desc flexrow flex-group-center desc total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}{{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}success{{else}}failure{{/if}}{{/if}}{{/if}}'>
-            <div>
-				<span>{{result.total}}</span>
-			</div>
-            <div class="">
-                {{#if result.crit}}
-                    <span>{{localize 'FU.Critical'}}!</span>
-                {{else if result.fumble}}
-                    <span>{{localize 'FU.Fumble'}}</span>
-                {{else if (gte result.total difficulty)}}
-                    <span>{{localize 'FU.Success'}}</span>
-                {{else}}
-                    <span>{{localize 'FU.Failure'}}</span>
-                {{/if}}
-            </div>
+    <div class='fu-check chat-desc flexrow flex-group-center total {{pfuCheckOutcome result difficulty}}'>
+		<div class="fu-check__result flex-group-center">
+			<img class="fu-icon--s fu-check__dice" alt="dice"/>
+			<span class="fu-check__result-text">{{result.total}}</span>
+		</div>
+		<div class="fu-check__outcome">
+			{{#if result.crit}}
+				<span>{{localize 'FU.Critical'}}!</span>
+			{{else if result.fumble}}
+				<span>{{localize 'FU.Fumble'}}</span>
+			{{else if (gte result.total difficulty)}}
+				<span>{{localize 'FU.Success'}}</span>
+			{{else}}
+				<span>{{localize 'FU.Failure'}}</span>
+			{{/if}}
+		</div>
+
     </div>
 {{else}}
-    <div class='detail-desc flexrow total {{#if result.crit}}critical{{else if result.fumble}}fumble{{else}}default{{/if}}'>
-		<div>
-			<span>{{result.total}}</span>
+	<div class='fu-check chat-desc flexrow flex-group-center total {{pfuCheckOutcome result}}'>
+		<div class="fu-check__result flex-group-center">
+			<img class="fu-icon--s fu-check__dice" alt="dice"/>
+			<span class="fu-check__result-text">{{result.total}}</span>
 		</div>
 		{{#if (or result.crit result.fumble)}}
-			<div class="">
+			<div class="fu-check__outcome">
 				{{#if result.crit}}
 					<span>{{localize 'FU.Critical'}}!</span>
 				{{else if result.fumble}}
