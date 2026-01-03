@@ -543,21 +543,23 @@ function onRenderChatMessage(message, html) {
 			return handleDamageApplication(event, targets, sourceInfo, damageData, {}, traits);
 		};
 
-		const handleClick = async (event, getTargetsFunction, action, alternateAction) => {
-			event.preventDefault();
-			if (!disabled) {
-				disabled = true;
-				const targets = await getTargetsFunction(event);
-				if (event.ctrlKey || event.metaKey) {
-					await alternateAction(event, targets);
-				} else {
-					await action(event, targets);
+		// TODO: Update someday
+		html.querySelectorAll(`a[data-action="applyDamage"]`).forEach((element) =>
+			element.addEventListener('click', async (event) => {
+				event.preventDefault();
+				if (!disabled) {
+					disabled = true;
+					const targets = await Pipeline.getSingleTarget(event);
+					if (event.ctrlKey || event.metaKey) {
+						await customizeDamage(event, targets);
+					} else {
+						await applyDefaultDamage(event, targets);
+					}
+					disabled = false;
 				}
-				disabled = false;
-			}
-		};
+			}),
+		);
 
-		html.querySelectorAll(`a[data-action="applyDamage"]`).forEach((element) => element.addEventListener('click', (event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage)));
 		html.querySelector(`a[data-action="selectDamageCustomizer"]`)?.addEventListener('click', async (event) => {
 			event.preventDefault();
 			if (!disabled) {
