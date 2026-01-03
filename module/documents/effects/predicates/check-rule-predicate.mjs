@@ -80,19 +80,35 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 
 		// Check outcome
 		if (this.outcome) {
-			for (const target of context.event.targets) {
-				switch (target.check) {
-					case 'hit':
-						if (this.outcome !== 'success') {
-							return false;
+			switch (this.outcome) {
+				case 'critical':
+					if (!context.config.isCritical()) {
+						return false;
+					}
+					break;
+
+				case 'fumble':
+					if (!context.config.isFumble()) {
+						return false;
+					}
+					break;
+
+				default:
+					for (const target of context.event.targets) {
+						switch (target.check) {
+							case 'hit':
+								if (this.outcome !== 'success') {
+									return false;
+								}
+								break;
+							case 'miss':
+								if (this.outcome !== 'failure') {
+									return false;
+								}
+								break;
 						}
-						break;
-					case 'miss':
-						if (this.outcome !== 'failure') {
-							return false;
-						}
-						break;
-				}
+					}
+					break;
 			}
 		}
 
