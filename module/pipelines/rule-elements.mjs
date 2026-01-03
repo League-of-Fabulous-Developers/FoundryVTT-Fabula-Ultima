@@ -266,7 +266,8 @@ function getSceneCharacters(targets) {
  * @param {RuleElementContext} data Properties for the rule element context.
  */
 async function evaluate(type, event, source, targets, data) {
-	const sceneCharacters = getSceneCharacters(targets);
+	// Always include the source as part of the scene character pool; useful for when they are not part of the encounter
+	const sceneCharacters = getSceneCharacters([source, ...targets]);
 	for (const character of sceneCharacters) {
 		for (const effect of character.actor.allEffects()) {
 			const disabled = effect.suppressed || effect.disabled;

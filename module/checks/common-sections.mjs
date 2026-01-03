@@ -403,6 +403,10 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 	if (!cost.amount) {
 		return;
 	}
+	const _amount = Number.parseInt(cost.amount);
+	if (_amount === 0) {
+		return;
+	}
 
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 	sections.push(async () => {

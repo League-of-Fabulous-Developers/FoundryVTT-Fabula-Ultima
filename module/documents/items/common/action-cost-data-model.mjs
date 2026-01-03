@@ -19,7 +19,7 @@ export class ActionCostDataModel extends foundry.abstract.DataModel {
 		const { StringField, BooleanField } = foundry.data.fields;
 		return {
 			resource: new StringField({ initial: 'mp', blank: true, choices: Object.keys(FU.resources), required: true }),
-			amount: new StringField({ initial: '', blank: true, nullable: false }),
+			amount: new StringField({ initial: '', blank: true, nullable: true }),
 			perTarget: new BooleanField({ initial: false }),
 		};
 	}
