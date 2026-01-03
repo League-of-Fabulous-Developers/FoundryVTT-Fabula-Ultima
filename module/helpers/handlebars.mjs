@@ -156,9 +156,30 @@ export const FUHandlebars = Object.freeze({
 			return Math.clamp(val, min, max);
 		});
 
-		Handlebars.registerHelper('pfuLookupByIndex', function (array, index) {
-			return array[index];
-		});
+		Handlebars.registerHelper(
+			'pfuCheckOutcome',
+			/**
+			 * @param result
+			 * @param difficulty
+			 */
+			function (result, difficulty) {
+				if (result.critical) {
+					return 'critical';
+				} else if (result.fumble) {
+					return 'fumble';
+				}
+
+				if (Number.isInteger(difficulty)) {
+					if (result.total >= difficulty) {
+						return 'success';
+					} else {
+						return 'failure';
+					}
+				}
+
+				return 'default';
+			},
+		);
 
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);

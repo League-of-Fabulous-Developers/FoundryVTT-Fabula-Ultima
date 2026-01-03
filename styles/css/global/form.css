@@ -132,6 +132,21 @@
 	border-radius: 50%;
 }
 
+.fu-icon__overlay {
+	position: relative;
+	display: grid;
+	place-items: center;
+}
+
+.fu-icon__overlay__text {
+	position: absolute;
+	inset: 0; /* shorthand for top/right/bottom/left: 0 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none; /* avoids blocking clicks on the icon */
+}
+
 .fu-icon,
 .fu-icon--m,
 .fu-icon--s,

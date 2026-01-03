@@ -868,15 +868,17 @@ FU.checkParity = Object.freeze({
 });
 
 /**
- * @typedef {"success" | "failure"} FUCheckOutcome
+ * @typedef {"success" | "failure" | "critical" | "fumble"} FUCheckOutcome
  */
 
 /**
- * @description A predicate based on the outcome of an attack check
+ * @description A predicate based on the outcome of an attack check.
  */
 FU.checkOutcome = Object.freeze({
 	success: 'FU.Success',
 	failure: 'FU.Failure',
+	critical: 'FU.Critical',
+	fumble: 'FU.Fumble',
 });
 
 /**

@@ -4,6 +4,7 @@
 	--icon-fus-star: url('../../static/icons/fus-star.svg');
 	--icon-fus-star2: url('../../static/icons/fus-star2.svg');
 	--icon-fus-star2-border: url('../../static/icons/fus-star2-border.svg');
+	--icon-fu-check-result: url('../../static/icons/check-result.svg');
 
 	--icon-fus-offensive: url('../../static/icons/fus-offensive.svg');
 	--icon-fus-martial: url('../../static/icons/fus-martial.svg');
@@ -283,6 +284,10 @@
 
 .fus-star2-border {
 	background-image: var(--icon-fus-star2-border);
+}
+
+.fu-check__dice {
+	background-image: var(--icon-fu-check-result);
 }
 
 .fu-effect-placeholder {
