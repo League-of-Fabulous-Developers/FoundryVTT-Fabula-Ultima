@@ -107,27 +107,25 @@ function lossEnricher(text, options) {
  * @returns {Promise<void>}
  */
 async function onRender(element) {
-	const document = InlineHelper.resolveDocument(element);
+	const renderContext = await InlineHelper.getRenderContext(element);
 	const target = element.firstElementChild;
-	const sourceInfo = InlineHelper.determineSource(document, target);
-	const dataset = target.dataset;
-	const type = dataset.type;
-	const uncapped = dataset.uncapped === 'true';
+	const type = renderContext.dataset.type;
+	const uncapped = renderContext.dataset.uncapped === 'true';
 
 	element.addEventListener('click', async function () {
 		const targets = await targetHandler();
 		if (targets.length > 0) {
-			let context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-			let check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			let context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+			let check = renderContext.document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 			if (check) {
 				context = context.withCheck(check);
 			}
-			const amount = await Expressions.evaluateAsync(dataset.amount, context);
+			const amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
 
 			if (target.classList.contains(classInlineRecovery)) {
-				await applyRecovery(sourceInfo, targets, type, amount, uncapped);
+				await applyRecovery(renderContext.sourceInfo, targets, type, amount, uncapped);
 			} else if (target.classList.contains(classInlineLoss)) {
-				await applyLoss(sourceInfo, targets, type, amount);
+				await applyLoss(renderContext.sourceInfo, targets, type, amount);
 			}
 		}
 	});
@@ -135,10 +133,10 @@ async function onRender(element) {
 	element.addEventListener('dragstart', function (event) {
 		const data = {
 			type: target.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
-			sourceInfo,
-			recoveryType: dataset.type,
-			amount: dataset.amount,
-			uncapped: dataset.uncapped === 'true',
+			sourceInfo: renderContext.sourceInfo,
+			recoveryType: renderContext.dataset.type,
+			amount: renderContext.dataset.amount,
+			uncapped: renderContext.dataset.uncapped === 'true',
 		};
 
 		event.dataTransfer.setData('text/plain', JSON.stringify(data));
