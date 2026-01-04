@@ -61,15 +61,17 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAttributeCheck = (sections, check, actor, item) => {
+let onRenderAttributeCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'attribute' && check.additionalData[skillForAttributeCheck]) {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
+		const inspector = CheckConfiguration.inspect(check);
 		CommonSections.itemFlavor(sections, skill);
 		CommonSections.tags(sections, getTags(skill), CHECK_DETAILS);
 		if (skill.system.hasResource.value) {
 			CommonSections.resource(sections, skill.system.rp, CHECK_DETAILS);
 		}
 		CommonSections.description(sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
+		CommonSections.actions(sections, actor, item, [], flags, inspector);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
@@ -115,7 +117,7 @@ function getTags(skill) {
  * @property {string} class.value
  * @property {UseWeaponDataModelV2} useWeapon
  * @property {ItemAttributesDataModelV2} attributes
- * @property {number} accuracy
+ * @property {String} accuracy A number or expression for the accuracy to be used.
  * @property {Defense} defense
  * @property {DamageDataModelV2} damage
  * @property {ResourceDataModel} resource
@@ -160,7 +162,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 					secondary: 'ins',
 				},
 			}),
-			accuracy: new NumberField({ initial: 0, integer: true, nullable: false }),
+			accuracy: new StringField({ initial: '', blank: true, nullable: false }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses), blank: true }),
 			damage: new EmbeddedDataField(DamageDataModelV2, {}),
 			resource: new EmbeddedDataField(ResourceDataModel, {}),
@@ -212,7 +214,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 						secondary: this.attributes.secondary,
 					},
 					this.parent,
-					this.#initializeAttributeCheck(),
+					this.#initializeAttributeCheck(modifiers),
 				);
 			}
 		}
@@ -233,6 +235,44 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			if (skill.resource.enabled) {
 				config.setResource(skill.resource.type, skill.resource.amount);
 			}
+		};
+	}
+
+	/**
+	 * @return {CheckCallback}
+	 */
+	#initializeAttributeCheck(modifiers) {
+		return async (check, actor, item) => {
+			/** @type SkillDataModel **/
+			const skill = item.system;
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			if (skill.defense && targets.length === 1) {
+				let dl;
+				switch (skill.defense) {
+					case 'def':
+						dl = targets[0].def;
+						break;
+
+					case 'mdef':
+						dl = targets[0].mdef;
+						break;
+				}
+				config.setDifficulty(dl);
+			}
+
+			if (this.accuracy) {
+				const calculatedAccuracyBonus = await Expressions.evaluateAsync(this.accuracy, context);
+				if (calculatedAccuracyBonus > 0) {
+					check.modifiers.push({
+						label: 'FU.CheckBonus',
+						value: calculatedAccuracyBonus,
+					});
+				}
+			}
+			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
 		};
 	}
 
@@ -264,6 +304,8 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			/** @type SkillDataModel **/
 			const skill = item.system;
 			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
 			config.addTraits('skill');
 			config.addTraitsFromItemModel(this.traits);
@@ -273,10 +315,13 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			config.setWeaponTraits(config.getWeaponTraits());
 
 			if (this.accuracy) {
-				check.modifiers.push({
-					label: 'FU.CheckBonus',
-					value: this.accuracy,
-				});
+				const calculatedAccuracyBonus = await Expressions.evaluateAsync(this.accuracy, context);
+				if (calculatedAccuracyBonus > 0) {
+					check.modifiers.push({
+						label: 'FU.CheckBonus',
+						value: calculatedAccuracyBonus,
+					});
+				}
 			}
 
 			if (skill.resource.enabled) {
@@ -307,8 +352,6 @@ export class SkillDataModel extends FUStandardItemDataModel {
 
 				const onRoll = this.damage.onRoll;
 				if (onRoll) {
-					const targets = config.getTargets();
-					const context = ExpressionContext.fromTargetData(actor, item, targets);
 					const extraDamage = await Expressions.evaluateAsync(onRoll, context);
 					if (extraDamage > 0) {
 						config.addDamageBonus('FU.DamageOnRoll', extraDamage);
@@ -322,19 +365,6 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			}
 
 			config.addEffects(skill.effects.entries);
-		};
-	}
-
-	/**
-	 * @return {CheckCallback}
-	 */
-	#initializeAttributeCheck() {
-		return (check) => {
-			check.modifiers.push({
-				label: 'FU.CheckBonus',
-				value: this.accuracy,
-			});
-			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
 		};
 	}
 

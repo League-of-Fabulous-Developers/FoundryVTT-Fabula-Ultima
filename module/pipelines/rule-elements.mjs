@@ -53,6 +53,7 @@ import { PerformCheckRuleAction } from '../documents/effects/actions/perform-che
 import { ModifyResourceRuleAction } from '../documents/effects/actions/modify-resource-rule-action.mjs';
 import { CalculateResourceRuleTrigger } from '../documents/effects/triggers/calculate-resource-rule-trigger.mjs';
 import { OpenApplicationRuleAction } from '../documents/effects/actions/open-application-rule-action.mjs';
+import { RankRulePredicate } from '../documents/effects/predicates/rank-rule-predicate.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -94,6 +95,7 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, EffectRulePredicate.TYPE, EffectRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, SpeciesRulePredicate.TYPE, SpeciesRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, RankRulePredicate.TYPE, RankRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, WeaponRulePredicate.TYPE, WeaponRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, ResourceRulePredicate.TYPE, ResourceRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, TargetingRulePredicate.TYPE, TargetingRulePredicate);

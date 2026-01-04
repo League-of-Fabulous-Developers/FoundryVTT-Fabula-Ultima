@@ -94,6 +94,9 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 					break;
 
 				default:
+					if (context.config.isFumble()) {
+						return false;
+					}
 					for (const target of context.event.targets) {
 						switch (target.check) {
 							case 'hit':

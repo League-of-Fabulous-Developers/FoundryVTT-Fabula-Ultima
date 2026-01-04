@@ -662,6 +662,10 @@ FU.combatHudThemeTemplates = {
 	'fu-pixel': 'combat-hud-pixel',
 };
 
+/**
+ * @typedef {'soldier', 'elite', 'champion'} FUAdversaryRank
+ */
+
 FU.rank = {
 	soldier: 'FU.Soldier',
 	elite: 'FU.Elite',

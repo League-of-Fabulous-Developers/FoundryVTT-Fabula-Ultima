@@ -437,6 +437,7 @@ function getTargetedAction(request) {
 	})
 		.requiresOwner()
 		.setFlag(request.gain ? Flags.ChatMessage.ResourceGain : Flags.ChatMessage.ResourceLoss)
+		.withLabel(tooltip)
 		.withColor(request.gain ? 'var(--color-hp)' : 'var(--color-hp-crisis)')
 		.withSelected();
 }
