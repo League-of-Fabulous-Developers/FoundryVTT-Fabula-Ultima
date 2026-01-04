@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p>",
+    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -149,8 +149,11 @@
                 "type": "createConsumableRuleTrigger",
                 "eventRelation": "source",
                 "traits": {
-                  "entries": [],
-                  "quantifier": "any"
+                  "entries": [
+                    "Potion",
+                    "Restore"
+                  ],
+                  "quantifier": "all"
                 }
               },
               "predicates": {
@@ -203,7 +206,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766773134400,
-        "modifiedTime": 1766773177530,
+        "modifiedTime": 1767560212492,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!xzyAHegWwSaysYqV.06fNYI2FaCIWg7HX"
@@ -225,7 +228,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.348",
     "createdTime": 1706508730921,
-    "modifiedTime": 1766773127162,
+    "modifiedTime": 1767560789058,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

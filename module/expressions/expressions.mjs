@@ -266,9 +266,10 @@ const asyncFunctions = [evaluateMacrosAsync];
  * @description Evaluates the given expression using a superset of the DSL
  * @param {String} expression
  * @param {ExpressionContext} context
+ * @param {Boolean} applyRounding Whether to round the result, which is the default for FU.
  * @return {Promise<Number>} The evaluated amount
  */
-async function evaluateAsync(expression, context) {
+async function evaluateAsync(expression, context, applyRounding = true) {
 	if (!requiresContext(expression)) {
 		return Number(expression);
 	}
@@ -291,7 +292,9 @@ async function evaluateAsync(expression, context) {
 	}
 
 	// FU always rounds down numbers
-	result = round(result);
+	if (applyRounding) {
+		result = round(result);
+	}
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
 	return result;

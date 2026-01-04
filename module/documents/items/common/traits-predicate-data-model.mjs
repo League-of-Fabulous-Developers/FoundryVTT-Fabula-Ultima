@@ -42,7 +42,7 @@ export class TraitsPredicateDataModel extends TraitsDataModel {
 						return false;
 					}
 				}
-				return false;
+				break;
 
 			case 'none':
 				for (const t of traits) {
@@ -50,8 +50,8 @@ export class TraitsPredicateDataModel extends TraitsDataModel {
 						return false;
 					}
 				}
-				return true;
+				break;
 		}
-		return false;
+		return true;
 	}
 }

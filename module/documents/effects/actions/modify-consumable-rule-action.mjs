@@ -52,7 +52,7 @@ export class ModifyConsumableRuleAction extends RuleActionDataModel {
 				amount += evalBonus;
 			}
 			if (this.multiplier) {
-				const evalMultiplier = await Expressions.evaluateAsync(this.multiplier, expressionContext);
+				const evalMultiplier = await Expressions.evaluateAsync(this.multiplier, expressionContext, false);
 				amount *= evalMultiplier;
 			}
 			context.event.builder.amount = amount;

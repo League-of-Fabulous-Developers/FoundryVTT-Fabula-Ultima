@@ -37,16 +37,18 @@ export class FactionRelationRulePredicate extends RulePredicateDataModel {
 	validateContext(context) {
 		switch (this.relation) {
 			case 'ally':
-				if (context.targets.find((t) => this.inclusive === (t.actor === context.character.actor) && t.disposition === context.character.disposition) === undefined) {
+				if (!context.targets.some((t) => t.disposition === context.character.disposition && (this.inclusive || t.actor !== context.character.actor))) {
 					return false;
 				}
 				break;
+
 			case 'enemy':
-				if (context.targets.find((t) => this.inclusive === (t.actor === context.character.actor) && t.disposition !== context.character.disposition) === undefined) {
+				if (!context.targets.some((t) => t.disposition !== context.character.disposition && (this.inclusive || t.actor !== context.character.actor))) {
 					return false;
 				}
 				break;
 		}
+
 		return true;
 	}
 }
