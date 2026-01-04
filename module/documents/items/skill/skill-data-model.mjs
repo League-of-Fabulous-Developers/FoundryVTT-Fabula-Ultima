@@ -243,9 +243,25 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeAttributeCheck(modifiers) {
 		return async (check, actor, item) => {
+			/** @type SkillDataModel **/
+			const skill = item.system;
 			const config = CheckConfiguration.configure(check);
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			if (skill.defense && targets.length === 1) {
+				let dl;
+				switch (skill.defense) {
+					case 'def':
+						dl = targets[0].def;
+						break;
+
+					case 'mdef':
+						dl = targets[0].mdef;
+						break;
+				}
+				config.setDifficulty(dl);
+			}
 
 			if (this.accuracy) {
 				const calculatedAccuracyBonus = await Expressions.evaluateAsync(this.accuracy, context);
