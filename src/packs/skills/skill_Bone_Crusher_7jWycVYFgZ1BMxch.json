@@ -151,7 +151,8 @@
                   "attack"
                 ],
                 "outcome": "success",
-                "identifier": ""
+                "identifier": "",
+                "local": false
               },
               "actions": {
                 "9e9YoPMUF2VqMiU1": {
@@ -203,7 +204,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766788902986,
-        "modifiedTime": 1766828627966,
+        "modifiedTime": 1767559675817,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!7jWycVYFgZ1BMxch.YkOEtHV4uwAnjQnW"

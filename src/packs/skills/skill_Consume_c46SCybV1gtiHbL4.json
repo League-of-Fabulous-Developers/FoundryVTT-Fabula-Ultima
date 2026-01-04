@@ -171,7 +171,8 @@
                   "resource": "mp",
                   "amount": "$sl*2"
                 }
-              }
+              },
+              "selector": "self"
             }
           },
           "progress": {
@@ -207,7 +208,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925259175,
-        "modifiedTime": 1766925336258,
+        "modifiedTime": 1767559939944,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!c46SCybV1gtiHbL4.QvJKfoqYcZGOxmLS"

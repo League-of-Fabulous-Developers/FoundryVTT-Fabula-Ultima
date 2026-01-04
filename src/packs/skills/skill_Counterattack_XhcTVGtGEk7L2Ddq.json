@@ -154,13 +154,14 @@
                   "attack"
                 ],
                 "outcome": "",
-                "identifier": ""
+                "identifier": "",
+                "local": false
               },
               "predicates": {
                 "AccwRopUxS7jiAR4": {
                   "type": "checkRulePredicate",
                   "_id": "AccwRopUxS7jiAR4",
-                  "parity": "",
+                  "parity": "even",
                   "result": null
                 }
               },
@@ -206,7 +207,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766789080881,
-        "modifiedTime": 1766829391957,
+        "modifiedTime": 1767559780888,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!XhcTVGtGEk7L2Ddq.3I4QKAPzn55nGTVF"
