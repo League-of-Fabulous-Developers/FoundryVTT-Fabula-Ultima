@@ -5,6 +5,7 @@ import { FUHooks } from '../../../hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { Pipeline } from '../../../pipelines/pipeline.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 
 const { StringField } = foundry.data.fields;
 
@@ -52,7 +53,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 			/** @type RenderCheckEvent **/
 			const rce = context.event;
 			const actor = rce.source.actor !== context.character.actor ? context.item.parent : null;
-			CommonSections.itemText(rce.renderData, this.message, actor, context.item, flags);
+			CommonSections.itemText(rce.renderData, this.message, actor, context.item, flags, CHECK_DETAILS);
 		} else {
 			const actor = context.character.actor;
 			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {
