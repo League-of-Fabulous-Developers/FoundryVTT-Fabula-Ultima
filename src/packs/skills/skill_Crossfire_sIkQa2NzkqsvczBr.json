@@ -150,7 +150,8 @@
                 "itemGroups": [
                   "attack"
                 ],
-                "identifier": ""
+                "identifier": "",
+                "local": false
               },
               "predicates": {
                 "mcYSEMAjvu14owAY": {
@@ -214,7 +215,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766863644203,
-        "modifiedTime": 1767558638386,
+        "modifiedTime": 1767640574118,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!sIkQa2NzkqsvczBr.ZUwqffH7kP8rWg0g"
