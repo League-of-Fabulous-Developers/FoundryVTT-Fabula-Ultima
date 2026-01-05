@@ -272,6 +272,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		const isDamage = checkData && damageData;
 		const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 		const targets = Targeting.deserializeTargetData(targetData);
+		const traits = inspector.getTraits();
 
 		sections.push(async function () {
 			/** @type {ChatAction[]} **/
@@ -299,7 +300,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 
 			// Damage action
 			if (isDamage) {
-				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo));
+				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo, traits));
 
 				// TODO: Combine expenses among all actions?
 				for (const mod of damageData.modifiers) {

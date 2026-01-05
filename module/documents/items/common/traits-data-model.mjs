@@ -19,14 +19,6 @@ export class TraitsDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
-	static migrateData(source) {
-		if (source.values) {
-			source.entries = source.values;
-			delete source.values;
-		}
-		return super.migrateData(source);
-	}
-
 	/**
 	 * @returns {boolean}
 	 */
@@ -35,14 +27,19 @@ export class TraitsDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * @returns {SetIterator<String>}
+	 * @returns {String[]}
+	 * @remarks Not to be used in pipelines. Use {@link values}
 	 */
-	get selected() {
-		return this.entries.values();
+	get keys() {
+		return Array.from(this.entries.values());
 	}
 
+	/**
+	 * @returns {String[]}
+	 * @remarks What will actually be used for pipelines that use traits.
+	 */
 	get values() {
-		return this.entries.map((entry) => Traits[entry]);
+		return Array.from(this.entries, (entry) => Traits[entry]);
 	}
 
 	/**
