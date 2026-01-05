@@ -27,6 +27,9 @@ function getAdvanceTargetedAction(actor, id, increment, source) {
 		source: source,
 	})
 		.setFlag(Flags.ChatMessage.Progress)
+		.withDataset({
+			actorId: actor.uuid,
+		})
 		.notTargeted()
 		.withLabel(tooltip)
 		.withSelected()
@@ -51,7 +54,7 @@ function onRenderChatMessage(message, html) {
 
 		const targets = await Pipeline.getTargetsFromAction(dataset);
 		const actor = targets[0];
-		actor.updateProgress(id, increment);
+		await actor.updateProgress(id, increment);
 		const track = actor.resolveProgress(id);
 		await ProgressDataModel.notifyUpdate(actor, track, increment, source);
 	});
