@@ -61,8 +61,8 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 
 		// If this RE is on an item, and it doesn't match the item in the event.
 		if (this.local && context.item) {
-			if (context.event.sourceInfo.itemUuid === context.sourceInfo.itemUuid) {
-				return true;
+			if (context.event.sourceInfo.itemUuid !== context.sourceInfo.itemUuid) {
+				return false;
 			}
 		}
 
