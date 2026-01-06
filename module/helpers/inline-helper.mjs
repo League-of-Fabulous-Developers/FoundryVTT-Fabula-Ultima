@@ -4,6 +4,7 @@ import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { Expressions } from '../expressions/expressions.mjs';
 import { ChatMessageHelper } from './chat-message-helper.mjs';
+import FoundryUtils from './foundry-utils.mjs';
 
 /**
  * @description Information about a lookup for the source of an inline element
@@ -195,14 +196,18 @@ function determineSource(document, element) {
 			actorUuid = speakerActor.uuid;
 			name = speakerActor.name;
 		}
-		// If an item was provided
+		// If an item reference was provided
 		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 		if (item) {
-			// It's possible the dispatcher didn't encode this information
-			if (item.name) {
-				name = item.name;
+			if (FoundryUtils.isUUID(item)) {
+				itemUuid = item;
+			} else {
+				// It's possible the dispatcher didn't encode this information
+				if (item.name) {
+					name = item.name;
+				}
+				itemUuid = item.uuid;
 			}
-			itemUuid = item.uuid;
 		}
 		// Get the item from the check data
 		else {
@@ -362,7 +367,7 @@ function appendImage(anchor, path, size = 16, margin = true) {
  */
 function appendVectorIcon(anchor, ...classes) {
 	const icon = document.createElement(`i`);
-	icon.classList.add(`icon`, ...classes);
+	icon.classList.add(`icon`, ...classes.flatMap((c) => c.split(/\s+/)));
 	icon.style.marginLeft = '2px';
 	anchor.append(icon);
 	return icon;

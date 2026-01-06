@@ -150,8 +150,8 @@
                 "eventRelation": "source",
                 "traits": {
                   "entries": [
-                    "Potion",
-                    "Restore"
+                    "potion",
+                    "restore"
                   ],
                   "quantifier": "all"
                 }
@@ -206,7 +206,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766773134400,
-        "modifiedTime": 1767560212492,
+        "modifiedTime": 1767730050049,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!xzyAHegWwSaysYqV.06fNYI2FaCIWg7HX"

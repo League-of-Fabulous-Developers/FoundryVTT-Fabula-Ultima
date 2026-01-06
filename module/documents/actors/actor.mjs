@@ -539,8 +539,11 @@ export class FUActor extends Actor {
 			await progress.parent.parent.update({ [`system.${schemaName}.current`]: current });
 		}
 		// ActiveEffect
-		else if (progress.parent.parent instanceof FUActiveEffectModel) {
+		else if (progress.parent instanceof FUActiveEffectModel) {
 			await progress.parent.parent.update({ [`system.rules.progress.current`]: current });
+			// if (this.sheet.rendered) {
+			// 	this.sheet.render();
+			// }
 		}
 
 		// Update this instance for tracking, though it is not the same as the one that just got replaced in the model

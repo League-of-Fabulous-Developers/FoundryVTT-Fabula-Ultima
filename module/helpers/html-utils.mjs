@@ -67,4 +67,16 @@ export const HTMLUtils = Object.freeze({
 			});
 		});
 	},
+
+	/**
+	 * @param {RegExpMatchArray} match
+	 * @param {DOMStringMap} dataset
+	 */
+	appendRegexGroupsToDataset(match, dataset) {
+		if (!match?.groups) return;
+
+		for (const [key, value] of Object.entries(match.groups)) {
+			dataset[key] = value ?? '';
+		}
+	},
 });

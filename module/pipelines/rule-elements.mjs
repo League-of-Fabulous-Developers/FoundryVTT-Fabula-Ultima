@@ -151,7 +151,9 @@ async function onSpellEvent(event) {
  * @returns {Promise<void>}
  */
 async function onCalculateDamageEvent(event) {
-	await evaluate(FUHooks.CALCULATE_DAMAGE_EVENT, event, event.source, event.targets);
+	await evaluate(FUHooks.CALCULATE_DAMAGE_EVENT, event, event.source, event.targets, {
+		config: event.config,
+	});
 }
 
 /**
@@ -159,11 +161,13 @@ async function onCalculateDamageEvent(event) {
  * @returns {Promise<void>}
  */
 async function onCalculateResourceEvent(event) {
-	await evaluate(FUHooks.CALCULATE_RESOURCE_EVENT, event, event.source, event.targets);
+	await evaluate(FUHooks.CALCULATE_RESOURCE_EVENT, event, event.source, event.targets, {
+		config: event.config,
+	});
 }
 
 /**
- * @param {CalculateDamageEvent} event
+ * @param {ResourceExpendEvent} event
  * @returns {Promise<void>}
  */
 async function onResourceExpenditureEvent(event) {

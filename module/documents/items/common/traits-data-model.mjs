@@ -1,5 +1,3 @@
-import { Traits } from '../../../pipelines/traits.mjs';
-
 /**
  * @description Used when rolls are performed.
  * @property {Set<String>} entries
@@ -19,14 +17,6 @@ export class TraitsDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
-	static migrateData(source) {
-		if (source.values) {
-			source.entries = source.values;
-			delete source.values;
-		}
-		return super.migrateData(source);
-	}
-
 	/**
 	 * @returns {boolean}
 	 */
@@ -35,21 +25,18 @@ export class TraitsDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * @returns {SetIterator<String>}
+	 * @returns {String[]}
+	 * @remarks What will actually be used for pipelines that use traits.
 	 */
-	get selected() {
-		return this.entries.values();
-	}
-
 	get values() {
-		return this.entries.map((entry) => Traits[entry]);
+		return Array.from(this.entries);
 	}
 
 	/**
-	 * @param {String} element
+	 * @param {String} trait
 	 * @returns {boolean}
 	 */
-	has(element) {
-		return this.entries.has(element);
+	has(trait) {
+		return this.entries.has(trait);
 	}
 }

@@ -4,12 +4,15 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { DamagePipeline, DamageRequest } from '../../../pipelines/damage-pipeline.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
+import { DamageTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 const fields = foundry.data.fields;
 
 /**
  * @property {String} amount
  * @property {FU.damageTypes} damageType
+ * @property {TraitsDataModel} traits
  */
 export class ApplyDamageRuleAction extends RuleActionDataModel {
 	static {
@@ -25,6 +28,9 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 				blank: true,
 				nullable: false,
 			}),
+			traits: new fields.EmbeddedDataField(TraitsDataModel, {
+				options: TraitUtils.getOptions(DamageTraits),
+			}),
 		});
 	}
 
@@ -39,30 +45,36 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 	async execute(context, selected) {
 		const targets = selected.map((t) => t.actor);
 		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets).withCheck(context.check);
-		const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
-		const request = new DamageRequest(context.sourceInfo, targets, {
-			type: this.damageType,
-			total: amount,
-		});
-		request.fromOrigin(context.origin);
-		if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
-			await DamagePipeline.process(request);
-		} else {
-			if (context.event.config) {
-				/** @type CheckConfigurer **/
-				const config = context.event.config;
-				if (context.check) {
-					switch (context.check.type) {
-						case 'display':
-							config.setDamage(this.damageType, amount);
-							break;
+		const evalAmount = await Expressions.evaluateAsync(this.amount, expressionContext);
 
-						case 'accuracy':
-						case 'magic':
-							config.damage.addModifier(context.label, amount, [this.damageType]);
-							break;
-					}
+		if (context.config) {
+			if (context.check) {
+				const _traits = this.traits.values;
+				context.config.addTraits(_traits);
+
+				switch (context.check.type) {
+					case 'display':
+						context.config.setDamage(this.damageType, evalAmount);
+						break;
+
+					case 'accuracy':
+					case 'magic':
+						context.config.damage.addModifier(context.label, evalAmount, [this.damageType]);
+						break;
 				}
+			}
+		} else {
+			const request = new DamageRequest(context.sourceInfo, targets, {
+				type: this.damageType,
+				total: evalAmount,
+			});
+			if (!this.traits.empty) {
+				request.addTraits(this.traits.values);
+			}
+			request.fromOrigin(context.origin);
+
+			if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+				await DamagePipeline.process(request);
 			} else {
 				await DamagePipeline.promptApply(request);
 			}

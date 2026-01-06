@@ -9,3 +9,5 @@
 	<span>{{localize 'FU.Amount'}}</span>
 	<input type="text" name="{{pfuConcat path ".amount"}}" value="{{ action.amount }}" />
 </label>
+
+{{pfuTraits action.traits (pfuConcat path '.traits')}}

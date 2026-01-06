@@ -10,6 +10,7 @@
  * @property {Boolean} enabled
  * @property {number} amount
  * @property {DamageType[]} types
+ * @property {String[]} traits
  * @property {ResourceExpense} expense
  */
 
@@ -67,7 +68,9 @@ export class DamageData {
 	 * @remarks Returns only those modifiers that have been enabled.
 	 */
 	get modifiers() {
-		return this._modifiers.filter((m) => m.enabled && m.amount > 0);
+		return this._modifiers.filter((m) => {
+			return m.enabled && (m.amount > 0 || (m.traits && m.traits.length > 0));
+		});
 	}
 
 	/**

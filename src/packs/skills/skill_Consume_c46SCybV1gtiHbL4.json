@@ -161,7 +161,8 @@
                     "arcane",
                     "dagger",
                     "flail"
-                  ]
+                  ],
+                  "selector": "self"
                 }
               },
               "actions": {
@@ -208,7 +209,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925259175,
-        "modifiedTime": 1767559939944,
+        "modifiedTime": 1767640263553,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!c46SCybV1gtiHbL4.QvJKfoqYcZGOxmLS"

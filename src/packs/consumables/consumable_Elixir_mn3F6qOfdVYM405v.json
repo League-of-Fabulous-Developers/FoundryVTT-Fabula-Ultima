@@ -31,8 +31,8 @@
     },
     "traits": {
       "entries": [
-        "Potion",
-        "Restore"
+        "potion",
+        "restore"
       ]
     }
   },
@@ -54,7 +54,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.348",
     "createdTime": 1706515894820,
-    "modifiedTime": 1766769912787,
+    "modifiedTime": 1767644249742,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

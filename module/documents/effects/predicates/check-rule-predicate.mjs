@@ -97,8 +97,8 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 					if (context.config.isFumble()) {
 						return false;
 					}
-					for (const target of context.event.targets) {
-						switch (target.check) {
+					for (const target of context.config.getTargets()) {
+						switch (target.result) {
 							case 'hit':
 								if (this.outcome !== 'success') {
 									return false;

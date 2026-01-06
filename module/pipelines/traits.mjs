@@ -1,5 +1,8 @@
+// NOTE: This should not have no dependencies!
+
 // TODO: Decide whether to define in config.mjs.
-// TODO: Add character traits, etc..
+
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @description A list of traits supported by items
@@ -81,9 +84,15 @@ export const TraitUtils = Object.freeze({
 	 * @returns {{label: *, value: *}[]}
 	 */
 	getOptions(traits) {
-		return Object.keys(traits).map((key) => ({
+		return Object.entries(traits).map(([key, value]) => ({
 			label: key,
-			value: key,
+			value: value,
 		}));
+	},
+	/**
+	 * @param {String} trait
+	 */
+	localize(trait) {
+		return StringUtils.localize(`FU.${StringUtils.kebabToPascal(trait)}`);
 	},
 });

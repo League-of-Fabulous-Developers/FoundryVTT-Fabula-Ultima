@@ -17,7 +17,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 
@@ -329,6 +329,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			}
 
 			if (this.damage.hasDamage) {
+				config.addTraits(Traits.Damage);
 				config.setHrZero(this.damage.hrZero || modifiers.shift);
 				config.setTargetedDefense(this.defense || config.getTargetedDefense());
 				config.modifyDamage(() => {

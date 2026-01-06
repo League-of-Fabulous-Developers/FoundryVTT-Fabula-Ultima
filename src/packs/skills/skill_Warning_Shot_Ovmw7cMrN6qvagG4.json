@@ -165,6 +165,11 @@
                   "_id": "4vKUaXH8DGqR6Sr8",
                   "outcome": "success",
                   "result": null
+                },
+                "ahxxYQd2oVRGq1vo": {
+                  "type": "weaponRulePredicate",
+                  "_id": "ahxxYQd2oVRGq1vo",
+                  "weaponType": "ranged"
                 }
               }
             }
@@ -202,7 +207,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766862777392,
-        "modifiedTime": 1766863632831,
+        "modifiedTime": 1767640477934,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!Ovmw7cMrN6qvagG4.3KfzmQiRr49axQxk"

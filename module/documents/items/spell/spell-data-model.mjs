@@ -16,7 +16,7 @@ import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 
@@ -184,7 +184,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 					.setDamageOverride(actor, 'spell')
 					.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
 					.modifyHrZero((hrZero) => hrZero || spell.rollInfo.useWeapon.hrZero.value)
-					.addTraits(spell.rollInfo.damage.type.value);
+					.addTraits(spell.rollInfo.damage.type.value, Traits.Damage);
 			}
 
 			// Add typical bonuses

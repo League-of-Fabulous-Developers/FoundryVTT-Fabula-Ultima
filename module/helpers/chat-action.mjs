@@ -58,6 +58,16 @@ export class ChatAction {
 	}
 
 	/**
+	 * @param {FUActor} actor
+	 * @return {ChatAction}
+	 */
+	forActor(actor) {
+		return this.withDataset({
+			actorId: actor.uuid,
+		}).notTargeted();
+	}
+
+	/**
 	 * @returns {ChatAction}
 	 */
 	notTargeted() {

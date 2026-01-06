@@ -5,7 +5,8 @@ import { FUHooks } from '../../../hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { Pipeline } from '../../../pipelines/pipeline.mjs';
-import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { CHECK_ADDENDUM_ORDER } from '../../../checks/default-section-order.mjs';
+import { StringUtils } from '../../../helpers/string-utils.mjs';
 
 const { StringField } = foundry.data.fields;
 
@@ -45,7 +46,8 @@ export class MessageRuleAction extends RuleActionDataModel {
 	}
 
 	async execute(context, selected) {
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Item, context.item);
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Item, context.item.uuid);
+		let _message = this.message || StringUtils.localize('FU.RuleElementTriggered');
 		if (context.check) {
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, context.check);
 		}
@@ -53,12 +55,12 @@ export class MessageRuleAction extends RuleActionDataModel {
 			/** @type RenderCheckEvent **/
 			const rce = context.event;
 			const actor = rce.source.actor !== context.character.actor ? context.item.parent : null;
-			CommonSections.itemText(rce.renderData, this.message, actor, context.item, flags, CHECK_DETAILS);
+			CommonSections.itemText(rce.renderData, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
 		} else {
 			const actor = context.character.actor;
 			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {
 				item: context.item,
-				text: this.message,
+				text: _message,
 			});
 			ChatMessage.create({
 				flags: flags,

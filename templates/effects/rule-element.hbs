@@ -53,9 +53,19 @@
 							<label class="flexrow">
 								{{localize (lookup (lookup (lookup predicate "schema") "model") "localization")}}
 							</label>
-							<a class="" data-action="removeRulePredicate" data-id="{{../element.id}}" data-predicate-id="{{predicate.id}}">
-								<i class="icon fas fa-circle-minus"></i>
-							</a>
+
+							<span>
+								{{#if predicate.schema.fields.selector}}
+									<label class="" data-tooltip="{{localize 'FU.SelectorHint'}}">{{localize 'FU.Selector'}}
+										<select name="{{pfuConcat ../path ".predicates." predicate.id ".selector"}}" class="resource-inputs select-dropdown-m">
+											{{selectOptions ../options.targetSelector selected=predicate.selector localize=true}}
+										</select>
+									</label>
+								{{/if}}
+								<a class="" data-action="removeRulePredicate" data-id="{{../element.id}}" data-predicate-id="{{predicate.id}}">
+									<i class="icon fas fa-circle-minus"></i>
+								</a>
+							</span>
 						</div>
 						<div class="fu-rule-element__item__content">
 							{{> (lookup (lookup (lookup predicate "schema") "model") "template") path=(concat ../path ".predicates." predicate.id) predicate=predicate options=../options}}

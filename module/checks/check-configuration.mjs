@@ -309,7 +309,12 @@ class CheckConfigurer extends CheckInspector {
 		if (!this.check.additionalData[TRAITS]) {
 			this.check.additionalData[TRAITS] = [];
 		}
-		traits.forEach((t) => this.check.additionalData[TRAITS].push(t.toLowerCase()));
+
+		traits.flat().forEach((t) => {
+			if (t != null) {
+				this.check.additionalData[TRAITS].push(String(t).toLowerCase());
+			}
+		});
 		return this;
 	}
 

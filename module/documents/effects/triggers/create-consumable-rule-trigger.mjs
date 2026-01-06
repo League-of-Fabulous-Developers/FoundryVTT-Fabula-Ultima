@@ -46,6 +46,6 @@ export class CreateConsumableRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		return this.traits.evaluate(context.event.consumable.traits.selected);
+		return this.traits.evaluate(context.event.consumable.traits.values);
 	}
 }

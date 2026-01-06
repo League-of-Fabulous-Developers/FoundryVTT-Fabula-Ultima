@@ -588,7 +588,11 @@ function onRenderChatMessage(message, html) {
 			const sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
 			const damageData = new DamageData(fields.damageData);
 			const targets = await Pipeline.getTargetsFromAction(dataset);
+			const traits = fields.traits;
 			const request = new DamageRequest(sourceInfo, targets, damageData, {});
+			if (traits) {
+				request.addTraits(traits);
+			}
 			return process(request);
 		});
 	}
@@ -681,9 +685,10 @@ async function promptApply(request) {
 /**
  * @param {DamageData} damageData *
  * @param {InlineSourceInfo} sourceInfo
+ * @param {String[]} traits
  * @returns {ChatAction}
  */
-function getTargetedAction(damageData, sourceInfo) {
+function getTargetedAction(damageData, sourceInfo, traits) {
 	const icon = FU.affIcon[damageData.type];
 	const tooltip = StringUtils.localize('FU.ChatApplyDamageTooltip', {
 		amount: damageData.total,
@@ -692,6 +697,7 @@ function getTargetedAction(damageData, sourceInfo) {
 	return new ChatAction('applyDamage', icon, tooltip, {
 		damageData: damageData,
 		sourceInfo: sourceInfo,
+		traits: traits,
 	})
 		.setFlag(Flags.ChatMessage.Damage)
 		.withSelected()
@@ -719,6 +725,11 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 			const damage = config.getDamage();
 			if (damage.customizable) {
 				await DamageCustomizerV2.open(damage, item);
+				for (const modifier of damage.modifiers) {
+					if (modifier.traits && modifier.traits.length > 0) {
+						config.addTraits(modifier.traits);
+					}
+				}
 			}
 		}
 	});

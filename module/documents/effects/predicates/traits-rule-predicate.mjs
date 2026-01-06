@@ -36,10 +36,15 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 	validateContext(context) {
 		let _traits;
 
+		// Consumable
 		if (context.eventType === FUHooks.CONSUMABLE_CREATE_EVENT) {
 			/** @type CreateConsumableEvent **/
 			const cre = context.event;
-			_traits = cre.consumable.traits.selected;
+			_traits = cre.consumable.traits.values;
+		}
+		// If a check configuration is provided
+		else if (context.config) {
+			_traits = context.config.getTraits();
 		}
 		// If the event has an item reference, check it for traits
 		else if (context.event.item?.traits) {
@@ -48,7 +53,8 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 
 		// If any traits could be gathered...
 		if (_traits) {
-			return this.traits.evaluate(_traits);
+			const evaluation = this.traits.evaluate(_traits);
+			return evaluation;
 		}
 		return false;
 	}

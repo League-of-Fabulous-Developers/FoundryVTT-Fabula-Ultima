@@ -8,7 +8,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 
@@ -34,6 +34,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				handedness: weapon.hands.value,
 			})
 			.addTraits(weapon.damageType.value)
+			.addTraits(Traits.Damage)
 			.addTraitsFromItemModel(weapon.traits)
 			.setTargetedDefense(weapon.defense)
 			.setDamageOverride(actor, 'attack')

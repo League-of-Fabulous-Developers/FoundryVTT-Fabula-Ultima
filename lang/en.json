@@ -1625,6 +1625,7 @@
 		"RuleElement": "Rule Element",
 		"RuleElementOptions": "Rule Elements",
 		"RuleElementNew": "Add new rule element",
+		"RuleElementTriggered": "The triggering condition has been satisfied.",
 		"RuleActions": "Rule Actions",
 		"RuleActionMessage": "Message",
 		"RuleActionApplyDamage": "Apply Damage",

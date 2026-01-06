@@ -62,8 +62,13 @@ export class SpellRulePredicate extends RulePredicateDataModel {
 
 		/** @type SpellDataModel **/
 		const spell = item.system;
-		if (this.offensive && !spell.isOffensive.value) {
-			return false;
+		if (this.offensive) {
+			if (!spell.isOffensive.value) {
+				// Check if the config has damage data...
+				if (!context.config || !context.config.hasDamage) {
+					return false;
+				}
+			}
 		}
 		if (this.duration && this.duration !== spell.duration.value) {
 			return false;
