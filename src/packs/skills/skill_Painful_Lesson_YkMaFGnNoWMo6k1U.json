@@ -120,7 +120,85 @@
     "defense": "def",
     "fuid": "painful-lesson"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Painful Lesson",
+      "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_painful_lesson.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "0fPTScRcza1cJ17A": {
+              "type": "ruleElement",
+              "_id": "0fPTScRcza1cJ17A",
+              "trigger": {
+                "_id": "W85fCKd0Oa9DBF8h",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "",
+                "damageSources": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "actions": {
+                "C0sv955OJ6ddpW9g": {
+                  "type": "messageRuleAction",
+                  "_id": "C0sv955OJ6ddpW9g",
+                  "message": "<p>You may perform @ACTION[study bonus:$sl] against the attacker.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "UFwFf5qcdGZ0EtWc",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767730525954,
+        "modifiedTime": 1767737252602,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!YkMaFGnNoWMo6k1U.UFwFf5qcdGZ0EtWc"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

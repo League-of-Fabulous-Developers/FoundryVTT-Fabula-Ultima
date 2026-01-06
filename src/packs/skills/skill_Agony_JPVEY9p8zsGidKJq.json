@@ -141,15 +141,13 @@
               "type": "ruleElement",
               "_id": "grA677dITyK5ugVJ",
               "trigger": {
-                "_id": "04ZK84AmP9qvREoo",
-                "type": "damageRuleTrigger",
+                "_id": "bWYQO0RoEVpuZESG",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
-                "damageType": "",
-                "damageSources": [],
-                "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
-                }
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
               },
               "predicates": {
                 "NVZLOf2l41OpllgF": {
@@ -168,6 +166,10 @@
                   "_id": "wJbhj0mK5u2eGvcX",
                   "resource": "mp",
                   "amount": "$sl*2"
+                },
+                "Ih8IlZNuYlq4PD3G": {
+                  "type": "messageRuleAction",
+                  "_id": "Ih8IlZNuYlq4PD3G"
                 }
               },
               "selector": "self"
@@ -206,7 +208,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766871996877,
-        "modifiedTime": 1766872381061,
+        "modifiedTime": 1767729952485,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!JPVEY9p8zsGidKJq.3CjUfXdmW7p1L7tJ"

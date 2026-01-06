@@ -255,4 +255,15 @@ export default class FoundryUtils {
 	static async enrichText(text, context) {
 		return TextEditor.implementation.enrichHTML(text, context);
 	}
+
+	/**
+	 * @param {String} str
+	 * @return {Boolean}
+	 */
+	static isUUID(str) {
+		if (typeof str === 'string') {
+			return /^[A-Za-z]+\.[A-Za-z0-9]+(\.[A-Za-z]+\.[A-Za-z0-9]+)*$/.test(str);
+		}
+		return false;
+	}
 }

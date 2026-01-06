@@ -46,7 +46,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 	}
 
 	async execute(context, selected) {
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Item, context.item);
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Item, context.item.uuid);
 		let _message = this.message || StringUtils.localize('FU.RuleElementTriggered');
 		if (context.check) {
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, context.check);
