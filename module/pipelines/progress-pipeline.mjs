@@ -27,10 +27,7 @@ function getAdvanceTargetedAction(actor, id, increment, source) {
 		source: source,
 	})
 		.setFlag(Flags.ChatMessage.Progress)
-		.withDataset({
-			actorId: actor.uuid,
-		})
-		.notTargeted()
+		.forActor(actor)
 		.withLabel(tooltip)
 		.withSelected()
 		.requiresOwner();

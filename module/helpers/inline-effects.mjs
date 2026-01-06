@@ -16,7 +16,7 @@ const INLINE_EFFECT_CLASS = 'inline-effect';
  * @property {GuidedInlineEffectConfig} guided
  */
 
-const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
+const effectPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
 
 /**
  * @type {TextEditorEnricherConfig}
@@ -24,7 +24,7 @@ const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', 
 const enricher = {
 	id: 'InlineEffect',
 	// ID|UUID|Base64String
-	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]+={0,3})', configurationPropertyGroups),
+	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]+={0,3})', effectPropertyGroups),
 	enricher: inlineEffectEnricher,
 	onRender: onRender,
 };
@@ -261,6 +261,6 @@ export const InlineEffects = Object.freeze({
 	showEffectConfiguration,
 	parseConfigData,
 	onDropActor,
-	configurationPropertyGroups,
+	effectPropertyGroups,
 	createEffectAnchor,
 });

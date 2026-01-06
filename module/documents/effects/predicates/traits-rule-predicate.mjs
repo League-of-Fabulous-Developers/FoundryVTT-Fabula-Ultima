@@ -40,7 +40,7 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 		if (context.eventType === FUHooks.CONSUMABLE_CREATE_EVENT) {
 			/** @type CreateConsumableEvent **/
 			const cre = context.event;
-			_traits = cre.consumable.traits.selected;
+			_traits = cre.consumable.traits.values;
 		}
 		// If a check configuration is provided
 		else if (context.config) {

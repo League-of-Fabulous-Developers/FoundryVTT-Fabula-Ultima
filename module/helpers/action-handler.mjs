@@ -46,9 +46,22 @@ const onRenderCheck = (sections, check, actor) => {
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
+/**
+ * @desc Encapsulates basic character actions.\
+ * @property {Number} bonus
+ */
 export class ActionHandler {
 	constructor(actor) {
 		this.actor = actor;
+		this.bonus = 0;
+	}
+
+	/**
+	 * @param {Number} bonus
+	 */
+	withBonus(bonus) {
+		this.bonus = bonus;
+		return this;
 	}
 
 	async handleAction(actionType, isShift = false) {
@@ -81,7 +94,11 @@ export class ActionHandler {
 	 */
 	async handleStudyAction() {
 		await CheckPrompt.openCheck(this.actor, {
-			initialConfig: { primary: 'ins', secondary: 'ins' },
+			initialConfig: {
+				primary: 'ins',
+				secondary: 'ins',
+				modifier: this.bonus,
+			},
 			checkCallback: (check) => {
 				check.additionalData[actionKey] = 'study';
 			},

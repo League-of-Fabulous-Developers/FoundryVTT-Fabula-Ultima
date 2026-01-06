@@ -362,7 +362,7 @@ function appendImage(anchor, path, size = 16, margin = true) {
  */
 function appendVectorIcon(anchor, ...classes) {
 	const icon = document.createElement(`i`);
-	icon.classList.add(`icon`, ...classes);
+	icon.classList.add(`icon`, ...classes.flatMap((c) => c.split(/\s+/)));
 	icon.style.marginLeft = '2px';
 	anchor.append(icon);
 	return icon;

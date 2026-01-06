@@ -51,7 +51,7 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 		if (context.config) {
 			const targetAction = ResourcePipeline.getTargetedAction(request);
 			if (selected.length === 1 && selected[0] === context.character) {
-				targetAction.notTargeted();
+				targetAction.forActor(context.character.actor);
 			}
 			context.config.addTargetedAction(targetAction);
 		} else {

@@ -20,7 +20,7 @@ const className = `inline-weapon`;
  */
 const editorEnricher = {
 	id: 'InlineWeaponEnricher',
-	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.configurationPropertyGroups),
+	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.effectPropertyGroups),
 	enricher: (match, options) => {
 		const choices = match.groups.choices.split(' ');
 

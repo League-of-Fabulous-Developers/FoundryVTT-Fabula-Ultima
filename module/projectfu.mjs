@@ -106,6 +106,7 @@ import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-d
 import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
 import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
+import { InlineAction } from './helpers/inline-action.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -368,6 +369,7 @@ Hooks.once('init', async () => {
 	InlineHelper.registerCommand(InlineType);
 	InlineHelper.registerCommand(InlineClocks);
 	InlineHelper.registerCommand(InlineIcon);
+	InlineHelper.registerCommand(InlineAction);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
