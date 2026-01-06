@@ -17,6 +17,7 @@
 				<th>{{localize 'FU.Source'}}</th>
 				<th>{{localize 'FU.Types'}}</th>
 				<th>{{localize 'FU.Amount'}}</th>
+				<th>{{localize 'FU.Traits'}}</th>
 				<th>{{localize 'FU.Expense'}}</th>
 				<th>{{localize 'FU.Enabled'}}</th>
 			</tr>
@@ -30,7 +31,16 @@
 							<i class="icon {{lookup @root.FU.affIcon type}}" style="flex: 0 1 auto;"></i>
 						{{/each}}
 					</td>
-					<td>{{this.amount}}</td>
+					<td>
+						{{#if this.amount}}
+							{{this.amount}}
+						{{/if}}
+					</td>
+					<td>
+						{{#each this.traits as |trait|}}
+							<span>{{pfuLocalizeTrait trait}} </span>
+						{{/each}}
+					</td>
 					<td>
 						{{#if (and this.expense this.expense.amount)}}
 							<span>{{this.expense.amount}} {{localize (lookup @root.FU.resources this.expense.resource)}}</span>

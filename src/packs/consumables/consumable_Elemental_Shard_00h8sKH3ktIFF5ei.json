@@ -35,8 +35,8 @@
     },
     "traits": {
       "entries": [
-        "ElementalShard",
-        "Damage"
+        "elemental-shard",
+        "damage"
       ]
     }
   },
@@ -58,7 +58,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.348",
     "createdTime": 1706516143319,
-    "modifiedTime": 1766770013742,
+    "modifiedTime": 1767644282772,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

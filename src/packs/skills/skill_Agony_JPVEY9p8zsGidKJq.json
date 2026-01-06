@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you deal damage to one or more creatures, if you have a <strong>Bond</strong> towards at least one of those creatures, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p>",
+    "description": "<p>After you deal damage to one or more creatures, if you have a <strong>Bond</strong> towards at least one of those creatures, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><ul><li><p><strong>You</strong>: @GAIN[$sl*2 hp] @GAIN[$sl*2 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -228,7 +228,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.348",
     "createdTime": 1706496854934,
-    "modifiedTime": 1766872165073,
+    "modifiedTime": 1767641466191,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

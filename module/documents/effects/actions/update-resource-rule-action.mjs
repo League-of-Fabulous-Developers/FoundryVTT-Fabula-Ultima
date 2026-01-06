@@ -50,6 +50,9 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 
 		if (context.config) {
 			const targetAction = ResourcePipeline.getTargetedAction(request);
+			if (selected.length === 1 && selected[0] === context.character) {
+				targetAction.notTargeted();
+			}
 			context.config.addTargetedAction(targetAction);
 		} else {
 			if (game.settings.get(SYSTEM, SETTINGS.automationUpdateResource)) {

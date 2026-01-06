@@ -107,8 +107,17 @@
 
 	.fu-rule-element__group {
 		background-color: rgba(0, 0, 0, 0.08);
+		padding-left: 8px;
+		padding-right: 8px;
 		box-shadow:
 			inset 0 0 0 1px rgba(0, 0, 0, 0.18),
 			0 1px 2px rgba(0, 0, 0, 0.2);
+	}
+
+	.fu-rule-element__group__header {
+		display: flex;
+		padding: 4px;
+		font-weight: bolder;
+		font-size: large;
 	}
 }

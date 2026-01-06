@@ -104,6 +104,7 @@ export class DamageCustomizerV2 {
 			},
 		});
 		if (result) {
+			// const expanded = foundry.utils.expandObject(result);
 			damageData.type = context.selectedType;
 		} else {
 			throw Error('Canceled by user');

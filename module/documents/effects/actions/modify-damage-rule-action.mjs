@@ -5,13 +5,15 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { ActionCostDataModel } from '../../items/common/action-cost-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { SkillDataModel } from '../../items/skill/skill-data-model.mjs';
-import { SkillTraits } from '../../../pipelines/traits.mjs';
+import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 
 const fields = foundry.data.fields;
 
 /**
  * @property {DamageType} damageType
  * @property {String} amount
+ * @property {TraitsDataModel} traits
  * @property {Set<DamageType>} damageTypes
  * @property {ActionCostDataModel} cost
  * @property {String} variant
@@ -32,6 +34,9 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 		return Object.assign(super.defineSchema(), {
 			amount: new fields.StringField({ blank: true }),
 			damageTypes: new fields.SetField(new fields.StringField()),
+			traits: new fields.EmbeddedDataField(TraitsDataModel, {
+				options: TraitUtils.getOptions(DamageTraits),
+			}),
 			cost: new fields.EmbeddedDataField(ActionCostDataModel, {
 				resource: {
 					initial: '',
@@ -77,11 +82,12 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 						return;
 					}
 					for (let sl = 1; sl <= skill.level.value; sl++) {
-						context.event.config.getDamage().addModifier(context.label, _amount * sl, types, {
+						context.config.getDamage().addModifier(context.label, _amount * sl, types, {
 							expense: {
 								amount: this.cost.amount * sl,
 								resource: this.cost.resource,
 							},
+							traits: this.traits.values,
 							enabled: false,
 						});
 					}
@@ -90,25 +96,29 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 
 				case 'psychicGift': {
 					const brainwave = context.character.actor.resolveProgress('brainwave-clock');
-					context.event.config.getDamage().addModifier(context.label, _amount, types, {
+					context.config.getDamage().addModifier(context.label, _amount, types, {
 						expense: {
 							amount: Math.max(5, this.cost.amount * brainwave.current),
 							resource: this.cost.resource,
 							traits: [SkillTraits.Gift],
 						},
+						traits: this.traits.values,
 						enabled: false,
 					});
 					break;
 				}
 			}
 		} else {
-			if (this.damageTypes.size > 0 || this.cost.amount > 0) {
-				context.event.config.getDamage().addModifier(context.label, _amount, types, {
+			if (this.damageTypes.size > 0 || this.cost.amount > 0 || !this.traits.empty) {
+				context.config.getDamage().addModifier(context.label, _amount, types, {
 					expense: this.cost,
+					traits: this.traits.values,
 					enabled: this.cost.amount === 0,
 				});
 			} else {
-				context.event.config.addDamageBonus(context.label, _amount);
+				context.config.addDamageBonus(context.label, _amount);
+				// TODO: Verify...
+				context.config.addTraits(this.traits.values);
 			}
 		}
 	}

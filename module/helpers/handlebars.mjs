@@ -1,6 +1,7 @@
 import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
 import { FU } from './config.mjs';
+import { TraitUtils } from '../pipelines/traits.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -42,6 +43,13 @@ export const FUHandlebars = Object.freeze({
 				return str.charAt(0).toUpperCase() + str.slice(1);
 			}
 			return str;
+		});
+
+		Handlebars.registerHelper('pfuLocalizeTrait', function (trait) {
+			if (trait && typeof trait === 'string') {
+				return TraitUtils.localize(trait);
+			}
+			return trait;
 		});
 
 		Handlebars.registerHelper('pfuUppercase', function (str) {

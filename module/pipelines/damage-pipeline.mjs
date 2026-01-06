@@ -725,6 +725,11 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 			const damage = config.getDamage();
 			if (damage.customizable) {
 				await DamageCustomizerV2.open(damage, item);
+				for (const modifier of damage.modifiers) {
+					if (modifier.traits && modifier.traits.length > 0) {
+						config.addTraits(modifier.traits);
+					}
+				}
 			}
 		}
 	});
