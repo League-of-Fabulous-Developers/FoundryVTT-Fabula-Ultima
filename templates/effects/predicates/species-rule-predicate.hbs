@@ -1,0 +1,6 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Species'}}</span>
+	<select name="{{pfuConcat path ".species"}}">
+		{{selectOptions options.species selected=predicate.species sort=true localize=true}}
+	</select>
+</label>

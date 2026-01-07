@@ -1,0 +1,28 @@
+<fieldset class="section-container title-fieldset desc resource-content">
+	<legend class="resource-label-m"
+			data-tooltip="{{localize 'FU.Add'}}"
+			data-path="system.effects.entries"
+			data-action="addArrayElement">
+		<a class="flex-group-center resource-inputs resource-label-m select-dropdown-m"
+		   data-tooltip="{{localize 'FU.Effect'}}">
+			<i class="fas fa-plus icon"></i>{{localize 'FU.Effect'}}
+		</a>
+	</legend>
+	{{#each system.effects.entries as |entry index|}}
+		<div class="fu-form__array__element">
+			<label class="fu-form__array__element__input">
+				<input
+				 type="text"
+				 name="system.effects.entries.{{index}}"
+				 value="{{entry}}"
+				 placeholder="e.g. dazed|Item.XYZ123.ActiveEffect.ABC123"
+				/>
+			</label>
+			<a data-path="system.effects.entries" data-index="{{ index }}" data-action="removeArrayElement">
+				<button type="button" class="fu-form__button">
+					<i class="fas fa-xmark"></i>
+				</button>
+			</a>
+		</div>
+	{{/each}}
+</fieldset>

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl*5 hp]{SL × 5 HP}</p></li></ul>",
+    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -119,55 +119,111 @@
   },
   "effects": [
     {
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Biophagy",
-      "_id": "RF4MLdS4Z8HonPLy",
-      "changes": [],
-      "description": "<div class=\"stackedit__html\"><p><span class=\"fontstyle0\">After one of your attacks or offensive spells (</span><span class=\"fontstyle2\">@ICON[offensive]</span><span class=\"fontstyle0\">) causes one or more enemies to lose Hit Points, if you are in </span><span class=\"fontstyle3\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may recover</span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle0\">Hit Points.</span></p></div>",
-      "transfer": true,
-      "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "active"
+      "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_biophagy.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "C6KZyVmVfBwifjz4": {
+              "type": "ruleElement",
+              "_id": "C6KZyVmVfBwifjz4",
+              "trigger": {
+                "_id": "TzJan9G3dRTybkQP",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "",
+                "damageSources": [
+                  "attack",
+                  "spell"
+                ],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "predicates": {
+                "Lo9cgp7csl17ZYXm": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "Lo9cgp7csl17ZYXm",
+                  "selector": "self",
+                  "effect": "crisis"
+                }
+              },
+              "actions": {
+                "yvKXdZ95vLY0F2BK": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "yvKXdZ95vLY0F2BK",
+                  "amount": "$sl*5"
+                },
+                "GscrPVa6sJROhLIw": {
+                  "type": "notifyRuleAction",
+                  "_id": "GscrPVa6sJROhLIw"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
         }
       },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "cHLNid8K4n73xxvO",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
       "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
       "_stats": {
-        "coreVersion": "13.346",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767289793419,
+        "modifiedTime": 1767291470387,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
-      "img": "icons/magic/control/debuff-energy-hold-yellow.webp",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!kpg23Fs85uniba2A.RF4MLdS4Z8HonPLy"
+      "_key": "!items.effects!kpg23Fs85uniba2A.cHLNid8K4n73xxvO"
     }
   ],
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711429218464,
-    "modifiedTime": 1744556907399,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767289784646,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -18,6 +18,7 @@ import { ObjectUtils } from '../helpers/object-utils.mjs';
  * @property {FUActiveEffect} effect  The effect the expression is evaluated on
  * @property {FUActor[]} targets The targets the expression is evaluated on
  * @property {FUActor} source Optionally, can be used to execute evaluations on
+ * @property {CheckResultV2|null} check The result of a check.
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Do not serialize this class, as it references full objects. Instead, store their uuids
  * and resolve them with the static constructor
@@ -58,18 +59,28 @@ export class ExpressionContext {
 		return context;
 	}
 
-	setSourceUuid(sourceId) {
-		this.#sourceUuid = sourceId;
-	}
-
 	/**
 	 * @property {FUActor} actor The source of the action
 	 * @property {FUItem} item
 	 * @param {FUActor[]} targets
+	 * @param {CheckV2} check
 	 * @returns {ExpressionContext}
 	 */
 	static fromTargetData(actor, item, targets) {
 		return new ExpressionContext(actor, item, Targeting.deserializeTargetData(targets));
+	}
+
+	/**
+	 * @param {CheckResultV2} check
+	 * @returns {ExpressionContext}
+	 */
+	withCheck(check) {
+		this.check = check;
+		return this;
+	}
+
+	setSourceUuid(sourceId) {
+		this.#sourceUuid = sourceId;
 	}
 
 	/**
@@ -233,11 +244,14 @@ function evaluate(expression, context) {
 	}
 
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
-	const result = MathHelper.evaluate(substitutedExpression);
+	let result = MathHelper.evaluate(substitutedExpression);
 
 	if (Number.isNaN(result)) {
 		throw new Error(`Failed to evaluate expression ${substitutedExpression}`);
 	}
+
+	// FU always rounds down numbers
+	result = round(result);
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
 	return result;
@@ -252,9 +266,10 @@ const asyncFunctions = [evaluateMacrosAsync];
  * @description Evaluates the given expression using a superset of the DSL
  * @param {String} expression
  * @param {ExpressionContext} context
+ * @param {Boolean} applyRounding Whether to round the result, which is the default for FU.
  * @return {Promise<Number>} The evaluated amount
  */
-async function evaluateAsync(expression, context) {
+async function evaluateAsync(expression, context, applyRounding = true) {
 	if (!requiresContext(expression)) {
 		return Number(expression);
 	}
@@ -270,10 +285,15 @@ async function evaluateAsync(expression, context) {
 	}
 
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
-	const result = MathHelper.evaluate(substitutedExpression);
+	let result = MathHelper.evaluate(substitutedExpression);
 
 	if (Number.isNaN(result)) {
 		throw new Error(`Failed to evaluate expression ${substitutedExpression}`);
+	}
+
+	// FU always rounds down numbers
+	if (applyRounding) {
+		result = round(result);
 	}
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
@@ -328,13 +348,26 @@ function evaluateVariables(expression, context) {
 			case 'dex':
 			case 'wlp':
 			case 'ins': {
-				context.assertActorOrTargets(match);
 				return getAttributeSize(context.resolveActorOrHighestLevelTarget(), symbol);
 			}
-			// Progress (From
+			// Resource: Current
+			case 'hp':
+			case 'mp': {
+				return context.resolveActorOrHighestLevelTarget().system.resources[symbol].value;
+			}
+			// Resource: Max
+			case 'mhp':
+			case 'mmp': {
+				return context.resolveActorOrHighestLevelTarget().system.resources[symbol].max;
+			}
+			// Progress (From effect)
 			case 'pg': {
 				context.assertEffect(match);
 				return context.effect.system.rules.progress.current;
+			}
+			// Target Count
+			case 'tc': {
+				return context.targets.length;
 			}
 			// Target status count
 			case 'tsc': {
@@ -344,25 +377,41 @@ function evaluateVariables(expression, context) {
 			}
 			// Bond Count
 			case 'bc': {
-				return countBonds(context.actor);
+				context.assertActorOrTargets(match);
+				return countBonds(context.resolveActorOrHighestLevelTarget());
 			}
 			// Maximum bond strength
 			case 'mbs': {
-				return maximumBondStrength(context.actor);
+				return maximumBondStrength(context.resolveActorOrHighestLevelTarget());
 			}
 			// Number of classes
 			case 'cc': {
-				return countClasses(context.actor);
+				return countClasses(context.resolveActorOrHighestLevelTarget());
 			}
 			// Number of mastered classes
 			case 'mcc': {
-				return countMasteredClasses(context.actor);
+				return countMasteredClasses(context.resolveActorOrHighestLevelTarget());
+			}
+			// Check Result
+			case 'chk': {
+				if (context.check) {
+					return context.check.result;
+				}
+				return 0;
 			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
 	}
 	return expression.replace(pattern, evaluate);
+}
+
+/**
+ * @param {Number} value
+ * @remarks In FU, numbers are always rounded down>
+ */
+function round(value) {
+	return Math.floor(value);
 }
 
 /**

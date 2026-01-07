@@ -1,19 +1,13 @@
 <section class="title-fieldset resource-content flexcol">
     <div class="flex0">
         <div class='detail-desc flex-group-center grid grid-2col desc'>
-            <div class='spin2win'>
-                <i class='fas fa-dice-d20 ra-2x rollable'></i>
-                {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize groupCheck.attributes.attr1) 'Abbr')}}
-            </div>
-            <div class='spin2win'>
-                <i class='fas fa-dice-d20 ra-2x rollable'></i>
-                {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize groupCheck.attributes.attr2) 'Abbr')}}
-            </div>
+			{{pfuIconAttribute groupCheck.attributes.attr1}}
+			{{pfuIconAttribute groupCheck.attributes.attr2}}
         </div>
     </div>
     <div class="flex0">
         <div class="detail-desc flexrow flex-group-center desc">
-            <span>{{localize 'FU.GroupCheckSupporters'}}</span>
+            <span>{{localize 'FU.GroupCheckSupporters' type=type}}</span>
         </div>
     </div>
     <div>
@@ -29,12 +23,8 @@
             </div>
         {{/each}}
     </div>
-    <div class="flexrow flex0">
-        <span>
-            <button type="button" data-type="group-check" data-action="roll">{{localize 'FU.RollGroupCheck'}}</button>
-        </span>
-        <span>
-            <button type="button" data-type="group-check" data-action="cancel">{{localize 'FU.Cancel'}}</button>
-        </span>
+    <div class="flexrow flex-group-center flex0">
+		<button type="button" data-type="group-check" data-action="roll">{{localize 'FU.RollGroupCheck' type=typeLabel}}</button>
+		<button type="button" data-type="group-check" data-action="cancel">{{localize 'FU.Cancel'}}</button>
     </div>
 </section>

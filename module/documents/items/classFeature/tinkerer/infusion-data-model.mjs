@@ -43,10 +43,7 @@ function onGetChatLogEntryContext(application, menuItems) {
 				await Checks.modifyCheck(inspector.getCheck().id, (check) => {
 					CheckConfiguration.configure(check).modifyDamage((damage) => {
 						damage.type = infusion.changedDamageType;
-						damage.modifiers.push({
-							label: `${infusions.name}: ${infusion.name}`,
-							value: infusion.extraDamage,
-						});
+						damage.addModifier(`${infusions.name}: ${infusion.name}`, infusion.extraDamage);
 						return damage;
 					});
 					check.additionalData[infusionKey] = {

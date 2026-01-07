@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><hr /><ul><li><p>@UUID[Compendium.projectfu.consumables.iLidslBpjoLfrsT9]{Remedy}: @GAIN[25 hp]</p></li><li><p>@UUID[Compendium.projectfu.consumables.mn3F6qOfdVYM405v]{Elixir}: @GAIN[25 mp]</p></li></ul>",
+    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -124,22 +124,112 @@
       "amount": 3
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Potion Rain",
+      "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_potion_rain.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "hlGPA1pcnOYW5orC": {
+              "type": "ruleElement",
+              "_id": "hlGPA1pcnOYW5orC",
+              "trigger": {
+                "_id": "VkyHhV3FApxSVvDd",
+                "type": "createConsumableRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "potion",
+                    "restore"
+                  ],
+                  "quantifier": "all"
+                }
+              },
+              "predicates": {
+                "fSBuWemywjUSJtkN": {
+                  "type": "targetingRulePredicate",
+                  "_id": "fSBuWemywjUSJtkN",
+                  "rule": "multiple"
+                }
+              },
+              "actions": {
+                "OFbTe9GBsEoOCERK": {
+                  "type": "modifyConsumableRuleAction",
+                  "_id": "OFbTe9GBsEoOCERK",
+                  "bonus": "",
+                  "multiplier": "0.5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "06fNYI2FaCIWg7HX",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766773134400,
+        "modifiedTime": 1767730050049,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!xzyAHegWwSaysYqV.06fNYI2FaCIWg7HX"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706508730921,
-    "modifiedTime": 1744748815783,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767560789058,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

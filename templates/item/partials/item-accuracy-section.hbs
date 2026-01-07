@@ -32,13 +32,11 @@
 			</div>
 			<div class=" flexcol flex-group-center">
 				<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-				<input type="number" name="system.accuracy" value="{{ system.accuracy }}" class="resource-inputs" {{disabled
-				 (not system.hasRoll.value)}}/>
+				<input type="text" name="system.accuracy" value="{{ system.accuracy }}" class="resource-inputs select-dropdown-m" {{disabled (not system.hasRoll.value)}}/>
 			</div>
 			<div class="resource-content flexcol flex-group-center">
 				<label for="system.defense" class="resource-label-m flexlarge align-left">{{localize 'FU.Defense'}}</label>
-				<select name="system.defense" class="resource-inputs select-dropdown-m" {{disabled
-				 (not system.useWeapon.accuracy)}}>
+				<select name="system.defense" class="resource-inputs select-dropdown-m">
 					{{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr" blank="-"}}
 				</select>
 			</div>

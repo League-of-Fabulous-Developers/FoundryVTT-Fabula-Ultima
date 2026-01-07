@@ -94,9 +94,19 @@ import { HoplosphereSheet } from './documents/items/hoplosphere/hoplosphere-shee
 import { MnemosphereReceptacleDataModel } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-data-model.mjs';
 import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-sheet.mjs';
 import { FUItemArmorSheet } from './sheets/item-armor-sheet.mjs';
+import { RuleElements } from './pipelines/rule-elements.mjs';
 import { PseudoItem } from './documents/items/pseudo-item.mjs';
 import { PseudoActiveEffect } from './documents/effects/pseudo-active-effect.mjs';
 import { PdfPagerIntegration } from './integration/pdf-pager-integration.mjs';
+import { ClassFeatureRegistry } from './documents/items/classFeature/class-feature-registry.mjs';
+import { OptionalFeatureRegistry } from './documents/items/optionalFeature/optional-feature-registry.mjs';
+import { RuleElementRegistry } from './documents/effects/rule-element-data-model.mjs';
+import { RuleActionRegistry } from './documents/effects/actions/rule-action-data-model.mjs';
+import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-data-model.mjs';
+import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
+import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
+import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
+import { InlineAction } from './helpers/inline-action.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -149,9 +159,30 @@ Hooks.once('init', async () => {
 			return Checks;
 		},
 		socket: new FUSocketHandler(),
+		get party() {
+			return FUPartySheet;
+		},
 	};
 
-	// Add custom constants for configuration.
+	// (!) Data Models: Moved here due to lexical declaration issues otherwise
+	FU.classFeatureRegistry = ClassFeatureRegistry.instance;
+	FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
+	FU.ruleElementRegistry = RuleElementRegistry.instance;
+	FU.ruleActionRegistry = RuleActionRegistry.instance;
+	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
+	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
+
+	/**
+	 * @type {Record<string, DataModelRegistry>}
+	 */
+	FU.dataModelRegistries = {
+		optionalFeature: FU.optionalFeatureRegistry,
+		classFeature: FU.classFeatureRegistry,
+		ruleElement: FU.ruleElementRegistry,
+		ruleAction: FU.ruleActionRegistry,
+		ruleTrigger: FU.ruleTriggerRegistry,
+		rulePredicate: FU.rulePredicateRegistry,
+	};
 	CONFIG.FU = FU;
 
 	/**
@@ -314,8 +345,12 @@ Hooks.once('init', async () => {
 
 	DamagePipeline.initialize();
 	ResourcePipeline.initialize();
+	ProgressPipeline.initialize();
+	ApplicationPipeline.initialize();
 	Effects.initialize();
+	RuleElements.initialize();
 	InventoryPipeline.initialize();
+	CheckPrompt.initialize();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();
@@ -334,6 +369,7 @@ Hooks.once('init', async () => {
 	InlineHelper.registerCommand(InlineType);
 	InlineHelper.registerCommand(InlineClocks);
 	InlineHelper.registerCommand(InlineIcon);
+	InlineHelper.registerCommand(InlineAction);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
@@ -483,8 +519,8 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
 		const dice = context.roll.dice;
 		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
-			const dieValue = dice[0].results[0].result;
-			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).result) {
+			const dieValue = dice[0].results[0].check;
+			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).check) {
 				for (const d of dice) {
 					d.options.sfx = { id: 'doubles', result: dieValue };
 				}

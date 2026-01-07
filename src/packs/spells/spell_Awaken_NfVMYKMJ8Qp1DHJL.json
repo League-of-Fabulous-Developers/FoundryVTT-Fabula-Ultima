@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p><hr /><ul><li><p><strong>Targets Receive:</strong> @EFFECT[dex-up e:eos i:1 t:self], @EFFECT[ins-up e:eos i:1 t:self], @EFFECT[mig-up e:eos i:1 t:self], or @EFFECT[wlp-up e:eos i:1 t:self]</p></li></ul>",
+    "description": "<p>You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of <strong>d12</strong>)</p>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,15 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "awaken"
+    "fuid": "awaken",
+    "effects": {
+      "entries": [
+        "dex-up",
+        "wlp-up",
+        "mig-up",
+        "ins-up"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,10 +142,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.350",
+    "coreVersion": "13.348",
     "createdTime": 1706572044662,
-    "modifiedTime": 1760481655174,
-    "lastModifiedBy": "93RRHGE4s1SwaU2P",
+    "modifiedTime": 1766779460974,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

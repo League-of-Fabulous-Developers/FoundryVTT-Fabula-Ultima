@@ -1,5 +1,7 @@
 import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
+import { FU } from './config.mjs';
+import { TraitUtils } from '../pipelines/traits.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -41,6 +43,13 @@ export const FUHandlebars = Object.freeze({
 				return str.charAt(0).toUpperCase() + str.slice(1);
 			}
 			return str;
+		});
+
+		Handlebars.registerHelper('pfuLocalizeTrait', function (trait) {
+			if (trait && typeof trait === 'string') {
+				return TraitUtils.localize(trait);
+			}
+			return trait;
 		});
 
 		Handlebars.registerHelper('pfuUppercase', function (str) {
@@ -155,8 +164,37 @@ export const FUHandlebars = Object.freeze({
 			return Math.clamp(val, min, max);
 		});
 
+		Handlebars.registerHelper(
+			'pfuCheckOutcome',
+			/**
+			 * @param result
+			 * @param difficulty
+			 */
+			function (result, difficulty) {
+				if (result.critical) {
+					return 'critical';
+				} else if (result.fumble) {
+					return 'fumble';
+				}
+
+				if (Number.isInteger(difficulty)) {
+					if (result.total >= difficulty) {
+						return 'success';
+					} else {
+						return 'failure';
+					}
+				}
+
+				return 'default';
+			},
+		);
+
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
+		Handlebars.registerHelper('pfuAutoComplete', autoComplete);
+		Handlebars.registerHelper('pfuTraits', traits);
+		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
+		Handlebars.registerHelper('pfuBadge', badge);
 	},
 });
 
@@ -239,5 +277,82 @@ function renderProgress(progress, document, path, options, index = undefined) {
 			: '';
 
 	// Begin constructing HTML
+	return new Handlebars.SafeString(html);
+}
+
+function autoComplete(context) {
+	const dataset = context.hash;
+	let options = dataset.options;
+	if (typeof options === 'object') {
+		options = Object.keys(options);
+	}
+	const template = Handlebars.partials[systemTemplatePath('common/auto-complete')];
+	const html =
+		typeof template === 'function'
+			? template({
+					name: dataset.name,
+					value: dataset.value,
+					options: options,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+function traits(model, path, options) {
+	options = options.hash;
+	const template = Handlebars.partials[systemTemplatePath('common/traits')];
+	const html =
+		typeof template === 'function'
+			? template({
+					model: model,
+					path: path,
+					traitOptions: model.schema.options?.options ?? {},
+					quantifierOptions: FU.predicateQuantifier,
+					showLabel: options.showLabel ?? true,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @typedef BadgeOptions
+ * @property {String} label
+ * @property {Number} value
+ * @property {Boolean} compact
+ * @property {'xs'|'s'|'m'|'l'|'xl'} size
+ */
+
+/**
+ * @param {Attribute} attribute
+ * @param {BadgeOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function attributeIcon(attribute, options) {
+	options.hash.label = FU.attributeAbbreviations[attribute];
+	return badge(attribute, options);
+}
+
+/**
+ * @param {String} key
+ * @param {BadgeOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function badge(key, options) {
+	if (options) {
+		options = options.hash;
+	}
+	const icon = FU.allIcon[key];
+	const size = options.size ?? 's';
+	const template = Handlebars.partials[systemTemplatePath('common/icons/badge')];
+	const html =
+		typeof template === 'function'
+			? template({
+					icon: icon,
+					label: options.label,
+					size: size,
+					value: options.value,
+					compact: options.compact,
+				})
+			: '';
 	return new Handlebars.SafeString(html);
 }

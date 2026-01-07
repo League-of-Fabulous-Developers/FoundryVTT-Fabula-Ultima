@@ -1,0 +1,25 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Check'}}</span>
+	<select name="{{pfuConcat path ".check"}}">
+		{{selectOptions options.dialogCheckTypes selected=action.check sort=true localize=true}}
+	</select>
+</label>
+
+<div class="grid grid-2col">
+	<div class="flexcol flex-group-center">
+		<label>
+			{{localize 'FU.Primary'}}
+			<select name="{{pfuConcat path ".attributes.primary.value"}}">
+				{{selectOptions options.attributes selected=action.attributes.primary.value blank='-' sort=true localize=true}}
+			</select>
+		</label>
+	</div>
+	<div class=" flexcol flex-group-center">
+		<label>
+			{{localize 'FU.Secondary'}}
+			<select name="{{pfuConcat path ".attributes.secondary.value"}}">
+				{{selectOptions options.attributes selected=action.attributes.secondary.value blank='-' sort=true localize=true}}
+			</select>
+		</label>
+	</div>
+</div>

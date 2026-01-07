@@ -7,9 +7,9 @@
       "value": "potion"
     },
     "summary": {
-      "value": "One creature suffers 10 damage of a type of your choice (10 Air, 10 Bolt, 10 Earth, 10 Fire, or 10 Ice)."
+      "value": "One creature suffers 10 damage of a type of your choice (air, bolt, earth, fire, ice)."
     },
-    "description": "<p>For 2 Inventory Points, one creature suffers 10 damage of a type of your choice (<strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>).</p><hr /><ul><li><p><strong>Target Suffers:</strong> @DMG[10 air], @DMG[10 bolt], @DMG[10 earth], @DMG[10 fire], or @DMG[10 ice]</p></li></ul>",
+    "description": "",
     "isFavored": {
       "value": false
     },
@@ -20,7 +20,25 @@
       "value": 2
     },
     "source": "FUCR104",
-    "fuid": "elemental-shard"
+    "fuid": "elemental-shard",
+    "damage": {
+      "enabled": true,
+      "onApply": "",
+      "types": [
+        "air",
+        "bolt",
+        "earth",
+        "fire",
+        "ice"
+      ],
+      "amount": 10
+    },
+    "traits": {
+      "entries": [
+        "elemental-shard",
+        "damage"
+      ]
+    }
   },
   "effects": [],
   "folder": "WTJwnSjYUL3GOIyA",
@@ -30,15 +48,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706516143319,
-    "modifiedTime": 1743184860797,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1767644282772,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -20,7 +20,7 @@ const className = `inline-weapon`;
  */
 const editorEnricher = {
 	id: 'InlineWeaponEnricher',
-	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.configurationPropertyGroups),
+	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.effectPropertyGroups),
 	enricher: (match, options) => {
 		const choices = match.groups.choices.split(' ');
 
@@ -47,7 +47,7 @@ const editorEnricher = {
 
 			// CONFIG
 			const config = InlineEffects.parseConfigData(match);
-			anchor.dataset.config = InlineHelper.toBase64(config);
+			anchor.dataset.config = StringUtils.toBase64(config);
 			return anchor;
 		}
 
@@ -67,7 +67,7 @@ async function onRender(element) {
 		const targets = await targetHandler();
 		if (targets.length > 0) {
 			const choices = renderContext.dataset.choices.split(' ');
-			const config = InlineHelper.fromBase64(renderContext.dataset.config);
+			const config = StringUtils.fromBase64(renderContext.dataset.config);
 			for (const target of targets) {
 				await applyEffectToWeapon(target, renderContext.sourceInfo, choices, config);
 			}
@@ -79,7 +79,7 @@ async function onRender(element) {
 		const data = {
 			type: INLINE_WEAPON,
 			sourceInfo: renderContext.sourceInfo,
-			config: InlineHelper.fromBase64(renderContext.dataset.config),
+			config: StringUtils.fromBase64(renderContext.dataset.config),
 			traits: renderContext.dataset.choices,
 		};
 
@@ -152,7 +152,7 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 				// The name is modified
 				config.name = effectData.name;
 
-				Effects.onApplyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
+				Effects.applyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
 					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
 				});
 			}

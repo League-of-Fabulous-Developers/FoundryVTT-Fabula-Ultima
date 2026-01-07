@@ -1,6 +1,6 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
-import { FU, SYSTEM } from '../helpers/config.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
@@ -34,33 +34,31 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 
 /**
  * Hook called to process the result of the roll
- * @param {CheckResultV2} check
- * @param {FUActor} actor
- * @param {FUItem} [item]
+ * @type ProcessCheckHook
  */
-const onProcessCheck = (check, actor, item) => {
+const onProcessCheck = (check, actor, item, registerCallback) => {
 	const { type, critical, fumble } = check;
 	if (type === 'magic') {
-		const configurer = CheckConfiguration.configure(check);
-		configurer.setTargetedDefense('mdef');
+		const config = CheckConfiguration.configure(check);
+		config.setTargetedDefense('mdef');
 		// TODO: Refactor alongside accuracy-checks
 		if (critical) {
-			configurer.addTraits('critical');
+			config.addTraits('critical');
 		} else if (fumble) {
-			configurer.addTraits('fumble');
+			config.addTraits('fumble');
 		}
-		configurer.modifyDamage((damage) => {
+		config.modifyDamage((damage) => {
 			if (damage) {
 				// All Damage
 				const globalBonus = actor.system.bonuses.damage.all;
 				if (globalBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
+					damage.addModifier(`FU.DamageBonusAll`, globalBonus);
 				}
 
 				// Damage Type
 				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
 				if (damageTypeBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
+					damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
 				}
 
 				// TODO: Refactor this and others all the way to the end
@@ -82,30 +80,8 @@ const onProcessCheck = (check, actor, item) => {
  * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
-	const checkData = inspector.getCheck();
-
-	let damageData;
-	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
-	if (hasDamage) {
-		damageData = inspector.getExtendedDamageData();
-	}
-
-	// Push combined data for accuracy and damage
-	data.push({
-		order: CHECK_ROLL,
-		partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
-		data: {
-			check: checkData,
-			damage: damageData,
-			translation: {
-				damageTypes: FU.damageTypes,
-				damageIcon: FU.affIcon,
-			},
-		},
-	});
-
 	const targets = inspector.getTargets();
-	CommonSections.targeted(data, actor, item, targets, flags, checkData, damageData);
+	CommonSections.actions(data, actor, item, targets, flags, inspector);
 	CommonEvents.attack(inspector, actor, item);
 }
 

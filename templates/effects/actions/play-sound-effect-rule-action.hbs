@@ -1,0 +1,9 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Asset'}}</span>
+	{{formGroup action.schema.fields.asset value=action.asset name=(pfuConcat path ".asset")}}
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Volume'}}</span>
+	{{formGroup action.schema.fields.volume value=action.volume name=(pfuConcat path ".volume")}}
+</label>

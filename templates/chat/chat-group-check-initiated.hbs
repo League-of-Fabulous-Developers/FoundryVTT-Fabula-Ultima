@@ -1,24 +1,18 @@
 <div>
     <div class='detail-desc flexrow flex-group-center desc' style='padding: 0 2px;'>
-        <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name}}</div>
+        <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name type=type}}</div>
     </div>
     <div class='detail-desc flex-group-center grid grid-2col desc'>
-        <div class='spin2win'>
-            <i class='fas fa-dice-d6 ra-2x rollable'></i>
-            {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attributes.attr1) 'Abbr')}}
-        </div>
-        <div class='spin2win'>
-            <i class='fas fa-dice-d6 ra-2x rollable'></i>
-            {{localize (pfuConcat 'FU.Attribute' (pfuCapitalize attributes.attr2) 'Abbr')}}
-        </div>
+		{{pfuIconAttribute attributes.attr1}}
+		{{pfuIconAttribute attributes.attr2}}
     </div>
     {{#if supporters}}
         <div class='detail-desc flexcol flex-group-center'>
             <div class='flexcol group-check-supporters'>
                 <div class='flexrow group-check-supporters-title'>
-                    <div>{{localize 'FU.ChatGroupCheckSupporter'}}</div>
-                    <div>{{localize 'FU.ChatGroupCheckSupportResult'}}</div>
-                    <div>{{localize 'FU.ChatGroupCheckSupportBond'}}</div>
+                    <div>{{localize 'FU.ChatGroupCheckSupporter' type=type}}</div>
+                    <div>{{localize 'FU.ChatGroupCheckSupportResult' type=type}}</div>
+                    <div>{{localize 'FU.ChatGroupCheckSupportBond' type=type}}</div>
                 </div>
                 {{#each supporters}}
                     <div class='flexrow group-check-supporters-supporter'>
@@ -46,13 +40,13 @@
     {{/if}}
     <div class='action-style button-style detail-desc flexrow flex-group-center desc'>
         {{#if (eq status 'open')}}
-            <button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
+            <button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport' type=type}}</button>
         {{/if}}
         {{#if (eq status 'completed')}}
-            <button type='button' disabled>{{localize 'FU.ChatGroupCheckCompleted'}}</button>
+            <button type='button' disabled>{{localize 'FU.ChatGroupCheckCompleted' type=type}}</button>
         {{/if}}
         {{#if (eq status 'canceled')}}
-            <button type='button' disabled>{{localize 'FU.ChatGroupCheckCanceled'}}</button>
+            <button type='button' disabled>{{localize 'FU.ChatGroupCheckCanceled' type=type}}</button>
         {{/if}}
     </div>
 </div>

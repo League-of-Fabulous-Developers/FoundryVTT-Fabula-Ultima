@@ -1,0 +1,29 @@
+.fu-item-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+	gap: 10px;
+}
+
+.fu-item-card {
+	padding: 8px;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	transition: 0.2s;
+	-webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+	filter: brightness(1.8) grayscale(1) opacity(0.7);
+
+	img {
+		height: 100%;
+	}
+}
+
+.fu-item-card:hover {
+	-webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+	filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+.fu-item-card.selected {
+	-webkit-filter: unset;
+	filter: unset;
+}

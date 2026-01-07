@@ -116,7 +116,93 @@
     "defense": "def",
     "fuid": "navigator"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Navigator",
+      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_navigator.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "gE43v4Mm9rk2ENco": {
+              "type": "ruleElement",
+              "_id": "gE43v4Mm9rk2ENco",
+              "trigger": {
+                "_id": "4Uz2pPGaGNESV40O",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "4xvsCG1APXGfOI66": {
+                  "type": "performCheckRuleAction",
+                  "_id": "4xvsCG1APXGfOI66",
+                  "check": "ritual",
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "wlp"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "6mKj1xGOi50dNxwI",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767266328077,
+        "modifiedTime": 1767266511489,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!51Ws5AS0aD5MTJRI.6mKj1xGOi50dNxwI"
+    }
+  ],
   "folder": "KIqoW0FNwwyC7ygb",
   "ownership": {
     "default": 0,

@@ -4,6 +4,7 @@ import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
@@ -15,7 +16,7 @@ const INLINE_EFFECT_CLASS = 'inline-effect';
  * @property {GuidedInlineEffectConfig} guided
  */
 
-const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
+const effectPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
 
 /**
  * @type {TextEditorEnricherConfig}
@@ -23,15 +24,20 @@ const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', 
 const enricher = {
 	id: 'InlineEffect',
 	// ID|UUID|Base64String
-	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]+={0,3})', configurationPropertyGroups),
+	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]+={0,3})', effectPropertyGroups),
 	enricher: inlineEffectEnricher,
 	onRender: onRender,
 };
 
+/**
+ * @param effect
+ * @param label
+ * @returns {HTMLAnchorElement}
+ */
 function createEffectAnchor(effect, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
-	anchor.dataset.effect = InlineHelper.toBase64(effect);
+	anchor.dataset.effect = StringUtils.toBase64(effect);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 	const icon = document.createElement('i');
@@ -44,9 +50,10 @@ function createEffectAnchor(effect, label) {
 function createCompendiumEffectAnchor(effect, config, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
-	anchor.dataset.effect = InlineHelper.toBase64(effect);
+	anchor.dataset.effect = StringUtils.toBase64(effect);
 	anchor.dataset.uuid = effect.uuid;
-	anchor.dataset.config = InlineHelper.toBase64(config);
+	anchor.dataset.fuid = effect.parent.system.fuid;
+	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 	InlineHelper.appendImage(anchor, effect.img);
@@ -68,7 +75,7 @@ function createStatusAnchor(effectValue, status, config) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
 	anchor.dataset.status = effectValue;
-	anchor.dataset.config = InlineHelper.toBase64(config);
+	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	const localizedName = game.i18n.localize(status.name);
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
@@ -133,6 +140,9 @@ async function inlineEffectEnricher(match, options) {
 		/** @type ActiveEffect **/
 		if (id.includes('.')) {
 			let instancedEffect = await fromUuid(id);
+			if (!instancedEffect) {
+				return createBrokenAnchor();
+			}
 			if (instancedEffect instanceof FUItem) {
 				const firstEffect = instancedEffect.effects.entries().next().value[1];
 				instancedEffect = firstEffect;
@@ -141,7 +151,7 @@ async function inlineEffectEnricher(match, options) {
 		}
 
 		// TODO: Deprecate someday
-		const decodedEffect = InlineHelper.fromBase64(id);
+		const decodedEffect = StringUtils.fromBase64(id);
 		if (decodedEffect && decodedEffect.name && decodedEffect.changes) {
 			return createEffectAnchor(decodedEffect, label);
 		}
@@ -160,9 +170,9 @@ async function onRender(element) {
 	const sourceInfo = InlineHelper.determineSource(document, target);
 	const dataset = target.dataset;
 
-	const effectData = InlineHelper.fromBase64(dataset.effect);
+	const effectData = StringUtils.fromBase64(dataset.effect);
 	const status = dataset.status;
-	const config = InlineHelper.fromBase64(dataset.config);
+	const config = StringUtils.fromBase64(dataset.config);
 
 	// Click handler
 	element.addEventListener('click', async function (event) {
@@ -173,9 +183,9 @@ async function onRender(element) {
 		targets.forEach((actor) => {
 			if (effectData) {
 				if (isCtrlClick) {
-					Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData);
+					Effects.removeEffect(actor, sourceInfo, effectData);
 				} else {
-					Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
+					Effects.applyEffect(actor, effectData, sourceInfo, config);
 				}
 			} else if (status) {
 				if (isCtrlClick) {
@@ -192,8 +202,8 @@ async function onRender(element) {
 		const data = {
 			type: INLINE_EFFECT,
 			sourceInfo: sourceInfo,
-			config: InlineHelper.fromBase64(dataset.config),
-			effect: InlineHelper.fromBase64(dataset.effect),
+			config: StringUtils.fromBase64(dataset.config),
+			effect: StringUtils.fromBase64(dataset.effect),
 			status: dataset.status,
 		};
 
@@ -214,7 +224,7 @@ async function onRender(element) {
 				effectData = { ...statusEffect, statuses: [status] };
 			}
 		} else {
-			effectData = InlineHelper.fromBase64(dataset.effect);
+			effectData = StringUtils.fromBase64(dataset.effect);
 		}
 
 		if (effectData) {
@@ -233,10 +243,10 @@ async function onDropActor(actor, sheet, { type, sourceInfo, config, effect, sta
 	if (type === INLINE_EFFECT) {
 		if (status) {
 			if (!actor.statuses.has(status)) {
-				Effects.toggleStatusEffect(actor, status, sourceInfo, config);
+				await Effects.toggleStatusEffect(actor, status, sourceInfo, config);
 			}
 		} else if (effect) {
-			Effects.onApplyEffectToActor(actor, effect, sourceInfo, config);
+			await Effects.applyEffect(actor, effect, sourceInfo, config);
 		}
 		return false;
 	}
@@ -246,13 +256,11 @@ function showEffectConfiguration(state, dispatch, view) {
 	new InlineEffectConfiguration(state, dispatch).render(true);
 }
 
-/**
- * @type {FUInlineCommand}
- */
-export const InlineEffects = {
+export const InlineEffects = Object.freeze({
 	enrichers: [enricher],
 	showEffectConfiguration,
 	parseConfigData,
 	onDropActor,
-	configurationPropertyGroups,
-};
+	effectPropertyGroups,
+	createEffectAnchor,
+});

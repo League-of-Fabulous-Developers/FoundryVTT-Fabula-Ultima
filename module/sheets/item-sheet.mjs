@@ -2,12 +2,13 @@ import { Effects, onManageActiveEffect, prepareActiveEffectCategories } from '..
 import { Checks } from '../checks/checks.mjs';
 import * as CONFIG from '../helpers/config.mjs';
 import { FU, systemPath } from '../helpers/config.mjs';
-import { Traits } from '../pipelines/traits.mjs';
+import { DamageTraits, Traits, TraitUtils } from '../pipelines/traits.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
 import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/pseudo-document-enabled-type-data-model.mjs';
+import { ObjectUtils } from '../helpers/object-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -64,6 +65,9 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			toggleEffect: FUItemSheet.ToggleEffect,
 			copyInline: FUItemSheet.CopyInline,
 			rollEffect: FUItemSheet.RollEffect,
+			// Partials
+			addArrayElement: FUItemSheet.#addArrayElement,
+			removeArrayElement: FUItemSheet.#removeArrayElement,
 		},
 		scrollY: ['.sheet-body'],
 		position: { width: 700, height: 'auto' },
@@ -126,10 +130,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		switch (partId) {
 			case 'header':
 				context.traits = Object.keys(Traits);
-				context.traitOptions = context.traits.map((key) => ({
-					label: key,
-					value: key,
-				}));
+				context.damageTraitOptions = TraitUtils.getOptions(DamageTraits);
 				break;
 
 			case 'tabs':
@@ -138,8 +139,8 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				context.heroicType = CONFIG.FU.heroicType;
 				context.miscCategories = CONFIG.FU.miscCategories;
 				context.treasureType = CONFIG.FU.treasureType;
-				context.features = Object.entries(CONFIG.FU.classFeatureRegistry.all).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
-				context.optionals = Object.entries(CONFIG.FU.optionalFeatureRegistry.all).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				context.features = Object.entries(CONFIG.FU.classFeatureRegistry.qualifiedTypes).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				context.optionals = Object.entries(CONFIG.FU.optionalFeatureRegistry.qualifiedTypes).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 				break;
 
 			case 'effects':
@@ -585,6 +586,46 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addArrayElement(event, target) {
+		const path = target.dataset.path;
+		if (path) {
+			const array = ObjectUtils.getProperty(this.item, path);
+			if (array) {
+				array.push(null);
+				await this.item.update({
+					[`${path}`]: array,
+				});
+			}
+		}
+	}
+
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeArrayElement(event, target) {
+		const path = target.dataset.path;
+		const index = Number.parseInt(target.dataset.index);
+		if (path) {
+			/** @type [] **/
+			const array = ObjectUtils.getProperty(this.item, path);
+			if (array && index !== undefined) {
+				array.splice(index, 1);
+				await this.item.update({
+					[`${path}`]: array,
+				});
+			}
+		}
+	}
+
 	// TODO: Re-use with the ones from actor sheet?
 	/* -------------------------------------------- */
 	// ACTIVE EFFECTS
@@ -659,6 +700,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		const item = this.item.getEmbeddedDocument('Item', itemId);
 		if (item) {
 			if (this.item.actor) {
+				// TODO: Set up event to replace the roll action.
 				return item.roll();
 			} else {
 				return Checks.display(null, item);

@@ -120,7 +120,107 @@
     "defense": "def",
     "fuid": "crossfire"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Crossfire",
+      "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_crossfire.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "XCJMRop9wZe4E0w6": {
+              "type": "ruleElement",
+              "_id": "XCJMRop9wZe4E0w6",
+              "trigger": {
+                "_id": "SvxRRbmMaWpg6AFW",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "identifier": "",
+                "local": false
+              },
+              "predicates": {
+                "mcYSEMAjvu14owAY": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "mcYSEMAjvu14owAY",
+                  "relation": "ally",
+                  "inclusive": true
+                },
+                "mOzdLT4f4tE4195B": {
+                  "type": "weaponRulePredicate",
+                  "_id": "mOzdLT4f4tE4195B",
+                  "weaponType": "ranged",
+                  "selector": "source"
+                },
+                "nwwnCFCojQZxCVQO": {
+                  "type": "weaponRulePredicate",
+                  "_id": "nwwnCFCojQZxCVQO",
+                  "selector": "self",
+                  "weaponType": "ranged"
+                }
+              },
+              "actions": {
+                "Jg8qePO1hy7kyP6V": {
+                  "type": "messageRuleAction",
+                  "_id": "Jg8qePO1hy7kyP6V",
+                  "message": "<p>This attack may be interrupted by spending @LOSS[$chk mp].</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ZUwqffH7kP8rWg0g",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766863644203,
+        "modifiedTime": 1767640574118,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!sIkQa2NzkqsvczBr.ZUwqffH7kP8rWg0g"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

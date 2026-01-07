@@ -1,0 +1,17 @@
+<section>
+	{{{localize message document=document.name effect=effect.name source=source}}}.
+</section>
+
+<section style="margin-top: 4px; display: flex; justify-content: space-between; ">
+	<div>
+		<a data-action="removeEffect" data-name="{{effect.name}}" data-actor-id="{{document.uuid}}" data-id="{{effect.id}}" data-tooltip="{{localize 'FU.ChatRemoveEffect'}}">
+			<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-undo"></i></span>
+		</a>
+
+		{{#if inspect}}
+			<a data-action="inspectEffect" data-uuid="{{rootUuid}}" data-tooltip="{{localize 'FU.Inspect'}}">
+				<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-search"></i></span>
+			</a>
+		{{/if}}
+	</div>
+</section>

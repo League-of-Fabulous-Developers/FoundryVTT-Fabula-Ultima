@@ -123,7 +123,96 @@
       "rule": "single"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Counterattack",
+      "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_counterattack.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "F5sEhddW5N7Gx7B7": {
+              "type": "ruleElement",
+              "_id": "F5sEhddW5N7Gx7B7",
+              "trigger": {
+                "_id": "Vz9YV1XJh5K70zKl",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "outcome": "",
+                "identifier": "",
+                "local": false
+              },
+              "predicates": {
+                "AccwRopUxS7jiAR4": {
+                  "type": "checkRulePredicate",
+                  "_id": "AccwRopUxS7jiAR4",
+                  "parity": "even",
+                  "result": null
+                }
+              },
+              "actions": {
+                "2xZr4iUkZa06agNk": {
+                  "type": "messageRuleAction",
+                  "_id": "2xZr4iUkZa06agNk",
+                  "message": "<p>The condition for this skill has been met.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3I4QKAPzn55nGTVF",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766789080881,
+        "modifiedTime": 1767559780888,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!XhcTVGtGEk7L2Ddq.3I4QKAPzn55nGTVF"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

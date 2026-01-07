@@ -1,0 +1,18 @@
+{{ localize 'FU.ClassFeatureTherioformManifest' }}
+
+<table class="table-compact">
+	<tbody>
+ 	{{#each forms as |effect|}}
+		<tr>
+			<td>
+				<a data-description="{{effect.description}}" data-actor-id="{{../actor.uuid}}">
+					<img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
+				</a>
+			</td>
+			<td class="flex-group-center">
+				<span>{{localize effect.name}}</span>
+			</td>
+		</tr>
+ 	{{/each}}
+	</tbody>
+</table>

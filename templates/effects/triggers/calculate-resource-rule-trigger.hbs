@@ -1,0 +1,13 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Resource'}}</span>
+	<select name="{{pfuConcat path ".resource"}}">
+		{{selectOptions options.resources selected=trigger.resource sort=true localize=true}}
+	</select>
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Change'}}</span>
+	<select name="{{pfuConcat path ".change"}}">
+		{{selectOptions options.scalarChange selected=trigger.change sort=true localize=true}}
+	</select>
+</label>

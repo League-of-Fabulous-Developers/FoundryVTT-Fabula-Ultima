@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr><ul><li><p><strong>Targets Receive:</strong> @EFFECT[aura e:eos i:1 t:self]</p></li></ul>",
+    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,12 @@
     "maxTargets": {
       "value": 3
     },
-    "fuid": "aura"
+    "fuid": "aura",
+    "effects": {
+      "entries": [
+        "aura"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,10 +139,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.350",
+    "coreVersion": "13.348",
     "createdTime": 1706571961584,
-    "modifiedTime": 1760481607872,
-    "lastModifiedBy": "93RRHGE4s1SwaU2P",
+    "modifiedTime": 1766779506547,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

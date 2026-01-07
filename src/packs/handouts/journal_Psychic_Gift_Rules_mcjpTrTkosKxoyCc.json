@@ -94,7 +94,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.FLyCnZOUFt8Xo4fi]{Brainwave Clock}</p></li><li><p>Now you can add psychic gifts to your sheet</p></li><li><p>After resolving one of your gifts, <strong>fill 1 section </strong>of your Brainwave Clock.</p></li><li><p>To display the corresponding effect in chat, <strong>roll</strong> the psychic gift.</p></li></ol>"
+        "content": "<ol><li><p>To <strong>automate</strong> class feature, ensure you are using the latest version of the @UUID[Compendium.projectfu.classes.XxUUexPvdDjoieG2]{Esper}, which includes the Brainwave Clock.</p></li><li><p>Now you can add psychic gifts to your sheet</p></li><li><p>After resolving one of your gifts, <strong>fill 1 section </strong>of your Brainwave Clock.</p></li><li><p>To display the corresponding effect in chat, <strong>roll</strong> the psychic gift.</p></li></ol>"
       },
       "video": {
         "controls": true,
@@ -109,12 +109,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742791669758,
-        "modifiedTime": 1743173665778,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1767260189052,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "exportSource": null
       },
       "category": null,

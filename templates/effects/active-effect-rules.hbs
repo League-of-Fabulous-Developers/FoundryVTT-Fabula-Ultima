@@ -49,4 +49,35 @@
 			</div>
 		</div>
 	</div>
+
+	{{!-- Rule Elements --}}
+	<fieldset class="fu-rule-element title-fieldset desc resource-content">
+		<legend class="resource-label-m">
+			<span class="-fu-rule-element__title">
+				<span class="resource-label-m">
+					<a class="resource-label-m" data-tooltip="{{localize 'FU.IncubationWarning'}}">
+						<i class="icon fas fa-info-circle"></i>
+					</a>
+				</span>
+				<span class="resource-label-m">
+					<a class="resource-label-m" data-action="addRuleElement">
+						<i class="icon fas fa-circle-plus"></i>
+					</a>
+				</span>
+				<span>{{localize "FU.RuleElementOptions"}}</span>
+				<span class="resource-label-m">
+					<a class="resource-label-m" data-action="clearRuleElements">
+						<i class="icon fas fa-circle-trash"></i>
+					</a>
+				</span>
+			</span>
+		</legend>
+
+		<div class="rule-element-forms flexcol">
+			{{#each system.rules.elements as |element|}}
+				{{> (lookup (lookup (lookup element "schema") "model") "template") path=(concat "system.rules.elements." element.id) element=element options=../options expanded=(lookup ../expandedRuleElements id)}}
+			{{/each}}
+		</div>
+
+	</fieldset>
 </section>

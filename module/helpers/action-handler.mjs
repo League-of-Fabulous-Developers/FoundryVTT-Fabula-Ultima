@@ -8,6 +8,7 @@ import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CHECK_FLAVOR } from '../checks/default-section-order.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const actionKey = 'ruleDefinedAction';
 
@@ -46,9 +47,22 @@ const onRenderCheck = (sections, check, actor) => {
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
+/**
+ * @desc Encapsulates basic character actions.\
+ * @property {Number} bonus
+ */
 export class ActionHandler {
 	constructor(actor) {
 		this.actor = actor;
+		this.bonus = 0;
+	}
+
+	/**
+	 * @param {Number} bonus
+	 */
+	withBonus(bonus) {
+		this.bonus = bonus;
+		return this;
 	}
 
 	async handleAction(actionType, isShift = false) {
@@ -81,7 +95,12 @@ export class ActionHandler {
 	 */
 	async handleStudyAction() {
 		await CheckPrompt.openCheck(this.actor, {
-			initialConfig: { primary: 'ins', secondary: 'ins' },
+			initialConfig: {
+				primary: 'ins',
+				secondary: 'ins',
+				modifier: this.bonus,
+				title: `${StringUtils.localize(FU.actionTypes.study)} ${StringUtils.localize('FU.Check')}`,
+			},
 			checkCallback: (check) => {
 				check.additionalData[actionKey] = 'study';
 			},
@@ -99,6 +118,7 @@ export class ActionHandler {
 			initialConfig: {
 				difficulty: 10,
 				modifier: 0,
+				title: `${StringUtils.localize(FU.actionTypes.hinder)} ${StringUtils.localize('FU.Check')}`,
 			},
 		});
 	}

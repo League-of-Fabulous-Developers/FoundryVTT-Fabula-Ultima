@@ -120,7 +120,93 @@
     "defense": "def",
     "fuid": "ritual-chimerism"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ritual Chimerism",
+      "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_ritual_chimerism.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "BYxkmsrW2aaVgQYH": {
+              "type": "ruleElement",
+              "_id": "BYxkmsrW2aaVgQYH",
+              "trigger": {
+                "_id": "mJgZJogbYFWQmtUE",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "osBFR7tIsZPaPrMM": {
+                  "type": "performCheckRuleAction",
+                  "_id": "osBFR7tIsZPaPrMM",
+                  "check": "ritual",
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "wlp"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "uSyOw5nEsFXbdQ4M",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767130495961,
+        "modifiedTime": 1767130556245,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!99bT5ymNnmR60Kmf.uSyOw5nEsFXbdQ4M"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

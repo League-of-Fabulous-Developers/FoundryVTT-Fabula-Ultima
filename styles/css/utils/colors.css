@@ -230,6 +230,8 @@
 	/* Semantic colors */
 	/* FIXME: replace with error */
 	--color-danger: #d1232a;
+	--color-gain: #3f8f62;
+	--color-loss: #b54444;
 	/* Tab Hover */
 	--color-shadow: #e74c3c;
 	--color-shadow-inverted: #2a4a41;

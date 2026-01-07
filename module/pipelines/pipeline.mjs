@@ -7,6 +7,7 @@
 
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { getSelected } from '../helpers/target-handler.mjs';
 
 /**
  * @property {InlineSourceInfo} sourceInfo
@@ -15,6 +16,7 @@ import { Flags } from '../helpers/flags.mjs';
  * @property {FUActor} sourceActor
  * @property {Set<String>} traits
  * @property {Event | null} event
+ * @property {String} origin An unique identifier, provided to prevent cascading of a request.
  */
 export class PipelineRequest {
 	/**
@@ -41,6 +43,14 @@ export class PipelineRequest {
 			this.traits.add(t);
 		}
 	}
+
+	/**
+	 * @desc Records the id for this request, used to prevent event cascading
+	 * @param id
+	 */
+	fromOrigin(id) {
+		this.origin = id;
+	}
 }
 
 /**
@@ -62,6 +72,21 @@ export class PipelineContext {
 		this.actor = actor;
 		this.sourceActor = request.sourceActor;
 		this.item = request.item;
+	}
+
+	/**
+	 *
+	 */
+	addTraits(traits) {
+		for (const t of traits) {
+			this.traits.add(t);
+		}
+	}
+
+	removeTraits(traits) {
+		for (const t of traits) {
+			this.traits.remove(t);
+		}
 	}
 }
 
@@ -89,14 +114,31 @@ async function process(request, getUpdatesForActor) {
  * @param {Event} event
  * @returns {FUActor[]}
  */
-function getSingleTarget(event) {
+async function getSingleTarget(event) {
 	const dataId = event.target.closest('a')?.dataset?.id;
 	const actor = fromUuidSync(dataId);
 	if (!actor) {
-		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
-		return [];
+		return await getSelected();
+		//ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
+		//return [];
 	}
 	return [actor];
+}
+
+/**
+ * @param {DOMStringMap} dataset
+ * @return {Promise<FUActor[]>}
+ */
+async function getTargetsFromAction(dataset) {
+	let targets = [];
+	let actorId = dataset ? (dataset.actorId ?? dataset.id) : undefined;
+	if (actorId) {
+		const actor = await fromUuid(actorId);
+		targets.push(actor);
+	} else {
+		targets = await getSelected();
+	}
+	return targets;
 }
 
 /**
@@ -184,4 +226,5 @@ export const Pipeline = {
 	toggleFlag,
 	setFlag,
 	initializedFlags,
+	getTargetsFromAction,
 };

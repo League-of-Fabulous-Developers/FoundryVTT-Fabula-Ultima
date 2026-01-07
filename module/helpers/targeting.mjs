@@ -1,6 +1,7 @@
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 import { Flags } from './flags.mjs';
 import { getTargeted } from './target-handler.mjs';
+import { ChatAction } from './chat-action.mjs';
 
 /**
  * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
@@ -42,7 +43,7 @@ async function filterTargetsByRule(actor, item, targets) {
 
 	switch (targeting.rule) {
 		case 'self':
-			return [actor];
+			return [];
 		case 'single':
 			if (targets.length === 0) {
 				return [];
@@ -69,36 +70,10 @@ async function filterTargetsByRule(actor, item, targets) {
 }
 
 /**
- * @property {String} name The name of the action to be used
- * @property {String} icon The font awesome icon
- * @property {String} tooltip The localized tooltip to use
- * @property {Object} fields The fields to use for the action's dataset
- * @property {Boolean} owner Whether this action can only be applied the owner
- * @remarks Expects an action handler where dataset.id is a reference to an actor
- */
-export class TargetAction {
-	constructor(name, icon, tooltip, fields) {
-		this.name = name;
-		this.icon = icon;
-		this.tooltip = tooltip;
-		this.fields = fields ?? {};
-		this.owner = false;
-	}
-
-	/**
-	 * @returns {TargetAction}
-	 */
-	requiresOwner() {
-		this.owner = true;
-		return this;
-	}
-}
-
-/**
- * @type {TargetAction}
+ * @type {ChatAction}
  * @description Target the token
  */
-const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatPingTarget');
+const defaultAction = new ChatAction('targetSingle', 'fas fa-bullseye', 'FU.ChatPingTarget');
 
 /**
  * @returns {TargetData[]}

@@ -9,7 +9,7 @@
     "summary": {
       "value": "One creature recovers 50 MP."
     },
-    "description": "<p>For 3 Inventory Points, one creature recovers @HEAL[50 mp].</p>",
+    "description": "",
     "isFavored": {
       "value": false
     },
@@ -20,7 +20,21 @@
       "value": 3
     },
     "source": "FUCR104",
-    "fuid": "elixir"
+    "fuid": "elixir",
+    "damage": {
+      "onApply": ""
+    },
+    "resource": {
+      "enabled": true,
+      "type": "mp",
+      "amount": "50"
+    },
+    "traits": {
+      "entries": [
+        "potion",
+        "restore"
+      ]
+    }
   },
   "effects": [],
   "folder": "WTJwnSjYUL3GOIyA",
@@ -30,15 +44,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706515894820,
-    "modifiedTime": 1743184743457,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1767644249742,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

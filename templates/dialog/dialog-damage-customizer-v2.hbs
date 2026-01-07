@@ -1,0 +1,91 @@
+<main class="">
+
+	<fieldset class="title-fieldset desc resource-content">
+		<legend class="resource-label-full">
+			<label class="resource-label-m">{{localize 'FU.Modifiers'}}</label>
+		</legend>
+		<span class="fu-dialog-item_label flex-group-center">
+				<img class="fu-icon fu-icon--s"
+					 src="{{ context.item.img }}"
+					 alt="{{context.item.name}}"
+					 data-tooltip="{{ context.item.name }}" />
+			{{context.item.name}}
+			</span>
+		<table class="table-compact">
+			<thead>
+			<tr>
+				<th>{{localize 'FU.Source'}}</th>
+				<th>{{localize 'FU.Types'}}</th>
+				<th>{{localize 'FU.Amount'}}</th>
+				<th>{{localize 'FU.Traits'}}</th>
+				<th>{{localize 'FU.Expense'}}</th>
+				<th>{{localize 'FU.Enabled'}}</th>
+			</tr>
+			</thead>
+			<tbody>
+			{{#each context.damage.rawModifiers as |change index|}}
+				<tr>
+					<th>{{localize this.label}}</th>
+					<td>
+						{{#each this.types as |type| }}
+							<i class="icon {{lookup @root.FU.affIcon type}}" style="flex: 0 1 auto;"></i>
+						{{/each}}
+					</td>
+					<td>
+						{{#if this.amount}}
+							{{this.amount}}
+						{{/if}}
+					</td>
+					<td>
+						{{#each this.traits as |trait|}}
+							<span>{{pfuLocalizeTrait trait}} </span>
+						{{/each}}
+					</td>
+					<td>
+						{{#if (and this.expense this.expense.amount)}}
+							<span>{{this.expense.amount}} {{localize (lookup @root.FU.resources this.expense.resource)}}</span>
+						{{/if}}
+					</td>
+					<td>
+						<label>
+							<input type="checkbox"
+								   id="{{this.label}}"
+								   data-index="{{index}}"
+								   name="context.damage._modifiers.{{index}}.enabled"
+								{{checked this.enabled}} />
+						</label>
+					</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+	</fieldset>
+
+	<fieldset class="title-fieldset desc resource-content">
+		<legend class="resource-label-full">
+			<label class="resource-label-m">{{localize 'FU.Type'}}</label>
+		</legend>
+		<div class="grid flex-group-center grid-5col gap-5">
+			<input type="hidden" name="damageType" value="{{selected}}">
+			{{#each context.types as |type| }}
+				<button type="button"
+						class="fu-dialog__icon-option"
+						data-tooltip="{{label}}"
+						data-action="selectType" data-value="{{value}}">
+					<i class="fu-icon--m {{icon}}"></i>
+				</button>
+			{{/each}}
+		</div>
+	</fieldset>
+
+	<fieldset class="title-fieldset desc resource-content">
+		<legend class="resource-label-full">
+			<label class="resource-label-m">{{localize 'FU.Amount'}}</label>
+		</legend>
+		<div class="flexcol">
+			<span class="fu-dialog__output" id="total-damage">
+				<b>{{damage.total}}</b>
+			</span>
+		</div>
+	</fieldset>
+</main>

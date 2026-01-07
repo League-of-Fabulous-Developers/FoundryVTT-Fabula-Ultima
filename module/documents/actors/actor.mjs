@@ -296,11 +296,32 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @param {String} id
+	 * @param {String} id The id of the effect
 	 * @returns {FUActiveEffect}
 	 */
-	resolveEffect(id) {
+	getEffect(id) {
 		return Array.from(this.allEffects()).find((value) => value.id === id);
+	}
+
+	/**
+	 * @param {String} name The name of the effect, one of its statuses, or its fuid
+	 * @returns {FUActiveEffect}
+	 */
+	resolveEffect(name) {
+		name = name.toLowerCase();
+		return Array.from(this.allEffects()).find((effect) => {
+			if (effect.name.toLowerCase() === name) {
+				return true;
+			}
+			if (effect.statuses.has(name)) {
+				return true;
+			}
+			if (effect.identifier === name) {
+				return true;
+			}
+
+			return false;
+		});
 	}
 
 	/**
@@ -518,8 +539,11 @@ export class FUActor extends Actor {
 			await progress.parent.parent.update({ [`system.${schemaName}.current`]: current });
 		}
 		// ActiveEffect
-		else if (progress.parent.parent instanceof FUActiveEffectModel) {
+		else if (progress.parent instanceof FUActiveEffectModel) {
 			await progress.parent.parent.update({ [`system.rules.progress.current`]: current });
+			// if (this.sheet.rendered) {
+			// 	this.sheet.render();
+			// }
 		}
 
 		// Update this instance for tracking, though it is not the same as the one that just got replaced in the model

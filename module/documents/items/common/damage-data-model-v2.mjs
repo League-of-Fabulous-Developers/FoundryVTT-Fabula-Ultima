@@ -1,6 +1,7 @@
 import { FU } from '../../../helpers/config.mjs';
 
 /**
+ * @description Used when rolls are performed.
  * @property {boolean} hasDamage
  * @property {boolean} hrZero Whether to treat the high roll as zero
  * @property {number} value The base value which is generally added to the high roll

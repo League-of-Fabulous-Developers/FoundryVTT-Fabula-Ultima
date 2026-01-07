@@ -1,0 +1,113 @@
+<details class="fu-foldout-item" data-rule-element="{{element.id}}"{{#if expanded}} open{{/if}}>
+	<summary class="fu-foldout-summary">
+		<span class="flexrow flex-group-center">
+			<!-- Toggle Enabled -->
+			{{formGroup element.schema.fields.enabled value=element.enabled name=(pfuConcat path ".enabled")}}
+			<!-- Delete Action -->
+			<a class="" data-id="{{element.id}}" data-action="deleteRuleElement">
+				<i class="icon fas fa-circle-trash"></i>
+			</a>
+		</span>
+		<span>{{element.templateHeader}}</span>
+	</summary>
+	<div class="fu-foldout-content">
+		<!-- 1. Trigger -->
+		<div class="fu-rule-element__section">
+			<header class="fu-rule-element__header">
+				<span>{{localize 'FU.RuleTrigger'}}</span>
+				<!-- 1.1 Type Selector -->
+				<label>
+					{{~localize 'FU.Type'}}
+					<select data-action="updateRuleTrigger" data-type="{{element.trigger.type}}" data-id="{{element.id}}" class="resource-inputs select-dropdown-l">
+						{{selectOptions options.ruleTriggers selected=element.trigger.type localize=true}}
+					</select>
+				</label>
+			</header>
+			<div class="fu-rule-element__content">
+				<!-- 1.2 Base Properties -->
+				<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.EventRelationHint'}}">
+					<span>{{localize 'FU.EventRelation'}}</span>
+					<select name="{{pfuConcat path ".trigger.eventRelation"}}">
+						<option value="">-</option>
+						{{selectOptions options.eventRelation selected=element.trigger.eventRelation localize=true}}
+					</select>
+				</label>
+				<!-- 1.3 Derived Properties -->
+				{{> (lookup (lookup (lookup element.trigger "schema") "model") "template") trigger=element.trigger path=(concat path ".trigger") options=options}}
+			</div>
+		</div>
+		<!-- 2. Predicates -->
+		<div class="fu-rule-element__section">
+			<header class="fu-rule-element__header">
+				<div>
+					<span>{{localize 'FU.RulePredicates'}}</span>
+					<a data-action="addRulePredicate" data-id="{{element.id}}">
+						<i class="fas fa-plus icon"></i>
+					</a>
+				</div>
+			</header>
+			<div class="fu-rule-element__content">
+				{{#each element.predicates as |predicate|}}
+					<div class="fu-rule-element__item">
+						<div class="fu-rule-element__item__header">
+							<label class="flexrow">
+								{{localize (lookup (lookup (lookup predicate "schema") "model") "localization")}}
+							</label>
+
+							<span>
+								{{#if predicate.schema.fields.selector}}
+									<label class="" data-tooltip="{{localize 'FU.SelectorHint'}}">{{localize 'FU.Selector'}}
+										<select name="{{pfuConcat ../path ".predicates." predicate.id ".selector"}}" class="resource-inputs select-dropdown-m">
+											{{selectOptions ../options.targetSelector selected=predicate.selector localize=true}}
+										</select>
+									</label>
+								{{/if}}
+								<a class="" data-action="removeRulePredicate" data-id="{{../element.id}}" data-predicate-id="{{predicate.id}}">
+									<i class="icon fas fa-circle-minus"></i>
+								</a>
+							</span>
+						</div>
+						<div class="fu-rule-element__item__content">
+							{{> (lookup (lookup (lookup predicate "schema") "model") "template") path=(concat ../path ".predicates." predicate.id) predicate=predicate options=../options}}
+						</div>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+
+		<div class="fu-rule-element__section">
+			<header class="fu-rule-element__header">
+				<div>
+					<span>{{localize 'FU.RuleActions'}}</span>
+					<a data-action="addRuleAction" data-id="{{element.id}}">
+						<i class="fas fa-plus icon"></i>
+					</a>
+				</div>
+				<!-- 3. Selector -->
+				<label class="" data-tooltip="{{localize 'FU.SelectorHint'}}">{{localize 'FU.Selector'}}
+					<select name="{{pfuConcat path ".selector"}}" class="resource-inputs select-dropdown-m">
+						{{selectOptions options.targetSelector selected=element.selector localize=true}}
+					</select>
+				</label>
+			</header>
+			<div class="fu-rule-element__content">
+				<!-- 4. Actions -->
+				{{#each element.actions as |action|}}
+					<div class="fu-rule-element__item">
+						<div class="fu-rule-element__item__header">
+							<label class="flexrow">
+								{{localize (lookup (lookup (lookup action "schema") "model") "localization")}}
+							</label>
+							<a class="" data-action="removeRuleAction" data-id="{{../element.id}}" data-action-id="{{action.id}}">
+								<i class="icon fas fa-circle-minus"></i>
+							</a>
+						</div>
+						<div class="fu-rule-element__item__content">
+							{{> (lookup (lookup (lookup action "schema") "model") "template") path=(concat ../path ".actions." action.id) action=action options=../options}}
+						</div>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</details>

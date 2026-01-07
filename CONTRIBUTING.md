@@ -9,7 +9,7 @@ Welcome to the contribution guidelines for Project FU! We appreciate your intere
 If you have any questions or concerns, feel free to reach out to us through the following channels:
 
 - Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
-- Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
+- Discord: [Project FU Discord](https://discord.gg/tbyQv6DzY8) - `#support` channel
 
 ## Submitting Issues
 
@@ -30,7 +30,7 @@ Visit [here](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-
 
 ### Branches
 
-- **main:** Mainline branch for v12 releases and above.
+- **main:** Mainline branch for v13 releases and above.
 - **dev:** Primary development branch.
 
 When opening a PR, ensure it goes into the dev branch.
