@@ -409,7 +409,7 @@ function removeEffect(document, source, effect) {
  */
 async function sendToChatEffectAdded(effect, document, source) {
 	console.info(`Added effect: ${effect.uuid} on actor uuid: ${document.uuid}`);
-	if (game.combat) {
+	if (game.combat && canBeRemoved(effect)) {
 		await ChatMessage.create({
 			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 			content: await FoundryUtils.renderTemplate('chat/chat-apply-effect', {
@@ -425,7 +425,7 @@ async function sendToChatEffectAdded(effect, document, source) {
 
 function sendToChatEffectRemoved(effect, actor) {
 	console.log(`Removing effect: ${effect.name} from actor ${actor.uuid}`);
-	if (game.combat) {
+	if (game.combat && canBeRemoved(effect)) {
 		ChatMessage.create({
 			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 			content: game.i18n.format('FU.EffectRemoveMessage', {
