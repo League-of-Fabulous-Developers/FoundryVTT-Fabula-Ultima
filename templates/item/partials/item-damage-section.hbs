@@ -4,7 +4,7 @@
  icon="fas fa-dice icon"
  label=(localize "FU.Damage")
 }}
-	<div class="item-settings grid grid2-col">
+	<div class="item-settings grid grid3-col">
 		<label class="checkbox resource-label-sm">
 			<span>{{localize 'FU.UseWeaponDamage'}}</span>
 			<input type="checkbox" name="system.useWeapon.damage" {{ checked system.useWeapon.damage }} {{disabled (not system.damage.hasDamage)}} />
@@ -12,6 +12,10 @@
 		<label class="checkbox resource-label-sm">
 			<span>{{localize 'FU.UseWeaponTraits'}}</span>
 			<input type="checkbox" name="system.useWeapon.traits" {{ checked system.useWeapon.traits }} {{disabled (not system.damage.hasDamage)}} />
+		</label>
+		<label class="checkbox resource-label-sm">
+			<span>{{localize 'FU.HRZeroStatus'}}</span>
+			<input type="checkbox" name="system.damage.hrZero" {{ checked system.damage.hrZero }} />
 		</label>
 	</div>
 	<div class="grid grid-2col">

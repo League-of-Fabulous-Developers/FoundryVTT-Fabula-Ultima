@@ -4,7 +4,7 @@
  icon="fas fa-dice icon"
  label=(localize "FU.Damage")
 }}
-	<div class="grid grid-2col">
+	<div class="grid grid-3col">
 		<div class="resource-content flexcol flex-group-center">
 			<label for="system.rollInfo.damage.type.value" class="resource-label-m flexlarge">
 				{{localize 'FU.DamageType'}}
@@ -20,5 +20,9 @@
 				   class="resource-inputs"
 				   data-dtype="Number" />
 		</div>
+		<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span>
+			<input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+			 system.rollInfo.useWeapon.hrZero.value }} />
+		</label>
 	</div>
 {{/ 'systems/projectfu/templates/common/fieldset-toggle.hbs'}}

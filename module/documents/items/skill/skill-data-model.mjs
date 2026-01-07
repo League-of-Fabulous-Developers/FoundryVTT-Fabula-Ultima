@@ -295,6 +295,8 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	#initializeAccuracyCheck(modifiers) {
 		return async (check, actor, item) => {
 			const weapon = await this.getWeapon(actor);
+			/** @type WeaponDataModel **/
+			const weaponData = weapon.system;
 			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
 			if (error) {
 				throw error;
@@ -312,11 +314,19 @@ export class SkillDataModel extends FUStandardItemDataModel {
 
 			config.addTraits('skill');
 			config.addTraitsFromItemModel(this.traits);
+
+			// Weapon support
 			if (skill.useWeapon.traits) {
-				config.addTraitsFromItemModel(weapon.system.traits);
+				config.addTraitsFromItemModel(weaponData.traits);
 			}
 			if (skill.useWeapon.damage) {
-				config.setDamage(this.damage.type || weapon.system.damageType.value, weapon.system.damage.value);
+				config.setDamage(this.damage.type || weaponData.damageType.value, weapon.system.damage.value);
+			}
+			if (skill.useWeapon.accuracy) {
+				check.modifiers.push({
+					label: 'FU.CheckBonus',
+					value: weaponData.accuracy.value,
+				});
 			}
 			config.setWeaponTraits(config.getWeaponTraits());
 

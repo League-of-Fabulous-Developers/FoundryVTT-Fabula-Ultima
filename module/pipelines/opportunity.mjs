@@ -54,6 +54,9 @@ async function promptOpportunity(actor, type, item = undefined) {
 	const table = await fromUuid(`RollTable.${tableUuid}`);
 	if (table) {
 		const elements = [...table.results.values()];
+		if (elements.length === 0) {
+			return;
+		}
 		console.debug(`Providing ${elements.length} choices from ${table.name}`);
 		let choices = await Promise.all(elements.map(async (e) => await TextEditor.enrichHTML(e.description)));
 		if (item) {

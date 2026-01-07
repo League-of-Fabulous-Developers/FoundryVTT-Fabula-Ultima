@@ -5,14 +5,6 @@
 	</label>
 {{/if}}
 
-
-{{#if system.schema.fields.rollInfo.fields.useWeapon.fields.hrZero }}
-	<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span>
-		<input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-		 system.rollInfo.useWeapon.hrZero.value }} />
-	</label>
-{{/if}}
-
 <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.Favorite'}}">
     <span>
 		{{#if item.isFavorite}}
@@ -63,13 +55,6 @@
 					<i class="far fa-hashtag"></i>
 				{{/if}}
 			</span><input type="checkbox" name="system.hasResource.value" {{ checked system.hasResource.value }} />
-	</label>
-{{/if}}
-
-{{#if system.schema.fields.damage.hrZero}}
-	<label class="checkbox resource-label-sm">
-		<span>{{localize 'FU.HRZeroStatus'}}</span>
-		<input type="checkbox" name="system.damage.hrZero" {{ checked system.damage.hrZero }} />
 	</label>
 {{/if}}
 
