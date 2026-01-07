@@ -8,6 +8,7 @@ import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CHECK_FLAVOR } from '../checks/default-section-order.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const actionKey = 'ruleDefinedAction';
 
@@ -98,6 +99,7 @@ export class ActionHandler {
 				primary: 'ins',
 				secondary: 'ins',
 				modifier: this.bonus,
+				title: `${StringUtils.localize(FU.actionTypes.study)} ${StringUtils.localize('FU.Check')}`,
 			},
 			checkCallback: (check) => {
 				check.additionalData[actionKey] = 'study';
@@ -116,6 +118,7 @@ export class ActionHandler {
 			initialConfig: {
 				difficulty: 10,
 				modifier: 0,
+				title: `${StringUtils.localize(FU.actionTypes.hinder)} ${StringUtils.localize('FU.Check')}`,
 			},
 		});
 	}

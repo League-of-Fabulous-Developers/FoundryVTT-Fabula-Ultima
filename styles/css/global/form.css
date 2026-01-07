@@ -117,6 +117,10 @@
 	border-radius: 50%;
 }
 
+.fu-icon__badge-label {
+	font-weight: bold;
+}
+
 .fu-icon__badge-overlay {
 	position: absolute;
 	--icon-size: 18px;

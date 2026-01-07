@@ -18,6 +18,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
  * @property {Attribute} secondary
  * @property {number} difficulty
  * @property {number} modifier
+ * @property {String} title
  */
 
 /**
