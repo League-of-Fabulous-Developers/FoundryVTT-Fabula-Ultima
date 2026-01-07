@@ -164,7 +164,9 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			}),
 			accuracy: new StringField({ initial: '', blank: true, nullable: false }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses), blank: true }),
-			damage: new EmbeddedDataField(DamageDataModelV2, {}),
+			damage: new EmbeddedDataField(DamageDataModelV2, {
+				type: '',
+			}),
 			resource: new EmbeddedDataField(ResourceDataModel, {}),
 			effects: new EmbeddedDataField(EffectApplicationDataModel, {}),
 			hasResource: new SchemaField({ value: new BooleanField() }),
@@ -185,14 +187,11 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	prepareBaseData() {
 		if (!this.hasRoll.value) {
 			this.useWeapon.accuracy = false;
-			this.damage.hasDamage = false;
-		}
-		if (!this.useWeapon.accuracy) {
-			this.damage.hasDamage = false;
 		}
 		if (!this.damage.hasDamage) {
 			this.useWeapon.damage = false;
 		}
+		// If not using weapon damage, and it's not set, reset to default
 		if (!this.useWeapon.damage && !this.damage.type) {
 			this.damage.type = 'physical';
 		}
@@ -231,9 +230,21 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			/** @type SkillDataModel **/
 			const skill = item.system;
 			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
 			config.addEffects(skill.effects.entries);
 			if (skill.resource.enabled) {
 				config.setResource(skill.resource.type, skill.resource.amount);
+			}
+			if (this.damage.hasDamage) {
+				if (skill.useWeapon.damage) {
+					const weapon = await this.getWeapon(actor);
+					/** @type WeaponDataModel **/
+					const weaponData = weapon.system;
+					check.additionalData[weaponUsedBySkill] = weapon.uuid;
+					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+				}
+				await this.#addSkillDamage(config, actor, item, context, modifiers);
 			}
 		};
 	}
@@ -283,15 +294,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeAccuracyCheck(modifiers) {
 		return async (check, actor, item) => {
-			const weapon = await ChooseWeaponDialog.prompt(actor, true);
-			if (weapon === false) {
-				let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
-				ui.notifications.error(message);
-				throw new Error(message);
-			}
-			if (weapon == null) {
-				throw new Error('no selection');
-			}
+			const weapon = await this.getWeapon(actor);
 			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
 			if (error) {
 				throw error;
@@ -312,6 +315,9 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			if (skill.useWeapon.traits) {
 				config.addTraitsFromItemModel(weapon.system.traits);
 			}
+			if (skill.useWeapon.damage) {
+				config.setDamage(this.damage.type || weapon.system.damageType.value, weapon.system.damage.value);
+			}
 			config.setWeaponTraits(config.getWeaponTraits());
 
 			if (this.accuracy) {
@@ -329,44 +335,54 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			}
 
 			if (this.damage.hasDamage) {
-				config.addTraits(Traits.Damage);
 				config.setHrZero(this.damage.hrZero || modifiers.shift);
-				config.setTargetedDefense(this.defense || config.getTargetedDefense());
-				config.modifyDamage(() => {
-					const damage = config.getDamage();
-					/** @type DamageModifier[] */
-					const damageMods = [];
-					if (item.system.damage.value) {
-						damageMods.push({
-							label: 'FU.DamageBonus',
-							value: item.system.damage.value,
-						});
-					}
-					if (item.system.useWeapon.damage) {
-						damageMods.push(...damage.modifiers);
-					}
-					return {
-						type: this.damage.type || damage.type,
-						modifiers: damageMods,
-					};
-				});
-
-				const onRoll = this.damage.onRoll;
-				if (onRoll) {
-					const extraDamage = await Expressions.evaluateAsync(onRoll, context);
-					if (extraDamage > 0) {
-						config.addDamageBonus('FU.DamageOnRoll', extraDamage);
-					}
-				}
-
-				const onApply = this.damage.onApply;
-				if (onApply) {
-					config.setExtraDamage(onApply);
-				}
+				await this.#addSkillDamage(config, actor, item, context, modifiers);
 			}
 
 			config.addEffects(skill.effects.entries);
 		};
+	}
+
+	async getWeapon(actor) {
+		const weapon = await ChooseWeaponDialog.prompt(actor, true);
+		if (weapon === false) {
+			let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
+			ui.notifications.error(message);
+			throw new Error(message);
+		}
+		if (weapon == null) {
+			throw new Error('no selection');
+		}
+		return weapon;
+	}
+
+	async #addSkillDamage(config, actor, item, context) {
+		if (this.damage.hasDamage) {
+			config.addTraits(Traits.Damage);
+			config.setTargetedDefense(this.defense || config.getTargetedDefense());
+			if (config.hasDamage) {
+				config.modifyDamage((damage) => {
+					damage.type = this.damage.type || damage.type;
+					damage.addModifier('FU.DamageBonus', item.system.damage.value);
+					return damage;
+				});
+			} else {
+				config.setDamage(this.damage.type, item.system.damage.value);
+			}
+
+			const onRoll = this.damage.onRoll;
+			if (onRoll) {
+				const extraDamage = await Expressions.evaluateAsync(onRoll, context);
+				if (extraDamage > 0) {
+					config.addDamageBonus('FU.DamageOnRoll', extraDamage);
+				}
+			}
+
+			const onApply = this.damage.onApply;
+			if (onApply) {
+				config.setExtraDamage(onApply);
+			}
+		}
 	}
 
 	shouldApplyEffect(effect) {

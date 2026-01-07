@@ -247,7 +247,7 @@ class CheckInspector {
  * @extends CheckInspector
  * @inheritDoc
  */
-class CheckConfigurer extends CheckInspector {
+export class CheckConfigurer extends CheckInspector {
 	/**
 	 * @param {Attribute} primary
 	 * @param {Attribute} secondary
@@ -264,6 +264,19 @@ class CheckConfigurer extends CheckInspector {
 	 */
 	setDamage(types, baseDamage) {
 		this.check.additionalData[DAMAGE] = DamageData.construct(types, baseDamage);
+		return this;
+	}
+
+	/**
+	 * @param {(damage: DamageData) => DamageData} callback
+	 * @return {CheckConfigurer}
+	 */
+	modifyDamage(callback) {
+		const damage = this.getDamage();
+		// TODO: Maybe the callback doesn't have to return it?
+		if (damage) {
+			this.check.additionalData[DAMAGE] = callback(damage);
+		}
 		return this;
 	}
 
@@ -367,18 +380,6 @@ class CheckConfigurer extends CheckInspector {
 			label: label,
 			value: value,
 		});
-		return this;
-	}
-
-	/**
-	 * @param {(damage: DamageData | null) => DamageData | null} callback
-	 * @return {CheckConfigurer}
-	 */
-	modifyDamage(callback) {
-		const damage = this.getDamage();
-		if (damage) {
-			this.check.additionalData[DAMAGE] = callback(damage);
-		}
 		return this;
 	}
 

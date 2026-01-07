@@ -25,7 +25,7 @@ export class DamageCustomizerV2 {
 				title: game.i18n.localize('FU.DamageCustomizer'),
 			},
 			position: {
-				width: 440,
+				width: 480,
 			},
 			actions: {
 				/** @param {Event} event
@@ -79,13 +79,16 @@ export class DamageCustomizerV2 {
 				// Function to update total damage and icons based on HR Zero status, and extra damage
 				const totalDamageSpan = dialog.element.querySelector('#total-damage');
 				function updateTotalDamage() {
-					let sumString = `${context.damage.hr}`;
+					let components = [];
+					if (context.damage.hr > 0) {
+						components.push(`${context.damage.hr} (${StringUtils.localize('FU.HighRollAbbr')})`);
+					}
 					context.damage.modifiers.forEach((modifier) => {
 						if (modifier.amount > 0) {
-							sumString += ` + ${modifier.amount} (${StringUtils.localize(modifier.label)})`;
+							components.push(`${modifier.amount} (${StringUtils.localize(modifier.label)})`);
 						}
 					});
-					totalDamageSpan.textContent = sumString;
+					totalDamageSpan.textContent = components.join(' + ');
 				}
 				updateTotalDamage();
 

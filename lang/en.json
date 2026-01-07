@@ -489,6 +489,7 @@
 		"DamageCollateral": "Collateral Damage",
 		"DamageTypeCollateral": "Collateral Damage Type",
 		"DamageType": "Damage Type",
+		"DamageTypeInherit": "Inherit",
 		"DamageSource": "Damage Source",
 		"ItemGroup": "Item Group",
 		"Damage": "Damage",
