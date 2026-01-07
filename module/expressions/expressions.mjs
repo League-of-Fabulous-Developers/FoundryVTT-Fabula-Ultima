@@ -435,6 +435,16 @@ function evaluateMacros(expression, context) {
 		const redirect = match.startsWith(redirectSymbol);
 		const splitArgs = params.split(',').map((i) => i.trim());
 		switch (name) {
+			// Class level
+			case 'cl': {
+				const actor = context.resolveActorOrSource(match, redirect);
+				const id = parseIdentifier(splitArgs[0]);
+				const _class = actor.getSingleItemByFuid(id, 'class');
+				if (!_class) {
+					return 0;
+				}
+				return _class.system.level.value;
+			}
 			// Skill level
 			case `sl`: {
 				const actor = context.resolveActorOrSource(match, redirect);
