@@ -62,7 +62,7 @@ export class ExpressionContext {
 	/**
 	 * @property {FUActor} actor The source of the action
 	 * @property {FUItem} item
-	 * @param {FUActor[]} targets
+	 * @param {TargetData[]} targets
 	 * @param {CheckV2} check
 	 * @returns {ExpressionContext}
 	 */

@@ -110,34 +110,32 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 			config.addTraits('fumble');
 		}
 		config.modifyDamage((damage) => {
-			if (damage) {
-				const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
+			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
 
-				// All Damage
-				const globalBonus = actor.system.bonuses.damage.all;
-				if (globalBonus) {
-					damage.addModifier(`FU.DamageBonusAll`, globalBonus);
+			// All Damage
+			const globalBonus = actor.system.bonuses.damage.all;
+			if (globalBonus) {
+				damage.addModifier(`FU.DamageBonusAll`, globalBonus);
+			}
+			// Attack Type
+			if (weaponTraits.weaponType) {
+				const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
+				if (attackTypeBonus) {
+					damage.addModifier(`FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, attackTypeBonus);
 				}
-				// Attack Type
-				if (weaponTraits.weaponType) {
-					const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
-					if (attackTypeBonus) {
-						damage.addModifier(`FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, attackTypeBonus);
-					}
+			}
+			// Weapon Category
+			if (weaponTraits.weaponCategory) {
+				const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
+				if (weaponCategoryBonus) {
+					damage.addModifier(`FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, weaponCategoryBonus);
 				}
-				// Weapon Category
-				if (weaponTraits.weaponCategory) {
-					const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
-					if (weaponCategoryBonus) {
-						damage.addModifier(`FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, weaponCategoryBonus);
-					}
-				}
+			}
 
-				// Damage Type
-				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-				if (damageTypeBonus) {
-					damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
-				}
+			// Damage Type
+			const damageTypeBonus = actor.system.bonuses.damage[damage.type];
+			if (damageTypeBonus) {
+				damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
 			}
 			return damage;
 		});

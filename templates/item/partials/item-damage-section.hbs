@@ -19,7 +19,7 @@
 			<label class="resource-label-m flexlarge">{{localize 'FU.DamageType'}}</label>
 			<select name="system.damage.type" class="resource-inputs select-dropdown-m" {{disabled (not system.damage.hasDamage)}}>
 				{{#if system.useWeapon.damage}}
-					{{selectOptions damageTypes selected=system.damage.type blank='-' sort=true localize=true}}
+					{{selectOptions damageTypes selected=system.damage.type blank=(localize 'FU.DamageTypeInherit') sort=true localize=true}}
 				{{else}}
 					{{selectOptions damageTypes selected=system.damage.type sort=true localize=true}}
 				{{/if}}
