@@ -1606,14 +1606,6 @@
 		"HoplosphereEffectFreeTextDefaultName": "Effect Name",
 		"CrisisMultiplier": "Crisis Multiplier",
 		"CrisisMultiplierHint": "Multiplier used to calculate base Crisis Score",
-		"FUID": {
-			"Long": "Fabula Ultima ID",
-			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
-		},
 		"EventRelation": "Event Relation",
 		"EventRelationHint": "The context in which the the character fits in the event",
 		"FactionRelation": "Faction Relation",
@@ -1729,6 +1721,14 @@
 		"ChatPerformRitual": "Perform Ritual",
 		"Application": "Application",
 		"Transform": "Transform",
-		"Selection": "Selection"
+		"Selection": "Selection",
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }
