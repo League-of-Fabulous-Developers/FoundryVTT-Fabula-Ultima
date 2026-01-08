@@ -154,19 +154,66 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1741974807601,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1767901122176,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_focused.png",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "elements": {
+            "Cy7av3Vt9yKqJ1ig": {
+              "type": "ruleElement",
+              "_id": "Cy7av3Vt9yKqJ1ig",
+              "trigger": {
+                "_id": "L0K3WNpDMsip9oBj",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "open"
+                ]
+              },
+              "predicates": {
+                "N5FnDMpHmZ4JA6wb": {
+                  "type": "checkRulePredicate",
+                  "_id": "N5FnDMpHmZ4JA6wb",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "ins"
+                    }
+                  }
+                }
+              },
+              "actions": {
+                "RT27nMrkrFKu8UEA": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "RT27nMrkrFKu8UEA",
+                  "bonus": "$sl"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "origin": null,
       "sort": 0,
       "_key": "!items.effects!xaNu6plCZfo9dGsX.xbzOApLkBkOo2YeB"

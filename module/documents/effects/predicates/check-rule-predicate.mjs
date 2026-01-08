@@ -20,7 +20,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT],
+			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT, FUHooks.PERFORM_CHECK_EVENT],
 		};
 	}
 
@@ -105,7 +105,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 
 		// Check attributes
 		const a = [this.attributes.primary.value, this.attributes.secondary.value].filter(Boolean);
-		const b = [check.result.primary, check.result.secondary];
+		const b = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.result.primary, check.result.secondary];
 		if (a.length > 0) {
 			if (!a.every((v) => b.includes(v))) {
 				return false;

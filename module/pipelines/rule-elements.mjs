@@ -208,6 +208,7 @@ async function onInitializeCheckEvent(event) {
 async function onPerformCheckEvent(event) {
 	await evaluate(FUHooks.PERFORM_CHECK_EVENT, event, event.source, event.targets, {
 		check: event.check,
+		config: event.config,
 	});
 }
 

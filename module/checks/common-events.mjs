@@ -528,20 +528,22 @@ function progress(document, progress, action, increment = undefined, source = un
  * @property {CharacterInfo} source
  * @property {InlineSourceInfo} sourceInfo
  * @property {CharacterInfo[]} targets
+ * @property {CheckConfigurer} config
  * @remarks Emitted when a check is about to be performed
  */
 
 function performCheck(check, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
-	const inspector = CheckConfiguration.inspect(check);
-	const targetData = inspector.getTargets();
+	const config = CheckConfiguration.configure(check);
+	const targetData = config.getTargets();
 	let targets = [];
 	if (targetData) {
 		targets = CharacterInfo.fromTargetData(targetData);
 	}
 	/** @type PerformCheckEvent  **/
 	const event = {
+		config: config,
 		check: check,
 		source: source,
 		sourceInfo: sourceInfo,
