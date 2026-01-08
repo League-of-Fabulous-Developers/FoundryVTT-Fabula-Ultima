@@ -113,7 +113,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				context.config.getDamage().addModifier(context.label, _amount, types, {
 					expense: this.cost,
 					traits: this.traits.values,
-					enabled: this.cost.amount === 0,
+					enabled: !this.cost.assigned,
 				});
 			} else {
 				context.config.addDamageBonus(context.label, _amount);

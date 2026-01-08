@@ -68,11 +68,12 @@ export const Traits = Object.freeze({
 export const TraitUtils = Object.freeze({
 	/**
 	 * @param {Set<String>} traits
+	 * @param prefix
 	 * @returns {{tag: string, separator: string, value: string, show: boolean}[]}
 	 */
-	toTags(traits) {
+	toTags(traits, prefix = true) {
 		return [...traits].map((trait) => ({
-			tag: `FU.${trait}`,
+			tag: prefix ? `FU.${trait}` : trait,
 			separator: '',
 			value: '',
 			show: true,

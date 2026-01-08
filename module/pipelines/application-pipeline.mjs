@@ -33,6 +33,7 @@ async function handleArcanum(actor, item) {
 	const activeArcanum = classEffects.find((it) => !it.disabled);
 	const title = StringUtils.localize('FU.ClassFeatureArcanum');
 
+	// TODO: Traits not being added to damage data at the right time?
 	// Dismiss
 	if (activeArcanum) {
 		/** @type ArcanumDataModel **/

@@ -754,8 +754,13 @@ function getAttributeSize(actor, key) {
 	return attributes[key].current;
 }
 
+function isExpression(value) {
+	return typeof value === 'string' && /[a-zA-Z_$`]|[+\-*/()]/.test(value);
+}
+
 export const Expressions = {
 	evaluate,
 	evaluateAsync,
 	requiresContext,
+	isExpression,
 };

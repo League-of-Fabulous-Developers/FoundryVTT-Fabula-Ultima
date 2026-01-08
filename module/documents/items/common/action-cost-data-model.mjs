@@ -1,4 +1,5 @@
 import { FU } from '../../../helpers/config.mjs';
+import { Expressions } from '../../../expressions/expressions.mjs';
 
 /**
  * @typedef ResourceExpense
@@ -22,5 +23,17 @@ export class ActionCostDataModel extends foundry.abstract.DataModel {
 			amount: new StringField({ initial: '', blank: true, nullable: true }),
 			perTarget: new BooleanField({ initial: false }),
 		};
+	}
+
+	get assigned() {
+		if (this.amount) {
+			const _amount = Number.parseInt(this.amount);
+			if (_amount >= 0) {
+				return true;
+			} else if (Expressions.isExpression(this.amount)) {
+				return false;
+			}
+		}
+		return false;
 	}
 }
