@@ -4,6 +4,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 
 /**
  * @param {CheckV2} check
@@ -112,11 +113,8 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 		config.modifyDamage((damage) => {
 			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
 
-			// All Damage
-			const globalBonus = actor.system.bonuses.damage.all;
-			if (globalBonus) {
-				damage.addModifier(`FU.DamageBonusAll`, globalBonus);
-			}
+			DamagePipeline.collectOutgoingBonuses(actor, damage);
+
 			// Attack Type
 			if (weaponTraits.weaponType) {
 				const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
@@ -132,11 +130,6 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				}
 			}
 
-			// Damage Type
-			const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-			if (damageTypeBonus) {
-				damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
-			}
 			return damage;
 		});
 	}

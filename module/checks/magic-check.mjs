@@ -6,6 +6,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { Traits } from '../pipelines/traits.mjs';
+import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 
 const critThresholdFlag = 'critThreshold.magicCheck';
 
@@ -49,18 +50,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 		}
 		config.modifyDamage((damage) => {
 			if (damage) {
-				// All Damage
-				const globalBonus = actor.system.bonuses.damage.all;
-				if (globalBonus) {
-					damage.addModifier(`FU.DamageBonusAll`, globalBonus);
-				}
-
-				// Damage Type
-				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-				if (damageTypeBonus) {
-					damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
-				}
-
+				DamagePipeline.collectOutgoingBonuses(actor, damage);
 				// TODO: Refactor this and others all the way to the end
 				// Calculate the total damage
 				const inspector = CheckConfiguration.inspect(check);

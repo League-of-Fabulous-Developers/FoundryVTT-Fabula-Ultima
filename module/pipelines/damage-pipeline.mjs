@@ -59,6 +59,7 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
 	},
 	// TODO: Better way to not duplicate?
 	damage: {
+		all: 'FU.DamageBonusAll',
 		beast: `FU.Beast`,
 		construct: 'FU.Construct',
 		demon: 'FU.Demon',
@@ -273,6 +274,24 @@ function overrideResult(context) {
 		return true;
 	}
 	return false;
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {DamageData} damage
+ */
+function collectOutgoingBonuses(actor, damage) {
+	// Global Bonus
+	const globalBonus = actor.system.bonuses.damage.all;
+	if (globalBonus) {
+		damage.addModifier(`FU.DamageBonusAll`, globalBonus);
+	}
+
+	// Damage Type bonus
+	const damageTypeBonus = actor.system.bonuses.damage[damage.type];
+	if (damageTypeBonus) {
+		damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
+	}
 }
 
 /**
@@ -762,4 +781,5 @@ export const DamagePipeline = {
 	process,
 	promptApply,
 	getTargetedAction,
+	collectOutgoingBonuses,
 };
