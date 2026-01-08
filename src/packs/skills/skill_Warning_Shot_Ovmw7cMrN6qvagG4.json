@@ -169,7 +169,8 @@
                 "ahxxYQd2oVRGq1vo": {
                   "type": "weaponRulePredicate",
                   "_id": "ahxxYQd2oVRGq1vo",
-                  "weaponType": "ranged"
+                  "weaponType": "ranged",
+                  "selector": "self"
                 }
               }
             }
@@ -207,7 +208,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766862777392,
-        "modifiedTime": 1767640477934,
+        "modifiedTime": 1767890005107,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!Ovmw7cMrN6qvagG4.3KfzmQiRr49axQxk"

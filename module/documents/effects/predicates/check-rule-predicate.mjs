@@ -1,8 +1,8 @@
 import { RulePredicateDataModel } from './rule-predicate-data-model.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { FUHooks as FUhooks, FUHooks } from '../../../hooks.mjs';
 import { ItemAttributesDataModel } from '../../items/common/item-attributes-data-model.mjs';
+import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;
 
@@ -20,7 +20,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT],
+			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.RESOLVE_CHECK_EVENT, FUHooks.ATTACK_EVENT, FUHooks.CALCULATE_DAMAGE_EVENT],
 		};
 	}
 
@@ -46,25 +46,13 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		/** @type {CheckV2|CheckResultV2} **/
-		let check;
-		switch (context.type) {
-			case FUhooks.RENDER_CHECK_EVENT:
-			case FUHooks.RESOLVE_CHECK_EVENT: {
-				/** @type {ResolveCheckEvent|RenderCheckEvent} **/
-				const rce = context.event;
-				check = rce.check;
-				break;
-			}
-
-			case FUHooks.ATTACK_EVENT: {
-				/** @type AttackEvent **/
-				const ae = context.event;
-				check = ae.check;
-				break;
-			}
+		if (!context.config) {
+			console.warn(`No configuration provided in the event ${context.eventType}.`);
+			// TODO: Provide 'optional' property?
+			return false;
 		}
 
+		const check = context.config.check;
 		if (!check) {
 			return false;
 		}

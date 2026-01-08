@@ -177,7 +177,7 @@
                 "Jg8qePO1hy7kyP6V": {
                   "type": "messageRuleAction",
                   "_id": "Jg8qePO1hy7kyP6V",
-                  "message": "<p>This attack may be interrupted by spending @LOSS[$chk mp].</p>"
+                  "message": "<p>This attack may be interrupted by spending @LOSS[$chk mp]{MP equal to the Accuracy Check}.</p>"
                 }
               }
             }
@@ -215,7 +215,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766863644203,
-        "modifiedTime": 1767640574118,
+        "modifiedTime": 1767890191032,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!sIkQa2NzkqsvczBr.ZUwqffH7kP8rWg0g"
