@@ -5,6 +5,8 @@
 		</legend>
 		<div class="fu-item-grid flex-group-center fu-icon__radio-group">
 			{{#each items as |item| }}
+				{{log ../initial}}
+				{{log item}}
 				<label class="fu-item-card"
 					   for="{{item.name}}"
 					   data-index="{{@index}}"
@@ -12,6 +14,7 @@
 					<input type="checkbox"
 						   name="selected"
 						   id="{{item.name}}"
+						   {{#if (eq item.name ../initial.name)}}checked="checked"{{/if}}
 						   value="{{item.name}}">
 					<img src="{{item.img}}" alt="{{item.name}}"/>
 					<span class="">{{item.name}}</span>

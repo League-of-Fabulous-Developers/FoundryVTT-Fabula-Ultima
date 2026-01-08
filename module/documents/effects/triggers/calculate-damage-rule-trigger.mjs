@@ -8,6 +8,7 @@ const fields = foundry.data.fields;
  * @description Trigger based on a {@linkcode CalculateDamageEvent}
  * @extends RuleTriggerDataModel
  * @property {Set<FUItemGroup>} damageSources
+ * @property {Set<DamageType>} damageTypes
  * @inheritDoc
  */
 export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
@@ -26,6 +27,7 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			damageSources: new fields.SetField(new fields.StringField()),
+			damageTypes: new fields.SetField(new fields.StringField()),
 		});
 		return schema;
 	}
@@ -39,11 +41,14 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	/**
-	 * @param {RuleElementContext<DamageEvent>} context
+	 * @param {RuleElementContext<CalculateDamageEvent>} context
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
 		if (this.damageSources.size > 0 && !this.damageSources.has(context.event.damageSource)) {
+			return false;
+		}
+		if (this.damageTypes.size > 0 && !this.damageTypes.has(context.event.type)) {
 			return false;
 		}
 		return true;

@@ -22,6 +22,55 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
  * @param {FUItem} item
  * @returns {Promise<void>}
  */
+async function handleArcanum(actor, item) {
+	// TODO: Implement...
+	const items = actor.itemTypes;
+	const subtype = ClassFeatureRegistry.instance.qualify('arcanum');
+	/** @type {FUItem[]} **/
+	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
+	/** @type {FUActiveEffect[]} **/
+	const classEffects = classFeatures.flatMap((it) => [...it.effects.values()]);
+	const activeArcanum = classEffects.find((it) => !it.disabled);
+	const title = StringUtils.localize('FU.ClassFeatureArcanum');
+
+	// Dismiss
+	if (activeArcanum) {
+		/** @type ArcanumDataModel **/
+		const arcanumData = activeArcanum.system;
+		console.debug(arcanumData);
+	}
+	// Summon
+	else {
+		/** @type ItemSelectionData **/
+		const data = {
+			title,
+			message: StringUtils.localize('FU.ClassFeatureArcanumHint'),
+			max: 1,
+			items: classFeatures,
+			okLabel: StringUtils.localize('FU.Summon'),
+		};
+
+		const dialog = new ItemSelectionDialog(data);
+		const result = await dialog.open();
+		if (result) {
+			const selectedArcana = result[0];
+			ChatMessage.create({
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+				content: await FoundryUtils.renderTemplate('feature/arcanist/chat-arcanum-summon', {
+					item: selectedArcana,
+					message: 'FU.ClassFeatureArcanumSummon',
+					details: selectedArcana.system.data.merge,
+				}),
+			});
+		}
+	}
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @returns {Promise<void>}
+ */
 async function handleTheriomorphosis(actor, item) {
 	// TODO: Implement...
 	const items = actor.itemTypes;
@@ -41,7 +90,8 @@ async function handleTheriomorphosis(actor, item) {
 	for (const effect of formEffects) {
 		await effect.update({ disabled: true });
 	}
-	const selectedForms = await ItemSelectionDialog.open(data);
+	const dialog = new ItemSelectionDialog(data);
+	const selectedForms = await dialog.open();
 	if (selectedForms) {
 		for (const effect of selectedForms) {
 			await effect.update({ disabled: !effect.disabled });
@@ -63,6 +113,10 @@ const applications = Object.freeze({
 	theriomorphosis: {
 		label: 'FU.Transform',
 		open: handleTheriomorphosis,
+	},
+	arcanist: {
+		label: 'FU.Perform',
+		open: handleArcanum,
 	},
 });
 

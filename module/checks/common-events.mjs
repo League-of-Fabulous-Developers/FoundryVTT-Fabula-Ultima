@@ -120,6 +120,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
  * @typedef CalculateDamageEvent
  * @property {CharacterInfo} source
  * @property {FUItem} item
+ * @property {DamageType} type
  * @property {FUItemGroup} damageSource
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} config
@@ -134,6 +135,7 @@ async function calculateDamage(actor, item, config) {
 		item: item,
 		damageSource: damageSource,
 		config: config,
+		type: config.getDamage()?.type,
 	};
 	await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
 }

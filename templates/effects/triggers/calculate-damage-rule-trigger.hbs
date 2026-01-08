@@ -2,3 +2,8 @@
 	<span>{{localize 'FU.DamageSource'}}</span>
 	{{formGroup trigger.schema.fields.damageSources value=trigger.damageSources options=options.damageSourceOptions name=(pfuConcat path ".damageSources") classes="fu-rule-element__set stacked"}}
 </div>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.DamageType'}}</span>
+	{{formGroup trigger.schema.fields.damageTypes value=trigger.damageTypes options=options.damageTypeOptions name=(pfuConcat path ".damageTypes") classes="fu-rule-element__set stacked"}}
+</label>
