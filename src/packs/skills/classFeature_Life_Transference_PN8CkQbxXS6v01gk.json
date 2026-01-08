@@ -13,12 +13,99 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When you cause one or more enemies to lose HP",
-      "description": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis</strong>, they recover an amount of Hit Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】.</strong></p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>Target Recovers: </strong>@GAIN[5+(&cs('brainwave-clock')*5) hp]{Life Transference}</p></li><li><p><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p></li></ul>"
+      "description": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis</strong>, they recover an amount of Hit Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】.</strong></p>"
     },
     "source": "FUTF153",
     "fuid": "life-transference"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Life Transference",
+      "img": "icons/magic/life/heart-broken-red.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "36QU0HTG73RdQ3hR": {
+              "type": "ruleElement",
+              "_id": "36QU0HTG73RdQ3hR",
+              "trigger": {
+                "_id": "BTwE5kzXZ46zQgim",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "actions": {
+                "cLNBh20iD0JqbiRC": {
+                  "type": "messageRuleAction",
+                  "_id": "cLNBh20iD0JqbiRC",
+                  "message": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis:</strong></p><ul><li><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>Target Recovers: </strong>@GAIN[5+(&cs('brainwave-clock')*5) hp]{Life Transference}</p></li><li><p><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p></li></ul>"
+                }
+              },
+              "predicates": {
+                "n19dteAJ1c1UxBCe": {
+                  "type": "traitsRulePredicate",
+                  "_id": "n19dteAJ1c1UxBCe",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "xwEhzjhC0fLRc28M",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767892291552,
+        "modifiedTime": 1767892596642,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!PN8CkQbxXS6v01gk.xwEhzjhC0fLRc28M"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -30,10 +117,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711423314741,
-    "modifiedTime": 1744507719300,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767894223941,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

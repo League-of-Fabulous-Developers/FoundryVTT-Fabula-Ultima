@@ -476,7 +476,7 @@ async function process(request) {
 		});
 
 		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
-		Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
+		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
 		const rootUuid = actor.resolveUuid();
 
 		updates.push(
