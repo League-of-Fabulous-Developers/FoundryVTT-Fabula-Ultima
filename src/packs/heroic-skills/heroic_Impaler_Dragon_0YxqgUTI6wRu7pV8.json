@@ -1,0 +1,61 @@
+{
+  "name": "Impaler Dragon",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "Use Charging Cavalry after Shadow Strike."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Darkblade</strong>, and have acquired the <strong>Charging Cavalry</strong> and <strong>Shadow Strike</strong> Skills.</p></blockquote><p>When you use the <strong>Shadow Strike</strong> Skill, you may treat your <strong>High Roll</strong> as being equal to 0 when determining damage dealt by this attack. If you do, after the attack from <strong>Shadow Strike</strong> is resolved, you may immediately perform the <strong>Charging Cavalry</strong> Skill for free (paying the appropriate MP cost).</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHO5",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "impaler-dragon"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1767915231139,
+    "modifiedTime": 1767915231139,
+    "lastModifiedBy": "94wV67htTTVBPn7n"
+  },
+  "folder": "L3ZyYRKlHEggv0aF",
+  "_id": "0YxqgUTI6wRu7pV8",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3
+  },
+  "sort": 0,
+  "_key": "!items!0YxqgUTI6wRu7pV8"
+}

@@ -1,0 +1,61 @@
+{
+  "name": "Like an Open Book",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "Gain additional benefits when you successfully Soul Steal from an enemy."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Esper</strong>, <strong>Loremaster</strong> and <strong>Rogue</strong>, and have acquired the <strong>Soul Steal</strong> Skill.</p></blockquote><p>After you successfully use the <strong>Soul Steal</strong> Skill against one or more enemies, you may choose one of them. If you do, you immediately perform the <strong>Study</strong> action for free against that enemy: treat the Result and High Roll of this Open Check as being equal to the Result and High Roll of the Check you performed for <strong>Soul Steal</strong> (do not roll dice for this Open Check).</p><p>When you deal damage to an <strong>elite</strong> or <strong>champion</strong>-rank enemy, if you stole that enemy's soul treasure during this scene, you deal extra damage equal to <strong>【your Skill Level in Soul Steal】</strong> to that enemy.</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHO6",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "like-an-open-book"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1767915231139,
+    "modifiedTime": 1767915231139,
+    "lastModifiedBy": "94wV67htTTVBPn7n"
+  },
+  "folder": "L3ZyYRKlHEggv0aF",
+  "_id": "bNl3nhk2ULBwLaE4",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3
+  },
+  "sort": 0,
+  "_key": "!items!bNl3nhk2ULBwLaE4"
+}

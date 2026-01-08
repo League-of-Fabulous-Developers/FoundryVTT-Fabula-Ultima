@@ -1,0 +1,61 @@
+{
+  "name": "Hunter's Trick",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "Boost the transformations of custom weapons."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong> and <strong>Weaponmaster</strong>.</p></blockquote><p>When you transform a <strong>transforming custom weapon</strong> on your turn, choose <strong>one</strong> option: if you have not performed any attacks during this turn, the next attack you perform with this weapon during this turn deals 5 extra damage; <strong>or</strong> if you hit one or more creatures with an attack using this weapon during this turn, you recover 5 Hit Points and 5 Mind Points.</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHO5",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "hunters-trick"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1767915231139,
+    "modifiedTime": 1767915231139,
+    "lastModifiedBy": "94wV67htTTVBPn7n"
+  },
+  "folder": "L3ZyYRKlHEggv0aF",
+  "_id": "C85rsZpRK6htfbv6",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3
+  },
+  "sort": 0,
+  "_key": "!items!C85rsZpRK6htfbv6"
+}

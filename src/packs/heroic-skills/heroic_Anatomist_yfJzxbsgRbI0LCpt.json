@@ -1,0 +1,61 @@
+{
+  "name": "Anatomist",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "You gain special benefits when fighting creatures that belong to certain Species."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among Fury, <strong>Loremaster</strong>, <strong>Sharpshooter</strong> and <strong>Weaponmaster</strong>, and have acquired the <strong>Knowledge is Power</strong> Skill.</p></blockquote><p>Whenever you acquire this Heroic Skill, choose <strong>two</strong> Species among beast, <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, <strong>monster</strong>, <strong>plant</strong>, and <strong>undead</strong>.</p><p>When you deal damage to a creature belonging to the <strong>humanoid</strong> Species or to a Species you have chosen for this Heroic Skill, you may choose one option: you deal 5 extra damage to that creature; or that creature becomes <strong>reeling</strong> until the end of the scene. When a <strong>reeling</strong> creature recovers Hit Points and/or Mind Points, instead that creature recovers <strong>half</strong> the normal amount of HP and/or MP and is no longer <strong>reeling</strong>.</p><p>This Heroic Skill can be acquired <strong>up to three times</strong>.</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHO3",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "anatomist"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1767915231139,
+    "modifiedTime": 1767915231139,
+    "lastModifiedBy": "94wV67htTTVBPn7n"
+  },
+  "folder": "L3ZyYRKlHEggv0aF",
+  "_id": "yfJzxbsgRbI0LCpt",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3
+  },
+  "sort": 0,
+  "_key": "!items!yfJzxbsgRbI0LCpt"
+}

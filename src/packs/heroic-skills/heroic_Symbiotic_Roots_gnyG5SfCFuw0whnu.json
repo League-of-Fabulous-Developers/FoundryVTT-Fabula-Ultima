@@ -1,0 +1,61 @@
+{
+  "name": "Symbiotic Roots",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "Share your strength with plant-Species Faithful Companions."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Floralist</strong>, <strong>Mutant</strong> and <strong>Wayfarer</strong>, and have acquired the <strong>Faithful Companion</strong> (<strong>construct</strong> Species) Skill.</p></blockquote><p>When you recover Hit Points, you may choose to recover only <strong>half</strong> of that amount; if you do, your companion recovers that many Hit Points.</p><p>At the end of your turn during a conflict, if your companion's current Hit Points are <strong>equal to or higher than</strong> their maximum Hit Points and your companion has not performed actions or attacks during this turn, you may have your companion perform a <strong>free attack</strong> with one of their basic attacks.</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHO7",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "symbiotic-roots"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1767915231139,
+    "modifiedTime": 1767915231139,
+    "lastModifiedBy": "94wV67htTTVBPn7n"
+  },
+  "folder": "L3ZyYRKlHEggv0aF",
+  "_id": "gnyG5SfCFuw0whnu",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3
+  },
+  "sort": 0,
+  "_key": "!items!gnyG5SfCFuw0whnu"
+}

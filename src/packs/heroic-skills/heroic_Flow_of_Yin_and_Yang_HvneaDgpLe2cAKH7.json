@@ -1,0 +1,61 @@
+{
+  "name": "Flow of Yin and Yang",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "Swap between damage of different elements to charge yin and yang energy."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong>, <strong>Elementalist</strong>, <strong>Esper</strong>, and <strong>Invoker</strong>.</p></blockquote><p>When you deal <strong>dark</strong>, <strong>earth</strong>, <strong>ice</strong>, or <strong>physical</strong> damage for the first time during a turn, you gain <strong>1 Yin Point</strong> and, if you have <strong>at least 1 Yang Point</strong>, you deal 5 extra damage.</p><p>When you deal <strong>air</strong>, <strong>bolt</strong>, <strong>fire</strong>, or <strong>light</strong> damage for the first time during a turn, you gain <strong>1 Yang Point</strong> and, if you have <strong>at least 1 Yin Point</strong>, you deal 5 extra damage.</p><p>At the end of your turn, if you have <strong>3 or more Yin and/or Yang points</strong> and have <strong>at least 1 point of each type</strong>, you lose all <strong>Yin and Yang Points</strong> and perform one of the following effects based on the points you lost (perform <strong>both</strong> in case of a tie):</p><ul><li><p><strong>Yin majority</strong>: every enemy present on the scene loses an amount of Mind Points equal to <strong>【half your level】</strong>.</p></li><li><p><strong>Yang majority</strong>: one creature you can see that is present on the scene recovers an amount of Mind Points equal to <strong>【your level】</strong>.</p></li></ul><p>You may gain and use <strong>Yin and Yang Points</strong> only during conflicts, and you lose all your <strong>Yin and Yang Points</strong> at the end of each scene.</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHO4",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "flow-of-yin-and-yang"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1767915231139,
+    "modifiedTime": 1767915231139,
+    "lastModifiedBy": "94wV67htTTVBPn7n"
+  },
+  "folder": "L3ZyYRKlHEggv0aF",
+  "_id": "HvneaDgpLe2cAKH7",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3
+  },
+  "sort": 0,
+  "_key": "!items!HvneaDgpLe2cAKH7"
+}

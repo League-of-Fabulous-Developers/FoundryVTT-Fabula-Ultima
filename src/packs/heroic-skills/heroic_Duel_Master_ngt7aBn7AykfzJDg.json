@@ -96,7 +96,7 @@
     "fuid": "duel-master"
   },
   "effects": [],
-  "folder": "1Ky2u7fi2lfxr4JB",
+  "folder": "rsp4XZ4yS3zcZY8x",
   "ownership": {
     "default": 0,
     "BwRsFvMHAq9vUtEO": 3
@@ -107,15 +107,15 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1708940657180,
-    "modifiedTime": 1724180864018,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1767913951783,
+    "lastModifiedBy": "94wV67htTTVBPn7n",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "_id": "ngt7aBn7AykfzJDg",
-  "sort": 0,
+  "sort": 150000,
   "_key": "!items!ngt7aBn7AykfzJDg"
 }
