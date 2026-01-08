@@ -12,6 +12,12 @@
 		{{/if}}
 	{{/each}}
 
+	{{#each actor.combinedEffects as |effect|}}
+		{{#if effect.system.rules.progress.enabled}}
+			{{pfuProgress effect 'system.rules.progress' displayName=true style=effect.system.rules.progress.style }}
+		{{/if}}
+	{{/each}}
+
 	{{!-- Optional Feature Sections --}}
 	{{#each optionalFeatures}}
 		{{#each items }}
