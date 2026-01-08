@@ -226,6 +226,19 @@ function determineSource(document, element) {
 		}
 		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
+
+	// TODO: Figure out which case triggers this
+	// FALLBACK
+	const chatItemText = element.closest('#chat-item-text');
+	if (chatItemText) {
+		if (chatItemText.dataset.actorUuid) {
+			itemUuid = chatItemText.dataset.actorUuid;
+		}
+		if (chatItemText.dataset.itemId) {
+			itemUuid = chatItemText.dataset.itemId;
+		}
+	}
+
 	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid);
 }
 
@@ -291,7 +304,15 @@ let inlineCommands = [];
 function getRenderContext(element) {
 	const document = InlineHelper.resolveDocument(element);
 	const target = element.firstElementChild;
-	const sourceInfo = InlineHelper.determineSource(document, target);
+
+	let sourceInfo;
+	if (document instanceof ChatMessage) {
+		sourceInfo = document.getFlag(SYSTEM, Flags.ChatMessage.Source);
+	}
+	if (!sourceInfo) {
+		sourceInfo = InlineHelper.determineSource(document, target);
+	}
+
 	const dataset = target.dataset;
 	return {
 		document,

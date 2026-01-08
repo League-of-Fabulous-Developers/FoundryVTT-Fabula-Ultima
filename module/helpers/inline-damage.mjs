@@ -5,6 +5,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
 import { systemAssetPath } from './system-utils.mjs';
 import { Flags } from './flags.mjs';
+import { DamageData } from '../checks/damage-data.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -75,12 +76,17 @@ async function onRender(element) {
 			if (check) {
 				context = context.withCheck(check);
 			}
-			const amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
-			const damageData = { type, total: amount, modifierTotal: 0 };
+			let amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
+			const damageData = DamageData.construct(type, amount);
+			// Check source actor for outgoing damage bonuses
+			if (context.actor) {
+				DamagePipeline.collectOutgoingBonuses(context.actor, damageData);
+			}
 			const request = new DamageRequest(renderContext.sourceInfo, targets, damageData);
 			if (renderContext.dataset.traits) {
 				request.addTraits(...renderContext.dataset.traits.split(','));
 			}
+
 			await DamagePipeline.process(request);
 		}
 	});

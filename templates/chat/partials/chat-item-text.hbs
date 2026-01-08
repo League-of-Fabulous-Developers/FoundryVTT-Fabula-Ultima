@@ -13,5 +13,5 @@
 			{{item.name}}
 		</label>
 	</legend>
-	<span>{{{text}}}</span>
+	<span id="chat-item-text" {{#if actor}}data-actor-id="{{actor.uuid}}"{{/if}} data-item-id="{{item.uuid}}">{{{text}}}</span>
 </fieldset>

@@ -110,15 +110,23 @@
                   "type": "modifyDamageRuleAction",
                   "_id": "DlTzhrGENrQFHsZl",
                   "damageTypes": [
+                    "bolt",
                     "fire",
-                    "ice",
-                    "bolt"
+                    "ice"
                   ],
                   "amount": "5",
                   "cost": {
                     "amount": "2",
                     "resource": "ip"
                   }
+                }
+              },
+              "predicates": {
+                "CiETfTbaM9Xr2S3S": {
+                  "type": "checkRulePredicate",
+                  "_id": "CiETfTbaM9Xr2S3S",
+                  "outcome": "success",
+                  "result": null
                 }
               }
             }
@@ -156,7 +164,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767644433902,
-        "modifiedTime": 1767645952171,
+        "modifiedTime": 1767890342871,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!1tfYFkiXLuTOUmre.zMtMdd7aTWSJ5uB4"
@@ -203,6 +211,14 @@
                     "amount": "2"
                   }
                 }
+              },
+              "predicates": {
+                "zNu7tPl5E5y6GpJ5": {
+                  "type": "checkRulePredicate",
+                  "_id": "zNu7tPl5E5y6GpJ5",
+                  "outcome": "success",
+                  "result": null
+                }
               }
             }
           },
@@ -239,7 +255,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767644601514,
-        "modifiedTime": 1767644716414,
+        "modifiedTime": 1767890354926,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!1tfYFkiXLuTOUmre.Fvn6pmBNRXEKRovU"
@@ -286,6 +302,14 @@
                     ]
                   }
                 }
+              },
+              "predicates": {
+                "rWmIW3gkGlTx3uMQ": {
+                  "type": "checkRulePredicate",
+                  "_id": "rWmIW3gkGlTx3uMQ",
+                  "outcome": "success",
+                  "result": null
+                }
               }
             }
           },
@@ -322,7 +346,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767645157973,
-        "modifiedTime": 1767728831764,
+        "modifiedTime": 1767890372098,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!1tfYFkiXLuTOUmre.L2VXgA1Mh0sg7MRa"
@@ -372,6 +396,14 @@
                   "_id": "enEX2W9hjJyvRYFc",
                   "effect": "poisoned"
                 }
+              },
+              "predicates": {
+                "SdYrDRVCyNCRml5O": {
+                  "type": "checkRulePredicate",
+                  "_id": "SdYrDRVCyNCRml5O",
+                  "outcome": "success",
+                  "result": null
+                }
               }
             }
           },
@@ -408,7 +440,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767645170601,
-        "modifiedTime": 1767645600544,
+        "modifiedTime": 1767890390974,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!1tfYFkiXLuTOUmre.mZBX5ATHRQquUFEN"

@@ -167,6 +167,12 @@
                   "_id": "qyfjrVjUjfGzjNdB",
                   "outcome": "success",
                   "result": null
+                },
+                "jXE1ZYNF1tmxz1t9": {
+                  "type": "weaponRulePredicate",
+                  "_id": "jXE1ZYNF1tmxz1t9",
+                  "weaponType": "melee",
+                  "selector": "self"
                 }
               }
             }
@@ -204,7 +210,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766788902986,
-        "modifiedTime": 1767559675817,
+        "modifiedTime": 1767889920931,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!7jWycVYFgZ1BMxch.YkOEtHV4uwAnjQnW"

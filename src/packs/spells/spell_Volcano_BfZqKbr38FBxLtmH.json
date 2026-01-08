@@ -117,8 +117,8 @@
     },
     "fuid": "volcano-single-target",
     "traits": [
-      "IgnoreResistances",
-      "IgnoreImmunities"
+      "ignore-resistances",
+      "ignore-immunities"
     ],
     "targeting": {
       "rule": "special"
@@ -259,7 +259,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.348",
     "createdTime": 1710548265766,
-    "modifiedTime": 1767623266647,
+    "modifiedTime": 1767895346568,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

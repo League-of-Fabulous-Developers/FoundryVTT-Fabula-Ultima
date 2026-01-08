@@ -32,6 +32,7 @@ function toItemReference(item) {
  * @property {Set<String>} traits
  * @property {FUActor} actor
  * @property {Token} token
+ * @property {CheckConfigurer} config
  * @property {CheckResultV2} check
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets

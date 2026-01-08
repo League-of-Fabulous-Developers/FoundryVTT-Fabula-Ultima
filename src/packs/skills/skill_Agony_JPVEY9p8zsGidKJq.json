@@ -153,6 +153,21 @@
                 "NVZLOf2l41OpllgF": {
                   "type": "bondRulePredicate",
                   "_id": "NVZLOf2l41OpllgF"
+                },
+                "jBEybKjWgl1cpOEM": {
+                  "type": "traitsRulePredicate",
+                  "_id": "jBEybKjWgl1cpOEM",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                },
+                "jasZeLFZt6kJffW4": {
+                  "type": "checkRulePredicate",
+                  "_id": "jasZeLFZt6kJffW4",
+                  "outcome": "success",
+                  "result": null
                 }
               },
               "actions": {
@@ -208,7 +223,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766871996877,
-        "modifiedTime": 1767729952485,
+        "modifiedTime": 1767895581456,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!JPVEY9p8zsGidKJq.3CjUfXdmW7p1L7tJ"
