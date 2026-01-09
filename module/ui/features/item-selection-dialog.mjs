@@ -7,6 +7,8 @@ import FoundryUtils from '../../helpers/foundry-utils.mjs';
  * @property {FUItem[]|FUActiveEffect[]} items
  * @property {FUItem|FUActiveEffect} initial
  * @property {Number} max
+ * @property {(item: FUItem) => Promise<string>} getDescription
+ * @property {String} okLabel
  */
 
 /**
@@ -19,10 +21,19 @@ export class ItemSelectionDialog {
 	#data;
 
 	/**
+	 * @type {FUItem[]|FUActiveEffect[]}
+	 */
+	#selectedItems;
+
+	/**
 	 * @param {ItemSelectionData} data
 	 */
 	constructor(data) {
 		this.#data = data;
+		this.#selectedItems = [];
+		if (data.initial) {
+			this.#selectedItems.push(data.initial);
+		}
 	}
 
 	/**
@@ -45,12 +56,15 @@ export class ItemSelectionDialog {
 		 * @param {HTMLElement} card
 		 */
 		const toggleCardSelection = (container, card) => {
+			const cardItem = this.data.items[card.dataset.index];
 			if (!card.classList.contains('selected')) {
 				const selectedCards = container.querySelectorAll('.fu-item-card.selected');
 				if (selectedCards.length >= this.data.max) return;
 				card.classList.add('selected');
+				this.#selectedItems.push(cardItem);
 			} else {
 				card.classList.remove('selected');
+				this.#selectedItems = this.#selectedItems.filter((it) => it !== cardItem);
 			}
 		};
 
@@ -59,7 +73,7 @@ export class ItemSelectionDialog {
 				title: this.data.title,
 			},
 			position: {
-				width: 440,
+				width: 600,
 			},
 			actions: {
 				/** @param {Event} event
@@ -71,27 +85,43 @@ export class ItemSelectionDialog {
 			rejectClose: false,
 			ok: {
 				icon: "<i class='fas fa-check'></i>",
-				label: 'FU.Confirm',
+				label: this.data.okLabel ?? 'FU.Confirm',
 			},
 			/** @param {Event} event
 			 *  @param {HTMLElement} dialog **/
-			render: (event, dialog) => {
+			render: async (event, dialog) => {
 				const document = dialog.element;
 				const container = document.querySelector('.fu-item-grid');
+				/** @type HTMLSpanElement **/
+				const description = document.querySelector('#description');
 
-				// ✅ Initial sync on first render
+				// Function to update the description
+				const updateDescription = async () => {
+					let text;
+					if (this.#selectedItems.length > 0) {
+						const item = this.#selectedItems[0];
+						text = await this.data.getDescription(item);
+					} else {
+						text = '';
+					}
+					description.innerHTML = text;
+				};
+				await updateDescription();
+
+				// Selection
 				for (const input of container.querySelectorAll('input[name="selected"]:checked')) {
 					const card = input.closest('.fu-item-card');
 					if (card) {
 						toggleCardSelection(container, card);
+						await updateDescription();
 					}
 				}
-
 				// ✅ Event handling
-				container.addEventListener('mousedown', (event) => {
+				container.addEventListener('mousedown', async (event) => {
 					const card = event.target.closest('.fu-item-card');
 					if (!card) return;
 					toggleCardSelection(container, card);
+					await updateDescription();
 				});
 			},
 		});

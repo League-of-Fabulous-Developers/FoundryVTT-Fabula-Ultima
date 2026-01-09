@@ -74,15 +74,20 @@ async function handleArcanum(actor, item) {
 		/** @type ItemSelectionData **/
 		const data = {
 			title: `${title}: ${StringUtils.localize('FU.ClassFeatureArcanumMerge')}`,
-			message: StringUtils.localize('FU.ClassFeatureArcanumHint'),
 			max: 1,
 			items: classFeatures,
-			okLabel: StringUtils.localize('FU.ClassFeatureArcanumMerge'),
+			getDescription: async (item) => {
+				const text = await FoundryUtils.enrichText(item.system.data.merge, {
+					relativeTo: actor,
+				});
+				return text;
+			},
+			okLabel: 'FU.ClassFeatureArcanumMerge',
 		};
 
 		const dialog = new ItemSelectionDialog(data);
 		const result = await dialog.open();
-		if (result) {
+		if (result && result.length > 0) {
 			/** @type FUItem **/
 			const selectedArcana = result[0];
 			const selectedArcanaEffect = selectedArcana.effects.size === 1 ? Array.from(selectedArcana.effects.values())[0] : null;
@@ -117,13 +122,18 @@ async function handleTheriomorphosis(actor, item) {
 	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
 	const formEffects = classFeatures.flatMap((it) => [...it.effects.values()]);
 	console.debug(`Forms: ${formEffects}`);
-	const title = StringUtils.localize('FU.ClassFeatureTherioformLabel');
 	/** @type ItemSelectionData **/
 	const data = {
-		title,
+		title: `${StringUtils.localize('FU.ClassFeatureTherioformLabel')}`,
 		message: StringUtils.localize('FU.ClassFeatureTherioformHint'),
 		max: 2, // TODO: Check for heroic skill
 		items: formEffects,
+		getDescription: async (item) => {
+			const text = await FoundryUtils.enrichText(item.parent.system.description, {
+				relativeTo: actor,
+			});
+			return text;
+		},
 	};
 	for (const effect of formEffects) {
 		await effect.update({ disabled: true });
