@@ -17,22 +17,21 @@
 }
 
 .fu-form__header h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+.fu-form__header h2,
+.fu-form__header h3,
+.fu-form__header h4,
+.fu-form__header h5,
+.fu-form__header h6,
+.fu-form__header p {
 	color: var(--color-primary);
 }
 
 .fu-form__header h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	color: var(--color-primary);
+.fu-form__header h2,
+.fu-form__header h3,
+.fu-form__header h4,
+.fu-form__header h5,
+.fu-form__header h6 {
 	font-weight: bold;
 }
 
