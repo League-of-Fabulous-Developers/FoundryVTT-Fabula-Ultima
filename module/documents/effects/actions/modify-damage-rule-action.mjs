@@ -38,9 +38,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				options: TraitUtils.getOptions(DamageTraits),
 			}),
 			cost: new fields.EmbeddedDataField(ActionCostDataModel, {
-				resource: {
-					initial: '',
-				},
+				resource: '',
 			}),
 			variant: new fields.StringField({
 				initial: '',

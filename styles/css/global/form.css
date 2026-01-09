@@ -1,6 +1,39 @@
+/* Added on a foundry form's 'classes' property */
+.fu-form {
+}
+
 .fu-form__button {
 	background-color: var(--color-primary);
 	color: #ebf7af;
+}
+
+.fu-form__header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-self: center;
+	margin: 4px;
+	gap: 4px;
+}
+
+.fu-form__header h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	color: var(--color-primary);
+}
+
+.fu-form__header h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--color-primary);
+	font-weight: bold;
 }
 
 .fu-form__array__element {
@@ -39,9 +72,24 @@
 	width: 100%;
 }
 
-/* Container */
+/*		DIALOGS		*/
+
 .fu-dialog {
+}
+
+.fu-dialog form .dialog-content {
+	background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	background-blend-mode: multiply;
+	background-repeat: repeat-y;
+	background-position: right top;
+	border-radius: 10px;
+	border: 1px solid rgba(44, 74, 66, 0.3294117647);
+	padding: 0.25rem;
 	color: var(--color-text-dark);
+}
+
+.fu-dialog button {
+	background-color: var(--color-primary);
 }
 
 .fu-dialog__text {

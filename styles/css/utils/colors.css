@@ -165,6 +165,7 @@
 	--color-window-bg: var(--color-primary-bg);
 	--color-window-header-bg: var(--color-secondary-bg);
 	--color-window-header-text: var(--color-text-primary);
+	--color-window-content-bg: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
 	--color-window-border: var(--color-border-primary);
 	--color-window-resize-handle: var(--color-border-secondary);
 	--color-window-close-hover: #ef4444;

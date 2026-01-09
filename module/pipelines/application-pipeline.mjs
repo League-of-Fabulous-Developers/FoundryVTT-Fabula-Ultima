@@ -29,40 +29,77 @@ async function handleArcanum(actor, item) {
 	/** @type {FUItem[]} **/
 	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
 	/** @type {FUActiveEffect[]} **/
-	const classEffects = classFeatures.flatMap((it) => [...it.effects.values()]);
-	const activeArcanum = classEffects.find((it) => !it.disabled);
 	const title = StringUtils.localize('FU.ClassFeatureArcanum');
 
-	// TODO: Traits not being added to damage data at the right time?
+	const currentArcanumId = actor.system.equipped.arcanum;
+	const currentArcanum = actor.items.get(currentArcanumId);
+
 	// Dismiss
-	if (activeArcanum) {
+	if (currentArcanum) {
 		/** @type ArcanumDataModel **/
-		const arcanumData = activeArcanum.system;
-		console.debug(arcanumData);
+		const currentArcanumData = currentArcanum.system.data;
+		const choice = await FoundryUtils.promptItemChoice({
+			title: `${title}: ${StringUtils.localize('FU.ClassFeatureArcanumDismiss')}`,
+			actor: actor,
+			item: currentArcanum,
+			description: currentArcanumData.dismiss,
+			buttons: [
+				{
+					action: 'dismiss',
+					label: `FU.ClassFeatureArcanumDismiss`,
+					icon: '<i class="fas fa-bolt"></i>',
+					primary: true,
+				},
+			],
+		});
+		if (choice === 'dismiss') {
+			ChatMessage.create({
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+				content: await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
+					item: currentArcanum,
+					message: 'FU.ClassFeatureArcanumDismissMessage',
+					details: currentArcanumData.dismiss,
+				}),
+			});
+			await actor.update({
+				'system.equipped.arcanum': null,
+			});
+			//await activeArcanumEffect.update({ disabled: true });
+		}
+
+		console.log(choice);
 	}
 	// Summon
 	else {
 		/** @type ItemSelectionData **/
 		const data = {
-			title,
+			title: `${title}: ${StringUtils.localize('FU.ClassFeatureArcanumMerge')}`,
 			message: StringUtils.localize('FU.ClassFeatureArcanumHint'),
 			max: 1,
 			items: classFeatures,
-			okLabel: StringUtils.localize('FU.Summon'),
+			okLabel: StringUtils.localize('FU.ClassFeatureArcanumMerge'),
 		};
 
 		const dialog = new ItemSelectionDialog(data);
 		const result = await dialog.open();
 		if (result) {
+			/** @type FUItem **/
 			const selectedArcana = result[0];
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor: actor }),
-				content: await FoundryUtils.renderTemplate('feature/arcanist/chat-arcanum-summon', {
-					item: selectedArcana,
-					message: 'FU.ClassFeatureArcanumSummon',
-					details: selectedArcana.system.data.merge,
-				}),
-			});
+			const selectedArcanaEffect = selectedArcana.effects.size === 1 ? Array.from(selectedArcana.effects.values())[0] : null;
+			if (selectedArcanaEffect) {
+				//await selectedArcanaEffect.update({ disabled: false });
+				await actor.update({
+					'system.equipped.arcanum': selectedArcana.id,
+				});
+				ChatMessage.create({
+					speaker: ChatMessage.getSpeaker({ actor: actor }),
+					content: await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
+						item: selectedArcana,
+						message: 'FU.ClassFeatureArcanumSummonMessage',
+						details: selectedArcana.system.data.merge,
+					}),
+				});
+			}
 		}
 	}
 }
