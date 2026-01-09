@@ -196,6 +196,22 @@ function getChatAction(actor, item, name) {
 }
 
 /**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {String} name The application name.
+ * @returns {() => Promise<void>}
+ */
+function getAction(actor, item, name) {
+	/** @type FeatureApplication **/
+	const application = applications[name];
+	if (!application) {
+		return null;
+	}
+
+	return async () => application.open(actor, item);
+}
+
+/**
  * @param {ChatMessage} message
  * @param {HTMLElement} html
  */
@@ -242,4 +258,5 @@ function initialize() {
 export const ApplicationPipeline = {
 	initialize,
 	getChatAction,
+	getAction,
 };

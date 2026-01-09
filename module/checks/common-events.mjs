@@ -701,6 +701,42 @@ async function createConsumable(actor, item, targetData, builder) {
 	await AsyncHooks.callSequential(FUHooks.CONSUMABLE_CREATE_EVENT, event);
 }
 
+/**
+ * @property {FUItem} item
+ * @property {KeyboardModifiers} modifiers
+ * @property {(() => Promise<void>)|null} override If set, will override the default.
+ */
+export class ItemRollConfiguration {
+	constructor(item, modifiers) {
+		this.item = item;
+		this.modifiers = modifiers;
+	}
+
+	/**
+	 * Set a custom override function for this roll.
+	 * @param {() => Promise<void>} fn
+	 */
+	setOverride(fn) {
+		this.override = fn;
+	}
+}
+
+/**
+ * @typedef ItemRollEvent
+ * @property {CharacterInfo} source
+ * @property {ItemRollConfiguration} config
+ */
+
+async function itemRoll(config, actor) {
+	const source = actor !== undefined ? CharacterInfo.fromActor(actor) : undefined;
+	/** @type ItemRollEvent  **/
+	const event = {
+		config: config,
+		source: source,
+	};
+	await AsyncHooks.callSequential(FUHooks.ITEM_ROLL_EVENT, event);
+}
+
 export const CommonEvents = Object.freeze({
 	attack,
 	damage,
@@ -726,6 +762,7 @@ export const CommonEvents = Object.freeze({
 	notify,
 	toggleEffect,
 	createConsumable,
+	itemRoll,
 });
 
 // Helpers

@@ -17,7 +17,7 @@ export class OpenApplicationRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventTypes: [FUHooks.RENDER_CHECK_EVENT],
+			eventTypes: [FUHooks.RENDER_CHECK_EVENT, FUHooks.ITEM_ROLL_EVENT],
 		};
 	}
 
@@ -39,9 +39,22 @@ export class OpenApplicationRuleAction extends RuleActionDataModel {
 		if (!this.application) {
 			return;
 		}
-		const action = ApplicationPipeline.getChatAction(context.character.actor, context.item, this.application);
-		if (action) {
-			context.config.addTargetedAction(action);
+
+		switch (context.eventType) {
+			case FUHooks.RENDER_CHECK_EVENT: {
+				const action = ApplicationPipeline.getChatAction(context.character.actor, context.item, this.application);
+				if (action) {
+					context.config.addTargetedAction(action);
+				}
+				break;
+			}
+
+			case FUHooks.ITEM_ROLL_EVENT: {
+				/** @type ItemRollConfiguration **/
+				const config = context.event.config;
+				config.setOverride(ApplicationPipeline.getAction(context.character.actor, context.item, this.application));
+				break;
+			}
 		}
 	}
 }

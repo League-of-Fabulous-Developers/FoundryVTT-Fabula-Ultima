@@ -224,4 +224,10 @@ export const FUHooks = {
 	 * @remarks Uses {@link CreateConsumableEvent}
 	 */
 	CONSUMABLE_CREATE_EVENT: 'projectfu.events.consumables.create',
+	/**
+	 * @description Dispatched when an item 'roll' action is being performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link ItemRollEvent}
+	 */
+	ITEM_ROLL_EVENT: `projectfu.events.items.roll`,
 };

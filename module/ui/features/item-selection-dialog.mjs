@@ -127,9 +127,7 @@ export class ItemSelectionDialog {
 		});
 		if (result) {
 			console.debug(result);
-			const selectedValues = new Set(Array.isArray(result.selected) ? result.selected : result.selected ? [result.selected] : []);
-
-			return this.data.items.filter((item) => selectedValues.has(item.name));
+			return this.#selectedItems;
 		} else {
 			throw Error('Canceled by user.');
 		}

@@ -1657,6 +1657,7 @@
 		"RuleTriggerToggle": "Toggle",
 		"RuleTriggerNotify": "Notify",
 		"RuleTriggerCreateConsumable": "Create Consumable",
+		"RuleTriggerItemRoll": "Item Roll",
 		"RulePredicates": "Rule Predicates",
 		"RulePredicateBond": "Bond",
 		"RulePredicateSpell": "Spell",

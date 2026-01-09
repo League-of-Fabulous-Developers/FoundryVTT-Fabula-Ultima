@@ -54,6 +54,7 @@ import { ModifyResourceRuleAction } from '../documents/effects/actions/modify-re
 import { CalculateResourceRuleTrigger } from '../documents/effects/triggers/calculate-resource-rule-trigger.mjs';
 import { OpenApplicationRuleAction } from '../documents/effects/actions/open-application-rule-action.mjs';
 import { RankRulePredicate } from '../documents/effects/predicates/rank-rule-predicate.mjs';
+import { ItemRollRuleTrigger } from '../documents/effects/triggers/item-roll-rule-trigger.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -71,6 +72,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, NotificationRuleTrigger.TYPE, NotificationRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ToggleRuleTrigger.TYPE, ToggleRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, CreateConsumableRuleTrigger.TYPE, CreateConsumableRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, ItemRollRuleTrigger.TYPE, ItemRollRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -188,6 +190,14 @@ async function onStatusEvent(event) {
  */
 async function onCreateConsumableEvent(event) {
 	await evaluate(FUHooks.CONSUMABLE_CREATE_EVENT, event, event.source, event.targets);
+}
+
+/**
+ * @param {ItemRollEvent} event
+ * @returns {Promise<void>}
+ */
+async function onItemRoll(event) {
+	await evaluate(FUHooks.ITEM_ROLL_EVENT, event, event.source, []);
 }
 
 /**
@@ -329,6 +339,7 @@ function initialize() {
 	AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);
 	AsyncHooks.on(FUHooks.INITIALIZE_CHECK_EVENT, onInitializeCheckEvent);
 	AsyncHooks.on(FUhooks.CONSUMABLE_CREATE_EVENT, onCreateConsumableEvent);
+	AsyncHooks.on(FUhooks.ITEM_ROLL_EVENT, onItemRoll);
 }
 
 export const RuleElements = Object.freeze({

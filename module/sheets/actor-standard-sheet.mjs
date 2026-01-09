@@ -725,7 +725,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
 		// Handle item rolls.
-
 		if (dataset.rollType === 'item' || target.closest('[data-item-id]')) {
 			const itemId = target.closest('[data-item-id]').dataset.itemId;
 			let item = this.actor.items.get(itemId);
