@@ -151,6 +151,7 @@ const onRenderSupportCheck = (sections, check, actor) => {
 					attr2: {
 						attribute: secondary.attribute,
 					},
+					group: {},
 				},
 				difficulty: inspector.getDifficulty(),
 				modifiers: check.modifiers,

@@ -37,10 +37,15 @@ const attributeIconPaths = {
 	wlp: systemAssetPath('icons/attributes/wlp-glyph.png'),
 };
 
+function getIconClass(icon) {
+	return FU.allIcon[icon];
+}
+
 /**
  * @type {FUInlineCommand}
  */
 export const InlineIcon = Object.freeze({
 	enrichers: [inlineIconEnricher],
 	attributeIconPaths,
+	getIconClass,
 });

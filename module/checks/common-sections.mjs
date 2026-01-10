@@ -371,7 +371,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 
 			/** @type FUTargetSelectorKey **/
 			let rule;
-			if (item.system.targeting) {
+			if (item && item.system.targeting) {
 				rule = item.system.targeting.rule ?? Targeting.rule.multiple;
 				targetData = await Targeting.filterTargetsByRule(actor, item, targetData);
 			} else {

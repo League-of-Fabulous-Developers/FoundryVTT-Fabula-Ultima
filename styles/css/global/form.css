@@ -160,11 +160,10 @@
 
 .fu-icon__container {
 	display: flex;
-	flex-direction: column;
 }
 
 .fu-icon__badge {
-	--icon-size: 24px;
+	--icon-size: 100%;
 	width: var(--icon-size);
 	height: var(--icon-size);
 	position: relative;
@@ -227,6 +226,9 @@
 	pointer-events: none;
 }
 
+.fu-icon--xs {
+	--icon-size: 16px;
+}
 .fu-icon--s {
 	--icon-size: 24px;
 }
@@ -235,9 +237,6 @@
 }
 .fu-icon--l {
 	--icon-size: 64px;
-}
-.fu-icon--xs {
-	--icon-size: 16px;
 }
 
 /* Used for background image icons since they won't reserve advance width */

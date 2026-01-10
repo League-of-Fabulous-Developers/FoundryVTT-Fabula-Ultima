@@ -1,12 +1,12 @@
 <!-- HP -->
 <div class="resource-content flex-group-center">
     <div class="grid grid-3col" style="padding: 0 5px;">
-        <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
+        <label class="fu-icon__container resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
                aria-describedby="tooltip">
             {{#if actor.system.resources.hp.inCrisis }}
                 <i class="fas fa-heart-crack is-crisis"></i>
             {{else}}
-                <i class="fas fa-heart"></i>
+                <i class="fu-icon--s {{pfuIconClass 'hp'}}"></i>
             {{/if}} {{localize 'FU.HealthAbbr'}}
         </label>
         <label class="align-right grid-start-2 grid-span-2 is-crisis" aria-describedby="tooltip">
@@ -52,13 +52,15 @@
 <!-- MP -->
 <div class="resource-content flex-group-center">
     <div class="grid grid-2col" style="padding: 0 5px;">
-        <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.MindPoints'}}"
-               aria-describedby="tooltip"><i
-         class="fas fa-hat-wizard icon"></i>{{localize
-         'FU.MindAbbr'}} </label>
+        <label class="fu-icon__container resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.MindPoints'}}"
+               aria-describedby="tooltip">
+			<i class="fu-icon--s {{pfuIconClass 'mp'}}"></i>
+			{{localize  'FU.MindAbbr'}}
+		</label>
         <label class="resource-label-l align-right rollable" data-tooltip="{{localize 'FU.Rest'}}"
                aria-describedby="tooltip" data-action="rest">
-            <i class="fas fa-bed rest"></i></label>
+            <i class="fas fa-bed rest"></i>
+		</label>
     </div>
     <div class="bar bar-progress">
         <div class="bar-progress-bar bar-mp"
@@ -91,9 +93,11 @@
     <!-- IP -->
     <div class="resource-content flex-group-center align-left">
         <div class="grid grid-3col" style="padding: 0 5px;">
-            <label class="resource-label-l align-left grid-span-2" data-tooltip="{{localize 'FU.InventoryPoints'}}"
-                   aria-describedby="tooltip"><i class="ra ra-gear-hammer icon" style="font-size: 1.15rem;"></i>{{localize
-             'FU.InventoryAbbr'}} </label>
+            <label class="fu-icon__container resource-label-l align-left grid-span-2" data-tooltip="{{localize 'FU.InventoryPoints'}}"
+                   aria-describedby="tooltip">
+				<i class="fu-icon--s {{pfuIconClass 'ip'}}"></i>
+				{{localize 'FU.InventoryAbbr'}}
+			</label>
         </div>
         <div class="bar bar-progress">
             <div class="bar-progress-bar bar-ip"

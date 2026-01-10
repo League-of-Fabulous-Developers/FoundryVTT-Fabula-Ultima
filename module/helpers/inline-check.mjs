@@ -7,8 +7,6 @@ import { InlineHelper } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
-import { systemAssetPath } from './system-utils.mjs';
-import { InlineIcon } from './inline-icons.mjs';
 
 /**
  * @typedef InlineCheckDataset
@@ -57,7 +55,7 @@ function checkEnricher(match, options) {
 		let tooltip = game.i18n.localize('FU.InlineRollCheck');
 
 		// ICON
-		InlineHelper.appendImage(anchor, systemAssetPath('icons/check.svg'));
+		InlineHelper.appendIcon(anchor, 'open');
 
 		if (label) {
 			anchor.append(label);
@@ -93,8 +91,8 @@ function checkEnricher(match, options) {
 		// Show attributes
 		const span = document.createElement('span');
 		span.classList.add(`inline`, 'inline-group');
-		InlineHelper.appendImage(span, InlineIcon.attributeIconPaths[first], 16, false);
-		InlineHelper.appendImage(span, InlineIcon.attributeIconPaths[second], 16, false);
+		InlineHelper.appendIcon(span, first);
+		InlineHelper.appendIcon(span, second);
 		anchor.append(span);
 		return anchor;
 	}

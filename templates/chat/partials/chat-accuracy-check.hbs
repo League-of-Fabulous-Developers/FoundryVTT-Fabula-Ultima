@@ -4,7 +4,7 @@
         {{#if critical}}data-tooltip="{{localize 'FU.Critical'}}"{{/if}}
         {{#if fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
     >
-		<i class="fu-icon--s ra ra-archery-target"></i>
+		<i class="fu-icon--s {{pfuIconClass 'target' }}"></i>
         <div class="startcap"></div>
         <div class="" style="flex: 0 1 auto;">{{result}} <label>vs</label> {{pfuUppercase additionalData.targetedDefense}}{{pfuUppercase details.defense}}</div>
         <div class="endcap"></div>

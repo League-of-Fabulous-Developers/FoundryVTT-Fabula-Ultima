@@ -19,19 +19,19 @@
     <!-- Roll Section -->
     <div id="roll-section" class="resource-content flex-group-center desc grid grid-3col">
         {{!-- Group Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="group-check"
+        <div class="flexcol flex-group-center rollable spin2win" data-roll-type="group-check"
              data-tooltip="{{localize 'FU.GroupCheckTooltip'}}" data-action="roll">
-            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
+            <i class="fu-icon--m {{pfuIconClass 'group' }} spin2win"></i>
             <label class="resource-label-sm">{{localize 'FU.GroupCheck'}}</label>
         </div>
         {{!-- Roll Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="roll-check" data-action="roll">
-            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
-            <label class="resource-label-sm">{{localize 'FU.RollCheck'}}</label>
+        <div class="flexcol flex-group-center rollable spin2win" data-roll-type="roll-check" data-action="roll">
+			<i class="fu-icon--m {{pfuIconClass 'attribute' }} spin2win"></i>
+            <label class="resource-label-sm">{{localize 'FU.AttributeCheck'}}</label>
         </div>
         {{!-- Open Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="open-check" data-action="roll">
-            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
+        <div class="flexcol flex-group-center rollable spin2win" data-roll-type="open-check" data-action="roll">
+			<i class="fu-icon--m {{pfuIconClass 'open' }} spin2win"></i>
             <label class="resource-label-sm">{{localize 'FU.OpenCheck'}}</label>
         </div>
     </div>

@@ -212,7 +212,10 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 
 	const title = initialConfig.title ?? FU.checkTypes[type];
 	const result = await foundry.applications.api.DialogV2.input({
-		window: { title: game.i18n.localize(title) },
+		window: {
+			title: game.i18n.localize(title),
+			icon: 'fa-solid fa-dice',
+		},
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		actions: {
 			setDifficulty: onSetDifficulty,
@@ -298,7 +301,10 @@ async function promptForConfigurationV2(document, type, initialConfig, actors = 
 
 	const title = initialConfig.title ?? FU.checkTypes[type];
 	const result = await foundry.applications.api.DialogV2.input({
-		window: { title: game.i18n.localize(title) },
+		window: {
+			title: game.i18n.localize(title),
+			icon: 'fa-solid fa-dice',
+		},
 		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		actions: {
 			setDifficulty: onSetDifficulty,
@@ -506,7 +512,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @returns {ChatAction}
  */
 function getRitualCheckAction(actor, item, primary, secondary) {
-	const icon = FU.allIcon.roll;
+	const icon = FU.checkIcons.ritual;
 	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
 	return new ChatAction(
 		'ritualCheck',

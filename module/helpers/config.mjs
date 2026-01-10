@@ -118,32 +118,28 @@ FU.affinityIcons = {
 };
 
 FU.checkIcons = {
-	accuracy: 'ra ra-targeted',
-	magic: '',
-	damage: '',
-	difficulty: 'ra ra-perspective-dice-random',
-	mod: 'fas fa-plus-minus',
-	hr: 'ra  ra-perspective-dice-six',
+	accuracy: 'fu-check-accuracy',
+	attribute: 'fu-check-attribute',
+	magic: 'fu-check-magic',
+	open: 'fu-check-open',
+	group: 'fu-check-ritual',
+	opposed: 'fu-check-opposed',
+	ritual: 'fu-check-ritual',
+	difficulty: 'fu-roll-difficulty',
+	result: 'fu-roll-result',
+	mod: 'fu-roll-modifier',
+	hr: 'fu-roll-high',
+	target: 'fu-roll-target',
 };
 
-FU.allIcon = {
-	offensive: 'is-offensive',
-	martial: 'is-martial',
-	melee: 'is-melee',
-	range: 'is-range',
-	spell: 'is-spell',
-	skill: 'is-skill',
-	twoweapon: 'is-two-weapon',
-	header: 'is-header',
-	diamond: 'is-diamond',
-	club: 'is-club',
-	heart: 'is-heart',
-	spade: 'is-spade',
-	weaponEnchant: 'fu-weapon-enchant',
-	roll: 'fas fa-dice',
-	...FU.checkIcons,
-	...FU.affinityIcons,
-	...FU.attributeIcons,
+FU.resourceIcons = {
+	hp: 'fu-hp',
+	mp: 'fu-mp',
+	ip: 'fu-ip',
+	fp: 'fu-fp',
+	up: 'fu-up',
+	exp: 'fu-xp',
+	zenit: 'fu-zenit',
 };
 
 FU.affType = {
@@ -491,14 +487,6 @@ FU.resourcesAbbr = {
 	fp: 'FU.FabulaAbbr',
 	exp: 'FU.ExpAbbr',
 	zenit: 'FU.Zenit',
-};
-
-FU.resourceIcons = {
-	hp: 'fas fa-heart',
-	mp: 'fas fa-hat-wizard',
-	ip: 'ra ra-gear-hammer',
-	fp: 'fas fa-pen-fancy',
-	exp: 'fas fa-feather-pointed',
 };
 
 FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
@@ -994,4 +982,29 @@ FU.modifyDamageVariant = {
 	psychicGift: 'FU.ClassFeaturePsychicGiftLabel',
 };
 
-// --------------
+/**
+ * @desc All commonly-used icons throughout the system.
+ * @remarks Make sure icon declarations in this file are before this one.
+ */
+FU.allIcon = {
+	offensive: 'is-offensive',
+	martial: 'is-martial',
+	melee: 'is-melee',
+	range: 'is-range',
+	spell: 'is-spell',
+	skill: 'is-skill',
+	twoweapon: 'is-two-weapon',
+	header: 'is-header',
+	diamond: 'is-diamond',
+	club: 'is-club',
+	heart: 'is-heart',
+	spade: 'is-spade',
+	weaponEnchant: 'fu-weapon-enchant',
+	damage: 'fu-damage',
+	type: 'fu-type',
+	roll: FU.checkIcons.open,
+	...FU.checkIcons,
+	...FU.affinityIcons,
+	...FU.resourceIcons,
+	...FU.attributeIcons,
+};

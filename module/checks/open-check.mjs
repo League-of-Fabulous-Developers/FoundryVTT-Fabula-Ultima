@@ -61,6 +61,7 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 					attr2: {
 						attribute: secondary.attribute,
 					},
+					type,
 				},
 				modifiers: checkResult.modifiers,
 			},

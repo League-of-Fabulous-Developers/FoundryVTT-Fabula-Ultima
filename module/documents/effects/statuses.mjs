@@ -353,7 +353,7 @@ export const statusEffects = [
 	{
 		id: 'focus',
 		name: 'FU.Focus',
-		img: 'systems/projectfu/styles/static/statuses/Focus.webp',
+		img: 'systems/projectfu/styles/static/statuses/Focus.png',
 		system: {
 			duration: {
 				event: 'startOfTurn',

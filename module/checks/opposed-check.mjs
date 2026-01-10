@@ -148,6 +148,7 @@ const onRenderCheck = (sections, check, actor) => {
 					attr2: {
 						attribute: check.secondary.attribute,
 					},
+					type: check.type,
 				},
 				difficulty: inspector.getDifficulty(),
 				modifiers: check.modifiers,

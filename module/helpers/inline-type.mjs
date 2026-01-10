@@ -5,7 +5,6 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { InlineEffects } from './inline-effects.mjs';
-import { systemAssetPath } from './system-utils.mjs';
 import { StringUtils } from './string-utils.mjs';
 
 const INLINE_TYPE = 'InlineType';
@@ -42,7 +41,7 @@ const editorEnricher = {
 			const label = match.groups.label;
 
 			// ICON
-			InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/type.svg'));
+			InlineHelper.appendIcon(anchor, 'type');
 
 			if (type === 'damage') {
 				// TOOLTIP
@@ -85,9 +84,7 @@ const editorEnricher = {
 					anchor.append(`${localizedAffinity} (${localizedTypes})`);
 				}
 				// ICON
-				const icon = document.createElement('i');
-				icon.className = damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]];
-				anchor.append(icon);
+				InlineHelper.appendVectorIcon(anchor, 'fu-icon--xs', damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]]);
 				return anchor;
 			}
 		}

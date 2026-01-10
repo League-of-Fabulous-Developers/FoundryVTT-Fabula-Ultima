@@ -5,14 +5,14 @@
     <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
         <a class="rollable" data-action="spendMetaCurrency">
             {{#if (eq actor.type "npc")}}
-                <span class="resource-label-l">
-                    <i class="fas fa-feather icon"></i>
+				<span class="fu-icon__container resource-label-m flex-group-center">
+                    <i class="fu-icon--s {{pfuIconClass 'up'}}"></i>
                     {{localize 'FU.UltimaPoints'}}
                 </span>
             {{/if}}
             {{#if (eq actor.type "character")}}
-                <span class="resource-label-l">
-                    <i class="fas fa-feather icon"></i>
+                <span class="fu-icon__container resource-label-m flex-group-center">
+                    <i class="fu-icon--s {{pfuIconClass 'fp'}}"></i>
                     {{localize 'FU.FabulaPoints'}}
                 </span>
             {{/if}}

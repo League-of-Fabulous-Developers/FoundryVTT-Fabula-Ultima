@@ -92,8 +92,14 @@ export const FUHandlebars = Object.freeze({
 			return items.find((item) => item._id === itemId);
 		});
 
-		// Define a Handlebars helper to get the icon class based on item properties
-		Handlebars.registerHelper('pfuIconClass', function (item, equippedItems) {
+		Handlebars.registerHelper('pfuIconClass', function (icon) {
+			if (!icon) {
+				return '';
+			}
+			return FU.allIcon[icon];
+		});
+
+		Handlebars.registerHelper('pfuEquipmentIconClass', function (item, equippedItems) {
 			if (!equippedItems) {
 				return '';
 			}
@@ -338,7 +344,7 @@ function attributeIcon(attribute, options) {
  * @returns {Handlebars.SafeString}
  */
 function badge(key, options) {
-	if (options) {
+	if (options.hash) {
 		options = options.hash;
 	}
 	const icon = FU.allIcon[key];
