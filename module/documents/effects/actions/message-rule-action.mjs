@@ -52,22 +52,37 @@ export class MessageRuleAction extends RuleActionDataModel {
 		if (context.check) {
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, context.check);
 		}
-		if (context.eventType === FUHooks.RENDER_CHECK_EVENT) {
-			/** @type RenderCheckEvent **/
-			const rce = context.event;
-			const actor = rce.source.actor !== context.character.actor ? context.item.parent : null;
-			CommonSections.itemText(rce.renderData, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
-		} else {
-			const actor = context.character.actor;
-			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {
-				item: context.item,
-				text: _message,
-			});
-			ChatMessage.create({
-				flags: flags,
-				speaker: ChatMessage.getSpeaker({ actor }),
-				content: content,
-			});
+
+		switch (context.eventType) {
+			case FUHooks.RENDER_CHECK_EVENT: {
+				/** @type RenderCheckEvent **/
+				const rce = context.event;
+				const actor = rce.source.actor !== context.character.actor ? context.item.parent : null;
+				CommonSections.itemText(rce.renderData, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
+				break;
+			}
+
+			case FUHooks.FEATURE_EVENT: {
+				/** @type FeatureEvent **/
+				const fe = context.event;
+				const actor = fe.source.actor !== context.character.actor ? context.item.parent : null;
+				CommonSections.itemText(fe.builder.sections, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
+				break;
+			}
+
+			default: {
+				const actor = context.character.actor;
+				const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {
+					item: context.item,
+					text: _message,
+				});
+				ChatMessage.create({
+					flags: flags,
+					speaker: ChatMessage.getSpeaker({ actor }),
+					content: content,
+				});
+				break;
+			}
 		}
 	}
 }

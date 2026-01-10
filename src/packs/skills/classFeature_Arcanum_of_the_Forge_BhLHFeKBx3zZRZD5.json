@@ -13,7 +13,7 @@
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You have Resistance to fire damage.</p></li><li><p>Any fire damage you deal ignores Resistances.</p></li></ul>",
-      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (see <strong>Core Rulebook,</strong> pages <strong>130</strong> to<strong> 133</strong>). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 fire]</strong> damage. This damage ignores Resistances.</p></li></ul>",
+      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (see <strong>Core Rulebook,</strong> pages <strong>130</strong> to<strong> 133</strong>). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them <strong>suffers</strong> <strong>30 fire damage. </strong>This damage <strong>ignores Resistances.</strong></p><hr></li></ul><ul><li><p><strong>Targets</strong>: @DMG[30 fire|ignore-resistances|]{Inferno}</p></li></ul>",
       "domains": "fire, heat, metal"
     },
     "source": "FUCR179",
@@ -36,7 +36,48 @@
       "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-forge.png",
       "_id": "288fLvNbYksITV4Q",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "elements": {
+            "ucNNk519M4xEkoTz": {
+              "type": "ruleElement",
+              "_id": "ucNNk519M4xEkoTz",
+              "trigger": {
+                "_id": "E86ymUlLId0mezfe",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [],
+                "damageTypes": [
+                  "fire"
+                ]
+              },
+              "actions": {
+                "YJvA835yLQhM1AU5": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "YJvA835yLQhM1AU5",
+                  "amount": "",
+                  "cost": {
+                    "amount": null
+                  },
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.fire",
@@ -60,12 +101,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725596736998,
-        "modifiedTime": 1741996346476,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1767907218451,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "exportSource": null
       },
       "_key": "!items.effects!BhLHFeKBx3zZRZD5.288fLvNbYksITV4Q"
@@ -82,10 +123,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1710029700564,
-    "modifiedTime": 1741996300507,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768061460392,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

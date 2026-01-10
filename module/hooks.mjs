@@ -230,4 +230,10 @@ export const FUHooks = {
 	 * @remarks Uses {@link ItemRollEvent}
 	 */
 	ITEM_ROLL_EVENT: `projectfu.events.items.roll`,
+	/**
+	 * @description Dispatched when a class feature is being performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link FeatureEvent}
+	 */
+	FEATURE_EVENT: `projectfu.events.feature`,
 };

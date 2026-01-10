@@ -53,7 +53,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fire, heat, metal</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>cold, ice, silence</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>space, travel, void</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>knowledge, revelations, understanding</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>earth, plants, poison</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fog, rain, storms</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>conquest, heroism, leadership</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>judgment, protection, sacrifice</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>destiny, speed, time</p></td></tr></tbody></table>",
+        "content": "<table><tbody><tr><td data-colwidth=\"67\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</p></td></tr><tr><td data-colwidth=\"67\"><p><strong>Domain</strong></p></td><td><p>fire, heat, metal</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>cold, ice, silence</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>space, travel, void</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>knowledge, revelations, understanding</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>earth, plants, poison</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fog, rain, storms</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>conquest, heroism, leadership</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>judgment, protection, sacrifice</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>destiny, speed, time</p></td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -70,10 +70,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "createdTime": 1711758808592,
-        "modifiedTime": 1744501866879,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1768061926009,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -94,7 +94,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<ol><li><p>To <strong>summon</strong> a Arcanum, add an arcanum to your character sheet and <strong>activate</strong> it.</p></li><li><p>The arcanum's merge active effects will now be transferred to the actor until <strong>dismissed</strong>.</p></li></ol>"
+        "content": "<ol><li><p>To <strong>summon</strong> a Arcanum, add an arcanum to your character sheet, alongside the @UUID[Compendium.projectfu.skills.gbkA1CRgQ9OxPstd]{Bind and Summon} skill. </p></li><li><p>When you click on the skill from your actor sheet it will start the workflow for both summoning and dismissing.</p></li><li><p>The arcanum's merge active effects will now be transferred to the actor until <strong>dismissed</strong>.</p></li></ol>"
       },
       "video": {
         "controls": true,
@@ -109,12 +109,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742792774381,
-        "modifiedTime": 1742793541102,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1768061913380,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "exportSource": null
       },
       "category": null,

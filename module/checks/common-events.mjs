@@ -291,8 +291,8 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
  * @property {CharacterInfo[]} targets
  */
 
-async function calculateExpense(sourceActor, targetActors, expense) {
-	const source = CharacterInfo.fromActor(sourceActor);
+async function calculateExpense(actor, item, targetActors, expense) {
+	const source = CharacterInfo.fromActor(actor);
 	const targets = CharacterInfo.fromTargetData(targetActors);
 	/** @type CalculateExpenseEvent  **/
 	const event = {
@@ -661,6 +661,28 @@ function notify(source, id, origin) {
 }
 
 /**
+ * @desc Dispatched when a class feature has been used.
+ * @typedef FeatureEvent
+ * @property {CharacterInfo} source
+ * @property {FUItem} item
+ * @property {String[]} traits
+ * @property {SectionChatBuilder} builder
+ * @property
+ */
+
+async function feature(actor, item, traits, builder) {
+	const source = CharacterInfo.fromActor(actor);
+	/** @type FeatureEvent  **/
+	const event = {
+		source: source,
+		item: item,
+		traits: traits,
+		builder: builder,
+	};
+	return AsyncHooks.callSequential(FUHooks.FEATURE_EVENT, event);
+}
+
+/**
  * @typedef EffectToggledEvent
  * @property {CharacterInfo} source
  * @property {String} uuid The uuid of the effect
@@ -761,6 +783,7 @@ export const CommonEvents = Object.freeze({
 	toggleEffect,
 	createConsumable,
 	itemRoll,
+	feature,
 });
 
 // Helpers

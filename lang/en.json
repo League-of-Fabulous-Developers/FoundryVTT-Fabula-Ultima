@@ -1658,6 +1658,7 @@
 		"RuleTriggerNotify": "Notify",
 		"RuleTriggerCreateConsumable": "Create Consumable",
 		"RuleTriggerItemRoll": "Item Roll",
+		"RuleTriggerFeature": "Feature",
 		"RulePredicates": "Rule Predicates",
 		"RulePredicateBond": "Bond",
 		"RulePredicateSpell": "Spell",

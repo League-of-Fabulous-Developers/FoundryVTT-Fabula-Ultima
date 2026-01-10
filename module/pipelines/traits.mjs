@@ -93,6 +93,7 @@ export const TraitUtils = Object.freeze({
 			value: value,
 		}));
 	},
+
 	/**
 	 * @param {String} trait
 	 */

@@ -11,6 +11,9 @@ import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { FeatureTraits } from './traits.mjs';
+import { CommonSections } from '../checks/common-sections.mjs';
+import { SectionChatBuilder } from '../helpers/section-chat-builder.mjs';
+import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 
 /**
  * @desc An application used for specific class features.
@@ -55,18 +58,19 @@ async function handleArcanum(actor, item) {
 			],
 		});
 		if (choice === 'dismiss') {
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor: actor }),
-				content: await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
-					item: currentArcanum,
-					message: 'FU.ClassFeatureArcanumDismissMessage',
-					details: currentArcanumData.dismiss,
-				}),
-			});
 			await actor.update({
 				'system.equipped.arcanum': null,
 			});
-			//await activeArcanumEffect.update({ disabled: true });
+			const builder = new SectionChatBuilder(actor, item);
+			CommonSections.itemFlavor(builder.sections, currentArcanum);
+			const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
+				item: currentArcanum,
+				message: 'FU.ClassFeatureArcanumDismissMessage',
+				details: currentArcanumData.dismiss,
+			});
+			CommonSections.content(builder.sections, content, CHECK_DETAILS);
+			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumDismiss], builder);
+			await builder.create();
 		}
 
 		console.log(choice);
@@ -99,20 +103,22 @@ async function handleArcanum(actor, item) {
 					amount: 40,
 					traits: [FeatureTraits.ArcanumSummon],
 				};
-				await CommonEvents.calculateExpense(actor, [], expense);
+				await CommonEvents.calculateExpense(actor, item, [], expense);
+				console.debug(`Arcanum summon cost: ${expense.amount}`);
 				await actor.update({
 					'system.equipped.arcanum': selectedArcana.id,
 				});
-				// TODO: Add spend resource to chat card...
-				console.debug(`Arcanum summon cost: ${expense.amount}`);
-				ChatMessage.create({
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-					content: await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
-						item: selectedArcana,
-						message: 'FU.ClassFeatureArcanumSummonMessage',
-						details: selectedArcana.system.data.merge,
-					}),
+				const builder = new SectionChatBuilder(actor, item);
+				CommonSections.itemFlavor(builder.sections, selectedArcana);
+				const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
+					item: selectedArcana,
+					message: 'FU.ClassFeatureArcanumSummonMessage',
+					details: selectedArcana.system.data.merge,
 				});
+				CommonSections.content(builder.sections, content, CHECK_DETAILS);
+				await CommonEvents.feature(actor, item, expense.traits, builder);
+				CommonSections.expense(builder.sections, actor, item, expense, builder.flags);
+				await builder.create();
 			}
 		}
 	}

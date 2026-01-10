@@ -270,7 +270,7 @@ export default class FoundryUtils {
 	 */
 	static async promptItemChoice({ title, actor, item, buttons, description, message }) {
 		if (description) {
-			await FoundryUtils.enrichText(description, {
+			description = await FoundryUtils.enrichText(description, {
 				relativeTo: actor,
 			});
 		}
@@ -324,7 +324,7 @@ export default class FoundryUtils {
 	/**
 	 * @param {String} text
 	 * @param {Object} context
-	 * @returns {Promise<*>}
+	 * @returns {Promise<string>}
 	 */
 	static async enrichText(text, context) {
 		return TextEditor.implementation.enrichHTML(text, context);

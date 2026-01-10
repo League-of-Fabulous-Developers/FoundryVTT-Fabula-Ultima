@@ -35,10 +35,16 @@ export class ItemRollRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	/**
-	 * @param {RuleElementContext<EffectToggledEvent>} context
+	 * @param {RuleElementContext<ItemRollEvent>} context
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
+		if (context.event.source.actor !== context.character.actor) {
+			return false;
+		}
+		if (context.event.config.item !== context.item) {
+			return false;
+		}
 		return true;
 	}
 }

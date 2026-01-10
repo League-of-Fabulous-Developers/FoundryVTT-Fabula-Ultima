@@ -55,6 +55,7 @@ import { OpenApplicationRuleAction } from '../documents/effects/actions/open-app
 import { RankRulePredicate } from '../documents/effects/predicates/rank-rule-predicate.mjs';
 import { ItemRollRuleTrigger } from '../documents/effects/triggers/item-roll-rule-trigger.mjs';
 import { CalculateExpenseRuleTrigger } from '../documents/effects/triggers/calculate-expense-rule-trigger.mjs';
+import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-trigger.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -73,6 +74,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, ToggleRuleTrigger.TYPE, ToggleRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, CreateConsumableRuleTrigger.TYPE, CreateConsumableRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ItemRollRuleTrigger.TYPE, ItemRollRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, FeatureRuleTrigger.TYPE, FeatureRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -260,6 +262,14 @@ async function onEffectToggledEvent(event) {
 }
 
 /**
+ * @param {FeatureEvent} event
+ * @returns {Promise<void>}
+ */
+async function onFeatureEvent(event) {
+	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, []);
+}
+
+/**
  * @param {CharacterInfo[]} targets
  * @returns {CharacterInfo[]}
  */
@@ -281,8 +291,9 @@ function getSceneCharacters(targets) {
  * @param {CharacterInfo} source
  * @param {CharacterInfo[]} targets
  * @param {RuleElementContext} data Properties for the rule element context.
+ * @return {Promise<void>}
  */
-async function evaluate(type, event, source, targets, data) {
+async function evaluate(type, event, source, targets, data = undefined) {
 	// Always include the source as part of the scene character pool; useful for when they are not part of the encounter
 	const sceneCharacters = getSceneCharacters([source, ...targets]);
 	for (const character of sceneCharacters) {
@@ -340,6 +351,7 @@ function initialize() {
 	AsyncHooks.on(FUHooks.INITIALIZE_CHECK_EVENT, onInitializeCheckEvent);
 	AsyncHooks.on(FUhooks.CONSUMABLE_CREATE_EVENT, onCreateConsumableEvent);
 	AsyncHooks.on(FUhooks.ITEM_ROLL_EVENT, onItemRoll);
+	AsyncHooks.on(FUhooks.FEATURE_EVENT, onFeatureEvent);
 }
 
 export const RuleElements = Object.freeze({
