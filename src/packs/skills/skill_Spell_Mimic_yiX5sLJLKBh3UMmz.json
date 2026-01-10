@@ -120,7 +120,96 @@
     "defense": "def",
     "fuid": "spell-mimic"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Spell Mimic",
+      "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_spell_mimic.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "gV4JoLHDd53BVD78": {
+              "type": "ruleElement",
+              "_id": "gV4JoLHDd53BVD78",
+              "trigger": {
+                "_id": "ate421kuSXwlruFV",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "72E5kUiLUBiNIiMv": {
+                  "type": "speciesRulePredicate",
+                  "_id": "72E5kUiLUBiNIiMv",
+                  "species": [
+                    "beast",
+                    "monster",
+                    "plant"
+                  ],
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "TmtaC4LiXQe9p888": {
+                  "type": "messageRuleAction",
+                  "_id": "TmtaC4LiXQe9p888"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LSKs1p3YHGDXv1IS",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1768067184150,
+        "modifiedTime": 1768067579369,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!yiX5sLJLKBh3UMmz.LSKs1p3YHGDXv1IS"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
