@@ -28,11 +28,19 @@
 	--icon-fu-cover: url('../../static/statuses/Cover.webp');
 	--icon-fu-aura: url('../../static/statuses/Aura.webp');
 	--icon-fu-barrier: url('../../static/statuses/Barrier.webp');
+	--icon-fu-focus: url('../../static/statuses/Focus.webp');
 
 	--icon-fu-dex: url('../../static/icons/attributes/dex-glyph.png');
 	--icon-fu-ins: url('../../static/icons/attributes/ins-glyph.png');
 	--icon-fu-mig: url('../../static/icons/attributes/mig-glyph.png');
 	--icon-fu-wlp: url('../../static/icons/attributes/wlp-glyph.png');
+
+	--icon-fu-check-accuracy: url('../../static/icons/checks/check_accuracy.png');
+	--icon-fu-check-attribute: url('../../static/icons/checks/check_attribute.png');
+	--icon-fu-check-magic: url('../../static/icons/checks/check_magic.png');
+	--icon-fu-check-open: url('../../static/icons/checks/check_open.png');
+	--icon-fu-check-opposed: url('../../static/icons/checks/check_opposed.png');
+	--icon-fu-check-ritual: url('../../static/icons/checks/check_ritual.png');
 
 	--icon-fu-ins-up: url('../../static/statuses/InsUp.webp');
 	--icon-fu-ins-down: url('../../static/statuses/InsDown.webp');
@@ -42,8 +50,6 @@
 	--icon-fu-mig-down: url('../../static/statuses/MigDown.webp');
 	--icon-fu-wlp-up: url('../../static/statuses/WlpUp.webp');
 	--icon-fu-wlp-down: url('../../static/statuses/WlpDown.webp');
-
-	--icon-fu-focus: url('../../static/statuses/Focus.webp');
 
 	--icon-fu-beast: url('../../static/icons/beast.svg');
 	--icon-fu-construct: url('../../static/icons/construct.svg');
@@ -80,6 +86,30 @@
 
 .fu-ins {
 	background-image: var(--icon-fu-ins);
+}
+
+.fu-check-accuracy {
+	background-image: var(--icon-fu-check-accuracy);
+}
+
+.fu-check-attribute {
+	background-image: var(--icon-fu-check-attribute);
+}
+
+.fu-check-magic {
+	background-image: var(--icon-fu-check-magic);
+}
+
+.fu-check-open {
+	background-image: var(--icon-fu-check-open);
+}
+
+.fu-check-opposed {
+	background-image: var(--icon-fu-check-opposed);
+}
+
+.fu-check-ritual {
+	background-image: var(--icon-fu-check-ritual);
 }
 
 .fu-air {

@@ -222,7 +222,6 @@ a.inline-roll i {
 .inline.inline-group {
 	display: flex;
 	margin-left: 0.5em;
-	padding: 0 4px 4px 4px;
 	flex-direction: row;
 	gap: 0;
 	background: var(--background-critical);

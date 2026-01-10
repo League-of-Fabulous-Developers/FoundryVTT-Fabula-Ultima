@@ -118,8 +118,12 @@ FU.affinityIcons = {
 };
 
 FU.checkIcons = {
-	accuracy: 'ra ra-targeted',
-	magic: '',
+	accuracy: 'fu-check-accuracy',
+	attribute: 'fu-check-attribute',
+	magic: 'fu-check-magic',
+	open: 'fu-check-open',
+	opposed: 'fu-check-opposed',
+	ritual: 'fu-check-ritual',
 	damage: '',
 	difficulty: 'ra ra-perspective-dice-random',
 	mod: 'fas fa-plus-minus',
@@ -140,7 +144,7 @@ FU.allIcon = {
 	heart: 'is-heart',
 	spade: 'is-spade',
 	weaponEnchant: 'fu-weapon-enchant',
-	roll: 'fas fa-dice',
+	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,
 	...FU.attributeIcons,

@@ -338,7 +338,7 @@ function attributeIcon(attribute, options) {
  * @returns {Handlebars.SafeString}
  */
 function badge(key, options) {
-	if (options) {
+	if (options.hash) {
 		options = options.hash;
 	}
 	const icon = FU.allIcon[key];

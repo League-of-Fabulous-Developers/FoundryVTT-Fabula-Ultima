@@ -227,6 +227,9 @@
 	pointer-events: none;
 }
 
+.fu-icon--xs {
+	--icon-size: 16px;
+}
 .fu-icon--s {
 	--icon-size: 24px;
 }
@@ -235,9 +238,6 @@
 }
 .fu-icon--l {
 	--icon-size: 64px;
-}
-.fu-icon--xs {
-	--icon-size: 16px;
 }
 
 /* Used for background image icons since they won't reserve advance width */
