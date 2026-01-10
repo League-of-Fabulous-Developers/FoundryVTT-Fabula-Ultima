@@ -102,6 +102,7 @@ function renderNonCombatMagicCheck(checkResult, inspector, data) {
 				attr2: {
 					attribute: checkResult.secondary.attribute,
 				},
+				type: 'magic',
 			},
 			difficulty: inspector.getDifficulty(),
 			modifiers: checkResult.modifiers,

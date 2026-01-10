@@ -492,6 +492,7 @@ const onRenderGroupCheck = (sections, check, actor) => {
 					attr2: {
 						attribute: secondary.attribute,
 					},
+					type,
 				},
 				difficulty: inspector.getDifficulty(),
 				modifiers: check.modifiers,

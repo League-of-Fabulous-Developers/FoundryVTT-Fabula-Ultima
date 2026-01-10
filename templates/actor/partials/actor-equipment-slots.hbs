@@ -23,7 +23,7 @@
 		{{#with (pfuLookupById actor.items actor.system.equipped.armor) as |item|}}
 			<div class="armor-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}">
 				<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.Armor'}}<br>{{ item.name }}">
-					<i class="{{ pfuIconClass item @root.actor.system.equipped }}"></i>
+					<i class="{{ pfuEquipmentIconClass item @root.actor.system.equipped }}"></i>
 					<span class="equipped-item-content">{{ item.name }}</span>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 				<div class="two-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}"
 					data-tooltip="{{localize 'FU.TwoHanded'}}<br>{{ item.name }}">
 					<div class="equipped-item gap-5">
-						<i class="{{ pfuIconClass item @root.actor.system.equipped }}"
+						<i class="{{ pfuEquipmentIconClass item @root.actor.system.equipped }}"
 							style="color: inherit !important; font-size: 1.25rem; -webkit-text-stroke: transparent;"></i>
 						<span class="equipped-item-content">{{ item.name }}</span>
 					</div>
@@ -86,7 +86,7 @@
 			{{#with (pfuLookupById actor.items actor.system.equipped.mainHand) as |item|}}
 				<div class="left-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}">
 					<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.MainHand'}}<br>{{ item.name }}">
-						<i class="{{ pfuIconClass item @root.actor.system.equipped }}"></i>
+						<i class="{{ pfuEquipmentIconClass item @root.actor.system.equipped }}"></i>
 						<span class="equipped-item-content">{{ item.name }}</span>
 					</div>
 				</div>
@@ -133,7 +133,7 @@
 	{{#with (pfuLookupById actor.items actor.system.equipped.accessory) as |item|}}
 		<div class="acc-hand button-style slot-style rollable" data-action="roll" data-roll-type="item" data-item-id="{{item.id}}">
 			<div class="equipped-item gap-5" data-tooltip="{{localize 'FU.Accessory'}}<br>{{ item.name }}">
-				<i class="{{ pfuIconClass item @root.actor.system.equipped }}"></i>
+				<i class="{{ pfuEquipmentIconClass item @root.actor.system.equipped }}"></i>
 				<span class="equipped-item-content">{{ item.name }}</span>
 			</div>
 		</div>

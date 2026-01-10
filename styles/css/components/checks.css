@@ -35,7 +35,7 @@
 	font-size: 18px;
 	color: white;
 	/* subtle shadow instead of hard outline */
-	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+	text-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
 }
 
 .fu-check__outcome {
@@ -49,5 +49,12 @@
 }
 
 .fu-check__difficulty {
-	background: #edd0aa;
+	color: #b11f1f; /* strong but not neon red */
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow:
+		-2px 0 0 #fff,
+		2px 0 0 #fff,
+		0 -2px 0 #fff,
+		0 2px 0 #fff;
 }

@@ -85,9 +85,7 @@ const editorEnricher = {
 					anchor.append(`${localizedAffinity} (${localizedTypes})`);
 				}
 				// ICON
-				const icon = document.createElement('i');
-				icon.className = damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]];
-				anchor.append(icon);
+				InlineHelper.appendVectorIcon(anchor, 'fu-icon--xs', damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]]);
 				return anchor;
 			}
 		}

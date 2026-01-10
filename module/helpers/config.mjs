@@ -125,9 +125,10 @@ FU.checkIcons = {
 	opposed: 'fu-check-opposed',
 	ritual: 'fu-check-ritual',
 	damage: '',
-	difficulty: 'ra ra-perspective-dice-random',
-	mod: 'fas fa-plus-minus',
-	hr: 'ra  ra-perspective-dice-six',
+	difficulty: 'fu-roll-difficulty',
+	result: 'fu-roll-result',
+	mod: 'fu-roll-modifier',
+	hr: 'fu-roll-high',
 };
 
 FU.allIcon = {
@@ -498,11 +499,12 @@ FU.resourcesAbbr = {
 };
 
 FU.resourceIcons = {
-	hp: 'fas fa-heart',
-	mp: 'fas fa-hat-wizard',
-	ip: 'ra ra-gear-hammer',
-	fp: 'fas fa-pen-fancy',
-	exp: 'fas fa-feather-pointed',
+	hp: 'fu-hp',
+	mp: 'fu-mp',
+	ip: 'fu-ip',
+	fp: 'fu-fp',
+	exp: 'fu-xp',
+	zenit: 'fu-zenit',
 };
 
 FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {

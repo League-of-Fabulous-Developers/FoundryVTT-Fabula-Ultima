@@ -15,10 +15,10 @@
 
     </div>
     {{#if (gt difficulty 0)}}
-    <div class="detail-desc fu-check__difficulty flex-group-center">
+    <div class="flex-group-center">
 		<div>
-			{{pfuBadge 'difficulty' label='FU.DifficultyLevelAbbr' tooltip='FU.ChatDifficulty' }}
-			<label class="detail">{{difficulty}}</label>
+			{{pfuBadge 'difficulty' label='FU.DifficultyLevelAbbr' size='l' tooltip='FU.ChatDifficulty' }}
+			<label class="fu-check__difficulty detail">{{difficulty}}</label>
 		</div>
     </div>
     {{/if}}
@@ -28,7 +28,7 @@
     <div style="clear: both;"></div>
     <div class='fu-check chat-desc flexrow flex-group-center total {{pfuCheckOutcome result difficulty}}'>
 		<div class="fu-check__result flex-group-center">
-			<img class="fu-icon--s fu-check__dice" alt="dice"/>
+			<img class="fu-icon--s {{pfuIconClass check.type}}" alt="dice"/>
 			<span class="fu-check__result-text">{{result.total}}</span>
 		</div>
 		<div class="fu-check__outcome">
@@ -47,7 +47,7 @@
 {{else}}
 	<div class='fu-check chat-desc flexrow flex-group-center total {{pfuCheckOutcome result}}'>
 		<div class="fu-check__result flex-group-center">
-			<img class="fu-icon--s fu-check__dice" alt="dice"/>
+			<img class="fu-icon--s {{pfuIconClass check.type}}" alt="dice"/>
 			<span class="fu-check__result-text">{{result.total}}</span>
 		</div>
 		{{#if (or result.crit result.fumble)}}

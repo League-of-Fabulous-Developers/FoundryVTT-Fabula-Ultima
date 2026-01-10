@@ -70,10 +70,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 			anchor.append(` ${typeName}`);
 		}
 		// ICON
-		const icon = document.createElement('i');
-		icon.className = FU.resourceIcons[type];
-		icon.classList.add(type);
-		anchor.append(icon);
+		InlineHelper.appendVectorIcon(anchor, 'fu-icon--xs', FU.resourceIcons[type]);
 
 		return anchor;
 	} else {
