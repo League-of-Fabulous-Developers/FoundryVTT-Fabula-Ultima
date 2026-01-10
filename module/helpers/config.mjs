@@ -125,11 +125,11 @@ FU.checkIcons = {
 	group: 'fu-check-ritual',
 	opposed: 'fu-check-opposed',
 	ritual: 'fu-check-ritual',
-	damage: '',
 	difficulty: 'fu-roll-difficulty',
 	result: 'fu-roll-result',
 	mod: 'fu-roll-modifier',
 	hr: 'fu-roll-high',
+	target: 'fu-roll-target',
 };
 
 FU.resourceIcons = {
@@ -1000,6 +1000,8 @@ FU.allIcon = {
 	heart: 'is-heart',
 	spade: 'is-spade',
 	weaponEnchant: 'fu-weapon-enchant',
+	damage: 'fu-damage',
+	type: 'fu-type',
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,

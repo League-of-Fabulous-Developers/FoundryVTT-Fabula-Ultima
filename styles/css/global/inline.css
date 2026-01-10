@@ -92,7 +92,9 @@ a.inline-roll i {
 	gap: 0.025em;
 	-webkit-box-align: baseline;
 	-ms-flex-align: baseline;
-	align-items: baseline;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 .inline img {
 	border: none;
@@ -225,6 +227,7 @@ a.inline-roll i {
 	flex-direction: row;
 	gap: 0;
 	background: var(--background-critical);
+	flex-grow: 1;
 }
 
 @-webkit-keyframes recovery-indicator-bobbing {

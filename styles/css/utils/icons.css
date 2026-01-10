@@ -60,7 +60,8 @@
 	--icon-fu-wlp-up: url('../../static/statuses/WlpUp.webp');
 	--icon-fu-wlp-down: url('../../static/statuses/WlpDown.webp');
 
-	--icon-fu-up-up: url('../../static/statuses/WlpDown.webp');
+	--icon-fu-up-up: url('../../static/statuses/UltimaUp.png');
+	--icon-fu-up-down: url('../../static/statuses/UltimaDown.png');
 
 	--icon-fu-beast: url('../../static/icons/beast.svg');
 	--icon-fu-construct: url('../../static/icons/construct.svg');
@@ -81,6 +82,9 @@
 	--icon-fu--physical: url('../../static/affinities/icons/physical.png');
 	--icon-fu--poison: url('../../static/affinities/icons/poison.png');
 	--icon-fu--untyped: url('../../static/affinities/icons/untyped.png');
+
+	--icon-fu--damage: url('../../static/icons/inline/damage.svg');
+	--icon-fu--type: url('../../static/icons/inline/type.svg');
 }
 
 .fu-dex {
@@ -381,6 +385,14 @@
 
 .fu-weapon-enchant {
 	background-image: url('../../../static/icons/fus-weapon-enchant.svg');
+}
+
+.fu-damage {
+	background-image: var(--icon-fu--damage);
+}
+
+.fu-type {
+	background-image: var(--icon-fu--type);
 }
 
 /* Icon display styles */

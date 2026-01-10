@@ -55,8 +55,7 @@ function checkEnricher(match, options) {
 		let tooltip = game.i18n.localize('FU.InlineRollCheck');
 
 		// ICON
-		InlineHelper.appendVectorIcon(anchor, 'fu-icon--s', FU.checkIcons.open);
-		//InlineHelper.appendImage(anchor, systemAssetPath('icons/check.svg'));
+		InlineHelper.appendIcon(anchor, 'open');
 
 		if (label) {
 			anchor.append(label);
@@ -92,8 +91,8 @@ function checkEnricher(match, options) {
 		// Show attributes
 		const span = document.createElement('span');
 		span.classList.add(`inline`, 'inline-group');
-		InlineHelper.appendVectorIcon(span, 'fu-icon--s', FU.allIcon[first]);
-		InlineHelper.appendVectorIcon(span, 'fu-icon--s', FU.allIcon[second]);
+		InlineHelper.appendIcon(span, first);
+		InlineHelper.appendIcon(span, second);
 		anchor.append(span);
 		return anchor;
 	}

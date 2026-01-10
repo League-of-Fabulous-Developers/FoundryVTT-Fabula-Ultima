@@ -3,7 +3,6 @@ import { targetHandler } from './target-handler.mjs';
 import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
-import { systemAssetPath } from './system-utils.mjs';
 import { Flags } from './flags.mjs';
 import { DamageData } from '../checks/damage-data.mjs';
 
@@ -37,7 +36,8 @@ function damageEnricher(text, options) {
 		}
 		anchor.draggable = true;
 
-		InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/damage.svg'));
+		InlineHelper.appendIcon(anchor, 'damage');
+
 		// TOOLTIP
 		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
 		if (label) {
@@ -51,9 +51,10 @@ function damageEnricher(text, options) {
 		}
 
 		// ICON
-		const icon = document.createElement('i');
-		icon.className = FU.affIcon[type] ?? '';
-		anchor.append(icon);
+		const span = document.createElement('span');
+		span.classList.add(`inline`, 'inline-group');
+		InlineHelper.appendIcon(span, type);
+		anchor.append(span);
 		return anchor;
 	}
 

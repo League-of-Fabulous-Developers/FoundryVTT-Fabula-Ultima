@@ -59,6 +59,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 		const indicator = document.createElement('i');
 		indicator.classList.add('indicator');
 		anchor.append(indicator);
+
 		if (label) {
 			anchor.append(label);
 			anchor.dataset.label = label;
@@ -70,7 +71,10 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 			anchor.append(` ${typeName}`);
 		}
 		// ICON
-		InlineHelper.appendVectorIcon(anchor, 'fu-icon--xs', FU.resourceIcons[type]);
+		const span = document.createElement('span');
+		span.classList.add(`inline`, 'inline-group');
+		InlineHelper.appendIcon(span, type);
+		anchor.append(span);
 
 		return anchor;
 	} else {

@@ -1,4 +1,4 @@
-import { SYSTEM } from './config.mjs';
+import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
@@ -265,11 +265,11 @@ function appendAmountToAnchor(anchor, amount) {
 function appendVariableToAnchor(anchor, key, expression, localization = 'FU.Variable') {
 	anchor.dataset[key] = expression;
 	const dynamicAmount = Expressions.requiresContext(expression);
-	if (dynamicAmount) {
-		anchor.append(game.i18n.localize(localization));
-	} else {
-		anchor.append(expression);
-	}
+	const content = dynamicAmount ? game.i18n.localize(localization) : expression;
+	const span = document.createElement('span');
+	span.textContent = content;
+	//span.style.marginLeft = span.style.marginRight = '2px';
+	anchor.appendChild(span);
 }
 
 /**
@@ -395,6 +395,19 @@ function appendVectorIcon(anchor, ...classes) {
 }
 
 /**
+ * @param {HTMLAnchorElement} anchor
+ * @param {String} name
+ */
+function appendIcon(anchor, name) {
+	const icon = document.createElement(`i`);
+	const className = FU.allIcon[name];
+	icon.classList.add(`fu-icon--xs`, className);
+	icon.style.marginLeft = icon.style.marginRight = '2px';
+	anchor.append(icon);
+	return icon;
+}
+
+/**
  * @param {String} name The name of the command
  * @param {String} required
  * @param {String[]|null} optional
@@ -466,6 +479,7 @@ export const InlineHelper = {
 	appendAmountToAnchor,
 	appendImage,
 	appendVectorIcon,
+	appendIcon,
 	appendVariableToAnchor,
 	registerCommand,
 	compose,
