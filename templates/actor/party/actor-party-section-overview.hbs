@@ -30,7 +30,7 @@
 
 				{{#each this.resources}}
 					<div class="bar {{this.name}}">
-						<i class="icon {{this.icon}}" data-tooltip="{{this.label}}" style="width: 18px;"></i>
+						<i class="fu-icon--s {{pfuIconClass this.name}}" data-tooltip="{{this.label}}" style="width: 18px;"></i>
 						<div class="track">
 							<div class="fill" style="width: {{this.percentage}}%;"></div>
 						</div>
@@ -40,10 +40,10 @@
 				{{/each}}
 
 				<div class="resources">
-					<i class="fuk fu-zenit icon-aff" data-tooltip="{{localize @root.currency}}"></i>
+					<i class="fu-icon--s {{pfuIconClass 'zenit'}}" data-tooltip="{{localize @root.currency}}"></i>
 					{{this.zenit}}
 
-					<i class="fuk fu-fp icon-aff" data-tooltip="{{localize 'FU.FabulaPoints'}}"></i>
+					<i class="fu-icon--s {{pfuIconClass 'fp'}}" data-tooltip="{{localize 'FU.FabulaPoints'}}"></i>
 					{{this.fp}}
 				</div>
 
