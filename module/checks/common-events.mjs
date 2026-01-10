@@ -285,24 +285,22 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
 
 /**
  * @description Dispatched when an actor updates its resources (such as HP, MP)
- * @typedef ResourceExpendEvent
+ * @typedef CalculateExpenseEvent
  * @property {ResourceExpense} expense
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
- * @property {String} origin
  */
 
-async function expendResource(sourceActor, targetActors, expense, item) {
+async function calculateExpense(sourceActor, targetActors, expense) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const targets = CharacterInfo.fromTargetData(targetActors);
-	/** @type ResourceUpdateEvent  **/
+	/** @type CalculateExpenseEvent  **/
 	const event = {
 		expense: expense,
 		source: source,
 		targets: targets,
 	};
-	Hooks.call(FUHooks.RESOURCE_EXPEND_EVENT, event);
-	await new Promise((resolve) => setTimeout(resolve, 10));
+	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
 }
 
 /**
@@ -744,7 +742,7 @@ export const CommonEvents = Object.freeze({
 	gain,
 	loss,
 	resource,
-	expendResource,
+	expendResource: calculateExpense,
 	spell,
 	skill,
 	item,

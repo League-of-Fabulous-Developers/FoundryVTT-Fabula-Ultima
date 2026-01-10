@@ -12,3 +12,5 @@
 		{{selectOptions options.expenseSource selected=trigger.expenseSource sort=true localize=true}}
 	</select>
 </label>
+
+{{pfuTraits trigger.traits (pfuConcat path ".traits")}}

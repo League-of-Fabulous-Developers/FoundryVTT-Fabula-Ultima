@@ -17,7 +17,7 @@ export class ModifyExpenseRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventTypes: [FUHooks.RESOURCE_EXPEND_EVENT],
+			eventTypes: [FUHooks.CALCULATE_EXPENSE_EVENT],
 		};
 	}
 
@@ -36,7 +36,7 @@ export class ModifyExpenseRuleAction extends RuleActionDataModel {
 	}
 
 	/**
-	 * @param {RuleElementContext<ResourceExpendEvent>} context
+	 * @param {RuleElementContext<CalculateExpenseEvent>} context
 	 * @param selected
 	 * @returns {Promise<void>}
 	 */

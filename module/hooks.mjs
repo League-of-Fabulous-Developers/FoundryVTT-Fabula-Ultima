@@ -81,9 +81,9 @@ export const FUHooks = {
 	/**
 	 * @description Dispatched after a resource update has been expended to perform an action/
 	 * @example callback(event)
-	 * @remarks Uses {@link ResourceExpendEvent}.
+	 * @remarks Uses {@link CalculateExpenseEvent}.
 	 */
-	RESOURCE_EXPEND_EVENT: 'projectfu.events.expendResource',
+	CALCULATE_EXPENSE_EVENT: 'projectfu.events.expendResource',
 	/**
 	 * @description Dispatched after an actor enters crisis.
 	 * @example callback(event)

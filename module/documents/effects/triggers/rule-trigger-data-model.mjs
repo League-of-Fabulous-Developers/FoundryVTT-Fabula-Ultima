@@ -36,6 +36,9 @@ export class RuleTriggerDataModel extends SubDocumentDataModel {
 		if (source.eventRelation === 'none') {
 			source.eventRelation = '';
 		}
+		// if (source.type === 'resourceExpendRuleTrigger') {
+		//
+		// }
 		return super.migrateData(source);
 	}
 

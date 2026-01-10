@@ -13,7 +13,7 @@ import { CommonEvents } from './common-events.mjs';
 import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Effects } from '../pipelines/effects.mjs';
-import { SkillTraits } from '../pipelines/traits.mjs';
+import { FeatureTraits } from '../pipelines/traits.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 
 /**
@@ -308,7 +308,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
 						if (mod.expense.traits) {
 							const expenseTraits = new Set(mod.expense.traits);
-							if (expenseTraits.has(SkillTraits.Gift)) {
+							if (expenseTraits.has(FeatureTraits.Gift)) {
 								actions.push(ProgressPipeline.getAdvanceTargetedAction(actor, 'brainwave-clock', 1, mod.label));
 							}
 						}

@@ -45,14 +45,16 @@ export const DamageTraits = Object.freeze({
 });
 
 /**
- * @description A list of traits in use for certain skills.
+ * @description A list of traits in use for certain skills or class features.
  * @remarks Automatically converted to kebab case.
  */
-export const SkillTraits = Object.freeze({
+export const FeatureTraits = Object.freeze({
 	OverChannel: 'over-channel',
 	Gift: 'gift',
 	Verse: 'verse',
 	Dance: 'dance',
+	ArcanumSummon: 'arcanum-summon',
+	ArcanumDismiss: 'arcanum-dismiss',
 });
 
 /**
@@ -62,6 +64,7 @@ export const SkillTraits = Object.freeze({
  */
 export const Traits = Object.freeze({
 	...ConsumableTraits,
+	...FeatureTraits,
 	...DamageTraits,
 });
 

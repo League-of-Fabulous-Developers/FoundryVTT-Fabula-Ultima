@@ -9,6 +9,8 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
+import { FeatureTraits } from './traits.mjs';
 
 /**
  * @desc An application used for specific class features.
@@ -92,10 +94,17 @@ async function handleArcanum(actor, item) {
 			const selectedArcana = result[0];
 			const selectedArcanaEffect = selectedArcana.effects.size === 1 ? Array.from(selectedArcana.effects.values())[0] : null;
 			if (selectedArcanaEffect) {
-				//await selectedArcanaEffect.update({ disabled: false });
+				const expense = {
+					resource: 'mp',
+					amount: -40,
+					traits: [FeatureTraits.ArcanumSummon],
+				};
+				await CommonEvents.expendResource(actor, [], expense);
 				await actor.update({
 					'system.equipped.arcanum': selectedArcana.id,
 				});
+				// TODO: Add spend resource to chat card...
+				console.debug(`Arcanum summon cost: ${expense.amount}`);
 				ChatMessage.create({
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 					content: await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {

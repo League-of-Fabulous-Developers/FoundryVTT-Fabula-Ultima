@@ -34,7 +34,6 @@ import { ResolveCheckRuleTrigger } from '../documents/effects/triggers/resolve-c
 import { ModifyDamageRuleAction } from '../documents/effects/actions/modify-damage-rule-action.mjs';
 import { NotifyRuleAction } from '../documents/effects/actions/notify-rule-action.mjs';
 import { NotificationRuleTrigger } from '../documents/effects/triggers/notification-rule-trigger.mjs';
-import { ResourceExpendRuleTrigger } from '../documents/effects/triggers/resource-expend-rule-trigger.mjs';
 import { ModifyExpenseRuleAction } from '../documents/effects/actions/modify-expense-rule-action.mjs';
 import { TargetingRulePredicate } from '../documents/effects/predicates/targeting-rule-predicate.mjs';
 import { ToggleRuleTrigger } from '../documents/effects/triggers/toggle-rule-trigger.mjs';
@@ -55,6 +54,7 @@ import { CalculateResourceRuleTrigger } from '../documents/effects/triggers/calc
 import { OpenApplicationRuleAction } from '../documents/effects/actions/open-application-rule-action.mjs';
 import { RankRulePredicate } from '../documents/effects/predicates/rank-rule-predicate.mjs';
 import { ItemRollRuleTrigger } from '../documents/effects/triggers/item-roll-rule-trigger.mjs';
+import { CalculateExpenseRuleTrigger } from '../documents/effects/triggers/calculate-expense-rule-trigger.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -64,7 +64,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, CalculateDamageRuleTrigger.TYPE, CalculateDamageRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, CalculateResourceRuleTrigger.TYPE, CalculateResourceRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResourceUpdateRuleTrigger.TYPE, ResourceUpdateRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, ResourceExpendRuleTrigger.TYPE, ResourceExpendRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, CalculateExpenseRuleTrigger.TYPE, CalculateExpenseRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, InitializeCheckRuleTrigger.TYPE, InitializeCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, PerformCheckRuleTrigger.TYPE, PerformCheckRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ResolveCheckRuleTrigger.TYPE, ResolveCheckRuleTrigger);
@@ -169,11 +169,11 @@ async function onCalculateResourceEvent(event) {
 }
 
 /**
- * @param {ResourceExpendEvent} event
+ * @param {CalculateExpenseEvent} event
  * @returns {Promise<void>}
  */
 async function onResourceExpenditureEvent(event) {
-	await evaluate(FUHooks.RESOURCE_EXPEND_EVENT, event, event.source, event.targets);
+	await evaluate(FUHooks.CALCULATE_EXPENSE_EVENT, event, event.source, event.targets);
 }
 
 /**
@@ -332,7 +332,7 @@ function initialize() {
 	Hooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);
 	Hooks.on(FUHooks.RESOLVE_CHECK_EVENT, onResolveCheckEvent);
 	Hooks.on(FUHooks.NOTIFICATION_EVENT, onNotificationEvent);
-	Hooks.on(FUHooks.RESOURCE_EXPEND_EVENT, onResourceExpenditureEvent);
+	Hooks.on(FUHooks.CALCULATE_EXPENSE_EVENT, onResourceExpenditureEvent);
 	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_RESOURCE_EVENT, onCalculateResourceEvent);
