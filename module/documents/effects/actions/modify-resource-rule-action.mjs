@@ -1,7 +1,7 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
-import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
+import { Expressions } from '../../../expressions/expressions.mjs';
 
 const fields = foundry.data.fields;
 
@@ -16,7 +16,7 @@ export class ModifyResourceRuleAction extends RuleActionDataModel {
 	static get metadata() {
 		return {
 			...super.metadata,
-			eventTypes: [FUHooks.CALCULATE_RESOURCE_EVENT],
+			eventTypes: [FUHooks.CALCULATE_RESOURCE_EVENT, FUHooks.CALCULATE_EXPENSE_EVENT],
 		};
 	}
 
@@ -35,12 +35,25 @@ export class ModifyResourceRuleAction extends RuleActionDataModel {
 	}
 
 	async execute(context, selected) {
-		const targets = selected.map((t) => t.actor);
-		const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
+		const expressionContext = context.getExpressionContext(selected);
 		const _amount = await Expressions.evaluateAsync(this.amount, expressionContext);
 
-		/** @type CheckConfigurer **/
-		const config = context.event.config;
-		config.getResource().addModifier(context.label, _amount);
+		switch (context.eventType) {
+			case FUHooks.CALCULATE_EXPENSE_EVENT:
+				{
+					/** @type CalculateExpenseEvent **/
+					const ree = context.event;
+					ree.expense.amount += _amount;
+				}
+				break;
+
+			case FUHooks.CALCULATE_RESOURCE_EVENT:
+				{
+					/** @type CheckConfigurer **/
+					const config = context.event.config;
+					config.getResource().addModifier(context.label, _amount);
+				}
+				break;
+		}
 	}
 }

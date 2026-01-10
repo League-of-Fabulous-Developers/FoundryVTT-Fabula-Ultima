@@ -64,7 +64,7 @@ async function promptOpportunity(actor, type, item = undefined) {
 				choices = choices.concat(item.system.opportunity);
 			}
 		}
-		const selected = await FoundryUtils.promptStringChoice('FU.Opportunities', choices);
+		const selected = await FoundryUtils.promptStringRadioChoice('FU.Opportunities', choices);
 		if (selected) {
 			console.debug(`Selected opportunity: ${selected}`);
 

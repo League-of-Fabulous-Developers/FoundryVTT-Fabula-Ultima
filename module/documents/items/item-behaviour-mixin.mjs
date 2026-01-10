@@ -5,6 +5,7 @@ import { Checks } from '../../checks/checks.mjs';
 import { ItemMigrations } from './item-migrations.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { slugify } from '../../util.mjs';
+import { CommonEvents, ItemRollConfiguration } from '../../checks/common-events.mjs';
 
 const socketableTypes = new Set(['hoplosphere', 'mnemosphere']);
 
@@ -172,13 +173,20 @@ export function ItemBehaviourMixin(BaseClass) {
 		 * @param {KeyboardModifiers} modifiers
 		 */
 		async roll(modifiers = { shift: false, alt: false, ctrl: false, meta: false }) {
-			if (this.system.showTitleCard?.value) {
-				await game.projectfu.socket.showBanner(this.name);
-			}
-			if (this.system.roll instanceof Function) {
-				return this.system.roll(modifiers);
+			// TODO: Set up event to replace the roll action.
+			const config = new ItemRollConfiguration(this, modifiers);
+			await CommonEvents.itemRoll(config, this.parent);
+			if (config.override) {
+				await config.override();
 			} else {
-				return Checks.display(this.actor, this);
+				if (this.system.showTitleCard?.value) {
+					await game.projectfu.socket.showBanner(this.name);
+				}
+				if (this.system.roll instanceof Function) {
+					return this.system.roll(modifiers);
+				} else {
+					return Checks.display(this.actor, this);
+				}
 			}
 		}
 

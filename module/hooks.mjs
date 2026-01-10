@@ -81,9 +81,9 @@ export const FUHooks = {
 	/**
 	 * @description Dispatched after a resource update has been expended to perform an action/
 	 * @example callback(event)
-	 * @remarks Uses {@link ResourceExpendEvent}.
+	 * @remarks Uses {@link CalculateExpenseEvent}.
 	 */
-	RESOURCE_EXPEND_EVENT: 'projectfu.events.expendResource',
+	CALCULATE_EXPENSE_EVENT: 'projectfu.events.calculateExpense',
 	/**
 	 * @description Dispatched after an actor enters crisis.
 	 * @example callback(event)
@@ -224,4 +224,16 @@ export const FUHooks = {
 	 * @remarks Uses {@link CreateConsumableEvent}
 	 */
 	CONSUMABLE_CREATE_EVENT: 'projectfu.events.consumables.create',
+	/**
+	 * @description Dispatched when an item 'roll' action is being performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link ItemRollEvent}
+	 */
+	ITEM_ROLL_EVENT: `projectfu.events.items.roll`,
+	/**
+	 * @description Dispatched when a class feature is being performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link FeatureEvent}
+	 */
+	FEATURE_EVENT: `projectfu.events.feature`,
 };

@@ -16,6 +16,33 @@ const { api, fields, handlebars } = foundry.applications;
  */
 
 /**
+ * @callback DialogV2ButtonCallback
+ * @param {PointerEvent|SubmitEvent} event        The button click event, or a form submission event if the dialog was
+ *                                                submitted via keyboard.
+ * @param {HTMLButtonElement} button              If the form was submitted via keyboard, this will be the default
+ *                                                button, otherwise the button that was clicked.
+ * @param {DialogV2} dialog                       The DialogV2 instance.
+ * @returns {Promise<any>}
+ */
+
+/**
+ * @typedef DialogV2Button
+ * @property {string} action                      The button action identifier.
+ * @property {string} label                       The button label. Will be localized.
+ * @property {string} [icon]                      FontAwesome icon classes.
+ * @property {string} [class]                     CSS classes to apply to the button.
+ * @property {Record<string, string>} [style]     CSS style to apply to the button.
+ * @property {string} [type="submit"]             The button type.
+ * @property {boolean} [disabled]                 Whether the button is disabled
+ * @property {boolean} [default]                  Whether this button represents the default action to take if the user
+ *                                                submits the form without pressing a button, i.e. with an Enter
+ *                                                keypress.
+ * @property {DialogV2ButtonCallback} [callback]  A function to invoke when the button is clicked. The value returned
+ *                                                from this function will be used as the dialog's submitted value.
+ *                                                Otherwise, the button's identifier is used.
+ */
+
+/**
  * @typedef SelectInputConfig
  * @property {FormSelectOption[]} options
  * @property {string[]} [groups]        An option to control the order and display of optgroup elements. The order of
@@ -169,7 +196,7 @@ export default class FoundryUtils {
 	 * @param {LabelFunction<T>} getLabel
 	 * @returns {Promise<string|null>} - Selected string or null if cancelled
 	 */
-	static async promptChoice(title, options, getLabel) {
+	static async promptRadioChoice(title, options, getLabel) {
 		const context = {
 			choices: await Promise.all(
 				options.map(async (opt) => {
@@ -182,7 +209,7 @@ export default class FoundryUtils {
 				}),
 			),
 		};
-		const content = await handlebars.renderTemplate(systemTemplatePath('dialog/dialog-choose'), context);
+		const content = await handlebars.renderTemplate(systemTemplatePath('dialog/dialog-selection-radio'), context);
 		const { index } = await api.DialogV2.input({
 			window: { title: title },
 			label: game.i18n.localize('FU.Submit'),
@@ -205,8 +232,55 @@ export default class FoundryUtils {
 	 * @param {String[]} options
 	 * @returns {Promise<string|null>}
 	 */
-	static async promptStringChoice(title, options) {
-		return this.promptChoice(title, options, (opt) => opt);
+	static async promptStringRadioChoice(title, options) {
+		return this.promptRadioChoice(title, options, (opt) => opt);
+	}
+
+	/**
+	 * @param {Object} options
+	 * @param {string} options.title
+	 * @param {string} options.content
+	 * @param {DialogV2Button[]} options.buttons
+	 * @returns {Promise<string|null>}
+	 */
+	static async promptActionChoice({ title, content, buttons }) {
+		const result = await foundry.applications.api.DialogV2.wait({
+			window: {
+				title,
+				icon: null,
+			},
+			position: {
+				width: 500,
+			},
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			content,
+			buttons,
+		});
+		return result ?? null;
+	}
+
+	/**
+	 * @param {String} title
+	 * @param {FUActor} actor
+	 * @param {FUItem} item
+	 * @param {DialogV2Button[]} buttons
+	 * @param {String} description
+	 * @param {String} message
+	 * @returns {Promise<string|null>}
+	 */
+	static async promptItemChoice({ title, actor, item, buttons, description, message }) {
+		if (description) {
+			description = await FoundryUtils.enrichText(description, {
+				relativeTo: actor,
+			});
+		}
+		const content = await this.renderTemplate('dialog/dialog-item-prompt', {
+			item: item,
+			description: description,
+			message: message,
+		});
+		const action = await FoundryUtils.promptActionChoice({ title, content, buttons });
+		return action ?? null;
 	}
 
 	/**
@@ -250,7 +324,7 @@ export default class FoundryUtils {
 	/**
 	 * @param {String} text
 	 * @param {Object} context
-	 * @returns {Promise<*>}
+	 * @returns {Promise<string>}
 	 */
 	static async enrichText(text, context) {
 		return TextEditor.implementation.enrichHTML(text, context);

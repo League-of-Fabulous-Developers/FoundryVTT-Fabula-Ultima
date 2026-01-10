@@ -9,7 +9,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
-import { Traits } from './traits.mjs';
+import { Traits, TraitUtils } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
@@ -22,6 +22,8 @@ import { DamageData } from '../checks/damage-data.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
+import { CommonSections } from '../checks/common-sections.mjs';
+import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -744,15 +746,46 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 			const damage = config.getDamage();
 			if (damage.customizable) {
 				await DamageCustomizerV2.open(damage, item);
-				for (const modifier of damage.modifiers) {
-					if (modifier.traits && modifier.traits.length > 0) {
-						config.addTraits(modifier.traits);
-					}
+			}
+			for (const modifier of damage.modifiers) {
+				if (modifier.traits && modifier.traits.length > 0) {
+					config.addTraits(modifier.traits);
 				}
 			}
 		}
 	});
 };
+
+/**
+ * @param {CheckRenderData} data
+ * @param {CheckResultV2} result
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ */
+function onRenderCheck(data, result, actor, item) {
+	const inspector = CheckConfiguration.inspect(result);
+	if (inspector.hasDamage) {
+		const damage = inspector.getDamage();
+		let traits = [];
+		for (const modifier of damage.modifiers) {
+			if (modifier.traits && modifier.traits.length > 0) {
+				traits.push(...modifier.traits);
+			}
+		}
+		if (traits.length > 0) {
+			CommonSections.tags(
+				data,
+				TraitUtils.toTags(
+					traits.map((t) => TraitUtils.localize(t)),
+					false,
+				),
+				CHECK_DETAILS,
+			);
+		}
+	}
+}
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @description Initialize the pipeline's hooks

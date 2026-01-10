@@ -1,4 +1,5 @@
 import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
+import { ExpressionContext } from '../../expressions/expressions.mjs';
 
 /**
  * @template T
@@ -76,5 +77,14 @@ export class RuleElementContext {
 				return [];
 		}
 		return null;
+	}
+
+	/**
+	 * @param {CharacterInfo[]}  selected
+	 * @returns {ExpressionContext}
+	 */
+	getExpressionContext(selected) {
+		const targets = selected.map((t) => t.actor);
+		return ExpressionContext.fromSourceInfo(this.sourceInfo, targets);
 	}
 }

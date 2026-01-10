@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "ritual-chimerism"
+    "fuid": "ritual-chimerism",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -213,15 +216,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706495654796,
-    "modifiedTime": 1741990575130,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768060745176,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

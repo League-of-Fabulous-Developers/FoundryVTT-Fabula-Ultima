@@ -1,7 +1,7 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
-import { FUHooks } from '../../../hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { FUHooks } from '../../../hooks.mjs';
 
 const fields = foundry.data.fields;
 
@@ -18,16 +18,6 @@ export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 		return {
 			...super.metadata,
 			eventType: FUHooks.CALCULATE_RESOURCE_EVENT,
-			resource: new fields.StringField({
-				initial: 'hp',
-				choices: Object.keys(FU.resources),
-				required: true,
-			}),
-			change: new fields.StringField({
-				initial: 'increment',
-				choices: Object.keys(FU.scalarChange),
-				required: true,
-			}),
 		};
 	}
 

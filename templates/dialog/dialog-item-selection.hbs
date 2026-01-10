@@ -1,25 +1,32 @@
 <main class="">
-	<fieldset class="title-fieldset desc resource-content">
-		<legend class="resource-label-full">
-			<label class="resource-label-m">{{localize 'FU.Selection'}}</label>
-		</legend>
+	<div class="grid grid-2col">
 		<div class="fu-item-grid flex-group-center fu-icon__radio-group">
 			{{#each items as |item| }}
 				<label class="fu-item-card"
 					   for="{{item.name}}"
 					   data-index="{{@index}}"
+					   data-tooltip="{{item.name}}"
 					   data-name="{{item.name}}">
 					<input type="checkbox"
 						   name="selected"
 						   id="{{item.name}}"
+						   {{#if (eq item.name ../initial.name)}}checked="checked"{{/if}}
 						   value="{{item.name}}">
-					<img src="{{item.img}}" alt="{{item.name}}"/>
+					<img class="fu-icon--l" src="{{item.img}}" alt="{{item.name}}"/>
 					<span class="">{{item.name}}</span>
 				</label>
 			{{/each}}
 		</div>
-		<span class="fu-form__message">
-			{{{message}}}
-		</span>
-	</fieldset>
+		<div class="fu-form__description">
+			<span id="description"></span>
+		</div>
+	</div>
+
+	{{#if message}}
+		<div class="fu-form__message">
+			<span>
+				{{{message}}}
+			</span>
+		</div>
+	{{/if}}
 </main>

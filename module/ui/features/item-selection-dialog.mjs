@@ -5,27 +5,75 @@ import FoundryUtils from '../../helpers/foundry-utils.mjs';
  * @property {String} title
  * @property {String} message
  * @property {FUItem[]|FUActiveEffect[]} items
+ * @property {FUItem|FUActiveEffect} initial
  * @property {Number} max
+ * @property {(item: FUItem) => Promise<string>} getDescription
+ * @property {String} okLabel
  */
 
+/**
+ * @prop {ItemSelectionData} data
+ */
 export class ItemSelectionDialog {
 	/**
+	 * @type {ItemSelectionData}
+	 */
+	#data;
+
+	/**
+	 * @type {FUItem[]|FUActiveEffect[]}
+	 */
+	#selectedItems;
+
+	/**
 	 * @param {ItemSelectionData} data
+	 */
+	constructor(data) {
+		this.#data = data;
+		this.#selectedItems = [];
+		if (data.initial) {
+			this.#selectedItems.push(data.initial);
+		}
+	}
+
+	/**
+	 * @returns {ItemSelectionData}
+	 */
+	get data() {
+		return this.#data;
+	}
+
+	/**
 	 * @returns {Object[]} selected
 	 */
-	static async open(data) {
+	async open() {
 		const context = {
-			...data,
-			/** @type Object[] **/
-			selected: [],
+			...this.data,
+		};
+
+		/**
+		 * @param {HTMLElement} container
+		 * @param {HTMLElement} card
+		 */
+		const toggleCardSelection = (container, card) => {
+			const cardItem = this.data.items[card.dataset.index];
+			if (!card.classList.contains('selected')) {
+				const selectedCards = container.querySelectorAll('.fu-item-card.selected');
+				if (selectedCards.length >= this.data.max) return;
+				card.classList.add('selected');
+				this.#selectedItems.push(cardItem);
+			} else {
+				card.classList.remove('selected');
+				this.#selectedItems = this.#selectedItems.filter((it) => it !== cardItem);
+			}
 		};
 
 		const result = await foundry.applications.api.DialogV2.input({
 			window: {
-				title: data.title,
+				title: this.data.title,
 			},
 			position: {
-				width: 440,
+				width: 600,
 			},
 			actions: {
 				/** @param {Event} event
@@ -33,37 +81,55 @@ export class ItemSelectionDialog {
 				selectType: (event, dialog) => {},
 			},
 			classes: ['projectfu', 'backgroundstyle', 'fu-dialog'],
-			content: await FoundryUtils.renderTemplate('dialog/dialog-selection-grid', context),
+			content: await FoundryUtils.renderTemplate('dialog/dialog-item-selection', context),
 			rejectClose: false,
 			ok: {
 				icon: "<i class='fas fa-check'></i>",
-				label: 'FU.Confirm',
+				label: this.data.okLabel ?? 'FU.Confirm',
 			},
 			/** @param {Event} event
 			 *  @param {HTMLElement} dialog **/
-			render: (event, dialog) => {
+			render: async (event, dialog) => {
 				const document = dialog.element;
 				const container = document.querySelector('.fu-item-grid');
-				container.addEventListener('mousedown', (event) => {
+				/** @type HTMLSpanElement **/
+				const description = document.querySelector('#description');
+
+				// Function to update the description
+				const updateDescription = async () => {
+					let text;
+					if (this.#selectedItems.length > 0) {
+						const item = this.#selectedItems[0];
+						text = await this.data.getDescription(item);
+					} else {
+						text = '';
+					}
+					description.innerHTML = text;
+				};
+				await updateDescription();
+
+				// Selection
+				for (const input of container.querySelectorAll('input[name="selected"]:checked')) {
+					const card = input.closest('.fu-item-card');
+					if (card) {
+						toggleCardSelection(container, card);
+						await updateDescription();
+					}
+				}
+				// ✅ Event handling
+				container.addEventListener('mousedown', async (event) => {
 					const card = event.target.closest('.fu-item-card');
 					if (!card) return;
-
-					if (!card.classList.contains('selected')) {
-						const selectedCards = container.querySelectorAll('.fu-item-card.selected');
-						if (selectedCards.length >= data.max) return;
-						card.classList.add('selected');
-					} else {
-						card.classList.remove('selected');
-					}
+					toggleCardSelection(container, card);
+					await updateDescription();
 				});
 			},
 		});
 		if (result) {
 			console.debug(result);
-			const selectedValues = Array.isArray(result.selected) ? result.selected : [result.selected];
-			return data.items.filter((item) => selectedValues.includes(item.name));
+			return this.#selectedItems;
 		} else {
-			throw Error('Canceled by user');
+			throw Error('Canceled by user.');
 		}
 	}
 }

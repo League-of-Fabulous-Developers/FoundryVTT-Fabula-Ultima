@@ -120,7 +120,85 @@
     "defense": "def",
     "fuid": "arcane-regeneration"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Arcane Regeneration",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_arcane_regeneration.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "lQwRdM95TjsYJZ3v": {
+              "type": "ruleElement",
+              "_id": "lQwRdM95TjsYJZ3v",
+              "trigger": {
+                "_id": "2zQXKGGMYsn7ZUi4",
+                "type": "featureRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "arcanum-summon"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "actions": {
+                "qCg97rBP9FP1HKun": {
+                  "type": "messageRuleAction",
+                  "_id": "qCg97rBP9FP1HKun",
+                  "message": "<p>You recover @GAIN[$sl*5 hp]{SL x 5 HP}</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "gKZZD74mFFu4HKUm",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767997070953,
+        "modifiedTime": 1768060621907,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!ZTEuKRcX9erp1NDC.gKZZD74mFFu4HKUm"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

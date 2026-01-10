@@ -1,7 +1,17 @@
+:root {
+	--fu-grid-size: 64px;
+}
+
+/* Default grid size */
 .fu-item-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+	grid-template-columns: repeat(3, minmax(var(--fu-grid-size), 1fr)); /* 3 columns fixed */
+	grid-template-rows: repeat(2, minmax(var(--fu-grid-size), 1fr)); /* 2 rows fixed */
 	gap: 10px;
+	margin: 8px;
+
+	max-height: calc(2 * var(--fu-grid-size)) + 16px; /* 2 rows + 1 gap */
+	overflow-y: auto;
 }
 
 .fu-item-card {

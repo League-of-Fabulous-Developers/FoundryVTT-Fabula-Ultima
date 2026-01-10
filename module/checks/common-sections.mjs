@@ -13,7 +13,7 @@ import { CommonEvents } from './common-events.mjs';
 import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Effects } from '../pipelines/effects.mjs';
-import { SkillTraits } from '../pipelines/traits.mjs';
+import { FeatureTraits } from '../pipelines/traits.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 
 /**
@@ -36,6 +36,18 @@ const description = (sections, description, summary, order, open = true) => {
 			order,
 		}));
 	}
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string} content
+ * @param {number} [order]
+ */
+const content = (sections, content, order) => {
+	sections.push(async () => ({
+		content: content,
+		order,
+	}));
 };
 
 /**
@@ -175,7 +187,7 @@ const resource = (sections, resource, order) => {
 /**
  * Sets chat message flavor by default. Specify order for other usecases.
  * @param {CheckRenderData} sections
- * @param {{name: string, img: string, id: string, uuid: string}} item
+ * @param {{name: string, img: string, id: string, uuid: string}|FUItem} item
  * @param {number} [order]
  */
 const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
@@ -308,7 +320,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
 						if (mod.expense.traits) {
 							const expenseTraits = new Set(mod.expense.traits);
-							if (expenseTraits.has(SkillTraits.Gift)) {
+							if (expenseTraits.has(FeatureTraits.Gift)) {
 								actions.push(ProgressPipeline.getAdvanceTargetedAction(actor, 'brainwave-clock', 1, mod.label));
 							}
 						}
@@ -415,7 +427,31 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
 
 		// This can be modified here...
-		await CommonEvents.expendResource(actor, targets, expense);
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
+		return {
+			order: CHECK_RESULT,
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+			data: {
+				name: item.name,
+				actor: actor.uuid,
+				item: item.uuid,
+				expense: expense,
+				icon: FU.resourceIcons[expense.resource],
+			},
+		};
+	});
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {ResourceExpense} expense
+ * @param {Object} flags
+ */
+const expense = (sections, actor, item, expense, flags) => {
+	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
+	sections.push(async () => {
 		return {
 			order: CHECK_RESULT,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
@@ -444,6 +480,7 @@ const slottedTechnospheres = (sections, slottedTechnospheres, order) => {
 };
 
 export const CommonSections = {
+	content,
 	description,
 	genericText,
 	itemText,
@@ -457,5 +494,6 @@ export const CommonSections = {
 	opportunity,
 	actions,
 	spendResource,
+	expense,
 	slottedTechnospheres,
 };

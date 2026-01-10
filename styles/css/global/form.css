@@ -1,6 +1,38 @@
+/* Added on a foundry form's 'classes' property */
+.fu-form {
+}
+
 .fu-form__button {
 	background-color: var(--color-primary);
 	color: #ebf7af;
+}
+
+.fu-form__header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-self: center;
+	margin: 4px;
+	gap: 4px;
+}
+
+.fu-form__header h1,
+.fu-form__header h2,
+.fu-form__header h3,
+.fu-form__header h4,
+.fu-form__header h5,
+.fu-form__header h6,
+.fu-form__header p {
+	color: var(--color-primary);
+}
+
+.fu-form__header h1,
+.fu-form__header h2,
+.fu-form__header h3,
+.fu-form__header h4,
+.fu-form__header h5,
+.fu-form__header h6 {
+	font-weight: bold;
 }
 
 .fu-form__array__element {
@@ -19,14 +51,12 @@
 	gap: 4px;
 }
 
-.fu-form__message {
-	font-size: var(--font-size-base);
-	font-family: var(--font-primary) sans-serif;
-	color: var(--color-text-dark);
-
+.fu-form__description {
 	text-align: left;
+	font-size: 0.875rem;
 	padding: 0.313rem 0.5rem;
 	margin: 5px 0;
+	color: #272a2a;
 	-webkit-box-shadow: 1px 2px #2b4a42;
 	box-shadow: 1px 2px #2b4a42;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
@@ -35,13 +65,42 @@
 	border-top: 1px solid #c9c7b8;
 }
 
+.fu-form__message {
+	text-align: left;
+	font-size: 0.875rem;
+	padding: 0.313rem 0.5rem;
+	margin: 5px 0;
+	color: #4a3d00; /* dark brown text for readability */
+	-webkit-box-shadow: 1px 2px #7c6a00;
+	box-shadow: 1px 2px #7c6a00;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 249, 196)), to(rgba(255, 236, 150, 0.7)));
+	background-image: linear-gradient(to bottom, rgb(255, 249, 196), rgba(255, 236, 150, 0.7));
+	border-radius: 10px;
+	border-top: 1px solid #f1e59d;
+}
+
 .fu-form__array__element__input {
 	width: 100%;
 }
 
-/* Container */
+/*		DIALOGS		*/
+
 .fu-dialog {
+}
+
+.fu-dialog form .dialog-content {
+	background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	background-blend-mode: multiply;
+	background-repeat: repeat-y;
+	background-position: right top;
+	border-radius: 10px;
+	border: 1px solid rgba(44, 74, 66, 0.3294117647);
+	padding: 0.25rem;
 	color: var(--color-text-dark);
+}
+
+.fu-dialog button {
+	background-color: var(--color-primary);
 }
 
 .fu-dialog__text {

@@ -5,7 +5,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { ActionCostDataModel } from '../../items/common/action-cost-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { SkillDataModel } from '../../items/skill/skill-data-model.mjs';
-import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { DamageTraits, FeatureTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 
 const fields = foundry.data.fields;
@@ -38,9 +38,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				options: TraitUtils.getOptions(DamageTraits),
 			}),
 			cost: new fields.EmbeddedDataField(ActionCostDataModel, {
-				resource: {
-					initial: '',
-				},
+				resource: '',
 			}),
 			variant: new fields.StringField({
 				initial: '',
@@ -100,7 +98,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 						expense: {
 							amount: Math.max(5, this.cost.amount * brainwave.current),
 							resource: this.cost.resource,
-							traits: [SkillTraits.Gift],
+							traits: [FeatureTraits.Gift],
 						},
 						traits: this.traits.values,
 						enabled: false,
@@ -113,7 +111,7 @@ export class ModifyDamageRuleAction extends RuleActionDataModel {
 				context.config.getDamage().addModifier(context.label, _amount, types, {
 					expense: this.cost,
 					traits: this.traits.values,
-					enabled: this.cost.amount === 0,
+					enabled: !this.cost.assigned,
 				});
 			} else {
 				context.config.addDamageBonus(context.label, _amount);

@@ -120,6 +120,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
  * @typedef CalculateDamageEvent
  * @property {CharacterInfo} source
  * @property {FUItem} item
+ * @property {DamageType} type
  * @property {FUItemGroup} damageSource
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} config
@@ -134,6 +135,7 @@ async function calculateDamage(actor, item, config) {
 		item: item,
 		damageSource: damageSource,
 		config: config,
+		type: config.getDamage()?.type,
 	};
 	await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
 }
@@ -283,24 +285,22 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
 
 /**
  * @description Dispatched when an actor updates its resources (such as HP, MP)
- * @typedef ResourceExpendEvent
+ * @typedef CalculateExpenseEvent
  * @property {ResourceExpense} expense
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
- * @property {String} origin
  */
 
-async function expendResource(sourceActor, targetActors, expense, item) {
-	const source = CharacterInfo.fromActor(sourceActor);
+async function calculateExpense(actor, item, targetActors, expense) {
+	const source = CharacterInfo.fromActor(actor);
 	const targets = CharacterInfo.fromTargetData(targetActors);
-	/** @type ResourceUpdateEvent  **/
+	/** @type CalculateExpenseEvent  **/
 	const event = {
 		expense: expense,
 		source: source,
 		targets: targets,
 	};
-	Hooks.call(FUHooks.RESOURCE_EXPEND_EVENT, event);
-	await new Promise((resolve) => setTimeout(resolve, 10));
+	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
 }
 
 /**
@@ -661,6 +661,28 @@ function notify(source, id, origin) {
 }
 
 /**
+ * @desc Dispatched when a class feature has been used.
+ * @typedef FeatureEvent
+ * @property {CharacterInfo} source
+ * @property {FUItem} item
+ * @property {String[]} traits
+ * @property {SectionChatBuilder} builder
+ * @property
+ */
+
+async function feature(actor, item, traits, builder) {
+	const source = CharacterInfo.fromActor(actor);
+	/** @type FeatureEvent  **/
+	const event = {
+		source: source,
+		item: item,
+		traits: traits,
+		builder: builder,
+	};
+	return AsyncHooks.callSequential(FUHooks.FEATURE_EVENT, event);
+}
+
+/**
  * @typedef EffectToggledEvent
  * @property {CharacterInfo} source
  * @property {String} uuid The uuid of the effect
@@ -699,6 +721,42 @@ async function createConsumable(actor, item, targetData, builder) {
 	await AsyncHooks.callSequential(FUHooks.CONSUMABLE_CREATE_EVENT, event);
 }
 
+/**
+ * @property {FUItem} item
+ * @property {KeyboardModifiers} modifiers
+ * @property {(() => Promise<void>)|null} override If set, will override the default.
+ */
+export class ItemRollConfiguration {
+	constructor(item, modifiers) {
+		this.item = item;
+		this.modifiers = modifiers;
+	}
+
+	/**
+	 * Set a custom override function for this roll.
+	 * @param {() => Promise<void>} fn
+	 */
+	setOverride(fn) {
+		this.override = fn;
+	}
+}
+
+/**
+ * @typedef ItemRollEvent
+ * @property {CharacterInfo} source
+ * @property {ItemRollConfiguration} config
+ */
+
+async function itemRoll(config, actor) {
+	const source = actor !== undefined ? CharacterInfo.fromActor(actor) : undefined;
+	/** @type ItemRollEvent  **/
+	const event = {
+		config: config,
+		source: source,
+	};
+	await AsyncHooks.callSequential(FUHooks.ITEM_ROLL_EVENT, event);
+}
+
 export const CommonEvents = Object.freeze({
 	attack,
 	damage,
@@ -706,7 +764,6 @@ export const CommonEvents = Object.freeze({
 	gain,
 	loss,
 	resource,
-	expendResource,
 	spell,
 	skill,
 	item,
@@ -719,11 +776,14 @@ export const CommonEvents = Object.freeze({
 	performCheck,
 	resolveCheck,
 	renderCheck,
+	calculateExpense,
 	calculateDamage,
 	calculateResource,
 	notify,
 	toggleEffect,
 	createConsumable,
+	itemRoll,
+	feature,
 });
 
 // Helpers

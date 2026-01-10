@@ -7,9 +7,9 @@
 					 data-actor-id="{{actor.uuid}}"
 					 class="fu-icon fu-icon--s">
 			{{/if}}
-			<img src="{{item.img}}" alt="{{item.name}}"
-				 data-item-id="{{item.uuid}}"
-				 class="fu-icon fu-icon--s">
+			<a data-link draggable="true" data-uuid="{{item.uuid}}" data-type="Item" data-tooltip="{{item.name}}">
+				<img src="{{item.img}}" alt="{{item.name}}" data-item-id="{{item.id}}" class="fu-icon fu-icon--s">
+			</a>
 			{{item.name}}
 		</label>
 	</legend>

@@ -45,14 +45,16 @@ export const DamageTraits = Object.freeze({
 });
 
 /**
- * @description A list of traits in use for certain skills.
+ * @description A list of traits in use for certain skills or class features.
  * @remarks Automatically converted to kebab case.
  */
-export const SkillTraits = Object.freeze({
+export const FeatureTraits = Object.freeze({
 	OverChannel: 'over-channel',
 	Gift: 'gift',
 	Verse: 'verse',
 	Dance: 'dance',
+	ArcanumSummon: 'arcanum-summon',
+	ArcanumDismiss: 'arcanum-dismiss',
 });
 
 /**
@@ -62,17 +64,19 @@ export const SkillTraits = Object.freeze({
  */
 export const Traits = Object.freeze({
 	...ConsumableTraits,
+	...FeatureTraits,
 	...DamageTraits,
 });
 
 export const TraitUtils = Object.freeze({
 	/**
 	 * @param {Set<String>} traits
+	 * @param prefix
 	 * @returns {{tag: string, separator: string, value: string, show: boolean}[]}
 	 */
-	toTags(traits) {
+	toTags(traits, prefix = true) {
 		return [...traits].map((trait) => ({
-			tag: `FU.${trait}`,
+			tag: prefix ? `FU.${trait}` : trait,
 			separator: '',
 			value: '',
 			show: true,
@@ -89,6 +93,7 @@ export const TraitUtils = Object.freeze({
 			value: value,
 		}));
 	},
+
 	/**
 	 * @param {String} trait
 	 */
