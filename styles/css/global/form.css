@@ -160,7 +160,6 @@
 
 .fu-icon__container {
 	display: flex;
-	flex-direction: column;
 }
 
 .fu-icon__badge {
