@@ -415,7 +415,7 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
 
 		// This can be modified here...
-		await CommonEvents.expendResource(actor, targets, expense);
+		await CommonEvents.calculateExpense(actor, targets, expense);
 		return {
 			order: CHECK_RESULT,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',

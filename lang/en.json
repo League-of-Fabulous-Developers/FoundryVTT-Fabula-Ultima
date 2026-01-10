@@ -1651,7 +1651,7 @@
 		"RuleTriggerDamage": "Damage",
 		"RuleTriggerStatus": "Status",
 		"RuleTriggerResourceUpdate": "Resource Update",
-		"RuleTriggerResourceExpend": "Resource Expenditure",
+		"RuleTriggerCalculateExpense": "Calculate Expense",
 		"RuleTriggerCalculateDamage": "Calculate Damage",
 		"RuleTriggerCalculateResource": "Calculate Resource",
 		"RuleTriggerToggle": "Toggle",

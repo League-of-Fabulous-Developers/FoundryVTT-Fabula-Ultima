@@ -27,13 +27,13 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 	}
 
 	static {
-		Object.defineProperty(this, 'TYPE', { value: 'resourceExpendRuleTrigger' });
+		Object.defineProperty(this, 'TYPE', { value: 'calculateExpenseRuleTrigger' });
 	}
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			resource: new fields.StringField({
-				initial: 'hp',
+				initial: 'mp',
 				choices: Object.keys(FU.resources),
 				required: true,
 			}),
@@ -70,9 +70,12 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 		if (context.event.expense.resource !== this.resource) {
 			return false;
 		}
-		if (context.event.expense.source !== this.expenseSource) {
+		if (this.expenseSource && context.event.expense.source !== this.expenseSource) {
 			return false;
 		}
-		return !this.traits.evaluate(context.event.expense.traits);
+		if (!this.traits.evaluate(context.event.expense.traits)) {
+			return false;
+		}
+		return true;
 	}
 }

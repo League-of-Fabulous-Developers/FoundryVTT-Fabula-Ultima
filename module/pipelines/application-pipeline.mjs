@@ -96,10 +96,10 @@ async function handleArcanum(actor, item) {
 			if (selectedArcanaEffect) {
 				const expense = {
 					resource: 'mp',
-					amount: -40,
+					amount: 40,
 					traits: [FeatureTraits.ArcanumSummon],
 				};
-				await CommonEvents.expendResource(actor, [], expense);
+				await CommonEvents.calculateExpense(actor, [], expense);
 				await actor.update({
 					'system.equipped.arcanum': selectedArcana.id,
 				});

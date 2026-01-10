@@ -83,7 +83,7 @@ export const FUHooks = {
 	 * @example callback(event)
 	 * @remarks Uses {@link CalculateExpenseEvent}.
 	 */
-	CALCULATE_EXPENSE_EVENT: 'projectfu.events.expendResource',
+	CALCULATE_EXPENSE_EVENT: 'projectfu.events.calculateExpense',
 	/**
 	 * @description Dispatched after an actor enters crisis.
 	 * @example callback(event)
