@@ -402,7 +402,7 @@ function appendIcon(anchor, name) {
 	const icon = document.createElement(`i`);
 	const className = FU.allIcon[name];
 	icon.classList.add(`fu-icon--xs`, className);
-	icon.style.marginLeft = icon.style.marginRight = '2px';
+	icon.style.marginLeft;
 	anchor.append(icon);
 	return icon;
 }

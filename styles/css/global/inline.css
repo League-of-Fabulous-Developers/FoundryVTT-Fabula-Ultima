@@ -95,6 +95,7 @@ a.inline-roll i {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	line-height: 18px;
 }
 .inline img {
 	border: none;
