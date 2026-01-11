@@ -19,6 +19,7 @@ import { FU } from '../../../helpers/config.mjs';
 import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
+import { ExpressionContext } from '../../../expressions/expressions.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -136,10 +137,16 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			/** @type SpellDataModel **/
 			const spell = item.system;
 			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			// Configure
+			config.addEffects(spell.effects.entries);
 			config.addTraits('spell').addTraitsFromItemModel(spell.traits).addEffects(spell.effects.entries);
 			if (spell.resource.enabled) {
 				config.setResource(spell.resource.type, spell.resource.amount);
 			}
+			this.#addSpellDamage(config, actor, spell, context);
 		};
 	}
 
@@ -151,7 +158,10 @@ export class SpellDataModel extends FUStandardItemDataModel {
 		return async (check, actor, item) => {
 			const config = CheckConfiguration.configure(check);
 			config.setHrZero(modifiers.shift);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
+			// Configure
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
 				const weapon = await ChooseWeaponDialog.prompt(actor, true);
@@ -177,20 +187,27 @@ export class SpellDataModel extends FUStandardItemDataModel {
 				value: spell.rollInfo.accuracy.value,
 			});
 
-			check.additionalData.hasDamage = spell.rollInfo.damage.hasDamage.value;
-
-			if (check.additionalData.hasDamage) {
-				config
-					.setDamage(spell.rollInfo.damage.type.value, spell.rollInfo.damage.value)
-					.setDamageOverride(actor, 'spell')
-					.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
-					.modifyHrZero((hrZero) => hrZero || spell.rollInfo.useWeapon.hrZero.value)
-					.addTraits(spell.rollInfo.damage.type.value, Traits.Damage);
-			}
-
-			// Add typical bonuses
+			this.#addSpellDamage(config, actor, spell, context);
 			config.addTraits('spell').addTraitsFromItemModel(spell.traits).setTargetedDefense('mdef').addEffects(spell.effects.entries);
 		};
+	}
+
+	/**
+	 * @param {CheckConfigurer} config
+	 * @param {FUActor} actor
+	 * @param {SpellDataModel} spell
+	 * @param context
+	 */
+	#addSpellDamage(config, actor, spell, context) {
+		config.check.additionalData.hasDamage = spell.rollInfo.damage.hasDamage.value;
+		if (config.check.additionalData.hasDamage) {
+			config
+				.setDamage(spell.rollInfo.damage.type.value, spell.rollInfo.damage.value)
+				.setDamageOverride(actor, 'spell')
+				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
+				.modifyHrZero((hrZero) => hrZero || spell.rollInfo.useWeapon.hrZero.value)
+				.addTraits(spell.rollInfo.damage.type.value, Traits.Damage);
+		}
 	}
 
 	get attributePartials() {
