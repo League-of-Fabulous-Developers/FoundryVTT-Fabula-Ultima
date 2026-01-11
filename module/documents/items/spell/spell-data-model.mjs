@@ -156,18 +156,9 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
 				const weapon = await ChooseWeaponDialog.prompt(actor, true);
 				if (weapon) {
-					switch (weapon.type) {
-						case 'weapon':
-							check.primary = weapon.system.attributes.primary.value;
-							check.secondary = weapon.system.attributes.secondary.value;
-							break;
-
-						case 'customWeapon':
-							check.primary = weapon.system.attributes.primary;
-							check.secondary = weapon.system.attributes.secondary;
-							break;
-					}
-
+					const weaponAttributes = ChooseWeaponDialog.getAttributes(weapon);
+					check.primary = weaponAttributes.primary;
+					check.secondary = weaponAttributes.secondary;
 					attributeOverride = true;
 					config.addWeaponAccuracy(weapon);
 				}

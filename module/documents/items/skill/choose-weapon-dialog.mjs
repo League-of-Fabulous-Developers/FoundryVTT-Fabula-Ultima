@@ -84,7 +84,59 @@ async function prompt(actor, includeWeaponModules = false) {
 	}
 }
 
+/**
+ * @param {FUItem} weapon
+ */
+function getAccuracy(weapon) {
+	let accuracy = 0;
+	switch (weapon.type) {
+		case 'weapon':
+			accuracy = weapon.system.accuracy.value;
+			break;
+
+		case 'customWeapon':
+			accuracy = weapon.system.accuracy;
+			break;
+
+		// Weapon Modules
+		case 'classFeature':
+			accuracy = weapon.system.data.accuracy.modifier;
+			break;
+	}
+	return accuracy;
+}
+
+/**
+ * @param {FUItem} weapon
+ * @return {CheckAttributes}
+ */
+function getAttributes(weapon) {
+	let primary, secondary;
+	switch (weapon.type) {
+		case 'weapon':
+			primary = weapon.system.attributes.primary.value;
+			secondary = weapon.system.attributes.secondary.value;
+			break;
+
+		case 'customWeapon':
+			primary = weapon.system.attributes.primary;
+			secondary = weapon.system.attributes.secondary;
+			break;
+
+		case 'classFeature':
+			primary = weapon.system.data.accuracy.attr1;
+			secondary = weapon.system.data.accuracy.attr2;
+			break;
+	}
+	return {
+		primary: primary,
+		secondary: secondary,
+	};
+}
+
 export const ChooseWeaponDialog = Object.freeze({
 	prompt,
 	getWeapon,
+	getAccuracy,
+	getAttributes,
 });

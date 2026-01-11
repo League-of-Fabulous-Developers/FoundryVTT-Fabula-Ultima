@@ -316,7 +316,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			config.addTraitsFromItemModel(this.traits);
 
 			// Weapon support
-			if (skill.useWeapon.traits) {
+			if (skill.useWeapon.traits && weaponData.traits) {
 				config.addTraitsFromItemModel(weaponData.traits);
 			}
 			if (skill.useWeapon.damage) {

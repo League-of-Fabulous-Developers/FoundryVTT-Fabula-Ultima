@@ -9,6 +9,7 @@ import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs'
 import { Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from './damage-data.mjs';
 import { UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
+import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 
 // Data keys
 const TARGETS = 'targets';
@@ -346,16 +347,7 @@ export class CheckConfigurer extends CheckInspector {
 	 * @returns {CheckConfigurer}
 	 */
 	addWeaponAccuracy(weapon) {
-		let baseAccuracy = 0;
-		switch (weapon.type) {
-			case 'weapon':
-				baseAccuracy = weapon.system.accuracy.value;
-				break;
-
-			case 'customWeapon':
-				baseAccuracy = weapon.system.accuracy;
-				break;
-		}
+		const baseAccuracy = ChooseWeaponDialog.getAccuracy(weapon);
 		if (baseAccuracy) {
 			this.addModifier('FU.AccuracyCheckBaseAccuracy', baseAccuracy);
 		}
