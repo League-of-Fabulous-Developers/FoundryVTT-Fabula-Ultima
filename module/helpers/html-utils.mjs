@@ -18,7 +18,7 @@ export const HTMLUtils = Object.freeze({
 		return null;
 	},
 	/**
-	 * @param {PointerEvent} event
+	 * @param {PointerEvent|MouseEvent} event
 	 * @returns {KeyboardModifiers}
 	 */
 	getKeyboardModifiers: (event) => {

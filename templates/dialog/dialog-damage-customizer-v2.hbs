@@ -4,13 +4,15 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Modifiers'}}</label>
 		</legend>
-		<span class="fu-dialog-item_label flex-group-center">
+		{{#if context.item}}
+			<span class="fu-dialog-item_label flex-group-center">
 				<img class="fu-icon fu-icon--s"
 					 src="{{ context.item.img }}"
 					 alt="{{context.item.name}}"
 					 data-tooltip="{{ context.item.name }}" />
-			{{context.item.name}}
+				{{context.item.name}}
 			</span>
+		{{/if}}
 		<table class="table-compact">
 			<thead>
 			<tr>

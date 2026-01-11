@@ -14,6 +14,8 @@
  * @property {ResourceExpense} expense
  */
 
+import { FU } from '../helpers/config.mjs';
+
 /**
  * @class DamageData
  * @property {Number} hr The high roll
@@ -22,6 +24,7 @@
  * @property {String} extra An expression to evaluate to add extra damage
  * @property {Boolean} hrZero Whether to treat the high roll as zero.
  * @property {Boolean} base Whether to return the total damage without any modifiers.
+ * @property {Boolean} unlock Whether to unlock full modification of the damage.
  */
 export class DamageData {
 	static get baseDamageModifier() {
@@ -30,6 +33,8 @@ export class DamageData {
 
 	/** @type DamageModifier[] **/
 	_modifiers;
+	/** @type Boolean **/
+	#unlock;
 
 	constructor(data = {}) {
 		const { _modifiers, ..._data } = data;
@@ -87,6 +92,10 @@ export class DamageData {
 	 * @returns {Set<DamageType>}
 	 */
 	getAvailableTypes() {
+		if (this.#unlock) {
+			return new Set(Object.keys(FU.damageTypes));
+		}
+
 		let available = new Set([this.type]);
 		for (const modifier of this._modifiers) {
 			if (!modifier.enabled) {
@@ -105,6 +114,10 @@ export class DamageData {
 	 * @returns {boolean}
 	 */
 	get customizable() {
+		// If it has been set to review
+		if (this.#unlock) {
+			return true;
+		}
 		// If there's more than one available type
 		const available = this.getAvailableTypes();
 		if (available.size > 1) {
@@ -144,5 +157,14 @@ export class DamageData {
 			...data,
 		};
 		this._modifiers.push(modifier);
+	}
+
+	/**
+	 *
+	 * @returns {DamageData}
+	 */
+	unlock() {
+		this.#unlock = true;
+		return this;
 	}
 }

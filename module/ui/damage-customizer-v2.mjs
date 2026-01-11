@@ -22,7 +22,8 @@ export class DamageCustomizerV2 {
 
 		const result = await foundry.applications.api.DialogV2.input({
 			window: {
-				title: game.i18n.localize('FU.DamageCustomizer'),
+				title: game.i18n.localize('FU.ChatApplyDamage'),
+				icon: 'fas fa-heartbeat',
 			},
 			position: {
 				width: 480,
