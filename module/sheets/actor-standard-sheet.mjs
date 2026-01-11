@@ -587,6 +587,36 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	/* -------------------------------------------- */
 	/**
+	 * @override
+	 * @param partId
+	 * @param element
+	 * @param options
+	 * @private
+	 */
+	_attachPartListeners(partId, element, options) {
+		super._attachPartListeners(partId, element, options);
+		switch (partId) {
+			case 'header': {
+				const img = element.querySelector('.profile-img');
+				if (img) {
+					img.addEventListener('contextmenu', (event) => {
+						event.preventDefault();
+						const src = event.currentTarget.getAttribute('src');
+						if (src) {
+							// eslint-disable-next-line no-undef
+							const popout = new ImagePopout(src, {
+								title: this.actor.name,
+								uuid: this.actor.uuid,
+							});
+							popout.render(true);
+						}
+					});
+				}
+			}
+		}
+	}
+
+	/**
 	 * @inheritDoc
 	 * @override
 	 */
