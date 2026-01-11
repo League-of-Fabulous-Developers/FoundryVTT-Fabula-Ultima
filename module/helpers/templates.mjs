@@ -70,6 +70,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 			// Chat Messages
 			'systems/projectfu/templates/chat/chat-check-container.hbs',
+			'systems/projectfu/templates/chat/chat-display-container.hbs',
 			'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 			'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 			'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
@@ -82,7 +83,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 			// Chat Message Partials
 			'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
-			'systems/projectfu/templates/chat/partials/chat-damage.hbs',
+			'systems/projectfu/templates/chat/partials/chat-check-damage.hbs',
 			'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 			'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
 			'systems/projectfu/templates/chat/partials/chat-item-quality.hbs',
