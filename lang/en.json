@@ -832,6 +832,7 @@
 		"ClassFeatureAlchemyDialogRankTitle": "Alchemy",
 		"ClassFeatureAlchemyCost": "IP Cost",
 		"ClassFeatureAlchemyDialogRankLabel": "Use Alchemy",
+		"ClassFeatureAlchemyRollTableMissing": "You must set the <strong>target and effect rollable tables</strong> in the configuration of this class feature in order for the automation to work.",
 		"ClassFeatureAlchemyRollTableExplanation": "Rollable Tables are expected to have exactly 20 possible results.",
 		"ClassFeatureAlchemyResult": "Result",
 		"ClassFeatureAlchemyTargets": "Available Targets",
