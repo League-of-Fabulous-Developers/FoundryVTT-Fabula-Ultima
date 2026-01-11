@@ -228,8 +228,8 @@ export default class FoundryUtils {
 			),
 		};
 		const content = await handlebars.renderTemplate(systemTemplatePath('dialog/dialog-selection-radio'), context);
-		const { index } = await api.DialogV2.input({
-			window: { title: title },
+		const result = await api.DialogV2.input({
+			window: { title: title, icon: 'fas fa-question-circle' },
 			label: game.i18n.localize('FU.Submit'),
 			rejectClose: false,
 			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
@@ -239,8 +239,8 @@ export default class FoundryUtils {
 			},
 		});
 
-		if (index) {
-			return options[index];
+		if (result && result.index) {
+			return options[result.index];
 		} else {
 			return null;
 		}
