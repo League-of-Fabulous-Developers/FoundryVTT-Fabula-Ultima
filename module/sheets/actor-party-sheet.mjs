@@ -22,6 +22,7 @@ import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-render
 import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
 import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -412,18 +413,11 @@ export class FUPartySheet extends FUActorSheet {
 	static async promptAwardResources() {
 		const characters = await this.party.getCharacterActors();
 		const defaultSource = StringUtils.localize('USER.RoleGamemaster');
-
-		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: StringUtils.localize('FU.AwardResources') },
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-award-resources.hbs'), {
-				defaultSource: defaultSource,
-				characters: characters,
-			}),
-			rejectClose: false,
-			ok: {
-				label: 'FU.Confirm',
-			},
+		const content = await FoundryUtils.renderTemplate('dialog/dialog-award-resources', {
+			defaultSource: defaultSource,
+			characters: characters,
 		});
+		const result = await FoundryUtils.input('FU.AwardResources', content);
 
 		if (result) {
 			const resource = result.resource;

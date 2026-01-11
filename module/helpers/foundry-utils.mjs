@@ -69,6 +69,24 @@ const { api, fields, handlebars } = foundry.applications;
 export default class FoundryUtils {
 	/**
 	 * @param {String} title
+	 * @param content
+	 * @returns {Promise<*>}
+	 */
+	static async input(title, content) {
+		const result = await foundry.applications.api.DialogV2.input({
+			window: { title: title },
+			content: content,
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			rejectClose: false,
+			ok: {
+				label: 'FU.Confirm',
+			},
+		});
+		return result;
+	}
+
+	/**
+	 * @param {String} title
 	 * @param {FormSelectOption[]} options
 	 * @param {string} [selected] the default selected value
 	 * @returns {Promise<String|null>} The single selected option
@@ -214,6 +232,7 @@ export default class FoundryUtils {
 			window: { title: title },
 			label: game.i18n.localize('FU.Submit'),
 			rejectClose: false,
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
 			content: content,
 			ok: {
 				label: 'FU.Confirm',
