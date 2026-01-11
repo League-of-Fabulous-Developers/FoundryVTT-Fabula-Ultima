@@ -26,7 +26,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		check.secondary = weapon.attributes.secondary.value;
 
 		CheckConfiguration.configure(check)
-			.addWeaponAccuracy(weapon)
+			.addWeaponAccuracy(item)
 			.setDamage(weapon.damageType.value, weapon.damage.value)
 			.setWeaponTraits({
 				weaponType: weapon.type.value,
@@ -106,6 +106,7 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
+			// TODO: Factor out of schema field
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),

@@ -342,11 +342,20 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {WeaponDataModel} weapon
+	 * @param {FUItem} weapon
 	 * @returns {CheckConfigurer}
 	 */
 	addWeaponAccuracy(weapon) {
-		const baseAccuracy = weapon.accuracy.value;
+		let baseAccuracy = 0;
+		switch (weapon.type) {
+			case 'weapon':
+				baseAccuracy = weapon.system.accuracy.value;
+				break;
+
+			case 'customWeapon':
+				baseAccuracy = weapon.system.accuracy;
+				break;
+		}
 		if (baseAccuracy) {
 			this.addModifier('FU.AccuracyCheckBaseAccuracy', baseAccuracy);
 		}

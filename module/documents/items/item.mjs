@@ -10,7 +10,8 @@ import { ItemBehaviourMixin } from './item-behaviour-mixin.mjs';
  * @property {String} uuid
  * @property {String} name
  * @property {Map<String, Object>} effects
- * @property {Object} FUActor
+ * @property {String} type The type of the data model used.
+ * @property {DataModel} system The data model used.
  */
 
 /**
