@@ -1738,6 +1738,8 @@
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
 		},
+		"OptionPressureSystem": "Enable Pressure System?",
+		"OptionPressureSystemHint": "Enables the Pressure and Stagger system.",
 		"CompendiumBrowser": "Compendium Browser",
 		"CompendiumBrowserOpen": "Open Compendium Browser",
 		"Actors": "Actors",

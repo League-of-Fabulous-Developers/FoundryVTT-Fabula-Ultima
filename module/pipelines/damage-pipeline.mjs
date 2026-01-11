@@ -24,6 +24,7 @@ import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
+import { PressureSystem } from './pressure-system.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -144,6 +145,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
  * @property {DamageBreakdown[]} breakdown
+ * @property {Boolean} vulnerable Whether the actor was vulnerable to the damage they took.
  * @extends PipelineContext
  */
 export class DamagePipelineContext extends PipelineContext {
@@ -346,8 +348,13 @@ function collectMultipliers(context) {
 		context.addModifier('scaleIncomingDamage', scaleIncomingDamage);
 	}
 
-	const modifier = affinityDamageModifier[context.affinity]();
-	context.addModifier('affinity', modifier);
+	// Affinity Damage
+	if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.affinity === FU.affValue.vulnerability) {
+		context.vulnerable = true;
+	} else {
+		const modifier = affinityDamageModifier[context.affinity]();
+		context.addModifier('affinity', modifier);
+	}
 }
 
 /**
@@ -471,11 +478,17 @@ async function process(request) {
 		damageTaken = Math.abs(damageTaken);
 
 		// Chat message
-		const affinityString = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+		const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 			damage: damageTaken,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
 		});
+
+		let pressureContent;
+		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.vulnerable) {
+			PressureSystem.process(context);
+			pressureContent = 'OW THAT WAS MY PRESSURE POINT';
+		}
 
 		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
 		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
@@ -486,7 +499,7 @@ async function process(request) {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: game.i18n.localize(FU.affType[context.affinity]),
 				flags: flags,
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
+				content: await FoundryUtils.renderTemplate('chat/chat-apply-damage', {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,
@@ -495,7 +508,8 @@ async function process(request) {
 					// TODO: Replace damage with amount in the localizations
 					damage: damageTaken,
 					amount: damageTaken,
-					type: affinityString,
+					affinityMessage: affinityMessage,
+					pressureContent: pressureContent,
 					from: request.sourceInfo.name,
 					sourceActorUuid: request.sourceInfo.actorUuid,
 					resource: resource.toUpperCase(),

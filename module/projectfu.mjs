@@ -107,6 +107,7 @@ import { RulePredicateRegistry } from './documents/effects/predicates/rule-predi
 import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
 import { InlineAction } from './helpers/inline-action.mjs';
+import { PressureSystem } from './pipelines/pressure-system.mjs';
 import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
 import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
 
@@ -380,6 +381,7 @@ Hooks.once('init', async () => {
 	SystemControls.initialize();
 	PlayerListEnhancements.initialize();
 	PdfPagerIntegration.initialize();
+	PressureSystem.initialize();
 	CompendiumBrowser.initialize();
 
 	// // Disable the token drag ruler measurement, unless they've specifically
