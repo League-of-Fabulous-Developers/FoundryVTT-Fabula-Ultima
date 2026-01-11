@@ -344,7 +344,8 @@ function initialize() {
 	Hooks.on(FUHooks.RESOLVE_CHECK_EVENT, onResolveCheckEvent);
 	Hooks.on(FUHooks.NOTIFICATION_EVENT, onNotificationEvent);
 	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
-	AsyncHooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
+	Hooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
+	//AsyncHooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_RESOURCE_EVENT, onCalculateResourceEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_EXPENSE_EVENT, onCalculateExpenseEvent);
 	AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);

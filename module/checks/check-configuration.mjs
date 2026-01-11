@@ -83,8 +83,10 @@ class CheckInspector {
 	getDamage() {
 		const data = this.#check.additionalData[DAMAGE];
 		if (data) {
+			// Have to rebuild certain properties
 			data.hr = this.getHighRoll();
 			data.hrZero = this.getHrZero();
+
 			if (this.hasTrait(Traits.Base)) {
 				data.base = true;
 			}
@@ -265,6 +267,15 @@ export class CheckConfigurer extends CheckInspector {
 	 */
 	setDamage(types, baseDamage) {
 		this.check.additionalData[DAMAGE] = DamageData.construct(types, baseDamage);
+		return this;
+	}
+
+	/**
+	 * @param {DamageData} damageData
+	 * @return {CheckConfigurer}
+	 */
+	overrideDamage(damageData) {
+		this.check.additionalData[DAMAGE] = damageData;
 		return this;
 	}
 

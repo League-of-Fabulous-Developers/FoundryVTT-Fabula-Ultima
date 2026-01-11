@@ -56,6 +56,9 @@ export class DamageCustomizerV2 {
 			/** @param {Event} event
 			 *  @param {HTMLElement} dialog **/
 			render: (event, dialog) => {
+				const customDamageBonusInput = dialog.element.querySelector('#customDamage');
+				const hrInput = dialog.element.querySelector('#hr');
+
 				// Update type options accordingly
 				const typeButtons = dialog.element.querySelectorAll('.fu-dialog__icon-option');
 				function updateTypeOptions() {
@@ -77,21 +80,35 @@ export class DamageCustomizerV2 {
 					}
 				}
 				updateTypeOptions();
+
 				// Function to update total damage and icons based on HR Zero status, and extra damage
 				const totalDamageSpan = dialog.element.querySelector('#total-damage');
 				function updateTotalDamage() {
 					let components = [];
-					if (context.damage.hr > 0) {
+					// HR
+					if (context.damage.hr > 0 && hrInput.checked) {
 						components.push(`${context.damage.hr} (${StringUtils.localize('FU.HighRollAbbr')})`);
 					}
+					// Modifiers
 					context.damage.modifiers.forEach((modifier) => {
 						if (modifier.amount > 0) {
 							components.push(`${modifier.amount} (${StringUtils.localize(modifier.label)})`);
 						}
 					});
+					// Custom Bonus
+					const customBonus = customDamageBonusInput.value;
+					if (customBonus && customBonus > 0) {
+						components.push(`${customBonus} (${StringUtils.localize('FU.DamageBonusCustom')})`);
+					}
 					totalDamageSpan.textContent = components.join(' + ');
 				}
 				updateTotalDamage();
+				customDamageBonusInput.addEventListener('change', () => {
+					updateTotalDamage();
+				});
+				hrInput.addEventListener('change', () => {
+					updateTotalDamage();
+				});
 
 				// Modifier toggles
 				const modifierCheckboxes = dialog.element.querySelectorAll("input[type='checkbox'][name^='context.damage._modifiers.']");
@@ -110,6 +127,17 @@ export class DamageCustomizerV2 {
 		if (result) {
 			// const expanded = foundry.utils.expandObject(result);
 			damageData.type = context.selectedType;
+			if (result.hr === false) {
+				damageData.hrZero = true;
+				damageData.hr = 0;
+			}
+			// Custom damage
+			if (result.customDamageBonus) {
+				const bonus = Number.parseInt(result.customDamageBonus);
+				if (bonus > 0) {
+					damageData.addModifier('FU.DamageBonusCustom', bonus);
+				}
+			}
 		} else {
 			throw Error('Canceled by user');
 		}
