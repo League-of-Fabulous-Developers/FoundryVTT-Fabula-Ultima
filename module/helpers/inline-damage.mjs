@@ -51,10 +51,7 @@ function damageEnricher(text, options) {
 		}
 
 		// ICON
-		const span = document.createElement('span');
-		span.classList.add(`inline`, 'inline-group');
-		InlineHelper.appendIcon(span, type);
-		anchor.append(span);
+		InlineHelper.appendIcon(anchor, type);
 		return anchor;
 	}
 
