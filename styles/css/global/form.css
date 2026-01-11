@@ -167,7 +167,6 @@
 }
 
 .fu-icon__badge {
-	--icon-size: 100%;
 	width: var(--icon-size);
 	height: var(--icon-size);
 	position: relative;

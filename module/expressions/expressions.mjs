@@ -407,11 +407,14 @@ function evaluateVariables(expression, context) {
 }
 
 /**
- * @param {Number} value
+ * @param {Number|String} value
  * @remarks In FU, numbers are always rounded down>
  */
 function round(value) {
-	return Math.floor(value);
+	if (Number.isNaN(value)) {
+		return Math.floor(value);
+	}
+	return value;
 }
 
 /**
