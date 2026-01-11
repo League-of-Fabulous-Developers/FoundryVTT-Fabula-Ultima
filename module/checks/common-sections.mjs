@@ -262,7 +262,23 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 					order: CHECK_ROLL,
 					partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
 					data: {
+						type: checkData.type,
+						hasAccuracy: checkData.type === 'accuracy' || checkData.type === 'magic',
 						check: checkData,
+						damage: damageData,
+						translation: {
+							damageTypes: FU.damageTypes,
+							damageIcon: FU.affinityIcons,
+						},
+					},
+				});
+				break;
+
+			case 'display':
+				sections.push({
+					order: CHECK_ROLL,
+					partial: 'systems/projectfu/templates/chat/chat-display-container.hbs',
+					data: {
 						damage: damageData,
 						translation: {
 							damageTypes: FU.damageTypes,

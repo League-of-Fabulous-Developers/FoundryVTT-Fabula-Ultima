@@ -153,15 +153,22 @@ const supportCheck = async (actor, configCallback) => {
  * @return {CheckV2}
  */
 const checkFromCheckResult = (check) => {
-	return {
+	const result = {
 		id: foundry.utils.randomID(),
 		type: check.type,
-		primary: check.primary.attribute,
-		secondary: check.secondary.attribute,
-		modifiers: check.modifiers,
-		critThreshold: check.critThreshold,
 		additionalData: { ...check.additionalData },
 	};
+
+	if (check.type !== 'display') {
+		Object.assign(result, {
+			primary: check.primary.attribute,
+			secondary: check.secondary.attribute,
+			modifiers: check.modifiers,
+			critThreshold: check.critThreshold,
+		});
+	}
+
+	return result;
 };
 
 /**
@@ -180,23 +187,28 @@ const modifyCheck = async (checkId, callback) => {
 	const message = game.messages.search({ filters: [{ field: 'flags.projectfu.CheckV2.id', value: checkId }] }).at(0);
 	if (message) {
 		/** @type CheckResultV2 */
-		const oldResult = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
-		const actor = await fromUuid(oldResult.actorUuid);
-		const item = await fromUuid(oldResult.itemUuid);
-		let callbackResult = await callback(oldResult, actor, item);
+		const oldCheck = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
+		const actor = await fromUuid(oldCheck.actorUuid);
+		const item = await fromUuid(oldCheck.itemUuid);
+		let callbackResult = await callback(oldCheck, actor, item);
 		if (typeof callbackResult === 'undefined') {
 			callbackResult = true;
 		}
 		if (callbackResult) {
-			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
-			// Do not invoke the hooks when modifying a check
-			const result = await processResult(check, roll, actor, item, false);
+			let config;
+			if (oldCheck.type !== 'display') {
+				const newCheck = checkFromCheckResult(oldCheck);
+				const { check = newCheck, roll = Roll.fromData(oldCheck.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
+				const result = await processResult(check, roll, actor, item, false);
+				config = CheckConfiguration.configure(result);
+			} else {
+				config = CheckConfiguration.configure(oldCheck);
+			}
+
 			// Update target results now that the result changed
-			const configure = CheckConfiguration.configure(result);
-			configure.updateTargetResults();
+			config.updateTargetResults();
 			// Re-render the check
-			// TODO: Update the original?
-			return renderCheck(result, actor, item, message.flags);
+			return renderCheck(oldCheck, actor, item, message.flags);
 		}
 	} else {
 		throw new Error('Check to be modified not found.');
@@ -601,6 +613,7 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
  * @type {CheckType[]}
  */
 const allExceptDisplay = ['accuracy', 'attribute', 'group', 'magic', 'open', 'opposed', 'support', 'initiative'];
+
 /**
  * @param {ChatMessage | string} message a ChatMessage or ID of a ChatMessage
  * @param {CheckType | CheckType[]} [type]

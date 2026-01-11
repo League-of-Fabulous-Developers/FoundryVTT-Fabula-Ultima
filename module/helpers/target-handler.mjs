@@ -71,7 +71,7 @@ export async function getSelected(warn = true) {
 export function getTargeted(tokens = false, warn = true) {
 	const targets = Array.from(game.user.targets)
 		.map((target) => (tokens ? target : target.actor))
-		.filter((actor) => actor.isCharacterType);
+		.filter((actor) => actor);
 
 	if (targets.length === 0 && warn) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
