@@ -5,6 +5,10 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
 import { Flags } from './flags.mjs';
 import { DamageData } from '../checks/damage-data.mjs';
+import { StringUtils } from './string-utils.mjs';
+import { HTMLUtils } from './html-utils.mjs';
+import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
+import { DamageTraits } from '../pipelines/traits.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -39,7 +43,13 @@ function damageEnricher(text, options) {
 		InlineHelper.appendIcon(anchor, 'damage');
 
 		// TOOLTIP
-		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
+		anchor.setAttribute(
+			'data-tooltip',
+			StringUtils.localize('FU.ChatApplyDamageTooltip', {
+				amount: amount,
+				type: type,
+			}),
+		);
 		if (label) {
 			anchor.append(label);
 			anchor.dataset.amount = amount;
@@ -67,6 +77,7 @@ async function onRender(element) {
 	const type = renderContext.dataset.type;
 
 	element.addEventListener('click', async function (event) {
+		const keyboardModifiers = HTMLUtils.getKeyboardModifiers(event);
 		let targets = await targetHandler();
 		if (targets.length > 0) {
 			let context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
@@ -76,11 +87,26 @@ async function onRender(element) {
 			}
 			let amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
 			const damageData = DamageData.construct(type, amount);
+			let traits = [];
+			// SHIFT: Ignore resistances
+			if (keyboardModifiers.shift) {
+				traits.push(DamageTraits.IgnoreResistances);
+			}
+			// CTRL: Customize the damage
+			if (keyboardModifiers.ctrl) {
+				damageData.unlock();
+				await DamageCustomizerV2.open(damageData, context.item);
+				// SHIFT: Ignore resistances
+				if (keyboardModifiers.shift) {
+					traits.push(DamageTraits.IgnoreImmunities);
+				}
+			}
 			// Check source actor for outgoing damage bonuses
 			if (context.actor) {
 				DamagePipeline.collectOutgoingBonuses(context.actor, damageData);
 			}
 			const request = new DamageRequest(renderContext.sourceInfo, targets, damageData);
+			request.addTraits(traits);
 			if (renderContext.dataset.traits) {
 				request.addTraits(...renderContext.dataset.traits.split(','));
 			}

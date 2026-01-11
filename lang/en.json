@@ -1316,6 +1316,7 @@
 		"DamageBonusCategorySpear": "Spear Damage Bonus",
 		"DamageBonusCategorySword": "Sword Damage Bonus",
 		"DamageBonusCategoryThrown": "Thrown Damage Bonus",
+		"DamageBonusCustom": "Custom Damage Bonus",
 		"DamageOnRoll": "Damage On Roll",
 		"DamageOnApply": "Damage On Apply",
 		"CheckSituationalModifier": "Situational Modifier",

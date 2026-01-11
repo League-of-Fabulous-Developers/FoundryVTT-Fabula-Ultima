@@ -742,10 +742,16 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	registerCallback(async (check, actor, item) => {
 		const config = CheckConfiguration.configure(check);
 		if (config.hasDamage) {
-			await CommonEvents.calculateDamage(actor, item, config);
+			CommonEvents.calculateDamage(actor, item, config);
+			// TODO: Better solution
+			await new Promise((resolve) => setTimeout(resolve, 10));
 			const damage = config.getDamage();
 			if (damage.customizable) {
 				await DamageCustomizerV2.open(damage, item);
+				// If HR0 was set
+				if (damage.hrZero) {
+					config.setHrZero(true);
+				}
 			}
 			for (const modifier of damage.modifiers) {
 				if (modifier.traits && modifier.traits.length > 0) {

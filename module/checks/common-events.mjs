@@ -126,7 +126,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
  * @property {CheckConfigurer} config
  */
 
-async function calculateDamage(actor, item, config) {
+function calculateDamage(actor, item, config) {
 	const damageSource = InlineHelper.resolveItemGroup(item);
 	const targets = config.getTargets();
 	const event = {
@@ -137,7 +137,8 @@ async function calculateDamage(actor, item, config) {
 		config: config,
 		type: config.getDamage()?.type,
 	};
-	await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
+	Hooks.call(FUHooks.CALCULATE_DAMAGE_EVENT, event);
+	//await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
 }
 
 /**

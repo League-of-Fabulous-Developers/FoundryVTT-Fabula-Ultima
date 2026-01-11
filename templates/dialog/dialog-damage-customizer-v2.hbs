@@ -4,13 +4,15 @@
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Modifiers'}}</label>
 		</legend>
-		<span class="fu-dialog-item_label flex-group-center">
+		{{#if context.item}}
+			<span class="fu-dialog-item_label flex-group-center">
 				<img class="fu-icon fu-icon--s"
 					 src="{{ context.item.img }}"
 					 alt="{{context.item.name}}"
 					 data-tooltip="{{ context.item.name }}" />
-			{{context.item.name}}
+				{{context.item.name}}
 			</span>
+		{{/if}}
 		<table class="table-compact">
 			<thead>
 			<tr>
@@ -57,6 +59,41 @@
 					</td>
 				</tr>
 			{{/each}}
+			<!-- HR -->
+			{{#if context.damage.hr}}
+				<tr>
+					<th>{{localize 'FU.HighRollAbbr'}}</th>
+					<td></td>
+					<td>
+						{{context.damage.hr}}
+					</td>
+					<td></td>
+					<td></td>
+					<td>
+						<label>
+							<input type="checkbox"
+								   id="hr"
+								   name="hr"
+								   {{#unless context.damage.hrZero}}checked{{/unless}}
+							/>
+						</label>
+					</td>
+				</tr>
+			{{/if}}
+			<!-- Extra Damage-->
+			<tr>
+				<th>{{localize 'FU.DamageBonusCustom'}}</th>
+				<td></td>
+				<td>
+					<label>
+						<input id="customDamage"
+							   type="number"
+							   inputmode="numeric"
+							   style="text-align: center;"
+							   name="customDamageBonus" />
+					</label>
+				</td>
+			</tr>
 			</tbody>
 		</table>
 	</fieldset>
