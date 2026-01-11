@@ -294,6 +294,10 @@ function getSceneCharacters(targets) {
  * @return {Promise<void>}
  */
 async function evaluate(type, event, source, targets, data = undefined) {
+	// This can happen when sending items to chat.
+	if (!event.source) {
+		return;
+	}
 	// Always include the source as part of the scene character pool; useful for when they are not part of the encounter
 	const sceneCharacters = getSceneCharacters([source, ...targets]);
 	for (const character of sceneCharacters) {

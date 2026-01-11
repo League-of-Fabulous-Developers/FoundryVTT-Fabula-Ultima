@@ -46,6 +46,18 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		return this.item.system;
 	}
 
+	/** @inheritDoc */
+	_getHeaderControls() {
+		const controls = super._getHeaderControls();
+		controls.push({
+			label: game.i18n.localize('FU.ChatMessageSendHint'),
+			icon: 'fas fa-comment',
+			visible: true,
+			action: 'sendToChat',
+		});
+		return controls;
+	}
+
 	/**
 	 * @inheritDoc
 	 * @type {ApplicationConfiguration & ApplicationDragDropConfiguration}
@@ -68,6 +80,8 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			// Partials
 			addArrayElement: FUItemSheet.#addArrayElement,
 			removeArrayElement: FUItemSheet.#removeArrayElement,
+			// Header
+			sendToChat: FUItemSheet.#sendToChat,
 		},
 		scrollY: ['.sheet-body'],
 		position: { width: 700, height: 'auto' },
@@ -539,21 +553,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 	/* -------------------------------------------- */
-
-	/**
-	 * @override
-	 */
-	_getHeaderButtons() {
-		const buttons = super._getHeaderButtons();
-		buttons.unshift({
-			label: game.i18n.localize('FU.ChatMessageSend'),
-			class: 'send-to-chat',
-			icon: 'fas fa-comment',
-			onclick: this._onSendToChat.bind(this),
-		});
-		return buttons;
-	}
-
 	/**
 	 * @override
 	 */
@@ -567,10 +566,15 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		return data;
 	}
 
-	_onSendToChat(event) {
-		event.preventDefault();
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #sendToChat(event) {
 		const item = this.item;
-		Checks.display(this, item);
+		return Checks.display(item.parent, item);
 	}
 
 	/**
