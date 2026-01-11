@@ -1,6 +1,6 @@
 /**
  * @description Dispatched by the combat during its lifetime
- * @property {FU.combatEvent} type The type of event
+ * @property {FUCombatEventType} type The type of event
  * @property {Number} round The round the event is taking place in
  * @property {FUCombatant} combatant The current combatant taking a turn, which can be null.
  * @property {FUActor|*} actor The actor involved in the event, which can be null.

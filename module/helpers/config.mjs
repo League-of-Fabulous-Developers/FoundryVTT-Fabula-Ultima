@@ -592,6 +592,10 @@ FU.duration = {
 };
 
 /**
+ * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
+ */
+
+/**
  * @description Events dispatched during conflict scenes
  */
 FU.combatEvent = {

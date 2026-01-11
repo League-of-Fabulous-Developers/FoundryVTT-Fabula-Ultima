@@ -64,6 +64,7 @@ export const SETTINGS = Object.freeze({
 	optionZeroPower: 'optionZeroPower',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	technospheres: 'useTechnospheres',
+	pressureSystem: 'pressureSystem',
 	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
@@ -85,15 +86,14 @@ export const SETTINGS = Object.freeze({
 	opportunities: 'opportunities',
 	affinityResistance: 'affinityResistance',
 	affinityVulnerability: 'affinityVulnerability',
+	optionCrisisMultiplier: 'optionCrisisMultiplier',
 	// Party
 	activeParty: 'optionActiveParty',
-	// STATE
+	// Class Features
 	activeWellsprings: 'activeWellsprings',
-
+	// Drag ruler
 	optionEnableDragRulerGridless: 'optionEnableDragRulerGridless',
 	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
-
-	optionCrisisMultiplier: 'optionCrisisMultiplier',
 });
 
 /**
@@ -192,7 +192,7 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule, SETTINGS.technospheres]),
+		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule, SETTINGS.technospheres, SETTINGS.pressureSystem]),
 		restricted: true,
 	});
 
@@ -238,6 +238,16 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.technospheres, {
 		name: game.i18n.localize('FU.OptionTechnospheres'),
 		hint: game.i18n.localize('FU.OptionTechnospheresHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.pressureSystem, {
+		name: game.i18n.localize('FU.OptionPressureSystem'),
+		hint: game.i18n.localize('FU.OptionPressureSystemHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
