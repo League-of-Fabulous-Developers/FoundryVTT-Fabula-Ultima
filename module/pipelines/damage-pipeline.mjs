@@ -24,7 +24,7 @@ import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
-import { PressureSystem } from './pressure-system.mjs';
+import { PressureSystem } from '../systems/pressure-system.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -349,9 +349,19 @@ function collectMultipliers(context) {
 	}
 
 	// Affinity Damage
+	let applyAffinityDamage = true;
 	if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.affinity === FU.affValue.vulnerability) {
-		context.vulnerable = true;
-	} else {
+		const stagger = context.actor.resolveEffect('stagger');
+		if (!stagger) {
+			context.vulnerable = true;
+			const pressure = context.actor.resolveEffect('pressure');
+			if (pressure) {
+				applyAffinityDamage = false;
+			}
+		}
+	}
+
+	if (applyAffinityDamage) {
 		const modifier = affinityDamageModifier[context.affinity]();
 		context.addModifier('affinity', modifier);
 	}
@@ -484,10 +494,15 @@ async function process(request) {
 			affinityIcon: FU.affIcon[context.damageType],
 		});
 
-		let pressureContent;
+		// Additional content
+		let content = [];
+		/** @type PressureProcessResult **/
+		let pressureProcess;
 		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.vulnerable) {
-			PressureSystem.process(context);
-			pressureContent = 'OW THAT WAS MY PRESSURE POINT';
+			pressureProcess = await PressureSystem.processVulnerability(context);
+			if (pressureProcess) {
+				content.push(pressureProcess.content);
+			}
 		}
 
 		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
@@ -509,7 +524,8 @@ async function process(request) {
 					damage: damageTaken,
 					amount: damageTaken,
 					affinityMessage: affinityMessage,
-					pressureContent: pressureContent,
+					content: content,
+					pressureContent: pressureProcess?.content,
 					from: request.sourceInfo.name,
 					sourceActorUuid: request.sourceInfo.actorUuid,
 					resource: resource.toUpperCase(),
@@ -518,6 +534,11 @@ async function process(request) {
 				}),
 			}),
 		);
+
+		// OPTIONAL: If staggered
+		if (pressureProcess?.staggered) {
+			updates.push(PressureSystem.createStaggerChatMessage(context));
+		}
 
 		// Handle post-damage traits
 		if (damageTaken > 0) {

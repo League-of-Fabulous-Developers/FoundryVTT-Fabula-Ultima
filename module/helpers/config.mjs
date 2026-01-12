@@ -591,9 +591,9 @@ FU.duration = {
 	special: 'FU.Special',
 };
 
-/**
- * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
- */
+// /**
+//  * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
+//  */
 
 /**
  * @description Events dispatched during conflict scenes

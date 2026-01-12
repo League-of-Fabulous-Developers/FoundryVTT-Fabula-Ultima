@@ -511,7 +511,7 @@ export class FUActor extends Actor {
 		}
 		// Search active effects: match the id on the progress track
 		for (const effect of this.effects.values()) {
-			if (effect.system.rules.progress.enabled) {
+			if (effect.system.rules?.progress?.enabled) {
 				const progress = effect.system.rules.progress;
 				if (progress.id === id) {
 					return progress;

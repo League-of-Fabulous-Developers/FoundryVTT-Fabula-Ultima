@@ -26,4 +26,19 @@ export class AffinitiesDataModel extends foundry.abstract.DataModel {
 			poison: new EmbeddedDataField(AffinityDataModel, {}),
 		};
 	}
+
+	/** @returns {Record<string, AffinityDataModel>} */
+	get all() {
+		return {
+			physical: this.physical,
+			air: this.air,
+			bolt: this.bolt,
+			dark: this.dark,
+			earth: this.earth,
+			fire: this.fire,
+			ice: this.ice,
+			light: this.light,
+			poison: this.poison,
+		};
+	}
 }

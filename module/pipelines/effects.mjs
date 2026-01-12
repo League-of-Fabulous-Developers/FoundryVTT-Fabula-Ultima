@@ -231,7 +231,27 @@ export function prepareActiveEffectCategories(effects) {
  * @returns {boolean} True if the effect can only be managed by the system
  */
 function canBeRemoved(effect) {
-	return !effect.statuses.has('crisis') && !effect.statuses.has('ko');
+	const list = ['crisis', 'ko'];
+	for (const el of list) {
+		if (effect.statuses.has(el)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
+ * @param effect
+ * @returns {boolean} True if the effect can be mentioned in chat messages.
+ */
+function isVerbose(effect) {
+	const list = ['crisis', 'ko', 'pressure', 'stagger'];
+	for (const el of list) {
+		if (effect.statuses.has(el)) {
+			return false;
+		}
+	}
+	return true;
 }
 
 // Helper function to generate the @EFFECT format string
@@ -363,7 +383,7 @@ async function applyEffect(document, effect, sourceInfo, config = undefined) {
 			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
 			return;
 		}
-		const flags = createEffectFlags(effect, sourceInfo, sourceInfo.fuid);
+		const flags = createEffectFlags(effect, sourceInfo, sourceInfo?.fuid);
 		const instance = await ActiveEffect.create(
 			{
 				...effect,
@@ -372,14 +392,14 @@ async function applyEffect(document, effect, sourceInfo, config = undefined) {
 			{ parent: document },
 		);
 		await applyConfiguration(instance, config);
-		await sendToChatEffectAdded(instance, document, sourceInfo.name);
+		await sendToChatEffectAdded(instance, document, sourceInfo?.name);
 		return instance;
 	}
 }
 
 /**
  * @param {FUActor|FUItem} document
- * @param source
+ * @param {InlineSourceInfo} source
  * @param {FUActiveEffect} effect
  */
 function removeEffect(document, source, effect) {
@@ -409,7 +429,7 @@ function removeEffect(document, source, effect) {
  */
 async function sendToChatEffectAdded(effect, document, source) {
 	console.info(`Added effect: ${effect.uuid} on actor uuid: ${document.uuid}`);
-	if (game.combat && canBeRemoved(effect)) {
+	if (game.combat && isVerbose(effect)) {
 		await ChatMessage.create({
 			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 			content: await FoundryUtils.renderTemplate('chat/chat-apply-effect', {
@@ -425,7 +445,7 @@ async function sendToChatEffectAdded(effect, document, source) {
 
 function sendToChatEffectRemoved(effect, actor) {
 	console.log(`Removing effect: ${effect.name} from actor ${actor.uuid}`);
-	if (game.combat && canBeRemoved(effect)) {
+	if (game.combat && isVerbose(effect)) {
 		ChatMessage.create({
 			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 			content: game.i18n.format('FU.EffectRemoveMessage', {
@@ -830,7 +850,9 @@ async function onRestEvent(event) {
 }
 
 const BOONS_AND_BANES = Object.freeze(
-	Object.fromEntries(['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked', 'focus'].map((value) => [value, FU.statusEffects[value]])),
+	Object.fromEntries(
+		['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked', 'focus', 'pressure', 'stagger'].map((value) => [value, FU.statusEffects[value]]),
+	),
 );
 const DAMAGE_TYPES = Object.freeze((({ untyped, ...rest }) => rest)(FU.damageTypes));
 const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });
@@ -849,7 +871,7 @@ function initialize() {
  */
 export const Effects = Object.freeze({
 	initialize,
-	instantiateEffect: getEffectData,
+	getEffectData,
 	removeEffect,
 	applyEffect,
 	canBeRemoved,
