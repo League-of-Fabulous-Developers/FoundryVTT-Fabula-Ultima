@@ -7,6 +7,7 @@ import { FUHooks } from '../hooks.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { CombatEvent } from './combatEvent.mjs';
+import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 
 export const FRIENDLY = 'friendly';
 export const HOSTILE = 'hostile';
@@ -696,6 +697,6 @@ export class FUCombat extends foundry.documents.Combat {
 	 * @param {number} index
 	 */
 	async promptTrack(index) {
-		await ProgressDataModel.promptCheckAtIndexForDocument(this, 'system.tracks', index);
+		await ProgressPipeline.promptCheckAtIndexForDocument(this, 'system.tracks', index);
 	}
 }

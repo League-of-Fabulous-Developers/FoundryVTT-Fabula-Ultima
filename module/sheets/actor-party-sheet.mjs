@@ -23,6 +23,7 @@ import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-re
 import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -326,7 +327,7 @@ export class FUPartySheet extends FUActorSheet {
 		if (alternate && event.button === 2) {
 			increment = -increment;
 		}
-		return ProgressDataModel.updateAtIndexForDocument(this.actor, 'system.tracks', Number.parseInt(index), increment);
+		return ProgressPipeline.updateAtIndexForDocument(this.actor, 'system.tracks', Number.parseInt(index), increment);
 	}
 
 	/**
@@ -336,7 +337,7 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #onPromptTrack(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
-		return ProgressDataModel.promptCheckAtIndexForDocument(this.actor, 'system.tracks', index);
+		return ProgressPipeline.promptCheckAtIndexForDocument(this.actor, 'system.tracks', index);
 	}
 
 	async _onDropItem(event, item) {

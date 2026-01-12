@@ -2,11 +2,11 @@
     {{{localize message actor=actor damage=damage amount=amount type=affinityMessage from=from resource=resource}}}.
 </section>
 
-{{#if pressureContent}}
-<section>
-	{{{pressureContent}}}
-</section>
-{{/if}}
+{{#each content as |section|}}
+	<section>
+		{{{section}}}
+	</section>
+{{/each}}
 
 <section style="margin-top: 4px; display: flex; justify-content: space-between; ">
     <div>

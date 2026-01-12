@@ -40,7 +40,7 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 			config.addEffects(this.effect);
 		} else {
 			for (const sel of selected) {
-				const instancedEffect = await Effects.instantiateEffect(this.effect);
+				const instancedEffect = await Effects.getEffectData(this.effect);
 				if (!instancedEffect) {
 					return;
 				}

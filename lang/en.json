@@ -1739,6 +1739,9 @@
 			"ChangeWarning1": "Proceed with caution!"
 		},
 		"OptionPressureSystem": "Enable Pressure System?",
-		"OptionPressureSystemHint": "Enables the Pressure and Stagger system."
+		"OptionPressureSystemHint": "Enables the Pressure and Stagger system.",
+		"Pressure": "Pressure",
+		"PressureClock": "Pressure Clock",
+		"Stagger": "Stagger"
 	}
 }

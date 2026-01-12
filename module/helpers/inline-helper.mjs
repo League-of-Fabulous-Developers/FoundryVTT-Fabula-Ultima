@@ -126,7 +126,13 @@ export class InlineSourceInfo {
 		return !!this.itemUuid;
 	}
 
-	static none = Object.freeze(new InlineSourceInfo('Unknown'));
+	static none = Object.freeze(new InlineSourceInfo('FU.Unknown'));
+
+	/**
+	 * @desc Used to refer to the scene of a conflict.
+	 * @type {Readonly<InlineSourceInfo>}
+	 */
+	static scene = Object.freeze(new InlineSourceInfo('FU.Scene'));
 }
 
 /**

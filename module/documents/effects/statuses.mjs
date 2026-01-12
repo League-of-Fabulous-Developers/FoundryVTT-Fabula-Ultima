@@ -362,4 +362,39 @@ export const statusEffects = [
 			},
 		},
 	},
+	{
+		id: 'pressure',
+		name: 'FU.Pressure',
+		img: 'systems/projectfu/styles/static/statuses/Pressure.png',
+		system: {
+			duration: {
+				event: 'endOfScene',
+			},
+			rules: {
+				progress: {
+					name: 'FU.PressureClock',
+					id: 'pressure',
+					enabled: true,
+					style: 'clock',
+				},
+			},
+		},
+	},
+	{
+		id: 'stagger',
+		name: 'FU.Stagger',
+		img: 'systems/projectfu/styles/static/statuses/Stagger.webp',
+		changes: [
+			{
+				key: 'system.bonuses.turns',
+				mode: 2,
+				value: '0',
+			},
+		],
+		system: {
+			duration: {
+				event: 'endOfRound',
+			},
+		},
+	},
 ];
