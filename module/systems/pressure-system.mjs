@@ -7,6 +7,7 @@ import { Effects } from '../pipelines/effects.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SectionChatBuilder } from '../helpers/section-chat-builder.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * @typedef PressureProcessResult
@@ -65,7 +66,11 @@ async function processVulnerability(context) {
  */
 async function createStaggerChatMessage(context) {
 	let builder = new SectionChatBuilder(context.sourceActor, context.item);
-	CommonSections.genericText(builder.sections, 'I HAVE STAGGERED THEE');
+	let content = await FoundryUtils.renderTemplate('chat/chat-stagger-message', {
+		sourceActor: context.sourceActor,
+		actor: context.actor,
+	});
+	CommonSections.content(builder.sections, content);
 	return builder.create();
 }
 

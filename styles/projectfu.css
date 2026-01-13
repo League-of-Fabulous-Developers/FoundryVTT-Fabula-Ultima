@@ -26,9 +26,7 @@
 @import 'css/components/barmeter.css';
 @import 'css/components/combat.css';
 @import 'css/components/effects.css';
-/* @import 'css/components/forms.css'; */
 @import 'css/components/resource.css';
-/* @import 'css/components/items.css';  */
 @import 'css/components/effects.css';
 @import 'css/components/table/_index.css';
 @import 'css/components/technosphere-slots.css';
@@ -44,5 +42,7 @@
 @import 'css/app/_index.css';
 @import 'css/actor/_index.css';
 
+/*Chat*/
 @import 'css/chat/chat-prompt.css';
 @import 'css/chat/chat-slotted-technospheres.css';
+@import 'css/chat/chat-optional-features.css';

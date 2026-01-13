@@ -1006,6 +1006,7 @@ FU.allIcon = {
 	weaponEnchant: 'fu-weapon-enchant',
 	damage: 'fu-damage',
 	type: 'fu-type',
+	stagger: 'fu-stagger',
 	info: 'fas fa-circle-info',
 	compendium: 'fas fa-book',
 	warning: 'fas fa-triangle-exclamation',
