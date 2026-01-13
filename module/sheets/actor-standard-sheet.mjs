@@ -10,7 +10,7 @@ import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
-import { systemTemplatePath } from '../helpers/system-utils.mjs';
+import { systemId, systemTemplatePath } from '../helpers/system-utils.mjs';
 import { BehaviorRoll } from '../documents/items/behavior/behavior-roll.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
@@ -353,6 +353,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 					}
 				}
 				if (this.isNPC) {
+					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
+						context.pressurePoints = true;
+						context.weaponCategories = FU.weaponCategories;
+					}
 					ActorSheetUtils.prepareNpcCompanionData(context);
 				}
 				break;
@@ -448,6 +452,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'settings':
 				if (this.isNPC) {
 					ActorSheetUtils.prepareNpcCompanionData(context);
+					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
+						context.pressurePoints = true;
+						context.weaponCategories = FU.weaponCategories;
+					}
 				}
 				break;
 			case 'notes': {

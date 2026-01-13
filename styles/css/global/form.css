@@ -315,6 +315,14 @@
 	filter: unset;
 }
 
+.fu-traits {
+	background: var(--color-background);
+	border-style: inset;
+	border-width: thin;
+	padding: 4px;
+	width: 100%;
+}
+	
 .fu-image__link {
 	border-radius: 10px;
 	background-color: rgba(9, 66, 34, 0.14);

@@ -1,8 +1,5 @@
-// NOTE: This should not have no dependencies!
-
-// TODO: Decide whether to define in config.mjs.
-
 import { StringUtils } from '../helpers/string-utils.mjs';
+// NOTE: This should not have no further dependencies!
 
 /**
  * @description A list of traits supported by items
@@ -91,6 +88,18 @@ export const TraitUtils = Object.freeze({
 		return Object.entries(traits).map(([key, value]) => ({
 			label: key,
 			value: value,
+		}));
+	},
+
+	/**
+	 * @param {Record<String, String>} traits
+	 * @returns {{key: *, value: *}[]}
+	 * @remarks To be used with specific records.
+	 */
+	getOptionsFromConfig(traits) {
+		return Object.entries(traits).map(([key, value]) => ({
+			label: StringUtils.localize(value),
+			value: key,
 		}));
 	},
 

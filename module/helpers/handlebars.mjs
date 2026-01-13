@@ -306,6 +306,12 @@ function autoComplete(context) {
 	return new Handlebars.SafeString(html);
 }
 
+/**
+ * @param {TraitsDataModel|TraitsPredicateDataModel} model
+ * @param {String} path The path to the property.
+ * @param options
+ * @returns {Handlebars.SafeString}
+ */
 function traits(model, path, options) {
 	options = options.hash;
 	const template = Handlebars.partials[systemTemplatePath('common/traits')];

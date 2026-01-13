@@ -5,6 +5,8 @@ import { Role } from '../../../helpers/roles.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 
 Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
@@ -110,7 +112,11 @@ export class NpcDataModel extends BaseCharacterDataModel {
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
 			associatedTherioforms: new StringField(),
-		});
+			pressurePoints: new EmbeddedDataField(TraitsDataModel, {
+				options: TraitUtils.getOptionsFromConfig(FU.weaponCategories),
+			}),
+			description: new HTMLField(),
+		};
 	}
 
 	static migrateData(source) {

@@ -1742,6 +1742,8 @@
 		"OptionPressureSystemHint": "Enables the Pressure and Stagger system.",
 		"Pressure": "Pressure",
 		"PressureClock": "Pressure Clock",
+		"PressurePoints": "Pressure Points",
+		"Stagger": "Stagger",
 		"Stagger": "Stagger",
 		"CompendiumBrowser": "Compendium Browser",
 		"CompendiumBrowserOpen": "Open Compendium Browser",

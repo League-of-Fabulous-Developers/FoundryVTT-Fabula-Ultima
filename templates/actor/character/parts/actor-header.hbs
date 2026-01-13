@@ -34,4 +34,8 @@
 	{{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
 	{{!-- Affinity Section --}}
 	{{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
+	{{!-- Pressure Points --}}
+	{{#if pressurePoints}}
+		{{>"systems/projectfu/templates/actor/partials/actor-pressure-points.hbs" actor=actor}}
+	{{/if}}
 </header>

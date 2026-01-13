@@ -33,6 +33,21 @@
 		{{!-- End Affinity Section --}}
 	</fieldset>
 
+	{{!-- Base Affinity Section --}}
+	<fieldset class="section-container title-fieldset desc resource-content">
+		<legend class="resource-label-m">
+			{{localize 'FU.PressurePoints'}}
+		</legend>
+
+		{{!-- Start Pressure Points Section --}}
+		<div class="header-fields" style="margin: 5px 0;">
+			{{#if system.pressurePoints}}
+				{{pfuTraits system.pressurePoints "system.pressurePoints" showLabel=false}}
+			{{/if}}
+		</div>
+		{{!-- Pressure Points Section --}}
+	</fieldset>
+
 	{{!-- Base Immunities Section --}}
 	<fieldset class="section-container title-fieldset desc affinities resource-content">
 		<legend class="resource-label-m">
