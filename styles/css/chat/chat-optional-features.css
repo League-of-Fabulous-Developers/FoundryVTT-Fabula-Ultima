@@ -1,0 +1,21 @@
+.fu-chat__actor {
+	width: 128px;
+	height: auto;
+}
+
+.fu-chat__stagger {
+	background: var(--background-critical);
+	color: #ffffff;
+	text-shadow:
+		0 0 2px rgba(0, 0, 0, 0.8),
+		0 2px 4px rgba(0, 0, 0, 0.6);
+
+	padding: 8px;
+	border-radius: 10px;
+	border-top: 1px solid #c9c7b8;
+	-webkit-box-shadow: 1px 2px var(--border-critical);
+
+	font-size: x-large;
+	font-weight: bolder;
+	text-transform: uppercase;
+}

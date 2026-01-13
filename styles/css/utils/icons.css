@@ -24,6 +24,7 @@
 	--icon-fu-aura: url('../../static/statuses/Aura.webp');
 	--icon-fu-barrier: url('../../static/statuses/Barrier.webp');
 	--icon-fu-focus: url('../../static/statuses/Focus.png');
+	--icon-fu-stagger: url('../../static/statuses/Stagger.webp');
 
 	--icon-fu-dex: url('../../static/icons/attributes/dex-glyph.png');
 	--icon-fu-ins: url('../../static/icons/attributes/ins-glyph.png');
@@ -305,6 +306,10 @@
 
 .fu-focus {
 	background-image: var(--icon-fu-focus);
+}
+
+.fu-stagger {
+	background-image: var(--icon-fu-stagger);
 }
 
 .fus-offensive {

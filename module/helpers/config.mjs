@@ -1006,6 +1006,7 @@ FU.allIcon = {
 	weaponEnchant: 'fu-weapon-enchant',
 	damage: 'fu-damage',
 	type: 'fu-type',
+	stagger: 'fu-stagger',
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,
