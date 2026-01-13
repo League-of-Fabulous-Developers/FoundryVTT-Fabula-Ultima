@@ -75,6 +75,7 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {number} study.value
  * @property {string} associatedTherioforms
  * @property {NpcSkillTracker} spTracker
+ * @property {TraitsDataModel} pressurePoints
  */
 export class NpcDataModel extends BaseCharacterDataModel {
 	static defineSchema() {

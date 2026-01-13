@@ -80,7 +80,6 @@ async function createStaggerChatMessage(context) {
  */
 async function onCombatEvent(event) {
 	switch (event.type) {
-		// TODO: Empty pressure clock for all staggered
 		case FU.combatEvent.endOfRound:
 			for (const actor of event.actors.filter((a) => a.type === 'npc')) {
 				const se = actor.resolveEffect('stagger');

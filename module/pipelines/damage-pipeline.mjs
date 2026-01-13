@@ -145,7 +145,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
  * @property {DamageBreakdown[]} breakdown
- * @property {Boolean} vulnerable Whether the actor was vulnerable to the damage they took.
+ * @property {Boolean} pressured Whether the actor was pressured by the damage they took.
  * @extends PipelineContext
  */
 export class DamagePipelineContext extends PipelineContext {
@@ -254,10 +254,32 @@ function resolveAffinity(context) {
 		}
 	}
 
-	context.affinityMessage = affinityMessage;
 	context.affinity = affinity;
 
 	if (context.actor.type === 'npc') {
+		// Pressure System Support
+		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+			// Check if the damage type hit a vulnerable affinity
+			const vulnerabilityTriggered = context.affinity === FU.affValue.vulnerability;
+			// Do a lookup on the weapon used, whose traits are passed on to the context.
+			let pressurePointTriggered = false;
+			/** @type NpcDataModel **/
+			const npcData = context.actor.system;
+			for (const trait of context.traits) {
+				if (npcData.pressurePoints.has(trait)) {
+					pressurePointTriggered = true;
+					break;
+				}
+			}
+			// If either was triggered
+			if (vulnerabilityTriggered || pressurePointTriggered) {
+				const stagger = context.actor.resolveEffect('stagger');
+				if (!stagger) {
+					context.pressured = true;
+					affinityMessage = 'FU.ChatApplyDamagePressure';
+				}
+			}
+		}
 		CommonEvents.reveal(context.actor, {
 			affinities: {
 				[context.damageType]: true,
@@ -265,6 +287,7 @@ function resolveAffinity(context) {
 		});
 	}
 
+	context.affinityMessage = affinityMessage;
 	return true;
 }
 
@@ -348,20 +371,7 @@ function collectMultipliers(context) {
 		context.addModifier('scaleIncomingDamage', scaleIncomingDamage);
 	}
 
-	// Affinity Damage
-	let applyAffinityDamage = true;
-	if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.affinity === FU.affValue.vulnerability) {
-		const stagger = context.actor.resolveEffect('stagger');
-		if (!stagger) {
-			context.vulnerable = true;
-			const pressure = context.actor.resolveEffect('pressure');
-			if (pressure) {
-				applyAffinityDamage = false;
-			}
-		}
-	}
-
-	if (applyAffinityDamage) {
+	if (!context.pressured) {
 		const modifier = affinityDamageModifier[context.affinity]();
 		context.addModifier('affinity', modifier);
 	}
@@ -498,7 +508,7 @@ async function process(request) {
 		let content = [];
 		/** @type PressureProcessResult **/
 		let pressureProcess;
-		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.vulnerable) {
+		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.pressured) {
 			pressureProcess = await PressureSystem.processVulnerability(context);
 			if (pressureProcess) {
 				content.push(pressureProcess.content);
