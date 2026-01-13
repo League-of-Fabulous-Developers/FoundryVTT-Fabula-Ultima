@@ -358,6 +358,19 @@ FU.weaponCategories = {
 	thrown: 'FU.Thrown',
 };
 
+FU.weaponCategoryIcons = {
+	arcane: 'ra ra-arcane-mask',
+	bow: 'ra ra-crossbow',
+	brawling: 'ra ra-muscle-up',
+	dagger: 'ra ra-daggers',
+	firearm: 'ra ra-revolver',
+	flail: 'ra ra-chain',
+	heavy: 'ra ra-hammer',
+	spear: 'ra ra-trident',
+	sword: 'ra ra-sword',
+	thrown: 'ra ra-shuriken',
+};
+
 /**
  * @typedef {"custom", "arcana", "deck", "dance", "gift", "magiseed", "invention", "invocation", "therioform", "symbol", "infusion", "quirk", "other"} MiscCategory
  */
@@ -1015,4 +1028,5 @@ FU.allIcon = {
 	...FU.affinityIcons,
 	...FU.resourceIcons,
 	...FU.attributeIcons,
+	...FU.weaponCategoryIcons,
 };
