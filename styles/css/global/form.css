@@ -312,3 +312,11 @@
 	-webkit-filter: unset;
 	filter: unset;
 }
+
+.fu-traits {
+	background: var(--color-background);
+	border-style: inset;
+	border-width: thin;
+	padding: 4px;
+	width: 100%;
+}

@@ -1,0 +1,20 @@
+{{!-- Pressure Template --}}
+<div class="affinities desc">
+	<div class="grid grid-9col">
+		{{#if system.pressurePoints}}
+			{{#each weaponCategories as |category|}}
+				<div class="resource-content flex-group-center">
+					<label>
+						{{#if (pfuCollectionContains @key ../system.pressurePoints.entries)}}
+							<span style="font-weight:bold; ">
+								{{localize category}}
+							</span>
+						{{else}}
+							{{localize category}}
+						{{/if}}
+					</label>
+				</div>
+			{{/each}}
+		{{/if}}
+	</div>
+</div>

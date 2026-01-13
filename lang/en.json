@@ -1742,6 +1742,7 @@
 		"OptionPressureSystemHint": "Enables the Pressure and Stagger system.",
 		"Pressure": "Pressure",
 		"PressureClock": "Pressure Clock",
+		"PressurePoints": "Pressure Points",
 		"Stagger": "Stagger"
 	}
 }

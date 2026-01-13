@@ -19,6 +19,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
 			'systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs',
 			'systems/projectfu/templates/actor/partials/actor-affinities.hbs',
+			'systems/projectfu/templates/actor/partials/actor-pressure-points.hbs',
 			'systems/projectfu/templates/actor/partials/actor-attributes.hbs',
 			'systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs',
 			'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
