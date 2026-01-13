@@ -83,6 +83,11 @@
 	width: 100%;
 }
 
+.fu-form__disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 /*		DIALOGS		*/
 .fu-dialog .background,
 .fu-form .background {

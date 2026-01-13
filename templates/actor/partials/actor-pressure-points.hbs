@@ -1,17 +1,11 @@
 {{!-- Pressure Template --}}
 <div class="affinities desc">
-	<div class="grid grid-9col">
+	<div class="grid grid-10col">
 		{{#if system.pressurePoints}}
 			{{#each weaponCategories as |category|}}
 				<div class="resource-content flex-group-center">
-					<label>
-						{{#if (pfuCollectionContains @key ../system.pressurePoints.entries)}}
-							<span style="font-weight:bold; ">
-								{{localize category}}
-							</span>
-						{{else}}
-							{{localize category}}
-						{{/if}}
+					<label data-tooltip="{{category}}">
+						<i class="fu-icon--s {{pfuIconClass @key}} {{#unless (pfuCollectionContains @key ../system.pressurePoints.entries)}}fu-form__disabled{{/unless}}"></i>
 					</label>
 				</div>
 			{{/each}}
