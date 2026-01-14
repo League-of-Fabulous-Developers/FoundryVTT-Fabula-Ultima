@@ -141,13 +141,17 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
 			// Configure
-			config.addEffects(spell.effects.entries);
-			config.addTraits('spell').addTraitsFromItemModel(spell.traits).addEffects(spell.effects.entries);
+			this.#addCommon(spell, config);
 			if (spell.resource.enabled) {
 				config.setResource(spell.resource.type, spell.resource.amount);
 			}
 			this.#addSpellDamage(config, actor, spell, context);
 		};
+	}
+
+	#addCommon(spell, config) {
+		config.addEffects(spell.effects.entries);
+		config.addTraits('spell').addTraitsFromItemModel(spell.traits);
 	}
 
 	/**
@@ -176,6 +180,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 
 			/** @type SpellDataModel **/
 			const spell = item.system;
+			this.#addCommon(spell, config);
 
 			if (!attributeOverride) {
 				check.primary = spell.rollInfo.attributes.primary.value;
@@ -188,7 +193,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			});
 
 			this.#addSpellDamage(config, actor, spell, context);
-			config.addTraits('spell').addTraitsFromItemModel(spell.traits).setTargetedDefense('mdef').addEffects(spell.effects.entries);
+			config.setTargetedDefense('mdef');
 		};
 	}
 
