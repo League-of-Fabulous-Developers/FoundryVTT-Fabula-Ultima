@@ -8,9 +8,6 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p></li></ul><hr><ul><li><p><strong>Ally Receives:</strong> @TYPE[affinity air resistance], @TYPE[affinity bolt resistance], @TYPE[affinity dark resistance], @TYPE[affinity earth resistance], @TYPE[affinity fire resistance], or @TYPE[affinity ice resistance]</p></li></ul>",
@@ -71,9 +68,9 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1710464096011,
-    "modifiedTime": 1768061511711,
+    "modifiedTime": 1768129329248,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

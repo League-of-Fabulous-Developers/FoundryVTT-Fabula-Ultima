@@ -7,13 +7,10 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You have Resistance to fire damage.</p></li><li><p>Any fire damage you deal ignores Resistances.</p></li></ul>",
-      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (see <strong>Core Rulebook,</strong> pages <strong>130</strong> to<strong> 133</strong>). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them <strong>suffers</strong> <strong>30 fire damage. </strong>This damage <strong>ignores Resistances.</strong></p><hr></li></ul><ul><li><p><strong>Targets</strong>: @DMG[30 fire|ignore-resistances|]{Inferno}</p></li></ul>",
+      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (see <strong>Core Rulebook,</strong> pages <strong>130</strong> to<strong> 133</strong>). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them <strong>suffers</strong> <strong>30 fire damage. </strong>This damage <strong>ignores Resistances.</strong></p><hr></li></ul><ul><li><p><strong>Targets</strong>: @DMG[&step(30,40,50) fire|ignore-resistances|]{Inferno}</p></li></ul>",
       "domains": "fire, heat, metal"
     },
     "source": "FUCR179",
@@ -123,9 +120,9 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1710029700564,
-    "modifiedTime": 1768061460392,
+    "modifiedTime": 1768129329248,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

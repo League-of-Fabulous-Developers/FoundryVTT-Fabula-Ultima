@@ -8,9 +8,6 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You are immune to <strong>slow</strong>.</p></li><li><p>You gain a +1 bonus to your Defense.</p></li></ul>",
@@ -84,9 +81,9 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1710464120707,
-    "modifiedTime": 1768061581959,
+    "modifiedTime": 1768129329248,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

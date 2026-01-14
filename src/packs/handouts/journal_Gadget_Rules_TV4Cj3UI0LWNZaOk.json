@@ -134,7 +134,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<h6>GADGET - ALCHEMY</h6><ol><li><p>Add the following gadget to your character sheet: @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Alchemy}</p></li><li><p>Import the following rollable tables to your world: @UUID[Compendium.projectfu.rollable-tables.RollTable.TvH7gOE0xQYeimUF]{Alchemy: Effect} and @UUID[Compendium.projectfu.rollable-tables.RollTable.vZa3GMOzrEVma2Hv]{Alchemy: Target}</p></li><li><p>Open the alchemy sheet and navigate to \"<strong>Config</strong>\" tab</p></li><li><p>Under \"<strong>Target Rollable Table</strong>\" select \"Alchemy: Target\"</p></li><li><p>Under \"<strong>Effect Rollable Table</strong>\" select \"Alchemy: Effect\"</p></li></ol><hr /><h6>GADGET - INFUSION</h6><ol><li><p>Add the following gadget to your character sheet: @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Infusion}</p></li><li><p>Perform an Accuracy Check like you'd normally do; <strong>roll</strong> a weapon.</p></li><li><p>In the chat message, right click, select \"Apply Infusion\", and select an infusion in the dialog menu.</p></li></ol><hr /><h6>GADGET - MAGITECH</h6><ol><li><p>Add the following gadget to your character sheet: @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Magitech}</p></li><li><p>For <strong>basic</strong> rank, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.aPfawWXZqKuHAAqj]{Magitech Override}</p></li><li><p>For <strong>advanced</strong> rank, add the following item to your character sheet: @UUID[Compendium.projectfu.consumables.Item.AbazTRyaMTW4ouhx]{Magicannon (Item)}</p></li><li><p>For <strong>superior</strong> rank, pick  three spells from the following lists: @UUID[Compendium.projectfu.handouts.JournalEntry.hK8r8lsQNaknSqdq.JournalEntryPage.z1OeFUn5ckVmO5oW]{Elementalist Spells}, @UUID[Compendium.projectfu.handouts.JournalEntry.jZeTJrK0mFsRyz8S.JournalEntryPage.z1OeFUn5ckVmO5oW]{Entropist Spells}, and @UUID[Compendium.projectfu.handouts.JournalEntry.L65ajg6cmHEk3zAP.JournalEntryPage.z1OeFUn5ckVmO5oW]{Spiritist Spells}</p></li></ol>"
+        "content": "<h6>GADGET - ALCHEMY</h6><ol><li><p>Add the following gadget to your character sheet: @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Alchemy}</p></li><li><p>Import the following rollable tables to your world: @UUID[Compendium.projectfu.rollable-tables.RollTable.TvH7gOE0xQYeimUF]{Alchemy: Effect} and @UUID[Compendium.projectfu.rollable-tables.RollTable.vZa3GMOzrEVma2Hv]{Alchemy: Target}</p></li><li><p>Open the alchemy sheet and navigate to \"<strong>Config</strong>\" tab</p></li><li><p>Under \"<strong>Target Rollable Table</strong>\" select \"Alchemy: Target\"</p></li><li><p>Under \"<strong>Effect Rollable Table</strong>\" select \"Alchemy: Effect\"</p></li></ol><hr /><h6>GADGET - INFUSION</h6><ol><li><p>Add the following gadget to your character sheet: @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Infusion}</p></li><li><p>Perform an Accuracy Check like you'd normally do; <strong>roll</strong> a weapon.</p></li><li><p>In the chat message, right click, select \"Apply Infusion\", and select an infusion in the dialog menu.</p></li></ol><hr /><h6>GADGET - MAGITECH</h6><ol><li><p>Add the following gadget to your character sheet: @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Magitech}</p></li><li><p>For <strong>basic</strong> rank, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.aPfawWXZqKuHAAqj]{Magitech Override}</p></li><li><p>For <strong>advanced</strong> rank, add the following item to your character sheet: @UUID[Compendium.projectfu.consumables.Item.AbazTRyaMTW4ouhx]{Magicannon (Item)}</p></li><li><p>For <strong>superior</strong> rank, pick three spells from the following lists: @UUID[Compendium.projectfu.handouts.JournalEntry.hK8r8lsQNaknSqdq.JournalEntryPage.z1OeFUn5ckVmO5oW]{Elementalist Spells}, @UUID[Compendium.projectfu.handouts.JournalEntry.jZeTJrK0mFsRyz8S.JournalEntryPage.z1OeFUn5ckVmO5oW]{Entropist Spells}, and @UUID[Compendium.projectfu.handouts.JournalEntry.L65ajg6cmHEk3zAP.JournalEntryPage.z1OeFUn5ckVmO5oW]{Spiritist Spells}</p></li></ol>"
       },
       "video": {
         "controls": true,
@@ -149,12 +149,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742786568846,
-        "modifiedTime": 1742789794444,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1768136878139,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "exportSource": null
       },
       "category": null,

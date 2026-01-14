@@ -8,9 +8,6 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum.</p></li><li><p>When you perform an attack, you may have that attack gain the <strong>multi (any number of targets)</strong> property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is not considered a willing dismiss).</p></li></ul>",
@@ -96,10 +93,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710464055145,
-    "modifiedTime": 1724180863116,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1768129329248,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
