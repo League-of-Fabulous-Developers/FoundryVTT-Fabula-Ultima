@@ -1,24 +1,27 @@
 import { CharacterMigrations } from './character-migrations.mjs';
-import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
-import { AttributesDataModel } from '../common/attributes-data-model.mjs';
-import { BonusesDataModel, MultipliersDataModel } from '../common/bonuses-data-model.mjs';
-import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { CharacterSkillTracker } from './character-skill-tracker.mjs';
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
-import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
-import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
-import { OverridesDataModel } from '../common/overrides-data-model.mjs';
 import { FloralistDataModel } from './floralist-data-model.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
+import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
 const CLASS_IP_BENEFITS = 2;
 
 /**
+ * @class
+ * @extends BaseCharacterDataModel
+ * @property {AffinitiesDataModel} affinities
+ * @property {AttributesDataModel} attributes
+ * @property {DerivedValuesDataModel} derived
+ * @property {BonusesDataModel} bonuses Flat amounts
+ * @property {BonusesDataModel} multipliers Multiplies the base amount
+ * @property {OverridesDataModel} overrides Overrides for default behaviour
+ * @property {string} description
  * @property {number} level.value
  * @property {number} resources.hp.max
  * @property {number} resources.hp.value
@@ -33,28 +36,21 @@ const CLASS_IP_BENEFITS = 2;
  * @property {number} resources.ip.bonus
  * @property {Object} resources.fp
  * @property {number} resources.fp.value
- * @property {BondDataModel[]} bonds
  * @property {number} resources.exp.value
  * @property {string} resources.identity.name
  * @property {string} resources.pronouns.name
  * @property {string} resources.theme.name
  * @property {string} resources.origin.name
- * @property {AffinitiesDataModel} affinities
- * @property {AttributesDataModel} attributes
- * @property {DerivedValuesDataModel} derived
- * @property {BonusesDataModel} bonuses Flat amounts
- * @property {BonusesDataModel} multipliers Multiplies the base amount
+ * @property {BondDataModel[]} bonds
  * @property {PilotVehicleDataModel} vehicle
- * @property {string} description
  * @property {CharacterSkillTracker} tlTracker
- * @property {OverridesDataModel} overrides Overrides for default behaviour
  * @property {FloralistDataModel} floralist
- *
+ * @inheritDoc
  */
-export class CharacterDataModel extends foundry.abstract.TypeDataModel {
+export class CharacterDataModel extends BaseCharacterDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, ArrayField, EmbeddedDataField, HTMLField } = foundry.data.fields;
-		return {
+		const { SchemaField, NumberField, StringField, ArrayField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({
 				value: new NumberField({
 					initial: 5,
@@ -93,32 +89,16 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 					}
 				},
 			}),
-			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
-			attributes: new EmbeddedDataField(AttributesDataModel, {}),
-			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
-			equipped: new EmbeddedDataField(EquipDataModel, {}),
-			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
-			multipliers: new EmbeddedDataField(MultipliersDataModel, {}),
-			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
-			overrides: new EmbeddedDataField(OverridesDataModel, {}),
+			// TODO: Refactor
 			floralist: new EmbeddedDataField(FloralistDataModel, {}),
-			description: new HTMLField(),
-		};
+		});
 	}
 
 	static migrateData(source) {
 		source = super.migrateData(source);
 		CharacterMigrations.run(source);
-
 		return source;
-	}
-
-	/**
-	 * @return FUActor
-	 */
-	get actor() {
-		return this.parent;
 	}
 
 	/**
