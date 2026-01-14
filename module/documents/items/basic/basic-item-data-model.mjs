@@ -31,6 +31,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				weaponType: item.system.type.value,
 			})
 			.addTraitsFromItemModel(item.system.traits)
+			.setDamageOverride(actor, 'attack')
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
 	}
 };

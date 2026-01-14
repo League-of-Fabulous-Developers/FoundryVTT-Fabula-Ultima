@@ -1,15 +1,10 @@
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { NpcMigrations } from './npc-migrations.mjs';
-import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
-import { AttributesDataModel } from '../common/attributes-data-model.mjs';
-import { BonusesDataModel, MultipliersDataModel } from '../common/bonuses-data-model.mjs';
-import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
-import { EquipDataModel } from '../common/equip-data-model.mjs';
-import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
 import { Role } from '../../../helpers/roles.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
 
 Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
@@ -36,6 +31,15 @@ Hooks.on('preUpdateActor', async (document, changed) => {
 });
 
 /**
+ * @class
+ * @extends BaseCharacterDataModel
+ * @property {AffinitiesDataModel} affinities
+ * @property {AttributesDataModel} attributes
+ * @property {DerivedValuesDataModel} derived
+ * @property {BonusesDataModel} bonuses Flat amounts
+ * @property {BonusesDataModel} multipliers Multiplies the base amount
+ * @property {OverridesDataModel} overrides Overrides for default behaviour
+ * @property {string} description
  * @property {number} level.value
  * @property {number} resources.hp.max
  * @property {number} resources.hp.value
@@ -49,15 +53,12 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {number} resources.ip.bonus
  * @property {number} resources.fp.value
  * @property {string} resources.pronouns.name
- * @property {AffinitiesDataModel} affinities
- * @property {AttributesDataModel} attributes
  * @property {number} derived.init.value
  * @property {number} derived.init.bonus
  * @property {number} derived.def.value
  * @property {number} derived.def.bonus
  * @property {number} derived.mdef.value
  * @property {number} derived.mdef.bonus
- * @property {BonusesDataModel} bonuses
  * @property {string} traits.value
  * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'} species.value
  * @property {"", "minor", "major", "supreme"} villain.value
@@ -71,13 +72,12 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {boolean} useEquipment.value
  * @property {number} study.value
  * @property {string} associatedTherioforms
- * @property {string} description
  * @property {NpcSkillTracker} spTracker
  */
-export class NpcDataModel extends foundry.abstract.TypeDataModel {
+export class NpcDataModel extends BaseCharacterDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
-		return {
+		const { SchemaField, NumberField, StringField, BooleanField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
 				hp: new SchemaField({
@@ -91,13 +91,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 				fp: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				pronouns: new SchemaField({ name: new StringField() }),
 			}),
-			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
-			attributes: new EmbeddedDataField(AttributesDataModel, {}),
-			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
-			equipped: new EmbeddedDataField(EquipDataModel, {}),
-			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
-			multipliers: new EmbeddedDataField(MultipliersDataModel, {}),
-			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: Object.keys(FU.species) }) }),
 			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: Object.keys(FU.villainTypes) }) }),
@@ -117,21 +110,13 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
 			associatedTherioforms: new StringField(),
-			description: new HTMLField(),
-		};
+		});
 	}
 
 	static migrateData(source) {
 		source = super.migrateData(source);
 		NpcMigrations.run(source);
 		return source;
-	}
-
-	/**
-	 * @return FUActor
-	 */
-	get actor() {
-		return this.parent;
 	}
 
 	/**

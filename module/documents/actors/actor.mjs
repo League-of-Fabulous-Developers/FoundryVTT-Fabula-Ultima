@@ -99,7 +99,7 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @returns {Boolean}
+	 * @returns {Boolean} True for PCs and NPCs.
 	 */
 	get isCharacterType() {
 		return this.type === 'character' || this.type === 'npc';

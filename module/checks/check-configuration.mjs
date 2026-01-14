@@ -1,7 +1,6 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
-import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import { CheckHooks } from './check-hooks.mjs';
@@ -556,7 +555,7 @@ export class CheckConfigurer extends CheckInspector {
 	 */
 	setDamageOverride(actor, scope) {
 		// Potential override to damage type
-		if (actor.system instanceof CharacterDataModel) {
+		if (actor.isCharacterType) {
 			/** @type DamageTypeOverrideDataModel **/
 			let scopeField;
 			switch (scope) {
