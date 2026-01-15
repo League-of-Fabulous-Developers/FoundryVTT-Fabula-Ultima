@@ -35,13 +35,14 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 		}
 
-		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		let tags = getTags(item);
 		if (weapon) {
 			if (weapon.system.getTags instanceof Function) {
-				CommonSections.tags(sections, weapon.system.getTags(item.system.useWeapon.traits), CHECK_DETAILS);
+				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
 			}
 		}
+		CommonSections.tags(sections, tags, CHECK_DETAILS);
+		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const targets = inspector.getTargets();
 		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
