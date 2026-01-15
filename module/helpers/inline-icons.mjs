@@ -1,41 +1,31 @@
 import { FU } from './config.mjs';
-import { systemAssetPath } from './system-utils.mjs';
 import { InlineHelper } from './inline-helper.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const inlineIconEnricher = {
 	id: 'inlineIconEnricher',
-	pattern: /@ICON\[(\w+?)]/g,
+	pattern: InlineHelper.compose('(?:ICON|TOOLTIP)', '(?<icon>\\w+)(?:\\s+"(?<tooltip>[^"]*)")?'),
 	enricher: enricher,
 };
 
 function enricher(text, options) {
-	const iconName = text[1];
+	//const iconName = text[1];
+	const iconName = text.groups.icon;
 
 	if (iconName in FU.allIcon) {
-		const iconClass = FU.allIcon[iconName];
-		const span = document.createElement('span');
-		const classNames = iconClass.split(' ').filter((className) => className !== '');
-		span.classList.add('inline', 'inline-icon', ...classNames);
-		span.textContent = '';
-		return span;
-	} else if (iconName in attributeIconPaths) {
-		const span = document.createElement('span');
-		span.classList.add('inline', 'inline-icon');
-		span.dataset.tooltip = game.i18n.localize(FU.attributes[iconName]);
-		InlineHelper.appendImage(span, attributeIconPaths[iconName], 16, false);
+		const anchor = document.createElement('a');
+		anchor.classList.add('inline', 'inline-icon');
+		InlineHelper.appendSystemIcon(anchor, iconName);
 
-		return span;
+		const tooltip = text.groups.tooltip;
+		if (tooltip) {
+			anchor.setAttribute('data-tooltip', StringUtils.localize(tooltip));
+		}
+		return anchor;
 	}
 
 	return null;
 }
-
-const attributeIconPaths = {
-	dex: systemAssetPath('icons/attributes/dex-glyph.png'),
-	mig: systemAssetPath('icons/attributes/mig-glyph.png'),
-	ins: systemAssetPath('icons/attributes/ins-glyph.png'),
-	wlp: systemAssetPath('icons/attributes/wlp-glyph.png'),
-};
 
 function getIconClass(icon) {
 	return FU.allIcon[icon];
@@ -46,6 +36,5 @@ function getIconClass(icon) {
  */
 export const InlineIcon = Object.freeze({
 	enrichers: [inlineIconEnricher],
-	attributeIconPaths,
 	getIconClass,
 });

@@ -201,6 +201,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuTraits', traits);
 		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
 		Handlebars.registerHelper('pfuBadge', badge);
+		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
 	},
 });
 
@@ -358,6 +359,30 @@ function badge(key, options) {
 					size: size,
 					value: options.value,
 					compact: options.compact,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @param {FUItem} item
+ * @param {BadgeOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function itemAnchor(item, options) {
+	if (options.hash) {
+		options = options.hash;
+	}
+
+	const template = Handlebars.partials[systemTemplatePath('common/icons/item')];
+	const html =
+		typeof template === 'function'
+			? template({
+					name: item.name,
+					uuid: item.uuid,
+					id: item.id,
+					img: item.img,
+					classes: options?.classes,
 				})
 			: '';
 	return new Handlebars.SafeString(html);

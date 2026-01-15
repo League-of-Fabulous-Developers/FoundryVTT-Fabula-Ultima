@@ -40,7 +40,7 @@ function damageEnricher(text, options) {
 		}
 		anchor.draggable = true;
 
-		InlineHelper.appendIcon(anchor, 'damage');
+		InlineHelper.appendSystemIcon(anchor, 'damage');
 
 		// TOOLTIP
 		anchor.setAttribute(
@@ -61,7 +61,7 @@ function damageEnricher(text, options) {
 		}
 
 		// ICON
-		InlineHelper.appendIcon(anchor, type);
+		InlineHelper.appendSystemIcon(anchor, type);
 		return anchor;
 	}
 

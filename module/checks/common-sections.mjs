@@ -195,10 +195,7 @@ const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
 		order: order,
 		partial: 'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		data: {
-			name: item.name,
-			img: item.img,
-			id: item.id,
-			uuid: item.uuid,
+			item: item,
 		},
 	});
 };

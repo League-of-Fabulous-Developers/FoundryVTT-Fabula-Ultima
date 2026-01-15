@@ -22,6 +22,7 @@ const TRAITS = 'traits';
 const WEAPON_TRAITS = 'weaponTraits';
 const LABEL_KEY = 'label';
 const TARGETED_ACTIONS = 'targetedActions';
+const WEAPON_USED = 'weaponUsedBySkill';
 
 /**
  *
@@ -185,6 +186,13 @@ class CheckInspector {
 	 */
 	hasTrait(trait) {
 		return this.getTraits().includes(trait);
+	}
+
+	/**
+	 * @returns {String} The uuid of the weapon used.
+	 */
+	getWeaponReference() {
+		return this.#check.additionalData[WEAPON_USED];
 	}
 
 	/**
@@ -406,7 +414,7 @@ export class CheckConfigurer extends CheckInspector {
 
 	/**
 	 * @param {string} label
-	 * @param {number} path
+	 * @param {number} value
 	 * @return CheckConfigurer
 	 */
 	addDamageBonusIfDefined(label, value) {
@@ -414,6 +422,13 @@ export class CheckConfigurer extends CheckInspector {
 			return this.addDamageBonus(label, value);
 		}
 		return this;
+	}
+
+	/**
+	 * @param {FUItem} weapon An item that is of the weapon type.
+	 */
+	setWeapon(weapon) {
+		this.check.additionalData[WEAPON_USED] = weapon.uuid;
 	}
 
 	/**

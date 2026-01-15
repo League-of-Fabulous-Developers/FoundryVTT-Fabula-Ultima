@@ -15,6 +15,7 @@ import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
 import { CommonEvents } from './common-events.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 const { DiceTerm, NumericTerm } = foundry.dice.terms;
 
@@ -479,14 +480,18 @@ async function renderCheck(result, actor, item, flags = {}) {
 		}
 	}
 	if (!flavor?.trim()) {
+		let linked = [];
+		const weaponReference = config.getWeaponReference();
+		if (weaponReference) {
+			linked.push(await fromUuid(weaponReference));
+		}
+
 		flavor = item
-			? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-					name: item.name,
-					img: item.img,
-					id: item.id,
-					uuid: item.uuid,
+			? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item', {
+					item: item,
+					linked: linked,
 				})
-			: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+			: await FoundryUtils.renderTemplate('chat/chat-check-flavor-check', {
 					title: FU.checkTypes[result.type] || 'FU.RollCheck',
 					type: result.type,
 					label: config.getLabel(),

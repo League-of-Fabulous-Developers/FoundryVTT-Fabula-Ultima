@@ -71,7 +71,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 			anchor.append(` ${typeName}`);
 		}
 		// ICON
-		InlineHelper.appendIcon(anchor, type);
+		InlineHelper.appendSystemIcon(anchor, type);
 
 		return anchor;
 	} else {

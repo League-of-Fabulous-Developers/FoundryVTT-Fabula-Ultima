@@ -55,7 +55,7 @@ function checkEnricher(match, options) {
 		let tooltip = game.i18n.localize('FU.InlineRollCheck');
 
 		// ICON
-		InlineHelper.appendIcon(anchor, 'open');
+		InlineHelper.appendSystemIcon(anchor, 'open');
 
 		if (label) {
 			anchor.append(label);
@@ -91,8 +91,8 @@ function checkEnricher(match, options) {
 		// Show attributes
 		const span = document.createElement('span');
 		span.classList.add(`inline`, 'inline-group');
-		InlineHelper.appendIcon(span, first);
-		InlineHelper.appendIcon(span, second);
+		InlineHelper.appendSystemIcon(span, first);
+		InlineHelper.appendSystemIcon(span, second);
 		anchor.append(span);
 		return anchor;
 	}

@@ -21,7 +21,6 @@ import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 
-const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
 
 /**
@@ -29,29 +28,22 @@ const skillForAttributeCheck = 'skillForAttributeCheck';
  */
 let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
-		const weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
+		const inspector = CheckConfiguration.inspect(check);
+		const weapon = fromUuidSync(inspector.getWeaponReference());
 
 		if (check.critical) {
 			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 		}
 
-		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		let tags = getTags(item);
 		if (weapon) {
-			sections.push(() => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
-				data: {
-					weapon,
-				},
-				order: CHECK_DETAILS,
-			}));
-
 			if (weapon.system.getTags instanceof Function) {
-				CommonSections.tags(sections, weapon.system.getTags(item.system.useWeapon.traits), CHECK_DETAILS);
+				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
 			}
 		}
+		CommonSections.tags(sections, tags, CHECK_DETAILS);
+		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
-		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargets();
 		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
 	}
@@ -239,9 +231,9 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			if (this.damage.hasDamage) {
 				if (skill.useWeapon.damage) {
 					const weapon = await this.getWeapon(actor);
+					config.setWeapon(weapon);
 					/** @type WeaponDataModel **/
 					const weaponData = weapon.system;
-					check.additionalData[weaponUsedBySkill] = weapon.uuid;
 					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
 				}
 				await this.#addSkillDamage(config, actor, item, context, modifiers);
@@ -304,7 +296,6 @@ export class SkillDataModel extends FUStandardItemDataModel {
 
 			check.primary = weaponCheck.primary;
 			check.secondary = weaponCheck.secondary;
-			check.additionalData[weaponUsedBySkill] = weapon.uuid;
 
 			/** @type SkillDataModel **/
 			const skill = item.system;
@@ -312,6 +303,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
+			config.setWeapon(weapon);
 			config.addTraits('skill');
 			config.addTraitsFromItemModel(this.traits);
 

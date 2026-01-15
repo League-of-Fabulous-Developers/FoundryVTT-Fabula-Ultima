@@ -1002,6 +1002,8 @@ FU.allIcon = {
 	weaponEnchant: 'fu-weapon-enchant',
 	damage: 'fu-damage',
 	type: 'fu-type',
+	info: 'fas fa-circle-info',
+	warning: 'fas fa-triangle-exclamation',
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,

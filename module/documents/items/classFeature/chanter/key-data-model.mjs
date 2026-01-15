@@ -2,6 +2,7 @@ import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU, SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { KeyMigrations } from './key-migrations.mjs';
+import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
 
 const resourceOptions = {
 	hp: 'FU.HealthPoints',
@@ -105,7 +106,9 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
 		const chatMessage = {
 			speaker,
-			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			flavor: await FoundryUtils.renderTemplate('chat-check-flavor-item', {
+				item: model.parent.parent,
+			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-key-chat-message.hbs', data),
 			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 		};
