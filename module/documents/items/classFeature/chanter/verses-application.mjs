@@ -9,6 +9,7 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
+import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
 
 /**
  * @param {VerseDataModel} model
@@ -308,7 +309,9 @@ export class VersesApplication extends FUApplication {
 		// Prepare the chat message data
 		const chatMessage = {
 			speaker: ChatMessage.implementation.getSpeaker({ actor }),
-			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', this.#verse.parent.parent),
+			flavor: await FoundryUtils.renderTemplate('chat-check-flavor-item', {
+				item: this.#verse.parent.parent,
+			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
 			flags: flags,
 		};

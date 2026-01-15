@@ -97,11 +97,8 @@ export class SectionChatBuilder {
 		}
 		if (!flavor?.trim()) {
 			flavor = item
-				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-						name: item.name,
-						img: item.img,
-						id: item.id,
-						uuid: item.uuid,
+				? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item', {
+						item: item,
 					})
 				: '';
 		}

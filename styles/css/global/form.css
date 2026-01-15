@@ -312,3 +312,8 @@
 	-webkit-filter: unset;
 	filter: unset;
 }
+
+.fu-image__link {
+	border-radius: 10px;
+	background-color: rgba(9, 66, 34, 0.14);
+}

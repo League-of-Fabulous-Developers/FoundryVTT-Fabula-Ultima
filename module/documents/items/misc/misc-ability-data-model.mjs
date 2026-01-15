@@ -32,13 +32,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
 		}
 		if (weapon) {
-			sections.push(() => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
-				data: {
-					weapon,
-				},
-				order: CHECK_DETAILS,
-			}));
 			CommonSections.tags(
 				sections,
 				[
