@@ -383,12 +383,18 @@ function appendImage(anchor, path, size = 16, margin = true) {
 }
 
 /**
+ * @typedef InlineIconConfig
+ * @property {String[]|String} classes
+ * @property {String} size
+ */
+
+/**
  * @param {HTMLAnchorElement} anchor
  * @param {...string} classes
  */
-function appendVectorIcon(anchor, ...classes) {
+function appendIcon(anchor, ...classes) {
 	const icon = document.createElement(`i`);
-	icon.classList.add(`icon`, ...classes.flatMap((c) => c.split(/\s+/)));
+	icon.classList.add(`fu-icon--xs`, ...classes.flatMap((c) => c.split(/\s+/)));
 	icon.style.marginLeft = '2px';
 	anchor.append(icon);
 	return icon;
@@ -397,14 +403,11 @@ function appendVectorIcon(anchor, ...classes) {
 /**
  * @param {HTMLAnchorElement} anchor
  * @param {String} name
+ *
  */
-function appendIcon(anchor, name) {
-	const icon = document.createElement(`i`);
+function appendSystemIcon(anchor, name) {
 	const className = FU.allIcon[name];
-	icon.classList.add(`fu-icon--xs`, className);
-	icon.style.marginLeft = '2px';
-	anchor.append(icon);
-	return icon;
+	return appendIcon(anchor, className);
 }
 
 /**
@@ -478,8 +481,8 @@ export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
 	appendImage,
-	appendVectorIcon,
 	appendIcon,
+	appendSystemIcon,
 	appendVariableToAnchor,
 	registerCommand,
 	compose,

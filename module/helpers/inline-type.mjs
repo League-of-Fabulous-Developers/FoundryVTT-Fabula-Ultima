@@ -41,7 +41,7 @@ const editorEnricher = {
 			const label = match.groups.label;
 
 			// ICON
-			InlineHelper.appendIcon(anchor, 'type');
+			InlineHelper.appendSystemIcon(anchor, 'type');
 
 			if (type === 'damage') {
 				// TOOLTIP
@@ -84,7 +84,7 @@ const editorEnricher = {
 					anchor.append(`${localizedAffinity} (${localizedTypes})`);
 				}
 				// ICON
-				InlineHelper.appendVectorIcon(anchor, 'fu-icon--xs', damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]]);
+				InlineHelper.appendIcon(anchor, damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]]);
 				return anchor;
 			}
 		}

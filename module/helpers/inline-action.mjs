@@ -35,7 +35,7 @@ const editorEnricher = {
 
 			// ICON
 			const icon = FU.actionIcons[type];
-			InlineHelper.appendVectorIcon(anchor, 'fu-icon-s', icon);
+			InlineHelper.appendIcon(anchor, 'fu-icon-s', icon);
 			/** @type FUActionType **/
 			switch (type) {
 				case 'study':
