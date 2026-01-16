@@ -1,0 +1,40 @@
+<section class="tab items {{tab.cssClass}} background fu-application__browser" data-tab="items" data-group="primary">
+	<aside class="fu-application__sidebar">
+		<section class="filter-block">
+			<input
+			 type="search"
+			 name="search"
+			 class="filter-search"
+			 placeholder="Search…"
+			 autocomplete="off"
+			/>
+		</section>
+
+		<section class="filter-block">
+			<h4>Filters</h4>
+			{{!-- filter controls go here --}}
+		</section>
+	</aside>
+
+	<main class="fu-application__content">
+		{{#each items as |entries type|}}
+			<section data-type="{{type}}">
+				<h3>{{type}}</h3>
+				<div>
+					{{#each entries as |entry|}}
+						<div data-uuid="{{entry.uuid}}"
+							 draggable="true">
+							{{#if entry.img}}
+								{{pfuItemAnchor entry}}
+							{{/if}}
+							<span>
+								{{entry.name}}
+							</span>
+						</div>
+					{{/each}}
+				</div>
+			</section>
+		{{/each}}
+	</main>
+
+</section>

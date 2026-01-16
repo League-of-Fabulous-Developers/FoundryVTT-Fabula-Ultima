@@ -15,6 +15,7 @@
 @import 'css/global/table.css';
 @import 'css/global/foldout.css';
 @import 'css/global/form.css';
+@import 'css/global/application.css';
 
 @import 'css/components/item-grid.css';
 @import 'css/components/checks.css';

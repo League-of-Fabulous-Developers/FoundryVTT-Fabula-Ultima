@@ -365,8 +365,15 @@ function badge(key, options) {
 }
 
 /**
+ * @typedef ItemAnchorOptions
+ * @property {String} label
+ * @property {String}
+ * @property {'xs'|'s'|'m'|'l'|'xl'} size
+ */
+
+/**
  * @param {FUItem} item
- * @param {BadgeOptions} options
+ * @param {ItemAnchorOptions} options
  * @returns {Handlebars.SafeString}
  */
 function itemAnchor(item, options) {
@@ -374,6 +381,7 @@ function itemAnchor(item, options) {
 		options = options.hash;
 	}
 
+	const size = options.size ?? 's';
 	const template = Handlebars.partials[systemTemplatePath('common/icons/item')];
 	const html =
 		typeof template === 'function'
@@ -382,6 +390,7 @@ function itemAnchor(item, options) {
 					uuid: item.uuid,
 					id: item.id,
 					img: item.img,
+					size: size,
 					classes: options?.classes,
 				})
 			: '';
