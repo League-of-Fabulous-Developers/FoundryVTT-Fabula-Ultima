@@ -9,10 +9,12 @@
 import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
 import { FUActor } from '../../documents/actors/actor.mjs';
+import FoundryUtils from '../foundry-utils.mjs';
 
 /**
  * @param {ItemNameColumnRenderOptions} [options]
  * @return {ColumnConfig<FUItem>}
+ * @remarks Used for actors.
  */
 function itemNameColumn(options = {}) {
 	const { columnName, headerSpan, renderCaption, cssClass } = options;
@@ -25,15 +27,38 @@ function itemNameColumn(options = {}) {
 }
 
 /**
+ * @param {ItemNameColumnRenderOptions} [options]
+ * @return {ColumnConfig<FUItem>}
+ */
+function itemAnchorColumn(options = {}) {
+	const { columnName, headerSpan, renderCaption, cssClass } = options;
+	return {
+		renderHeader: columnName instanceof Function ? columnName : () => game.i18n.localize(columnName || 'FU.Name'),
+		headerAlignment: 'start',
+		headerSpan: headerSpan,
+		renderCell: renderNameCell(renderCaption, cssClass, false),
+	};
+}
+
+/**
  * @param {(FUItem) => string|Promise<string>} [renderCaption]
  * @param {string, ((FUItem) => string)} [cssClass]
+ * @param {Boolean} rollable
  * @return {(FUItem) => Promise<string>}
  */
-function renderNameCell(renderCaption, cssClass) {
+function renderNameCell(renderCaption, cssClass, rollable = true) {
 	const caption = renderCaption instanceof Function ? renderCaption : () => renderCaption;
 	const getCssClass = cssClass instanceof Function ? cssClass : () => cssClass;
 	return async (item) => {
-		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/table/cell/cell-item-name.hbs', { name: item.name, img: item.img, caption: await caption(item), cssClass: getCssClass(item) });
+		return FoundryUtils.renderTemplate('table/cell/cell-item-name', {
+			name: item.name,
+			img: item.img,
+			id: item.id,
+			uuid: item.uuid,
+			rollable: rollable,
+			caption: await caption(item),
+			cssClass: getCssClass(item),
+		});
 	};
 }
 
@@ -406,6 +431,7 @@ function damageColumn(options = {}) {
 
 export const CommonColumns = Object.freeze({
 	itemNameColumn,
+	itemAnchorColumn,
 	itemControlsColumn,
 	resourceColumn,
 	textColumn,

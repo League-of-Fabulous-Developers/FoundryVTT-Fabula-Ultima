@@ -27,7 +27,7 @@ export class CompendiumItemTableRenderer extends FUTableRenderer {
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
-			name: CommonColumns.itemNameColumn({ columnName: 'FU.Name', headerSpan: 2 }),
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name', headerSpan: 2 }),
 		},
 	};
 }
