@@ -18,7 +18,7 @@
 
 .fu-application__browser {
 	display: grid;
-	grid-template-columns: 260px 1fr;
+	grid-template-columns: 200px 1fr;
 	height: 100%;
 }
 

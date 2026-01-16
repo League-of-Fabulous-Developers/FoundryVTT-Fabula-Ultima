@@ -95,11 +95,11 @@ export class FUCompendiumBrowser extends FUApplication {
 	 */
 	static DEFAULT_OPTIONS = {
 		classes: ['fu', 'fu-application'],
-		title: 'FU.CompendiumBrowser',
 		window: {
+			title: 'FU.CompendiumBrowser',
 			resizable: true,
 		},
-		position: { width: 600, height: 'auto' },
+		position: { width: 640, height: 'auto' },
 		actions: {},
 	};
 
@@ -137,9 +137,24 @@ export class FUCompendiumBrowser extends FUApplication {
 	 */
 	static #index = new FUCompendiumIndex();
 
+	/**
+	 * @type {FUCompendiumBrowser}
+	 */
+	static #instance;
+
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
 		super(data, options);
+	}
+
+	/**
+	 * @returns {FUCompendiumBrowser}
+	 */
+	static get instance() {
+		if (!FUCompendiumBrowser.#instance) {
+			FUCompendiumBrowser.#instance = new FUCompendiumBrowser({}, {});
+		}
+		return FUCompendiumBrowser.#instance;
 	}
 
 	/**
@@ -177,8 +192,7 @@ export class FUCompendiumBrowser extends FUApplication {
 				name: 'FU.CompendiumBrowser',
 				icon: 'fa-solid fa-book',
 				onClick: () => {
-					const data = {};
-					new FUCompendiumBrowser(data, {}).render(true);
+					FUCompendiumBrowser.instance.render(true);
 				},
 			});
 		};

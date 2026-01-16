@@ -163,6 +163,7 @@ Hooks.once('init', async () => {
 		get party() {
 			return FUPartySheet;
 		},
+		FUCompendiumBrowser,
 	};
 
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
