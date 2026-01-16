@@ -18,24 +18,7 @@
 	</aside>
 
 	<main class="fu-application__content">
-		{{#each items as |entries type|}}
-			<section data-type="{{type}}">
-				<h3>{{type}}</h3>
-				<div>
-					{{#each entries as |entry|}}
-						<div data-uuid="{{entry.uuid}}"
-							 draggable="true">
-							{{#if entry.img}}
-								{{pfuItemAnchor entry}}
-							{{/if}}
-							<span>
-								{{entry.name}}
-							</span>
-						</div>
-					{{/each}}
-				</div>
-			</section>
-		{{/each}}
+		{{{itemsTable}}}
 	</main>
 
 </section>

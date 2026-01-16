@@ -1,6 +1,10 @@
 import FUApplication from '../application.mjs';
 import { SystemControls } from '../../helpers/system-controls.mjs';
-import { systemId, systemTemplatePath } from '../../helpers/system-utils.mjs';
+import { systemTemplatePath } from '../../helpers/system-utils.mjs';
+import { FUTableRenderer } from '../../helpers/tables/table-renderer.mjs';
+import { CommonDescriptions } from '../../helpers/tables/common-descriptions.mjs';
+import { CommonColumns } from '../../helpers/tables/common-columns.mjs';
+import { CompendiumIndex } from './compendium-index.mjs';
 
 /**
  * @typedef CompendiumIndexEntry
@@ -13,81 +17,22 @@ import { systemId, systemTemplatePath } from '../../helpers/system-utils.mjs';
  * @property {Object} [system]       Partial system data (indexed fields only)
  */
 
-/**
- * @property {CompendiumIndexEntry[]} actors
- */
-export class FUCompendiumIndex {
-	/**
-	 * @type {Record<string, CompendiumIndexEntry[]>}
-	 */
-	#items;
-
-	/**
-	 * @param {Boolean} force
-	 * @returns {Record<string, CompendiumIndexEntry[]>}
-	 */
-	async getItems(force) {
-		if (!this.#items || force) {
-			this.#items = await this.getEntries('Item');
-		}
-		return this.#items;
-	}
-
-	/**
-	 *
-	 * @param type
-	 * @param force
-	 * @returns {Promise<CompendiumIndexEntry[]>}
-	 */
-	async getItemsOfType(type, force) {
-		const items = await this.getItems(force);
-		if (items.type) {
-			return items.type;
-		}
-		return [];
-	}
-
-	/**
-	 * @param {String} type type of document.
-	 * @returns {[]}
-	 */
-	getSystemPacks(type) {
-		return game.packs.filter((p) => p.documentName === type && p.metadata.packageName.startsWith(systemId));
-	}
-
-	/**
-	 * @param {string} type Document type (e.g. "Item")
-	 * @returns {Promise<Record<string, CompendiumIndexEntry[]>>}
-	 */
-	async getEntries(type) {
-		/** @type {Record<string, CompendiumIndexEntry[]>} */
-		const result = {};
-		const packs = this.getSystemPacks(type);
-
-		for (const pack of packs) {
-			const entries = await pack.getIndex({
-				fields: ['name', 'img', 'type'],
-			});
-
-			for (const entry of entries) {
-				const key = entry.type ?? 'unknown';
-
-				(result[key] ??= []).push({
-					uuid: entry.uuid,
-					name: entry.name,
-					img: entry.img,
-					type: entry.type,
-					pack: pack.collection,
-					system: entry.system,
-				});
-			}
-		}
-
-		return result;
-	}
+export class CompendiumItemTableRenderer extends FUTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		cssClass: '',
+		getItems: async (items) => {
+			return items;
+		},
+		tablePreset: 'item',
+		renderDescription: CommonDescriptions.simpleDescription(),
+		columns: {
+			name: CommonColumns.itemNameColumn({ columnName: 'FU.Name', headerSpan: 2 }),
+		},
+	};
 }
 
-export class FUCompendiumBrowser extends FUApplication {
+export class CompendiumBrowser extends FUApplication {
 	/**
 	 * @inheritDoc
 	 * @type ApplicationConfiguration
@@ -133,14 +78,16 @@ export class FUCompendiumBrowser extends FUApplication {
 
 	/**
 	 * The current compendium index.
-	 * @type {FUCompendiumIndex}
+	 * @type {CompendiumIndex}
 	 */
-	static #index = new FUCompendiumIndex();
+	static #index = new CompendiumIndex();
 
 	/**
-	 * @type {FUCompendiumBrowser}
+	 * @type {CompendiumBrowser}
 	 */
 	static #instance;
+
+	#itemsTable = new CompendiumItemTableRenderer();
 
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
@@ -148,21 +95,21 @@ export class FUCompendiumBrowser extends FUApplication {
 	}
 
 	/**
-	 * @returns {FUCompendiumBrowser}
+	 * @returns {CompendiumBrowser}
 	 */
 	static get instance() {
-		if (!FUCompendiumBrowser.#instance) {
-			FUCompendiumBrowser.#instance = new FUCompendiumBrowser({}, {});
+		if (!CompendiumBrowser.#instance) {
+			CompendiumBrowser.#instance = new CompendiumBrowser({}, {});
 		}
-		return FUCompendiumBrowser.#instance;
+		return CompendiumBrowser.#instance;
 	}
 
 	/**
-	 * @returns {FUCompendiumIndex}
+	 * @returns {CompendiumIndex}
 	 * @remarks The index is statically cached.
 	 */
 	get index() {
-		return FUCompendiumBrowser.#index;
+		return CompendiumBrowser.#index;
 	}
 
 	/** @inheritdoc */
@@ -175,7 +122,9 @@ export class FUCompendiumBrowser extends FUApplication {
 				context.tabs = this._prepareTabs('primary');
 				break;
 			case 'items':
-				context.items = await this.index.getItems();
+				context.items = await this.index.getItemsOfType('class');
+				// TODO: Update the table renderer?
+				context.itemsTable = await this.#itemsTable.renderTable(context.items, { hideIfEmpty: true });
 				break;
 			case 'actors':
 				break;
@@ -192,7 +141,7 @@ export class FUCompendiumBrowser extends FUApplication {
 				name: 'FU.CompendiumBrowser',
 				icon: 'fa-solid fa-book',
 				onClick: () => {
-					FUCompendiumBrowser.instance.render(true);
+					CompendiumBrowser.instance.render(true);
 				},
 			});
 		};
@@ -200,7 +149,7 @@ export class FUCompendiumBrowser extends FUApplication {
 	}
 
 	/**
-	 * @this FUCompendiumBrowser
+	 * @this CompendiumBrowser
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}

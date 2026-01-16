@@ -107,7 +107,7 @@ import { RulePredicateRegistry } from './documents/effects/predicates/rule-predi
 import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
 import { InlineAction } from './helpers/inline-action.mjs';
-import { FUCompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
+import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -163,7 +163,7 @@ Hooks.once('init', async () => {
 		get party() {
 			return FUPartySheet;
 		},
-		FUCompendiumBrowser,
+		FUCompendiumBrowser: CompendiumBrowser,
 	};
 
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
@@ -379,7 +379,7 @@ Hooks.once('init', async () => {
 	SystemControls.initialize();
 	PlayerListEnhancements.initialize();
 	PdfPagerIntegration.initialize();
-	FUCompendiumBrowser.initialize();
+	CompendiumBrowser.initialize();
 
 	// // Disable the token drag ruler measurement, unless they've specifically
 	// // gone in and enabled it for some reason.

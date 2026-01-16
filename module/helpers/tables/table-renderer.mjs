@@ -186,7 +186,8 @@ export class FUTableRenderer {
 		const rowTooltips = {};
 		const { getItems, tablePreset, sort, columns: columnConfigs = {}, cssClass, renderDescription, renderRowCaption, hideIfEmpty: configHideIfEmpty, advancedConfig } = this.tableConfig;
 
-		const items = getItems(document, options);
+		/** @type {CompendiumIndexEntry[]} */
+		const items = await Promise.resolve(getItems(document, options));
 
 		let shouldHideIfEmpty = configHideIfEmpty ?? false;
 		if (options.hideIfEmpty != null) {
@@ -218,7 +219,7 @@ export class FUTableRenderer {
 		for (let item of items) {
 			const rowKey = advancedConfig.getKey(item);
 
-			if (tablePreset !== 'custom') {
+			if (tablePreset !== 'custom' && item.parent) {
 				if (document !== item.parent && document !== item.parentDocument) {
 					let directParentItem = item.parent;
 					while (!(directParentItem instanceof FUItem || directParentItem instanceof PseudoItem)) {
