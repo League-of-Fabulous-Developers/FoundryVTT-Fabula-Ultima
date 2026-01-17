@@ -123,6 +123,10 @@
 	grid-template-columns: [name] auto [damage] 100px [type] 100px [cost] 100px;
 }
 
+.compendium-accessory-table {
+	grid-template-columns: [name] auto [def] 100px [mdef] 100px [cost] 100px;
+}
+
 .compendium-armor-table {
 	grid-template-columns: [name] auto [def] 100px [mdef] 100px [cost] 100px;
 }

@@ -429,6 +429,10 @@ export class CompendiumBrowser extends FUApplication {
 							renderer: this.#armorRenderer,
 						},
 						{
+							entries: equipment.accessory,
+							renderer: this.#armorRenderer, // Same data paths as above.
+						},
+						{
 							entries: equipment.consumable,
 							renderer: this.#consumableRenderer,
 						},

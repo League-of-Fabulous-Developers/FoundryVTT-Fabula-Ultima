@@ -6,6 +6,7 @@ import { systemId } from '../../helpers/system-utils.mjs';
  * @property {CompendiumIndexEntry[]} weapon
  * @property {CompendiumIndexEntry[]} shield
  * @property {CompendiumIndexEntry[]} consumable
+ * @property {CompendiumIndexEntry[]} accessory
  */
 
 /**
@@ -185,6 +186,7 @@ export class CompendiumIndex {
 			weapon: await this.getItemsOfType('weapon'),
 			consumable: await this.getItemsOfType('consumable'),
 			shield: await this.getItemsOfType('shield'),
+			accessory: await this.getItemsOfType('accessory'),
 		};
 		entries.all = Object.values(entries).flat();
 		return entries;
