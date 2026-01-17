@@ -1739,6 +1739,7 @@
 			"ChangeWarning1": "Proceed with caution!"
 		},
 		"CompendiumBrowser": "Compendium Browser",
+		"CompendiumBrowserOpen": "Open Compendium Browser",
 		"Actors": "Actors"
 	}
 }

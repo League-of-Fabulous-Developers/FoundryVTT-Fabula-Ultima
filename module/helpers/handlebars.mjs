@@ -202,6 +202,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
 		Handlebars.registerHelper('pfuBadge', badge);
 		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
+		Handlebars.registerHelper('pfuCompendium', compendium);
 	},
 });
 
@@ -393,6 +394,27 @@ function itemAnchor(item, options) {
 					pack: item.pack,
 					size: size,
 					classes: options?.classes,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @param {String} tab
+ * @param {CompendiumFilterOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function compendium(tab, options) {
+	if (options.hash) {
+		options = options.hash;
+	}
+
+	const template = Handlebars.partials[systemTemplatePath('common/icons/item')];
+	const html =
+		typeof template === 'function'
+			? template({
+					tab: tab,
+					options: options,
 				})
 			: '';
 	return new Handlebars.SafeString(html);

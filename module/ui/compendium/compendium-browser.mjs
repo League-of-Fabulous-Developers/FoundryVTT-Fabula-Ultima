@@ -5,6 +5,7 @@ import { FUTableRenderer } from '../../helpers/tables/table-renderer.mjs';
 import { CommonColumns } from '../../helpers/tables/common-columns.mjs';
 import { CompendiumIndex } from './compendium-index.mjs';
 import { FU } from '../../helpers/config.mjs';
+import { CompendiumFilter } from './compendium-filter.mjs';
 
 /**
  * @typedef CompendiumIndexEntry
@@ -59,6 +60,7 @@ class SpellsCompendiumTableRenderer extends CompendiumTableRenderer {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			duration: CommonColumns.propertyColumn('FU.Duration', 'system.duration.value', FU.duration),
 			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.amount'),
+			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
 		},
 	};
 }
@@ -118,6 +120,10 @@ class AdversariesCompendiumTableRenderer extends CompendiumTableRenderer {
 }
 
 /**
+ *
+ */
+
+/**
  * @desc A system-specific compendium browser with integrations throughout the system.
  */
 export class CompendiumBrowser extends FUApplication {
@@ -145,11 +151,11 @@ export class CompendiumBrowser extends FUApplication {
 	static TABS = {
 		primary: {
 			tabs: [
-				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-double-team' },
-				{ id: 'skills', label: 'FU.Skills', icon: 'ra ra-double-team' },
-				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-double-team' },
-				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-double-team' },
-				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster' },
+				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-player' },
+				{ id: 'skills', label: 'FU.Skills', icon: 'ra ra-cycle' },
+				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-anvil' },
+				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-fairy-wand' },
+				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
 			],
 			initial: 'classes',
 		},
@@ -192,12 +198,15 @@ export class CompendiumBrowser extends FUApplication {
 	 * @type {String}
 	 */
 	#activeTabId;
-	// TODO: Implement a more complex filter
-	static #filter;
+	/**
+	 * @type {CompendiumFilter}
+	 */
+	#filter;
 
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
 		super(data, options);
+		this.#filter = new CompendiumFilter();
 	}
 
 	/**
@@ -212,7 +221,7 @@ export class CompendiumBrowser extends FUApplication {
 
 	/** @inheritdoc */
 	async _onClose(options) {
-		CompendiumBrowser.#filter = undefined;
+		this.filter.clear();
 		return super._onClose(options);
 	}
 
@@ -222,6 +231,13 @@ export class CompendiumBrowser extends FUApplication {
 	 */
 	get index() {
 		return CompendiumIndex.instance;
+	}
+
+	/**
+	 * @returns {CompendiumFilter}
+	 */
+	get filter() {
+		return this.#filter;
 	}
 
 	/** @inheritdoc */
@@ -236,6 +252,7 @@ export class CompendiumBrowser extends FUApplication {
 
 			case 'sidebar':
 				{
+					context.filterText = this.filter.text;
 					// TODO: Render part-specific filters?
 				}
 				break;
@@ -298,33 +315,9 @@ export class CompendiumBrowser extends FUApplication {
 		}
 	}
 
-	/**
-	 * Set a predicate function to filter entries.
-	 * @param {(entry: CompendiumIndexEntry) => boolean} func
-	 */
-	setFilter(func) {
-		CompendiumBrowser.#filter = func;
-	}
-
-	filter(entry) {
-		if (CompendiumBrowser.#filter) {
-			return CompendiumBrowser.#filter(entry);
-		}
-		return true;
-	}
-
 	async #applyFilters() {
-		// Read filter values
 		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
-		//let updated = false;
-		this.setFilter((entry) => {
-			if (!search) return true;
-			const needle = search.toLowerCase();
-			return Object.values(entry).some((value) => {
-				if (typeof value !== 'string') return false;
-				return value.toLowerCase().includes(needle);
-			});
-		});
+		this.filter.setText(search);
 		console.debug(`[COMPENDIUM]: Search filter updated to '${search}' (${this.#activeTabId})`);
 		return this.renderTables(this.#activeTabId, true);
 	}
@@ -346,7 +339,7 @@ export class CompendiumBrowser extends FUApplication {
 	async setTables(tables) {
 		let result = [];
 		for (const trd of tables) {
-			const filteredEntries = trd.entries.filter(this.filter);
+			const filteredEntries = trd.entries.filter(this.filter.filter);
 			if (filteredEntries.length > 0) {
 				result.push(await trd.renderer.renderTable(filteredEntries, { hideIfEmpty: true }));
 			}
@@ -487,6 +480,24 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	/**
+	 * @typedef CompendiumFilterOptions
+	 * @property {String} text
+	 *
+	 */
+
+	/**
+	 * @param {String} tab The initial tab to open.
+	 * @param {CompendiumFilterOptions} filter Initial filtering for the tab.
+	 */
+	static open(tab, filter) {
+		const instance = CompendiumBrowser.instance;
+		instance.filter.setText(filter.text);
+		instance.render(true, {
+			tab: tab,
+		});
+	}
+
+	/**
 	 * @this CompendiumBrowser
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
@@ -494,6 +505,5 @@ export class CompendiumBrowser extends FUApplication {
 	 */
 	static async refresh(event, target) {
 		// TODO: Reload indexes
-		return this.render(true);
 	}
 }

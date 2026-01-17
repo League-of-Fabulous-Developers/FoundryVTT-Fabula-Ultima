@@ -136,7 +136,7 @@
 }
 
 .compendium-spells-table {
-	grid-template-columns: [name] auto [duration] 100px [cost] 100px;
+	grid-template-columns: [name] auto [duration] 100px [cost] 100px [class] 100px;
 }
 
 .compendium-classes-table {
