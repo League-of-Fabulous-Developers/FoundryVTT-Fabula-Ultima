@@ -18,6 +18,7 @@
 
 .fu-application__tabs nav {
 	background: var(--accent-bg);
+	text-transform: uppercase;
 }
 
 .fu-application__sidebar {

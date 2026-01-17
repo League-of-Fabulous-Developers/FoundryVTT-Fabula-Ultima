@@ -137,6 +137,8 @@ export class CompendiumBrowser extends FUApplication {
 	 * @type {String}
 	 */
 	#activeTabId;
+	// TODO: Implement a more complex filter
+	static #filter;
 
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
@@ -151,6 +153,12 @@ export class CompendiumBrowser extends FUApplication {
 			CompendiumBrowser.#instance = new CompendiumBrowser({}, {});
 		}
 		return CompendiumBrowser.#instance;
+	}
+
+	/** @inheritdoc */
+	async _onClose(options) {
+		CompendiumBrowser.#filter = undefined;
+		return super._onClose(options);
 	}
 
 	/**
@@ -189,7 +197,7 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	async _onFirstRender(context, options) {
-		return this.renderTables('classes');
+		return this.renderTables('classes', true);
 	}
 
 	/**
@@ -205,7 +213,18 @@ export class CompendiumBrowser extends FUApplication {
 			case 'sidebar':
 				{
 					const searchInput = element.querySelector('#search');
-					searchInput?.addEventListener('input', () => this.#applyFilters());
+					const debounce = (fn, ms) => {
+						let timer;
+						return (...args) => {
+							clearTimeout(timer);
+							timer = setTimeout(() => fn(...args), ms);
+						};
+					};
+					searchInput.addEventListener(
+						'input',
+						debounce(() => this.#applyFilters(), 150),
+					);
+					//searchInput?.addEventListener('input', () => this.#applyFilters());
 				}
 				break;
 			case 'tabs': {
@@ -220,8 +239,6 @@ export class CompendiumBrowser extends FUApplication {
 			}
 		}
 	}
-
-	static #filter;
 
 	/**
 	 * Set a predicate function to filter entries.
