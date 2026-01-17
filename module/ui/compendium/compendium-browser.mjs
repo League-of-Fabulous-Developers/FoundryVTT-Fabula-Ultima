@@ -43,7 +43,8 @@ class EquipmentCompendiumTableRenderer extends FUTableRenderer {
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
-			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name', headerSpan: 2 }),
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.value'),
 		},
 	};
 }

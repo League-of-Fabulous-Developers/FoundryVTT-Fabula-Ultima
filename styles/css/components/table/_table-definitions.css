@@ -120,5 +120,5 @@
 }
 
 .compendium-equipment-table {
-	grid-template-columns: [name] auto [cost] 100px [role] 100px [rank] 100px;
+	grid-template-columns: [name] auto [cost] 100px;
 }
