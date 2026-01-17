@@ -1027,3 +1027,8 @@ FU.allIcon = {
 	...FU.attributeIcons,
 	...FU.weaponCategoryIcons,
 };
+
+/**
+ * Set of theme classes for pressure gauge
+ */
+FU.pressureGaugeThemes = {};

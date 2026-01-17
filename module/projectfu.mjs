@@ -109,6 +109,7 @@ import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
 import { InlineAction } from './helpers/inline-action.mjs';
 import { PressureSystem } from './systems/pressure-system.mjs';
 import { FUToken } from './ui/token.mjs';
+import { FUPressureGauge } from './ui/pressureGauges/index.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -173,6 +174,10 @@ Hooks.once('init', async () => {
 	FU.ruleActionRegistry = RuleActionRegistry.instance;
 	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
 	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
+
+	FU.pressureGaugeThemes = {
+		default: FUPressureGauge,
+	};
 
 	/**
 	 * @type {Record<string, DataModelRegistry>}

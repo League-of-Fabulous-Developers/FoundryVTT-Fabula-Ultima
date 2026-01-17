@@ -2,6 +2,14 @@ import { SYSTEM } from '../../helpers/config.mjs';
 import { SETTINGS } from '../../settings.js';
 
 export class FUPressureGauge extends globalThis.PIXI.Container {
+	static get name() {
+		return 'FU.CombatHudDefault';
+	}
+
+	static get combatHudTheme() {
+		return 'fu-default';
+	}
+
 	fgStartColor = '#f7c754';
 	fgEndColor = '#d17f10';
 
@@ -125,7 +133,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 			shadow.lineTo(1, this.barHeight - 1);
 
 			this.y = -(this.height + 5);
-			this.token.tooltip.y = this.y;
+			if (this.token.tooltip) this.token.tooltip.y = this.y;
 		} catch (err) {
 			console.error(err);
 		}

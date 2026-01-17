@@ -6,6 +6,7 @@ import { WellspringDataModel } from './documents/items/classFeature/invoker/invo
 import { CombatHudSettings } from './settings/combatHudSettings.js';
 import { SettingsConfigurationApp } from './settings/settings-configuration-app.js';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
+import { FUToken } from './ui/token.mjs';
 
 /**
  * @description All system settings
@@ -65,6 +66,8 @@ export const SETTINGS = Object.freeze({
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	technospheres: 'useTechnospheres',
 	pressureSystem: 'pressureSystem',
+	optionPressureGaugeShow: 'optionPressureGaugeShow',
+	optionPressureGaugeTheme: 'optionPressureGaugeTheme',
 	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
@@ -192,7 +195,16 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule, SETTINGS.technospheres, SETTINGS.pressureSystem]),
+		type: createConfigurationApp('FU.OptionalRules', [
+			SETTINGS.optionQuirks,
+			SETTINGS.optionZeroPower,
+			SETTINGS.optionCampingRules,
+			SETTINGS.useRevisedStudyRule,
+			SETTINGS.technospheres,
+			SETTINGS.pressureSystem,
+			SETTINGS.optionPressureGaugeShow,
+			SETTINGS.optionPressureGaugeTheme,
+		]),
 		restricted: true,
 	});
 
@@ -253,6 +265,40 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPressureGaugeShow, {
+		name: game.i18n.localize('FU.OptionPressureGaugeShow'),
+		hint: game.i18n.localize('FU.OptionPressureGaugeShowHint'),
+		scope: 'user',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
+		onChange() {
+			canvas?.scene?.tokens.forEach((doc) => {
+				if (doc.object instanceof FUToken) doc.object.pressureGauge.refresh();
+			});
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPressureGaugeTheme, {
+		name: game.i18n.localize('FU.OptionPressureGaugeTheme'),
+		hint: game.i18n.localize('FU.OptionPressureGaugeThemeHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		requiresReload: false,
+		default: 'hudTheme',
+		choices: {
+			hudTheme: 'FU.OptionPressureGaugeUseHUDTheme',
+			...Object.fromEntries(Object.entries(FU.pressureGaugeThemes).map(([key, value]) => [key, value.name])),
+		},
+		onChange() {
+			canvas?.scene?.tokens.forEach((doc) => {
+				if (doc.object instanceof FUToken) doc.object._refreshPressureGauge(true);
+			});
+		},
 	});
 
 	// BEHAVIOR ROLLS
