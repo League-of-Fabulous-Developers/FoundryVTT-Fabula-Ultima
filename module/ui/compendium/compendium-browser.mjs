@@ -18,7 +18,7 @@ import { FU } from '../../helpers/config.mjs';
  * @property {Object} [system]       Partial system data (indexed fields only)
  */
 
-class CompendiumTableRender extends FUTableRenderer {
+class CompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		getItems: async (entries) => entries,
@@ -26,7 +26,7 @@ class CompendiumTableRender extends FUTableRenderer {
 	};
 }
 
-class ClassCompendiumTableRenderer extends CompendiumTableRender {
+class ClassCompendiumTableRenderer extends CompendiumTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
@@ -42,7 +42,7 @@ class ClassCompendiumTableRenderer extends CompendiumTableRender {
 	};
 }
 
-class EquipmentCompendiumTableRenderer extends CompendiumTableRender {
+class EquipmentCompendiumTableRenderer extends CompendiumTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
@@ -55,7 +55,7 @@ class EquipmentCompendiumTableRenderer extends CompendiumTableRender {
 	};
 }
 
-class AdversariesCompendiumTableRenderer extends CompendiumTableRender {
+class AdversariesCompendiumTableRenderer extends CompendiumTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
@@ -87,6 +87,7 @@ export class CompendiumBrowser extends FUApplication {
 			contentClasses: ['fu-application__browser'],
 			resizable: true,
 		},
+		form: { closeOnSubmit: false },
 		position: { width: 800, height: '800' },
 		actions: {},
 	};
@@ -132,6 +133,10 @@ export class CompendiumBrowser extends FUApplication {
 	 * @type {CompendiumBrowser}
 	 */
 	static #instance;
+	/**
+	 * @type {String}
+	 */
+	#activeTabId;
 
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
@@ -184,7 +189,7 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	async _onFirstRender(context, options) {
-		return this.#onTabActivated('classes');
+		return this.renderTables('classes');
 	}
 
 	/**
@@ -208,7 +213,7 @@ export class CompendiumBrowser extends FUApplication {
 				for (const tab of tabs) {
 					tab.addEventListener('click', (event) => {
 						const tabId = event.currentTarget.dataset.tab;
-						this.#onTabActivated(tabId);
+						this.renderTables(tabId);
 					});
 				}
 				break;
@@ -216,45 +221,90 @@ export class CompendiumBrowser extends FUApplication {
 		}
 	}
 
-	#applyFilters() {
-		// Read filter values
-		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
-		//const type = this.element.querySelector('.fu-filter-type')?.value || '';
-		// Example: assume current table data is cached
-		//const data = this._currentTabData; // e.g., classes, adversaries, equipment
+	static #filter;
 
-		// const filtered = data.all.filter((item) => {
-		// 	const matchesText = item.name.toLowerCase().includes(search);
-		// 	const matchesType = !type || item.type === type;
-		// 	return matchesText && matchesType;
-		// });
+	/**
+	 * Set a predicate function to filter entries.
+	 * @param {(entry: CompendiumIndexEntry) => boolean} func
+	 */
+	setFilter(func) {
+		CompendiumBrowser.#filter = func;
+	}
 
-		console.debug(`[COMPENDIUM]: Search filter updated to '${search}'`);
+	filter(entry) {
+		if (CompendiumBrowser.#filter) {
+			return CompendiumBrowser.#filter(entry);
+		}
+		return true;
 	}
 
 	#classRenderer = new ClassCompendiumTableRenderer();
 	#equipmentRenderer = new EquipmentCompendiumTableRenderer();
 	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
 
+	async #applyFilters() {
+		// Read filter values
+		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
+		//let updated = false;
+		this.setFilter((entry) => {
+			if (search) {
+				if (!entry.name.toLowerCase().includes(search.toLowerCase())) {
+					return false;
+				}
+			}
+			return true;
+		});
+		console.debug(`[COMPENDIUM]: Search filter updated to '${search}' (${this.#activeTabId})`);
+		return this.renderTables(this.#activeTabId, true);
+	}
+
+	/**
+	 * @typedef TableRenderingData
+	 * @property {CompendiumIndexEntry[]} entries
+	 * @property {CompendiumTableRenderer} renderer
+	 */
+
 	#renderedTables = [];
 	getTables() {
 		return this.#renderedTables;
 	}
-	setTables(tables) {
-		this.#renderedTables = tables;
+
+	/**
+	 * @param {TableRenderingData[]} tables
+	 */
+	async setTables(tables) {
+		let result = [];
+		for (const trd of tables) {
+			const filteredEntries = trd.entries.filter(this.filter);
+			if (filteredEntries.length > 0) {
+				result.push(await trd.renderer.renderTable(filteredEntries, { hideIfEmpty: true }));
+			}
+		}
+		this.#renderedTables = result;
 	}
 
-	async #onTabActivated(tabId) {
-		if (this._loadedTabs?.has(tabId)) return;
-		this._loadedTabs ??= new Set();
-		this._loadedTabs.add(tabId);
+	/**
+	 *
+	 * @param {String} tabId
+	 * @param {Boolean} force
+	 * @returns {Promise<void>}
+	 */
+	async renderTables(tabId, force = false) {
+		if (this.#activeTabId === tabId && !force) {
+			return;
+		}
+		this.#activeTabId = tabId;
 
 		switch (tabId) {
 			case 'classes':
 				{
 					const classes = await this.index.getClasses();
-					const tables = [await this.#classRenderer.renderTable(classes.all, { hideIfEmpty: true })];
-					this.setTables(tables);
+					await this.setTables([
+						{
+							entries: classes.all,
+							renderer: this.#classRenderer,
+						},
+					]);
 					this.render(false, { parts: ['classes'] });
 				}
 				break;
@@ -262,8 +312,12 @@ export class CompendiumBrowser extends FUApplication {
 			case 'equipment':
 				{
 					const equipment = await this.index.getEquipment();
-					const tables = [await this.#equipmentRenderer.renderTable(equipment.all, { hideIfEmpty: true })];
-					this.setTables(tables);
+					await this.setTables([
+						{
+							entries: equipment.all,
+							renderer: this.#equipmentRenderer,
+						},
+					]);
 					this.render(false, { parts: ['equipment'] });
 				}
 				break;
@@ -271,8 +325,12 @@ export class CompendiumBrowser extends FUApplication {
 			case 'adversaries':
 				{
 					const characters = await this.index.getCharacters();
-					const tables = [await this.#adversaryRenderer.renderTable(characters.npc, { hideIfEmpty: true })];
-					this.setTables(tables);
+					await this.setTables([
+						{
+							entries: characters.npc,
+							renderer: this.#adversaryRenderer,
+						},
+					]);
 					this.render(false, { parts: ['adversaries'] });
 				}
 
