@@ -434,17 +434,17 @@ function damageColumn(options = {}) {
 /**
  *
  * @param {String} label
- * @param {String }path
- * @param {Record} record For localization.
+ * @param {String} path
+ * @param {Record} localizationRecord = null For localization.
  * @return {ColumnConfig<FUItem>}
  */
-function propertyColumn(label, path, record) {
+function propertyColumn(label, path, localizationRecord = undefined) {
 	return CommonColumns.textColumn({
 		columnLabel: label,
 		getText: (entry) => {
 			const property = ObjectUtils.getProperty(entry, path);
 			if (property) {
-				return StringUtils.localize(record ? record[property] : property);
+				return StringUtils.localize(localizationRecord ? localizationRecord[property] : property);
 			}
 			return '';
 		},

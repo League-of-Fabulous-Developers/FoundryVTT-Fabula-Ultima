@@ -23,11 +23,14 @@ class CompendiumTableRender extends FUTableRenderer {}
 class ItemCompendiumTableRenderer extends CompendiumTableRender {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
+		cssClass: 'compendium-classes-table',
 		getItems: async (entries) => entries,
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
-			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name', headerSpan: 2 }),
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
+			sl: CommonColumns.propertyColumn('FU.SkillLevel', 'system.level.max'),
 		},
 	};
 }
@@ -35,6 +38,7 @@ class ItemCompendiumTableRenderer extends CompendiumTableRender {
 class EquipmentCompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
+		cssClass: 'compendium-equipment-table',
 		getItems: async (entries) => entries,
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
@@ -47,7 +51,7 @@ class EquipmentCompendiumTableRenderer extends FUTableRenderer {
 class AdversariesCompendiumTableRenderer extends CompendiumTableRender {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		cssClass: 'adversaries-table',
+		cssClass: 'compendium-adversaries-table',
 		getItems: async (entries) => entries,
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),

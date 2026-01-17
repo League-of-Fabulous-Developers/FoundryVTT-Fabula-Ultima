@@ -53,13 +53,16 @@ export class CompendiumIndex {
 	 */
 	#actors;
 
+	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
+	static classFields = ['system.class.value', 'system.level.max'];
+
 	/**
 	 * @param {Boolean} force
 	 * @returns {Record<string, CompendiumIndexEntry[]>}
 	 */
 	async getItems(force) {
 		if (!this.#items || force) {
-			this.#items = await this.getEntries('Item');
+			this.#items = await this.getEntries('Item', null, CompendiumIndex.classFields);
 		}
 		return this.#items;
 	}
@@ -77,8 +80,6 @@ export class CompendiumIndex {
 		}
 		return [];
 	}
-
-	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
 
 	/**
 	 * @param {Boolean} force

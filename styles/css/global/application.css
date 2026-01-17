@@ -16,6 +16,10 @@
 	grid-area: tabs;
 }
 
+.fu-application__tabs nav {
+	background: var(--accent-bg);
+}
+
 .fu-application__sidebar {
 	padding: 0.75rem;
 	border-right: 1px solid var(--color-border-light-primary);
