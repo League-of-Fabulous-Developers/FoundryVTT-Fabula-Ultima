@@ -68,6 +68,7 @@ export const SETTINGS = Object.freeze({
 	pressureSystem: 'pressureSystem',
 	optionPressureGaugeShow: 'optionPressureGaugeShow',
 	optionPressureGaugeTheme: 'optionPressureGaugeTheme',
+	optionPressureGaugePosition: 'optionPressureGaugePosition',
 	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
@@ -203,6 +204,7 @@ export const registerSystemSettings = async function () {
 			SETTINGS.technospheres,
 			SETTINGS.pressureSystem,
 			SETTINGS.optionPressureGaugeShow,
+			SETTINGS.optionPressureGaugePosition,
 			SETTINGS.optionPressureGaugeTheme,
 		]),
 		restricted: true,
@@ -270,11 +272,30 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionPressureGaugeShow, {
 		name: game.i18n.localize('FU.OptionPressureGaugeShow'),
 		hint: game.i18n.localize('FU.OptionPressureGaugeShowHint'),
-		scope: 'user',
+		scope: 'world',
 		config: false,
 		type: Boolean,
 		default: true,
 		requiresReload: false,
+		onChange() {
+			canvas?.scene?.tokens.forEach((doc) => {
+				if (doc.object instanceof FUToken) doc.object.pressureGauge.refresh();
+			});
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPressureGaugePosition, {
+		name: game.i18n.localize('FU.OptionPressureGaugePosition'),
+		hint: game.i18n.localize('FU.OptionPressureGaugePositionHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'top',
+		requiresReload: false,
+		choices: {
+			top: game.i18n.localize('FU.OptionPressureGaugePositionTop'),
+			bottom: game.i18n.localize('FU.OptionPressureGaugePositionBottom'),
+		},
 		onChange() {
 			canvas?.scene?.tokens.forEach((doc) => {
 				if (doc.object instanceof FUToken) doc.object.pressureGauge.refresh();

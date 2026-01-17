@@ -10,7 +10,6 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		return 'fu-default';
 	}
 
-	// TODO: It would be lovely to be able to pull the colors directly from CSS, but that would necessitate
 	fgStartColor = globalThis.getComputedStyle(document.documentElement).getPropertyValue(`--background-critical-start`);
 	fgEndColor = globalThis.getComputedStyle(document.documentElement).getPropertyValue(`--background-critical-end`);
 
@@ -43,8 +42,9 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		bg.name = `${this.token.id}.Pressure.BG`;
 		this.addChild(bg);
 
-		const fg = new globalThis.PIXI.Sprite();
+		const fg = new globalThis.PIXI.Sprite(this._createProgressTexture(width, height));
 		fg.name = `${this.token.id}.Pressure.FG`;
+
 		this.addChild(fg);
 
 		const mask = new globalThis.PIXI.Sprite(globalThis.PIXI.Texture.WHITE);
@@ -81,8 +81,16 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 	}
 
 	_positionGauge() {
-		this.y = -(this.height + 5);
-		if (this.token.tooltip) this.token.tooltip.y = this.y;
+		switch (game.settings.get(SYSTEM, SETTINGS.optionPressureGaugePosition)) {
+			case 'bottom':
+				this.y = this.token.document.getSize().height + 5;
+				if (this.token.nameplate) this.token.nameplate.y = this.y + this.height;
+				break;
+			default:
+				this.y = -(this.height + 5);
+				if (this.token.tooltip) this.token.tooltip.y = this.y;
+				break;
+		}
 	}
 
 	_animateWidth(mask, width, suppressAnimation = false) {
@@ -96,15 +104,68 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		}
 	}
 
+	lastCanvasScale = { x: 0, y: 0 };
+	/** Called on canvasPan hook to handle inverting the PIXI stage's scale, to preserve pixel precision */
+	onCanvasScale() {
+		if (!(this.lastCanvasScale.x === canvas.stage.scale.y && this.lastCanvasScale.y === canvas.stage.scale.y)) {
+			// Scale has changed, invert our own scale
+			this.scale.set(1 / canvas.stage.scale.x, 1 / canvas.stage.scale.y);
+			this.lastCanvasScale = { x: canvas.stage.scale.x, y: canvas.stage.scale.y };
+			this.refresh();
+		}
+	}
+
+	_getScaledSize() {
+		return {
+			width: this.token.document.getSize().width * canvas.stage.scale.x,
+			height: this.barHeight * canvas.stage.scale.y,
+		};
+	}
+
+	_getChildElement(namePart) {
+		return this.getChildByName(`${this.token.id}.Pressure.${namePart}`);
+	}
+
+	_setChildElement(namePart, elem) {
+		elem.name = `${this.token.id}.Pressure.${namePart}`;
+		this.addChild(elem);
+	}
+
+	_drawBorder() {
+		const border = this._getChildElement('Border');
+		if (!border) return;
+
+		const { width, height } = this._getScaledSize();
+		border.clear();
+		border.lineStyle(1, this.borderColor, 1);
+		border.drawRect(0, 0, width, height);
+	}
+
+	_drawShadow() {
+		const shadow = this._getChildElement('Shadow');
+		if (!shadow) return;
+
+		const { width, height } = this._getScaledSize();
+
+		shadow.clear();
+		shadow.lineStyle(2, this.shadowColor, 0.25);
+		shadow.moveTo(1, 1);
+		shadow.lineTo(width - 2, 1);
+
+		shadow.moveTo(1, 1);
+		shadow.lineTo(1, height - 2);
+	}
+
 	/**
 	 * Called hwen the gauge should be redrawn
 	 * @param {boolean} force - If true, will destroy then recreate display objects
 	 */
 	refresh(force = false) {
 		try {
+			const { width, height } = this._getScaledSize();
 			if (force) {
 				this._destroyChildren();
-				this._createElements();
+				this._createElements(width, height);
 			}
 			if (!this.shouldDrawPressureGauge) {
 				this.visible = false;
@@ -113,41 +174,27 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 				this.visible = true;
 			}
 
-			const [bg, fg, border, mask, shadow] = ['BG', 'FG', 'Border', 'FGMask', 'Shadow'].map((name) => this.getChildByName(`${this.token.id}.Pressure.${name}`));
+			const [bg, fg, border, mask] = ['BG', 'FG', 'Border', 'FGMask', 'Shadow'].map((name) => this._getChildElement(name));
 
 			if (!(bg && fg && border && mask)) throw new Error(`Pressure gauge PIXI elements not created for ${this.token.id}!`);
 
-			const { width } = this.token.document.getSize();
+			this._drawBorder();
+			this._drawShadow();
 
 			const { current, max } = this.clock;
 			bg.tint = this.bgColor;
-			bg.width = width;
-			bg.height = this.barHeight;
-			bg.x = bg.y = 0;
+			bg.width = border.width;
+			bg.height = border.height;
 
-			// Should probably migrate away from redrawing this texture on every refresh,
-			// it may be not great on performance
-			fg.texture = this._createProgressTexture(width, this.barHeight);
+			bg.x = bg.y = fg.x = fg.y = 0;
 
+			fg.height = height;
 			if (current !== this.lastValue) {
-				this._animateWidth(fg.mask, fg.width * (current / max));
+				this._animateWidth(fg.mask, width * (current / max));
 				this.lastValue = current;
+			} else {
+				fg.width = width * (current / max);
 			}
-
-			fg.x = bg.x;
-			fg.y = bg.y;
-
-			border.clear();
-			border.lineStyle(1, this.borderColor, 1);
-			border.drawRect(0, 0, width, this.barHeight);
-
-			shadow.clear();
-			shadow.lineStyle(1, this.shadowColor, 0.25);
-			shadow.moveTo(2, 2);
-			shadow.lineTo(width - 2, 2);
-
-			shadow.moveTo(1, 2);
-			shadow.lineTo(1, this.barHeight - 1);
 
 			this._positionGauge();
 		} catch (err) {
@@ -176,6 +223,10 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		super();
 
 		this.token = token;
-		this._createElements();
+		const { width, height } = this._getScaledSize();
+		this.lastCanvasScale = { x: canvas.stage.scale.x, y: canvas.stage.scale.y };
+		this.scale.set(1 / this.lastCanvasScale.x, 1 / this.lastCanvasScale.y);
+		this._createElements(width, height);
+		this.refresh();
 	}
 }

@@ -11,30 +11,53 @@ export class FUPixelPressureGauge extends FUPressureGauge {
 
 	barHeight = 4;
 
+	_getHighlightThickness() {
+		return canvas.stage.scale.y;
+	}
+
+	_drawHighlight() {
+		const highlight = this._getChildElement('Highlight');
+		if (!highlight) return;
+
+		const thickness = this._getHighlightThickness();
+
+		highlight.clear();
+		highlight.lineStyle(thickness, this.borderColor, 1);
+		const { width, height } = this._getScaledSize();
+
+		highlight.moveTo(0, height);
+		highlight.lineTo(width, height);
+	}
+
 	/** @inheritdoc */
 	_createElements(width = 100, height = this.barHeight) {
 		const bg = new globalThis.PIXI.Sprite(globalThis.PIXI.Texture.WHITE);
 		bg.tint = this.bgColor;
-		bg.name = `${this.token.id}.Pressure.BG`;
-		this.addChild(bg);
+		this._setChildElement('BG', bg);
 
 		const fg = new globalThis.PIXI.Sprite(this._createProgressTexture(width, height));
-		fg.name = `${this.token.id}.Pressure.FG`;
-		this.addChild(fg);
+		this._setChildElement('FG', fg);
 
 		const mask = new globalThis.PIXI.Sprite(globalThis.PIXI.Texture.WHITE);
-		mask.name = `${this.token.id}.Pressure.FGMask`;
-		this.addChild(mask);
+		this._setChildElement('FGMask', mask);
 		fg.mask = mask;
 
 		const highlight = new globalThis.PIXI.Graphics();
-		highlight.name = `${this.token.id}.Pressure.Highlight`;
-		this.addChild(highlight);
+		this._setChildElement('Highlight', highlight);
+		this._drawHighlight();
+	}
 
-		highlight.clear();
-		highlight.lineStyle(1, this.borderColor, 1);
-		highlight.moveTo(0, height);
-		highlight.lineTo(width, height);
+	onCanvasScale() {
+		if (!(this.lastCanvasScale.x === canvas.stage.scale.y && this.lastCanvasScale.y === canvas.stage.scale.y)) {
+			super.onCanvasScale();
+			this._drawHighlight();
+
+			const { width, height } = this._getScaledSize();
+			const fg = this._getChildElement('FG');
+			if (fg) {
+				fg.texture = this._createProgressTexture(width, height);
+			}
+		}
 	}
 
 	/** @inheritdoc */
@@ -51,25 +74,21 @@ export class FUPixelPressureGauge extends FUPressureGauge {
 				this.visible = true;
 			}
 
-			const elems = ['BG', 'FG'].map((name) => this.getChildByName(`${this.token.id}.Pressure.${name}`));
+			const elems = ['BG', 'FG'].map((name) => this._getChildElement(name));
 			if (elems.some((elem) => !elem)) throw new Error(`Pressure gauge PIXI elements not created for ${this.token.id}`);
 
 			const [bg, fg] = elems;
 
-			const { width } = this.token.document.getSize();
+			const { width, height } = this._getScaledSize();
 			const { current, max } = this.clock;
 			bg.tint = this.bgColor;
-			bg.width = width;
-			bg.height = this.barHeight;
-			bg.x = bg.y = 0;
+			bg.width = fg.width = width;
+			bg.height = fg.height = height;
 
-			if (current !== this.lastValue) {
-				this._animateWidth(fg.mask, fg.width * (current / max));
-				this.lastValue = current;
-			}
+			bg.x = bg.y = fg.x = fg.y = 0;
 
-			fg.x = bg.x;
-			fg.y = bg.y;
+			this._animateWidth(fg.mask, width * (current / max), current === this.lastValue);
+			this.lastValue = current;
 
 			this._positionGauge();
 		} catch (err) {

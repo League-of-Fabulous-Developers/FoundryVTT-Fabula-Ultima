@@ -175,11 +175,22 @@ Hooks.once('init', async () => {
 	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
 	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
 
+	// Set up pressure gauge things
 	FU.pressureGaugeThemes = {
 		default: FUPressureGauge,
 		modern: FUModernPressureGauge,
 		pixel: FUPixelPressureGauge,
 	};
+
+	Hooks.on('canvasPan', () => {
+		const start = performance.now();
+		const tokens = canvas.scene.tokens.filter((token) => token.object instanceof FUToken);
+		tokens.forEach((token) => token.object.pressureGauge.onCanvasScale());
+		const duration = performance.now() - start;
+		if (duration > 16) {
+			console.warn(`Rescaling ${tokens.length} tokens with pressure gauges took ${duration}ms`);
+		}
+	});
 
 	/**
 	 * @type {Record<string, DataModelRegistry>}

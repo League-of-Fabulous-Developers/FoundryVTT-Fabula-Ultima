@@ -11,7 +11,7 @@ export class FUModernPressureGauge extends FUPressureGauge {
 
 	bgColor = '#656565';
 	borderColor = '#c7c7c7';
-	barHeight = 6;
+	barHeight = 12;
 
 	clipSize = 0.1;
 
@@ -34,7 +34,8 @@ export class FUModernPressureGauge extends FUPressureGauge {
 		ctx.fillStyle = 'white';
 		ctx.fill();
 
-		return globalThis.PIXI.Texture.from(canvas);
+		const texture = globalThis.PIXI.Texture.from(canvas);
+		return texture;
 	}
 
 	_createFGMaskTexture(width, height) {
@@ -56,34 +57,60 @@ export class FUModernPressureGauge extends FUPressureGauge {
 		return globalThis.PIXI.Texture.from(canvas);
 	}
 
+	_getBorderThickness() {
+		return canvas.stage.scale.y;
+	}
+	_getShadowThickness() {
+		return 2 * canvas.stage.scale.y;
+	}
+
 	_drawShadow(width, height, color = this.shadowColor) {
-		const shadow = this.getChildByName(`${this.token.id}.Pressure.Shadow`);
+		const shadow = this._getChildElement('Shadow');
 		if (!shadow) return;
 
 		shadow.clear();
-		shadow.lineStyle(1, color, 0.25);
-		shadow.moveTo(2, 2);
-		shadow.lineTo(width - 2, 2);
+		const thickness = this._getShadowThickness();
+		shadow.lineStyle(thickness, color, 0.25, 0);
+		shadow.moveTo(0, thickness);
+		shadow.lineTo(width, thickness);
 
-		shadow.moveTo(1, 2);
-		shadow.lineTo(1, height - 1);
+		shadow.moveTo(0, thickness);
+		shadow.lineTo(0, height);
 	}
 
 	_drawBorder(width, height, color = this.border) {
-		const border = this.getChildByName(`${this.token.id}.Pressure.Border`);
+		const border = this._getChildElement('Border');
 		if (!border) return;
+
 		border.clear();
-		border.lineStyle(1, color, 1);
+		border.lineStyle(this._getBorderThickness(), color, 1, 0);
 		border.drawRect(0, 0, width, height);
 	}
 
-	_setFGMaskPosition(mask, x, suppressAnimation = false) {
-		if (!mask?.transform) return;
+	async _setFGPosition(suppressAnimation = false) {
+		const fg = this._getChildElement('FG');
+		if (!fg?.mask) return;
+
+		const { current = 0, max = 0 } = this.clock ?? {};
+		const perc = current / max;
+		const x = -(fg.mask.width - fg.mask.width * perc);
+
 		if (!this.token.isPreview && !suppressAnimation) {
-			globalThis.gsap.killTweensOf(mask);
-			globalThis.gsap.to(mask, { x, duration: this.animationDuration / 1000 });
+			globalThis.gsap.killTweensOf(fg);
+			await globalThis.gsap.to(fg.mask, { x, duration: this.animationDuration / 1000 });
 		} else {
-			mask.x = x;
+			fg.mask.x = x;
+		}
+	}
+
+	onCanvasScale() {
+		if (!(this.lastCanvasScale.x === canvas.stage.scale.y && this.lastCanvasScale.y === canvas.stage.scale.y)) {
+			super.onCanvasScale();
+			const { width, height } = this._getScaledSize();
+			const fg = this._getChildElement('FG');
+			if (fg?.mask) fg.mask.texture = this._createFGMaskTexture(width, height);
+
+			if (this.mask) this.mask.texture = this._createMaskTexture(width, height);
 		}
 	}
 
@@ -96,7 +123,6 @@ export class FUModernPressureGauge extends FUPressureGauge {
 
 		const fg = new globalThis.PIXI.Sprite(this._createProgressTexture(width, height));
 		fg.name = `${this.token.id}.Pressure.FG`;
-
 		this.addChild(fg);
 
 		const fgmask = new globalThis.PIXI.Sprite(this._createFGMaskTexture(width, height, current / max));
@@ -119,17 +145,18 @@ export class FUModernPressureGauge extends FUPressureGauge {
 		this.addChild(mask);
 		this.mask = mask;
 
-		this._setFGMaskPosition(fg.mask, -width + width * (current / max), true);
+		this._setFGPosition(true);
 	}
 
 	/** @inheritdoc */
 	refresh(force = false) {
 		try {
-			const { width } = this.token.document.getSize();
+			const { width, height } = this._getScaledSize();
 
 			if (force) {
 				this._destroyChildren();
-				this._createElements(width, this.barHeight);
+				const { width, height } = this._getScaledSize();
+				this._createElements(width, height);
 			}
 
 			if (!this.shouldDrawPressureGauge) {
@@ -139,29 +166,24 @@ export class FUModernPressureGauge extends FUPressureGauge {
 				this.visible = true;
 			}
 
-			const elems = ['BG', 'FG', 'Border', 'Mask'].map((name) => this.getChildByName(`${this.token.id}.Pressure.${name}`));
+			const elems = ['BG', 'FG', 'Border', 'Mask'].map((name) => this._getChildElement(name));
 			if (elems.some((elem) => !elem)) throw new Error(`Pressure gauge PIXI elements not created for ${this.id}!`);
 
 			const [bg, fg, border, mask] = elems;
-			const { current, max } = this.clock;
+			const { current } = this.clock;
+
+			this._drawBorder(width, height, this.borderColor);
+			this._drawShadow(width, height, this.shadowColor);
 
 			bg.tint = this.bgColor;
-			bg.width = width;
-			bg.height = this.barHeight;
-			bg.x = bg.y = 0;
+			bg.width = fg.width = border.width;
+			bg.height = fg.height = border.height;
 
-			fg.x = border.x = mask.x = bg.x;
-			fg.y = border.y = mask.y = bg.y;
-
-			fg.width = width;
-			fg.height = this.barHeight;
+			bg.x = bg.y = fg.y = border.x = border.y = mask.x = mask.y = 0;
 
 			// fg.texture = this._createProgressTexture(width, this.barHeight);
-			if (current !== this.lastValue) {
-				this._setFGMaskPosition(fg.mask, -width + width * (current / max));
-				this.lastValue = current;
-			}
-
+			this._setFGPosition(current === this.lastValue);
+			this.lastValue = current;
 			this._positionGauge();
 		} catch (err) {
 			console.error(err);
