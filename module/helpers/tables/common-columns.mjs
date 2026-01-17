@@ -56,6 +56,7 @@ function renderNameCell(renderCaption, cssClass, rollable = true) {
 			name: item.name,
 			img: item.img,
 			id: item.id,
+			pack: item.pack,
 			uuid: item.uuid,
 			rollable: rollable,
 			caption: await caption(item),

@@ -390,6 +390,7 @@ function itemAnchor(item, options) {
 					uuid: item.uuid,
 					id: item.id,
 					img: item.img,
+					pack: item.pack,
 					size: size,
 					classes: options?.classes,
 				})

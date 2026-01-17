@@ -152,12 +152,7 @@ export class CompendiumIndex {
 
 				(result[key] ??= []).push({
 					...entry,
-					// uuid: entry.uuid,
-					// name: entry.name,
-					// img: entry.img,
-					// type: entry.type,
 					pack: pack.collection,
-					//system: entry.system,
 				});
 			}
 		}
