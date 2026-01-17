@@ -17,6 +17,13 @@ import { systemId } from '../../helpers/system-utils.mjs';
  */
 
 /**
+ * @typedef CharacterEntries
+ * @property {CompendiumIndexEntry[]} character
+ * @property {CompendiumIndexEntry[]} npc
+ * @property {CompendiumIndexEntry[]} stash
+ */
+
+/**
  * @desc Handles indexing of system-specific documents.
  */
 export class CompendiumIndex {
@@ -42,6 +49,11 @@ export class CompendiumIndex {
 	#items;
 
 	/**
+	 * @type {Record<string, CompendiumIndexEntry[]>}
+	 */
+	#actors;
+
+	/**
 	 * @param {Boolean} force
 	 * @returns {Record<string, CompendiumIndexEntry[]>}
 	 */
@@ -59,9 +71,34 @@ export class CompendiumIndex {
 	 * @returns {Promise<CompendiumIndexEntry[]>}
 	 */
 	async getItemsOfType(type, force = false) {
-		const items = await this.getItems(force);
-		if (items[type]) {
-			return items[type];
+		const entries = await this.getItems(force);
+		if (entries[type]) {
+			return entries[type];
+		}
+		return [];
+	}
+
+	/**
+	 * @param {Boolean} force
+	 * @returns {Record<string, CompendiumIndexEntry[]>}
+	 */
+	async getActors(force) {
+		if (!this.#actors || force) {
+			this.#actors = await this.getEntries('Actor');
+		}
+		return this.#actors;
+	}
+
+	/**
+	 *
+	 * @param {String} type The actor type.
+	 * @param {Boolean} force
+	 * @returns {Promise<CompendiumIndexEntry[]>}
+	 */
+	async getActorsOfType(type, force = false) {
+		const entries = await this.getActors(force);
+		if (entries[type]) {
+			return entries[type];
 		}
 		return [];
 	}
@@ -75,6 +112,14 @@ export class CompendiumIndex {
 	}
 
 	/**
+	 * @param {String} type type of document.
+	 * @returns {[]}
+	 */
+	getPacks(type) {
+		return game.packs.filter((p) => p.documentName === type);
+	}
+
+	/**
 	 * @param {string} document Document type (e.g. "Item")
 	 * @param {string} type The document subtype. (Such as what type of items like armor, weapons)
 	 * @returns {Promise<Record<string, CompendiumIndexEntry[]>>}
@@ -84,7 +129,7 @@ export class CompendiumIndex {
 
 		/** @type {Record<string, CompendiumIndexEntry[]>} */
 		const result = {};
-		const packs = this.getSystemPacks(document);
+		const packs = this.getPacks(document);
 
 		const indexes = await Promise.all(packs.map((pack) => pack.getIndex({ fields: ['name', 'img', 'type'] }).then((entries) => ({ pack, entries }))));
 
@@ -130,6 +175,19 @@ export class CompendiumIndex {
 			skill: await this.getItemsOfType('skill'),
 			classFeature: await this.getItemsOfType('classFeature'),
 			heroic: await this.getItemsOfType('heroic'),
+		};
+		entries.all = Object.values(entries).flat();
+		return entries;
+	}
+
+	/**
+	 * @returns {Promise<CharacterEntries>}
+	 */
+	async getCharacters() {
+		const entries = {
+			character: await this.getActorsOfType('character'),
+			npc: await this.getActorsOfType('npc'),
+			stash: await this.getActorsOfType('stash'),
 		};
 		entries.all = Object.values(entries).flat();
 		return entries;

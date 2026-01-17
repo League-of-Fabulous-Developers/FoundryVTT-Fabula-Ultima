@@ -20,7 +20,6 @@ import { CompendiumIndex } from './compendium-index.mjs';
 class ItemCompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		cssClass: '',
 		getItems: async (items) => {
 			return items;
 		},
@@ -33,6 +32,20 @@ class ItemCompendiumTableRenderer extends FUTableRenderer {
 }
 
 class EquipmentCompendiumTableRenderer extends FUTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		getItems: async (items) => {
+			return items;
+		},
+		tablePreset: 'item',
+		renderDescription: CommonDescriptions.simpleDescription(),
+		columns: {
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name', headerSpan: 2 }),
+		},
+	};
+}
+
+class AdversariesCompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		getItems: async (items) => {
@@ -75,7 +88,7 @@ export class CompendiumBrowser extends FUApplication {
 			tabs: [
 				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-double-team' },
 				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-double-team' },
-				{ id: 'actors', label: 'FU.Actors', icon: 'ra ra-double-team' },
+				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster' },
 			],
 			initial: 'classes',
 		},
@@ -85,20 +98,22 @@ export class CompendiumBrowser extends FUApplication {
 	 * @override
 	 */
 	static PARTS = {
+		// Layout
 		tabs: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-tabs'),
 		},
 		sidebar: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-sidebar'),
 		},
+		// Tabs
 		classes: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-classes'),
 		},
 		equipment: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-equipment'),
 		},
-		actors: {
-			template: systemTemplatePath('ui/compendium-browser/compendium-browser-actors'),
+		adversaries: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-adversaries'),
 		},
 	};
 
@@ -110,6 +125,7 @@ export class CompendiumBrowser extends FUApplication {
 	// Rendering tables
 	#classesTable = new ItemCompendiumTableRenderer();
 	#equipmentTable = new EquipmentCompendiumTableRenderer();
+	#adversariesTable = new AdversariesCompendiumTableRenderer();
 
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
@@ -157,14 +173,19 @@ export class CompendiumBrowser extends FUApplication {
 				}
 				break;
 
+			case 'adversaries':
+				{
+					const characters = await this.index.getCharacters();
+					context.adversaries = characters.npc;
+					context.adversariesTable = await this.#adversariesTable.renderTable(context.adversaries, { hideIfEmpty: true });
+				}
+				break;
+
 			case 'equipment':
 				{
 					context.equipment = await this.index.getEquipment();
 					context.equipmentTable = await this.#equipmentTable.renderTable(context.equipment.all, { hideIfEmpty: true });
 				}
-				break;
-
-			case 'actors':
 				break;
 		}
 		return context;
