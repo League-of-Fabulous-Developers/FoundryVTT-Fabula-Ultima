@@ -254,7 +254,8 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	async _onFirstRender(context, options) {
-		return this.renderTables('classes', true);
+		let currentTab = this.#activeTabId ?? 'classes';
+		return this.renderTables(currentTab, true);
 	}
 
 	/**
@@ -317,12 +318,12 @@ export class CompendiumBrowser extends FUApplication {
 		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
 		//let updated = false;
 		this.setFilter((entry) => {
-			if (search) {
-				if (!entry.name.toLowerCase().includes(search.toLowerCase())) {
-					return false;
-				}
-			}
-			return true;
+			if (!search) return true;
+			const needle = search.toLowerCase();
+			return Object.values(entry).some((value) => {
+				if (typeof value !== 'string') return false;
+				return value.toLowerCase().includes(needle);
+			});
 		});
 		console.debug(`[COMPENDIUM]: Search filter updated to '${search}' (${this.#activeTabId})`);
 		return this.renderTables(this.#activeTabId, true);
