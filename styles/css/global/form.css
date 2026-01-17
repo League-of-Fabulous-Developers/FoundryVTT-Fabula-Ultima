@@ -165,6 +165,7 @@
 
 .fu-icon__container {
 	display: flex;
+	padding: 2px;
 }
 
 .fu-icon__badge {

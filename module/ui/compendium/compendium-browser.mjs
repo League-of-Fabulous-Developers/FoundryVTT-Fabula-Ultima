@@ -270,8 +270,15 @@ export class CompendiumBrowser extends FUApplication {
 		return context;
 	}
 
+	/**
+	 * @returns {String}
+	 */
+	get activeTabId() {
+		return this.tabGroups.primary;
+	}
+
 	async _onFirstRender(context, options) {
-		let currentTab = this.#activeTabId ?? 'classes';
+		let currentTab = this.activeTabId;
 		return this.renderTables(currentTab, true);
 	}
 

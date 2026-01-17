@@ -409,7 +409,7 @@ function compendium(tab, options) {
 		options = options.hash;
 	}
 
-	const template = Handlebars.partials[systemTemplatePath('common/icons/item')];
+	const template = Handlebars.partials[systemTemplatePath('common/icons/compendium')];
 	const html =
 		typeof template === 'function'
 			? template({

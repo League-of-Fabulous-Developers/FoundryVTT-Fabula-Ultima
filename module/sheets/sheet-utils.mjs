@@ -1,5 +1,20 @@
 import { TextEditor } from '../helpers/text-editor.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { CompendiumBrowser } from '../ui/compendium/compendium-browser.mjs';
+
+/**
+ * @this
+ * @param {PointerEvent} event   The originating click event
+ * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+ * @returns {Promise<void>}
+ */
+async function openCompendium(event, target) {
+	const tab = target.dataset.tab;
+	const text = target.dataset.text;
+	return CompendiumBrowser.open(tab, {
+		text: text,
+	});
+}
 
 /**
  * @description Provides utility functions for rendering sheets
@@ -29,5 +44,12 @@ export const SheetUtils = Object.freeze({
 		return {
 			description: description,
 		};
+	},
+
+	/**
+	 * @desc Common actions across sheets.
+	 */
+	actions: {
+		openCompendium: openCompendium,
 	},
 });
