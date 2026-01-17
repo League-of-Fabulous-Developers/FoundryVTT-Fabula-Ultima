@@ -37,7 +37,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 	/**
 	 * Creates necessary PIXI display objects for this particular gauge style
 	 */
-	_createElements() {
+	_createElements(width = 100, height = this.barHeight) {
 		const bg = new globalThis.PIXI.Sprite(globalThis.PIXI.Texture.WHITE);
 		bg.name = `${this.token.id}.Pressure.BG`;
 		this.addChild(bg);
@@ -58,6 +58,9 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		const border = new globalThis.PIXI.Graphics();
 		border.name = `${this.token.id}.Pressure.Border`;
 		this.addChild(border);
+
+		const { current = 0, max = 0 } = this.clock ?? {};
+		this._setFGMaskWidth(fg.mask, width * (current / max), true);
 	}
 
 	_createProgressTexture(width, height) {
@@ -74,6 +77,22 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		ctx.fillRect(0, 0, width, height);
 
 		return globalThis.PIXI.Texture.from(canvas);
+	}
+
+	_positionGauge() {
+		this.y = -(this.height + 5);
+		if (this.token.tooltip) this.token.tooltip.y = this.y;
+	}
+
+	_setFGMaskWidth(mask, width, suppressAnimation = false) {
+		if (!mask?.transform) return;
+
+		if (!this.token.isPreview && !suppressAnimation) {
+			globalThis.gsap.killTweensOf(mask);
+			globalThis.gsap.to(mask, { width, duration: this.animationDuration / 1000 });
+		} else {
+			mask.width = width;
+		}
 	}
 
 	/**
@@ -105,16 +124,13 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 			bg.height = this.barHeight;
 			bg.x = bg.y = 0;
 
+			// Should probably migrate away from redrawing this texture on every refresh,
+			// it may be not great on performance
 			fg.texture = this._createProgressTexture(width, this.barHeight);
 
-			if (current !== this.lastValue && !this.token.isPreview) {
-				const newWidth = fg.width * (current / max);
-				globalThis.gsap.killTweensOf(fg.mask);
-				globalThis.gsap.to(fg.mask, { width: newWidth, duration: this.animationDuration / 1000 }).then(() => {
-					this.lastValue = current;
-				});
-			} else {
-				fg.mask.width = fg.width * (current / max);
+			if (current !== this.lastValue) {
+				this._setFGMaskWidth(fg.mask, fg.width * (current / max));
+				this.lastValue = current;
 			}
 
 			fg.x = bg.x;
@@ -132,8 +148,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 			shadow.moveTo(1, 2);
 			shadow.lineTo(1, this.barHeight - 1);
 
-			this.y = -(this.height + 5);
-			if (this.token.tooltip) this.token.tooltip.y = this.y;
+			this._positionGauge();
 		} catch (err) {
 			console.error(err);
 		}
@@ -141,6 +156,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 
 	destroy() {
 		this._destroyChildren();
+		globalThis.gsap.killTweensOf(this);
 		super.destroy();
 	}
 
@@ -148,6 +164,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		const children = [...this.children];
 		this.removeChildren();
 		children.forEach((child) => {
+			globalThis.gsap.killTweensOf(child);
 			child.destroy();
 		});
 	}

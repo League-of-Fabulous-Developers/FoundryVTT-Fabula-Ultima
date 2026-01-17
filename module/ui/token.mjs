@@ -42,7 +42,7 @@ export class FUToken extends foundry.canvas.placeables.Token {
 
 	_refreshSize() {
 		super._refreshSize();
-		this.pressureGauge?.refresh();
+		this.pressureGauge?.refresh(true);
 	}
 
 	_refreshPosition() {
