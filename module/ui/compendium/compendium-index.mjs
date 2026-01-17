@@ -1,9 +1,33 @@
 import { systemId } from '../../helpers/system-utils.mjs';
 
 /**
+ * @typedef EquipmentEntries
+ * @property {CompendiumIndexEntry[]} armor
+ * @property {CompendiumIndexEntry[]} weapon
+ * @property {CompendiumIndexEntry[]} shield
+ * @property {CompendiumIndexEntry[]} consumable
+ */
+
+/**
  * @property {CompendiumIndexEntry[]} actors
  */
 export class CompendiumIndex {
+	/**
+	 * The current compendium index.
+	 * @type {CompendiumIndex}
+	 */
+	static #instance;
+
+	/**
+	 * @returns {CompendiumIndex}
+	 */
+	static get instance() {
+		if (!CompendiumIndex.#instance) {
+			CompendiumIndex.#instance = new CompendiumIndex();
+		}
+		return CompendiumIndex.#instance;
+	}
+
 	/**
 	 * @type {Record<string, CompendiumIndexEntry[]>}
 	 */
@@ -75,5 +99,20 @@ export class CompendiumIndex {
 		}
 
 		return result;
+	}
+
+	/**
+	 *
+	 * @returns {Promise<EquipmentEntries>}
+	 */
+	async getEquipment() {
+		const equipment = {
+			armor: await this.getItemsOfType('armor'),
+			weapon: await this.getItemsOfType('weapon'),
+			consumable: await this.getItemsOfType('consumable'),
+			shield: await this.getItemsOfType('shield'),
+		};
+		equipment.all = Object.values(equipment).flat();
+		return equipment;
 	}
 }

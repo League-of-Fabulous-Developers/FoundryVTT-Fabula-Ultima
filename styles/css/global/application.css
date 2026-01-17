@@ -2,24 +2,31 @@
 	color: var(--color-text-dark);
 }
 
+.fu-application__browser {
+	display: grid;
+	height: 100%;
+	grid-template-areas:
+		'tabs tabs'
+		'sidebar content';
+	grid-template-rows: auto 1fr;
+	grid-template-columns: 200px 1fr;
+}
+
+.fu-application__tabs {
+	grid-area: tabs;
+}
+
 .fu-application__sidebar {
 	padding: 0.75rem;
 	border-right: 1px solid var(--color-border-light-primary);
 	overflow-y: auto;
+	grid-area: sidebar;
 }
 
 .fu-application__content {
 	padding: 0.75rem;
 	overflow-y: auto;
-}
-
-.fu-application__header {
-}
-
-.fu-application__browser {
-	display: grid;
-	grid-template-columns: 200px 1fr;
-	height: 100%;
+	grid-area: content;
 }
 
 .fu-application h1,

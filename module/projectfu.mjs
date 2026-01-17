@@ -108,6 +108,7 @@ import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
 import { InlineAction } from './helpers/inline-action.mjs';
 import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
+import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -163,7 +164,7 @@ Hooks.once('init', async () => {
 		get party() {
 			return FUPartySheet;
 		},
-		FUCompendiumBrowser: CompendiumBrowser,
+		index: CompendiumIndex.instance,
 	};
 
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise

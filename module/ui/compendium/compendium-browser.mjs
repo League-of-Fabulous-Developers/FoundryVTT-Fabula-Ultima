@@ -17,7 +17,7 @@ import { CompendiumIndex } from './compendium-index.mjs';
  * @property {Object} [system]       Partial system data (indexed fields only)
  */
 
-export class CompendiumItemTableRenderer extends FUTableRenderer {
+class ItemCompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: '',
@@ -32,6 +32,23 @@ export class CompendiumItemTableRenderer extends FUTableRenderer {
 	};
 }
 
+class EquipmentCompendiumTableRenderer extends FUTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		getItems: async (items) => {
+			return items;
+		},
+		tablePreset: 'item',
+		renderDescription: CommonDescriptions.simpleDescription(),
+		columns: {
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name', headerSpan: 2 }),
+		},
+	};
+}
+
+/**
+ * @desc A system-specific compendium browser with integrations throughout the system.
+ */
 export class CompendiumBrowser extends FUApplication {
 	/**
 	 * @inheritDoc
@@ -42,9 +59,10 @@ export class CompendiumBrowser extends FUApplication {
 		classes: ['fu', 'fu-application'],
 		window: {
 			title: 'FU.CompendiumBrowser',
+			contentClasses: ['fu-application__browser'],
 			resizable: true,
 		},
-		position: { width: 640, height: 'auto' },
+		position: { width: 800, height: 'auto' },
 		actions: {},
 	};
 
@@ -54,10 +72,11 @@ export class CompendiumBrowser extends FUApplication {
 	static TABS = {
 		primary: {
 			tabs: [
-				{ id: 'items', label: 'FU.Items', icon: 'ra ra-double-team' },
+				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-double-team' },
+				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-double-team' },
 				{ id: 'actors', label: 'FU.Actors', icon: 'ra ra-double-team' },
 			],
-			initial: 'items',
+			initial: 'classes',
 		},
 	};
 
@@ -68,8 +87,14 @@ export class CompendiumBrowser extends FUApplication {
 		tabs: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-tabs'),
 		},
-		items: {
-			template: systemTemplatePath('ui/compendium-browser/compendium-browser-items'),
+		sidebar: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-sidebar'),
+		},
+		classes: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-classes'),
+		},
+		equipment: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-equipment'),
 		},
 		actors: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-actors'),
@@ -77,17 +102,13 @@ export class CompendiumBrowser extends FUApplication {
 	};
 
 	/**
-	 * The current compendium index.
-	 * @type {CompendiumIndex}
-	 */
-	static #index = new CompendiumIndex();
-
-	/**
 	 * @type {CompendiumBrowser}
 	 */
 	static #instance;
 
-	#itemsTable = new CompendiumItemTableRenderer();
+	// Rendering tables
+	#classesTable = new ItemCompendiumTableRenderer();
+	#equipmentTable = new EquipmentCompendiumTableRenderer();
 
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
@@ -109,7 +130,7 @@ export class CompendiumBrowser extends FUApplication {
 	 * @remarks The index is statically cached.
 	 */
 	get index() {
-		return CompendiumBrowser.#index;
+		return CompendiumIndex.instance;
 	}
 
 	/** @inheritdoc */
@@ -121,11 +142,21 @@ export class CompendiumBrowser extends FUApplication {
 			case 'tabs':
 				context.tabs = this._prepareTabs('primary');
 				break;
-			case 'items':
-				context.items = await this.index.getItemsOfType('class');
-				// TODO: Update the table renderer?
-				context.itemsTable = await this.#itemsTable.renderTable(context.items, { hideIfEmpty: true });
+
+			case 'classes':
+				{
+					context.classes = await this.index.getItemsOfType('class');
+					context.classesTable = await this.#classesTable.renderTable(context.classes, { hideIfEmpty: true });
+				}
 				break;
+
+			case 'equipment':
+				{
+					context.equipment = await this.index.getEquipment();
+					context.equipmentTable = await this.#equipmentTable.renderTable(context.equipment.all, { hideIfEmpty: true });
+				}
+				break;
+
 			case 'actors':
 				break;
 		}
