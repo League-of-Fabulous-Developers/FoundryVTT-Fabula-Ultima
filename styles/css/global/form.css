@@ -84,6 +84,7 @@
 }
 
 /*		DIALOGS		*/
+.fu-application .background,
 .fu-dialog .background,
 .fu-form .background {
 	background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
@@ -164,6 +165,7 @@
 
 .fu-icon__container {
 	display: flex;
+	padding: 2px;
 }
 
 .fu-icon__badge {

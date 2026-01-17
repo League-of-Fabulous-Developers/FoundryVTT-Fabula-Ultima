@@ -1,8 +1,19 @@
 <div class="cell-item-name">
 	<div class="cell-item-name__main">
-		<a data-action="roll">
-			<img class="cell-item-name__image" src="{{img}}" alt="{{name}}" data-tooltip="{{localize 'FU.RollIconToolTip' name=name}}" />
-		</a>
+		{{#if rollable}}
+			<a data-action="roll">
+				<img class="cell-item-name__image" src="{{img}}" alt="{{name}}" data-tooltip="{{localize 'FU.RollIconToolTip' name=name}}" />
+			</a>
+		{{else}}
+			<a data-link draggable="true"
+			   data-uuid="{{uuid}}"
+			   data-pack="{{pack}}"
+			   class="{{classes}}"
+			   data-item-id="{{id}}"
+			   data-type="Item" data-tooltip="{{name}}">
+				<img class="cell-item-name__image" src="{{img}}" alt="{{name}}">
+			</a>
+		{{/if}}
 		<div class="cell-item-name__name">
 			<span class="{{cssClass}}">{{name}}</span>
 		</div>

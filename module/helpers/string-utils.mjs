@@ -31,7 +31,10 @@ function localize(key, data = undefined) {
 	if (data) {
 		return game.i18n.format(key, data);
 	}
-	return game.i18n.localize(key);
+	if (typeof key === 'string') {
+		return game.i18n.localize(key);
+	}
+	return key.toString();
 }
 
 /**

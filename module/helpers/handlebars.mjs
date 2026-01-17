@@ -202,6 +202,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
 		Handlebars.registerHelper('pfuBadge', badge);
 		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
+		Handlebars.registerHelper('pfuCompendium', compendium);
 	},
 });
 
@@ -365,8 +366,15 @@ function badge(key, options) {
 }
 
 /**
+ * @typedef ItemAnchorOptions
+ * @property {String} label
+ * @property {String}
+ * @property {'xs'|'s'|'m'|'l'|'xl'} size
+ */
+
+/**
  * @param {FUItem} item
- * @param {BadgeOptions} options
+ * @param {ItemAnchorOptions} options
  * @returns {Handlebars.SafeString}
  */
 function itemAnchor(item, options) {
@@ -374,6 +382,7 @@ function itemAnchor(item, options) {
 		options = options.hash;
 	}
 
+	const size = options.size ?? 's';
 	const template = Handlebars.partials[systemTemplatePath('common/icons/item')];
 	const html =
 		typeof template === 'function'
@@ -382,7 +391,30 @@ function itemAnchor(item, options) {
 					uuid: item.uuid,
 					id: item.id,
 					img: item.img,
+					pack: item.pack,
+					size: size,
 					classes: options?.classes,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @param {String} tab
+ * @param {CompendiumFilterOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function compendium(tab, options) {
+	if (options.hash) {
+		options = options.hash;
+	}
+
+	const template = Handlebars.partials[systemTemplatePath('common/icons/compendium')];
+	const html =
+		typeof template === 'function'
+			? template({
+					tab: tab,
+					options: options,
 				})
 			: '';
 	return new Handlebars.SafeString(html);

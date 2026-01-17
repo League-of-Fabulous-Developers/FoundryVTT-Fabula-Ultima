@@ -1003,6 +1003,7 @@ FU.allIcon = {
 	damage: 'fu-damage',
 	type: 'fu-type',
 	info: 'fas fa-circle-info',
+	compendium: 'fas fa-book',
 	warning: 'fas fa-triangle-exclamation',
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,

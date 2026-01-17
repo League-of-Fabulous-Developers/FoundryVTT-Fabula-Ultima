@@ -41,6 +41,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
+import { SheetUtils } from './sheet-utils.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -83,6 +84,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 			height: 1000,
 		},
 		actions: {
+			// Common
+			...SheetUtils.actions,
+			// General
 			createItem: FUStandardActorSheet.#onCreate,
 			createFavorite: FUStandardActorSheet.#onCreateFavorite,
 			createClock: FUStandardActorSheet.#onCreateClock,
