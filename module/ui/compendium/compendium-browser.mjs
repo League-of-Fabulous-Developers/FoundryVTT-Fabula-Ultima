@@ -59,6 +59,7 @@ export class CompendiumBrowser extends FUApplication {
 		classes: ['fu', 'fu-application'],
 		window: {
 			title: 'FU.CompendiumBrowser',
+			icon: 'fas fa-book',
 			contentClasses: ['fu-application__browser'],
 			resizable: true,
 		},
@@ -143,10 +144,16 @@ export class CompendiumBrowser extends FUApplication {
 				context.tabs = this._prepareTabs('primary');
 				break;
 
+			case 'sidebar':
+				{
+					// TODO: Part-specific filters
+				}
+				break;
+
 			case 'classes':
 				{
-					context.classes = await this.index.getItemsOfType('class');
-					context.classesTable = await this.#classesTable.renderTable(context.classes, { hideIfEmpty: true });
+					context.classes = await this.index.getClasses();
+					context.classesTable = await this.#classesTable.renderTable(context.classes.all, { hideIfEmpty: true });
 				}
 				break;
 

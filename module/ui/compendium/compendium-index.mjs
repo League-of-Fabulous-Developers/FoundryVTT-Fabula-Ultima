@@ -9,7 +9,15 @@ import { systemId } from '../../helpers/system-utils.mjs';
  */
 
 /**
- * @property {CompendiumIndexEntry[]} actors
+ * @typedef ClassesEntries
+ * @property {CompendiumIndexEntry[]} class
+ * @property {CompendiumIndexEntry[]} classFeature
+ * @property {CompendiumIndexEntry[]} skill
+ * @property {CompendiumIndexEntry[]} heroic
+ */
+
+/**
+ * @desc Handles indexing of system-specific documents.
  */
 export class CompendiumIndex {
 	/**
@@ -72,20 +80,18 @@ export class CompendiumIndex {
 	 * @returns {Promise<Record<string, CompendiumIndexEntry[]>>}
 	 */
 	async getEntries(document, type) {
+		console.debug(`Fetching entries for document: ${document}`);
+
 		/** @type {Record<string, CompendiumIndexEntry[]>} */
 		const result = {};
 		const packs = this.getSystemPacks(document);
 
-		for (const pack of packs) {
-			const entries = await pack.getIndex({
-				fields: ['name', 'img', 'type'],
-			});
+		const indexes = await Promise.all(packs.map((pack) => pack.getIndex({ fields: ['name', 'img', 'type'] }).then((entries) => ({ pack, entries }))));
 
+		for (const { pack, entries } of indexes) {
 			for (const entry of entries) {
 				const key = entry.type ?? 'unknown';
-				if (type && key !== type) {
-					continue;
-				}
+				if (type && key !== type) continue;
 
 				(result[key] ??= []).push({
 					uuid: entry.uuid,
@@ -102,17 +108,30 @@ export class CompendiumIndex {
 	}
 
 	/**
-	 *
 	 * @returns {Promise<EquipmentEntries>}
 	 */
 	async getEquipment() {
-		const equipment = {
+		const entries = {
 			armor: await this.getItemsOfType('armor'),
 			weapon: await this.getItemsOfType('weapon'),
 			consumable: await this.getItemsOfType('consumable'),
 			shield: await this.getItemsOfType('shield'),
 		};
-		equipment.all = Object.values(equipment).flat();
-		return equipment;
+		entries.all = Object.values(entries).flat();
+		return entries;
+	}
+
+	/**
+	 * @returns {Promise<ClassesEntries>}
+	 */
+	async getClasses() {
+		const entries = {
+			class: await this.getItemsOfType('class'),
+			skill: await this.getItemsOfType('skill'),
+			classFeature: await this.getItemsOfType('classFeature'),
+			heroic: await this.getItemsOfType('heroic'),
+		};
+		entries.all = Object.values(entries).flat();
+		return entries;
 	}
 }
