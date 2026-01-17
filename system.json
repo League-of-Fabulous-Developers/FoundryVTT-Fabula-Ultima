@@ -29,7 +29,7 @@
 			"url": "https://github.com/Azurelol"
 		}
 	],
-	"scripts": [],
+	"scripts": ["greensock/dist/gsap.min.js", "greensock/dist/PixiPlugin.min.js"],
 	"esmodules": ["module/projectfu.mjs"],
 	"styles": ["styles/projectfu.css"],
 	"packs": [

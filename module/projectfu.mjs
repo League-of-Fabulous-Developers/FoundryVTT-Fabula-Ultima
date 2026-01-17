@@ -108,6 +108,7 @@ import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
 import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
 import { InlineAction } from './helpers/inline-action.mjs';
 import { PressureSystem } from './systems/pressure-system.mjs';
+import { FUToken } from './ui/token.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -388,6 +389,7 @@ Hooks.once('init', async () => {
 
 	// Override token ruler class
 	CONFIG.Token.rulerClass = FUTokenRuler;
+	CONFIG.Token.objectClass = FUToken;
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
