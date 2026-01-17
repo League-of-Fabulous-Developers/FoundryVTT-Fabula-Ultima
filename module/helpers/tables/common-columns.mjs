@@ -10,6 +10,8 @@ import { systemTemplatePath } from '../system-utils.mjs';
 import { FU } from '../config.mjs';
 import { FUActor } from '../../documents/actors/actor.mjs';
 import FoundryUtils from '../foundry-utils.mjs';
+import { ObjectUtils } from '../object-utils.mjs';
+import { StringUtils } from '../string-utils.mjs';
 
 /**
  * @param {ItemNameColumnRenderOptions} [options]
@@ -429,6 +431,26 @@ function damageColumn(options = {}) {
 	};
 }
 
+/**
+ *
+ * @param {String} label
+ * @param {String }path
+ * @param {Record} record For localization.
+ * @return {ColumnConfig<FUItem>}
+ */
+function propertyColumn(label, path, record) {
+	return CommonColumns.textColumn({
+		columnLabel: label,
+		getText: (entry) => {
+			const property = ObjectUtils.getProperty(entry, path);
+			if (property) {
+				return StringUtils.localize(record ? record[property] : property);
+			}
+			return '';
+		},
+	});
+}
+
 export const CommonColumns = Object.freeze({
 	itemNameColumn,
 	itemAnchorColumn,
@@ -440,4 +462,5 @@ export const CommonColumns = Object.freeze({
 	ifElseColumn,
 	checkColumn,
 	damageColumn,
+	propertyColumn,
 });

@@ -5,6 +5,7 @@ import { FUTableRenderer } from '../../helpers/tables/table-renderer.mjs';
 import { CommonDescriptions } from '../../helpers/tables/common-descriptions.mjs';
 import { CommonColumns } from '../../helpers/tables/common-columns.mjs';
 import { CompendiumIndex } from './compendium-index.mjs';
+import { FU } from '../../helpers/config.mjs';
 
 /**
  * @typedef CompendiumIndexEntry
@@ -17,12 +18,12 @@ import { CompendiumIndex } from './compendium-index.mjs';
  * @property {Object} [system]       Partial system data (indexed fields only)
  */
 
-class ItemCompendiumTableRenderer extends FUTableRenderer {
+class CompendiumTableRender extends FUTableRenderer {}
+
+class ItemCompendiumTableRenderer extends CompendiumTableRender {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		getItems: async (items) => {
-			return items;
-		},
+		getItems: async (entries) => entries,
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
@@ -34,9 +35,7 @@ class ItemCompendiumTableRenderer extends FUTableRenderer {
 class EquipmentCompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		getItems: async (items) => {
-			return items;
-		},
+		getItems: async (entries) => entries,
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
@@ -45,16 +44,18 @@ class EquipmentCompendiumTableRenderer extends FUTableRenderer {
 	};
 }
 
-class AdversariesCompendiumTableRenderer extends FUTableRenderer {
+class AdversariesCompendiumTableRenderer extends CompendiumTableRender {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		getItems: async (items) => {
-			return items;
-		},
+		cssClass: 'adversaries-table',
+		getItems: async (entries) => entries,
 		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
-			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name', headerSpan: 2 }),
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			species: CommonColumns.propertyColumn('FU.Species', 'system.species.value', FU.species),
+			role: CommonColumns.propertyColumn('FU.Role', 'system.role.value', FU.role),
+			rank: CommonColumns.propertyColumn('FU.Rank', 'system.rank.value', FU.rank),
 		},
 	};
 }

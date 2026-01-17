@@ -78,13 +78,15 @@ export class CompendiumIndex {
 		return [];
 	}
 
+	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
+
 	/**
 	 * @param {Boolean} force
 	 * @returns {Record<string, CompendiumIndexEntry[]>}
 	 */
 	async getActors(force) {
 		if (!this.#actors || force) {
-			this.#actors = await this.getEntries('Actor');
+			this.#actors = await this.getEntries('Actor', null, CompendiumIndex.npcFields);
 		}
 		return this.#actors;
 	}
@@ -122,16 +124,25 @@ export class CompendiumIndex {
 	/**
 	 * @param {string} document Document type (e.g. "Item")
 	 * @param {string} type The document subtype. (Such as what type of items like armor, weapons)
+	 * @param {string[]} fields The fields to record
 	 * @returns {Promise<Record<string, CompendiumIndexEntry[]>>}
 	 */
-	async getEntries(document, type) {
+	async getEntries(document, type, fields = []) {
 		console.debug(`Fetching entries for document: ${document}`);
 
 		/** @type {Record<string, CompendiumIndexEntry[]>} */
 		const result = {};
 		const packs = this.getPacks(document);
 
-		const indexes = await Promise.all(packs.map((pack) => pack.getIndex({ fields: ['name', 'img', 'type'] }).then((entries) => ({ pack, entries }))));
+		const indexes = await Promise.all(
+			packs.map((pack) => {
+				return pack
+					.getIndex({
+						fields: ['name', 'img', 'type'].concat(fields),
+					})
+					.then((entries) => ({ pack, entries }));
+			}),
+		);
 
 		for (const { pack, entries } of indexes) {
 			for (const entry of entries) {
@@ -139,12 +150,13 @@ export class CompendiumIndex {
 				if (type && key !== type) continue;
 
 				(result[key] ??= []).push({
-					uuid: entry.uuid,
-					name: entry.name,
-					img: entry.img,
-					type: entry.type,
+					...entry,
+					// uuid: entry.uuid,
+					// name: entry.name,
+					// img: entry.img,
+					// type: entry.type,
 					pack: pack.collection,
-					system: entry.system,
+					//system: entry.system,
 				});
 			}
 		}
