@@ -31,9 +31,6 @@ class ClassCompendiumTableRenderer extends CompendiumTableRenderer {
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
 		cssClass: 'compendium-classes-table',
-		// getItems: async (entries) => entries,
-		// tablePreset: 'item',
-		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
@@ -42,14 +39,54 @@ class ClassCompendiumTableRenderer extends CompendiumTableRenderer {
 	};
 }
 
-class EquipmentCompendiumTableRenderer extends CompendiumTableRenderer {
+class SpellsCompendiumTableRenderer extends CompendiumTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
-		cssClass: 'compendium-equipment-table',
-		renderDescription: CommonDescriptions.simpleDescription(),
+		cssClass: 'compendium-spells-table',
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			duration: CommonColumns.propertyColumn('FU.Duration', 'system.duration.value', FU.duration),
+			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.amount'),
+		},
+	};
+}
+
+class ConsumableCompendiumTableRenderer extends CompendiumTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
+		cssClass: 'compendium-consumable-table',
+		columns: {
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			cost: CommonColumns.propertyColumn('FU.InventoryCost', 'system.ipCost.value'),
+		},
+	};
+}
+
+class WeaponCompendiumTableRenderer extends CompendiumTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
+		cssClass: 'compendium-weapon-table',
+		columns: {
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			damage: CommonColumns.propertyColumn('FU.Damage', 'system.damage.value'),
+			type: CommonColumns.propertyColumn('FU.Type', 'system.damageType.value', FU.damageTypes),
+			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.value'),
+		},
+	};
+}
+
+class ArmorCompendiumTableRenderer extends CompendiumTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
+		cssClass: 'compendium-armor-table',
+		columns: {
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			def: CommonColumns.propertyColumn('FU.DefenseAbbr', 'system.def.value'),
+			mdef: CommonColumns.propertyColumn('FU.MagicDefenseAbbr', 'system.mdef.value'),
 			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.value'),
 		},
 	};
@@ -100,6 +137,7 @@ export class CompendiumBrowser extends FUApplication {
 			tabs: [
 				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-double-team' },
 				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-double-team' },
+				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-double-team' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster' },
 			],
 			initial: 'classes',
@@ -123,6 +161,9 @@ export class CompendiumBrowser extends FUApplication {
 		},
 		equipment: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-equipment'),
+		},
+		spells: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-spells'),
 		},
 		adversaries: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-adversaries'),
@@ -188,6 +229,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 			case 'adversaries':
 			case 'equipment':
+			case 'spells':
 				{
 					context.tables = this.getTables();
 				}
@@ -256,8 +298,11 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	#classRenderer = new ClassCompendiumTableRenderer();
-	#equipmentRenderer = new EquipmentCompendiumTableRenderer();
 	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
+	#spellRenderer = new SpellsCompendiumTableRenderer();
+	#weaponRenderer = new WeaponCompendiumTableRenderer();
+	#armorRenderer = new ArmorCompendiumTableRenderer();
+	#consumableRenderer = new ConsumableCompendiumTableRenderer();
 
 	async #applyFilters() {
 		// Read filter values
@@ -331,8 +376,16 @@ export class CompendiumBrowser extends FUApplication {
 					const equipment = await this.index.getEquipment();
 					await this.setTables([
 						{
-							entries: equipment.all,
-							renderer: this.#equipmentRenderer,
+							entries: equipment.weapon,
+							renderer: this.#weaponRenderer,
+						},
+						{
+							entries: equipment.armor,
+							renderer: this.#armorRenderer,
+						},
+						{
+							entries: equipment.consumable,
+							renderer: this.#consumableRenderer,
 						},
 					]);
 					this.render(false, { parts: ['equipment'] });
@@ -350,7 +403,19 @@ export class CompendiumBrowser extends FUApplication {
 					]);
 					this.render(false, { parts: ['adversaries'] });
 				}
+				break;
 
+			case 'spells':
+				{
+					const spells = await this.index.getItemsOfType('spell');
+					await this.setTables([
+						{
+							entries: spells,
+							renderer: this.#spellRenderer,
+						},
+					]);
+					this.render(false, { parts: ['spells'] });
+				}
 				break;
 		}
 	}

@@ -55,6 +55,12 @@ export class CompendiumIndex {
 
 	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
 	static classFields = ['system.class.value', 'system.level.max'];
+	static sharedItemFields = ['system.cost.value'];
+	static spellFields = [`system.duration.value`, `system.cost.amount`];
+	static weaponFields = [`system.damage.value`, `system.damageType.value`];
+	static armorFields = [`system.def.attribute`, `system.def.value`, `system.mdef.attribute`, `system.mdef.value`];
+	static consumableFields = [`system.ipCost.value`];
+	static itemFields = [...this.sharedItemFields, ...this.spellFields, ...this.classFields, ...this.weaponFields, ...this.armorFields, ...this.consumableFields];
 
 	/**
 	 * @param {Boolean} force
@@ -62,7 +68,7 @@ export class CompendiumIndex {
 	 */
 	async getItems(force) {
 		if (!this.#items || force) {
-			this.#items = await this.getEntries('Item', null, CompendiumIndex.classFields);
+			this.#items = await this.getEntries('Item', null, CompendiumIndex.itemFields);
 		}
 		return this.#items;
 	}

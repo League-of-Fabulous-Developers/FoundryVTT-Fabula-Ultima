@@ -122,3 +122,19 @@
 .compendium-equipment-table {
 	grid-template-columns: [name] auto [cost] 100px;
 }
+
+.compendium-weapon-table {
+	grid-template-columns: [name] auto [damage] 100px [type] 100px [cost] 100px;
+}
+
+.compendium-armor-table {
+	grid-template-columns: [name] auto [def] 100px [mdef] 100px [cost] 100px;
+}
+
+.compendium-consumable-table {
+	grid-template-columns: [name] auto [cost] 100px;
+}
+
+.compendium-spells-table {
+	grid-template-columns: [name] auto [duration] 100px [cost] 100px;
+}
