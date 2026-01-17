@@ -158,7 +158,6 @@ export class FUModernPressureGauge extends FUPressureGauge {
 
 			// fg.texture = this._createProgressTexture(width, this.barHeight);
 			if (current !== this.lastValue) {
-				// this._setFGMaskWidth(fg.mask, fg.width * (current / max));
 				this._setFGMaskPosition(fg.mask, -width + width * (current / max));
 				this.lastValue = current;
 			}

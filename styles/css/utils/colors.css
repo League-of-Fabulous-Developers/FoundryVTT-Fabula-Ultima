@@ -284,9 +284,13 @@
 	--border-success: #91c469;
 	--background-failure: linear-gradient(to right, #edb7aa, #880012);
 	--border-failure: #edb7aa;
-	--background-critical: linear-gradient(to right, #f7c754, #d17f10);
+	--background-critical-start: #f7c754;
+	--background-critical-end: #d17f10;
+	--background-critical: linear-gradient(to right, var(--background-critical-start), var(--background-critical-end));
 	--border-critical: #ffcc56;
-	--background-fumble: linear-gradient(to right, #b087a6, #15031e);
+	--background-fumble-start: #b087a6;
+	--background-fumble-end: #15031e;
+	--background-fumble: linear-gradient(to right, var(--background-fumble-start), var(--background-fumble-end));
 	--border-fumble: #b087a6;
 	/* Hit/Miss colors */
 	--background-hit: linear-gradient(to right, #228c22, #91c469);

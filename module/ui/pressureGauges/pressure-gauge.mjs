@@ -10,8 +10,9 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		return 'fu-default';
 	}
 
-	fgStartColor = '#f7c754';
-	fgEndColor = '#d17f10';
+	// TODO: It would be lovely to be able to pull the colors directly from CSS, but that would necessitate
+	fgStartColor = globalThis.getComputedStyle(document.documentElement).getPropertyValue(`--background-critical-start`);
+	fgEndColor = globalThis.getComputedStyle(document.documentElement).getPropertyValue(`--background-critical-end`);
 
 	borderColor = '#c7c7c7';
 	bgColor = '#656565';
@@ -31,7 +32,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 	}
 
 	get shouldDrawPressureGauge() {
-		return !!(this.usePressureSystem && this.clock && this.token.inCombat);
+		return !!(this.usePressureSystem && game.settings.get(SYSTEM, SETTINGS.optionPressureGaugeShow) && this.clock && this.token.inCombat);
 	}
 
 	/**
@@ -60,7 +61,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		this.addChild(border);
 
 		const { current = 0, max = 0 } = this.clock ?? {};
-		this._setFGMaskWidth(fg.mask, width * (current / max), true);
+		this._animateWidth(fg.mask, width * (current / max), true);
 	}
 
 	_createProgressTexture(width, height) {
@@ -84,7 +85,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 		if (this.token.tooltip) this.token.tooltip.y = this.y;
 	}
 
-	_setFGMaskWidth(mask, width, suppressAnimation = false) {
+	_animateWidth(mask, width, suppressAnimation = false) {
 		if (!mask?.transform) return;
 
 		if (!this.token.isPreview && !suppressAnimation) {
@@ -114,7 +115,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 
 			const [bg, fg, border, mask, shadow] = ['BG', 'FG', 'Border', 'FGMask', 'Shadow'].map((name) => this.getChildByName(`${this.token.id}.Pressure.${name}`));
 
-			if (!(bg && fg && border && mask)) throw new Error(`Pressure gauge PIXI elements not created for ${this.id}!`);
+			if (!(bg && fg && border && mask)) throw new Error(`Pressure gauge PIXI elements not created for ${this.token.id}!`);
 
 			const { width } = this.token.document.getSize();
 
@@ -129,7 +130,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 			fg.texture = this._createProgressTexture(width, this.barHeight);
 
 			if (current !== this.lastValue) {
-				this._setFGMaskWidth(fg.mask, fg.width * (current / max));
+				this._animateWidth(fg.mask, fg.width * (current / max));
 				this.lastValue = current;
 			}
 
