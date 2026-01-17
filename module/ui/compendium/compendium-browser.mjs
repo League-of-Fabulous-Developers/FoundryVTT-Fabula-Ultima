@@ -128,11 +128,6 @@ export class CompendiumBrowser extends FUApplication {
 	 */
 	static #instance;
 
-	// Rendering tables
-	#classesTable = new ItemCompendiumTableRenderer();
-	#equipmentTable = new EquipmentCompendiumTableRenderer();
-	#adversariesTable = new AdversariesCompendiumTableRenderer();
-
 	constructor(data = {}, options = {}) {
 		options.title = 'FU.CompendiumBrowser';
 		super(data, options);
@@ -174,27 +169,95 @@ export class CompendiumBrowser extends FUApplication {
 
 			case 'classes':
 				{
-					context.classes = await this.index.getClasses();
-					context.classesTable = await this.#classesTable.renderTable(context.classes.all, { hideIfEmpty: true });
+					context.classTable = this.getTable('class');
+				}
+				break;
+
+			case 'adversaries':
+				{
+					context.adversariesTable = this.getTable('adversaries');
+				}
+				break;
+
+			case 'equipment':
+				{
+					context.equipmentTable = this.getTable('equipment');
+				}
+				break;
+		}
+		return context;
+	}
+
+	async _onFirstRender(context, options) {
+		return this.#onTabActivated('classes');
+	}
+
+	/**
+	 * @override
+	 * @param partId
+	 * @param element
+	 * @param options
+	 * @private
+	 */
+	_attachPartListeners(partId, element, options) {
+		super._attachPartListeners(partId, element, options);
+		switch (partId) {
+			case 'tabs': {
+				const tabs = element.querySelectorAll('[data-tab]');
+				for (const tab of tabs) {
+					tab.addEventListener('click', (event) => {
+						const tabId = event.currentTarget.dataset.tab;
+						this.#onTabActivated(tabId);
+					});
+				}
+				break;
+			}
+		}
+	}
+
+	#classRenderer = new ItemCompendiumTableRenderer();
+	#equipmentRenderer = new EquipmentCompendiumTableRenderer();
+	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
+
+	#renderedTables = {};
+	getTable(name) {
+		return this.#renderedTables[name];
+	}
+	setTable(name, content) {
+		this.#renderedTables[name] = content;
+	}
+
+	async #onTabActivated(tabId) {
+		if (this._loadedTabs?.has(tabId)) return;
+		this._loadedTabs ??= new Set();
+		this._loadedTabs.add(tabId);
+
+		switch (tabId) {
+			case 'classes':
+				{
+					const classes = await this.index.getClasses();
+					this.setTable('class', await this.#classRenderer.renderTable(classes.all, { hideIfEmpty: true }));
+					this.render(false, { parts: ['classes'] });
+				}
+				break;
+
+			case 'equipment':
+				{
+					const equipment = await this.index.getEquipment();
+					this.setTable('equipment', await this.#equipmentRenderer.renderTable(equipment.all, { hideIfEmpty: true }));
+					this.render(false, { parts: ['equipment'] });
 				}
 				break;
 
 			case 'adversaries':
 				{
 					const characters = await this.index.getCharacters();
-					context.adversaries = characters.npc;
-					context.adversariesTable = await this.#adversariesTable.renderTable(context.adversaries, { hideIfEmpty: true });
+					this.setTable('adversaries', await this.#adversaryRenderer.renderTable(characters.npc, { hideIfEmpty: true }));
+					this.render(false, { parts: ['adversaries'] });
 				}
-				break;
 
-			case 'equipment':
-				{
-					context.equipment = await this.index.getEquipment();
-					context.equipmentTable = await this.#equipmentTable.renderTable(context.equipment.all, { hideIfEmpty: true });
-				}
 				break;
 		}
-		return context;
 	}
 
 	static initialize() {
