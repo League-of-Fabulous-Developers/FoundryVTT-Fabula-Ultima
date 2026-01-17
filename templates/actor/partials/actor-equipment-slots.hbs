@@ -1,5 +1,11 @@
 {{#if (or (eq actor.type "character") system.useEquipment.value)}}
-<header class="items-main-header flexrow gap-5" style="height: 28px;">
+	<header class="items-main-header flexrow gap-5" {{#unless compendium}}style="height: 28px;"{{/unless}}>
+	{{#if compendium}}
+		<span class="items-main">
+		<label class="items-label">{{localize "FU.Items"}}</label>
+			{{pfuCompendium "equipment"}}
+	</span>
+	{{/if}}
     {{#if actor.system.vehicle.armorActive}}
         <!-- Vehicle Armor Module -->
 		{{#with actor.system.vehicle.armor as |item|}}

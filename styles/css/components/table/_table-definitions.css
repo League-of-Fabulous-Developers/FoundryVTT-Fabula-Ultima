@@ -150,3 +150,7 @@
 .compendium-feature-table {
 	grid-template-columns: [name] auto [skill] 100px [class] 100px;
 }
+
+.compendium-effects-table {
+	grid-template-columns: [name] auto [source] 100px [duration] 100px;
+}

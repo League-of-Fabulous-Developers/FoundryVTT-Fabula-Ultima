@@ -156,6 +156,7 @@ export class CompendiumBrowser extends FUApplication {
 				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-anvil' },
 				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-fairy-wand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'effects', label: 'FU.Effects', icon: 'ra ra-droplet-splash' },
 			],
 			initial: 'classes',
 		},
@@ -188,16 +189,15 @@ export class CompendiumBrowser extends FUApplication {
 		adversaries: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-adversaries'),
 		},
+		effects: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-effects'),
+		},
 	};
 
 	/**
 	 * @type {CompendiumBrowser}
 	 */
 	static #instance;
-	/**
-	 * @type {String}
-	 */
-	#activeTabId;
 	/**
 	 * @type {CompendiumFilter}
 	 */
@@ -241,6 +241,16 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	/** @inheritdoc */
+	_prepareTabs(group) {
+		const tabs = super._prepareTabs(group);
+		if (!game.user.isGM) {
+			delete tabs.adversaries;
+			delete tabs.effects;
+		}
+		return tabs;
+	}
+
+	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
 		const context = await super._preparePartContext(partId, ctx, options);
 		// IMPORTANT: Set the active tab
@@ -262,6 +272,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'equipment':
 			case 'skills':
 			case 'spells':
+			case 'effects':
 				{
 					context.tables = this.getTables();
 				}
@@ -278,8 +289,7 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	async _onFirstRender(context, options) {
-		let currentTab = this.activeTabId;
-		return this.renderTables(currentTab, true);
+		return this.renderTables(this.activeTabId, true);
 	}
 
 	/**
@@ -325,8 +335,8 @@ export class CompendiumBrowser extends FUApplication {
 	async #applyFilters() {
 		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
 		this.filter.setText(search);
-		console.debug(`[COMPENDIUM]: Search filter updated to '${search}' (${this.#activeTabId})`);
-		return this.renderTables(this.#activeTabId, true);
+		console.debug(`[COMPENDIUM]: Search filter updated to '${search}' (${this.activeTabId})`);
+		return this.renderTables(this.activeTabId, true);
 	}
 
 	/**
@@ -369,11 +379,9 @@ export class CompendiumBrowser extends FUApplication {
 	 * @returns {Promise<void>}
 	 */
 	async renderTables(tabId, force = false) {
-		if (this.#activeTabId === tabId && !force) {
+		if (this.activeTabId === tabId && !force) {
 			return;
 		}
-		this.#activeTabId = tabId;
-
 		switch (tabId) {
 			case 'classes':
 				{
@@ -388,7 +396,6 @@ export class CompendiumBrowser extends FUApplication {
 							renderer: this.#basicRenderer,
 						},
 					]);
-					this.render(false, { parts: ['classes'] });
 				}
 				break;
 
@@ -413,7 +420,6 @@ export class CompendiumBrowser extends FUApplication {
 							renderer: this.#basicRenderer,
 						},
 					]);
-					this.render(false, { parts: ['skills'] });
 				}
 				break;
 
@@ -438,7 +444,6 @@ export class CompendiumBrowser extends FUApplication {
 							renderer: this.#consumableRenderer,
 						},
 					]);
-					this.render(false, { parts: ['equipment'] });
 				}
 				break;
 
@@ -451,7 +456,6 @@ export class CompendiumBrowser extends FUApplication {
 							renderer: this.#adversaryRenderer,
 						},
 					]);
-					this.render(false, { parts: ['adversaries'] });
 				}
 				break;
 
@@ -464,10 +468,23 @@ export class CompendiumBrowser extends FUApplication {
 							renderer: this.#spellRenderer,
 						},
 					]);
-					this.render(false, { parts: ['spells'] });
+				}
+				break;
+
+			case 'effects':
+				{
+					const effects = await this.index.getItemsOfType('effect');
+					await this.setTables([
+						{
+							entries: effects,
+							renderer: this.#basicRenderer,
+						},
+					]);
 				}
 				break;
 		}
+
+		this.render(false, { parts: [tabId] });
 	}
 
 	static initialize() {

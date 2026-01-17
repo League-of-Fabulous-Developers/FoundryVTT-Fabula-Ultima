@@ -1,6 +1,7 @@
 <div class="tab items desc {{tab.cssClass}}" data-group="primary" data-tab="items">
+
     {{!-- Equipped Item Header--}}
-    {{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs" item=item}}
+    {{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs" item=item compendium=true }}
 
     {{{weaponsTable}}}
 
