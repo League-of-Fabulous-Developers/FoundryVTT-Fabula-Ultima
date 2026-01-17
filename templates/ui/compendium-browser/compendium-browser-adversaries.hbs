@@ -1,4 +1,6 @@
 <section class="tab adversaries desc {{tab.cssClass}}"
 		 data-tab="adversaries" data-group="primary">
-	{{{adversariesTable}}}
+	{{#each tables as |table|}}
+		{{{table}}}
+	{{/each}}
 </section>

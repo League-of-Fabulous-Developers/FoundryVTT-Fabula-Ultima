@@ -18,14 +18,21 @@ import { FU } from '../../helpers/config.mjs';
  * @property {Object} [system]       Partial system data (indexed fields only)
  */
 
-class CompendiumTableRender extends FUTableRenderer {}
-
-class ItemCompendiumTableRenderer extends CompendiumTableRender {
+class CompendiumTableRender extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		cssClass: 'compendium-classes-table',
 		getItems: async (entries) => entries,
 		tablePreset: 'item',
+	};
+}
+
+class ClassCompendiumTableRenderer extends CompendiumTableRender {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
+		cssClass: 'compendium-classes-table',
+		// getItems: async (entries) => entries,
+		// tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
@@ -35,12 +42,11 @@ class ItemCompendiumTableRenderer extends CompendiumTableRender {
 	};
 }
 
-class EquipmentCompendiumTableRenderer extends FUTableRenderer {
+class EquipmentCompendiumTableRenderer extends CompendiumTableRender {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
 		cssClass: 'compendium-equipment-table',
-		getItems: async (entries) => entries,
-		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
@@ -52,9 +58,8 @@ class EquipmentCompendiumTableRenderer extends FUTableRenderer {
 class AdversariesCompendiumTableRenderer extends CompendiumTableRender {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
 		cssClass: 'compendium-adversaries-table',
-		getItems: async (entries) => entries,
-		tablePreset: 'item',
 		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
@@ -82,7 +87,7 @@ export class CompendiumBrowser extends FUApplication {
 			contentClasses: ['fu-application__browser'],
 			resizable: true,
 		},
-		position: { width: 800, height: 'auto' },
+		position: { width: 800, height: '800' },
 		actions: {},
 	};
 
@@ -163,25 +168,15 @@ export class CompendiumBrowser extends FUApplication {
 
 			case 'sidebar':
 				{
-					// TODO: Part-specific filters
+					// TODO: Render part-specific filters?
 				}
 				break;
 
 			case 'classes':
-				{
-					context.classTable = this.getTable('class');
-				}
-				break;
-
 			case 'adversaries':
-				{
-					context.adversariesTable = this.getTable('adversaries');
-				}
-				break;
-
 			case 'equipment':
 				{
-					context.equipmentTable = this.getTable('equipment');
+					context.tables = this.getTables();
 				}
 				break;
 		}
@@ -202,6 +197,12 @@ export class CompendiumBrowser extends FUApplication {
 	_attachPartListeners(partId, element, options) {
 		super._attachPartListeners(partId, element, options);
 		switch (partId) {
+			case 'sidebar':
+				{
+					const searchInput = element.querySelector('#search');
+					searchInput?.addEventListener('input', () => this.#applyFilters());
+				}
+				break;
 			case 'tabs': {
 				const tabs = element.querySelectorAll('[data-tab]');
 				for (const tab of tabs) {
@@ -215,16 +216,32 @@ export class CompendiumBrowser extends FUApplication {
 		}
 	}
 
-	#classRenderer = new ItemCompendiumTableRenderer();
+	#applyFilters() {
+		// Read filter values
+		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
+		//const type = this.element.querySelector('.fu-filter-type')?.value || '';
+		// Example: assume current table data is cached
+		//const data = this._currentTabData; // e.g., classes, adversaries, equipment
+
+		// const filtered = data.all.filter((item) => {
+		// 	const matchesText = item.name.toLowerCase().includes(search);
+		// 	const matchesType = !type || item.type === type;
+		// 	return matchesText && matchesType;
+		// });
+
+		console.debug(`[COMPENDIUM]: Search filter updated to '${search}'`);
+	}
+
+	#classRenderer = new ClassCompendiumTableRenderer();
 	#equipmentRenderer = new EquipmentCompendiumTableRenderer();
 	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
 
-	#renderedTables = {};
-	getTable(name) {
-		return this.#renderedTables[name];
+	#renderedTables = [];
+	getTables() {
+		return this.#renderedTables;
 	}
-	setTable(name, content) {
-		this.#renderedTables[name] = content;
+	setTables(tables) {
+		this.#renderedTables = tables;
 	}
 
 	async #onTabActivated(tabId) {
@@ -236,7 +253,8 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 				{
 					const classes = await this.index.getClasses();
-					this.setTable('class', await this.#classRenderer.renderTable(classes.all, { hideIfEmpty: true }));
+					const tables = [await this.#classRenderer.renderTable(classes.all, { hideIfEmpty: true })];
+					this.setTables(tables);
 					this.render(false, { parts: ['classes'] });
 				}
 				break;
@@ -244,7 +262,8 @@ export class CompendiumBrowser extends FUApplication {
 			case 'equipment':
 				{
 					const equipment = await this.index.getEquipment();
-					this.setTable('equipment', await this.#equipmentRenderer.renderTable(equipment.all, { hideIfEmpty: true }));
+					const tables = [await this.#equipmentRenderer.renderTable(equipment.all, { hideIfEmpty: true })];
+					this.setTables(tables);
 					this.render(false, { parts: ['equipment'] });
 				}
 				break;
@@ -252,7 +271,8 @@ export class CompendiumBrowser extends FUApplication {
 			case 'adversaries':
 				{
 					const characters = await this.index.getCharacters();
-					this.setTable('adversaries', await this.#adversaryRenderer.renderTable(characters.npc, { hideIfEmpty: true }));
+					const tables = [await this.#adversaryRenderer.renderTable(characters.npc, { hideIfEmpty: true })];
+					this.setTables(tables);
 					this.render(false, { parts: ['adversaries'] });
 				}
 
