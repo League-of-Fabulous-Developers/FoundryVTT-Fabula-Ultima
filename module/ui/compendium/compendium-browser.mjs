@@ -2,7 +2,6 @@ import FUApplication from '../application.mjs';
 import { SystemControls } from '../../helpers/system-controls.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { FUTableRenderer } from '../../helpers/tables/table-renderer.mjs';
-import { CommonDescriptions } from '../../helpers/tables/common-descriptions.mjs';
 import { CommonColumns } from '../../helpers/tables/common-columns.mjs';
 import { CompendiumIndex } from './compendium-index.mjs';
 import { FU } from '../../helpers/config.mjs';
@@ -26,15 +25,27 @@ class CompendiumTableRenderer extends FUTableRenderer {
 	};
 }
 
-class ClassCompendiumTableRenderer extends CompendiumTableRenderer {
+class BasicCompendiumTableRenderer extends CompendiumTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
 		cssClass: 'compendium-classes-table',
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
-			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
+			source: CommonColumns.propertyColumn('FU.Source', 'system.source'),
+		},
+	};
+}
+
+class SkillsCompendiumTableRenderer extends CompendiumTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
+		cssClass: 'compendium-skills-table',
+		columns: {
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			sl: CommonColumns.propertyColumn('FU.SkillLevel', 'system.level.max'),
+			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
 		},
 	};
 }
@@ -97,7 +108,6 @@ class AdversariesCompendiumTableRenderer extends CompendiumTableRenderer {
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
 		cssClass: 'compendium-adversaries-table',
-		renderDescription: CommonDescriptions.simpleDescription(),
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			species: CommonColumns.propertyColumn('FU.Species', 'system.species.value', FU.species),
@@ -136,6 +146,7 @@ export class CompendiumBrowser extends FUApplication {
 		primary: {
 			tabs: [
 				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-double-team' },
+				{ id: 'skills', label: 'FU.Skills', icon: 'ra ra-double-team' },
 				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-double-team' },
 				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-double-team' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster' },
@@ -161,6 +172,9 @@ export class CompendiumBrowser extends FUApplication {
 		},
 		equipment: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-equipment'),
+		},
+		skills: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-skills'),
 		},
 		spells: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-spells'),
@@ -229,6 +243,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 			case 'adversaries':
 			case 'equipment':
+			case 'skills':
 			case 'spells':
 				{
 					context.tables = this.getTables();
@@ -297,13 +312,6 @@ export class CompendiumBrowser extends FUApplication {
 		return true;
 	}
 
-	#classRenderer = new ClassCompendiumTableRenderer();
-	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
-	#spellRenderer = new SpellsCompendiumTableRenderer();
-	#weaponRenderer = new WeaponCompendiumTableRenderer();
-	#armorRenderer = new ArmorCompendiumTableRenderer();
-	#consumableRenderer = new ConsumableCompendiumTableRenderer();
-
 	async #applyFilters() {
 		// Read filter values
 		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
@@ -345,6 +353,14 @@ export class CompendiumBrowser extends FUApplication {
 		this.#renderedTables = result;
 	}
 
+	#basicRenderer = new BasicCompendiumTableRenderer();
+	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
+	#spellRenderer = new SpellsCompendiumTableRenderer();
+	#weaponRenderer = new WeaponCompendiumTableRenderer();
+	#armorRenderer = new ArmorCompendiumTableRenderer();
+	#consumableRenderer = new ConsumableCompendiumTableRenderer();
+	#skillRenderer = new SkillsCompendiumTableRenderer();
+
 	/**
 	 *
 	 * @param {String} tabId
@@ -363,11 +379,40 @@ export class CompendiumBrowser extends FUApplication {
 					const classes = await this.index.getClasses();
 					await this.setTables([
 						{
-							entries: classes.all,
-							renderer: this.#classRenderer,
+							entries: classes.class,
+							renderer: this.#basicRenderer,
+						},
+						{
+							entries: classes.classFeature,
+							renderer: this.#basicRenderer,
 						},
 					]);
 					this.render(false, { parts: ['classes'] });
+				}
+				break;
+
+			case 'skills':
+				{
+					const skills = await this.index.getSkills();
+					await this.setTables([
+						{
+							entries: skills.skill,
+							renderer: this.#skillRenderer,
+						},
+						{
+							entries: skills.heroic,
+							renderer: this.#basicRenderer,
+						},
+						{
+							entries: skills.miscAbility,
+							renderer: this.#basicRenderer,
+						},
+						{
+							entries: skills.rule,
+							renderer: this.#basicRenderer,
+						},
+					]);
+					this.render(false, { parts: ['skills'] });
 				}
 				break;
 

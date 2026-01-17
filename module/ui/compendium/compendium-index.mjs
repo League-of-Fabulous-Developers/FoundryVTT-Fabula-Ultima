@@ -9,11 +9,17 @@ import { systemId } from '../../helpers/system-utils.mjs';
  */
 
 /**
- * @typedef ClassesEntries
+ * @typedef ClassEntries
  * @property {CompendiumIndexEntry[]} class
  * @property {CompendiumIndexEntry[]} classFeature
+ */
+
+/**
+ * @typedef SkillEntries
  * @property {CompendiumIndexEntry[]} skill
  * @property {CompendiumIndexEntry[]} heroic
+ * @property {CompendiumIndexEntry[]} miscAbility
+ * @property {CompendiumIndexEntry[]} rule
  */
 
 /**
@@ -53,9 +59,13 @@ export class CompendiumIndex {
 	 */
 	#actors;
 
+	// Actors
 	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
+	static actorFields = [...this.npcFields];
+
+	// Items
+	static sharedItemFields = ['system.cost.value', `system.source`];
 	static classFields = ['system.class.value', 'system.level.max'];
-	static sharedItemFields = ['system.cost.value'];
 	static spellFields = [`system.duration.value`, `system.cost.amount`];
 	static weaponFields = [`system.damage.value`, `system.damageType.value`];
 	static armorFields = [`system.def.attribute`, `system.def.value`, `system.mdef.attribute`, `system.mdef.value`];
@@ -93,7 +103,7 @@ export class CompendiumIndex {
 	 */
 	async getActors(force) {
 		if (!this.#actors || force) {
-			this.#actors = await this.getEntries('Actor', null, CompendiumIndex.npcFields);
+			this.#actors = await this.getEntries('Actor', null, CompendiumIndex.actorFields);
 		}
 		return this.#actors;
 	}
@@ -181,14 +191,26 @@ export class CompendiumIndex {
 	}
 
 	/**
-	 * @returns {Promise<ClassesEntries>}
+	 * @returns {Promise<ClassEntries>}
 	 */
 	async getClasses() {
 		const entries = {
 			class: await this.getItemsOfType('class'),
-			skill: await this.getItemsOfType('skill'),
 			classFeature: await this.getItemsOfType('classFeature'),
+		};
+		entries.all = Object.values(entries).flat();
+		return entries;
+	}
+
+	/**
+	 * @returns {Promise<SkillEntries>}
+	 */
+	async getSkills() {
+		const entries = {
+			skill: await this.getItemsOfType('skill'),
 			heroic: await this.getItemsOfType('heroic'),
+			rule: await this.getItemsOfType('rule'),
+			miscAbility: await this.getItemsOfType('miscAbility'),
 		};
 		entries.all = Object.values(entries).flat();
 		return entries;
