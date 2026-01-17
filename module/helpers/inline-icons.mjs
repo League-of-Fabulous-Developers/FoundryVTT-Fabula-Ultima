@@ -32,15 +32,25 @@ const inlineCompendiumEnricher = {
 	pattern: InlineHelper.compose('(?:COMPENDIUM)', '(?<tab>\\w+)(?:\\s+"(?<filter>[^"]*)")?'),
 	enricher: (text, options) => {
 		const tab = text.groups.tab;
-		const filter = text.groups.filter;
+		const filter = text.groups.filter ?? '';
+
 		const anchor = document.createElement('a');
 		anchor.dataset.tab = tab;
 		anchor.dataset.filter = filter;
-		anchor.classList.add('inline', 'inline-icon');
+		anchor.classList.add('inline', 'inline-common');
+
+		// Tooltip
 		InlineHelper.appendSystemIcon(anchor, 'compendium');
 		const tooltip = StringUtils.localize('FU.CompendiumBrowserOpen', {
 			tab: tab,
 		});
+
+		// Label
+		const span = document.createElement('span');
+		span.classList.add('inline', 'inline-text');
+		span.textContent = StringUtils.capitalize(tab);
+		anchor.append(span);
+
 		if (tooltip) {
 			anchor.setAttribute('data-tooltip', StringUtils.localize(tooltip));
 		}

@@ -114,6 +114,7 @@ a.inline-roll i {
 .inline.broken .fas {
 	margin-right: 0.125rem;
 }
+.inline.inline-common,
 .inline.inline-check,
 .inline.inline-damage,
 .inline.inline-recovery,
@@ -229,6 +230,11 @@ a.inline-roll i {
 	gap: 0;
 	background: var(--background-critical);
 	flex-grow: 1;
+}
+
+.inline.inline-text {
+	margin-left: 0.125rem;
+	margin-right: 0.125rem;
 }
 
 @-webkit-keyframes recovery-indicator-bobbing {
