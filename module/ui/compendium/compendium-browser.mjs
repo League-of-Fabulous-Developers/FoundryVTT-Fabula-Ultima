@@ -458,6 +458,12 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 				{
 					const classes = await this.index.getClasses();
+					const classOptions = classes.class
+						.sort((a, b) => a.name.localeCompare(b.name))
+						.map((c) => ({
+							value: c.name,
+							label: c.name,
+						}));
 					await this.setTables(
 						[
 							{
@@ -484,6 +490,11 @@ export class CompendiumBrowser extends FUApplication {
 									},
 								],
 							},
+							class: {
+								label: 'FU.Class',
+								propertyPath: 'metadata.class',
+								options: classOptions,
+							},
 						},
 					);
 				}
@@ -493,12 +504,12 @@ export class CompendiumBrowser extends FUApplication {
 				{
 					const skills = await this.index.getSkills();
 					const classes = await this.index.getItemsOfType('class');
-					const classOptions = classes.map((c) => {
-						return {
+					const classOptions = classes
+						.sort((a, b) => a.name.localeCompare(b.name))
+						.map((c) => ({
 							value: c.name,
 							label: c.name,
-						};
-					});
+						}));
 					await this.setTables(
 						[
 							{

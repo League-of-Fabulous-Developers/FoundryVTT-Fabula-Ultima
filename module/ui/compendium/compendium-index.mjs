@@ -81,6 +81,9 @@ export class CompendiumIndex {
 		cost: 'system.cost.value',
 		source: 'system.source',
 
+		// Feature
+		featureType: 'system.featureType',
+
 		// Class
 		class: 'system.class.value',
 		levelMax: 'system.level.max',
@@ -202,6 +205,8 @@ export class CompendiumIndex {
 				const key = entry.type ?? 'unknown';
 				if (type && key !== type) continue;
 
+				this.patchEntryData(entry);
+
 				(result[key] ??= []).push({
 					...entry,
 					pack: pack.collection,
@@ -210,6 +215,74 @@ export class CompendiumIndex {
 		}
 
 		return result;
+	}
+
+	/**
+	 * @desc Adds extra data to entries of specific data models to help with indexing.
+	 * @param {CompendiumIndexEntry} entry
+	 * @returns {*}
+	 */
+	patchEntryData(entry) {
+		let _class;
+		// TODO: Use lowercase?
+		switch (entry.system.featureType) {
+			case 'projectfu.dance':
+				_class = 'Dancer';
+				break;
+
+			case 'projectfu.key':
+			case 'projectfu.tone':
+			case 'projectfu.verse':
+				_class = 'Chanter';
+				break;
+
+			case 'projectfu.symbol':
+				_class = 'Symbolist';
+				break;
+
+			case 'projectfu.therioform':
+				_class = 'Mutant';
+				break;
+
+			case 'projectfu.magitech':
+			case 'projectfu.alchemy':
+			case 'projectfu.infusions':
+				_class = 'Tinkerer';
+				break;
+
+			case 'projectfu.magiseed':
+			case 'projectfu.garden':
+				_class = 'Floralist';
+				break;
+
+			case 'projectfu.ingredient':
+			case 'projectfu.cookbook':
+				_class = 'Gourmet';
+				break;
+
+			case 'projectfu.arcanum':
+				_class = 'Arcanist';
+				break;
+
+			case 'projectfu.vehicle':
+			case 'projectfu.armorModule':
+			case 'projectfu.weaponModule':
+			case 'projectfu.supportModule':
+				_class = 'Pilot';
+				break;
+
+			case 'projectfu.invocations':
+				_class = 'Invoker';
+				break;
+
+			case 'projectfu.psychicGift':
+				_class = 'Esper';
+				break;
+		}
+		entry.metadata = {
+			class: _class,
+		};
+		return entry;
 	}
 
 	/**
