@@ -491,7 +491,7 @@ export class CompendiumBrowser extends FUApplication {
 								],
 							},
 							class: {
-								label: 'FU.Class',
+								label: 'FU.ClassFeature',
 								propertyPath: 'metadata.class',
 								options: classOptions,
 							},
