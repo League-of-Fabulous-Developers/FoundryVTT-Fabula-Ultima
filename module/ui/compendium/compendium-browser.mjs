@@ -6,6 +6,7 @@ import { CommonColumns } from '../../helpers/tables/common-columns.mjs';
 import { CompendiumIndex } from './compendium-index.mjs';
 import { FU } from '../../helpers/config.mjs';
 import { CompendiumFilter } from './compendium-filter.mjs';
+import { HTMLUtils } from '../../helpers/html-utils.mjs';
 
 /**
  * @typedef CompendiumIndexEntry
@@ -163,6 +164,30 @@ export class CompendiumBrowser extends FUApplication {
 	};
 
 	/**
+	 * @typedef CompendiumTabData
+	 * @property {String[]} tables
+	 * @property {CompendiumFilterCategory[]} filters
+	 */
+
+	/**
+	 * @type {CompendiumTabData}
+	 */
+	#tabData;
+
+	/**
+	 * @returns {CompendiumTabData}
+	 */
+	getTabData() {
+		if (!this.#tabData) {
+			return {
+				tables: [],
+				filters: {},
+			};
+		}
+		return this.#tabData;
+	}
+
+	/**
 	 * @override
 	 */
 	static PARTS = {
@@ -255,6 +280,7 @@ export class CompendiumBrowser extends FUApplication {
 		const context = await super._preparePartContext(partId, ctx, options);
 		// IMPORTANT: Set the active tab
 		if (partId in context.tabs) context.tab = context.tabs[partId];
+		const tabData = this.getTabData();
 		switch (partId) {
 			case 'tabs':
 				context.tabs = this._prepareTabs('primary');
@@ -262,8 +288,10 @@ export class CompendiumBrowser extends FUApplication {
 
 			case 'sidebar':
 				{
-					context.filterText = this.filter.text;
-					// TODO: Render part-specific filters?
+					if (tabData) {
+						this.filter.setCategories(tabData.filters);
+					}
+					context.filter = this.filter;
 				}
 				break;
 
@@ -274,7 +302,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'spells':
 			case 'effects':
 				{
-					context.tables = this.getTables();
+					context.tables = tabData.tables;
 				}
 				break;
 		}
@@ -305,20 +333,33 @@ export class CompendiumBrowser extends FUApplication {
 			case 'sidebar':
 				{
 					const searchInput = element.querySelector('#search');
-					const debounce = (fn, ms) => {
-						let timer;
-						return (...args) => {
-							clearTimeout(timer);
-							timer = setTimeout(() => fn(...args), ms);
-						};
-					};
+					if (!searchInput) {
+						return;
+					}
 					searchInput.addEventListener(
 						'input',
-						debounce(() => this.#applyFilters(), 150),
+						HTMLUtils.debounce(() => {
+							const text = searchInput.value.toLowerCase() || '';
+							this.filter.setText(text);
+							return this.renderTables(this.activeTabId, true, false);
+						}, 150),
 					);
-					//searchInput?.addEventListener('input', () => this.#applyFilters());
+
+					// Checkbox filters (delegated)
+					element.addEventListener('change', (event) => {
+						const input = event.target;
+						if (!(input instanceof HTMLInputElement)) return;
+						if (input.type !== 'checkbox') return;
+
+						const { category, option } = input.dataset;
+						if (!category || !option) return;
+						this.filter.toggle(category, option, input.checked);
+						console.debug(`[COMPENDIUM] Filter toggled: ${category}=${option} (${input.checked})`);
+						//this.#applyFilters();
+					});
 				}
 				break;
+
 			case 'tabs': {
 				const tabs = element.querySelectorAll('[data-tab]');
 				for (const tab of tabs) {
@@ -332,28 +373,17 @@ export class CompendiumBrowser extends FUApplication {
 		}
 	}
 
-	async #applyFilters() {
-		const search = this.element.querySelector('#search')?.value.toLowerCase() || '';
-		this.filter.setText(search);
-		console.debug(`[COMPENDIUM]: Search filter updated to '${search}' (${this.activeTabId})`);
-		return this.renderTables(this.activeTabId, true);
-	}
-
 	/**
 	 * @typedef TableRenderingData
 	 * @property {CompendiumIndexEntry[]} entries
 	 * @property {CompendiumTableRenderer} renderer
 	 */
 
-	#renderedTables = [];
-	getTables() {
-		return this.#renderedTables;
-	}
-
 	/**
 	 * @param {TableRenderingData[]} tables
+	 * @param {CompendiumFilterCategory[]} filters
 	 */
-	async setTables(tables) {
+	async setTables(tables, filters) {
 		let result = [];
 		for (const trd of tables) {
 			const filteredEntries = trd.entries.filter(this.filter.filter);
@@ -361,7 +391,10 @@ export class CompendiumBrowser extends FUApplication {
 				result.push(await trd.renderer.renderTable(filteredEntries, { hideIfEmpty: true }));
 			}
 		}
-		this.#renderedTables = result;
+		this.#tabData = {
+			tables: result,
+			filters: filters,
+		};
 	}
 
 	#basicRenderer = new BasicCompendiumTableRenderer();
@@ -376,9 +409,10 @@ export class CompendiumBrowser extends FUApplication {
 	 *
 	 * @param {String} tabId
 	 * @param {Boolean} force
+	 * @param {Boolean} sidebar
 	 * @returns {Promise<void>}
 	 */
-	async renderTables(tabId, force = false) {
+	async renderTables(tabId, force = false, sidebar = true) {
 		if (this.activeTabId === tabId && !force) {
 			return;
 		}
@@ -386,16 +420,34 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 				{
 					const classes = await this.index.getClasses();
-					await this.setTables([
+					await this.setTables(
+						[
+							{
+								entries: classes.class,
+								renderer: this.#basicRenderer,
+							},
+							{
+								entries: classes.classFeature,
+								renderer: this.#basicRenderer,
+							},
+						],
 						{
-							entries: classes.class,
-							renderer: this.#basicRenderer,
+							type: {
+								label: 'FU.Type',
+								propertyPath: 'type',
+								options: [
+									{
+										value: 'class',
+										label: 'FU.Class',
+									},
+									{
+										value: 'classFeature',
+										label: 'FU.ClassFeature',
+									},
+								],
+							},
 						},
-						{
-							entries: classes.classFeature,
-							renderer: this.#basicRenderer,
-						},
-					]);
+					);
 				}
 				break;
 
@@ -484,7 +536,11 @@ export class CompendiumBrowser extends FUApplication {
 				break;
 		}
 
-		this.render(false, { parts: [tabId] });
+		let parts = [tabId];
+		if (sidebar) {
+			parts.push('sidebar');
+		}
+		this.render(false, { parts: parts });
 	}
 
 	static initialize() {

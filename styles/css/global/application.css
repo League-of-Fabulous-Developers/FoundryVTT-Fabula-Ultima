@@ -26,6 +26,9 @@
 	border-right: 1px solid var(--color-border-light-primary);
 	overflow-y: auto;
 	grid-area: sidebar;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
 .fu-application__content {

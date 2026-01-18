@@ -188,7 +188,6 @@ export class CompendiumIndex {
 			shield: await this.getItemsOfType('shield'),
 			accessory: await this.getItemsOfType('accessory'),
 		};
-		entries.all = Object.values(entries).flat();
 		return entries;
 	}
 
@@ -200,7 +199,6 @@ export class CompendiumIndex {
 			class: await this.getItemsOfType('class'),
 			classFeature: await this.getItemsOfType('classFeature'),
 		};
-		entries.all = Object.values(entries).flat();
 		return entries;
 	}
 
@@ -214,7 +212,6 @@ export class CompendiumIndex {
 			rule: await this.getItemsOfType('rule'),
 			miscAbility: await this.getItemsOfType('miscAbility'),
 		};
-		entries.all = Object.values(entries).flat();
 		return entries;
 	}
 
@@ -227,7 +224,6 @@ export class CompendiumIndex {
 			npc: await this.getActorsOfType('npc'),
 			stash: await this.getActorsOfType('stash'),
 		};
-		entries.all = Object.values(entries).flat();
 		return entries;
 	}
 }
