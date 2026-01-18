@@ -4,6 +4,7 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
+import { PressureSystem } from '../systems/pressure-system.mjs';
 
 Hooks.on('preCreateCombatant', function (document, data, options, userId) {
 	if (!(document instanceof FUCombatant)) {
@@ -52,7 +53,23 @@ export class FUCombatant extends foundry.documents.Combatant {
 					await party.addOrUpdateAdversary(this.actor, 0);
 				}
 			}
+			if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+				await PressureSystem.applyPressureEffect(this.actor);
+			}
 		}
+	}
+
+	/**
+	 * @param {Object} options Additional options which modify the deletion request
+	 * @param {BaseUser} user The User requesting the document deletion
+	 * @returns {Promise<Boolean|void>} A return value of false indicates the deletion operation should be cancelled.
+	 * @private
+	 */
+	async _preDelete(options, user) {
+		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+			await PressureSystem.removePressureEffect(this.actor);
+		}
+		return super._preDelete(options, user);
 	}
 
 	/**

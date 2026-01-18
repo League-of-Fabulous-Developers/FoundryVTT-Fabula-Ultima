@@ -83,6 +83,11 @@
 	width: 100%;
 }
 
+.fu-form__disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 /*		DIALOGS		*/
 .fu-application .background,
 .fu-dialog .background,
@@ -313,6 +318,14 @@
 .fu-icon__radio__label.selected {
 	-webkit-filter: unset;
 	filter: unset;
+}
+
+.fu-traits {
+	background: var(--color-background);
+	border-style: inset;
+	border-width: thin;
+	padding: 4px;
+	width: 100%;
 }
 
 .fu-image__link {

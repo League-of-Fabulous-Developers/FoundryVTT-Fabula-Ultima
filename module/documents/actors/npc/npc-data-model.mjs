@@ -5,6 +5,8 @@ import { Role } from '../../../helpers/roles.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 
 Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
@@ -73,10 +75,11 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {number} study.value
  * @property {string} associatedTherioforms
  * @property {NpcSkillTracker} spTracker
+ * @property {TraitsDataModel} pressurePoints
  */
 export class NpcDataModel extends BaseCharacterDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, EmbeddedDataField, BooleanField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
@@ -110,6 +113,9 @@ export class NpcDataModel extends BaseCharacterDataModel {
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
 			associatedTherioforms: new StringField(),
+			pressurePoints: new EmbeddedDataField(TraitsDataModel, {
+				options: TraitUtils.getOptionsFromConfig(FU.weaponCategories),
+			}),
 		});
 	}
 

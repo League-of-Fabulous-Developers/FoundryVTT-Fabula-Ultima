@@ -358,6 +358,19 @@ FU.weaponCategories = {
 	thrown: 'FU.Thrown',
 };
 
+FU.weaponCategoryIcons = {
+	arcane: 'ra ra-frostfire',
+	bow: 'ra ra-crossbow',
+	brawling: 'ra ra-muscle-up',
+	dagger: 'ra ra-daggers',
+	firearm: 'ra ra-revolver',
+	flail: 'ra ra-spiked-mace',
+	heavy: 'ra ra-hammer',
+	spear: 'ra ra-trident',
+	sword: 'ra ra-sword',
+	thrown: 'ra ra-shuriken',
+};
+
 /**
  * @typedef {"custom", "arcana", "deck", "dance", "gift", "magiseed", "invention", "invocation", "therioform", "symbol", "infusion", "quirk", "other"} MiscCategory
  */
@@ -590,6 +603,10 @@ FU.duration = {
 	scene: 'FU.Scene',
 	special: 'FU.Special',
 };
+
+// /**
+//  * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
+//  */
 
 /**
  * @description Events dispatched during conflict scenes
@@ -1002,6 +1019,7 @@ FU.allIcon = {
 	weaponEnchant: 'fu-weapon-enchant',
 	damage: 'fu-damage',
 	type: 'fu-type',
+	stagger: 'fu-stagger',
 	info: 'fas fa-circle-info',
 	compendium: 'fas fa-book',
 	warning: 'fas fa-triangle-exclamation',
@@ -1010,4 +1028,5 @@ FU.allIcon = {
 	...FU.affinityIcons,
 	...FU.resourceIcons,
 	...FU.attributeIcons,
+	...FU.weaponCategoryIcons,
 };
