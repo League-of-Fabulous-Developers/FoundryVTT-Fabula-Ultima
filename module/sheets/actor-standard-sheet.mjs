@@ -456,6 +456,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						context.pressurePoints = true;
 						context.weaponCategories = FU.weaponCategories;
 					}
+					context.pressurePoints = game.settings.get(systemId, SETTINGS.pressureSystem);
 				}
 				break;
 			case 'notes': {
