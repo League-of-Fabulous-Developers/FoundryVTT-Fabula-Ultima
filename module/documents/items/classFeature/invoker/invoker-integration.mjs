@@ -17,7 +17,7 @@ export const WELLSPRINGS = {
 		nameShort: 'FU.ClassFeatureInvocationsWellspringAirNameShort',
 		type: 'air',
 		element: 'FU.ClassFeatureInvocationsWellspringAirElement',
-		icon: 'fu-wind',
+		icon: 'fu-air',
 	},
 	earth: {
 		name: 'FU.ClassFeatureInvocationsWellspringEarthName',

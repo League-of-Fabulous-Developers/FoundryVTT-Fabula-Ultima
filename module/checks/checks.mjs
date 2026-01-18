@@ -202,14 +202,13 @@ const modifyCheck = async (checkId, callback) => {
 				const { check = newCheck, roll = Roll.fromData(oldCheck.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
 				const result = await processResult(check, roll, actor, item, false);
 				config = CheckConfiguration.configure(result);
+				config.updateTargetResults();
+				return renderCheck(result, actor, item, message.flags);
 			} else {
 				config = CheckConfiguration.configure(oldCheck);
+				config.updateTargetResults();
+				return renderCheck(oldCheck, actor, item, message.flags);
 			}
-
-			// Update target results now that the result changed
-			config.updateTargetResults();
-			// Re-render the check
-			return renderCheck(oldCheck, actor, item, message.flags);
 		}
 	} else {
 		throw new Error('Check to be modified not found.');
