@@ -1,5 +1,11 @@
 <div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="combat">
 	<section class="desc flexgrow-1">
+		<header class="items-main-header">
+		<span class="items-main">
+			<label class="items-label">{{localize "FU.Abilities"}}</label>
+			{{pfuCompendium "abilities"}}
+		</span>
+		</header>
 		{{{basicAttacksTable}}}
 
 		{{{skillsTable}}}

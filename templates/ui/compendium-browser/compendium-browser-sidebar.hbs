@@ -1,13 +1,37 @@
 <aside class="fu-application__sidebar">
-	<section class="">
+	<section>
 		<label>
 			<input
 			 id="search"
 			 type="search"
 			 name="search"
-			 value="{{filterText}}"
+			 value="{{filter.text}}"
 			 placeholder="Search…"
 			 autocomplete="off"/>
 		</label>
 	</section>
+	{{#each filter.categories as |cat id|}}
+		<fieldset class="title-fieldset desc resource-content"
+				  style="display: flex; flex-wrap: wrap;
+				  justify-content: space-around;">
+			<legend class="resource-label-full">
+				<label class="resource-label-m">
+					<i class="fa fa-filter"></i>
+					{{localize cat.label}}
+				</label>
+			</legend>
+			<div class="fu-application__sidebar__filter">
+				{{#each cat.options as |opt|}}
+					<label class="fu-filter-option">
+						<input type="checkbox"
+							   data-category="{{id}}"
+							   data-option="{{opt.value}}"
+							   {{#if opt.checked}}checked{{/if}}
+						/>
+						{{localize opt.label}}
+					</label>
+				{{/each}}
+			</div>
+		</fieldset>
+	{{/each}}
 </aside>

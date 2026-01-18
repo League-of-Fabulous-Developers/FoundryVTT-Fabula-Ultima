@@ -24,6 +24,13 @@ import { systemId } from '../../helpers/system-utils.mjs';
  */
 
 /**
+ * @typedef AbilityEntries
+ * @property {CompendiumIndexEntry[]} basic
+ * @property {CompendiumIndexEntry[]} miscAbility
+ * @property {CompendiumIndexEntry[]} rule
+ */
+
+/**
  * @typedef CharacterEntries
  * @property {CompendiumIndexEntry[]} character
  * @property {CompendiumIndexEntry[]} npc
@@ -64,14 +71,45 @@ export class CompendiumIndex {
 	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
 	static actorFields = [...this.npcFields];
 
-	// Items
-	static sharedItemFields = ['system.cost.value', `system.source`];
-	static classFields = ['system.class.value', 'system.level.max'];
-	static spellFields = [`system.duration.value`, `system.cost.amount`];
-	static weaponFields = [`system.damage.value`, `system.damageType.value`];
-	static armorFields = [`system.def.attribute`, `system.def.value`, `system.mdef.attribute`, `system.mdef.value`];
-	static consumableFields = [`system.ipCost.value`];
-	static itemFields = [...this.sharedItemFields, ...this.spellFields, ...this.classFields, ...this.weaponFields, ...this.armorFields, ...this.consumableFields];
+	// TODO: Encode label, options data
+	/**
+	 * @desc The fields that are being indexed.
+	 * @returns {Record<string, string>}
+	 */
+	static itemFields = Object.freeze({
+		// Shared
+		cost: 'system.cost.value',
+		source: 'system.source',
+
+		// Feature
+		featureType: 'system.featureType',
+
+		// Class
+		class: 'system.class.value',
+		levelMax: 'system.level.max',
+
+		// Spells
+		duration: 'system.duration.value',
+		costAmount: 'system.cost.amount',
+		spellDamageType: 'system.rollInfo.damage.type.value',
+
+		// Weapons
+		damage: 'system.damage.value',
+		weaponDamageType: 'system.damageType.value',
+		weaponCategory: 'system.category.value',
+		type: 'system.type.value',
+
+		// Armor
+		defAttribute: 'system.def.attribute',
+		defValue: 'system.def.value',
+		mdefAttribute: 'system.mdef.attribute',
+		mdefValue: 'system.mdef.value',
+
+		// Consumables
+		ipCost: 'system.ipCost.value',
+	});
+
+	static #itemFieldsArray = Object.values(CompendiumIndex.itemFields);
 
 	/**
 	 * @param {Boolean} force
@@ -79,7 +117,7 @@ export class CompendiumIndex {
 	 */
 	async getItems(force) {
 		if (!this.#items || force) {
-			this.#items = await this.getEntries('Item', null, CompendiumIndex.itemFields);
+			this.#items = await this.getEntries('Item', null, CompendiumIndex.#itemFieldsArray);
 		}
 		return this.#items;
 	}
@@ -167,6 +205,8 @@ export class CompendiumIndex {
 				const key = entry.type ?? 'unknown';
 				if (type && key !== type) continue;
 
+				this.patchEntryData(entry);
+
 				(result[key] ??= []).push({
 					...entry,
 					pack: pack.collection,
@@ -175,6 +215,74 @@ export class CompendiumIndex {
 		}
 
 		return result;
+	}
+
+	/**
+	 * @desc Adds extra data to entries of specific data models to help with indexing.
+	 * @param {CompendiumIndexEntry} entry
+	 * @returns {*}
+	 */
+	patchEntryData(entry) {
+		let _class;
+		// TODO: Use lowercase?
+		switch (entry.system.featureType) {
+			case 'projectfu.dance':
+				_class = 'Dancer';
+				break;
+
+			case 'projectfu.key':
+			case 'projectfu.tone':
+			case 'projectfu.verse':
+				_class = 'Chanter';
+				break;
+
+			case 'projectfu.symbol':
+				_class = 'Symbolist';
+				break;
+
+			case 'projectfu.therioform':
+				_class = 'Mutant';
+				break;
+
+			case 'projectfu.magitech':
+			case 'projectfu.alchemy':
+			case 'projectfu.infusions':
+				_class = 'Tinkerer';
+				break;
+
+			case 'projectfu.magiseed':
+			case 'projectfu.garden':
+				_class = 'Floralist';
+				break;
+
+			case 'projectfu.ingredient':
+			case 'projectfu.cookbook':
+				_class = 'Gourmet';
+				break;
+
+			case 'projectfu.arcanum':
+				_class = 'Arcanist';
+				break;
+
+			case 'projectfu.vehicle':
+			case 'projectfu.armorModule':
+			case 'projectfu.weaponModule':
+			case 'projectfu.supportModule':
+				_class = 'Pilot';
+				break;
+
+			case 'projectfu.invocations':
+				_class = 'Invoker';
+				break;
+
+			case 'projectfu.psychicGift':
+				_class = 'Esper';
+				break;
+		}
+		entry.metadata = {
+			class: _class,
+		};
+		return entry;
 	}
 
 	/**
@@ -188,7 +296,6 @@ export class CompendiumIndex {
 			shield: await this.getItemsOfType('shield'),
 			accessory: await this.getItemsOfType('accessory'),
 		};
-		entries.all = Object.values(entries).flat();
 		return entries;
 	}
 
@@ -200,7 +307,6 @@ export class CompendiumIndex {
 			class: await this.getItemsOfType('class'),
 			classFeature: await this.getItemsOfType('classFeature'),
 		};
-		entries.all = Object.values(entries).flat();
 		return entries;
 	}
 
@@ -211,10 +317,19 @@ export class CompendiumIndex {
 		const entries = {
 			skill: await this.getItemsOfType('skill'),
 			heroic: await this.getItemsOfType('heroic'),
-			rule: await this.getItemsOfType('rule'),
-			miscAbility: await this.getItemsOfType('miscAbility'),
 		};
-		entries.all = Object.values(entries).flat();
+		return entries;
+	}
+
+	/**
+	 * @returns {Promise<AbilityEntries>}
+	 */
+	async getAbilities() {
+		const entries = {
+			basic: await this.getItemsOfType('basic'),
+			miscAbility: await this.getItemsOfType('miscAbility'),
+			rule: await this.getItemsOfType('rule'),
+		};
 		return entries;
 	}
 
@@ -227,7 +342,6 @@ export class CompendiumIndex {
 			npc: await this.getActorsOfType('npc'),
 			stash: await this.getActorsOfType('stash'),
 		};
-		entries.all = Object.values(entries).flat();
 		return entries;
 	}
 }

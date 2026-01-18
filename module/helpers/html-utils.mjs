@@ -79,4 +79,17 @@ export const HTMLUtils = Object.freeze({
 			dataset[key] = value ?? '';
 		}
 	},
+
+	/**
+	 * @param fn A function
+	 * @param ms The time in milliseconds.
+	 * @returns {(function(...[*]): void)|*}
+	 */
+	debounce: (fn, ms) => {
+		let timer;
+		return (...args) => {
+			clearTimeout(timer);
+			timer = setTimeout(() => fn(...args), ms);
+		};
+	},
 });
