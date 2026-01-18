@@ -110,6 +110,8 @@ import { InlineAction } from './helpers/inline-action.mjs';
 import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
 import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
 import { PressureSystem } from './systems/pressure-system.mjs';
+import { FUToken } from './ui/token.mjs';
+import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -175,6 +177,23 @@ Hooks.once('init', async () => {
 	FU.ruleActionRegistry = RuleActionRegistry.instance;
 	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
 	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
+
+	// Set up pressure gauge things
+	FU.pressureGaugeThemes = {
+		default: FUPressureGauge,
+		modern: FUModernPressureGauge,
+		pixel: FUPixelPressureGauge,
+	};
+
+	Hooks.on('canvasPan', () => {
+		const start = performance.now();
+		const tokens = canvas.scene.tokens.filter((token) => token.object instanceof FUToken);
+		tokens.forEach((token) => token.object.pressureGauge.onCanvasScale());
+		const duration = performance.now() - start;
+		if (duration > 16) {
+			console.warn(`Rescaling ${tokens.length} tokens with pressure gauges took ${duration}ms`);
+		}
+	});
 
 	/**
 	 * @type {Record<string, DataModelRegistry>}
@@ -392,6 +411,7 @@ Hooks.once('init', async () => {
 
 	// Override token ruler class
 	CONFIG.Token.rulerClass = FUTokenRuler;
+	CONFIG.Token.objectClass = FUToken;
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
