@@ -154,3 +154,7 @@
 .compendium-effects-table {
 	grid-template-columns: [name] auto [source] 100px [duration] 100px;
 }
+
+.compendium-attack-table {
+	grid-template-columns: [name] auto [damage] 100px [type] 100px;
+}

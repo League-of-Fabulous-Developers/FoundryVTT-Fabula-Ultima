@@ -24,6 +24,13 @@ import { systemId } from '../../helpers/system-utils.mjs';
  */
 
 /**
+ * @typedef AbilityEntries
+ * @property {CompendiumIndexEntry[]} basic
+ * @property {CompendiumIndexEntry[]} miscAbility
+ * @property {CompendiumIndexEntry[]} rule
+ */
+
+/**
  * @typedef CharacterEntries
  * @property {CompendiumIndexEntry[]} character
  * @property {CompendiumIndexEntry[]} npc
@@ -237,8 +244,18 @@ export class CompendiumIndex {
 		const entries = {
 			skill: await this.getItemsOfType('skill'),
 			heroic: await this.getItemsOfType('heroic'),
-			rule: await this.getItemsOfType('rule'),
+		};
+		return entries;
+	}
+
+	/**
+	 * @returns {Promise<AbilityEntries>}
+	 */
+	async getAbilities() {
+		const entries = {
+			basic: await this.getItemsOfType('basic'),
 			miscAbility: await this.getItemsOfType('miscAbility'),
+			rule: await this.getItemsOfType('rule'),
 		};
 		return entries;
 	}

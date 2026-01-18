@@ -93,6 +93,19 @@ class WeaponCompendiumTableRenderer extends CompendiumTableRenderer {
 	};
 }
 
+class AttackCompendiumTableRenderer extends CompendiumTableRenderer {
+	/** @type TableConfig */
+	static TABLE_CONFIG = {
+		...super.TABLE_CONFIG,
+		cssClass: 'compendium-attack-table',
+		columns: {
+			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			damage: CommonColumns.propertyColumn('FU.Damage', 'system.damage.value'),
+			type: CommonColumns.propertyColumn('FU.Type', 'system.damageType.value', FU.damageTypes),
+		},
+	};
+}
+
 class ArmorCompendiumTableRenderer extends CompendiumTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
@@ -158,6 +171,7 @@ export class CompendiumBrowser extends FUApplication {
 				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-anvil' },
 				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-fairy-wand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'abilities', label: 'FU.Abilities', icon: 'ra ra-bird-claw' },
 				{ id: 'effects', label: 'FU.Effects', icon: 'ra ra-droplet-splash' },
 			],
 			initial: 'classes',
@@ -217,6 +231,9 @@ export class CompendiumBrowser extends FUApplication {
 		},
 		effects: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-effects'),
+		},
+		abilities: {
+			template: systemTemplatePath('ui/compendium-browser/compendium-browser-abilities'),
 		},
 	};
 
@@ -301,6 +318,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'equipment':
 			case 'skills':
 			case 'spells':
+			case 'abilities':
 			case 'effects':
 				{
 					context.tables = tabData.tables;
@@ -406,6 +424,7 @@ export class CompendiumBrowser extends FUApplication {
 	#armorRenderer = new ArmorCompendiumTableRenderer();
 	#consumableRenderer = new ConsumableCompendiumTableRenderer();
 	#skillRenderer = new SkillsCompendiumTableRenderer();
+	#attackRenderer = new AttackCompendiumTableRenderer();
 
 	getTypeFilter(entries) {
 		return {
@@ -490,20 +509,59 @@ export class CompendiumBrowser extends FUApplication {
 								entries: skills.heroic,
 								renderer: this.#basicRenderer,
 							},
-							{
-								entries: skills.miscAbility,
-								renderer: this.#basicRenderer,
-							},
-							{
-								entries: skills.rule,
-								renderer: this.#basicRenderer,
-							},
 						],
 						{
 							class: {
 								label: 'FU.Class',
 								propertyPath: 'system.class.value',
 								options: classOptions,
+							},
+						},
+					);
+				}
+				break;
+
+			case 'abilities':
+				{
+					const abilities = await this.index.getAbilities();
+					await this.setTables(
+						[
+							{
+								entries: abilities.basic,
+								renderer: this.#attackRenderer,
+							},
+							{
+								entries: abilities.miscAbility,
+								renderer: this.#basicRenderer,
+							},
+							{
+								entries: abilities.rule,
+								renderer: this.#basicRenderer,
+							},
+						],
+						{
+							type: {
+								label: 'FU.Type',
+								propertyPath: 'type',
+								options: [
+									{
+										value: 'basic',
+										label: 'FU.Attack',
+									},
+									{
+										value: 'miscAbility',
+										label: 'FU.Ability',
+									},
+									{
+										value: 'rule',
+										label: 'FU.Rule',
+									},
+								],
+							},
+							attackDamage: {
+								label: 'FU.DamageType',
+								propertyPath: CompendiumIndex.itemFields.weaponDamageType,
+								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
 						},
 					);

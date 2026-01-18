@@ -1740,6 +1740,8 @@
 		},
 		"CompendiumBrowser": "Compendium Browser",
 		"CompendiumBrowserOpen": "Open Compendium Browser",
-		"Actors": "Actors"
+		"Actors": "Actors",
+		"Ability": "Ability",
+		"Abilities": "Abilities"
 	}
 }
