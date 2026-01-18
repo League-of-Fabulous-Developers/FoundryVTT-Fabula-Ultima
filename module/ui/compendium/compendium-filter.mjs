@@ -7,6 +7,12 @@
  */
 
 /**
+ * @typedef CompendiumFilterInputOptions
+ * @property {String} text
+ * @property {{key: string, option: string}} filter
+ */
+
+/**
  * @desc Used for filtering the compendiums.
  */
 export class CompendiumFilter {
@@ -39,11 +45,13 @@ export class CompendiumFilter {
 					return false;
 				}
 			}
-			for (const category of Object.values(this.categories)) {
-				if (category.selected.size > 0) {
-					const propertyValue = foundry.utils.getProperty(entry, category.propertyPath);
-					if (!propertyValue || !category.selected.has(propertyValue)) {
-						return false;
+			if (this.categories) {
+				for (const category of Object.values(this.categories)) {
+					if (category.selected?.size > 0) {
+						const propertyValue = foundry.utils.getProperty(entry, category.propertyPath);
+						if (!propertyValue || !category.selected.has(propertyValue)) {
+							return false;
+						}
 					}
 				}
 			}
@@ -57,7 +65,7 @@ export class CompendiumFilter {
 	 */
 	clear() {
 		this.setText('');
-		this.filters = [];
+		this.#categories = undefined;
 	}
 
 	get text() {
@@ -89,7 +97,10 @@ export class CompendiumFilter {
 	 * @param {Boolean} checked
 	 */
 	toggle(key, option, checked) {
-		const category = this.#categories[key];
+		if (!this.categories) {
+			return;
+		}
+		const category = this.categories[key];
 		if (!category.selected) {
 			category.selected = new Set();
 		}

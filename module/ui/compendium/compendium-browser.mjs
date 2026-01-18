@@ -455,24 +455,40 @@ export class CompendiumBrowser extends FUApplication {
 			case 'skills':
 				{
 					const skills = await this.index.getSkills();
-					await this.setTables([
+					const classes = await this.index.getItemsOfType('class');
+					const classOptions = classes.map((c) => {
+						return {
+							value: c.name,
+							label: c.name,
+						};
+					});
+					await this.setTables(
+						[
+							{
+								entries: skills.skill,
+								renderer: this.#skillRenderer,
+							},
+							{
+								entries: skills.heroic,
+								renderer: this.#basicRenderer,
+							},
+							{
+								entries: skills.miscAbility,
+								renderer: this.#basicRenderer,
+							},
+							{
+								entries: skills.rule,
+								renderer: this.#basicRenderer,
+							},
+						],
 						{
-							entries: skills.skill,
-							renderer: this.#skillRenderer,
+							class: {
+								label: 'FU.Class',
+								propertyPath: 'system.class.value',
+								options: classOptions,
+							},
 						},
-						{
-							entries: skills.heroic,
-							renderer: this.#basicRenderer,
-						},
-						{
-							entries: skills.miscAbility,
-							renderer: this.#basicRenderer,
-						},
-						{
-							entries: skills.rule,
-							renderer: this.#basicRenderer,
-						},
-					]);
+					);
 				}
 				break;
 
@@ -515,12 +531,28 @@ export class CompendiumBrowser extends FUApplication {
 			case 'spells':
 				{
 					const spells = await this.index.getItemsOfType('spell');
-					await this.setTables([
+					const classes = ['Spiritist', 'Entropist', 'Elementalist']; // hardcoded for now
+					const classOptions = classes.map((c) => {
+						return {
+							value: c,
+							label: c,
+						};
+					});
+					await this.setTables(
+						[
+							{
+								entries: spells,
+								renderer: this.#spellRenderer,
+							},
+						],
 						{
-							entries: spells,
-							renderer: this.#spellRenderer,
+							class: {
+								label: 'FU.Class',
+								propertyPath: 'system.class.value',
+								options: classOptions,
+							},
 						},
-					]);
+					);
 				}
 				break;
 
@@ -561,18 +593,15 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	/**
-	 * @typedef CompendiumFilterOptions
-	 * @property {String} text
-	 *
-	 */
-
-	/**
 	 * @param {String} tab The initial tab to open.
-	 * @param {CompendiumFilterOptions} filter Initial filtering for the tab.
+	 * @param {CompendiumFilterInputOptions} inputFilter Initial filtering for the tab.
 	 */
-	static open(tab, filter) {
+	static open(tab, inputFilter) {
 		const instance = CompendiumBrowser.instance;
-		instance.filter.setText(filter.text);
+		instance.filter.setText(inputFilter.text);
+		if (inputFilter.filter) {
+			instance.filter.toggle(inputFilter.filter.key, inputFilter.filter.option, true);
+		}
 		instance.render(true, {
 			tab: tab,
 		});

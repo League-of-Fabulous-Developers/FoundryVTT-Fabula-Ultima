@@ -401,7 +401,7 @@ function itemAnchor(item, options) {
 
 /**
  * @param {String} tab
- * @param {CompendiumFilterOptions} options
+ * @param {CompendiumFilterInputOptions} options
  * @returns {Handlebars.SafeString}
  */
 function compendium(tab, options) {
