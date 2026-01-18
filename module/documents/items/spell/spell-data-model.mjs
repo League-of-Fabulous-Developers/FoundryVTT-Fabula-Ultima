@@ -59,7 +59,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {UseWeaponDataModel} useWeapon
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
- * @property {DamageDataModel} damage
+ //* @property {DamageDataModel} damage
  * @property {EffectApplicationDataModel} effects
  * @property {ResourceDataModel} resource
  * @property {ImprovisedDamageDataModel} impdamage
@@ -89,7 +89,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			damage: new EmbeddedDataField(DamageDataModel, {}),
+			// damage: new EmbeddedDataField(DamageDataModel, {}),
 			resource: new EmbeddedDataField(ResourceDataModel, {}),
 			effects: new EmbeddedDataField(EffectApplicationDataModel, {}),
 			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),

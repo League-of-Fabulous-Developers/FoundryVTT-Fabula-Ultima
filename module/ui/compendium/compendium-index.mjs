@@ -64,14 +64,42 @@ export class CompendiumIndex {
 	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
 	static actorFields = [...this.npcFields];
 
-	// Items
-	static sharedItemFields = ['system.cost.value', `system.source`];
-	static classFields = ['system.class.value', 'system.level.max'];
-	static spellFields = [`system.duration.value`, `system.cost.amount`];
-	static weaponFields = [`system.damage.value`, `system.damageType.value`];
-	static armorFields = [`system.def.attribute`, `system.def.value`, `system.mdef.attribute`, `system.mdef.value`];
-	static consumableFields = [`system.ipCost.value`];
-	static itemFields = [...this.sharedItemFields, ...this.spellFields, ...this.classFields, ...this.weaponFields, ...this.armorFields, ...this.consumableFields];
+	// TODO: Encode label, options data
+	/**
+	 * @desc The fields that are being indexed.
+	 * @returns {Record<string, string>}
+	 */
+	static itemFields = Object.freeze({
+		// Shared
+		cost: 'system.cost.value',
+		source: 'system.source',
+
+		// Class
+		class: 'system.class.value',
+		levelMax: 'system.level.max',
+
+		// Spells
+		duration: 'system.duration.value',
+		costAmount: 'system.cost.amount',
+		spellDamageType: 'system.rollInfo.damage.type.value',
+
+		// Weapons
+		damage: 'system.damage.value',
+		weaponDamageType: 'system.damageType.value',
+		weaponCategory: 'system.category.value',
+		type: 'system.type.value',
+
+		// Armor
+		defAttribute: 'system.def.attribute',
+		defValue: 'system.def.value',
+		mdefAttribute: 'system.mdef.attribute',
+		mdefValue: 'system.mdef.value',
+
+		// Consumables
+		ipCost: 'system.ipCost.value',
+	});
+
+	static #itemFieldsArray = Object.values(CompendiumIndex.itemFields);
 
 	/**
 	 * @param {Boolean} force
@@ -79,7 +107,7 @@ export class CompendiumIndex {
 	 */
 	async getItems(force) {
 		if (!this.#items || force) {
-			this.#items = await this.getEntries('Item', null, CompendiumIndex.itemFields);
+			this.#items = await this.getEntries('Item', null, CompendiumIndex.#itemFieldsArray);
 		}
 		return this.#items;
 	}

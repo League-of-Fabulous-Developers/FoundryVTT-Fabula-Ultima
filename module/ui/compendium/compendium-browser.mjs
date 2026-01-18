@@ -7,6 +7,7 @@ import { CompendiumIndex } from './compendium-index.mjs';
 import { FU } from '../../helpers/config.mjs';
 import { CompendiumFilter } from './compendium-filter.mjs';
 import { HTMLUtils } from '../../helpers/html-utils.mjs';
+import FoundryUtils from '../../helpers/foundry-utils.mjs';
 
 /**
  * @typedef CompendiumIndexEntry
@@ -406,6 +407,23 @@ export class CompendiumBrowser extends FUApplication {
 	#consumableRenderer = new ConsumableCompendiumTableRenderer();
 	#skillRenderer = new SkillsCompendiumTableRenderer();
 
+	getTypeFilter(entries) {
+		return {
+			label: 'FU.Type',
+			propertyPath: 'type',
+			options: [
+				{
+					value: 'class',
+					label: 'FU.Class',
+				},
+				{
+					value: 'classFeature',
+					label: 'FU.ClassFeature',
+				},
+			],
+		};
+	}
+
 	/**
 	 *
 	 * @param {String} tabId
@@ -495,36 +513,91 @@ export class CompendiumBrowser extends FUApplication {
 			case 'equipment':
 				{
 					const equipment = await this.index.getEquipment();
-					await this.setTables([
+					await this.setTables(
+						[
+							{
+								entries: equipment.weapon,
+								renderer: this.#weaponRenderer,
+							},
+							{
+								entries: equipment.armor,
+								renderer: this.#armorRenderer,
+							},
+							{
+								entries: equipment.accessory,
+								renderer: this.#armorRenderer, // Same data paths as above.
+							},
+							{
+								entries: equipment.consumable,
+								renderer: this.#consumableRenderer,
+							},
+						],
 						{
-							entries: equipment.weapon,
-							renderer: this.#weaponRenderer,
+							type: {
+								label: 'FU.Type',
+								propertyPath: 'type',
+								options: [
+									{
+										value: 'weapon',
+										label: 'FU.Weapon',
+									},
+									{
+										value: 'armor',
+										label: 'FU.Armor',
+									},
+									{
+										value: 'accessory',
+										label: 'FU.Accessory',
+									},
+									{
+										value: 'consumable',
+										label: 'FU.Consumable',
+									},
+								],
+							},
+							weaponCategory: {
+								label: 'FU.Category',
+								propertyPath: CompendiumIndex.itemFields.weaponCategory,
+								options: FoundryUtils.getFormOptions(FU.weaponCategories),
+							},
+							weaponDamage: {
+								label: 'FU.DamageType',
+								propertyPath: CompendiumIndex.itemFields.weaponDamageType,
+								options: FoundryUtils.getFormOptions(FU.damageTypes),
+							},
 						},
-						{
-							entries: equipment.armor,
-							renderer: this.#armorRenderer,
-						},
-						{
-							entries: equipment.accessory,
-							renderer: this.#armorRenderer, // Same data paths as above.
-						},
-						{
-							entries: equipment.consumable,
-							renderer: this.#consumableRenderer,
-						},
-					]);
+					);
 				}
 				break;
 
 			case 'adversaries':
 				{
 					const characters = await this.index.getCharacters();
-					await this.setTables([
+					await this.setTables(
+						[
+							{
+								entries: characters.npc,
+								renderer: this.#adversaryRenderer,
+							},
+						],
 						{
-							entries: characters.npc,
-							renderer: this.#adversaryRenderer,
+							species: {
+								label: 'FU.Species',
+								propertyPath: 'system.species.value',
+								options: FoundryUtils.getFormOptions(FU.species),
+							},
+							rank: {
+								label: 'FU.Rank',
+								propertyPath: 'system.rank.value',
+								options: FoundryUtils.getFormOptions(FU.rank),
+							},
+							role: {
+								label: 'FU.Role',
+								propertyPath: 'system.role.value',
+								options: FoundryUtils.getFormOptions(FU.role),
+							},
 						},
-					]);
+					);
 				}
 				break;
 
@@ -550,6 +623,11 @@ export class CompendiumBrowser extends FUApplication {
 								label: 'FU.Class',
 								propertyPath: 'system.class.value',
 								options: classOptions,
+							},
+							damageType: {
+								label: 'FU.DamageType',
+								propertyPath: CompendiumIndex.itemFields.spellDamageType,
+								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
 						},
 					);
