@@ -79,7 +79,7 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  */
 export class NpcDataModel extends BaseCharacterDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, EmbeddedDataField, BooleanField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
@@ -116,8 +116,7 @@ export class NpcDataModel extends BaseCharacterDataModel {
 			pressurePoints: new EmbeddedDataField(TraitsDataModel, {
 				options: TraitUtils.getOptionsFromConfig(FU.weaponCategories),
 			}),
-			description: new HTMLField(),
-		};
+		});
 	}
 
 	static migrateData(source) {

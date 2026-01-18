@@ -359,12 +359,12 @@ FU.weaponCategories = {
 };
 
 FU.weaponCategoryIcons = {
-	arcane: 'ra ra-arcane-mask',
+	arcane: 'ra ra-frostfire',
 	bow: 'ra ra-crossbow',
 	brawling: 'ra ra-muscle-up',
 	dagger: 'ra ra-daggers',
 	firearm: 'ra ra-revolver',
-	flail: 'ra ra-chain',
+	flail: 'ra ra-spiked-mace',
 	heavy: 'ra ra-hammer',
 	spear: 'ra ra-trident',
 	sword: 'ra ra-sword',
