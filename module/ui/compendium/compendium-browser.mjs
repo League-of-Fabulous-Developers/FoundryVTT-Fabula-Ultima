@@ -332,6 +332,7 @@ export class CompendiumBrowser extends FUApplication {
 		switch (partId) {
 			case 'sidebar':
 				{
+					// Text filter
 					const searchInput = element.querySelector('#search');
 					if (!searchInput) {
 						return;
@@ -341,11 +342,11 @@ export class CompendiumBrowser extends FUApplication {
 						HTMLUtils.debounce(() => {
 							const text = searchInput.value.toLowerCase() || '';
 							this.filter.setText(text);
+							console.debug(`[COMPENDIUM] Text updated: ${text}`);
 							return this.renderTables(this.activeTabId, true, false);
 						}, 150),
 					);
-
-					// Checkbox filters (delegated)
+					// Checkbox filters
 					element.addEventListener('change', (event) => {
 						const input = event.target;
 						if (!(input instanceof HTMLInputElement)) return;
@@ -355,7 +356,7 @@ export class CompendiumBrowser extends FUApplication {
 						if (!category || !option) return;
 						this.filter.toggle(category, option, input.checked);
 						console.debug(`[COMPENDIUM] Filter toggled: ${category}=${option} (${input.checked})`);
-						//this.#applyFilters();
+						return this.renderTables(this.activeTabId, true, false);
 					});
 				}
 				break;

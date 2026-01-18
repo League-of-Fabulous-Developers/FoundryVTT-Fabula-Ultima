@@ -10,7 +10,7 @@
 			 autocomplete="off"/>
 		</label>
 	</section>
-	{{#each filter.categories as |cat|}}
+	{{#each filter.categories as |cat id|}}
 		<fieldset class="title-fieldset desc resource-content"
 				  style="display: flex; flex-wrap: wrap;
 				  justify-content: space-around;">
@@ -24,7 +24,7 @@
 				{{#each cat.options as |opt|}}
 					<label class="fu-filter-option">
 						<input type="checkbox"
-							   data-category="{{@key}}"
+							   data-category="{{id}}"
 							   data-option="{{opt.value}}"
 							   {{#if opt.checked}}checked{{/if}}
 						/>

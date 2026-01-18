@@ -31,17 +31,25 @@ export class CompendiumFilter {
 	 * @return {Boolean}
 	 */
 	filter(entry) {
-		if (this.text) {
-			const needle = this.text.toLowerCase();
-			const textMatch = Object.values(entry).some((value) => {
-				if (typeof value !== 'string') return false;
-				return value.toLowerCase().includes(needle);
-			});
-			if (!textMatch) {
-				return false;
+		const textMatch = Object.values(entry).some((value) => {
+			if (typeof value !== 'string') return false;
+			if (this.text) {
+				const needle = this.text.toLowerCase();
+				if (!value.toLowerCase().includes(needle)) {
+					return false;
+				}
 			}
-		}
-		return true;
+			for (const category of Object.values(this.categories)) {
+				if (category.selected.size > 0) {
+					const propertyValue = foundry.utils.getProperty(entry, category.propertyPath);
+					if (!propertyValue || !category.selected.has(propertyValue)) {
+						return false;
+					}
+				}
+			}
+			return true;
+		});
+		return textMatch;
 	}
 
 	/**
