@@ -320,7 +320,6 @@ export class CompendiumBrowser extends FUApplication {
 				{
 					if (tabData) {
 						this.filter.setCategories(tabData.filters);
-						//this.onFilterUpdate();
 					}
 					context.filter = this.filter;
 				}
@@ -361,7 +360,8 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	async _onFirstRender(context, options) {
-		return this.renderTables(this.activeTabId, true);
+		await super._onRender(context, options);
+		await this.renderTables(this.activeTabId, true);
 	}
 
 	/**
@@ -387,7 +387,7 @@ export class CompendiumBrowser extends FUApplication {
 							const text = searchInput.value.toLowerCase() || '';
 							this.filter.setText(text);
 							console.debug(`[COMPENDIUM] Text updated: ${text}`);
-							this.onFilterUpdate();
+							this.toggleCompendiumEntries();
 						}, 150),
 					);
 					// Checkbox filters
@@ -400,9 +400,8 @@ export class CompendiumBrowser extends FUApplication {
 						if (!category || !option) return;
 						this.filter.toggle(category, option, input.checked);
 						console.debug(`[COMPENDIUM] Filter toggled: ${category}=${option} (${input.checked})`);
-						this.onFilterUpdate();
+						this.toggleCompendiumEntries();
 					});
-					// Tables
 				}
 				break;
 
@@ -439,8 +438,17 @@ export class CompendiumBrowser extends FUApplication {
 			}
 		}
 
+		this.filter.setCategories(filters);
+
 		for (const trd of tables) {
-			const html = await trd.renderer.renderTable(trd.entries, { hideIfEmpty: false });
+			const html = await trd.renderer.renderTable(trd.entries, {
+				hideIfEmpty: false,
+				isVisible: (item) => {
+					const visible = this.filter.filter(item);
+					return visible;
+				},
+			});
+
 			/** @type CompendiumTableData **/
 			const tableData = {
 				id: trd.renderer.id,
@@ -458,14 +466,15 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	/**
+	 * @property {HTMLElement} element
 	 * @desc Given
 	 */
-	onFilterUpdate() {
+	toggleCompendiumEntries(element = null) {
 		if (!this.#tabData) {
 			return;
 		}
 
-		const root = this.element;
+		const root = element ?? this.element;
 
 		// For each of the tables currently being rendered
 		for (const tableData of this.#tabData.tables) {
@@ -826,7 +835,7 @@ export class CompendiumBrowser extends FUApplication {
 					const classNames = actor.getItemsByType('class').map((i) => i.name);
 					switch (tab) {
 						case 'spells':
-							filters.class.selected = classNames;
+							filters.class.selected = new Set(classNames);
 							break;
 					}
 				}

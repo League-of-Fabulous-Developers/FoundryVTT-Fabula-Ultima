@@ -11,6 +11,7 @@
 	{{#each items as |row|}}
 		<li class="fu-table__row-container {{@root.config.rowClass}} {{#if @root.config.draggable}}draggable{{/if}} {{lookup @root.rowCssClasses key}}"
 			{{@root.config.keyDataAttribute}}="{{ key }}"
+			{{#each additionalClasses as |cls|}}{{cls}}{{/each}}
 			{{#each additionalAttributes}}{{@key}}="{{this}}"{{/each}}
 			{{#with (lookup @root.rowTooltips key)}}data-tooltip="{{this}}"{{/with}}>
 			<div class="fu-table__row">

@@ -43,6 +43,15 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  */
 
 /**
+ * @typedef RowData
+ * @template T
+ * @property {String} key
+ * @property {T} item
+ * @property {Object} additionalAttributes
+ * @property {string[]} additionalClasses
+ */
+
+/**
  * @template T
  * @typedef AdditionalRowAttribute
  * @property {string} attributeName
@@ -182,6 +191,7 @@ export class FUTableRenderer {
 	/**
 	 * @typedef FUTableRendererRenderOptions
 	 * @property {boolean} [hideIfEmpty]
+	 * @property {(T) => string | number} isVisible
 	 */
 
 	/**
@@ -229,9 +239,11 @@ export class FUTableRenderer {
 			};
 		}
 
+		/** @type RowData[] **/
 		const rows = [];
 		for (let item of items) {
 			const rowKey = advancedConfig.getKey(item);
+			const visible = options.isVisible ? options.isVisible(item) : true;
 
 			if (tablePreset !== 'custom' && item.parent) {
 				if (document !== item.parent && document !== item.parentDocument) {
@@ -263,8 +275,11 @@ export class FUTableRenderer {
 			for (const { attributeName, getAttributeValue } of advancedConfig.additionalRowAttributes) {
 				additionalAttributes[attributeName] = getAttributeValue(item);
 			}
-
-			rows.push({ key: rowKey, item, additionalAttributes });
+			const additionalClasses = [];
+			if (!visible) {
+				additionalClasses.push('hidden');
+			}
+			rows.push({ key: rowKey, item, additionalAttributes, additionalClasses });
 		}
 
 		for (const column of Object.values(columns)) {
