@@ -3,7 +3,7 @@
 	{{#if compendium}}
 		<span class="items-main">
 		<label class="items-label">{{localize "FU.Items"}}</label>
-			{{pfuCompendium "equipment"}}
+			{{pfuCompendium "equipment" actorId=actor.uuid}}
 	</span>
 	{{/if}}
     {{#if actor.system.vehicle.armorActive}}

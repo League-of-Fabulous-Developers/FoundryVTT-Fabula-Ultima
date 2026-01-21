@@ -9,7 +9,8 @@
 /**
  * @typedef CompendiumFilterInputOptions
  * @property {String} text
- * @property {{key: string, option: string}} filter
+ * @property {{key: string, option: string}} filter A filter to apply??
+ * @property {String} actorId A reference to an actor, which can be used to apply filtering on opening the browser.
  */
 
 /**
@@ -101,8 +102,8 @@ export class CompendiumFilter {
 			return;
 		}
 		const category = this.categories[key];
-		if (!category.selected) {
-			category.selected = new Set();
+		if (!(category.selected instanceof Set)) {
+			category.selected = new Set(category.selected ?? []);
 		}
 		if (checked) {
 			category.selected.add(option);
@@ -110,4 +111,10 @@ export class CompendiumFilter {
 			category.selected.delete(option);
 		}
 	}
+
+	/**
+	 * @desc Attempts to assign the filters based on the given actor.
+	 * @param {FUActor} actor
+	 */
+	onNextCategory() {}
 }

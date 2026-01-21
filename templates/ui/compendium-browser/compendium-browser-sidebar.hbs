@@ -22,11 +22,12 @@
 			</legend>
 			<div class="fu-application__sidebar__filter">
 				{{#each cat.options as |opt|}}
+					{{log 'category:' ..@key ', selected:' ../selected}}
 					<label class="fu-filter-option">
 						<input type="checkbox"
 							   data-category="{{id}}"
 							   data-option="{{opt.value}}"
-							   {{#if opt.checked}}checked{{/if}}
+							   {{#if (pfuCollectionContains opt.value ../selected)}}checked{{/if}}
 						/>
 						{{localize opt.label}}
 					</label>

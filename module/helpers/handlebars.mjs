@@ -420,6 +420,8 @@ function compendium(tab, options) {
 		typeof template === 'function'
 			? template({
 					tab: tab,
+					text: options.text,
+					actorId: options.actorId,
 					options: options,
 				})
 			: '';

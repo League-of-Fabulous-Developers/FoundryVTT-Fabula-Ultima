@@ -20,6 +20,10 @@ import FoundryUtils from '../../helpers/foundry-utils.mjs';
  * @property {Object} [system]       Partial system data (indexed fields only)
  */
 
+/**
+ * @typedef {"classes"|"skills"|"equipment"|"spells"|"adversaries"|"abilities"|"effects"} CompendiumBrowserTab
+ */
+
 class CompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
@@ -329,6 +333,18 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	/**
+	 * @function
+	 */
+	#configureFilters;
+
+	/**
+	 * @param configureFilter
+	 */
+	onNextTabChange(configureFilter) {
+		this.#configureFilters = configureFilter;
+	}
+
+	/**
 	 * @returns {String}
 	 */
 	get activeTabId() {
@@ -401,16 +417,25 @@ export class CompendiumBrowser extends FUApplication {
 
 	/**
 	 * @param {TableRenderingData[]} tables
-	 * @param {CompendiumFilterCategory[]} filters
+	 * @param {Record<string, CompendiumFilterCategory>} filters
 	 */
 	async setTables(tables, filters) {
 		let result = [];
+
+		if (Object.keys(filters).length > 0) {
+			if (this.#configureFilters) {
+				this.#configureFilters(filters);
+				this.#configureFilters = undefined;
+			}
+		}
+
 		for (const trd of tables) {
 			const filteredEntries = trd.entries.filter(this.filter.filter);
 			if (filteredEntries.length > 0) {
 				result.push(await trd.renderer.renderTable(filteredEntries, { hideIfEmpty: true }));
 			}
 		}
+
 		this.#tabData = {
 			tables: result,
 			filters: filters,
@@ -425,23 +450,6 @@ export class CompendiumBrowser extends FUApplication {
 	#consumableRenderer = new ConsumableCompendiumTableRenderer();
 	#skillRenderer = new SkillsCompendiumTableRenderer();
 	#attackRenderer = new AttackCompendiumTableRenderer();
-
-	getTypeFilter(entries) {
-		return {
-			label: 'FU.Type',
-			propertyPath: 'type',
-			options: [
-				{
-					value: 'class',
-					label: 'FU.Class',
-				},
-				{
-					value: 'classFeature',
-					label: 'FU.ClassFeature',
-				},
-			],
-		};
-	}
 
 	/**
 	 *
@@ -740,15 +748,28 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	/**
-	 * @param {String} tab The initial tab to open.
+	 * @param {CompendiumBrowserTab} tab The initial tab to open.
 	 * @param {CompendiumFilterInputOptions} inputFilter Initial filtering for the tab.
 	 */
-	static open(tab, inputFilter) {
+	static async open(tab, inputFilter) {
 		const instance = CompendiumBrowser.instance;
 		instance.filter.setText(inputFilter.text);
-		if (inputFilter.filter) {
-			instance.filter.toggle(inputFilter.filter.key, inputFilter.filter.option, true);
-		}
+		instance.onNextTabChange((filters) => {
+			if (inputFilter.filter) {
+			}
+			if (inputFilter.actorId) {
+				const actor = fromUuidSync(inputFilter.actorId);
+				if (actor) {
+					const classNames = actor.getItemsByType('class').map((i) => i.name);
+					switch (tab) {
+						case 'spells':
+							filters.class.selected = classNames;
+							break;
+					}
+				}
+			}
+		});
+		// Render
 		instance.render(true, {
 			tab: tab,
 		});
