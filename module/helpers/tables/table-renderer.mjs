@@ -7,6 +7,7 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  * @template {Object} D the document of the sheet being rendered
  * @template {Object} T the type of the items in the table
  * @property {string, (() => string)} cssClass
+ * @property {string} id An unique identifier to the table.
  * @property {"item", "effect", "custom"} [tablePreset="item"]
  * @property {(document: D, options: FUTableRendererRenderOptions) => T[]} getItems
  * @property {boolean, ((a: D, b: D) => number)} [sort=true] sorting function to determine the order of entries, true means sort using foundry sort order, false means don't sort
@@ -59,7 +60,10 @@ export class FUTableRenderer {
 	 */
 	#tableConfig;
 
-	#tableId = foundry.utils.randomID();
+	/**
+	 * @type {String} Unique identifier for the table.
+	 */
+	#tableId;
 
 	/** @type {foundry.applications.api.Application} */
 	#application;
@@ -68,7 +72,10 @@ export class FUTableRenderer {
 
 	#clickHandler = this.#onClick.bind(this);
 
-	constructor() {
+	/**
+	 * @param {TableConfig} overrides
+	 */
+	constructor(overrides = {}) {
 		const configurations = [];
 		let cls = this.constructor;
 		while (cls !== FUTableRenderer) {
@@ -143,9 +150,9 @@ export class FUTableRenderer {
 			advancedConfig.rowClass ??= '';
 			advancedConfig.draggable ??= false;
 		}
-
+		Object.assign(config, overrides);
+		this.#tableId = config.id ?? foundry.utils.randomID();
 		this.initializeOptions(config);
-
 		this.#tableConfig = foundry.utils.deepFreeze(config);
 	}
 
@@ -161,6 +168,13 @@ export class FUTableRenderer {
 	 */
 	get application() {
 		return this.#application;
+	}
+
+	/**
+	 * @returns {String}
+	 */
+	get id() {
+		return this.#tableId;
 	}
 
 	initializeOptions(config) {}
