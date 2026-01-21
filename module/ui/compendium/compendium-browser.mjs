@@ -440,7 +440,7 @@ export class CompendiumBrowser extends FUApplication {
 		}
 
 		for (const trd of tables) {
-			const html = await trd.renderer.renderTable(trd.entries, { hideIfEmpty: true });
+			const html = await trd.renderer.renderTable(trd.entries, { hideIfEmpty: false });
 			/** @type CompendiumTableData **/
 			const tableData = {
 				id: trd.renderer.id,
@@ -476,8 +476,11 @@ export class CompendiumBrowser extends FUApplication {
 				tableData.visible.add(entry.uuid);
 			}
 			// Look up the table in the DOM by its data-table-id dataset property
-			const selector = `[data-table-id="${CSS.escape(tableData.id)}"]`;
+			const selector = `#${CSS.escape(tableData.id)}`;
 			const renderedTable = root.querySelector(selector);
+			if (!renderedTable) {
+				throw Error(`Did not find the rendered table ${tableData.id} in the DOM.`);
+			}
 			// If no entries are visible, hide the table
 			const showTable = filteredEntries.length > 0;
 			renderedTable.classList.toggle('hidden', !showTable);
@@ -487,7 +490,10 @@ export class CompendiumBrowser extends FUApplication {
 				for (const li of listElements) {
 					const uuid = li.dataset.uuid;
 					// ✅ Check uuid exists
-					if (!uuid) continue;
+					if (!uuid) {
+						console.error(`Missing uuid information on the list element ${li.toString()}`);
+						continue;
+					}
 					// Toggle visibility based on filter
 					li.classList.toggle('hidden', !tableData.visible.has(uuid));
 				}
@@ -499,14 +505,14 @@ export class CompendiumBrowser extends FUApplication {
 	#abilityRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-abilities' });
 	#classRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-classes' });
 	#classFeatureRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-class-features' });
-	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
-	#spellRenderer = new SpellsCompendiumTableRenderer();
-	#weaponRenderer = new WeaponCompendiumTableRenderer();
-	#armorRenderer = new ArmorCompendiumTableRenderer();
-	#accessoryRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-accessories' });
-	#consumableRenderer = new ConsumableCompendiumTableRenderer();
-	#skillRenderer = new SkillsCompendiumTableRenderer();
-	#attackRenderer = new AttackCompendiumTableRenderer();
+	#adversaryRenderer = new AdversariesCompendiumTableRenderer({ id: 'compendium-adversary' });
+	#spellRenderer = new SpellsCompendiumTableRenderer({ id: 'compendium-spells' });
+	#weaponRenderer = new WeaponCompendiumTableRenderer({ id: 'compendium-weapon' });
+	#armorRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-armor' });
+	#accessoryRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-accessory' });
+	#consumableRenderer = new ConsumableCompendiumTableRenderer({ id: 'compendium-consumable' });
+	#skillRenderer = new SkillsCompendiumTableRenderer({ id: 'compendium-skills' });
+	#attackRenderer = new AttackCompendiumTableRenderer({ id: 'compendium-attack' });
 
 	/**
 	 *

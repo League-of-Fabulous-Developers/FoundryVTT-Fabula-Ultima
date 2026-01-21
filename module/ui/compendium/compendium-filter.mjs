@@ -38,14 +38,20 @@ export class CompendiumFilter {
 	 * @return {Boolean}
 	 */
 	filter(entry) {
+		if (this.text) {
+			if (!entry.name.toLowerCase().includes(this.text.toLowerCase())) {
+				return false;
+			}
+		}
+
 		const textMatch = Object.values(entry).some((value) => {
 			if (typeof value !== 'string') return false;
-			if (this.text) {
-				const needle = this.text.toLowerCase();
-				if (!value.toLowerCase().includes(needle)) {
-					return false;
-				}
-			}
+			// if (this.text) {
+			// 	const needle = this.text.toLowerCase();
+			// 	if (!value.toLowerCase().includes(needle)) {
+			// 		return false;
+			// 	}
+			// }
 			if (this.categories) {
 				for (const category of Object.values(this.categories)) {
 					if (category.selected?.size > 0) {
