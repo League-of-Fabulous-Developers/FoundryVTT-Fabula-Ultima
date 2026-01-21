@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You can always communicate verbally with <strong>undead</strong> creatures. Once per scene, you may ask an <strong>undead</strong> a single question; they are compelled to answer truthfully.</p>",
+    "description": "<p>You can always communicate with <strong>undead</strong> creatures. Once per scene, you may ask an <strong>undead</strong> a single question. They are compelled to answer truthfully.</p>",
     "isFavored": {
       "value": false
     },
@@ -101,7 +101,7 @@
         "value": 0
       }
     },
-    "source": "FUNM3",
+    "source": "FUBC13",
     "subtype": {},
     "defense": "def",
     "hasResource": {
@@ -119,15 +119,18 @@
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "3.0.2",
-    "coreVersion": "13.346",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "13.351",
     "createdTime": 1684757022956,
-    "modifiedTime": 1745602043240,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1769024554938,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

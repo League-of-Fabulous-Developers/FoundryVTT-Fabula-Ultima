@@ -1,0 +1,62 @@
+{
+  "name": "Card Vanguard [Legacy]",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coin-inset-snail-silver.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Place cards as Vanguard Cards."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Ace of Cards</strong> Class, and must have acquired the <strong>Magic Cards</strong> Skill. <br /></p></blockquote><p>During a conflict, if you have <strong>two or fewer vanguard cards</strong> in play, you can use an action to choose <strong>1 card</strong> from your <strong>hand </strong>and place it face down as a <strong>vanguard card</strong>; if you do, draw 1 card from your <strong>deck</strong>.</p><p>When you suffer damage, if you have one or more <strong>vanguard cards</strong> in play, you may reveal one of them and place it on top of your <strong>discard pile</strong>: if you do and that card is a <strong>joker</strong> or its <strong>suit</strong> matches the type of the damage you suffered, you instead suffer no damage and regain an equal amount of Mind Points. At the end of each conflict, if you have one or more <strong>vanguard cards</strong> in play, shuffle them back into your <strong>deck</strong>.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUAC6",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "card-vanguard-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769016793378,
+    "modifiedTime": 1769016875793,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "YfU4qp1P4ZVZcDuw",
+  "sort": 13,
+  "_key": "!items!YfU4qp1P4ZVZcDuw"
+}

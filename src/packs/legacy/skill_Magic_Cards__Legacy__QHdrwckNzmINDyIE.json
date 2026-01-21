@@ -1,0 +1,102 @@
+{
+  "folder": "yQP8QqBOZqcn7f56",
+  "name": "Magic Cards [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/magic_cards.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong>.</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, <strong>resolve 1 card</strong> from your <strong>hand</strong> for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), <strong>discard</strong> these cards and draw that many cards from your <strong>deck</strong>.</p><hr /><ul><li><p>For <strong>deck</strong> breakdown and a list of Effects, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.hs3GyWJls59GhaNz]{Deck Rules}</p></li><li><p><strong>You Lose: </strong>@LOSS[10+(&amp;sl(\"magic-cards\")*5) mp]{10 + (SL × 5) MP}</p></li></ul>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Ace of Cards"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUAC3",
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "defense": "def",
+    "fuid": "magic-cards-legacy",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769016537398,
+    "modifiedTime": 1769016615520,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "QHdrwckNzmINDyIE",
+  "sort": 300000,
+  "_key": "!items!QHdrwckNzmINDyIE"
+}

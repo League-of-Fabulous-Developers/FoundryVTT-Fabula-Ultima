@@ -1,0 +1,104 @@
+{
+  "name": "Beyond The Realms Of Death [Legacy]",
+  "type": "skill",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When another creature you can see loses Hit Points while in Crisis, if they are not undead, you gain <strong>1 Grave Point</strong>. You may never have more than <strong>【SL + 1】 </strong>Grave Points.</p><p>When you are reduced to 0 Hit Points, you <strong>lose all Grave Points</strong>; then, if you lost at least 1 Grave Point this way and this is the <strong>first time</strong> you are reduced to 0 HP during this scene, you do not <strong>Surrender</strong> nor <strong>Sacrifice</strong> yourself: instead, you recover an amount of HP equal to <strong>【SL, multiplied by the amount of Grave Points you lost this way】</strong> .</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[(@item.level.value)+(@item.rp.current) hp]{SL × Lost Grave Points HP}</p></li></ul>",
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Necromancer"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "source": "FUNM3",
+    "hasResource": {
+      "value": true
+    },
+    "rp": {
+      "name": "Grave Points",
+      "max": 2,
+      "current": 0,
+      "step": 1,
+      "enabled": false
+    },
+    "defense": "def",
+    "fuid": "beyond-the-realms-of-death-legacy",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/beyond_the_realms_of_death.png",
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769024144962,
+    "modifiedTime": 1769024234414,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "folder": "8lW5YyWxQ1X625X8",
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "_id": "EzqS93ltwsmTqBLM",
+  "sort": 200000,
+  "_key": "!items!EzqS93ltwsmTqBLM"
+}

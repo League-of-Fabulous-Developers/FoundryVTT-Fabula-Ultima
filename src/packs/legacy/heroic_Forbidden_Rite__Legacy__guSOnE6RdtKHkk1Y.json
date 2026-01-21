@@ -1,0 +1,62 @@
+{
+  "name": "Forbidden Rite [Legacy]",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coin-inset-skull-copper.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Gain access to the Forbidden Monarch set. Your discards grant you strength."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong> and <strong>Arcanist</strong>, and you must have acquired <strong>3 Skill Levels</strong> in the <strong>Magic Cards</strong> Skill.</p></blockquote><p>As long as there are one or more cards in your discard pile, you have Resistance to the damage type matching the suit of the card on top of your discard pile (if that card is a joker, you have Resistance to all four damage types: air, earth, fire, and ice).</p><p>You also add the following effect to your list of sets:</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9621%\"></col><col style=\"width:72.0379%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Forbidden Monarch</strong></td><td style=\"height:17px;border-width:1px\"><p><strong>4 cards</strong> of the <strong>same value</strong>, <strong>none</strong> of which is a <strong>joker</strong> + <strong>1 joker</strong></p></td></tr></tbody></table><p>You deal 777 damage to each enemy present on the scene; the type of this damage is light if the common value of the 4 cards is even, or dark if that total is odd.</p><p>If there is a joker in your discard pile, the damage dealt by this effect ignores Immunities and Resistances.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUAC7",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "forbidden-rite-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769016806275,
+    "modifiedTime": 1769016877922,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "guSOnE6RdtKHkk1Y",
+  "sort": 4,
+  "_key": "!items!guSOnE6RdtKHkk1Y"
+}

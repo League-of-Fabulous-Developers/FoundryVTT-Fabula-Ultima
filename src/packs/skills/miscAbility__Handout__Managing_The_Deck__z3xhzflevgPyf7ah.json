@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h1>MANAGING THE DECK</h1><p>Your <strong>deck</strong> is an actual deck of cards that you can assemble however you prefer, provided their backs are identical and you follow the restrictions below:</p><ul><li><p>The deck contains exactly <strong>30 cards: 2 jokers</strong>, plus <strong>28</strong> cards divided into <strong>4 types</strong>, called <strong>suits</strong>; for instance, in a standard poker deck the <strong>suits</strong> are <strong>clubs</strong> ( @ICON[club]<strong> </strong>), <strong>diamonds</strong> ( @ICON[diamond] ), <strong>hearts</strong> ( @ICON[heart] ), and <strong>spades</strong> ( @ICON[spade] ). When you create your character's deck, associate each <strong>suit</strong> to a different damage type among <strong>air</strong>, <strong>earth</strong>, <strong>fire</strong>, and <strong>ice</strong>.</p></li><li><p>For each <strong>suit</strong>, the deck contains <strong>7 cards</strong> with <strong>values 1 to 7</strong>.</p></li></ul><p>The simplest approach is to use a poker deck (removing <strong>face cards</strong> and <strong>cards numbered 8 to 10</strong>), but you can also use minor arcana from tarot, cards from collectible card games, and much more; just make sure the combinations are easy to identify.</p><ul><li>When a <strong>conflict</strong> begins, shuffle all 30 cards in your <strong>deck</strong> and place it <strong>face down</strong> in front of yourself, then draw <strong>5 cards</strong> to form your starting <strong>hand</strong>.</li><li>If you need to draw cards and your <strong>deck</strong> doesn't have enough, draw as many as you can, <strong>shuffle your discard pile into the deck</strong>, place it <strong>face down</strong>, then keep drawing.</li><li>When you draw cards from your <strong>deck</strong>, they are put into your <strong>hand</strong>. Normally only you can see your <strong>hand</strong>, but you can show it to others if you so wish.</li><li>When you discard cards from your <strong>hand</strong>, place them <strong>face up</strong> into your <strong>discard pile</strong>, in whatever order you prefer. However, the order of cards in your <strong>discard pile</strong> cannot be modified.</li></ul><p>Your <strong>deck</strong>, your <strong>hand</strong>, and your <strong>discard pile</strong> (as well as any Skills and effects related to them) are only available during conflict scenes; at the end of each conflict, shuffle all 30 cards back into your <strong>deck</strong> and put it aside.</p><h3>RESOLVING A SET</h3><p>To produce a given effect, a <strong>set</strong> must match its requirements <strong>exactly</strong> (for instance, resolving a <strong>set of 5 cards with the same value</strong> will not match the requirements of <strong>Jackpot</strong>; it has to be composed of <strong>exactly 4 cards</strong>).</p><ul><li>When you resolve a <strong>set</strong> that includes <strong>jokers</strong>, you choose their <strong>suit</strong> and <strong>value</strong> (<strong>1</strong> to <strong>7</strong>).</li></ul><p>If a <strong>set</strong> matches the requirements of two or more effects, you must choose and apply <strong>only one</strong> of those effects.</p><h3><strong>Effects</strong></h3><p>@UUID[Compendium.projectfu.skills.Item.FVmAbnxp6kZyoqkN]{[Handout: Deck]}</p>",
+    "description": "<h2>MANAGING THE DECK</h2><p>Your <strong>deck</strong> is an actual deck of cards that you can assemble however you prefer, provided their backs are identical and you follow the restrictions below:</p><ul><li><p>The deck contains exactly <strong>30 cards: 2 jokers</strong>, plus <strong>28</strong> cards divided into <strong>4 types</strong>, called <strong>suits</strong>; for instance, in a standard poker deck the <strong>suits</strong> are <strong>clubs</strong> ( @ICON[club]<strong> </strong>), <strong>diamonds</strong> ( @ICON[diamond] ), <strong>hearts</strong> ( @ICON[heart] ), and <strong>spades</strong> ( @ICON[spade] ). When you create your character's deck, associate each <strong>suit</strong> to a different damage type among <strong>air</strong>, <strong>earth</strong>, <strong>fire</strong>, and <strong>ice</strong>.</p></li><li><p>For each <strong>suit</strong>, the deck contains <strong>7 cards</strong> with <strong>values 1 to 7</strong>.</p></li></ul><p>The simplest approach is to use a poker deck (removing <strong>face cards</strong> and <strong>cards numbered 8 to 10</strong>), but you can also use minor arcana from tarot, cards from collectible card games, and much more; just make sure the combinations are easy to identify.</p><ul><li><p>When a <strong>conflict</strong> begins, shuffle all 30 cards in your <strong>deck</strong> and place it <strong>face down</strong> in front of yourself, then draw <strong>5 cards</strong> to form your starting <strong>hand</strong>.</p></li><li><p>If you need to draw cards and your <strong>deck</strong> doesn't have enough, draw as many as you can, <strong>shuffle your discard pile into the deck</strong>, place it <strong>face down</strong>, then keep drawing.</p></li><li><p>When you draw cards, you draw them from your deck and add them to your hand. Normally only you can see your hand, but you can show it to others if you so wish.</p></li><li><p>When you discard cards, you do so from your hand and place them face up into your discard pile, in whatever order you prefer. The order of cards in your discard pile cannot be modified, but anyone may look at them.</p></li></ul><p>Your <strong>deck</strong>, your <strong>hand</strong>, and your <strong>discard pile</strong> (as well as any Skills and effects related to them) are only available during conflict scenes; at the end of each conflict, shuffle all 30 cards back into your <strong>deck</strong> and put it aside.</p><h3>RESOLVING A SET</h3><p>To produce a given effect, a <strong>set</strong> must match its requirements <strong>exactly</strong> (for instance, resolving a <strong>set of 5 cards with the same value</strong> will not match the requirements of <strong>Jackpot</strong>; it has to be composed of <strong>exactly 4 cards</strong>).</p><ul><li>When you resolve a <strong>set</strong> that includes <strong>jokers</strong>, you choose their <strong>suit</strong> and <strong>value</strong> (<strong>1</strong> to <strong>7</strong>).</li></ul><p>If a <strong>set</strong> matches the requirements of two or more effects, you must choose and apply <strong>only one</strong> of those effects.</p><h3><strong>Effects</strong></h3><p>@UUID[Compendium.projectfu.skills.Item.FVmAbnxp6kZyoqkN]{[Handout: Deck]}</p>",
     "isFavored": {
       "value": false
     },
@@ -77,7 +77,7 @@
       "max": 6,
       "name": "Name"
     },
-    "source": "FUAC4",
+    "source": "FUBC8",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {
@@ -138,15 +138,18 @@
     "core": {},
     "projectfu-playtest": {
       "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
     }
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "3.0.2",
-    "coreVersion": "13.346",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "13.351",
     "createdTime": 1707643359800,
-    "modifiedTime": 1745602268275,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1769029094237,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

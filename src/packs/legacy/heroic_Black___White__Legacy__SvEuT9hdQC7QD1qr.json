@@ -1,0 +1,62 @@
+{
+  "name": "Black & White [Legacy]",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coin-yingyang.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Modify your Double Trouble Set; Jokers become stronger."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Darkblade</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>, and you must have acquired the <strong>Magic Cards</strong> Skill. <br /></p></blockquote><p>When you resolve the <strong>Double Trouble</strong> effect, you may have all of its damage become <strong>light</strong> or <strong>dark</strong> (instead of being of a type matching the <strong>suits</strong> of the resolved cards).</p><p>Additionally, as long as there is a <strong>joker</strong> in your <strong>discard pile</strong>, all damage dealt by your <strong>Blinding Flush</strong>, <strong>Double Trouble</strong>, and <strong>Magic Flush</strong> effects ignores Immunities and Resistances.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUAC6",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "black-white-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769016787731,
+    "modifiedTime": 1769016874711,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "SvEuT9hdQC7QD1qr",
+  "sort": 25,
+  "_key": "!items!SvEuT9hdQC7QD1qr"
+}

@@ -6,7 +6,7 @@
     "summary": {
       "value": "Devour the magic present on your foes."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Entropist</strong>, <strong>Gourmet</strong> and <strong>Mutant</strong>.</p></blockquote><p>When you cast the <strong>Dispel</strong> spell, its <strong>MP</strong> cost becomes \"10 × T\" and its <strong>target</strong> becomes \"Up to three creatures\".</p><p>When you cause one or more enemies to no longer be affected by one or more spells with a <strong>duration</strong> of \"Scene\", choose one option: you recover 20 Mind Points for each spell whose effects ended on at least one of those enemies this way; or for each spell whose effects ended on at least one of those enemies this way, apply a copy of that spell on yourself (if a spell allowed for choices upon casting it, you must retain the same choices that were made for this casting of the spell). This copying effect does not require actions, Mind Points, or Checks, and is not treated as \"casting a spell\".</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Entropist</strong>, <strong>Gourmet</strong> and <strong>Mutant</strong>.</p></blockquote><p>When you cast the <strong>Dispel</strong> spell, its <strong>MP</strong> cost becomes \"10 × T\" and its <strong>target</strong> becomes \"Up to three creatures\".</p><p>When you cause one or more enemies to stop being affected by one or more spells with a <strong>duration</strong> of \"Scene\", choose <strong>one</strong> option: you recover 20 Mind Points for each different spell whose effects ended on at least one of those enemies this way; or for each different spell whose effects ended on at least one of those enemies this way, apply a copy of that spell on yourself (if a spell allowed for choices upon casting it, you must retain the same choices that were made for this casting of the spell). This copying effect does not require actions, Mind Points, or Checks, and is not treated as \"casting a spell\".</p>",
     "class": {
       "value": "Necromancer"
     },
@@ -19,7 +19,7 @@
     "requirement": {
       "value": ""
     },
-    "source": "FUHO7",
+    "source": "FUBC31",
     "hasResource": {
       "value": false
     },
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1767915231139,
-    "lastModifiedBy": "94wV67htTTVBPn7n"
+    "modifiedTime": 1769031188382,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "L3ZyYRKlHEggv0aF",
   "_id": "jHa5MjZpLP8OLSK9",

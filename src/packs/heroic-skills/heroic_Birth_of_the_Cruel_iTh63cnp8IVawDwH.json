@@ -6,7 +6,7 @@
     "summary": {
       "value": "Turn dead NPC into a Minion"
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Necromancer</strong> Class.</p></blockquote><p>When a non-<strong>Villain</strong> NPC you can see that belongs to the <strong>beast</strong>, <strong>humanoid</strong>, <strong>monster</strong>, or <strong>plant</strong> Species dies, you may spend 2 Grave Points and <strong>reduce your maximum Hit Points and Mind Points</strong> by an amount equal to that NPC's <strong>level</strong>. If you do, their corpse becomes a <strong>Minion</strong> who obeys your telepathic commands:</p><ul><li>Its Species becomes <strong>undead</strong> and it receives all <strong>Undead rules</strong> (see <strong>Core Rulebook</strong>, page <strong>305</strong>). The new Affinities to <strong>dark</strong>, <strong>light</strong>, and <strong>poison</strong> damage overwrite any preexisting Affinity, but the original Species' rules are otherwise <strong>maintained</strong>.</li><li>Its <strong>Rank</strong> becomes <strong>soldier</strong>; if the original creature was an <strong>élite</strong> or <strong>champion</strong>, the GM must reduce the Minion's HP and MP accordingly (Skills are <strong>maintained</strong>).</li><li>The newly created Minion is a completely new creature and has full HP, full MP, and no status effects. It retains the original creature's <strong>equipment</strong>.</li><li>Your Minion takes its own turn during conflicts, and the Game Master must count it as an <strong>additional Player Character</strong> when designing a conflict.</li><li>When you <strong>rest</strong>, your Minion also gains the full benefits of resting.</li><li>If your Minion is reduced to 0 Hit Points, if you are <strong>more than 1 travel day</strong> away from it, or if you die or fall unconscious, your Minion is immediately <strong>destroyed</strong>.</li><li>You may also destroy your Minion <strong>at any time</strong>; if you want to create a new Minion, you must first destroy the current one.</li><li>If your Minion is destroyed, your maximum HP and MP scores <strong>return to normal</strong>.</li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Necromancer</strong> Class.</p></blockquote><p>When a non-<strong>Villain</strong> NPC you can see that belongs to the <strong>beast</strong>, <strong>humanoid</strong>, <strong>monster</strong>, or <strong>plant</strong> Species dies, you may spend 2 Grave Points and <strong>reduce your maximum Hit Points and Mind Points</strong> by an amount equal to that NPC's <strong>level</strong>. If you do, their corpse becomes a <strong>minion</strong> who obeys your telepathic commands:</p><ul><li>Its <strong>Species</strong> becomes <strong>undead</strong> and it receives all <strong>undead rules</strong> (see <strong>Core Rulebook</strong>, page <strong>305</strong>). The new Affinities to <strong>dark</strong>, <strong>light</strong>, and <strong>poison</strong> damage overwrite any preexisting Affinity, but the original Species' rules are otherwise <strong>maintained</strong>.</li><li>Its <strong>Rank</strong> becomes <strong>soldier</strong>; if the original creature was an <strong>elite</strong> or <strong>champion</strong>, the GM must reduce the minion's HP and MP accordingly (Skills are <strong>maintained</strong>).</li><li>The newly created minion is a completely new creature and has full HP, full MP, and no status effects. It retains the original creature's <strong>equipment</strong> (if any).</li><li>Your minion takes its own turn during conflicts, and the Game Master must count it as an <strong>additional Player Character</strong> when designing a conflict.</li><li>When you <strong>rest</strong>, your minion also gains the full benefits of resting.</li><li>If your minion is reduced to 0 Hit Points, if you are <strong>more than 1 travel day</strong> away from it, or if you die or fall unconscious, it is immediately destroyed.</li><li>You may also destroy your minion <strong>at any time</strong>; but during a conflict scene you can only do so on your turn, while no other effect is being resolved. If you want to create a new minion, you must first destroy the current one.</li><li>If your minion is destroyed, your maximum HP and MP scores <strong>return to normal</strong>.</li></ul>",
     "isFavored": {
       "value": false
     },
@@ -83,7 +83,7 @@
         }
       }
     },
-    "source": "FUNM4",
+    "source": "FUBC14",
     "hasResource": {
       "value": false
     },
@@ -97,15 +97,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1697668153306,
-    "modifiedTime": 1767913947895,
-    "lastModifiedBy": "94wV67htTTVBPn7n",
+    "modifiedTime": 1769031048334,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
