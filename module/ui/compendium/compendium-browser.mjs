@@ -834,6 +834,7 @@ export class CompendiumBrowser extends FUApplication {
 				if (actor) {
 					const classNames = actor.getItemsByType('class').map((i) => i.name);
 					switch (tab) {
+						case 'skills':
 						case 'spells':
 							filters.class.selected = new Set(classNames);
 							break;

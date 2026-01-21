@@ -1,4 +1,6 @@
 import { systemId } from '../../helpers/system-utils.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
+import { SETTINGS } from '../../settings.js';
 
 /**
  * @typedef EquipmentEntries
@@ -174,7 +176,23 @@ export class CompendiumIndex {
 	 * @returns {[]}
 	 */
 	getPacks(type) {
-		return game.packs.filter((p) => p.documentName === type);
+		const setting = game.settings.get(SYSTEM, SETTINGS.optionCompendiumBrowserPacks);
+		return game.packs.filter((p) => {
+			const isSystemPack = p.collection.startsWith(`${systemId}.`);
+			switch (setting) {
+				case 'system':
+					if (!isSystemPack) {
+						return false;
+					}
+					break;
+				case 'custom':
+					if (isSystemPack) {
+						return false;
+					}
+					break;
+			}
+			return p.documentName === type;
+		});
 	}
 
 	/**

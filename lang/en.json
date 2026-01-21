@@ -1755,9 +1755,11 @@
 		"PressurePoints": "Pressure Points",
 		"Stagger": "Stagger",
 		"CompendiumBrowser": "Compendium Browser",
+		"CompendiumBrowserPacksHint": "What compendium packs to display on the browser.",
 		"CompendiumBrowserOpen": "Open Compendium Browser",
 		"Actors": "Actors",
 		"Ability": "Ability",
-		"Abilities": "Abilities"
+		"Abilities": "Abilities",
+		"System": "System"
 	}
 }
