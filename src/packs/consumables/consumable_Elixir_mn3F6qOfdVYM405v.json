@@ -7,7 +7,7 @@
       "value": "potion"
     },
     "summary": {
-      "value": "One creature recovers 50 MP."
+      "value": "One creature recovers 50 Mind Points."
     },
     "description": "",
     "isFavored": {
@@ -52,10 +52,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706515894820,
-    "modifiedTime": 1767644249742,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1768876799320,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

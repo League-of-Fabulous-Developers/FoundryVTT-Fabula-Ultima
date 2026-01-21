@@ -1,0 +1,490 @@
+{
+  "name": "Alchemy: Effect [Legacy]",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/alchemy.png",
+  "description": "<p><span class=\"fontstyle0\">When you create a mix, roll the amount of twenty-sided dice indicated by that mix, then assign one of those rolls to the </span><span class=\"fontstyle2\">@UUID[Compendium.projectfu.rollable-tables.RollTable.vZa3GMOzrEVma2Hv]{target} </span><span class=\"fontstyle0\">table and one to the </span><span class=\"fontstyle2\"><strong>effect</strong> </span><span class=\"fontstyle0\">table (below). Discard all remaining dice, then describe the effects of the mix!</span></p>",
+  "results": [
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_id": "betocD9ydMQ6SjKW",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... treats their Dexterity (@EFFECT[dex-up e:eot i:2 t:source]) and Might (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.betocD9ydMQ6SjKW"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_id": "QbqUG0cgZPwbwLe1",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... treats their Insight (@EFFECT[ins-up e:eot i:2 t:source]) and Willpower (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.QbqUG0cgZPwbwLe1"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_id": "IU7Sp7aeQ5G2E1xM",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @DMG[20 air] damage. This amount increases to @DMG[30 air] damage if you are level 20 or higher, or to @DMG[40 air] damage if you are level 40 or higher.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.IU7Sp7aeQ5G2E1xM"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_id": "CUw91JD2aqi02ISc",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @DMG[20 bolt] damage. This amount increases to @DMG[30 bolt] damage if you are level 20 or higher, or to @DMG[40 bolt] damage if you are level 40 or higher.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.CUw91JD2aqi02ISc"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_id": "V8BPtqAF1Ej2Uj5g",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @DMG[20 dark] damage. This amount increases to @DMG[30 dark] damage if you are level 20 or higher, or to @DMG[40 dark] damage if you are level 40 or higher.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.V8BPtqAF1Ej2Uj5g"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_id": "tawwduz2lcamJZLu",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @DMG[20 earth] damage. This amount increases to @DMG[30 earth] damage if you are level 20 or higher, or to @DMG[40 earth] damage if you are level 40 or higher.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.tawwduz2lcamJZLu"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_id": "ZXXvsN6dUhjFaVWp",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @DMG[20 fire] damage. This amount increases to @DMG[30 fire] damage if you are level 20 or higher, or to @DMG[40 fire] damage if you are level 40 or higher.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.ZXXvsN6dUhjFaVWp"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_id": "L3RNKzE5wqgj9eJm",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @DMG[20 ice] damage. This amount increases to @DMG[30 ice] damage if you are level 20 or higher, or to @DMG[40 ice] damage if you are level 40 or higher.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.L3RNKzE5wqgj9eJm"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_id": "56tpGyfcTRIHVCi5",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... gains Resistance to air (@TYPE[affinity air resistance e:eos i:1 t:source]) and fire (@TYPE[affinity fire resistance e:eos i:1 t:source]) damage until the end of the scene.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.56tpGyfcTRIHVCi5"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_id": "dvruxhvA7D7EnCjv",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... gains Resistance to bolt (@TYPE[affinity bolt resistance e:eos i:1 t:source]) and ice (@TYPE[affinity ice resistance e:eos i:1 t:source]) damage until the end of the scene.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.dvruxhvA7D7EnCjv"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_id": "Q4L7BCRynKKtTuou",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... gains Resistance to dark (@TYPE[affinity dark resistance e:eos i:1 t:source]) and earth (@TYPE[affinity earth resistance e:eos i:1 t:source]) damage until the end of the scene.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.Q4L7BCRynKKtTuou"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_id": "QoOj9tvyKJRYkCNU",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @EFFECT[enraged].",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.QoOj9tvyKJRYkCNU"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_id": "o9xtJIrxvcg882We",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @EFFECT[poisoned].",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.o9xtJIrxvcg882We"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_id": "g3IbZHImIC41yYvg",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... suffers @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], and @EFFECT[weak].",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.g3IbZHImIC41yYvg"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_id": "eGeQ5pBdp2F33hSK",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... recovers from all status effects.",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.eGeQ5pBdp2F33hSK"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        16,
+        17
+      ],
+      "drawn": false,
+      "_id": "Vt7U712iEk62qwtX",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... recovers @GAIN[50 hp] and @GAIN[50 mp].",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.Vt7U712iEk62qwtX"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "_id": "5IMKtU6wtXnHMiNw",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... recovers @GAIN[100 hp].",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.5IMKtU6wtXnHMiNw"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "_id": "yI8Ln7B4v4lqLJjJ",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... recovers @GAIN[100 mp].",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.yI8Ln7B4v4lqLJjJ"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "_id": "8x7SR4yk3A49s3UN",
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "description": "... recovers @GAIN[100 hp] and @GAIN[100 mp].",
+      "name": "",
+      "_key": "!tables.results!DYF6YNH3S0U3mrT1.8x7SR4yk3A49s3UN"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": "cZvce8mdibGCFVZ0",
+  "ownership": {
+    "default": 0,
+    "cTJapdwJt4TsRMZa": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768700130394,
+    "modifiedTime": 1768700130394,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "formula": "1d20",
+  "_id": "DYF6YNH3S0U3mrT1",
+  "sort": 0,
+  "_key": "!tables!DYF6YNH3S0U3mrT1"
+}

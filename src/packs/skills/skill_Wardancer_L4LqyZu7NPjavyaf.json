@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane </strong>weapon equipped<strong>, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -202,14 +202,18 @@
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706560640482,
-    "modifiedTime": 1742002074272,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1769014434719,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

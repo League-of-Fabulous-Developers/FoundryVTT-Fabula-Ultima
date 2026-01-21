@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>For 2 Inventory Points, create and use one of your magisphere prototypes, replicating the effects of a spell.</p>",
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>You develop a <strong>magisphere</strong> for each of <strong>three spells</strong> from among those found in the <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong> lists; these spells may come from the same list or from different lists (this <strong>does not</strong> count as “learning” or “knowing” these spells).</p><p>You develop a new <strong>magisphere</strong> upon reaching <strong>level 20</strong>, and another upon reaching <strong>level 40</strong> (the same applies if you already reached those levels).</p><p>You may perform the <strong>Inventory</strong> action and spend 2 Inventory Points to perform the <strong>Spell</strong> action for free, casting one of the spells you have developed a <strong>magisphere</strong> for. The spell follows the normal rules (including MP costs and Magic Checks).</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,10 @@
       "value": 2
     },
     "source": "FUCR215",
-    "fuid": "magisphere-superior"
+    "fuid": "magisphere-superior",
+    "damage": {
+      "onApply": ""
+    }
   },
   "effects": [],
   "sort": 100000,
@@ -32,15 +35,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1707097313067,
-    "modifiedTime": 1745361294822,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768767696871,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

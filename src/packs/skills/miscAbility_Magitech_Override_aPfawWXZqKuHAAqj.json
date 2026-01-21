@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><strong>Required:</strong> Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><p>You may use an action and spend 10 Mind Points to perform an Opposed <strong>【INS + INS】 </strong>Check against a nearby <strong>soldier</strong>-rank <strong>construct </strong>you can see (the Game Master must tell you who is a valid target). If you succeed, you gain control of the creature until the end of the scene (the Game Master gives you its profile). You may only control <strong>one construct at any given time</strong>, but may set it free whenever you want; the <strong>construct </strong>is also set free as soon as it is harmed by you or by one of your allies. Once free, the <strong>construct</strong> is again in control of its actions and might turn against you. </p><p></p>",
+    "description": "<p><strong>Required:</strong> Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><p>During a conflict, you may use an action and spend 10 Mind Points to choose a <strong>construct</strong> or <strong>elemental</strong> enemy you can see that does not possess independent intelligence and is suffering from <strong>one or more status effects</strong>. If you do so, that enemy recovers from all status effects, then the Game Master reveals its <strong>entire profile</strong> and you may force it to immediately perform an action of your choice; during that action, the creature is treated as an ally of your group.</p>",
     "isFavored": {
       "value": false
     },
@@ -140,15 +140,18 @@
     "core": {},
     "projectfu-playtest": {
       "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
     }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711293254460,
-    "modifiedTime": 1741965061282,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768746411470,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

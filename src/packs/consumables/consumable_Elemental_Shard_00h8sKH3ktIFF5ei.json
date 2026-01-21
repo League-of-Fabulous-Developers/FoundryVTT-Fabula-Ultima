@@ -7,7 +7,7 @@
       "value": "potion"
     },
     "summary": {
-      "value": "One creature suffers 10 damage of a type of your choice (air, bolt, earth, fire, ice)."
+      "value": "You deal 10 damage of a type of your choice (air, bolt, earth, fire, or ice) to one creature you can see."
     },
     "description": "",
     "isFavored": {
@@ -56,10 +56,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706516143319,
-    "modifiedTime": 1767644282772,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1768876824738,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

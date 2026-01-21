@@ -7,7 +7,7 @@
       "value": "potion"
     },
     "summary": {
-      "value": "One creature recovers 50 HP."
+      "value": "One creature recovers 50 Hit Points."
     },
     "description": "",
     "isFavored": {
@@ -51,10 +51,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706516053996,
-    "modifiedTime": 1767644240414,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1768876793636,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

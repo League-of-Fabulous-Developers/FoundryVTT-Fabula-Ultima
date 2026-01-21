@@ -1,0 +1,66 @@
+{
+  "name": "Tonic [Legacy]",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/consumables/tonic.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "One creature recovers from a single status effect."
+    },
+    "description": "<p>For 2 Inventory Points, one creature recovers from a single status effect.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 2
+    },
+    "source": "FUCR104",
+    "fuid": "tonic",
+    "damage": {
+      "onApply": "",
+      "enabled": false,
+      "amount": 0,
+      "types": []
+    },
+    "traits": {
+      "entries": [
+        "potion"
+      ]
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
+  },
+  "effects": [],
+  "folder": "LksdQtrn5nFuOO3i",
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768876707271,
+    "modifiedTime": 1768876721457,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "EYGLUBKxfFKzdD2o",
+  "sort": 100000,
+  "_key": "!items!EYGLUBKxfFKzdD2o"
+}

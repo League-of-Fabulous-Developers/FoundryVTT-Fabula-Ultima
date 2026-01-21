@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Choose any number of creatures you can see: each of them suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p><hr /><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], or @EFFECT[weak]</p></li></ul>",
+    "description": "<p>Every enemy you can see suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p><hr /><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], or @EFFECT[weak]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -115,15 +115,18 @@
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1744756729816,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768876504703,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

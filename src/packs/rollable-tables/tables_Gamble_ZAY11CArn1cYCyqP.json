@@ -16,18 +16,19 @@
       "img": "icons/svg/d20-black.svg",
       "flags": {},
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768579144826,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "You lose half of your current Hit Points (@LOSS[(@actor.resources.hp.value/2){Half Current HP}) and half of your current Mind Points (@LOSS[(@actor.resources.mp.value/2) mp]).",
+      "description": "<p>You lose half of your current Hit Points (@LOSS[(@actor.resources.hp.value/2){Half Current HP}) and half of your current Mind Points (@LOSS[(@actor.resources.mp.value/2) mp]).</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!ZAY11CArn1cYCyqP.N9DlB2tFVZr3lukP"
     },
     {
@@ -94,18 +95,19 @@
       "img": "icons/svg/d20-black.svg",
       "flags": {},
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768579157525,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Choose up to three creatures you can see: each of them recovers @GAIN[50 hp] and also recovers from all status effects.",
+      "description": "<p>Choose up to three creatures you can see: each of them recovers @GAIN[50 hp] and also recovers from all status effects.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!ZAY11CArn1cYCyqP.72pWYcIw5nhgsypJ"
     },
     {
@@ -120,25 +122,26 @@
       "img": "icons/svg/d20-black.svg",
       "flags": {},
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768579195200,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Choose any number of creatures you can see: each of them suffers 30 damage. The damage type is determined randomly by rolling a d6: 1. @DMG[30 air] 2. @DMG[30 bolt] 3. @DMG[30 dark] 4. @DMG[30 earth] 5. @DMG[30 fire] 6. @DMG[30 poison]",
+      "description": "<p>Choose any number of creatures you can see: you deal 30 damage to each of them. The damage type is determined randomly by rolling a d6: 1. @DMG[30 air] 2. @DMG[30 bolt] 3. @DMG[30 dark] 4. @DMG[30 earth] 5. @DMG[30 fire] 6. @DMG[30 poison]</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!ZAY11CArn1cYCyqP.QHlIKuE5p0OeG6ts"
     }
   ],
   "replacement": true,
   "displayRoll": true,
   "folder": null,
-  "sort": 300000,
+  "sort": 700000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -147,12 +150,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744494259294,
-    "modifiedTime": 1759658744144,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1768579094952,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "exportSource": null
   },
   "formula": "1d10",

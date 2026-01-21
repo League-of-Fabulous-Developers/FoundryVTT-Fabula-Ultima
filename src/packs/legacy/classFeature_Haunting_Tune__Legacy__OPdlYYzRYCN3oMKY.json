@@ -1,0 +1,40 @@
+{
+  "folder": "IiIlJG6pPTDD4KFq",
+  "name": "Haunting Tune [Legacy]",
+  "type": "classFeature",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "featureType": "projectfu.tone",
+    "data": {
+      "description": "<p>Each target suffers <strong>【@EFFECT[@DATA[key.status]]】</strong>. Each target also loses Resistance to<strong>【@DATA[key.type]】</strong>damage until the start of your next turn.</p><ul><li><p><strong>Target:【</strong>@TYPE[affinity @DATA[key.type] none e:sot i:1 t:source]{Haunting Tune}<strong>】</strong>if they have that resistance.</p></li></ul>"
+    },
+    "source": "FUHF139",
+    "fuid": "haunting-tune-legacy"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769011736542,
+    "modifiedTime": 1769011830302,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "OPdlYYzRYCN3oMKY",
+  "sort": 12500,
+  "_key": "!items!OPdlYYzRYCN3oMKY"
+}

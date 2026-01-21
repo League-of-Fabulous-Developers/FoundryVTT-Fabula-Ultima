@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You steal another creature's life force. The target suffers <strong>【HR + 15】 dark</strong> damage. Then, you recover an amount of Hit Points equal to half the Hit Points loss they suffered (if the loss was reduced to 0 in some way, you recover none).</p>",
+    "description": "<p>You steal another creature's life force. The target suffers <strong>【HR + 15】 dark</strong> damage to the target. Then, you recover an amount of Hit Points equal to half the total Hit Points loss they suffered (if the target had no HP left, you recover none).</p>",
     "isFavored": {
       "value": false
     },
@@ -118,9 +118,7 @@
       "value": 1
     },
     "fuid": "drain-vigor",
-    "traits": [
-      "AbsorbHalf"
-    ]
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -129,15 +127,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706571214060,
-    "modifiedTime": 1747173727774,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1768578958387,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

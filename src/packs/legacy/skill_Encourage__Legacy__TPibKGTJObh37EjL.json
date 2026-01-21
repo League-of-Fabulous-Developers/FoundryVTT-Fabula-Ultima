@@ -1,0 +1,102 @@
+{
+  "folder": "IiIlJG6pPTDD4KFq",
+  "name": "Encourage [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_encourage.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>During a conflict, you may use an action and spend 5 MP to choose <strong>another creature</strong> that can hear and understand you. That creature recovers <strong>【SL × 5】</strong> Hit Points and chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>; they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><ul><li><p><strong>Target Receive:</strong> @EFFECT[dex-up e:sot i:1 t:source], @EFFECT[ins-up e:sot i:1 t:source], @EFFECT[mig-up e:sot i:1 t:source], or @EFFECT[wlp-up e:sot i:1 t:source]</p></li></ul>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 6,
+      "min": 0
+    },
+    "class": {
+      "value": "Orator"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUCR201",
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "defense": "def",
+    "fuid": "encourage-legacy",
+    "cost": {
+      "amount": "5",
+      "resource": "mp",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "single",
+      "max": 0
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "5*$sl",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768581871738,
+    "modifiedTime": 1769011816068,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "TPibKGTJObh37EjL",
+  "sort": 100000,
+  "_key": "!items!TPibKGTJObh37EjL"
+}

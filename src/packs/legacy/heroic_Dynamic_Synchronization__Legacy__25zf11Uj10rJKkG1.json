@@ -1,0 +1,62 @@
+{
+  "folder": "nlJCekCcdyb2RFPe",
+  "name": "Dynamic Synchronization [Legacy]",
+  "type": "heroic",
+  "img": "icons/tools/nautical/anchor-blue-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Synchronize with another pilot or passenger to join forces."
+    },
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class.</p></blockquote><p>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option: you <strong>synchronize</strong> with another Player Character who is present on the scene and driving their own <strong>personal vehicle</strong>; <strong>or</strong> you <strong>synchronize</strong> with another Player Character who is a passenger on your <strong>personal vehicle</strong>. Describe how you join forces! You and the chosen character <strong>both</strong> receive the following benefits as long as the <strong>synchronization</strong> remains active:</p><ul><li><p>When you perform a Check, you may use the current Attribute die sizes of the other Player Character in place of yours (for one or both dice).</p></li><li><p>When you deal damage, deal extra damage equal to <strong>【the strength of your Bond towards the other PC, plus the strength of their Bond towards you】</strong>.</p></li><li><p>You may use an action to perform a <strong>free attack</strong> with one <strong>enabled or disabled weapon module</strong> present on the <strong>personal vehicle</strong> the other PC is currently on.</p></li><li><p>When your turn ends, if the other PC has yet to take their turn during this round, they may take their turn <strong>immediately</strong> after yours.</p></li></ul><p>This <strong>synchronization</strong> lasts until the end of the scene, or until you or the other Player Character die, fall unconscious, leave the scene, <strong>synchronize</strong> with someone else, or are no longer aboard a <strong>personal vehicle</strong>.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Pilot"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": "Sharpshooter, Weaponmaster"
+    },
+    "source": "FUTF173",
+    "fuid": "dynamic-synchronization-legacy"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769013889997,
+    "modifiedTime": 1769014584789,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "_id": "25zf11Uj10rJKkG1",
+  "sort": 3125,
+  "_key": "!items!25zf11Uj10rJKkG1"
+}

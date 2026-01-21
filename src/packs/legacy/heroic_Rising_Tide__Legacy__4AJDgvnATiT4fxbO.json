@@ -1,0 +1,123 @@
+{
+  "name": "Rising Tide [Legacy]",
+  "type": "heroic",
+  "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Gain benefits for consecutive attacks with brawling weapons."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury </strong>and <strong>Weaponmaster</strong>.</p></blockquote><p>When you perform a <strong>melee </strong>attack using a weapon that belongs to the <strong>brawling </strong>Category,<strong> if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Bravery Point</strong>.</p><p>Your <strong>melee </strong>attacks using weapons that belong to the <strong>brawling </strong>Category deal extra damage equal to your current <strong>Bravery Points</strong>.</p><p>At the end of each scene, <strong>or </strong>if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you <strong>must </strong>spend all your accumulated <strong>Bravery Points</strong> and recover 10 Hit Points and Mind Points.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance Bravery Point}, or @PROGRESS[rising-tide reset]{Reset Bravery Point}</p></li><li><p><strong>You Recover:</strong> @GAIN[10 hp] and/or @GAIN[10 mp]</p></li></ul>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHF158",
+    "hasResource": {
+      "value": true
+    },
+    "rp": {
+      "name": "Bravery Points",
+      "current": 0,
+      "step": 1,
+      "max": 10,
+      "enabled": false
+    },
+    "fuid": "rising-tide-legacy"
+  },
+  "effects": [
+    {
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Rising Tide",
+      "_id": "lTgUUbrlqrtghr5V",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.brawling",
+          "mode": 2,
+          "value": "@system.rp.current",
+          "priority": null
+        }
+      ],
+      "description": "<p><span class=\"fontstyle2\">Your </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attacks using weapons that belonacg to the </span><span class=\"fontstyle0\"><strong>brawling </strong></span><span class=\"fontstyle2\">Category deal extra damage equal to your current </span><span class=\"fontstyle0\"><strong>Bravery Points</strong></span><span class=\"fontstyle2\">.</span></p>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "source": "FUHF158"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!4AJDgvnATiT4fxbO.lTgUUbrlqrtghr5V"
+    }
+  ],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769011766105,
+    "modifiedTime": 1769011932753,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "4AJDgvnATiT4fxbO",
+  "sort": 400000,
+  "_key": "!items!4AJDgvnATiT4fxbO"
+}

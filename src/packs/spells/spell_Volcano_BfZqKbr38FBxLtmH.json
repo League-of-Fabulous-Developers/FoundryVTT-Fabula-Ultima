@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Volcano</h4><p>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers <strong>50 fire damage</strong>; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers <strong>30 fire damage</strong>. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>.</p>",
+    "description": "<h4>Required Heroic Skill: Volcano</h4><p><span>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: you deal 50 <strong>fire</strong> damage to one creature you can see; <strong>or</strong> you deal 30 <strong>fire</strong> damage to every enemy you can see. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</span></p><p><span>Damage dealt by this spell ignores Resistances and Immunities.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -257,10 +257,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1710548265766,
-    "modifiedTime": 1767895346568,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1768876357502,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

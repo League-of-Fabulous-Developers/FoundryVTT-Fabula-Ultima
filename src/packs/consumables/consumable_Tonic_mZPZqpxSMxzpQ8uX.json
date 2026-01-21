@@ -7,9 +7,9 @@
       "value": "potion"
     },
     "summary": {
-      "value": "One creature recovers from a single status effect."
+      "value": "One creature recovers from all status effects."
     },
-    "description": "<p>For 2 Inventory Points, one creature recovers from a single status effect.</p>",
+    "description": "",
     "isFavored": {
       "value": false
     },
@@ -46,10 +46,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706516094485,
-    "modifiedTime": 1767644270999,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1768876809958,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

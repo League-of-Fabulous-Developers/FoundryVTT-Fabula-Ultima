@@ -8,7 +8,8 @@
     "fuid": "effect-heroic-companion",
     "cost": {
       "value": 0
-    }
+    },
+    "source": "FUCR236"
   },
   "effects": [
     {
@@ -37,7 +38,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -69,9 +80,15 @@
           "mode": 0,
           "value": "upgrade",
           "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "5",
+          "priority": null
         }
       ],
-      "description": "<ul><li>The companion's maximum Hit Points increase by 10.</li><li>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</li></ul>",
+      "description": "<ul><li>The companion's maximum Hit Points increase by 10.</li><li>The companion deals 5 extra damage.</li><li>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</li></ul>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -81,12 +98,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744074912707,
-        "modifiedTime": 1744075072247,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1768869352826,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "exportSource": null
       },
       "_key": "!items.effects!qZPjSnXWgwN7Wg0t.4h30fp8qRSio9SiR"
@@ -101,12 +118,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744074899880,
-    "modifiedTime": 1744074909123,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768869386153,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "exportSource": null
   },
   "_key": "!items!qZPjSnXWgwN7Wg0t"

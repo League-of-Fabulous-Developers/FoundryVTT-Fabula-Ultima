@@ -9,7 +9,7 @@
     "summary": {
       "value": "Extend single-target spells."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Loremaster</strong> Class.</p></blockquote><p>When you cast a spell with a <strong>target</strong> of \"One creature\", you may <strong>double the spell's total MP cost</strong>. If you do, choose an Attribute (<strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>) and a die size (<strong>d6</strong>, <strong>d8</strong>, <strong>d10</strong>, or <strong>d12</strong>). The spell now targets <strong>all</strong> creatures present on the scene whose <strong>current</strong> Attribute die size matches your choice, regardless of whether they are friends or foes (you might even end up targeting yourself). The effects of the spell are fully applied to every target.</p><p>If the spell is an offensive ( @ICON[offensive] ) spell, it follows the normal rules: you perform a single Magic Check and confront it with the Magic Defense of each target to determine who is hit by the spell.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Loremaster</strong> Class.</p></blockquote><p>When you cast a spell with a <strong>target</strong> of “One creature”, you may choose an Attribute (<strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>) and a die size (<strong>d6</strong>, <strong>d8</strong>, <strong>d10</strong>, or <strong>d12</strong>). If you do, the spell’s <strong>target</strong> becomes “Every creature present on the scene whose current die size in that Attribute matches your choice” and its <strong>total Mind Point cost is doubled</strong>.</p><p>Additionally, all mentions of “the target” in the spell’s text are replaced with “each target”; or they are replaced with “one or more targets” if the spell is <strong>Anomaly</strong>, <strong>Dispel</strong>, <strong>Mercy</strong>, or <strong>Mirror</strong>. When the spell ends on one or more of its targets, it automatically ends on all its targets.</p><p>If you cast an offensive spell ( @ICON[offensive] ) this way, you perform a single Magic Check and confront it with the Magic Defense of each target.</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706584898728,
-    "modifiedTime": 1724180864027,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1768875261485,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

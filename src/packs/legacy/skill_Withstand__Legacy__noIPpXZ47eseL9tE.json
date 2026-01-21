@@ -1,0 +1,102 @@
+{
+  "folder": "IiIlJG6pPTDD4KFq",
+  "name": "Withstand [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[1*$sl hp]{SL × One Emotion HP},<strong> </strong>@GAIN[2*$sl hp]{SL × Two Emotions HP}, or @GAIN[3*$sl hp]{SL × Three Emotions HP}</p></li><li><p><strong>You Receive: </strong>@EFFECT[mig-up e:eot i:2], or @EFFECT[wlp-up e:eot i:2]</p></li></ul>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Fury"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUCR195",
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "defense": "def",
+    "fuid": "withstand-legacy",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768579709224,
+    "modifiedTime": 1768620191779,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "noIPpXZ47eseL9tE",
+  "sort": 700000,
+  "_key": "!items!noIPpXZ47eseL9tE"
+}

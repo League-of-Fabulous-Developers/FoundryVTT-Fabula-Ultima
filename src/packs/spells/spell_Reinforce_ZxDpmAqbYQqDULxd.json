@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B e:eos i:1 t:self]{Dazed Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs e:eos i:1 t:self]{Enraged Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q e:eos i:1 t:self]{Poisoned Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz e:eos i:1 t:self]{Shaken Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp e:eos i:1 t:self]{Slow Immunity}, or @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG e:eos i:1 t:self]{Weak Immunity}</p></li></ul>",
+    "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p><hr /><ul><li><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B e:eos i:1 t:self]{Dazed Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs e:eos i:1 t:self]{Enraged Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q e:eos i:1 t:self]{Poisoned Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz e:eos i:1 t:self]{Shaken Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp e:eos i:1 t:self]{Slow Immunity}, or @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG e:eos i:1 t:self]{Weak Immunity}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -134,10 +134,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "createdTime": 1706573024313,
-    "modifiedTime": 1760481729221,
-    "lastModifiedBy": "93RRHGE4s1SwaU2P",
+    "modifiedTime": 1768696525658,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

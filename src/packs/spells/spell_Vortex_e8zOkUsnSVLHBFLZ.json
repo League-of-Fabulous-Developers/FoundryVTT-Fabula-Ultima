@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>A roaring gale surrounds you, blowing away arrows and bullets. Until this spell ends, you gain a +2 bonus to your Defense against <strong>ranged</strong> attacks.</p>",
+    "description": "<p>You slash through your foe with high-pressure wind. You deal <strong>【HR + 25】 air</strong> damage to the target; this damage ignores Resistances.</p>",
     "isFavored": {
       "value": false
     },
@@ -77,7 +77,7 @@
       "value": "Self"
     },
     "duration": {
-      "value": "scene"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -91,10 +91,10 @@
       },
       "attributes": {
         "primary": {
-          "value": "dex"
+          "value": "ins"
         },
         "secondary": {
-          "value": "dex"
+          "value": "wlp"
         }
       },
       "accuracy": {
@@ -102,22 +102,28 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "type": {
-          "value": "physical"
+          "value": "air"
         },
-        "value": 0
+        "value": 25
       }
     },
     "hasRoll": {
-      "value": false
+      "value": true
     },
     "opportunity": "",
     "maxTargets": {
       "value": 1
     },
-    "fuid": "vortex"
+    "fuid": "vortex",
+    "traits": [
+      "ignore-resistances"
+    ],
+    "cost": {
+      "amount": "20"
+    }
   },
   "effects": [],
   "ownership": {
@@ -126,15 +132,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706567400781,
-    "modifiedTime": 1746641053007,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1768577824201,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

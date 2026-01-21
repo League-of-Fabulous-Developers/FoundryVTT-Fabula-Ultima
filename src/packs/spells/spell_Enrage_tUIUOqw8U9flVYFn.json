@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell </strong>actions during their next turn.</p>",
+    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell</strong> actions until the end of their next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -139,10 +139,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706572370902,
-    "modifiedTime": 1766779235069,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1768694588958,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

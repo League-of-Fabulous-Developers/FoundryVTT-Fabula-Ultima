@@ -6,7 +6,7 @@
     "summary": {
       "value": "Improve construct-Species Faithful Companions."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Tinkerer</strong> and <strong>Wayfarer</strong>, and have acquired the <strong>Faithful Companion</strong> (<strong>construct</strong> Species) and <strong>Visionary</strong> Skills.</p></blockquote><p>Your companion's Affinity towards <strong>bolt</strong> damage becomes <strong>Absorption</strong>, and their maximum Hit Point score is increased by an amount equal to <strong>【twice your Skill Level in Visionary】</strong>.</p><p>When your companion deals damage, if they have no weapons equipped, they deal extra damage equal to <strong>【your Skill Level in Visionary】</strong>.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Tinkerer</strong> and <strong>Wayfarer</strong>, and have acquired the <strong>Faithful Companion</strong> (<strong>construct</strong> Species) and <strong>Visionary</strong> Skills.</p></blockquote><p>Your companion's base Affinity towards <strong>bolt</strong> damage is replaced with <strong>Absorption</strong>, and their maximum Hit Point score is increased by an amount equal to <strong>【twice your Skill Level in Visionary】</strong>.</p><p>When your companion deals damage, if they have no weapons equipped, they deal extra damage equal to <strong>【your Skill Level in Visionary】</strong>.</p>",
     "class": {
       "value": "Necromancer"
     },
@@ -47,8 +47,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1767915231139,
-    "lastModifiedBy": "94wV67htTTVBPn7n"
+    "modifiedTime": 1769015350254,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "L3ZyYRKlHEggv0aF",
   "_id": "LhE2uHqEfh9L179L",

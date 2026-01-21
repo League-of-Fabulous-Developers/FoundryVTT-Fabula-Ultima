@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You send lightning striking at your foe. The target suffers <strong>【HR + 25】bolt</strong> damage.</p><p>Damage dealt by this spell <strong>ignores Resistances</strong>.</p>",
+    "description": "<p>You send lightning striking at your foe. The target suffers <strong>【HR + 25】bolt</strong> damage to the target target; this damage ignores Resistances.</p>",
     "isFavored": {
       "value": false
     },
@@ -118,9 +118,7 @@
       "value": 1
     },
     "fuid": "thunderbolt",
-    "traits": [
-      "IgnoreResistances"
-    ]
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -129,15 +127,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706567202542,
-    "modifiedTime": 1746641021638,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1768577633004,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

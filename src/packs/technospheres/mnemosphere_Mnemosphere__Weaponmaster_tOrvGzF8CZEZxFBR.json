@@ -40,7 +40,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -67,14 +67,22 @@
           "fuid": "melee-weapon-mastery",
           "cost": {
             "resource": "mp",
-            "amount": 0,
+            "amount": "0",
             "perTarget": false
           },
           "targeting": {
             "rule": "special",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          },
+          "effects": {
+            "entries": []
+          }
         },
         "effects": [
           {
@@ -112,8 +120,7 @@
             "system": {
               "type": "default",
               "predicate": {
-                "crisisInteraction": "none",
-                "suppressed": false
+                "crisisInteraction": "none"
               },
               "duration": {
                 "event": "none",
@@ -121,7 +128,9 @@
                 "tracking": "self",
                 "remaining": 0
               },
-              "rules": {}
+              "rules": {
+                "elements": {}
+              }
             },
             "origin": null,
             "sort": 0
@@ -163,7 +172,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": true,
             "value": 0,
@@ -194,10 +203,18 @@
           },
           "cost": {
             "resource": "mp",
-            "amount": 0,
+            "amount": "0",
             "perTarget": false
           },
-          "traits": []
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          },
+          "effects": {
+            "entries": []
+          }
         },
         "effects": [],
         "flags": {
@@ -214,7 +231,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target a <strong>single creature</strong>. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; <strong>or</strong> you destroy the target's equipped armor; <strong>or</strong> whenever the target suffers damage from a source before the start of your next turn, that source deals <strong>【SL × 2】</strong> extra damage to them.</p><hr><ul><li><p><strong>Target Suffers</strong>: @EFFECT[Compendium.projectfu.skills.Cc1391vhlS1yIMrI]</p></li></ul>",
+          "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; or you destroy the target’s equipped armor; <strong>or</strong> all sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p><hr><ul><li><p><strong>Target Suffers</strong>: @EFFECT[Compendium.projectfu.skills.Cc1391vhlS1yIMrI]</p></li></ul>",
           "showTitleCard": {
             "value": false
           },
@@ -235,7 +252,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -261,7 +278,7 @@
           "defense": "def",
           "fuid": "breach",
           "cost": {
-            "amount": 5,
+            "amount": "5",
             "resource": "mp",
             "perTarget": false
           },
@@ -269,11 +286,22 @@
             "rule": "single",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          },
+          "effects": {
+            "entries": []
+          }
         },
         "effects": [],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
         },
         "sort": 300000
       },
@@ -307,7 +335,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -334,14 +362,22 @@
           "fuid": "bone-crusher",
           "cost": {
             "resource": "mp",
-            "amount": 0,
+            "amount": "0",
             "perTarget": false
           },
           "targeting": {
             "rule": "special",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          },
+          "effects": {
+            "entries": []
+          }
         },
         "effects": [],
         "flags": {
@@ -379,7 +415,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": true,
             "value": 0,
@@ -405,7 +441,7 @@
           "defense": "def",
           "fuid": "bladestorm",
           "cost": {
-            "amount": 10,
+            "amount": "10",
             "resource": "mp",
             "perTarget": false
           },
@@ -413,7 +449,15 @@
             "rule": "special",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          },
+          "effects": {
+            "entries": []
+          }
         },
         "effects": [],
         "flags": {
@@ -436,12 +480,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1759655471279,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1769007940505,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "exportSource": null
   },
   "_key": "!items!tOrvGzF8CZEZxFBR"

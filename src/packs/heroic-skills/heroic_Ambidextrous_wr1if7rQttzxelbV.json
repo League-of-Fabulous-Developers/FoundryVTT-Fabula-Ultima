@@ -9,7 +9,7 @@
     "summary": {
       "value": "Fight with two weapons of different categories."
     },
-    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to weapons belonging to different categories, even if one is a <strong>melee</strong> weapon and the other is a <strong>ranged</strong> weapon (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p>",
+    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to weapons belonging to different Categories, even if one is a <strong>melee</strong> weapon and the other is a <strong>ranged </strong>weapon (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p><p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense and the <strong>second attack</strong> you perform during each of your turns deals 5 extra damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706583614340,
-    "modifiedTime": 1724180864109,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1768852947788,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

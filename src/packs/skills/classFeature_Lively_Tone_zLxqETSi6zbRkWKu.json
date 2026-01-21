@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target gains<strong>【</strong>@EFFECT[@DATA[key.attribute]-up e:sot i:1 t:source]<strong>】</strong>until the <strong>start of your next turn.</strong></p>"
+      "description": "<p>Each target gains <strong>【@EFFECT[@DATA[key.attribute]-up e:sot i:1 t:source]】 </strong>until the start of your next turn.</p>"
     },
     "source": "FUHF139",
     "fuid": "lively-tone"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.342",
+    "coreVersion": "13.351",
     "createdTime": 1710040149139,
-    "modifiedTime": 1742581608015,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1769011444550,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

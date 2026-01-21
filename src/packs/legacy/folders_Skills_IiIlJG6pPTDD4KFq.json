@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Skills",
+  "color": null,
+  "sorting": "a",
+  "_id": "IiIlJG6pPTDD4KFq",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768577892084,
+    "modifiedTime": 1768577892084,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_key": "!folders!IiIlJG6pPTDD4KFq"
+}

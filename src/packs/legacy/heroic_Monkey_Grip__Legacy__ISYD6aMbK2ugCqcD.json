@@ -1,0 +1,62 @@
+{
+  "name": "Monkey Grip [Legacy]",
+  "type": "heroic",
+  "img": "icons/weapons/axes/axe-crooked-crystal-pink.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Equip some two-handed weapons in a single-hand slot."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Fury </strong>Class. </p></blockquote><p>You may equip two-handed weapons belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, or <strong>sword </strong>Categories in a single hand slot.</p><p>This allows you, for instance, to enjoy the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) while wielding a pair of two-handed weapons, <strong>or </strong>to equip a two-handed weapon in your <strong>main hand slot</strong> and a shield in your <strong>off-hand slot</strong>.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Fury"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUCR238",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "monkey-grip-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768875486963,
+    "modifiedTime": 1768875791130,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "ISYD6aMbK2ugCqcD",
+  "sort": 150000,
+  "_key": "!items!ISYD6aMbK2ugCqcD"
+}

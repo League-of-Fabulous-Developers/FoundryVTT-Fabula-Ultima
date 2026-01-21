@@ -40,13 +40,16 @@
         "stack": 1,
         "rules": {
           "progress": {
-            "id": "",
-            "name": ""
+            "id": "acceleration",
+            "name": "Acceleration",
+            "style": "clock",
+            "enabled": true,
+            "max": 2
           }
         }
       },
       "changes": [],
-      "description": "<p>You gain the ability to perform a <strong>single</strong> additional action during each of your turns. Once you have performed a total of <strong>two</strong> additional actions, this effect ends.</p>",
+      "description": "<p>At the end of each of their turns, the target may choose <strong>one</strong> option: perform a <strong>free attack</strong> with a weapon they have equipped; <strong>or</strong> perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost). After the same creature benefits from this effect a second time, this spell ends.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -56,12 +59,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742672629257,
-        "modifiedTime": 1747177090591,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+        "modifiedTime": 1768578499948,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "exportSource": null
       },
       "_key": "!items.effects!O8ZlgIEzCodMsadz.d125R8pbNjfmRku0"
