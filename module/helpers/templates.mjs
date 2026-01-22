@@ -76,6 +76,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/chat/chat-display-container.hbs',
 			'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 			'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
+			'systems/projectfu/templates/chat/chat-check-flavor-item-v2.hbs',
 			'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
 			'systems/projectfu/templates/chat/chat-active-effect.hbs',
 			'systems/projectfu/templates/chat/chat-trade-item.hbs',

@@ -193,7 +193,7 @@ const resource = (sections, resource, order) => {
 const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
 	sections.push({
 		order: order,
-		partial: 'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
+		partial: 'systems/projectfu/templates/chat/chat-check-flavor-item-v2.hbs',
 		data: {
 			item: item,
 		},

@@ -384,6 +384,11 @@ function badge(key, options) {
  * @returns {Handlebars.SafeString}
  */
 function itemAnchor(item, options) {
+	if (!item) {
+		console.warn(`Missing item information for rendering. Ignoring...`);
+		return '';
+	}
+
 	if (options.hash) {
 		options = options.hash;
 	}

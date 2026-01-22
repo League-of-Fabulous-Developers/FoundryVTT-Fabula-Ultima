@@ -29,6 +29,7 @@ class CompendiumTableRenderer extends FUTableRenderer {
 	static TABLE_CONFIG = {
 		getItems: async (entries) => entries,
 		tablePreset: 'item',
+		sort: true,
 	};
 }
 
@@ -432,7 +433,7 @@ export class CompendiumBrowser extends FUApplication {
 	async onRenderTables(tables, filters) {
 		let result = [];
 
-		if (Object.keys(filters).length > 0) {
+		if (filters && Object.keys(filters).length > 0) {
 			if (this.#configureFilters) {
 				this.#configureFilters(filters);
 				this.#configureFilters = undefined;
@@ -442,6 +443,7 @@ export class CompendiumBrowser extends FUApplication {
 		this.filter.setCategories(filters);
 
 		for (const trd of tables) {
+			trd.entries.sort((a, b) => a.name.localeCompare(b.name));
 			const html = await trd.renderer.renderTable(trd.entries, {
 				hideIfEmpty: false,
 				isVisible: (item) => {
@@ -830,8 +832,7 @@ export class CompendiumBrowser extends FUApplication {
 		const instance = CompendiumBrowser.instance;
 		instance.filter.setText(inputFilter.text);
 		instance.onNextTabChange((filters) => {
-			if (inputFilter.filter) {
-			}
+			// TODO: Implement support for generic filters
 			if (inputFilter.actorId) {
 				const actor = fromUuidSync(inputFilter.actorId);
 				if (actor) {
