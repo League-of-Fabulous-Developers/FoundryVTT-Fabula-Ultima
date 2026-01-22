@@ -55,8 +55,17 @@
 					{{!-- Source --}}
 					<span class="resource-content levelup-container flexcol flex-group-center"
 						  style="border-top-right-radius: 12px;">
-                        <label class="resource-label-m rollable" data-pdfLink>
-							{{localize 'FU.Source'}} </label>
+						<span>
+							<label class="resource-label-m rollable" data-pdfLink>
+								{{localize 'FU.Source'}}
+							</label>
+							{{#if (and actor item.system.fuid)}}
+								<a data-action="migrateItem" data-uuid="{{item.uuid}}" data-fuid="{{item.system.fuid}}">
+									<i class="fu-icon--xs fas fa-refresh"></i>
+								</a>
+							{{/if}}
+						</span>
+
 						<input type="text" name="system.source" value="{{ system.source }}"
 							   data-dtype="String" style="border-radius: 10px 0 0;" class="resource-inputs" />
 

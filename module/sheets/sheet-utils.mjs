@@ -11,8 +11,10 @@ import { CompendiumBrowser } from '../ui/compendium/compendium-browser.mjs';
 async function openCompendium(event, target) {
 	const tab = target.dataset.tab;
 	const text = target.dataset.text;
+	const actorId = target.dataset.actorId;
 	return CompendiumBrowser.open(tab, {
 		text: text,
+		actorId: actorId,
 	});
 }
 

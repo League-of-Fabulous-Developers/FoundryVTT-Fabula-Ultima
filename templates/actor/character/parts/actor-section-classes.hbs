@@ -15,7 +15,7 @@
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Skills"}}</label>
-			{{pfuCompendium "skills"}}
+			{{pfuCompendium "skills" actorId=actor.uuid}}
 		</span>
 		<span class="items-main total-level grid grid-2col">
 			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.value }} / {{
@@ -28,7 +28,7 @@
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Heroics"}}</label>
-			{{pfuCompendium "skills"}}
+			{{pfuCompendium "skills" actorId=actor.uuid}}
 		</span>
 		<span class="items-main total-level grid grid-2col">
 			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.value }} / {{

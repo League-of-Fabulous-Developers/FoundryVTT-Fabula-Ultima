@@ -9,6 +9,9 @@ import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/pseudo-document-enabled-type-data-model.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
+import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -68,6 +71,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		actions: {
 			editItem: FUItemSheet.#editItem,
 			deleteItem: FUItemSheet.#deleteItem,
+			migrateItem: FUItemSheet.#migrateItem,
 			roll: FUItemSheet.#rollItem,
 			regenerateFuid: FUItemSheet.#regenerateFuid,
 			// Active effects
@@ -143,6 +147,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 		switch (partId) {
 			case 'header':
+				context.actor = this.actor;
 				context.traits = Object.keys(Traits);
 				context.damageTraitOptions = TraitUtils.getOptions(DamageTraits);
 				break;
@@ -670,6 +675,45 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 
+	/**
+	 * @this FUItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #migrateItem(event, target) {
+		const fuid = target.dataset.fuid;
+		const compendiumEntry = await CompendiumIndex.instance.getItemByFuid(fuid);
+		if (!compendiumEntry) {
+			ui.notifications.error(`Failed to resolve compendium entry from fuid ${fuid}`);
+			return;
+		}
+
+		const uuid = target.dataset.uuid;
+		const item = await fromUuid(uuid);
+		if (item) {
+			const message = StringUtils.localize('FU.CompendiumMigrateItemMessage', {
+				name: item.name,
+			});
+			const confirm = await FoundryUtils.confirmDialog('FU.CompendiumMigrateItem', message);
+			if (confirm) {
+				const compendiumItem = await fromUuid(compendiumEntry.uuid);
+				if (compendiumItem) {
+					await FoundryUtils.migrateItem(compendiumItem, item);
+					ui.notifications.info(StringUtils.localize('FU.CompendiumMigrateSuccess', { count: 1 }));
+				} else {
+					ui.notifications.error(`Failed to resolve compendium item from uuid ${compendiumEntry.uuid}`);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @this FUItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
 	static async #deleteItem(event, target) {
 		if (this.item.system instanceof PseudoDocumentEnabledTypeDataModel) {
 			const id = target.closest('[data-item-id]').dataset.itemId;

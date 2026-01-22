@@ -20,6 +20,10 @@ import FoundryUtils from '../../helpers/foundry-utils.mjs';
  * @property {Object} [system]       Partial system data (indexed fields only)
  */
 
+/**
+ * @typedef {"classes"|"skills"|"equipment"|"spells"|"adversaries"|"abilities"|"effects"} CompendiumBrowserTab
+ */
+
 class CompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
@@ -32,7 +36,7 @@ class BasicCompendiumTableRenderer extends CompendiumTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
-		cssClass: 'compendium-classes-table',
+		cssClass: 'compendium-basic-table',
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			source: CommonColumns.propertyColumn('FU.Source', 'system.source'),
@@ -179,8 +183,16 @@ export class CompendiumBrowser extends FUApplication {
 	};
 
 	/**
+	 * @typedef CompendiumTableData
+	 * @property {String} id
+	 * @property {CompendiumIndexEntry[]} entries
+	 * @property {String} html
+	 * @property {Set<String>} visible The visible entries, by their _id property.
+	 */
+
+	/**
 	 * @typedef CompendiumTabData
-	 * @property {String[]} tables
+	 * @property {CompendiumTableData[]} tables
 	 * @property {CompendiumFilterCategory[]} filters
 	 */
 
@@ -321,11 +333,23 @@ export class CompendiumBrowser extends FUApplication {
 			case 'abilities':
 			case 'effects':
 				{
-					context.tables = tabData.tables;
+					context.tables = tabData.tables.map((t) => t.html);
 				}
 				break;
 		}
 		return context;
+	}
+
+	/**
+	 * @function
+	 */
+	#configureFilters;
+
+	/**
+	 * @param configureFilter
+	 */
+	onNextTabChange(configureFilter) {
+		this.#configureFilters = configureFilter;
 	}
 
 	/**
@@ -336,7 +360,8 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	async _onFirstRender(context, options) {
-		return this.renderTables(this.activeTabId, true);
+		await super._onRender(context, options);
+		await this.renderTables(this.activeTabId, true);
 	}
 
 	/**
@@ -362,7 +387,7 @@ export class CompendiumBrowser extends FUApplication {
 							const text = searchInput.value.toLowerCase() || '';
 							this.filter.setText(text);
 							console.debug(`[COMPENDIUM] Text updated: ${text}`);
-							return this.renderTables(this.activeTabId, true, false);
+							this.toggleCompendiumEntries();
 						}, 150),
 					);
 					// Checkbox filters
@@ -375,7 +400,7 @@ export class CompendiumBrowser extends FUApplication {
 						if (!category || !option) return;
 						this.filter.toggle(category, option, input.checked);
 						console.debug(`[COMPENDIUM] Filter toggled: ${category}=${option} (${input.checked})`);
-						return this.renderTables(this.activeTabId, true, false);
+						this.toggleCompendiumEntries();
 					});
 				}
 				break;
@@ -401,47 +426,104 @@ export class CompendiumBrowser extends FUApplication {
 
 	/**
 	 * @param {TableRenderingData[]} tables
-	 * @param {CompendiumFilterCategory[]} filters
+	 * @param {Record<string, CompendiumFilterCategory>} filters
 	 */
-	async setTables(tables, filters) {
+	async onRenderTables(tables, filters) {
 		let result = [];
-		for (const trd of tables) {
-			const filteredEntries = trd.entries.filter(this.filter.filter);
-			if (filteredEntries.length > 0) {
-				result.push(await trd.renderer.renderTable(filteredEntries, { hideIfEmpty: true }));
+
+		if (Object.keys(filters).length > 0) {
+			if (this.#configureFilters) {
+				this.#configureFilters(filters);
+				this.#configureFilters = undefined;
 			}
 		}
+
+		this.filter.setCategories(filters);
+
+		for (const trd of tables) {
+			const html = await trd.renderer.renderTable(trd.entries, {
+				hideIfEmpty: false,
+				isVisible: (item) => {
+					const visible = this.filter.filter(item);
+					return visible;
+				},
+			});
+
+			/** @type CompendiumTableData **/
+			const tableData = {
+				id: trd.renderer.id,
+				entries: trd.entries,
+				html: html,
+				visible: new Set(trd.entries.map((e) => e._id)),
+			};
+			result.push(tableData);
+		}
+
 		this.#tabData = {
 			tables: result,
 			filters: filters,
 		};
 	}
 
-	#basicRenderer = new BasicCompendiumTableRenderer();
-	#adversaryRenderer = new AdversariesCompendiumTableRenderer();
-	#spellRenderer = new SpellsCompendiumTableRenderer();
-	#weaponRenderer = new WeaponCompendiumTableRenderer();
-	#armorRenderer = new ArmorCompendiumTableRenderer();
-	#consumableRenderer = new ConsumableCompendiumTableRenderer();
-	#skillRenderer = new SkillsCompendiumTableRenderer();
-	#attackRenderer = new AttackCompendiumTableRenderer();
+	/**
+	 * @property {HTMLElement} element
+	 * @desc Given
+	 */
+	toggleCompendiumEntries(element = null) {
+		if (!this.#tabData) {
+			return;
+		}
 
-	getTypeFilter(entries) {
-		return {
-			label: 'FU.Type',
-			propertyPath: 'type',
-			options: [
-				{
-					value: 'class',
-					label: 'FU.Class',
-				},
-				{
-					value: 'classFeature',
-					label: 'FU.ClassFeature',
-				},
-			],
-		};
+		const root = element ?? this.element;
+
+		// For each of the tables currently being rendered
+		for (const tableData of this.#tabData.tables) {
+			// Rerun the filter on this table's entries
+			tableData.visible.clear();
+			const filteredEntries = tableData.entries.filter(this.filter.filter);
+			for (const entry of filteredEntries) {
+				tableData.visible.add(entry.uuid);
+			}
+			// Look up the table in the DOM by its data-table-id dataset property
+			const selector = `#${CSS.escape(tableData.id)}`;
+			const renderedTable = root.querySelector(selector);
+			if (!renderedTable) {
+				throw Error(`Did not find the rendered table ${tableData.id} in the DOM.`);
+			}
+			// If no entries are visible, hide the table
+			const showTable = filteredEntries.length > 0;
+			renderedTable.classList.toggle('hidden', !showTable);
+			if (showTable) {
+				// Look up all its list elements
+				const listElements = renderedTable.querySelectorAll('li.fu-table__row-container.item');
+				for (const li of listElements) {
+					const uuid = li.dataset.uuid;
+					// ✅ Check uuid exists
+					if (!uuid) {
+						console.error(`Missing uuid information on the list element ${li.toString()}`);
+						continue;
+					}
+					// Toggle visibility based on filter
+					const visible = tableData.visible.has(uuid);
+					li.classList.toggle('hidden', !visible);
+					//console.debug(`Toggle list element ${uuid}? ${visible}`);
+				}
+			}
+		}
 	}
+
+	#basicRenderer = new BasicCompendiumTableRenderer();
+	#abilityRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-abilities' });
+	#classRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-classes' });
+	#classFeatureRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-class-features' });
+	#adversaryRenderer = new AdversariesCompendiumTableRenderer({ id: 'compendium-adversary' });
+	#spellRenderer = new SpellsCompendiumTableRenderer({ id: 'compendium-spells' });
+	#weaponRenderer = new WeaponCompendiumTableRenderer({ id: 'compendium-weapon' });
+	#armorRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-armor' });
+	#accessoryRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-accessory' });
+	#consumableRenderer = new ConsumableCompendiumTableRenderer({ id: 'compendium-consumable' });
+	#skillRenderer = new SkillsCompendiumTableRenderer({ id: 'compendium-skills' });
+	#attackRenderer = new AttackCompendiumTableRenderer({ id: 'compendium-attack' });
 
 	/**
 	 *
@@ -464,15 +546,15 @@ export class CompendiumBrowser extends FUApplication {
 							value: c.name,
 							label: c.name,
 						}));
-					await this.setTables(
+					await this.onRenderTables(
 						[
 							{
 								entries: classes.class,
-								renderer: this.#basicRenderer,
+								renderer: this.#classRenderer,
 							},
 							{
 								entries: classes.classFeature,
-								renderer: this.#basicRenderer,
+								renderer: this.#classFeatureRenderer,
 							},
 						],
 						{
@@ -510,7 +592,7 @@ export class CompendiumBrowser extends FUApplication {
 							value: c.name,
 							label: c.name,
 						}));
-					await this.setTables(
+					await this.onRenderTables(
 						[
 							{
 								entries: skills.skill,
@@ -535,7 +617,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'abilities':
 				{
 					const abilities = await this.index.getAbilities();
-					await this.setTables(
+					await this.onRenderTables(
 						[
 							{
 								entries: abilities.basic,
@@ -543,7 +625,7 @@ export class CompendiumBrowser extends FUApplication {
 							},
 							{
 								entries: abilities.miscAbility,
-								renderer: this.#basicRenderer,
+								renderer: this.#abilityRenderer,
 							},
 							{
 								entries: abilities.rule,
@@ -582,7 +664,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'equipment':
 				{
 					const equipment = await this.index.getEquipment();
-					await this.setTables(
+					await this.onRenderTables(
 						[
 							{
 								entries: equipment.weapon,
@@ -594,7 +676,7 @@ export class CompendiumBrowser extends FUApplication {
 							},
 							{
 								entries: equipment.accessory,
-								renderer: this.#armorRenderer, // Same data paths as above.
+								renderer: this.#accessoryRenderer,
 							},
 							{
 								entries: equipment.consumable,
@@ -642,7 +724,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'adversaries':
 				{
 					const characters = await this.index.getCharacters();
-					await this.setTables(
+					await this.onRenderTables(
 						[
 							{
 								entries: characters.npc,
@@ -680,7 +762,7 @@ export class CompendiumBrowser extends FUApplication {
 							label: c,
 						};
 					});
-					await this.setTables(
+					await this.onRenderTables(
 						[
 							{
 								entries: spells,
@@ -706,7 +788,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'effects':
 				{
 					const effects = await this.index.getItemsOfType('effect');
-					await this.setTables([
+					await this.onRenderTables([
 						{
 							entries: effects,
 							renderer: this.#basicRenderer,
@@ -740,15 +822,28 @@ export class CompendiumBrowser extends FUApplication {
 	}
 
 	/**
-	 * @param {String} tab The initial tab to open.
+	 * @param {CompendiumBrowserTab} tab The initial tab to open.
 	 * @param {CompendiumFilterInputOptions} inputFilter Initial filtering for the tab.
 	 */
-	static open(tab, inputFilter) {
+	static async open(tab, inputFilter) {
 		const instance = CompendiumBrowser.instance;
 		instance.filter.setText(inputFilter.text);
-		if (inputFilter.filter) {
-			instance.filter.toggle(inputFilter.filter.key, inputFilter.filter.option, true);
-		}
+		instance.onNextTabChange((filters) => {
+			if (inputFilter.filter) {
+			}
+			if (inputFilter.actorId) {
+				const actor = fromUuidSync(inputFilter.actorId);
+				if (actor) {
+					const classNames = actor.getItemsByType('class').map((i) => i.name);
+					switch (tab) {
+						case 'skills':
+						case 'spells':
+							filters.class.selected = new Set(classNames);
+							break;
+					}
+				}
+			}
+		});
 		instance.render(true, {
 			tab: tab,
 		});

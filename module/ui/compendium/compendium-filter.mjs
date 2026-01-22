@@ -9,7 +9,8 @@
 /**
  * @typedef CompendiumFilterInputOptions
  * @property {String} text
- * @property {{key: string, option: string}} filter
+ * @property {{key: string, option: string}} filter A filter to apply??
+ * @property {String} actorId A reference to an actor, which can be used to apply filtering on opening the browser.
  */
 
 /**
@@ -37,14 +38,14 @@ export class CompendiumFilter {
 	 * @return {Boolean}
 	 */
 	filter(entry) {
+		if (this.text) {
+			if (!entry.name.toLowerCase().includes(this.text.toLowerCase())) {
+				return false;
+			}
+		}
+
 		const textMatch = Object.values(entry).some((value) => {
 			if (typeof value !== 'string') return false;
-			if (this.text) {
-				const needle = this.text.toLowerCase();
-				if (!value.toLowerCase().includes(needle)) {
-					return false;
-				}
-			}
 			if (this.categories) {
 				for (const category of Object.values(this.categories)) {
 					if (category.selected?.size > 0) {
@@ -101,8 +102,8 @@ export class CompendiumFilter {
 			return;
 		}
 		const category = this.categories[key];
-		if (!category.selected) {
-			category.selected = new Set();
+		if (!(category.selected instanceof Set)) {
+			category.selected = new Set(category.selected ?? []);
 		}
 		if (checked) {
 			category.selected.add(option);
@@ -110,4 +111,10 @@ export class CompendiumFilter {
 			category.selected.delete(option);
 		}
 	}
+
+	/**
+	 * @desc Attempts to assign the filters based on the given actor.
+	 * @param {FUActor} actor
+	 */
+	onNextCategory() {}
 }

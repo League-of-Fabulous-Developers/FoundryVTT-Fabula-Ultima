@@ -1035,3 +1035,12 @@ FU.allIcon = {
  * Set of theme classes for pressure gauge
  */
 FU.pressureGaugeThemes = {};
+
+/**
+ * @desc What compendium packs to use.
+ */
+FU.compendiumBrowserPacks = Object.freeze({
+	all: 'FU.All',
+	system: 'FU.System',
+	custom: 'FU.Custom',
+});

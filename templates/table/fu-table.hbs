@@ -1,4 +1,4 @@
-<ol class="fu-table {{config.tableClass}} {{cssClass}}" data-table-id="{{tableId}}">
+<ol id="{{tableId}}" class="fu-table {{config.tableClass}} {{cssClass}}" data-table-id="{{tableId}}">
 	<li class="fu-table__header">
 		{{#each columns}}
 			{{#unless hideHeader}}
@@ -9,7 +9,7 @@
 		{{/each}}
 	</li>
 	{{#each items as |row|}}
-		<li class="fu-table__row-container {{@root.config.rowClass}} {{#if @root.config.draggable}}draggable{{/if}} {{lookup @root.rowCssClasses key}}"
+		<li class="fu-table__row-container {{@root.config.rowClass}} {{#if @root.config.draggable}}draggable{{/if}} {{lookup @root.rowCssClasses key}} {{#unless visible}}hidden{{/unless}}"
 			{{@root.config.keyDataAttribute}}="{{ key }}"
 			{{#each additionalAttributes}}{{@key}}="{{this}}"{{/each}}
 			{{#with (lookup @root.rowTooltips key)}}data-tooltip="{{this}}"{{/with}}>

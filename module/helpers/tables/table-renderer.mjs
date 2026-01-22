@@ -7,6 +7,7 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  * @template {Object} D the document of the sheet being rendered
  * @template {Object} T the type of the items in the table
  * @property {string, (() => string)} cssClass
+ * @property {string} id An unique identifier to the table.
  * @property {"item", "effect", "custom"} [tablePreset="item"]
  * @property {(document: D, options: FUTableRendererRenderOptions) => T[]} getItems
  * @property {boolean, ((a: D, b: D) => number)} [sort=true] sorting function to determine the order of entries, true means sort using foundry sort order, false means don't sort
@@ -42,6 +43,14 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  */
 
 /**
+ * @typedef RowData
+ * @template T
+ * @property {String} key
+ * @property {T} item
+ * @property {Object} additionalAttributes
+ */
+
+/**
  * @template T
  * @typedef AdditionalRowAttribute
  * @property {string} attributeName
@@ -59,7 +68,10 @@ export class FUTableRenderer {
 	 */
 	#tableConfig;
 
-	#tableId = foundry.utils.randomID();
+	/**
+	 * @type {String} Unique identifier for the table.
+	 */
+	#tableId;
 
 	/** @type {foundry.applications.api.Application} */
 	#application;
@@ -68,7 +80,10 @@ export class FUTableRenderer {
 
 	#clickHandler = this.#onClick.bind(this);
 
-	constructor() {
+	/**
+	 * @param {TableConfig} overrides
+	 */
+	constructor(overrides = {}) {
 		const configurations = [];
 		let cls = this.constructor;
 		while (cls !== FUTableRenderer) {
@@ -143,9 +158,9 @@ export class FUTableRenderer {
 			advancedConfig.rowClass ??= '';
 			advancedConfig.draggable ??= false;
 		}
-
+		Object.assign(config, overrides);
+		this.#tableId = config.id ?? foundry.utils.randomID();
 		this.initializeOptions(config);
-
 		this.#tableConfig = foundry.utils.deepFreeze(config);
 	}
 
@@ -163,11 +178,19 @@ export class FUTableRenderer {
 		return this.#application;
 	}
 
+	/**
+	 * @returns {String}
+	 */
+	get id() {
+		return this.#tableId;
+	}
+
 	initializeOptions(config) {}
 
 	/**
 	 * @typedef FUTableRendererRenderOptions
 	 * @property {boolean} [hideIfEmpty]
+	 * @property {(T) => string | number} isVisible
 	 */
 
 	/**
@@ -215,9 +238,11 @@ export class FUTableRenderer {
 			};
 		}
 
+		/** @type RowData[] **/
 		const rows = [];
 		for (let item of items) {
 			const rowKey = advancedConfig.getKey(item);
+			const visible = options.isVisible ? options.isVisible(item) : true;
 
 			if (tablePreset !== 'custom' && item.parent) {
 				if (document !== item.parent && document !== item.parentDocument) {
@@ -249,8 +274,7 @@ export class FUTableRenderer {
 			for (const { attributeName, getAttributeValue } of advancedConfig.additionalRowAttributes) {
 				additionalAttributes[attributeName] = getAttributeValue(item);
 			}
-
-			rows.push({ key: rowKey, item, additionalAttributes });
+			rows.push({ key: rowKey, item, visible, additionalAttributes });
 		}
 
 		for (const column of Object.values(columns)) {

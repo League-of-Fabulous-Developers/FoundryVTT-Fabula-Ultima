@@ -139,7 +139,7 @@
 	grid-template-columns: [name] auto [duration] 100px [cost] 100px [class] 100px;
 }
 
-.compendium-classes-table {
+.compendium-basic-table {
 	grid-template-columns: [name] auto [source] 100px;
 }
 

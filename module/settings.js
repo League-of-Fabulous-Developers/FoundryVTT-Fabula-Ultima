@@ -98,6 +98,8 @@ export const SETTINGS = Object.freeze({
 	// Drag ruler
 	optionEnableDragRulerGridless: 'optionEnableDragRulerGridless',
 	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
+	// Compendium Browser
+	optionCompendiumBrowserPacks: 'optionCompendiumBrowserPacks',
 });
 
 /**
@@ -1006,6 +1008,17 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: true,
 		requiresReload: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCompendiumBrowserPacks, {
+		name: game.i18n.localize('FU.CompendiumBrowser'),
+		hint: game.i18n.localize('FU.CompendiumBrowserPacksHint'),
+		scope: 'world',
+		config: true,
+		type: String,
+		requiresReload: true,
+		default: 'all',
+		choices: FU.compendiumBrowserPacks,
 	});
 };
 

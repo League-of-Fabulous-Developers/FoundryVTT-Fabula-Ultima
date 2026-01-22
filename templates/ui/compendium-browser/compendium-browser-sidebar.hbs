@@ -26,7 +26,7 @@
 						<input type="checkbox"
 							   data-category="{{id}}"
 							   data-option="{{opt.value}}"
-							   {{#if opt.checked}}checked{{/if}}
+							   {{#if (pfuCollectionContains opt.value ../selected)}}checked{{/if}}
 						/>
 						{{localize opt.label}}
 					</label>
