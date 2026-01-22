@@ -3,7 +3,7 @@
   "name": "Boulder",
   "type": "spell",
   "_id": "KXnPac5GBt8hJ5cj",
-  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/terra.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/boulder.png",
   "system": {
     "fuid": "boulder",
     "description": "<p>You summon a colossal block of stone and send it straight towards your enemy. You deal <strong>【HR + 25】 earth</strong> damage to the target; this damage ignores Resistances.</p>",
@@ -143,7 +143,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768576488420,
-    "modifiedTime": 1768576965498,
+    "modifiedTime": 1769100707336,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_key": "!items!KXnPac5GBt8hJ5cj"

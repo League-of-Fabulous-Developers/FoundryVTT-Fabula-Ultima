@@ -95,6 +95,10 @@ Supplied game rules in the system compendium adhere to and are published under t
 
 - previous iron-knuckle.png icon from [@only_ruben_draw](https://x.com/Only_Ruben_Draw) with explicit permission to use for ProjectFU project.
 
+[projectfu\styles\static\compendium\classes\elementalist\spells\boulder.png]
+
+- boulder.png from Kami lucky with explicit permission to use for ProjectFU project.
+
 ## Extra Icons
 
 [projectfu\styles\static\icons]

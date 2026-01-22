@@ -1,7 +1,6 @@
 import { systemId } from '../helpers/system-utils.mjs';
 import { SETTINGS } from '../settings.js';
 import { FUHooks as FUhooks, FUHooks } from '../hooks.mjs';
-import { FUItem } from '../documents/items/item.mjs';
 
 import { CombatEventRuleTrigger } from '../documents/effects/triggers/combat-event-rule-trigger.mjs';
 import { AttackRuleTrigger } from '../documents/effects/triggers/attack-rule-trigger.mjs';

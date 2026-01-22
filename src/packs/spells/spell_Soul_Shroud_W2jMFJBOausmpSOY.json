@@ -3,7 +3,7 @@
   "name": "Soul Shroud",
   "type": "spell",
   "_id": "W2jMFJBOausmpSOY",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/soul_shroud.png",
   "system": {
     "fuid": "soul-shroud",
     "description": "<p>You weave energy to safeguard the targets. Choose a damage type: <strong>dark</strong>, <strong>light</strong>, or <strong>poison</strong>. Until this spell ends, each target gains Resistance to the chosen damage type.</p><hr /><ul><li><p><strong>Target Receives: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.fBbLvII5LUEqInQQ]{Dark Resistance}, @EFFECT[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance}, <strong>or</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX]{Poison Resistance}</p></li></ul>",
@@ -143,7 +143,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768694796790,
-    "modifiedTime": 1768699965536,
+    "modifiedTime": 1769085417529,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_key": "!items!W2jMFJBOausmpSOY"
