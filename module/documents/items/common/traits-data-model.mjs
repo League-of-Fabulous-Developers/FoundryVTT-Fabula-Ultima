@@ -21,7 +21,7 @@ export class TraitsDataModel extends foundry.abstract.DataModel {
 	 * @returns {boolean}
 	 */
 	get empty() {
-		return this.entries.length === 0;
+		return this.entries.size === 0;
 	}
 
 	/**

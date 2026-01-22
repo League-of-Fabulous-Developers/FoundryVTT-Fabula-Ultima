@@ -24,9 +24,15 @@ export class TraitsPredicateDataModel extends TraitsDataModel {
 	 * @param {Iterable<String>} traits
 	 */
 	evaluate(traits) {
+		// If no traits were set
 		if (this.empty) {
 			return true;
 		}
+		// If the traits were not defined but expected
+		if (!traits) {
+			return false;
+		}
+
 		switch (this.quantifier) {
 			case 'any':
 				for (const t of traits) {
