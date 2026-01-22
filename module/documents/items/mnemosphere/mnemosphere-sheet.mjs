@@ -144,9 +144,9 @@ export class MnemosphereSheet extends FUItemSheet {
 			case 'other': {
 				Object.assign(context, {
 					otherCategories: [
-						{ label: 'FU.Spells', table: await this.#spellsTable.renderTable(this.item, { sheetLocked: !this.isEditable }) },
-						{ label: 'FU.Features', table: await this.#featuresTable.renderTable(this.item, { sheetLocked: !this.isEditable }) },
-						{ label: 'FU.Other', table: await this.#otherItemsTable.renderTable(this.item, { sheetLocked: !this.isEditable }) },
+						{ label: 'FU.Spells', compendium: 'spells', table: await this.#spellsTable.renderTable(this.item, { sheetLocked: !this.isEditable }) },
+						{ label: 'FU.Features', compendium: 'class', table: await this.#featuresTable.renderTable(this.item, { sheetLocked: !this.isEditable }) },
+						{ label: 'FU.Other', compendium: '', table: await this.#otherItemsTable.renderTable(this.item, { sheetLocked: !this.isEditable }) },
 					],
 				});
 				break;

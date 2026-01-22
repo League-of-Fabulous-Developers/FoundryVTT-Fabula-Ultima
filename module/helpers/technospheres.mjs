@@ -80,7 +80,7 @@ export const getTechnosphereSlotInfo = (slottedTechnospheres, totalSlots, maxMne
 			}
 
 			if (item.type === 'mnemosphere') {
-				const tooltipParts = [`${item.name} ${item.system.class.trim() ? `(${item.system.class})` : ''}`];
+				const tooltipParts = [`${item.name} ${item.system.class?.trim() ? `(${item.system?.class})` : ''}`];
 				for (let skill of item.system.activeSkills) {
 					tooltipParts.push(`${skill.name} (${skill.system.level.value} / ${skill.system.level.value})`);
 				}

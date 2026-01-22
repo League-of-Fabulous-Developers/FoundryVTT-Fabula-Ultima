@@ -12,6 +12,7 @@ import { ObjectUtils } from '../helpers/object-utils.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { SheetUtils } from './sheet-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -69,6 +70,9 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
 		actions: {
+			// Common
+			...SheetUtils.actions,
+			// Item-specific
 			editItem: FUItemSheet.#editItem,
 			deleteItem: FUItemSheet.#deleteItem,
 			migrateItem: FUItemSheet.#migrateItem,

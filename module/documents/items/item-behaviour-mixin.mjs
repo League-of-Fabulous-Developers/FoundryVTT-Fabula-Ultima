@@ -173,9 +173,9 @@ export function ItemBehaviourMixin(BaseClass) {
 		 * @param {KeyboardModifiers} modifiers
 		 */
 		async roll(modifiers = { shift: false, alt: false, ctrl: false, meta: false }) {
-			// TODO: Set up event to replace the roll action.
+			const actor = this.parent?.documentName === 'Actor' ? this.parent : undefined;
 			const config = new ItemRollConfiguration(this, modifiers);
-			await CommonEvents.itemRoll(config, this.parent);
+			await CommonEvents.itemRoll(config, actor);
 			if (config.override) {
 				await config.override();
 			} else {
