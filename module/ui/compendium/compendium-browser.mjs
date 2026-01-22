@@ -129,8 +129,9 @@ class AdversariesCompendiumTableRenderer extends CompendiumTableRenderer {
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
 		cssClass: 'compendium-adversaries-table',
+		tablePreset: 'actor',
 		columns: {
-			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
+			name: CommonColumns.actorAnchorColumn({ columnName: 'FU.Name' }),
 			species: CommonColumns.propertyColumn('FU.Species', 'system.species.value', FU.species),
 			role: CommonColumns.propertyColumn('FU.Role', 'system.role.value', FU.role),
 			rank: CommonColumns.propertyColumn('FU.Rank', 'system.rank.value', FU.rank),

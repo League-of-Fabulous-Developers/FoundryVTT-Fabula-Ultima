@@ -24,7 +24,9 @@ function itemNameColumn(options = {}) {
 		renderHeader: columnName instanceof Function ? columnName : () => game.i18n.localize(columnName || 'FU.Name'),
 		headerAlignment: 'start',
 		headerSpan: headerSpan,
-		renderCell: renderNameCell(renderCaption, cssClass),
+		renderCell: renderNameCell(renderCaption, cssClass, {
+			rollable: true,
+		}),
 	};
 }
 
@@ -38,17 +40,42 @@ function itemAnchorColumn(options = {}) {
 		renderHeader: columnName instanceof Function ? columnName : () => game.i18n.localize(columnName || 'FU.Name'),
 		headerAlignment: 'start',
 		headerSpan: headerSpan,
-		renderCell: renderNameCell(renderCaption, cssClass, false),
+		renderCell: renderNameCell(renderCaption, cssClass, {
+			rollable: false,
+		}),
 	};
 }
 
 /**
+ * @param {ItemNameColumnRenderOptions} [options]
+ * @return {ColumnConfig<FUActor>}
+ */
+function actorAnchorColumn(options = {}) {
+	const { columnName, headerSpan, renderCaption, cssClass } = options;
+	return {
+		renderHeader: columnName instanceof Function ? columnName : () => game.i18n.localize(columnName || 'FU.Name'),
+		headerAlignment: 'start',
+		headerSpan: headerSpan,
+		renderCell: renderNameCell(renderCaption, cssClass, {
+			rollable: false,
+			type: 'Actor',
+		}),
+	};
+}
+
+/**
+ * @typedef NameCellOptions
+ * @property rollable
+ * @property type
+ */
+
+/**
  * @param {(FUItem) => string|Promise<string>} [renderCaption]
  * @param {string, ((FUItem) => string)} [cssClass]
- * @param {Boolean} rollable
+ * @param {NameCellOptions} options
  * @return {(FUItem) => Promise<string>}
  */
-function renderNameCell(renderCaption, cssClass, rollable = true) {
+function renderNameCell(renderCaption, cssClass, options) {
 	const caption = renderCaption instanceof Function ? renderCaption : () => renderCaption;
 	const getCssClass = cssClass instanceof Function ? cssClass : () => cssClass;
 	return async (item) => {
@@ -58,7 +85,8 @@ function renderNameCell(renderCaption, cssClass, rollable = true) {
 			id: item.id,
 			pack: item.pack,
 			uuid: item.uuid,
-			rollable: rollable,
+			type: options.type ?? 'Item',
+			rollable: options.rollable,
 			caption: await caption(item),
 			cssClass: getCssClass(item),
 		});
@@ -455,6 +483,7 @@ function propertyColumn(label, path, localizationRecord = undefined) {
 export const CommonColumns = Object.freeze({
 	itemNameColumn,
 	itemAnchorColumn,
+	actorAnchorColumn,
 	itemControlsColumn,
 	resourceColumn,
 	textColumn,

@@ -127,37 +127,78 @@ export class FUTableRenderer {
 			return new foundry.applications.ux.DragDrop.implementation(dragDropConfig);
 		});
 		config.tablePreset ??= 'item';
-		if (config.tablePreset === 'item') {
-			config.advancedConfig = {
-				getKey: (item) => item.uuid,
-				keyDataAttribute: 'data-uuid',
-				additionalRowAttributes: [{ attributeName: 'data-item-id', getAttributeValue: (item) => item.id }],
-				tableClass: 'item-list',
-				rowClass: 'item',
-				draggable: true,
-			};
-		} else if (config.tablePreset === 'effect') {
-			config.advancedConfig = {
-				getKey: (effect) => effect.uuid,
-				keyDataAttribute: 'data-uuid',
-				additionalRowAttributes: [{ attributeName: 'data-effect-id', getAttributeValue: (item) => item.id }],
-				tableClass: '',
-				rowClass: '',
-				draggable: false,
-			};
-		} else {
-			const advancedConfig = config.advancedConfig;
-			advancedConfig.getKey = advancedConfig.getKey.bind(this);
-			advancedConfig.keyDataAttribute ??= 'data-key';
-			if (!advancedConfig.keyDataAttribute.startsWith('data-')) {
-				advancedConfig.keyDataAttribute = `data-${advancedConfig.keyDataAttribute}`;
+		switch (config.tablePreset) {
+			case 'item': {
+				config.advancedConfig = {
+					getKey: (item) => item.uuid,
+					keyDataAttribute: 'data-uuid',
+					additionalRowAttributes: [
+						{
+							attributeName: 'data-item-id',
+							getAttributeValue: (item) => item.id,
+						},
+					],
+					tableClass: 'item-list',
+					rowClass: 'item',
+					draggable: true,
+				};
+				break;
 			}
-			advancedConfig.additionalRowAttributes ??= [];
-			advancedConfig.additionalRowAttributes.forEach((value) => (value.getAttributeValue = value.getAttributeValue.bind(this)));
-			advancedConfig.tableClass ??= '';
-			advancedConfig.rowClass ??= '';
-			advancedConfig.draggable ??= false;
+
+			case 'actor': {
+				config.advancedConfig = {
+					getKey: (entry) => entry.uuid,
+					keyDataAttribute: 'data-uuid',
+					additionalRowAttributes: [
+						{
+							attributeName: 'data-actor-id',
+							getAttributeValue: (entry) => entry.id,
+						},
+					],
+					tableClass: 'item-list',
+					rowClass: 'item',
+					draggable: true,
+				};
+				break;
+			}
+
+			case 'effect': {
+				config.advancedConfig = {
+					getKey: (effect) => effect.uuid,
+					keyDataAttribute: 'data-uuid',
+					additionalRowAttributes: [
+						{
+							attributeName: 'data-effect-id',
+							getAttributeValue: (effect) => effect.id,
+						},
+					],
+					tableClass: '',
+					rowClass: '',
+					draggable: false,
+				};
+				break;
+			}
+
+			default: {
+				const advancedConfig = config.advancedConfig;
+
+				advancedConfig.getKey = advancedConfig.getKey.bind(this);
+
+				advancedConfig.keyDataAttribute ??= 'data-key';
+				if (!advancedConfig.keyDataAttribute.startsWith('data-')) {
+					advancedConfig.keyDataAttribute = `data-${advancedConfig.keyDataAttribute}`;
+				}
+
+				advancedConfig.additionalRowAttributes ??= [];
+				advancedConfig.additionalRowAttributes.forEach((value) => (value.getAttributeValue = value.getAttributeValue.bind(this)));
+
+				advancedConfig.tableClass ??= '';
+				advancedConfig.rowClass ??= '';
+				advancedConfig.draggable ??= false;
+				break;
+			}
 		}
+
 		Object.assign(config, overrides);
 		this.#tableId = config.id ?? foundry.utils.randomID();
 		this.initializeOptions(config);
