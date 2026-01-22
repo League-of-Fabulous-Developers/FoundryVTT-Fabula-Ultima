@@ -1,7 +1,7 @@
 /**
  * @typedef CompendiumFilterCategory
  * @property {String} label
- * @property {String} propertyPath
+ * @property {String|String[]} propertyPath
  * @property {FormSelectOption[]} options
  * @property {Set<String>} selected
  */
@@ -9,7 +9,7 @@
 /**
  * @typedef CompendiumFilterInputOptions
  * @property {String} text
- * @property {{key: string, option: string}} filter A filter to apply??
+ * @property {String} type The item or actor type.
  * @property {String} actorId A reference to an actor, which can be used to apply filtering on opening the browser.
  */
 
@@ -49,8 +49,12 @@ export class CompendiumFilter {
 			if (this.categories) {
 				for (const category of Object.values(this.categories)) {
 					if (category.selected?.size > 0) {
-						const propertyValue = foundry.utils.getProperty(entry, category.propertyPath);
-						if (!propertyValue || !category.selected.has(propertyValue)) {
+						const paths = Array.isArray(category.propertyPath) ? category.propertyPath : [category.propertyPath];
+						const matchesAnyPath = paths.some((path) => {
+							const value = foundry.utils.getProperty(entry, path);
+							return value && category.selected.has(value);
+						});
+						if (!matchesAnyPath) {
 							return false;
 						}
 					}
@@ -77,7 +81,26 @@ export class CompendiumFilter {
 	 * @param {Record<string, CompendiumFilterCategory>} categories Document types.
 	 */
 	setCategories(categories) {
+		for (const [id, category] of Object.entries(categories)) {
+			const selected = category.selected
+				? category.selected.filter((entry) =>
+						category.options.some((opt) => {
+							return opt.value === entry || opt.label === entry;
+						}),
+					)
+				: [];
+			categories[id].selected = new Set(selected);
+		}
+
 		this.#categories = categories;
+	}
+
+	/**
+	 * @param {String} id
+	 * @return CompendiumFilterCategory
+	 */
+	getCategory(id) {
+		return this.#categories[id];
 	}
 
 	/**
@@ -111,10 +134,4 @@ export class CompendiumFilter {
 			category.selected.delete(option);
 		}
 	}
-
-	/**
-	 * @desc Attempts to assign the filters based on the given actor.
-	 * @param {FUActor} actor
-	 */
-	onNextCategory() {}
 }

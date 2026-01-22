@@ -81,7 +81,7 @@ export class VehicleDataModel extends RollableClassFeatureDataModel {
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
 		const chatMessage = {
 			speaker,
-			flavor: await FoundryUtils.renderTemplate('chat/chat-check-flavor-item', {
+			flavor: await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
 				item: model.parent.parent,
 			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/pilot/feature-vehicle-frame-chat-message.hbs', data),

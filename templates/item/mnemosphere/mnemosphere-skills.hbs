@@ -23,13 +23,13 @@
 	</section>
 	<section class="desc resource-content flexgrow-1">
 		<header class="items-main-header">
-			<span class="items-main">{{localize "FU.Skills"}} {{pfuCompendium 'skills'}}</span>
+			<span class="items-main">{{localize "FU.Skills"}} {{pfuCompendium 'classes' type='skill'}}</span>
 			<span class="items-main total-level"> {{ totalSkillLevels }} / {{ item.system.level }} </span>
 		</header>
 		{{{skillsTable}}}
 		{{#if (or item.system.heroics.length mastered)}}
 			<header class="items-main-header">
-				<span class="items-main">{{localize "FU.Heroic"}} {{pfuCompendium 'skills'}}</span>
+				<span class="items-main">{{localize "FU.Heroic"}} {{pfuCompendium 'classes' type='heroic'}}</span>
 				<span class="items-main total-level"> {{ item.system.heroics.length }} / {{#if mastered }}
 					1{{else}}0{{/if}} </span>
 			</header>

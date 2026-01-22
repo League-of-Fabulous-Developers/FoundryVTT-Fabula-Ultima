@@ -8,6 +8,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 
 /**
  * @param {CheckV2} check
@@ -23,16 +24,22 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			label: 'FU.AccuracyCheckBaseAccuracy',
 			value: item.system.accuracy.value,
 		});
-		CheckConfiguration.configure(check)
-			.setDamage(item.system.damageType.value, item.system.damage.value)
-			.setTargetedDefense(item.system.defense)
+		const attack = item.system;
+		const config = CheckConfiguration.configure(check);
+		if (attack.hasDamage) {
+			config
+				.setDamage(attack.damageType.value, attack.damage.value)
+				.modifyHrZero((hrZero) => hrZero || attack.rollInfo.useWeapon.hrZero.value)
+				.setDamageOverride(actor, 'attack');
+		}
+		config
+			.setTargetedDefense(attack.defense)
 			.addTraits('attack')
+			.addEffects(attack.effects.entries)
 			.setWeaponTraits({
-				weaponType: item.system.type.value,
+				weaponType: attack.type.value,
 			})
-			.addTraitsFromItemModel(item.system.traits)
-			.setDamageOverride(actor, 'attack')
-			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+			.addTraitsFromItemModel(attack.traits);
 	}
 };
 
@@ -74,8 +81,10 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {number} accuracy.value
  * @property {Defense} defense
  * @property {number} damage.value
+ * @property {boolean} hasDamage
  * @property {WeaponType} type.value
  * @property {DamageType} damageType.value
+ * @property {EffectApplicationDataModel} effects
  * @property {number} cost.value
  * @property {string} quality.value
  * @property {string} source.value
@@ -91,8 +100,10 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			hasDamage: new BooleanField({ initial: true, nullable: false }),
 			type: new SchemaField({ value: new StringField({ initial: 'melee', choices: Object.keys(FU.weaponTypes) }) }),
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
+			effects: new EmbeddedDataField(EffectApplicationDataModel, {}),
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quality: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
@@ -127,7 +138,7 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 * @override
 	 */
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.traitsLegacy, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.traitsLegacy, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality, ItemPartialTemplates.effects];
 	}
 
 	/**

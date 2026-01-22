@@ -113,7 +113,7 @@ function getTags(skill) {
  * @property {Defense} defense
  * @property {DamageDataModelV2} damage
  * @property {ResourceDataModel} resource
- * @property {EffectApplicationDataModel} effects *
+ * @property {EffectApplicationDataModel} effects
  * @property {ImprovisedDamageDataModel} impdamage
  * @property {string} source.value
  * @property {boolean} hasRoll.value

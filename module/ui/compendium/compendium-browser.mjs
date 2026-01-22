@@ -163,7 +163,9 @@ export class CompendiumBrowser extends FUApplication {
 		},
 		form: { closeOnSubmit: false },
 		position: { width: 800, height: '800' },
-		actions: {},
+		actions: {
+			refresh: this.refresh,
+		},
 	};
 
 	/** @override
@@ -173,7 +175,6 @@ export class CompendiumBrowser extends FUApplication {
 		primary: {
 			tabs: [
 				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-player' },
-				{ id: 'skills', label: 'FU.Skills', icon: 'ra ra-cycle' },
 				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-anvil' },
 				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-fairy-wand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
@@ -233,9 +234,6 @@ export class CompendiumBrowser extends FUApplication {
 		},
 		equipment: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-equipment'),
-		},
-		skills: {
-			template: systemTemplatePath('ui/compendium-browser/compendium-browser-skills'),
 		},
 		spells: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-spells'),
@@ -330,7 +328,6 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 			case 'adversaries':
 			case 'equipment':
-			case 'skills':
 			case 'spells':
 			case 'abilities':
 			case 'effects':
@@ -543,6 +540,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 				{
 					const classes = await this.index.getClasses();
+					const skills = await this.index.getSkills();
 					const classOptions = classes.class
 						.sort((a, b) => a.name.localeCompare(b.name))
 						.map((c) => ({
@@ -554,6 +552,14 @@ export class CompendiumBrowser extends FUApplication {
 							{
 								entries: classes.class,
 								renderer: this.#classRenderer,
+							},
+							{
+								entries: skills.skill,
+								renderer: this.#skillRenderer,
+							},
+							{
+								entries: skills.heroic,
+								renderer: this.#basicRenderer,
 							},
 							{
 								entries: classes.classFeature,
@@ -573,43 +579,19 @@ export class CompendiumBrowser extends FUApplication {
 										value: 'classFeature',
 										label: 'FU.ClassFeature',
 									},
+									{
+										value: 'skill',
+										label: 'FU.Skill',
+									},
+									{
+										value: 'heroic',
+										label: 'FU.Heroic',
+									},
 								],
 							},
 							class: {
-								label: 'FU.ClassFeature',
-								propertyPath: 'metadata.class',
-								options: classOptions,
-							},
-						},
-					);
-				}
-				break;
-
-			case 'skills':
-				{
-					const skills = await this.index.getSkills();
-					const classes = await this.index.getItemsOfType('class');
-					const classOptions = classes
-						.sort((a, b) => a.name.localeCompare(b.name))
-						.map((c) => ({
-							value: c.name,
-							label: c.name,
-						}));
-					await this.onRenderTables(
-						[
-							{
-								entries: skills.skill,
-								renderer: this.#skillRenderer,
-							},
-							{
-								entries: skills.heroic,
-								renderer: this.#basicRenderer,
-							},
-						],
-						{
-							class: {
 								label: 'FU.Class',
-								propertyPath: 'system.class.value',
+								propertyPath: ['system.class.value', 'metadata.class'],
 								options: classOptions,
 							},
 						},
@@ -791,12 +773,15 @@ export class CompendiumBrowser extends FUApplication {
 			case 'effects':
 				{
 					const effects = await this.index.getItemsOfType('effect');
-					await this.onRenderTables([
-						{
-							entries: effects,
-							renderer: this.#basicRenderer,
-						},
-					]);
+					await this.onRenderTables(
+						[
+							{
+								entries: effects,
+								renderer: this.#basicRenderer,
+							},
+						],
+						{},
+					);
 				}
 				break;
 		}
@@ -832,15 +817,24 @@ export class CompendiumBrowser extends FUApplication {
 		const instance = CompendiumBrowser.instance;
 		instance.filter.setText(inputFilter.text);
 		instance.onNextTabChange((filters) => {
-			// TODO: Implement support for generic filters
+			if (inputFilter.type) {
+				switch (tab) {
+					case 'classes':
+					case 'equipment':
+					case 'abilities':
+					case 'spells':
+						filters.type.selected = [inputFilter.type];
+						break;
+				}
+			}
 			if (inputFilter.actorId) {
 				const actor = fromUuidSync(inputFilter.actorId);
 				if (actor) {
 					const classNames = actor.getItemsByType('class').map((i) => i.name);
 					switch (tab) {
-						case 'skills':
+						case 'classes':
 						case 'spells':
-							filters.class.selected = new Set(classNames);
+							filters.class.selected = classNames;
 							break;
 					}
 				}
@@ -858,6 +852,6 @@ export class CompendiumBrowser extends FUApplication {
 	 * @returns {Promise<void>}
 	 */
 	static async refresh(event, target) {
-		// TODO: Reload indexes
+		CompendiumIndex.reinitialize();
 	}
 }

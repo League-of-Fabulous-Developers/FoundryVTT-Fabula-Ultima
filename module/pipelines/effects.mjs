@@ -13,6 +13,7 @@ import { FUItem } from '../documents/items/item.mjs';
 import { statusEffects } from '../documents/effects/statuses.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
+import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -93,11 +94,16 @@ function resolveBaseEffect(id) {
  */
 async function getEffectData(id) {
 	let effect;
-	// TODO: Add flags?
+	// Resolve by status id
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
 		effect = statusEffects.find((value) => value.id === id);
 	} else {
-		effect = await fromUuid(id);
+		// Resolve by fuid
+		effect = await CompendiumIndex.instance.getItemByFuid(id);
+		if (effect) {
+			effect = await fromUuid(id);
+		}
+		// Get the first AE attached to the item
 		if (effect instanceof FUItem) {
 			effect = effect.effects.entries().next().value[1];
 		}
