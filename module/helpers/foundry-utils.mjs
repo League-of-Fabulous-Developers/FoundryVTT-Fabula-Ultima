@@ -364,10 +364,22 @@ export default class FoundryUtils {
 	 * @desc Migrates the data of an item onto another.
 	 * @param {FUItem} sourceItem
 	 * @param {FUItem} targetItem
+	 * @returns {Promise}
+	 * @async
 	 */
 	static async migrateItem(sourceItem, targetItem) {
-		await targetItem.update({ system: foundry.utils.deepClone(sourceItem.system) }, { diff: false });
+		// Properties
+		await targetItem.update(
+			{
+				name: sourceItem.name,
+				img: sourceItem.img,
+				system: foundry.utils.deepClone(sourceItem.system),
+				flags: foundry.utils.deepClone(sourceItem.flags),
+			},
+			{ diff: false },
+		);
 
+		// Effects
 		const updates = [];
 		const creates = [];
 
