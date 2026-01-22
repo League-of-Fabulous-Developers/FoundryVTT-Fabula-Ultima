@@ -61,7 +61,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
  * @returns {*}
  * @remarks Effects created this way will by default be removed at the end of the scene
  */
-function createTemporaryEffect(owner, effectType, name) {
+function createTemporaryEffect(owner, effectType, name = undefined) {
 	const system = {
 		duration: {
 			event: effectType === 'passive' ? 'none' : 'endOfScene',
@@ -69,7 +69,7 @@ function createTemporaryEffect(owner, effectType, name) {
 	};
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
-			name: name ?? game.i18n.localize('FU.NewEffect'),
+			name: name ?? (owner instanceof FUItem ? owner.name : game.i18n.localize('FU.NewEffect')),
 			img: 'icons/svg/aura.svg',
 			source: owner.uuid,
 			system: system,
