@@ -8,6 +8,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 
 /**
  * @param {CheckV2} check
@@ -34,6 +35,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		config
 			.setTargetedDefense(attack.defense)
 			.addTraits('attack')
+			.addEffects(attack.effects.entries)
 			.setWeaponTraits({
 				weaponType: attack.type.value,
 			})
@@ -82,6 +84,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {boolean} hasDamage
  * @property {WeaponType} type.value
  * @property {DamageType} damageType.value
+ * @property {EffectApplicationDataModel} effects
  * @property {number} cost.value
  * @property {string} quality.value
  * @property {string} source.value
@@ -100,6 +103,7 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 			hasDamage: new BooleanField({ initial: true, nullable: false }),
 			type: new SchemaField({ value: new StringField({ initial: 'melee', choices: Object.keys(FU.weaponTypes) }) }),
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
+			effects: new EmbeddedDataField(EffectApplicationDataModel, {}),
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quality: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
@@ -134,7 +138,7 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 * @override
 	 */
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.traitsLegacy, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.traitsLegacy, ItemPartialTemplates.attackAccuracy, ItemPartialTemplates.attackDamage, ItemPartialTemplates.attackTypeAndQuality, ItemPartialTemplates.effects];
 	}
 
 	/**
