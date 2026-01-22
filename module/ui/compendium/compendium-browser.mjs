@@ -504,7 +504,9 @@ export class CompendiumBrowser extends FUApplication {
 						continue;
 					}
 					// Toggle visibility based on filter
-					li.classList.toggle('hidden', !tableData.visible.has(uuid));
+					const visible = tableData.visible.has(uuid);
+					li.classList.toggle('hidden', !visible);
+					//console.debug(`Toggle list element ${uuid}? ${visible}`);
 				}
 			}
 		}

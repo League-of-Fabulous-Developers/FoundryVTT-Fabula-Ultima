@@ -48,7 +48,6 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  * @property {String} key
  * @property {T} item
  * @property {Object} additionalAttributes
- * @property {string[]} additionalClasses
  */
 
 /**
@@ -275,11 +274,7 @@ export class FUTableRenderer {
 			for (const { attributeName, getAttributeValue } of advancedConfig.additionalRowAttributes) {
 				additionalAttributes[attributeName] = getAttributeValue(item);
 			}
-			const additionalClasses = [];
-			if (!visible) {
-				additionalClasses.push('hidden');
-			}
-			rows.push({ key: rowKey, item, additionalAttributes, additionalClasses });
+			rows.push({ key: rowKey, item, visible, additionalAttributes });
 		}
 
 		for (const column of Object.values(columns)) {

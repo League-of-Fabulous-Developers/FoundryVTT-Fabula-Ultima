@@ -60,14 +60,22 @@ export class CompendiumIndex {
 	}
 
 	/**
+	 * @desc Where the keys are the item types.
 	 * @type {Record<string, CompendiumIndexEntry[]>}
 	 */
-	#items;
+	#itemsByType;
 
 	/**
+	 * @desc All compendium items by their fuid.
+	 @type {Record<string, CompendiumIndexEntry>}
+	 */
+	#itemsByFuid;
+
+	/**
+	 * @desc Where the keys are the actor types.
 	 * @type {Record<string, CompendiumIndexEntry[]>}
 	 */
-	#actors;
+	#actorsByType;
 
 	// Actors
 	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
@@ -82,6 +90,7 @@ export class CompendiumIndex {
 		// Shared
 		cost: 'system.cost.value',
 		source: 'system.source',
+		fuid: 'system.fuid',
 
 		// Feature
 		featureType: 'system.featureType',
@@ -115,13 +124,33 @@ export class CompendiumIndex {
 
 	/**
 	 * @param {Boolean} force
-	 * @returns {Record<string, CompendiumIndexEntry[]>}
+	 * @returns {Promise<Record<string, CompendiumIndexEntry[]>>}
 	 */
-	async getItems(force) {
-		if (!this.#items || force) {
-			this.#items = await this.getEntries('Item', null, CompendiumIndex.#itemFieldsArray);
+	async getItems(force = false) {
+		if (!this.#itemsByType || force) {
+			this.#itemsByType = await this.getEntries('Item', null, CompendiumIndex.#itemFieldsArray);
 		}
-		return this.#items;
+		return this.#itemsByType;
+	}
+
+	/**
+	 * @param {String} fuid An unique identifier used by the system.
+	 * @returns {Promise<CompendiumIndexEntry>} A compendium index entry.
+	 */
+	async getItemByFuid(fuid) {
+		if (!this.#itemsByFuid) {
+			this.#itemsByFuid = {};
+			const itemGroups = await this.getItems();
+			const itemEntries = Object.values(itemGroups).flat();
+			for (const item of itemEntries) {
+				const fuid = item.system.fuid;
+				if (fuid) {
+					this.#itemsByFuid[fuid] = item;
+				}
+			}
+		}
+
+		return this.#itemsByFuid[fuid] ?? null;
 	}
 
 	/**
@@ -140,13 +169,13 @@ export class CompendiumIndex {
 
 	/**
 	 * @param {Boolean} force
-	 * @returns {Record<string, CompendiumIndexEntry[]>}
+	 * @returns {Promise<Record<string, CompendiumIndexEntry[]>>}
 	 */
 	async getActors(force) {
-		if (!this.#actors || force) {
-			this.#actors = await this.getEntries('Actor', null, CompendiumIndex.actorFields);
+		if (!this.#actorsByType || force) {
+			this.#actorsByType = await this.getEntries('Actor', null, CompendiumIndex.actorFields);
 		}
-		return this.#actors;
+		return this.#actorsByType;
 	}
 
 	/**

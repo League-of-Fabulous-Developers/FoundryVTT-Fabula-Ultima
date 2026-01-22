@@ -359,4 +359,16 @@ export default class FoundryUtils {
 		}
 		return false;
 	}
+
+	/**
+	 * @desc Migrates the data of an item onto another.
+	 * @param {FUItem} source
+	 * @param {FUItem} target
+	 */
+	static async migrateItem(source, target) {
+		// Clone target data (never mutate live data)
+		const system = foundry.utils.deepClone(source.system);
+		// Perform in-place update (UUID preserved)
+		await target.update({ system }, { diff: false });
+	}
 }
