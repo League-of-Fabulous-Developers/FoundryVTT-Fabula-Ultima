@@ -77,7 +77,20 @@ export class CompendiumFilter {
 	 * @param {Record<string, CompendiumFilterCategory>} categories Document types.
 	 */
 	setCategories(categories) {
+		for (const [id, category] of Object.entries(categories)) {
+			const selected = category.selected ? category.selected.filter((entry) => category.options.some((opt) => opt.value === entry)) : [];
+			categories[id].selected = new Set(selected);
+		}
+
 		this.#categories = categories;
+	}
+
+	/**
+	 * @param {String} id
+	 * @return CompendiumFilterCategory
+	 */
+	getCategory(id) {
+		return this.#categories[id];
 	}
 
 	/**

@@ -793,12 +793,15 @@ export class CompendiumBrowser extends FUApplication {
 			case 'effects':
 				{
 					const effects = await this.index.getItemsOfType('effect');
-					await this.onRenderTables([
-						{
-							entries: effects,
-							renderer: this.#basicRenderer,
-						},
-					]);
+					await this.onRenderTables(
+						[
+							{
+								entries: effects,
+								renderer: this.#basicRenderer,
+							},
+						],
+						{},
+					);
 				}
 				break;
 		}
@@ -842,7 +845,7 @@ export class CompendiumBrowser extends FUApplication {
 					switch (tab) {
 						case 'skills':
 						case 'spells':
-							filters.class.selected = new Set(classNames);
+							filters.class.selected = classNames;
 							break;
 					}
 				}
