@@ -1,7 +1,7 @@
 /**
  * @typedef CompendiumFilterCategory
  * @property {String} label
- * @property {String} propertyPath
+ * @property {String|String[]} propertyPath
  * @property {FormSelectOption[]} options
  * @property {Set<String>} selected
  */
@@ -49,8 +49,12 @@ export class CompendiumFilter {
 			if (this.categories) {
 				for (const category of Object.values(this.categories)) {
 					if (category.selected?.size > 0) {
-						const propertyValue = foundry.utils.getProperty(entry, category.propertyPath);
-						if (!propertyValue || !category.selected.has(propertyValue)) {
+						const paths = Array.isArray(category.propertyPath) ? category.propertyPath : [category.propertyPath];
+						const matchesAnyPath = paths.some((path) => {
+							const value = foundry.utils.getProperty(entry, path);
+							return value && category.selected.has(value);
+						});
+						if (!matchesAnyPath) {
 							return false;
 						}
 					}
@@ -124,10 +128,4 @@ export class CompendiumFilter {
 			category.selected.delete(option);
 		}
 	}
-
-	/**
-	 * @desc Attempts to assign the filters based on the given actor.
-	 * @param {FUActor} actor
-	 */
-	onNextCategory() {}
 }

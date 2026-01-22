@@ -175,7 +175,6 @@ export class CompendiumBrowser extends FUApplication {
 		primary: {
 			tabs: [
 				{ id: 'classes', label: 'FU.Classes', icon: 'ra ra-player' },
-				{ id: 'skills', label: 'FU.Skills', icon: 'ra ra-cycle' },
 				{ id: 'equipment', label: 'FU.Equipment', icon: 'ra ra-anvil' },
 				{ id: 'spells', label: 'FU.Spells', icon: 'ra ra-fairy-wand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
@@ -235,9 +234,6 @@ export class CompendiumBrowser extends FUApplication {
 		},
 		equipment: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-equipment'),
-		},
-		skills: {
-			template: systemTemplatePath('ui/compendium-browser/compendium-browser-skills'),
 		},
 		spells: {
 			template: systemTemplatePath('ui/compendium-browser/compendium-browser-spells'),
@@ -332,7 +328,6 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 			case 'adversaries':
 			case 'equipment':
-			case 'skills':
 			case 'spells':
 			case 'abilities':
 			case 'effects':
@@ -545,6 +540,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'classes':
 				{
 					const classes = await this.index.getClasses();
+					const skills = await this.index.getSkills();
 					const classOptions = classes.class
 						.sort((a, b) => a.name.localeCompare(b.name))
 						.map((c) => ({
@@ -556,6 +552,14 @@ export class CompendiumBrowser extends FUApplication {
 							{
 								entries: classes.class,
 								renderer: this.#classRenderer,
+							},
+							{
+								entries: skills.skill,
+								renderer: this.#skillRenderer,
+							},
+							{
+								entries: skills.heroic,
+								renderer: this.#basicRenderer,
 							},
 							{
 								entries: classes.classFeature,
@@ -575,43 +579,15 @@ export class CompendiumBrowser extends FUApplication {
 										value: 'classFeature',
 										label: 'FU.ClassFeature',
 									},
+									{
+										value: 'skill',
+										label: 'FU.Skill',
+									},
 								],
 							},
 							class: {
-								label: 'FU.ClassFeature',
-								propertyPath: 'metadata.class',
-								options: classOptions,
-							},
-						},
-					);
-				}
-				break;
-
-			case 'skills':
-				{
-					const skills = await this.index.getSkills();
-					const classes = await this.index.getItemsOfType('class');
-					const classOptions = classes
-						.sort((a, b) => a.name.localeCompare(b.name))
-						.map((c) => ({
-							value: c.name,
-							label: c.name,
-						}));
-					await this.onRenderTables(
-						[
-							{
-								entries: skills.skill,
-								renderer: this.#skillRenderer,
-							},
-							{
-								entries: skills.heroic,
-								renderer: this.#basicRenderer,
-							},
-						],
-						{
-							class: {
 								label: 'FU.Class',
-								propertyPath: 'system.class.value',
+								propertyPath: ['system.class.value', 'metadata.class'],
 								options: classOptions,
 							},
 						},
