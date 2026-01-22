@@ -362,13 +362,44 @@ export default class FoundryUtils {
 
 	/**
 	 * @desc Migrates the data of an item onto another.
-	 * @param {FUItem} source
-	 * @param {FUItem} target
+	 * @param {FUItem} sourceItem
+	 * @param {FUItem} targetItem
 	 */
-	static async migrateItem(source, target) {
-		// Clone target data (never mutate live data)
-		const system = foundry.utils.deepClone(source.system);
-		// Perform in-place update (UUID preserved)
-		await target.update({ system }, { diff: false });
+	static async migrateItem(sourceItem, targetItem) {
+		await targetItem.update({ system: foundry.utils.deepClone(sourceItem.system) }, { diff: false });
+
+		const updates = [];
+		const creates = [];
+
+		const targetEffectsByLabel = new Map(targetItem.effects.map((e) => [e.label, e]));
+		for (const sourceEffect of sourceItem.effects) {
+			const data = foundry.utils.deepClone(sourceEffect.toObject());
+
+			// Never reuse IDs or origins
+			delete data._id;
+			delete data.origin;
+
+			const targetEffect = targetEffectsByLabel.get(sourceEffect.label);
+			if (targetEffect) {
+				updates.push({
+					_id: targetEffect.id,
+					changes: data.changes,
+					duration: data.duration,
+					flags: data.flags,
+					disabled: data.disabled,
+					system: foundry.utils.deepClone(sourceEffect.system),
+				});
+			} else {
+				creates.push(data);
+			}
+		}
+
+		if (updates.length) {
+			await targetItem.updateEmbeddedDocuments('ActiveEffect', updates);
+		}
+
+		if (creates.length) {
+			await targetItem.createEmbeddedDocuments('ActiveEffect', creates);
+		}
 	}
 }

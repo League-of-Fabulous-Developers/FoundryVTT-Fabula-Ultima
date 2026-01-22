@@ -1756,7 +1756,7 @@
 		"Stagger": "Stagger",
 		"CompendiumBrowser": "Compendium Browser",
 		"CompendiumMigrateItem": "Migrate Item",
-		"CompendiumMigrateSuccess": "Successfully migrated {count} compendium items",
+		"CompendiumMigrateSuccess": "Successfully migrated {count} compendium items!",
 		"CompendiumMigrateItemMessage": "Would you like to migrate the data in the item <strong>{name}</strong> to that of the compendium?",
 		"CompendiumBrowserPacksHint": "What compendium packs to display on the browser.",
 		"CompendiumBrowserOpen": "Open Compendium Browser",
