@@ -486,7 +486,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 		}
 
 		flavor = item
-			? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item', {
+			? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
 					item: item,
 					linked: linked,
 				})

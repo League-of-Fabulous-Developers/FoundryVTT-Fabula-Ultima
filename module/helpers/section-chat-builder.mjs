@@ -97,7 +97,7 @@ export class SectionChatBuilder {
 		}
 		if (!flavor?.trim()) {
 			flavor = item
-				? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item', {
+				? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
 						item: item,
 					})
 				: '';
