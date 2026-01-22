@@ -1,4 +1,7 @@
 import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
+import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -17,9 +20,20 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		scrollY: ['.sheet-body'],
 		window: {
 			resizable: true,
+			controls: [
+				{
+					action: 'migrateItems',
+					icon: 'fa-regular fa-refresh',
+					label: 'FU.CompendiumMigrateActorItems',
+					ownership: 'OWNER',
+				},
+			],
 		},
 		form: {
 			submitOnChange: true,
+		},
+		actions: {
+			migrateItems: this.#migrateItems,
 		},
 	};
 
@@ -131,5 +145,45 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			await target.update(update);
 		}
 		return sortUpdates.map((value) => value.target);
+	}
+
+	/**
+	 * @this FUActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #migrateItems(event, target) {
+		/** @type Promise[] **/
+		const updates = [];
+
+		/** @type FUItem[] **/
+		const items = this.actor.items.values();
+		for (const item of items) {
+			if (item.system.fuid) {
+				const compendiumEntry = await CompendiumIndex.instance.getItemByFuid(item.system.fuid);
+				if (!compendiumEntry) {
+					continue;
+				}
+				const compendiumItem = await fromUuid(compendiumEntry.uuid);
+				if (!compendiumItem) {
+					continue;
+				}
+				updates.push(async () => {
+					await FoundryUtils.migrateItem(compendiumItem, item);
+				});
+			}
+		}
+
+		if (updates.length > 0) {
+			const message = StringUtils.localize('FU.CompendiumMigrateActorItemsMessage', {
+				count: updates.length,
+			});
+			const confirm = await FoundryUtils.confirmDialog('FU.CompendiumMigrateActorItems', message);
+			if (confirm) {
+				await Promise.all(updates.map((fn) => fn()));
+				ui.notifications.info(StringUtils.localize('FU.CompendiumMigrateSuccess', { count: updates.length }));
+			}
+		}
 	}
 }
