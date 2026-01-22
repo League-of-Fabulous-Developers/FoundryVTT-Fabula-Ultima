@@ -163,7 +163,9 @@ export class CompendiumBrowser extends FUApplication {
 		},
 		form: { closeOnSubmit: false },
 		position: { width: 800, height: '800' },
-		actions: {},
+		actions: {
+			refresh: this.refresh,
+		},
 	};
 
 	/** @override
@@ -858,6 +860,6 @@ export class CompendiumBrowser extends FUApplication {
 	 * @returns {Promise<void>}
 	 */
 	static async refresh(event, target) {
-		// TODO: Reload indexes
+		CompendiumIndex.reinitialize();
 	}
 }

@@ -60,6 +60,13 @@ export class CompendiumIndex {
 	}
 
 	/**
+	 * @desc Forces the index to be reinitialized.
+	 */
+	static reinitialize() {
+		CompendiumIndex.#instance = undefined;
+	}
+
+	/**
 	 * @desc Where the keys are the item types.
 	 * @type {Record<string, CompendiumIndexEntry[]>}
 	 */
@@ -72,14 +79,27 @@ export class CompendiumIndex {
 	#itemsByFuid;
 
 	/**
+	 * @desc All compendium items by their fuid.
+	 @type {CompendiumIndexEntry[]}
+	 */
+	#effects;
+
+	/**
 	 * @desc Where the keys are the actor types.
 	 * @type {Record<string, CompendiumIndexEntry[]>}
 	 */
 	#actorsByType;
 
 	// Actors
-	static npcFields = ['system.species.value', 'system.rank.value', 'system.role.value'];
-	static actorFields = [...this.npcFields];
+	static npcFields = Object.freeze({
+		species: 'system.species.value',
+		rank: 'system.rank.value',
+		role: 'system.role.value',
+	});
+
+	static actorFields = Object.freeze({
+		...CompendiumIndex.npcFields,
+	});
 
 	// TODO: Encode label, options data
 	/**
@@ -120,15 +140,13 @@ export class CompendiumIndex {
 		ipCost: 'system.ipCost.value',
 	});
 
-	static #itemFieldsArray = Object.values(CompendiumIndex.itemFields);
-
 	/**
 	 * @param {Boolean} force
 	 * @returns {Promise<Record<string, CompendiumIndexEntry[]>>}
 	 */
 	async getItems(force = false) {
 		if (!this.#itemsByType || force) {
-			this.#itemsByType = await this.getEntries('Item', null, CompendiumIndex.#itemFieldsArray);
+			this.#itemsByType = await this.getEntries('Item', null, Object.values(CompendiumIndex.itemFields));
 		}
 		return this.#itemsByType;
 	}
@@ -173,7 +191,7 @@ export class CompendiumIndex {
 	 */
 	async getActors(force) {
 		if (!this.#actorsByType || force) {
-			this.#actorsByType = await this.getEntries('Actor', null, CompendiumIndex.actorFields);
+			this.#actorsByType = await this.getEntries('Actor', null, Object.values(CompendiumIndex.actorFields));
 		}
 		return this.#actorsByType;
 	}
@@ -190,6 +208,17 @@ export class CompendiumIndex {
 			return entries[type];
 		}
 		return [];
+	}
+
+	/**
+	 * @desc Returns all indexed effect items, which are containers of effects.
+	 * @returns {Promise<CompendiumIndexEntry[]>}
+	 */
+	async getEffects() {
+		if (!this.#effects) {
+			this.#effects = await this.getItemsOfType('effect');
+		}
+		return this.#effects;
 	}
 
 	/**
