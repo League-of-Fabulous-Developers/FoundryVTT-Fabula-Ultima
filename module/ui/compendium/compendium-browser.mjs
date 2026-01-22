@@ -583,6 +583,10 @@ export class CompendiumBrowser extends FUApplication {
 										value: 'skill',
 										label: 'FU.Skill',
 									},
+									{
+										value: 'heroic',
+										label: 'FU.Heroic',
+									},
 								],
 							},
 							class: {
@@ -813,13 +817,22 @@ export class CompendiumBrowser extends FUApplication {
 		const instance = CompendiumBrowser.instance;
 		instance.filter.setText(inputFilter.text);
 		instance.onNextTabChange((filters) => {
-			// TODO: Implement support for generic filters
+			if (inputFilter.type) {
+				switch (tab) {
+					case 'classes':
+					case 'equipment':
+					case 'abilities':
+					case 'spells':
+						filters.type.selected = [inputFilter.type];
+						break;
+				}
+			}
 			if (inputFilter.actorId) {
 				const actor = fromUuidSync(inputFilter.actorId);
 				if (actor) {
 					const classNames = actor.getItemsByType('class').map((i) => i.name);
 					switch (tab) {
-						case 'skills':
+						case 'classes':
 						case 'spells':
 							filters.class.selected = classNames;
 							break;

@@ -9,7 +9,7 @@
 /**
  * @typedef CompendiumFilterInputOptions
  * @property {String} text
- * @property {{key: string, option: string}} filter A filter to apply??
+ * @property {String} type The item or actor type.
  * @property {String} actorId A reference to an actor, which can be used to apply filtering on opening the browser.
  */
 
@@ -82,7 +82,13 @@ export class CompendiumFilter {
 	 */
 	setCategories(categories) {
 		for (const [id, category] of Object.entries(categories)) {
-			const selected = category.selected ? category.selected.filter((entry) => category.options.some((opt) => opt.value === entry)) : [];
+			const selected = category.selected
+				? category.selected.filter((entry) =>
+						category.options.some((opt) => {
+							return opt.value === entry || opt.label === entry;
+						}),
+					)
+				: [];
 			categories[id].selected = new Set(selected);
 		}
 
