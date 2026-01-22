@@ -319,7 +319,7 @@ async function evaluate(type, event, source, targets, data = undefined) {
 				},
 				...data,
 			};
-			if (effect.parent instanceof FUItem) {
+			if (effect.parent.documentName === 'Item') {
 				contextData.item = effect.parent;
 			}
 			const context = new RuleElementContext(contextData);
