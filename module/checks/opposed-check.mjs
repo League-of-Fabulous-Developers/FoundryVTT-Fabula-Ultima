@@ -4,7 +4,7 @@ import { Checks } from './checks.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { SpecialResults } from './special-results.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
-import { CHECK_ADDENDUM_ORDER, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
+import { CHECK_ADDENDUM_ORDER, CHECK_DETAILS, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { CommonSections } from './common-sections.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
@@ -159,14 +159,15 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 					type: check.type,
 				},
 				initialCheck: initialCheck,
-				difficulty: inspector.getDifficulty(),
+				difficulty: initialCheck ? initialCheck.result : null,
 				modifiers: check.modifiers,
 			},
 		});
 
 		// Meaning this check is OPPOSING the initial check
 		if (initialCheck) {
-			// Resole winner
+			const initialActor = fromUuidSync(initialCheck.actorUuid);
+			// Resolve winner
 			let winner;
 			let margin = 0;
 			if ((initialCheck.fumble && check.fumble) || (initialCheck.critical && check.critical) || initialCheck.result === check.result) {
@@ -175,7 +176,6 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 				winner = actor.name;
 				margin = check.result - initialCheck.result;
 			} else {
-				const initialActor = fromUuidSync(initialCheck.actorUuid);
 				winner = initialActor.name;
 				margin = initialCheck.result - check.result;
 			}
@@ -183,10 +183,12 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 				sections,
 				'chat/partials/chat-opposed-check-result',
 				{
+					actor,
+					initialActor,
 					winner,
 					margin,
 				},
-				CHECK_ADDENDUM_ORDER,
+				CHECK_DETAILS,
 			);
 		}
 		//

@@ -1,8 +1,8 @@
 <main class="fu-chat__stagger">
 	<section class="flexrow flex-group-center">
 		{{#with sourceActor}}
-			<a data-link draggable="true" data-uuid="{{uuid}}"
-			   data-type="Item" data-tooltip="{{name}}">
+			<a data-link data-uuid="{{uuid}}"
+			   data-type="Actor" data-tooltip="{{name}}">
 				<img src="{{img}}" alt="{{name}}" data-item-id="{{id}}" class="profile-img fu-chat__actor">
 			</a>
 		{{/with}}
@@ -10,8 +10,8 @@
 		<i class="fu-icon--m fa fa-chevron-right"></i>
 
 		{{#with actor}}
-			<a data-link draggable="true" data-uuid="{{uuid}}"
-			   data-type="Item" data-tooltip="{{name}}">
+			<a data-link data-uuid="{{uuid}}"
+			   data-type="Actor" data-tooltip="{{name}}">
 				<img src="{{img}}" alt="{{name}}" data-item-id="{{id}}" class="profile-img fu-chat__actor">
 			</a>
 		{{/with}}
