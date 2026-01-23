@@ -241,13 +241,12 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 
 /**
  * @template T
- * @param {Document} document
+ * @param {Document|FUActor} document
  * @param {CheckType} type
  * @param {T} initialConfig
- * @param {FUActor[]} actors
  * @returns {Promise<AttributeCheckConfig>}
  */
-async function promptForConfigurationV2(document, type, initialConfig, actors = undefined) {
+async function promptForConfigurationV2(document, type, initialConfig = {}) {
 	const recentCheck = retrieveRecentCheck(document, type);
 
 	Object.keys(recentCheck).forEach((key) => {
@@ -284,6 +283,14 @@ async function promptForConfigurationV2(document, type, initialConfig, actors = 
 	};
 
 	switch (type) {
+		case 'open': {
+			context.bonus = document.system.bonuses.accuracy.openCheck;
+			break;
+		}
+		case 'opposed': {
+			context.bonus = document.system.bonuses.accuracy.opposedCheck;
+			break;
+		}
 		case 'ritual':
 			{
 				const potency = potencyList[0];
@@ -408,7 +415,7 @@ async function attributeCheck(actor, options = {}) {
  * @returns {Promise<void>}
  */
 async function openCheck(actor, options = {}) {
-	const promptResult = await promptForConfiguration(actor, 'open', options.initialConfig);
+	const promptResult = await promptForConfigurationV2(actor, 'open', options.initialConfig);
 	if (promptResult) {
 		return Checks.openCheck(
 			actor,
@@ -436,7 +443,7 @@ async function openCheck(actor, options = {}) {
  * @returns {Promise<void>}
  */
 async function opposedCheck(actor, options = {}) {
-	const promptResult = await promptForConfiguration(actor, 'opposed', options.initialConfig);
+	const promptResult = await promptForConfigurationV2(actor, 'opposed', options.initialConfig);
 	if (promptResult) {
 		return Checks.opposedCheckV2(
 			actor,
@@ -464,7 +471,7 @@ async function opposedCheck(actor, options = {}) {
  * @returns {Promise<void>}
  */
 async function groupCheck(actor, options = {}) {
-	const promptResult = await promptForConfiguration(actor, 'group', options.initialConfig);
+	const promptResult = await promptForConfigurationV2(actor, 'group', options.initialConfig);
 	if (promptResult) {
 		return Checks.groupCheck(actor, (check, callbackActor, item) => {
 			const checkConfigurer = CheckConfiguration.configure(check);

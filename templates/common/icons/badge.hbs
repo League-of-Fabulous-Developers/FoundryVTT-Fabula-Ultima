@@ -3,7 +3,7 @@
 	 data-tooltip="{{localize label}}">
 	<div class='fu-icon__badge'>
 		<i class='fu-icon--{{size}} {{icon}}'></i>
-		{{#if value}}
+		{{#if (ne value undefined)}}
 			<span class="fu-icon__badge-overlay">{{value}}</span>
 		{{/if}}
 	</div>
