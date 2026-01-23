@@ -125,19 +125,6 @@ const openCheck = async (actor, attributes, configCallback) => {
 
 /**
  * @param {FUActor} actor
- * @param {CheckCallback} configCallback
- */
-const opposedCheck = async (actor, configCallback) => {
-	/** @type Partial<CheckV2> */
-	const check = {
-		type: 'opposed',
-	};
-
-	return performCheck(check, actor, undefined, configCallback);
-};
-
-/**
- * @param {FUActor} actor
  * @param {CheckAttributes} attributes
  * @param {OpposedCheckData} data
  * @param {CheckCallback} configCallback

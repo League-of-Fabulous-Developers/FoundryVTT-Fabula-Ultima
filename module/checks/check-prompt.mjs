@@ -5,10 +5,6 @@ import { GroupCheck } from './group-check.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { systemId } from '../helpers/system-utils.mjs';
-import { Pipeline } from '../pipelines/pipeline.mjs';
-import { CheckHooks } from './check-hooks.mjs';
-import { CommonSections } from './common-sections.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 
@@ -534,18 +530,6 @@ async function ritualCheck(actor, item, options = {}) {
 		});
 	}
 }
-//
-// /**
-//  * @type RenderCheckHook
-//  */
-// const onRenderCheck = (sections, check, actor, item, flags) => {
-// 	if (GroupCheck.isGroupCheck(check.type)) {
-// 		const inspector = CheckConfiguration.inspect(check);
-// 		const targets = inspector.getTargets();
-// 		CommonSections.actions(sections, actor, item, targets, flags, inspector);
-// 	}
-// };
-// Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @param {FUActor} actor
