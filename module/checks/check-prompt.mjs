@@ -26,6 +26,10 @@ import { ChatAction } from '../helpers/chat-action.mjs';
  */
 
 /**
+ * @typedef {Omit<AttributeCheckConfig, 'difficulty'>} OpposedCheckConfig
+ */
+
+/**
  * @typedef {AttributeCheckConfig & {supportDifficulty: number}} GroupCheckConfig
  */
 
@@ -438,11 +442,12 @@ async function openCheck(actor, options = {}) {
 }
 
 /**
- * @param {Actor} actor
- * @param {CheckPromptOptions<OpenCheckConfig>} [options]
+ * @param {FUActor} actor
+ * @param {OpposedCheckData} data
+ * @param {CheckPromptOptions<OpposedCheckConfig>} [options]
  * @returns {Promise<void>}
  */
-async function opposedCheck(actor, options = {}) {
+async function opposedCheck(actor, data = {}, options = {}) {
 	const promptResult = await promptForConfigurationV2(actor, 'opposed', options.initialConfig);
 	if (promptResult) {
 		return Checks.opposedCheckV2(
@@ -451,12 +456,15 @@ async function opposedCheck(actor, options = {}) {
 				primary: promptResult.primary,
 				secondary: promptResult.secondary,
 			},
+			data,
 			(check, callbackActor, item) => {
-				const checkConfigurer = CheckConfiguration.configure(check);
+				const config = CheckConfiguration.configure(check);
 				if (promptResult.modifier) {
-					checkConfigurer.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
+					config.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
 				}
-
+				if (data.initialCheck) {
+					config.setInitialCheck(data.initialCheck);
+				}
 				if (options.checkCallback) {
 					options.checkCallback(check, callbackActor, item);
 				}
@@ -526,18 +534,18 @@ async function ritualCheck(actor, item, options = {}) {
 		});
 	}
 }
-
-/**
- * @type RenderCheckHook
- */
-const onRenderCheck = (sections, check, actor, item, flags) => {
-	if (GroupCheck.isGroupCheck(check.type)) {
-		const inspector = CheckConfiguration.inspect(check);
-		const targets = inspector.getTargets();
-		CommonSections.actions(sections, actor, item, targets, flags, inspector);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderCheck);
+//
+// /**
+//  * @type RenderCheckHook
+//  */
+// const onRenderCheck = (sections, check, actor, item, flags) => {
+// 	if (GroupCheck.isGroupCheck(check.type)) {
+// 		const inspector = CheckConfiguration.inspect(check);
+// 		const targets = inspector.getTargets();
+// 		CommonSections.actions(sections, actor, item, targets, flags, inspector);
+// 	}
+// };
+// Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @param {FUActor} actor
@@ -568,37 +576,9 @@ function getRitualCheckAction(actor, item, primary, secondary) {
 }
 
 /**
- * @param {ChatMessage} message
- * @param {HTMLElement} html
- */
-function onRenderChatMessage(message, html) {
-	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
-		Pipeline.handleClick(message, html, 'ritualCheck', async (dataset) => {
-			/** @type RitualCheckData **/
-			const fields = StringUtils.fromBase64(dataset.fields);
-			const actor = await fromUuid(fields.actorId);
-			if (!actor) {
-				return;
-			}
-			const item = await fromUuid(fields.itemId);
-			if (!item) {
-				return;
-			}
-			return ritualCheck(actor, item, {
-				primary: fields.primary,
-				secondary: fields.secondary,
-				//label: item.name,
-			});
-		});
-	}
-}
-
-/**
  * @description Initialize the pipeline's hooks
  */
-function initialize() {
-	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
-}
+function initialize() {}
 
 export const CheckPrompt = Object.freeze({
 	attributeCheck,

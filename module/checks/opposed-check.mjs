@@ -1,10 +1,18 @@
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Checks } from './checks.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { SpecialResults } from './special-results.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
-import { CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
+import { CHECK_ADDENDUM_ORDER, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
+import { CommonSections } from './common-sections.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
+import { Pipeline } from '../pipelines/pipeline.mjs';
+import { CheckPrompt } from './check-prompt.mjs';
+import { getPrioritizedUserSelected, getSelected } from '../helpers/target-handler.mjs';
 
 const SOURCE_CHECK = 'SourceCheck';
 
@@ -98,6 +106,7 @@ const onGetChatLogEntryContext = (application, menuItems) => {
 };
 
 const critThresholdFlag = 'critThreshold.opposedCheck';
+const actionName = 'opposeCheck';
 
 /**
  * @param {CheckV2} check
@@ -120,13 +129,12 @@ const onPrepareCheck = (check, actor) => {
 };
 
 /**
- * @param {CheckSection[]} sections
- * @param {CheckResultV2}check
- * @param {FUActor}actor
+ * @type RenderCheckHook
  */
-const onRenderCheck = (sections, check, actor) => {
+const onRenderCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'opposed') {
 		const inspector = CheckConfiguration.inspect(check);
+		const initialCheck = inspector.getInitialCheck();
 		sections.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
@@ -150,62 +158,129 @@ const onRenderCheck = (sections, check, actor) => {
 					},
 					type: check.type,
 				},
+				initialCheck: initialCheck,
 				difficulty: inspector.getDifficulty(),
 				modifiers: check.modifiers,
 			},
 		});
 
-		const sourceCheckData = check.additionalData[SOURCE_CHECK];
-
-		/** @type ChatMessage */
-		const sourceCheckMessage = game.messages
-			.search({
-				filters: [
-					{
-						field: `flags.${SYSTEM}.${Flags.ChatMessage.CheckV2}.id`,
-						value: sourceCheckData.id,
-					},
-				],
-			})
-			.at(-1);
-		const speakerActor = ChatMessage.getSpeakerActor(sourceCheckMessage.speaker);
-
-		sections.push({
-			order: CHECK_ROLL - 1,
-			partial: 'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
-			data: {
-				source: speakerActor.name,
-				opponent: actor.name,
-				fumble: sourceCheckData.fumble,
-				critical: sourceCheckData.critical,
-				result: sourceCheckData.result,
-			},
-		});
-
-		let winner;
-		let margin = 0;
-		if ((sourceCheckData.fumble && check.fumble) || (sourceCheckData.critical && check.critical) || sourceCheckData.result === check.result) {
-			winner = null;
-		} else if (sourceCheckData.fumble || check.critical || sourceCheckData.result < check.result) {
-			winner = actor.name;
-			margin = check.result - sourceCheckData.result;
-		} else {
-			winner = speakerActor.name;
-			margin = sourceCheckData.result - check.result;
+		// Meaning this check is OPPOSING the initial check
+		if (initialCheck) {
+			// Resole winner
+			let winner;
+			let margin = 0;
+			if ((initialCheck.fumble && check.fumble) || (initialCheck.critical && check.critical) || initialCheck.result === check.result) {
+				winner = null;
+			} else if (initialCheck.fumble || check.critical || initialCheck.result < check.result) {
+				winner = actor.name;
+				margin = check.result - initialCheck.result;
+			} else {
+				const initialActor = fromUuidSync(initialCheck.actorUuid);
+				winner = initialActor.name;
+				margin = initialCheck.result - check.result;
+			}
+			CommonSections.template(
+				sections,
+				'chat/partials/chat-opposed-check-result',
+				{
+					winner,
+					margin,
+				},
+				CHECK_ADDENDUM_ORDER,
+			);
+		}
+		//
+		else {
+			const tooltip = StringUtils.localize('FU.ChatContextOppose');
+			Pipeline.toggleFlag(flags, Flags.ChatMessage.OpposedCheck);
+			/** @type OpposedCheckData **/
+			const data = {
+				initialCheck: check,
+			};
+			const action = new ChatAction(actionName, FU.checkIcons.opposed, tooltip).withLabel(tooltip).withSelected().withFields(data);
+			CommonSections.chatActions(sections, [action], CHECK_ADDENDUM_ORDER);
 		}
 
-		sections.push({
-			order: CHECK_RESULT,
-			partial: 'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
-			data: {
-				winner: winner,
-				margin: margin,
-			},
-		});
+		// const sourceCheckData = check.additionalData[SOURCE_CHECK];
+		//
+		// /** @type ChatMessage */
+		// const sourceCheckMessage = game.messages
+		// 	.search({
+		// 		filters: [
+		// 			{
+		// 				field: `flags.${SYSTEM}.${Flags.ChatMessage.CheckV2}.id`,
+		// 				value: sourceCheckData.id,
+		// 			},
+		// 		],
+		// 	})
+		// 	.at(-1);
+		// const speakerActor = ChatMessage.getSpeakerActor(sourceCheckMessage.speaker);
+		//
+		// sections.push({
+		// 	order: CHECK_ROLL - 1,
+		// 	partial: 'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
+		// 	data: {
+		// 		source: speakerActor.name,
+		// 		opponent: actor.name,
+		// 		fumble: sourceCheckData.fumble,
+		// 		critical: sourceCheckData.critical,
+		// 		result: sourceCheckData.result,
+		// 	},
+		// });
+		//
+		// let winner;
+		// let margin = 0;
+		// if ((sourceCheckData.fumble && check.fumble) || (sourceCheckData.critical && check.critical) || sourceCheckData.result === check.result) {
+		// 	winner = null;
+		// } else if (sourceCheckData.fumble || check.critical || sourceCheckData.result < check.result) {
+		// 	winner = actor.name;
+		// 	margin = check.result - sourceCheckData.result;
+		// } else {
+		// 	winner = speakerActor.name;
+		// 	margin = sourceCheckData.result - check.result;
+		// }
+		//
+		// sections.push({
+		// 	order: CHECK_RESULT,
+		// 	partial: 'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
+		// 	data: {
+		// 		winner: winner,
+		// 		margin: margin,
+		// 	},
+		// });
 	}
 };
 
+/**
+ * @typedef OpposedCheckData
+ * @property {CheckResultV2} initialCheck The original check.
+ */
+
+/**
+ * @param {ChatMessage} message
+ * @param {HTMLElement} html
+ */
+function onRenderChatMessage(message, html) {
+	if (message.getFlag(systemId, Flags.ChatMessage.OpposedCheck)) {
+		Pipeline.handleClick(message, html, actionName, async (dataset) => {
+			/** @type OpposedCheckData **/
+			const data = StringUtils.fromBase64(dataset.fields);
+			const selected = await getSelected();
+			if (selected.length !== 1) {
+				return;
+			}
+			const actor = selected[0];
+			if (data.initialCheck.actorUuid === actor.uuid) {
+				ui.notifications.warn(`Thou cannot oppose thyself.`);
+				return;
+			}
+			return CheckPrompt.opposedCheck(actor, data);
+		});
+	}
+}
+
 function initialize() {
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 	Hooks.on('getChatMessageContextOptions', onGetChatLogEntryContext);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);

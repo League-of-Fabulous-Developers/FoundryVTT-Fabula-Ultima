@@ -8,6 +8,10 @@ import { SupportCheck } from './support-check.mjs';
 import FUApplication from '../ui/application.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { CommonSections } from './common-sections.mjs';
+import { CheckPrompt } from './check-prompt.mjs';
+import { Pipeline } from '../pipelines/pipeline.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
 
 /**
  * @typedef SupporterV2
@@ -467,7 +471,7 @@ function isGroupCheck(type) {
 /**
  * @type {RenderCheckHook}
  */
-const onRenderGroupCheck = (sections, check, actor) => {
+const onRenderGroupCheck = (sections, check, actor, item, flags) => {
 	const { type, primary, modifierTotal, secondary, result, critical, fumble } = check;
 	if (isGroupCheck(type)) {
 		const inspector = CheckConfiguration.inspect(check);
@@ -498,10 +502,39 @@ const onRenderGroupCheck = (sections, check, actor) => {
 				modifiers: check.modifiers,
 			},
 		});
+
+		const targets = inspector.getTargets();
+		CommonSections.actions(sections, actor, item, targets, flags, inspector);
 	}
 };
 
+/**
+ * @param {ChatMessage} message
+ * @param {HTMLElement} html
+ */
+function onRenderChatMessage(message, html) {
+	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
+		Pipeline.handleClick(message, html, 'ritualCheck', async (dataset) => {
+			/** @type RitualCheckData **/
+			const fields = StringUtils.fromBase64(dataset.fields);
+			const actor = await fromUuid(fields.actorId);
+			if (!actor) {
+				return;
+			}
+			const item = await fromUuid(fields.itemId);
+			if (!item) {
+				return;
+			}
+			return CheckPrompt.ritualCheck(actor, item, {
+				primary: fields.primary,
+				secondary: fields.secondary,
+			});
+		});
+	}
+}
+
 const initialize = () => {
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 	Hooks.once('ready', onReadyResumeGroupChecks);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareGroupCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderGroupCheck);

@@ -21,6 +21,7 @@ export const Flags = Object.freeze({
 		CheckParams: 'CheckParams',
 		CheckV2: 'CheckV2',
 		GroupCheck: 'GroupCheck',
+		OpposedCheck: 'OpposedCheck',
 		GroupCheckV2: 'GroupCheckV2',
 		GroupCheckConfig: 'GroupCheckConfig',
 		SupportCheck: 'Supporter',

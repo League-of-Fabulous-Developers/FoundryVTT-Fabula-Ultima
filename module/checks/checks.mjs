@@ -139,14 +139,16 @@ const opposedCheck = async (actor, configCallback) => {
 /**
  * @param {FUActor} actor
  * @param {CheckAttributes} attributes
+ * @param {OpposedCheckData} data
  * @param {CheckCallback} configCallback
  */
-const opposedCheckV2 = async (actor, attributes, configCallback) => {
+const opposedCheckV2 = async (actor, attributes, data = {}, configCallback) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'opposed',
 		primary: attributes.primary,
 		secondary: attributes.secondary,
+		...data,
 	};
 
 	return performCheck(check, actor, undefined, configCallback);

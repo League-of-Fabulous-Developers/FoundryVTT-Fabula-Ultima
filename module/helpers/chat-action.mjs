@@ -23,7 +23,7 @@ export class ChatAction {
 		this.name = name;
 		this.icon = icon;
 		this.tooltip = tooltip;
-		this.fields = StringUtils.toBase64(fields ?? {});
+		this.withFields(fields);
 		this.dataset = {};
 		this.label = 'FU.ChatApplySelected';
 		this.owner = false;
@@ -36,6 +36,14 @@ export class ChatAction {
 	 */
 	requiresOwner() {
 		this.owner = true;
+		return this;
+	}
+
+	/**
+	 * @param {Object} fields
+	 */
+	withFields(fields) {
+		this.fields = StringUtils.toBase64(fields ?? {});
 		return this;
 	}
 
@@ -121,15 +129,13 @@ export class ChatAction {
 
 	/**
 	 * @param {ChatAction[]} actions
-	 * @param {FUTargetSelectorKey} rule
 	 * @param {EventTarget[]} targetData
 	 * @param {Boolean} retarget
-	 * @return {String}
+	 * @return {Promise<String>}
 	 */
-	static async renderToChat(actions, rule, targetData, retarget = true) {
+	static async renderToChat(actions, targetData = [], retarget = true) {
 		const html = await FoundryUtils.renderTemplate('chat/partials/chat-targets', {
 			retarget: retarget,
-			rule: rule,
 			targets: targetData,
 			actions: actions,
 			targetedActions: actions.filter((a) => a.targeted),

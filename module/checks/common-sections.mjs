@@ -15,6 +15,8 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { FeatureTraits } from '../pipelines/traits.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -48,6 +50,43 @@ const content = (sections, content, order) => {
 		content: content,
 		order,
 	}));
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string} template
+ * @param {Object} context
+ * @param {number} [order]
+ */
+const template = (sections, template, context, order) => {
+	sections.push(async () => {
+		const content = await FoundryUtils.renderTemplate(template, context);
+		return {
+			content: content,
+			order,
+		};
+	});
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {ChatAction[]} actions
+ * @param {number} [order]
+ */
+const chatActions = (sections, actions, order) => {
+	sections.push(async () => {
+		const content = await ChatAction.renderToChat(actions);
+		let flags = {};
+		for (const action of actions) {
+			if (action.flag) {
+				Pipeline.toggleFlag(flags, action.flag);
+			}
+		}
+		return {
+			content: content,
+			order,
+		};
+	});
 };
 
 /**
@@ -494,6 +533,8 @@ const slottedTechnospheres = (sections, slottedTechnospheres, order) => {
 
 export const CommonSections = {
 	content,
+	chatActions,
+	template,
 	description,
 	genericText,
 	itemText,
