@@ -138,6 +138,22 @@ const opposedCheck = async (actor, configCallback) => {
 
 /**
  * @param {FUActor} actor
+ * @param {CheckAttributes} attributes
+ * @param {CheckCallback} configCallback
+ */
+const opposedCheckV2 = async (actor, attributes, configCallback) => {
+	/** @type Partial<CheckV2> */
+	const check = {
+		type: 'opposed',
+		primary: attributes.primary,
+		secondary: attributes.secondary,
+	};
+
+	return performCheck(check, actor, undefined, configCallback);
+};
+
+/**
+ * @param {FUActor} actor
  * @param {CheckCallback} configCallback
  */
 const supportCheck = async (actor, configCallback) => {
@@ -694,6 +710,7 @@ export const Checks = Object.freeze({
 	magicCheck,
 	openCheck,
 	opposedCheck,
+	opposedCheckV2,
 	supportCheck,
 	modifyCheck,
 	isCheck,

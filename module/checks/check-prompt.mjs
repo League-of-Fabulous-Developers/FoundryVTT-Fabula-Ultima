@@ -432,6 +432,34 @@ async function openCheck(actor, options = {}) {
 
 /**
  * @param {Actor} actor
+ * @param {CheckPromptOptions<OpenCheckConfig>} [options]
+ * @returns {Promise<void>}
+ */
+async function opposedCheck(actor, options = {}) {
+	const promptResult = await promptForConfiguration(actor, 'opposed', options.initialConfig);
+	if (promptResult) {
+		return Checks.opposedCheckV2(
+			actor,
+			{
+				primary: promptResult.primary,
+				secondary: promptResult.secondary,
+			},
+			(check, callbackActor, item) => {
+				const checkConfigurer = CheckConfiguration.configure(check);
+				if (promptResult.modifier) {
+					checkConfigurer.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
+				}
+
+				if (options.checkCallback) {
+					options.checkCallback(check, callbackActor, item);
+				}
+			},
+		);
+	}
+}
+
+/**
+ * @param {Actor} actor
  * @param {CheckPromptOptions<GroupCheckConfig>} [options]
  * @returns {Promise<void>}
  */
@@ -569,6 +597,7 @@ export const CheckPrompt = Object.freeze({
 	attributeCheck,
 	openCheck,
 	groupCheck,
+	opposedCheck,
 	ritualCheck,
 	promptForConfigurationV2,
 	getRitualCheckAction,

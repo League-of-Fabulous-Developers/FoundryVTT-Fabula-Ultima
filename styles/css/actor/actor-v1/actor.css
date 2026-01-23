@@ -131,6 +131,7 @@
 .projectfu .sheet-header .header-fields #roll-section {
 	border-radius: 0 10px 10px 0;
 	height: 100%;
+	align-items: baseline;
 }
 
 .projectfu .sheet-header .header-fields #item-navbar {

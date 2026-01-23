@@ -167,12 +167,18 @@
 						<input type="number" value="{{bonus}}" readonly>
 					</label>
 				{{/if}}
+				{{#if (eq type 'opposed')}}
+					<label class="resource-text-m">
+						{{localize 'FU.OpposedCheck'}} {{localize 'FU.Bonus'}}
+						<input type="number" value="{{bonus}}" readonly>
+					</label>
+				{{/if}}
 				<label class="resource-text-m">
 					{{localize 'FU.DialogCheckModifier'}}
 					<input name="modifier" type="number" value="{{modifier}}">
 				</label>
 			</fieldset>
-			{{#if (ne type 'open')}}
+			{{#if (and (ne type 'open') (ne type 'opposed'))}}
 				<fieldset class="flex-group-left resource-content">
 					<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
 
