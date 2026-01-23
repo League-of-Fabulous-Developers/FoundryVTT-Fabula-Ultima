@@ -23,6 +23,7 @@ const WEAPON_TRAITS = 'weaponTraits';
 const LABEL_KEY = 'label';
 const TARGETED_ACTIONS = 'targetedActions';
 const WEAPON_USED = 'weaponUsedBySkill';
+const INITIAL_CHECK = 'initialCheck';
 
 /**
  *
@@ -67,6 +68,13 @@ class CheckInspector {
 	 */
 	get check() {
 		return this.#check;
+	}
+
+	/**
+	 * @returns {CheckResultV2} Present for some scenarios.
+	 */
+	getInitialCheck() {
+		return this.#check.additionalData[INITIAL_CHECK];
 	}
 
 	/**
@@ -635,6 +643,13 @@ export class CheckConfigurer extends CheckInspector {
 			};
 		}
 		this.check.additionalData[EXPENSE].amount += amount;
+	}
+
+	/**
+	 * @param {CheckResultV2} check
+	 */
+	setInitialCheck(check) {
+		this.check.additionalData[INITIAL_CHECK] = check;
 	}
 }
 

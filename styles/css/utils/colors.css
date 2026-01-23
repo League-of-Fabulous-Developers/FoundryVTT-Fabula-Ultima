@@ -292,6 +292,8 @@
 	--background-fumble-end: #15031e;
 	--background-fumble: linear-gradient(to right, var(--background-fumble-start), var(--background-fumble-end));
 	--border-fumble: #b087a6;
+	--background-opposed: linear-gradient(to right, #edb7aa, #9c57a6);
+	--background-opposed-border: #9c57a6;
 	/* Hit/Miss colors */
 	--background-hit: linear-gradient(to right, #228c22, #91c469);
 	--border-hit: #91c469;

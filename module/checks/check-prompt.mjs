@@ -5,10 +5,6 @@ import { GroupCheck } from './group-check.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { systemId } from '../helpers/system-utils.mjs';
-import { Pipeline } from '../pipelines/pipeline.mjs';
-import { CheckHooks } from './check-hooks.mjs';
-import { CommonSections } from './common-sections.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 
@@ -23,6 +19,10 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef {Omit<AttributeCheckConfig, 'difficulty'>} OpenCheckConfig
+ */
+
+/**
+ * @typedef {Omit<AttributeCheckConfig, 'difficulty'>} OpposedCheckConfig
  */
 
 /**
@@ -241,13 +241,12 @@ async function promptForConfiguration(actor, type, initialConfig = {}) {
 
 /**
  * @template T
- * @param {Document} document
+ * @param {Document|FUActor} document
  * @param {CheckType} type
  * @param {T} initialConfig
- * @param {FUActor[]} actors
  * @returns {Promise<AttributeCheckConfig>}
  */
-async function promptForConfigurationV2(document, type, initialConfig, actors = undefined) {
+async function promptForConfigurationV2(document, type, initialConfig = {}) {
 	const recentCheck = retrieveRecentCheck(document, type);
 
 	Object.keys(recentCheck).forEach((key) => {
@@ -284,6 +283,14 @@ async function promptForConfigurationV2(document, type, initialConfig, actors = 
 	};
 
 	switch (type) {
+		case 'open': {
+			context.bonus = document.system.bonuses.accuracy.openCheck;
+			break;
+		}
+		case 'opposed': {
+			context.bonus = document.system.bonuses.accuracy.opposedCheck;
+			break;
+		}
 		case 'ritual':
 			{
 				const potency = potencyList[0];
@@ -408,7 +415,7 @@ async function attributeCheck(actor, options = {}) {
  * @returns {Promise<void>}
  */
 async function openCheck(actor, options = {}) {
-	const promptResult = await promptForConfiguration(actor, 'open', options.initialConfig);
+	const promptResult = await promptForConfigurationV2(actor, 'open', options.initialConfig);
 	if (promptResult) {
 		return Checks.openCheck(
 			actor,
@@ -431,12 +438,44 @@ async function openCheck(actor, options = {}) {
 }
 
 /**
+ * @param {FUActor} actor
+ * @param {OpposedCheckData} data
+ * @param {CheckPromptOptions<OpposedCheckConfig>} [options]
+ * @returns {Promise<void>}
+ */
+async function opposedCheck(actor, data = {}, options = {}) {
+	const promptResult = await promptForConfigurationV2(actor, 'opposed', options.initialConfig);
+	if (promptResult) {
+		return Checks.opposedCheckV2(
+			actor,
+			{
+				primary: promptResult.primary,
+				secondary: promptResult.secondary,
+			},
+			data,
+			(check, callbackActor, item) => {
+				const config = CheckConfiguration.configure(check);
+				if (promptResult.modifier) {
+					config.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
+				}
+				if (data.initialCheck) {
+					config.setInitialCheck(data.initialCheck);
+				}
+				if (options.checkCallback) {
+					options.checkCallback(check, callbackActor, item);
+				}
+			},
+		);
+	}
+}
+
+/**
  * @param {Actor} actor
  * @param {CheckPromptOptions<GroupCheckConfig>} [options]
  * @returns {Promise<void>}
  */
 async function groupCheck(actor, options = {}) {
-	const promptResult = await promptForConfiguration(actor, 'group', options.initialConfig);
+	const promptResult = await promptForConfigurationV2(actor, 'group', options.initialConfig);
 	if (promptResult) {
 		return Checks.groupCheck(actor, (check, callbackActor, item) => {
 			const checkConfigurer = CheckConfiguration.configure(check);
@@ -493,18 +532,6 @@ async function ritualCheck(actor, item, options = {}) {
 }
 
 /**
- * @type RenderCheckHook
- */
-const onRenderCheck = (sections, check, actor, item, flags) => {
-	if (GroupCheck.isGroupCheck(check.type)) {
-		const inspector = CheckConfiguration.inspect(check);
-		const targets = inspector.getTargets();
-		CommonSections.actions(sections, actor, item, targets, flags, inspector);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderCheck);
-
-/**
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {Attribute} primary
@@ -533,42 +560,15 @@ function getRitualCheckAction(actor, item, primary, secondary) {
 }
 
 /**
- * @param {ChatMessage} message
- * @param {HTMLElement} html
- */
-function onRenderChatMessage(message, html) {
-	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
-		Pipeline.handleClick(message, html, 'ritualCheck', async (dataset) => {
-			/** @type RitualCheckData **/
-			const fields = StringUtils.fromBase64(dataset.fields);
-			const actor = await fromUuid(fields.actorId);
-			if (!actor) {
-				return;
-			}
-			const item = await fromUuid(fields.itemId);
-			if (!item) {
-				return;
-			}
-			return ritualCheck(actor, item, {
-				primary: fields.primary,
-				secondary: fields.secondary,
-				//label: item.name,
-			});
-		});
-	}
-}
-
-/**
  * @description Initialize the pipeline's hooks
  */
-function initialize() {
-	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
-}
+function initialize() {}
 
 export const CheckPrompt = Object.freeze({
 	attributeCheck,
 	openCheck,
 	groupCheck,
+	opposedCheck,
 	ritualCheck,
 	promptForConfigurationV2,
 	getRitualCheckAction,

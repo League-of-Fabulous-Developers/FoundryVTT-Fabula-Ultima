@@ -1,22 +1,31 @@
-<div class='detail-desc flexrow flex-group-center desc' style='padding: 0.25rem;'>
-    <div class="flexcol">
-        <div>
-		<span class='result-text'>
-            {{{localize 'FU.OpposedCheckDetailsActors' sourceActor=source opposingActor=opponent}}}
-        </span>
-        </div>
-        <div>
-        <span class='result-text'>
-            {{#unless (or fumble critical)}}
-                {{{localize 'FU.OpposedCheckDetailsSourceResult' result=result}}}
-            {{/unless}}
-            {{#if fumble}}
-                {{{localize 'FU.OpposedCheckDetailsSourceResult' result=(localize 'FU.Fumble')}}}
-            {{/if}}
-            {{#if critical}}
-                {{{localize 'FU.OpposedCheckDetailsSourceResult' result=(localize 'FU.Critical')}}}
-            {{/if}}
-        </span>
-        </div>
-    </div>
-</div>
+<main class="fu-chat__opposed-check">
+	<section class="flexrow flex-group-center">
+		{{#with actor}}
+			<a data-link data-uuid="{{uuid}}"
+			   data-type="Actor" data-tooltip="{{name}}">
+				<img src="{{img}}" alt="{{name}}" data-item-id="{{id}}"
+					 class="profile-img fu-chat__actor
+					{{#if (eq @root.winner name)}}
+						 fu-chat__opposed-check__winner
+					 {{else}}
+						 fu-chat__opposed-check__loser
+					 {{/if}}">
+			</a>
+		{{/with}}
+
+		<i class="fu-icon--m ra ra-crossed-swords fu-chat__opposed-check__icon"></i>
+
+		{{#with initialActor}}
+			<a data-link draggable="true" data-uuid="{{uuid}}"
+			   data-type="Actor" data-tooltip="{{name}}">
+				<img src="{{img}}" alt="{{name}}" data-item-id="{{id}}"
+					 class="profile-img fu-chat__actor
+					 {{#if (eq @root.winner name)}}
+						 fu-chat__opposed-check__winner
+					 {{else}}
+						 fu-chat__opposed-check__loser
+					 {{/if}}">
+			</a>
+		{{/with}}
+	</section>
+</main>

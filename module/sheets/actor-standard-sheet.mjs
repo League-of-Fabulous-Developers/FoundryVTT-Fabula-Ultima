@@ -790,7 +790,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 			return BehaviorRoll.rollBehavior(this);
 		}
 
-		if (dataset.rollType === 'roll-check') {
+		if (dataset.rollType === 'opposed-check') {
+			return CheckPrompt.opposedCheck(this.actor);
+		}
+
+		if (dataset.rollType === 'attribute-check') {
 			return CheckPrompt.attributeCheck(this.actor);
 		}
 

@@ -161,18 +161,15 @@
 		<div class="flexrow">
 			<fieldset class="flex-group-left resource-content">
 				<legend class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</legend>
-				{{#if (eq type 'open')}}
+				<div class="flexrow flex-group-center">
+					{{pfuBadge 'mod' label='FU.Bonus' value=bonus }}
 					<label class="resource-text-m">
-						{{localize 'FU.DialogCheckOpenCheck'}} {{localize 'FU.Bonus'}}
-						<input type="number" value="{{bonus}}" readonly>
+						{{localize 'FU.DialogCheckModifier'}}
+						<input name="modifier" type="number" value="{{modifier}}">
 					</label>
-				{{/if}}
-				<label class="resource-text-m">
-					{{localize 'FU.DialogCheckModifier'}}
-					<input name="modifier" type="number" value="{{modifier}}">
-				</label>
+				</div>
 			</fieldset>
-			{{#if (ne type 'open')}}
+			{{#if (and (ne type 'open') (ne type 'opposed'))}}
 				<fieldset class="flex-group-left resource-content">
 					<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
 
