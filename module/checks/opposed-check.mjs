@@ -87,7 +87,7 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 			}
 			CommonSections.template(
 				sections,
-				'chat/partials/chat-opposed-check-result',
+				'chat/partials/chat-opposed-check-details',
 				{
 					actor,
 					initialActor,
@@ -95,6 +95,14 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 					margin,
 				},
 				CHECK_DETAILS,
+			);
+			CommonSections.template(
+				sections,
+				'chat/partials/chat-opposed-check-result',
+				{
+					winner,
+				},
+				CHECK_ADDENDUM_ORDER,
 			);
 		}
 		//

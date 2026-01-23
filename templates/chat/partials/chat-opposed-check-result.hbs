@@ -1,34 +1,13 @@
-<main class="fu-chat__opposed-check">
-	<section class="flexrow flex-group-center">
-		{{#with actor}}
-			{{log 'winner' @root.winner 'self' name}}
-			<a data-link data-uuid="{{uuid}}"
-			   data-type="Actor" data-tooltip="{{name}}">
-				<img src="{{img}}" alt="{{name}}" data-item-id="{{id}}"
-					 class="profile-img fu-chat__actor
-					{{#if (eq @root.winner name)}}
-						 fu-chat__opposed-check__winner
-					 {{else}}
-						 fu-chat__opposed-check__loser
-					 {{/if}}">
-			</a>
-		{{/with}}
-
-		<div class="flexcol flex-group-center">
-			<i class="fu-icon--m ra ra-crossed-swords fu-chat__opposed-check__icon"></i>
-		</div>
-
-		{{#with initialActor}}
-			<a data-link draggable="true" data-uuid="{{uuid}}"
-			   data-type="Actor" data-tooltip="{{name}}">
-				<img src="{{img}}" alt="{{name}}" data-item-id="{{id}}"
-					 class="profile-img fu-chat__actor
-					 {{#if (eq @root.winner name)}}
-						 fu-chat__opposed-check__winner
-					 {{else}}
-						 fu-chat__opposed-check__loser
-					 {{/if}}">
-			</a>
-		{{/with}}
-	</section>
+<main class="chat-desc">
+	<div class="flexrow flex-group-center">
+		{{#if winner}}
+			{{#unless (gt margin 0)}}
+				<span>{{{localize 'FU.OpposedCheckWinner' winner=winner}}}</span>
+			{{else}}
+				<span>{{{localize 'FU.OpposedCheckWinnerByMargin' winner=winner margin=margin}}}</span>
+			{{/unless}}
+		{{else}}
+			<span>{{{localize 'FU.OpposedCheckDraw'}}}</span>
+		{{/if}}
+	</div>
 </main>
