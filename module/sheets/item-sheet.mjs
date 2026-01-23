@@ -732,12 +732,10 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 						promises.push(this.item.actor.createEmbeddedDocuments('Item', [itemObject]));
 						promises.push(item.delete());
 					} else {
-						const doDelete = await foundry.applications.api.DialogV2.confirm({
-							window: { title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }) },
-							content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
-							rejectClose: false,
-						});
-						if (doDelete) {
+						const title = StringUtils.localize('FU.DialogDeleteItemTitle', { item: item.name });
+						const content = StringUtils.localize('FU.DialogDeleteItemDescription', { item: item.name });
+						const confirm = await FoundryUtils.confirmDialog(title, content);
+						if (confirm) {
 							promises.push(item.delete());
 						}
 					}

@@ -3,6 +3,8 @@ import { FUPartySheet } from './actor-party-sheet.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -227,13 +229,10 @@ async function _onItemDelete(element, sheet) {
 		return;
 	}
 
-	if (
-		await foundry.applications.api.DialogV2.confirm({
-			window: { title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }) },
-			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
-			rejectClose: false,
-		})
-	) {
+	const title = StringUtils.localize('FU.DialogDeleteItemTitle', { item: item.name });
+	const content = StringUtils.localize('FU.DialogDeleteItemDescription', { item: item.name });
+	const confirm = await FoundryUtils.confirmDialog(title, content);
+	if (confirm) {
 		await item.delete();
 		sheet.render(false); // Removed `jq.slideUp` since it's jQuery-specific
 	}

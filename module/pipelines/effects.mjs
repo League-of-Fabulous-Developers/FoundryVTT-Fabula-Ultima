@@ -150,13 +150,10 @@ export async function onManageActiveEffect(event, owner, action) {
 		case 'delete': {
 			const _effect = resolveEffect();
 			if (canBeRemoved(_effect)) {
-				if (
-					await foundry.applications.api.DialogV2.confirm({
-						title: game.i18n.format('FU.DialogDeleteItemTitle', { item: _effect.name }),
-						content: game.i18n.format('FU.DialogDeleteItemDescription', { item: _effect.name }),
-						rejectClose: false,
-					})
-				) {
+				const title = StringUtils.localize('FU.DialogDeleteItemTitle', { item: _effect.name });
+				const content = StringUtils.localize('FU.DialogDeleteItemDescription', { item: _effect.name });
+				const confirm = await FoundryUtils.confirmDialog(title, content);
+				if (confirm) {
 					sendToChatEffectRemoved(_effect, owner);
 					return _effect.delete();
 				}
