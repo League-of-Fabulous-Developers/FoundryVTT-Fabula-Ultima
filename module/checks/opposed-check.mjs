@@ -178,20 +178,20 @@ const onRenderCheck = (sections, check, actor) => {
 				opponent: actor.name,
 				fumble: sourceCheckData.fumble,
 				critical: sourceCheckData.critical,
-				result: sourceCheckData.check,
+				result: sourceCheckData.result,
 			},
 		});
 
 		let winner;
 		let margin = 0;
-		if ((sourceCheckData.fumble && check.fumble) || (sourceCheckData.critical && check.critical) || sourceCheckData.check === check.result) {
+		if ((sourceCheckData.fumble && check.fumble) || (sourceCheckData.critical && check.critical) || sourceCheckData.result === check.result) {
 			winner = null;
-		} else if (sourceCheckData.fumble || check.critical || sourceCheckData.check < check.result) {
+		} else if (sourceCheckData.fumble || check.critical || sourceCheckData.result < check.result) {
 			winner = actor.name;
-			margin = check.result - sourceCheckData.check;
+			margin = check.result - sourceCheckData.result;
 		} else {
 			winner = speakerActor.name;
-			margin = sourceCheckData.check - check.result;
+			margin = sourceCheckData.result - check.result;
 		}
 
 		sections.push({
