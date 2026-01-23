@@ -112,6 +112,7 @@ import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
 import { PressureSystem } from './systems/pressure-system.mjs';
 import { FUToken } from './ui/token.mjs';
 import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
+import { FUChatLog } from './ui/chat-log.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -281,6 +282,7 @@ Hooks.once('init', async () => {
 	//CONFIG.ui.combat = FUCombatTracker;
 	Object.assign(CONFIG.ui, {
 		combat: FUCombatTracker,
+		chat: FUChatLog,
 	});
 
 	// Register status effects
