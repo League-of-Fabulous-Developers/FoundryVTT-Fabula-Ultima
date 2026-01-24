@@ -1,8 +1,9 @@
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
-import { FU } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import FUApplication from './application.mjs';
 import { NpcProfileBasicAttacksTableRenderer } from '../helpers/tables/npc-profile-basic-attacks-table-renderer.mjs';
 import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spells-table-renderer.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @typedef NpcProfileRevealData
@@ -106,8 +107,8 @@ export class NpcProfileWindow extends FUApplication {
 			const reveal = complete || (revealAffinities && affinity in (this.data.revealed?.affinities ?? {}));
 			const value = reveal ? values.current : 0;
 			const acronymValue = FU.affTypeAbbr[value];
-			const fullName = FU.damageTypes[affinity];
-			const iconClass = FU.affIcon[affinity];
+			const fullName = FU.damageTypes[affinity] ?? FU.weaponCategories[affinity];
+			const iconClass = FU.affIcon[affinity] ?? FU.weaponCategoryIcons[affinity];
 			const opacity = reveal ? '1' : '0.25';
 			return {
 				fullName,
@@ -116,7 +117,6 @@ export class NpcProfileWindow extends FUApplication {
 				opacity,
 			};
 		});
-
 		Object.assign(context, this.data);
 		context.actor = actor;
 		context.name = actor.name;
@@ -169,6 +169,8 @@ export class NpcProfileWindow extends FUApplication {
 		const actor = await fromUuid(existing.uuid);
 		const studyDifficulties = StudyRollHandler.getStudyDifficulties();
 		const affinities = Object.keys(FU.damageTypes).filter((value) => value !== 'untyped');
+		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) affinities.push(...Object.keys(FU.weaponCategories));
+
 		const affinityMap = Object.fromEntries(Object.entries(actor.system.affinities).map(([key, aff]) => [key, FU.affTypeAbbr[aff.current]]));
 		/** @type String **/
 		const traits = actor.system.traits.value;
@@ -179,12 +181,26 @@ export class NpcProfileWindow extends FUApplication {
 			.filter(Boolean);
 		console.debug(`Editing profile of ${JSON.stringify(existing)}`);
 
+		const affinityContext = Object.fromEntries(
+			affinities.map((affinity) => {
+				const aff = actor.system.affinities[affinity];
+				return [
+					affinity,
+					{
+						key: affinity,
+						label: FU.damageTypes[affinity] ?? FU.weaponCategories[affinity],
+						abbr: FU.affTypeAbbr[aff.current],
+					},
+				];
+			}),
+		);
+
 		let updatedProfile = await foundry.applications.api.DialogV2.input({
 			window: { title: game.i18n.localize('FU.NpcProfileUpdate') },
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
 				existing: existing,
 				studyDifficulties: studyDifficulties,
-				affinities: affinities,
+				affinities: affinityContext,
 				affinityMap: affinityMap,
 				traits: traitsArray,
 				FU: FU,

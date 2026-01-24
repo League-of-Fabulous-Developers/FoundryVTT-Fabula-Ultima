@@ -317,11 +317,17 @@ function resolveAffinity(context) {
 				}
 			}
 		}
-		CommonEvents.reveal(context.actor, {
+
+		const reveal = {
 			affinities: {
 				[context.damageType]: true,
 			},
-		});
+		};
+		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities) && context.item?.system?.category?.value) {
+			reveal.affinities[context.item.system.category.value] = true;
+		}
+
+		CommonEvents.reveal(context.actor, reveal);
 	}
 
 	context.affinityMessage = affinityMessage;

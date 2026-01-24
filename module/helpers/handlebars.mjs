@@ -203,6 +203,10 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuBadge', badge);
 		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
 		Handlebars.registerHelper('pfuCompendium', compendium);
+
+		Handlebars.registerHelper('pfuEq', function (first, second) {
+			return first == second;
+		});
 	},
 });
 

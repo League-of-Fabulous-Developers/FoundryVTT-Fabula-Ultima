@@ -28,13 +28,17 @@
 
 	<fieldset style="gap: 0">
 		<legend>{{localize 'FU.Affinities'}}</legend>
-		{{#each affinities}}
-			<label>
-				<input type="checkbox"
-					   name="affinities.{{this}}" {{#if (lookup ../existing.revealed.affinities this)}}checked{{/if}} />
-				{{localize (lookup @root.FU.damageTypes this)}} ({{localize (lookup ../affinityMap this)}})
-			</label>
-		{{/each}}
+		<div style="column-count: 2">
+			{{#each affinities as |affinity|}}
+			  {{#if (pfuEq @index 9)}}<div style="height:1em"></div>{{/if}}
+				<div>
+					<label>
+						<input type="checkbox" name="affinities.{{affinity.key}}" {{#if (lookup ../existing.revealed.affinities this.key)}}checked{{/if}} />
+						{{localize affinity.label}} ({{localize affinity.abbr}})
+					</label>
+				</div>
+			{{/each}}
+		</div>
 	</fieldset>
 
 	{{#if traits}}
