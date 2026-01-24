@@ -1,6 +1,7 @@
-import { FU } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { SETTINGS } from '../settings.js';
 
 export class DamageCustomizerV2 {
 	/**
@@ -18,6 +19,12 @@ export class DamageCustomizerV2 {
 			initialType: damageData.type,
 			/** @type DamageType **/
 			selectedType: damageData.type,
+
+			// This logic may need adjusting, there do not appear to be any situations currently
+			// where an item is actually passed to this version of the damage customizer
+			useCategories: item?.system?.category?.value && game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities),
+			categories: FoundryUtils.generateConfigIconOptions(Object.keys(FU.weaponCategories), FU.weaponCategories, FU.weaponCategoryIcons),
+			selectedCategory: damageData.weaponCategory,
 		};
 
 		const result = await foundry.applications.api.DialogV2.input({
@@ -29,6 +36,19 @@ export class DamageCustomizerV2 {
 				width: 480,
 			},
 			actions: {
+				/** @param {Event} event
+				 *  @param {HTMLElement} dialog **/
+				selectCategory: (event, dialog) => {
+					const value = event.target.dataset.value;
+					const parent = dialog.closest('div');
+					const option = parent.querySelector("input[name='weaponCategory']");
+					option.value = value;
+					parent.querySelectorAll('button').forEach((button) => {
+						button.classList.remove('selected');
+					});
+					dialog.classList.add('selected');
+					context.selectedCategory = value;
+				},
 				/** @param {Event} event
 				 *  @param {HTMLElement} dialog **/
 				selectType: (event, dialog) => {
@@ -60,7 +80,8 @@ export class DamageCustomizerV2 {
 				const hrInput = dialog.element.querySelector('#hr');
 
 				// Update type options accordingly
-				const typeButtons = dialog.element.querySelectorAll('.fu-dialog__icon-option');
+				// const typeButtons = dialog.element.querySelectorAll('.fu-dialog__icon-option');
+				const typeButtons = dialog.element.querySelectorAll(`[data-group="damageType"]`);
 				function updateTypeOptions() {
 					/** @type Set<DamageType> **/
 					let available = context.damage.getAvailableTypes();
@@ -106,9 +127,11 @@ export class DamageCustomizerV2 {
 				customDamageBonusInput.addEventListener('change', () => {
 					updateTotalDamage();
 				});
-				hrInput.addEventListener('change', () => {
-					updateTotalDamage();
-				});
+				if (hrInput instanceof HTMLElement) {
+					hrInput.addEventListener('change', () => {
+						updateTotalDamage();
+					});
+				}
 
 				// Modifier toggles
 				const modifierCheckboxes = dialog.element.querySelectorAll("input[type='checkbox'][name^='context.damage._modifiers.']");
@@ -125,8 +148,10 @@ export class DamageCustomizerV2 {
 			},
 		});
 		if (result) {
+			console.log('Result:', result);
 			// const expanded = foundry.utils.expandObject(result);
 			damageData.type = context.selectedType;
+			damageData.weaponCategory = context.selectedCategory;
 			if (result.hr === false) {
 				damageData.hrZero = true;
 				damageData.hr = 0;

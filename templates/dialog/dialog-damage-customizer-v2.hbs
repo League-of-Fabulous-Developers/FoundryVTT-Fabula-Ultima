@@ -107,6 +107,7 @@
 			{{#each context.types as |type| }}
 				<button type="button"
 						class="fu-dialog__icon-option"
+						data-group="damageType"
 						data-tooltip="{{label}}"
 						data-action="selectType" data-value="{{value}}">
 					<i class="fu-icon--m {{icon}}"></i>
@@ -114,6 +115,26 @@
 			{{/each}}
 		</div>
 	</fieldset>
+
+	{{#if context.useCategories}}
+		<fieldset class="title-fieldset desc resource-content">
+			<legend class="resource-label-full">
+				<label class="resource-label-m">{{localize "FU.Category"}}</label>
+			</legend>
+			<div class="grid flex-group-center grid-5col gap-5">
+				<input type="hidden" name="weaponCategory" value="">
+				{{#each context.categories as |category|}}
+					<button type="button"
+						class="fu-dialog__icon-option"
+						data-group="weaponCategory"
+						data-tooltip="{{label}}"
+						data-action="selectCategory" data-value="{{value}}">
+						<i class="fu-icon--m {{icon}}"></i>
+					</button>
+				{{/each}}
+			</div>
+		</fieldset>
+	{{/if}}
 
 	<fieldset class="title-fieldset desc resource-content">
 		<legend class="resource-label-full">
