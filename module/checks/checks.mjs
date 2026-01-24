@@ -698,7 +698,6 @@ export const Checks = Object.freeze({
 	ritualCheck,
 	magicCheck,
 	openCheck,
-	opposedCheck,
 	opposedCheckV2,
 	supportCheck,
 	modifyCheck,
