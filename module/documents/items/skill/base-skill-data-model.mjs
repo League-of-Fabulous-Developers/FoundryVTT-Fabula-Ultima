@@ -8,7 +8,7 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
+import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
@@ -68,6 +68,13 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
+	 * @return Tag[]
+	 */
+	getCommonTags() {
+		return TraitUtils.toTags(this.traits);
+	}
+
+	/**
 	 * @desc Common configuration for display checks.
 	 * @param {CheckConfigurer} config
 	 * @param {FUActor} actor
@@ -97,9 +104,10 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @param {CheckConfigurer} config
 	 * @param {FUActor} actor
 	 * @param {FUItem} item
-	 * @param {ExpressionContext} context
 	 */
-	async configureDisplayCheck(config, actor, item, context) {
+	async configureDisplayCheck(config, actor, item) {
+		const targets = config.getTargets();
+		const context = ExpressionContext.fromTargetData(actor, item, targets);
 		this.configureCheck(config);
 		if (this.damage.hasDamage) {
 			if (this.useWeapon.damage) {
@@ -167,6 +175,10 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 		}
 	}
 
+	/**
+	 * @param {FUActor} actor
+	 * @returns {Promise<game.projectfu.FUItem>}
+	 */
 	async getWeapon(actor) {
 		const weapon = await ChooseWeaponDialog.prompt(actor, true);
 		if (weapon === false) {
@@ -180,6 +192,9 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 		return weapon;
 	}
 
+	/**
+	 * @returns {String[]} Common partials used by all skills.
+	 */
 	get commonPartials() {
 		return [
 			ItemPartialTemplates.standard,

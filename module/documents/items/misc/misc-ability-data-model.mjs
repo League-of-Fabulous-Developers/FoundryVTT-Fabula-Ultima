@@ -11,57 +11,80 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
 import { ExpressionContext } from '../../../expressions/expressions.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
-	const inspector = CheckConfiguration.inspect(check);
-	if (item?.system instanceof MiscAbilityDataModel) {
-		let weapon;
-		if (check.type === 'accuracy') {
-			weapon = fromUuidSync(inspector.getWeaponReference());
-			if (check.critical) {
-				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
-			}
+const skillForAttributeCheck = 'skillForAttributeCheck';
+
+/**
+ * @type RenderCheckHook
+ */
+let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
+	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
+		const inspector = CheckConfiguration.inspect(check);
+		const weapon = fromUuidSync(inspector.getWeaponReference());
+		if (check.critical) {
+			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 		}
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (item.system.hasClock.value) {
 			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
 		}
-		if (weapon) {
-			CommonSections.tags(
-				sections,
-				[
-					{
-						tag: `FU.${weapon.system.category.value.capitalize()}`,
-					},
-					{
-						tag: weapon.system.hands.value === 'one-handed' ? 'FU.OneHanded' : 'FU.TwoHanded',
-					},
-					{
-						tag: `FU.${weapon.system.type.value.capitalize()}`,
-					},
-					...TraitUtils.toTags(this.traits),
-				],
-				CHECK_DETAILS,
-			);
-		}
 
-		// Optional resource
+		// Tag info
+		let tags = [];
+		tags.push(...TraitUtils.toTags(item.system.traits));
+		if (weapon) {
+			if (weapon.system.getTags instanceof Function) {
+				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
+			}
+		}
+		CommonSections.tags(sections, tags, CHECK_DETAILS);
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
 		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
-	} else if (check.type === 'attribute' && inspector.getWeaponReference()) {
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
+
+/**
+ * @type RenderCheckHook
+ */
+let onRenderAttributeCheck = (sections, check, actor, item, flags) => {
+	if (check.type === 'attribute' && item?.system instanceof MiscAbilityDataModel && check.additionalData[skillForAttributeCheck]) {
+		const inspector = CheckConfiguration.inspect(check);
 		const ability = fromUuidSync(inspector.getWeaponReference());
 		CommonSections.itemFlavor(sections, ability);
-
 		if (check.critical) {
 			CommonSections.opportunity(sections, ability.system.opportunity, CHECK_DETAILS);
 		}
-
 		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS, true);
 		if (ability.system.hasClock.value) {
-			CommonSections.clock(sections, ability.system.progress, CHECK_DETAILS);
+			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
 		}
 	}
-});
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
+
+/**
+ * @type RenderCheckHook
+ */
+const onRenderDisplay = (sections, check, actor, item, flags) => {
+	if (check.type === 'display' && item?.system instanceof MiscAbilityDataModel) {
+		const skill = item.system;
+		CommonSections.tags(sections, skill.getCommonTags(), CHECK_DETAILS);
+		if (item.system.hasResource.value) {
+			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
+		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargetsOrDefault();
+		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
+		CommonSections.actions(sections, actor, item, targets, flags, inspector);
+		CommonEvents.skill(actor, item);
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
 
 /**
  * @property {string} subtype.value
@@ -168,10 +191,7 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 	#initializeSkillDisplay(modifiers) {
 		return async (check, actor, item) => {
 			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-			this.configureCheck(config);
-			await this.configureDisplayCheck(config, actor, item, context);
+			await this.configureDisplayCheck(config, actor, item);
 		};
 	}
 

@@ -1,15 +1,14 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
-import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
+import { ExpressionContext } from '../../../expressions/expressions.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { BaseSkillDataModel } from './base-skill-data-model.mjs';
 
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -45,7 +44,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
  * @type RenderCheckHook
  */
 let onRenderAttributeCheck = (sections, check, actor, item, flags) => {
-	if (check.type === 'attribute' && check.additionalData[skillForAttributeCheck]) {
+	if (check.type === 'attribute' && item?.system instanceof SkillDataModel && check.additionalData[skillForAttributeCheck]) {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
 		const inspector = CheckConfiguration.inspect(check);
 		CommonSections.itemFlavor(sections, skill);
@@ -191,10 +190,7 @@ export class SkillDataModel extends BaseSkillDataModel {
 	#initializeSkillDisplay(modifiers) {
 		return async (check, actor, item) => {
 			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-			this.configureCheck(config);
-			await this.configureDisplayCheck(config, actor, item, context);
+			await this.configureDisplayCheck(config, actor, item);
 		};
 	}
 
