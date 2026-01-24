@@ -979,7 +979,11 @@ FU.predicateQuantifier = {
 	none: 'FU.None',
 };
 
+/**
+ * @typedef {"none", "single", "multiple"} FUTargetingPredicate
+ */
 FU.targetingPredicate = {
+	none: 'FU.None',
 	single: 'FU.Single',
 	multiple: 'FU.Multiple',
 };
