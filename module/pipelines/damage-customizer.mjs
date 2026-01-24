@@ -1,4 +1,5 @@
-import { FU, systemPath } from '../helpers/config.mjs';
+import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @typedef DamageOverrideInfo
@@ -40,6 +41,7 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 		content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-damage-customizer.hbs'), {
 			FU,
 			damage,
+			showCategory: game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities),
 		}),
 		rejectClose: false,
 		ok: {
@@ -89,7 +91,6 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 	});
 
 	if (result) {
-		console.log(result);
 		// Retrieve values from the form
 		const damageType = result['damage-type'];
 		const extraDamage = parseInt(result['extra-damage'], 10) || 0;
@@ -110,6 +111,8 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 			ignoreAbsorption,
 			targets,
 		};
+
+		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) damageOverride.weaponCategory = result['weapon-category'];
 
 		// Execute the callback with the extra damage information and targets
 		callback(damageOverride, targets);

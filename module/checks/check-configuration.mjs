@@ -95,6 +95,8 @@ class CheckInspector {
 			data.hr = this.getHighRoll();
 			data.hrZero = this.getHrZero();
 
+			data.category = this.#check.additionalData.weaponTraits?.weaponCategory;
+
 			if (this.hasTrait(Traits.Base)) {
 				data.base = true;
 			}

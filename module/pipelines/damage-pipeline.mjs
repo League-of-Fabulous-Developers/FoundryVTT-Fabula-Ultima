@@ -99,6 +99,7 @@ export class DamageRequest extends PipelineRequest {
 		this.damageData = damageData;
 		this.damageOverride = damageOverride;
 		this.damageType = this.damageOverride.damageType || this.damageData.type;
+		this.weaponCategory = this.damageOverride.weaponCategory || this.damageData.weaponCategory;
 		this.overrides = {};
 	}
 
@@ -208,14 +209,14 @@ export class DamagePipelineContext extends PipelineContext {
  * @return {number}
  */
 function resolveCategoryAffinity(context, currentAffinity) {
-	console.log('Resolving category affinity:', context);
 	// TODO: Remove magic string for untyped
 	// Untyped damage does not apply Category Affinities
 	if (context.damageType === 'untyped') return currentAffinity;
 	// AB and IM override others
 	if (currentAffinity === FU.affValue.immunity || currentAffinity === FU.affValue.absorption) return currentAffinity;
 
-	const category = context.item?.system?.category?.value;
+	// const category = context.item?.system?.category?.value;
+	const category = context.weaponCategory ?? context.item?.system?.category?.value;
 
 	// If we have no weapon category, bail
 	if (!category) return currentAffinity;
@@ -254,6 +255,7 @@ function resolveAffinity(context) {
 		affinity = context.overrides.affinity;
 	} else if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities) && context.item?.system?.category?.value) {
 		// Handle category affinities
+		console.log('');
 		affinity = context.actor?.system?.affinities?.[context?.damageType]?.current ?? 0;
 		affinity = resolveCategoryAffinity(context, affinity);
 	} else if (context.damageType in context.actor.system.affinities) {
@@ -323,8 +325,9 @@ function resolveAffinity(context) {
 				[context.damageType]: true,
 			},
 		};
-		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities) && context.item?.system?.category?.value) {
-			reveal.affinities[context.item.system.category.value] = true;
+		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) {
+			if (context.weaponCategory) reveal.affinities[context.weaponCategory] = true;
+			else if (context.item?.system?.category?.value) reveal.affinities[context.item.system.category.value] = true;
 		}
 
 		CommonEvents.reveal(context.actor, reveal);
@@ -675,10 +678,12 @@ function onRenderChatMessage(message, html) {
 				const targets = await getTargeted();
 				if (targets.length) {
 					disabled = true;
+					console.log('Customizing damage');
 					return DamageCustomizer(
 						damageData,
 						targets,
 						async (damageOverride) => {
+							console.log(damageOverride);
 							await handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
 							disabled = false;
 						},
