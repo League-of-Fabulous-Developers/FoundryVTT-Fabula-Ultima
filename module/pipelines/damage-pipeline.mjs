@@ -203,6 +203,39 @@ export class DamagePipelineContext extends PipelineContext {
 }
 
 /**
+ * Resolves final affinity while respecting category-based affinities
+ * @param {DamagePipelineContext} context
+ * @return {number}
+ */
+function resolveCategoryAffinity(context, currentAffinity) {
+	console.log('Resolving category affinity:', context);
+	// TODO: Remove magic string for untyped
+	// Untyped damage does not apply Category Affinities
+	if (context.damageType === 'untyped') return currentAffinity;
+	// AB and IM override others
+	if (currentAffinity === FU.affValue.immunity || currentAffinity === FU.affValue.absorption) return currentAffinity;
+
+	const category = context.item?.system?.category?.value;
+
+	// If we have no weapon category, bail
+	if (!category) return currentAffinity;
+	const categoryAffinity = context.actor?.system?.affinities?.[category]?.current;
+
+	// Likewise, if our actor does not have any affinity in their DataModel for this category, bail
+	if (typeof categoryAffinity !== 'number') return currentAffinity;
+
+	// once again, AB and IM override others
+	if (categoryAffinity === FU.affValue.immunity || categoryAffinity === FU.affValue.absorption) return categoryAffinity;
+	// If they're the same it doesn't actually matter which we return
+	if (categoryAffinity === currentAffinity) return currentAffinity;
+	// If either is no Affinity and the other is RS or VU, return the one that is RS or VU
+	if (categoryAffinity === FU.affValue.none) return currentAffinity;
+	if (currentAffinity === FU.affValue.none) return categoryAffinity;
+	// At this point one is RS and one is VU, so they cancel.
+	return 0;
+}
+
+/**
  * @param {DamagePipelineContext} context
  * @return {Boolean}
  */
@@ -219,6 +252,10 @@ function resolveAffinity(context) {
 	}
 	if (context.overrides?.affinity) {
 		affinity = context.overrides.affinity;
+	} else if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities) && context.item?.system?.category?.value) {
+		// Handle category affinities
+		affinity = context.actor?.system?.affinities?.[context?.damageType]?.current ?? 0;
+		affinity = resolveCategoryAffinity(context, affinity);
 	} else if (context.damageType in context.actor.system.affinities) {
 		affinity = context.actor.system.affinities[context.damageType].current;
 	}
@@ -707,6 +744,7 @@ async function handleDamageApplication(event, targets, sourceInfo, damageData, d
 			request.traits.add(Traits.IgnoreImmunities);
 		}
 	}
+
 	await DamagePipeline.process(request);
 }
 

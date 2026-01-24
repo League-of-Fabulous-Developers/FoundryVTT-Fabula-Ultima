@@ -17,6 +17,7 @@ const INLINE_DAMAGE = 'InlineDamage';
  */
 const inlineDamageEnricher = {
 	id: 'InlineDamageEnricher',
+	// TODO: Update pattern to allow for specifying category if applicable
 	pattern: InlineHelper.compose('DMG', '\\s*(?<amount>\\(?.*?\\)*?)\\s(?<type>\\w+?)'),
 	enricher: damageEnricher,
 	onRender: onRender,
@@ -25,6 +26,7 @@ const inlineDamageEnricher = {
 // TODO: Add onRender, but need to pass sourceInfo onto the dataset
 
 function damageEnricher(text, options) {
+	console.log('Parsing damage enricher:', text);
 	const amount = text[1];
 	const type = text[2].toLowerCase();
 	const label = text.groups.label;

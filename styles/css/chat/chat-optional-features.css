@@ -23,7 +23,9 @@
 .fu-chat__opposed-check {
 	background: var(--background-opposed);
 	color: #ffffff;
-	text-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6);
+	text-shadow:
+		0 0 2px rgba(0, 0, 0, 0.8),
+		0 2px 4px rgba(0, 0, 0, 0.6);
 	padding: 8px;
 	border-radius: 10px;
 	border-color: var(--background-opposed-border);
@@ -39,9 +41,7 @@
 }
 
 .fu-chat__opposed-check__winner {
-	filter:
-	  drop-shadow(0 0 2px rgba(0, 0, 0, 0.9))
-	  drop-shadow(0 0 4px rgba(255, 215, 0, 0.9));
+	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 4px rgba(255, 215, 0, 0.9));
 }
 
 .fu-chat__opposed-check__loser {

@@ -55,6 +55,18 @@
 	grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
+.grid-affinities {
+	grid-template-columns: repeat(90, minmax(0, 1fr));
+
+	:nth-child(-n + 9) {
+		grid-column: span 10;
+	}
+
+	:nth-child(n + 9) {
+		grid-column: span 9;
+	}
+}
+
 /* Grid offset */
 .grid-start-2 {
 	grid-column-start: 2;

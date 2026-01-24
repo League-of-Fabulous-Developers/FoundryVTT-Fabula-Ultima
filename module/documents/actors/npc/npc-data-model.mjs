@@ -7,6 +7,7 @@ import { SETTINGS } from '../../../settings.js';
 import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
 import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { CategoryAffinityDataModel } from '../common/category-affinity-data-model.mjs';
 
 Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
@@ -80,7 +81,7 @@ Hooks.on('preUpdateActor', async (document, changed) => {
 export class NpcDataModel extends BaseCharacterDataModel {
 	static defineSchema() {
 		const { SchemaField, NumberField, StringField, EmbeddedDataField, BooleanField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
-		return Object.assign(super.defineSchema(), {
+		const schema = Object.assign(super.defineSchema(), {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
 				hp: new SchemaField({
@@ -117,6 +118,10 @@ export class NpcDataModel extends BaseCharacterDataModel {
 				options: TraitUtils.getOptionsFromConfig(FU.weaponCategories),
 			}),
 		});
+
+		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) schema.affinities = new foundry.data.fields.EmbeddedDataField(CategoryAffinityDataModel, {});
+
+		return schema;
 	}
 
 	static migrateData(source) {

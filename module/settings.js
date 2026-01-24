@@ -100,6 +100,9 @@ export const SETTINGS = Object.freeze({
 	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
 	// Compendium Browser
 	optionCompendiumBrowserPacks: 'optionCompendiumBrowserPacks',
+
+	// Category-based Affinities
+	optionCategoryAffinities: 'optionCategoryAffinities',
 });
 
 /**
@@ -204,6 +207,7 @@ export const registerSystemSettings = async function () {
 			SETTINGS.optionCampingRules,
 			SETTINGS.useRevisedStudyRule,
 			SETTINGS.technospheres,
+			SETTINGS.optionCategoryAffinities,
 			SETTINGS.pressureSystem,
 			SETTINGS.optionPressureGaugeShow,
 			SETTINGS.optionPressureGaugePosition,
@@ -322,6 +326,16 @@ export const registerSystemSettings = async function () {
 				if (doc.object instanceof FUToken) doc.object._refreshPressureGauge(true);
 			});
 		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCategoryAffinities, {
+		name: game.i18n.localize('FU.OptionCategoryAffinities'),
+		hint: game.i18n.localize('FU.OptionCategoryAffinitiesHInt'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		requiresReload: true,
+		default: false,
 	});
 
 	// BEHAVIOR ROLLS

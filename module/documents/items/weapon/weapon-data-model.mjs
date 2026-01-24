@@ -59,6 +59,7 @@ function onRenderCheck(data, result, actor, item) {
 				weapon: {
 					type: item.system.type.value,
 					quality: item.system.quality.value,
+					category: item.system.category.value,
 				},
 			},
 		}));
