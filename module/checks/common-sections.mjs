@@ -358,7 +358,10 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			const effectData = inspector.getEffects();
 			if (effectData) {
 				for (const entry of effectData.entries) {
-					actions.push(Effects.getTargetedAction(entry, sourceInfo));
+					const ea = await Effects.getTargetedAction(entry, sourceInfo);
+					if (ea) {
+						actions.push(ea);
+					}
 				}
 			}
 

@@ -99,12 +99,12 @@ async function getEffectData(id) {
 		effect = statusEffects.find((value) => value.id === id);
 	} else {
 		// Resolve by fuid
-		effect = await CompendiumIndex.instance.getItemByFuid(id);
-		if (effect) {
-			effect = await fromUuid(id);
+		const entry = await CompendiumIndex.instance.getItemByFuid(id);
+		if (entry) {
+			effect = await fromUuid(entry.uuid);
 		}
 		// Get the first AE attached to the item
-		if (effect instanceof FUItem) {
+		if (effect && effect instanceof FUItem) {
 			effect = effect.effects.entries().next().value[1];
 		}
 	}
@@ -678,7 +678,8 @@ async function promptExpiredEffectRemoval(event) {
  * @returns {Promise<void>}
  */
 async function promptApplyEffect(actor, targets, effects, sourceInfo) {
-	const actions = effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo));
+	let actions = await Promise.all(effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo)));
+	actions = actions.filter((a) => a !== null);
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Targets, true);
 	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Effects, true);
 	const targetData = Targeting.serializeTargetData(targets);
@@ -720,19 +721,24 @@ async function promptRemoveEffect(actor, source) {
  * @param {InlineSourceInfo} sourceInfo
  * @returns {ChatAction}
  */
-function getTargetedAction(id, sourceInfo) {
+async function getTargetedAction(id, sourceInfo) {
 	let label;
 	let icon;
 	let img;
-	const effectData = resolveBaseEffect(id);
+	const effectData = await getEffectData(id);
 	if (effectData) {
-		icon = `fuk fu-${id}`;
+		if (effectData.img) {
+			img = effectData.img;
+		} else {
+			if (resolveBaseEffect(id)) {
+				icon = `fuk fu-${id}`;
+			} else {
+				icon = 'ra ra-biohazard';
+			}
+		}
 		label = StringUtils.localize(effectData.name);
 	} else {
-		const effect = fromUuidSync(id);
-		img = effect.img;
-		label = effect.name;
-		icon = 'ra ra-biohazard';
+		return null;
 	}
 
 	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {

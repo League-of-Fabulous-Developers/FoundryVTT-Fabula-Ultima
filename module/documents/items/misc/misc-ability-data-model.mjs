@@ -1,28 +1,23 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { MiscAbilityMigrations } from './misc-ability-migrations.mjs';
-import { FU } from '../../../helpers/config.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
-import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
-import { UseWeaponDataModelV2 } from '../common/use-weapon-data-model-v2.mjs';
-import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
-import { TargetingDataModel } from '../common/targeting-data-model.mjs';
-import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
+import { ExpressionContext } from '../../../expressions/expressions.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
+	const inspector = CheckConfiguration.inspect(check);
 	if (item?.system instanceof MiscAbilityDataModel) {
-		// Optional accuracy
 		let weapon;
 		if (check.type === 'accuracy') {
-			weapon = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
+			weapon = fromUuidSync(inspector.getWeaponReference());
 			if (check.critical) {
 				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 			}
@@ -53,8 +48,8 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 		// Optional resource
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
 		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
-	} else if (check.type === 'attribute' && check.additionalData[ABILITY_USED_WEAPON]) {
-		const ability = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
+	} else if (check.type === 'attribute' && inspector.getWeaponReference()) {
+		const ability = fromUuidSync(inspector.getWeaponReference());
 		CommonSections.itemFlavor(sections, ability);
 
 		if (check.critical) {
@@ -68,14 +63,11 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	}
 });
 
-const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
-
 /**
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
  * @property {boolean} showTitleCard.value
- * @property {boolean} isMartial.value
  * @property {string} opportunity
  * @property {UseWeaponDataModelV2} useWeapon
  * @property {ItemAttributesDataModelV2} attributes
@@ -90,11 +82,12 @@ const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
  * @property {string} source.value
  * @property {boolean} isOffensive.value
  * @property {boolean} hasRoll.value
+ * @property {EffectApplicationDataModel} effects
  * @property {ActionCostDataModel} cost
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
+export class MiscAbilityDataModel extends BaseSkillDataModel {
 	static {
 		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
 		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
@@ -112,29 +105,13 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			opportunity: new StringField(),
-			useWeapon: new EmbeddedDataField(UseWeaponDataModelV2, {}),
-			attributes: new EmbeddedDataField(ItemAttributesDataModelV2, {
-				initial: {
-					primary: 'dex',
-					secondary: 'ins',
-				},
-			}),
-			accuracy: new NumberField({ initial: 0, integer: true, nullable: false }),
-			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses), blank: true }),
-			damage: new EmbeddedDataField(DamageDataModelV2, {}),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			hasClock: new SchemaField({ value: new BooleanField() }),
-			hasResource: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
-			rp: new EmbeddedDataField(ProgressDataModel, {}),
-			hasRoll: new SchemaField({ value: new BooleanField() }),
-			cost: new EmbeddedDataField(ActionCostDataModel, {}),
-			targeting: new EmbeddedDataField(TargetingDataModel, {}),
-			traits: new SetField(new StringField()),
+			hasClock: new SchemaField({ value: new BooleanField() }),
 		});
 	}
 
@@ -180,7 +157,33 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 				);
 			}
 		}
-		return Checks.display(this.parent.actor, this.parent);
+		return Checks.display(this.parent.actor, this.parent, this.#initializeSkillDisplay(modifiers));
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 * @remarks Expects a weapon
+	 */
+	#initializeSkillDisplay(modifiers) {
+		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+			this.configureCheck(config);
+			await this.configureDisplayCheck(config, actor, item, context);
+		};
+	}
+
+	/**
+	 * @return {CheckCallback}
+	 */
+	#initializeAttributeCheck() {
+		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			await this.configureAttributeCheck(config, actor, item);
+			config.setWeapon(this.parent);
+		};
 	}
 
 	/**
@@ -205,12 +208,13 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 
 			check.primary = weaponCheck.primary;
 			check.secondary = weaponCheck.secondary;
-			check.additionalData[ABILITY_USED_WEAPON] = weapon.uuid;
 
-			const inspect = CheckConfiguration.inspect(weaponCheck);
-			const configure = CheckConfiguration.configure(check);
-			configure.addTraits('skill');
-			configure.addTraitsFromItemModel(this.traits);
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+			config.setWeapon(weapon);
+			this.configureCheck(config);
+			await this.addSkillDamage(config, item, context);
 
 			if (this.accuracy) {
 				check.modifiers.push({
@@ -222,58 +226,11 @@ export class MiscAbilityDataModel extends FUSubTypedItemDataModel {
 			if (this.useWeapon.accuracy) {
 				check.modifiers.push(...weaponCheck.modifiers.filter(({ label }) => label !== 'FU.AccuracyCheckBonusGeneric'));
 			}
-
-			if (this.damage.hasDamage) {
-				configure.setHrZero(this.damage.hrZero || modifiers.shift);
-				configure.setTargetedDefense(this.defense || inspect.getTargetedDefense());
-				configure.modifyDamage(() => {
-					const damage = inspect.getDamage();
-					/** @type DamageModifier[] */
-					const damageMods = [];
-					if (item.system.damage.value) {
-						damageMods.push({
-							label: 'FU.DamageBonus',
-							value: item.system.damage.value,
-						});
-					}
-					if (item.system.useWeapon.damage) {
-						damageMods.push(...damage.modifiers);
-					}
-					return {
-						type: this.damage.type || damage.type,
-						modifiers: damageMods,
-					};
-				});
-			}
-		};
-	}
-
-	/**
-	 * @return {CheckCallback}
-	 */
-	#initializeAttributeCheck() {
-		return (check) => {
-			check.modifiers.push({
-				label: 'FU.CheckBonus',
-				value: this.accuracy,
-			});
-			check.additionalData[ABILITY_USED_WEAPON] = this.parent.uuid;
 		};
 	}
 
 	get attributePartials() {
-		return [
-			ItemPartialTemplates.standard,
-			ItemPartialTemplates.traitsLegacy,
-			ItemPartialTemplates.opportunityField,
-			ItemPartialTemplates.actionCost,
-			ItemPartialTemplates.accuracy,
-			ItemPartialTemplates.damage,
-			ItemPartialTemplates.targeting,
-			ItemPartialTemplates.resourcePoints,
-			ItemPartialTemplates.behaviorField,
-			ItemPartialTemplates.progressClock,
-		];
+		return [...this.commonPartials, ItemPartialTemplates.opportunityField, ItemPartialTemplates.behaviorField, ItemPartialTemplates.progressClock];
 	}
 
 	/**

@@ -88,6 +88,13 @@
 	cursor: not-allowed;
 }
 
+.fu-form__property-groups {
+	display: grid;
+	grid-column: span 2 / span 2;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 5px;
+}
+
 /*		DIALOGS		*/
 .fu-application .background,
 .fu-dialog .background,
