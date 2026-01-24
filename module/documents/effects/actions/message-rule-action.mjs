@@ -46,18 +46,20 @@ export class MessageRuleAction extends RuleActionDataModel {
 	}
 
 	async execute(context, selected) {
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Item, context.item.uuid);
-		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
-		let _message = this.message || StringUtils.localize('FU.RuleElementTriggered');
+		// Flag information
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, context.sourceInfo);
+		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Item, context.item.uuid);
 		if (context.check) {
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, context.check);
 		}
+		// Message
+		const _message = this.message || StringUtils.localize('FU.RuleElementTriggered');
 
 		switch (context.eventType) {
 			case FUHooks.RENDER_CHECK_EVENT: {
 				/** @type RenderCheckEvent **/
 				const rce = context.event;
-				const actor = rce.source.actor !== context.character.actor ? context.item.parent : null;
+				const actor = rce.source.actor !== context.character.actor ? context.item?.parent : null;
 				CommonSections.itemText(rce.renderData, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
 				break;
 			}
@@ -65,7 +67,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 			case FUHooks.FEATURE_EVENT: {
 				/** @type FeatureEvent **/
 				const fe = context.event;
-				const actor = fe.source.actor !== context.character.actor ? context.item.parent : null;
+				const actor = fe.source.actor !== context.character.actor ? context.item?.parent : null;
 				CommonSections.itemText(fe.builder.sections, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
 				break;
 			}
