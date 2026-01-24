@@ -98,10 +98,16 @@ async function getEffectData(id) {
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
 		effect = statusEffects.find((value) => value.id === id);
 	} else {
+		// Resolve by uuid
+		if (FoundryUtils.isUUID(id)) {
+			effect = await fromUuid(id);
+		}
 		// Resolve by fuid
-		const entry = await CompendiumIndex.instance.getItemByFuid(id);
-		if (entry) {
-			effect = await fromUuid(entry.uuid);
+		else {
+			const entry = await CompendiumIndex.instance.getItemByFuid(id);
+			if (entry) {
+				effect = await fromUuid(entry.uuid);
+			}
 		}
 		// Get the first AE attached to the item
 		if (effect && effect instanceof FUItem) {
@@ -109,7 +115,7 @@ async function getEffectData(id) {
 		}
 	}
 	if (!effect) {
-		console.error(`No effect with id ${this.effect} could be resolved.`);
+		console.error(`No effect with id '${id}' could be resolved.`);
 	}
 	return effect;
 }
