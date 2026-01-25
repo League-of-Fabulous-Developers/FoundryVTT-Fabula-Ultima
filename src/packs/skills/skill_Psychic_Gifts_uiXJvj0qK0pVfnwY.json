@@ -116,7 +116,78 @@
     "defense": "def",
     "fuid": "psychic-gifts"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Brainwave Clock",
+      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "D5N1JmboaDyZFPzc": {
+              "type": "ruleElement",
+              "_id": "D5N1JmboaDyZFPzc",
+              "actions": {
+                "HjnLNGtPXTyrqcf5": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "HjnLNGtPXTyrqcf5",
+                  "identifier": "brainwave-clock",
+                  "action": "reset"
+                }
+              },
+              "trigger": {
+                "eventType": "startOfCombat"
+              }
+            }
+          },
+          "progress": {
+            "enabled": true,
+            "id": "brainwave-clock",
+            "name": "Brainwave Clock",
+            "current": 0,
+            "max": 4,
+            "style": "clock"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "7cmcuxTm8MqCKIWi",
+      "type": "base",
+      "changes": [],
+      "description": "<ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1769306151242,
+        "modifiedTime": 1769306278548,
+        "lastModifiedBy": "jBlPH673nHpUCC6V"
+      },
+      "_key": "!items.effects!uiXJvj0qK0pVfnwY.7cmcuxTm8MqCKIWi"
+    }
+  ],
   "folder": "KIqoW0FNwwyC7ygb",
   "ownership": {
     "default": 0,
