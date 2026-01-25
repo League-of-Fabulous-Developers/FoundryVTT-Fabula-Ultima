@@ -94,7 +94,7 @@ export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 				item: model.parent.parent,
 			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/pilot/feature-armor-module-chat-message.hbs', data),
-			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid } },
 		};
 
 		ChatMessage.create(chatMessage);

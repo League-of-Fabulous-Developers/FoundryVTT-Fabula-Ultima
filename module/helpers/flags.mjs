@@ -27,10 +27,10 @@ export const Flags = Object.freeze({
 		SupportCheck: 'Supporter',
 		PromptCheck: 'PromptCheck',
 		GroupCheckSupporters: 'GroupCheckSupporters',
-		Item: 'Item',
+		Item: 'Item', // UUID
 		Effect: 'Effect',
 		Damage: 'Damage',
-		Source: 'Source',
+		Source: 'Source', // InlineSourceInfo
 		ResourceGain: 'ResourceGain',
 		ResourceLoss: 'ResourceLoss',
 		Progress: 'Progress',

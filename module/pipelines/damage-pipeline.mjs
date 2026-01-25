@@ -565,13 +565,6 @@ async function process(request) {
 	return Promise.all(updates);
 }
 
-function getSourceInfoFromChatMessage(message) {
-	const sourceActorUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.actorUuid;
-	const sourceItemUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
-	const sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
-	return new InlineSourceInfo(sourceName, sourceActorUuid, sourceItemUuid);
-}
-
 /**
  * @param {ChatMessage} message
  * @param {HTMLElement} html
@@ -589,7 +582,7 @@ function onRenderChatMessage(message, html) {
 		const inspector = CheckConfiguration.inspect(message);
 		const damageData = inspector.getDamage();
 		const traits = inspector.getTraits();
-		const sourceInfo = getSourceInfoFromChatMessage(message);
+		const sourceInfo = InlineSourceInfo.fromChatMessage(message);
 
 		const customizeDamage = async (event, targets) => {
 			return DamageCustomizer(

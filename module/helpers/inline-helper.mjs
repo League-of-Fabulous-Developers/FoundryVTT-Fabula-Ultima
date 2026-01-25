@@ -60,6 +60,18 @@ export class InlineSourceInfo {
 	}
 
 	/**
+	 * @param message
+	 * @returns {InlineSourceInfo}
+	 */
+	static fromChatMessage(message) {
+		const info = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
+		if (info) {
+			return new InlineSourceInfo(info.name, info.actorUuid, info.itemUuid);
+		}
+		return null;
+	}
+
+	/**
 	 * @returns {FUActor|null}
 	 */
 	resolveActor() {

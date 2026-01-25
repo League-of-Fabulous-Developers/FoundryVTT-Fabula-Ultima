@@ -17,7 +17,6 @@ import { ObjectUtils } from '../helpers/object-utils.mjs';
  * @property {FUItem} item  The item the expression is evaluated on
  * @property {FUActiveEffect} effect  The effect the expression is evaluated on
  * @property {FUActor[]} targets The targets the expression is evaluated on
- * @property {FUActor} source Optionally, can be used to execute evaluations on
  * @property {CheckResultV2|null} check The result of a check.
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Do not serialize this class, as it references full objects. Instead, store their uuids
@@ -79,10 +78,6 @@ export class ExpressionContext {
 		return this;
 	}
 
-	setSourceUuid(sourceId) {
-		this.#sourceUuid = sourceId;
-	}
-
 	/**
 	 * @param {String} match
 	 */
@@ -97,7 +92,7 @@ export class ExpressionContext {
 	 * @param {String} match
 	 */
 	assertSource(match) {
-		if (this.source == null) {
+		if (this.sourceItem == null) {
 			// Can be evaluated very early
 			if (ui.notifications) {
 				ui.notifications.warn('FU.ChatEvaluateAmountNoSource', { localize: true });
@@ -175,8 +170,7 @@ export class ExpressionContext {
 	resolveActorOrSource(match, redirect) {
 		if (redirect) {
 			this.assertSource(match);
-			const sourceItem = this.source;
-			const sourceActor = sourceItem.actor;
+			const sourceActor = this.sourceItem.actor;
 			if (!sourceActor) {
 				ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
 				throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
@@ -195,9 +189,16 @@ export class ExpressionContext {
 	}
 
 	/**
+	 * @param {String} sourceId
+	 */
+	setSourceItem(sourceId) {
+		this.#sourceUuid = sourceId;
+	}
+
+	/**
 	 * @returns {FUItem}
 	 */
-	get source() {
+	get sourceItem() {
 		if (!this._source && this.#sourceUuid) {
 			this._source = fromUuidSync(this.#sourceUuid);
 		}

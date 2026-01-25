@@ -176,7 +176,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			superior: await TextEditor.enrichHTML(model.superior || ''),
 		};
 		if (dice && rank) {
-			const flags = { [SYSTEM]: { [Flags.ChatMessage.Item]: item } };
+			const flags = { [SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid } };
 			const actor = model.parent.parent.actor;
 			const roll = await new Roll(`{${Array(dice).fill('d20').join(', ')}}`).roll();
 			const description = descriptions[rank];
