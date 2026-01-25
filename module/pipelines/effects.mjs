@@ -728,7 +728,7 @@ async function promptRemoveEffect(actor, source) {
  * @returns {ChatAction}
  */
 async function getTargetedAction(id, sourceInfo) {
-	let label;
+	let name;
 	let icon;
 	let img;
 	const effectData = await getEffectData(id);
@@ -742,13 +742,16 @@ async function getTargetedAction(id, sourceInfo) {
 				icon = 'ra ra-biohazard';
 			}
 		}
-		label = StringUtils.localize(effectData.name);
+		name = StringUtils.localize(effectData.name);
 	} else {
 		return null;
 	}
 
 	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {
-		effect: label,
+		effect: name,
+	});
+	const label = StringUtils.localize('FU.ChatApplyEffectLabel', {
+		effect: name,
 	});
 
 	return new ChatAction('applyEffect', icon, tooltip, {
@@ -757,6 +760,7 @@ async function getTargetedAction(id, sourceInfo) {
 		.requiresOwner()
 		.setFlag(Flags.ChatMessage.Effects)
 		.withSelected()
+		.withLabel(label)
 		.withImage(img)
 		.withDataset({
 			['effect-id']: id,

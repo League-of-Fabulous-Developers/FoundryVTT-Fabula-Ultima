@@ -491,6 +491,7 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 				actor: actor.uuid,
 				item: item.uuid,
 				expense: expense,
+				resourceLabel: FU.resourcesAbbr[expense.resource],
 				icon: FU.resourceIcons[expense.resource],
 			},
 		};
