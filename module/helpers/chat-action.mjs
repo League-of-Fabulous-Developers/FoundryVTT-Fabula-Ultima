@@ -12,6 +12,7 @@ import FoundryUtils from './foundry-utils.mjs';
  * @property {Boolean} owner Whether this action can only be applied the owner
  * @property {String|undefined} flag
  * @property {DOMStringMap|undefined} dataset
+ * @property {String} classes
  * @property {String} style
  * @property {String} color
  * @property {Boolean} targeted Whether this action can be used on targeted tokens (during the chat message generation)
@@ -115,6 +116,15 @@ export class ChatAction {
 	 */
 	withStyle(style) {
 		this.style = style;
+		return this;
+	}
+
+	/**
+	 * @param {...String} classes
+	 * @returns {ChatAction}
+	 */
+	withClasses(...classes) {
+		this.classes = classes.join(' ');
 		return this;
 	}
 

@@ -48,3 +48,11 @@
 	-webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
 	filter: brightness(1.8) grayscale(1) opacity(0.7);
 }
+
+.fu-chat__clear-effect {
+	background-color: #FF5A5A;
+	text-shadow:
+	  0 0 2px rgba(0, 0, 0, 0.85),
+	  0 0 8px rgba(255, 90, 90, 0.7);
+
+}

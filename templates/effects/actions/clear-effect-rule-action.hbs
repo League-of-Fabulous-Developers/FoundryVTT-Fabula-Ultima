@@ -1,13 +1,6 @@
 <label class="fu-rule-element__property">
-	<span>{{localize 'FU.Target'}}</span>
-	<select name="{{pfuConcat path ".rule"}}">
-		{{selectOptions options.collectionRemovalRule selected=action.rule sort=true localize=true}}
-	</select>
+	<span>{{localize 'FU.Id'}}</span>
+	<input type="text" name="{{pfuConcat path ".identifier"}}"
+		   placeholder="{{localize 'FU.All'}}"
+		   value="{{ action.identifier }}" />
 </label>
-
-{{#if (eq action.rule "single")}}
-	<label class="fu-rule-element__property">
-		<span>{{localize 'FU.Id'}}</span>
-		<input type="text" name="{{pfuConcat path ".identifier"}}" value="{{ action.identifier }}" />
-	</label>
-{{/if}}
