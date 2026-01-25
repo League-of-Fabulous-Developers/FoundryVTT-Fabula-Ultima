@@ -53,7 +53,7 @@ export class PsychicGiftDataModel extends RollableClassFeatureDataModel {
 				item: model.parent.parent,
 			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/esper/feature-psychic-chat-message.hbs', data),
-			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid } },
 		};
 
 		ChatMessage.create(chatMessage);

@@ -127,7 +127,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 			renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags);
 		}
 
-		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
+		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
 }
 

@@ -520,7 +520,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 			{
 				[SYSTEM]: {
 					[Flags.ChatMessage.CheckV2]: result,
-					[Flags.ChatMessage.Item]: item?.toObject(),
+					[Flags.ChatMessage.Item]: item?.uuid,
 				},
 			},
 			foundry.utils.mergeObject(additionalFlags, flags, { overwrite: false }),

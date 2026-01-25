@@ -149,7 +149,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 		const targets = inspector.getTargets();
 		CommonSections.actions(data, actor, item, targets, flags, inspector);
 		CommonEvents.attack(inspector, actor, item);
-		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
+		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
 }
 

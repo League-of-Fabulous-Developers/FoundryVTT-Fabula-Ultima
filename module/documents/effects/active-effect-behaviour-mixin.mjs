@@ -92,7 +92,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		/**
 		 * @returns {InlineSourceInfo} If present, information about the actor/item that was the source of this effect
 		 */
-		get source() {
+		get sourceInfo() {
 			return this.getFlag(Flags.Scope, Flags.ActiveEffect.Source);
 		}
 
@@ -108,8 +108,8 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Used by the templates
 		 */
 		get sourceName() {
-			if (this.source) {
-				return this.source.name;
+			if (this.sourceInfo) {
+				return this.sourceInfo.name;
 			}
 			return this.parent.name;
 		}
@@ -224,8 +224,8 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 
 			const context = new ExpressionContext(actor, item, [target]);
 			context.effect = this;
-			if (this.source) {
-				context.setSourceUuid(this.source.itemUuid);
+			if (this.sourceInfo) {
+				context.setSourceItem(this.sourceInfo.itemUuid);
 			}
 			return context;
 		}
@@ -261,7 +261,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Unlike `_onCreate`, is managed by the GM.
 		 */
 		async _preCreate(data, options, user) {
-			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.source ? this.source.name : ''}`);
+			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}`);
 			const changes = {
 				name: game.i18n.localize(data.name),
 				[`system.duration.remaining`]: this.system.duration.interval,

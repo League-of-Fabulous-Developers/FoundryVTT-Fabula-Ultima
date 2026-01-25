@@ -417,7 +417,7 @@ function removeEffect(document, source, effect) {
 	const existingEffect = document.effects.find(
 		(e) =>
 			e.getFlag(SYSTEM, Flags.ActiveEffect.Temporary) &&
-			e.source === source &&
+			e.sourceItem === source &&
 			e.changes.length === effect.changes.length &&
 			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
 	);

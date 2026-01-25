@@ -70,7 +70,7 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 				item: model.parent.parent,
 			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/arcanist/feature-arcanum-chat-message.hbs', data),
-			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid } },
 		};
 
 		CommonEvents.skill(item.actor, item);

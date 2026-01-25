@@ -418,6 +418,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 
 			// Set any flags
 			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
+			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, sourceInfo);
 			for (const action of actions) {
 				if (action.flag) {
 					Pipeline.toggleFlag(flags, action.flag);
