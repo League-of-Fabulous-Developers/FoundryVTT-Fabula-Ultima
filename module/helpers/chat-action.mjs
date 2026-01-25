@@ -134,7 +134,7 @@ export class ChatAction {
 	 * @return {Promise<String>}
 	 */
 	static async renderToChat(actions, targetData = [], retarget = true) {
-		const html = await FoundryUtils.renderTemplate('chat/partials/chat-targets', {
+		const html = await FoundryUtils.renderTemplate('chat/partials/chat-actions', {
 			retarget: retarget,
 			targets: targetData,
 			actions: actions,
