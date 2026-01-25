@@ -110,6 +110,7 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			hasDamage: new BooleanField({ initial: true, nullable: false }),
 			type: new SchemaField({ value: new StringField({ initial: 'melee', choices: Object.keys(FU.weaponTypes) }) }),
 			category: new SchemaField({ value: new StringField({ initial: 'brawling', choices: Object.keys(FU.weaponCategories) }) }),
 			hands: new SchemaField({ value: new StringField({ initial: 'one-handed', choices: Object.keys(FU.handedness) }) }),
