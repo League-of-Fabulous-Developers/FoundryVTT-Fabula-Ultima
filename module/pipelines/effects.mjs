@@ -337,7 +337,7 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 		);
 		return false;
 	} else {
-		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
+		const statusEffect = resolveBaseEffect(statusEffectId);
 		if (statusEffect) {
 			const instance = await ActiveEffect.create(
 				{
@@ -813,7 +813,7 @@ async function getClearAction(id, sourceInfo) {
 		.setFlag(Flags.ChatMessage.Effects)
 		.withSelected()
 		.withLabel(label)
-		.withStyle('color: #EAFBFF; filter: drop-shadow(0 0 2px rgba(200,245,255,0.9));')
+		.withClasses('fu-chat__clear-effect')
 		.withImage(img)
 		.withDataset({
 			['effect-id']: id,

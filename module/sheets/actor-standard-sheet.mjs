@@ -43,7 +43,7 @@ import { ProgressDataModel } from '../documents/items/common/progress-data-model
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 import { SheetUtils } from './sheet-utils.mjs';
 
-const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+const VISIBLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 const affinityKey = 'affinity';
 
@@ -335,7 +335,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 					context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
 					// Setup status effect toggle data
 					context.statusEffectToggles = [];
-					for (const id of TOGGLEABLE_STATUS_EFFECT_IDS) {
+					for (const id of VISIBLE_STATUS_EFFECT_IDS) {
 						const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
 						if (statusEffect) {
 							const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
@@ -870,8 +870,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 		await actionHandler.handleAction(elem.dataset.type, isShift);
 	}
 
-	static ToggleStatusEffect(e, elem) {
-		Effects.toggleStatusEffect(this.actor, elem.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
+	static async ToggleStatusEffect(e, elem) {
+		if (elem.dataset.statusId === 'crisis') {
+			return;
+		}
+		return Effects.toggleStatusEffect(this.actor, elem.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
 	}
 
 	/**
