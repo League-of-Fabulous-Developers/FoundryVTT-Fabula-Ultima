@@ -725,7 +725,7 @@ async function promptRemoveEffect(actor, source) {
 /**
  * @param {String} id An uuid or fuid.
  * @param {InlineSourceInfo} sourceInfo
- * @returns {ChatAction}
+ * @returns {Promise<ChatAction>}
  */
 async function getTargetedAction(id, sourceInfo) {
 	let name;
@@ -761,6 +761,59 @@ async function getTargetedAction(id, sourceInfo) {
 		.setFlag(Flags.ChatMessage.Effects)
 		.withSelected()
 		.withLabel(label)
+		.withImage(img)
+		.withDataset({
+			['effect-id']: id,
+		});
+}
+
+/**
+ * @param {String} id An uuid or fuid.
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<ChatAction>}
+ */
+async function getClearAction(id, sourceInfo) {
+	let name;
+	let icon;
+	let img;
+
+	// Clear a single effect
+	if (id) {
+		const effectData = await getEffectData(id);
+		if (effectData) {
+			if (effectData.img) {
+				img = effectData.img;
+			} else {
+				if (resolveBaseEffect(id)) {
+					icon = `fuk fu-${id}`;
+				} else {
+					icon = 'ra ra-biohazard';
+				}
+			}
+			name = StringUtils.localize(effectData.name);
+		}
+	}
+	// Clear all effects
+	else {
+		name = `${StringUtils.localize('FU.All')} ${StringUtils.localize('FU.Effects')}`;
+		icon = 'ra ra-biohazard';
+	}
+
+	const tooltip = StringUtils.localize('FU.ChatClearEffectLabel', {
+		effect: name,
+	});
+	const label = StringUtils.localize('FU.ChatClearEffectLabel', {
+		effect: name,
+	});
+
+	return new ChatAction('clearEffect', icon, tooltip, {
+		sourceInfo: sourceInfo,
+	})
+		.requiresOwner()
+		.setFlag(Flags.ChatMessage.Effects)
+		.withSelected()
+		.withLabel(label)
+		.withStyle('color: #EAFBFF; filter: drop-shadow(0 0 2px rgba(200,245,255,0.9));')
 		.withImage(img)
 		.withDataset({
 			['effect-id']: id,
@@ -821,6 +874,25 @@ function onRenderChatMessage(message, element) {
 		await ChatMessage.create({
 			content: description,
 			speaker: ChatMessage.getSpeaker({ actor: actor }),
+		});
+	});
+
+	Pipeline.handleClick(message, element, 'clearEffect', async (dataset) => {
+		const effectId = dataset.effectId;
+		const targets = await Pipeline.getTargetsFromAction(dataset);
+		targets.forEach((actor) => {
+			if (!actor.isOwner) {
+				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+				return;
+			}
+			if (effectId) {
+				const effect = actor.resolveEffect(effectId);
+				if (effect) {
+					effect.delete();
+				}
+			} else {
+				actor.clearTemporaryEffects();
+			}
 		});
 	});
 
@@ -901,6 +973,7 @@ export const Effects = Object.freeze({
 	promptRemoveEffect,
 	promptApplyEffect,
 	getTargetedAction,
+	getClearAction,
 
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,

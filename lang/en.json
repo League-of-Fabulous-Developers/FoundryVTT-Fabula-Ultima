@@ -954,6 +954,7 @@
 		"ChatPromptCheck": "A check has been prompted to <strong>{verb}</strong> the following clock:",
 		"ChatApplyEffect": "<strong>{effect}</strong> has been applied by <strong>{source}</source>",
 		"ChatApplyEffectLabel": "Apply {effect}",
+		"ChatClearEffectLabel": "Clear {effect}",
 		"ChatApplyEffectHint": "Apply <strong>{effect}</strong> to the target.",
 		"ChatApplyEffectPrompt": "One of the following effects can be applied due to <strong>{source}</strong>.",
 		"ChatRemoveEffect": "Remove effect",

@@ -34,9 +34,12 @@
 							   data-tooltip="{{localize tooltip}}">
 								<span class='fu-tag button flex-group-center fu-target-action__icon__container'>
 									{{#if img}}
-										<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
+										<img class="fu-target-action__icon {{classes}}" alt="{{localize tooltip}}"
+											 style="{{style}} {{#if color}}color: {{color}};{{/if}}"
+											 src="{{img}}" />
 									{{else}}
-										<i class="fu-icon {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+										<i class="fu-icon {{icon}} fu-target-action__icon {{classes}}"
+										   style="{{style}} {{#if color}}color: {{color}};{{/if}}"></i>
 									{{/if}}
 								</span>
 							</a>
@@ -60,9 +63,12 @@
 				  style="width: 100%;white-space: nowrap;">
 				{{~localize action.label}}
 				{{#if img}}
-					<img class="fu-target-action__icon" alt="{{localize tooltip}}" src="{{img}}" />
+					<img class="fu-target-action__icon {{classes}}" alt="{{localize tooltip}}"
+						 style="{{style}} {{#if color}}color: {{color}};{{/if}}"
+						 src="{{img}}" />
 				{{else}}
-					<i class="fu-icon  {{icon}} fu-target-action__icon" style="{{#if color}}color: {{color}};{{/if}}"></i>
+					<i class="fu-icon {{icon}} fu-target-action__icon {{classes}}"
+					   style="{{style}} {{#if color}}color: {{color}};{{/if}}"></i>
 				{{/if}}
 			</span>
 			</a>
