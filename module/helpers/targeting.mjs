@@ -8,12 +8,23 @@ import { ChatAction } from './chat-action.mjs';
  */
 
 /**
+ * @typedef DefenseData
+ * @property {Number} def
+ * @property {Number} mdef
+ * @property {Number} dex
+ * @property {Number} ins
+ * @property {Number} mig
+ * @property {Number} wlp
+ */
+
+/**
  * @typedef TargetData
  * @property {string} name The name of the actor
  * @property {string} uuid The uuid of the actor
  * @property {string} link An html link to the actor
  * @property {Number} def
  * @property {Number} mdef
+ * @property {DefenseData} defenses
  * @property {number} difficulty
  * @property {"none", "hit", "miss"} result
  * @property {Boolean} isOwner
@@ -103,9 +114,18 @@ function constructData(actor) {
 		name: actor.name,
 		uuid: actor.uuid,
 		link: actor.link,
-		result: 'none',
+		result: 'none', // Updated during evaluation
+		// LEGACY
 		def: actor.system.derived.def.value,
 		mdef: actor.system.derived.mdef.value,
+		defenses: {
+			def: actor.system.derived.def.value,
+			mdef: actor.system.derived.mdef.value,
+			dex: actor.system.attributes.dex.current,
+			ins: actor.system.attributes.ins.current,
+			mig: actor.system.attributes.mig.current,
+			wlp: actor.system.attributes.wlp.current,
+		},
 		isOwner: actor.isOwner,
 	};
 }

@@ -436,9 +436,10 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 
 			return {
 				order: CHECK_RESULT,
-				partial: 'systems/projectfu/templates/chat/partials/chat-targets.hbs',
+				partial: 'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 				data: {
 					retarget: true,
+					defense: inspector.getTargetedDefense(),
 					rule: rule,
 					targets: targetData,
 					actions: actions,

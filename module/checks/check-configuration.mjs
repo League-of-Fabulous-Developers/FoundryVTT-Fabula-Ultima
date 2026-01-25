@@ -508,7 +508,7 @@ export class CheckConfigurer extends CheckInspector {
 			const targetedDefense = this.getTargetedDefense();
 			for (let t = 0; t < targets.length; t++) {
 				const target = targets[t];
-				const difficulty = target[targetedDefense];
+				const difficulty = target.defenses[targetedDefense];
 				let targetResult;
 				if (this.check.critical) {
 					targetResult = 'hit';

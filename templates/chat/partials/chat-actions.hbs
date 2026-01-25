@@ -5,7 +5,9 @@
             <span class="flexrow">
                 <span class="target total {{#if (eq target.result "hit")}}hit{{else if (eq target.result "miss")}}miss{{else}}default{{/if}} flexrow">
                     <!-- Label -->
-                    <div style="padding: 2px;">{{target.name}}</div>
+                    <div style="padding: 2px;">
+						{{target.name}}
+					</div>
                     <!-- Accuracy Information -->
 					{{#if (or (eq target.result "hit") (eq target.result "miss"))}}
 						<div class="endcap gap-5" style="flex: 0 1 auto;">

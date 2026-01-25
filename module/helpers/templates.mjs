@@ -105,7 +105,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
 			'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
 			'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
-			'systems/projectfu/templates/chat/partials/chat-targets.hbs',
+			'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 			'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 			'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
 			'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',

@@ -447,7 +447,7 @@ FU.weaponTypes = {
 };
 
 /**
- * @typedef {"def", "mdef"} Defense
+ * @typedef {"def", "mdef", "dex", "ins", "mig", "wlp"} Defense
  */
 /**
  * @type {Object.<Defense, Object.<"name"|"abbr", string>>}
@@ -460,6 +460,22 @@ FU.defenses = {
 	mdef: {
 		name: 'FU.MagicDefense',
 		abbr: 'FU.MagicDefenseAbbr',
+	},
+	dex: {
+		name: 'FU.AttributeDex',
+		abbr: 'FU.AttributeDexAbbr',
+	},
+	ins: {
+		name: 'FU.AttributeIns',
+		abbr: 'FU.AttributeInsAbbr',
+	},
+	mig: {
+		name: 'FU.AttributeMig',
+		abbr: 'FU.AttributeMigAbbr',
+	},
+	wlp: {
+		name: 'FU.AttributeWlp',
+		abbr: 'FU.AttributeWlpAbbr',
 	},
 };
 
