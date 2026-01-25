@@ -79,6 +79,7 @@ function attack(inspector, actor, item) {
  * @property {FUItemGroup} damageSource
  * @property {Number} amount
  * @property {CharacterInfo} target
+ * @property {FUItem} item
  * @property {FUActor} actor
  * @property {Token} token
  * @property {Set<String>} traits
@@ -103,6 +104,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
 	/** @type DamageEvent  **/
 	const damageEvent = {
 		amount: amount,
+		item: item,
 		type: type,
 		source: source,
 		sourceActor: sourceInfo,

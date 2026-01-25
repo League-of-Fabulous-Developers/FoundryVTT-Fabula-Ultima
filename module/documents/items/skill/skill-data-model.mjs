@@ -1,25 +1,15 @@
-import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { FU } from '../../../helpers/config.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
-import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
-import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
-import { UseWeaponDataModelV2 } from '../common/use-weapon-data-model-v2.mjs';
-import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
-import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
-import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
+import { ExpressionContext } from '../../../expressions/expressions.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
-import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
-import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
-import { ResourceDataModel } from '../common/resource-data-model.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { BaseSkillDataModel } from './base-skill-data-model.mjs';
 
 const skillForAttributeCheck = 'skillForAttributeCheck';
 
@@ -54,7 +44,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
  * @type RenderCheckHook
  */
 let onRenderAttributeCheck = (sections, check, actor, item, flags) => {
-	if (check.type === 'attribute' && check.additionalData[skillForAttributeCheck]) {
+	if (check.type === 'attribute' && item?.system instanceof SkillDataModel && check.additionalData[skillForAttributeCheck]) {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
 		const inspector = CheckConfiguration.inspect(check);
 		CommonSections.itemFlavor(sections, skill);
@@ -121,7 +111,7 @@ function getTags(skill) {
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class SkillDataModel extends FUStandardItemDataModel {
+export class SkillDataModel extends BaseSkillDataModel {
 	static {
 		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
 		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
@@ -139,7 +129,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
+		const { SchemaField, StringField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({
 				value: new NumberField({ initial: 1, min: 0, integer: true, nullable: false }),
@@ -147,26 +137,6 @@ export class SkillDataModel extends FUStandardItemDataModel {
 				min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 			}),
 			class: new SchemaField({ value: new StringField() }),
-			useWeapon: new EmbeddedDataField(UseWeaponDataModelV2, {}),
-			attributes: new EmbeddedDataField(ItemAttributesDataModelV2, {
-				initial: {
-					primary: 'dex',
-					secondary: 'ins',
-				},
-			}),
-			accuracy: new StringField({ initial: '', blank: true, nullable: false }),
-			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses), blank: true }),
-			damage: new EmbeddedDataField(DamageDataModelV2, {
-				type: '',
-			}),
-			resource: new EmbeddedDataField(ResourceDataModel, {}),
-			effects: new EmbeddedDataField(EffectApplicationDataModel, {}),
-			hasResource: new SchemaField({ value: new BooleanField() }),
-			rp: new EmbeddedDataField(ProgressDataModel, {}),
-			hasRoll: new SchemaField({ value: new BooleanField() }),
-			cost: new EmbeddedDataField(ActionCostDataModel, {}),
-			targeting: new EmbeddedDataField(TargetingDataModel, {}),
-			traits: new SetField(new StringField()),
 		});
 	}
 
@@ -219,25 +189,8 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeSkillDisplay(modifiers) {
 		return async (check, actor, item) => {
-			/** @type SkillDataModel **/
-			const skill = item.system;
 			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-			config.addEffects(skill.effects.entries);
-			if (skill.resource.enabled) {
-				config.setResource(skill.resource.type, skill.resource.amount);
-			}
-			if (this.damage.hasDamage) {
-				if (skill.useWeapon.damage) {
-					const weapon = await this.getWeapon(actor);
-					config.setWeapon(weapon);
-					/** @type WeaponDataModel **/
-					const weaponData = weapon.system;
-					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
-				}
-				await this.#addSkillDamage(config, actor, item, context, modifiers);
-			}
+			await this.configureDisplayCheck(config, actor, item);
 		};
 	}
 
@@ -246,35 +199,8 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeAttributeCheck(modifiers) {
 		return async (check, actor, item) => {
-			/** @type SkillDataModel **/
-			const skill = item.system;
 			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-
-			if (skill.defense && targets.length === 1) {
-				let dl;
-				switch (skill.defense) {
-					case 'def':
-						dl = targets[0].def;
-						break;
-
-					case 'mdef':
-						dl = targets[0].mdef;
-						break;
-				}
-				config.setDifficulty(dl);
-			}
-
-			if (this.accuracy) {
-				const calculatedAccuracyBonus = await Expressions.evaluateAsync(this.accuracy, context);
-				if (calculatedAccuracyBonus > 0) {
-					check.modifiers.push({
-						label: 'FU.CheckBonus',
-						value: calculatedAccuracyBonus,
-					});
-				}
-			}
+			await this.configureAttributeCheck(config, actor, item);
 			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
 		};
 	}
@@ -304,8 +230,9 @@ export class SkillDataModel extends FUStandardItemDataModel {
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
 			config.setWeapon(weapon);
-			config.addTraits('skill');
-			config.addTraitsFromItemModel(this.traits);
+			config.setHrZero(this.damage.hrZero || modifiers.shift);
+			this.configureCheck(config);
+			await this.addSkillDamage(config, item, context);
 
 			// Weapon support
 			if (skill.useWeapon.traits && weaponData.traits) {
@@ -321,70 +248,8 @@ export class SkillDataModel extends FUStandardItemDataModel {
 				});
 			}
 			config.setWeaponTraits(config.getWeaponTraits());
-
-			if (this.accuracy) {
-				const calculatedAccuracyBonus = await Expressions.evaluateAsync(this.accuracy, context);
-				if (calculatedAccuracyBonus > 0) {
-					check.modifiers.push({
-						label: 'FU.CheckBonus',
-						value: calculatedAccuracyBonus,
-					});
-				}
-			}
-
-			if (skill.resource.enabled) {
-				config.setResource(skill.resource.type, skill.resource.amount);
-			}
-
-			if (this.damage.hasDamage) {
-				config.setHrZero(this.damage.hrZero || modifiers.shift);
-				await this.#addSkillDamage(config, actor, item, context, modifiers);
-			}
-
-			config.addEffects(skill.effects.entries);
+			await this.addSkillAccuracy(config, actor, item, context);
 		};
-	}
-
-	async getWeapon(actor) {
-		const weapon = await ChooseWeaponDialog.prompt(actor, true);
-		if (weapon === false) {
-			let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
-			ui.notifications.error(message);
-			throw new Error(message);
-		}
-		if (weapon == null) {
-			throw new Error('no selection');
-		}
-		return weapon;
-	}
-
-	async #addSkillDamage(config, actor, item, context) {
-		if (this.damage.hasDamage) {
-			config.addTraits(Traits.Damage);
-			config.setTargetedDefense(this.defense || config.getTargetedDefense());
-			if (config.hasDamage) {
-				config.modifyDamage((damage) => {
-					damage.type = this.damage.type || damage.type;
-					damage.addModifier('FU.DamageBonus', item.system.damage.value);
-					return damage;
-				});
-			} else {
-				config.setDamage(this.damage.type, item.system.damage.value);
-			}
-
-			const onRoll = this.damage.onRoll;
-			if (onRoll) {
-				const extraDamage = await Expressions.evaluateAsync(onRoll, context);
-				if (extraDamage > 0) {
-					config.addDamageBonus('FU.DamageOnRoll', extraDamage);
-				}
-			}
-
-			const onApply = this.damage.onApply;
-			if (onApply) {
-				config.setExtraDamage(onApply);
-			}
-		}
 	}
 
 	shouldApplyEffect(effect) {
@@ -392,19 +257,7 @@ export class SkillDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [
-			ItemPartialTemplates.standard,
-			ItemPartialTemplates.traitsLegacy,
-			ItemPartialTemplates.classField,
-			ItemPartialTemplates.actionCost,
-			ItemPartialTemplates.skillAttributes,
-			ItemPartialTemplates.accuracy,
-			ItemPartialTemplates.damage,
-			ItemPartialTemplates.effects,
-			ItemPartialTemplates.targeting,
-			ItemPartialTemplates.resource,
-			ItemPartialTemplates.resourcePoints,
-		];
+		return [...this.commonPartials, ItemPartialTemplates.classField, ItemPartialTemplates.skillAttributes];
 	}
 
 	/**

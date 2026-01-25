@@ -63,6 +63,7 @@ export class CompendiumIndex {
 	 * @desc Forces the index to be reinitialized.
 	 */
 	static reinitialize() {
+		console.debug(`Refreshing PFU compendium index.`);
 		CompendiumIndex.#instance = undefined;
 	}
 
@@ -419,5 +420,15 @@ export class CompendiumIndex {
 			stash: await this.getActorsOfType('stash'),
 		};
 		return entries;
+	}
+
+	/**
+	 * @desc Subscribes to various callbacks for indexing.
+	 */
+	static initialize() {
+		Hooks.on('updateCompendium', async (pack, changes) => {
+			// TODO: More granular update?
+			CompendiumIndex.reinitialize();
+		});
 	}
 }

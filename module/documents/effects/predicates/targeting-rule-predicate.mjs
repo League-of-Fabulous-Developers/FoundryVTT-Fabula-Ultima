@@ -5,7 +5,7 @@ import { FU } from '../../../helpers/config.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @property {TargetingRule} rule
+ * @property {FUTargetingPredicate} rule
  */
 export class TargetingRulePredicate extends RulePredicateDataModel {
 	static {
@@ -39,6 +39,8 @@ export class TargetingRulePredicate extends RulePredicateDataModel {
 	 */
 	validateContext(context) {
 		switch (this.rule) {
+			case 'none':
+				return context.targets.length === 0;
 			case 'single':
 				return context.targets.length === 1;
 			case 'multiple':

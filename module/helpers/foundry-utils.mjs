@@ -354,10 +354,9 @@ export default class FoundryUtils {
 	 * @return {Boolean}
 	 */
 	static isUUID(str) {
-		if (typeof str === 'string') {
-			return /^[A-Za-z]+\.[A-Za-z0-9]+(\.[A-Za-z]+\.[A-Za-z0-9]+)*$/.test(str);
-		}
-		return false;
+		if (typeof str !== 'string') return false;
+
+		return /^(?:Compendium\.[a-z0-9-]+\.[a-z0-9-]+\.)?[A-Za-z]+\.[A-Za-z0-9]+(?:\.[A-Za-z]+\.[A-Za-z0-9]+)*$/.test(str);
 	}
 
 	/**

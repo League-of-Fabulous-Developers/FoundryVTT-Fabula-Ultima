@@ -98,18 +98,24 @@ async function getEffectData(id) {
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
 		effect = statusEffects.find((value) => value.id === id);
 	} else {
-		// Resolve by fuid
-		effect = await CompendiumIndex.instance.getItemByFuid(id);
-		if (effect) {
+		// Resolve by uuid
+		if (FoundryUtils.isUUID(id)) {
 			effect = await fromUuid(id);
 		}
+		// Resolve by fuid
+		else {
+			const entry = await CompendiumIndex.instance.getItemByFuid(id);
+			if (entry) {
+				effect = await fromUuid(entry.uuid);
+			}
+		}
 		// Get the first AE attached to the item
-		if (effect instanceof FUItem) {
+		if (effect && effect instanceof FUItem) {
 			effect = effect.effects.entries().next().value[1];
 		}
 	}
 	if (!effect) {
-		console.error(`No effect with id ${this.effect} could be resolved.`);
+		console.error(`No effect with id '${id}' could be resolved.`);
 	}
 	return effect;
 }
@@ -678,7 +684,8 @@ async function promptExpiredEffectRemoval(event) {
  * @returns {Promise<void>}
  */
 async function promptApplyEffect(actor, targets, effects, sourceInfo) {
-	const actions = effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo));
+	let actions = await Promise.all(effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo)));
+	actions = actions.filter((a) => a !== null);
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Targets, true);
 	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Effects, true);
 	const targetData = Targeting.serializeTargetData(targets);
@@ -720,23 +727,31 @@ async function promptRemoveEffect(actor, source) {
  * @param {InlineSourceInfo} sourceInfo
  * @returns {ChatAction}
  */
-function getTargetedAction(id, sourceInfo) {
-	let label;
+async function getTargetedAction(id, sourceInfo) {
+	let name;
 	let icon;
 	let img;
-	const effectData = resolveBaseEffect(id);
+	const effectData = await getEffectData(id);
 	if (effectData) {
-		icon = `fuk fu-${id}`;
-		label = StringUtils.localize(effectData.name);
+		if (effectData.img) {
+			img = effectData.img;
+		} else {
+			if (resolveBaseEffect(id)) {
+				icon = `fuk fu-${id}`;
+			} else {
+				icon = 'ra ra-biohazard';
+			}
+		}
+		name = StringUtils.localize(effectData.name);
 	} else {
-		const effect = fromUuidSync(id);
-		img = effect.img;
-		label = effect.name;
-		icon = 'ra ra-biohazard';
+		return null;
 	}
 
 	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {
-		effect: label,
+		effect: name,
+	});
+	const label = StringUtils.localize('FU.ChatApplyEffectLabel', {
+		effect: name,
 	});
 
 	return new ChatAction('applyEffect', icon, tooltip, {
@@ -745,6 +760,7 @@ function getTargetedAction(id, sourceInfo) {
 		.requiresOwner()
 		.setFlag(Flags.ChatMessage.Effects)
 		.withSelected()
+		.withLabel(label)
 		.withImage(img)
 		.withDataset({
 			['effect-id']: id,

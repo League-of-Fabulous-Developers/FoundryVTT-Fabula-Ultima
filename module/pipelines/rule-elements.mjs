@@ -55,6 +55,7 @@ import { RankRulePredicate } from '../documents/effects/predicates/rank-rule-pre
 import { ItemRollRuleTrigger } from '../documents/effects/triggers/item-roll-rule-trigger.mjs';
 import { CalculateExpenseRuleTrigger } from '../documents/effects/triggers/calculate-expense-rule-trigger.mjs';
 import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-trigger.mjs';
+import { FUItem } from '../documents/items/item.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -284,6 +285,28 @@ function getSceneCharacters(targets) {
 	return [...sceneCharacters, ...targets.filter((ec) => !uuids.has(ec.actor.uuid))];
 }
 
+/** @type {FUItem | null} */
+let temporaryItem = null;
+
+/**
+ * @param {FUActiveEffect} effect
+ * @returns {Promise<game.projectfu.FUItem|null>}
+ */
+async function getTemporaryItem(effect) {
+	if (!temporaryItem) {
+		temporaryItem = await FUItem.create(
+			{
+				name: 'TemporaryItem',
+				type: 'rule',
+			},
+			{ temporary: true },
+		);
+	}
+	temporaryItem.name = effect.name;
+	temporaryItem.img = effect.img;
+	return temporaryItem;
+}
+
 /**
  * @param {String} type
  * @param {*} event
@@ -318,8 +341,13 @@ async function evaluate(type, event, source, targets, data = undefined) {
 				},
 				...data,
 			};
+			// If this effect was attached on an item (best case)
 			if (effect.parent.documentName === 'Item') {
 				contextData.item = effect.parent;
+			}
+			// If not, we will use a dummy item
+			else {
+				contextData.item = await getTemporaryItem(effect);
 			}
 			const context = new RuleElementContext(contextData);
 
