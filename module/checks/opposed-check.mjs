@@ -142,7 +142,12 @@ function onRenderChatMessage(message, html) {
 				ui.notifications.warn(`Thou cannot oppose thyself.`);
 				return;
 			}
-			return CheckPrompt.opposedCheck(actor, data);
+			return CheckPrompt.opposedCheck(actor, data, {
+				initialConfig: {
+					primary: data.initialCheck.primary.attribute,
+					secondary: data.initialCheck.secondary.attribute,
+				},
+			});
 		});
 	}
 }
