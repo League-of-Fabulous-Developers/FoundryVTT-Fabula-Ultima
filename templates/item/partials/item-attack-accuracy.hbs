@@ -1,7 +1,8 @@
 <fieldset class="title-fieldset desc resource-content">
 	<legend class="resource-label-full">
-		<label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
-		 'FU.Accuracy'}}</label>
+		<label class="resource-label-m"><i class="fas fa-dice icon"></i>
+			{{localize 'FU.Accuracy'}}
+		</label>
 	</legend>
 	<div class="grid grid-3col flexrow">
 		<label class="resource-label-m resource-content flexcol flex-group-center">
@@ -31,8 +32,7 @@
 			{{localize 'FU.Defense'}}
 			<div class="resource-content flexrow flex-group-center">
 				<select name="system.defense" class="resource-inputs resource-text-sm">
-					{{selectOptions defenses selected=system.defense sort=true localize=true
-									labelAttr="abbr"}}
+					{{selectOptions defenses selected=system.defense localize=true labelAttr="abbr"}}
 				</select>
 			</div>
 		</label>
