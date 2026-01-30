@@ -306,7 +306,7 @@ function prepareCharacterData(context) {
 
 	// Handle affinity
 	for (let [k, v] of Object.entries(context.system.affinities)) {
-		v.label = game.i18n.localize(CONFIG.FU.damageTypes[k]) ?? k;
+		v.label = game.i18n.localize(CONFIG.FU.damageTypes[k]) ?? game.i18n.localize(CONFIG.FU.weaponCategories[k]) ?? k;
 		v.affTypeBase = game.i18n.localize(CONFIG.FU.affType[v.base]) ?? v.base;
 		v.affTypeBaseAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.base]) ?? v.base;
 		v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
