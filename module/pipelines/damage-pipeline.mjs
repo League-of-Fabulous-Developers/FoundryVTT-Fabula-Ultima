@@ -97,7 +97,6 @@ export class DamageRequest extends PipelineRequest {
 	 */
 	constructor(sourceInfo, targets, damageData, damageOverride = {}) {
 		super(sourceInfo, targets);
-		console.log('DamageRequest:', this);
 		this.damageData = damageData;
 		this.damageOverride = damageOverride;
 		this.damageType = this.damageOverride.damageType || this.damageData.type;
@@ -513,17 +512,19 @@ async function process(request) {
 
 		const affinityMessageRenderFunc = await foundry.applications.handlebars.getTemplate(systemTemplatePath('chat/partials/inline-damage-icon'));
 
+		console.log('Generating affinity message:', FU.affIcon[context.damageType], FU.weaponCategoryIcons[context.category]);
+
 		let affinityMessage = affinityMessageRenderFunc({
 			damage: damageTaken,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
-			affinityIcon: FU.affIcon[context.damageType],
+			affinityIcons: FU.affIcon[context.damageType],
 		});
 
 		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) {
 			affinityMessage += affinityMessageRenderFunc({
 				damage: damageTaken,
 				damageType: game.i18n.localize(FU.weaponCategories[context.category]),
-				affinityIcon: FU.weaponCategoryIcons[context.category],
+				affinityIcons: FU.weaponCategoryIcons[context.category],
 			});
 		}
 
