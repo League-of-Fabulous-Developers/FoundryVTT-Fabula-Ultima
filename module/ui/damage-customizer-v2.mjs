@@ -151,7 +151,7 @@ export class DamageCustomizerV2 {
 			console.log('Result:', result);
 			// const expanded = foundry.utils.expandObject(result);
 			damageData.type = context.selectedType;
-			damageData.weaponCategory = context.selectedCategory;
+			damageData.category = context.selectedCategory;
 			if (result.hr === false) {
 				damageData.hrZero = true;
 				damageData.hr = 0;

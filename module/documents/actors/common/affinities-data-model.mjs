@@ -1,3 +1,4 @@
+import { FU } from '../../../helpers/config.mjs';
 import { AffinityDataModel } from './affinity-data-model.mjs';
 
 /**
@@ -25,6 +26,26 @@ export class AffinitiesDataModel extends foundry.abstract.DataModel {
 			light: new EmbeddedDataField(AffinityDataModel, {}),
 			poison: new EmbeddedDataField(AffinityDataModel, {}),
 		};
+	}
+
+	/**
+	 * Handles resolving multiple affinity types, such as damage types or weapon categories
+	 * @param  {...(AffinityDataModel | string)} affinities - A set of {@link AffinityDataModel}s or strings representing keys from {@link FU.affValue} to reconcile
+	 * @returns {number} - Numeric representation of the final affinity
+	 */
+	resolveMultipleAffinities(...affinities) {
+		const dataModels = affinities.map((aff) => (aff instanceof AffinityDataModel ? aff : typeof aff === 'string' ? this[aff] : undefined)).filter((aff) => !!aff);
+
+		// If any are IM or AB, then return IM or AB
+		if (dataModels.some((affinity) => affinity.current === FU.affValue.immunity)) return FU.affValue.immunity;
+		if (dataModels.some((affinity) => affinity.current === FU.affValue.absorption)) return FU.affValue.absorption;
+
+		const hasRes = dataModels.some((model) => model.current === FU.affValue.resistance);
+		const hasVuln = dataModels.some((model) => model.current === FU.affValue.vulnerability);
+
+		if (hasRes && !hasVuln) return FU.affValue.resistance;
+		if (hasVuln && !hasRes) return FU.affValue.vulnerability;
+		return FU.affValue.none;
 	}
 
 	/** @returns {Record<string, AffinityDataModel>} */

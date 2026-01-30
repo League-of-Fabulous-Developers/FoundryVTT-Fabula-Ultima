@@ -112,7 +112,7 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 			targets,
 		};
 
-		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) damageOverride.weaponCategory = result['weapon-category'];
+		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) damageOverride.category = result['weapon-category'];
 
 		// Execute the callback with the extra damage information and targets
 		callback(damageOverride, targets);

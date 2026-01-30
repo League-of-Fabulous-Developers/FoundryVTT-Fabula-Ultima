@@ -25,6 +25,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 import { PressureSystem } from '../systems/pressure-system.mjs';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -96,10 +97,11 @@ export class DamageRequest extends PipelineRequest {
 	 */
 	constructor(sourceInfo, targets, damageData, damageOverride = {}) {
 		super(sourceInfo, targets);
+		console.log('DamageRequest:', this);
 		this.damageData = damageData;
 		this.damageOverride = damageOverride;
 		this.damageType = this.damageOverride.damageType || this.damageData.type;
-		this.weaponCategory = this.damageOverride.weaponCategory || this.damageData.weaponCategory;
+		this.category = this.damageOverride.category || this.damageData.category;
 		this.overrides = {};
 	}
 
@@ -204,39 +206,6 @@ export class DamagePipelineContext extends PipelineContext {
 }
 
 /**
- * Resolves final affinity while respecting category-based affinities
- * @param {DamagePipelineContext} context
- * @return {number}
- */
-function resolveCategoryAffinity(context, currentAffinity) {
-	// TODO: Remove magic string for untyped
-	// Untyped damage does not apply Category Affinities
-	if (context.damageType === 'untyped') return currentAffinity;
-	// AB and IM override others
-	if (currentAffinity === FU.affValue.immunity || currentAffinity === FU.affValue.absorption) return currentAffinity;
-
-	// const category = context.item?.system?.category?.value;
-	const category = context.weaponCategory ?? context.item?.system?.category?.value;
-
-	// If we have no weapon category, bail
-	if (!category) return currentAffinity;
-	const categoryAffinity = context.actor?.system?.affinities?.[category]?.current;
-
-	// Likewise, if our actor does not have any affinity in their DataModel for this category, bail
-	if (typeof categoryAffinity !== 'number') return currentAffinity;
-
-	// once again, AB and IM override others
-	if (categoryAffinity === FU.affValue.immunity || categoryAffinity === FU.affValue.absorption) return categoryAffinity;
-	// If they're the same it doesn't actually matter which we return
-	if (categoryAffinity === currentAffinity) return currentAffinity;
-	// If either is no Affinity and the other is RS or VU, return the one that is RS or VU
-	if (categoryAffinity === FU.affValue.none) return currentAffinity;
-	if (currentAffinity === FU.affValue.none) return categoryAffinity;
-	// At this point one is RS and one is VU, so they cancel.
-	return 0;
-}
-
-/**
  * @param {DamagePipelineContext} context
  * @return {Boolean}
  */
@@ -255,9 +224,8 @@ function resolveAffinity(context) {
 		affinity = context.overrides.affinity;
 	} else if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities) && context.item?.system?.category?.value) {
 		// Handle category affinities
-		console.log('');
-		affinity = context.actor?.system?.affinities?.[context?.damageType]?.current ?? 0;
-		affinity = resolveCategoryAffinity(context, affinity);
+		const category = context.category ?? context.item.system.category.value;
+		affinity = context.actor?.system?.affinities?.resolveMultipleAffinities(context.damageType, category);
 	} else if (context.damageType in context.actor.system.affinities) {
 		affinity = context.actor.system.affinities[context.damageType].current;
 	}
@@ -326,7 +294,7 @@ function resolveAffinity(context) {
 			},
 		};
 		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) {
-			if (context.weaponCategory) reveal.affinities[context.weaponCategory] = true;
+			if (context.category) reveal.affinities[context.categoryp] = true;
 			else if (context.item?.system?.category?.value) reveal.affinities[context.item.system.category.value] = true;
 		}
 
@@ -543,12 +511,21 @@ async function process(request) {
 		// Dispatch event
 		damageTaken = Math.abs(damageTaken);
 
-		// Chat message
-		const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+		const affinityMessageRenderFunc = await foundry.applications.handlebars.getTemplate(systemTemplatePath('chat/partials/inline-damage-icon'));
+
+		let affinityMessage = affinityMessageRenderFunc({
 			damage: damageTaken,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
 		});
+
+		if (game.settings.get(SYSTEM, SETTINGS.optionCategoryAffinities)) {
+			affinityMessage += affinityMessageRenderFunc({
+				damage: damageTaken,
+				damageType: game.i18n.localize(FU.weaponCategories[context.category]),
+				affinityIcon: FU.weaponCategoryIcons[context.category],
+			});
+		}
 
 		// Additional content
 		let content = [];
