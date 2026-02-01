@@ -974,6 +974,7 @@ export const Effects = Object.freeze({
 	promptApplyEffect,
 	getTargetedAction,
 	getClearAction,
+	createEffectFlags,
 
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,

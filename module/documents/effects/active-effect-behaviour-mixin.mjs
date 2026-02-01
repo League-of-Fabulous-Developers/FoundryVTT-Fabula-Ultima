@@ -5,6 +5,7 @@ import { FUItem } from '../items/item.mjs';
 import { PseudoItem } from '../items/pseudo-item.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 import { Pipeline } from '../../pipelines/pipeline.mjs';
+import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
 
 const HIGH_PRIORITY_CHANGES = new Set([
 	'system.resources.hp.bonus',
@@ -101,6 +102,27 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 */
 		get identifier() {
 			return this.getFlag(Flags.Scope, Flags.ActiveEffect.Identifier);
+		}
+
+		/**
+		 * @param {String} id
+		 */
+		matches(id) {
+			if (this.name.toLowerCase() === id) {
+				return true;
+			}
+			if (this.statuses.has(id)) {
+				return true;
+			}
+			if (this.identifier === id) {
+				return true;
+			}
+			if (this.sourceInfo) {
+				if (this.sourceInfo.fuid === id) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 		/**
@@ -271,6 +293,15 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			if (this.parent instanceof Item && this.img === defaultImage) {
 				changes.img = this.parent.img;
 			}
+			// If no source info is provided, it could have been created directly
+			if (!data.flags.projectfu.source && data.origin) {
+				/** @type FUItem **/
+				const compendiumItem = await fromUuid(data.origin);
+				const sourceInfo = new InlineSourceInfo(compendiumItem.name, null, compendiumItem.uuid, null, compendiumItem.system.fuid);
+				const flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
+				changes.flags = flags;
+			}
+
 			this.updateSource(changes);
 			return super._preCreate(data, options, user);
 		}
