@@ -294,7 +294,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				changes.img = this.parent.img;
 			}
 			// If no source info is provided, it could have been created directly
-			if (!data.flags.projectfu.source && data.origin) {
+			if (!data.flags?.projectfu?.source && data.origin) {
 				/** @type FUItem **/
 				const compendiumItem = await fromUuid(data.origin);
 				const sourceInfo = new InlineSourceInfo(compendiumItem.name, null, compendiumItem.uuid, null, compendiumItem.system.fuid);
