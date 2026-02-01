@@ -87,8 +87,8 @@ export class Role {
 		let attributeSteps = {};
 		attributeSteps[0] = new AttributeArray(8, 6, 10, 8);
 		attributeSteps[1] = new AttributeArray(8, 8, 10, 8);
-		attributeSteps[2] = new AttributeArray(8, 6, 10, 10);
-		attributeSteps[3] = new AttributeArray(8, 6, 12, 10);
+		attributeSteps[2] = new AttributeArray(8, 8, 12, 8);
+		attributeSteps[3] = new AttributeArray(8, 8, 12, 10);
 		let role = new Role(attributeSteps);
 		return role;
 	}
