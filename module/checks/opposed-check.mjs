@@ -114,7 +114,7 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 				initialCheck: check,
 			};
 			const action = new ChatAction(actionName, FU.checkIcons.opposed, tooltip).withLabel(tooltip).withSelected().withFields(data);
-			CommonSections.chatActions(sections, [action], CHECK_ADDENDUM_ORDER);
+			CommonSections.chatActions(sections, [action], {}, CHECK_ADDENDUM_ORDER);
 		}
 	}
 };
