@@ -33,8 +33,7 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 		}
 
 		const targets = selected.map((c) => c.actor);
-		// If there's a configuration provided
-		if (context.event.config) {
+		if (context.config) {
 			/** @type CheckConfigurer **/
 			const config = context.event.config;
 			config.addEffects(this.effect);

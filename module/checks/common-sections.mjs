@@ -71,12 +71,12 @@ const template = (sections, template, context, order) => {
 /**
  * @param {CheckRenderData} sections
  * @param {ChatAction[]} actions
+ * @param {Object} flags
  * @param {number} [order]
  */
-const chatActions = (sections, actions, order) => {
+const chatActions = (sections, actions, flags = {}, order) => {
 	sections.push(async () => {
 		const content = await ChatAction.renderToChat(actions);
-		let flags = {};
 		for (const action of actions) {
 			if (action.flag) {
 				Pipeline.toggleFlag(flags, action.flag);

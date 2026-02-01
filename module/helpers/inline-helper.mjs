@@ -325,7 +325,7 @@ function getRenderContext(element) {
 
 	let sourceInfo;
 	if (document instanceof ChatMessage) {
-		sourceInfo = document.getFlag(SYSTEM, Flags.ChatMessage.Source);
+		sourceInfo = InlineSourceInfo.fromChatMessage(document);
 	}
 	if (!sourceInfo) {
 		sourceInfo = InlineHelper.determineSource(document, target);

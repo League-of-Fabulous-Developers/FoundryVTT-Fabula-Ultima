@@ -276,13 +276,16 @@ async function onFeatureEvent(event) {
 function getSceneCharacters(targets) {
 	/** @type CharacterInfo[] **/
 	let sceneCharacters = [];
+	sceneCharacters.push(...targets);
+
 	if (FUCombat.hasActiveEncounter) {
+		/** @type FUCombatant[] **/
 		const combatants = Array.from(FUCombat.activeEncounter.combatants.values());
 		const combatCharacters = CharacterInfo.fromCombatants(combatants);
 		sceneCharacters.push(...combatCharacters);
 	}
-	const uuids = new Set(sceneCharacters.map((c) => c.actor.uuid));
-	return [...sceneCharacters, ...targets.filter((ec) => !uuids.has(ec.actor.uuid))];
+
+	return [...new Map(sceneCharacters.filter((ci) => ci.actor?.uuid).map((ci) => [ci.actor.uuid, ci])).values()];
 }
 
 /** @type {FUItem | null} */
