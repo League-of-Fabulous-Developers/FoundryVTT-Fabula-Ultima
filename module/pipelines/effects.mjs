@@ -305,6 +305,14 @@ async function renderEffect(effect, owner) {
 }
 
 /**
+ * @param {String} id
+ * @returns {boolean}
+ */
+function isStatusEffect(id) {
+	return id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES;
+}
+
+/**
  * @typedef InlineEffectConfiguration
  * @property {String} name
  * @property {String} event e:
@@ -845,10 +853,7 @@ function onRenderChatMessage(message, element) {
 
 	Pipeline.handleClick(message, element, 'applyEffect', async (dataset) => {
 		const effectId = dataset.effectId;
-		const effect = await getEffectData(effectId);
-		if (!effect) {
-			return;
-		}
+		const isStatus = isStatusEffect(effectId);
 
 		let sourceInfo = InlineSourceInfo.none;
 		if (dataset.fields) {
@@ -860,12 +865,26 @@ function onRenderChatMessage(message, element) {
 
 		const targets = await Pipeline.getTargetsFromAction(dataset);
 		console.debug(`Applying effect ${effectId} to ${targets}`);
-		for (const target of targets) {
-			if (!target.isOwner) {
-				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-				continue;
+		if (isStatus) {
+			for (const target of targets) {
+				if (!target.isOwner) {
+					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+					continue;
+				}
+				await toggleStatusEffect(target, effectId, sourceInfo);
 			}
-			await applyEffect(target, effect, sourceInfo);
+		} else {
+			const effect = await getEffectData(effectId);
+			if (!effect) {
+				return;
+			}
+			for (const target of targets) {
+				if (!target.isOwner) {
+					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+					continue;
+				}
+				await applyEffect(target, effect, sourceInfo);
+			}
 		}
 	});
 
@@ -972,6 +991,7 @@ export const Effects = Object.freeze({
 	removeEffect,
 	applyEffect,
 	canBeRemoved,
+	isStatusEffect,
 	toggleStatusEffect,
 	createTemporaryEffect,
 	formatEffect,
