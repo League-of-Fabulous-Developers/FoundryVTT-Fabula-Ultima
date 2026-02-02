@@ -145,6 +145,12 @@ export const FUHooks = {
 	 */
 	RENDER_CHECK_EVENT: 'projectfu.events.checks.render',
 	/**
+	 * @description Dispatched when a chat message is about to be rendered.
+	 * @example callback(event)
+	 * @remarks Uses {@link RenderMessageEvent}
+	 */
+	RENDER_MESSAGE_EVENT: 'projectfu.events.chat.render',
+	/**
 	 * @description Dispatched whenever there is a change in active wellsprings.
 	 * @remarks Uses {@link WellspringDataModel}
 	 */

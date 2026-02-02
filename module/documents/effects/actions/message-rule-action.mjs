@@ -54,7 +54,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 		}
 		// Message
 		const _message = this.message || StringUtils.localize('FU.RuleElementTriggered');
-		if (context.config && context.source && context.renderData) {
+		if (context.renderData && context.source) {
 			const actor = context.source.actor !== context.character.actor ? context.item?.parent : null;
 			CommonSections.itemText(context.renderData, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
 		} else {

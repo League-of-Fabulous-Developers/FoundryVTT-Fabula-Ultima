@@ -56,6 +56,7 @@ import { ItemRollRuleTrigger } from '../documents/effects/triggers/item-roll-rul
 import { CalculateExpenseRuleTrigger } from '../documents/effects/triggers/calculate-expense-rule-trigger.mjs';
 import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-trigger.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { RenderMessageRuleTrigger } from '../documents/effects/triggers/render-message-rule-trigger.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
@@ -75,6 +76,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, CreateConsumableRuleTrigger.TYPE, CreateConsumableRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, ItemRollRuleTrigger.TYPE, ItemRollRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, FeatureRuleTrigger.TYPE, FeatureRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, RenderMessageRuleTrigger.TYPE, RenderMessageRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -247,6 +249,16 @@ async function onRenderCheckEvent(event) {
 }
 
 /**
+ * @param {RenderMessageEvent} event
+ * @returns {Promise<void>}
+ */
+async function onRenderMessageEvent(event) {
+	await evaluate(FUHooks.RENDER_MESSAGE_EVENT, event, event.source, [], {
+		renderData: event.renderData,
+	});
+}
+
+/**
  * @param {NotificationEvent} event
  * @returns {Promise<void>}
  */
@@ -390,6 +402,7 @@ function initialize() {
 	AsyncHooks.on(FUhooks.CONSUMABLE_CREATE_EVENT, onCreateConsumableEvent);
 	AsyncHooks.on(FUhooks.ITEM_ROLL_EVENT, onItemRoll);
 	AsyncHooks.on(FUhooks.FEATURE_EVENT, onFeatureEvent);
+	AsyncHooks.on(FUHooks.RENDER_MESSAGE_EVENT, onRenderMessageEvent);
 }
 
 export const RuleElements = Object.freeze({

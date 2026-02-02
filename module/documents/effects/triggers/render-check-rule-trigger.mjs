@@ -9,6 +9,7 @@ const fields = foundry.data.fields;
  * @property {String} identifier The id of an Item to match.
  * @property {Set<CheckType>} checkTypes
  * @property {Set<FUItemGroup>} itemGroups
+ * @property {Boolean} local
  * @inheritDoc
  */
 export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
@@ -67,22 +68,6 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 			}
 		}
 
-		if (this.outcome) {
-			for (const target of context.event.targets) {
-				switch (target.check) {
-					case 'hit':
-						if (this.outcome !== 'success') {
-							return false;
-						}
-						break;
-					case 'miss':
-						if (this.outcome !== 'failure') {
-							return false;
-						}
-						break;
-				}
-			}
-		}
 		if (this.identifier) {
 			return context.matchesItem(this.identifier);
 		}

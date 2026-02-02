@@ -1656,6 +1656,7 @@
 		"RuleTriggerPerformCheck": "Perform Check",
 		"RuleTriggerResolveCheck": "Resolve Check",
 		"RuleTriggerRenderCheck": "Render Check",
+		"RuleTriggerRenderMessage": "Render Message",
 		"RuleTriggerDamage": "Damage",
 		"RuleTriggerStatus": "Status",
 		"RuleTriggerResourceUpdate": "Resource Update",

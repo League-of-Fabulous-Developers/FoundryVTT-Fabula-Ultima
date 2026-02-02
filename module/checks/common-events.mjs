@@ -664,6 +664,32 @@ function notify(source, id, origin) {
 }
 
 /**
+ * @typedef RenderMessageEvent
+ * @property {CheckRenderData} renderData
+ * @property {CharacterInfo} source
+ * @property {*} document A reference to a document such as an actor or item.
+ * @remarks Emitted when a message is about to be rendered.
+ */
+
+/**
+ * @param {CheckRenderData} renderData
+ * @param {FUActor} actor
+ * @param {*} document
+ * @returns {Promise<[]|*>}
+ */
+async function renderMessage(renderData, actor, document = undefined) {
+	const source = CharacterInfo.fromActor(actor);
+
+	/** @type RenderMessageEvent  **/
+	const event = {
+		renderData: renderData,
+		document: document,
+		source: source,
+	};
+	return AsyncHooks.callSequential(FUHooks.RENDER_MESSAGE_EVENT, event);
+}
+
+/**
  * @desc Dispatched when a class feature has been used.
  * @typedef FeatureEvent
  * @property {CharacterInfo} source
@@ -775,6 +801,7 @@ export const CommonEvents = Object.freeze({
 	reveal,
 	opportunity,
 	progress,
+	renderMessage,
 	initializeCheck,
 	performCheck,
 	resolveCheck,

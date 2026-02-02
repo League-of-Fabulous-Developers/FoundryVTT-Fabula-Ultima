@@ -437,7 +437,9 @@ async function renderCheck(result, actor, item, flags = {}) {
 	const config = CheckConfiguration.configure(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
+	// We subscribe to both events here, since either approach would work.
 	await CommonEvents.renderCheck(renderData, config, actor, item);
+	await CommonEvents.renderMessage(renderData, actor, item);
 
 	/**
 	 * @type {CheckSection[]}

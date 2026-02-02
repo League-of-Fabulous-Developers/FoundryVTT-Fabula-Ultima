@@ -6,6 +6,10 @@ import { PseudoItem } from '../items/pseudo-item.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 import { Pipeline } from '../../pipelines/pipeline.mjs';
 import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
+import { SectionChatBuilder } from '../../helpers/section-chat-builder.mjs';
+import { CommonEvents } from '../../checks/common-events.mjs';
+import { CommonSections } from '../../checks/common-sections.mjs';
+import { CHECK_FLAVOR } from '../../checks/default-section-order.mjs';
 
 const HIGH_PRIORITY_CHANGES = new Set([
 	'system.resources.hp.bonus',
@@ -257,24 +261,31 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @returns {Promise<void>}
 		 */
 		async sendToChat() {
-			// It's okay for it to be empty
-			const description = this.description;
 			let flags = Pipeline.initializedFlags(Flags.ChatMessage.Effect, this.uuid);
+			let item;
+			let actor;
 
 			if (this.parent instanceof FUItem) {
+				item = this.parent;
+				actor = item.parent;
 				Pipeline.setFlag(flags, Flags.ChatMessage.Item, this.parent.uuid);
 				Pipeline.setFlag(flags, Flags.ChatMessage.Fuid, this.parent.system.fuid);
+			} else if (this.parent instanceof FUActor) {
+				actor = this.parent;
 			}
 
-			// TODO: More information?
-			await ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor: this.parent }),
-				flags: flags,
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-active-effect.hbs', {
+			const chatBuilder = new SectionChatBuilder(actor);
+			CommonSections.template(
+				chatBuilder.renderData,
+				'chat/chat-active-effect',
+				{
 					effect: this,
-					description: description,
-				}),
-			});
+					description: this.description,
+				},
+				CHECK_FLAVOR,
+			);
+			await CommonEvents.renderMessage(chatBuilder.renderData, actor, item ?? this);
+			await chatBuilder.withFlags(flags).create();
 		}
 
 		/**
