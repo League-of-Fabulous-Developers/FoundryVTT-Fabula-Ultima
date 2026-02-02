@@ -37,7 +37,7 @@ export class RuleDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.progressField];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.progressField, ItemPartialTemplates.behaviorField];
 	}
 
 	/**

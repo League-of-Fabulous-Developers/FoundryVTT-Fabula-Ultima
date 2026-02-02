@@ -3,7 +3,7 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { Effects } from '../../../pipelines/effects.mjs';
 import { SectionChatBuilder } from '../../../helpers/section-chat-builder.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { Flags } from '../../../helpers/flags.mjs';
+// import { Flags } from '../../../helpers/flags.mjs';
 
 const fields = foundry.data.fields;
 
