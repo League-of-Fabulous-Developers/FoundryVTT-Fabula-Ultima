@@ -112,21 +112,21 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 		key = 'system.data.damage.type';
 	}
 	const localizedDamageType = game.i18n.localize(`FU.Damage${StringUtils.capitalize(type)}`);
+	let changes = [];
+	if (key) {
+		changes.push({
+			key: key,
+			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			value: type,
+		});
+	}
 
 	return {
 		fuid: `alter-damage-type-${type}`,
 		name: label ? `${label} (${localizedDamageType})` : game.i18n.format('FU.InlineWeaponActiveEffectName', { damageType: localizedDamageType }),
 		img: type === 'untyped' ? 'icons/svg/circle.svg' : `systems/projectfu/styles/static/affinities/${type}.svg`,
 		transfer: false,
-		changes: key
-			? [
-					{
-						key: key,
-						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-						value: type,
-					},
-				]
-			: [],
+		changes: changes,
 	};
 }
 
@@ -151,6 +151,7 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 				const effectData = createAlterDamageTypeEffect(weapon, choice, config.name);
 				// The name is modified
 				config.name = effectData.name;
+				config.event = 'endOfScene';
 
 				Effects.applyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
 					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);

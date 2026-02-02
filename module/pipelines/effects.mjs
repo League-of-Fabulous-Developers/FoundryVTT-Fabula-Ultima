@@ -313,14 +313,6 @@ function isStatusEffect(id) {
 }
 
 /**
- * @typedef InlineEffectConfiguration
- * @property {String} name
- * @property {String} event e:
- * @property {Number} interval i:
- * @property {String} tracking t:
- */
-
-/**
  * A helper function to toggle a status effect on an Actor.
  * Designed based off TokenDocument#toggleActiveEffect to properly interact with token hud.
  * @param {FUActor} actor the actor the status should get applied to

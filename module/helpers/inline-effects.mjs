@@ -86,6 +86,14 @@ function createStatusAnchor(effectValue, status, config) {
 }
 
 /**
+ * @typedef InlineEffectConfiguration
+ * @property {String} name
+ * @property {FUEffectDuration} event e:
+ * @property {Number} interval i:
+ * @property {String} tracking t:
+ */
+
+/**
  * @param match
  * @returns {InlineEffectConfiguration}
  */
