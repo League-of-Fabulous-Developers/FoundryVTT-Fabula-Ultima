@@ -242,6 +242,7 @@ async function onRenderCheckEvent(event) {
 	await evaluate(FUHooks.RENDER_CHECK_EVENT, event, event.source, event.targets, {
 		check: event.check,
 		config: event.config,
+		renderData: event.renderData,
 	});
 }
 
@@ -266,7 +267,9 @@ async function onEffectToggledEvent(event) {
  * @returns {Promise<void>}
  */
 async function onFeatureEvent(event) {
-	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, []);
+	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, [], {
+		renderData: event.builder.sections,
+	});
 }
 
 /**
@@ -327,7 +330,7 @@ async function evaluate(type, event, source, targets, data = undefined) {
 	const sceneCharacters = getSceneCharacters([source, ...targets]);
 	for (const character of sceneCharacters) {
 		for (const effect of character.actor.allEffects()) {
-			const disabled = effect.suppressed || effect.disabled;
+			const disabled = effect.isSuppressed || effect.disabled;
 			if (disabled || effect.system.rules.elements.size === 0) {
 				continue;
 			}
