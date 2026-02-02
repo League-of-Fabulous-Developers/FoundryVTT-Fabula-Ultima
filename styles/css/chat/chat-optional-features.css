@@ -50,7 +50,7 @@
 }
 
 .fu-chat__clear-effect {
-	border: 2px solid #b00000;
+	border: 1px solid #b00000;
 	box-shadow: inset 0 0 0 1px rgba(255, 200, 200, 0.4);
 	background-color: #ff5a5a;
 	text-shadow:

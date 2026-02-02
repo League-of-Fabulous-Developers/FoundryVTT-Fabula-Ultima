@@ -288,7 +288,7 @@ export class FUActor extends Actor {
 
 	/**
 	 * @override
-	 * @returns {ActiveEffect[]}
+	 * @returns {FUActiveEffect[]}
 	 */
 	get temporaryEffects() {
 		const effects = super.temporaryEffects;
@@ -398,19 +398,57 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @description Deletes all temporary effects on the actor
-	 * @property includeStatus Whether to also clear status effects
-	 * @property includeWithoutDuration Include effects without a duration
+	 * @typedef ClearEffectOptions
+	 * @property {Boolean} status Whether the effect must have one of the core statuses (dazed, etc...)
+	 * @property {Boolean} duration Whether the effect must have a duration. (Ignored for system statuses, which have no duration by default.)
 	 */
-	clearTemporaryEffects(includeStatus = true, includeWithoutDuration = true) {
+
+	/**
+	 * @type {ClearEffectOptions}
+	 */
+	static defaultClearEffectOptions = {
+		status: undefined,
+		duration: undefined,
+	};
+
+	/**
+	 * @description Deletes all temporary effects on the actor
+	 * @property {ClearEffectOptions} options
+	 */
+	clearTemporaryEffects(options = FUActor.defaultClearEffectOptions) {
 		// Collect effects to delete
 		const effectsToDelete = this.temporaryEffects.filter((effect) => {
-			// If it's a status effect
+			// If it has a status effect
 			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+
+			switch (options.status) {
+				case true:
+					if (!statusEffectId || !(statusEffectId in Effects.STATUS_EFFECTS)) {
+						return false;
+					}
+					break;
+				case false:
+					if (statusEffectId) {
+						return false;
+					}
+					break;
+			}
+
+			switch (options.duration) {
+				case true:
+					// Default statuses have no duration either.
+					if (!effect.hasDuration && !statusEffectId) {
+						return false;
+					}
+					break;
+				case false:
+					if (effect.hasDuration) {
+						return false;
+					}
+					break;
+			}
+
 			if (statusEffectId) {
-				if (!includeStatus && effect.system.duration.event === 'rest') {
-					return false;
-				}
 				if (this.isCharacterType) {
 					{
 						const immunity = this.system.immunities[statusEffectId];
@@ -420,9 +458,7 @@ export class FUActor extends Actor {
 					}
 				}
 			}
-			if (!effect.hasDuration && !includeWithoutDuration) {
-				return false;
-			}
+
 			return effect.isTemporary && Effects.canBeRemoved(effect);
 		});
 

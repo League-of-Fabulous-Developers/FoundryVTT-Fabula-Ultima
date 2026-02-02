@@ -39,6 +39,7 @@ import { CommonEvents } from '../../checks/common-events.mjs';
  * @extends ActiveEffect
  * @property {FUActiveEffectModel} system
  * @property {InlineSourceInfo} source
+ * @property {Set<String>} statuses
  * @property {Boolean} disabled Serialized with the document.
  * @inheritDoc
  * */

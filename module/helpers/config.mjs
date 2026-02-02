@@ -620,9 +620,9 @@ FU.duration = {
 	special: 'FU.Special',
 };
 
-// /**
-//  * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
-//  */
+/**
+ * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
+ */
 
 /**
  * @description Events dispatched during conflict scenes
@@ -634,6 +634,10 @@ FU.combatEvent = {
 	endOfRound: 'FU.EndOfRound',
 	endOfCombat: `FU.EndOfCombat`,
 };
+
+/**
+ * @typedef {'none' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfScene' | 'rest'} FUEffectDuration
+ */
 
 /**
  * @description Active effect durations
