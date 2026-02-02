@@ -6,7 +6,6 @@ const fields = foundry.data.fields;
 
 /**
  * @extends RuleTriggerDataModel
- * @property {String} identifier The id of an item to match.
  * @property {Boolean} local
  * @inheritDoc
  */
@@ -25,7 +24,6 @@ export class RenderMessageRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			identifier: new fields.StringField(),
 			local: new fields.BooleanField({ initial: true }),
 		});
 		return schema;

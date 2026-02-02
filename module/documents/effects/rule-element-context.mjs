@@ -8,8 +8,7 @@ import { ExpressionContext } from '../../expressions/expressions.mjs';
  * @property {CharacterInfo} character The character the rule element is being evaluated on.
  * @property {InlineSourceInfo} sourceInfo
  * @property {CheckResultV2|null} check Some events may have check information.
- * @property {CheckConfigurer|null} config Configuration for a check, available in some events. Mutually exclusive with {@linkcode messageBuilder}.
- * @property {SectionChatBuilder|null} messageBuilder Configuration for a chat message. Mutually exclusive with {@linkcode config}.
+ * @property {CheckConfigurer|null} config Configuration for a check, available in events involving the checks pipeline.
  * @property {CheckRenderData} renderData Used for rendering chat messages.
  * @property {FUItem|null} item The item the rule element could be on.
  * @property {CharacterInfo} source The source character of the event.
