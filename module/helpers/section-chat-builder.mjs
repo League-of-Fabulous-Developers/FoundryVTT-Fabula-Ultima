@@ -24,10 +24,21 @@ export class SectionChatBuilder {
 
 	constructor(actor, item) {
 		this.#actor = actor;
+		this.#item = item;
 		this.#flags = {};
 	}
 
+	/**
+	 * @returns {CheckRenderData}
+	 */
 	get sections() {
+		return this.#renderData;
+	}
+
+	/**
+	 * @returns {CheckRenderData}
+	 */
+	get renderData() {
 		return this.#renderData;
 	}
 
