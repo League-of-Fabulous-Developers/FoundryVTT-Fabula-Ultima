@@ -24,7 +24,7 @@ const supportedTypes = {
  */
 const editorEnricher = {
 	id: 'InlineTypeEnricher',
-	pattern: InlineHelper.compose('TYPE', `(?<type>\\w+)(?<args>(\\s+([a-zA-Z0]+))+)s*`, InlineEffects.effectPropertyGroups),
+	pattern: InlineHelper.compose('TYPE', `(?<type>\\w+)(?<args>\\s+[a-zA-Z0]+(?:[,\\s]+[a-zA-Z0]+)*)\\s*`, InlineEffects.effectPropertyGroups),
 	enricher: (match, options) => {
 		const type = match.groups.type.toLowerCase();
 		const args = match.groups.args.trimStart();
