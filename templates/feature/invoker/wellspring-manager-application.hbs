@@ -9,9 +9,10 @@
         <div class="flexrow">
             {{#each global as |active|}}
                 {{#with (lookup @root.wellsprings @key)}}
-                    <a class="wellspring fu-icon--s {{icon}} {{#unless active}}inactive{{/unless}}"
+                    <a class="wellspring fu-icon__container {{#unless active}}inactive{{/unless}}"
                        data-tooltip="{{name}}" data-action="toggleWellspring"
                        data-wellspring="{{@key}}">
+						<i class="fu-icon--s {{icon}}"></i>
                     </a>
                 {{/with}}
             {{/each}}
@@ -27,9 +28,10 @@
         <div class="flexrow">
             {{#each active.wellsprings as |active|}}
                 {{#with (lookup @root.wellsprings @key)}}
-                    <a class="wellspring fu-icon--s {{icon}} {{#unless active}}inactive{{/unless}}"
+                    <a class="wellspring fu-icon__container {{#unless active}}inactive{{/unless}}"
                        data-tooltip="{{name}}" data-action="toggleWellspring"
                        data-wellspring="{{@key}}">
+						<i class="fu-icon--s {{icon}}"></i>
                     </a>
                 {{/with}}
             {{/each}}
@@ -45,9 +47,10 @@
         <div class="flexrow">
             {{#each current.wellsprings as |active|}}
                 {{#with (lookup @root.wellsprings @key)}}
-                    <a class="wellspring fu-icon--s {{icon}} {{#unless active}}inactive{{/unless}}"
+                    <a class="wellspring fu-icon__container {{#unless active}}inactive{{/unless}}"
                        data-tooltip="{{name}}" data-action="toggleWellspring"
                        data-wellspring="{{@key}}">
+						<i class="fu-icon--s {{icon}}"></i>
                     </a>
                 {{/with}}
             {{/each}}

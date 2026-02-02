@@ -178,6 +178,9 @@
 .fu-icon__container {
 	display: flex;
 	padding: 2px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 .fu-icon__badge {
