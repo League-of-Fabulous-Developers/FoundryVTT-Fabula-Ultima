@@ -649,7 +649,9 @@ async function promptExpiredEffectRemoval(event) {
 
 	if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
 		event.actors.forEach((actor) => {
-			actor.clearTemporaryEffects(false, false);
+			actor.clearTemporaryEffects({
+				duration: true,
+			});
 		});
 		return;
 	}
@@ -793,9 +795,9 @@ async function getClearAction(id, sourceInfo) {
 			name = StringUtils.localize(effectData.name);
 		}
 	}
-	// Clear all effects
+	// Clear status effects
 	else {
-		name = `${StringUtils.localize('FU.All')} ${StringUtils.localize('FU.Effects')}`;
+		name = `${StringUtils.localize('FU.All')} ${StringUtils.localize('FU.StatusEffect')}`;
 		icon = 'ra ra-biohazard';
 	}
 
@@ -891,7 +893,9 @@ function onRenderChatMessage(message, element) {
 					effect.delete();
 				}
 			} else {
-				actor.clearTemporaryEffects();
+				actor.clearTemporaryEffects({
+					status: true,
+				});
 			}
 		});
 	});
@@ -937,7 +941,9 @@ async function onCombatEvent(event) {
  */
 async function onRestEvent(event) {
 	// Remove statuses and other effects that last until rest
-	event.actor.clearTemporaryEffects(true, false);
+	event.actor.clearTemporaryEffects({
+		duration: true,
+	});
 }
 
 const BOONS_AND_BANES = Object.freeze(

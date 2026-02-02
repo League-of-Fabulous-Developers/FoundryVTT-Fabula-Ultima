@@ -4,10 +4,10 @@ import { RuleElementDataModel } from './rule-element-data-model.mjs';
 import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 
 /**
- * @description THe active effect model for this system
+ * @description The active effect model for this system.
  * @property {String} type The type of the effect
  * @property {ActiveEffectPredicateModel} predicate Used for toggling the effect
- * @property {String} duration.event The combat event which decrements the duration. Once it reaches 0, the effect is over.
+ * @property {FUEffectDuration} duration.event The combat event which decrements the duration. Once it reaches 0, the effect is over.
  * @property {Number} duration.interval The number of occurrences between events
  * @property {Number} duration.remaining The number of intervals left.
  * @property {String} tracking Whom is the duration tracked on
