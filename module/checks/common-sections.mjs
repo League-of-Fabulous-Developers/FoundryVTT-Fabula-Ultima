@@ -1,4 +1,4 @@
-import { CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
+import { CHECK_DETAILS, CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
@@ -25,7 +25,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
  * @param {number} [order]
  * @param {Boolean} open Defaults to true
  */
-const description = (sections, description, summary, order, open = true) => {
+const description = (sections, description, summary, order = CHECK_DETAILS, open = true) => {
 	if (summary || description) {
 		sections.push(async () => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
@@ -178,7 +178,7 @@ const clock = (sections, clock, order) => {
  * @param {Tag[]} tags
  * @param {number} [order]
  */
-const tags = (sections, tags = [], order) => {
+const tags = (sections, tags = [], order = CHECK_DETAILS) => {
 	tags = tags.filter((tag) => !('show' in tag) || tag.show);
 	if (tags.length > 0) {
 		sections.push(async () => ({
@@ -353,6 +353,8 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				}
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
 				actions.push(ResourcePipeline.getTargetedAction(request));
+
+				// Trait data
 			}
 
 			const effectData = inspector.getEffects();

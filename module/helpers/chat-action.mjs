@@ -15,6 +15,7 @@ import FoundryUtils from './foundry-utils.mjs';
  * @property {String} classes
  * @property {String} style
  * @property {String} color
+ * @property {String[]} traits Traits for this action.
  * @property {Boolean} targeted Whether this action can be used on targeted tokens (during the chat message generation)
  * @property {Boolean} selected Whether this action can be used on selected tokens instead.
  * @remarks Expects an action handler where dataset.id is a reference to an actor
@@ -134,6 +135,15 @@ export class ChatAction {
 	 */
 	withImage(img) {
 		this.img = img;
+		return this;
+	}
+
+	/**
+	 * @param {String[]} traits
+	 * @returns {ChatAction}
+	 */
+	withTraits(traits) {
+		this.traits = traits;
 		return this;
 	}
 

@@ -761,6 +761,7 @@ function getTargetedAction(damageData, sourceInfo, traits) {
 		.setFlag(Flags.ChatMessage.Damage)
 		.withSelected()
 		.withLabel('FU.ChatApplyDamage')
+		.withTraits(traits)
 		.requiresOwner();
 }
 

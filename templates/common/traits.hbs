@@ -1,8 +1,10 @@
 {{#if model.quantifier}}
 	<div class="fu-rule-element__group">
-		<label class="fu-rule-element__group__header flex-group-center">
-			<i class="ra ra-aries"></i>{{localize 'FU.Traits'}}
-		</label>
+		{{#if showLabel}}
+			<label class="fu-rule-element__group__header flex-group-center">
+				<i class="ra ra-aries"></i>{{localize 'FU.Traits'}}
+			</label>
+		{{/if}}
 		<div class="fu-traits fu-rule-element__property">
 			{{#if showLabel}}
 				<span>{{localize 'FU.Traits'}}</span>
