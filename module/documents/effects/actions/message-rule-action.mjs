@@ -1,7 +1,6 @@
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
-import { FUHooks } from '../../../hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { Pipeline } from '../../../pipelines/pipeline.mjs';

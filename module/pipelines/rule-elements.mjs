@@ -335,7 +335,7 @@ async function getTemporaryItem(effect) {
  */
 async function evaluate(type, event, source, targets, data = undefined) {
 	// This can happen when sending items to chat.
-	if (!event.source) {
+	if (!source) {
 		return;
 	}
 	// Always include the source as part of the scene character pool; useful for when they are not part of the encounter

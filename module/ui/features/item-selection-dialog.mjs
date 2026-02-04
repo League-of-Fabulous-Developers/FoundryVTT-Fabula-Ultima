@@ -5,7 +5,8 @@ import FoundryUtils from '../../helpers/foundry-utils.mjs';
  * @property {String} title
  * @property {String} message
  * @property {FUItem[]|FUActiveEffect[]} items
- * @property {FUItem|FUActiveEffect} initial
+ * @property {Object[]} initial
+ * @property {'grid'|'list'} style
  * @property {Number} max
  * @property {(item: FUItem) => Promise<string>} getDescription
  * @property {String} okLabel
@@ -29,10 +30,11 @@ export class ItemSelectionDialog {
 	 * @param {ItemSelectionData} data
 	 */
 	constructor(data) {
+		data.style = data.style ?? 'grid';
 		this.#data = data;
 		this.#selectedItems = [];
 		if (data.initial) {
-			this.#selectedItems.push(data.initial);
+			this.#selectedItems.push(...data.initial);
 		}
 	}
 
@@ -47,8 +49,11 @@ export class ItemSelectionDialog {
 	 * @returns {Object[]} selected
 	 */
 	async open() {
+		// We cache the item descriptions here...
+		const descriptions = await Promise.all(this.data.items.map((item) => this.data.getDescription(item)));
 		const context = {
 			...this.data,
+			descriptions: descriptions,
 		};
 
 		/**
@@ -58,7 +63,7 @@ export class ItemSelectionDialog {
 		const toggleCardSelection = (container, card) => {
 			const cardItem = this.data.items[card.dataset.index];
 			if (!card.classList.contains('selected')) {
-				const selectedCards = container.querySelectorAll('.fu-item-card.selected');
+				const selectedCards = container.querySelectorAll('.fu-item.selected');
 				if (selectedCards.length >= this.data.max) return;
 				card.classList.add('selected');
 				this.#selectedItems.push(cardItem);
@@ -91,37 +96,21 @@ export class ItemSelectionDialog {
 			 *  @param {HTMLElement} dialog **/
 			render: async (event, dialog) => {
 				const document = dialog.element;
-				const container = document.querySelector('.fu-item-grid');
-				/** @type HTMLSpanElement **/
-				const description = document.querySelector('#description');
+				const container = document.querySelector('#items');
 
-				// Function to update the description
-				const updateDescription = async () => {
-					let text;
-					if (this.#selectedItems.length > 0) {
-						const item = this.#selectedItems[0];
-						text = await this.data.getDescription(item);
-					} else {
-						text = '';
-					}
-					description.innerHTML = text;
-				};
-				await updateDescription();
-
-				// Selection
-				for (const input of container.querySelectorAll('input[name="selected"]:checked')) {
-					const card = input.closest('.fu-item-card');
+				// Initial Selection
+				const inputs = container.querySelectorAll('input[name="selected"]:checked');
+				for (const input of inputs) {
+					const card = input.closest('.fu-item');
 					if (card) {
 						toggleCardSelection(container, card);
-						await updateDescription();
 					}
 				}
 				// ✅ Event handling
 				container.addEventListener('mousedown', async (event) => {
-					const card = event.target.closest('.fu-item-card');
+					const card = event.target.closest('.fu-item');
 					if (!card) return;
 					toggleCardSelection(container, card);
-					await updateDescription();
 				});
 			},
 		});

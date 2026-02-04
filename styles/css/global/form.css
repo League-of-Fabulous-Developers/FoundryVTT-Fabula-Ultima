@@ -65,6 +65,11 @@
 	border-top: 1px solid #c9c7b8;
 }
 
+.fu-form__scroll {
+	overflow-y: auto; /* scroll only when needed */
+	overflow-x: hidden;
+}
+
 .fu-form__message {
 	text-align: left;
 	font-size: 0.875rem;
