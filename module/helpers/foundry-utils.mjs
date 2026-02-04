@@ -1,6 +1,7 @@
 import { StringUtils } from './string-utils.mjs';
 import { systemTemplatePath } from './system-utils.mjs';
 import { TextEditor } from './text-editor.mjs';
+import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 
 const { api, fields, handlebars } = foundry.applications;
 
@@ -357,6 +358,41 @@ export default class FoundryUtils {
 		if (typeof str !== 'string') return false;
 
 		return /^(?:Compendium\.[a-z0-9-]+\.[a-z0-9-]+\.)?[A-Za-z]+\.[A-Za-z0-9]+(?:\.[A-Za-z]+\.[A-Za-z0-9]+)*$/.test(str);
+	}
+
+	/**
+	 * @typedef ItemMigrationAction
+	 * @property {Promise} procedure
+	 * @property {FUItem} item
+	 */
+
+	/**
+	 * @param {FUItem[]} items
+	 * @returns {Promise<ItemMigrationAction[]>}
+	 */
+	static async getItemMigrationActions(items) {
+		/** @type ItemMigrationAction[] **/
+		const updates = [];
+		for (const item of items) {
+			if (item.system.fuid) {
+				const compendiumEntry = await CompendiumIndex.instance.getItemByFuid(item.system.fuid);
+				if (!compendiumEntry) {
+					continue;
+				}
+				const compendiumItem = await fromUuid(compendiumEntry.uuid);
+				if (!compendiumItem) {
+					continue;
+				}
+				const procedure = async () => {
+					await FoundryUtils.migrateItem(compendiumItem, item);
+				};
+				updates.push({
+					item: item,
+					procedure,
+				});
+			}
+		}
+		return updates;
 	}
 
 	/**

@@ -1,27 +1,40 @@
 <main class="background">
-	<div class="grid grid-2col">
-		<div class="fu-item-grid flex-group-center fu-icon__radio-group">
+	{{#if (eq style 'grid')}}
+		<div id="items" class="fu-item-grid flex-group-center fu-icon__radio-group">
 			{{#each items as |item| }}
-				<label class="fu-item-card"
+				<label class="fu-item fu-item-card"
 					   for="{{item.name}}"
 					   data-index="{{@index}}"
-					   data-tooltip="{{item.name}}"
+					   data-tooltip="{{lookup ../descriptions @index}}"
 					   data-name="{{item.name}}">
 					<input type="checkbox"
 						   name="selected"
 						   id="{{item.name}}"
-						   {{#if (eq item.name ../initial.name)}}checked="checked"{{/if}}
+						   {{#if (pfuCollectionContains item ../initial)}}checked{{/if}}
 						   value="{{item.name}}">
 					<img class="fu-icon--l" src="{{item.img}}" alt="{{item.name}}"/>
 					<span class="">{{item.name}}</span>
 				</label>
 			{{/each}}
 		</div>
-		<div class="fu-form__description">
-			<span id="description"></span>
+	{{/if}}
+	{{#if (eq style 'list')}}
+		<div id="items" class="fu-item-list">
+			{{#each items as |item|}}
+				<label class="fu-item fu-item-list__row"
+					   data-index="{{@index}}"
+					   data-tooltip="{{lookup ../descriptions @index}}"
+					   data-name="{{item.name}}">
+					<input type="checkbox"
+						   name="selected"
+						   {{#if (pfuCollectionContains item ../initial)}}checked{{/if}}
+						   value="{{item.name}}">
+					<img class="fu-icon--s" src="{{item.img}}" alt="{{item.name}}"/>
+					<span class="fu-item-row__label">{{item.name}}</span>
+				</label>
+			{{/each}}
 		</div>
-	</div>
-
+	{{/if}}
 	{{#if message}}
 		<div class="fu-form__message">
 			<span>

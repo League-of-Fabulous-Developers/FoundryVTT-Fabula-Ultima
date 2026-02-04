@@ -1,7 +1,7 @@
 import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
-import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -154,35 +154,36 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	 * @returns {Promise<void>}
 	 */
 	static async #migrateItems(event, target) {
-		/** @type Promise[] **/
-		const updates = [];
-
 		/** @type FUItem[] **/
-		const items = this.actor.items.values();
-		for (const item of items) {
-			if (item.system.fuid) {
-				const compendiumEntry = await CompendiumIndex.instance.getItemByFuid(item.system.fuid);
-				if (!compendiumEntry) {
-					continue;
-				}
-				const compendiumItem = await fromUuid(compendiumEntry.uuid);
-				if (!compendiumItem) {
-					continue;
-				}
-				updates.push(async () => {
-					await FoundryUtils.migrateItem(compendiumItem, item);
-				});
-			}
-		}
+		const items = Array.from(this.actor.items.values());
+		/** @type ItemMigrationAction[] **/
+		const updates = await FoundryUtils.getItemMigrationActions(items);
 
 		if (updates.length > 0) {
 			const message = StringUtils.localize('FU.CompendiumMigrateActorItemsMessage', {
 				count: updates.length,
 			});
-			const confirm = await FoundryUtils.confirmDialog('FU.CompendiumMigrateActorItems', message);
-			if (confirm) {
-				await Promise.all(updates.map((fn) => fn()));
-				ui.notifications.info(StringUtils.localize('FU.CompendiumMigrateSuccess', { count: updates.length }));
+
+			const title = 'FU.CompendiumMigrateActorItems';
+			/** @type ItemSelectionData **/
+			const data = {
+				title: title,
+				message,
+				style: 'list',
+				items: items,
+				initial: items,
+				getDescription: async (item) => {
+					const text = item.system?.description ?? '';
+					return text;
+				},
+			};
+			const dialog = new ItemSelectionDialog(data);
+			const result = await dialog.open();
+			if (result && result.length > 0) {
+				const uuids = new Set(result.map((item) => item.uuid));
+				const selectedUpdates = updates.filter((u) => uuids.has(u.item.uuid)).map((u) => u.procedure);
+				await Promise.all(selectedUpdates.map((fn) => fn()));
+				ui.notifications.info(StringUtils.localize('FU.CompendiumMigrateSuccess', { count: selectedUpdates.length }));
 			}
 		}
 	}

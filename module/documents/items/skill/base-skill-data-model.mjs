@@ -29,7 +29,7 @@ import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
 
 export class BaseSkillDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
+		const { SchemaField, StringField, BooleanField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			attributes: new EmbeddedDataField(ItemAttributesDataModelV2, {
 				initial: {
@@ -38,7 +38,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 				},
 			}),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModelV2, {}),
-			accuracy: new NumberField({ initial: 0, integer: true, nullable: false }),
+			accuracy: new StringField({ nullable: false }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses), blank: true }),
 			damage: new EmbeddedDataField(DamageDataModelV2, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),

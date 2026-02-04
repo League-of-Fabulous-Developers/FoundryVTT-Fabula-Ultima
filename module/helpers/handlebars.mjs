@@ -119,6 +119,7 @@ export const FUHandlebars = Object.freeze({
 			return value;
 		});
 
+		// TODO: Flip the parameter order
 		Handlebars.registerHelper('pfuCollectionContains', function (item, collection) {
 			if (Array.isArray(collection)) {
 				return collection.includes(item);
