@@ -97,21 +97,6 @@ export class ItemSelectionDialog {
 			render: async (event, dialog) => {
 				const document = dialog.element;
 				const container = document.querySelector('#items');
-				/** @type HTMLSpanElement **/
-				const description = document.querySelector('#description');
-
-				// Function to update the description
-				const updateDescription = async () => {
-					let text;
-					if (this.#selectedItems.length > 0) {
-						const item = this.#selectedItems[0];
-						text = await this.data.getDescription(item);
-					} else {
-						text = '';
-					}
-					description.innerHTML = text;
-				};
-				await updateDescription();
 
 				// Initial Selection
 				const inputs = container.querySelectorAll('input[name="selected"]:checked');
@@ -119,7 +104,6 @@ export class ItemSelectionDialog {
 					const card = input.closest('.fu-item');
 					if (card) {
 						toggleCardSelection(container, card);
-						await updateDescription();
 					}
 				}
 				// ✅ Event handling
@@ -127,7 +111,6 @@ export class ItemSelectionDialog {
 					const card = event.target.closest('.fu-item');
 					if (!card) return;
 					toggleCardSelection(container, card);
-					await updateDescription();
 				});
 			},
 		});

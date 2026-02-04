@@ -364,6 +364,7 @@ export default class FoundryUtils {
 	 * @typedef ItemMigrationAction
 	 * @property {Promise} procedure
 	 * @property {FUItem} item
+	 * @property {FUItem} compendiumItem
 	 */
 
 	/**
@@ -388,6 +389,7 @@ export default class FoundryUtils {
 				};
 				updates.push({
 					item: item,
+					compendiumItem: compendiumItem,
 					procedure,
 				});
 			}

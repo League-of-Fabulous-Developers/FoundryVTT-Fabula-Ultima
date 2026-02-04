@@ -1764,7 +1764,7 @@
 		"CompendiumMigrateItem": "Migrate Item",
 		"CompendiumMigrateItemMessage": "Would you like to migrate the data in the item <strong>{name}</strong> to that of the compendium?",
 		"CompendiumMigrateActorItems": "Migrate Actor Items",
-		"CompendiumMigrateActorItemsMessage": "Would you like to migrate the data in the matching items ({count}) of the actor to that of the compendium?",
+		"CompendiumMigrateActorItemsMessage": "Would you like to migrate the data in the selected items of the actor to that of the compendiums?",
 		"CompendiumMigrateSuccess": "Successfully migrated {count} compendium items!",
 		"CompendiumBrowserPacksHint": "What compendium packs to display on the browser.",
 		"CompendiumBrowserOpen": "Open Compendium Browser",

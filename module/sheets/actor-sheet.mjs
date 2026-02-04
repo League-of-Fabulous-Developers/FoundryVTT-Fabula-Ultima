@@ -155,7 +155,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	 */
 	static async #migrateItems(event, target) {
 		/** @type FUItem[] **/
-		const items = Array.from(this.actor.items.values());
+		let items = Array.from(this.actor.items.values());
 		/** @type ItemMigrationAction[] **/
 		const updates = await FoundryUtils.getItemMigrationActions(items);
 
@@ -163,6 +163,8 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			const message = StringUtils.localize('FU.CompendiumMigrateActorItemsMessage', {
 				count: updates.length,
 			});
+
+			items = updates.map((upd) => upd.item);
 
 			const title = 'FU.CompendiumMigrateActorItems';
 			/** @type ItemSelectionData **/
