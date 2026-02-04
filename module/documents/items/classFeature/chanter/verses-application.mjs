@@ -309,7 +309,7 @@ export class VersesApplication extends FUApplication {
 		// Prepare the chat message data
 		const chatMessage = {
 			speaker: ChatMessage.implementation.getSpeaker({ actor }),
-			flavor: await FoundryUtils.renderTemplate('chat-check-flavor-item-v2', {
+			flavor: await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
 				item: this.#verse.parent.parent,
 			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
