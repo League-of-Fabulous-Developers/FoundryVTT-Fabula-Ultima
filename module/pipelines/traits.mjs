@@ -2,6 +2,20 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 // NOTE: This should not have no further dependencies!
 
 /**
+ * @description A list of common traits.
+ * @remarks Automatically converted to kebab case.
+ * @remarks These are generally used by items and inline actions.
+ */
+export const ActionTraits = Object.freeze({
+	Damage: 'damage',
+	Restore: 'restore',
+	Gain: 'gain',
+	Loss: 'loss',
+	HitPoint: 'hit-point',
+	MindPoint: 'mind-point',
+});
+
+/**
  * @description A list of traits supported by items
  * @remarks Automatically converted to kebab case.
  * @remarks These are generally used by items and inline actions.
@@ -11,8 +25,7 @@ export const ConsumableTraits = Object.freeze({
 	ElementalShard: 'elemental-shard',
 	Magisphere: 'magisphere',
 	Infusion: 'infusion',
-	Damage: 'damage',
-	Restore: 'restore',
+	...ActionTraits,
 });
 
 /**

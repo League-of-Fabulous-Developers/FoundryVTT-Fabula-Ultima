@@ -21,43 +21,30 @@ export class TraitsPredicateDataModel extends TraitsDataModel {
 	}
 
 	/**
-	 * @param {Iterable<String>} traits
+	 * @param {Iterable<string>} traits
 	 */
 	evaluate(traits) {
-		// If no traits were set
-		if (this.empty) {
-			return true;
-		}
-		// If the traits were not defined but expected
-		if (!traits) {
-			return false;
-		}
+		// No constraints → always valid
+		if (this.empty) return true;
+
+		// Constraints exist but nothing to evaluate against
+		if (!traits) return false;
+
+		const traitSet = new Set(traits);
+		const values = this.values;
 
 		switch (this.quantifier) {
 			case 'any':
-				for (const t of traits) {
-					if (this.has(t)) {
-						return true;
-					}
-				}
-				return false;
+				return values.some((t) => traitSet.has(t));
 
 			case 'all':
-				for (const t of traits) {
-					if (!this.has(t)) {
-						return false;
-					}
-				}
-				break;
+				return values.every((t) => traitSet.has(t));
 
 			case 'none':
-				for (const t of traits) {
-					if (this.has(t)) {
-						return false;
-					}
-				}
-				break;
+				return values.every((t) => !traitSet.has(t));
+
+			default:
+				return false;
 		}
-		return true;
 	}
 }

@@ -430,6 +430,7 @@ function getTargetedAction(request) {
 		amount: request.amount,
 		resource: StringUtils.localize(FU.resources[request.resourceType]),
 	});
+
 	return new ChatAction('updateResource', resourceIcon, tooltip, {
 		amount: request.amount,
 		type: request.resourceType,
@@ -439,6 +440,7 @@ function getTargetedAction(request) {
 		.setFlag(request.gain ? Flags.ChatMessage.ResourceGain : Flags.ChatMessage.ResourceLoss)
 		.withLabel(tooltip)
 		.withColor(request.gain ? 'var(--color-hp)' : 'var(--color-hp-crisis)')
+		.withTraits(request.traits)
 		.withSelected();
 }
 

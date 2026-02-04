@@ -114,7 +114,12 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "cognitive-focus"
+    "fuid": "cognitive-focus",
+    "effects": {
+      "entries": [
+        "focus"
+      ]
+    }
   },
   "effects": [
     {
@@ -172,24 +177,37 @@
               "type": "ruleElement",
               "_id": "A7MrxrxfDKnAqbnm",
               "trigger": {
-                "_id": "u6AjRktMwCaJfd13",
-                "type": "calculateResourceRuleTrigger",
+                "_id": "f4pz9aSChgNSBYI5",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
-                "resource": "hp",
-                "change": "increment"
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
               },
               "predicates": {
                 "mjxbVDAi3pjY51Tc": {
                   "type": "targetEffectRulePredicate",
                   "_id": "mjxbVDAi3pjY51Tc",
                   "effect": "focus"
+                },
+                "0zURdqfxPfCjRhSi": {
+                  "type": "traitsRulePredicate",
+                  "_id": "0zURdqfxPfCjRhSi",
+                  "traits": {
+                    "entries": [
+                      "gain",
+                      "hit-point"
+                    ],
+                    "quantifier": "all"
+                  }
                 }
               },
               "actions": {
-                "5GTWgNn2AhVEqwVK": {
-                  "type": "modifyResourceRuleAction",
-                  "_id": "5GTWgNn2AhVEqwVK",
-                  "amount": "$sl*2"
+                "mYbH78f8MSjL2Gzo": {
+                  "type": "messageRuleAction",
+                  "_id": "mYbH78f8MSjL2Gzo",
+                  "message": "<p>Your focus recovers an additional @GAIN[&sl('cognitive-focus')*2 hp].</p>"
                 }
               }
             },
@@ -197,17 +215,19 @@
               "type": "ruleElement",
               "_id": "R1OHDd7sJEu9967V",
               "trigger": {
-                "_id": "6Na9slMQvWaVF0CZ",
-                "type": "calculateResourceRuleTrigger",
+                "_id": "1Mc0Ko9kFW543UK0",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
-                "resource": "mp",
-                "change": "increment"
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
               },
               "actions": {
-                "kOP4dT13ZRPGlyGO": {
-                  "type": "modifyResourceRuleAction",
-                  "_id": "kOP4dT13ZRPGlyGO",
-                  "amount": "$sl*2"
+                "gL2C8YwZzHTmV4Ob": {
+                  "type": "messageRuleAction",
+                  "_id": "gL2C8YwZzHTmV4Ob",
+                  "message": "<p>Your focus recovers an additional @GAIN[&sl('cognitive-focus')*2 mp].</p>"
                 }
               },
               "predicates": {
@@ -215,6 +235,16 @@
                   "type": "targetEffectRulePredicate",
                   "_id": "2hVcpxTfAMd4x1op",
                   "effect": "focus"
+                },
+                "ZjlRUGVlgWRJLf8n": {
+                  "type": "traitsRulePredicate",
+                  "_id": "ZjlRUGVlgWRJLf8n",
+                  "traits": {
+                    "entries": [
+                      "gain",
+                      "mind-point"
+                    ]
+                  }
                 }
               }
             },
@@ -265,11 +295,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767260254243,
-        "modifiedTime": 1767287979950,
+        "modifiedTime": 1770244894248,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!idQdS82bEICiB0zL.3vHmCpjussdJcEgM"
@@ -290,9 +320,9 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1767265983679,
+    "modifiedTime": 1770237282989,
     "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,

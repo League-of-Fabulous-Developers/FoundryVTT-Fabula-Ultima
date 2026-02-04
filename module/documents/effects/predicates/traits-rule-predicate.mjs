@@ -3,6 +3,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { TraitsPredicateDataModel } from '../../items/common/traits-predicate-data-model.mjs';
 import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 
 const fields = foundry.data.fields;
 
@@ -34,25 +35,37 @@ export class TraitsRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		let _traits;
+		let _traits = new Set();
 
 		// Consumable
 		if (context.eventType === FUHooks.CONSUMABLE_CREATE_EVENT) {
 			/** @type CreateConsumableEvent **/
 			const cre = context.event;
-			_traits = cre.consumable.traits.values;
+			for (const t of cre.consumable.traits.values) {
+				_traits.add(t);
+			}
 		}
 		// If a check configuration is provided
-		else if (context.config) {
-			_traits = context.config.getTraits();
+		if (context.config) {
+			for (const t of context.config.getTraits()) {
+				_traits.add(t);
+			}
 		}
 		// If the event has an item reference, check it for traits
-		else if (context.event.item?.traits) {
-			_traits = context.event.item.traits;
+		if (context.event.item?.system?.traits) {
+			if (context.event.item.system.traits instanceof TraitsDataModel) {
+				for (const t of context.event.item.system.traits.values) {
+					_traits.add(t);
+				}
+			} else if (context.event.item.system.traits instanceof Set) {
+				for (const t of context.event.item.system.traits) {
+					_traits.add(t);
+				}
+			}
 		}
 
 		// If any traits could be gathered...
-		if (_traits) {
+		if (_traits.size > 0) {
 			const evaluation = this.traits.evaluate(_traits);
 			return evaluation;
 		}

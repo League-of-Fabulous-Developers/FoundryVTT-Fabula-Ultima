@@ -6,6 +6,7 @@ import { Flags } from '../../../helpers/flags.mjs';
 import { Pipeline } from '../../../pipelines/pipeline.mjs';
 import { CHECK_ADDENDUM_ORDER } from '../../../checks/default-section-order.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { InlineSourceInfo } from '../../../helpers/inline-helper.mjs';
 
 const { StringField } = foundry.data.fields;
 
@@ -46,7 +47,13 @@ export class MessageRuleAction extends RuleActionDataModel {
 
 	async execute(context, selected) {
 		// Flag information
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, context.sourceInfo);
+		let sourceInfo;
+		if (context.item) {
+			sourceInfo = new InlineSourceInfo(context.item.name, context.source.actor.uuid, context.item.uuid);
+		} else {
+			sourceInfo = context.sourceInfo;
+		}
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, sourceInfo);
 		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Item, context.item.uuid);
 		if (context.check) {
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, context.check);

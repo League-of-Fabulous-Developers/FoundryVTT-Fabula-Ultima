@@ -2,7 +2,7 @@ import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
-import { Traits } from '../pipelines/traits.mjs';
+import { ActionTraits, Traits } from '../pipelines/traits.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
@@ -308,12 +308,35 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
+	 * @desc Sets a resource gain/loss action.
 	 * @param {FUResourceType} type
-	 * @param {Number} amount
+	 * @param {Number|String} amount
 	 * @return {CheckConfigurer}
 	 */
 	setResource(type, amount) {
 		this.check.additionalData[RESOURCE] = UpdateResourceData.construct(type, amount);
+		// TODO: Encode this trait data elsewhere?
+		switch (type) {
+			case 'hp':
+				this.addTraits(ActionTraits.HitPoint);
+				break;
+			case 'mp':
+				this.addTraits(ActionTraits.MindPoint);
+				break;
+		}
+		if (Number.isInteger(amount)) {
+			if (amount >= 0) {
+				this.addTraits(ActionTraits.Gain);
+			} else {
+				this.addTraits(ActionTraits.Loss);
+			}
+		} else if (typeof amount === 'string') {
+			if (amount.startsWith('-')) {
+				this.addTraits(ActionTraits.Loss);
+			} else {
+				this.addTraits(ActionTraits.Gain);
+			}
+		}
 		return this;
 	}
 
