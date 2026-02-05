@@ -85,8 +85,8 @@ export class DamageCustomizerV2 {
 				const totalDamageSpan = dialog.element.querySelector('#total-damage');
 				function updateTotalDamage() {
 					let components = [];
-					// HR
-					if (context.damage.hr > 0 && hrInput.checked) {
+					// HR (Not always available)
+					if (hrInput && context.damage.hr > 0 && hrInput.checked) {
 						components.push(`${context.damage.hr} (${StringUtils.localize('FU.HighRollAbbr')})`);
 					}
 					// Modifiers
@@ -106,7 +106,7 @@ export class DamageCustomizerV2 {
 				customDamageBonusInput.addEventListener('change', () => {
 					updateTotalDamage();
 				});
-				hrInput.addEventListener('change', () => {
+				hrInput?.addEventListener('change', () => {
 					updateTotalDamage();
 				});
 
