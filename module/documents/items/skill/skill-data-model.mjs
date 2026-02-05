@@ -246,6 +246,9 @@ export class SkillDataModel extends BaseSkillDataModel {
 					label: 'FU.CheckBonus',
 					value: weaponData.accuracy.value,
 				});
+				if (weaponData.defense) {
+					config.setTargetedDefense(weaponData.defense);
+				}
 			}
 			config.setWeaponTraits(config.getWeaponTraits());
 			await this.addSkillAccuracy(config, actor, item, context);

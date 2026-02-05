@@ -103,6 +103,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	const { type, critical, fumble } = check;
 	if (type === 'accuracy') {
 		const config = CheckConfiguration.configure(check);
+		// Fallback if no defense was ever set
 		config.modifyTargetedDefense((value) => value ?? 'def');
 		// TODO: Refactor alongside magic-checks
 		if (critical) {

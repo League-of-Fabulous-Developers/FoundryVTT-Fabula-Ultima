@@ -128,7 +128,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @param {FUItem} item
 	 * @param {ExpressionContext} context
 	 */
-	async addSkillAccuracy(config, actor, item, context) {
+	async addSkillAccuracy(config, actor, item, context, weapon) {
 		if (this.accuracy) {
 			const calculatedAccuracyBonus = await Expressions.evaluateAsync(this.accuracy, context);
 			if (calculatedAccuracyBonus > 0) {
@@ -137,6 +137,9 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 					value: calculatedAccuracyBonus,
 				});
 			}
+		}
+		if (this.defense) {
+			config.setTargetedDefense(this.defense);
 		}
 	}
 
@@ -149,7 +152,6 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	async addSkillDamage(config, item, context) {
 		if (this.damage.hasDamage) {
 			config.addTraits(Traits.Damage);
-			config.setTargetedDefense(this.defense || config.getTargetedDefense());
 			if (config.hasDamage) {
 				config.modifyDamage((damage) => {
 					damage.type = this.damage.type || damage.type;

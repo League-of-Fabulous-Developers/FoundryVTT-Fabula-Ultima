@@ -90,6 +90,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {number} weight.value
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
+ * @property {Set<String>} traits
  */
 export class WeaponDataModel extends FUStandardItemDataModel {
 	static {
