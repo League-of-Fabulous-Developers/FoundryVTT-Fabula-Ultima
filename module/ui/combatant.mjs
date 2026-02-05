@@ -66,8 +66,10 @@ export class FUCombatant extends foundry.documents.Combatant {
 	 * @private
 	 */
 	async _preDelete(options, user) {
-		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
-			await PressureSystem.removePressureEffect(this.actor);
+		if (this.actor.type === 'npc') {
+			if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+				await PressureSystem.removePressureEffect(this.actor);
+			}
 		}
 		return super._preDelete(options, user);
 	}
