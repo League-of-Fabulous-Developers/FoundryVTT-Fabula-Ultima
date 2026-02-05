@@ -1,6 +1,7 @@
 import { FU } from '../../../helpers/config.mjs';
 import { CharacterDataModel } from '../../actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 
 /**
  * @param {FUActor} actor
@@ -60,22 +61,13 @@ async function prompt(actor, includeWeaponModules = false) {
 		return equippedWeapons[0];
 	}
 
+	const title = game.i18n.localize('FU.ChooseWeaponDialogTitle');
 	const data = {
 		equippedWeapons,
 		FU,
 	};
-
-	const content = await foundry.applications.handlebars.renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-weapon.hbs', data);
-
-	const { selected } = await foundry.applications.api.DialogV2.input({
-		window: { title: game.i18n.localize('FU.ChooseWeaponDialogTitle') },
-		label: game.i18n.localize('FU.Submit'),
-		rejectClose: false,
-		content: content,
-		ok: {
-			label: 'FU.Confirm',
-		},
-	});
+	const content = await FoundryUtils.renderTemplate('dialog/dialog-choose-weapon', data);
+	const { selected } = await FoundryUtils.input(title, content);
 
 	if (selected) {
 		return actor.items.get(selected) ?? null;

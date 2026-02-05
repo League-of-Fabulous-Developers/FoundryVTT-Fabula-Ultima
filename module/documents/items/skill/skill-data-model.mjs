@@ -229,7 +229,7 @@ export class SkillDataModel extends BaseSkillDataModel {
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
-			config.setWeapon(weapon);
+			config.setWeaponReference(weapon);
 			config.setHrZero(this.damage.hrZero || modifiers.shift);
 			this.configureCheck(config);
 			await this.addSkillDamage(config, item, context);
