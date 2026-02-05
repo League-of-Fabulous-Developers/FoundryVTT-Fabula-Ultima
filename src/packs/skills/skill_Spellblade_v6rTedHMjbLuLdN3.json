@@ -147,7 +147,45 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "elements": {
+            "n51WK4vf6h7Pn9Rt": {
+              "type": "ruleElement",
+              "_id": "n51WK4vf6h7Pn9Rt",
+              "trigger": {
+                "_id": "NkUGhN3O6wegQ14w",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ]
+              },
+              "predicates": {
+                "YAHJUD5SD1ClxolQ": {
+                  "type": "checkRulePredicate",
+                  "_id": "YAHJUD5SD1ClxolQ",
+                  "result": null
+                }
+              },
+              "actions": {
+                "OVdMuTH6qx98kFEi": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "OVdMuTH6qx98kFEi",
+                  "bonus": "$sl"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -167,12 +205,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743535722306,
-        "modifiedTime": 1743537376516,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1770314520387,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "exportSource": null
       },
       "_key": "!items.effects!v6rTedHMjbLuLdN3.DhBhEANF8jRMaBo4"
