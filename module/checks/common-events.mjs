@@ -531,6 +531,8 @@ function progress(document, progress, action, increment = undefined, source = un
  * @property {CharacterInfo} source
  * @property {InlineSourceInfo} sourceInfo
  * @property {CharacterInfo[]} targets
+ * @property {FUItem} item
+ * @property {FUItemGroup} itemGroup
  * @property {CheckConfigurer} config
  * @remarks Emitted when a check is about to be performed
  */
@@ -549,6 +551,8 @@ function performCheck(check, actor, item) {
 		config: config,
 		check: check,
 		source: source,
+		item: item,
+		itemGroup: InlineHelper.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
 		targets: targets,
 	};
@@ -560,6 +564,7 @@ function performCheck(check, actor, item) {
  * @property {CheckResultV2} check
  * @property {CharacterInfo} source
  * @property {FUItem} item
+ * @property {FUItemGroup} itemGroup
  * @property {CharacterInfo[]} targets
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Emitted when a check is about to be performed
@@ -576,6 +581,7 @@ function resolveCheck(check, actor, item) {
 		check: check,
 		source: source,
 		item: item,
+		itemGroup: InlineHelper.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
 		targets: CharacterInfo.fromTargetData(targets),
 	};
