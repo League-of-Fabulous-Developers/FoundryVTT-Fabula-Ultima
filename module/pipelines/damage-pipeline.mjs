@@ -490,6 +490,7 @@ async function process(request) {
 				CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin);
 				return result; // keep the result from modifyTokenAttribute if needed
 			}),
+			CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin),
 		);
 
 		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
