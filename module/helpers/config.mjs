@@ -980,6 +980,15 @@ FU.scalarChange = {
 };
 
 /**
+ * @typedef {"add"|"multiply"} FUScalarOperation
+ */
+
+FU.scalarOperation = {
+	add: 'FU.Add',
+	multiply: 'FU.Multiply',
+};
+
+/**
  * @typedef {"greaterThan" | "lessThan"} FUComparisonOperator
  */
 

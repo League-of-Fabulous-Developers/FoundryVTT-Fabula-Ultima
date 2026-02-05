@@ -2,12 +2,14 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 const fields = foundry.data.fields;
 
 /**
  * @property {DamageType} damageType
  * @property {String} amount
+ * @property {FUScalarOperation} operation
  */
 export class ModifyExpenseRuleAction extends RuleActionDataModel {
 	static {
@@ -24,6 +26,7 @@ export class ModifyExpenseRuleAction extends RuleActionDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			amount: new fields.StringField({ blank: true }),
+			operation: new fields.StringField({ initial: 'add', choices: Object.keys(FU.scalarOperation) }),
 		});
 	}
 
@@ -45,7 +48,15 @@ export class ModifyExpenseRuleAction extends RuleActionDataModel {
 			const targets = selected.map((t) => t.actor);
 			const expressionContext = ExpressionContext.fromSourceInfo(context.sourceInfo, targets);
 			const amount = await Expressions.evaluateAsync(this.amount, expressionContext);
-			context.event.expense.amount += amount;
+			switch (this.operation) {
+				case 'add':
+					context.event.expense.amount += amount;
+					break;
+
+				case 'multiply':
+					context.event.expense.amount *= amount;
+					break;
+			}
 		}
 	}
 }

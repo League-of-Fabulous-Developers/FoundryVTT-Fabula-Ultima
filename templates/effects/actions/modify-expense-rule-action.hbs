@@ -2,3 +2,10 @@
 	<span>{{localize 'FU.Amount'}}</span>
 	<input type="text" name="{{pfuConcat path ".amount"}}" value="{{ action.amount }}" />
 </label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Operation'}}</span>
+	<select name="{{pfuConcat path ".operation"}}">
+		{{selectOptions options.scalarOperation selected=action.operation sort=true localize=true}}
+	</select>
+</label>

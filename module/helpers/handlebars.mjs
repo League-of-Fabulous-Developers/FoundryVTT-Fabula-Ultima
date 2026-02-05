@@ -323,7 +323,7 @@ function traits(model, path, options) {
 					path: path,
 					traitOptions: model.schema.options?.options ?? {},
 					quantifierOptions: FU.predicateQuantifier,
-					showLabel: options.showLabel ?? true,
+					showLabel: options.showLabel ?? false,
 				})
 			: '';
 	return new Handlebars.SafeString(html);
