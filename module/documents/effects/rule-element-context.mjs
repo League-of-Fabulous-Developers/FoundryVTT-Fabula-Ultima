@@ -45,14 +45,23 @@ export class RuleElementContext {
 	 * @return {Boolean}
 	 */
 	matchesItem(id) {
+		let item;
+
+		// Prioritize comparing against the event item
+		if (this.event.item) {
+			item = this.event.item;
+		} else {
+			item = this.item;
+		}
+
 		// If there's an item
-		if (this.item) {
+		if (item) {
 			// If we have provided an identifier, check against it
 			if (id) {
-				if (this.item.system.fuid === id) {
+				if (item.system.fuid === id) {
 					return true;
 				}
-				if (this.item.name === id) {
+				if (item.name === id) {
 					return true;
 				}
 			}
