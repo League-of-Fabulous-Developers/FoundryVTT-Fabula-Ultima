@@ -46,7 +46,7 @@ export class ItemSelectionDialog {
 	}
 
 	/**
-	 * @returns {Object[]} selected
+	 * @returns {Promise<Object[]>} selected
 	 */
 	async open() {
 		// We cache the item descriptions here...

@@ -70,9 +70,19 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 			case FUHooks.RESOLVE_CHECK_EVENT:
 			case FUHooks.RENDER_CHECK_EVENT:
 				{
+					// Try to resolve the weapon used
 					if (character.actor === context.event.source.actor) {
-						/** @type FUItem **/
-						attackItem = context.event.item;
+						const weaponReference = context.config.getWeaponReference();
+						if (weaponReference) {
+							attackItem = fromUuidSync(weaponReference);
+						} else {
+							/** @type FUItemGroup **/
+							const itemGroup = context.event.itemGroup;
+							switch (itemGroup) {
+								case 'attack':
+									attackItem = context.event.item;
+							}
+						}
 					}
 				}
 				break;
@@ -95,6 +105,7 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 			return false;
 		}
 
+		// If it's a PC weapon
 		if (attackItem.system instanceof WeaponDataModel || attackItem instanceof CustomWeaponDataModel) {
 			/** @type {WeaponDataModel|CustomWeaponDataModel} **/
 			const weaponData = attackItem.system;
@@ -112,13 +123,16 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 			if (this.martial && this.martial !== weaponData.isMartial.value) {
 				return false;
 			}
-		} else if (attackItem.system instanceof BasicItemDataModel) {
+		}
+		// If it's an NPC attack
+		else if (attackItem.system instanceof BasicItemDataModel) {
 			/** @type {BasicItemDataModel} **/
 			const attackData = attackItem.system;
 			if (this.weaponType && this.weaponType !== attackData.type.value) {
 				return false;
 			}
 		}
+
 		return true;
 	}
 }

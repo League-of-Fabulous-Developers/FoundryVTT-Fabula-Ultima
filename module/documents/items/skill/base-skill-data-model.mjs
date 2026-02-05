@@ -112,7 +112,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 		if (this.damage.hasDamage) {
 			if (this.useWeapon.damage) {
 				const weapon = await this.getWeapon(actor);
-				config.setWeapon(weapon);
+				config.setWeaponReference(weapon);
 				/** @type WeaponDataModel **/
 				const weaponData = weapon.system;
 				config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);

@@ -175,6 +175,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 					check.secondary = weaponAttributes.secondary;
 					attributeOverride = true;
 					config.addWeaponAccuracy(weapon);
+					config.setWeaponReference(weapon);
 				}
 			}
 

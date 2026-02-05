@@ -202,7 +202,7 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 		return async (check, actor, item) => {
 			const config = CheckConfiguration.configure(check);
 			await this.configureAttributeCheck(config, actor, item);
-			config.setWeapon(this.parent);
+			config.setWeaponReference(this.parent);
 		};
 	}
 
@@ -232,7 +232,7 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 			const config = CheckConfiguration.configure(check);
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
-			config.setWeapon(weapon);
+			config.setWeaponReference(weapon);
 			this.configureCheck(config);
 			await this.addSkillDamage(config, item, context);
 

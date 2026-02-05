@@ -458,7 +458,7 @@ export class CheckConfigurer extends CheckInspector {
 	/**
 	 * @param {FUItem} weapon An item that is of the weapon type.
 	 */
-	setWeapon(weapon) {
+	setWeaponReference(weapon) {
 		this.check.additionalData[WEAPON_USED] = weapon.uuid;
 	}
 
