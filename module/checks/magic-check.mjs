@@ -42,6 +42,8 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	if (type === 'magic') {
 		const config = CheckConfiguration.configure(check);
 		// TODO: Refactor alongside accuracy-checks
+		// Fallback if no defense was ever set
+		config.modifyTargetedDefense((value) => value ?? 'mdef');
 		if (critical) {
 			config.addTraits('critical');
 		} else if (fumble) {

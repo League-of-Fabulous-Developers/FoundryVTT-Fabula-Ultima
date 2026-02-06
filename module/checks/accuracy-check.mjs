@@ -103,9 +103,9 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	const { type, critical, fumble } = check;
 	if (type === 'accuracy') {
 		const config = CheckConfiguration.configure(check);
+		// TODO: Refactor alongside magic-checks
 		// Fallback if no defense was ever set
 		config.modifyTargetedDefense((value) => value ?? 'def');
-		// TODO: Refactor alongside magic-checks
 		if (critical) {
 			config.addTraits('critical');
 		} else if (fumble) {
@@ -113,7 +113,6 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 		}
 		config.modifyDamage((damage) => {
 			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
-
 			DamagePipeline.collectOutgoingBonuses(actor, damage);
 
 			// Attack Type
