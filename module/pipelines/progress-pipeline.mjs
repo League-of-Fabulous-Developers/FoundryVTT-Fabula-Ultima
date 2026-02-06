@@ -96,7 +96,7 @@ async function promptCheckAtIndexForDocument(document, propertyPath, index) {
 						if (prompt.increment === 'false') {
 							increment = -increment;
 						}
-						await this.updateAtIndexForDocument(document, propertyPath, index, increment, {
+						await ProgressDataModel.updateAtIndexForDocument(document, propertyPath, index, increment, {
 							source: actor,
 						});
 					},

@@ -327,7 +327,7 @@ export class FUPartySheet extends FUActorSheet {
 		if (alternate && event.button === 2) {
 			increment = -increment;
 		}
-		return ProgressPipeline.updateAtIndexForDocument(this.actor, 'system.tracks', Number.parseInt(index), increment);
+		return ProgressDataModel.updateAtIndexForDocument(this.actor, 'system.tracks', Number.parseInt(index), increment);
 	}
 
 	/**
