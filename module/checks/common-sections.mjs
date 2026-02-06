@@ -488,7 +488,7 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 		// This can be modified here...
 		await CommonEvents.calculateExpense(actor, item, targets, expense);
 		return {
-			order: CHECK_ACTIONS,
+			order: CHECK_ACTIONS + 500,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,

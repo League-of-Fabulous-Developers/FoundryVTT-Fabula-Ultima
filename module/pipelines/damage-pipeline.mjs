@@ -137,7 +137,7 @@ export class DamageRequest extends PipelineRequest {
 /**
  * @property {Number} affinity The index of the affinity
  * @property {String} affinityMessage The localized affinity message to use
- * @property {FU.damageTypes} damageType
+ * @property {DamageType} damageType
  * @property {TableDamageData} damageData
  * @property {DamageOverrideInfo} damageOverride
  * @property {String} extra An optional expression to evaluate for onApply damage
@@ -146,6 +146,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {Map<String, Number>} modifiers Multipliers
  * @property {DamageBreakdown[]} breakdown
  * @property {Boolean} pressured Whether the actor was pressured by the damage they took.
+ * @property {String} pressureTrigger The pressure trigger (weapon group, affinity)
  * @extends PipelineContext
  */
 export class DamagePipelineContext extends PipelineContext {
@@ -259,20 +260,29 @@ function resolveAffinity(context) {
 	if (context.actor.type === 'npc') {
 		// Pressure System Support
 		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+			let pressurePointTriggered = false;
+
 			// Check if the damage type hit a vulnerable affinity
 			const vulnerabilityTriggered = context.affinity === FU.affValue.vulnerability;
+			if (vulnerabilityTriggered) {
+				context.pressureTrigger = StringUtils.localize(FU.damageTypes[context.damageType]);
+				pressurePointTriggered = true;
+			}
 			// Do a lookup on the weapon used, whose traits are passed on to the context.
-			let pressurePointTriggered = false;
-			/** @type NpcDataModel **/
-			const npcData = context.actor.system;
-			for (const trait of context.traits) {
-				if (npcData.pressurePoints.has(trait)) {
-					pressurePointTriggered = true;
-					break;
+			else {
+				/** @type NpcDataModel **/
+				const npcData = context.actor.system;
+				for (const trait of context.traits) {
+					if (npcData.pressurePoints.has(trait)) {
+						pressurePointTriggered = true;
+						context.pressureTrigger = TraitUtils.localize(trait);
+						break;
+					}
 				}
 			}
+
 			// If either was triggered
-			if (vulnerabilityTriggered || pressurePointTriggered) {
+			if (pressurePointTriggered) {
 				const stagger = context.actor.resolveEffect('stagger');
 				if (!stagger) {
 					context.pressured = true;
@@ -502,7 +512,8 @@ async function process(request) {
 		const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 			damage: damageTaken,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
-			affinityIcon: FU.affIcon[context.damageType],
+			pressureTrigger: context.pressureTrigger,
+			icon: FU.affIcon[context.damageType],
 		});
 
 		// Additional content
