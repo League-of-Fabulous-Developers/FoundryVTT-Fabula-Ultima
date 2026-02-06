@@ -367,6 +367,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 							});
 						}
 					}
+
+					if (this.isNPC) {
+						ActorSheetUtils.prepareNpcCompanionData(context);
+						if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
+							context.pressurePoints = true;
+							context.weaponCategories = FU.weaponCategories;
+						}
+					}
 				}
 				break;
 
@@ -392,11 +400,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 					}
 				}
 				if (this.isNPC) {
+					ActorSheetUtils.prepareNpcCompanionData(context);
+					context.basicAttacksTable = await this.#basicAttacksTable.renderTable(this.document);
+					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
+					context.spellsTable = await this.#spellsTable.renderTable(this.document);
 					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
 						context.pressurePoints = true;
 						context.weaponCategories = FU.weaponCategories;
 					}
-					ActorSheetUtils.prepareNpcCompanionData(context);
 				}
 				context.enrichedHtml = {
 					description: await TextEditor.enrichHTML(context.system.description ?? '', {
@@ -405,11 +416,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 						relativeTo: context.actor,
 					}),
 				};
-				if (this.isNPC) {
-					context.basicAttacksTable = await this.#basicAttacksTable.renderTable(this.document);
-					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
-					context.spellsTable = await this.#spellsTable.renderTable(this.document);
-				}
 				break;
 			}
 
