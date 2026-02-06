@@ -128,6 +128,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	/** @type {Record<string, HandlebarsTemplatePart>} */
 	static PARTS = {
 		header: { template: systemTemplatePath('actor/character/parts/actor-header') },
+		limited: { template: systemTemplatePath('actor/character/parts/actor-limited') },
 		tabs: { template: systemTemplatePath(`actor/character/parts/actor-tabs`) },
 		stats: { template: systemTemplatePath(`actor/character/parts/actor-section-stats`) },
 		features: { template: systemTemplatePath(`actor/character/parts/actor-section-features`) },
@@ -287,6 +288,21 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 */
 	_configureRenderParts(options) {
 		const parts = super._configureRenderParts(options);
+
+		// If current user has limited permission, only show the limited header.
+		if (this.isLimited) {
+			for (const partId in parts) {
+				delete parts[partId];
+			}
+			parts.limited = {
+				...FUStandardActorSheet.PARTS.limited,
+				scrollable: [''],
+			};
+			return parts;
+		}
+
+		delete parts['limited'];
+
 		switch (this.actor.type) {
 			case 'character':
 				delete parts.behavior;
@@ -352,6 +368,29 @@ export class FUStandardActorSheet extends FUActorSheet {
 						}
 					}
 				}
+				break;
+
+			case 'limited': {
+				context.isLimited = this.isLimited;
+				context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
+				// Setup status effect toggle data
+				context.statusEffectToggles = [];
+				for (const id of VISIBLE_STATUS_EFFECT_IDS) {
+					const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
+					if (statusEffect) {
+						const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
+						const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
+						const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
+						const rule = game.i18n.localize(ruleKey);
+						const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
+						context.statusEffectToggles.push({
+							...statusEffect,
+							active: existing,
+							immune: immune,
+							tooltip: tooltip,
+						});
+					}
+				}
 				if (this.isNPC) {
 					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
 						context.pressurePoints = true;
@@ -359,7 +398,20 @@ export class FUStandardActorSheet extends FUActorSheet {
 					}
 					ActorSheetUtils.prepareNpcCompanionData(context);
 				}
+				context.enrichedHtml = {
+					description: await TextEditor.enrichHTML(context.system.description ?? '', {
+						secrets: this.actor.isOwner,
+						rollData: context.actor.getRollData(),
+						relativeTo: context.actor,
+					}),
+				};
+				if (this.isNPC) {
+					context.basicAttacksTable = await this.#basicAttacksTable.renderTable(this.document);
+					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
+					context.spellsTable = await this.#spellsTable.renderTable(this.document);
+				}
 				break;
+			}
 
 			case 'stats':
 				{
@@ -609,6 +661,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	_attachPartListeners(partId, element, options) {
 		super._attachPartListeners(partId, element, options);
 		switch (partId) {
+			case 'limited':
 			case 'header': {
 				const img = element.querySelector('.profile-img');
 				if (img) {
@@ -625,6 +678,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						}
 					});
 				}
+				break;
 			}
 		}
 	}

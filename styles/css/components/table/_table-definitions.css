@@ -91,6 +91,10 @@
 	grid-template-columns: [name] auto [check] 150px [damage] 150px;
 }
 
+.npc-profile-weapons-table {
+	grid-template-columns: [name] auto [check] 120px [damage] 130px [equipStatus] 80px;
+}
+
 .npc-profile-spells-table {
 	grid-template-columns: [name] auto [duration] 100px [targets] 150px [mpCost] 100px;
 }

@@ -1,0 +1,89 @@
+<div class="npc-profile">
+	<div class="sheet-body">
+		<div class="top">
+			<!-- Left content here -->
+			<div class="left-column">
+				<a data-action="revealActor">
+					<img class="avatar" src="{{ actor.img }}" />
+				</a>
+			</div>
+			<!-- Right content here -->
+			<div class="right-column">
+				<span class="label name">{{actor.name}}</span>
+				{{!-- Study Level 0 --}}
+				{{#if (eq actor.system.study.value 0)}}
+				<fieldset class="section-container title-fieldset desc resource-content">
+					<span class="label centered-message" style="color: unset;">
+						{{localize 'FU.AdversaryNotStudied'}}
+					</span>
+				</fieldset>
+				{{/if}}
+				{{!-- Study Level 1+ --}}
+				{{#if (gte actor.system.study.value 1)}}
+				<fieldset class="section-container title-fieldset desc resource-content">
+					<legend class="resource-label-m">
+						{{localize 'FU.Stats'}}
+					</legend>
+					{{!-- Basic Info (Level 1+) --}}
+					<div class="resource-label-l grid grid-7col flex-group-center" style="padding: 5px;">
+						<label>
+							{{localize 'FU.LevelAbbr'}} {{actor.system.level.value}}
+						</label>
+						<span class="diamond-symbol" style="color: #532853;">⬥</span>
+						<label data-tooltip="{{actor.system.species.value}}">
+							<i class="fua fu-{{actor.system.species.value}}"></i>
+						</label>
+						<span class="diamond-symbol" style="color: #532853;">⬥</span>
+						<label data-tooltip="{{localize 'FU.HealthPoints'}}">
+							{{actor.system.resources.hp.max}} <i class="fas fa-heart"></i>
+						</label>
+						<span class="diamond-symbol" style="color: #532853;">⬥</span>
+						<label data-tooltip="{{localize 'FU.MindPoints'}}">
+							{{actor.system.resources.mp.max}} <i class="fas fa-hat-wizard"></i>
+						</label>
+					</div>
+					{{!-- Complete Info (Level 2+) --}}
+					{{#if (gte actor.system.study.value 2)}}
+					{{>"systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs" actor=actor}}
+					{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs" actor=actor}}
+					{{#if actor.system.traits.value}}
+					<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
+						<label class="resource-label-l">Traits</label>
+						<input class="traitdesc flex3" type="text" name="system.traits.value"
+							value="{{actor.system.traits.value}}" placeholder="Traits" data-dtype="String" readonly>
+					</li>
+					{{/if}}
+					{{/if}}
+				</fieldset>
+				{{/if}}
+			</div>
+		</div>
+		<!-- Bottom content here -->
+		{{!-- Affinities and Actions --}}
+		{{#if (gte actor.system.study.value 2)}}
+		<div class="bottom-row">
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.Affinities'}}
+				</legend>
+				{{> "systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
+			</fieldset>
+			{{!-- Detailed Info (Level 3+) --}}
+			{{#if (gte actor.system.study.value 3)}}
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.Actions'}}
+				</legend>
+				<section class="desc">
+					{{{basicAttacksTable}}}
+					{{#if actor.system.useEquipment.value}}
+						{{{weaponsTable}}}
+					{{/if}}
+					{{{spellsTable}}}
+				</section>
+			</fieldset>
+			{{/if}}
+		</div>
+		{{/if}}
+	</div>
+</div>

@@ -2,6 +2,7 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { FU } from '../helpers/config.mjs';
 import FUApplication from './application.mjs';
 import { NpcProfileBasicAttacksTableRenderer } from '../helpers/tables/npc-profile-basic-attacks-table-renderer.mjs';
+import { NpcProfileWeaponsTableRenderer } from '../helpers/tables/npc-profile-weapons-table-renderer.mjs';
 import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spells-table-renderer.mjs';
 
 /**
@@ -69,6 +70,7 @@ export class NpcProfileWindow extends FUApplication {
 	};
 
 	#basicAttacksTable = new NpcProfileBasicAttacksTableRenderer();
+	#weaponsTable = new NpcProfileWeaponsTableRenderer();
 	#spellsTable = new NpcProfileSpellsTableRenderer();
 
 	/** @override */
@@ -137,6 +139,7 @@ export class NpcProfileWindow extends FUApplication {
 		// Ensure expanded state is initialized
 		context._expandedIds = Array.from(this._expanded);
 		context.basicAttacksTable = await this.#basicAttacksTable.renderTable(actor);
+		context.weaponsTable = await this.#weaponsTable.renderTable(actor);
 		context.spellsTable = await this.#spellsTable.renderTable(actor);
 		return context;
 	}
@@ -144,6 +147,7 @@ export class NpcProfileWindow extends FUApplication {
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options);
 		this.#basicAttacksTable.activateListeners(this);
+		this.#weaponsTable.activateListeners(this);
 		this.#spellsTable.activateListeners(this);
 	}
 
