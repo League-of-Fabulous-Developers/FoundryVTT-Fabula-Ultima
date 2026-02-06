@@ -83,13 +83,38 @@ export class ItemSelectionDialog {
 			actions: {
 				/** @param {Event} event
 				 *  @param {HTMLElement} dialog **/
-				selectType: (event, dialog) => {},
+				selectAll: (event, dialog) => {
+					const inputs = dialog.closest('#items').querySelectorAll('input[name="selected"]');
+					for (const input of inputs) {
+						input.checked = true;
+						const card = input.closest('.fu-item');
+						if (card) {
+							card.classList.toggle('selected', true);
+						}
+					}
+					this.#selectedItems = this.data.initial;
+					return false;
+				},
+				/** @param {Event} event
+				 *  @param {HTMLElement} dialog **/
+				deselectAll: (event, dialog) => {
+					const inputs = dialog.closest('#items').querySelectorAll('input[name="selected"]:checked');
+					for (const input of inputs) {
+						input.checked = false;
+						const card = input.closest('.fu-item');
+						if (card) {
+							card.classList.toggle('selected', false);
+						}
+					}
+					this.#selectedItems = [];
+					return false;
+				},
 			},
 			classes: ['projectfu', 'backgroundstyle', 'fu-dialog'],
 			content: await FoundryUtils.renderTemplate('dialog/dialog-item-selection', context),
 			rejectClose: false,
 			ok: {
-				icon: "<i class='fas fa-check'></i>",
+				icon: 'fas fa-check',
 				label: this.data.okLabel ?? 'FU.Confirm',
 			},
 			/** @param {Event} event

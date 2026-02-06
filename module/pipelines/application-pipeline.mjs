@@ -52,7 +52,7 @@ async function handleArcanum(actor, item) {
 				{
 					action: 'dismiss',
 					label: `FU.ClassFeatureArcanumDismiss`,
-					icon: '<i class="fas fa-bolt"></i>',
+					icon: 'fas fa-bolt',
 					primary: true,
 				},
 			],

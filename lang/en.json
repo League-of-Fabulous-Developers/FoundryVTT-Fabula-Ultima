@@ -1773,6 +1773,8 @@
 		"Actors": "Actors",
 		"Ability": "Ability",
 		"Abilities": "Abilities",
-		"System": "System"
+		"System": "System",
+		"SelectAll": "Select All",
+		"DeselectAll": "Deselect All"
 	}
 }
