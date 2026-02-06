@@ -6,7 +6,7 @@
 	</div>
 {{/if}}
 
-<main class="background">
+<main class="background fu-scrollable">
 	{{#if (eq style 'grid')}}
 		<div id="items" class="fu-item-grid flex-group-center fu-icon__radio-group">
 			{{#each items as |item| }}
@@ -27,7 +27,7 @@
 		</div>
 	{{/if}}
 	{{#if (eq style 'list')}}
-		<div id="items" class="fu-item-list">
+		<div id="items" class="fu-item-list" style="max-height: 600px;">
 			{{#each items as |item|}}
 				<div class="fu-item-list__row">
 					<label class="fu-item"
