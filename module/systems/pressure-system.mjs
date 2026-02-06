@@ -46,7 +46,7 @@ async function processVulnerability(context) {
 						key: `system.affinities.${type}.current`,
 						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
 						value: '-1',
-						priority: -100,
+						priority: 100,
 					});
 				}
 			}

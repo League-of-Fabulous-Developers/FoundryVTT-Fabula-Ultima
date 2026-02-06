@@ -35,6 +35,7 @@ const HIGH_PRIORITY_CHANGES = new Set([
 const LOW_PRIORITY_CHANGES = new Set(['system.resources.hp.max', 'system.resources.mp.max', 'system.resources.ip.max']);
 
 const defaultImage = 'icons/svg/aura.svg';
+const DEFAULT_PRIORITY = 50;
 
 export function ActiveEffectBehaviourMixin(BaseDocument) {
 	return class FUActiveEffectBehaviourMixin extends BaseDocument {
@@ -59,7 +60,9 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				} else if (LOW_PRIORITY_CHANGES.has(change.key)) {
 					change.priority = (change.mode + 1) * 10 + 100;
 				} else {
-					change.priority = (change.mode + 1) * 10;
+					if (!change.priority) {
+						change.priority = DEFAULT_PRIORITY;
+					}
 				}
 			}
 		}
