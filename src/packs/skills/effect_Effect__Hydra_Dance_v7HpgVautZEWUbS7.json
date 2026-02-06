@@ -64,11 +64,6 @@
                 }
               },
               "actions": {
-                "1MfSSrVCLPNpUd8t": {
-                  "type": "messageRuleAction",
-                  "_id": "1MfSSrVCLPNpUd8t",
-                  "message": "<p>After you suffer damage, you recover 5 Hit Points <strong>or</strong> 5 Mind Points.</p>"
-                },
                 "DRc1mSvZQTh5u3GY": {
                   "type": "updateResourceRuleAction",
                   "_id": "DRc1mSvZQTh5u3GY",
@@ -100,7 +95,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742579460750,
-        "modifiedTime": 1770280465093,
+        "modifiedTime": 1770401506933,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

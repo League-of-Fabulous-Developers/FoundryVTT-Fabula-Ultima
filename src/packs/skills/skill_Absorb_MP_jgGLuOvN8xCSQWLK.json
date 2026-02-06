@@ -153,11 +153,6 @@
                 }
               },
               "actions": {
-                "6IFtAUyzjFj2wO6y": {
-                  "type": "messageRuleAction",
-                  "_id": "6IFtAUyzjFj2wO6y",
-                  "message": "<p>After you suffer damage, you may recover<br><strong>【SL × 2】</strong>Mind Points.</p>"
-                },
                 "ZtVOzqMFygNk6R4m": {
                   "type": "updateResourceRuleAction",
                   "_id": "ZtVOzqMFygNk6R4m",
@@ -200,7 +195,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925670202,
-        "modifiedTime": 1770253438599,
+        "modifiedTime": 1770402003693,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!jgGLuOvN8xCSQWLK.5VkoqLalYTeuaJX1"

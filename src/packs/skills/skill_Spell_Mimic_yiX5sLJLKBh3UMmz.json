@@ -170,7 +170,7 @@
                 "TmtaC4LiXQe9p888": {
                   "type": "messageRuleAction",
                   "_id": "TmtaC4LiXQe9p888",
-                  "message": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p>"
+                  "message": "<p>The chimerist may learn this as a Chimerist spell.</p>"
                 }
               },
               "selector": "self"
@@ -209,7 +209,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768067184150,
-        "modifiedTime": 1770271227892,
+        "modifiedTime": 1770401343525,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!yiX5sLJLKBh3UMmz.LSKs1p3YHGDXv1IS"

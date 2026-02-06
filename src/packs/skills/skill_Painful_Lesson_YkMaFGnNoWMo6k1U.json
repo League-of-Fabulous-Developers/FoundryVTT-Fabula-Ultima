@@ -153,7 +153,7 @@
                 "C0sv955OJ6ddpW9g": {
                   "type": "messageRuleAction",
                   "_id": "C0sv955OJ6ddpW9g",
-                  "message": "<p>After another causes you to lose Hit Points, you may perform @ACTION[study bonus:$sl] against the attacker.</p>"
+                  "message": "<p>You may perform @ACTION[study bonus:$sl] against the enemy.</p>"
                 }
               }
             }
@@ -191,7 +191,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767730525954,
-        "modifiedTime": 1770248525790,
+        "modifiedTime": 1770401942162,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YkMaFGnNoWMo6k1U.UFwFf5qcdGZ0EtWc"

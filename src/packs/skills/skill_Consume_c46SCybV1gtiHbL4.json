@@ -179,7 +179,7 @@
                 "38M0seyIClMNOZsr": {
                   "type": "messageRuleAction",
                   "_id": "38M0seyIClMNOZsr",
-                  "message": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p>"
+                  "message": "<p>If you deal damage to one or more creatures, you recover<strong>【SL × 2】</strong>Mind Points.</p>"
                 },
                 "C4sr0SUqEHuh5PXh": {
                   "type": "updateResourceRuleAction",
@@ -224,7 +224,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925259175,
-        "modifiedTime": 1770269789117,
+        "modifiedTime": 1770400875584,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!c46SCybV1gtiHbL4.QvJKfoqYcZGOxmLS"

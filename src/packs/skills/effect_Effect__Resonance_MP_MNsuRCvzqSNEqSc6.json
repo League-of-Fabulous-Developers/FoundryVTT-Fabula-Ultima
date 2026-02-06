@@ -46,7 +46,7 @@
                 "M08PHT16iox0yZde": {
                   "type": "messageRuleAction",
                   "_id": "M08PHT16iox0yZde",
-                  "message": "<p>The chanter recovers Mind Points from @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance} <strong>every time</strong> you suffer damage</p>"
+                  "message": "<p>The chanter recovers MP from @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance} <strong>every time</strong> you suffer damage.</p>"
                 }
               }
             }
@@ -85,7 +85,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770268511650,
-        "modifiedTime": 1770268738316,
+        "modifiedTime": 1770400628082,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!MNsuRCvzqSNEqSc6.g7hwVC7QG8txOt3H"
