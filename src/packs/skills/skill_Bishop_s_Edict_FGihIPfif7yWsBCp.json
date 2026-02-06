@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option: all MP costs are doubled; <strong>or</strong> all sources of damage deal <strong>【SL × 3】</strong> extra damage.</p><p>The chosen effect lasts until the start of your next turn.</p><hr /><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.uxc0tTLb3If2Denp]{Effect: Bishop's Edict (Extra Damage)}</p></li></ul>",
+    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option:</p><ul><li><p>All MP costs are doubled.</p></li><li><p>All sources of damage deal <strong>【SL × 3】</strong> extra damage.</p></li></ul><p>The chosen effect lasts until the start of your next turn.</p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,15 @@
     "fuid": "bishops-edict",
     "cost": {
       "amount": 10
+    },
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.i9wagJN9DD7bjJ3k",
+        "Compendium.projectfu.skills.Item.uxc0tTLb3If2Denp"
+      ]
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [],
@@ -130,15 +139,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706555501421,
-    "modifiedTime": 1744462635839,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1770276849908,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,159 @@
+{
+  "folder": "l4GzpixRQaRbzHKh",
+  "name": "Effect: Wardancer",
+  "type": "effect",
+  "_id": "T9rvLMTdI2aICL1u",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
+  "system": {
+    "fuid": "effect-wardancer",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: Wardancer",
+      "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "T5PZQ1ZIKJ9uOmz1": {
+              "type": "ruleElement",
+              "_id": "T5PZQ1ZIKJ9uOmz1",
+              "trigger": {
+                "_id": "mMU2VNJHZ1dJT3BU",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": []
+              },
+              "predicates": {
+                "LfdfZTzpa1cAd4rV": {
+                  "type": "weaponRulePredicate",
+                  "_id": "LfdfZTzpa1cAd4rV",
+                  "categories": [
+                    "arcane"
+                  ]
+                },
+                "BdzMhWW6jhaX0fZo": {
+                  "type": "spellRulePredicate",
+                  "_id": "BdzMhWW6jhaX0fZo",
+                  "offensive": "true"
+                }
+              },
+              "actions": {
+                "CMTpRIXkourHS8AH": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "CMTpRIXkourHS8AH",
+                  "amount": "&sl(\"wardancer\")",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              },
+              "selector": "source"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "YUBjlreN7TSb29z7",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.brawling",
+          "mode": 2,
+          "value": "&sl(\"wardancer\")",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.dagger",
+          "mode": 2,
+          "value": "&sl(\"wardancer\")",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.flail",
+          "mode": 2,
+          "value": "&sl(\"wardancer\")",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.sword",
+          "mode": 2,
+          "value": "&sl(\"wardancer\")",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.thrown",
+          "mode": 2,
+          "value": "&sl(\"wardancer\")",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane </strong>weapon equipped<strong>, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770278548545,
+        "modifiedTime": 1770280504741,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!T9rvLMTdI2aICL1u.YUBjlreN7TSb29z7"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770278538948,
+    "modifiedTime": 1770280305305,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!T9rvLMTdI2aICL1u"
+}

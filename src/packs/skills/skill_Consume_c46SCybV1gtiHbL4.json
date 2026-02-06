@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p>",
+    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "consume"
+    "fuid": "consume",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -137,38 +140,50 @@
         },
         "rules": {
           "elements": {
-            "81FzepkL5FvLMkaR": {
+            "0pSgDRx5DTtpbC1r": {
               "type": "ruleElement",
-              "_id": "81FzepkL5FvLMkaR",
+              "_id": "0pSgDRx5DTtpbC1r",
               "trigger": {
-                "_id": "Vwst59RBs9TQ7xw5",
-                "type": "damageRuleTrigger",
+                "_id": "vLC7M37rryxzsNwg",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
-                "damageType": "",
-                "damageSources": [
+                "checkTypes": [],
+                "itemGroups": [
                   "spell"
                 ],
-                "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
-                }
+                "local": false,
+                "identifier": ""
               },
               "predicates": {
-                "n1zQyDX2AU9lQ0eJ": {
+                "1FXM0cyqHXfTBwMp": {
                   "type": "weaponRulePredicate",
-                  "_id": "n1zQyDX2AU9lQ0eJ",
+                  "_id": "1FXM0cyqHXfTBwMp",
                   "categories": [
                     "arcane",
                     "dagger",
                     "flail"
                   ],
                   "selector": "self"
+                },
+                "fMX5d5xLaGe4IfTN": {
+                  "type": "traitsRulePredicate",
+                  "_id": "fMX5d5xLaGe4IfTN",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
                 }
               },
               "actions": {
-                "vtTxjenF3jznxfwD": {
+                "38M0seyIClMNOZsr": {
+                  "type": "messageRuleAction",
+                  "_id": "38M0seyIClMNOZsr",
+                  "message": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p>"
+                },
+                "C4sr0SUqEHuh5PXh": {
                   "type": "updateResourceRuleAction",
-                  "_id": "vtTxjenF3jznxfwD",
+                  "_id": "C4sr0SUqEHuh5PXh",
                   "resource": "mp",
                   "amount": "$sl*2"
                 }
@@ -205,12 +220,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925259175,
-        "modifiedTime": 1767640263553,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770269789117,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!c46SCybV1gtiHbL4.QvJKfoqYcZGOxmLS"
     }
@@ -229,10 +244,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706495586490,
-    "modifiedTime": 1766925349578,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770269985979,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

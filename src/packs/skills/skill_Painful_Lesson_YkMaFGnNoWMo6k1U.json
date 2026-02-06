@@ -45,9 +45,7 @@
         "value": "mig"
       }
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "$sl",
     "damage": {
       "hasDamage": {
         "value": false
@@ -117,7 +115,7 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
+    "defense": "",
     "fuid": "painful-lesson"
   },
   "effects": [
@@ -155,7 +153,7 @@
                 "C0sv955OJ6ddpW9g": {
                   "type": "messageRuleAction",
                   "_id": "C0sv955OJ6ddpW9g",
-                  "message": "<p>You may perform @ACTION[study bonus:$sl] against the attacker.</p>"
+                  "message": "<p>After another causes you to lose Hit Points, you may perform @ACTION[study bonus:$sl] against the attacker.</p>"
                 }
               }
             }
@@ -189,12 +187,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767730525954,
-        "modifiedTime": 1767737252602,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770248525790,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YkMaFGnNoWMo6k1U.UFwFf5qcdGZ0EtWc"
     }
@@ -205,15 +203,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706496896843,
-    "modifiedTime": 1741989289711,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770248479119,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

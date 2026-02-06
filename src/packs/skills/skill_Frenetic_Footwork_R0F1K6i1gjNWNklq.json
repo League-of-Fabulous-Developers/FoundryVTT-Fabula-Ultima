@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p>",
+    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
     "isFavored": {
       "value": false
     },
@@ -118,74 +118,33 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "frenetic-footwork"
-  },
-  "effects": [
-    {
-      "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
-      "origin": "Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Frenetic Footwork",
-      "_id": "2IMJA47lvSXwD8a6",
-      "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.opposedCheck",
-          "mode": 2,
-          "value": "$sl*2",
-          "priority": null
-        }
-      ],
-      "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF143",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1740175867509,
-        "modifiedTime": 1741989445886,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
-        "exportSource": null
-      },
-      "_key": "!items.effects!R0F1K6i1gjNWNklq.2IMJA47lvSXwD8a6"
+    "fuid": "frenetic-footwork",
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "entries": []
     }
-  ],
+  },
+  "effects": [],
   "sort": 400000,
   "ownership": {
     "default": 0,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706560364056,
-    "modifiedTime": 1740172886102,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1770277385895,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

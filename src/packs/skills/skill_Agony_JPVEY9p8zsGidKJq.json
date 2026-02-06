@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per turn (including other creatures’ turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><ul><li><p><strong>You</strong>: @GAIN[$sl*2 hp] @GAIN[$sl*2 mp]</p></li></ul>",
+    "description": "<p>Once per turn (including other creatures’ turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】 </strong>Hit Points and <strong>【SL × 2】 </strong>Mind Points.</p><hr /><p><strong>You</strong>: @GAIN[$sl*2 hp]{SL x 2 HP} @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "agony"
+    "fuid": "agony",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -184,7 +187,8 @@
                 },
                 "Ih8IlZNuYlq4PD3G": {
                   "type": "messageRuleAction",
-                  "_id": "Ih8IlZNuYlq4PD3G"
+                  "_id": "Ih8IlZNuYlq4PD3G",
+                  "message": "<p>Once per turn, after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover<strong>【SL × 2】</strong>Hit Points and<strong>【SL × 2】</strong>Mind Points.</p>"
                 }
               },
               "selector": "self"
@@ -219,12 +223,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766871996877,
-        "modifiedTime": 1767895581456,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770248352201,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!JPVEY9p8zsGidKJq.3CjUfXdmW7p1L7tJ"
     }
@@ -245,8 +249,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706496854934,
-    "modifiedTime": 1768782723385,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770248455463,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

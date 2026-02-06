@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "nextTurn",
-      "description": "<p>After you suffer damage, choose one option: you recover 5 Hit Points, <strong>or</strong> you recover 5 Mind Points.</p><hr><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp]</p></li><li><p><strong>You Recover:</strong> @GAIN[5 hp], or @GAIN[5 mp]</p></li><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.v7HpgVautZEWUbS7]{Effect: Hydra Dance}</p></li></ul>"
+      "description": "<p>After you suffer damage, choose one option: you recover 5 Hit Points, <strong>or</strong> you recover 5 Mind Points.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.v7HpgVautZEWUbS7]<br /><strong>You Recover:</strong> @GAIN[5 hp] or @GAIN[5 mp]</p>"
     },
     "source": "FUHF144",
     "fuid": "hydra-dance"
@@ -32,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710175574863,
-    "modifiedTime": 1744507460222,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770280087971,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

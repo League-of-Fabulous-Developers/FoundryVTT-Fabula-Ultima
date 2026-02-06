@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast an offensive ( @ICON[offensive] ) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
+    "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "magic-artillery"
+    "fuid": "magic-artillery",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -141,7 +144,44 @@
             "name": "",
             "current": 0,
             "step": 1,
-            "max": 6
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "Cqt3QsRMqS4OsC2z": {
+              "type": "ruleElement",
+              "_id": "Cqt3QsRMqS4OsC2z",
+              "trigger": {
+                "_id": "lGSK8sZMvteClIjE",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ]
+              },
+              "actions": {
+                "LS13E6pWUYcj4TBl": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "LS13E6pWUYcj4TBl",
+                  "bonus": "$sl*2"
+                }
+              },
+              "predicates": {
+                "GhYb996DR8A8hfkh": {
+                  "type": "weaponRulePredicate",
+                  "_id": "GhYb996DR8A8hfkh",
+                  "selector": "self",
+                  "categories": [
+                    "arcane"
+                  ]
+                },
+                "GD8emSyDZnGVTSMr": {
+                  "type": "spellRulePredicate",
+                  "_id": "GD8emSyDZnGVTSMr",
+                  "offensive": "true"
+                }
+              }
+            }
           }
         }
       },
@@ -152,14 +192,7 @@
       "disabled": false,
       "_id": "qHjYR6862sVRMKSg",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "2*@system.level.value",
-          "priority": null
-        }
-      ],
+      "changes": [],
       "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
@@ -171,12 +204,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1755194021736,
-        "modifiedTime": 1755194050968,
-        "lastModifiedBy": "nqoGRB1RfVIAK1Qj"
+        "modifiedTime": 1770343207864,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!b5zzfsWN7h5ugrnW.qHjYR6862sVRMKSg"
     }
@@ -188,15 +221,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706497996319,
-    "modifiedTime": 1742002045081,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770253309088,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
