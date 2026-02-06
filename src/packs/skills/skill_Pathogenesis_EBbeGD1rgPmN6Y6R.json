@@ -180,7 +180,7 @@
                 "X63gHodhVxCaAW8N": {
                   "type": "messageRuleAction",
                   "_id": "X63gHodhVxCaAW8N",
-                  "message": "<p>If you deal damage to one or more creatures with a Chimerist spell, shared <strong>Species</strong> suffer <strong>poisoned</strong>.</p>"
+                  "message": "<p>If you damage one or more with a Chimerist spell, those that share <strong>Species</strong> suffer <strong>poisoned</strong>.</p>"
                 },
                 "TXYeCQTRMxgbBNqK": {
                   "type": "applyEffectRuleAction",
@@ -223,7 +223,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770270015359,
-        "modifiedTime": 1770401100550,
+        "modifiedTime": 1770402484239,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!EBbeGD1rgPmN6Y6R.UiwmY4WawFJGxq3H"

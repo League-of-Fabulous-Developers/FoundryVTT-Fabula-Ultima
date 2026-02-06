@@ -188,7 +188,7 @@
                 "Ih8IlZNuYlq4PD3G": {
                   "type": "messageRuleAction",
                   "_id": "Ih8IlZNuYlq4PD3G",
-                  "message": "<p>Once a turn, if you damage to one or more <strong>Bond</strong> enemies, you may recover<strong>【SL × 2】</strong>HP & MP.</p>"
+                  "message": "<p>Once per turn, if you damage one or more <strong>Bond</strong> enemies, you may recover<strong>【SL × 2】</strong>HP & MP.</p>"
                 }
               },
               "selector": "self"
@@ -227,7 +227,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766871996877,
-        "modifiedTime": 1770401880766,
+        "modifiedTime": 1770402838012,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!JPVEY9p8zsGidKJq.3CjUfXdmW7p1L7tJ"
