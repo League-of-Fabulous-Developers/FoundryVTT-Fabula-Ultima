@@ -62,6 +62,8 @@ export class PerformCheckRuleAction extends RuleActionDataModel {
 					break;
 			}
 		}
-		context.event.config.addTargetedAction(action);
+		if (action) {
+			context.event.config.addTargetedAction(action);
+		}
 	}
 }
