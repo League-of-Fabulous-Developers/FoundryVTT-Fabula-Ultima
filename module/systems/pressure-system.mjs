@@ -40,14 +40,17 @@ async function processVulnerability(context) {
 			/** @type NpcDataModel **/
 			const npcData = context.actor.system;
 			const changes = [];
-			for (const [type] of Object.entries(npcData.affinities.all)) {
-				changes.push({
-					key: `system.affinities.${type}`,
-					mode: 0,
-					value: 'downgrade',
-				});
-				staggered = true;
+			for (const [type, affinity] of Object.entries(npcData.affinities.all)) {
+				if (affinity.current !== FU.affValue.immunity) {
+					changes.push({
+						key: `system.affinities.${type}.current`,
+						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+						value: '-1',
+						priority: -100,
+					});
+				}
 			}
+			staggered = true;
 			await stagger.update({
 				changes: changes,
 			});
