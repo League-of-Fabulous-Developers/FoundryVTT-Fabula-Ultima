@@ -158,7 +158,15 @@
                 "Zm9edoqk3U0RSKF8": {
                   "type": "performCheckRuleAction",
                   "_id": "Zm9edoqk3U0RSKF8",
-                  "check": "ritual"
+                  "check": "ritual",
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "wlp"
+                    }
+                  }
                 }
               }
             }
@@ -184,7 +192,7 @@
       "description": "",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": true,
+      "transfer": false,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -192,12 +200,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767130702416,
-        "modifiedTime": 1767130720762,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770343698262,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!qgy43lWGmJ2YGhTp.y87yr4Bae2qYe1n4"
     }

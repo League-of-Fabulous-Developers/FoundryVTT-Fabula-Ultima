@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Bishop's Edict (Extra Damage)",
+      "name": "Effect: Bishop Extra Damage",
       "_id": "JzMDbxLQ1uT85e7C",
       "type": "base",
       "system": {
@@ -47,7 +47,7 @@
           "priority": null
         }
       ],
-      "description": "<p>All sources of damage deal <strong>【SL × 3】</strong> extra damage. The chosen effect lasts until the start of your next turn.</p>",
+      "description": "<p>All sources of damage deal <strong>【SL × 3】</strong> extra damage until the start of the commander's next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -57,12 +57,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744460652448,
-        "modifiedTime": 1744462940053,
-        "lastModifiedBy": "WNNELbIcUepK9pGq",
+        "modifiedTime": 1770280635267,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!uxc0tTLb3If2Denp.JzMDbxLQ1uT85e7C"

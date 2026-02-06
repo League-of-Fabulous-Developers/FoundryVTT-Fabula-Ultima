@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p><hr /><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.e85QX4FWBQxwTt8V]{Effect: Sound Barrier}</p></li></ul>",
+    "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p><hr /><p><strong>You:</strong> @EFFECT[Compendium.projectfu.skills.Item.e85QX4FWBQxwTt8V]{Effect: Sound Barrier}</p>",
     "isFavored": {
       "value": false
     },
@@ -118,78 +118,33 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "sound-barrier"
-  },
-  "effects": [
-    {
-      "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
-      "origin": "Compendium.projectfu.skills.Item.9xjUyytWiDxFhqdV",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Sound Barrier",
-      "_id": "wjcCWPhCefwBODlT",
-      "type": "base",
-      "system": {
-        "duration": {
-          "event": "startOfTurn"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.physical",
-          "mode": 2,
-          "value": "-&sl(\"sound-barrier\")",
-          "priority": null
-        }
-      ],
-      "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF137",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1739537111533,
-        "modifiedTime": 1744458771970,
-        "lastModifiedBy": "WNNELbIcUepK9pGq",
-        "exportSource": null
-      },
-      "_key": "!items.effects!9xjUyytWiDxFhqdV.wjcCWPhCefwBODlT"
+    "fuid": "sound-barrier",
+    "targeting": {
+      "rule": "self"
+    },
+    "effects": {
+      "entries": []
     }
-  ],
+  },
+  "effects": [],
   "sort": 200000,
   "ownership": {
     "default": 0,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706551847928,
-    "modifiedTime": 1744458819594,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1770272359251,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

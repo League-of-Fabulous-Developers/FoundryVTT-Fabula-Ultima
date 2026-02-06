@@ -1,0 +1,96 @@
+{
+  "folder": "VIkMulwyAc8dw5pH",
+  "name": "Effect: Charging Cavalry",
+  "type": "effect",
+  "_id": "X4L3sibcGEi8LPvd",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
+  "system": {
+    "fuid": "effect-charging-cavalry-accuracy-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: Accuracy Check Up",
+      "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "6FbGNzBSHKFc7umq",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "~&sl(\"charging-cavalry\")",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check of your <strong>free attack</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770273473908,
+        "modifiedTime": 1770280565916,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!X4L3sibcGEi8LPvd.6FbGNzBSHKFc7umq"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770273462177,
+    "modifiedTime": 1770273594067,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!X4L3sibcGEi8LPvd"
+}

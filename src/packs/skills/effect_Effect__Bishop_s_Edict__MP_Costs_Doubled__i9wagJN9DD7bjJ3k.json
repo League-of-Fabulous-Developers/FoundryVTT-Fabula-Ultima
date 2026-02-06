@@ -1,0 +1,113 @@
+{
+  "folder": "VIkMulwyAc8dw5pH",
+  "name": "Effect: Bishop's Edict (MP Costs Doubled)",
+  "type": "effect",
+  "_id": "i9wagJN9DD7bjJ3k",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
+  "system": {
+    "fuid": "effect-bishops-edict-mp-costs-doubled",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: Bishop MP Costs Doubled",
+      "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "eVV26BXHTW0gJsIY": {
+              "type": "ruleElement",
+              "_id": "eVV26BXHTW0gJsIY",
+              "trigger": {
+                "_id": "NbvlljjjEJGpsYMS",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                }
+              },
+              "actions": {
+                "FDs9FO4x8kXrqhGw": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "FDs9FO4x8kXrqhGw",
+                  "amount": "2",
+                  "operation": "multiply"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "zi1lyBp3AwroUHpJ",
+      "type": "base",
+      "changes": [],
+      "description": "<p>All MP costs are doubled until the start of the commander's next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770272549908,
+        "modifiedTime": 1770332091771,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!i9wagJN9DD7bjJ3k.zi1lyBp3AwroUHpJ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770272532643,
+    "modifiedTime": 1770272540646,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!i9wagJN9DD7bjJ3k"
+}

@@ -5,10 +5,11 @@
   "_id": "v7HpgVautZEWUbS7",
   "img": "icons/creatures/reptiles/serpent-horned-green.webp",
   "system": {
-    "fuid": "hydra-dance-effect",
+    "fuid": "effect-hydra-dance",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -34,13 +35,53 @@
         "duration": {
           "event": "startOfTurn",
           "interval": 1,
-          "tracking": "self",
+          "tracking": "source",
           "remaining": 0
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "b9UeDp9AN6jzufDE": {
+              "type": "ruleElement",
+              "_id": "b9UeDp9AN6jzufDE",
+              "trigger": {
+                "_id": "HhVXUu48Llu90oim",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "",
+                "damageSources": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "actions": {
+                "DRc1mSvZQTh5u3GY": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "DRc1mSvZQTh5u3GY",
+                  "amount": "5"
+                },
+                "f9YgfPh366UVVYJL": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "f9YgfPh366UVVYJL",
+                  "resource": "mp",
+                  "amount": "5"
+                }
+              }
+            }
+          }
+        }
       },
       "changes": [],
-      "description": "<p>After you <strong>suffer</strong> <strong>damage</strong>, choose one option: you recover @GAIN[5 hp], or you recover @GAIN[5 mp].</p>",
+      "description": "<p>After you <strong>suffer</strong> <strong>damage</strong>, choose one option: you recover 5 HP, <strong>or</strong> you recover 5 MP.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,12 +91,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742579460750,
-        "modifiedTime": 1742579791240,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1770401506933,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!v7HpgVautZEWUbS7.6pWZZ25JH3nhZdjg"
@@ -70,12 +111,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742579439673,
-    "modifiedTime": 1742579806821,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1770280292559,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!v7HpgVautZEWUbS7"

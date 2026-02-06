@@ -5,10 +5,11 @@
   "_id": "9b6mngsWCfB7TLa7",
   "img": "icons/commodities/materials/feather-colored-blue.webp",
   "system": {
-    "fuid": "peacock-dance",
+    "fuid": "effect-peacock-dance",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -37,10 +38,20 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell ( <span>@ICON[offensive] </span>) during this scene, that attack or spell must include you among its targets if possible.</p>",
+      "description": "<p>The next time you perform an attack or offensive spell (<span>@ICON[offensive]</span>) during this scene, that attack or spell must include the dancer among your targets if possible.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,12 +61,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744467622828,
-        "modifiedTime": 1744467711716,
-        "lastModifiedBy": "WNNELbIcUepK9pGq",
+        "modifiedTime": 1770280202141,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!9b6mngsWCfB7TLa7.3OKMqmXgMxSVzoXI"
@@ -70,12 +81,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744467614088,
-    "modifiedTime": 1744467735418,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1770280298487,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!9b6mngsWCfB7TLa7"

@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "spell-mimic"
+    "fuid": "spell-mimic",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -166,9 +169,11 @@
               "actions": {
                 "TmtaC4LiXQe9p888": {
                   "type": "messageRuleAction",
-                  "_id": "TmtaC4LiXQe9p888"
+                  "_id": "TmtaC4LiXQe9p888",
+                  "message": "<p>The chimerist may learn this as a Chimerist spell.</p>"
                 }
-              }
+              },
+              "selector": "self"
             }
           },
           "progress": {
@@ -204,8 +209,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768067184150,
-        "modifiedTime": 1768067579369,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770401343525,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!yiX5sLJLKBh3UMmz.LSKs1p3YHGDXv1IS"
     }
@@ -226,8 +231,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706495666417,
-    "modifiedTime": 1768575622542,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770270611403,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

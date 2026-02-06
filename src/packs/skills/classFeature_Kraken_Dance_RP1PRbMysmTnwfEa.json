@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose another creature that is able to see you. If that creature is already <strong>dazed</strong>, they immediately suffer <strong>slow</strong>.</p><hr><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp]</p></li><li><p><strong>Target Suffers: </strong>@EFFECT[slow]</p></li></ul>",
+      "description": "<p>Choose another creature that is able to see you. If that creature is already <strong>dazed</strong>, they immediately suffer <strong>slow</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>Target Suffers: </strong>@EFFECT[slow]</p>",
       "duration": "instant"
     },
     "source": "FUHF144",
@@ -32,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710175623741,
-    "modifiedTime": 1744507464302,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770279719344,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

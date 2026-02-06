@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per scene upon entering <strong>Crisis</strong>, you may choose a specific creature you can see that you don't have a <strong>Bond</strong> towards. If you do, create a <strong>Bond</strong> of <strong>hatred</strong> towards that creature.</p>",
+    "description": "<p>Once per scene, when you enter <strong>Crisis</strong>, you may choose a specific creature you can see that you don’t have a <strong>Bond</strong> towards. If you do, create a <strong>Bond</strong> of <strong>hatred</strong> towards that creature.</p>",
     "isFavored": {
       "value": false
     },
@@ -171,15 +171,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706496883354,
-    "modifiedTime": 1741989227562,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770248445698,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

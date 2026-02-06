@@ -1,0 +1,96 @@
+{
+  "folder": "l4GzpixRQaRbzHKh",
+  "name": "Effect: Frenetic Footwork",
+  "type": "effect",
+  "_id": "8Tm8w8F0xQm7FmvL",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
+  "system": {
+    "fuid": "effect-frenetic-footwork",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: Frenetic Footwork",
+      "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "bx3hSlf2c3pew8HW",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.opposedCheck",
+          "mode": 2,
+          "value": "&sl(\"frenetic-footwork\")*2",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770277281768,
+        "modifiedTime": 1770280491323,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!8Tm8w8F0xQm7FmvL.bx3hSlf2c3pew8HW"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770277262517,
+    "modifiedTime": 1770280283251,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!8Tm8w8F0xQm7FmvL"
+}

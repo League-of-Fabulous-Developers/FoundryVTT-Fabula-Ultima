@@ -120,7 +120,10 @@
     "defense": "def",
     "fuid": "cataclysm",
     "cost": {
-      "amount": 10
+      "amount": ""
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [
@@ -157,13 +160,23 @@
                   "_id": "3i8OFA8Qwk5Lqqz5",
                   "categories": [
                     "arcane"
-                  ]
+                  ],
+                  "selector": "self"
                 },
                 "hBGetuaUyjiB9K3S": {
                   "type": "spellRulePredicate",
                   "_id": "hBGetuaUyjiB9K3S",
-                  "offensive": "true",
+                  "offensive": "",
                   "duration": "instantaneous"
+                },
+                "LcVRmR6hyTZeqcKi": {
+                  "type": "traitsRulePredicate",
+                  "_id": "LcVRmR6hyTZeqcKi",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
                 }
               },
               "actions": {
@@ -208,12 +221,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766869378193,
-        "modifiedTime": 1766869480153,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770277943881,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!muhtqtJ6av32K34Z.Dd03wzpbYRkqDcq9"
     }
@@ -234,8 +247,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706497962110,
-    "modifiedTime": 1768576006117,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770251855536,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
