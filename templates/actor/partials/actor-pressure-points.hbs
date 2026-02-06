@@ -4,7 +4,8 @@
 		{{#if system.pressurePoints}}
 			{{#each weaponCategories as |category|}}
 				<div class="resource-content flex-group-center">
-					<label data-tooltip="{{category}}">
+					<label class="fu-icon__container"
+						   data-tooltip="{{localize category}} <br> {{#if (pfuCollectionContains @key ../system.pressurePoints.entries)}}{{localize 'FU.PressurePoint'}}{{/if}}">
 						<i class="fu-icon--s {{pfuIconClass @key}} {{#unless (pfuCollectionContains @key ../system.pressurePoints.entries)}}fu-form__disabled{{/unless}}"></i>
 					</label>
 				</div>

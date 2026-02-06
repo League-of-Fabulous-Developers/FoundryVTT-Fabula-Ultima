@@ -359,16 +359,16 @@ FU.weaponCategories = {
 };
 
 FU.weaponCategoryIcons = {
-	arcane: 'ra ra-frostfire',
-	bow: 'ra ra-crossbow',
-	brawling: 'ra ra-muscle-up',
-	dagger: 'ra ra-daggers',
-	firearm: 'ra ra-revolver',
-	flail: 'ra ra-spiked-mace',
-	heavy: 'ra ra-hammer',
-	spear: 'ra ra-trident',
-	sword: 'ra ra-sword',
-	thrown: 'ra ra-shuriken',
+	arcane: 'fu-arcane',
+	bow: 'fu-bow',
+	brawling: 'fu-brawling',
+	dagger: 'fu-dagger',
+	firearm: 'fu-firearm',
+	flail: 'fu-flail',
+	heavy: 'fu-heavy',
+	spear: 'fu-spear',
+	sword: 'fu-sword',
+	thrown: 'fu-thrown',
 };
 
 /**

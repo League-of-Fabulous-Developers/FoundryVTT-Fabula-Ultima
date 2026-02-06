@@ -84,6 +84,17 @@
 	--icon-fu--poison: url('../../static/affinities/icons/poison.png');
 	--icon-fu--untyped: url('../../static/affinities/icons/untyped.png');
 
+	--icon-fu--arcane: url('../../static/icons/weapons/arcane.png');
+	--icon-fu--bow: url('../../static/icons/weapons/bow.png');
+	--icon-fu--brawling: url('../../static/icons/weapons/brawling.png');
+	--icon-fu--dagger: url('../../static/icons/weapons/dagger.png');
+	--icon-fu--firearm: url('../../static/icons/weapons/firearm.png');
+	--icon-fu--flail: url('../../static/icons/weapons/flail.png');
+	--icon-fu--heavy: url('../../static/icons/weapons/heavy.png');
+	--icon-fu--spear: url('../../static/icons/weapons/spear.png');
+	--icon-fu--sword: url('../../static/icons/weapons/sword.png');
+	--icon-fu--thrown: url('../../static/icons/weapons/thrown.png');
+
 	--icon-fu--damage: url('../../static/icons/inline/damage.svg');
 	--icon-fu--type: url('../../static/icons/inline/type.svg');
 }
@@ -214,6 +225,46 @@
 
 .fu-untyped {
 	background-image: var(--icon-fu--untyped);
+}
+
+.fu-arcane {
+	background-image: var(--icon-fu--arcane);
+}
+
+.fu-bow {
+	background-image: var(--icon-fu--bow);
+}
+
+.fu-brawling {
+	background-image: var(--icon-fu--brawling);
+}
+
+.fu-dagger {
+	background-image: var(--icon-fu--dagger);
+}
+
+.fu-firearm {
+	background-image: var(--icon-fu--firearm);
+}
+
+.fu-flail {
+	background-image: var(--icon-fu--flail);
+}
+
+.fu-heavy {
+	background-image: var(--icon-fu--heavy);
+}
+
+.fu-spear {
+	background-image: var(--icon-fu--spear);
+}
+
+.fu-sword {
+	background-image: var(--icon-fu--sword);
+}
+
+.fu-thrown {
+	background-image: var(--icon-fu--thrown);
 }
 
 .fu-fp {
