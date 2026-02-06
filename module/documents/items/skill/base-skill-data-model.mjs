@@ -12,6 +12,7 @@ import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
+import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
 
 /**
  * @property {string} description
@@ -167,7 +168,18 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			// Weapon support
 			if (weaponData) {
 				if (this.useWeapon.traits && weaponData.traits) {
-					config.addTraitsFromItemModel(weaponData.traits);
+					if (weaponData.traits) {
+						config.addTraitsFromItemModel(weaponData.traits);
+					}
+					if (weaponData instanceof WeaponDataModel) {
+						config
+							.setWeaponTraits({
+								weaponType: weaponData.type.value,
+								weaponCategory: weaponData.category.value,
+								handedness: weaponData.hands.value,
+							})
+							.addTraits(weaponData.damageType.value);
+					}
 				}
 				if (this.useWeapon.damage) {
 					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
