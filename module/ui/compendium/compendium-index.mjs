@@ -302,6 +302,11 @@ export class CompendiumIndex {
 	patchEntryData(entry) {
 		let _class;
 		// TODO: Use lowercase?
+		switch (entry.type) {
+			case 'class':
+				_class = entry.name;
+				break;
+		}
 		switch (entry.system.featureType) {
 			case 'projectfu.dance':
 				_class = 'Dancer';
@@ -380,8 +385,11 @@ export class CompendiumIndex {
 	 * @returns {Promise<ClassEntries>}
 	 */
 	async getClasses() {
+		let classes = await this.getItemsOfType('class');
+		classes = classes.filter((c) => !c.name.toLowerCase().includes('legacy'));
+
 		const entries = {
-			class: await this.getItemsOfType('class'),
+			class: classes,
 			classFeature: await this.getItemsOfType('classFeature'),
 		};
 		return entries;
