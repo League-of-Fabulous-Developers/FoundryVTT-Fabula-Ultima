@@ -223,8 +223,6 @@ export class SkillDataModel extends BaseSkillDataModel {
 			check.primary = weaponCheck.primary;
 			check.secondary = weaponCheck.secondary;
 
-			/** @type SkillDataModel **/
-			const skill = item.system;
 			const config = CheckConfiguration.configure(check);
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
@@ -232,25 +230,7 @@ export class SkillDataModel extends BaseSkillDataModel {
 			config.setWeaponReference(weapon);
 			config.setHrZero(this.damage.hrZero || modifiers.shift);
 			this.configureCheck(config);
-			await this.addSkillDamage(config, item, context);
-
-			// Weapon support
-			if (skill.useWeapon.traits && weaponData.traits) {
-				config.addTraitsFromItemModel(weaponData.traits);
-			}
-			if (skill.useWeapon.damage) {
-				config.setDamage(this.damage.type || weaponData.damageType.value, weapon.system.damage.value);
-			}
-			if (skill.useWeapon.accuracy) {
-				check.modifiers.push({
-					label: 'FU.CheckBonus',
-					value: weaponData.accuracy.value,
-				});
-				if (weaponData.defense) {
-					config.setTargetedDefense(weaponData.defense);
-				}
-			}
-			config.setWeaponTraits(config.getWeaponTraits());
+			await this.addSkillDamage(config, item, context, weaponData);
 			await this.addSkillAccuracy(config, actor, item, context);
 		};
 	}

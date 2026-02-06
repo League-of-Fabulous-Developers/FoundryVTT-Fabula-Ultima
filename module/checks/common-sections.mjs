@@ -1,4 +1,4 @@
-import { CHECK_DETAILS, CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
+import { CHECK_ACTIONS, CHECK_DETAILS, CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
@@ -437,7 +437,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			}
 
 			return {
-				order: CHECK_RESULT,
+				order: CHECK_ACTIONS,
 				partial: 'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 				data: {
 					retarget: true,
@@ -488,7 +488,7 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 		// This can be modified here...
 		await CommonEvents.calculateExpense(actor, item, targets, expense);
 		return {
-			order: CHECK_RESULT,
+			order: CHECK_ACTIONS + 500,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
