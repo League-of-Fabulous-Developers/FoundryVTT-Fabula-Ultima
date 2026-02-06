@@ -10,6 +10,18 @@
 			<!-- Right content here -->
 			<div class="right-column">
 				<span class="label name">{{actor.name}}</span>
+
+				{{!-- Character Description --}}
+				{{#if (eq actor.type "character")}}
+					<section class="section-container npc-border-col desc">
+						<section class="flex2 npc-desc resource-content">
+							<prose-mirror name="system.description" value="{{system.description}}" toggled>
+								{{{enrichedHtml.description}}}
+							</prose-mirror>
+						</section>
+					</section>
+				{{/if}}
+
 				{{!-- Study Level 0 --}}
 				{{#if (eq actor.system.study.value 0)}}
 				<fieldset class="section-container title-fieldset desc resource-content">
@@ -18,6 +30,7 @@
 					</span>
 				</fieldset>
 				{{/if}}
+
 				{{!-- Study Level 1+ --}}
 				{{#if (gte actor.system.study.value 1)}}
 				<fieldset class="section-container title-fieldset desc resource-content">
@@ -58,6 +71,18 @@
 				{{/if}}
 			</div>
 		</div>
+
+		<!-- Middle content here -->
+		{{#if (eq actor.type "npc")}}
+			<section class="section-container npc-border-col desc">
+				<section class="flex2 npc-desc resource-content">
+					<prose-mirror name="system.description" value="{{system.description}}" toggled>
+						{{{enrichedHtml.description}}}
+					</prose-mirror>
+				</section>
+			</section>
+		{{/if}}
+		
 		<!-- Bottom content here -->
 		{{!-- Affinities and Actions --}}
 		{{#if (gte actor.system.study.value 2)}}
