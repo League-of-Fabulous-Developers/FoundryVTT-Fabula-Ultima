@@ -128,7 +128,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @param {FUItem} item
 	 * @param {ExpressionContext} context
 	 */
-	async addSkillAccuracy(config, actor, item, context, weapon) {
+	async addSkillAccuracy(config, actor, item, context) {
 		if (this.accuracy) {
 			const calculatedAccuracyBonus = await Expressions.evaluateAsync(this.accuracy, context);
 			if (calculatedAccuracyBonus > 0) {
@@ -147,11 +147,13 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @param {CheckConfigurer} config
 	 * @param {FUItem} item
 	 * @param {ExpressionContext} context
+	 * @param {WeaponDataModel|CustomWeaponDataModel} weaponData
 	 * @returns {Promise<void>}
 	 */
-	async addSkillDamage(config, item, context) {
+	async addSkillDamage(config, item, context, weaponData = undefined) {
 		if (this.damage.hasDamage) {
 			config.addTraits(Traits.Damage);
+
 			if (config.hasDamage) {
 				config.modifyDamage((damage) => {
 					damage.type = this.damage.type || damage.type;
@@ -160,6 +162,22 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 				});
 			} else {
 				config.setDamage(this.damage.type, item.system.damage.value);
+			}
+
+			// Weapon support
+			if (weaponData) {
+				if (this.useWeapon.traits && weaponData.traits) {
+					config.addTraitsFromItemModel(weaponData.traits);
+				}
+				if (this.useWeapon.damage) {
+					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+				}
+				if (this.useWeapon.accuracy) {
+					config.addModifier('FU.CheckBonus', weaponData.accuracy.value);
+					if (weaponData.defense) {
+						config.setTargetedDefense(weaponData.defense);
+					}
+				}
 			}
 
 			const onRoll = this.damage.onRoll;

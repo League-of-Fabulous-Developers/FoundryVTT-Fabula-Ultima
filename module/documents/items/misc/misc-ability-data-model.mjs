@@ -234,18 +234,8 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 			config.setWeaponReference(weapon);
 			this.configureCheck(config);
+			await this.addSkillAccuracy(config, actor, item, context);
 			await this.addSkillDamage(config, item, context);
-
-			if (this.accuracy) {
-				check.modifiers.push({
-					label: 'FU.CheckBonus',
-					value: this.accuracy,
-				});
-			}
-
-			if (this.useWeapon.accuracy) {
-				check.modifiers.push(...weaponCheck.modifiers.filter(({ label }) => label !== 'FU.AccuracyCheckBonusGeneric'));
-			}
 		};
 	}
 

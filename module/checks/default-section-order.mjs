@@ -11,3 +11,5 @@ export const CHECK_ROLL = -1000;
 export const CHECK_ADDENDUM_ORDER = -900;
 
 export const CHECK_RESULT = 1000;
+
+export const CHECK_ACTIONS = 2000;
