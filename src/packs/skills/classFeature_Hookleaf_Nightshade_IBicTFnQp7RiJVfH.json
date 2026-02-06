@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances.</p><hr><ul><li><p><strong>You Receive: </strong>@TYPE[damage all poison e:eot i:2 t:source]</p></li></ul>"
+          "effect": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances.</p><hr><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.skills.Item.gboMfVDKKggDNDw3]</p>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances. Additionally, when you deal <strong>poison</strong> damage for the first time during your turn, you deal extra damage equal to <strong>【your Skill Level in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p><hr><ul><li><p><strong>You Receive: </strong>@TYPE[damage all poison e:eot i:2 t:source], and @EFFECT[Compendium.projectfu.skills.Item.hf8Ge2xUwVULAeRw]{Effect: Hookleaf Nightshade}</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[poisoned]</p></li></ul>"
+          "effect": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances. Additionally, when you deal <strong>poison</strong> damage for the first time during your turn, you deal extra damage equal to <strong>【your Skill Level in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p><hr><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.skills.Item.gboMfVDKKggDNDw3] and @EFFECT[Compendium.projectfu.skills.Item.IpPT020hyb1VSzAP]</p>"
         }
       ]
     },
@@ -34,12 +34,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Au78uXcM0nqKbZ4C",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1744511573364,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770372605009,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

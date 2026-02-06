@@ -114,7 +114,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "hypercognition"
+    "fuid": "hypercognition",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -137,11 +140,15 @@
               "type": "ruleElement",
               "_id": "3GJTI8ok6JnVSb9h",
               "trigger": {
-                "_id": "L4ZkxlSxynCrwZOI",
-                "type": "resourceExpendRuleTrigger",
+                "_id": "OUnQkETnJKHviYEO",
+                "type": "calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
-                "expenseSource": "spell"
+                "expenseSource": "spell",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                }
               },
               "predicates": {
                 "ne9InszuSAjoMZuo": {
@@ -166,11 +173,15 @@
               "type": "ruleElement",
               "_id": "FMJ65KcDiOEUzFnr",
               "trigger": {
-                "_id": "6xhFL6UK84R7sAAT",
-                "type": "resourceExpendRuleTrigger",
+                "_id": "DzJOC5FtDIt4EGW5",
+                "type": "calculateExpenseRuleTrigger",
                 "eventRelation": "source",
                 "resource": "mp",
-                "expenseSource": "spell"
+                "expenseSource": "spell",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                }
               },
               "predicates": {
                 "zDayx35nHIPslmjn": {
@@ -222,12 +233,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767266062677,
-        "modifiedTime": 1767266199112,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770369186552,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!P0oD7KQA9ipYWU8o.KfTNS2FY3rStlm5m"
     }
@@ -239,15 +250,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1741977626029,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770367840384,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

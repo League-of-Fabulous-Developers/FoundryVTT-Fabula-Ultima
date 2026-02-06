@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[5 + (1*$sl) hp]{5 + (SL × One Emotion HP)},<strong> </strong>@GAIN[5 + (2*$sl) hp]{5 + (SL × Two Emotions HP)}, or @GAIN[5 + (3*$sl) hp]{5 + (SL × Three Emotions HP)}</p></li><li><p><strong>You Receive: </strong>@EFFECT[mig-up e:eot i:2], or @EFFECT[wlp-up e:eot i:2]</p></li></ul>",
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>You Recover: </strong>@GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br /><strong>You Receive: </strong>@EFFECT[mig-up e:eot i:2] or @EFFECT[wlp-up e:eot i:2]</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "withstand"
+    "fuid": "withstand",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -137,8 +140,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706502423483,
-    "modifiedTime": 1768579839169,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770409013048,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

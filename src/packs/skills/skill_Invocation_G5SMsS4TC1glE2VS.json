@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend 5 Mind Points to perform an invocation, drawing energy from one of the <strong>wellsprings</strong> present on the scene (see <strong>Natural Fantasy Atlas</strong>, page <strong>156</strong>). Your <strong>【SL】</strong> in this Skill determines which <strong>invocations</strong> you have access to.</p><hr /><ul><li><p>For <strong>invocation</strong> breakdown and a list of Invocations, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules}</p></li><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9.JournalEntryPage.msH4dITSSkbnWnQd]{Invoker VTT Instructions}</p></li></ul>",
+    "description": "<p>You may use an action and spend 5 Mind Points to perform an invocation, drawing energy from one of the <strong>wellsprings</strong> present on the scene (see <strong>Natural Fantasy Atlas</strong>, page <strong>156</strong>). Your <strong>【SL】</strong> in this Skill determines which <strong>invocations</strong> you have access to.</p><hr /><p>For <strong>invocation</strong> breakdown and a list of Invocations, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules}<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9.JournalEntryPage.msH4dITSSkbnWnQd]{Invoker VTT Instructions}</p>",
     "isFavored": {
       "value": false
     },
@@ -59,7 +59,7 @@
       "resource": "mp"
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 0
     }
   },
@@ -70,17 +70,20 @@
     "aylHtMTxbnWEKFH9": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.1jzfPTpsL26nznRk",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1742791221027,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770413755430,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "G5SMsS4TC1glE2VS",

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the free attack granted by the <strong>Cooking</strong> Skill, if you combined <strong>no more than 2 ingredients</strong>, you may have the attack deal damage as normal. If you do, you treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack</p>",
+    "description": "<p>When you perform the <strong>free attack</strong> granted by the <strong>Cooking</strong> Skill, if you combined <strong>no more than 2 ingredients</strong>, you may have the attack deal damage as normal. If you do, you treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack</p>",
     "isFavored": {
       "value": false
     },
@@ -32,11 +32,11 @@
       "secondary": "mig"
     },
     "accuracy": 0,
-    "defense": "def",
+    "defense": "",
     "damage": {
       "hasDamage": true,
       "value": 0,
-      "type": "physical",
+      "type": "",
       "onRoll": "",
       "onApply": "",
       "hrZero": true
@@ -65,16 +65,20 @@
     }
   },
   "effects": [],
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.l6RUpkx8pVVWDIyl",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1744518341995,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770409639011,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

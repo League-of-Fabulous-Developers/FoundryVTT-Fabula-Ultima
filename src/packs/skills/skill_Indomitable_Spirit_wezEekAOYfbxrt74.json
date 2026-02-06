@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>or</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[5*$sl hp]{SL × 5 HP}, or @GAIN[5*$sl mp]{SL × 5 MP}</p></li></ul>",
+    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option:</p><ul><li><p>You recover <strong>【SL × 5】</strong> Hit Points.</p></li><li><p>You recover <strong>【SL × 5】</strong> Mind Points.</p></li><li><p>You recover from a single status effect of your choice.</p></li></ul><hr /><p><strong>You Recover: </strong>@GAIN[5*$sl hp]{SL × 5 HP} or @GAIN[5*$sl mp]{SL × 5 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -118,79 +118,30 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "indomitable-spirit"
-  },
-  "effects": [
-    {
-      "name": "Indomitable Spirit",
-      "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_indomitable_spirit.png",
-      "system": {
-        "duration": {
-          "event": "none",
-          "interval": 1,
-          "tracking": "self",
-          "remaining": 1
-        },
-        "type": "default",
-        "predicate": {
-          "crisisInteraction": "none"
-        },
-        "rules": {
-          "elements": {},
-          "progress": {
-            "enabled": false,
-            "id": "",
-            "name": "",
-            "current": 0,
-            "max": 6,
-            "style": "basic"
-          }
-        }
-      },
-      "duration": {
-        "startTime": null,
-        "combat": null
-      },
-      "disabled": false,
-      "_id": "J5u5t9biB6qDPm3b",
-      "type": "base",
-      "changes": [],
-      "description": "",
-      "origin": null,
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.348",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1766869094363,
-        "modifiedTime": 1766869336621,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
-      },
-      "_key": "!items.effects!wezEekAOYfbxrt74.J5u5t9biB6qDPm3b"
+    "fuid": "indomitable-spirit",
+    "targeting": {
+      "rule": "self"
     }
-  ],
+  },
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706502402161,
-    "modifiedTime": 1744517688604,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770405419985,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

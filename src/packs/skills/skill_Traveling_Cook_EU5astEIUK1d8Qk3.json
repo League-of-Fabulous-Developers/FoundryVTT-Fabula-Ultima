@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>After each <strong>travel roll</strong>, if you acquired the <strong>Cooking</strong> Skill, you gain </span><strong>【SL × 2】</strong><span><strong>ingredients.</strong></span></p>",
+    "description": "<p><span>After each <strong>travel roll</strong>, if you acquired the <strong>Cooking</strong> Skill, you gain </span><strong>【SL × 2】</strong><span><strong>ingredients.</strong></span></p><hr /><p>Refer to: @UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}.</p>",
     "isFavored": {
       "value": false
     },
@@ -60,21 +60,25 @@
       "amount": 0
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 0
     }
   },
   "effects": [],
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Mwaa7jaz1dv2G86Z",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1742676964457,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1770409813028,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

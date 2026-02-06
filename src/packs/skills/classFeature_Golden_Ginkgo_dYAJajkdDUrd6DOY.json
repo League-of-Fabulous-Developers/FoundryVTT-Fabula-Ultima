@@ -22,7 +22,7 @@
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Mind Points equal to<strong>【5 + your Skill Level in Chloromancy】</strong>.</p><hr><ul><li><p><strong>Targets Recover:</strong> @GAIN[5+&sl('chloromancy') mp]{5 + (SL in Chloromancy)}</p></li></ul>"
+          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Mind Points equal to<strong>【5 + your Skill Level in Chloromancy】</strong>.</p><hr><p><strong>Targets Recover:</strong> @GAIN[5+&sl('chloromancy')+10*floor($cl/30) mp]{5 + (SL in Chloromancy)}</p>"
         }
       ]
     },
@@ -34,12 +34,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.itDfRdC14cGTdFDX",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1745171700579,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770370177255,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

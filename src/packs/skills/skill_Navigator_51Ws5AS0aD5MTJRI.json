@@ -114,7 +114,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "navigator"
+    "fuid": "navigator",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -210,15 +213,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1741977632367,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770367850264,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,136 @@
+{
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Effect: Wardwattle (Clock 2)",
+  "type": "effect",
+  "_id": "KHNmbjlLdJOWMhoZ",
+  "img": "icons/consumables/plants/thorned-dried-stem-red.webp",
+  "system": {
+    "fuid": "effect-wardwattle",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: Wardwattle",
+      "img": "icons/consumables/plants/thorned-dried-stem-red.webp",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "2HvR5dhKswFpe9TP": {
+              "type": "ruleElement",
+              "_id": "2HvR5dhKswFpe9TP",
+              "trigger": {
+                "_id": "KLZ0EkyM1mv7IfNv",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "rTibumXwo7sYzKdr": {
+                  "type": "checkRulePredicate",
+                  "_id": "rTibumXwo7sYzKdr",
+                  "outcome": "success",
+                  "result": null
+                },
+                "uEqpsAfZKS1wvKsW": {
+                  "type": "weaponRulePredicate",
+                  "_id": "uEqpsAfZKS1wvKsW",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "iTZz0J3qbnSm0yCc": {
+                  "type": "messageRuleAction",
+                  "_id": "iTZz0J3qbnSm0yCc",
+                  "message": "<p>If you <strong>hit</strong> the floralist with a <strong>melee</strong> attack, they deal <strong>physical</strong> damage to you.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "8YOfsARvtUrdqrtK",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.physical",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770372908817,
+        "modifiedTime": 1770404364605,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!KHNmbjlLdJOWMhoZ.8YOfsARvtUrdqrtK"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770372855167,
+    "modifiedTime": 1770374115260,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!KHNmbjlLdJOWMhoZ"
+}

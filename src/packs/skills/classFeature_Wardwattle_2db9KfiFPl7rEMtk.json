@@ -17,17 +17,17 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>physical</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[affinity physical resistance e:eot i:1 t:source]</p></li></ul>"
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage.</p><hr><p><strong>You Receive:</strong> @TYPE[affinity physical resistance e:eot i:1 t:source]</p>"
         },
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[affinity physical resistance e:eot i:1 t:source]</p></li><li><p><strong>Target Loses: </strong>@DMG[5+&sl('chloromancy') physical]</p></li></ul>"
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.KHNmbjlLdJOWMhoZ]<br><strong>Attacker Suffers: </strong>@DMG[5+&sl('chloromancy')+5*floor($cl/30) physical]{5 + (SL in Chloromancy)}</p>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong>, and then deal an amount of <strong>poison </strong>damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[affinity physical resistance e:eot i:1 t:source]</p></li><li><p><strong>Target Loses: </strong>@DMG[5+&sl('chloromancy') physical] and @DMG[5+&sl('chloromancy') poison]</p></li></ul>"
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong>, and then deal an amount of <strong>poison </strong>damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.UUwKmAmXaMWdilui]<br><strong>Attacker Suffers: </strong>@DMG[5+&sl('chloromancy')+5*floor($cl/30) physical]{5 + (SL in Chloromancy)} and @DMG[5+&sl('chloromancy')+5*floor($cl/30) poison]{5 + (SL in Chloromancy)}</p>"
         }
       ]
     },
@@ -39,12 +39,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.FcYWXh9yYMcwozuw",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1755192708226,
-    "lastModifiedBy": "nqoGRB1RfVIAK1Qj",
+    "modifiedTime": 1770374945580,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

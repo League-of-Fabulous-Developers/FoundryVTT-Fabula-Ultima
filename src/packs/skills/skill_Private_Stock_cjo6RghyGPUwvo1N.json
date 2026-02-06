@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you or another Player Character spend <strong>【SL + 2】</strong>or fewer Inventory Points, you may spend 1 Trade Point to ignore that cost.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[winds-of-trade update -1]{Spend 1 Trade Point}</p></li></ul>",
+    "description": "<p>When you or another Player Character spend <strong>【SL + 2】</strong>or fewer Inventory Points, you may spend 1 Trade Point to ignore that cost.</p><hr /><p><strong>Resource:</strong> @PROGRESS[winds-of-trade update -1]{Spend 1 Trade Point}</p>",
     "isFavored": {
       "value": false
     },
@@ -60,7 +60,7 @@
       "amount": 0
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 0
     }
   },
@@ -69,16 +69,20 @@
     "default": 0,
     "aylHtMTxbnWEKFH9": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Zzb8ja80twea565Q",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1744524897956,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770418887195,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "cjo6RghyGPUwvo1N",

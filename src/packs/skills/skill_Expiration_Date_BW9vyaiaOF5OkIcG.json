@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>When a <strong>potion</strong> or <strong>delicacy</strong> </span>(see <strong>Natural Fantasy Atlas</strong>, page <strong>150</strong>)<span> you created that <strong>does not</strong> deal damage causes one or more creatures to recover Hit Points, you may instead have it deal <strong>poison</strong> damage equal to <strong>【half your level + (SL × 10)】 </strong>to each of those creatures. This damage type cannot change, and it is <strong>halved</strong> if you are dealing damage to <strong>two or more creatures</strong>.</span></p><hr /><ul><li><p><strong>Target Loses:</strong> @DMG[ ($cl/2)+($sl*10) poison]{Level/2 + (SL × 10) poison (single)}, or @DMG[ (($cl/2)+($sl*10)/2) poison]{Level/2 + (SL × 10) /2 poison (multi)}</p></li></ul>",
+    "description": "<p><span>When a <strong>potion</strong> or <strong>delicacy</strong> </span>(see <strong>Natural Fantasy Atlas</strong>, page <strong>150</strong>)<span> you created that <strong>does not</strong> deal damage causes one or more creatures to recover Hit Points, you may instead have it deal <strong>poison</strong> damage equal to <strong>【half your level + (SL × 10)】 </strong>to each of those creatures. This damage type cannot change, and it is <strong>halved</strong> if you are dealing damage to <strong>two or more creatures</strong>.</span></p><hr /><p><strong>Target Suffers:</strong> @DMG[($cl/2)+($sl*10) poison]{Level/2 + (SL × 10) Poison (Single)} or @DMG[(($cl/2)+($sl*10)/2) poison]{Level/2 + (SL × 10) /2 Poison (Multi)}</p>",
     "isFavored": {
       "value": false
     },
@@ -69,16 +69,20 @@
     "default": 0,
     "aylHtMTxbnWEKFH9": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.36UQXB7QHvpkEG7e",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1744524847946,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770418749043,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "BW9vyaiaOF5OkIcG",

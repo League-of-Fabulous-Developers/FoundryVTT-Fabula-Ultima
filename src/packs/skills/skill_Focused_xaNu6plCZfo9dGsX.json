@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[ins ins ($sl)]</p></li></ul>",
+    "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p>",
     "isFavored": {
       "value": false
     },
@@ -38,16 +38,10 @@
       }
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "ins",
+      "secondary": "ins"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "$sl",
     "damage": {
       "hasDamage": {
         "value": false
@@ -106,7 +100,7 @@
       }
     },
     "hasRoll": {
-      "value": false
+      "value": true
     },
     "hasResource": {
       "value": false
@@ -117,8 +111,11 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
-    "fuid": "focused"
+    "defense": "",
+    "fuid": "focused",
+    "targeting": {
+      "rule": "special"
+    }
   },
   "effects": [
     {
@@ -142,7 +139,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p>",
+      "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -154,12 +151,12 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1767901122176,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+        "modifiedTime": 1770415683091,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -225,15 +222,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706487322210,
-    "modifiedTime": 1744522969108,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770415502053,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
