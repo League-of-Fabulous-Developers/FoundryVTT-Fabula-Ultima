@@ -10,10 +10,7 @@
                         data-affinity='{{key}}'
                         data-action="roll"
                         data-tooltip="{{ affinity.label }} <br> {{ affinity.affTypeCurr }}">
-                        <img class="affinity-icon"
-                            src="systems/projectfu/styles/static/affinities/icons/{{key}}.png"
-                            alt="{{key}}"
-                            style="width: 24px; height: 24px;">
+						<i class="fu-icon--s affinity-icon {{pfuIconClass key}}"></i>
                         <span class="resource-label-l" style="letter-spacing: 0.5px; margin-bottom: -2px;">{{ affinity.affTypeCurrAbbr }}</span>
                     </label>
                 </div>
