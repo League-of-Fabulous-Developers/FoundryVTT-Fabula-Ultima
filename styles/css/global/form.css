@@ -65,7 +65,7 @@
 	border-top: 1px solid #c9c7b8;
 }
 
-.fu-form__scroll {
+.fu-scrollable {
 	overflow-y: auto; /* scroll only when needed */
 	overflow-x: hidden;
 }
