@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[affinity dark,poison resistance e:eot i:2 t:source]</p></li></ul>"
+          "effect": "<p>You are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>You Receive:</strong> @TYPE[affinity dark,poison resistance e:eot i:2 t:source]</p>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><ul><li><p><strong>Targets Receive:</strong> @TYPE[affinity dark,poison resistance e:eot i:2 t:source]</p></li></ul>"
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>Targets Receive:</strong> @TYPE[affinity dark,poison resistance e:eot i:2 t:source]</p>"
         }
       ]
     },
@@ -34,12 +34,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bVjaOoL1hEXdP5Nc",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1744512856481,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770370529539,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

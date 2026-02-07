@@ -17,17 +17,17 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are immune to <strong>shaken</strong> and <strong>weak</strong>.</p><hr><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz e:eot i:2 t:source]{Shaken Immunity}, and @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG e:eot i:2 t:source]{Weak Immunity}</p></li></ul>"
+          "effect": "<p>You are immune to <strong>shaken</strong> and <strong>weak</strong>.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz e:eot i:2 t:source]{Shaken Immunity} and @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG e:eot i:2 t:source]{Weak Immunity}</p>"
         },
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>You treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp e:eot i:1 t:source]{MIG Up}, and @EFFECT[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG e:eot i:1 t:source]{WLP Up}</p></li></ul>"
+          "effect": "<p>You treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp e:eot i:1 t:source]{MIG Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG e:eot i:1 t:source]{WLP Up}</p>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>You and every ally you can see treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>Targets Receives:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp e:eot i:1 t:source]{MIG Up}, and @EFFECT[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG e:eot i:1 t:source]{WLP Up}</p></li></ul>"
+          "effect": "<p>You and every ally you can see treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp e:eot i:1 t:source]{MIG Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG e:eot i:1 t:source]{WLP Up}</p>"
         }
       ]
     },
@@ -39,12 +39,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.l0rQXCU5aCwVUHwW",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1744664985653,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770370638890,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

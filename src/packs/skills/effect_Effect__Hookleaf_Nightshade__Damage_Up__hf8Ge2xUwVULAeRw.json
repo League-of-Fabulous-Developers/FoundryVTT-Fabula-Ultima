@@ -1,0 +1,138 @@
+{
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Effect: Hookleaf Nightshade (Damage Up)",
+  "type": "effect",
+  "_id": "hf8Ge2xUwVULAeRw",
+  "img": "icons/commodities/flowers/lotus-violet.webp",
+  "system": {
+    "fuid": "effect-hookleaf-nightshade",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "img": "icons/commodities/flowers/lotus-violet.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Hookleaf Damage Up",
+      "_id": "2XWchLTOoMqRPAWv",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "stack": 1,
+        "rules": {
+          "elements": {
+            "aRQAKPjB6FpiafrE": {
+              "type": "ruleElement",
+              "_id": "aRQAKPjB6FpiafrE",
+              "trigger": {
+                "_id": "gFWlcJbpQn9nhmWz",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "G199abCosV1Q20Dn": {
+                  "type": "traitsRulePredicate",
+                  "_id": "G199abCosV1Q20Dn",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "9sIZw11n5ayz7HGk": {
+                  "type": "messageRuleAction",
+                  "_id": "9sIZw11n5ayz7HGk",
+                  "message": "<p>The first time you deal <strong>poison</strong>, you deal<strong> </strong>extra damage and those that lose HP suffer <strong>poisoned</strong>.</p>"
+                },
+                "zcjUlQnCPiFyk4rL": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "zcjUlQnCPiFyk4rL",
+                  "effect": "poisoned"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.poison",
+          "mode": 2,
+          "value": "~&sl(chloromancy)",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances. Additionally, when you deal <strong>poison</strong> damage for the first time during your turn, you deal extra damage equal to <strong>【your Skill Level in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744511346207,
+        "modifiedTime": 1770423260237,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "exportSource": null
+      },
+      "_key": "!items.effects!hf8Ge2xUwVULAeRw.2XWchLTOoMqRPAWv"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744511343361,
+    "modifiedTime": 1770423105679,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
+  },
+  "_key": "!items!hf8Ge2xUwVULAeRw"
+}
