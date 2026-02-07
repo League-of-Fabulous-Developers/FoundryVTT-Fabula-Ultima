@@ -76,9 +76,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUTF151"
-    },
+    "source": "FUTF151",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {
@@ -118,7 +116,122 @@
     "defense": "def",
     "fuid": "hypercognition"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Hypercognition",
+      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_hypercognition.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "3GJTI8ok6JnVSb9h": {
+              "type": "ruleElement",
+              "_id": "3GJTI8ok6JnVSb9h",
+              "trigger": {
+                "_id": "L4ZkxlSxynCrwZOI",
+                "type": "resourceExpendRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "spell"
+              },
+              "predicates": {
+                "ne9InszuSAjoMZuo": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "ne9InszuSAjoMZuo",
+                  "effect": "focus"
+                },
+                "puwm9pIYRl9pMOWP": {
+                  "type": "targetingRulePredicate",
+                  "_id": "puwm9pIYRl9pMOWP"
+                }
+              },
+              "actions": {
+                "vqEUySRncPvnpy8m": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "vqEUySRncPvnpy8m",
+                  "amount": "-$sl*2"
+                }
+              }
+            },
+            "FMJ65KcDiOEUzFnr": {
+              "type": "ruleElement",
+              "_id": "FMJ65KcDiOEUzFnr",
+              "trigger": {
+                "_id": "6xhFL6UK84R7sAAT",
+                "type": "resourceExpendRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "spell"
+              },
+              "predicates": {
+                "zDayx35nHIPslmjn": {
+                  "type": "targetingRulePredicate",
+                  "_id": "zDayx35nHIPslmjn",
+                  "rule": "multiple"
+                },
+                "gk3MjyYYXi6bN2FO": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "gk3MjyYYXi6bN2FO",
+                  "effect": "focus"
+                }
+              },
+              "actions": {
+                "hnkwHKWlXFzNreNK": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "hnkwHKWlXFzNreNK",
+                  "amount": "-$sl"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "KfTNS2FY3rStlm5m",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767266062677,
+        "modifiedTime": 1767266199112,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!P0oD7KQA9ipYWU8o.KfTNS2FY3rStlm5m"
+    }
+  ],
   "folder": "KIqoW0FNwwyC7ygb",
   "ownership": {
     "default": 0,

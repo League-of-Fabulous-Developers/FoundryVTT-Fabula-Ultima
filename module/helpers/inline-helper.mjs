@@ -1,9 +1,10 @@
-import { SYSTEM } from './config.mjs';
+import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { Expressions } from '../expressions/expressions.mjs';
 import { ChatMessageHelper } from './chat-message-helper.mjs';
+import FoundryUtils from './foundry-utils.mjs';
 
 /**
  * @description Information about a lookup for the source of an inline element
@@ -11,28 +12,31 @@ import { ChatMessageHelper } from './chat-message-helper.mjs';
  * @property {String} itemUuid
  * @property {String} actorUuid
  * @property {String} effectUuid
+ * @property {String} fuid If an item is provided.
  */
 export class InlineSourceInfo {
-	constructor(name, actorUuid, itemUuid, effectUuid) {
+	constructor(name, actorUuid, itemUuid, effectUuid, fuid) {
 		this.name = name;
 		this.actorUuid = actorUuid;
 		this.itemUuid = itemUuid;
 		this.effectUuid = effectUuid;
+		this.fuid = fuid;
 	}
 
 	/**
 	 * @param {FUActor} actor
 	 * @param {FUItem} item
+	 * @param {String} name
 	 * @return {InlineSourceInfo}
 	 */
-	static fromInstance(actor, item) {
+	static fromInstance(actor, item, name = undefined) {
 		if (actor) {
 			if (item) {
-				return new InlineSourceInfo(item.name, actor.uuid, item.uuid);
+				return new InlineSourceInfo(name ?? item.name, actor.uuid, item.uuid);
 			}
-			return new InlineSourceInfo(actor.name, actor.uuid, null);
+			return new InlineSourceInfo(name ?? actor.name, actor.uuid, null);
 		} else if (item) {
-			return new InlineSourceInfo(item.name, null, item.uuid);
+			return new InlineSourceInfo(name ?? item.name, null, item.uuid);
 		}
 	}
 
@@ -53,6 +57,18 @@ export class InlineSourceInfo {
 	 */
 	static fromObject(obj) {
 		return new InlineSourceInfo(obj.name, obj.actorUuid, obj.itemUuid);
+	}
+
+	/**
+	 * @param message
+	 * @returns {InlineSourceInfo}
+	 */
+	static fromChatMessage(message) {
+		const info = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
+		if (info) {
+			return new InlineSourceInfo(info.name, info.actorUuid, info.itemUuid);
+		}
+		return null;
 	}
 
 	/**
@@ -122,7 +138,13 @@ export class InlineSourceInfo {
 		return !!this.itemUuid;
 	}
 
-	static none = Object.freeze(new InlineSourceInfo('Unknown'));
+	static none = Object.freeze(new InlineSourceInfo('FU.Unknown'));
+
+	/**
+	 * @desc Used to refer to the scene of a conflict.
+	 * @type {Readonly<InlineSourceInfo>}
+	 */
+	static scene = Object.freeze(new InlineSourceInfo('FU.Scene'));
 }
 
 /**
@@ -136,32 +158,52 @@ function determineSource(document, element) {
 	let itemUuid = null;
 	let actorUuid = null;
 	let effectUuid = null;
+	let fuid = element?.dataset?.fuid;
 
 	// ACTOR SHEET
 	if (document instanceof FUActor) {
 		actorUuid = document.uuid;
 		console.debug(`Determining source document as Actor ${actorUuid}`);
-		const itemId = element.closest('[data-item-id]')?.dataset?.itemId;
+		const itemElement = element.closest('[data-item-id]');
+		const itemId = itemElement?.dataset.itemId;
 		if (itemId) {
 			let item = document.items.get(itemId);
-			itemUuid = item.uuid;
-			name = item.name;
+			if (!item) {
+				const uuid = itemElement.dataset.uuid;
+				if (uuid) {
+					item = fromUuidSync(uuid);
+				}
+			}
+			if (item) {
+				itemUuid = item.uuid;
+				fuid ??= item.system.fuid;
+				name = item.name;
+			}
 		} else {
 			name = document.name;
 		}
-		const effectId = element.closest('[data-effect-id]')?.dataset?.effectId;
+		const effectElement = element.closest('[data-effect-id]');
+		const effectId = effectElement?.dataset.effectId;
 		if (effectId) {
-			const effect = document.effects.get(effectId);
+			let effect = document.effects.get(effectId);
+			if (!effect) {
+				const uuid = effectElement.dataset.uuid;
+				if (uuid) {
+					effect = fromUuidSync(uuid, { strict: false });
+				}
+			}
 			if (effect) {
 				effectUuid = effect.uuid;
+				fuid ??= effect.system.fuid;
 			}
 		}
 	} // ITEM SHEET
 	else if (document instanceof FUItem) {
 		name = document.name;
 		itemUuid = document.uuid;
+		fuid ??= document.system.fuid;
 		if (document.isEmbedded) {
-			actorUuid = document.parent.uuid;
+			actorUuid = document.actor.uuid;
 		}
 		console.debug(`Determining source document as Item ${itemUuid}`);
 	}
@@ -172,32 +214,50 @@ function determineSource(document, element) {
 			actorUuid = speakerActor.uuid;
 			name = speakerActor.name;
 		}
-		const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
-		if (check) {
-			itemUuid = check.itemUuid;
-			if (check.itemName) {
-				name = check.itemName;
-			}
-		} else {
-			// No need to check 'instanceof FUItem;
-			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-			if (item) {
+		// If an item reference was provided
+		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+		if (item) {
+			if (FoundryUtils.isUUID(item)) {
+				itemUuid = item;
+			} else {
 				// It's possible the dispatcher didn't encode this information
 				if (item.name) {
 					name = item.name;
 				}
 				itemUuid = item.uuid;
 			}
-			// Could come from an effect
-			const effect = document.getFlag(SYSTEM, Flags.ChatMessage.Effect);
-			if (effect) {
-				effectUuid = effect;
+		}
+		// Get the item from the check data
+		else {
+			const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			if (check) {
+				itemUuid = check.itemUuid;
+				if (check.itemName) {
+					name = check.itemName;
+				}
 			}
 		}
-
+		// Could come from an effect
+		const effect = document.getFlag(SYSTEM, Flags.ChatMessage.Effect);
+		if (effect) {
+			effectUuid = effect;
+		}
 		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
-	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid);
+
+	// TODO: Figure out which case triggers this
+	// FALLBACK
+	const chatItemText = element.closest('#chat-item-text');
+	if (chatItemText) {
+		if (chatItemText.dataset.actorUuid) {
+			itemUuid = chatItemText.dataset.actorUuid;
+		}
+		if (chatItemText.dataset.itemId) {
+			itemUuid = chatItemText.dataset.itemId;
+		}
+	}
+
+	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid);
 }
 
 /**
@@ -223,33 +283,11 @@ function appendAmountToAnchor(anchor, amount) {
 function appendVariableToAnchor(anchor, key, expression, localization = 'FU.Variable') {
 	anchor.dataset[key] = expression;
 	const dynamicAmount = Expressions.requiresContext(expression);
-	if (dynamicAmount) {
-		anchor.append(game.i18n.localize(localization));
-	} else {
-		anchor.append(expression);
-	}
-}
-
-function toBase64(value) {
-	try {
-		const string = JSON.stringify(value);
-		const bytes = new TextEncoder().encode(string);
-		const binString = Array.from(bytes, (byte) => String.fromCodePoint(byte)).join('');
-		return btoa(binString);
-	} catch (e) {
-		return null;
-	}
-}
-
-function fromBase64(base64) {
-	try {
-		const binString = atob(base64);
-		const uint8Array = Uint8Array.from(binString, (m) => m.codePointAt(0));
-		const decodedValue = new TextDecoder().decode(uint8Array);
-		return JSON.parse(decodedValue);
-	} catch (e) {
-		return null;
-	}
+	const content = dynamicAmount ? game.i18n.localize(localization) : expression;
+	const span = document.createElement('span');
+	span.textContent = content;
+	//span.style.marginLeft = span.style.marginRight = '2px';
+	anchor.appendChild(span);
 }
 
 /**
@@ -274,7 +312,7 @@ let inlineCommands = [];
  * @property {Document} document
  * @property {HTMLElement} target
  * @property {InlineSourceInfo} sourceInfo
- * @property {Object} dataset
+ * @property {DOMStringMap} dataset
  */
 
 /**
@@ -284,7 +322,15 @@ let inlineCommands = [];
 function getRenderContext(element) {
 	const document = InlineHelper.resolveDocument(element);
 	const target = element.firstElementChild;
-	const sourceInfo = InlineHelper.determineSource(document, target);
+
+	let sourceInfo;
+	if (document instanceof ChatMessage) {
+		sourceInfo = InlineSourceInfo.fromChatMessage(document);
+	}
+	if (!sourceInfo) {
+		sourceInfo = InlineHelper.determineSource(document, target);
+	}
+
 	const dataset = target.dataset;
 	return {
 		document,
@@ -334,13 +380,52 @@ function resolveDocument(element) {
 	console.debug(`Failed to resolve the document from ${element.toString()}`);
 }
 
-function appendImageToAnchor(anchor, path) {
+/**
+ * @param {HTMLElement} anchor
+ * @param {String} path
+ * @param {Number} size
+ * @param margin
+ * @returns {HTMLImageElement}
+ */
+function appendImage(anchor, path, size = 16, margin = true) {
 	const img = document.createElement('img');
 	img.src = path;
-	img.width = 16;
-	img.height = 16;
-	img.style.marginLeft = img.style.marginRight = '2px';
+	img.width = size;
+	img.height = size;
+	if (margin) {
+		img.style.marginLeft = '2px';
+		img.style.marginRight = '4px';
+	}
 	anchor.append(img);
+	return img;
+}
+
+/**
+ * @typedef InlineIconConfig
+ * @property {String[]|String} classes
+ * @property {String} size
+ */
+
+/**
+ * @param {HTMLAnchorElement} anchor
+ * @param {...string} classes
+ */
+function appendIcon(anchor, ...classes) {
+	const icon = document.createElement(`i`);
+	icon.classList.add(`fu-icon--xs`, ...classes.flatMap((c) => c.split(/\s+/)));
+	icon.style.marginLeft = '2px';
+	anchor.append(icon);
+	return icon;
+}
+
+/**
+ * @param {HTMLAnchorElement} anchor
+ * @param {String} name
+ *
+ */
+function appendSystemIcon(anchor, name) {
+	const className = FU.allIcon[name];
+	return appendIcon(anchor, className);
 }
 
 /**
@@ -369,24 +454,59 @@ const traitsPattern = '(\\|(?<traits>[a-zA-Z-,]+)\\|)?';
 
 /**
  * @param {String} identifier The name of the regex group
- * @param key The key of the property
- * @param value The value of the property
+ * @param {String} key The key of the property
+ * @param {String} value The pattern for the value of the property
  * @returns {String}
  */
 function propertyPattern(identifier, key, value) {
 	return `(\\s+${key}:(?<${identifier}>${value}))?`;
 }
 
+const documentPropertyGroup = [propertyPattern('document', 'document', '[\\w.-]+'), propertyPattern('propertyPath', 'propertyPath', '[\\w.-]+'), propertyPattern('index', 'index', '\\d')];
+
+/**
+ * @param {FUItem} item
+ * @returns {string}
+ */
+function resolveItemGroup(item) {
+	let source;
+	if (item) {
+		/** @type ItemType **/
+		switch (item.type) {
+			case 'spell':
+				source = 'spell';
+				break;
+			case 'basic':
+			case 'weapon':
+			case 'customWeapon':
+				source = 'attack';
+				break;
+			case 'skill':
+			case 'optionalFeature':
+			case 'classFeature':
+			case 'miscAbility':
+				source = 'skill';
+				break;
+			case 'consumable':
+				source = 'item';
+				break;
+		}
+	}
+	return source;
+}
+
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
-	appendImageToAnchor,
+	appendImage,
+	appendIcon,
+	appendSystemIcon,
 	appendVariableToAnchor,
-	toBase64,
-	fromBase64,
 	registerCommand,
 	compose,
 	propertyPattern,
 	resolveDocument,
 	getRenderContext,
+	documentPropertyGroup,
+	resolveItemGroup,
 };

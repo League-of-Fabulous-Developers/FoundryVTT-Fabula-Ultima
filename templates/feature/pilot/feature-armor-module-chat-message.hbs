@@ -1,19 +1,19 @@
 {{#if martial}}
    <div class="fu-tags">
         <div class="fu-tag gap-5">
-            {{localize 'FU.DefenseAbbr'}}: {{formatMod defenseAttributesMod}}
+            {{localize 'FU.DefenseAbbr'}}: {{pfuFormatMod defenseAttributesMod}}
         </div>
             <div class="fu-tag gap-5">
-            {{localize 'FU.MagicDefenseAbbr'}}: {{formatMod mdefenseAttributesMod}}
+            {{localize 'FU.MagicDefenseAbbr'}}: {{pfuFormatMod mdefenseAttributesMod}}
         </div>
     </div>
 {{else}}
    <div class="fu-tags">
         <div class="fu-tag gap-5">
-            {{localize 'FU.DefenseAbbr'}}: {{localize defenseAttributeAbbreviations}} {{formatMod defenseAttributesMod}}
+            {{localize 'FU.DefenseAbbr'}}: {{localize defenseAttributeAbbreviations}} {{pfuFormatMod defenseAttributesMod}}
         </div>
             <div class="fu-tag gap-5">
-            {{localize 'FU.MagicDefenseAbbr'}}: {{localize mdefenseAttributeAbbreviations}} {{formatMod mdefenseAttributesMod}}
+            {{localize 'FU.MagicDefenseAbbr'}}: {{localize mdefenseAttributeAbbreviations}} {{pfuFormatMod mdefenseAttributesMod}}
         </div>
     </div>
 {{/if}}
@@ -26,7 +26,7 @@
 
 {{#if description}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
         {{{description}}}
     </details>

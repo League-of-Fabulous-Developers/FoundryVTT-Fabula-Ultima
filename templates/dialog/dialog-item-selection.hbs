@@ -1,0 +1,68 @@
+{{#if message}}
+	<div class="fu-form__message">
+			<span>
+				{{{message}}}
+			</span>
+	</div>
+{{/if}}
+
+<main class="fu-scrollable">
+	{{#if (eq style 'grid')}}
+		<div id="items" class="background fu-item-grid flex-group-center fu-icon__radio-group">
+			{{#each items as |item| }}
+				<label class="fu-item fu-item-card"
+					   for="{{item.name}}"
+					   data-index="{{@index}}"
+					   data-name="{{item.name}}">
+					<input type="checkbox"
+						   name="selected"
+						   id="{{item.name}}"
+						   {{#if (pfuCollectionContains item ../initial)}}checked{{/if}}
+						   value="{{item.name}}">
+					<img class="fu-icon--l" src="{{item.img}}"
+						 alt="{{item.name}}"/>
+					<span class="">{{item.name}}</span>
+				</label>
+			{{/each}}
+		</div>
+	{{/if}}
+	{{#if (eq style 'list')}}
+		<fieldset id="items" class='title-fieldset resource-content flex-group-center flexrow desc'>
+			<legend class='resource-label-m' style="gap: 4px;">
+				<span class="resource-label-sm">
+					<a type="button" class="resource-label-sm" data-tooltip="{{localize 'FU.SelectAll'}}" data-action="selectAll">
+						<i class="icon fas fa-list-check"></i>
+					</a>
+				</span>
+				<label>{{localize 'FU.Items'}}</label>
+				<span class="resource-label-sm">
+					<a type="button" class="resource-label-sm" data-tooltip="{{localize 'FU.DeselectAll'}}" data-action="deselectAll">
+						<i class="icon fas fa-xmark-square"></i>
+					</a>
+				</span>
+			</legend>
+			<table class="table-compact fu-scrollable" style="max-height: 400px;">
+				{{#each items as |item|}}
+					<tr>
+						<td>
+							<label class="fu-item"
+								   data-index="{{@index}}"
+								   data-name="{{item.name}}">
+								<input type="checkbox"
+									   name="selected"
+									   {{#if (pfuCollectionContains item ../initial)}}checked{{/if}}
+									   value="{{item.name}}">
+							</label>
+						</td>
+						<td>
+							{{pfuItemAnchor item}}
+						</td>
+						<td>
+							<span data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
+						</td>
+					</tr>
+				{{/each}}
+			</table>
+		</fieldset>
+	{{/if}}
+</main>

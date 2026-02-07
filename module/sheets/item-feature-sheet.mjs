@@ -209,13 +209,11 @@ export class FUFeatureSheet extends FUItemSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #changeSubtype(event, target) {
-		const subTypes = this.getSubTypes();
-
-		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options);
-		if (selectedType != null) {
-			if (this.item.type === 'optionalFeature') {
-				//typeField = 'optionalType';
+		if (this.item.type === 'optionalFeature') {
+			const subTypes = this.getSubTypes();
+			const options = FoundryUtils.generateConfigOptions(subTypes);
+			const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options, this.item.system.optionalType);
+			if (selectedType != null) {
 				/** @type OptionalFeatureTypeDataModel **/
 				const system = this.item.system;
 				const currentType = system.optionalType;
@@ -227,7 +225,12 @@ export class FUFeatureSheet extends FUItemSheet {
 					};
 					await this.item.update(updates);
 				}
-			} else if (this.item.type === 'classFeature') {
+			}
+		} else if (this.item.type === 'classFeature') {
+			const subTypes = this.getSubTypes();
+			const options = FoundryUtils.generateConfigOptions(subTypes);
+			const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options, this.item.system.featureType);
+			if (selectedType != null) {
 				/** @type ClassFeatureDataModel **/
 				const system = this.item.system;
 				const currentType = system.featureType;
@@ -240,9 +243,9 @@ export class FUFeatureSheet extends FUItemSheet {
 					await this.item.update(updates);
 				}
 			}
-
-			this.#nestedTabControllers = null;
 		}
+
+		this.#nestedTabControllers = null;
 	}
 
 	/**

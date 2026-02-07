@@ -1,0 +1,11 @@
+{{ log "in free text" this }}
+<div class="flexcol gap-5">
+	<label class="resource-label-sm">
+		{{localize templateData.name.label}}
+		<input type="text" name="{{fieldPrefix}}.{{templateData.name.name}}" value="{{lookup effect templateData.name.name}}" class="resource-inputs select-dropdown-full" />
+	</label>
+	<label class="resource-label-sm">
+		{{localize templateData.text.label}}
+		<input type="text" name="{{fieldPrefix}}.{{templateData.text.name}}" value="{{lookup effect templateData.text.name}}" class="resource-inputs select-dropdown-full" />
+	</label>
+</div>

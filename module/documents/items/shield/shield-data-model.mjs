@@ -6,6 +6,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TextEditor } from '../../../helpers/text-editor.mjs';
+import { ShieldMigrations } from './shield-migrations.mjs';
 
 /**
  * @param {CheckV2} check
@@ -67,7 +68,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} cost.value
  * @property {boolean} isMartial.value
@@ -118,11 +118,27 @@ export class ShieldDataModel extends FUStandardItemDataModel {
 		});
 	}
 
+	static migrateData(source) {
+		source = super.migrateData(source);
+		ShieldMigrations.run(source);
+		return source;
+	}
+
 	transferEffects() {
 		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.weaponsActive;
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.qualityCost, ItemPartialTemplates.shield, ItemPartialTemplates.behaviorField];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.qualityCost, ItemPartialTemplates.shield, ItemPartialTemplates.behaviorField];
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	equipShield(event, target) {
+		// TODO: find better solution, equipment data model maybe?
+		return this.parent.actor.equipmentHandler.handleItemClick(event, target);
 	}
 }

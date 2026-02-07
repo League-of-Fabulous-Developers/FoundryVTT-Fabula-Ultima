@@ -66,9 +66,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF154"
-    },
+    "source": "FUNF154",
     "fuid": "invoker"
   },
   "effects": [],

@@ -1,21 +1,30 @@
-<div class="unique-clock gap-10">
-    <div class="progress-container">
-        <div class="progress" style="--segments: {{data.max}}; --size: 50px" data-segments="{{data.max}}"
-            data-tooltip="{{localize 'FU.Progress'}}">
-            <div class="foreground"></div>
-            {{#each arr as |obj key|}}
-            <input disabled="" class="pie slice{{obj.id}}" type="radio" value="{{obj.id}}" style="--index: {{obj.id}}"
-                {{checked obj.checked}} />
-            <div class="divider" style="--index: {{obj.id}}"></div>
-            {{/each}}
-        </div>
-    </div>
-    <div class="flexcol" style="display: flex; width: 100%;">
-        <div class="rp-label">{{data.name}}</div>
-        <div class="stats">
-            <span class="stat-current">{{data.current}}</span>
-            <span class="stat-divider">/</span>
-            <span class="stat-max">{{data.max}}</span>
-        </div>
-    </div>
+{{#if message}}
+	<section>
+		{{{message}}}
+	</section>
+{{/if}}
+<div style="display: grid; margin-top: 4px;">
+	<div class="unique-clock gap-10">
+		<div class="progress-container">
+			<div class="progress" style="--segments: {{progress.max}}; --size: 50px" data-segments="{{progress.max}}"
+				 data-tooltip="{{localize 'FU.Progress'}}">
+				<div class="foreground"></div>
+				{{#each segments as |obj key|}}
+					<input disabled="" class="pie slice{{obj.id}}" type="radio" value="{{obj.id}}" style="--index: {{obj.id}}"
+						{{checked obj.checked}} />
+					<div class="divider" style="--index: {{obj.id}}"></div>
+				{{/each}}
+			</div>
+		</div>
+		<div class="flexcol flex-group-center" style="display: flex; width: 100%;">
+			{{#if displayName}}
+				<div class="rp-label">{{localize progress.name}}</div>
+			{{/if}}
+			<div class="flex-group-center stats">
+				<span class="stat-current">{{progress.current}}</span>
+				<span class="stat-divider">/</span>
+				<span class="stat-max">{{progress.max}}</span>
+			</div>
+		</div>
+	</div>
 </div>

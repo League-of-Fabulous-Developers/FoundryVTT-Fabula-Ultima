@@ -1,0 +1,13 @@
+<main class="background">
+	<header class="fu-form__header flexrow flex-group-center">
+		<a data-link="" draggable="true" data-uuid="{{item.uuid}}" data-type="Item" data-tooltip="{{item.name}}">
+			<img src="{{item.img}}" alt="{{item.name}}" data-item-id="{{item.id}}" class="item-img"></a>
+		<h2 style="flex-grow: 8;">{{item.name}}</h2>
+	</header>
+
+	{{#if description}}
+		<div class="fu-form__description">
+			<span>{{{description}}}</span>
+		</div>
+	{{/if}}
+</main>

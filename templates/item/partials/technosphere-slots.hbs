@@ -1,0 +1,40 @@
+<div class="technosphere-slots">
+	{{#each slots as | slot |}}
+		<div
+		 class="technosphere-slots__slot
+			{{#unless (or slot.item slot.occupied)}} technosphere-slots__slot--empty {{/unless}}
+		 	{{#if slot.overCapacity}} technosphere-slots__slot--over-capacity {{/if}}
+		 	{{#if slot.occupied}} technosphere-slots__slot--occupied {{/if}}
+		 	{{#if (eq slot.type "mnemosphere")}} technosphere-slots__slot--mnemosphere {{else}} technosphere-slots__slot--hoplosphere {{/if}}"
+			{{#if slot.item}}data-item-id="{{ slot.item.id }}" data-uuid="{{ slot.item.uuid }}"{{/if}}
+			{{#if slot.overCapacity}}data-tooltip="{{localize "FU.TechnospheresSlotOverCapacity"}}"{{/if}}
+		>
+			{{#if slot.item}}
+				<span class="technosphere-slots__slot-image">
+					<a data-action="roll"
+					   data-tooltip="{{localize 'FU.RollIconToolTip' name=slot.item.name}}">
+						<img class="item-icon" src="{{slot.item.img}}" alt="Item icon">
+					</a>
+				</span>
+				<span class="technosphere-slots__slot-name" data-tooltip="{{{slot.tooltip}}}">
+					{{slot.item.name}}
+				</span>
+				<span class="technosphere-slots__slot-actions">
+					<a data-action="edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+						<i class="fas fa-edit"></i>
+					</a>
+					<a data-action="delete" data-tooltip="{{ localize 'FU.TechnosphereRemove' }}"
+					   aria-describedby="tooltip">
+						<i class="fas fa-eject"></i>
+					</a>
+				</span>
+			{{else if slot.occupied}}
+				<span class="technosphere-slots__slot-image"></span>
+				<span>{{localize "FU.HoplosphereTooltipRequiresTwoSlots"}}</span>
+			{{else}}
+				<span class="technosphere-slots__slot-image"></span>
+				<span>{{localize "FU.TechnospheresSlotEmpty"}}</span>
+			{{/if}}
+		</div>
+	{{/each}}
+</div>

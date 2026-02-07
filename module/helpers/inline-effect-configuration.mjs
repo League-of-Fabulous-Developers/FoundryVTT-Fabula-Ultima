@@ -1,7 +1,8 @@
 import { FU } from './config.mjs';
-import { InlineHelper } from './inline-helper.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import FUApplication from '../ui/application.mjs';
+import { FUActiveEffectConfig } from '../documents/effects/active-effect-config.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 /*
 possible changes from official effects:
@@ -176,14 +177,14 @@ const SUPPORTED_CHANGE_TYPES = {
 	},
 };
 
-class TempActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
-	async _updateObject(event, formData) {
-		this.object.updateSource(formData);
-		return this.render();
+class TempActiveEffectConfig extends FUActiveEffectConfig {
+	async _processSubmitData(event, form, submitData, options = {}) {
+		this.document.updateSource(submitData);
+		this.render();
 	}
 
 	async close(options = {}) {
-		if (options.force) {
+		if (options.submitted) {
 			this.wasSubmitted = true;
 		}
 		return super.close(options);
@@ -252,19 +253,17 @@ export class InlineEffectConfiguration extends FUApplication {
 			statuses: Effects.STATUS_EFFECTS,
 			boonsAndBanes: Effects.BOONS_AND_BANES,
 			changeTypes: SUPPORTED_CHANGE_TYPES,
-			defaultIcon: this.#defaultIcon,
-			defaultName: this.#defaultName,
 		};
 	}
 
 	static #onFormSubmit(event, form, formData) {
-		this._updateObject(event, formData);
-	}
-
-	async _updateObject(event, formData) {
 		formData = foundry.utils.expandObject(Object.fromEntries(formData.entries()));
 		if (formData.type === 'guided' && formData.type !== this.#object.type) {
-			formData.guided ??= { changes: [{ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) }] };
+			formData.guided ??= {
+				name: this.#defaultName,
+				icon: this.#defaultIcon,
+				changes: [{ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) }],
+			};
 		}
 		this.#object = formData;
 		if (this.#object?.guided?.changes) {
@@ -291,17 +290,14 @@ export class InlineEffectConfiguration extends FUApplication {
 	}
 
 	static #onAdd() {
-		const idx = this.#object?.guided?.changes?.length ?? 0;
-		return this.submit({
-			updateData: {
-				[`guided.changes.${idx}`]: { type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) },
-			},
-		});
+		this.#object.guided.changes.push({ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) });
+		this.render();
 	}
 
 	static #onDelete(event) {
-		event.currentTarget.closest('.change').remove();
-		return this.submit().then(() => this.render());
+		const index = event.target.closest('.change[data-index]').dataset.index;
+		this.#object.guided.changes.splice(index, 1);
+		this.render();
 	}
 
 	static async #onFinish() {
@@ -318,36 +314,37 @@ export class InlineEffectConfiguration extends FUApplication {
 			if (this.#object.type === 'guided') {
 				const effectData = { ...this.#object.guided };
 				effectData.changes = (effectData.changes ?? []).flatMap((value) => SUPPORTED_CHANGE_TYPES[value.type].toChange(value));
-				const encodedEffect = InlineHelper.toBase64(effectData);
+				const encodedEffect = StringUtils.toBase64(effectData);
 				this.#dispatch(this.#state.tr.insertText(` @EFFECT[${encodedEffect}] `));
 			}
 			if (this.#object.type === 'custom') {
-				const cls = getDocumentClass('ActiveEffect');
-				const tempActor = await Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true });
-				const tempEffect = await cls.create(
-					{
-						_id: foundry.utils.randomID(),
-						name: game.i18n.localize(this.#defaultName),
-						icon: this.#defaultIcon,
-					},
-					{ temporary: true, parent: tempActor },
-				);
-				const activeEffectConfig = new TempActiveEffectConfig(tempEffect);
-				activeEffectConfig.render(true);
-				const dispatch = this.#dispatch;
-				const state = this.#state;
-				const hookRef = Hooks.on('closeActiveEffectConfig', function (sheet) {
-					if (sheet === activeEffectConfig) {
-						Hooks.off('closeActiveEffectConfig', hookRef);
-						if (sheet.wasSubmitted) {
-							const effectData = sheet.document.toObject();
-							delete effectData._id;
-							const encodedEffect = InlineHelper.toBase64(effectData);
-							dispatch(state.tr.insertText(` @EFFECT[${encodedEffect}] `));
-						}
-					}
-				});
+				this.handleCustomEffectCreation();
 			}
 		}
+	}
+	handleCustomEffectCreation() {
+		const tempActor = new foundry.documents.Actor.implementation({ name: 'Temp Actor', type: 'character' });
+		const tempEffect = new foundry.documents.ActiveEffect.implementation(
+			{
+				name: game.i18n.localize(this.#defaultName),
+				icon: this.#defaultIcon,
+			},
+			{ parent: tempActor },
+		);
+		const activeEffectConfig = new TempActiveEffectConfig({ document: tempEffect });
+		activeEffectConfig.render(true);
+		const dispatch = this.#dispatch;
+		const state = this.#state;
+		Hooks.on('closeActiveEffectConfig', function (sheet) {
+			if (sheet === activeEffectConfig) {
+				Hooks.off(this.hook, this.id);
+				if (sheet.wasSubmitted) {
+					const effectData = sheet.document.toObject();
+					delete effectData._id;
+					const encodedEffect = StringUtils.toBase64(effectData);
+					dispatch(state.tr.insertText(` @EFFECT[${encodedEffect}] `));
+				}
+			}
+		});
 	}
 }

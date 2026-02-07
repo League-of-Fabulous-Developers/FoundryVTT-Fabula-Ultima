@@ -1,12 +1,22 @@
-import { CHECK_FLAVOR, CHECK_RESULT } from './default-section-order.mjs';
+import { CHECK_ACTIONS, CHECK_DETAILS, CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
-import { TargetAction, Targeting } from '../helpers/targeting.mjs';
-import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
-import { FU } from '../helpers/config.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
+import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { SETTINGS } from '../settings.js';
+import { CommonEvents } from './common-events.mjs';
+import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { Effects } from '../pipelines/effects.mjs';
+import { FeatureTraits } from '../pipelines/traits.mjs';
+import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -15,7 +25,7 @@ import { TextEditor } from '../helpers/text-editor.mjs';
  * @param {number} [order]
  * @param {Boolean} open Defaults to true
  */
-const description = (sections, description, summary, order, open = true) => {
+const description = (sections, description, summary, order = CHECK_DETAILS, open = true) => {
 	if (summary || description) {
 		sections.push(async () => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
@@ -32,16 +42,84 @@ const description = (sections, description, summary, order, open = true) => {
 
 /**
  * @param {CheckRenderData} sections
- * @param {string} text
- * @param {string} summary
+ * @param {string} content
  * @param {number} [order]
- * @param {Boolean} open Defaults to true
+ */
+const content = (sections, content, order) => {
+	sections.push(async () => ({
+		content: content,
+		order,
+	}));
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string} template
+ * @param {Object} context
+ * @param {number} [order]
+ */
+const template = (sections, template, context, order) => {
+	sections.push(async () => {
+		const content = await FoundryUtils.renderTemplate(template, context);
+		return {
+			content: content,
+			order,
+		};
+	});
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {ChatAction[]} actions
+ * @param {Object} flags
+ * @param {number} [order]
+ */
+const chatActions = (sections, actions, flags = {}, order) => {
+	sections.push(async () => {
+		const content = await ChatAction.renderToChat(actions);
+		for (const action of actions) {
+			if (action.flag) {
+				Pipeline.toggleFlag(flags, action.flag);
+			}
+		}
+		return {
+			content: content,
+			order,
+		};
+	});
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string, Promise<string>} text
+ * @param {number} [order]
  */
 const genericText = (sections, text, order) => {
 	sections.push(async () => ({
 		partial: 'systems/projectfu/templates/chat/partials/chat-generic-text.hbs',
 		data: {
-			text: await TextEditor.enrichHTML(text),
+			text: await TextEditor.enrichHTML(await text),
+		},
+		order,
+	}));
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string, Promise<string>} text
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {Map} flags
+ * @param {number} [order]
+ */
+const itemText = (sections, text, actor, item, flags, order) => {
+	sections.push(async () => ({
+		partial: 'systems/projectfu/templates/chat/partials/chat-item-text.hbs',
+		data: {
+			actor: actor,
+			item: item,
+			flags: flags,
+			text: await TextEditor.enrichHTML(await text),
 		},
 		order,
 	}));
@@ -77,8 +155,9 @@ const clock = (sections, clock, order) => {
 	sections.push(async () => ({
 		partial: 'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
 		data: {
-			data: clock,
-			arr: clock.progressArray,
+			progress: clock,
+			segments: clock.progressArray,
+			displayName: true,
 		},
 		order: order,
 	}));
@@ -99,31 +178,8 @@ const clock = (sections, clock, order) => {
  * @param {Tag[]} tags
  * @param {number} [order]
  */
-const tags = (sections, tags = [], order) => {
+const tags = (sections, tags = [], order = CHECK_DETAILS) => {
 	tags = tags.filter((tag) => !('show' in tag) || tag.show);
-	if (tags.length > 0) {
-		sections.push(async () => ({
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
-			data: {
-				tags: tags,
-			},
-			order: order,
-		}));
-	}
-};
-
-/**
- * @param {CheckRenderData} sections
- * @param {Set<String>} traits
- * @param {number} [order]
- */
-const traits = (sections, traits = [], order) => {
-	const tags = [...traits].map((trait) => ({
-		tag: `FU.${trait}`,
-		separator: '',
-		value: '',
-		show: true,
-	}));
 	if (tags.length > 0) {
 		sections.push(async () => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
@@ -170,18 +226,15 @@ const resource = (sections, resource, order) => {
 /**
  * Sets chat message flavor by default. Specify order for other usecases.
  * @param {CheckRenderData} sections
- * @param {{name: string, img: string, id: string, uuid: string}} item
+ * @param {{name: string, img: string, id: string, uuid: string}|FUItem} item
  * @param {number} [order]
  */
 const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
 	sections.push({
 		order: order,
-		partial: 'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
+		partial: 'systems/projectfu/templates/chat/chat-check-flavor-item-v2.hbs',
 		data: {
-			name: item.name,
-			img: item.img,
-			id: item.id,
-			uuid: item.uuid,
+			item: item,
 		},
 	});
 };
@@ -224,69 +277,174 @@ const opportunity = (sections, opportunity, order) => {
  * @param {CheckRenderData} sections
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {TargetData[]} targets
- * @param {Object} flags
- * @param accuracyData
- * @param {TemplateDamageData} damageData
+ * @param {TargetData[]} targetData
+ * @param {Map} flags
+ * @param {CheckInspector} inspector
  */
-const targeted = (sections, actor, item, targets, flags, accuracyData = undefined, damageData = undefined) => {
-	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
+const actions = (sections, actor, item, targetData, flags, inspector = undefined) => {
+	const isTargeted = targetData?.length > 0 || !Targeting.STRICT_TARGETING;
+
+	let checkData;
+	/** @type DamageData **/
+	let damageData;
+
+	if (inspector) {
+		checkData = inspector.getCheck();
+		damageData = inspector.getDamage();
+		switch (checkData.type) {
+			case 'accuracy':
+			case 'magic':
+				sections.push({
+					order: CHECK_ROLL,
+					partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
+					data: {
+						type: checkData.type,
+						hasAccuracy: checkData.type === 'accuracy' || checkData.type === 'magic',
+						check: checkData,
+						damage: damageData,
+						translation: {
+							damageTypes: FU.damageTypes,
+							damageIcon: FU.affinityIcons,
+						},
+					},
+				});
+				break;
+
+			case 'display':
+				sections.push({
+					order: CHECK_ROLL,
+					partial: 'systems/projectfu/templates/chat/chat-display-container.hbs',
+					data: {
+						damage: damageData,
+						translation: {
+							damageTypes: FU.damageTypes,
+							damageIcon: FU.affinityIcons,
+						},
+					},
+				});
+				break;
+		}
+
+		// Expense action
+		const expenseData = inspector.getExpense();
+		if (expenseData) {
+			CommonSections.spendResource(sections, actor, item, expenseData, targetData, flags);
+		}
+	}
+
 	if (isTargeted) {
+		const isDamage = checkData && damageData;
+		const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
+		const targets = Targeting.deserializeTargetData(targetData);
+		const traits = inspector.getTraits();
+
 		sections.push(async function () {
+			/** @type {ChatAction[]} **/
 			let actions = [];
 			actions.push(Targeting.defaultAction);
-			let selectedActions = [];
 
-			if (accuracyData && damageData) {
-				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
-				actions.push(
-					new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: accuracyData,
-						damage: damageData,
-					}),
-				);
+			// Resource action
+			const resourceData = inspector.getResource();
+			if (resourceData) {
+				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+				let ra = 0;
+				for (const mod of resourceData.modifiers) {
+					ra += await Expressions.evaluateAsync(mod.amount, expressionContext);
+				}
+				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
+				actions.push(ResourcePipeline.getTargetedAction(request));
 
-				selectedActions.push(
-					new TargetAction('applyDamageSelected', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-						accuracy: accuracyData,
-						damage: damageData,
-					}),
-				);
+				// Trait data
+			}
 
-				if (game.dice3d) {
-					Hooks.once('diceSoNiceRollComplete', () => {
-						for (const target of targets) {
-							showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
-						}
-					});
-				} else {
-					for (const target of targets) {
-						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
+			const effectData = inspector.getEffects();
+			if (effectData) {
+				for (const entry of effectData.entries) {
+					const ea = await Effects.getTargetedAction(entry, sourceInfo);
+					if (ea) {
+						actions.push(ea);
 					}
 				}
 			}
 
-			let rule;
-			if (item.system.targeting) {
-				rule = item.system.targeting.rule ?? Targeting.rule.multiple;
-				targets = await Targeting.filterTargetsByRule(actor, item, targets);
-			} else {
-				rule = targets?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
+			// Damage action
+			if (isDamage) {
+				actions.push(DamagePipeline.getTargetedAction(damageData, sourceInfo, traits));
+
+				// TODO: Combine expenses among all actions?
+				for (const mod of damageData.modifiers) {
+					if (mod.expense && mod.expense.amount > 0) {
+						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
+						if (mod.expense.traits) {
+							const expenseTraits = new Set(mod.expense.traits);
+							if (expenseTraits.has(FeatureTraits.Gift)) {
+								actions.push(ProgressPipeline.getAdvanceTargetedAction(actor, 'brainwave-clock', 1, mod.label));
+							}
+						}
+					}
+				}
+
+				function onRoll() {
+					for (const target of targetData) {
+						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
+					}
+					// For any hit targets, attempt to apply damage
+					const hitTargets = targetData.filter((t) => t.result === 'hit');
+					if (hitTargets.length > 0) {
+						if (damageData && game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+							const traits = inspector.getTraits();
+							setTimeout(() => {
+								game.projectfu.socket.requestPipeline('damage', {
+									sourceInfo: InlineSourceInfo.fromInstance(actor, item),
+									targets: hitTargets,
+									damageData,
+									traits,
+								});
+							}, 50);
+						}
+					}
+				}
+
+				if (game.dice3d) {
+					Hooks.once('diceSoNiceRollComplete', onRoll);
+				} else {
+					onRoll();
+				}
+			}
+			// Remaining actions
+			if (inspector) {
+				for (const action of inspector.getTargetedActions()) {
+					actions.push(action);
+				}
 			}
 
+			// Set any flags
 			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
+			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, sourceInfo);
+			for (const action of actions) {
+				if (action.flag) {
+					Pipeline.toggleFlag(flags, action.flag);
+				}
+			}
+
+			/** @type FUTargetSelectorKey **/
+			let rule;
+			if (item && item.system.targeting) {
+				rule = item.system.targeting.rule ?? Targeting.rule.multiple;
+				targetData = await Targeting.filterTargetsByRule(actor, item, targetData);
+			} else {
+				rule = targetData?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
+			}
 
 			return {
-				order: CHECK_RESULT,
-				partial: 'systems/projectfu/templates/chat/partials/chat-targets.hbs',
+				order: CHECK_ACTIONS,
+				partial: 'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 				data: {
-					name: item.name,
-					actor: actor.uuid,
-					item: item.uuid,
+					retarget: true,
+					defense: inspector.getTargetedDefense(),
 					rule: rule,
-					targets: targets,
+					targets: targetData,
 					actions: actions,
-					selectedActions: selectedActions,
 				},
 			};
 		});
@@ -314,17 +472,47 @@ async function showFloatyText(targetData, localizedText) {
  * @param {Object} flags
  */
 const spendResource = (sections, actor, item, cost, targets, flags) => {
-	if (cost.amount === 0) {
+	if (!cost.amount) {
 		return;
 	}
-	const expense = ResourcePipeline.calculateExpense(cost, targets);
-	if (expense.amount === 0) {
+	const _amount = Number.parseInt(cost.amount);
+	if (_amount === 0) {
 		return;
 	}
 
-	if (expense) {
-		Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-		sections.push({
+	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
+	sections.push(async () => {
+		const itemGroup = InlineHelper.resolveItemGroup(item);
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
+
+		// This can be modified here...
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
+		return {
+			order: CHECK_ACTIONS + 500,
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+			data: {
+				name: item.name,
+				actor: actor.uuid,
+				item: item.uuid,
+				expense: expense,
+				resourceLabel: FU.resourcesAbbr[expense.resource],
+				icon: FU.resourceIcons[expense.resource],
+			},
+		};
+	});
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {ResourceExpense} expense
+ * @param {Object} flags
+ */
+const expense = (sections, actor, item, expense, flags) => {
+	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
+	sections.push(async () => {
+		return {
 			order: CHECK_RESULT,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
@@ -334,22 +522,40 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 				expense: expense,
 				icon: FU.resourceIcons[expense.resource],
 			},
-		});
-	}
+		};
+	});
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {FUItem[]} slottedTechnospheres
+ * @param {number} [order]
+ */
+const slottedTechnospheres = (sections, slottedTechnospheres, order) => {
+	sections.push({
+		partial: 'projectfu.technospheres.chatSlotted',
+		data: { slotted: slottedTechnospheres },
+		order,
+	});
 };
 
 export const CommonSections = {
+	content,
+	chatActions,
+	template,
 	description,
 	genericText,
+	itemText,
 	collapsibleDescription,
 	clock,
 	tags,
-	traits,
 	quality,
 	resource,
 	itemFlavor,
 	genericFlavor,
 	opportunity,
-	targeted,
+	actions,
 	spendResource,
+	expense,
+	slottedTechnospheres,
 };

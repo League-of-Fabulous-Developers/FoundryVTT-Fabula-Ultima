@@ -1,8 +1,9 @@
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Checks } from './checks.mjs';
 import { getTargeted } from '../helpers/target-handler.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
+import { Pipeline } from '../pipelines/pipeline.mjs';
 
 function addRetargetEntry(application, menuItems) {
 	menuItems.unshift({
@@ -27,10 +28,16 @@ function addRetargetEntry(application, menuItems) {
 	});
 }
 
+function isValid(message) {
+	// Updated to handle display "checks"
+	const types = Object.keys(FU.checkTypes);
+	return Checks.isCheck(message, types);
+}
+
 async function retarget(messageId) {
 	/** @type ChatMessage | undefined */
 	const message = game.messages.get(messageId);
-	const isCheck = Checks.isCheck(message);
+	const isCheck = isValid(message);
 	if (isCheck) {
 		const checkId = CheckConfiguration.inspect(message).getCheck().id;
 		let shouldDelete = false;
@@ -51,8 +58,19 @@ async function retarget(messageId) {
 	}
 }
 
+function onRenderChatMessage(message, html) {
+	if (!isValid(message)) {
+		return;
+	}
+
+	Pipeline.handleClick(message, html, 'retarget', async (dataset) => {
+		return retarget(message.id);
+	});
+}
+
 function initialize() {
 	Hooks.on('getChatMessageContextOptions', addRetargetEntry);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 export const CheckRetarget = Object.freeze({

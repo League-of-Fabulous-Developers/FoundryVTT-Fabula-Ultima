@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUHF156"
-    },
+    "source": "FUHF156",
     "hasResource": {
       "value": false
     },

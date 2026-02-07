@@ -1,5 +1,3 @@
-import { HTMLUtils } from './html-utils.mjs';
-
 export class EquipmentHandler {
 	constructor(actor) {
 		this.actor = actor;
@@ -14,11 +12,11 @@ export class EquipmentHandler {
 	 */
 	async handleItemClick(ev, target) {
 		ev.preventDefault();
-		const li = HTMLUtils.findWithDataset(target);
+		const li = target.closest('[data-item-id]');
 
 		if (!li) return;
 
-		const itemId = li.dataset.id;
+		const itemId = li.dataset.itemId;
 		const item = this.actor.items.get(itemId);
 
 		if (!item) return;
@@ -29,6 +27,8 @@ export class EquipmentHandler {
 
 		if (itemType === 'weapon') {
 			this.handleWeapon(item, equippedData, ev);
+		} else if (itemType === 'customWeapon') {
+			this.handleCustomWeapon(item, equippedData, ev);
 		} else if (itemType === 'shield') {
 			this.handleShield(item, equippedData, ev);
 		} else if (itemType === 'armor') {
@@ -42,6 +42,29 @@ export class EquipmentHandler {
 
 		this.autoEquipUnarmedStrike(equippedData);
 		await this.actor.update({ 'system.equipped': equippedData });
+	}
+
+	handleCustomWeapon(item, equippedData, event) {
+		const unequipped = [];
+		if (equippedData.mainHand === item.id) {
+			equippedData.mainHand = null;
+			unequipped.push('mainHand');
+		}
+		if (equippedData.offHand === item.id) {
+			equippedData.offHand = null;
+			unequipped.push('offHand');
+		}
+		if (equippedData.phantom === item.id) {
+			equippedData.phantom = null;
+			unequipped.push('phantom');
+		}
+
+		if (event.ctrlKey && !unequipped.includes('phantom')) {
+			equippedData.phantom = item.id;
+		} else if (!unequipped.includes('mainHand')) {
+			equippedData.mainHand = item.id;
+			equippedData.offHand = item.id;
+		}
 	}
 
 	handleWeapon(item, equippedData, event) {
@@ -65,13 +88,13 @@ export class EquipmentHandler {
 				equippedData.phantom = item.id;
 			} else if (event.button === 2 /* right click */ && !unequipped.includes('offHand')) {
 				const previouslyEquipped = this.actor.items.get(equippedData.offHand);
-				if (previouslyEquipped && previouslyEquipped.system?.hands.value === 'two-handed') {
+				if (previouslyEquipped && (previouslyEquipped.system?.hands?.value === 'two-handed' || previouslyEquipped.type === 'customWeapon')) {
 					equippedData.mainHand = null;
 				}
 				equippedData.offHand = item.id;
 			} else if (!unequipped.includes('mainHand')) {
 				const previouslyEquipped = this.actor.items.get(equippedData.offHand);
-				if (previouslyEquipped && previouslyEquipped.system?.hands.value === 'two-handed') {
+				if (previouslyEquipped && (previouslyEquipped.system?.hands?.value === 'two-handed' || previouslyEquipped.type === 'customWeapon')) {
 					equippedData.offHand = null;
 				}
 				equippedData.mainHand = item.id;
@@ -88,6 +111,12 @@ export class EquipmentHandler {
 
 	handleShield(item, equippedData, event) {
 		const dualShieldActive = this.actor.getSingleItemByFuid('dual-shieldbearer');
+
+		if (equippedData.mainHand === equippedData.offHand && equippedData.mainHand !== item.id) {
+			// two-handed weapon equipped, can't be equipped at the same time as a shield
+			equippedData.mainHand = null;
+			equippedData.offHand = null;
+		}
 
 		const unequipped = [];
 		if (equippedData.mainHand === item.id) {

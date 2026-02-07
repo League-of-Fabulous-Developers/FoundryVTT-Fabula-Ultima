@@ -1,1 +1,8 @@
-<a class="inline inline-damage"> {{damageType}}<i class="{{affinityIcon}}"></i></a>
+<a class="inline inline-damage">
+	{{#if pressureTrigger}}
+		{{pressureTrigger}}
+	{{else}}
+		{{damageType}}
+	{{/if}}
+	<i class="fu-icon--s {{icon}}"></i>
+</a>

@@ -34,7 +34,28 @@ function getProperty(obj, path) {
 	return foundry.utils.getProperty(obj, path);
 }
 
+/**
+ *
+ * @param {Object} obj
+ * @returns {Object} An object without any undefined properties
+ */
+function cleanObject(obj) {
+	return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== undefined));
+}
+
+/**
+ * @description Given a record, will return an object with a subset of its key-value pairs.
+ * @param {Record} record
+ * @param {String[]} keys
+ * @returns {{[p: string]: any}}
+ */
+function pick(record, keys) {
+	return Object.fromEntries(keys.filter((key) => key in record).map((key) => [key, record[key]]));
+}
+
 export const ObjectUtils = Object.freeze({
 	mergeRecursive,
 	getProperty,
+	cleanObject,
+	pick,
 });

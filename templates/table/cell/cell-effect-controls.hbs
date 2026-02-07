@@ -1,0 +1,41 @@
+<div class="cell-effect-controls">
+	{{#unless disableToggle}}
+		<a class="cell-effect-controls__control {{#if active~}} cell-effect-controls__control--active {{~/if}}"
+		   data-tooltip="{{ localize 'FU.EffectToggle' }}"
+		   aria-describedby="tooltip"
+		   data-action="toggleEffect">
+			<i class="{{#if active}}fas{{else}}far{{/if}} fa-circle-check"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableCopy}}
+		<a class="cell-effect-controls__control"
+		   data-tooltip="{{ localize 'FU.EffectCopy' }}"
+		   aria-describedby="tooltip"
+		   data-action="copyInline">
+			<i class="fa fa-copy"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableEdit}}
+		<a class="cell-effect-controls__control"
+		   data-action="editEffect"
+		   data-tooltip="{{ localize 'FU.Edit' }}"
+		   aria-describedby="tooltip">
+			<i class="fas fa-edit"></i>
+		</a>
+	{{/unless}}
+	{{#unless disableDelete}}
+		<a class="cell-effect-controls__control"
+		   data-tooltip="{{ localize 'FU.EffectDelete' }}"
+		   aria-describedby="tooltip"
+		   data-action="deleteEffect">
+			<i class="fa fa-trash"></i>
+		</a>
+	{{/unless}}
+</div>
+<div style="margin-top: 4px;">
+	{{#unless disableProgress}}
+		{{#if system.rules.progress.enabled }}
+			{{pfuProgress effect 'system.rules.progress'}}
+		{{/if}}
+	{{/unless}}
+</div>

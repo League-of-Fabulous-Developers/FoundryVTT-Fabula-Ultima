@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "1Ky2u7fi2lfxr4JB",
+  "name": "Halloween Special 2024",
+  "color": "#4f5a78",
+  "sorting": "a",
+  "_id": "L3ZyYRKlHEggv0aF",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "94wV67htTTVBPn7n",
+    "modifiedTime": 1767916336909
+  },
+  "_key": "!folders!L3ZyYRKlHEggv0aF"
+}

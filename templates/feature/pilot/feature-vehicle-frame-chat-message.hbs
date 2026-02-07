@@ -1,6 +1,6 @@
 <div class="fu-tags">
     <div class="fu-tag gap-5">
-        {{localize 'FU.ClassFeatureVehicleFrame'}}: {{capitalize frame}}
+        {{localize 'FU.ClassFeatureVehicleFrame'}}: {{pfuCapitalize frame}}
     </div>
     <div class="fu-tag gap-5">
         {{localize 'FU.ClassFeatureVehicleModuleSlots'}}: {{moduleSlots}}
@@ -15,7 +15,7 @@
 
 {{#if description}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
         {{{description}}}
     </details>

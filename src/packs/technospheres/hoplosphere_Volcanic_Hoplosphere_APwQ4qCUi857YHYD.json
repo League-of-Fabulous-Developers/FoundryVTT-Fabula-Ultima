@@ -1,0 +1,56 @@
+{
+  "name": "Volcanic Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/volcanic.png",
+  "system": {
+    "fuid": "volcanic-hoplosphere",
+    "source": "FUTF143",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainResistance",
+        "coagulationLevel": 1,
+        "damageType": "fire"
+      },
+      {
+        "type": "changeWeaponDamageType",
+        "coagulationLevel": 1,
+        "damageType": "fire"
+      },
+      {
+        "type": "gainImmunity",
+        "coagulationLevel": 2,
+        "damageType": "fire"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 3,
+        "name": "Fire Mastery",
+        "text": "Ignore Resistances (Fire); Alter Damage Type (Fire)"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658519958,
+    "modifiedTime": 1760404405647,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "APwQ4qCUi857YHYD",
+  "sort": 0,
+  "_key": "!items!APwQ4qCUi857YHYD"
+}

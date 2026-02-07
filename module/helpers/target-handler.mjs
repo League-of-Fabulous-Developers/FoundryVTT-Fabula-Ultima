@@ -54,10 +54,10 @@ export async function getPrioritizedUserTargeted() {
 /**
  * @returns {Promise<FUActor[]>}
  */
-export async function getSelected() {
+export async function getSelected(warn = true) {
 	const targets = canvas.tokens.controlled.map((token) => token.document.actor).filter((actor) => actor);
 
-	if (targets.length === 0) {
+	if (targets.length === 0 && warn) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsSelected', { localize: true });
 	}
 	return targets || [];
@@ -71,7 +71,7 @@ export async function getSelected() {
 export function getTargeted(tokens = false, warn = true) {
 	const targets = Array.from(game.user.targets)
 		.map((target) => (tokens ? target : target.actor))
-		.filter((element) => element);
+		.filter((actor) => actor);
 
 	if (targets.length === 0 && warn) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });

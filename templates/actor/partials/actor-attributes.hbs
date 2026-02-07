@@ -2,6 +2,7 @@
 <div class="flexrow grid grid-2col">
     {{#each system.attributes as |attribute key|}}
         <div class="attribute resource-content flexrow flex-group-center" style="padding: 1px;">
+			<i class="fu-icon--s fu-{{key}}"></i>
             <label class="flexlarge align-left" data-label="{{ attribute.label }}">
                 <span class="resource-label-sm">{{ attribute.abbr }}</span>
             </label>

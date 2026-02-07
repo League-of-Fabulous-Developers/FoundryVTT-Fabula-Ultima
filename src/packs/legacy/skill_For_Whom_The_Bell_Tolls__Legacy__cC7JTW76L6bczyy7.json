@@ -1,0 +1,104 @@
+{
+  "name": "For Whom The Bell Tolls [Legacy]",
+  "type": "skill",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you <strong>deal damage to a creature with a spell</strong>, if that spell <strong>only deals damage to that creature</strong>, you may spend 1 Grave Point. If you do, choose one option: if that creature is suffering from one or more status effects, the spell deals extra damage equal to <strong>【(SL × 2) + the number of status effects on that creature】</strong>; or if that creature is suffering from no status effects, they suffer <strong>shaken</strong>.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update -1]{Spend 1 Grave Point}</p></li><li><p><strong>Target Suffers:</strong> @UUID[Compendium.projectfu.legacy.Item.XIwkZAHtZy8MFtsW]{Effect: For Whom The Bell Tolls [Legacy]}, or @EFFECT[shaken]</p></li></ul><p></p>",
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Necromancer"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "showTitleCard": {
+      "value": true
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "source": "FUNM3",
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "for-whom-the-bell-tolls",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/for_whom_the_bell_tolls.png",
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769024188829,
+    "modifiedTime": 1769024337872,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "folder": "8lW5YyWxQ1X625X8",
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "_id": "cC7JTW76L6bczyy7",
+  "sort": 0,
+  "_key": "!items!cC7JTW76L6bczyy7"
+}

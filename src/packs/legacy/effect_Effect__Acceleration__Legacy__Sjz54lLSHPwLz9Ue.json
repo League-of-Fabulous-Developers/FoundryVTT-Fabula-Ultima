@@ -1,0 +1,94 @@
+{
+  "folder": "rFNLH1qDltOQIbZn",
+  "name": "Effect: Acceleration [Legacy]",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_acceleration.png",
+  "system": {
+    "fuid": "effect-acceleration-legacy",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_acceleration.png",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Acceleration",
+      "_id": "d125R8pbNjfmRku0",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "progress": {
+            "id": "acceleration",
+            "name": "Acceleration",
+            "current": 0,
+            "step": 1,
+            "max": 2,
+            "enabled": true,
+            "style": "clock"
+          },
+          "elements": {}
+        }
+      },
+      "changes": [],
+      "description": "<p>You gain the ability to perform a <strong>single</strong> additional action during each of your turns. Once you have performed a total of <strong>two</strong> additional actions, this effect ends.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
+        "modifiedTime": 1768578542741
+      },
+      "_key": "!items.effects!Sjz54lLSHPwLz9Ue.d125R8pbNjfmRku0"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "JXPd932s9DHQRD0w": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768578374434,
+    "modifiedTime": 1768579355349,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "Sjz54lLSHPwLz9Ue",
+  "sort": 600000,
+  "_key": "!items!Sjz54lLSHPwLz9Ue"
+}

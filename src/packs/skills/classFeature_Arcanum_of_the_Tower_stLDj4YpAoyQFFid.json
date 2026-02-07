@@ -8,13 +8,10 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p></li></ul><hr><ul><li><p><strong>Ally Receives:</strong> @TYPE[affinity air resistance], @TYPE[affinity bolt resistance], @TYPE[affinity dark resistance], @TYPE[affinity earth resistance], @TYPE[affinity fire resistance], or @TYPE[affinity ice resistance]</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Judgment.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 light] damage. This damage ignores Resistances.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Judgment.</strong> Choose any number of creatures you can see: each of them suffers <strong>30 light damage</strong>. This damage <strong>ignores Resistances.</strong></p><hr></li><li><p><strong>Targets</strong>: @DMG[30 light|ignore-resistances|]{Judgement}</p></li></ul>",
       "domains": "judgment, protection, sacrifice"
     },
     "source": "FUCR181",
@@ -71,10 +68,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710464096011,
-    "modifiedTime": 1745174156115,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768129329248,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

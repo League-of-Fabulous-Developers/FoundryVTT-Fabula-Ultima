@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain access to the Forbidden Monarch set. Your discards grant you strength."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong> and <strong>Arcanist</strong>, and you must have acquired <strong>3 Skill Levels</strong> in the <strong>Magic Cards</strong> Skill.</p></blockquote><p>As long as there are one or more cards in your discard pile, you have Resistance to the damage type matching the suit of the card on top of your discard pile (if that card is a joker, you have Resistance to all four damage types: air, earth, fire, and ice).</p><p>You also add the following effect to your list of sets:</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9621%\"></col><col style=\"width:72.0379%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Forbidden Monarch</strong></td><td style=\"height:17px;border-width:1px\"><p><strong>4 cards</strong> of the <strong>same value</strong>, <strong>none</strong> of which is a <strong>joker</strong> + <strong>1 joker</strong></p></td></tr></tbody></table><p>You deal 777 damage to each enemy present on the scene; the type of this damage is light if the common value of the 4 cards is even, or dark if that total is odd.</p><p>If there is a joker in your discard pile, the damage dealt by this effect ignores Immunities and Resistances.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong> and <strong>Arcanist</strong>, and you must have acquired <strong>3 Skill Levels</strong> in the <strong>Magic Cards</strong> Skill.</p></blockquote><p>After you discard cards due to the <strong>Magic Cards</strong> Skill, if at least one of those cards is a <strong>joker</strong>, you may choose any number of <strong>non-joker</strong> cards in your <strong>discard pile</strong> and shuffle them into your <strong>deck</strong>.</p><p>You also add the following <strong>effect</strong> to your list of <strong>sets</strong>:</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9621%\"></col><col style=\"width:72.0379%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Forbidden Monarch</strong></td><td style=\"height:17px;border-width:1px\"><p><strong>4 cards</strong> of the <strong>same value</strong>, <strong>none</strong> of which is a <strong>joker</strong> + <strong>1 joker</strong></p></td></tr></tbody></table><p>You deal damage 777 damage to every enemy you can see; the type of this damage is <strong>light</strong> if <strong>【the common value of the 4 cards】</strong> is <strong>even</strong>, or <strong>dark</strong> if that value is <strong>odd</strong>.</p><p>If there is a <strong>joker</strong> in your <strong>discard pile</strong>, the damage dealt by this effect ignores Immunities and Resistances.</p><p></p>",
     "isFavored": {
       "value": false
     },
@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUAC7"
-    },
+    "source": "FUBC11",
     "hasResource": {
       "value": false
     },
@@ -98,26 +96,29 @@
     "fuid": "forbidden-rite"
   },
   "effects": [],
-  "folder": "1Ky2u7fi2lfxr4JB",
+  "folder": "rsp4XZ4yS3zcZY8x",
   "ownership": {
     "default": 0,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1708940657180,
-    "modifiedTime": 1724180863875,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1769017410205,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "_id": "UhjNswMk6idkCg0c",
-  "sort": 0,
+  "sort": 125000,
   "_key": "!items!UhjNswMk6idkCg0c"
 }

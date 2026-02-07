@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": false
     },
-    "source": {
-      "value": "FUCR192"
-    },
+    "source": "FUCR192",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,10 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "dark-weapon"
+    "fuid": "dark-weapon",
+    "cost": {
+      "amount": "5"
+    }
   },
   "effects": [],
   "ownership": {
@@ -128,15 +129,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706568328188,
-    "modifiedTime": 1747173284669,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1768578722083,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -92,7 +92,10 @@ a.inline-roll i {
 	gap: 0.025em;
 	-webkit-box-align: baseline;
 	-ms-flex-align: baseline;
-	align-items: baseline;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	line-height: 18px;
 }
 .inline img {
 	border: none;
@@ -111,6 +114,7 @@ a.inline-roll i {
 .inline.broken .fas {
 	margin-right: 0.125rem;
 }
+.inline.inline-common,
 .inline.inline-check,
 .inline.inline-damage,
 .inline.inline-recovery,
@@ -217,6 +221,20 @@ a.inline-roll i {
 .inline.inline-effect:hover .fun {
 	-webkit-filter: brightness(1);
 	filter: brightness(1);
+}
+
+.inline.inline-group {
+	display: flex;
+	margin-left: 0.5em;
+	flex-direction: row;
+	gap: 0;
+	background: var(--background-critical);
+	flex-grow: 1;
+}
+
+.inline.inline-text {
+	margin-left: 0.125rem;
+	margin-right: 0.125rem;
 }
 
 @-webkit-keyframes recovery-indicator-bobbing {

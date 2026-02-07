@@ -1,6 +1,6 @@
 <div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="settings">
 	{{!-- Base Affinity Section --}}
-	<fieldset class="section-container title-fieldset desc affinities resource-content">
+	<fieldset class="section-container title-fieldset desc resource-content">
 		<legend class="resource-label-m">
 			{{localize 'FU.BaseAffinity'}}
 		</legend>
@@ -32,6 +32,20 @@
 		</div>
 		{{!-- End Affinity Section --}}
 	</fieldset>
+
+	{{!-- Pressure Points Section --}}
+	{{#if pressurePoints}}
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.PressurePoints'}}
+			</legend>
+			<div class="header-fields" style="margin: 5px 0;">
+				{{#if system.pressurePoints}}
+					{{pfuTraits system.pressurePoints "system.pressurePoints" showLabel=false}}
+				{{/if}}
+			</div>
+		</fieldset>
+	{{/if}}
 
 	{{!-- Base Immunities Section --}}
 	<fieldset class="section-container title-fieldset desc affinities resource-content">
@@ -232,7 +246,7 @@
 
 		<main class="grid-span-3">
 			{{!-- Settings Section --}}
-			<fieldset class="section-container title-fieldset desc align-left resource-content">
+			<fieldset class="section-container title-fieldset desc align-left resource-content h-100">
 				<legend class="resource-label-m">
 					{{localize 'FU.SheetSettings'}}
 				</legend>

@@ -1,0 +1,46 @@
+{
+  "name": "Crystalline Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/crystaline.png",
+  "system": {
+    "fuid": "crystalline-hoplosphere",
+    "source": "FUTF140",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainStatusImmunity",
+        "coagulationLevel": 1,
+        "status": "dazed"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 2,
+        "name": "Open Check Bonus",
+        "text": "Open Check +2 (Examiine)"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658480725,
+    "modifiedTime": 1760404509804,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "fhCD5VKKds47hpVx",
+  "sort": 1900000,
+  "_key": "!items!fhCD5VKKds47hpVx"
+}

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target recovers <strong>【</strong>@GAIN[(($wlp*2)+&step(10,20,30)) @DATA[key.resource]]<strong>】</strong></p><p><span>If this tone causes MP recovery, it has <strong>no effect</strong> on the character who sings it.</span></p>"
+      "description": "<p>Each target recovers @GAIN[(($wlp*2)+&step(10,20,30)) @DATA[key.resource]]</p><p><span>If this tone causes MP recovery, it has <strong>no effect</strong> on the character who sings it.</span></p>"
     },
     "source": "FUHF139",
     "fuid": "calm-tone"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1710038336377,
-    "modifiedTime": 1741997105258,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1757184299469,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

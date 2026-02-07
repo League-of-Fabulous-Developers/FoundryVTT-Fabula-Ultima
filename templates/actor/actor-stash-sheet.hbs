@@ -1,6 +1,6 @@
-<div>
+<div class="flexcol flexgrow-1">
 	<header class="sheet-header desc">
-		<div class="combine-header w-100 img-name">
+		<div class="combine-header img-name">
 			<a>
 				<img class="profile-img flexcol" src="{{document.img}}"
 					 data-action="editImage"
@@ -22,9 +22,9 @@
 		</div>
 	</header>
 
-	<div class="sheet-wrapper">
+	<div class="sheet-wrapper flexcol flexgrow-1">
 		{{!-- Inventory --}}
-		<div class="desc inventory">
+		<div class="desc inventory flexgrow-1">
 			{{> "systems/projectfu/templates/actor/sections/actor-section-inventory.hbs" actor=actor}}
 		</div>
 	</div>

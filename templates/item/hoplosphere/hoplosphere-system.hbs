@@ -1,0 +1,18 @@
+<aside class="system {{#unless editable}}hidden{{/unless}}">
+	{{#if editable}}
+		<fieldset class="title-fieldset desc resource-content">
+			<legend class="resource-label-sm">{{localize 'FU.FUID.Long'}}</legend>
+			<p>
+				<label class="resource-label-sm">
+					{{localize 'FU.FUID.Short'}}
+					<input name="system.fuid" value="{{system.fuid}}" class="resource-inputs select-dropdown-xl" />
+				</label>
+				<a data-action="regenerateFuid"><i class="fas fa-arrows-rotate"></i></a>
+			</p>
+			<p>
+				<strong>{{localize "FU.HoplosphereIdLine1"}}</strong><br />
+				<span>{{localize "FU.HoplosphereIdLine2"}}</span>
+			</p>
+		</fieldset>
+	{{/if}}
+</aside>

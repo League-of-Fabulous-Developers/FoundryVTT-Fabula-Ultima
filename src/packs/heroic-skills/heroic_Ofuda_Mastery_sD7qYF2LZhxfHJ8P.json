@@ -1,0 +1,61 @@
+{
+  "name": "Ofuda Mastery",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "Use Mind Points instead of Inventory Points to create symbols during conflicts."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong>, <strong>Merchant</strong>, <strong>Symbolist</strong> and <strong>Spiritist</strong>, and have acquired the <strong>Symbolism</strong> Skill.</p></blockquote><p>When you use the <strong>Symbolism</strong> Skill during a conflict, you may spend 20 Mind Points to ignore the Skill's normal cost in Inventory Points.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Symbolism</strong> Skill, the attack may target enemies that cannot be targeted by <strong>melee</strong> attacks.</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUBC30",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "ofuda-mastery"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1767915231139,
+    "modifiedTime": 1769031094018,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "folder": "L3ZyYRKlHEggv0aF",
+  "_id": "sD7qYF2LZhxfHJ8P",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3
+  },
+  "sort": 0,
+  "_key": "!items!sD7qYF2LZhxfHJ8P"
+}

@@ -1,0 +1,62 @@
+{
+  "name": "Witchvoice [Legacy]",
+  "type": "heroic",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": "Draw enemy attacks using Condemn or verses"
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>.</p></blockquote><p>After one or more enemies suffer one or more status effects due to a <strong>verse</strong> you sung or due to your <strong>Condemn</strong> Skill, each of those enemies becomes <strong>bewitched</strong> (this effect does not apply to creatures that are immune or already suffering from all status effects inflicted this way). A creature you <strong>bewitched</strong> must include you among the targets of their attacks and offensive spells ( @ICON[offensive] ), if able, and stops being <strong>bewitched</strong> at the start of your next turn or as soon as it recovers from one or more status effects.</p>",
+    "class": {
+      "value": "Necromancer"
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUHO7",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "witchvoice-legacy"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769014542471,
+    "modifiedTime": 1769014555934,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "94wV67htTTVBPn7n": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "_id": "n9xaYpPiSimUS3lU",
+  "sort": 782,
+  "_key": "!items!n9xaYpPiSimUS3lU"
+}

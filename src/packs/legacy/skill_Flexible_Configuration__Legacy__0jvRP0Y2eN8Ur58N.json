@@ -1,0 +1,102 @@
+{
+  "folder": "IiIlJG6pPTDD4KFq",
+  "name": "Flexible Configuration [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_flexible_configuration.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you perform the <strong>Equipment</strong> or <strong>Guard</strong> action while driving your personal vehicle, you may choose up to <strong>【SL】</strong> of its enabled modules and <strong>disable</strong> them. If you do, choose up to an equal amount of its disabled modules and <strong>enable</strong> them.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Pilot"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "source": "FUTF159",
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def",
+    "fuid": "flexible-configuration-legacy",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769013248123,
+    "modifiedTime": 1769013260931,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "0jvRP0Y2eN8Ur58N",
+  "sort": 6250,
+  "_key": "!items!0jvRP0Y2eN8Ur58N"
+}

@@ -1,9 +1,10 @@
-<div>
+<main class="background">
     {{#each equippedWeapons}}
         <div>
 			<label class="flexrow">
             	<input type="radio" name="selected" value="{{id}}" class="flex0">
-				<span class="flexcol">
+				<span class="flexrow flex-group-left">
+					{{pfuItemAnchor this}}
                     <strong>{{name}}</strong>
 					{{#if (eq type 'weapon')}}
 						<span>
@@ -36,4 +37,4 @@
 			</label>
         </div>
     {{/each}}
-</div>
+</main>

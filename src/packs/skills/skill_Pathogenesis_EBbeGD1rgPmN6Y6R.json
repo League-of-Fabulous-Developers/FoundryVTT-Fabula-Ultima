@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p><hr /><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[poisoned]</p></li></ul>",
+    "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR183"
-    },
+    "source": "FUCR183",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,24 +118,135 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "pathogenesis"
+    "fuid": "pathogenesis",
+    "effects": {
+      "entries": [
+        "poisoned"
+      ]
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Pathogenesis",
+      "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "wG3QUYGcPUhuaWnk": {
+              "type": "ruleElement",
+              "_id": "wG3QUYGcPUhuaWnk",
+              "trigger": {
+                "_id": "4xDYjDv3vOrrk3L5",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "sscv40mUCY4Frt4I": {
+                  "type": "traitsRulePredicate",
+                  "_id": "sscv40mUCY4Frt4I",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                },
+                "ACaIppU5l1Bb16Cj": {
+                  "type": "speciesRulePredicate",
+                  "_id": "ACaIppU5l1Bb16Cj",
+                  "species": [
+                    "beast",
+                    "monster",
+                    "plant"
+                  ]
+                }
+              },
+              "actions": {
+                "X63gHodhVxCaAW8N": {
+                  "type": "messageRuleAction",
+                  "_id": "X63gHodhVxCaAW8N",
+                  "message": "<p>If you damage one or more with a Chimerist spell, those that share <strong>Species</strong> suffer <strong>poisoned</strong>.</p>"
+                },
+                "TXYeCQTRMxgbBNqK": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "TXYeCQTRMxgbBNqK",
+                  "effect": "poisoned"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "UiwmY4WawFJGxq3H",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770270015359,
+        "modifiedTime": 1770402484239,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!EBbeGD1rgPmN6Y6R.UiwmY4WawFJGxq3H"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706495623351,
-    "modifiedTime": 1744460316774,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1770270007865,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

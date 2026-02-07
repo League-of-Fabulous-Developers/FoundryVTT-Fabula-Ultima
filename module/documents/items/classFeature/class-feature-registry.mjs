@@ -1,7 +1,7 @@
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './class-feature-data-model.mjs';
-import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
+import { FeatureDataModelRegistry } from '../../../fields/feature-data-model-registry.mjs';
 
-export class ClassFeatureRegistry extends DataModelRegistry {
+export class ClassFeatureRegistry extends FeatureDataModelRegistry {
 	constructor() {
 		super({
 			kind: 'Class Feature',

@@ -43,10 +43,12 @@
 	-webkit-backdrop-filter: blur(5px);
 	backdrop-filter: blur(5px);
 }
+
 .app.backgroundstyle .window-header,
 .application.backgroundstyle .window-header {
 	background: rgba(43, 74, 66, 0.95);
 }
+
 .app.backgroundstyle .window-content,
 .application.backgroundstyle .window-content {
 	background:
@@ -56,12 +58,14 @@
 	background: var(--background-core);
 	background-size: 100% auto;
 }
+
 .app.backgroundstyle .window-content .section-container,
 .app.backgroundstyle .window-content .desc,
 .app.backgroundstyle .window-content .resource-content.level-field,
 .application.backgroundstyle .window-content .section-container,
 .application.backgroundstyle .window-content .desc,
-.application.backgroundstyle .window-content .resource-content.level-field {
+.application.backgroundstyle .window-content .resource-content.level-field,
+.active-effect-sheet .tab.changes {
 	background:
 		url('../../static/ui/Bkg_highres.png'),
 		-webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
@@ -72,6 +76,7 @@
 	border: 1px solid #6f6c66;
 	background-size: cover;
 }
+
 .app.backgroundstyle .window-content .backgroundstyle,
 .application.backgroundstyle .window-content .backgroundstyle {
 	border-radius: 10px;
@@ -108,6 +113,7 @@
 		-webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 		animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 	}
+
 	to {
 		opacity: 0;
 		-webkit-transform: scale3d(0.1) translate3d(0, -2000px, 0);
@@ -125,6 +131,7 @@
 		-webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 		animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 	}
+
 	to {
 		opacity: 0;
 		-webkit-transform: scale3d(0.1) translate3d(0, -2000px, 0);
@@ -133,28 +140,33 @@
 		animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
 	}
 }
+
 @-webkit-keyframes floating {
 	0%,
 	100% {
 		-webkit-transform: translate(0);
 		transform: translate(0);
 	}
+
 	50% {
 		-webkit-transform: translate(0, 6px);
 		transform: translate(0, 6px);
 	}
 }
+
 @keyframes floating {
 	0%,
 	100% {
 		-webkit-transform: translate(0);
 		transform: translate(0);
 	}
+
 	50% {
 		-webkit-transform: translate(0, 6px);
 		transform: translate(0, 6px);
 	}
 }
+
 .zoomOutUp {
 	-webkit-animation: zoomOutUp;
 	animation: zoomOutUp;
@@ -180,12 +192,15 @@
 	border-radius: 24px;
 	width: 100%;
 }
+
 .notification.projectfu-spellname p {
 	width: 100%;
 }
+
 .notification.projectfu-spellname::after {
 	content: '';
 }
+
 .notification.projectfu-spellname .close {
 	opacity: 0;
 	pointer-events: none;
@@ -204,6 +219,39 @@
 	transition:
 		background-color 0.3s ease,
 		border 0.3s ease;
+}
+
+/* Active Effects*/
+.active-effect-sheet label,
+.active-effect-sheet p,
+.active-effect-sheet .tab.changes header,
+.active-effect-sheet .fa-trash {
+	color: rgba(17, 41, 41, 0.9) !important;
+}
+
+.active-effect-sheet label,
+.active-effect-sheet .tab.changes header {
+	font-weight: bold;
+}
+
+.active-effect-sheet input[type='checkbox']:checked::after,
+input[type='radio']:checked::after {
+	--checkbox-checked-color: rgba(46, 110, 110, 0.9);
+}
+
+/*Adjusting spacing to avoid icon clipping*/
+.active-effect-config .tab.changes header,
+.active-effect-config .tab.changes ol {
+	grid-template-columns: 12rem 7rem 7rem 3rem 1rem;
+}
+
+.active-effect-sheet .tab.changes {
+	border-radius: 10px;
+	padding: 0.25rem;
+}
+
+.active-effect-sheet header.sheet-header {
+	flex-direction: row !important;
 }
 
 .hidden {

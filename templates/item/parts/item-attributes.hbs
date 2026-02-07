@@ -1,6 +1,6 @@
 <div class="tab attributes {{tab.cssClass}}" data-group="primary" data-tab="attributes">
 
-	<div class="item-settings" style="display:ruby;">
+	<div class="item-settings desc resource-content">
 		{{#each attributePartials.settings as |part|}}
 			{{> (part) @root}}
 		{{/each}}
@@ -22,7 +22,7 @@
 
 	<!-- Grid -->
 	{{#if attributePartials.grid}}
-		<section class="grid grid-2col gap-5">
+		<section class="fu-form__property-groups">
 			{{#each attributePartials.grid as |part|}}
 				{{> (part) @root}}
 			{{/each}}

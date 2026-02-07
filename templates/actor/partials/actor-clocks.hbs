@@ -2,21 +2,27 @@
 <fieldset class="section-container title-fieldset desc resource-content">
 	<legend class="resource-label-m" aria-describedby="tooltip">
 		<a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}"
-		   style="width: fit-content;" data-type="newClock">
+		   style="width: fit-content;" data-type="newClock" data-action="createClock">
 			{{#if isOwner}}<i class="fas fa-plus icon"></i>{{/if}}{{localize 'FU.Clocks'}}
 		</a>
 	</legend>
 	{{#each items as |item id|}}
-		{{#if (and item.system.isFavored.value item.system.hasClock.value)}}
-			{{progress item 'system.progress' displayName=true type='clockCounter' }}
+		{{#if (and item.isFavorite item.system.hasClock.value)}}
+			{{pfuProgress item 'system.progress' displayName=true type='clockCounter' }}
+		{{/if}}
+	{{/each}}
+
+	{{#each actor.combinedEffects as |effect|}}
+		{{#if effect.system.rules.progress.enabled}}
+			{{pfuProgress effect 'system.rules.progress' displayName=true style=effect.system.rules.progress.style }}
 		{{/if}}
 	{{/each}}
 
 	{{!-- Optional Feature Sections --}}
 	{{#each optionalFeatures}}
 		{{#each items }}
-			{{#if (and item.system.isFavored.value item.system.data.hasClock.value)}}
-				{{progress item 'system.data.progress' displayName=true type='featureCounter' }}
+			{{#if (and item.isFavorite item.system.data.hasClock.value)}}
+				{{pfuProgress item 'system.data.progress' displayName=true type='featureCounter' }}
 			{{/if}}
 		{{/each}}
 	{{/each}}

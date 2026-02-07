@@ -41,7 +41,8 @@
         "rules": {
           "progress": {
             "id": "",
-            "name": ""
+            "name": "",
+            "style": "basic"
           }
         }
       },
@@ -59,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You are compelled to focus your attention on the character who provoked you.</p><p><em>For automation purposes, add </em>@EFFECT[Compendium.projectfu.conditions-effects.vuJGp3kTdnZeEqQO]<em> separately.</em></p>",
+      "description": "<p>You are compelled to focus your attention on the enemy who provoked you.</p><p><em>For automation purposes, add </em>@EFFECT[Compendium.projectfu.conditions-effects.vuJGp3kTdnZeEqQO]<em> separately.</em></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -71,12 +72,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742491472722,
-        "modifiedTime": 1744999458996,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1768579929478,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "exportSource": null
       },
       "_key": "!items.effects!SBaaNDpwZQDafu3J.X0ncNBybozMcN7Z2"

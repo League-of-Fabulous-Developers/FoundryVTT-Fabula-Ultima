@@ -15,6 +15,7 @@ import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
 import { CommonEvents } from './common-events.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 const { DiceTerm, NumericTerm } = foundry.dice.terms;
 
@@ -50,8 +51,9 @@ const accuracyCheck = async (actor, item, configCallback) => {
  * @param {CheckAttributes} attributes
  * @param {FUItem} item
  * @param {CheckCallback} [configCallback]
+ * @param {CheckResultCallback} onPerform
  */
-const attributeCheck = async (actor, attributes, item, configCallback) => {
+const attributeCheck = async (actor, attributes, item, configCallback, onPerform) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'attribute',
@@ -59,21 +61,38 @@ const attributeCheck = async (actor, attributes, item, configCallback) => {
 		secondary: attributes.secondary,
 	};
 
-	return performCheck(check, actor, item, configCallback);
+	return performCheck(check, actor, item, configCallback, onPerform);
 };
 
+// TODO: Fix param order
 /**
  * @param {FUActor} actor
  * @param {CheckCallback} configCallback
+ * @param item
  * @return {Promise<void>}
  */
-const groupCheck = async (actor, configCallback) => {
+const groupCheck = async (actor, configCallback, item = undefined) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'group',
 	};
 
-	return performCheck(check, actor, undefined, configCallback);
+	return performCheck(check, actor, item, configCallback);
+};
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {CheckCallback} configCallback
+ * @return {Promise<void>}
+ */
+const ritualCheck = async (actor, item, configCallback) => {
+	/** @type Partial<CheckV2> */
+	const check = {
+		type: 'ritual',
+	};
+
+	return performCheck(check, actor, item, configCallback);
 };
 
 /**
@@ -106,12 +125,17 @@ const openCheck = async (actor, attributes, configCallback) => {
 
 /**
  * @param {FUActor} actor
+ * @param {CheckAttributes} attributes
+ * @param {OpposedCheckData} data
  * @param {CheckCallback} configCallback
  */
-const opposedCheck = async (actor, configCallback) => {
+const opposedCheckV2 = async (actor, attributes, data = {}, configCallback) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'opposed',
+		primary: attributes.primary,
+		secondary: attributes.secondary,
+		...data,
 	};
 
 	return performCheck(check, actor, undefined, configCallback);
@@ -135,14 +159,22 @@ const supportCheck = async (actor, configCallback) => {
  * @return {CheckV2}
  */
 const checkFromCheckResult = (check) => {
-	return {
+	const result = {
 		id: foundry.utils.randomID(),
 		type: check.type,
-		primary: check.primary.attribute,
-		secondary: check.secondary.attribute,
-		modifiers: check.modifiers,
 		additionalData: { ...check.additionalData },
 	};
+
+	if (check.type !== 'display') {
+		Object.assign(result, {
+			primary: check.primary.attribute,
+			secondary: check.secondary.attribute,
+			modifiers: check.modifiers,
+			critThreshold: check.critThreshold,
+		});
+	}
+
+	return result;
 };
 
 /**
@@ -161,23 +193,27 @@ const modifyCheck = async (checkId, callback) => {
 	const message = game.messages.search({ filters: [{ field: 'flags.projectfu.CheckV2.id', value: checkId }] }).at(0);
 	if (message) {
 		/** @type CheckResultV2 */
-		const oldResult = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
-		const actor = await fromUuid(oldResult.actorUuid);
-		const item = await fromUuid(oldResult.itemUuid);
-		let callbackResult = await callback(oldResult, actor, item);
+		const oldCheck = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
+		const actor = await fromUuid(oldCheck.actorUuid);
+		const item = await fromUuid(oldCheck.itemUuid);
+		let callbackResult = await callback(oldCheck, actor, item);
 		if (typeof callbackResult === 'undefined') {
 			callbackResult = true;
 		}
 		if (callbackResult) {
-			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
-			// Do not invoke the hooks when modifying a check
-			const result = await processResult(check, roll, actor, item, false);
-			// Update target results now that the result changed
-			const configure = CheckConfiguration.configure(result);
-			configure.updateTargetResults();
-			// Re-render the check
-			// TODO: Update the original?
-			return renderCheck(result, actor, item, message.flags);
+			let config;
+			if (oldCheck.type !== 'display') {
+				const newCheck = checkFromCheckResult(oldCheck);
+				const { check = newCheck, roll = Roll.fromData(oldCheck.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
+				const result = await processResult(check, roll, actor, item, false);
+				config = CheckConfiguration.configure(result);
+				config.updateTargetResults();
+				return renderCheck(result, actor, item, message.flags);
+			} else {
+				config = CheckConfiguration.configure(oldCheck);
+				config.updateTargetResults();
+				return renderCheck(oldCheck, actor, item, message.flags);
+			}
 		}
 	} else {
 		throw new Error('Check to be modified not found.');
@@ -201,7 +237,8 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.critThreshold = CRITICAL_THRESHOLD;
 	Object.seal(check);
 	// Set initial targets (actions without rolls can have targeting)
-	CheckConfiguration.configure(check).setDefaultTargets();
+	const config = CheckConfiguration.configure(check);
+	config.setDefaultTargets();
 	// Initial callback
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	Object.defineProperty(check, 'type', {
@@ -222,6 +259,24 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 		throw new Error('check id missing');
 	}
 
+	await invokeWithCallbacks(CheckHooks.prepareCheck, check, actor, item);
+	await CommonEvents.initializeCheck(config, actor, item);
+
+	if (!check.primary || !check.secondary) {
+		throw new Error('check attribute missing');
+	}
+
+	return check;
+}
+
+/**
+ * @param {String} hook The name of the hook
+ * @param {Partial<CheckV2>} check
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @returns {Promise<void>}
+ */
+async function invokeWithCallbacks(hook, check, actor, item) {
 	/**
 	 * @type {{callback: Promise | (() => Promise | void), priority: number}[]}
 	 */
@@ -230,18 +285,12 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 		callbacks.push({ callback, priority });
 	};
 
-	Hooks.callAll(CheckHooks.prepareCheck, check, actor, item, registerCallbacks);
+	Hooks.callAll(hook, check, actor, item, registerCallbacks);
 
 	callbacks.sort((a, b) => a.priority - b.priority);
 	for (let callbackObj of callbacks) {
 		await callbackObj.callback(check, actor, item);
 	}
-
-	if (!check.primary || !check.secondary) {
-		throw new Error('check attribute missing');
-	}
-
-	return check;
 }
 
 /**
@@ -333,6 +382,8 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 	const primary = extractDieResults(roll.terms[0], actor);
 	const secondary = extractDieResults(roll.terms[2], actor);
 
+	const critThreshold = check.critThreshold ?? CRITICAL_THRESHOLD;
+
 	/**
 	 * @type {Readonly<CheckResultV2>}
 	 */
@@ -356,15 +407,15 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 		}),
 		modifiers: Object.freeze(check.modifiers.map(Object.freeze)),
 		modifierTotal: check.modifiers.reduce((agg, curr) => agg + curr.value, 0),
-		critThreshold: check.critThreshold,
+		critThreshold: critThreshold,
 		result: roll.total,
 		fumble: primary.result === 1 && secondary.result === 1,
-		critical: primary.result === secondary.result && primary.result >= Math.max(2, check.critThreshold),
+		critical: primary.result === secondary.result && primary.result >= Math.max(2, critThreshold),
 		additionalData: check.additionalData,
 	});
 
 	if (callHook) {
-		Hooks.callAll(CheckHooks.processCheck, result, actor, item);
+		await invokeWithCallbacks(CheckHooks.processCheck, result, actor, item);
 	}
 
 	return result;
@@ -383,8 +434,12 @@ async function renderCheck(result, actor, item, flags = {}) {
 	 */
 	const renderData = [];
 	const additionalFlags = {};
+	const config = CheckConfiguration.configure(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
+	// We subscribe to both events here, since either approach would work.
+	await CommonEvents.renderCheck(renderData, config, actor, item);
+	await CommonEvents.renderMessage(renderData, actor, item);
 
 	/**
 	 * @type {CheckSection[]}
@@ -431,15 +486,21 @@ async function renderCheck(result, actor, item, flags = {}) {
 		}
 	}
 	if (!flavor?.trim()) {
+		let linked = [];
+		const weaponReference = config.getWeaponReference();
+		if (weaponReference) {
+			linked.push(await fromUuid(weaponReference));
+		}
+
 		flavor = item
-			? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-					name: item.name,
-					img: item.img,
-					id: item.id,
-					uuid: item.uuid,
+			? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+					item: item,
+					linked: linked,
 				})
-			: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+			: await FoundryUtils.renderTemplate('chat/chat-check-flavor-check', {
 					title: FU.checkTypes[result.type] || 'FU.RollCheck',
+					type: result.type,
+					label: config.getLabel(),
 				});
 	}
 
@@ -456,20 +517,19 @@ async function renderCheck(result, actor, item, flags = {}) {
 		flavor: flavor,
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
 		rolls: rolls,
-		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: speaker,
 		flags: foundry.utils.mergeObject(
 			{
 				[SYSTEM]: {
 					[Flags.ChatMessage.CheckV2]: result,
-					[Flags.ChatMessage.Item]: item?.toObject(),
+					[Flags.ChatMessage.Item]: item?.uuid,
 				},
 			},
 			foundry.utils.mergeObject(additionalFlags, flags, { overwrite: false }),
 			{ overwrite: false, recursive: true },
 		),
 	};
-	return void ChatMessage.create(chatMessage);
+	return void ChatMessage.create(chatMessage, { rollMode: 'roll' });
 }
 
 /**
@@ -504,13 +564,19 @@ reapplyClickListeners();
  * @param {Partial<import('./check-hooks.mjs').CheckV2>} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {CheckCallback} [initialConfigCallback]
+ * @param {CheckCallback} [prepareCheckCallback]
+ * @param {CheckResultCallback} renderCheckCallback
  */
-const performCheck = async (check, actor, item, initialConfigCallback = undefined) => {
-	const preparedCheck = await prepareCheck(check, actor, item, initialConfigCallback);
+const performCheck = async (check, actor, item, prepareCheckCallback = undefined, renderCheckCallback = undefined) => {
+	const preparedCheck = await prepareCheck(check, actor, item, prepareCheckCallback);
+	CommonEvents.performCheck(check, actor, item);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
 	await renderCheck(result, actor, item);
+	if (renderCheckCallback) {
+		await renderCheckCallback(result);
+	}
+	CommonEvents.resolveCheck(result, actor, item);
 	if (result.critical) {
 		CommonEvents.opportunity(actor, check.type, item, false);
 	} else if (result.fumble) {
@@ -529,7 +595,7 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 	const check = Object.freeze({
 		type: 'display',
 		id: foundry.utils.randomID(),
-		actorUuid: actor.uuid,
+		actorUuid: actor?.uuid,
 		itemUuid: item?.uuid,
 		itemName: item?.name,
 		roll: null,
@@ -544,10 +610,13 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 		additionalData: {},
 	});
 	// Set initial targets (actions without rolls can have targeting)
-	CheckConfiguration.configure(check).setDefaultTargets();
+	const config = CheckConfiguration.configure(check);
+	config.setDefaultTargets();
+	await CommonEvents.initializeCheck(config, actor, item);
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 
-	Hooks.callAll(CheckHooks.processCheck, check, actor, item);
+	//Hooks.callAll(CheckHooks.processCheck, check, actor, item);
+	await invokeWithCallbacks(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
 };
 
@@ -555,6 +624,7 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
  * @type {CheckType[]}
  */
 const allExceptDisplay = ['accuracy', 'attribute', 'group', 'magic', 'open', 'opposed', 'support', 'initiative'];
+
 /**
  * @param {ChatMessage | string} message a ChatMessage or ID of a ChatMessage
  * @param {CheckType | CheckType[]} [type]
@@ -627,9 +697,10 @@ export const Checks = Object.freeze({
 	accuracyCheck,
 	attributeCheck,
 	groupCheck,
+	ritualCheck,
 	magicCheck,
 	openCheck,
-	opposedCheck,
+	opposedCheckV2,
 	supportCheck,
 	modifyCheck,
 	isCheck,

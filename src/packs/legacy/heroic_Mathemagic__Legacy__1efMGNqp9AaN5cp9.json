@@ -1,0 +1,62 @@
+{
+  "name": "Mathemagic [Legacy]",
+  "type": "heroic",
+  "img": "icons/sundries/books/book-open-purple.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Extend single-target spells."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Loremaster</strong> Class.</p></blockquote><p>When you cast a spell with a <strong>target</strong> of \"One creature\", you may <strong>double the spell's total MP cost</strong>. If you do, choose an Attribute (<strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>) and a die size (<strong>d6</strong>, <strong>d8</strong>, <strong>d10</strong>, or <strong>d12</strong>). The spell now targets <strong>all</strong> creatures present on the scene whose <strong>current</strong> Attribute die size matches your choice, regardless of whether they are friends or foes (you might even end up targeting yourself). The effects of the spell are fully applied to every target.</p><p>If the spell is an offensive ( @ICON[offensive] ) spell, it follows the normal rules: you perform a single Magic Check and confront it with the Magic Defense of each target to determine who is hit by the spell.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Loremaster"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUCR237",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "mathemagic-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768875180657,
+    "modifiedTime": 1768875790210,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "1efMGNqp9AaN5cp9",
+  "sort": 12500,
+  "_key": "!items!1efMGNqp9AaN5cp9"
+}

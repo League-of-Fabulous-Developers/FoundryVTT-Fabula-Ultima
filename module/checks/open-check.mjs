@@ -2,14 +2,6 @@ import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 
-/**
- * @typedef TargetData
- * @property {string} name
- * @property {string} uuid
- * @property {string} link
- * @property {number} difficulty
- */
-
 function handleGenericBonus(actor, modifiers) {
 	if (actor.system.bonuses.accuracy.openCheck) {
 		modifiers.push({
@@ -69,6 +61,7 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 					attr2: {
 						attribute: secondary.attribute,
 					},
+					type,
 				},
 				modifiers: checkResult.modifiers,
 			},

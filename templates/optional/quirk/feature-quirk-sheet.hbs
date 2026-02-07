@@ -1,43 +1,44 @@
-<div class="resource-content">
-    <div class="item-settings desc">
-        <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
+<div class="resource-content flexcol flexgrow-1">
+	<div>
+		<div class="item-settings desc">
+			<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
             <span>
-                {{#if system.data.hasClock.value}}
-                <i class="fas fa-clock"></i>
-                {{else}}
-                <i class="far fa-clock"></i>
-                {{/if}}
-            </span><input type="checkbox" name="system.data.hasClock.value" {{ checked system.data.hasClock.value }} />
-        </label>
-        <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ResourceStatus'}}">
+				{{#if system.data.hasClock.value}}
+					<i class="fas fa-clock"></i>
+				{{else}}
+					<i class="far fa-clock"></i>
+				{{/if}}
+			</span><input type="checkbox" name="system.data.hasClock.value" {{ checked system.data.hasClock.value }} />
+			</label>
+			<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ResourceStatus'}}">
             <span>
-                {{#if system.data.hasResource.value}}
-                <i class="fas fa-hashtag"></i>
-                {{else}}
-                <i class="far fa-hashtag"></i>
-                {{/if}}
-            </span><input type="checkbox" name="system.data.hasResource.value" {{ checked system.data.hasResource.value
-                }} />
-        </label>
-    </div>
-    <div class="title-fieldset grid-2col">
-        {{!-- Item Settings --}}
+				{{#if system.data.hasResource.value}}
+					<i class="fas fa-hashtag"></i>
+				{{else}}
+					<i class="far fa-hashtag"></i>
+				{{/if}}
+			</span><input type="checkbox" name="system.data.hasResource.value" {{ checked system.data.hasResource.value
+			}} />
+			</label>
+		</div>
+	</div>
+	<div class="title-fieldset grid-2col">
+		{{!-- Item Settings --}}
 
-        {{!-- Resource Points --}}
-        {{> "systems/projectfu/templates/optional/partials/feature-resource-points-sheet.hbs"}}
+		{{!-- Resource Points --}}
+		{{> "systems/projectfu/templates/optional/partials/feature-resource-points-sheet.hbs"}}
 
-        {{!-- Clocks --}}
-        {{> "systems/projectfu/templates/optional/partials/feature-progress-clock-sheet.hbs"}}
-
-        <fieldset class="title-fieldset section-container desc resource-content grid-span-2">
-            <div>
-                <label class='resource-label-m'>
-                    {{localize 'FU.Description'}}
-                </label>
-				<prose-mirror name="system.data.description" value="{{system.data.description}}" toggled>
-					{{{enrichedHtml.description}}}
-				</prose-mirror>
-			</div>
-        </fieldset>
-    </div>
+		{{!-- Clocks --}}
+		{{> "systems/projectfu/templates/optional/partials/feature-progress-clock-sheet.hbs"}}
+	</div>
+	<fieldset class="title-fieldset section-container desc resource-content grid-span-2 flexcol flexgrow-1">
+		<div class='resource-label-m'>
+			{{localize 'FU.Description'}}
+		</div>
+		<div class="flexgrow-1">
+			<prose-mirror name="system.data.description" value="{{system.data.description}}" toggled>
+				{{{enrichedHtml.description}}}
+			</prose-mirror>
+		</div>
+	</fieldset>
 </div>

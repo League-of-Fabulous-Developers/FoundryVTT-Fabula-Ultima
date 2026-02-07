@@ -10,7 +10,7 @@
 
 {{#if results}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyTargets'}}</summary>
             {{#each results}}
                 <div>
@@ -23,7 +23,7 @@
 
 {{#if results}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyEffects'}}</summary>
             {{#each results}}
                 <div>
@@ -36,7 +36,7 @@
 
 {{#if alwaysAvailableEffects}}
    <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyAlwaysAvailableEffectsSection'}}</summary>
         {{#each alwaysAvailableEffects}}
             <div>
@@ -46,39 +46,3 @@
     </details>
 </div>
 {{/if}}
-
-{{!-- <div>
-    <div class='detail-desc flexrow flex-group-center desc'>
-        <div>{{localize rank}}</div>
-    </div>
-
-    <div class='grid detail-desc' style="grid-template-columns: auto 1fr 1fr ">
-        <div>
-            {{localize 'FU.ClassFeatureAlchemyResult'}}
-        </div>
-        <div>
-            {{localize 'FU.ClassFeatureAlchemyTargets'}}
-        </div>
-        <div>
-            {{localize 'FU.ClassFeatureAlchemyEffects'}}
-        </div>
-        {{#each results}}
-            <div>
-                {{result}}
-            </div>
-            <div>
-                {{target}}
-            </div>
-            <div>
-                {{effect}}
-            </div>
-        {{/each}}
-        <div class='grid-start-2 grid-span-2'>
-            {{#each alwaysAvailableEffects}}
-                <div>
-                    {{this}}
-                </div>
-            {{/each}}
-        </div>
-    </div>
-</div> --}}

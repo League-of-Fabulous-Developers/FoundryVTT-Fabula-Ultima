@@ -1,0 +1,12 @@
+.cell-favorite-details-project-progress {
+	display: flex;
+	gap: 0.5rem;
+
+	.cell-favorite-details-project-progress__progress-bar {
+		flex: 1 0 auto;
+	}
+
+	.cell-favorite-details-project-progress__progress {
+		flex: 0 0 auto;
+	}
+}

@@ -93,9 +93,12 @@
 					{{localize 'FU.Actions'}}
 				</legend>
 
-				<section class="desc">
-					{{> "systems/projectfu/templates/actor/sections/actor-attack-list.hbs" disableControls='true'}}
-					{{> "systems/projectfu/templates/actor/sections/actor-spell-list.hbs" disableControls='true'}}
+				<section class="desc fu-scrollable" style="max-height: 400px;">
+					{{{basicAttacksTable}}}
+					{{#if actor.system.useEquipment.value}}
+						{{{weaponsTable}}}
+					{{/if}}
+					{{{spellsTable}}}
 				</section>
 			</fieldset>
 		{{/if}}

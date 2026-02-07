@@ -8,7 +8,8 @@
     "fuid": "effect-vanish",
     "cost": {
       "value": 0
-    }
+    },
+    "source": "FUCR241"
   },
   "effects": [
     {
@@ -37,10 +38,20 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p><span>When you hit one or more creatures with an attack, you may spend 1 Fabula Point. If you do, each of those creatures will be unable to perform any action that requires them to be able to see you until the start of your next turn.</span></p>",
+      "description": "<p><span>When you hit one or more creatures with an attack or offensive spell ( @ICON[offensive] ), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,12 +61,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744073237230,
-        "modifiedTime": 1744073281170,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1768876175202,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "exportSource": null
       },
       "_key": "!items.effects!4suciB7e8kbt17Zh.Ou7wNw2hFLOjgg5w"
@@ -70,12 +81,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744073222569,
-    "modifiedTime": 1744073234826,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768876182932,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "exportSource": null
   },
   "_key": "!items!4suciB7e8kbt17Zh"

@@ -1,0 +1,11 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Quantifier'}}</span>
+	<select name="{{pfuConcat path ".quantifier"}}" class="">
+		{{selectOptions options.predicateQuantifier selected=predicate.quantifier localize=true}}
+	</select>
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Effect'}}</span>
+	{{pfuAutoComplete name=(pfuConcat path ".effect") value=predicate.effect options=options.statusEffects }}
+</label>

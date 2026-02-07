@@ -6,6 +6,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { Traits } from '../pipelines/traits.mjs';
+import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 
 const critThresholdFlag = 'critThreshold.magicCheck';
 
@@ -34,35 +35,23 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 
 /**
  * Hook called to process the result of the roll
- * @param {CheckResultV2} check
- * @param {FUActor} actor
- * @param {FUItem} [item]
+ * @type ProcessCheckHook
  */
-const onProcessCheck = (check, actor, item) => {
+const onProcessCheck = (check, actor, item, registerCallback) => {
 	const { type, critical, fumble } = check;
 	if (type === 'magic') {
-		const configurer = CheckConfiguration.configure(check);
-		configurer.setTargetedDefense('mdef');
+		const config = CheckConfiguration.configure(check);
 		// TODO: Refactor alongside accuracy-checks
+		// Fallback if no defense was ever set
+		config.modifyTargetedDefense((value) => value ?? 'mdef');
 		if (critical) {
-			configurer.addTraits('critical');
+			config.addTraits('critical');
 		} else if (fumble) {
-			configurer.addTraits('fumble');
+			config.addTraits('fumble');
 		}
-		configurer.modifyDamage((damage) => {
+		config.modifyDamage((damage) => {
 			if (damage) {
-				// All Damage
-				const globalBonus = actor.system.bonuses.damage.all;
-				if (globalBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
-				}
-
-				// Damage Type
-				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-				if (damageTypeBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
-				}
-
+				DamagePipeline.collectOutgoingBonuses(actor, damage);
 				// TODO: Refactor this and others all the way to the end
 				// Calculate the total damage
 				const inspector = CheckConfiguration.inspect(check);
@@ -82,26 +71,8 @@ const onProcessCheck = (check, actor, item) => {
  * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
-	const accuracyData = inspector.getAccuracyData();
-
-	let damageData;
-	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
-	if (hasDamage) {
-		damageData = inspector.getDamageData();
-	}
-
-	// Push combined data for accuracy and damage
-	data.push({
-		order: CHECK_ROLL,
-		partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
-		data: {
-			accuracy: accuracyData,
-			damage: damageData,
-		},
-	});
-
 	const targets = inspector.getTargets();
-	CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
+	CommonSections.actions(data, actor, item, targets, flags, inspector);
 	CommonEvents.attack(inspector, actor, item);
 }
 
@@ -132,6 +103,7 @@ function renderNonCombatMagicCheck(checkResult, inspector, data) {
 				attr2: {
 					attribute: checkResult.secondary.attribute,
 				},
+				type: 'magic',
 			},
 			difficulty: inspector.getDifficulty(),
 			modifiers: checkResult.modifiers,
@@ -156,7 +128,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 			renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags);
 		}
 
-		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
+		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
 }
 

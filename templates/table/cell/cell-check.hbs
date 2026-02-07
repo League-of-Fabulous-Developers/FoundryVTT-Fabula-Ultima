@@ -1,0 +1,7 @@
+<div class="cell-check">
+	<div>
+		【{{localize (lookup FU.attributeAbbreviations primary)}} + {{localize (lookup FU.attributeAbbreviations secondary)}}】
+		{{~#if (gt bonus 0)}}+ {{bonus}}{{/if~}}
+		{{~#if (lt bonus 0)}}- {{pfuMathAbs bonus}}{{/if~}}
+	</div>
+</div>

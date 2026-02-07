@@ -1,19 +1,29 @@
-import { SYSTEM, FU } from '../helpers/config.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
-import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
-import { Traits } from '../pipelines/traits.mjs';
+import { ActionTraits, Traits } from '../pipelines/traits.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
+import { DamageData } from './damage-data.mjs';
+import { UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
+import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 
+// Data keys
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
+const RESOURCE = 'resource';
+const EXPENSE = 'expenses';
+const EFFECTS = 'effects';
 const TRAITS = 'traits';
 const WEAPON_TRAITS = 'weaponTraits';
+const LABEL_KEY = 'label';
+const TARGETED_ACTIONS = 'targetedActions';
+const WEAPON_USED = 'weaponUsedBySkill';
+const INITIAL_CHECK = 'initialCheck';
 
 /**
  *
@@ -33,392 +43,11 @@ const initHrZero = (hrZero) => (check) => {
 };
 
 /**
- * @typedef BonusDamage
- * @property {string} label
- * @property {number} value
- */
-
-/**
- * @class DamageData
- * @property {Number} hr The high roll
- * @property {DamageType} type
- * @property {BonusDamage[]} modifiers
- * @property {Number} modifierTotal
- * @property {String} extra An expression to evaluate to add extra damage
- * @property {Boolean} hrZero Whether to treat the high roll as zero
- */
-export class DamageData {
-	constructor(data = {}) {
-		// eslint-disable-next-line no-unused-vars
-		const { modifierTotal, ..._data } = data;
-		Object.assign(this, _data);
-	}
-
-	/**
-	 * @returns {Number}
-	 */
-	get modifierTotal() {
-		return this.modifiers.reduce((agg, curr) => agg + curr.value, 0);
-	}
-
-	/**
-	 * @returns {Number}
-	 */
-	get total() {
-		return this.modifierTotal + this.hr;
-	}
-}
-
-/**
- * @typedef TemplateDamageData
- * @property {Object} result - The result attributes from the check.
- * @property {number} result.attr1 - The primary check result.
- * @property {number} result.attr2 - The secondary check result.
- * @property {Object} damage - The damage details.
- * @property {number} damage.hrZero - The HR zero value.
- * @property {number} damage.bonus - The total damage bonus.
- * @property {number} damage.total - The total calculated damage.
- * @property {string} damage.type - The type of damage.
- * @property {String} damage.extra - Additional damage information.
- * @property {Object} translation - Translation details for damage types and icons.
- * @property {Object} translation.damageTypes - The available damage types.
- * @property {Object} translation.damageIcon - The icon representation of damage types.
- * @property {Array} modifiers - Modifiers applied to the damage.
- *
- */
-
-/**
  * @typedef WeaponTraits
  * @property {WeaponType} [weaponType]
  * @property {WeaponCategory} [weaponCategory]
  * @property {Handedness} handedness
  */
-
-/**
- * @param {CheckV2, CheckResultV2} check
- * @return {CheckConfigurer} check
- */
-const configure = (check) => {
-	return new CheckConfigurer(check);
-};
-
-class CheckConfigurer {
-	/**
-	 * @type {CheckV2, CheckResultV2}
-	 */
-	#check;
-
-	constructor(check) {
-		this.#check = check;
-	}
-
-	/**
-	 * @param {Attribute} primary
-	 * @param {Attribute} secondary
-	 */
-	setAttributes(primary, secondary) {
-		this.#check.primary = primary;
-		this.#check.secondary = secondary;
-	}
-
-	/**
-	 * @param {DamageType} type
-	 * @param {number} baseDamage
-	 * @return {CheckConfigurer}
-	 */
-	setDamage(type, baseDamage) {
-		this.#check.additionalData[DAMAGE] = new DamageData({
-			modifiers: [{ label: 'FU.BaseDamage', value: baseDamage }],
-			type,
-		});
-		return this;
-	}
-
-	/**
-	 * @returns {DamageData}
-	 */
-	get damage() {
-		return this.#check.additionalData[DAMAGE];
-	}
-
-	/**
-	 * @param {String[]|String} traits
-	 * @returns {CheckConfigurer}
-	 */
-	addTraits(...traits) {
-		if (!this.#check.additionalData[TRAITS]) {
-			this.#check.additionalData[TRAITS] = [];
-		}
-		traits.forEach((t) => this.#check.additionalData[TRAITS].push(t.toLowerCase()));
-		return this;
-	}
-
-	/**
-	 * @param {Set<String>} traits
-	 * @returns {CheckConfigurer}
-	 * @remarks In the item's data model they are serialized in title case
-	 */
-	addTraitsFromItemModel(traits) {
-		this.addTraits(...Array.from(traits, StringUtils.titleToKebab));
-		return this;
-	}
-
-	/**
-	 * @param {WeaponDataModel} weapon
-	 * @returns {CheckConfigurer}
-	 */
-	addWeaponAccuracy(weapon) {
-		const baseAccuracy = weapon.accuracy.value;
-		if (baseAccuracy) {
-			this.addModifier('FU.AccuracyCheckBaseAccuracy', baseAccuracy);
-		}
-		return this;
-	}
-
-	/**
-	 * @param {WeaponTraits} traits
-	 * @return {CheckConfigurer}
-	 */
-	setWeaponTraits(traits) {
-		this.#check.additionalData[WEAPON_TRAITS] = {
-			weaponType: traits.weaponType,
-			weaponCategory: traits.weaponCategory,
-			handedness: traits.handedness,
-		};
-		// Also add them to the flattened traits array
-		const flatTraits = Object.values(traits).filter((t) => !!t);
-		this.addTraits(...flatTraits);
-		return this;
-	}
-
-	/**
-	 * @description A modifier to the check (accuracy)
-	 * @param {String} label
-	 * @param {Number} value
-	 * @return {CheckConfigurer}
-	 */
-	addModifier(label, value) {
-		this.#check.modifiers.push({
-			label: label,
-			value: value,
-		});
-		return this;
-	}
-
-	/**
-	 * @param {(damage: DamageData | null) => DamageData | null} callback
-	 * @return {CheckConfigurer}
-	 */
-	modifyDamage(callback) {
-		const damage = this.#check.additionalData[DAMAGE] ?? new DamageData();
-		this.#check.additionalData[DAMAGE] = callback(damage);
-		return this;
-	}
-
-	/**
-	 * @param {string} label
-	 * @param {number} value
-	 * @return CheckConfigurer
-	 */
-	addDamageBonus(label, value) {
-		this.#check.additionalData[DAMAGE]?.modifiers.push({ label, value });
-		return this;
-	}
-
-	/**
-	 * @param {string} label
-	 * @param {number} path
-	 * @return CheckConfigurer
-	 */
-	addDamageBonusIfDefined(label, value) {
-		if (value) {
-			return this.addDamageBonus(label, value);
-		}
-		return this;
-	}
-
-	/**
-	 * @param {String} extra
-	 * @return {CheckConfigurer}
-	 */
-	setExtraDamage(extra) {
-		this.damage.extra = extra;
-		return this;
-	}
-
-	/**
-	 * @param {boolean} hrZero
-	 * @return {CheckConfigurer}
-	 */
-	setHrZero(hrZero) {
-		this.#check.additionalData[HR_ZERO] = hrZero;
-		return this;
-	}
-
-	/**
-	 * @param {(hrZero: boolean | null) => boolean | null} callback
-	 * @return {CheckConfigurer}
-	 */
-	modifyHrZero(callback) {
-		const hrZero = this.#check.additionalData[HR_ZERO] ?? null;
-		this.#check.additionalData[HR_ZERO] = callback(hrZero);
-		return this;
-	}
-
-	/**
-	 * @param {Defense} targetedDefense
-	 * @return {CheckConfigurer}
-	 */
-	setTargetedDefense(targetedDefense) {
-		this.#check.additionalData[TARGETED_DEFENSE] = targetedDefense;
-		this.updateTargetResults();
-		return this;
-	}
-
-	/**
-	 * @param {(targetedDefense: Defense | null) => Defense | null} callback
-	 * @return {CheckConfigurer}
-	 */
-	modifyTargetedDefense(callback) {
-		const targetedDefense = this.#check.additionalData[TARGETED_DEFENSE] ?? null;
-		return this.setTargetedDefense(callback(targetedDefense));
-	}
-
-	/**
-	 * @return {Defense|null}
-	 */
-	getTargetedDefense() {
-		return this.#check.additionalData[TARGETED_DEFENSE] ?? null;
-	}
-
-	/**
-	 * @param {TargetData[]} targets
-	 * @return {CheckConfigurer}
-	 */
-	setTargets(targets) {
-		this.#check.additionalData[TARGETS] = [...targets];
-		this.updateTargetResults();
-		return this;
-	}
-
-	/**
-	 * @remarks Invoked whenever targets or targeted defense change
-	 */
-	updateTargetResults() {
-		const targets = this.#check.additionalData[TARGETS];
-		if (targets?.length) {
-			if (!this.#check.result) {
-				return;
-			}
-			const targetedDefense = this.getTargetedDefense();
-			targets.forEach((target) => {
-				const difficulty = target[targetedDefense];
-				let targetResult;
-				if (this.#check.critical) {
-					targetResult = 'hit';
-				} else if (this.#check.fumble) {
-					targetResult = 'miss';
-				} else {
-					targetResult = this.#check.result >= difficulty ? 'hit' : 'miss';
-				}
-				target.result = targetResult;
-			});
-		}
-	}
-
-	/**
-	 * @description Assign actors currently targeted by the users
-	 * @return {CheckConfigurer}
-	 */
-	setDefaultTargets() {
-		return this.setTargets(
-			[...game.user.targets]
-				.filter((token) => !!token.actor)
-				.map((token) => {
-					if (!token.actor.isCharacterType) {
-						ui.notifications.error('FU.DialogInvalidTarget', { localize: true });
-						throw Error('Only character types can be targeted');
-					}
-					return Targeting.constructData(token.actor);
-				}),
-		);
-	}
-
-	/**
-	 * @param {(targets: TargetData[] | null) => TargetData[] | null} callback
-	 * @return {CheckConfigurer}
-	 */
-	modifyTargets(callback) {
-		const targets = this.#check.additionalData[TARGETS] ?? null;
-		return this.setTargets(callback(targets));
-	}
-
-	/**
-	 * @param {number} difficulty
-	 * @return {CheckConfigurer}
-	 */
-	setDifficulty(difficulty) {
-		this.#check.additionalData[DIFFICULTY] = difficulty;
-		return this;
-	}
-
-	/**
-	 * @param {(difficulty: number | null) => number | null} callback
-	 * @return {CheckConfigurer}
-	 */
-	modifyDifficulty(callback) {
-		const difficulty = this.#check.additionalData[DIFFICULTY] ?? null;
-		this.#check.additionalData[DIFFICULTY] = callback(difficulty);
-		return this;
-	}
-
-	/**
-	 * @description Handles specific overrides on the actor
-	 * @param {FUActor} actor
-	 * @param {FU.damageOverrideScope} scope
-	 * @return {CheckConfigurer}
-	 * @remarks Only really executed on PCs
-	 */
-	setDamageOverride(actor, scope) {
-		// Potential override to damage type
-		if (actor.system instanceof CharacterDataModel) {
-			/** @type DamageTypeOverrideDataModel **/
-			let scopeField;
-			switch (scope) {
-				case 'attack':
-					scopeField = actor.system.overrides.damageType.attack;
-					break;
-				case 'skill':
-					scopeField = actor.system.overrides.damageType.skill;
-					break;
-				case 'spell':
-					scopeField = actor.system.overrides.damageType.spell;
-					break;
-				default:
-					break;
-			}
-			let resolvedType = scopeField.resolve();
-			if (!resolvedType) {
-				resolvedType = actor.system.overrides.damageType.all.resolve();
-			}
-			if (resolvedType) {
-				this.#check.additionalData[DAMAGE].type = resolvedType;
-			}
-		}
-		return this;
-	}
-}
-
-/**
- * @param {CheckV2, CheckResultV2, ChatMessage} check
- * @return {CheckInspector}
- */
-const inspect = (check) => {
-	if (check instanceof ChatMessage) {
-		check = check.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
-	}
-	return new CheckInspector(check);
-};
 
 /**
  * @description Given a {@link CheckResultV2} object, provides additional information from it
@@ -437,6 +66,20 @@ class CheckInspector {
 	/**
 	 * @return {CheckV2|CheckResultV2}
 	 */
+	get check() {
+		return this.#check;
+	}
+
+	/**
+	 * @returns {CheckResultV2} Present for some scenarios.
+	 */
+	getInitialCheck() {
+		return this.#check.additionalData[INITIAL_CHECK];
+	}
+
+	/**
+	 * @return {CheckV2|CheckResultV2}
+	 */
 	getCheck() {
 		return this.#check;
 	}
@@ -446,11 +89,62 @@ class CheckInspector {
 	 * @remarks Embeds the high roll into the data
 	 */
 	getDamage() {
-		const raw = this.#check.additionalData[DAMAGE];
-		if (raw) {
-			raw.hr = this.getHighRoll();
-			raw.hrZero = this.getHrZero();
-			return new DamageData(foundry.utils.duplicate(raw));
+		const data = this.#check.additionalData[DAMAGE];
+		if (data) {
+			// Have to rebuild certain properties
+			data.hr = this.getHighRoll();
+			data.hrZero = this.getHrZero();
+
+			if (this.hasTrait(Traits.Base)) {
+				data.base = true;
+			}
+			if (data instanceof DamageData) {
+				return data;
+			}
+			return new DamageData(foundry.utils.duplicate(data));
+		}
+		return null;
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasDamage() {
+		return this.check.additionalData[DAMAGE] !== undefined;
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasResource() {
+		return this.check.additionalData[RESOURCE] !== undefined;
+	}
+
+	/**
+	 * @returns {DamageData}
+	 */
+	get damage() {
+		return this.check.additionalData[DAMAGE];
+	}
+
+	/**
+	 * @returns {UpdateResourceData}
+	 */
+	getResource() {
+		const data = this.#check.additionalData[RESOURCE];
+		if (data) {
+			return data;
+		}
+		return null;
+	}
+
+	/**
+	 * @returns {ApplyEffectData|null}
+	 */
+	getEffects() {
+		const data = this.#check.additionalData[EFFECTS];
+		if (data) {
+			return data;
 		}
 		return null;
 	}
@@ -466,6 +160,10 @@ class CheckInspector {
 	 * @return {Number}
 	 */
 	getHighRoll() {
+		// Not always checks involved
+		if (this.#check.primary == null || this.#check.secondary == null) {
+			return 0;
+		}
 		return Math.max(this.#check.primary.result, this.#check.secondary.result);
 	}
 
@@ -496,6 +194,13 @@ class CheckInspector {
 	 */
 	hasTrait(trait) {
 		return this.getTraits().includes(trait);
+	}
+
+	/**
+	 * @returns {String} The uuid of the weapon used.
+	 */
+	getWeaponReference() {
+		return this.#check.additionalData[WEAPON_USED];
 	}
 
 	/**
@@ -534,74 +239,440 @@ class CheckInspector {
 	}
 
 	/**
-	 * @remarks Used for templating
+	 * @returns {String|undefined} Optional label for this check
 	 */
-	getAccuracyData() {
-		const _check = this.getCheck();
-		const accuracyData = {
-			result: {
-				attr1: _check.primary.result,
-				attr2: _check.secondary.result,
-				die1: _check.primary.dice,
-				die2: _check.secondary.dice,
-				modifier: _check.modifierTotal,
-				total: _check.result,
-				crit: _check.critical,
-				fumble: _check.fumble,
-			},
-			check: {
-				attr1: {
-					attribute: _check.primary.attribute,
-				},
-				attr2: {
-					attribute: _check.secondary.attribute,
-				},
-			},
-			modifiers: _check.modifiers,
-			additionalData: _check.additionalData,
-		};
-		return accuracyData;
+	getLabel() {
+		return this.#check.additionalData[LABEL_KEY];
 	}
 
 	/**
-	 * @returns {TemplateDamageData}
-	 * @remarks Used for templating.
+	 *@returns {ChatAction[]}
 	 */
-	getDamageData() {
-		const _check = this.getCheck();
-		const traits = this.getTraits();
-		const isBase = traits.includes(Traits.Base);
-		const damage = this.getDamage();
-		const hrZero = this.getHrZero();
-		const modifierTotal = damage.modifierTotal;
-		const primary = _check.primary.result;
-		const secondary = _check.secondary.result;
-		const total = hrZero ? modifierTotal : Math.max(primary, secondary) + modifierTotal;
+	getTargetedActions() {
+		return this.#check.additionalData[TARGETED_ACTIONS] ?? [];
+	}
 
-		let result = null;
+	/**
+	 * @returns {ResourceExpense}
+	 */
+	getExpense() {
+		return this.#check.additionalData[EXPENSE];
+	}
+}
+
+/**
+ * @desc Provides an interface for configuring a check as it is processed
+ * @extends CheckInspector
+ * @inheritDoc
+ */
+export class CheckConfigurer extends CheckInspector {
+	/**
+	 * @param {Attribute} primary
+	 * @param {Attribute} secondary
+	 */
+	setAttributes(primary, secondary) {
+		this.check.primary = primary;
+		this.check.secondary = secondary;
+	}
+
+	/**
+	 * @param {DamageType|DamageType[]} types
+	 * @param {number} baseDamage
+	 * @return {CheckConfigurer}
+	 */
+	setDamage(types, baseDamage) {
+		this.check.additionalData[DAMAGE] = DamageData.construct(types, baseDamage);
+		return this;
+	}
+
+	/**
+	 * @param {DamageData} damageData
+	 * @return {CheckConfigurer}
+	 */
+	overrideDamage(damageData) {
+		this.check.additionalData[DAMAGE] = damageData;
+		return this;
+	}
+
+	/**
+	 * @param {(damage: DamageData) => DamageData} callback
+	 * @return {CheckConfigurer}
+	 */
+	modifyDamage(callback) {
+		const damage = this.getDamage();
+		// TODO: Maybe the callback doesn't have to return it?
 		if (damage) {
-			result = {
-				result: {
-					attr1: primary,
-					attr2: secondary,
-				},
-				damage: {
-					hrZero: hrZero,
-					bonus: modifierTotal,
-					total: total,
-					type: damage.type,
-					extra: damage.extra,
-					traits: traits,
-				},
-				translation: {
-					damageTypes: FU.damageTypes,
-					damageIcon: FU.affIcon,
-				},
-				modifiers: isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers,
+			this.check.additionalData[DAMAGE] = callback(damage);
+		}
+		return this;
+	}
+
+	/**
+	 * @desc Sets a resource gain/loss action.
+	 * @param {FUResourceType} type
+	 * @param {Number|String} amount
+	 * @return {CheckConfigurer}
+	 */
+	setResource(type, amount) {
+		this.check.additionalData[RESOURCE] = UpdateResourceData.construct(type, amount);
+		// TODO: Encode this trait data elsewhere?
+		switch (type) {
+			case 'hp':
+				this.addTraits(ActionTraits.HitPoint);
+				break;
+			case 'mp':
+				this.addTraits(ActionTraits.MindPoint);
+				break;
+		}
+		if (Number.isInteger(amount)) {
+			if (amount >= 0) {
+				this.addTraits(ActionTraits.Gain);
+			} else {
+				this.addTraits(ActionTraits.Loss);
+			}
+		} else if (typeof amount === 'string') {
+			if (amount.startsWith('-')) {
+				this.addTraits(ActionTraits.Loss);
+			} else {
+				this.addTraits(ActionTraits.Gain);
+			}
+		}
+		return this;
+	}
+
+	/**
+	 * @param {...(string|string[])} effects
+	 * @return {CheckConfigurer}
+	 */
+	addEffects(...effects) {
+		if (this.getEffects() === null) {
+			this.check.additionalData[EFFECTS] = {
+				entries: [],
 			};
 		}
 
-		return result;
+		const entries = this.check.additionalData[EFFECTS].entries;
+
+		for (const effect of effects) {
+			if (Array.isArray(effect)) {
+				entries.push(...effect);
+			} else {
+				entries.push(effect);
+			}
+		}
+
+		return this;
+	}
+
+	/**
+	 * @param {String[]|String} traits
+	 * @returns {CheckConfigurer}
+	 */
+	addTraits(...traits) {
+		if (!this.check.additionalData[TRAITS]) {
+			this.check.additionalData[TRAITS] = [];
+		}
+
+		traits.flat().forEach((t) => {
+			if (t != null) {
+				this.check.additionalData[TRAITS].push(String(t).toLowerCase());
+			}
+		});
+		return this;
+	}
+
+	/**
+	 * @param {Set<String>} traits
+	 * @returns {CheckConfigurer}
+	 * @remarks In the item's data model they are serialized in title case
+	 */
+	addTraitsFromItemModel(traits) {
+		this.addTraits(...Array.from(traits, StringUtils.titleToKebab));
+		return this;
+	}
+
+	/**
+	 * @param {FUItem} weapon
+	 * @returns {CheckConfigurer}
+	 */
+	addWeaponAccuracy(weapon) {
+		const baseAccuracy = ChooseWeaponDialog.getAccuracy(weapon);
+		if (baseAccuracy) {
+			this.addModifier('FU.AccuracyCheckBaseAccuracy', baseAccuracy);
+		}
+		return this;
+	}
+
+	/**
+	 * @param {WeaponTraits} traits
+	 * @return {CheckConfigurer}
+	 */
+	setWeaponTraits(traits) {
+		this.check.additionalData[WEAPON_TRAITS] = {
+			weaponType: traits.weaponType,
+			weaponCategory: traits.weaponCategory,
+			handedness: traits.handedness,
+		};
+		// Also add them to the flattened traits array
+		const flatTraits = Object.values(traits).filter((t) => !!t);
+		this.addTraits(...flatTraits);
+		return this;
+	}
+
+	/**
+	 * @description A modifier to the check (accuracy)
+	 * @param {String} label
+	 * @param {Number} value
+	 * @return {CheckConfigurer}
+	 */
+	addModifier(label, value) {
+		this.check.modifiers.push({
+			label: label,
+			value: value,
+		});
+		return this;
+	}
+
+	/**
+	 * @param {string} label
+	 * @param {number} value
+	 * @return CheckConfigurer
+	 */
+	addDamageBonus(label, value) {
+		this.check.additionalData[DAMAGE]?.addModifier(label, value);
+		return this;
+	}
+
+	/**
+	 * @param {string} label
+	 * @param {number} value
+	 * @return CheckConfigurer
+	 */
+	addDamageBonusIfDefined(label, value) {
+		if (value) {
+			return this.addDamageBonus(label, value);
+		}
+		return this;
+	}
+
+	/**
+	 * @param {FUItem} weapon An item that is of the weapon type.
+	 */
+	setWeaponReference(weapon) {
+		this.check.additionalData[WEAPON_USED] = weapon.uuid;
+	}
+
+	/**
+	 * @param {String} extra
+	 * @return {CheckConfigurer}
+	 */
+	setExtraDamage(extra) {
+		this.damage.extra = extra;
+		return this;
+	}
+
+	/**
+	 * @param {boolean} hrZero
+	 * @return {CheckConfigurer}
+	 */
+	setHrZero(hrZero) {
+		this.check.additionalData[HR_ZERO] = hrZero;
+		return this;
+	}
+
+	/**
+	 * @param {(hrZero: boolean | null) => boolean | null} callback
+	 * @return {CheckConfigurer}
+	 */
+	modifyHrZero(callback) {
+		const hrZero = this.check.additionalData[HR_ZERO] ?? null;
+		this.check.additionalData[HR_ZERO] = callback(hrZero);
+		return this;
+	}
+
+	/**
+	 * @param {Defense} targetedDefense
+	 * @return {CheckConfigurer}
+	 */
+	setTargetedDefense(targetedDefense) {
+		this.check.additionalData[TARGETED_DEFENSE] = targetedDefense;
+		this.updateTargetResults();
+		return this;
+	}
+
+	/**
+	 * @param {(targetedDefense: Defense | null) => Defense | null} callback
+	 * @return {CheckConfigurer}
+	 */
+	modifyTargetedDefense(callback) {
+		const targetedDefense = this.check.additionalData[TARGETED_DEFENSE] ?? null;
+		return this.setTargetedDefense(callback(targetedDefense));
+	}
+
+	/**
+	 * @param {TargetData[]} targets
+	 * @return {CheckConfigurer}
+	 */
+	setTargets(targets) {
+		this.check.additionalData[TARGETS] = [...targets];
+		this.updateTargetResults();
+		return this;
+	}
+
+	/**
+	 * @remarks Invoked whenever targets or targeted defense change
+	 */
+	updateTargetResults() {
+		const targets = this.getTargets();
+		if (targets?.length) {
+			if (!this.check.result) {
+				return;
+			}
+			const targetedDefense = this.getTargetedDefense();
+			for (let t = 0; t < targets.length; t++) {
+				const target = targets[t];
+				const difficulty = target.defenses[targetedDefense];
+				let targetResult;
+				if (this.check.critical) {
+					targetResult = 'hit';
+				} else if (this.check.fumble) {
+					targetResult = 'miss';
+				} else {
+					targetResult = this.check.result >= difficulty ? 'hit' : 'miss';
+				}
+				// Update the original
+				this.check.additionalData[TARGETS][t].result = targetResult;
+			}
+		}
+	}
+
+	/**
+	 * @description Assign actors currently targeted by the users
+	 * @return {CheckConfigurer}
+	 */
+	setDefaultTargets() {
+		return this.setTargets(
+			[...game.user.targets]
+				.filter((token) => !!token.actor)
+				.map((token) => {
+					if (!token.actor.isCharacterType) {
+						ui.notifications.error('FU.DialogInvalidTarget', { localize: true });
+						throw Error('Only character types can be targeted');
+					}
+					return Targeting.constructData(token.actor);
+				}),
+		);
+	}
+
+	/**
+	 * @param {(targets: TargetData[] | null) => TargetData[] | null} callback
+	 * @return {CheckConfigurer}
+	 */
+	modifyTargets(callback) {
+		const targets = this.check.additionalData[TARGETS] ?? null;
+		return this.setTargets(callback(targets));
+	}
+
+	/**
+	 * @param {number} difficulty
+	 * @return {CheckConfigurer}
+	 */
+	setDifficulty(difficulty) {
+		this.check.additionalData[DIFFICULTY] = difficulty;
+		return this;
+	}
+
+	/**
+	 * @param {(difficulty: number | null) => number | null} callback
+	 * @return {CheckConfigurer}
+	 */
+	modifyDifficulty(callback) {
+		const difficulty = this.check.additionalData[DIFFICULTY] ?? null;
+		this.check.additionalData[DIFFICULTY] = callback(difficulty);
+		return this;
+	}
+
+	/**
+	 * @description Handles specific overrides on the actor
+	 * @param {FUActor} actor
+	 * @param {FU.damageOverrideScope} scope
+	 * @return {CheckConfigurer}
+	 * @remarks Only really executed on PCs
+	 */
+	setDamageOverride(actor, scope) {
+		// Potential override to damage type
+		if (actor.isCharacterType) {
+			/** @type DamageTypeOverrideDataModel **/
+			let scopeField;
+			switch (scope) {
+				case 'attack':
+					scopeField = actor.system.overrides.damageType.attack;
+					break;
+				case 'skill':
+					scopeField = actor.system.overrides.damageType.skill;
+					break;
+				case 'spell':
+					scopeField = actor.system.overrides.damageType.spell;
+					break;
+				default:
+					break;
+			}
+			let resolvedType = scopeField.resolve();
+			if (!resolvedType) {
+				resolvedType = actor.system.overrides.damageType.all.resolve();
+			}
+			if (resolvedType) {
+				this.setDamageType(resolvedType);
+			}
+		}
+		return this;
+	}
+
+	/**
+	 * @param {DamageType} type
+	 */
+	setDamageType(type) {
+		this.check.additionalData[DAMAGE].type = type;
+	}
+
+	/**
+	 * @desc Set a custom label for the check
+	 * @param {String} label
+	 */
+	setLabel(label) {
+		this.check.additionalData[LABEL_KEY] = label;
+	}
+
+	/**
+	 * @param {ChatAction} action
+	 * @remarks Will reject adding duplicates.
+	 */
+	addTargetedAction(action) {
+		if (!this.check.additionalData[TARGETED_ACTIONS]) {
+			this.check.additionalData[TARGETED_ACTIONS] = [];
+		}
+		this.check.additionalData[TARGETED_ACTIONS].push(action);
+	}
+
+	/**
+	 * @param {FUResourceType} resource
+	 * @param {Number} amount
+	 */
+	addExpense(resource, amount) {
+		if (!this.check.additionalData[EXPENSE]) {
+			this.check.additionalData[EXPENSE] = /** @type ResourceExpense* **/ {
+				resource: resource,
+				amount: 0,
+			};
+		}
+		this.check.additionalData[EXPENSE].amount += amount;
+	}
+
+	/**
+	 * @param {CheckResultV2} check
+	 */
+	setInitialCheck(check) {
+		this.check.additionalData[INITIAL_CHECK] = check;
 	}
 }
 
@@ -632,6 +703,25 @@ const registerMetaCurrencyExpenditure = (check) => {
 	};
 
 	hookId = Hooks.on(CheckHooks.renderCheck, spendMetaCurrency);
+};
+
+/**
+ * @param {CheckV2, CheckResultV2} check
+ * @return {CheckConfigurer} check
+ */
+const configure = (check) => {
+	return new CheckConfigurer(check);
+};
+
+/**
+ * @param {CheckV2, CheckResultV2, ChatMessage} check
+ * @return {CheckInspector}
+ */
+const inspect = (check) => {
+	if (check instanceof ChatMessage) {
+		check = check.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+	}
+	return new CheckInspector(check);
 };
 
 export const CheckConfiguration = Object.freeze({

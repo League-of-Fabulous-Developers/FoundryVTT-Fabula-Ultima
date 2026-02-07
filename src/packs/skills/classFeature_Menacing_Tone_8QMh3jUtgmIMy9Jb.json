@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>The <strong>first time</strong> each target suffers damage before the <strong>start of your next turn</strong>, that damage becomes <strong>【@DATA[key.type]】</strong>.</p><p>This can trigger once for each target of the verse, separately.</p>"
+      "description": "<p>The <strong>first time</strong> each target suffers damage before the <strong>start of your next turn</strong>, that damage becomes <strong>@ICON[@DATA[key.type]]</strong>.</p><p>This can trigger <strong>once for each target</strong> of the verse, separately.</p>"
     },
     "source": "FUHF139",
     "fuid": "menacing-tone"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1710040204796,
-    "modifiedTime": 1741997157283,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1757184740894,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

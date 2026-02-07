@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You recover 20 Hit Points. This amount increases to 30 Hit Points if you are <strong>level 20 or higher</strong>, to 40 Hit Points if you are <strong>level 40 or higher</strong>, or to 50 Hit Points if you are <strong>level 60</strong> or higher.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[&step(20,30,40,50) hp]{20|30|40|50 HP}</p></li></ul>",
+    "description": "<p>You recover 20 Hit Points. This amount increases to 30 Hit Points if you are <strong>level 20 or higher</strong>, to 40 Hit Points if you are <strong>level 40 or higher</strong>, or to 50 Hit Points if you are <strong>level 60</strong> or higher.</p>",
     "isFavored": {
       "value": false
     },
@@ -107,9 +107,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR311"
-    },
+    "source": "FUCR311",
     "subtype": {},
     "opportunity": "",
     "maxTargets": {
@@ -118,20 +116,27 @@
     "fuid": "lick-wounds",
     "targeting": {
       "rule": "self"
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "&step(20,30,40,50)"
     }
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1745428761030,
-    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "modifiedTime": 1770042811165,
+    "lastModifiedBy": "jBlPH673nHpUCC6V",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

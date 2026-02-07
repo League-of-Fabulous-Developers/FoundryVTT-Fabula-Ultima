@@ -1,4 +1,3 @@
-import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { Effects, prepareActiveEffectCategories } from '../../pipelines/effects.mjs';
 import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
@@ -42,7 +41,7 @@ import { CommonEvents } from '../../checks/common-events.mjs';
  * @extends {Actor}
  * @property {CharacterDataModel | NpcDataModel | PartyDataModel | SheetDataModel} system
  * @property {EffectCategories} effectCategories
- * @property {String} type
+ * @property {'character'|'npc'|'party'|'stash'} type
  * @property {Boolean} isCharacterType
  * @property {FUStandardActorSheet | FUPartySheet} sheet
  * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
@@ -91,15 +90,6 @@ export class FUActor extends Actor {
 		this.items.forEach((item) => item.applyActiveEffects());
 	}
 
-	/**
-	 * @override
-	 */
-	toObject() {
-		const result = super.toObject();
-		result.uuid = this.uuid;
-		return result;
-	}
-
 	get tlTracker() {
 		return this.system.tlTracker;
 	}
@@ -109,7 +99,7 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @returns {Boolean}
+	 * @returns {Boolean} True for PCs and NPCs.
 	 */
 	get isCharacterType() {
 		return this.type === 'character' || this.type === 'npc';
@@ -167,14 +157,17 @@ export class FUActor extends Actor {
 
 			// Find the item with system.fuid === 'unarmed-strike'
 			const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
-
 			if (unarmedStrikeItem) {
 				// Check if the item already exists in the character's inventory
-				const existingItem = this.items.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
-
-				if (!existingItem) {
-					// Add the item to the character
-					await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
+				const existingCopies = this.getItemsByFuid('unarmed-strike');
+				switch (existingCopies.length) {
+					case 0:
+						{
+							if (this.type === 'character') {
+								await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
+							}
+						}
+						break;
 				}
 			}
 		}
@@ -199,20 +192,11 @@ export class FUActor extends Actor {
 		await super._preUpdate(changed, options, user);
 	}
 
-	/**
-	 * @returns {Promise<void>}
-	 * @private
-	 * @override
-	 */
-	async _onUpdate(changed, options, userId) {
+	async applyCrisis() {
 		if (this.isCharacterType) {
 			const { hp } = this.system?.resources || {};
-
-			if (hp && userId === game.userId) {
-				const crisisThreshold = Math.floor(hp.max / 2);
-				const shouldBeInCrisis = hp.value <= crisisThreshold;
-				const isInCrisis = this.statuses.has('crisis');
-				if (shouldBeInCrisis !== isInCrisis) {
+			if (hp) {
+				if (hp.inCrisis !== this.statuses.has('crisis')) {
 					Hooks.call(
 						FUHooks.CRISIS_EVENT,
 						/** @type CrisisEvent **/
@@ -223,6 +207,21 @@ export class FUActor extends Actor {
 					);
 					await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
 				}
+			}
+		}
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @private
+	 * @override
+	 */
+	async _onUpdate(changed, options, userId) {
+		if (this.isCharacterType) {
+			const { hp } = this.system?.resources || {};
+
+			if (hp && userId === game.userId) {
+				await this.applyCrisis();
 
 				// Handle KO status
 				const shouldBeKO = hp.value === 0; // KO when HP is 0
@@ -253,22 +252,18 @@ export class FUActor extends Actor {
 	 * @override
 	 */
 	*allApplicableEffects() {
-		for (const effect of super.allApplicableEffects()) {
-			const item = effect.parent;
-
-			if (item instanceof FUItem) {
-				if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
-					yield effect;
-				}
-			} else {
-				// Effects exist directly on the actor
+		for (const effect of this.effects) {
+			yield effect;
+		}
+		for (const item of this.items) {
+			for (const effect of item.transferredEffects) {
 				yield effect;
 			}
 		}
 	}
 
 	/**
-	 * @return {Generator<ActiveEffect, void, void>}
+	 * @return {Generator<FUActiveEffect, void, void>}
 	 * @remarks Includes effects from items
 	 */
 	*allEffects() {
@@ -276,15 +271,24 @@ export class FUActor extends Actor {
 			yield effect;
 		}
 		for (const item of this.items) {
-			for (const effect of item.effects) {
+			const effects = item.allEffects ? item.allEffects() : item.effects;
+			for (const effect of effects) {
 				yield effect;
 			}
 		}
 	}
 
+	// TODO: Use the above name
+	/**
+	 * @returns {ActiveEffect[]}
+	 */
+	get combinedEffects() {
+		return Array.from(this.allEffects());
+	}
+
 	/**
 	 * @override
-	 * @returns {ActiveEffect[]}
+	 * @returns {FUActiveEffect[]}
 	 */
 	get temporaryEffects() {
 		const effects = super.temporaryEffects;
@@ -303,6 +307,25 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @param {String} id The id of the effect
+	 * @returns {FUActiveEffect}
+	 */
+	getEffect(id) {
+		return Array.from(this.allEffects()).find((value) => value.id === id);
+	}
+
+	/**
+	 * @param {String} id The name of the effect, one of its statuses, or its fuid
+	 * @returns {FUActiveEffect}
+	 */
+	resolveEffect(id) {
+		id = id.toLowerCase();
+		return Array.from(this.allEffects()).find((effect) => {
+			return effect.matches(id);
+		});
+	}
+
+	/**
 	 * @returns {EffectCategories}
 	 * @remarks Used by modules mostly
 	 */
@@ -312,19 +335,6 @@ export class FUActor extends Actor {
 			if (effects.indexOf(effect) < 0) effects.push(effect);
 		});
 		return prepareActiveEffectCategories(effects);
-	}
-
-	/**
-	 * @description Apply any transformations to the Actor data which are caused by ActiveEffects.
-	 * @override
-	 */
-	applyActiveEffects() {
-		// Evaluate all AEs on self
-		super.applyActiveEffects();
-		// For character types, add new properties
-		if (this.isCharacterType) {
-			this.system.prepareEmbeddedData();
-		}
 	}
 
 	/**
@@ -380,19 +390,65 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @description Deletes all temporary effects on the actor
-	 * @property includeStatus Whether to also clear status effects
-	 * @property includeWithoutDuration Include effects without a duration
+	 * @param {String} id
+	 * @returns {FUItem}
 	 */
-	clearTemporaryEffects(includeStatus = true, includeWithoutDuration = true) {
+	getItemById(id) {
+		return this.items.filter((i) => i.id === id)[0];
+	}
+
+	/**
+	 * @typedef ClearEffectOptions
+	 * @property {Boolean} status Whether the effect must have one of the core statuses (dazed, etc...)
+	 * @property {Boolean} duration Whether the effect must have a duration. (Ignored for system statuses, which have no duration by default.)
+	 */
+
+	/**
+	 * @type {ClearEffectOptions}
+	 */
+	static defaultClearEffectOptions = {
+		status: undefined,
+		duration: undefined,
+	};
+
+	/**
+	 * @description Deletes all temporary effects on the actor
+	 * @property {ClearEffectOptions} options
+	 */
+	clearTemporaryEffects(options = FUActor.defaultClearEffectOptions) {
 		// Collect effects to delete
 		const effectsToDelete = this.temporaryEffects.filter((effect) => {
-			// If it's a status effect
+			// If it has a status effect
 			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+
+			switch (options.status) {
+				case true:
+					if (!statusEffectId || !(statusEffectId in Effects.STATUS_EFFECTS)) {
+						return false;
+					}
+					break;
+				case false:
+					if (statusEffectId) {
+						return false;
+					}
+					break;
+			}
+
+			switch (options.duration) {
+				case true:
+					// Default statuses have no duration either.
+					if (!effect.hasDuration && !statusEffectId) {
+						return false;
+					}
+					break;
+				case false:
+					if (effect.hasDuration) {
+						return false;
+					}
+					break;
+			}
+
 			if (statusEffectId) {
-				if (!includeStatus && effect.system.duration.event === 'rest') {
-					return false;
-				}
 				if (this.isCharacterType) {
 					{
 						const immunity = this.system.immunities[statusEffectId];
@@ -402,9 +458,7 @@ export class FUActor extends Actor {
 					}
 				}
 			}
-			if (!effect.hasDuration && !includeWithoutDuration) {
-				return false;
-			}
+
 			return effect.isTemporary && Effects.canBeRemoved(effect);
 		});
 
@@ -446,15 +500,13 @@ export class FUActor extends Actor {
 		const maxIP = this.system.resources.ip?.max;
 
 		// Prepare the update data using mergeObject to avoid overwriting other fields
-		let updateData = foundry.utils.mergeObject(this.toObject(false), {
+		const updateData = {
 			'system.resources.hp.value': maxHP,
 			'system.resources.mp.value': maxMP,
-		});
+		};
 
 		if (recoverInventoryPoints) {
-			updateData = foundry.utils.mergeObject(updateData, {
-				'system.resources.ip.value': maxIP,
-			});
+			updateData['system.resources.ip.value'] = maxIP;
 		}
 
 		// Update the actor
@@ -462,11 +514,6 @@ export class FUActor extends Actor {
 
 		// Dispatch the event
 		CommonEvents.rest(this);
-
-		// Rerender the actor's sheet if necessary
-		if (recoverInventoryPoints || updateData['system.resources.ip.value']) {
-			this.sheet.render(true);
-		}
 	}
 
 	// TODO: Move out
@@ -489,8 +536,8 @@ export class FUActor extends Actor {
 			}
 		}
 		// Search active effects: match the id on the progress track
-		for (const effect of this.effects.values()) {
-			if (effect.system.rules.progress.enabled) {
+		for (const effect of this.allApplicableEffects()) {
+			if (effect.system.rules?.progress?.enabled) {
 				const progress = effect.system.rules.progress;
 				if (progress.id === id) {
 					return progress;
@@ -529,12 +576,40 @@ export class FUActor extends Actor {
 			await progress.parent.parent.update({ [`system.${schemaName}.current`]: current });
 		}
 		// ActiveEffect
-		else if (progress.parent.parent instanceof FUActiveEffectModel) {
+		else if (progress.parent instanceof FUActiveEffectModel) {
 			await progress.parent.parent.update({ [`system.rules.progress.current`]: current });
+			// if (this.sheet.rendered) {
+			// 	this.sheet.render();
+			// }
 		}
 
 		// Update this instance for tracking, though it is not the same as the one that just got replaced in the model
 		progress.current = current;
 		return progress;
+	}
+
+	/**
+	 * @returns {Generator<Item | PseudoItem, void, *>}
+	 */
+	*allItems() {
+		for (const item of this.items) {
+			yield item;
+			if ('allItems' in item) {
+				for (const nestedItem of item.allItems()) {
+					yield nestedItem;
+				}
+			}
+		}
+	}
+
+	/**
+	 * @type {Record<string, (Item | PseudoItem)[]>}
+	 */
+	get itemTypes() {
+		const types = Object.fromEntries(game.documentTypes.Item.map((t) => [t, []]));
+		for (const item of this.allItems()) {
+			types[item.type].push(item);
+		}
+		return types;
 	}
 }

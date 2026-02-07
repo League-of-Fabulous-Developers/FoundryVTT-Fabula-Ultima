@@ -32,12 +32,22 @@
           "crisisInteraction": "none"
         },
         "duration": {
-          "event": "none",
+          "event": "startOfTurn",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -57,12 +67,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744458722447,
-        "modifiedTime": 1744458770784,
-        "lastModifiedBy": "WNNELbIcUepK9pGq",
+        "modifiedTime": 1770268445600,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!e85QX4FWBQxwTt8V.x7pVRBkWCUAvhThO"

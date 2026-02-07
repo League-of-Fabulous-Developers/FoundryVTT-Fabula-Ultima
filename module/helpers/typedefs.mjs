@@ -45,7 +45,6 @@ export {};
 
 /**
  * @global
- * @async
  * @function fromUuidSync
  * @param {string} uuid                      The uuid of the Document to retrieve.
  * @param {object} [options]                 Options to configure how a UUID is resolved.
@@ -263,4 +262,32 @@ export {};
  *                                        document name, field name, and candidate value. This error string is only
  *                                        used when the return type of the validate function is a boolean. If an Error
  *                                        is thrown in the validate function, the string message of that Error is used.
+ */
+
+/**
+ * @typedef KeyboardModifiers
+ * @property {boolean} shift
+ * @property {boolean} alt
+ * @property {boolean} ctrl
+ * @property {boolean} meta
+ */
+
+/**
+ * @typedef TokenDocument
+ * @extends BaseToken
+ * @mixes CanvasDocumentMixin
+ * @category Documents
+ * The client-side Token document which extends the common BaseToken document model.
+ *
+ * The following fields must no be altered from source during data preparation:
+ * `x`, `y`, `elevation`, `width`, `height`, `shape`.
+ *
+ * ### Hook Events
+ * - {@link hookEvents.moveToken}
+ * - {@link hookEvents.pauseToken}
+ * - {@link hookEvents.preMoveToken}
+ * - {@link hookEvents.stopToken}
+ *
+ * @see {@link foundry.documents.Scene}: The Scene document type which contains Token documents
+ * @see {@link foundry.applications.sheets.TokenConfig}: The Token configuration application
  */

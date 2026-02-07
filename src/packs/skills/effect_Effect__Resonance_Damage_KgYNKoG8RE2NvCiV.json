@@ -37,7 +37,18 @@
           "tracking": "source",
           "remaining": 0
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {}
+        }
       },
       "changes": [
         {
@@ -47,7 +58,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You suffer<strong>【SL】</strong>extra from the dancer's allies due to @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance}.</p>",
+      "description": "<p>You suffer<strong>【SL】</strong>extra from the chanter's allies due to @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance}.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -57,12 +68,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742581876605,
-        "modifiedTime": 1742582016221,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1770267940640,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!KgYNKoG8RE2NvCiV.Lev9SGzxq42XCB8M"

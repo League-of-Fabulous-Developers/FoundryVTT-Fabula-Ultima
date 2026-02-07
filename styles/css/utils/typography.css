@@ -8,7 +8,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400;700&display=swap');
-@import 'node_modules/rpg-awesome/scss/rpg-awesome';
 
 @font-face {
 	font-family: 'Yanone Kaffeesatz';
@@ -66,7 +65,18 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
+@font-face {
+	font-family: 'ChronoType';
+	src: url('../../fonts/chronotype/ChronoType.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Reactor7';
+	src: url('../../fonts/reactor7/Reactor7.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 @counter-style diamonds {
 	system: cyclic;
 	suffix: ' ';
@@ -299,7 +309,6 @@
 		font-weight: var(--font-weight-bold);
 	}
 
-	.item,
 	.zenit-content {
 		font-size: var(--font-size-base);
 
@@ -408,7 +417,7 @@
 
 		div {
 			font-size: var(--font-size-small);
-			padding: 5px 0;
+			padding: 2px 0;
 		}
 	}
 
@@ -525,14 +534,14 @@
 }
 
 .is-two-weapon {
-	color: #000000 !important;
+	color: #000000;
 	font-family: 'Evilz';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px #000000;
 }
 
 .is-two-weapon.equip {
-	color: var(--color-primary) !important;
+	color: var(--color-primary);
 	-webkit-text-stroke: transparent;
 }
 
@@ -548,96 +557,6 @@
 
 .is-header::before {
 	content: 'd';
-}
-
-.fu-phys {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #dedede !important;
-}
-
-.fu-phys::before {
-	content: 'p';
-}
-
-.fu-wind {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #cfd600 !important;
-}
-
-.fu-wind::before {
-	content: 'a';
-}
-
-.fu-bolt {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #ffef26 !important;
-}
-
-.fu-bolt::before {
-	content: 'b';
-}
-
-.fu-dark {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #543987 !important;
-}
-
-.fu-dark::before {
-	content: 'd';
-}
-
-.fu-earth {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #d28d3e !important;
-}
-
-.fu-earth::before {
-	content: 'e';
-}
-
-.fu-fire {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #f58a00 !important;
-}
-
-.fu-fire::before {
-	content: 'f';
-}
-
-.fu-ice {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #bce4fa !important;
-}
-
-.fu-ice::before {
-	content: 'i';
-}
-
-.fu-light {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #fff7b2 !important;
-}
-
-.fu-light::before {
-	content: 'l';
-}
-
-.fu-poison {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-	color: #d678a2 !important;
-}
-
-.fu-poison::before {
-	content: 't';
 }
 
 .is-diamond {
@@ -777,6 +696,7 @@
 /* Scoped CSS specifically for ProseMirror element */
 .application.journal-sheet,
 .application.projectfu {
+	.journal-entry-page,
 	.editor-content {
 		h1 {
 			font-family: var(--font-title);

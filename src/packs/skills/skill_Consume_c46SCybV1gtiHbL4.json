@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr><ul><li><p><strong>You Recover: </strong>@GAIN[$sl*2 mp]{SL × 2}</p></li></ul>",
+    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR183"
-    },
+    "source": "FUCR183",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,24 +118,136 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "consume"
+    "fuid": "consume",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Consume",
+      "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_consume.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "0pSgDRx5DTtpbC1r": {
+              "type": "ruleElement",
+              "_id": "0pSgDRx5DTtpbC1r",
+              "trigger": {
+                "_id": "vLC7M37rryxzsNwg",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "1FXM0cyqHXfTBwMp": {
+                  "type": "weaponRulePredicate",
+                  "_id": "1FXM0cyqHXfTBwMp",
+                  "categories": [
+                    "arcane",
+                    "dagger",
+                    "flail"
+                  ],
+                  "selector": "self"
+                },
+                "fMX5d5xLaGe4IfTN": {
+                  "type": "traitsRulePredicate",
+                  "_id": "fMX5d5xLaGe4IfTN",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "38M0seyIClMNOZsr": {
+                  "type": "messageRuleAction",
+                  "_id": "38M0seyIClMNOZsr",
+                  "message": "<p>If you damage one or more, recover<strong>【SL × 2】</strong>MP.</p>"
+                },
+                "C4sr0SUqEHuh5PXh": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "C4sr0SUqEHuh5PXh",
+                  "resource": "mp",
+                  "amount": "$sl*2"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "QvJKfoqYcZGOxmLS",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766925259175,
+        "modifiedTime": 1770402622790,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!c46SCybV1gtiHbL4.QvJKfoqYcZGOxmLS"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706495586490,
-    "modifiedTime": 1747012334041,
-    "lastModifiedBy": "aXKDYFrGlbJKqLXI",
+    "modifiedTime": 1770269985979,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

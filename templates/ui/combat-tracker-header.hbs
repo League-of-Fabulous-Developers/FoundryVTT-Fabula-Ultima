@@ -1,9 +1,8 @@
 <header class="combat-tracker-header">
 
 	{{!-- Encounter Controls --}}
-	{{#if user.isGM}}
-		<nav class="encounters {{ css }}" aria-label="{{ localize "COMBAT.NavLabel" }}">
-
+	<nav class="encounters {{ css }}" aria-label="{{ localize "COMBAT.NavLabel" }}">
+		{{#if user.isGM}}
 			{{!-- Cycle Display --}}
 			{{#if displayCycle}}
 				<button type="button" class="inline-control icon fa-solid fa-plus" data-action="createCombat"
@@ -36,6 +35,7 @@
 						{{ label }}
 					</button>
 				{{/each}}
+
 				<button type="button" class="inline-control icon fa-solid fa-gear" data-action="trackerSettings"
 						data-tooltip aria-label="{{ localize "COMBAT.Settings" }}"></button>
 
@@ -45,10 +45,14 @@
 					<i class="fa-solid fa-plus" inert></i>
 					<span>{{ localize "COMBAT.Create" }}</span>
 				</button>
-
 			{{/if}}
-		</nav>
-	{{/if}}
+		{{else}}
+			<div class="projectfu filler"></div>
+		{{/if}}
+		<div id="combat-tracker-controls">
+
+		</div>
+	</nav>
 
 	<div class="encounter-controls {{#if hasCombat}}combat{{/if}}">
 
@@ -82,11 +86,20 @@
 
 		{{!-- Combat Controls --}}
 		<div class="control-buttons right flexrow">
-			<div class="spacer"></div>
+			<button type="button" class="inline-control combat-control icon ra ra-clockwork" data-action="addTrack" data-tooltip="FU.Tracks"></button>
 			<button type="button" class="encounter-context-menu inline-control combat-control icon fa-solid fa-ellipsis-vertical"
 					{{#unless (and user.isGM hasCombat)}}disabled{{/unless}}></button>
 		</div>
-
 	</div>
 
+	{{!-- Tracks --}}
+	{{#if combat.system.tracks}}
+		<div class="desc resource-content progress-collection" style="background: unset;">
+			{{#each combat.system.tracks }}
+				<div>
+					{{pfuProgressCollection ../combat 'system.tracks' @index displayName=true prompt=true controls=../combat.isOwner }}
+				</div>
+			{{/each}}
+		</div>
+	{{/if}}
 </header>

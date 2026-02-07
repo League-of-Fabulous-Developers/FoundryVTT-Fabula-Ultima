@@ -7,9 +7,9 @@
       "value": "potion"
     },
     "summary": {
-      "value": "One creature recovers from a single status effect."
+      "value": "One creature recovers from all status effects."
     },
-    "description": "<p>For 2 Inventory Points, one creature recovers from a single status effect.</p>",
+    "description": "",
     "isFavored": {
       "value": false
     },
@@ -19,10 +19,16 @@
     "ipCost": {
       "value": 2
     },
-    "source": {
-      "value": "FUCR104"
+    "source": "FUCR104",
+    "fuid": "tonic",
+    "damage": {
+      "onApply": ""
     },
-    "fuid": "tonic"
+    "traits": {
+      "entries": [
+        "potion"
+      ]
+    }
   },
   "effects": [],
   "folder": "WTJwnSjYUL3GOIyA",
@@ -32,15 +38,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706516094485,
-    "modifiedTime": 1743184751846,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768876809958,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,16 +1,13 @@
-<div style="clear: both;"></div>
-<div class='detail-desc flexrow flex-group-center desc' style='padding: .25rem; margin-top: 0.5rem'>
-    <div>
-		<span class='result-text'>
-			{{#if winner}}
-                {{#unless (gt margin 0)}}
-                    {{{localize 'FU.OpposedCheckWinner' winner=winner}}}
-                {{else}}
-                    {{{localize 'FU.OpposedCheckWinnerByMargin' winner=winner margin=margin}}}
-                {{/unless}}
-            {{else}}
-                {{{localize 'FU.OpposedCheckDraw'}}}
-			{{/if}}
-		</span>
-    </div>
-</div>
+<main class="chat-desc">
+	<div class="flexrow flex-group-center">
+		{{#if winner}}
+			{{#unless (gt margin 0)}}
+				<span>{{{localize 'FU.OpposedCheckWinner' winner=winner}}}</span>
+			{{else}}
+				<span>{{{localize 'FU.OpposedCheckWinnerByMargin' winner=winner margin=margin}}}</span>
+			{{/unless}}
+		{{else}}
+			<span>{{{localize 'FU.OpposedCheckDraw'}}}</span>
+		{{/if}}
+	</div>
+</main>

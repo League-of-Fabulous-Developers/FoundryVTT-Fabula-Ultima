@@ -12,7 +12,7 @@
                 <input type='radio' name='bond' value='{{@index}}' />
                 <span>{{localize 'FU.GroupCheckBondDialogBond'}}</span>
                 {{#each feelings}}
-                    <span class='feeling'>{{localize (concat 'FU.' this)}}</span>
+                    <span class='feeling'>{{localize (pfuConcat 'FU.' this)}}</span>
                     {{#unless @last}}
                         <span>{{localize 'FU.GroupCheckBondDialogAnd'}}</span>
                     {{/unless}}

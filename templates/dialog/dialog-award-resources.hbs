@@ -1,5 +1,5 @@
-<main>
-	<fieldset class="form-group">
+<main class="background">
+	<fieldset>
 		<label for="resource">{{localize 'FU.Resource'}}</label>
 		<select name="resource" id="resource">
 			<option value="fp">{{localize 'FU.FabulaAbbr'}}</option>
@@ -10,17 +10,17 @@
 		</select>
 	</fieldset>
 
-	<fieldset class="form-group">
+	<fieldset class="">
 		<label for="amount">{{localize 'FU.Amount'}}</label>
 		<input type="number" name="amount" id="amount" value="1" />
 	</fieldset>
 
-	<fieldset class="form-group">
+	<fieldset class="">
 		<label for="resource-source">{{localize 'FU.Source'}}</label>
 		<input type="text" name="source" id="resource-source" value="{{defaultSource}}" />
 	</fieldset>
 
-	<fieldset class="form-group">
+	<fieldset class="">
 		<legend>{{localize 'FU.Characters'}}</legend>
 		<div class="character-list">
 			{{#each characters}}

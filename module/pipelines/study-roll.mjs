@@ -28,7 +28,7 @@ export class StudyRollHandler {
 			return this.#studyValueOverride;
 		}
 		if (this.checkResult) {
-			return this.checkResult.result;
+			return this.checkResult.check;
 		}
 		return 0;
 	}
@@ -51,7 +51,7 @@ export class StudyRollHandler {
 			await game.projectfu.socket.studyRoll({
 				actorUuid: this.actor.uuid,
 				targetUuids: targets.map((t) => t.uuid),
-				checkResult: this.checkResult,
+				checkParity: this.checkResult,
 			});
 			return false;
 		}
@@ -68,7 +68,7 @@ export class StudyRollHandler {
 				return fromUuid(target);
 			}),
 		);
-		CommonEvents.study(actor, targets, data.checkResult.result);
+		CommonEvents.study(actor, targets, data.checkResult.check);
 	}
 
 	/**

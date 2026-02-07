@@ -1,0 +1,103 @@
+{
+  "folder": "yQP8QqBOZqcn7f56",
+  "name": "Mulligan [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/mulligan.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>At the end of your turn during a conflict, you may discard up to <strong>【SL】</strong> cards from your <strong>hand</strong>. If you do, draw that many cards from your <strong>deck</strong>.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Ace of Cards"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUAC3",
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "mulligan-legacy",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769016554468,
+    "modifiedTime": 1769016624400,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "FC9ENgCyqzRpCQiu",
+  "sort": 200000,
+  "_key": "!items!FC9ENgCyqzRpCQiu"
+}

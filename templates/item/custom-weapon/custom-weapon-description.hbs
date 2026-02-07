@@ -1,0 +1,22 @@
+<div class="tab description flexcol {{tab.cssClass}}" data-group="primary" data-tab="description">
+	{{#if technosphereMode}}
+		<fieldset class="desc title-fieldset resource-content technosphere-slots">
+			<legend class="resource-label-sm">
+				{{localize 'FU.TechnospheresSlots'}}
+			</legend>
+			{{> "projectfu.technospheres.slots" slots=slots}}
+		</fieldset>
+		<hr>
+	{{/if}}
+	<fieldset class="desc title-fieldset resource-content flexcol flexgrow-1">
+		<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+			{{localize 'FU.Description'}}
+			<i class="fas fa-info-circle"></i>
+		</label>
+		<div class="flexgrow-1">
+			<prose-mirror name="system.description" value="{{system.description}}" toggled>
+				{{{enrichedHtml.description}}}
+			</prose-mirror>
+		</div>
+	</fieldset>
+</div>

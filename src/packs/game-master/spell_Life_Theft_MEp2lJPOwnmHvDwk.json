@@ -108,30 +108,31 @@
       }
     },
     "subtype": {},
-    "source": {
-      "value": "FUCR311"
-    },
+    "source": "FUCR311",
     "opportunity": "",
     "maxTargets": {
       "value": 1
     },
     "fuid": "life-theft",
     "traits": [
-      "AbsorbHalf"
+      "absorb-half"
     ]
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1745176000413,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770042850663,
+    "lastModifiedBy": "jBlPH673nHpUCC6V",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

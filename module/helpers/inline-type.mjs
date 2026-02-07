@@ -5,6 +5,7 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { InlineEffects } from './inline-effects.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const INLINE_TYPE = 'InlineType';
 const className = `inline-type`;
@@ -23,7 +24,7 @@ const supportedTypes = {
  */
 const editorEnricher = {
 	id: 'InlineTypeEnricher',
-	pattern: InlineHelper.compose('TYPE', `(?<type>\\w+)(?<args>(\\s+([a-zA-Z0]+))+)s*`, InlineEffects.configurationPropertyGroups),
+	pattern: InlineHelper.compose('TYPE', `(?<type>\\w+)(?<args>\\s+[a-zA-Z0]+(?:[,\\s]+[a-zA-Z0]+)*)\\s*`, InlineEffects.effectPropertyGroups),
 	enricher: (match, options) => {
 		const type = match.groups.type.toLowerCase();
 		const args = match.groups.args.trimStart();
@@ -36,8 +37,11 @@ const editorEnricher = {
 			anchor.dataset.args = args;
 
 			const config = InlineEffects.parseConfigData(match);
-			anchor.dataset.config = InlineHelper.toBase64(config);
+			anchor.dataset.config = StringUtils.toBase64(config);
 			const label = match.groups.label;
+
+			// ICON
+			InlineHelper.appendSystemIcon(anchor, 'type');
 
 			if (type === 'damage') {
 				// TOOLTIP
@@ -80,9 +84,7 @@ const editorEnricher = {
 					anchor.append(`${localizedAffinity} (${localizedTypes})`);
 				}
 				// ICON
-				const icon = document.createElement('i');
-				icon.className = damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]];
-				anchor.append(icon);
+				InlineHelper.appendIcon(anchor, damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]]);
 				return anchor;
 			}
 		}
@@ -105,7 +107,7 @@ async function onRender(element) {
 		if (targets.length > 0) {
 			const type = renderContext.dataset.type;
 			const args = renderContext.dataset.args;
-			const config = InlineHelper.fromBase64(renderContext.dataset.config);
+			const config = StringUtils.fromBase64(renderContext.dataset.config);
 
 			for (const target of targets) {
 				await applyEffect(target, renderContext.sourceInfo, type, args, config);
@@ -122,7 +124,7 @@ async function onRender(element) {
 		const data = {
 			dataType: INLINE_TYPE,
 			sourceInfo: renderContext.sourceInfo,
-			config: InlineHelper.fromBase64(renderContext.dataset.config),
+			config: StringUtils.fromBase64(renderContext.dataset.config),
 			type: renderContext.dataset.type,
 			args: renderContext.dataset.args,
 		};
@@ -250,9 +252,7 @@ async function applyEffect(actor, sourceInfo, type, args, config) {
 	if (actor.system instanceof CharacterDataModel || actor.system instanceof NpcDataModel) {
 		//const source = sourceInfo.resolve();
 		const effectData = composeEffectData(type, args.split(' '));
-		Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config).then((effect) => {
-			console.info(`Created effect: ${effect.uuid} on actor uuid: ${actor.uuid}`);
-		});
+		Effects.applyEffect(actor, effectData, sourceInfo, config);
 	} else {
 		ui.notifications.error('FU.ChatApplyNoCharacterSelected', { localize: true });
 	}

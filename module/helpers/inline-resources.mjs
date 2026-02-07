@@ -1,8 +1,9 @@
-import { FU } from './config.mjs';
+import { FU, SYSTEM } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { InlineHelper } from './inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { Flags } from './flags.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -30,11 +31,22 @@ const inlineLossEnricher = {
 	onRender: onRender,
 };
 
+function getCurrencyLocalizationKey() {
+	return game.settings.get('projectfu', 'optionRenameCurrency') || 'FU.Zenit';
+}
+
 function createReplacementElement(amount, type, elementClass, uncapped, tooltip, label) {
 	if (type in FU.resources) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
-		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount} ${type})`);
+
+		let typeName = game.i18n.localize(FU.resourcesAbbr[type]);
+		if (type === 'zenit') {
+			const currencyKey = getCurrencyLocalizationKey();
+			typeName = game.i18n.localize(currencyKey);
+		}
+
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount} ${typeName})`);
 
 		// Used to enable over-healing
 		if (uncapped === true) {
@@ -47,6 +59,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 		const indicator = document.createElement('i');
 		indicator.classList.add('indicator');
 		anchor.append(indicator);
+
 		if (label) {
 			anchor.append(label);
 			anchor.dataset.label = label;
@@ -55,13 +68,10 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 			// AMOUNT
 			InlineHelper.appendAmountToAnchor(anchor, amount);
 			// TYPE
-			anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
+			anchor.append(` ${typeName}`);
 		}
 		// ICON
-		const icon = document.createElement('i');
-		icon.className = FU.resourceIcons[type];
-		icon.classList.add(type);
-		anchor.append(icon);
+		InlineHelper.appendSystemIcon(anchor, type);
 
 		return anchor;
 	} else {
@@ -95,23 +105,25 @@ function lossEnricher(text, options) {
  * @returns {Promise<void>}
  */
 async function onRender(element) {
-	const document = InlineHelper.resolveDocument(element);
+	const renderContext = await InlineHelper.getRenderContext(element);
 	const target = element.firstElementChild;
-	const sourceInfo = InlineHelper.determineSource(document, target);
-	const dataset = target.dataset;
-	const type = dataset.type;
-	const uncapped = dataset.uncapped === 'true';
+	const type = renderContext.dataset.type;
+	const uncapped = renderContext.dataset.uncapped === 'true';
 
 	element.addEventListener('click', async function () {
 		const targets = await targetHandler();
 		if (targets.length > 0) {
-			const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-			const amount = await Expressions.evaluateAsync(dataset.amount, context);
+			let context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+			let check = renderContext.document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			if (check) {
+				context = context.withCheck(check);
+			}
+			const amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
 
 			if (target.classList.contains(classInlineRecovery)) {
-				await applyRecovery(sourceInfo, targets, type, amount, uncapped);
+				await applyRecovery(renderContext.sourceInfo, targets, type, amount, uncapped);
 			} else if (target.classList.contains(classInlineLoss)) {
-				await applyLoss(sourceInfo, targets, type, amount);
+				await applyLoss(renderContext.sourceInfo, targets, type, amount);
 			}
 		}
 	});
@@ -119,10 +131,10 @@ async function onRender(element) {
 	element.addEventListener('dragstart', function (event) {
 		const data = {
 			type: target.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
-			sourceInfo,
-			recoveryType: dataset.type,
-			amount: dataset.amount,
-			uncapped: dataset.uncapped === 'true',
+			sourceInfo: renderContext.sourceInfo,
+			recoveryType: renderContext.dataset.type,
+			amount: renderContext.dataset.amount,
+			uncapped: renderContext.dataset.uncapped === 'true',
 		};
 
 		event.dataTransfer.setData('text/plain', JSON.stringify(data));
@@ -134,6 +146,7 @@ async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInf
 	if (sourceInfo === undefined) {
 		return true;
 	}
+	sourceInfo = InlineSourceInfo.fromObject(sourceInfo);
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
 		const context = ExpressionContext.fromSourceInfo(sourceInfo, [actor]);

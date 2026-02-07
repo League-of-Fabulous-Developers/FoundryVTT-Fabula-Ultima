@@ -1,0 +1,46 @@
+{
+  "name": "Sharpening Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/sharpening.png",
+  "system": {
+    "fuid": "sharpening-hoplosphere",
+    "source": "FUTF143",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainCheckBonus",
+        "coagulationLevel": 1,
+        "checkType": "accuracyCheck",
+        "amount": 1
+      },
+      {
+        "type": "increaseWeaponDamage",
+        "coagulationLevel": 2,
+        "amount": 2
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658511413,
+    "modifiedTime": 1760404420025,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "HxePnVs8yvVUdxFV",
+  "sort": 0,
+  "_key": "!items!HxePnVs8yvVUdxFV"
+}

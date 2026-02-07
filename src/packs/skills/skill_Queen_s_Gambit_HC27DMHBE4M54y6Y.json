@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option: one ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points; <strong>or</strong> you may immediately use a Skill you acquired among <strong>Bishop’s</strong></p><p><strong>Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p><hr /><ul><li><p><strong>Ally Recovers: </strong>@GAIN[5+($sl*5) hp]{5 + (SL × 5) HP}</p></li><li><p><strong>Free:</strong> @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</p></li></ul>",
+    "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop’s Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p></li></ul><hr /><p><strong>Ally Recovers: </strong>@GAIN[5+($sl*5) hp]{5 + (SL × 5) HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -53,9 +53,7 @@
         "value": false
       },
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "",
       "onRoll": "",
       "onApply": ""
     },
@@ -71,9 +69,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF141"
-    },
+    "source": "FUHF141",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,10 +115,10 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
+    "defense": "",
     "fuid": "queens-gambit",
     "targeting": {
-      "rule": "single"
+      "rule": "special"
     }
   },
   "effects": [],
@@ -132,15 +128,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706555569192,
-    "modifiedTime": 1744464326417,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1770331824519,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,47 @@
+{
+  "name": "Blessed Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/blessed.png",
+  "system": {
+    "fuid": "blessed-hoplosphere",
+    "source": "FUTF139",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "addExtraDamageToSpecies",
+        "coagulationLevel": 1,
+        "species": "undead",
+        "amount": 2
+      },
+      {
+        "type": "increaseDefense",
+        "coagulationLevel": 2,
+        "defense": "mdef",
+        "amount": 1
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658478469,
+    "modifiedTime": 1760404498568,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "YGSlCtPQIkOvyt6Q",
+  "sort": 2200000,
+  "_key": "!items!YGSlCtPQIkOvyt6Q"
+}

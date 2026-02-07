@@ -1,0 +1,62 @@
+{
+  "name": "Heroic Companion [Legacy]",
+  "type": "heroic",
+  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Your Companion grows stronger."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faithful Companion</strong> Skill.</p></blockquote><p>Your bond with your companion grows stronger. You gain the following benefits:</p><ul><li>The companion's maximum Hit Points increase by 10.</li><li>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</li><li>The companion gains an additional Skill. When you reach level <strong>40</strong>, or if you have already reached it, the companion gains an additional Skill. Make sure to discuss your Skill choices with the Game Master and the other Players.</li></ul><hr /><ul><li><p><strong>Companion Receives:</strong> @UUID[Compendium.projectfu.legacy.Item.Q1rkj2AuIHhYxKCQ]{Effect: Heroic Companion}</p></li><li><p>Then, navigate to the active effect's \"<strong>Effects</strong>\" tab, choose one attribute to increase, and remove the rest.</p></li></ul>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Wayfarer"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUCR236",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "heroic-companion-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768869279734,
+    "modifiedTime": 1768876259400,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "8pzmcssuzAyOU2iF",
+  "sort": 50000,
+  "_key": "!items!8pzmcssuzAyOU2iF"
+}

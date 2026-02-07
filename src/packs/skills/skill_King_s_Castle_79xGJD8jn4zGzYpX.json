@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend 10 Mind Points to choose one option: no creature can recover Hit Points or Mind Points; </span><span class=\"fontstyle2\"><strong>OR</strong> </span><span class=\"fontstyle0\">all effects that restore Mind Points restore </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points. The chosen effect lasts until the start of your next turn.</span> </p><hr /><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5]{Effect: King's Castle (Extra MP)}</p></li></ul>",
+    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend 10 Mind Points to choose one option:</span></p><ul><li><p><span class=\"fontstyle0\">No creature can recover HP or MP.</span></p></li><li><p><span class=\"fontstyle0\">All effects that restore Mind Points restore </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional MP.</span></p></li></ul><p><span class=\"fontstyle0\">The chosen effect lasts until the start of your next turn.</span> </p><hr /><p><em>Apply chosen effect to all characters.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF141"
-    },
+    "source": "FUHF141",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -125,7 +123,13 @@
       "amount": 10
     },
     "targeting": {
-      "rule": "special"
+      "rule": "self"
+    },
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.lwzEcMwQICongcb5",
+        "Compendium.projectfu.skills.Item.DRnzFsqj5BimQFa5"
+      ]
     }
   },
   "effects": [],
@@ -135,15 +139,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706555549756,
-    "modifiedTime": 1744477078837,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1770332162838,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

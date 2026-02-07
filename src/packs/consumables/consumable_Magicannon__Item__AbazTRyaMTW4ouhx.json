@@ -11,7 +11,7 @@
     "summary": {
       "value": "Create a firearm that deals air, bolt, earth, fire, ice, or physical."
     },
-    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>For <strong>@LOSS[3 ip]</strong> creates a firearm that deals <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, OR <strong>physical </strong>damage. Drag and drop the one you create onto your character sheet.</p><p><strong>@UUID[Compendium.projectfu.consumables.Item.EGvZsEWEhaTqoCgG]{Magicannon (Air)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.uuKKqm81klCOiDjO]{Magicannon (Bolt)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.sREYRTy6TfK8fe53]{Magicannon (Earth)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.jHbcjw8RW9Ywesyu]{Magicannon (Fire)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.eVOnHgRLTnL695cP]{Magicannon (Ice)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.MJoIwfTvo0FHcDqL]{Magicannon (Physical)}</strong></p>",
+    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget - Magitech}</h5><p>You may perform the <strong>Inventory</strong> action and spend 2 Inventory Points to create a <strong>magicannon</strong> (see below) and destroy any <strong>magicannon</strong> you previously created. If you do so and both your <strong>hand slots</strong> are empty, you may immediately equip the newly created <strong>magicannon</strong> and perform a <strong>free attack</strong> with it. Whenever you create a <strong>magicannon</strong>, choose what type of damage it deals among <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, or <strong>physical</strong>.</p><hr /><ul><li><p>@UUID[Compendium.projectfu.consumables.Item.EGvZsEWEhaTqoCgG]{Magicannon (Air)}</p></li><li><p>@UUID[Compendium.projectfu.consumables.Item.uuKKqm81klCOiDjO]{Magicannon (Bolt)}</p></li><li><p>@UUID[Compendium.projectfu.consumables.Item.sREYRTy6TfK8fe53]{Magicannon (Earth)}</p></li><li><p>@UUID[Compendium.projectfu.consumables.Item.jHbcjw8RW9Ywesyu]{Magicannon (Fire)}</p></li><li><p>@UUID[Compendium.projectfu.consumables.Item.eVOnHgRLTnL695cP]{Magicannon (Ice)}</p></li><li><p>@UUID[Compendium.projectfu.consumables.Item.MJoIwfTvo0FHcDqL]{Magicannon (Physical)}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -19,12 +19,18 @@
       "value": false
     },
     "ipCost": {
-      "value": 3
+      "value": 2
     },
-    "source": {
-      "value": "FUCR215"
+    "source": "FUCR215",
+    "fuid": "magicannon-item",
+    "damage": {
+      "onApply": ""
     },
-    "fuid": "magicannon-item"
+    "resource": {
+      "enabled": true,
+      "type": "ip",
+      "amount": ""
+    }
   },
   "effects": [],
   "sort": 25000,
@@ -34,15 +40,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1707097652124,
-    "modifiedTime": 1745361455570,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768749570325,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

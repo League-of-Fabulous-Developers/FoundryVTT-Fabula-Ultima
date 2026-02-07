@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR177"
-    },
+    "source": "FUCR177",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -125,7 +123,79 @@
       "amount": 40
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Bind and Summon",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_bind_and_summon.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "b1fmFhNF33FwoU9W": {
+              "type": "ruleElement",
+              "_id": "b1fmFhNF33FwoU9W",
+              "trigger": {
+                "_id": "ileIg77maPnwlchk",
+                "type": "itemRollRuleTrigger",
+                "eventRelation": "source"
+              },
+              "actions": {
+                "sbPG4SSY7vrt9ROo": {
+                  "type": "openApplicationRuleAction",
+                  "_id": "sbPG4SSY7vrt9ROo",
+                  "application": "arcanist"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Nqx8jTC7Xyci6rmi",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1768060526969,
+        "modifiedTime": 1768060552099,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!gbkA1CRgQ9OxPstd.Nqx8jTC7Xyci6rmi"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

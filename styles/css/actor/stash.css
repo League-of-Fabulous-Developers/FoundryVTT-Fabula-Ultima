@@ -1,0 +1,63 @@
+.projectfu.stash {
+	.items-main-header {
+		justify-content: space-between;
+
+		> * {
+			flex: 0 0 auto;
+		}
+	}
+
+	.stash-controls {
+		display: flex;
+		gap: var(--spacing-xs);
+		align-items: center;
+
+		> * {
+			flex: 0 0 auto;
+		}
+
+		.zenit-style {
+			min-width: 100px;
+			margin-right: 0;
+		}
+
+		.spacer {
+			margin: 0 var(--spacing-sm);
+		}
+
+		.ip-recharge-rate,
+		.item-price-rate {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			height: 100%;
+
+			label {
+				display: flex;
+			}
+
+			input {
+				height: var(--spacing-xl);
+				margin-left: var(--spacing-xs);
+
+				&[type='number'] {
+					width: 35px;
+				}
+
+				&[type='range'] {
+					--range-track-color: var(--color-secondary);
+					--range-track-border-color: var(--color-border-secondary);
+					--range-thumb-background-color: var(--color-button-bg);
+					--range-thumb-border-color: var(--color-border-primary);
+					padding: 0 var(--spacing-md);
+					width: 80px;
+				}
+			}
+
+			.icon {
+				font-weight: var(--font-weight-normal);
+				font-size: var(--font-size-xxlarge);
+			}
+		}
+	}
+}

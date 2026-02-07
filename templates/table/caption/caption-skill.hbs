@@ -1,0 +1,14 @@
+{{class~}}
+{{#if roll~}}
+	{{#if class}} ⬥&#xFEFF;{{/if~}}
+	{{#if useWeapon}}&nbsp;{{#if weapon}}{{weapon}}{{else}}{{localize 'FU.AbilityNoWeaponEquipped'}}{{/if}} ⬥&#xFEFF;{{/if~}}
+
+	【{{localize (lookup FU.attributeAbbreviations roll.primary)}}&nbsp;+&nbsp;{{localize (lookup FU.attributeAbbreviations roll.secondary)}}】
+	{{~#if (gt roll.modifier 0)}}+&nbsp;{{roll.modifier}}{{/if}}
+	{{~#if (lt roll.modifier 0)}}-&nbsp;{{pfuMathAbs roll.modifier}}{{/if}}
+
+	{{#if damage}}
+		⬥&#xFEFF;【{{#if damage.hrZero}}{{localize 'FU.HRZero'}}{{else}}{{localize 'FU.HighRollAbbr'}}{{/if}}&nbsp;+&nbsp;{{damage.value}}】&#xFEFF;
+		{{~localize (lookup FU.damageTypes damage.type)}}
+	{{/if}}
+{{~/if}}

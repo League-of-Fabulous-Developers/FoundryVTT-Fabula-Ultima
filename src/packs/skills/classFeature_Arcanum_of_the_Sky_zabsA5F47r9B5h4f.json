@@ -8,13 +8,10 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You have Resistance to <strong>air</strong> and <strong>bolt</strong> damage.</p></li><li><p>You may use an action to accurately predict weather conditions for the next day within a range of <strong>two travel days</strong> — the Game Master will tell you what the weather conditions will be.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Thunderstorm.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 bolt] damage. This damage <strong>ignores Resistances</strong>.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Thunderstorm.</strong> Choose any number of creatures you can see: each of them <strong>suffers 30 bolt damage.</strong> This damage <strong>ignores Resistances</strong>.</p><hr></li><li><p><strong>Targets</strong>: @DMG[&step(30,40,50) bolt|ignore-resistances|]{Thunderstorm}</p></li></ul>",
       "domains": "fog, rain, storms"
     },
     "source": "FUCR180",
@@ -84,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710464043159,
-    "modifiedTime": 1724180863559,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1768129329248,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

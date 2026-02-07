@@ -1,0 +1,151 @@
+{
+  "folder": "rFNLH1qDltOQIbZn",
+  "name": "Soaring Strike [Legacy]",
+  "type": "spell",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/soaring_strike.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>The wind carries your strikes across the battlefield. You may immediately perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack may target creatures that can only be targeted by <strong>ranged</strong> attacks.</p><p>If you used a weapon belonging to the <strong>brawling</strong> or <strong>spear</strong> Category for this attack, it deals 5 extra damage.</p><p>If you hit a flying target with this attack, you may force them to land immediately.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": "FUCR189",
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 5
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "fuid": "soaring-strike-legacy",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "10",
+      "perTarget": false
+    },
+    "targeting": {
+      "max": 1,
+      "rule": "single"
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768577479435,
+    "modifiedTime": 1768579355349,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "tjwJJozZ9iAuvrmk",
+  "sort": 400000,
+  "_key": "!items!tjwJJozZ9iAuvrmk"
+}

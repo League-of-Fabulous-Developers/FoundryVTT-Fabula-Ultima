@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF166"
-    },
+    "source": "FUNF166",
     "fuid": "power-nap"
   },
   "effects": [],

@@ -1,0 +1,40 @@
+{{#with data}}
+	<div class="cell-resource cell-resource--{{../layout}} {{../cssClass}}">
+		{{#if name}}
+			<div class="cell-resource__label" >{{ name }}</div>
+		{{/if}}
+		<div class="cell-resource__tracker">
+			<a class="cell-resource__button"
+			   data-action="{{#if ../action}}{{../action}}{{else}}updateResource{{/if}}"
+				{{#with ../decreaseAttributes~}}
+					{{#each this~}}
+				   		{{@key}}="{{this}}"
+			   		{{~/each}}
+				{{else}}
+					data-resource-action="minus"
+				{{~/with}}
+			   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{step}})">
+				<i class="fas fa-minus"></i>
+			</a>
+			<div class="cell-resource__resource">
+				<span>{{ current }}</span>
+				{{#if (gt max 0)}}
+					<span>/</span>
+					<span>{{ max }}</span>
+				{{/if}}
+			</div>
+			<a class="cell-resource__button"
+			   data-action="{{#with ../action}}{{this}}{{else}}updateResource{{/with}}"
+				{{#with ../increaseAttributes~}}
+					{{#each this~}}
+						{{@key}}="{{this}}"
+					{{~/each}}
+				{{else}}
+					data-resource-action="plus"
+				{{~/with}}
+			   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{step}})">
+				<i class="fas fa-plus"></i>
+			</a>
+		</div>
+	</div>
+{{/with}}

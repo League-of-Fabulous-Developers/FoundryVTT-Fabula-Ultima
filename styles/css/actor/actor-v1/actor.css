@@ -42,45 +42,25 @@
 }
 
 .projectfu .sheet-header .profile-img {
-	/* height: 200px;
-  width: 200px;
-  margin-right: 0;
-  -ms-flex-item-align: start;
-  align-self: start;
-  background-image: -webkit-gradient(linear, left top, right top, from(#2b4a42), to(#3d665a));
-  background-image: linear-gradient(to right, #2b4a42, #3d665a);
-  background-clip: content-box;
-  border: 1px solid #aeb8a8;
-  border-radius: 10px 0 0 10px; */
-	height: 100%;
-	/* This makes the image fill the height of .profile */
-	width: 200px;
-	/* Maintains aspect ratio */
-	margin-right: 0;
-	-ms-flex-item-align: start;
-	align-self: stretch;
-	/* Also ensures it stretches in flex container */
-
+	flex: 0 0 200px;
+	max-height: 220px;
 	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
+	object-fit: contain;
+	object-position: center;
+	aspect-ratio: 200 / 220;
 }
 
 .projectfu .sheet-header .item-profile-img {
-	height: 100%;
-	/* This makes the image fill the height of .profile */
-	width: 144px;
-	/* Maintains aspect ratio */
-	margin-right: 0;
-	-ms-flex-item-align: start;
-	align-self: stretch;
-	/* Also ensures it stretches in flex container */
-
+	flex: 0 0 144px;
+	max-height: 144px;
 	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
+	object-fit: contain;
+	object-position: center;
+	aspect-ratio: 1;
 }
 
 .projectfu .sheet-header .charname-container {
@@ -116,7 +96,7 @@
 .projectfu .sheet-header .header-fields .header-center.item-header {
 	border-radius: 0 0 12px 0;
 	padding: 10px;
-	height: 84px !important;
+	height: 83px !important;
 }
 
 .projectfu .sheet-header .header-fields .header-center.item-feature-header {
@@ -151,6 +131,7 @@
 .projectfu .sheet-header .header-fields #roll-section {
 	border-radius: 0 10px 10px 0;
 	height: 100%;
+	align-items: baseline;
 }
 
 .projectfu .sheet-header .header-fields #item-navbar {
@@ -335,6 +316,10 @@
 
 .projectfu .item-settings {
 	margin: 0px 5px 0;
+	display: inline-flex;
+	align-items: center;
+	gap: 1em;
+	padding: 0.25em 1em 0 1em;
 }
 
 .projectfu .fit-desc .editor {
@@ -367,6 +352,7 @@
 	overflow-y: auto;
 	min-height: 16em;
 	padding: 0.5em;
+	flex-grow: 1;
 }
 
 .projectfu .editor {
@@ -474,7 +460,7 @@
 
 .projectfu .tag {
 	align-items: center;
-	color: var(--pfu-color-app-control-content);
+	color: var(--color-text-primary);
 	background: var(--pfu-color-app-control-fill);
 	border-radius: 2px;
 	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
@@ -490,8 +476,8 @@
 }
 
 .projectfu .party .editor-menu {
-	color: var(--pfu-color-app-control-content) !important;
-	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content, var(--button-text-color)) !important;
+	background: var(--pfu-color-app-control-fill, var(--menu-background));
 }
 
 .projectfu .party .side {
@@ -558,6 +544,13 @@
 	background-clip: content-box;
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
+	clip-path: rect(auto auto auto auto round 10px 0 0 10px);
+
+	img {
+		object-fit: cover;
+		object-position: top;
+		aspect-ratio: 1;
+	}
 }
 
 .projectfu .party .name-container {
@@ -626,9 +619,29 @@
 .projectfu .party .settings {
 	height: 100%;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	align-items: stretch;
+	justify-content: start;
 	text-align: center;
+
+	&.active {
+		display: flex;
+	}
+
+	.party-notes {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+
+		& > fieldset {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+
+			.party-notes-container {
+				flex-grow: 1;
+			}
+		}
+	}
 }
 
 .projectfu .party .adversaries {
@@ -794,6 +807,8 @@
 
 .projectfu .party .overview .plate .name {
 	margin-top: 4px;
+	margin-bottom: -8px;
+	padding-bottom: 8px;
 	font-size: 2rem;
 	text-align: center;
 	font-weight: 800;
@@ -831,6 +846,7 @@
 	height: 200px;
 	-o-object-fit: cover;
 	object-fit: cover;
+	object-position: top;
 	border: 4px solid #3a3a3a;
 	/* or another color that fits your theme */
 	border-radius: 8px;
@@ -1079,6 +1095,23 @@
 	text-align: center;
 	width: auto;
 	border: 0.01em solid #148782;
+}
+
+/* Legend when fieldset or legend has .disabled */
+.projectfu .title-fieldset legend.untoggled {
+	background-color: var(--color-button-disabled-bg);
+	border-color: var(--color-text-disabled);
+}
+
+.projectfu .title-fieldset legend.toggled {
+	background: #3a6b5d;
+	color: #ffffff;
+	transition: background 0.2s;
+}
+
+.projectfu .title-fieldset div.untoggled {
+	opacity: 0.5;
+	pointer-events: none;
 }
 
 .projectfu .resource-content {
@@ -2285,9 +2318,9 @@
 }
 
 .projectfu .button-style:hover {
-	background: -webkit-gradient(linear, left bottom, left top, from(rgb(220, 211, 116)), to(rgb(255, 247, 154))) !important;
-	background: linear-gradient(0deg, rgb(220, 211, 116) 0%, rgb(255, 247, 154) 100%) !important;
-	color: #047470 !important;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgb(220, 211, 116)), to(rgb(255, 247, 154)));
+	background: linear-gradient(0deg, rgb(220, 211, 116) 0%, rgb(255, 247, 154) 100%);
+	color: #047470;
 	text-shadow: none;
 }
 
@@ -2413,4 +2446,8 @@
 	color: #2b4a42;
 	-webkit-filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
 	filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
+}
+
+.projectfu .rate {
+	width: 120px;
 }

@@ -1,0 +1,40 @@
+{
+  "name": "Tiring Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/tiring.png",
+  "system": {
+    "fuid": "tiring-hoplosphere",
+    "source": "FUTF143",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "hitsCauseStatus",
+        "coagulationLevel": 1,
+        "status": "weak"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658517754,
+    "modifiedTime": 1760404445984,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "r0DaQ0mxQxy7e64h",
+  "sort": 0,
+  "_key": "!items!r0DaQ0mxQxy7e64h"
+}

@@ -88,7 +88,6 @@ const POTENCIES = {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {ItemAttributesDataModelV2} attributes
  * @property {number} modifier
@@ -139,7 +138,7 @@ export class RitualDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		RitualMigrations.run(source);
 		return source;
 	}
@@ -152,6 +151,12 @@ export class RitualDataModel extends FUStandardItemDataModel {
 		(this.dLevel ??= {}).value = potency.difficulty;
 		(this.clock ??= {}).value = potency.clock;
 		this.progress.max = potency.clock;
+
+		foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
+	}
+
+	afterApplyActiveEffects() {
+		foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
 	}
 
 	async _preUpdate(changes, options, user) {
@@ -170,6 +175,26 @@ export class RitualDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	updateRitualProgress(event, target) {
+		return this.parent.update({
+			'system.progress': this.progress.getProgressUpdate(event, target, {
+				direct: {
+					dataAttribute: 'data-segment',
+				},
+				indirect: {
+					dataAttribute: 'data-progress-action',
+					attributeValueIncrement: 'increase',
+					attributeValueDecrement: 'decrease',
+				},
+			}),
+		});
 	}
 }

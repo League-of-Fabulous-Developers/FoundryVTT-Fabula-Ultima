@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF137"
-    },
+    "source": "FUHF137",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,7 +118,10 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "magichant"
+    "fuid": "magichant",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "sort": 300000,
@@ -129,14 +130,18 @@
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706550402521,
-    "modifiedTime": 1742794196613,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770254027222,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

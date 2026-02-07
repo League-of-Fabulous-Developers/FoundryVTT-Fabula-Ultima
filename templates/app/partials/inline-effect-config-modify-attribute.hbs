@@ -1,8 +1,8 @@
 <div>
-    <label>
-        <span class="d-block">{{localize "FU.Attribute"}}</span>
-        <select name="guided.changes.{{@index}}.attribute">
-            {{selectOptions templateData.attributes selected=attribute localize=true}}
-        </select>
-    </label>
+	<label>
+		<span>{{localize "FU.Attribute"}}</span>
+		<select name="guided.changes.{{@index}}.attribute" class="resource-current-input">
+			{{selectOptions templateData.attributes selected=attribute localize=true}}
+		</select>
+	</label>
 </div>

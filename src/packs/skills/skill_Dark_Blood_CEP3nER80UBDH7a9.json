@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>As long as you are in Crisis, you have Resistance to <strong>dark</strong> damage and <strong>poison</strong> damage.</p>",
+    "description": "<p>As long as you are in <strong>Crisis</strong>, you gain Resistance to <strong>dark</strong> damage and <strong>poison</strong> damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -70,9 +70,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR185"
-    },
+    "source": "FUCR185",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,13 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "dark-blood"
+    "fuid": "dark-blood",
+    "effects": {
+      "entries": []
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -137,19 +141,19 @@
       "_id": "Iut1nlmgSnsh7FEY",
       "changes": [
         {
-          "key": "system.affinities.dark.current",
-          "mode": 4,
-          "value": "1",
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
           "priority": null
         },
         {
-          "key": "system.affinities.poison.current",
-          "mode": 4,
-          "value": "1",
+          "key": "system.affinities.poison",
+          "mode": 0,
+          "value": "upgrade",
           "priority": null
         }
       ],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you are in Crisis, you have Resistance to <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">dark </strong>damage and <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">poison </strong>damage. </span></p>",
+      "description": "<p>As long as you are in <strong>Crisis</strong>, you gain Resistance to <strong>dark</strong> damage and <strong>poison</strong> damage.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -161,19 +165,30 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1744468673736,
-        "lastModifiedBy": "WNNELbIcUepK9pGq",
+        "modifiedTime": 1770248416901,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_dark_blood.png",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "origin": null,
       "sort": 0,
       "_key": "!items.effects!CEP3nER80UBDH7a9.Iut1nlmgSnsh7FEY"
@@ -186,15 +201,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706496871786,
-    "modifiedTime": 1741947914346,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770248462569,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

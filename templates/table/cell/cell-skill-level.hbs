@@ -1,0 +1,7 @@
+<div class="skillLevel item-lg sl-stars">
+	{{#each skillArr}}
+		<a class="star-radio-container" data-action="setSkillLevel" data-level="{{level}}">
+			<label class="star-label {{#if reached}}fus-sl-star{{else}}ful-sl-star{{/if}}"></label>
+		</a>
+	{{/each}}
+</div>

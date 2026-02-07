@@ -3,7 +3,7 @@
   "name": "Cleanse",
   "type": "spell",
   "_id": "YIxwINZ4z4p04H8n",
-  "img": "icons/magic/life/cross-beam-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/cleanse.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You strengthen and purify the soul energy coursing through your companions. Each target recovers from all status effects.</p>",
+    "description": "<p>You strengthen and purify the soul energy coursing through your companions. Each target recovers from <strong>all status effects.</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": false
     },
-    "source": {
-      "value": "FUCR208"
-    },
+    "source": "FUCR208",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -121,22 +119,101 @@
     },
     "fuid": "cleanse"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cleanse",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/cleanse.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "nRJ2l0YUaKU2wyyE": {
+              "type": "ruleElement",
+              "_id": "nRJ2l0YUaKU2wyyE",
+              "trigger": {
+                "_id": "AwVj9QkaoGtM81Vv",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "KhLBomDZKyDdIrGQ": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "KhLBomDZKyDdIrGQ",
+                  "identifier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "UagQX4OgszpslcIo",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770042196415,
+        "modifiedTime": 1770042210838,
+        "lastModifiedBy": "jBlPH673nHpUCC6V"
+      },
+      "_key": "!items.effects!YIxwINZ4z4p04H8n.UagQX4OgszpslcIo"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706572278932,
-    "modifiedTime": 1737917828089,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1770042190472,
+    "lastModifiedBy": "jBlPH673nHpUCC6V",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

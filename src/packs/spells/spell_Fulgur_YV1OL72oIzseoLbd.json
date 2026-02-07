@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You weave electricity into a wave of crackling bolts. Each target hit by this spell suffers <strong>【HR + 15】 bolt</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[dazed].</p>",
+    "description": "<p>You weave electricity into a wave of crackling bolts. Each target hit by this spell suffers <strong>【HR + 15】 bolt</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[dazed].</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR188"
-    },
+    "source": "FUCR188",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -128,15 +126,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706565033495,
-    "modifiedTime": 1746640911611,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1768577223154,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

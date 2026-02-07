@@ -1,15 +1,16 @@
 <div>
     <label>
-        <span class="d-block">{{localize "FU.InlineEffectConfigModifyAccuracyCheckTypes"}}</span>
-        <select name="guided.changes.{{@index}}.check" class="w-100">
+        <span>{{localize "FU.InlineEffectConfigModifyAccuracyCheckTypes"}}</span>
+        <select name="guided.changes.{{@index}}.check" class="resource-current-input">
             {{selectOptions templateData.checks selected=check localize=true}}
         </select>
     </label>
 </div>
 <div>
     <label>
-        <span class="d-block">{{localize "FU.InlineEffectConfigBonusMalus"}}</span>
+        <span>{{localize "FU.InlineEffectConfigBonusMalus"}}</span>
         <input type="number" name="guided.changes.{{@index}}.value"
-               value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}">
+               value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}"
+			   class="resource-current-input">
     </label>
 </div>

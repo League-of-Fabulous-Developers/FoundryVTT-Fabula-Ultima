@@ -1,0 +1,186 @@
+{
+  "folder": "IiIlJG6pPTDD4KFq",
+  "name": "Wardancer [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Dancer"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUHF143",
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "wardancer",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "effects": [
+    {
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": 0,
+        "startRound": 0,
+        "startTurn": 0
+      },
+      "disabled": true,
+      "name": "Wardancer",
+      "_id": "K7muJlKr6uIPLdsE",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.brawling",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.dagger",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.flail",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.thrown",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.spell",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "source": "FUHF143"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "rules": {
+          "elements": {}
+        }
+      },
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!BJrTOCsOHGVQKZbu.K7muJlKr6uIPLdsE"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769014350883,
+    "modifiedTime": 1769014447073,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "BJrTOCsOHGVQKZbu",
+  "sort": 3125,
+  "_key": "!items!BJrTOCsOHGVQKZbu"
+}

@@ -2,12 +2,11 @@
 	<div class="profile desc" style="display: flex; align-items: stretch;">
 		{{!-- <img class="item-profile-img" src="{{ item.img }}" data-edit="img" data-action="editImage" title="{{ item.name }}" /> --}}
 		<img class="item-profile-img"
-			src="{{ item.img }}"
-			data-edit="img"
-			data-action="editImage"
-			data-tooltip="{{ item.name }}"
-			style="flex-shrink: 0;" />
-		
+			 src="{{ item.img }}"
+			 data-edit="img"
+			 data-action="editImage"
+			 data-tooltip="{{ item.name }}" />
+
 		<div class="header-fields">
 			<div class="header-start grid grid-6col">
 				<div class="charname-container flexrow grid-span-4">
@@ -48,7 +47,7 @@
 					<span class="resource-content levelup-container flexcol flex-group-center">
                         <label class="resource-label-m" for="item.type"> <i
 						 class="fas fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
-                        <input type="text" name="item.type" value="{{localize (translate item.type)}}"
+                        <input type="text" name="item.type" value="{{localize (pfuTranslate item.type)}}"
 							   data-dtype="String" class="resource-inputs" disabled
 							   style="border-radius: 0 12px 0 0;" />
                     </span>
@@ -56,8 +55,17 @@
 					{{!-- Source --}}
 					<span class="resource-content levelup-container flexcol flex-group-center"
 						  style="border-top-right-radius: 12px;">
-                        <label class="resource-label-m rollable" id="pdfLink">
-							{{localize 'FU.Source'}} </label>
+						<span>
+							<label class="resource-label-m rollable" data-pdfLink>
+								{{localize 'FU.Source'}}
+							</label>
+							{{#if (and actor item.system.fuid)}}
+								<a data-action="migrateItem" data-uuid="{{item.uuid}}" data-fuid="{{item.system.fuid}}">
+									<i class="fu-icon--xs fas fa-refresh"></i>
+								</a>
+							{{/if}}
+						</span>
+
 						<input type="text" name="system.source" value="{{ system.source }}"
 							   data-dtype="String" style="border-radius: 10px 0 0;" class="resource-inputs" />
 
@@ -66,10 +74,10 @@
 			</div>
 
 			{{!-- Center Header --}}
-			{{#if system.schema.fields.summary}}
+			{{#if system.schema.fields.summary.fields.value}}
 				<div class="item-header header-field header-center grid grid-3col desc">
 					<div class="resource-content summary grid-span-3">
-						<label class="resource-label-sm" for="system.summary.value"> <i
+						<label class="resource-label-sm"> <i
 						 class="fas fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
 						<blockquote>
 							<input type="text" name="system.summary.value" value="{{ system.summary.value }}"
@@ -78,12 +86,19 @@
 						</blockquote>
 					</div>
 				</div>
+			{{else if system.schema.fields.summary}}
+				<div class="item-header header-field header-center grid grid-3col desc">
+					<div class="resource-content summary grid-span-3">
+						<label class="resource-label-sm"> <i
+						 class="fas fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
+						<blockquote>
+							<input type="text" name="system.summary" value="{{ system.summary }}"
+								   class="flex-group-center resource-inputs summary"
+								   data-tooltip="{{ system.summary }}" />
+						</blockquote>
+					</div>
+				</div>
 			{{/if}}
 		</div>
-	</div>
-
-	{{!-- Optional Traits --}}
-	<div class="w-100">
-		{{> 'systems/projectfu/templates/item/partials/item-traits.hbs' }}
 	</div>
 </header>

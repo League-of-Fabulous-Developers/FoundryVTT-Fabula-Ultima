@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "nextTurn",
-      "description": "<p>Choose one option: you gain Resistance to <strong>fire</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>fire</strong>.</p><hr><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp]</p></li><li><p><strong>You Receive:</strong> @TYPE[affinity fire resistance e:sot i:1 t:source]{Phoenix Dance: Resistance}, or @TYPE[damage all fire e:sot i:1 t:source]{Phoenix Dance: Damage}</p></li></ul>"
+      "description": "<p>Choose one option: you gain Resistance to <strong>fire</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>fire</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>You Receive:</strong> @TYPE[affinity fire resistance e:sot i:1 t:source]{Phoenix Dance: Resistance} or @TYPE[damage all fire e:sot i:1 t:source]{Phoenix Dance: Damage}</p>"
     },
     "source": "FUHF145",
     "fuid": "phoenix-dance"
@@ -32,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710176484724,
-    "modifiedTime": 1744507536495,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770279778333,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

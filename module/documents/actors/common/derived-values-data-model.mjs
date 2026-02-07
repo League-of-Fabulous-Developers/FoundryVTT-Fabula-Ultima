@@ -92,6 +92,9 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				if (item?.type === 'shield') {
 					total += getValue(item, isMagic ? 'mdef.value' : 'def.value');
 				}
+				if (item?.type === 'customWeapon' && slot === 'mainHand') {
+					total += getValue(item, isMagic ? 'mdef' : 'def');
+				}
 			});
 		}
 
@@ -109,14 +112,14 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				return Number(total + data[type].bonus);
 			} else {
 				const attrKey = isMagic ? armorData.magicDefense.attribute : armorData.defense.attribute;
-				const attrVal = includeAttr ? attributes[attrKey]?.current ?? 0 : 0;
+				const attrVal = includeAttr ? (attributes[attrKey]?.current ?? 0) : 0;
 				return Number(attrVal + total + data[type].bonus);
 			}
 		} else if (armor) {
 			const armorData = armor.system;
 			total += isMagic ? armorData.mdef.value : armorData.def.value;
 			const attrKey = isMagic ? armorData.attributes.secondary.value : armorData.attributes.primary.value;
-			const attrVal = includeAttr ? attributes[attrKey]?.current ?? 0 : 0;
+			const attrVal = includeAttr ? (attributes[attrKey]?.current ?? 0) : 0;
 			return Number(attrVal + total + data[type].bonus);
 		} else {
 			const fallbackAttr = isMagic ? attributes.ins.current : attributes.dex.current;
@@ -137,7 +140,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 	 * @param {FUActor} actor
 	 */
 	#prepareInitiative(actor) {
-		const initBonus = this.init.bonus;
+		const initData = this.init;
 		const equippedItems = actor.system.equipped;
 
 		let initMod = 0;
@@ -150,15 +153,15 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 
 		if (!actor.system.vehicle?.weaponsActive) {
 			if (equippedItems.mainHand) {
-				const shield = actor.items.get(equippedItems.mainHand);
-				if (shield) {
-					initMod += shield.system.init.value;
+				const mainHandItem = actor.items.get(equippedItems.mainHand);
+				if (mainHandItem && mainHandItem.type === 'shield') {
+					initMod += mainHandItem.system.init.value;
 				}
 			}
 			if (equippedItems.offHand) {
-				const shield = actor.items.get(equippedItems.offHand);
-				if (shield) {
-					initMod += shield.system.init.value;
+				const offHandItem = actor.items.get(equippedItems.offHand);
+				if (offHandItem && offHandItem.type === 'shield') {
+					initMod += offHandItem.system.init.value;
 				}
 			}
 		}
@@ -172,7 +175,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		}
 
 		let initCalculation = function () {
-			return initMod + initBonus;
+			return initMod + initData.bonus;
 		};
 
 		if (actor.type === 'npc') {
@@ -181,7 +184,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				if (actor.system.rank.value === 'companion' || actor.system.rank.value === 'custom') {
 					return 0;
 				}
-				return initMod + initBonus + (actor.system.attributes.dex.base + actor.system.attributes.ins.base) / 2 + eliteOrChampBonus;
+				return initMod + initData.bonus + (actor.system.attributes.dex.base + actor.system.attributes.ins.base) / 2 + eliteOrChampBonus;
 			};
 		}
 

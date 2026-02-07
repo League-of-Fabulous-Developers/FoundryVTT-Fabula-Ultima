@@ -1,16 +1,16 @@
-<div class="toggle-section tags {{#if (getGameSetting 'optionChatMessageHideTags')}}hidden{{/if}}">
+<div class="toggle-section tags {{#if (pfuGetSetting 'optionChatMessageHideTags')}}hidden{{/if}}">
     <div class="fu-tags">
-        <div class="fu-tag">{{localize (concat 'FU.' (capitalize basic.type))}}</div>
+        <div class="fu-tag">{{localize (pfuConcat 'FU.' (pfuCapitalize basic.type))}}</div>
     </div>
 </div>
 {{#if basic.quality}}
-    <div class="toggle-section quality {{#if (getGameSetting 'optionChatMessageHideQuality')}}hidden{{/if}}">
+    <div class="toggle-section quality {{#if (pfuGetSetting 'optionChatMessageHideQuality')}}hidden{{/if}}">
         {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=basic.quality}}
     </div>
 {{/if}}
 
 {{#if (or basic.summary basic.description)}}
-    <div class="toggle-section description {{#if (getGameSetting 'optionChatMessageHideDescription')}}hidden{{/if}}">
+    <div class="toggle-section description {{#if (pfuGetSetting 'optionChatMessageHideDescription')}}hidden{{/if}}">
         {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=basic.summary description=basic.description}}
     </div>
 {{/if}}

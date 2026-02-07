@@ -1,13 +1,12 @@
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { NpcMigrations } from './npc-migrations.mjs';
-import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
-import { AttributesDataModel } from '../common/attributes-data-model.mjs';
-import { BonusesDataModel, MultipliersDataModel } from '../common/bonuses-data-model.mjs';
-import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
-import { EquipDataModel } from '../common/equip-data-model.mjs';
-import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
 import { Role } from '../../../helpers/roles.mjs';
+import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
+import { SETTINGS } from '../../../settings.js';
+import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
+import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
+import { TraitUtils } from '../../../pipelines/traits.mjs';
 
 Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
@@ -34,6 +33,15 @@ Hooks.on('preUpdateActor', async (document, changed) => {
 });
 
 /**
+ * @class
+ * @extends BaseCharacterDataModel
+ * @property {AffinitiesDataModel} affinities
+ * @property {AttributesDataModel} attributes
+ * @property {DerivedValuesDataModel} derived
+ * @property {BonusesDataModel} bonuses Flat amounts
+ * @property {BonusesDataModel} multipliers Multiplies the base amount
+ * @property {OverridesDataModel} overrides Overrides for default behaviour
+ * @property {string} description
  * @property {number} level.value
  * @property {number} resources.hp.max
  * @property {number} resources.hp.value
@@ -47,15 +55,12 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {number} resources.ip.bonus
  * @property {number} resources.fp.value
  * @property {string} resources.pronouns.name
- * @property {AffinitiesDataModel} affinities
- * @property {AttributesDataModel} attributes
  * @property {number} derived.init.value
  * @property {number} derived.init.bonus
  * @property {number} derived.def.value
  * @property {number} derived.def.bonus
  * @property {number} derived.mdef.value
  * @property {number} derived.mdef.bonus
- * @property {BonusesDataModel} bonuses
  * @property {string} traits.value
  * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'} species.value
  * @property {"", "minor", "major", "supreme"} villain.value
@@ -69,13 +74,13 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {boolean} useEquipment.value
  * @property {number} study.value
  * @property {string} associatedTherioforms
- * @property {string} description
  * @property {NpcSkillTracker} spTracker
+ * @property {TraitsDataModel} pressurePoints
  */
-export class NpcDataModel extends foundry.abstract.TypeDataModel {
+export class NpcDataModel extends BaseCharacterDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
-		return {
+		const { SchemaField, NumberField, StringField, EmbeddedDataField, BooleanField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
 				hp: new SchemaField({
@@ -89,13 +94,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 				fp: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				pronouns: new SchemaField({ name: new StringField() }),
 			}),
-			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
-			attributes: new EmbeddedDataField(AttributesDataModel, {}),
-			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
-			equipped: new EmbeddedDataField(EquipDataModel, {}),
-			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
-			multipliers: new EmbeddedDataField(MultipliersDataModel, {}),
-			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: Object.keys(FU.species) }) }),
 			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: Object.keys(FU.villainTypes) }) }),
@@ -115,20 +113,16 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
 			associatedTherioforms: new StringField(),
-			description: new HTMLField(),
-		};
+			pressurePoints: new EmbeddedDataField(TraitsDataModel, {
+				options: TraitUtils.getOptionsFromConfig(FU.weaponCategories),
+			}),
+		});
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
 		NpcMigrations.run(source);
 		return source;
-	}
-
-	/**
-	 * @return FUActor
-	 */
-	get actor() {
-		return this.parent;
 	}
 
 	/**
@@ -136,6 +130,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	prepareBaseData() {
 		this.#prepareReplacedSoldiers();
+		this.#prepareBasicResource();
 		this.derived.prepareData();
 	}
 
@@ -144,10 +139,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	prepareDerivedData() {
 		this.spTracker = new NpcSkillTracker(this);
-	}
-
-	prepareEmbeddedData() {
-		this.#prepareBasicResource();
+		this.actor.equipmentHandler ??= new EquipmentHandler(this.actor);
 	}
 
 	#prepareReplacedSoldiers() {
@@ -178,12 +170,10 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 					const refActor = data.references.actor;
 					const refSkill = data.references.skill ? fromUuidSync(data.references.skill) : null;
 					const skillLevel = refSkill?.system?.level?.value ?? 0;
-					const maxHP = Math.floor(skillLevel * data.attributes.mig.base + (refActor?.system?.level.value ? refActor.system.level.value / 2 : 0) + (data.resources.hp.bonus ?? 0));
-					return maxHP;
+					return Math.floor(skillLevel * data.attributes.mig.base + (refActor?.system?.level.value ? refActor.system.level.value / 2 : 0) + (data.resources.hp.bonus ?? 0));
 				}
 				if (data.rank.value === 'custom') {
-					const maxHP = Math.floor(data.resources.hp.bonus);
-					return maxHP;
+					return Math.floor(data.resources.hp.bonus);
 				}
 				// Default calculation
 				const hpMultiplier = data.rank.replacedSoldiers;
@@ -195,16 +185,36 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			},
 		});
 
+		Object.defineProperty(this.resources.hp, 'crisisScore', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const multiplier = game.settings.get(SYSTEM, SETTINGS.optionCrisisMultiplier) ?? 0.5;
+				return Math.floor(this.max * multiplier);
+			},
+			set(newValue) {
+				delete this.crisisScore;
+				this.crisisScore = newValue;
+			},
+		});
+
+		Object.defineProperty(this.resources.hp, 'inCrisis', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				return this.value <= this.crisisScore;
+			},
+		});
+
 		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
 		Object.defineProperty(this.resources.mp, 'max', {
 			configurable: true,
 			enumerable: true,
 			get() {
-				const mpMultiplier = data.rank.value === 'champion' ? 2 : 1;
 				if (data.rank.value === 'custom') {
-					const maxMP = Math.floor(data.resources.mp.bonus);
-					return maxMP;
+					return Math.floor(data.resources.mp.bonus);
 				}
+				const mpMultiplier = data.rank.value === 'champion' ? 2 : 1;
 				return (data.attributes.wlp.base * 5 + data.level.value + data.resources.mp.bonus) * mpMultiplier;
 			},
 			set(newValue) {

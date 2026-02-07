@@ -1,0 +1,34 @@
+<ol id="{{tableId}}" class="fu-table {{config.tableClass}} {{cssClass}}" data-table-id="{{tableId}}">
+	<li class="fu-table__header">
+		{{#each columns}}
+			{{#unless hideHeader}}
+				<div class="fu-table__header-cell {{#if headerAlignment}} fu-table__header-cell--{{headerAlignment}} {{/if}}" data-column="{{@key}}" style="--fu-table-column-span: {{headerSpan}}">
+					{{{header}}}
+				</div>
+			{{/unless}}
+		{{/each}}
+	</li>
+	{{#each items as |row|}}
+		<li class="fu-table__row-container {{@root.config.rowClass}} {{#if @root.config.draggable}}draggable{{/if}} {{lookup @root.rowCssClasses key}} {{#unless visible}}hidden{{/unless}}"
+			{{@root.config.keyDataAttribute}}="{{ key }}"
+			{{#each additionalAttributes}}{{@key}}="{{this}}"{{/each}}
+			{{#with (lookup @root.rowTooltips key)}}data-tooltip="{{this}}"{{/with}}>
+			<div class="fu-table__row">
+				{{#each ../columns}}
+					<div class="fu-table__cell" data-column="{{@key}}">
+						{{{lookup cells row.key}}}
+					</div>
+				{{/each}}
+			</div>
+			{{#with (lookup @root.rowCaptions key)}}
+				<div class="fu-table__row-caption">
+					{{{this}}}
+				</div>
+			{{/with}}
+
+			<div class="fu-table__row-expand {{#if (lookup @root.expandedItems key)}}fu-table__row-expand--visible{{/if}}">
+				<div class="fu-table__row-expand-content">{{{lookup @root.descriptions key}}}</div>
+			</div>
+		</li>
+	{{/each}}
+</ol>

@@ -1,0 +1,21 @@
+{{#if damage}}
+	<header class='detail-desc flexrow flex-group-center desc'>
+		<label class="total damageType {{damage.type}} flexrow"
+			   data-tooltip="{{localize 'FU.Damage'}}">
+			<i class="fu-icon--s fu-icon--bg {{lookup translation.damageIcon damage.type}}" data-tooltip="{{localize (lookup translation.damageTypes damage.type)}}"></i>
+			<div class="startcap"></div>
+			<div style="flex: 0 1 auto;">{{damage.total}}</div>
+			<div class="endcap"></div>
+			<div {{#if damage.modifiers}}data-tooltip="{{#each damage.modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
+				{{pfuBadge 'mod' compact=true }}
+			</div>
+			<section class="targets">
+				<a data-action="retarget" data-tooltip="{{localize 'FU.ChatContextRetarget'}}">
+				<span class="fu-tag button flex-group-center" style="font-size:1rem">
+					<i class="icon fa fa-refresh"></i>
+				</span>
+				</a>
+			</section>
+		</label>
+	</header>
+{{/if}}

@@ -1,5 +1,3 @@
-import { SYSTEM } from './config.mjs';
-
 /**
  * @typedef SystemControlTool
  * @property {string} name
@@ -9,6 +7,7 @@ import { SYSTEM } from './config.mjs';
  * @property {boolean} [active]
  * @property {(event: Event, active: boolean) => void} [onClick]
  */
+import { systemId } from './system-utils.mjs';
 
 // Register the hook into Foundry
 let initialized;
@@ -59,5 +58,5 @@ export const SystemControls = Object.freeze({
 			});
 		}
 	},
-	HOOK_GET_SYSTEM_TOOLS: `${SYSTEM}.getSystemControlTools`,
+	HOOK_GET_SYSTEM_TOOLS: `${systemId}.getSystemControlTools`,
 });

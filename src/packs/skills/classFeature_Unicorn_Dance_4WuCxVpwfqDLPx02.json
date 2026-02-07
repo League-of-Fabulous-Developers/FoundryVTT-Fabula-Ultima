@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose an ally that is able to see you and has a Bond towards you: you and that ally both recover an amount of Hit Points equal to your current <strong>Dexterity</strong> die size.</p><p>The restored amount increases by 5 Hit Points if you are <strong>level 20 or higher</strong>, or by 10 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp]</p></li><li><p><strong>Targets Recover: </strong>@GAIN[$dex+&step(0,5,10) hp]{Dexterity die size HP}</p></li></ul>",
+      "description": "<p>Choose an ally that is able to see you and has a Bond towards you: you and that ally both recover an amount of Hit Points equal to your current <strong>Dexterity</strong> die size.</p><p>The restored amount increases by 5 Hit Points if you are <strong>level 20 or higher</strong>, or by 10 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>Targets Recover: </strong>@GAIN[$dex+&amp;step(0,5,10) hp]{Dexterity die size HP}</p>",
       "duration": "instant"
     },
     "source": "FUHF145",
@@ -32,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710176668051,
-    "modifiedTime": 1745173515084,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770279802613,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

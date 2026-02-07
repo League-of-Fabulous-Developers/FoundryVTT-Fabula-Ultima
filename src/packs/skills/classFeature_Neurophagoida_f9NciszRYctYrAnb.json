@@ -17,7 +17,82 @@
     "source": "FUTF156",
     "fuid": "neurophagoida"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Neurophagoida",
+      "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "PRMg2tLnpNNnqSf2": {
+              "type": "ruleElement",
+              "_id": "PRMg2tLnpNNnqSf2",
+              "trigger": {
+                "_id": "IKV9rFgOrQJWuJ5Z",
+                "type": "notificationRuleTrigger",
+                "eventRelation": "source",
+                "eventId": "biophagy"
+              },
+              "actions": {
+                "327gM1tCYeO4Q2zN": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "327gM1tCYeO4Q2zN",
+                  "resource": "mp",
+                  "amount": "4+&sl('theriomorphosis')"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": true,
+      "_id": "Yrv4pAdAggCnqFLk",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767291162773,
+        "modifiedTime": 1767291781085,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!f9NciszRYctYrAnb.Yrv4pAdAggCnqFLk"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,

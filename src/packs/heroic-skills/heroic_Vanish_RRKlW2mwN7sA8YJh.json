@@ -9,7 +9,7 @@
     "summary": {
       "value": "Disappear after an attack."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Rogue</strong> Class.</p></blockquote><p><span>When you hit one or more creatures with an attack, you may spend 1 Fabula Point. If you do, each of those creatures will be unable to perform any action that requires them to be able to see you until the start of your next turn.</span></p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[1 fp]</p></li><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.4suciB7e8kbt17Zh]{Effect: Vanish}</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Rogue</strong> Class.</p></blockquote><p><span>When you hit one or more creatures with an attack or offensive spell ( @ICON[offensive] ), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</span></p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[1 fp]</p></li><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.4suciB7e8kbt17Zh]{Effect: Vanish}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR241"
-    },
+    "source": "FUCR241",
     "hasResource": {
       "value": false
     },
@@ -104,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706587099416,
-    "modifiedTime": 1744073311850,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768876164500,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Volcano</h4><p>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers @DMG[50 fire] damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers @DMG[30 fire] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>.</p><hr /><ul><li><p><strong>Target Loses:</strong> @DMG[50+&amp;step(0,5,10) fire]{50|55|60 fire (single)}, or @DMG[30+&amp;step(0,5,10) fire]{30|35|40 fire (multi)}</p></li></ul>",
+    "description": "<h4>Required Heroic Skill: Volcano</h4><p><span>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: you deal 50 <strong>fire</strong> damage to one creature you can see; <strong>or</strong> you deal 30 <strong>fire</strong> damage to every enemy you can see. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</span></p><p><span>Damage dealt by this spell ignores Resistances and Immunities.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -80,9 +80,7 @@
     "isOffensive": {
       "value": false
     },
-    "source": {
-      "value": "FUCR241"
-    },
+    "source": "FUCR241",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -118,9 +116,132 @@
       "value": 1
     },
     "fuid": "volcano-single-target",
-    "traits": []
+    "traits": [
+      "ignore-resistances",
+      "ignore-immunities"
+    ],
+    "targeting": {
+      "rule": "special"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Volcano",
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/volcano.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "LLjAUjm1atiHjNOr": {
+              "type": "ruleElement",
+              "_id": "LLjAUjm1atiHjNOr",
+              "trigger": {
+                "_id": "3GAbcCPKkSygEnQS",
+                "type": "initializeCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": true
+              },
+              "predicates": {
+                "0PDEUk8JOzQJoTvM": {
+                  "type": "targetingRulePredicate",
+                  "_id": "0PDEUk8JOzQJoTvM"
+                }
+              },
+              "actions": {
+                "EqjURJzSYBhazBvz": {
+                  "type": "applyDamageRuleAction",
+                  "_id": "EqjURJzSYBhazBvz",
+                  "amount": "&step(50,55,60)",
+                  "damageType": "fire"
+                }
+              }
+            },
+            "Mw02Qgo8P7jLiq8I": {
+              "type": "ruleElement",
+              "_id": "Mw02Qgo8P7jLiq8I",
+              "trigger": {
+                "_id": "hdDhk9Bfw8IxfkT6",
+                "type": "initializeCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": true
+              },
+              "predicates": {
+                "eGmu8Anok0dHaAPV": {
+                  "type": "targetingRulePredicate",
+                  "_id": "eGmu8Anok0dHaAPV",
+                  "rule": "multiple"
+                }
+              },
+              "actions": {
+                "93jZNu0rJJ0cTtcl": {
+                  "type": "applyDamageRuleAction",
+                  "_id": "93jZNu0rJJ0cTtcl",
+                  "damageType": "fire",
+                  "amount": "&step(30,35,40)"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "zV3cnqvXYnDpSY9s",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766869743926,
+        "modifiedTime": 1766871394072,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!BfZqKbr38FBxLtmH.zV3cnqvXYnDpSY9s"
+    }
+  ],
   "sort": 0,
   "ownership": {
     "default": 2,
@@ -128,15 +249,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710548265766,
-    "modifiedTime": 1746641043637,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1768876357502,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

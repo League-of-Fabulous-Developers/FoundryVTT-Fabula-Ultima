@@ -3,7 +3,7 @@
   "name": "Lux",
   "type": "spell",
   "_id": "c73bNM930l9ZUJZh",
-  "img": "icons/magic/light/projectile-stars-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/lux.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You focus your inner energy into a barrage of blinding soul rays. Each target hit by this spell suffers <strong>【HR + 15】</strong> <strong>light</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[dazed].</p>",
+    "description": "<p>You focus your inner energy into a barrage of blinding soul rays. Each target hit by this spell suffers <strong>【HR + 15】</strong> <strong>light</strong>  damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[dazed].</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR209"
-    },
+    "source": "FUCR209",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -128,15 +126,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706572797059,
-    "modifiedTime": 1744722361504,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768694747621,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

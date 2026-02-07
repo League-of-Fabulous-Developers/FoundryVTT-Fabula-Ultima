@@ -1,7 +1,6 @@
 import { Effects, isActiveEffectForStatusEffectId, onManageActiveEffect } from '../pipelines/effects.mjs';
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
-import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Checks } from '../checks/checks.mjs';
@@ -11,8 +10,7 @@ import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
-import { systemTemplatePath } from '../helpers/system-utils.mjs';
-import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { systemId, systemTemplatePath } from '../helpers/system-utils.mjs';
 import { BehaviorRoll } from '../documents/items/behavior/behavior-roll.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
@@ -20,8 +18,32 @@ import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
+import { ClassesTableRenderer } from '../helpers/tables/classes-table-renderer.mjs';
+import { SkillsTableRenderer } from '../helpers/tables/skills-table-renderer.mjs';
+import { HeroicsTableRenderer } from '../helpers/tables/heroics-table-renderer.mjs';
+import { FeatureTables } from '../helpers/tables/feature-tables-renderer.mjs';
+import { AbilitiesTableRenderer } from '../helpers/tables/abilities-table-renderer.mjs';
+import { ProjectsTableRenderer } from '../helpers/tables/projects-table-renderer.mjs';
+import { RulesTableRenderer } from '../helpers/tables/rules-table-renderer.mjs';
+import { RitualsTableRenderer } from '../helpers/tables/rituals-table-renderer.mjs';
+import { SpellsTableRenderer } from '../helpers/tables/spells-table-renderer.mjs';
+import { WeaponsTableRenderer } from '../helpers/tables/weapons-table-renderer.mjs';
+import { ShieldsTableRenderer } from '../helpers/tables/shields-table-renderer.mjs';
+import { ArmorsTableRenderer } from '../helpers/tables/armors-table-renderer.mjs';
+import { AccessoriesTableRenderer } from '../helpers/tables/accessories-table-renderer.mjs';
+import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
+import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-renderer.mjs';
+import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
+import { BasicAttacksTableRenderer } from '../helpers/tables/basic-attacks-table-renderer.mjs';
+import { FavoritesTableRenderer } from '../helpers/tables/favorites-table-renderer.mjs';
+import { BehaviorTableRenderer } from '../helpers/tables/behavior-table-renderer.mjs';
+import { Flags } from '../helpers/flags.mjs';
+import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
+import { SheetUtils } from './sheet-utils.mjs';
 
-const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+const VISIBLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 const affinityKey = 'affinity';
 
@@ -62,6 +84,16 @@ export class FUStandardActorSheet extends FUActorSheet {
 			height: 1000,
 		},
 		actions: {
+			// Common
+			...SheetUtils.actions,
+			// General
+			createItem: FUStandardActorSheet.#onCreate,
+			createFavorite: FUStandardActorSheet.#onCreateFavorite,
+			createClock: FUStandardActorSheet.#onCreateClock,
+			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
+			createClassFeature: FUStandardActorSheet.#onCreateClassFeature,
+			editItem: FUStandardActorSheet.#onEdit,
+			toggleFavorite: FUStandardActorSheet.#onToggleFavorite,
 			roll: FUStandardActorSheet.Roll,
 			spendMetaCurrency: FUStandardActorSheet.SpendMetaCurrency,
 			studyAction: FUStandardActorSheet.StudyAction,
@@ -73,18 +105,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 			crisisHP: FUStandardActorSheet.CrisisHP,
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
-			updateProgress: { handler: FUStandardActorSheet.UpdateProgress, buttons: [0, 2] },
-			rest: FUStandardActorSheet.handleRestClick,
-			sortFavorites: FUStandardActorSheet.sortFavorites,
+			rest: { buttons: [0, 2], handler: FUStandardActorSheet.handleRestClick },
 			levelUp: FUStandardActorSheet.levelUp,
 
-			// Buttons
-			modifyClassLevel: FUStandardActorSheet.modifyClassLevel,
-			modifyResource: { handler: FUStandardActorSheet.modifyResource, buttons: [0, 2] },
-			equipItem: { handler: FUStandardActorSheet.equipItem, buttons: [0, 2] },
-
 			// Features
-			toggleActiveArcanum: FUStandardActorSheet.updateArcanistArcanum,
 			toggleActiveGarden: FUStandardActorSheet.toggleActiveGarden,
 			togglePlantedMagiseed: FUStandardActorSheet.togglePlantedMagiseed,
 			updatePilotVehicle: FUStandardActorSheet.updatePilotVehicle,
@@ -104,6 +128,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	/** @type {Record<string, HandlebarsTemplatePart>} */
 	static PARTS = {
 		header: { template: systemTemplatePath('actor/character/parts/actor-header') },
+		limited: { template: systemTemplatePath('actor/character/parts/actor-limited') },
 		tabs: { template: systemTemplatePath(`actor/character/parts/actor-tabs`) },
 		stats: { template: systemTemplatePath(`actor/character/parts/actor-section-stats`) },
 		features: { template: systemTemplatePath(`actor/character/parts/actor-section-features`) },
@@ -147,21 +172,58 @@ export class FUStandardActorSheet extends FUActorSheet {
 		},
 	};
 
-	// Initialize sortOrder
-	sortOrder = 1;
-	#equipmentHandler;
+	// tables required for both player characters and npcs
+	#favoritesTable = new FavoritesTableRenderer();
+	#skillsTable = new SkillsTableRenderer();
+	#abilitiesTable = new AbilitiesTableRenderer();
+	#spellsTable = new SpellsTableRenderer();
+	#rulesTable = new RulesTableRenderer();
+	#treasuresTable = new TreasuresTableRenderer();
+	#weaponsTable = new WeaponsTableRenderer();
+	#shieldsTable = new ShieldsTableRenderer();
+	#armorsTable = new ArmorsTableRenderer();
+	#accessoriesTable = new AccessoriesTableRenderer();
+	#temporaryEffectsTable = new ActiveEffectsTableRenderer('temporary');
+	#passiveEffectsTable = new ActiveEffectsTableRenderer('passive');
+	#inactiveEffectsTable = new ActiveEffectsTableRenderer('inactive');
 
-	constructor(options) {
-		super(options);
-		this.#equipmentHandler = new EquipmentHandler(this.actor);
-	}
+	// tables required for player characters
+	#classesTable = new ClassesTableRenderer();
+	#heroicsTable = new HeroicsTableRenderer();
+	#classFeatureTables = new FeatureTables('classFeature');
+	#optionalFeatureTables = new FeatureTables('optionalFeature');
+	#projectsTable = new ProjectsTableRenderer();
+	#ritualsTable = new RitualsTableRenderer();
+	#consumablesTable = new ConsumablesTableRenderer();
+	#technospheresTable = new TechnospheresTableRenderer();
+	#characterOtherItemsTable = new OtherItemsTableRenderer(
+		'class',
+		'skill',
+		'heroic',
+		'classFeature',
+		'optionalFeature',
+		'miscAbility',
+		'project',
+		'rule',
+		'ritual',
+		'spell',
+		'weapon',
+		'customWeapon',
+		'shield',
+		'armor',
+		'accessory',
+		'consumable',
+		'treasure',
+		'hoplosphere',
+		'mnemosphere',
+		'mnemosphereReceptacle',
+	);
 
-	/**
-	 * @override
-	 */
-	_onClickAction(event, target) {
-		console.warn('Unhandled action:', target.dataset.action, event, target);
-	}
+	// tables required for npcs
+	#basicAttacksTable = new BasicAttacksTableRenderer();
+	#npcOtherItemsTable = new OtherItemsTableRenderer('basic', 'skill', 'spell', 'miscAbility', 'rule', 'treasure', 'behavior');
+	#activeBehaviorsTable = new BehaviorTableRenderer(true);
+	#inactiveBehaviorsTable = new BehaviorTableRenderer(false);
 
 	/**
 	 * @returns {Boolean}
@@ -226,6 +288,21 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 */
 	_configureRenderParts(options) {
 		const parts = super._configureRenderParts(options);
+
+		// If current user has limited permission, only show the limited header.
+		if (this.isLimited) {
+			for (const partId in parts) {
+				delete parts[partId];
+			}
+			parts.limited = {
+				...FUStandardActorSheet.PARTS.limited,
+				scrollable: [''],
+			};
+			return parts;
+		}
+
+		delete parts['limited'];
+
 		switch (this.actor.type) {
 			case 'character':
 				delete parts.behavior;
@@ -274,7 +351,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 					context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
 					// Setup status effect toggle data
 					context.statusEffectToggles = [];
-					for (const id of TOGGLEABLE_STATUS_EFFECT_IDS) {
+					for (const id of VISIBLE_STATUS_EFFECT_IDS) {
 						const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
 						if (statusEffect) {
 							const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
@@ -290,11 +367,57 @@ export class FUStandardActorSheet extends FUActorSheet {
 							});
 						}
 					}
+
+					if (this.isNPC) {
+						ActorSheetUtils.prepareNpcCompanionData(context);
+						if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
+							context.pressurePoints = true;
+							context.weaponCategories = FU.weaponCategories;
+						}
+					}
+				}
+				break;
+
+			case 'limited': {
+				context.isLimited = this.isLimited;
+				context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
+				// Setup status effect toggle data
+				context.statusEffectToggles = [];
+				for (const id of VISIBLE_STATUS_EFFECT_IDS) {
+					const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
+					if (statusEffect) {
+						const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
+						const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
+						const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
+						const rule = game.i18n.localize(ruleKey);
+						const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
+						context.statusEffectToggles.push({
+							...statusEffect,
+							active: existing,
+							immune: immune,
+							tooltip: tooltip,
+						});
+					}
 				}
 				if (this.isNPC) {
 					ActorSheetUtils.prepareNpcCompanionData(context);
+					context.basicAttacksTable = await this.#basicAttacksTable.renderTable(this.document);
+					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
+					context.spellsTable = await this.#spellsTable.renderTable(this.document);
+					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
+						context.pressurePoints = true;
+						context.weaponCategories = FU.weaponCategories;
+					}
 				}
+				context.enrichedHtml = {
+					description: await TextEditor.enrichHTML(context.system.description ?? '', {
+						secrets: this.actor.isOwner,
+						rollData: context.actor.getRollData(),
+						relativeTo: context.actor,
+					}),
+				};
 				break;
+			}
 
 			case 'stats':
 				{
@@ -314,7 +437,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 							}),
 						};
 					}
-					await ActorSheetUtils.prepareFeatures(context);
+					context.favoritesTable = await this.#favoritesTable.renderTable(this.document);
 				}
 				break;
 
@@ -323,61 +446,75 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'features':
-				await ActorSheetUtils.prepareProjects(context);
-				await ActorSheetUtils.prepareFeatures(context);
-				await ActorSheetUtils.prepareAbilities(context);
+				context.classFeatureTables = await this.#classFeatureTables.renderTable(this.document);
+				context.optionalFeatureTables = await this.#optionalFeatureTables.renderTable(this.document);
+				context.abilitiesTable = await this.#abilitiesTable.renderTable(this.document, { hideIfEmpty: true });
+				context.projectsTable = await this.#projectsTable.renderTable(this.document);
+				context.rulesTable = await this.#rulesTable.renderTable(this.document, { hideIfEmpty: true });
 				break;
 
 			case 'classes':
-				await ActorSheetUtils.prepareClasses(context);
+				context.classesTable = await this.#classesTable.renderTable(this.document);
+				context.skillsTable = await this.#skillsTable.renderTable(this.document);
+				context.heroicsTable = await this.#heroicsTable.renderTable(this.document);
 				break;
 
 			case 'spells':
-				await ActorSheetUtils.prepareSpells(context);
+				context.ritualsTable = await this.#ritualsTable.renderTable(this.document);
+				context.spellsTable = await this.#spellsTable.renderTable(this.document);
 				break;
 
 			case 'combat':
-				await ActorSheetUtils.prepareAbilities(context);
-				await ActorSheetUtils.prepareNpcCombat(context);
-				await ActorSheetUtils.prepareSpells(context);
 				if (this.actor.system.useEquipment.value) {
-					await ActorSheetUtils.prepareInventory(context);
+					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
+					context.shieldsTable = await this.#shieldsTable.renderTable(this.document);
+					context.armorsTable = await this.#armorsTable.renderTable(this.document);
+					context.accessoriesTable = await this.#accessoriesTable.renderTable(this.document);
 				}
+				context.basicAttacksTable = await this.#basicAttacksTable.renderTable(this.document);
+				context.skillsTable = await this.#skillsTable.renderTable(this.document, { hideIfEmpty: true });
+				context.spellsTable = await this.#spellsTable.renderTable(this.document);
+				context.abilitiesTable = await this.#abilitiesTable.renderTable(this.document);
+				context.rulesTable = await this.#rulesTable.renderTable(this.document);
+				context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
+				context.otherItemsTable = await this.#npcOtherItemsTable.renderTable(this.document, { exclude: this.actor.system.useEquipment.value ? ['weapon', 'shield', 'armor', 'accessory'] : [] });
 				break;
 
 			case 'behavior':
 				context.behaviors = this.actor.getItemsByType('behavior');
+				context.activeBehaviorsTable = await this.#activeBehaviorsTable.renderTable(this.document);
+				context.inactiveBehaviorsTable = await this.#inactiveBehaviorsTable.renderTable(this.document);
 				break;
 
 			case 'items':
 				{
+					const technosphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
 					// Set up item data
-					await ActorSheetUtils.prepareInventory(context);
-					await ActorSheetUtils.prepareItems(context);
-					ActorSheetUtils.prepareSorting(context);
+					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
+					context.shieldsTable = await this.#shieldsTable.renderTable(this.document, { hideIfEmpty: technosphereMode });
+					context.armorsTable = await this.#armorsTable.renderTable(this.document);
+					context.accessoriesTable = await this.#accessoriesTable.renderTable(this.document);
+					context.technospheresTable = await this.#technospheresTable.renderTable(this.document, { hideIfEmpty: !technosphereMode });
+					context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
+					context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
+					context.otherItemsTable = await this.#characterOtherItemsTable.renderTable(this.document);
 				}
 				break;
 
 			case 'effects':
-				// Prepare active effects
-				context.effects = this.actor.effectCategories;
-				// Combine all effects into a single array
-				context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
-				// Enrich each effect's description
-				for (const effect of context.allEffects) {
-					effect.enrichedDescription = effect.description
-						? await TextEditor.enrichHTML(effect.description, {
-								secrets: this.actor.isOwner,
-								rollData: context.actor.getRollData(),
-								relativeTo: context.actor,
-							})
-						: '';
-				}
+				context.temporaryEffectsTable = await this.#temporaryEffectsTable.renderTable(this.document);
+				context.passiveEffectsTable = await this.#passiveEffectsTable.renderTable(this.document);
+				context.inactiveEffectsTable = await this.#inactiveEffectsTable.renderTable(this.document);
 				break;
 
 			case 'settings':
 				if (this.isNPC) {
 					ActorSheetUtils.prepareNpcCompanionData(context);
+					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
+						context.pressurePoints = true;
+						context.weaponCategories = FU.weaponCategories;
+					}
+					context.pressurePoints = game.settings.get(systemId, SETTINGS.pressureSystem);
 				}
 				break;
 			case 'notes': {
@@ -394,43 +531,16 @@ export class FUStandardActorSheet extends FUActorSheet {
 		return context;
 	}
 
-	/**
-	 * @override
-	 * @param partId
-	 * @param element
-	 * @param options
-	 * @private
-	 */
-	_attachPartListeners(partId, element, options) {
-		super._attachPartListeners(partId, element, options);
-		switch (partId) {
-			case 'classes': {
-				element.addEventListener('click', (ev) => {
-					const target = ev.target;
-					if (target.matches('.skillLevel input')) {
-						this._onSkillLevelUpdate(target);
-					}
-				});
-				element.addEventListener('contextmenu', (ev) => {
-					if (ev.target.closest('.skillLevel')) {
-						ev.preventDefault();
-						this._onSkillLevelReset(ev.target);
-					}
-				});
-				break;
-			}
-		}
-	}
-
 	/** @override */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.isNPC = this.isNPC;
 		context.isCharacter = this.isCharacter;
 		context.FU = FU;
+
 		// Model agnostic
 		await ActorSheetUtils.prepareData(context, this);
-		await ActorSheetUtils.enrichItems(context);
+
 		// For characters/npcs
 		ActorSheetUtils.prepareCharacterData(context);
 
@@ -450,92 +560,68 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
-	/**
-	 * @override
-	 * @private
-	 */
-	async _updateObject(event, formData) {
-		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
-		// So correct an update in that form and create an updated bond array to properly represent the changes
-		const bonds = formData.system?.resources?.bonds;
-		if (bonds && !Array.isArray(bonds)) {
-			formData.system.bonds = Array.from(Object.values(bonds));
-		}
-		super._updateObject(event, formData);
+
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		this.#favoritesTable.activateListeners(this);
+		this.#classesTable.activateListeners(this);
+		this.#skillsTable.activateListeners(this);
+		this.#heroicsTable.activateListeners(this);
+		this.#classFeatureTables.activateListeners(this);
+		this.#optionalFeatureTables.activateListeners(this);
+		this.#abilitiesTable.activateListeners(this);
+		this.#projectsTable.activateListeners(this);
+		this.#rulesTable.activateListeners(this);
+		this.#ritualsTable.activateListeners(this);
+		this.#spellsTable.activateListeners(this);
+		this.#weaponsTable.activateListeners(this);
+		this.#shieldsTable.activateListeners(this);
+		this.#armorsTable.activateListeners(this);
+		this.#accessoriesTable.activateListeners(this);
+		this.#consumablesTable.activateListeners(this);
+		this.#treasuresTable.activateListeners(this);
+		this.#characterOtherItemsTable.activateListeners(this);
+		this.#technospheresTable.activateListeners(this);
+		this.#basicAttacksTable.activateListeners(this);
+		this.#npcOtherItemsTable.activateListeners(this);
+		this.#activeBehaviorsTable.activateListeners(this);
+		this.#inactiveBehaviorsTable.activateListeners(this);
+		this.#temporaryEffectsTable.activateListeners(this);
+		this.#passiveEffectsTable.activateListeners(this);
+		this.#inactiveEffectsTable.activateListeners(this);
 	}
 
-	async _onDrop(ev) {
-		ev.preventDefault();
-
-		// Retrieve drag data using TextEditor
-		const data = TextEditor.getDragEventData(ev);
-		if (!data || data.type !== 'Item') {
-			return await super._onDrop(ev);
-		}
-
-		// Check if the item is embedded within an actor (reordering within the sheet) and uses default behavior
-		if (data.uuid.startsWith('Actor')) {
-			const [, actorId] = data.uuid.split('.');
-			if (actorId === this.actor.id) {
-				return await super._onDrop(ev);
-			}
-		}
-
-		// Proceed if the item is being dragged from the compendium/sidebar or other actors
-		const itemData = await this._getItemDataFromDropData(data);
-
-		if (typeof itemData.system.onActorDrop === 'function') {
-			if (itemData.system.onActorDrop(this.actor) === false) {
+	async _onDropItem(event, item) {
+		if (item.system.onActorDrop instanceof Function) {
+			if (item.system.onActorDrop(this.actor) === false) {
 				return;
 			}
 		}
 
-		const subtype = itemData.system.subtype?.value;
+		const subtype = item.system.subtype?.value;
 		// Determine the configuration based on item type
-		const config = ActorSheetUtils.findItemConfig(itemData.type, subtype);
+		const config = ActorSheetUtils.findItemConfig(item.type, subtype);
 		if (config) {
 			// Check if there is an active ProseMirror editor
 			const activeEditor = document.querySelector('.editor-content.ProseMirror');
-			if (itemData.type === 'effect') {
+			if (item.type === 'effect') {
 				if (activeEditor) {
 					// Handle effect drop into ProseMirror editor
-					await this._handleEditorEffectDrop(itemData, ev);
+					return await this._handleEditorEffectDrop(item, event);
 				} else {
 					// Handle effect drop into actor sheet
-					await this._importEffectData(itemData);
+					return await this._importEffectData(item);
 				}
 			} else {
 				// Handle other item drops
-				await this._processItemDrop(itemData, config);
-			}
-		} else {
-			// Default behavior for unknown item types
-			try {
-				await super._onDrop(ev);
-			} catch (ex) {
-				console.warn(`No drop implementation for type ${subtype}`);
+				const existingItem = this.actor.items.find((i) => i.name === item.name && i.type === item.type);
+				if (existingItem) {
+					return await config.update(item, existingItem);
+				}
 			}
 		}
-	}
 
-	// Helper function to get item data from drop data
-	async _getItemDataFromDropData(data) {
-		try {
-			return await Item.implementation.fromDropData(data);
-		} catch (error) {
-			console.error('Failed to get item data from drop data:', error);
-			return null;
-		}
-	}
-
-	// Process item drop based on the configuration
-	async _processItemDrop(itemData, config) {
-		const existingItem = this.actor.items.find((i) => i.name === itemData.name && i.type === itemData.type);
-		if (existingItem) {
-			await config.update(itemData, existingItem);
-		} else {
-			await super._onDrop(event);
-		}
+		return super._onDropItem(event, item);
 	}
 
 	// Import effect data to the actor
@@ -572,6 +658,38 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	/* -------------------------------------------- */
 	/**
+	 * @override
+	 * @param partId
+	 * @param element
+	 * @param options
+	 * @private
+	 */
+	_attachPartListeners(partId, element, options) {
+		super._attachPartListeners(partId, element, options);
+		switch (partId) {
+			case 'limited':
+			case 'header': {
+				const img = element.querySelector('.profile-img');
+				if (img) {
+					img.addEventListener('contextmenu', (event) => {
+						event.preventDefault();
+						const src = event.currentTarget.getAttribute('src');
+						if (src) {
+							// eslint-disable-next-line no-undef
+							const popout = new ImagePopout(src, {
+								title: this.actor.name,
+								uuid: this.actor.uuid,
+							});
+							popout.render(true);
+						}
+					});
+				}
+				break;
+			}
+		}
+	}
+
+	/**
 	 * @inheritDoc
 	 * @override
 	 */
@@ -585,28 +703,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (!this.isEditable) {
 			return;
 		}
-
-		ActorSheetUtils.activateInventoryListeners(this.element, this);
-
-		// Editable item actions
-		html.addEventListener('click', (ev) => {
-			if (ev.target.closest('.progress input')) {
-				const progress = ev.target.closest('.progress');
-				const dataType = progress?.dataset.type;
-				const dataPath = progress?.dataset.dataPath;
-				const input = ev.target;
-				this._onProgressUpdate(input, dataType, dataPath);
-			}
-		});
-		html.addEventListener('contextmenu', (ev) => {
-			const target = ev.target;
-			if (target.closest('.progress input')) {
-				const progress = target.closest('.progress');
-				const dataType = progress?.dataset.type;
-				const dataPath = progress?.dataset.dataPath;
-				this._onProgressReset(ev.target, dataType, dataPath);
-			}
-		});
 
 		this.loadSortingMethod();
 
@@ -661,18 +757,33 @@ export class FUStandardActorSheet extends FUActorSheet {
 		dropZone.removeClass('highlight-drop-zone');
 	}
 
-	/* -------------------------------------------- */
+	async _onDragStart(ev) {
+		const target = ev.currentTarget;
 
-	// Method to change the sort type
-	changeSortType() {
-		if (this.sortMethod === 'name') {
-			this.sortMethod = 'type';
-		} else {
-			this.sortMethod = 'name';
+		// Owned Items
+		if (target.dataset.itemId) {
+			let item = this.actor.items.get(target.dataset.itemId);
+			if (!item) {
+				item = fromUuidSync(target.dataset.uuid);
+			}
+			ev.dataTransfer.setData('text/plain', JSON.stringify(item.toDragData()));
+			return;
 		}
 
-		this.render();
+		// Active Effect
+		if (target.dataset.effectId) {
+			let effect = this.actor.effects.get(target.dataset.effectId);
+			if (!effect) {
+				effect = fromUuidSync(target.dataset.uuid);
+			}
+			ev.dataTransfer.setData('text/plain', JSON.stringify(effect.toDragData()));
+			return;
+		}
+
+		return super._onDragStart(ev);
 	}
+
+	/* -------------------------------------------- */
 
 	/**
 	 * @this FUStandardActorSheet
@@ -686,86 +797,22 @@ export class FUStandardActorSheet extends FUActorSheet {
 		await this.actor.rest(isRightClick);
 	}
 
-	/**
-	 * @description Sets the skill level value to the segment clicked.
-	 * @param {HTMLInputElement} input - The input change event.
-	 */
-	_onSkillLevelUpdate(input) {
-		const segment = input.value;
-
-		const li = input.closest('[data-item-id]');
-
-		if (li) {
-			const itemId = li.dataset.itemId;
-			const item = this.actor.items.get(itemId);
-
-			if (item) {
-				item.update({ 'system.level.value': segment });
-			} else {
-				console.error(`Item with ID ${itemId} not found.`);
-			}
-		} else {
-			console.error('Parent item not found.');
-		}
-	}
-
-	/**
-	 * @description Resets the skill level value to 0 on right-click.
-	 * @param {HTMLElement} input - The context menu event.
-	 */
-	_onSkillLevelReset(input) {
-		const li = input.closest('[data-item-id]');
-
-		if (li) {
-			const itemId = li.dataset.itemId;
-			const item = this.actor.items.get(itemId);
-
-			if (item) {
-				item.update({ 'system.level.value': 0 });
-			} else {
-				console.error(`Item with ID ${itemId} not found.`);
-			}
-		} else {
-			console.error('Parent item not found.');
-		}
-	}
-
-	async _updateLevel(item, increment) {
-		const newLevel = item.system.level.value + increment;
-		await item.update({ 'system.level.value': newLevel });
-	}
-
-	/**
-	 * Resets the progress clock.
-	 * @param {HTMLInputElement} input - The input change event.
-	 * @param {'feature'} [dataType] is the item a feature
-	 * @param {string} [dataPath] path to clock data
-	 * @private
-	 */
-	_onProgressReset(input, dataType, dataPath) {
-		const li = input.closest('[data-item-id]');
-
-		if (li) {
-			// If the clock is from an item
-			const itemId = li.dataset.itemId;
-			const item = this.actor.items.get(itemId);
-
-			if (dataPath) {
-				item.update({ [dataPath + '.current']: 0 });
-			} else if (dataType === 'feature') {
-				item.update({ 'system.data.progress.current': 0 });
-			} else {
-				item.update({ 'system.progress.current': 0 });
-			}
-		} else {
-			// If not from an item
-			this.actor.update({ 'system.progress.current': 0 });
-		}
-	}
-
 	/////////////////////
 	// ACTION HANDLERS //
 	/////////////////////
+
+	static #onEdit(event, target) {
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item = this.actor.items.get(itemId);
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+
+		if (item) {
+			item.sheet.render(true);
+		}
+	}
 
 	/**
 	 * @this FUStandardActorSheet
@@ -781,40 +828,46 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
 		// Handle item rolls.
-		if (dataset.rollType) {
-			if (dataset.rollType === 'item') {
-				const itemId = target.closest('[data-item-id]').dataset.itemId;
-				const item = this.actor.items.get(itemId);
-				if (item) {
-					if (modifiers.ctrl) {
-						return new ItemCustomizer(this.actor, item).render(true);
-					} else {
-						if (settingPriority && this.actor?.type === 'npc') {
-							BehaviorRoll.targetPriority(this.actor);
-						}
-						return item.roll(modifiers);
+		if (dataset.rollType === 'item' || target.closest('[data-item-id]')) {
+			const itemId = target.closest('[data-item-id]').dataset.itemId;
+			let item = this.actor.items.get(itemId);
+			if (!item && target.closest('.item').dataset.uuid) {
+				item = await fromUuid(target.closest('.item').dataset.uuid);
+			}
+			if (item) {
+				if (modifiers.ctrl) {
+					return new ItemCustomizer(this.actor, item).render(true);
+				} else {
+					if (settingPriority && this.actor?.type === 'npc') {
+						BehaviorRoll.targetPriority(this.actor);
 					}
+					return item.roll(modifiers);
 				}
 			}
-			if (dataset.rollType === 'behavior') {
-				return BehaviorRoll.rollBehavior(this);
-			}
+		}
 
-			if (dataset.rollType === 'roll-check') {
-				return CheckPrompt.attributeCheck(this.actor);
-			}
+		if (dataset.rollType === 'behavior') {
+			return BehaviorRoll.rollBehavior(this);
+		}
 
-			if (dataset.rollType === 'open-check') {
-				return CheckPrompt.openCheck(this.actor);
-			}
+		if (dataset.rollType === 'opposed-check') {
+			return CheckPrompt.opposedCheck(this.actor);
+		}
 
-			if (dataset.rollType === 'roll-init' || (dataset.rollType === 'group-check' && modifiers.shift)) {
-				return Checks.groupCheck(this.actor, GroupCheckV2.initInitiativeCheck);
-			}
+		if (dataset.rollType === 'attribute-check') {
+			return CheckPrompt.attributeCheck(this.actor);
+		}
 
-			if (dataset.rollType === 'group-check') {
-				return CheckPrompt.groupCheck(this.actor);
-			}
+		if (dataset.rollType === 'open-check') {
+			return CheckPrompt.openCheck(this.actor);
+		}
+
+		if (dataset.rollType === 'roll-init' || (dataset.rollType === 'group-check' && modifiers.shift)) {
+			return Checks.groupCheck(this.actor, GroupCheckV2.initInitiativeCheck);
+		}
+
+		if (dataset.rollType === 'group-check') {
+			return CheckPrompt.groupCheck(this.actor);
 		}
 
 		// Handle item-slot rolls using the new equip structure.
@@ -877,8 +930,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 		await actionHandler.handleAction(elem.dataset.type, isShift);
 	}
 
-	static ToggleStatusEffect(e, elem) {
-		Effects.toggleStatusEffect(this.actor, elem.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
+	static async ToggleStatusEffect(e, elem) {
+		if (elem.dataset.statusId === 'crisis') {
+			return;
+		}
+		return Effects.toggleStatusEffect(this.actor, elem.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
 	}
 
 	/**
@@ -930,8 +986,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			return;
 		}
 
-		const isFavoredBool = item.system.isFavored?.value ?? false;
-		await this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+		await item.toggleFavorite();
 	}
 
 	/**
@@ -951,8 +1006,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async CrisisHP(event, target) {
-		const maxHP = this.actor.system.resources.hp.max;
-		const crisisHP = Math.floor(maxHP / 2);
+		const crisisHP = this.actor.system.resources.hp.crisisScore;
+
 		const updateData = {
 			'system.resources.hp.value': crisisHP,
 		};
@@ -997,69 +1052,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @this FUStandardActorSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
-	static async UpdateProgress(event, target) {
-		const rightClick = event.which === 3 || event.button === 2;
-		const { itemId, updateAmount, dataPath } = target.dataset;
-
-		const item = this.actor.items.get(itemId);
-		const increment = parseFloat(updateAmount);
-		await ProgressDataModel.updateForDocument(item, dataPath, increment, rightClick);
-	}
-
-	/**
-	 * Updates the progress clock value based on the clicked segment.
-	 * @param {HTMLElement} input - The input element
-	 * @param {'feature'} [dataType] Is the item a feature
-	 * @param {string} [dataPath] path to clock data
-	 * @private
-	 */
-	_onProgressUpdate(input, dataType, dataPath) {
-		const segment = input.value;
-		if (!segment) {
-			throw Error('Segment element not properly retrieved from input event');
-		}
-		const li = input.closest('[data-item-id]');
-
-		if (li) {
-			// If the clock is from an item
-			const itemId = li.dataset.itemId;
-			const item = this.actor.items.get(itemId);
-
-			if (dataPath) {
-				item.update({ [dataPath + '.current']: segment });
-			} else if (dataType === 'feature') {
-				item.update({ 'system.data.progress.current': segment });
-			} else {
-				item.update({ 'system.progress.current': segment });
-			}
-		} else {
-			this.actor.update({ 'system.progress.current': segment });
-		}
-	}
-
-	/**
-	 * @this FUStandardActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
-	static sortFavorites(event, target) {
-		if (event.button === 2) {
-			// Right-click: change sort type
-			this.changeSortType();
-		} else {
-			// Left-click: toggle ascending/descending
-			this.sortOrder *= -1;
-			this.render();
-		}
-	}
-
-	/**
-	 * @this FUStandardActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {void}
 	 */
 	static levelUp(event, target) {
@@ -1081,22 +1073,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 				'system.resources.exp.value': exp - 10,
 				'system.level.value': level + 1,
 			});
-		});
-	}
-
-	/**
-	 * @this FUStandardActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
-	static updateArcanistArcanum(event, target) {
-		const itemId = target.dataset.itemId;
-		const currentArcanumId = this.actor.system.equipped.arcanum;
-		// Toggle arcanum slot
-		const newArcanumId = currentArcanumId === itemId ? null : itemId;
-		this.actor.update({
-			'system.equipped.arcanum': newArcanumId,
 		});
 	}
 
@@ -1144,52 +1120,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async equipItem(event, target) {
-		event.preventDefault();
-		this.#equipmentHandler.handleItemClick(event, target);
-	}
-
-	static modifyResource(event, target) {
-		let document;
-		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
-		if (itemId) {
-			document = this.actor.items.get(itemId);
-		} else {
-			const effectId = target.closest('[data-effect-id]')?.dataset?.effectId;
-			document = this.actor.effects.get(effectId);
-		}
-		const dataPath = target.closest('[data-data-path]')?.dataset?.dataPath;
-		const resourceChange = target.closest('[data-resource-action]')?.dataset?.resourceAction === 'decrement' ? -1 : 1;
-		const amount = (Number(target.closest('[data-amount]')?.dataset?.amount) || 1) * resourceChange;
-
-		const step = event.button !== 0;
-
-		ProgressDataModel.updateForDocument(document, dataPath, amount, step);
-	}
-
-	static modifyClassLevel(event, target) {
-		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
-		const classItem = this.actor.items.get(itemId);
-		const change = target.closest('[data-level-action]')?.dataset?.levelAction === 'decrement' ? -1 : 1;
-
-		if (!classItem || classItem.type !== 'class') {
-			return;
-		}
-
-		const { value, min, max } = classItem.system.level;
-		const newValue = value + change;
-
-		classItem.update({
-			'system.level.value': Math.clamp(newValue, min, max),
-		});
-	}
-
-	/**
-	 * @this FUStandardActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
 	static ClearTempEffects(event, target) {
 		event.preventDefault();
 		const actor = this.actor;
@@ -1197,6 +1127,29 @@ export class FUStandardActorSheet extends FUActorSheet {
 			return;
 		}
 		actor.clearTemporaryEffects();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onUpdateTrack(event, target) {
+		const { updateAmount, id, dataPath, alternate } = target.dataset;
+		let increment = parseInt(updateAmount);
+		if (alternate && event.button === 2) {
+			increment = -increment;
+		}
+
+		let document;
+		document = this.actor.getEffect(id);
+		if (!document) {
+			document = this.actor.getItemById(id);
+		}
+
+		if (document) {
+			return ProgressDataModel.updateForDocument(document, dataPath, increment);
+		}
 	}
 
 	// TODO: Re-use with the ones from item sheet?
@@ -1228,4 +1181,272 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
+	static #onToggleFavorite(event, target) {
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item;
+		if (!itemId) {
+			item = this.actor.items.get(itemId);
+		}
+
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			if (uuid) {
+				item = fromUuidSync(uuid);
+			}
+		}
+
+		if (item) {
+			return item.toggleFavorite();
+		}
+	}
+
+	static async #onCreate(event, target) {
+		let type = target.dataset.type;
+		let subType = target.dataset.subType;
+
+		if (type && type.indexOf(',') >= 0) {
+			const knownItemTypes = new Set(Object.keys(CONFIG.Item.dataModels));
+			const choices = type
+				.split(',')
+				.map((itemType) => itemType.trim())
+				.filter((itemType) => knownItemTypes.has(itemType))
+				.map((itemType) => ({
+					action: itemType,
+					label: game.i18n.localize(CONFIG.Item.typeLabels[itemType]),
+				}));
+
+			type = await foundry.applications.api.DialogV2.wait({
+				window: { title: 'Select Item Type' },
+				content: `<p>Select the type of item you want to create:</p>`,
+				buttons: choices,
+			});
+		}
+
+		if (!type) {
+			return;
+		}
+
+		const itemData = {
+			type: type,
+		};
+
+		if (type === 'classFeature') {
+			itemData.system = { featureType: subType };
+			itemData.name = this.#determineNewFeatureName(type, subType, this.actor);
+		} else if (type === 'optionalFeature') {
+			itemData.system = { optionalType: subType };
+			itemData.name = this.#determineNewFeatureName(type, subType, this.actor);
+		} else {
+			itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
+		}
+
+		foundry.documents.Item.create(itemData, { parent: this.actor });
+	}
+
+	#determineNewFeatureName(type, subtype, actor) {
+		const registry = {
+			classFeature: FU.classFeatureRegistry,
+			optionalFeature: FU.optionalFeatureRegistry,
+		}[type];
+
+		const FeatureDataModel = registry.byKey(subtype);
+
+		if (!FeatureDataModel) {
+			return null;
+		}
+
+		const takenNames = new Set();
+		for (const document of actor.itemTypes[type]) {
+			takenNames.add(document.name);
+		}
+
+		const baseName = game.i18n.localize(FeatureDataModel.translation);
+		let name = baseName;
+		let index = 1;
+		while (takenNames.has(name)) name = `${baseName} (${++index})`;
+		return name;
+	}
+
+	static async #onCreateFavorite() {
+		// Get all available item types and class feature types
+		const allItemTypes = Object.keys(CONFIG.Item.dataModels);
+		const isCharacter = this.actor.type === 'character';
+		const isNPC = this.actor.type === 'npc';
+		const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.qualifiedTypes);
+		let types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(CONFIG.Item.typeLabels[type]) }));
+
+		if (isCharacter) {
+			// Filter out item type
+			const dontShowCharacter = ['rule', 'behavior', 'basic', 'effect']; // Default types to hide for characters
+			// Filter out default types to hide for characters
+			types = types.filter((item) => !dontShowCharacter.includes(item.type));
+
+			// Optional Features
+			let optionalFeatures = optionalFeatureTypes.map(([key, optional]) => ({
+				type: 'optionalFeature',
+				subtype: key,
+				label: game.i18n.localize(optional.translation),
+			}));
+
+			// Push filtered optional features to types array
+			types.push(...optionalFeatures);
+		} else if (isNPC) {
+			const dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'effect']; // Default types to hide for NPCs
+			if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
+			// Filter out default types to hide for NPCs
+			types = types.filter((item) => !dontShowNPC.includes(item.type));
+		}
+
+		const buttons = types
+			.map((item) => ({
+				action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
+				label: item.label,
+				callback: () => item,
+			}))
+			.sort((a, b) => a.label.localeCompare(b.label));
+
+		const choice = await foundry.applications.api.DialogV2.wait({
+			window: { title: 'Select Item Type', contentClasses: ['dialog-buttons-grid'] },
+			position: { width: 400 },
+			content: `<p>Select the type of item you want to create:</p>`,
+			buttons: buttons,
+		});
+
+		if (choice) {
+			const itemData = {
+				type: choice.type,
+				flags: { [SYSTEM]: { [Flags.Favorite]: true } },
+			};
+			if (choice.type === 'classFeature') {
+				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
+				(itemData.system ??= {}).featureType = choice.subtype;
+			} else if (choice.type === 'optionalFeature') {
+				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
+				(itemData.system ??= {}).optionalType = choice.subtype;
+			} else {
+				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
+			}
+			foundry.documents.Item.create(itemData, { parent: this.actor });
+		}
+	}
+
+	static async #onCreateClock() {
+		let types = [];
+
+		// Get all available item types and class feature types
+		const isCharacter = this.actor.type === 'character';
+		const isNPC = this.actor.type === 'npc';
+
+		if (isCharacter) {
+			types = ['miscAbility', 'ritual'].map((type) => ({
+				type: type,
+				label: game.i18n.localize(CONFIG.Item.typeLabels[type]),
+			}));
+			// Check if the optionZeroPower setting is false, then add the zeroPower feature
+			if (FU.optionalFeatures.zeroPower) {
+				types.push({
+					type: 'optionalFeature',
+					subtype: FU.optionalFeatures.zeroPower,
+					label: game.i18n.localize('FU.Limit'),
+				});
+			}
+		} else if (isNPC) {
+			types = ['miscAbility', 'rule'].map((type) => ({
+				type: type,
+				label: game.i18n.localize(CONFIG.Item.typeLabels[type]),
+			}));
+		}
+
+		const buttons = types
+			.map((item) => {
+				return {
+					action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
+					label: item.label,
+					callback: () => item,
+				};
+			})
+			.sort((a, b) => a.label.localeCompare(b.label));
+
+		const choice = await foundry.applications.api.DialogV2.wait({
+			window: { title: 'Select Item Type', contentClasses: ['dialog-buttons-grid'] },
+			position: { width: 400 },
+			content: `<p>Select the type of item you want to create:</p>`,
+			buttons: buttons,
+		});
+
+		if (choice) {
+			const itemData = {
+				type: choice.type,
+				flags: { [SYSTEM]: { [Flags.Favorite]: true } },
+				system: { hasClock: { value: true } },
+			};
+			if (choice.type === 'classFeature') {
+				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
+				itemData.system.featureType = choice.subtype;
+			} else if (choice.type === 'optionalFeature') {
+				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
+				itemData.system.optionalType = choice.subtype;
+			} else {
+				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
+			}
+			foundry.documents.Item.create(itemData, { parent: this.actor });
+		}
+	}
+
+	static async #onCreateClassFeature() {
+		let types = ['miscAbility', 'project'];
+		// Filter out item type
+		types = types.map((type) => ({ type, label: game.i18n.localize(CONFIG.Item.typeLabels[type]) }));
+		// Class Features
+		types.push(
+			...Object.entries(CONFIG.FU.classFeatureRegistry.qualifiedTypes).map(([key, feature]) => ({
+				type: 'classFeature',
+				subtype: key,
+				label: game.i18n.localize(feature.translation),
+			})),
+		);
+
+		// Push filtered types to the types array
+		types.push(
+			...Object.entries(CONFIG.FU.optionalFeatureRegistry.qualifiedTypes).map(([key, optional]) => ({
+				type: 'optionalFeature',
+				subtype: key,
+				label: game.i18n.localize(optional.translation),
+			})),
+		);
+
+		const buttons = types
+			.map((item) => {
+				return {
+					action: `${item.type}${item.subtype ? `:${item.subtype}` : ''}`,
+					label: item.label,
+					callback: () => item,
+				};
+			})
+			.sort((a, b) => a.label.localeCompare(b.label));
+
+		const choice = await foundry.applications.api.DialogV2.wait({
+			window: { title: 'Select Item Type', contentClasses: ['dialog-buttons-grid'] },
+			position: { width: 400 },
+			rejectClose: false,
+			content: `<p>Select the type of item you want to create:</p>`,
+			buttons: buttons,
+		});
+
+		if (choice) {
+			const itemData = {
+				type: choice.type,
+			};
+			if (choice.type === 'classFeature') {
+				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
+				itemData.system = { featureType: choice.subtype };
+			} else if (choice.type === 'optionalFeature') {
+				itemData.name = this.#determineNewFeatureName(choice.type, choice.subtype, this.actor);
+				itemData.system = { optionalType: choice.subtype };
+			} else {
+				itemData.name = foundry.documents.Item.defaultName({ type: choice.type, parent: this.actor });
+			}
+			foundry.documents.Item.create(itemData, { parent: this.actor });
+		}
+	}
 }

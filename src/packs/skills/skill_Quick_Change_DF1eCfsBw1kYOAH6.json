@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF143"
-    },
+    "source": "FUHF143",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,7 +118,10 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "quick-change"
+    "fuid": "quick-change",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "sort": 200000,
@@ -129,14 +130,18 @@
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706560456464,
-    "modifiedTime": 1741989455120,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770277571696,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

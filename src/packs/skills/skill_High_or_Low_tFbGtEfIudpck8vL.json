@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you generate a <strong>critical success</strong> or a <strong>critical failure</strong>, you may draw 1 card from your <strong>deck</strong>. If you do, discard 1 card from your <strong>hand</strong>.</p>",
+    "description": "<p>When you resolve a set with <strong>Magic Cards</strong>, if it includes a <strong>joker</strong> and/or a <strong>7</strong>, you deal <strong>【SL】</strong> extra damage until the start of your next turn; if it includes a <strong>joker</strong> and/or a <strong>1</strong>, all damage you suffer is reduced by <strong>【SL 】</strong> until the start of your next turn (before Affinities); if it doesn't include any <strong>joker</strong>, <strong>1</strong>, or <strong>7</strong>, you recover <strong>【SL × 2】 </strong>Hit Points.</p><hr /><ul><li><p><strong>You Gain: </strong>@LOSS[(&amp;sl(\"high-or-low\")*2) mp]{SL × 2 MP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -17,7 +17,7 @@
     },
     "level": {
       "value": 1,
-      "max": 1,
+      "max": 5,
       "min": 0
     },
     "class": {
@@ -68,9 +68,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUAC3"
-    },
+    "source": "FUBC7",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {
@@ -127,15 +125,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1707643024284,
-    "modifiedTime": 1742579002222,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1769029341078,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

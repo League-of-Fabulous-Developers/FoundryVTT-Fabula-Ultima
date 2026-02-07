@@ -1,0 +1,46 @@
+{
+  "name": "Energizing Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/energizing.png",
+  "system": {
+    "fuid": "energizing-hoplosphere",
+    "source": "FUTF141",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainStatusImmunity",
+        "coagulationLevel": 1,
+        "status": "weak"
+      },
+      {
+        "type": "increaseResourceRecovery",
+        "coagulationLevel": 2,
+        "resource": "hp",
+        "amount": 2
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658491663,
+    "modifiedTime": 1760404542204,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "bgAagFaUscYZKpL4",
+  "sort": 1600000,
+  "_key": "!items!bgAagFaUscYZKpL4"
+}

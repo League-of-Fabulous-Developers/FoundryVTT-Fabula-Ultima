@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast an <strong>instantaneous</strong> spell, if you have an <strong>arcane</strong> weapon equipped, you may increase the spell's total MP cost by up to <strong>【SL × 10】</strong> Mind Points. If you do so and the spell deals damage to one or more creatures, it will deal 5 extra damage to each creature for every 10 Mind Points by which you increased its total MP cost.</p>",
+    "description": "<p>When you cast a spell with a <strong>duration</strong> of “Instantaneous”, if you have an <strong>arcane</strong> weapon equipped, you may <strong>increase the spell’s total MP cost</strong> by up to <strong>【SL × 10】</strong> Mind Points.</p><p>If you do so, the spell deals 5 extra damage for every 10 Mind Points by which you increased its cost this way.</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR187"
-    },
+    "source": "FUCR187",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -122,25 +120,135 @@
     "defense": "def",
     "fuid": "cataclysm",
     "cost": {
-      "amount": 10
+      "amount": ""
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cataclysm",
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_cataclysm.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "mwqxq5RZ2uX5Iyzv": {
+              "type": "ruleElement",
+              "_id": "mwqxq5RZ2uX5Iyzv",
+              "trigger": {
+                "_id": "Pc2XVX08qsypdnQR",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ]
+              },
+              "predicates": {
+                "3i8OFA8Qwk5Lqqz5": {
+                  "type": "weaponRulePredicate",
+                  "_id": "3i8OFA8Qwk5Lqqz5",
+                  "categories": [
+                    "arcane"
+                  ],
+                  "selector": "self"
+                },
+                "hBGetuaUyjiB9K3S": {
+                  "type": "spellRulePredicate",
+                  "_id": "hBGetuaUyjiB9K3S",
+                  "offensive": "",
+                  "duration": "instantaneous"
+                },
+                "LcVRmR6hyTZeqcKi": {
+                  "type": "traitsRulePredicate",
+                  "_id": "LcVRmR6hyTZeqcKi",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "pEDv6onCfA8WnUKB": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "pEDv6onCfA8WnUKB",
+                  "amount": "5",
+                  "cost": {
+                    "amount": 10
+                  },
+                  "variant": "overChannel"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Dd03wzpbYRkqDcq9",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766869378193,
+        "modifiedTime": 1770277943881,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!muhtqtJ6av32K34Z.Dd03wzpbYRkqDcq9"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706497962110,
-    "modifiedTime": 1741988724293,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770251855536,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

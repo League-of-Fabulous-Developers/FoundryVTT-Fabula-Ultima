@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Items",
+  "color": null,
+  "sorting": "a",
+  "_id": "LksdQtrn5nFuOO3i",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768876712168,
+    "modifiedTime": 1768876712168,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_key": "!folders!LksdQtrn5nFuOO3i"
+}

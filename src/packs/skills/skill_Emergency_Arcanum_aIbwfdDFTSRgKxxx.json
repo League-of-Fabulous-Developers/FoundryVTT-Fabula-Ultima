@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR177"
-    },
+    "source": "FUCR177",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -124,47 +122,91 @@
   },
   "effects": [
     {
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Emergency Arcanum",
-      "_id": "bJ2DpitD5K2cF15w",
-      "changes": [],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you are in <strong style=\"box-sizing:border-box;user-select:text\">Crisis</strong>, the cost for summoning your Arcana is reduced by<strong style=\"box-sizing:border-box;user-select:text\">【SL × 5】</strong>Mind Points. </span></p>",
-      "transfer": true,
-      "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "active",
-          "type": "default",
-          "source": "FUCR177"
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_emergency_arcanum.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "zUVzKyLBnLZpd1Gj": {
+              "type": "ruleElement",
+              "_id": "zUVzKyLBnLZpd1Gj",
+              "trigger": {
+                "_id": "BQgKCCdMINsF4Hw8",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "",
+                "traits": {
+                  "entries": [
+                    "arcanum-summon"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "predicates": {
+                "Bl3drxSEK5Uq1Wsx": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "Bl3drxSEK5Uq1Wsx",
+                  "selector": "self",
+                  "effect": "crisis"
+                }
+              },
+              "actions": {
+                "gBfj03IwNaqPpNvX": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "gBfj03IwNaqPpNvX",
+                  "amount": "-$sl*5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
         }
       },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "e2GNRlz3fLgYEXDz",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
       "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
       "_stats": {
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1741991977703,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1768048270574,
+        "modifiedTime": 1768048392472,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
-      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_emergency_arcanum.png",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!aIbwfdDFTSRgKxxx.bJ2DpitD5K2cF15w"
+      "_key": "!items.effects!aIbwfdDFTSRgKxxx.e2GNRlz3fLgYEXDz"
     }
   ],
   "ownership": {

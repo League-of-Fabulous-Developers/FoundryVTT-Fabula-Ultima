@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Hoplospheres",
+  "color": "#ff8000",
+  "sorting": "a",
+  "_id": "pIAOmLB7jnha0Ab3",
+  "description": "",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759655505769,
+    "modifiedTime": 1759655523956,
+    "lastModifiedBy": "VpDy3go69LzoCFsX"
+  },
+  "_key": "!folders!pIAOmLB7jnha0Ab3"
+}

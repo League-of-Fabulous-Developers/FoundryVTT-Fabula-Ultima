@@ -1,6 +1,6 @@
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
-import { FU, SYSTEM } from '../../../../helpers/config.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { Targeting } from '../../../../helpers/targeting.mjs';
@@ -8,12 +8,14 @@ import { CommonEvents } from '../../../../checks/common-events.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
+import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
+import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
 
 /**
  * @param {VerseDataModel} model
  * @return {Promise<string|string>}
  */
-async function getDescription(model) {
+async function enrichDescription(model) {
 	const key = model.key;
 	const tone = model.tone;
 
@@ -34,14 +36,8 @@ async function getDescription(model) {
 
 	let rollData = {};
 
-	// Set rollData based on the key
 	const keyData = key.system.data;
-	rollData.key = {
-		type: game.i18n.localize(FU.damageTypes[keyData.type]),
-		status: game.i18n.localize(FU.statusEffects[keyData.status]),
-		attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
-		recovery: game.i18n.localize(FU.resources[keyData.recovery]),
-	};
+	rollData.key = KeyDataModel.getRollData(keyData);
 
 	const actor = model.parent?.parent?.actor;
 	if (actor) {
@@ -94,12 +90,12 @@ export class VersesApplication extends FUApplication {
 	#verse;
 
 	/**
-	 * @type KeyDataModel
+	 * @type {FUItem|PseudoItem}
 	 */
 	#defaultKey;
 
 	/**
-	 * @type ToneDataModel
+	 * @type {FUItem|PseudoItem}
 	 */
 	#defaultTone;
 
@@ -110,34 +106,83 @@ export class VersesApplication extends FUApplication {
 		}
 
 		this.#verse = verse;
-		// this.#verse = verse.clone({}, { keepId: true });
 		verse.app = this;
+		verse.volume = this.defaultVolume;
 
 		// Set predefined key and tone if provided in options
-		this.#defaultKey = options.predefinedKey ? verse.actor.items.get(options.predefinedKey) : this.keys[Object.keys(this.keys)[0]];
-		this.#defaultTone = options.predefinedTone ? verse.actor.items.get(options.predefinedTone) : this.tones[Object.keys(this.tones)[0]];
+		const keys = this.keys;
+		this.#defaultKey = Object.values(keys)[0];
+		if (options.predefinedKey) {
+			const predefinedKey = options.predefinedKey;
+			if (this.isKeyItem(predefinedKey)) {
+				this.#defaultKey = predefinedKey;
+			}
+			if (typeof predefinedKey === 'string') {
+				if (predefinedKey.includes('.')) {
+					const maybeKey = foundry.utils.fromUuidSync(predefinedKey, { relative: verse.actor });
+					if (this.isKeyItem(maybeKey)) {
+						this.#defaultKey = maybeKey;
+					}
+				} else {
+					const maybeKey = Object.values(keys).find((value) => value.id === predefinedKey);
+					if (this.isKeyItem(maybeKey)) {
+						this.#defaultKey = maybeKey;
+					}
+				}
+			}
+		}
+
+		const tones = this.tones;
+		this.#defaultTone = Object.values(tones)[0];
+		if (options.predefinedTone) {
+			const predefinedTone = options.predefinedTone;
+			if (this.isToneItem(predefinedTone)) {
+				this.#defaultKey = predefinedTone;
+			}
+			if (typeof predefinedTone === 'string') {
+				if (predefinedTone.includes('.')) {
+					const maybeTone = foundry.utils.fromUuidSync(predefinedTone, { relative: verse.actor });
+					if (this.isToneItem(maybeTone)) {
+						this.#defaultKey = maybeTone;
+					}
+				} else {
+					const maybeKey = Object.values(tones).find((value) => value.id === predefinedTone);
+					if (this.isToneItem(maybeKey)) {
+						this.#defaultKey = maybeKey;
+					}
+				}
+			}
+		}
+	}
+
+	isKeyItem(maybeKey) {
+		return maybeKey?.system instanceof ClassFeatureTypeDataModel && maybeKey.system?.data instanceof KeyDataModel;
+	}
+
+	isToneItem(maybeTone) {
+		return maybeTone?.system instanceof ClassFeatureTypeDataModel && maybeTone.system?.data instanceof ToneDataModel;
 	}
 
 	/**
-	 * @returns {Record<string, KeyDataModel>}
+	 * @returns {Record<string, FUItem|PseudoItem>}
 	 */
 	get keys() {
 		return this.#verse.actor.itemTypes.classFeature
-			.filter((item) => item.system.data instanceof KeyDataModel)
+			.filter((item) => this.isKeyItem(item))
 			.reduce((agg, item) => {
-				agg[item.id] = item;
+				agg[item.uuid] = item;
 				return agg;
 			}, {});
 	}
 
 	/**
-	 * @returns {Record<string, ToneDataModel>}
+	 * @returns {Record<string, FUItem|PseudoItem>}
 	 */
 	get tones() {
 		return this.#verse.actor.itemTypes.classFeature
-			.filter((item) => item.system.data instanceof ToneDataModel)
+			.filter((item) => this.isToneItem(item))
 			.reduce((agg, item) => {
-				agg[item.id] = item;
+				agg[item.uuid] = item;
 				return agg;
 			}, {});
 	}
@@ -163,24 +208,24 @@ export class VersesApplication extends FUApplication {
 		// Set defaults if missing
 		if (this.#verse.key == null || this.#verse.tone == null) {
 			await this.#verse.updateSource({
-				key: this.#defaultKey,
-				tone: this.#defaultTone,
+				key: this.#defaultKey?.uuid,
+				tone: this.#defaultTone?.uuid,
 			});
 		}
 
 		// Fetch the initial description
-		const effects = await getDescription(this.#verse);
+		const effects = await enrichDescription(this.#verse);
 
 		// Current key, tone, and volume selections
 		let performance = {
-			key: this.#verse.key?.id || '',
-			tone: this.#verse.tone?.id || '',
+			key: this.#verse.key?.uuid || '',
+			tone: this.#verse.tone?.uuid || '',
 			volume: this.#verse.volume || this.defaultVolume,
 		};
 
 		return {
-			keys: this.keys, // Convert object to array for dropdown
-			tones: this.tones, // Convert object to array for dropdown
+			keys: this.keys,
+			tones: this.tones,
 			volumes,
 			performance,
 			effects, // Include description effects
@@ -190,16 +235,17 @@ export class VersesApplication extends FUApplication {
 	static async #onFormSubmit(event, form, formData) {
 		// Process the form data
 		formData = foundry.utils.expandObject(formData.object);
-		const selectedKey = this.#verse.actor.items.get(formData.performance.key);
-		const selectedTone = this.#verse.actor.items.get(formData.performance.tone);
+		const selectedKey = foundry.utils.fromUuidSync(formData.performance.key, { relative: this.#verse.actor });
+		const selectedTone = foundry.utils.fromUuidSync(formData.performance.tone, { relative: this.#verse.actor });
 		const selectedVolume = formData.performance.volume;
 
 		// Update the verse with the selected key, tone, and volume
 		await this.#verse.updateSource({
-			key: selectedKey,
-			tone: selectedTone,
-			volume: selectedVolume,
+			key: selectedKey?.uuid,
+			tone: selectedTone?.uuid,
 		});
+		this.#verse.volume = selectedVolume;
+
 		this.render();
 	}
 
@@ -246,6 +292,8 @@ export class VersesApplication extends FUApplication {
 		CommonSections.spendResource(sections, actor, item, expense, targets, flags);
 		CommonEvents.skill(actor, item);
 
+		const enriched = await enrichDescription(this.#verse);
+
 		// Data for the template
 		const data = {
 			verse: this.#verse,
@@ -254,14 +302,16 @@ export class VersesApplication extends FUApplication {
 			targets: volumeTargets[volumeSelection],
 			key: this.#verse.key?.name || '',
 			tone: this.#verse.tone?.name || '',
-			description: await getDescription(this.#verse, true),
+			description: enriched,
 			sections: sections,
 		};
 
 		// Prepare the chat message data
 		const chatMessage = {
 			speaker: ChatMessage.implementation.getSpeaker({ actor }),
-			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', this.#verse.parent.parent),
+			flavor: await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+				item: this.#verse.parent.parent,
+			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
 			flags: flags,
 		};

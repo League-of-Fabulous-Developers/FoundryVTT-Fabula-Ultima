@@ -1,0 +1,43 @@
+<div class="cell-equipment-shield-details">
+	<div class="cell-equipment-shield-details__defense">
+		{{#with defense}}
+			<span>{{localize "FU.DefenseAbbr"}}:</span>
+			<span class="cell-equipment-shield-details__value">
+				{{#if value}}
+					{{signum}}
+					{{value}}
+				{{else}}
+					—
+				{{/if}}
+			</span>
+		{{/with}}
+	</div>
+	<div class="cell-equipment-shield-details__divider"></div>
+	<div class="cell-equipment-shield-details__magic-defense">
+		{{#with magicDefense}}
+			<span>{{localize "FU.MagicDefenseAbbr"}}:</span>
+			<span class="cell-equipment-shield-details__value">
+				{{#if value}}
+					{{signum}}
+					{{value}}
+				{{else}}
+					—
+				{{/if}}
+			</span>
+		{{/with}}
+	</div>
+	<div class="cell-equipment-shield-details__divider"></div>
+	<div class="cell-equipment-shield-details__initiative">
+		{{#with initiative}}
+			<span>{{localize "FU.InitiativeAbbr"}}:</span>
+			<span class="cell-equipment-shield-details__value">
+				{{#if value}}
+					{{signum}}
+					{{value}}
+				{{else}}
+					—
+				{{/if}}
+			</span>
+		{{/with}}
+	</div>
+</div>

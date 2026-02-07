@@ -8,13 +8,10 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You are immune to <strong>slow</strong>.</p></li><li><p>You gain a +1 bonus to your Defense.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Time Freeze.</strong> Choose any number of creatures you can see: each of them suffers @EFFECT[slow]. If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Time Freeze.</strong> Choose any number of creatures you can see: each of them suffers <strong>slow</strong> . If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p><hr></li><li><p><strong>Targets</strong>: @EFFECT[slow]</p></li></ul>",
       "domains": "destiny, speed, time"
     },
     "source": "FUCR181",
@@ -84,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710464120707,
-    "modifiedTime": 1742766498874,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768129329248,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

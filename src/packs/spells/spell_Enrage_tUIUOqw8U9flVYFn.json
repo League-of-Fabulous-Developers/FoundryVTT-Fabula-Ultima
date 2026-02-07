@@ -3,7 +3,7 @@
   "name": "Enrage",
   "type": "spell",
   "_id": "tUIUOqw8U9flVYFn",
-  "img": "icons/magic/unholy/hand-claw-glow-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/enrage.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell </strong>actions during their next turn.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[enraged]</p></li></ul>",
+    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell</strong> actions until the end of their next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR208"
-    },
+    "source": "FUCR208",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,12 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "enrage"
+    "fuid": "enrage",
+    "effects": {
+      "entries": [
+        "enraged"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -128,15 +131,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706572370902,
-    "modifiedTime": 1744722177879,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768694588958,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

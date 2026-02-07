@@ -1,10 +1,10 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { CheckHooks } from './check-hooks.mjs';
-import { CHECK_ROLL } from './default-section-order.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
 
 /**
  * @param {CheckV2} check
@@ -97,51 +97,39 @@ const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
 
 /**
  * Hook called to process the result of the roll
- * @param {CheckResultV2} check
- * @param {FUActor} actor
- * @param {FUItem} [item]
+ * @type ProcessCheckHook
  */
-const onProcessCheck = (check, actor, item) => {
+const onProcessCheck = (check, actor, item, registerCallback) => {
 	const { type, critical, fumble } = check;
 	if (type === 'accuracy') {
-		const configurer = CheckConfiguration.configure(check);
-		configurer.modifyTargetedDefense((value) => value ?? 'def');
+		const config = CheckConfiguration.configure(check);
 		// TODO: Refactor alongside magic-checks
+		// Fallback if no defense was ever set
+		config.modifyTargetedDefense((value) => value ?? 'def');
 		if (critical) {
-			configurer.addTraits('critical');
+			config.addTraits('critical');
 		} else if (fumble) {
-			configurer.addTraits('fumble');
+			config.addTraits('fumble');
 		}
-		configurer.modifyDamage((damage) => {
-			if (damage) {
-				const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
+		config.modifyDamage((damage) => {
+			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
+			DamagePipeline.collectOutgoingBonuses(actor, damage);
 
-				// All Damage
-				const globalBonus = actor.system.bonuses.damage.all;
-				if (globalBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
-				}
-				// Attack Type
-				if (weaponTraits.weaponType) {
-					const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
-					if (attackTypeBonus) {
-						damage.modifiers.push({ label: `FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, value: attackTypeBonus });
-					}
-				}
-				// Weapon Category
-				if (weaponTraits.weaponCategory) {
-					const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
-					if (weaponCategoryBonus) {
-						damage.modifiers.push({ label: `FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, value: weaponCategoryBonus });
-					}
-				}
-
-				// Damage Type
-				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-				if (damageTypeBonus) {
-					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
+			// Attack Type
+			if (weaponTraits.weaponType) {
+				const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
+				if (attackTypeBonus) {
+					damage.addModifier(`FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, attackTypeBonus);
 				}
 			}
+			// Weapon Category
+			if (weaponTraits.weaponCategory) {
+				const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
+				if (weaponCategoryBonus) {
+					damage.addModifier(`FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, weaponCategoryBonus);
+				}
+			}
+
 			return damage;
 		});
 	}
@@ -157,25 +145,11 @@ const onProcessCheck = (check, actor, item) => {
 function onRenderCheck(data, checkResult, actor, item, flags) {
 	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-		const accuracyData = inspector.getAccuracyData();
-		const damageData = inspector.getDamageData();
-
-		// Push combined data for accuracy and damage
-		data.push({
-			order: CHECK_ROLL,
-			partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
-			data: {
-				accuracy: accuracyData,
-				damage: damageData,
-			},
-		});
-
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-		CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
+		CommonSections.actions(data, actor, item, targets, flags, inspector);
 		CommonEvents.attack(inspector, actor, item);
-
-		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
+		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
 }
 

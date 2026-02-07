@@ -12,12 +12,128 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p><span class=\"fontstyle0\">When you deal damage with an attack or spell, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal air damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>weak</strong>.</span></p><hr><ul><li><p><strong>You Receive: </strong>@TYPE[damage all air]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[weak]</p></li></ul>"
+      "description": "<p><span class=\"fontstyle0\">When you deal damage with an attack or spell, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal air damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>weak</strong>.</span></p>"
     },
     "source": "FUTF157",
     "fuid": "pneumophora"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Pneumophora",
+      "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "0ZbvntwNOjdVhoc7": {
+              "type": "ruleElement",
+              "_id": "0ZbvntwNOjdVhoc7",
+              "trigger": {
+                "_id": "MtUsuxZ2We1DUPDX",
+                "type": "damageRuleTrigger",
+                "eventRelation": "source",
+                "damageType": "air",
+                "damageSources": [
+                  "attack",
+                  "spell"
+                ],
+                "damageThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                }
+              },
+              "predicates": {
+                "Pby6xahRh26CzKTX": {
+                  "type": "weaponRulePredicate",
+                  "_id": "Pby6xahRh26CzKTX",
+                  "categories": [
+                    "brawling"
+                  ]
+                }
+              },
+              "actions": {
+                "3sILCyDj6SpHx9sg": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "3sILCyDj6SpHx9sg",
+                  "effect": "weak"
+                }
+              }
+            },
+            "Kcc14so6hfGpHFN2": {
+              "type": "ruleElement",
+              "_id": "Kcc14so6hfGpHFN2",
+              "trigger": {
+                "_id": "ViT3bCg3I3kF1o6S",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack",
+                  "spell"
+                ]
+              },
+              "actions": {
+                "LYV3HoVrHV0bYnGD": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "LYV3HoVrHV0bYnGD",
+                  "damageTypes": [
+                    "air"
+                  ],
+                  "amount": "",
+                  "cost": {
+                    "resource": ""
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": true,
+      "_id": "hExkPSM44Mphgtmr",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767290612844,
+        "modifiedTime": 1767389771710,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!1QqNBwC1WQKDxk3s.hExkPSM44Mphgtmr"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -29,10 +145,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744593344507,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1767290608557,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

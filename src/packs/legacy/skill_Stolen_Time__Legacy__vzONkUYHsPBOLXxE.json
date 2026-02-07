@@ -1,0 +1,102 @@
+{
+  "folder": "IiIlJG6pPTDD4KFq",
+  "name": "Stolen Time [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_stolen_time.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>During a conflict, you may use an action to interfere with the flow of time by spending up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers <strong>slow</strong>; or one creature you can see recovers from <strong>slow</strong>; or one creature you can see may immediately perform the <strong>Equipment action</strong> for free; <strong>or</strong> choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</p><p>Each option can only be chosen once per use of this Skill.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[slow]</p></li></ul>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Entropist"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUCR191",
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "defense": "def",
+    "fuid": "stolen-time-legacy",
+    "cost": {
+      "amount": "5",
+      "resource": "mp",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768577947068,
+    "modifiedTime": 1768620191779,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "vzONkUYHsPBOLXxE",
+  "sort": 900000,
+  "_key": "!items!vzONkUYHsPBOLXxE"
+}

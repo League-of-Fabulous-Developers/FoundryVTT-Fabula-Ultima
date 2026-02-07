@@ -3,7 +3,7 @@
   "name": "Torpor",
   "type": "spell",
   "_id": "9ENpDMvIOH9FJAka",
-  "img": "icons/magic/control/debuff-energy-hold-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/torpor.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: you inflict the chosen status effect on each target hit by this spell.</p><hr /><ul><li><p><strong>Targets Suffers</strong>: @EFFECT[slow] or @EFFECT[weak]</p></li></ul>",
+    "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: you inflict the chosen status effect on each target hit by this spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR209"
-    },
+    "source": "FUCR209",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,13 @@
     "maxTargets": {
       "value": 3
     },
-    "fuid": "torpor"
+    "fuid": "torpor",
+    "effects": {
+      "entries": [
+        "slow",
+        "weak"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -128,15 +132,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706573295761,
-    "modifiedTime": 1744722889315,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1766775566520,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

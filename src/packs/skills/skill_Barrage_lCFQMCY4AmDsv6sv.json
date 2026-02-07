@@ -5,16 +5,10 @@
   "_id": "lCFQMCY4AmDsv6sv",
   "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_barrage.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>When you perform a <strong>ranged</strong> attack, you may spend 10 Mind Points to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -27,86 +21,24 @@
       "value": "Sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
-      "hrZero": {
-        "value": false
-      }
+      "accuracy": true,
+      "damage": true,
+      "traits": true
     },
     "attributes": {
-      "primary": {
-        "value": "mig"
-      },
-      "secondary": {
-        "value": "mig"
-      }
+      "primary": "dex",
+      "secondary": "dex"
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": 0,
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": true,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "",
       "onRoll": "",
-      "onApply": ""
+      "onApply": "",
+      "hrZero": false
     },
-    "impdamage": {
-      "hasImpDamage": {
-        "value": false
-      },
-      "value": 0,
-      "impType": {
-        "value": "minor"
-      },
-      "type": {
-        "value": "physical"
-      }
-    },
-    "source": {
-      "value": "FUCR205"
-    },
-    "rollInfo": {
-      "useWeapon": {
-        "hrZero": {
-          "value": false
-        },
-        "accuracy": {
-          "value": true
-        },
-        "damage": {
-          "value": true
-        }
-      },
-      "attributes": {
-        "primary": {
-          "value": "dex"
-        },
-        "secondary": {
-          "value": "dex"
-        }
-      },
-      "accuracy": {
-        "value": 0
-      },
-      "damage": {
-        "hasDamage": {
-          "value": true
-        },
-        "type": {
-          "value": "physical"
-        },
-        "value": 0
-      }
-    },
+    "source": "FUCR205",
     "hasRoll": {
       "value": true
     },
@@ -117,17 +49,21 @@
       "name": "Name",
       "current": 0,
       "step": 1,
-      "max": 6
+      "max": 6,
+      "enabled": false
     },
     "defense": "def",
     "fuid": "barrage",
     "cost": {
-      "amount": 10
+      "amount": 10,
+      "resource": "mp",
+      "perTarget": false
     },
     "targeting": {
       "rule": "special",
       "max": 2
-    }
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -136,15 +72,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706506734196,
-    "modifiedTime": 1744660339140,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1759588864522,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

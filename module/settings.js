@@ -6,6 +6,7 @@ import { WellspringDataModel } from './documents/items/classFeature/invoker/invo
 import { CombatHudSettings } from './settings/combatHudSettings.js';
 import { SettingsConfigurationApp } from './settings/settings-configuration-app.js';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
+import { FUToken } from './ui/token.mjs';
 
 /**
  * @description All system settings
@@ -63,16 +64,25 @@ export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
 	useRevisedStudyRule: 'useRevisedStudyRule',
-	// Sheets
+	technospheres: 'useTechnospheres',
+	pressureSystem: 'pressureSystem',
+	optionPressureGaugeShow: 'optionPressureGaugeShow',
+	optionPressureGaugeTheme: 'optionPressureGaugeTheme',
+	optionPressureGaugePosition: 'optionPressureGaugePosition',
+	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	optionNPCNotesTab: 'optionNPCNotesTab',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
+	optionAutomaticAdversaryRegistration: 'optionRegisterAdversaries',
 	// Automation
 	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
+	optionAutomationRuleElements: 'optionAutomationRuleElements',
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
+	automationApplyDamage: 'automationApplyDamage',
+	automationUpdateResource: 'automationUpdateResource',
 	// Homebrew
 	homebrewOptions: 'homebrewOptions',
 	optionBondMaxLength: 'optionBondMaxLength',
@@ -80,14 +90,40 @@ export const SETTINGS = Object.freeze({
 	opportunities: 'opportunities',
 	affinityResistance: 'affinityResistance',
 	affinityVulnerability: 'affinityVulnerability',
+	optionCrisisMultiplier: 'optionCrisisMultiplier',
 	// Party
 	activeParty: 'optionActiveParty',
-	// STATE
+	// Class Features
 	activeWellsprings: 'activeWellsprings',
-
+	// Drag ruler
 	optionEnableDragRulerGridless: 'optionEnableDragRulerGridless',
 	optionEnableDragRulerGridded: 'optionEnableDragRulerGridded',
+	// Compendium Browser
+	optionCompendiumBrowserPacks: 'optionCompendiumBrowserPacks',
 });
+
+/**
+ * Attempts to retrieve a setting from the client scope specifically
+ * Used for the defaults for some user scope settings later, to migrate
+ * them to user scope.
+ * @param {string} setting - Key for the setting to retrieve
+ * @param {any} defaultValue - Default value to return
+ * @returns
+ */
+function getClientSetting(setting, defaultValue) {
+	const val = game.settings.storage.get('client')[`${SYSTEM}.${setting}`];
+
+	// If this setting was never set in the client scope, it will be undefined,
+	// which JSON.parse will fail to parse
+	if (val === undefined) return defaultValue;
+
+	try {
+		return JSON.parse(val ?? defaultValue);
+	} catch (err) {
+		console.warn(`Unable to parse client setting!  Setting:`, setting, `Value:`, val);
+		return defaultValue;
+	}
+}
 
 /**
  * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
@@ -162,7 +198,17 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.OptionalRulesManage'),
 		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.OptionalRules', [SETTINGS.optionQuirks, SETTINGS.optionZeroPower, SETTINGS.optionCampingRules, SETTINGS.useRevisedStudyRule]),
+		type: createConfigurationApp('FU.OptionalRules', [
+			SETTINGS.optionQuirks,
+			SETTINGS.optionZeroPower,
+			SETTINGS.optionCampingRules,
+			SETTINGS.useRevisedStudyRule,
+			SETTINGS.technospheres,
+			SETTINGS.pressureSystem,
+			SETTINGS.optionPressureGaugeShow,
+			SETTINGS.optionPressureGaugePosition,
+			SETTINGS.optionPressureGaugeTheme,
+		]),
 		restricted: true,
 	});
 
@@ -203,6 +249,79 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.technospheres, {
+		name: game.i18n.localize('FU.OptionTechnospheres'),
+		hint: game.i18n.localize('FU.OptionTechnospheresHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.pressureSystem, {
+		name: game.i18n.localize('FU.OptionPressureSystem'),
+		hint: game.i18n.localize('FU.OptionPressureSystemHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPressureGaugeShow, {
+		name: game.i18n.localize('FU.OptionPressureGaugeShow'),
+		hint: game.i18n.localize('FU.OptionPressureGaugeShowHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
+		onChange() {
+			canvas?.scene?.tokens.forEach((doc) => {
+				if (doc.object instanceof FUToken) doc.object.pressureGauge.refresh();
+			});
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPressureGaugePosition, {
+		name: game.i18n.localize('FU.OptionPressureGaugePosition'),
+		hint: game.i18n.localize('FU.OptionPressureGaugePositionHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'top',
+		requiresReload: false,
+		choices: {
+			top: game.i18n.localize('FU.OptionPressureGaugePositionTop'),
+			bottom: game.i18n.localize('FU.OptionPressureGaugePositionBottom'),
+		},
+		onChange() {
+			canvas?.scene?.tokens.forEach((doc) => {
+				if (doc.object instanceof FUToken) doc.object.pressureGauge.refresh();
+			});
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPressureGaugeTheme, {
+		name: game.i18n.localize('FU.OptionPressureGaugeTheme'),
+		hint: game.i18n.localize('FU.OptionPressureGaugeThemeHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		requiresReload: false,
+		default: 'hudTheme',
+		choices: {
+			hudTheme: 'FU.OptionPressureGaugeUseHUDTheme',
+			...Object.fromEntries(Object.entries(FU.pressureGaugeThemes).map(([key, value]) => [key, value.name])),
+		},
+		onChange() {
+			canvas?.scene?.tokens.forEach((doc) => {
+				if (doc.object instanceof FUToken) doc.object._refreshPressureGauge(true);
+			});
+		},
 	});
 
 	// BEHAVIOR ROLLS
@@ -289,48 +408,54 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
 		hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
 		label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
-		scope: 'client',
+		scope: 'user',
 		icon: 'fas fa-book',
 		type: CombatHudSettings,
 	});
 
+	/**
+	 * The combat HUD options have been migrated from the client scope to user scope
+	 * In order to maintain backwards compatibility with the previous client-scoped settings,
+	 * the default values check for a key in localStorage, to bring old settings forward
+	 */
+
 	game.settings.register(SYSTEM, SETTINGS.experimentalCombatHud, {
 		name: game.i18n.localize('FU.ExperimentalCombatHud'),
 		hint: game.i18n.localize('FU.ExperimentalCombatHudHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.experimentalCombatHud, false),
 		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudOpacity, {
 		name: game.i18n.localize('FU.CombatHudOpacity'),
 		hint: game.i18n.localize('FU.CombatHudOpacityHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Number,
-		default: 100,
+		default: getClientSetting(SETTINGS.optionCombatHudOpacity, 100),
 		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudWidth, {
 		name: game.i18n.localize('FU.CombatHudWidth'),
 		hint: game.i18n.localize('FU.CombatHudWidthHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Number,
-		default: 100,
+		default: getClientSetting(SETTINGS.optionCombatHudWidth, 100),
 		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPositionButton, {
 		name: game.i18n.localize('FU.CombatHudPositionButton'),
 		hint: game.i18n.localize('FU.CombatHudPositionButtonHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'top',
+		default: getClientSetting(SETTINGS.optionCombatHudPositionButton, 'top'),
 		choices: {
 			top: game.i18n.localize('FU.CombatHudPositionButtonTop'),
 			bottom: game.i18n.localize('FU.CombatHudPositionButtonBottom'),
@@ -341,10 +466,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPosition, {
 		name: game.i18n.localize('FU.CombatHudPosition'),
 		hint: game.i18n.localize('FU.CombatHudPositionHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'bottom',
+		default: getClientSetting(SETTINGS.optionCombatHudPosition, 'bottom'),
 		choices: {
 			bottom: game.i18n.localize('FU.CombatHudPositionBottom'),
 			top: game.i18n.localize('FU.CombatHudPositionTop'),
@@ -355,10 +480,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPortrait, {
 		name: game.i18n.localize('FU.CombatHudPortrait'),
 		hint: game.i18n.localize('FU.CombatHudPortraitHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'actor',
+		default: getClientSetting(SETTINGS.optionCombatHudPortrait, 'actor'),
 		choices: {
 			actor: game.i18n.localize('FU.CombatHudPortraitActor'),
 			token: game.i18n.localize('FU.CombatHudPortraitToken'),
@@ -368,53 +493,53 @@ export const registerSystemSettings = async function () {
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudCompact, {
 		name: 'CombatHudCompact',
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudCompact, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudMinimized, {
 		name: 'CombatHudMinimized',
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudMinimized, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudSaved, {
 		name: 'CombatHudSaved',
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudSaved, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowEffects, {
 		name: game.i18n.localize('FU.CombatHudShowEffects'),
 		hint: game.i18n.localize('FU.CombatHudShowEffectsHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: true,
+		default: getClientSetting(SETTINGS.optionCombatHudShowEffects, true),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, {
 		name: game.i18n.localize('FU.CombatHudEffectsMarqueeDuration'),
 		hint: game.i18n.localize('FU.CombatHudEffectsMarqueeDurationHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Number,
-		default: 15,
+		default: getClientSetting(SETTINGS.optionCombatHudEffectsMarqueeDuration, 15),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, {
 		name: game.i18n.localize('FU.CombatHudEffectsMarqueeMode'),
 		hint: game.i18n.localize('FU.CombatHudEffectsMarqueeModeHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: String,
-		default: 'alternate',
+		default: getClientSetting(SETTINGS.optionCombatHudEffectsMarqueeMode, 'alternate'),
 		choices: {
 			normal: game.i18n.localize('FU.CombatHudEffectsMarqueeModeNormal'),
 			alternate: game.i18n.localize('FU.CombatHudEffectsMarqueeModeAlternate'),
@@ -434,10 +559,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, {
 		name: game.i18n.localize('FU.CombatHudShowOrderNumbers'),
 		hint: game.i18n.localize('FU.CombatHudShowOrderNumbersHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: getClientSetting(SETTINGS.optionCombatHudShowOrderNumbers, false),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudActorOrdering, {
@@ -456,10 +581,10 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, {
 		name: game.i18n.localize('FU.CombatHudDraggedPosition'),
 		hint: game.i18n.localize('FU.CombatHudDraggedPositionHint'),
-		scope: 'client',
+		scope: 'user',
 		config: false,
 		type: Object,
-		default: {},
+		default: getClientSetting(SETTINGS.optionCombatHudDraggedPosition, {}),
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {
@@ -660,13 +785,13 @@ export const registerSystemSettings = async function () {
 			]),
 	});
 
-	// SHEETS
+	// DOCUMENT SHEETS
 	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
 		name: game.i18n.localize('FU.SheetOptionsTitle'),
 		label: game.i18n.localize('FU.SheetOptions'),
 		hint: game.i18n.localize('FU.SheetOptionsHint'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms]),
+		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms, SETTINGS.optionAutomaticAdversaryRegistration]),
 		restricted: true,
 	});
 
@@ -698,19 +823,45 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration, {
+		name: game.i18n.localize('FU.AutomaticAdversaryRegistration'),
+		hint: game.i18n.localize('FU.AutomaticAdversaryRegistrationHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
+	});
+
 	// AUTOMATION
 	game.settings.registerMenu(SYSTEM, SETTINGS.automationOptions, {
 		name: game.i18n.localize('FU.Automation'),
 		label: game.i18n.localize('FU.AutomationOptions'),
 		hint: game.i18n.localize('FU.AutomationHint'),
 		icon: 'fa fa-wrench',
-		type: createConfigurationApp('FU.AutomationOptions', [SETTINGS.optionAutomationManageEffects, SETTINGS.optionAutomationEffectsReminder, SETTINGS.optionAutomationRemoveExpiredEffects]),
+		type: createConfigurationApp('FU.AutomationOptions', [
+			SETTINGS.optionAutomationManageEffects,
+			SETTINGS.optionAutomationRuleElements,
+			SETTINGS.optionAutomationEffectsReminder,
+			SETTINGS.optionAutomationRemoveExpiredEffects,
+			SETTINGS.automationApplyDamage,
+			SETTINGS.automationUpdateResource,
+		]),
 		restricted: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionAutomationManageEffects, {
 		name: game.i18n.localize('FU.AutomationManageEffects'),
 		hint: game.i18n.localize('FU.AutomationManageEffectsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationRuleElements, {
+		name: game.i18n.localize('FU.AutomationRuleElements'),
+		hint: game.i18n.localize('FU.AutomationRuleElementsHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -735,13 +886,31 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.automationApplyDamage, {
+		name: game.i18n.localize('FU.AutomationApplyDamage'),
+		hint: game.i18n.localize('FU.AutomationApplyDamageHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.automationUpdateResource, {
+		name: game.i18n.localize('FU.AutomationUpdateResource'),
+		hint: game.i18n.localize('FU.AutomationUpdateResourceHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
 	// HOMEBREW
 	game.settings.registerMenu(SYSTEM, SETTINGS.homebrewOptions, {
 		name: game.i18n.localize('FU.Homebrew'),
 		label: game.i18n.localize('FU.HomebrewOptions'),
 		hint: game.i18n.localize('FU.HomebrewHint'),
 		icon: 'fa fa-coffee',
-		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability, SETTINGS.opportunities]),
+		type: createConfigurationApp('FU.HomebrewOptions', [SETTINGS.optionRenameCurrency, SETTINGS.optionBondMaxLength, SETTINGS.affinityResistance, SETTINGS.affinityVulnerability, SETTINGS.opportunities, SETTINGS.optionCrisisMultiplier]),
 		restricted: true,
 	});
 
@@ -794,16 +963,6 @@ export const registerSystemSettings = async function () {
 		requiresReload: true,
 	});
 
-	// OPPORTUNITIES
-	// game.settings.registerMenu(SYSTEM, 'opportunitySettings', {
-	// 	name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
-	// 	hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
-	// 	label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
-	// 	scope: 'client',
-	// 	icon: 'fas fa-book',
-	// 	type: CombatHudSettings,
-	// });
-
 	game.settings.register(SYSTEM, SETTINGS.opportunities, {
 		name: 'FU.Opportunities',
 		hint: 'FU.OpportunitiesHint',
@@ -814,6 +973,21 @@ export const registerSystemSettings = async function () {
 			blank: true,
 			idOnly: true,
 		}),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCrisisMultiplier, {
+		name: 'FU.CrisisMultiplier',
+		hint: 'FU.CrisisMultiplierHint',
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 0.5,
+		requiresReload: false,
+		range: {
+			min: 0,
+			max: 1,
+			step: 0.05,
+		},
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionEnableDragRulerGridless, {
@@ -834,6 +1008,17 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: true,
 		requiresReload: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCompendiumBrowserPacks, {
+		name: game.i18n.localize('FU.CompendiumBrowser'),
+		hint: game.i18n.localize('FU.CompendiumBrowserPacksHint'),
+		scope: 'world',
+		config: true,
+		type: String,
+		requiresReload: true,
+		default: 'all',
+		choices: FU.compendiumBrowserPacks,
 	});
 };
 

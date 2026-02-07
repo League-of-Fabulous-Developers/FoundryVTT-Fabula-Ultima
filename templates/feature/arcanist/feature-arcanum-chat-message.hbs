@@ -4,13 +4,13 @@
     </div>
 </div>
 <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureArcanumMerge'}}</summary>
         {{{merge}}}
     </details>
 </div>
 <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
+    <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureArcanumDismiss'}}</summary>
         {{{dismiss}}}
     </details>

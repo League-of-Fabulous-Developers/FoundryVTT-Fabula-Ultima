@@ -1,0 +1,47 @@
+{
+  "name": "Disrupting Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/disrupting.png",
+  "system": {
+    "fuid": "disrupting-hoplosphere",
+    "source": "FUTF140",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "addExtraDamageToSpecies",
+        "coagulationLevel": 1,
+        "species": "construct",
+        "amount": 2
+      },
+      {
+        "type": "increaseDefense",
+        "coagulationLevel": 2,
+        "defense": "def",
+        "amount": 1
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658489738,
+    "modifiedTime": 1760404531510,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "on4KiQR4xilvo0ek",
+  "sort": 1400000,
+  "_key": "!items!on4KiQR4xilvo0ek"
+}

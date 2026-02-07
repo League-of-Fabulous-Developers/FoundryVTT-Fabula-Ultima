@@ -17,22 +17,31 @@
         {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
     </div>
     <!-- Roll Section -->
-    <div id="roll-section" class="resource-content flex-group-center desc grid grid-3col">
+    <div id="roll-section" class="resource-content flex-group-center desc grid grid-4col">
         {{!-- Group Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="group-check"
+        <div class="flexcol flex-group-center rollable spin2win" data-roll-type="group-check"
              data-tooltip="{{localize 'FU.GroupCheckTooltip'}}" data-action="roll">
-            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
-            <label class="resource-label-sm">{{localize 'FU.GroupCheck'}}</label>
+            <i class="fu-icon--m {{pfuIconClass 'group' }} spin2win"></i>
+            <label class="resource-label-sm">{{localize 'FU.GroupCheckAbbr'}}</label>
         </div>
         {{!-- Roll Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="roll-check" data-action="roll">
-            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
-            <label class="resource-label-sm">{{localize 'FU.RollCheck'}}</label>
+        <div class="flexcol flex-group-center rollable spin2win" data-roll-type="attribute-check"
+			 data-tooltip="{{localize 'FU.AttributeCheck'}}"
+			 data-action="roll">
+			<i class="fu-icon--m {{pfuIconClass 'attribute' }} spin2win"></i>
+            <label class="resource-label-sm">{{localize 'FU.AttributeCheckAbbr'}}</label>
         </div>
         {{!-- Open Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="open-check" data-action="roll">
-            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
-            <label class="resource-label-sm">{{localize 'FU.OpenCheck'}}</label>
+        <div class="flexcol flex-group-center rollable spin2win" data-roll-type="open-check"
+			 data-tooltip="{{localize 'FU.OpenCheck'}}" data-action="roll">
+			<i class="fu-icon--m {{pfuIconClass 'open' }} spin2win"></i>
+            <label class="resource-label-sm">{{localize 'FU.OpenCheckAbbr'}}</label>
         </div>
+		{{!-- Opposed Check --}}
+		<div class="flexcol flex-group-center rollable spin2win" data-roll-type="opposed-check"
+			 data-tooltip="{{localize 'FU.OpposedCheck'}}" data-action="roll">
+			<i class="fu-icon--m {{pfuIconClass 'opposed' }} spin2win"></i>
+			<label class="resource-label-sm">{{localize 'FU.OpposedCheckAbbr'}}</label>
+		</div>
     </div>
 </div>

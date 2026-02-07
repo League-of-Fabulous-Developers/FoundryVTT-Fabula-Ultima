@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast an offensive ( @ICON[offensive] ) spell targeting <strong>a single creature</strong>, if the spell has a <strong>total Mind Point cost of 【SL × 10】 or lower</strong> and you have one or more <strong>bow, brawling, dagger, flail, spear, or sword weapons</strong> equipped, you may choose one of those weapons. If you do, your Magic Check for the spell will use the chosen weapon's Accuracy Check formula; for instance, the Magic Check for an Elementalist spell cast through a <strong>bronze sword</strong> (<strong>Core Rulebook</strong>, page <strong>131</strong>) will be <strong>【DEX + MIG】 + 1</strong> instead of <strong>【INS + WLP】</strong>.</p>",
+    "description": "<p>When you cast an offensive spell (@ICON[offensive]) targeting a <strong>single creature</strong>, if the spell has a <strong>total Mind Point cost of 【SL × 20】 or lower</strong>, you may choose one <strong>non-arcane</strong> weapon you have equipped. If you do, your Magic Check for the spell uses the chosen weapon’s Accuracy Check formula; if that formula includes <strong>Dexterity</strong>, the Magic Check also gains a bonus equal to <strong>【SL】.</strong> For instance, casting an Elementalist spell through a <strong>bronze sword</strong> (page <strong>131</strong>) when you have Skill Level 2 in <strong>Spellblade</strong> will cause the Magic Check to be <strong>【DEX + MIG】+3</strong> instead of <strong>【INS + WLP】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR187"
-    },
+    "source": "FUCR187",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -149,7 +147,61 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "elements": {
+            "n51WK4vf6h7Pn9Rt": {
+              "type": "ruleElement",
+              "_id": "n51WK4vf6h7Pn9Rt",
+              "trigger": {
+                "_id": "NkUGhN3O6wegQ14w",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ]
+              },
+              "predicates": {
+                "YAHJUD5SD1ClxolQ": {
+                  "type": "checkRulePredicate",
+                  "_id": "YAHJUD5SD1ClxolQ",
+                  "result": null
+                },
+                "jhaZQdISJVvn4vew": {
+                  "type": "weaponRulePredicate",
+                  "_id": "jhaZQdISJVvn4vew",
+                  "categories": [
+                    "bow",
+                    "brawling",
+                    "dagger",
+                    "firearm",
+                    "flail",
+                    "heavy",
+                    "spear",
+                    "sword",
+                    "thrown"
+                  ],
+                  "selector": "self"
+                }
+              },
+              "actions": {
+                "OVdMuTH6qx98kFEi": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "OVdMuTH6qx98kFEi",
+                  "bonus": "$sl"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -169,12 +221,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743535722306,
-        "modifiedTime": 1743537376516,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1770343420812,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!v6rTedHMjbLuLdN3.DhBhEANF8jRMaBo4"
@@ -186,15 +238,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706498028252,
-    "modifiedTime": 1742002051478,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770331267776,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,16 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Resource'}}</span>
+	<select name="{{pfuConcat path ".resource"}}">
+		{{selectOptions options.resources selected=trigger.resource sort=true localize=true}}
+	</select>
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.ExpenseSource'}}</span>
+	<select name="{{pfuConcat path ".expenseSource"}}">
+		<option value="">-</option>
+		{{selectOptions options.expenseSource selected=trigger.expenseSource sort=true localize=true}}
+	</select>
+</label>
+
+{{pfuTraits trigger.traits (pfuConcat path ".traits")}}

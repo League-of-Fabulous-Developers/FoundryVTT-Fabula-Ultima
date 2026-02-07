@@ -3,7 +3,7 @@
   "name": "Hallucination",
   "type": "spell",
   "_id": "JTyMViMTOUrc7bms",
-  "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/hallucination.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You alter the senses of your enemies, causing them to experience bizarre or frightening hallucinations. <br />Choose <strong>dazed</strong> or <strong>shaken</strong>: you inflict the chosen status effect on each target hit by this spell.</p><hr /><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[dazed], or @EFFECT[shaken]</p></li></ul>",
+    "description": "<p>You alter the senses of your enemies, causing them to experience bizarre or frightening hallucinations. <br />Choose <strong>dazed</strong> or <strong>shaken</strong>: you inflict the chosen status effect on each target hit by this spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR208"
-    },
+    "source": "FUCR208",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,13 @@
     "maxTargets": {
       "value": 3
     },
-    "fuid": "hallucination"
+    "fuid": "hallucination",
+    "effects": {
+      "entries": [
+        "dazed",
+        "shaken"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -128,15 +132,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706572612784,
-    "modifiedTime": 1744722191659,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1766779536157,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

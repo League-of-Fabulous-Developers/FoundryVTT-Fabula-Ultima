@@ -11,12 +11,16 @@ import { systemTemplatePath } from '../../helpers/system-utils.mjs';
  * @remarks Not the nicest way to do it, but...
  */
 export const ItemPartialTemplates = Object.freeze({
-	controls: { template: systemTemplatePath('item/partials/item-controls'), group: 'settings' },
+	standard: { template: systemTemplatePath('item/partials/item-standard'), group: 'settings' },
 	qualityCost: { template: systemTemplatePath('item/partials/item-quality-cost') },
+	costStandalone: { template: systemTemplatePath('item/partials/item-cost-standalone') },
+	slotSelectArmor: { template: systemTemplatePath('item/partials/item-slot-select-armor') },
 	accuracy: { template: systemTemplatePath('item/partials/item-accuracy-section'), group: 'grid' },
 	legacyAccuracy: { template: systemTemplatePath('item/partials/item-accuracy-section-legacy'), group: 'grid' },
 	damage: { template: systemTemplatePath('item/partials/item-damage-section'), group: 'grid' },
+	damageBasic: { template: systemTemplatePath('item/partials/item-damage-basic-section'), group: 'grid' },
 	legacyDamage: { template: systemTemplatePath('item/partials/item-damage-section-legacy'), group: 'grid' },
+	resource: { template: systemTemplatePath('item/partials/item-resource-section'), group: 'grid' },
 	resourcePoints: { template: systemTemplatePath('item/partials/item-resource-points') },
 	classBenefits: { template: systemTemplatePath('item/partials/item-class-benefits') },
 	skillAttributes: { template: systemTemplatePath('item/partials/item-skill-attributes') },
@@ -24,7 +28,9 @@ export const ItemPartialTemplates = Object.freeze({
 	actionCost: { template: systemTemplatePath('item/partials/item-action-cost'), group: 'grid' },
 	attackAccuracy: { template: systemTemplatePath('item/partials/item-attack-accuracy'), group: 'grid' },
 	attackDamage: { template: systemTemplatePath('item/partials/item-attack-damage'), group: 'grid' },
-	weaponSettings: { template: systemTemplatePath('item/partials/item-weapon-settings'), group: 'settings' },
+	traits: { template: systemTemplatePath('item/partials/item-traits'), group: 'grid' },
+	traitsLegacy: { template: systemTemplatePath('item/partials/item-traits-legacy'), group: 'grid' },
+	effects: { template: systemTemplatePath('item/partials/item-effect-application-section'), group: 'grid' },
 
 	opportunityField: { template: systemTemplatePath('item/partials/item-opportunity-field') },
 	initiativeField: { template: systemTemplatePath('item/partials/item-initiative-field') },
@@ -35,6 +41,8 @@ export const ItemPartialTemplates = Object.freeze({
 	flawedField: { template: systemTemplatePath('item/partials/item-flawed-field'), group: 'settings' },
 	durationField: { template: systemTemplatePath('item/partials/item-duration-field') },
 	ipCostField: { template: systemTemplatePath('item/partials/item-ip-cost-field') },
+	attackTypeField: { template: systemTemplatePath('item/partials/item-attack-type-field') },
+	attackTypeAndQuality: { template: systemTemplatePath('item/partials/item-attack-type-quality') },
 
 	armor: { template: systemTemplatePath('item/partials/item-armor-attributes') },
 	accessory: { template: systemTemplatePath('item/partials/item-accessory-attributes') },

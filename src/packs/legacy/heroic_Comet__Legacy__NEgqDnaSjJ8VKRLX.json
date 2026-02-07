@@ -1,0 +1,62 @@
+{
+  "name": "Comet [Legacy]",
+  "type": "heroic",
+  "img": "icons/magic/time/hourglass-yellow-green.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Learn the Comet spell."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Entropist</strong> Class. <br /></p></blockquote><p>You learn the ultimate <strong>Entropist</strong> spell: <strong>Comet</strong>. <br /></p><table style=\"width:94.2636%\" border=\"1\"><colgroup><col style=\"width:12.973%\"></col><col style=\"width:13.1532%\"></col><col style=\"width:27.9279%\"></col><col style=\"width:45.7658%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Comet</strong></td><td style=\"text-align:center\"><strong>MP: </strong>50</td><td style=\"text-align:center\"><strong>Target: </strong>Special</td><td style=\"text-align:center\"><strong>Duration: </strong>Instantaneous</td></tr></tbody></table><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose on option: one creature you can see suffers @DMG[60 untyped] damage; or you choose any number of creatures you can see, and each of them suffers @DMG[40 untyped] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p><hr /><p>Add the @UUID[Compendium.projectfu.spells.Item.Vem0KAbARyK1FtPk]{Comet} spell to your character sheet from the <strong>Entropist</strong> spell list.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Entropist"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUCR235",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "comet-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768853066082,
+    "modifiedTime": 1768869405248,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "NEgqDnaSjJ8VKRLX",
+  "sort": 0,
+  "_key": "!items!NEgqDnaSjJ8VKRLX"
+}

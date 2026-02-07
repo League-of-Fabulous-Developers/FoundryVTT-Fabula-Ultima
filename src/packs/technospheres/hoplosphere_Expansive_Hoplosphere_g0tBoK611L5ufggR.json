@@ -1,0 +1,41 @@
+{
+  "name": "Expansive Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/expansive.png",
+  "system": {
+    "fuid": "expansive-hoplosphere",
+    "source": "FUTF141",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "freeText",
+        "coagulationLevel": 1,
+        "name": "Multi (2)",
+        "text": "Gain Multi (2)"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658492787,
+    "modifiedTime": 1760404547143,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "g0tBoK611L5ufggR",
+  "sort": 1300000,
+  "_key": "!items!g0tBoK611L5ufggR"
+}

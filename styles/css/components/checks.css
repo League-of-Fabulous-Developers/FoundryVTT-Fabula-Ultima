@@ -1,0 +1,60 @@
+.fu-check {
+	font-family: var(--font-primary);
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #ffffff;
+}
+
+.fu-check.default {
+	background: linear-gradient(to right, #7da0ca, #004f89);
+}
+
+.fu-check.critical {
+	background: var(--background-critical);
+}
+
+.fu-check.success {
+	background: var(--background-success);
+}
+
+.fu-check.failure {
+	background: var(--background-failure);
+}
+
+.fu-check.fumble {
+	background: var(--background-fumble);
+}
+
+.fu-check__result {
+	display: flex;
+	gap: 4px;
+}
+
+.fu-check__result-text {
+	font-weight: 700;
+	font-size: 18px;
+	color: white;
+	/* subtle shadow instead of hard outline */
+	text-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+.fu-check__outcome {
+	font-size: 16px;
+	color: white;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.fu-check__difficulty {
+	color: #b11f1f; /* strong but not neon red */
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow:
+		-2px 0 0 #fff,
+		2px 0 0 #fff,
+		0 -2px 0 #fff,
+		0 2px 0 #fff;
+}

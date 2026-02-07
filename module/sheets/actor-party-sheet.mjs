@@ -5,7 +5,6 @@ import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
-import { MathHelper } from '../helpers/math-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { NpcProfileWindow } from '../ui/npc-profile.mjs';
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
@@ -16,8 +15,15 @@ import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipelin
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
-import { TextEditor } from '../helpers/text-editor.mjs';
-import { getCurrencyString } from '../pipelines/inventory-pipeline.mjs';
+import { getCurrencyString, InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
+import { EquipmentTableRenderer } from '../helpers/tables/equipment-table-renderer.mjs';
+import { Checks } from '../checks/checks.mjs';
+import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-renderer.mjs';
+import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
+import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
+import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -33,18 +39,27 @@ export class FUPartySheet extends FUActorSheet {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: [],
+		classes: ['party'],
 		actions: {
+			createItem: this.#onCreate,
+			editItem: this.#onEdit,
+			roll: this.#onRoll,
+			clearInventory: this.#onClearInventory,
+			createEquipment: this.#onCreateEquipment,
+			shareItem: this.#onShareItem,
+			distributeZenit: this.#onDistributeZenit,
+
 			revealMetaCurrency: this.#revealMetaCurrency,
 			revealActor: this.#revealActor,
 			revealNpc: this.#onRevealNpc,
 			restParty: this.#restParty,
 			rewardResource: this.promptAwardResources,
 			refreshSheet: this.#refreshSheet,
-			addTrack: this.promptAddProgressTrack,
-			removeTrack: this.#onRemoveProgressTrack,
-			incrementProgress: this.#onIncrementProgressTrack,
-			revealTrack: this.#onRevealProgressTrack,
+			addTrack: this.#onAddTrack,
+			removeTrack: this.#onRemoveTrack,
+			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
+			promptTrack: this.#onPromptTrack,
+
 			callHook: this.#callHook,
 			activate: this.#activate,
 		},
@@ -99,6 +114,12 @@ export class FUPartySheet extends FUActorSheet {
 		},
 	};
 
+	#equipmentTable = new EquipmentTableRenderer();
+	#technospheresTable = new TechnospheresTableRenderer();
+	#treasuresTable = new TreasuresTableRenderer();
+	#consumablesTable = new ConsumablesTableRenderer();
+	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
+
 	/**
 	 * @returns {PartyDataModel}
 	 */
@@ -138,6 +159,12 @@ export class FUPartySheet extends FUActorSheet {
 		return tabs;
 	}
 
+	_configureRenderParts(options) {
+		const parts = super._configureRenderParts(options);
+		if (!game.user.isGM) delete parts.settings;
+		return parts;
+	}
+
 	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
 		const context = await super._preparePartContext(partId, ctx, options);
@@ -149,10 +176,17 @@ export class FUPartySheet extends FUActorSheet {
 				break;
 			case 'overview':
 				break;
-			case 'inventory':
-				await ActorSheetUtils.prepareItems(context);
-				await ActorSheetUtils.prepareInventory(context);
+			case 'inventory': {
+				const technoSphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
+				context.equipmentTable = await this.#equipmentTable.renderTable(this.document);
+				if (technoSphereMode) {
+					context.technospheresTable = await this.#technospheresTable.renderTable(this.document);
+				}
+				context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
+				context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
+				context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 				break;
+			}
 			case 'adversaries':
 				break;
 			case 'settings':
@@ -191,11 +225,18 @@ export class FUPartySheet extends FUActorSheet {
 		super._attachFrameListeners();
 		const html = this.element;
 		ActorSheetUtils.activateDefaultListeners(html, this);
-		ActorSheetUtils.activateInventoryListeners(html, this);
-		ActorSheetUtils.activateStashListeners(html, this);
 
 		// Right click on character
 		this.setupCharacterContextMenu(html);
+	}
+
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		this.#equipmentTable.activateListeners(this);
+		this.#technospheresTable.activateListeners(this);
+		this.#treasuresTable.activateListeners(this);
+		this.#consumablesTable.activateListeners(this);
+		this.#otherItemsTable.activateListeners(this);
 	}
 
 	/**
@@ -257,74 +298,69 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onIncrementProgressTrack(event, target) {
-		const index = target.closest('[data-index]').dataset.index;
-		const increment = target.dataset.increment;
-		this.updateProgressTrack(index, Number.parseInt(increment));
+	static async #onAddTrack(event, target) {
+		await ProgressDataModel.promptAddToDocument(this.actor, 'system.tracks', true);
 	}
 
 	/**
-	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onRevealProgressTrack(event, target) {
-		const index = target.closest('[data-index]').dataset.index;
-		this.revealProgressTrack(index);
+	static async #onRemoveTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		return ProgressDataModel.removeAtIndexForDocument(this.actor, 'system.tracks', index);
 	}
 
 	/**
-	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onRemoveProgressTrack(event, target) {
-		this.removeProgressTrack(Number(target.closest('[data-index]').dataset.index));
+	static async #onUpdateTrack(event, target) {
+		const { updateAmount, index, alternate } = target.dataset;
+		let increment = parseInt(updateAmount);
+		if (alternate && event.button === 2) {
+			increment = -increment;
+		}
+		return ProgressDataModel.updateAtIndexForDocument(this.actor, 'system.tracks', Number.parseInt(index), increment);
 	}
 
 	/**
-	 * @description Handles a drop event
-	 * @override
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
 	 */
-	async _onDrop(ev) {
-		ev.preventDefault();
+	static async #onPromptTrack(event, target) {
+		const index = Number(target.closest('[data-index]').dataset.index);
+		return ProgressPipeline.promptCheckAtIndexForDocument(this.actor, 'system.tracks', index);
+	}
 
-		// Retrieve drag data using TextEditor
-		const data = TextEditor.getDragEventData(ev);
-		if (data && data.type) {
-			switch (data.type) {
-				case 'Item': {
-					const accepted = await ActorSheetUtils.handleInventoryItemDrop(this.actor, data, super._onDrop(ev));
-					if (accepted) {
-						return true;
-					}
-					break;
-				}
+	async _onDropItem(event, item) {
+		const itemStashed = await ActorSheetUtils.handleStashDrop(this.actor, item);
+		if (itemStashed === true) {
+			return [];
+		}
 
-				case 'Actor': {
-					const actor = await Actor.implementation.fromDropData(data);
-					console.debug(`${actor.name} was dropped onto party sheet`);
-					if (actor.type === 'character') {
-						await this.party.addCharacter(actor);
-					} else if (actor.type === 'npc') {
-						if (actor.system.rank.value === 'companion') {
-							await this.party.addCompanion(actor);
-						} else {
-							await this.party.addOrUpdateAdversary(actor, 0);
-						}
-					}
-					return true;
-				}
+		return super._onDropItem(event, item);
+	}
+
+	async _onDropActor(event, actor) {
+		console.debug(`${actor.name} was dropped onto party sheet`);
+		if (actor.type === 'character') {
+			return this.party.addCharacter(actor);
+		} else if (actor.type === 'npc') {
+			if (actor.system.rank.value === 'companion') {
+				return this.party.addCompanion(actor);
+			} else {
+				return this.party.addOrUpdateAdversary(actor, 0);
 			}
 		}
-		return false;
+		return super._onDropActor(event, actor);
 	}
 
 	/**
@@ -362,7 +398,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	async revealNpc(uuid) {
-		const data = await this.party.getAdversary(uuid);
+		const data = this.party.getAdversary(uuid);
 		if (data) {
 			new NpcProfileWindow(data, {
 				title: data.name,
@@ -378,18 +414,11 @@ export class FUPartySheet extends FUActorSheet {
 	static async promptAwardResources() {
 		const characters = await this.party.getCharacterActors();
 		const defaultSource = StringUtils.localize('USER.RoleGamemaster');
-
-		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: StringUtils.localize('FU.AwardResources') },
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-award-resources.hbs'), {
-				defaultSource: defaultSource,
-				characters: characters,
-			}),
-			rejectClose: false,
-			ok: {
-				label: 'FU.Confirm',
-			},
+		const content = await FoundryUtils.renderTemplate('dialog/dialog-award-resources', {
+			defaultSource: defaultSource,
+			characters: characters,
 		});
+		const result = await FoundryUtils.input('FU.AwardResources', content);
 
 		if (result) {
 			const resource = result.resource;
@@ -405,72 +434,6 @@ export class FUPartySheet extends FUActorSheet {
 				await ResourcePipeline.processLoss(request);
 			}
 			return this.render(true);
-		}
-	}
-
-	/**
-	 * @description Adds a new progress track
-	 */
-	static async promptAddProgressTrack() {
-		console.debug('Adding a progress track');
-
-		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: game.i18n.localize('FU.ClockAdd') },
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-party-clock.hbs'), {}),
-			rejectClose: false,
-			ok: {
-				label: game.i18n.localize('FU.Confirm'),
-			},
-		});
-
-		if (result) {
-			if (!result.name) {
-				return;
-			}
-			console.log('Creating progress track with name: ', result.name);
-
-			const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-
-			const newTrack = ProgressDataModel.construct(result.name, result.max);
-			tracks.push(newTrack);
-			this.actor.update({ ['system.tracks']: tracks });
-		}
-	}
-
-	/**
-	 * @description  increment button click events for progress tracks
-	 * @param {number} index The index of the progress track
-	 * @param {number} increment
-	 */
-	updateProgressTrack(index, increment) {
-		const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-		const track = tracks[index];
-		if (track) {
-			track.current = MathHelper.clamp(track.current + increment * track.step, 0, track.max);
-			this.actor.update({ ['system.tracks']: tracks });
-		} else {
-			ui.notifications.error(`Failed to update progress track`);
-		}
-	}
-
-	/**
-	 * @param {number} index
-	 */
-	removeProgressTrack(index) {
-		/** @type ProgressDataModel[] **/
-		const tracks = foundry.utils.duplicate(this.actor.system.tracks);
-		tracks.splice(index, 1);
-		this.actor.update({ ['system.tracks']: tracks });
-	}
-
-	/**
-	 * @param {number} index
-	 */
-	revealProgressTrack(index) {
-		const tracks = this.actor.system.tracks;
-		const track = tracks[index];
-		if (track) {
-			ProgressDataModel.sendToChat(this.actor, track);
 		}
 	}
 
@@ -594,7 +557,95 @@ export class FUPartySheet extends FUActorSheet {
 			await party.sheet.revealNpc(uuid);
 		}
 	}
+
+	static #onCreate(event, target) {
+		const type = target.dataset.type;
+
+		if (!type) {
+			return;
+		}
+		const itemData = {
+			type: type,
+		};
+
+		itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
+
+		foundry.documents.Item.create(itemData, { parent: this.actor });
+	}
+
+	static #onEdit(event, target) {
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item = this.actor.items.get(itemId);
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+
+		if (item) {
+			item.sheet.render(true);
+		}
+	}
+
+	static #onRoll(event, target) {
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item = this.actor.items.get(itemId);
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+
+		if (item) {
+			return Checks.display(this.actor, item);
+		}
+	}
+
+	static async #onClearInventory() {
+		const clear = await foundry.applications.api.Dialog.confirm({
+			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: `${game.i18n.localize('FU.All')} ${game.i18n.localize('FU.Items')}` }),
+			rejectClose: false,
+		});
+		if (clear) {
+			console.debug(`Clearing all items from actor ${this.actor}`);
+			return this.actor.clearEmbeddedItems();
+		}
+	}
+
+	static async #onCreateEquipment() {
+		const itemType = await foundry.applications.api.DialogV2.wait({
+			window: { title: `${game.i18n.localize('FU.Create')} ${game.i18n.localize('FU.Item')}` },
+			content: '',
+			rejectClose: false,
+			buttons: ['accessory', 'armor', 'shield', 'weapon'].map((choice) => ({
+				action: choice,
+				label: game.i18n.localize(CONFIG.Item.typeLabels[choice]),
+			})),
+		});
+
+		if (itemType) {
+			foundry.documents.Item.create({ type: itemType, name: foundry.documents.Item.defaultName({ type: itemType, parent: this.actor }) }, { parent: this.actor });
+		}
+	}
+
+	static #onShareItem(event, target) {
+		const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item = this.actor.items.get(dataItemId);
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+		if (item) {
+			return InventoryPipeline.tradeItem(this.actor, item, 'loot');
+		}
+	}
+
+	static #onDistributeZenit() {
+		return InventoryPipeline.distributeZenit(this.actor);
+	}
 }
+
+////////////////////////////////////
+// HOOKS
+////////////////////////////////////
 
 /**
  * @typedef PartySheetActionHook
@@ -684,7 +735,7 @@ async function onRevealEvent(event) {
 	const party = await FUPartySheet.getActiveModel();
 	if (party) {
 		console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
-		const adversary = await party.getAdversary(event.actor.resolveUuid());
+		const adversary = party.getAdversary(event.actor.resolveUuid());
 		// Not added if it was outside of combat, for example
 		if (!adversary) {
 			return;
@@ -700,3 +751,18 @@ async function onRevealEvent(event) {
 	}
 }
 Hooks.on(FUHooks.REVEAL_EVENT, onRevealEvent);
+
+async function onResourceChangeEvent(event) {
+	if (event.actor) {
+		const party = await FUPartySheet.getActive();
+		if (party && party.system.characters.has(event.actor.uuid)) {
+			party.sheet.render({
+				parts: ['overview'],
+			});
+		}
+	}
+}
+
+Hooks.on(FUHooks.DAMAGE_EVENT, onResourceChangeEvent);
+Hooks.on(FUHooks.GAIN_EVENT, onResourceChangeEvent);
+Hooks.on(FUHooks.LOSS_EVENT, onResourceChangeEvent);

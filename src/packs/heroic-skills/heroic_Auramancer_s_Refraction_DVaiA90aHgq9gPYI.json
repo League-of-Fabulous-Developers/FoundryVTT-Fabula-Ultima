@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF162"
-    },
+    "source": "FUNF162",
     "fuid": "auramancers-refraction"
   },
   "effects": [],

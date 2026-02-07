@@ -5,6 +5,9 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import { Checks } from '../../../../checks/checks.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+import { SectionChatBuilder } from '../../../../helpers/section-chat-builder.mjs';
+import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
+import { StringUtils } from '../../../../helpers/string-utils.mjs';
 
 const alchemyRanks = {
 	basic: 'FU.ClassFeatureAlchemyBasic',
@@ -173,7 +176,8 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			superior: await TextEditor.enrichHTML(model.superior || ''),
 		};
 		if (dice && rank) {
-			const speaker = ChatMessage.implementation.getSpeaker({ actor: model.parent.parent.actor });
+			const flags = { [SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid } };
+			const actor = model.parent.parent.actor;
 			const roll = await new Roll(`{${Array(dice).fill('d20').join(', ')}}`).roll();
 			const description = descriptions[rank];
 			if (model.config.targetRollTable && model.config.effectRollTable) {
@@ -188,15 +192,23 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 					const effect = model.config.effectRollTable.getResultsForRoll(die.total).at(0).getChatText();
 					data.results.push({ result: die.total, target, effect });
 				}
-				ChatMessage.create({
-					speaker,
-					type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
-					rolls: [roll],
-					content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/tinkerer/feature-alchemy-chat-message.hbs', data),
-					flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
-				});
+
+				const content = await FoundryUtils.renderTemplate('feature/tinkerer/feature-alchemy-chat-message', data);
+				const builder = new SectionChatBuilder(actor, item);
+				CommonSections.itemFlavor(builder.sections, item);
+				CommonSections.content(builder.sections, content);
+				builder.withRolls([roll]);
+				builder.withFlags(flags);
+				await builder.create();
 			} else {
-				await roll.toMessage({ flavor: game.i18n.localize(alchemyRanks[rank]), speaker });
+				const builder = new SectionChatBuilder(actor, item);
+				CommonSections.itemFlavor(builder.sections, item);
+				const text = StringUtils.localize('FU.ClassFeatureAlchemyRollTableMissing');
+				CommonSections.genericText(builder.sections, text);
+				builder.withRolls([roll]);
+				const rollHTML = await roll.render();
+				CommonSections.content(builder.sections, rollHTML);
+				await builder.create();
 			}
 		}
 	}

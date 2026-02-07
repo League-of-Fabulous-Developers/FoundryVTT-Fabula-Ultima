@@ -15,18 +15,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700240579,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... treats their Dexterity (@EFFECT[dex-up e:eot i:2 t:source]) and Might (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
+      "description": "<p>... treats their <strong>Dexterity</strong> (@EFFECT[dex-up e:eot i:2 t:source]) and <strong>Might</strong> (@EFFECT[mig-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.betocD9ydMQ6SjKW"
     },
     {
@@ -41,18 +42,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700262276,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... treats their Insight (@EFFECT[ins-up e:eot i:2 t:source]) and Willpower (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of d12) until the end of your next turn.",
+      "description": "<p>... treats their <strong>Insight</strong> (@EFFECT[ins-up e:eot i:2 t:source]) and <strong>Willpower</strong> (@EFFECT[wlp-up e:eot i:2 t:source]) dice as if they were one size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.QbqUG0cgZPwbwLe1"
     },
     {
@@ -67,18 +69,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700292965,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... suffers @DMG[20 air] damage. This amount increases to @DMG[30 air] damage if you are level 20 or higher, or to @DMG[40 air] damage if you are level 40 or higher.",
+      "description": "<p>... is dealt @DMG[20 air] damage. This amount increases to @DMG[30 air] damage if you are <strong>level 20 or higher</strong>, or to @DMG[40 air] damage if you are <strong>level 40 or higher</strong>.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.IU7Sp7aeQ5G2E1xM"
     },
     {
@@ -93,18 +96,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700418714,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... suffers @DMG[20 bolt] damage. This amount increases to @DMG[30 bolt] damage if you are level 20 or higher, or to @DMG[40 bolt] damage if you are level 40 or higher.",
+      "description": "<p>... is dealt @DMG[20 bolt] damage. This amount increases to @DMG[30 bolt] damage if you are <strong>level 20 or higher</strong>, or to @DMG[40 bolt] damage if you are <strong>level 40 or higher</strong>.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.CUw91JD2aqi02ISc"
     },
     {
@@ -119,18 +123,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700422672,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... suffers @DMG[20 dark] damage. This amount increases to @DMG[30 dark] damage if you are level 20 or higher, or to @DMG[40 dark] damage if you are level 40 or higher.",
+      "description": "<p>... is dealt @DMG[20 dark] damage. This amount increases to @DMG[30 dark] damage if you are <strong>level 20 or higher</strong>, or to @DMG[40 dark] damage if you are <strong>level 40 or higher</strong>.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.V8BPtqAF1Ej2Uj5g"
     },
     {
@@ -145,18 +150,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700426709,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... suffers @DMG[20 earth] damage. This amount increases to @DMG[30 earth] damage if you are level 20 or higher, or to @DMG[40 earth] damage if you are level 40 or higher.",
+      "description": "<p>... is dealt @DMG[20 earth] damage. This amount increases to @DMG[30 earth] damage if you are <strong>level 20 or higher</strong>, or to @DMG[40 earth] damage if you are <strong>level 40 or higher</strong>.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.tawwduz2lcamJZLu"
     },
     {
@@ -171,18 +177,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700431122,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... suffers @DMG[20 fire] damage. This amount increases to @DMG[30 fire] damage if you are level 20 or higher, or to @DMG[40 fire] damage if you are level 40 or higher.",
+      "description": "<p>... is dealt @DMG[20 fire] damage. This amount increases to @DMG[30 fire] damage if you are <strong>level 20 or higher</strong>, or to @DMG[40 fire] damage if you are <strong>level 40 or higher</strong>.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.ZXXvsN6dUhjFaVWp"
     },
     {
@@ -197,18 +204,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700435410,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... suffers @DMG[20 ice] damage. This amount increases to @DMG[30 ice] damage if you are level 20 or higher, or to @DMG[40 ice] damage if you are level 40 or higher.",
+      "description": "<p>... is dealt @DMG[20 ice] damage. This amount increases to @DMG[30 ice] damage if you are <strong>level 20 or higher</strong>, or to @DMG[40 ice] damage if you are <strong>level 40 or higher</strong>.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.L3RNKzE5wqgj9eJm"
     },
     {
@@ -223,18 +231,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700372116,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... gains Resistance to air (@TYPE[affinity air resistance e:eos i:1 t:source]) and fire (@TYPE[affinity fire resistance e:eos i:1 t:source]) damage until the end of the scene.",
+      "description": "<p>... gains Resistance to <strong>air</strong> (@TYPE[affinity air resistance e:eos i:1 t:source]) and <strong>fire</strong> (@TYPE[affinity fire resistance e:eos i:1 t:source]) damage until the end of the scene.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.56tpGyfcTRIHVCi5"
     },
     {
@@ -249,18 +258,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700381715,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... gains Resistance to bolt (@TYPE[affinity bolt resistance e:eos i:1 t:source]) and ice (@TYPE[affinity ice resistance e:eos i:1 t:source]) damage until the end of the scene.",
+      "description": "<p>... gains Resistance to <strong>bolt</strong> (@TYPE[affinity bolt resistance e:eos i:1 t:source]) and <strong>ice</strong> (@TYPE[affinity ice resistance e:eos i:1 t:source]) damage until the end of the scene.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.dvruxhvA7D7EnCjv"
     },
     {
@@ -275,18 +285,19 @@
       "flags": {},
       "img": "icons/svg/d20-black.svg",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1768700388662,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "... gains Resistance to dark (@TYPE[affinity dark resistance e:eos i:1 t:source]) and earth (@TYPE[affinity earth resistance e:eos i:1 t:source]) damage until the end of the scene.",
+      "description": "<p>... gains Resistance to <strong>dark</strong> (@TYPE[affinity dark resistance e:eos i:1 t:source]) and <strong>earth</strong> (@TYPE[affinity earth resistance e:eos i:1 t:source]) damage until the end of the scene.</p>",
       "name": "",
+      "documentUuid": null,
       "_key": "!tables.results!TvH7gOE0xQYeimUF.Q4L7BCRynKKtTuou"
     },
     {
@@ -512,16 +523,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "createdTime": 1710031528910,
-    "modifiedTime": 1745431298190,
-    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "modifiedTime": 1759658744144,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "formula": "1d20",
   "_id": "TvH7gOE0xQYeimUF",
-  "sort": 0,
+  "sort": 100000,
   "_key": "!tables!TvH7gOE0xQYeimUF"
 }

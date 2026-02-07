@@ -17,7 +17,7 @@ import { ObjectUtils } from '../helpers/object-utils.mjs';
  * @property {FUItem} item  The item the expression is evaluated on
  * @property {FUActiveEffect} effect  The effect the expression is evaluated on
  * @property {FUActor[]} targets The targets the expression is evaluated on
- * @property {FUActor} source Optionally, can be used to execute evaluations on
+ * @property {CheckResultV2|null} check The result of a check.
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Do not serialize this class, as it references full objects. Instead, store their uuids
  * and resolve them with the static constructor
@@ -58,18 +58,24 @@ export class ExpressionContext {
 		return context;
 	}
 
-	setSourceUuid(sourceId) {
-		this.#sourceUuid = sourceId;
-	}
-
 	/**
 	 * @property {FUActor} actor The source of the action
 	 * @property {FUItem} item
-	 * @param {FUActor[]} targets
+	 * @param {TargetData[]} targets
+	 * @param {CheckV2} check
 	 * @returns {ExpressionContext}
 	 */
 	static fromTargetData(actor, item, targets) {
 		return new ExpressionContext(actor, item, Targeting.deserializeTargetData(targets));
+	}
+
+	/**
+	 * @param {CheckResultV2} check
+	 * @returns {ExpressionContext}
+	 */
+	withCheck(check) {
+		this.check = check;
+		return this;
 	}
 
 	/**
@@ -86,7 +92,7 @@ export class ExpressionContext {
 	 * @param {String} match
 	 */
 	assertSource(match) {
-		if (this.source == null) {
+		if (this.sourceItem == null) {
 			// Can be evaluated very early
 			if (ui.notifications) {
 				ui.notifications.warn('FU.ChatEvaluateAmountNoSource', { localize: true });
@@ -164,8 +170,7 @@ export class ExpressionContext {
 	resolveActorOrSource(match, redirect) {
 		if (redirect) {
 			this.assertSource(match);
-			const sourceItem = this.source;
-			const sourceActor = sourceItem.actor;
+			const sourceActor = this.sourceItem.actor;
 			if (!sourceActor) {
 				ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
 				throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
@@ -184,9 +189,16 @@ export class ExpressionContext {
 	}
 
 	/**
+	 * @param {String} sourceId
+	 */
+	setSourceItem(sourceId) {
+		this.#sourceUuid = sourceId;
+	}
+
+	/**
 	 * @returns {FUItem}
 	 */
-	get source() {
+	get sourceItem() {
 		if (!this._source && this.#sourceUuid) {
 			this._source = fromUuidSync(this.#sourceUuid);
 		}
@@ -233,11 +245,14 @@ function evaluate(expression, context) {
 	}
 
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
-	const result = MathHelper.evaluate(substitutedExpression);
+	let result = MathHelper.evaluate(substitutedExpression);
 
 	if (Number.isNaN(result)) {
 		throw new Error(`Failed to evaluate expression ${substitutedExpression}`);
 	}
+
+	// FU always rounds down numbers
+	result = round(result);
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
 	return result;
@@ -252,9 +267,10 @@ const asyncFunctions = [evaluateMacrosAsync];
  * @description Evaluates the given expression using a superset of the DSL
  * @param {String} expression
  * @param {ExpressionContext} context
+ * @param {Boolean} applyRounding Whether to round the result, which is the default for FU.
  * @return {Promise<Number>} The evaluated amount
  */
-async function evaluateAsync(expression, context) {
+async function evaluateAsync(expression, context, applyRounding = true) {
 	if (!requiresContext(expression)) {
 		return Number(expression);
 	}
@@ -270,10 +286,15 @@ async function evaluateAsync(expression, context) {
 	}
 
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
-	const result = MathHelper.evaluate(substitutedExpression);
+	let result = MathHelper.evaluate(substitutedExpression);
 
 	if (Number.isNaN(result)) {
 		throw new Error(`Failed to evaluate expression ${substitutedExpression}`);
+	}
+
+	// FU always rounds down numbers
+	if (applyRounding) {
+		result = round(result);
 	}
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
@@ -328,13 +349,26 @@ function evaluateVariables(expression, context) {
 			case 'dex':
 			case 'wlp':
 			case 'ins': {
-				context.assertActorOrTargets(match);
 				return getAttributeSize(context.resolveActorOrHighestLevelTarget(), symbol);
 			}
-			// Progress (From
+			// Resource: Current
+			case 'hp':
+			case 'mp': {
+				return context.resolveActorOrHighestLevelTarget().system.resources[symbol].value;
+			}
+			// Resource: Max
+			case 'mhp':
+			case 'mmp': {
+				return context.resolveActorOrHighestLevelTarget().system.resources[symbol].max;
+			}
+			// Progress (From effect)
 			case 'pg': {
 				context.assertEffect(match);
 				return context.effect.system.rules.progress.current;
+			}
+			// Target Count
+			case 'tc': {
+				return context.targets.length;
 			}
 			// Target status count
 			case 'tsc': {
@@ -344,25 +378,44 @@ function evaluateVariables(expression, context) {
 			}
 			// Bond Count
 			case 'bc': {
-				return countBonds(context.actor);
+				context.assertActorOrTargets(match);
+				return countBonds(context.resolveActorOrHighestLevelTarget());
 			}
 			// Maximum bond strength
 			case 'mbs': {
-				return maximumBondStrength(context.actor);
+				return maximumBondStrength(context.resolveActorOrHighestLevelTarget());
 			}
 			// Number of classes
 			case 'cc': {
-				return countClasses(context.actor);
+				return countClasses(context.resolveActorOrHighestLevelTarget());
 			}
 			// Number of mastered classes
 			case 'mcc': {
-				return countMasteredClasses(context.actor);
+				return countMasteredClasses(context.resolveActorOrHighestLevelTarget());
+			}
+			// Check Result
+			case 'chk': {
+				if (context.check) {
+					return context.check.result;
+				}
+				return 0;
 			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
 	}
 	return expression.replace(pattern, evaluate);
+}
+
+/**
+ * @param {Number|String} value
+ * @remarks In FU, numbers are always rounded down>
+ */
+function round(value) {
+	if (Number.isNaN(value)) {
+		return Math.floor(value);
+	}
+	return value;
 }
 
 /**
@@ -386,6 +439,16 @@ function evaluateMacros(expression, context) {
 		const redirect = match.startsWith(redirectSymbol);
 		const splitArgs = params.split(',').map((i) => i.trim());
 		switch (name) {
+			// Class level
+			case 'cl': {
+				const actor = context.resolveActorOrSource(match, redirect);
+				const id = parseIdentifier(splitArgs[0]);
+				const _class = actor.getSingleItemByFuid(id, 'class');
+				if (!_class) {
+					return 0;
+				}
+				return _class.system.level.value;
+			}
 			// Skill level
 			case `sl`: {
 				const actor = context.resolveActorOrSource(match, redirect);
@@ -533,19 +596,12 @@ function resolveActorFromLabel(match, label, context) {
 function evaluateReferencedFunctions(expression, context) {
 	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
 
-	function evaluate(match, label, path, p3, args, groups) {
-		const actor = resolveActorFromLabel(match, label, context);
-		if (actor) {
-			let splitArgs = args.split(',');
-			const functionPath = `system.${path}`;
-			const resolvedFunction = getFunctionFromPath(actor, functionPath);
-			if (resolvedFunction === undefined) {
-				throw new Error(`No function in path "${functionPath}" of object ${actor}`);
-			}
-			const result = resolvedFunction.apply(actor.system, splitArgs);
-			console.info(`Resolved function ${functionPath}: ${result}`);
-			return result;
-		}
+	function evaluate(match) {
+		ui.notifications.warn(
+			`Function expressions are deprecated for removal. Until removal, they will evaluate to 0. <br/>Expression '<strong>${match}</strong>' in effect '<strong>${context.effect.name}</strong>' on actor '<strong>${context.actor.name}</strong>'.`,
+			{ permanent: true },
+		);
+		return '0';
 	}
 
 	return expression.replace(pattern, evaluate);
@@ -702,39 +758,13 @@ function getAttributeSize(actor, key) {
 	return attributes[key].current;
 }
 
-/**
- * @param obj The object to resolve the function  from
- * @param path The path to the function, in dot notation
- * @returns {Function} The resolved function
- */
-function getFunctionFromPath(obj, path) {
-	if (typeof path !== 'string') {
-		throw new Error('Path must be a string');
-	}
-	if (typeof obj !== 'object' || obj === null) {
-		throw new Error('Invalid object provided');
-	}
-
-	const parts = path.split('.');
-	let current = obj;
-
-	for (const part of parts) {
-		if (current[part] === undefined) {
-			throw new Error(`Path not found in ${obj}: ${path}`);
-		}
-		current = current[part];
-	}
-
-	if (typeof current !== 'function') {
-		throw new Error(`Path does not resolve to a function: ${path}`);
-	}
-
-	return current;
+function isExpression(value) {
+	return typeof value === 'string' && /[a-zA-Z_$`]|[+\-*/()]/.test(value);
 }
 
 export const Expressions = {
 	evaluate,
 	evaluateAsync,
 	requiresContext,
-	getFunctionFromPath,
+	isExpression,
 };

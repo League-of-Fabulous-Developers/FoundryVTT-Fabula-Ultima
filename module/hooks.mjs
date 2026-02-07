@@ -16,16 +16,6 @@ export const FUHooks = {
 	 */
 	DAMAGE_PIPELINE_POST_CALCULATE: 'projectfu.pipelines.damage.postCalculate',
 	/**
-	 * @deprecated Replaced by {DAMAGE_PIPELINE_PRE_CALCULATE}
-	 * @example calllback(data) { ... }
-	 */
-	DAMAGE_APPLY_BEFORE: 'projectfu.damage.beforeApply',
-	/**
-	 * @deprecated Replaced by {DAMAGE_PIPELINE_POST_CALCULATE}
-	 * @example calllback(data) { ... }
-	 */
-	DAMAGE_APPLY_TARGET: 'projectfu.damage.applyTarget',
-	/**
 	 * @description Invoked when the data model for an FUActor is set
 	 * @example callback(actor { ... }
 	 */
@@ -83,6 +73,18 @@ export const FUHooks = {
 	 */
 	LOSS_EVENT: 'projectfu.events.loss',
 	/**
+	 * @description Dispatched after a resource update has been applied to an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link ResourceUpdateEvent}.
+	 */
+	RESOURCE_UPDATE: 'projectfu.events.resource',
+	/**
+	 * @description Dispatched after a resource update has been expended to perform an action/
+	 * @example callback(event)
+	 * @remarks Uses {@link CalculateExpenseEvent}.
+	 */
+	CALCULATE_EXPENSE_EVENT: 'projectfu.events.calculateExpense',
+	/**
 	 * @description Dispatched after an actor enters crisis.
 	 * @example callback(event)
 	 * @remarks Uses {@link CrisisEvent}. This can happen after a {@link DAMAGE_EVENT}.
@@ -118,6 +120,36 @@ export const FUHooks = {
 	 * @remarks Uses {@link OpportunityEvent}
 	 */
 	OPPORTUNITY_EVENT: 'projectfu.events.opportunity',
+	/**
+	 * @description Dispatched when a check is being initialized.
+	 * @example callback(event)
+	 * @remarks Uses {@link InitializeCheckEvent}
+	 */
+	INITIALIZE_CHECK_EVENT: 'projectfu.events.checks.initialize',
+	/**
+	 * @description Dispatched when a check is about to be performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link PerformCheckEvent}
+	 */
+	PERFORM_CHECK_EVENT: 'projectfu.events.checks.perform',
+	/**
+	 * @description Dispatched when a check has been resolved.
+	 * @example callback(event)
+	 * @remarks Uses {@link ResolveCheckEvent}
+	 */
+	RESOLVE_CHECK_EVENT: 'projectfu.events.checks.resolve',
+	/**
+	 * @description Dispatched when a check is about to be rendered.
+	 * @example callback(event)
+	 * @remarks Uses {@link RenderCheckEvent}
+	 */
+	RENDER_CHECK_EVENT: 'projectfu.events.checks.render',
+	/**
+	 * @description Dispatched when a chat message is about to be rendered.
+	 * @example callback(event)
+	 * @remarks Uses {@link RenderMessageEvent}
+	 */
+	RENDER_MESSAGE_EVENT: 'projectfu.events.chat.render',
 	/**
 	 * @description Dispatched whenever there is a change in active wellsprings.
 	 * @remarks Uses {@link WellspringDataModel}
@@ -155,4 +187,59 @@ export const FUHooks = {
 	 * @remarks Uses {@link SocketMessage}
 	 */
 	SOCKET_SEND_EVENT: 'projectfu.events.socket.sent',
+	/**
+	 * @description Dispatched after a progress tracker has been updated.
+	 * @example callback(event)
+	 * @remarks Uses {@link ProgressEvent}
+	 */
+	PROGRESS_EVENT: 'projectfu.events.progress',
+	/**
+	 * @description Dispatched on first render of a character sheet
+	 * @example
+	 * const callback = (contextOptions: ContextMenuOption[], sheet: ActorSheet, actor: Actor) => {...};
+	 * Hook.on("projectfu.getItemContextMenuOptions", callback)
+	 */
+	ITEM_TABLE_CONTEXT_OPTIONS: 'projectfu.getItemTableContextOptions',
+	/**
+	 * @description Dispatched when a request to apply damage is being processed.
+	 * @example callback(event)
+	 * @remarks Uses {@link CalculateDamageEvent}
+	 */
+	CALCULATE_DAMAGE_EVENT: 'projectfu.events.calculateDamage',
+	/**
+	 * @description Dispatched when a request to apply a resource change is being processed.
+	 * @example callback(event)
+	 * @remarks Uses {@link CalculateResourceEvent}
+	 */
+	CALCULATE_RESOURCE_EVENT: 'projectfu.events.calculateResource',
+	/**
+	 * @description Dispatched when something happens, tagged by an identifier.
+	 * @example callback(event)
+	 * @remarks Uses {@link NotificationEvent}
+	 */
+	NOTIFICATION_EVENT: 'projectfu.events.notification',
+	/**
+	 * @description Dispatched when an active effect is toggled.
+	 * @example callback(event)
+	 * @remarks Uses {@link NotificationEvent}
+	 */
+	EFFECT_TOGGLED_EVENT: 'projectfu.events.effectToggled',
+	/**
+	 * @description Dispatched when a consumable is created.
+	 * @example callback(event)
+	 * @remarks Uses {@link CreateConsumableEvent}
+	 */
+	CONSUMABLE_CREATE_EVENT: 'projectfu.events.consumables.create',
+	/**
+	 * @description Dispatched when an item 'roll' action is being performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link ItemRollEvent}
+	 */
+	ITEM_ROLL_EVENT: `projectfu.events.items.roll`,
+	/**
+	 * @description Dispatched when a class feature is being performed.
+	 * @example callback(event)
+	 * @remarks Uses {@link FeatureEvent}
+	 */
+	FEATURE_EVENT: `projectfu.events.feature`,
 };

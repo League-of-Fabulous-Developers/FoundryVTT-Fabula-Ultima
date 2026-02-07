@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp]</p></li><li><p><strong>You Receive: </strong>@TYPE[affinity dark resistance e:sot i:1 t:source]{Bat Dance: Resistance}, or @TYPE[damage all dark e:sot i:1 t:source]{Bat Dance: Damage}</p></li></ul>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>You Receive: </strong>@TYPE[affinity dark resistance e:sot i:1 t:source]{Bat Dance: Resistance} or @TYPE[damage all dark e:sot i:1 t:source]{Bat Dance: Damage}</p>",
       "duration": "nextTurn"
     },
     "source": "FUHF144",
@@ -32,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710041957610,
-    "modifiedTime": 1744507450097,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770279696879,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

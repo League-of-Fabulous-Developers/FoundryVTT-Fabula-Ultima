@@ -5,9 +5,7 @@
   "_id": "2LyT2btVVPDPYY4h",
   "img": "systems/projectfu/styles/static/compendium/classes/guardian/twin-shields/twin-shields.png",
   "system": {
-    "source": {
-      "value": "FUCR196"
-    },
+    "source": "FUCR196",
     "summary": {
       "value": ""
     },

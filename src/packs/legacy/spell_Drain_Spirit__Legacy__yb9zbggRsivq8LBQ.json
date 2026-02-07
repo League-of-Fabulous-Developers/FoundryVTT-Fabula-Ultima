@@ -1,0 +1,151 @@
+{
+  "folder": "rFNLH1qDltOQIbZn",
+  "name": "Drain Spirit [Legacy]",
+  "type": "spell",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/drain_spirit.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You consume a creature's psyche. The target loses <strong>【HR + 15】</strong> Mind Points. Then, you recover an amount of Mind Points equal to half the Mind Points loss they suffered (if the loss was reduced to 0 in some way, you recover none).</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Entropist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "source": "FUCR192",
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "untyped"
+        },
+        "value": 15
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "opportunity": "",
+    "fuid": "drain-spirit",
+    "traits": [],
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": false
+    },
+    "targeting": {
+      "max": 1,
+      "rule": "single"
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768578730926,
+    "modifiedTime": 1768579355349,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "yb9zbggRsivq8LBQ",
+  "sort": 100000,
+  "_key": "!items!yb9zbggRsivq8LBQ"
+}

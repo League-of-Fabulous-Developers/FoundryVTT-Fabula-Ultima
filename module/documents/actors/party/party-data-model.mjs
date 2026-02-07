@@ -192,6 +192,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 						name: item.name,
 						fuid: item.system.fuid,
 						img: item.img,
+						level: item.system.level.value,
 					};
 				});
 
@@ -234,7 +235,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 		// Resolve the source actor uuid
 		let uuid = actor.resolveUuid();
 		// Already exists
-		let entry = await this.getAdversary(uuid);
+		let entry = this.getAdversary(uuid);
 		if (entry) {
 			if (studyResult > entry.study) {
 				entry.study = studyResult;
@@ -280,9 +281,9 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 
 	/**
 	 * @param {String} uuid
-	 * @returns {Promise<NpcProfileData>}
+	 * @returns {NpcProfileData}
 	 */
-	async getAdversary(uuid) {
+	getAdversary(uuid) {
 		return this.adversaries.find((a) => a.uuid === uuid);
 	}
 
@@ -456,22 +457,24 @@ function deduceCharacterRole(actor, classes) {
 
 	for (const c of classes) {
 		if (supportClasses.has(c.fuid)) {
-			supportCount++;
+			supportCount += c.level;
 		} else if (damageClasses.has(c.fuid)) {
-			damageCount++;
+			damageCount += c.level;
 		} else if (tankClasses.has(c.fuid)) {
-			tankCount++;
+			tankCount += c.level;
 		}
 		// It's all damage in the end
 		else {
-			damageCount++;
+			damageCount += c.level;
 		}
 	}
 
-	if (supportCount > 0 && damageCount > 0 && tankCount > 0) {
+	// Any, unless one class has more than the other two combined
+	if (supportCount > 0 && damageCount > 0 && tankCount > 0 && damageCount + supportCount > tankCount && damageCount + tankCount > supportCount && supportCount + tankCount > damageCount) {
 		return 'any';
 	}
 
+	// Always prio tank
 	if (tankCount > 0) {
 		return 'tank';
 	} else if (supportCount > Math.round(damageCount / 2)) {

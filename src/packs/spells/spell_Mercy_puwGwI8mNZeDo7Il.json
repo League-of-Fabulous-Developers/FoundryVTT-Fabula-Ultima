@@ -3,7 +3,7 @@
   "name": "Mercy",
   "type": "spell",
   "_id": "puwGwI8mNZeDo7Il",
-  "img": "icons/magic/life/ankh-shadow-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/mercy.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.</p><hr /><ul><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.spells.Item.87su2PuI6rSMblmN]{Effect: Mercy}</p></li></ul>",
+    "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": false
     },
-    "source": {
-      "value": "FUCR209"
-    },
+    "source": "FUCR209",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,12 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "mercy"
+    "fuid": "mercy",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.spells.Item.87su2PuI6rSMblmN"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -128,15 +131,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706572901522,
-    "modifiedTime": 1744722638208,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1766779587485,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

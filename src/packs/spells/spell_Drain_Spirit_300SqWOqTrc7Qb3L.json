@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You consume a creature's psyche. The target loses <strong>【HR + 15】</strong> Mind Points. Then, you recover an amount of Mind Points equal to half the Mind Points loss they suffered (if the loss was reduced to 0 in some way, you recover none).</p>",
+    "description": "<p>You consume a creature's psyche. The target loses <strong>【HR + 20】</strong> Mind Points. Then, you recover an amount of Mind Points equal to half the total Mind Points loss they suffered (if the target had no MP left, you recover none)</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR192"
-    },
+    "source": "FUCR192",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,11 +118,7 @@
       "value": 1
     },
     "fuid": "drain-spirit",
-    "traits": [
-      "AbsorbHalf",
-      "MindPointLoss",
-      "Base"
-    ]
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -133,15 +127,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706571054952,
-    "modifiedTime": 1747173721441,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1768578918820,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

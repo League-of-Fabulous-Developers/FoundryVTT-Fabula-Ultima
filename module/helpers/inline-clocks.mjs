@@ -2,13 +2,31 @@ import { InlineHelper } from './inline-helper.mjs';
 import { StringUtils } from './string-utils.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { targetHandler } from './target-handler.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { FUCombat } from '../ui/combat.mjs';
+import { systemAssetPath } from './system-utils.mjs';
+
+/**
+ * @typedef InlineClockDataset
+ * @extends DOMStringMap
+ * @inheritDoc
+ * @property id
+ * @property command add, update, reset
+ * @property value
+ * @property label
+ * @property max
+ * @property style
+ * @property edit
+ */
+
+const creationProperties = [InlineHelper.propertyPattern('max', 'max', '\\d+'), InlineHelper.propertyPattern('style', 'style', '(clock|bar|basic)'), InlineHelper.propertyPattern('edit', 'edit', '(true|false)')];
 
 /**
  * @type {TextEditorEnricherConfig}
  */
 const enricher = {
 	id: 'inlineProgressEnricher',
-	pattern: InlineHelper.compose('(CLOCK|PROGRESS)', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)(\\s+(?<value>.*?))?'),
+	pattern: InlineHelper.compose('(CLOCK|PROGRESS)', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)(\\s+(?<value>.*?))?', creationProperties),
 	enricher: checkEnricher,
 	onRender: onRender,
 };
@@ -30,6 +48,13 @@ function checkEnricher(match, options) {
 		anchor.classList.add('inline', 'inline-clock');
 		anchor.dataset.command = command;
 		anchor.dataset.value = value;
+		anchor.dataset.max = match.groups.max;
+		anchor.dataset.style = match.groups.style;
+		anchor.dataset.edit = match.groups.edit;
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatAddProgressTrackTooltip')}`);
+
+		// ICON
+		InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/clock.svg'));
 
 		if (label) {
 			anchor.append(label);
@@ -47,14 +72,51 @@ function checkEnricher(match, options) {
  */
 async function onRender(element) {
 	const renderContext = await InlineHelper.getRenderContext(element);
-	const id = renderContext.dataset.id;
-	const command = renderContext.dataset.command;
+	/** @type InlineClockDataset **/
+	const dataset = renderContext.dataset;
+	const id = dataset.id;
+	const command = dataset.command;
 
 	element.addEventListener('click', async function (event) {
 		const actor = renderContext.sourceInfo.resolveActor();
 		if (!actor) return;
 
 		switch (command) {
+			// Add a clock with id to combat/actor
+			case 'add': {
+				const targets = await targetHandler();
+				const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+				const source = context.resolveActorOrSource();
+
+				switch (dataset.value) {
+					case 'combat':
+						if (FUCombat.hasActiveEncounter) {
+							/** @type ProgressDataModel **/
+							const track = {
+								id: dataset.id,
+								name: dataset.label ?? dataset.id,
+								current: 0,
+								max: dataset.max,
+								style: dataset.style,
+							};
+							await FUCombat.activeEncounter.addTrack(track);
+							await ProgressDataModel.sendToChat(
+								source,
+								track,
+								StringUtils.localize('FU.ChatProgressTrackAdded', {
+									name: dataset.label,
+									source: source.name,
+								}),
+							);
+						}
+						break;
+
+					case 'actor':
+						break;
+				}
+				break;
+			}
+
 			case 'update': {
 				// Resolve the progress data from the actor
 				let progress = await actor.resolveProgress(id);
@@ -67,7 +129,7 @@ async function onRender(element) {
 				// Evaluate the value
 				const targets = await targetHandler();
 				const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
-				const value = await Expressions.evaluateAsync(renderContext.dataset.value, context);
+				const value = await Expressions.evaluateAsync(dataset.value, context);
 
 				// Validate min/max
 				if (progress.isMaximum && value > 0) {
@@ -88,7 +150,7 @@ async function onRender(element) {
 					source = renderContext.sourceInfo.resolveEffect();
 				}
 				progress = await actor.updateProgress(id, step);
-				await renderStep(progress, step, actor, source);
+				await ProgressDataModel.notifyUpdate(actor, progress, step, source);
 				break;
 			}
 
@@ -102,31 +164,8 @@ async function onRender(element) {
 }
 
 /**
- * @param {ProgressDataModel} progress
- * @param {Number} step
- * @param {FUActor} actor
- * @param {Object} source
- * @returns {Promise<string>}
- */
-async function renderStep(progress, step, actor, source) {
-	// Generate and reverse the progress array
-	const progressArr = progress.progressArray;
-	ChatMessage.create({
-		speaker: ChatMessage.getSpeaker({ actor }),
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
-			message: step > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
-			step: step,
-			clock: progress.name ?? progress.parent.parent.name,
-			source: source.name,
-			data: progress,
-			arr: progressArr,
-		}),
-	});
-}
-
-/**
  * @type {FUInlineCommand}
  */
-export const InlineClocks = {
+export const InlineClocks = Object.freeze({
 	enrichers: [enricher],
-};
+});

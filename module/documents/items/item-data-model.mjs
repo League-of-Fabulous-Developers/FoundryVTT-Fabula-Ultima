@@ -20,6 +20,7 @@ export class FUItemDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
 		if (source.source?.value) {
 			source.source = source.source.value;
 		}
@@ -36,7 +37,6 @@ export class FUStandardItemDataModel extends FUItemDataModel {
 		return Object.assign(super.defineSchema(), {
 			description: new HTMLField(),
 			summary: new SchemaField({ value: new StringField() }),
-			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 		});
 	}

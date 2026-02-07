@@ -1,0 +1,62 @@
+{
+  "name": "Ambidextrous [Legacy]",
+  "type": "heroic",
+  "img": "icons/skills/melee/weapons-crossed-daggers-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Fight with two weapons of different categories."
+    },
+    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to weapons belonging to different categories, even if one is a melee weapon and the other is a <strong>ranged</strong> weapon (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUCR234",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "ambidextrous-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768852986991,
+    "modifiedTime": 1768853053812,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "jm1tAjELdcT81qFb",
+  "sort": 100000,
+  "_key": "!items!jm1tAjELdcT81qFb"
+}

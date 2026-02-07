@@ -1,17 +1,43 @@
 import { Effects, onManageActiveEffect, prepareActiveEffectCategories } from '../pipelines/effects.mjs';
 import { Checks } from '../checks/checks.mjs';
-import { FU, systemPath } from '../helpers/config.mjs';
-import { Traits } from '../pipelines/traits.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { FU, systemPath } from '../helpers/config.mjs';
+import { DamageTraits, Traits, TraitUtils } from '../pipelines/traits.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-table-renderer.mjs';
+import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
+import { PseudoItem } from '../documents/items/pseudo-item.mjs';
+import { PseudoDocumentEnabledTypeDataModel } from '../documents/pseudo/pseudo-document-enabled-type-data-model.mjs';
+import { ObjectUtils } from '../helpers/object-utils.mjs';
+import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { SheetUtils } from './sheet-utils.mjs';
 
 const { api, sheets } = foundry.applications;
+
+/**
+ * @typedef DragDropConfiguration
+ * @property {string|null} [dragSelector=null]  The CSS selector used to target draggable elements.
+ * @property {string|null} [dropSelector=null]  The CSS selector used to target viable drop targets.
+ * @property {Record<"dragstart"|"drop", (selector: string) => boolean>} [permissions]
+ *                                         Permission tests for each action
+ * @property {Record<
+ *  "dragstart"|"dragover"|"drop"|"dragenter"|"dragleave"|"dragend",
+ *  (event: DragEvent) => void
+ * >} [callbacks]                         Callback functions for each action
+ */
+
+/**
+ * @typedef ApplicationDragDropConfiguration
+ * @property {DragDropConfiguration[]} dragDrop
+ */
 
 /**
  * @description Extend the basic ItemSheet with some very simple modifications
  * @property {FUItem} item
  * @property {FUItemDataModel} system
- * @extends {ItemSheet}
+ * @extends {foundry.applications.sheets.ItemSheetV2}
  */
 export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
 	// Initialize drag counter
@@ -24,15 +50,34 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		return this.item.system;
 	}
 
+	/** @inheritDoc */
+	_getHeaderControls() {
+		const controls = super._getHeaderControls();
+		controls.push({
+			label: game.i18n.localize('FU.ChatMessageSendHint'),
+			icon: 'fas fa-comment',
+			visible: true,
+			action: 'sendToChat',
+		});
+		return controls;
+	}
+
 	/**
 	 * @inheritDoc
-	 * @type ApplicationConfiguration
+	 * @type {ApplicationConfiguration & ApplicationDragDropConfiguration}
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
 		actions: {
-			regenerateFuid: this.#regenerateFuid,
+			// Common
+			...SheetUtils.actions,
+			// Item-specific
+			editItem: FUItemSheet.#editItem,
+			deleteItem: FUItemSheet.#deleteItem,
+			migrateItem: FUItemSheet.#migrateItem,
+			roll: FUItemSheet.#rollItem,
+			regenerateFuid: FUItemSheet.#regenerateFuid,
 			// Active effects
 			createEffect: FUItemSheet.CreateEffect,
 			editEffect: FUItemSheet.EditEffect,
@@ -40,6 +85,11 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			toggleEffect: FUItemSheet.ToggleEffect,
 			copyInline: FUItemSheet.CopyInline,
 			rollEffect: FUItemSheet.RollEffect,
+			// Partials
+			addArrayElement: FUItemSheet.#addArrayElement,
+			removeArrayElement: FUItemSheet.#removeArrayElement,
+			// Header
+			sendToChat: FUItemSheet.#sendToChat,
 		},
 		scrollY: ['.sheet-body'],
 		position: { width: 700, height: 'auto' },
@@ -49,7 +99,28 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		form: {
 			submitOnChange: true,
 		},
+		dragDrop: [
+			{
+				dragSelector: '.draggable',
+				permissions: {
+					dragstart: FUItemSheet.#canDragStart,
+					drop: FUItemSheet.#canDragDrop,
+				},
+				callbacks: {
+					dragstart: FUItemSheet.#onDragStart,
+					dragover: FUItemSheet.#onDragOver,
+					drop: FUItemSheet.#onDrop,
+				},
+			},
+		],
 	};
+
+	static _migrateConstructorParams(first, rest) {
+		if (first?.document instanceof PseudoDocument) {
+			return first;
+		}
+		return super._migrateConstructorParams(first, rest);
+	}
 
 	/**
 	 * @description The default template parts
@@ -62,20 +133,27 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		effects: { template: systemPath(`templates/item/parts/item-effects.hbs`) },
 	};
 
+	/**
+	 * @type {DragDrop[]}
+	 */
+	#dragDrop;
+
+	#temporaryEffectsTable = new ActiveEffectsTableRenderer('temporary');
+	#passiveEffectsTable = new ActiveEffectsTableRenderer('passive');
+	#inactiveEffectsTable = new ActiveEffectsTableRenderer('inactive');
+
 	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
 		const context = await super._preparePartContext(partId, ctx, options);
 		// IMPORTANT: Set the active tab
-		if (partId in context.tabs) {
+		if (context.tabs && partId in context.tabs) {
 			context.tab = context.tabs[partId];
 		}
 		switch (partId) {
 			case 'header':
+				context.actor = this.actor;
 				context.traits = Object.keys(Traits);
-				context.traitOptions = context.traits.map((key) => ({
-					label: key,
-					value: key,
-				}));
+				context.damageTraitOptions = TraitUtils.getOptions(DamageTraits);
 				break;
 
 			case 'tabs':
@@ -84,30 +162,14 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				context.heroicType = CONFIG.FU.heroicType;
 				context.miscCategories = CONFIG.FU.miscCategories;
 				context.treasureType = CONFIG.FU.treasureType;
-				context.features = Object.entries(CONFIG.FU.classFeatureRegistry.all).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
-				context.optionals = Object.entries(CONFIG.FU.optionalFeatureRegistry.all).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				context.features = Object.entries(CONFIG.FU.classFeatureRegistry.qualifiedTypes).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				context.optionals = Object.entries(CONFIG.FU.optionalFeatureRegistry.qualifiedTypes).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 				break;
 
 			case 'effects':
-				{
-					// Prepare active effects for easier access
-					context.effects = prepareActiveEffectCategories(this.item.effects);
-
-					// Combine all effects into a single array
-					context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
-
-					// Enrich each effect's description
-					const actor = this.object?.parent ?? null;
-					for (const effect of context.allEffects) {
-						effect.enrichedDescription = effect.description
-							? await TextEditor.enrichHTML(effect.description, {
-									secrets: actor?.isOwner ?? false,
-									rollData: actor ? actor.getRollData() : {},
-									relativeTo: actor,
-								})
-							: '';
-					}
-				}
+				context.temporaryEffectsTable = await this.#temporaryEffectsTable.renderTable(this.document);
+				context.passiveEffectsTable = await this.#passiveEffectsTable.renderTable(this.document);
+				context.inactiveEffectsTable = await this.#inactiveEffectsTable.renderTable(this.document);
 				break;
 		}
 		return context;
@@ -135,6 +197,34 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		context.effects = prepareActiveEffectCategories(this.item.effects);
 
 		return context;
+	}
+
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+
+		this.#dragDrop = this.#createDragDropHandlers();
+
+		this.#temporaryEffectsTable.activateListeners(this);
+		this.#passiveEffectsTable.activateListeners(this);
+		this.#inactiveEffectsTable.activateListeners(this);
+	}
+
+	#createDragDropHandlers() {
+		/** @type {DragDropConfiguration[]} */
+		const dragDropConfigurations = this.options.dragDrop ?? [];
+		return dragDropConfigurations.map((config) => {
+			config.permissions ??= {};
+			for (let key in config.permissions) {
+				config.permissions[key] = config.permissions[key].bind(this);
+			}
+
+			config.callbacks ??= {};
+			for (let key in config.callbacks) {
+				config.callbacks[key] = config.callbacks[key].bind(this);
+			}
+
+			return new foundry.applications.ux.DragDrop.implementation(config);
+		});
 	}
 
 	/**
@@ -191,62 +281,80 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @override
-	 */
-	_attachFrameListeners() {
-		super._attachFrameListeners();
-
-		// [PDFPager Support] Opening Journal PDF pages from PDF Code
-		document.getElementById('pdfLink')?.addEventListener('click', () => {
-			const input = document.querySelector('input[name="system.source.value"]');
-			const inputValue = input?.value || '';
-			const match = inputValue.match(/([A-Za-z]+)\s*(\d+)/);
-
-			if (match) {
-				const pdfCode = match[1];
-				const pageNumber = match[2];
-
-				// Check if the openPDFByCode function exists
-				if (ui.pdfpager && ui.pdfpager.openPDFByCode) {
-					ui.pdfpager.openPDFByCode(pdfCode, { page: pageNumber });
-				} else {
-					// TODO: Create Fallback method using a normal Foundry link
-				}
-			} else {
-				console.error('Invalid input format. Please use proper syntax "PDFCode PageNumber"');
-			}
-		});
-	}
-
-	/**
-	 * Modify the provided options passed to a render request.
-	 * @param {RenderOptions} options                 Options which configure application rendering behavior
-	 * @protected
-	 */
-	_configureRenderOptions(options) {
-		super._configureRenderOptions(options);
-	}
-
 	/* -------------------------------------------- */
 	/*  Drag and Drop Support (as it's not implemented by default on ItemSheetV2
 	/* -------------------------------------------- */
 	/** @inheritDoc */
 	async _onRender(context, options) {
 		await super._onRender(context, options);
-		new foundry.applications.ux.DragDrop.implementation({
-			dragSelector: '.draggable',
-			permissions: {
-				dragstart: this._canDragStart.bind(this),
-				drop: this._canDragDrop.bind(this),
-			},
-			callbacks: {
-				dragstart: this._onDragStart.bind(this),
-				dragover: this._onDragOver.bind(this),
-				drop: this._onDrop.bind(this),
-			},
-		}).bind(this.element);
+		this.#dragDrop.forEach((value) => value.bind(this.element));
+
+		const flattenedOverrides = foundry.utils.flattenObject(this.item.overrides);
+		Array.from(this.element.querySelectorAll('input[name], textarea[name], button[name], select[name]'))
+			.filter((element) => element.name in flattenedOverrides)
+			.forEach((element) => this.disableElement(element));
+	}
+
+	disableElement(element) {
+		element.classList.add('disabled');
+		if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+			element.readOnly = true;
+		} else {
+			element.disabled = true;
+		}
+		element.parentElement.dataset.tooltip = game.i18n.localize('FU.DisabledByActiveEffect');
+	}
+
+	/**
+	 * @override
+	 */
+	_onClickAction(event, target) {
+		if (target.closest('prose-mirror') || !target.closest('body')) {
+			// prose mirror action button
+			return;
+		}
+
+		if (this.#dispatchClickActionToItem(event, target)) {
+			event.stopPropagation();
+			event.preventDefault();
+			return;
+		}
+
+		console.warn('Unhandled action:', target.dataset.action, event, target);
+	}
+
+	#dispatchClickActionToItem(event, target) {
+		let success = false;
+
+		let system = this.item.system;
+
+		const nestedItemTarget = target.closest('[data-item-id]');
+
+		if (nestedItemTarget) {
+			let item = this.item.getEmbeddedDocument('Item', nestedItemTarget.dataset.itemId);
+			if (!item) {
+				item = fromUuidSync(nestedItemTarget.dataset.uuid);
+			}
+			if (item) {
+				system = item.system;
+			}
+		}
+
+		if (system[target.dataset.action] instanceof Function) {
+			system[target.dataset.action](event, target);
+			success = true;
+		} else if (['classFeature', 'optionalFeature'].includes(system.parent.type)) {
+			if (system.data[target.dataset.action] instanceof Function) {
+				system.data[target.dataset.action](event, target);
+				success = true;
+			}
+		}
+
+		return success;
+	}
+
+	static #onDragStart(event) {
+		return this._onDragStart(event);
 	}
 
 	/**
@@ -262,13 +370,13 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 
 		// Owned Items
 		if (target.dataset.itemId) {
-			const item = this.actor.items.get(target.dataset.itemId);
-			dragData = item.toDragData();
+			const item = this.item.getEmbeddedDocument(foundry.documents.Item.documentName, target.dataset.itemId);
+			dragData = item?.toDragData();
 		}
 
 		// Active Effect
 		if (target.dataset.effectId) {
-			const effect = this.actor.effects.get(target.dataset.effectId);
+			const effect = this.item.effects.get(target.dataset.effectId);
 			dragData = effect.toDragData();
 		}
 
@@ -279,6 +387,10 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		this.dragCounter++;
 		const dropZone = $(event.currentTarget);
 		dropZone.addClass('highlight-drop-zone');
+	}
+
+	static #onDragOver(event) {
+		return this._onDragOver(event);
 	}
 
 	/**
@@ -292,6 +404,10 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			const dropZone = $(event.currentTarget);
 			dropZone.removeClass('highlight-drop-zone');
 		}
+	}
+
+	static #onDrop(event) {
+		return this._onDrop(event);
 	}
 
 	/**
@@ -342,10 +458,11 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				return false;
 			}
 			return ActiveEffect.create(effect.toObject(), { parent: this.item });
-		} else {
-			// Default behavior for unknown item types
-			await super._onDrop(event);
 		}
+	}
+
+	static #canDragStart(selector) {
+		return this._canDragStart(selector);
 	}
 
 	/**
@@ -358,13 +475,17 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		return this.isEditable;
 	}
 
+	static #canDragDrop(selector) {
+		return this._canDragStart(selector);
+	}
+
 	/**
 	 * Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector.
 	 * @param {string} selector       The candidate HTML selector for the drop target
 	 * @returns {boolean}             Can the current user drop on this selector?
 	 * @protected
 	 */
-	_canDragDrop() {
+	_canDragDrop(selector) {
 		return this.isEditable;
 	}
 
@@ -388,8 +509,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		const existingItem = this.actor.items.find((i) => i.name === itemData.name && i.type === itemData.type);
 		if (existingItem) {
 			await config.update(itemData, existingItem);
-		} else {
-			await super._onDrop(event);
 		}
 	}
 
@@ -443,38 +562,28 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		}
 	}
 	/* -------------------------------------------- */
-
 	/**
 	 * @override
 	 */
-	_getHeaderButtons() {
-		const buttons = super._getHeaderButtons();
-		buttons.unshift({
-			label: game.i18n.localize('FU.ChatMessageSend'),
-			class: 'send-to-chat',
-			icon: 'fas fa-comment',
-			onclick: this._onSendToChat.bind(this),
-		});
-		return buttons;
-	}
-
-	/**
-	 * @override
-	 */
-	_getSubmitData(updateData = {}) {
-		const data = super._getSubmitData(updateData);
+	_prepareSubmitData(event, form, formData, updateData) {
+		const data = super._prepareSubmitData(event, form, formData, updateData);
 		// Prevent submitting overridden values
-		const overrides = foundry.utils.flattenObject(this.item.overrides);
-		for (let k of Object.keys(overrides)) {
-			delete data[k];
+
+		for (let k of Object.keys(foundry.utils.flattenObject(this.item.overrides))) {
+			foundry.utils.deleteProperty(data, k);
 		}
 		return data;
 	}
 
-	_onSendToChat(event) {
-		event.preventDefault();
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #sendToChat(event) {
 		const item = this.item;
-		Checks.display(this, item);
+		return Checks.display(item.parent, item);
 	}
 
 	/**
@@ -487,6 +596,46 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		const newFUID = await this.item.regenerateFUID();
 		if (newFUID) {
 			this.render();
+		}
+	}
+
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addArrayElement(event, target) {
+		const path = target.dataset.path;
+		if (path) {
+			const array = ObjectUtils.getProperty(this.item, path);
+			if (array) {
+				array.push(null);
+				await this.item.update({
+					[`${path}`]: array,
+				});
+			}
+		}
+	}
+
+	/**
+	 * @this FUStandardItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeArrayElement(event, target) {
+		const path = target.dataset.path;
+		const index = Number.parseInt(target.dataset.index);
+		if (path) {
+			/** @type [] **/
+			const array = ObjectUtils.getProperty(this.item, path);
+			if (array && index !== undefined) {
+				array.splice(index, 1);
+				await this.item.update({
+					[`${path}`]: array,
+				});
+			}
 		}
 	}
 
@@ -515,5 +664,96 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 
 	static async RollEffect(event, target) {
 		return onManageActiveEffect(event, this.item, 'roll');
+	}
+
+	static #editItem(event, target) {
+		if (this.item.system instanceof PseudoDocumentEnabledTypeDataModel) {
+			const id = target.closest('[data-item-id]').dataset.itemId;
+			for (const collection of Object.values(this.item.system.collections)) {
+				const nestedItem = collection.get(id);
+				if (nestedItem) {
+					nestedItem.sheet.render({ force: true });
+					return;
+				}
+			}
+		}
+	}
+
+	/**
+	 * @this FUItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #migrateItem(event, target) {
+		const fuid = target.dataset.fuid;
+		const compendiumEntry = await CompendiumIndex.instance.getItemByFuid(fuid);
+		if (!compendiumEntry) {
+			ui.notifications.error(`Failed to resolve compendium entry from fuid ${fuid}`);
+			return;
+		}
+
+		const uuid = target.dataset.uuid;
+		const item = await fromUuid(uuid);
+		if (item) {
+			const message = StringUtils.localize('FU.CompendiumMigrateItemMessage', {
+				name: item.name,
+			});
+			const confirm = await FoundryUtils.confirmDialog('FU.CompendiumMigrateItem', message);
+			if (confirm) {
+				const compendiumItem = await fromUuid(compendiumEntry.uuid);
+				if (compendiumItem) {
+					await FoundryUtils.migrateItem(compendiumItem, item);
+					ui.notifications.info(StringUtils.localize('FU.CompendiumMigrateSuccess', { count: 1 }));
+				} else {
+					ui.notifications.error(`Failed to resolve compendium item from uuid ${compendiumEntry.uuid}`);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @this FUItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #deleteItem(event, target) {
+		if (this.item.system instanceof PseudoDocumentEnabledTypeDataModel) {
+			const id = target.closest('[data-item-id]').dataset.itemId;
+			for (const collection of Object.values(this.item.system.collections)) {
+				if (collection.documentClass !== PseudoItem) return;
+
+				const item = collection.get(id);
+				if (item) {
+					const promises = [];
+					if (item.actor && item.isSocketable) {
+						const itemObject = item.toObject(true);
+						promises.push(this.item.actor.createEmbeddedDocuments('Item', [itemObject]));
+						promises.push(item.delete());
+					} else {
+						const title = StringUtils.localize('FU.DialogDeleteItemTitle', { item: item.name });
+						const content = StringUtils.localize('FU.DialogDeleteItemDescription', { item: item.name });
+						const confirm = await FoundryUtils.confirmDialog(title, content);
+						if (confirm) {
+							promises.push(item.delete());
+						}
+					}
+					return Promise.all(promises);
+				}
+			}
+		}
+	}
+
+	static #rollItem(event, target) {
+		const itemId = target.closest('[data-item-id]').dataset.itemId;
+		const item = this.item.getEmbeddedDocument('Item', itemId);
+		if (item) {
+			if (this.item.actor) {
+				return item.roll();
+			} else {
+				return Checks.display(null, item);
+			}
+		}
 	}
 }

@@ -107,9 +107,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR311"
-    },
+    "source": "FUCR311",
     "subtype": {},
     "opportunity": "",
     "maxTargets": {
@@ -117,23 +115,25 @@
     },
     "fuid": "mind-theft",
     "traits": [
-      "AbsorbHalf",
-      "MindPointAbsorption",
-      "Base"
+      "absorb-half",
+      "mind-point-absorption"
     ]
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1748083124365,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1770042873863,
+    "lastModifiedBy": "jBlPH673nHpUCC6V",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

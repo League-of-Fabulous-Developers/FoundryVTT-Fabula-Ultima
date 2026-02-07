@@ -1,0 +1,60 @@
+:root {
+	--fu-grid-size: 64px;
+}
+
+.fu-item {
+}
+
+.fu-item.selected {
+	-webkit-filter: unset;
+	filter: unset;
+}
+
+/* Default grid size */
+.fu-item-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(var(--fu-grid-size), 1fr)); /* 3 columns fixed */
+	grid-template-rows: repeat(2, minmax(var(--fu-grid-size), 1fr)); /* 2 rows fixed */
+	gap: 10px;
+	margin: 8px;
+
+	max-height: calc(2 * var(--fu-grid-size)) + 16px;
+	overflow-y: auto;
+}
+
+.fu-item-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	transition: 0.2s;
+	-webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+	filter: brightness(1.8) grayscale(1) opacity(0.7);
+
+	img {
+		height: 100%;
+	}
+}
+
+.fu-item-card:hover {
+	-webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+	filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+.fu-item-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	max-height: calc(2 * var(--fu-grid-size)) + 16px;
+}
+
+.fu-item-list__row {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.25rem 0.5rem;
+	border-radius: 6px;
+}

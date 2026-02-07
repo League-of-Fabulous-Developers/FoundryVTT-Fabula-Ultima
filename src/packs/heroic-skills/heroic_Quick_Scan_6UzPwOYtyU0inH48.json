@@ -93,9 +93,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF177"
-    },
+    "source": "FUTF177",
     "fuid": "quick-scan"
   },
   "effects": [],

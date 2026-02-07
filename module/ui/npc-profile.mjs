@@ -1,7 +1,9 @@
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { FU } from '../helpers/config.mjs';
-import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
 import FUApplication from './application.mjs';
+import { NpcProfileBasicAttacksTableRenderer } from '../helpers/tables/npc-profile-basic-attacks-table-renderer.mjs';
+import { NpcProfileWeaponsTableRenderer } from '../helpers/tables/npc-profile-weapons-table-renderer.mjs';
+import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spells-table-renderer.mjs';
 
 /**
  * @typedef NpcProfileRevealData
@@ -66,6 +68,10 @@ export class NpcProfileWindow extends FUApplication {
 			template: 'systems/projectfu/templates/ui/study/npc-profile.hbs',
 		},
 	};
+
+	#basicAttacksTable = new NpcProfileBasicAttacksTableRenderer();
+	#weaponsTable = new NpcProfileWeaponsTableRenderer();
+	#spellsTable = new NpcProfileSpellsTableRenderer();
 
 	/** @override */
 	async _prepareContext(options) {
@@ -132,17 +138,17 @@ export class NpcProfileWindow extends FUApplication {
 
 		// Ensure expanded state is initialized
 		context._expandedIds = Array.from(this._expanded);
-		await ActorSheetUtils.prepareItems(context);
+		context.basicAttacksTable = await this.#basicAttacksTable.renderTable(actor);
+		context.weaponsTable = await this.#weaponsTable.renderTable(actor);
+		context.spellsTable = await this.#spellsTable.renderTable(actor);
 		return context;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @override
-	 */
-	_attachFrameListeners() {
-		super._attachFrameListeners();
-		ActorSheetUtils.activateExpandedItemListener(this.element, this._expanded);
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		this.#basicAttacksTable.activateListeners(this);
+		this.#weaponsTable.activateListeners(this);
+		this.#spellsTable.activateListeners(this);
 	}
 
 	static async #revealActor() {
@@ -161,12 +167,12 @@ export class NpcProfileWindow extends FUApplication {
 	 * @returns {Promise<void>}
 	 */
 	static async updateNpcProfile(party, uuid) {
-		const existing = await party.getAdversary(uuid);
+		const existing = party.getAdversary(uuid);
 
 		/** @type FUActor **/
 		const actor = await fromUuid(existing.uuid);
 		const studyDifficulties = StudyRollHandler.getStudyDifficulties();
-		const affinities = Object.keys(FU.damageTypes);
+		const affinities = Object.keys(FU.damageTypes).filter((value) => value !== 'untyped');
 		const affinityMap = Object.fromEntries(Object.entries(actor.system.affinities).map(([key, aff]) => [key, FU.affTypeAbbr[aff.current]]));
 		/** @type String **/
 		const traits = actor.system.traits.value;
@@ -185,6 +191,7 @@ export class NpcProfileWindow extends FUApplication {
 				affinities: affinities,
 				affinityMap: affinityMap,
 				traits: traitsArray,
+				FU: FU,
 			}),
 			render: (event, dialog) => {
 				const studyValueDisplay = dialog.element.querySelector('#study-value');

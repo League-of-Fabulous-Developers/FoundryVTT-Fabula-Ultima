@@ -1,28 +1,28 @@
 <!-- HP -->
 <div class="resource-content flex-group-center">
     <div class="grid grid-3col" style="padding: 0 5px;">
-        <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
+        <label class="fu-icon__container resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
                aria-describedby="tooltip">
-            {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+            {{#if actor.system.resources.hp.inCrisis }}
                 <i class="fas fa-heart-crack is-crisis"></i>
             {{else}}
-                <i class="fas fa-heart"></i>
+                <i class="fu-icon--s {{pfuIconClass 'hp'}}"></i>
             {{/if}} {{localize 'FU.HealthAbbr'}}
         </label>
         <label class="align-right grid-start-2 grid-span-2 is-crisis" aria-describedby="tooltip">
-            {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+            {{#if actor.system.resources.hp.inCrisis }}
                 {{localize 'FU.Crisis'}}
             {{/if}}
         </label>
     </div>
     <div class="bar bar-progress">
-        {{#if (crisis system.resources.hp.value system.resources.hp.max)}}
+        {{#if actor.system.resources.hp.inCrisis}}
             <div class="bar-progress-bar bar-hp-crisis"
-                 style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}};"></div>
-            <div class="center-line"></div>
+                 style="width: {{pfuPercentage system.resources.hp.value system.resources.hp.max}};"></div>
+            <div class="center-line" style="left:calc({{actor.system.resources.hp.crisisScore}} / {{actor.system.resources.hp.max}} * 100%);"></div>
         {{else}}
             <div class="bar-progress-bar bar-hp"
-                 style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}};"></div>
+                 style="width: {{pfuPercentage system.resources.hp.value system.resources.hp.max}};"></div>
         {{/if}}
         <span class="bar-value"></span>
     </div>
@@ -32,15 +32,15 @@
                value="{{ system.resources.hp.value }}" data-dtype="Number" />
         <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.HealthPoints'}}<br>Current: {{
         system.resources.hp.value
-        }}<br>Crisis: {{half system.resources.hp.max}}
+        }}<br>Crisis: {{system.resources.hp.crisisScore}}
                 <br>Bonus: {{ system.resources.hp.bonus }} <br>Max: {{
         system.resources.hp.max
         }}" aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
-                {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+                {{#if actor.system.resources.hp.inCrisis }}
                     <i class="fas fa-caret-up is-crisis crisisHP float-text" data-action="crisisHP"></i>
                 {{else}}
-                    <i class="fas fa-caret-up crisisHP" data-action="crisisHP"></i>
+                    <i class="fas fa-caret-up crisisHP pointer" data-action="crisisHP"></i>
                 {{/if}}
             </div>
         </span>
@@ -52,17 +52,19 @@
 <!-- MP -->
 <div class="resource-content flex-group-center">
     <div class="grid grid-2col" style="padding: 0 5px;">
-        <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.MindPoints'}}"
-               aria-describedby="tooltip"><i
-         class="fas fa-hat-wizard icon"></i>{{localize
-         'FU.MindAbbr'}} </label>
+        <label class="fu-icon__container resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.MindPoints'}}"
+               aria-describedby="tooltip">
+			<i class="fu-icon--s {{pfuIconClass 'mp'}}"></i>
+			{{localize  'FU.MindAbbr'}}
+		</label>
         <label class="resource-label-l align-right rollable" data-tooltip="{{localize 'FU.Rest'}}"
                aria-describedby="tooltip" data-action="rest">
-            <i class="fas fa-bed rest"></i></label>
+            <i class="fas fa-bed rest"></i>
+		</label>
     </div>
     <div class="bar bar-progress">
         <div class="bar-progress-bar bar-mp"
-             style="width: {{calculatePercentage system.resources.mp.value system.resources.mp.max}};">
+             style="width: {{pfuPercentage system.resources.mp.value system.resources.mp.max}};">
         </div>
         <span class="bar-value"></span>
     </div>
@@ -75,7 +77,7 @@
         system.resources.mp.max
         }}" aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
-                {{#if (lte system.resources.mp.value (half system.resources.mp.max))}}
+                {{#if (lte system.resources.mp.value (pfuHalf system.resources.mp.max))}}
                     <i class="fas fa-caret-up is-crisis float-text"></i>
                 {{else}}
                     <i class="fas fa-caret-up"></i>
@@ -91,13 +93,15 @@
     <!-- IP -->
     <div class="resource-content flex-group-center align-left">
         <div class="grid grid-3col" style="padding: 0 5px;">
-            <label class="resource-label-l align-left grid-span-2" data-tooltip="{{localize 'FU.InventoryPoints'}}"
-                   aria-describedby="tooltip"><i class="ra ra-gear-hammer icon" style="font-size: 1.15rem;"></i>{{localize
-             'FU.InventoryAbbr'}} </label>
+            <label class="fu-icon__container resource-label-l align-left grid-span-2" data-tooltip="{{localize 'FU.InventoryPoints'}}"
+                   aria-describedby="tooltip">
+				<i class="fu-icon--s {{pfuIconClass 'ip'}}"></i>
+				{{localize 'FU.InventoryAbbr'}}
+			</label>
         </div>
         <div class="bar bar-progress">
             <div class="bar-progress-bar bar-ip"
-                 style="width: {{calculatePercentage system.resources.ip.value system.resources.ip.max}};">
+                 style="width: {{pfuPercentage system.resources.ip.value system.resources.ip.max}};">
             </div>
             <span class="bar-value"></span>
         </div>
@@ -111,7 +115,7 @@
                   }}<br>Bonus: {{ system.resources.ip.bonus }} <br>Max: {{ system.resources.ip.max }}"
                   aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
-                {{#if (lte system.resources.ip.value (half system.resources.ip.max))}}
+                {{#if (lte system.resources.ip.value (pfuHalf system.resources.ip.max))}}
                     <i class="fas fa-caret-up is-crisis float-text"></i>
                 {{else}}
                     <i class="fas fa-caret-up"></i>

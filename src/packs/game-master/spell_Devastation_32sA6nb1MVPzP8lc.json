@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Choose any number of creatures you can see: each of them suffers 30 <strong>(choose type) </strong>damage. You may only cast this spell <strong>once per turn</strong>.</p><p>This spell should only be given to <strong>champion</strong> and <strong>elite</strong> creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p><hr /><ul><li><p><strong>Targets Suffer:</strong> @DMG[30 untyped]</p></li></ul>",
+    "description": "<p>You deal 30 <strong>(choose type)</strong> damage to every enemy you can see.</p><p>This spell should only be given to <strong>champion</strong> and <strong>elite</strong> enemies of <strong>level 30 or higher</strong>, which should only cast it once per turn during <strong>their last turn of the round</strong> (this creates a predictable pattern that Players can anticipate).</p>",
     "isFavored": {
       "value": false
     },
@@ -94,7 +94,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "type": {
           "value": "untyped"
@@ -107,9 +107,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR310"
-    },
+    "source": "FUCR310",
     "subtype": {},
     "opportunity": "",
     "fuid": "devastation"
@@ -117,15 +115,18 @@
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1744756691598,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768876601808,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

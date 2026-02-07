@@ -13,7 +13,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<h2><strong>MERGING WITH AN ARCANUM</strong></h2><p>When you summon an Arcanum, you gain its merge benefits; those benefits last until the Arcanum is dismissed (see <strong>Core Rulebook</strong>, page <strong>179</strong>).</p><p>You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.</p><h2><strong>DISMISSING AN ARCANUM</strong></h2><p>An Arcanum can be dismissed in several ways:</p><ul><li>Once the current scene ends, all Arcana are automatically dismissed.</li><li>If you die or fall unconscious while merged with an Arcanum, they are dismissed.</li><li>If you leave the scene while merged with an Arcanum, they are dismissed.</li><li>You may <strong>willingly</strong> dismiss your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, <strong>before or after</strong> an action.</li></ul><h2><strong>DISMISS EFFECTS</strong></h2><p>Most Arcana have a powerful dismiss effect, which may only be activated when you <strong>willingly</strong> dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered.</p><p>If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are <strong>level 40 or higher</strong>.</p><p>You are also free to ignore the dismiss effect if you don't want to use it.</p><h2><strong>DOMAINS</strong></h2><p>Each Arcanum is associated with a few key concepts or domains. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the @UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism} Skill.</p><p>If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</p>",
+        "content": "<h2><strong>MERGING WITH AN ARCANUM</strong></h2><p>When you summon an Arcanum, you gain its merge benefits; those benefits last until the Arcanum is dismissed (see <strong>Core Rulebook</strong>, page <strong>179</strong>).</p><p>You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.</p><h2><strong>DISMISSING AN ARCANUM</strong></h2><p>An Arcanum can be dismissed in several ways:</p><ul><li>Once the current scene ends, all Arcana are automatically dismissed.</li><li>If you die or fall unconscious while merged with an Arcanum, they are dismissed.</li><li>If you leave the scene while merged with an Arcanum, they are dismissed.</li><li>You may <strong>willingly</strong> dismiss your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, while no other effect is being resolved.</li></ul><h2><strong>DISMISS EFFECTS</strong></h2><p>Most Arcana have a powerful dismiss effect, which may only be activated when you <strong>willingly</strong> dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered.</p><p>If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are <strong>level 40 or higher</strong>.</p><p>You are also free to ignore the dismiss effect if you don't want to use it.</p><h2><strong>DOMAINS</strong></h2><p>Each Arcanum is associated with a few key concepts or domains. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the @UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism} Skill.</p><p>If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</p>",
         "markdown": ""
       },
       "video": {
@@ -30,10 +30,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "createdTime": 1711758795157,
-        "modifiedTime": 1743174275596,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1769007561724,
+        "lastModifiedBy": "bgUzjEHd80A79gwp",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -53,7 +53,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fire, heat, metal</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>cold, ice, silence</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>space, travel, void</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>knowledge, revelations, understanding</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>earth, plants, poison</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fog, rain, storms</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>conquest, heroism, leadership</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>judgment, protection, sacrifice</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>destiny, speed, time</p></td></tr></tbody></table>",
+        "content": "<table><tbody><tr><td data-colwidth=\"67\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</p></td></tr><tr><td data-colwidth=\"67\"><p><strong>Domain</strong></p></td><td><p>fire, heat, metal</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>cold, ice, silence</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>space, travel, void</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>knowledge, revelations, understanding</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>earth, plants, poison</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fog, rain, storms</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>conquest, heroism, leadership</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>judgment, protection, sacrifice</p></td></tr></tbody></table><p></p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>destiny, speed, time</p></td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -70,10 +70,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "createdTime": 1711758808592,
-        "modifiedTime": 1744501866879,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1768061926009,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
@@ -94,7 +94,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<ol><li><p>To <strong>summon</strong> a Arcanum, add an arcanum to your character sheet and <strong>activate</strong> it.</p></li><li><p>The arcanum's merge active effects will now be transferred to the actor until <strong>dismissed</strong>.</p></li></ol>"
+        "content": "<ol><li><p>To <strong>summon</strong> a Arcanum, add an arcanum to your character sheet, alongside the @UUID[Compendium.projectfu.skills.gbkA1CRgQ9OxPstd]{Bind and Summon} skill. </p></li><li><p>When you click on the skill from your actor sheet it will start the workflow for both summoning and dismissing.</p></li><li><p>The arcanum's merge active effects will now be transferred to the actor until <strong>dismissed</strong>.</p></li></ol>"
       },
       "video": {
         "controls": true,
@@ -109,12 +109,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742792774381,
-        "modifiedTime": 1742793541102,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1768061913380,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "exportSource": null
       },
       "category": null,

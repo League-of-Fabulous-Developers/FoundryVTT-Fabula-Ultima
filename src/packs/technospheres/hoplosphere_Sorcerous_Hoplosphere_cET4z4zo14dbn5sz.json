@@ -1,0 +1,50 @@
+{
+  "name": "Sorcerous Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/sorcerous.png",
+  "system": {
+    "fuid": "sorcerous-hoplosphere",
+    "source": "FUTF143",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "targetMagicDefense",
+        "coagulationLevel": 1
+      },
+      {
+        "type": "increaseSpellDamage",
+        "coagulationLevel": 2,
+        "amount": 2
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 2,
+        "name": "Improved Healing Spells",
+        "text": "Extra Healing +2"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658515153,
+    "modifiedTime": 1760404395032,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "cET4z4zo14dbn5sz",
+  "sort": 0,
+  "_key": "!items!cET4z4zo14dbn5sz"
+}

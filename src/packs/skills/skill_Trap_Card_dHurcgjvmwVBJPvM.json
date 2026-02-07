@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After an enemy you can see performs an action during a conflict, you may declare one of your <strong>deck</strong>'s <strong>suits</strong> (after the action has been resolved) and put the first card on the bottom of your <strong>deck</strong> in your <strong>discard pile</strong>, face up. If that card is a <strong>joker</strong> or its <strong>suit</strong> matches the one you declared, you may immediately perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total Mind Point cost equal to or lower than</strong> <strong>【SL × 5】</strong> (you must still pay its MP cost).</p>",
+    "description": "<p>After an enemy you can see resolves an <strong>Attack</strong>, <strong>Objective</strong>, <strong>Skill</strong>, or <strong>Spell</strong> action, you may discard up to <strong>【SL + 1】 </strong>cards that are <strong>jokers</strong> or whose <strong>suit</strong> corresponds to a damage type based on the enemy action: <strong>ice (Attack)</strong>, <strong>fire (Objective)</strong>, <strong>earth (Skill)</strong>, or <strong>air (Spell)</strong>. If you do, draw that many cards; then you may perform the <strong>Spell</strong> action for free, casting a spell with a total Mind Point cost equal to or lower than <strong>【SL × 5】</strong> (you must still pay its MP cost) and you cannot use this Skill again until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -17,7 +17,7 @@
     },
     "level": {
       "value": 1,
-      "max": 4,
+      "max": 2,
       "min": 0
     },
     "class": {
@@ -68,9 +68,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUAC3"
-    },
+    "source": "FUBC7",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {
@@ -127,15 +125,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1707643024284,
-    "modifiedTime": 1742579029136,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1769029401112,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

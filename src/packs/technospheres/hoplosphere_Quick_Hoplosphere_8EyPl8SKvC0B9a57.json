@@ -1,0 +1,46 @@
+{
+  "name": "Quick Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/quick.png",
+  "system": {
+    "fuid": "quick-hoplosphere",
+    "source": "FUTF142",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainStatusImmunity",
+        "coagulationLevel": 1,
+        "status": "slow"
+      },
+      {
+        "type": "gainCheckBonus",
+        "coagulationLevel": 1,
+        "checkType": "initiativeCheck",
+        "amount": 2
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658502675,
+    "modifiedTime": 1760404596330,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "8EyPl8SKvC0B9a57",
+  "sort": 600000,
+  "_key": "!items!8EyPl8SKvC0B9a57"
+}

@@ -122,16 +122,16 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.350",
     "createdTime": 1710031308833,
-    "modifiedTime": 1745431292422,
-    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "modifiedTime": 1759658744144,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "formula": "1d20",
   "_id": "vZa3GMOzrEVma2Hv",
-  "sort": 0,
+  "sort": 500000,
   "_key": "!tables!vZa3GMOzrEVma2Hv"
 }

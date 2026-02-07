@@ -1,0 +1,121 @@
+{
+  "folder": "VIkMulwyAc8dw5pH",
+  "name": "Effect: King's Castle (No HP/MP Recovery)",
+  "type": "effect",
+  "_id": "lwzEcMwQICongcb5",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
+  "system": {
+    "fuid": "effect-kings-castle-no-hpmp-recovery",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: King No HP/MP Recovery",
+      "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "zfgqbNSlTeIW4zys": {
+              "type": "ruleElement",
+              "_id": "zfgqbNSlTeIW4zys",
+              "trigger": {
+                "_id": "mIuSaKnNNMsmsdIy",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "",
+                "resource": "hp",
+                "change": "increment"
+              },
+              "actions": {
+                "45qP2rE9bFvQ76XU": {
+                  "type": "messageRuleAction",
+                  "_id": "45qP2rE9bFvQ76XU",
+                  "message": "<p><span class=\"fontstyle0\">No creature can recover HP or MP.</span></p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ncSlU2nJDypBoneS",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.multipliers.incomingRecovery.hp",
+          "mode": 1,
+          "value": "0",
+          "priority": null
+        },
+        {
+          "key": "system.multipliers.incomingRecovery.mp",
+          "mode": 1,
+          "value": "0",
+          "priority": null
+        }
+      ],
+      "description": "<p><span class=\"fontstyle0\">You cannot recover Hit Points or Mind Points until the start of the commander's next turn.</span> </p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770276191960,
+        "modifiedTime": 1770332175555,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!lwzEcMwQICongcb5.ncSlU2nJDypBoneS"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770276181332,
+    "modifiedTime": 1770276190640,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!lwzEcMwQICongcb5"
+}

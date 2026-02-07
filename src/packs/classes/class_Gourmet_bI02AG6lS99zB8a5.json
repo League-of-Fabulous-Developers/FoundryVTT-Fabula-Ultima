@@ -66,9 +66,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF148"
-    },
+    "source": "FUNF148",
     "fuid": "gourmet"
   },
   "effects": [],

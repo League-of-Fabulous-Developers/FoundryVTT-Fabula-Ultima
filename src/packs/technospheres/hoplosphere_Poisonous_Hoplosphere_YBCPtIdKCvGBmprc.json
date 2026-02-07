@@ -1,0 +1,56 @@
+{
+  "name": "Poisonous Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/poisonous.png",
+  "system": {
+    "fuid": "poisonous-hoplosphere",
+    "source": "FUTF142",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainResistance",
+        "coagulationLevel": 1,
+        "damageType": "poison"
+      },
+      {
+        "type": "changeWeaponDamageType",
+        "coagulationLevel": 1,
+        "damageType": "poison"
+      },
+      {
+        "type": "gainImmunity",
+        "coagulationLevel": 2,
+        "damageType": "poison"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 3,
+        "name": "Poison Mastery",
+        "text": "Ignore Resistances (Poison); Alter Damage Type (Poison)"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658500532,
+    "modifiedTime": 1760404587026,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "YBCPtIdKCvGBmprc",
+  "sort": 400000,
+  "_key": "!items!YBCPtIdKCvGBmprc"
+}

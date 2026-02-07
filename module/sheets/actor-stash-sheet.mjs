@@ -1,6 +1,15 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
-import { TextEditor } from '../helpers/text-editor.mjs';
+import { EquipmentTableRenderer } from '../helpers/tables/equipment-table-renderer.mjs';
+import { Checks } from '../checks/checks.mjs';
+import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
+import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-renderer.mjs';
+import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
+import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
+import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
+import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @property {FUActor} actor
@@ -16,6 +25,18 @@ export class FUStashSheet extends FUActorSheet {
 		resizable: true,
 		position: { width: 600, height: 768 },
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
+		actions: {
+			createItem: this.#onCreate,
+			editItem: this.#onEdit,
+			roll: this.#onRoll,
+			clearInventory: this.#onClearInventory,
+			createEquipment: this.#onCreateEquipment,
+			lootItem: this.#onLootItem,
+			sellItem: this.#onSellItem,
+			buyItem: this.#onBuyItem,
+			distributeZenit: this.#onDistributeZenit,
+			rechargeInventoryPoints: this.#onRechargeInventoryPoints,
+		},
 	};
 
 	/**
@@ -28,6 +49,12 @@ export class FUStashSheet extends FUActorSheet {
 		},
 	};
 
+	#equipmentTable = new EquipmentTableRenderer();
+	#technospheresTable = new TechnospheresTableRenderer();
+	#treasuresTable = new TreasuresTableRenderer();
+	#consumablesTable = new ConsumablesTableRenderer();
+	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
+
 	/**
 	 * @inheritDoc
 	 * @override
@@ -36,33 +63,153 @@ export class FUStashSheet extends FUActorSheet {
 		super._attachFrameListeners();
 		const html = this.element;
 		ActorSheetUtils.activateDefaultListeners(html, this);
-		ActorSheetUtils.activateStashListeners(html, this);
-		ActorSheetUtils.activateInventoryListeners(html, this);
 	}
 
 	/** @override */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		await ActorSheetUtils.prepareData(context, this);
-		await ActorSheetUtils.prepareInventory(context);
+		const technoSphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
+		context.equipmentTable = await this.#equipmentTable.renderTable(this.document);
+		if (technoSphereMode) {
+			context.technospheresTable = await this.#technospheresTable.renderTable(this.document);
+		}
+		context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
+		context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
+		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 		return context;
 	}
 
-	/** @override */
-	async _onDrop(ev) {
-		ev.preventDefault();
-		const data = TextEditor.getDragEventData(ev);
-		if (data && data.type) {
-			switch (data.type) {
-				case 'Item': {
-					const accepted = await ActorSheetUtils.handleInventoryItemDrop(this.actor, data, super._onDrop(ev));
-					if (accepted) {
-						return true;
-					}
-					break;
-				}
-			}
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		this.#equipmentTable.activateListeners(this);
+		this.#technospheresTable.activateListeners(this);
+		this.#treasuresTable.activateListeners(this);
+		this.#consumablesTable.activateListeners(this);
+		this.#otherItemsTable.activateListeners(this);
+	}
+
+	async _onDropItem(event, item) {
+		const itemStashed = await ActorSheetUtils.handleStashDrop(this.actor, item);
+		if (itemStashed === true) {
+			return null;
 		}
-		return false;
+
+		return super._onDropItem(event, item);
+	}
+
+	static #onCreate(event, target) {
+		const type = target.dataset.type;
+
+		if (!type) {
+			return;
+		}
+		const itemData = {
+			type: type,
+		};
+
+		itemData.name = foundry.documents.Item.defaultName({ type: type, parent: this.actor });
+
+		foundry.documents.Item.create(itemData, { parent: this.actor });
+	}
+
+	static #onEdit(event, target) {
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item = this.actor.items.get(itemId);
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+
+		if (item) {
+			item.sheet.render(true);
+		}
+	}
+
+	static #onRoll(event, target) {
+		const itemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item = this.actor.items.get(itemId);
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+
+		if (item) {
+			return Checks.display(this.actor, item);
+		}
+	}
+
+	static async #onClearInventory() {
+		const clear = await foundry.applications.api.Dialog.confirm({
+			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: `${game.i18n.localize('FU.All')} ${game.i18n.localize('FU.Items')}` }),
+			rejectClose: false,
+		});
+		if (clear) {
+			console.debug(`Clearing all items from actor ${this.actor}`);
+			return this.actor.clearEmbeddedItems();
+		}
+	}
+
+	static async #onCreateEquipment() {
+		const itemType = await foundry.applications.api.DialogV2.wait({
+			window: { title: `${game.i18n.localize('FU.Create')} ${game.i18n.localize('FU.Item')}` },
+			content: '',
+			rejectClose: false,
+			buttons: ['accessory', 'armor', 'shield', 'weapon'].map((choice) => ({
+				action: choice,
+				label: game.i18n.localize(CONFIG.Item.typeLabels[choice]),
+			})),
+		});
+
+		if (itemType) {
+			foundry.documents.Item.create({ type: itemType, name: foundry.documents.Item.defaultName({ type: itemType, parent: this.actor }) }, { parent: this.actor });
+		}
+	}
+
+	static #onLootItem(event, target) {
+		const item = FUStashSheet.#resolveItem(this.actor, target);
+		if (item) {
+			const targetActor = getPrioritizedUserTargeted();
+			if (!targetActor) return;
+
+			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, false, targetActor.uuid, {
+				shift: event?.shiftKey ?? false,
+				ctrl: event?.ctrlKey ?? false,
+				alt: event?.altKey ?? false,
+				meta: event?.metaKey ?? false,
+			});
+		}
+	}
+
+	static #onSellItem(event, target) {
+		const item = FUStashSheet.#resolveItem(this.actor, target);
+		if (item) {
+			return InventoryPipeline.tradeItem(this.actor, item, 'sell');
+		}
+	}
+
+	static #onBuyItem(event, target) {
+		const item = FUStashSheet.#resolveItem(this.actor, target);
+		if (item) {
+			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, true, undefined);
+		}
+	}
+
+	static #resolveItem(actor, target) {
+		const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
+		let item = actor.items.get(dataItemId);
+		if (!item) {
+			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+			item = foundry.utils.fromUuidSync(uuid);
+		}
+		return item;
+	}
+
+	static #onDistributeZenit() {
+		return InventoryPipeline.distributeZenit(this.actor);
+	}
+
+	static #onRechargeInventoryPoints() {
+		return InventoryPipeline.requestRecharge(this.actor);
 	}
 }

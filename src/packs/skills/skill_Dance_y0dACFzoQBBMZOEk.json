@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you take this Skill, you learn a <strong>dance</strong> (see <strong>High Fantasy</strong>, page <strong>144</strong>).</p><p>On your turn during a conflict scene, if you have no <strong>martial armor</strong> equipped, you may spend 10 Mind Points to perform a dance you have learned. This doesn’t require an action, but it can only be done <strong>before or after</strong> an action, and only <strong>once per turn</strong>. If you already performed a <strong>different dance</strong> during your previous turn in this scene, the cost of the new dance is reduced to 5 Mind Points.</p><p>Some dances are <strong>instantaneous</strong> and resolve immediately, while others have effects that last <strong>until the start of your next turn</strong>.</p><hr /><ul><li><p>For <strong>dance</strong> breakdown and a list of Dances, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}</p></li><li><p><strong>You Spend (reduced)</strong>: @LOSS[5 mp]</p></li></ul>",
+    "description": "<p>Each time you take this Skill, you learn a <strong>dance</strong> (see <strong>High Fantasy</strong>, page <strong>144</strong>).</p><p>On your turn during a conflict scene, if you have no <strong>martial armor</strong> equipped, you may spend 10 Mind Points to perform a dance you have learned. This doesn’t require an action, but it can only be done <strong>before or after</strong> an action, and only <strong>once per turn</strong>. If you already performed a <strong>different dance</strong> during your previous turn in this scene, the cost of the new dance is reduced to 5 Mind Points.</p><p>Some dances are <strong>instantaneous</strong> and resolve immediately, while others have effects that last <strong>until the start of your next turn</strong>.</p><hr /><p>For <strong>dance</strong> breakdown and a list of Dances, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}<br /><strong>You Spend (reduced)</strong>: @LOSS[5 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF143"
-    },
+    "source": "FUHF143",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -123,6 +121,9 @@
     "fuid": "dance",
     "cost": {
       "amount": 10
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [],
@@ -132,15 +133,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706558084944,
-    "modifiedTime": 1742000206684,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770342513230,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

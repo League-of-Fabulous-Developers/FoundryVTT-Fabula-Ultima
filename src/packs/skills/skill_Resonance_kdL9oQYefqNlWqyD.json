@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>or</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl mp]{Recover SL MP}</p></li><li><p><strong>Target</strong>: @EFFECT[Compendium.projectfu.skills.KgYNKoG8RE2NvCiV]{Effect: Resonance Damage}</p></li></ul>",
+    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option:</p><ul><li><p>Until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies.</p></li><li><p>Until the start of your next turn, you recover <strong>【SL】</strong> Mind Points <strong>every time</strong> one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p></li></ul><hr /><p><strong>You Recover: </strong>@GAIN[$sl mp]{SL MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -70,9 +70,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF137"
-    },
+    "source": "FUHF137",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,13 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "resonance"
+    "fuid": "resonance",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.KgYNKoG8RE2NvCiV",
+        "Compendium.projectfu.skills.Item.MNsuRCvzqSNEqSc6"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -128,15 +132,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706551588442,
-    "modifiedTime": 1744457869580,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1770282872999,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

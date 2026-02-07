@@ -1,0 +1,17 @@
+<fieldset class="title-fieldset desc resource-content"
+		  style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+	<legend class="resource-label-full">
+		<label class="flexrow gap-4">
+			{{#if actor}}
+				<img src="{{actor.img}}" alt="{{actor.name}}"
+					 data-actor-id="{{actor.uuid}}"
+					 class="fu-icon fu-icon--s">
+			{{/if}}
+			<a data-link draggable="true" data-uuid="{{item.uuid}}" data-type="Item" data-tooltip="{{item.name}}">
+				<img src="{{item.img}}" alt="{{item.name}}" data-item-id="{{item.id}}" class="fu-icon fu-icon--s">
+			</a>
+			{{item.name}}
+		</label>
+	</legend>
+	<span id="chat-item-text" {{#if actor}}data-actor-id="{{actor.uuid}}"{{/if}} data-item-id="{{item.uuid}}">{{{text}}}</span>
+</fieldset>

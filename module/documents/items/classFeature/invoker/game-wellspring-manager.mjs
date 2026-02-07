@@ -11,7 +11,7 @@ export class GameWellspringManager extends FUApplication {
 	 * @type ApplicationConfiguration
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['form', 'wellspring-manager-app'],
+		classes: ['wellspring-manager-app'],
 		position: { width: 350, height: 'auto' },
 		actions: {
 			toggleWellspring: this.#toggleWellspring,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of a creature you can see. If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target’s <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> will appear inside your <strong>backpack</strong>; a creature can be successfully stolen from with this Skill only once.</p><p><span>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】 </strong>Checks for this Skill.</span></p><hr><ul><li><p><strong>You Perform: </strong>@CHECK[dex wlp ($sl)]</p></li><li><p><strong>You Recover: </strong>@GAIN[$sl ip]{Soldier: SL IP}</p></li></ul>",
+    "description": "<p>During a conflict, you may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of an enemy you can see. If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target’s <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> will appear inside your <strong>backpack</strong>; a creature can be successfully stolen from with this Skill only once.</p><p><span>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】 </strong>Checks for this Skill.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -45,9 +45,7 @@
         "value": "mig"
       }
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "$sl",
     "damage": {
       "hasDamage": {
         "value": false
@@ -71,9 +69,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR203"
-    },
+    "source": "FUCR203",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -122,22 +118,157 @@
     "defense": "mdef",
     "fuid": "soul-steal"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Soul Steal",
+      "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_soul_steal.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "8GxD4UtzhTXhz4Wu": {
+              "type": "ruleElement",
+              "_id": "8GxD4UtzhTXhz4Wu",
+              "trigger": {
+                "_id": "RClBK7QQQFltte5O",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "attribute"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "predicates": {
+                "yPliEOxkXoXSEShF": {
+                  "type": "rankRulePredicate",
+                  "_id": "yPliEOxkXoXSEShF",
+                  "ranks": [
+                    "soldier"
+                  ]
+                },
+                "D14B6F9g4kexgdQX": {
+                  "type": "checkRulePredicate",
+                  "_id": "D14B6F9g4kexgdQX",
+                  "outcome": "success",
+                  "result": null
+                }
+              },
+              "actions": {
+                "eCMD5tSKDowgT34Z": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "eCMD5tSKDowgT34Z",
+                  "resource": "ip",
+                  "amount": "$sl"
+                }
+              }
+            },
+            "SsU8eXeTWC4TqXei": {
+              "type": "ruleElement",
+              "_id": "SsU8eXeTWC4TqXei",
+              "trigger": {
+                "_id": "CaeGbsnaVyB1K2Cp",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "attribute"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "predicates": {
+                "dHF6zta7xccEx9QS": {
+                  "type": "checkRulePredicate",
+                  "_id": "dHF6zta7xccEx9QS",
+                  "outcome": "success",
+                  "result": null
+                },
+                "nNSjrNqyyH2tJlFI": {
+                  "type": "rankRulePredicate",
+                  "_id": "nNSjrNqyyH2tJlFI",
+                  "ranks": [
+                    "elite",
+                    "champion"
+                  ]
+                }
+              },
+              "actions": {
+                "JsOkrK8Rn1gFjIvk": {
+                  "type": "messageRuleAction",
+                  "_id": "JsOkrK8Rn1gFjIvk",
+                  "message": "<p>You have earned a a soul treasure worth <strong style=\"\">the target's level multiplied by 30, or by 50 if they are a Villain】.</strong></p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "i3kIT0IU5XlnYo9m",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.348",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767556995607,
+        "modifiedTime": 1767557106430,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!bpCv5Vkr1aWZiFSw.i3kIT0IU5XlnYo9m"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706504776432,
-    "modifiedTime": 1745169666673,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768582201354,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

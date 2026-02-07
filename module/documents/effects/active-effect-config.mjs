@@ -1,13 +1,39 @@
 import { FU } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
+import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
+import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
+import { RuleElements } from '../../pipelines/rule-elements.mjs';
+import { RuleElementDataModel } from './rule-element-data-model.mjs';
+import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
+import { RuleTriggerRegistry } from './triggers/rule-trigger-data-model.mjs';
+import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mjs';
+import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
+import FoundryUtils from '../../helpers/foundry-utils.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
+
+RuleElements.register();
 
 /**
  * The Application responsible for configuring a single ActiveEffect document within a parent Actor or Item.
  */
 export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
+	#expandedRuleElements = {};
+
 	/** @inheritdoc */
 	static DEFAULT_OPTIONS = {
-		classes: ['projectfu', 'sheet', `backgroundstyle`],
+		classes: ['projectfu', 'sheet', `backgroundstyle`, 'active-effect-sheet'],
+		actions: {
+			addRuleElement: this.#addRuleElement,
+			deleteRuleElement: this.#deleteRuleElement,
+			clearRuleElements: this.#clearRuleElements,
+			addRuleAction: this.#addRuleAction,
+			removeRuleAction: this.#removeRuleAction,
+			addRulePredicate: this.#addRulePredicate,
+			removeRulePredicate: this.#removeRulePredicate,
+		},
+		form: {
+			closeOnSubmit: false,
+		},
 	};
 
 	/** @inheritdoc */
@@ -21,7 +47,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 
 		// DEFAULT
 		details: {
-			template: 'templates/sheets/active-effect/details.hbs',
+			template: systemTemplatePath('effects/active-effect-details'),
 		},
 		changes: {
 			template: 'templates/sheets/active-effect/changes.hbs',
@@ -35,6 +61,21 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		},
 		rules: {
 			template: systemTemplatePath('effects/active-effect-rules'),
+			templates: Object.values(RuleActionRegistry.instance.qualifiedTypes)
+				.map((pt) => {
+					return pt.template;
+				})
+				.concat(
+					Object.values(RuleTriggerRegistry.instance.qualifiedTypes).map((pt) => {
+						return pt.template;
+					}),
+				)
+				.concat(
+					Object.values(RulePredicateRegistry.instance.qualifiedTypes).map((pt) => {
+						return pt.template;
+					}),
+				)
+				.concat([RuleElementDataModel.template]),
 		},
 
 		footer: {
@@ -57,6 +98,33 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		},
 	};
 
+	static _migrateConstructorParams(first, rest) {
+		if (first?.document instanceof PseudoDocument) {
+			return first;
+		}
+		return super._migrateConstructorParams(first, rest);
+	}
+
+	static #dummyActor;
+
+	static get dummyActor() {
+		if (!this.#dummyActor) {
+			this.#dummyActor = new foundry.documents.Actor.implementation({ type: 'character', name: 'Temp Actor' });
+		}
+		return this.#dummyActor;
+	}
+
+	get dummyActor() {
+		return this.constructor.dummyActor;
+	}
+
+	get isEditable() {
+		if ('editable' in this.options) {
+			return this.options.editable;
+		}
+		return super.isEditable;
+	}
+
 	/** @inheritDoc */
 	async _preparePartContext(partId, context) {
 		const partContext = await super._preparePartContext(partId, context);
@@ -73,18 +141,71 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 					context.crisisInteractions = FU.crisisInteractions;
 				}
 				break;
+
+			case 'rules':
+				{
+					context.options = {
+						...FU,
+						ruleActions: RuleActionRegistry.instance.localizedEntries,
+						ruleTriggers: RuleTriggerRegistry.instance.localizedEntries,
+						damageTypeOptions: FoundryUtils.getFormOptions(FU.damageTypes),
+						itemGroupOptions: FoundryUtils.getFormOptions(FU.itemGroup),
+						damageSourceOptions: FoundryUtils.getFormOptions(FU.damageSource),
+						speciesOptions: FoundryUtils.getFormOptions(FU.species),
+						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
+						rankOptions: FoundryUtils.getFormOptions(FU.rank),
+						weaponCategoryOptions: FoundryUtils.getFormOptions(FU.weaponCategories),
+						consumableTraitOptions: FoundryUtils.getFormOptions(ConsumableTraits, (k, v) => k),
+						traits: TraitUtils.getOptions(Traits),
+					};
+				}
+				break;
 		}
 		return partContext;
+	}
+
+	/**
+	 * @returns {FUActiveEffectModel}
+	 */
+	get system() {
+		return this.document.system;
 	}
 
 	/** @inheritdoc */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.systemFields = this.document.system.schema.fields;
+		context.effect = this.document;
 		context.system = this.document.system;
 		context.effectType = FU.effectType;
+		context.trackStyles = FU.trackStyles;
 		context.crisisInteractions = FU.crisisInteractions;
+		let parent = this.document.parent;
+		while (parent != null) {
+			if (parent.type === 'character' || parent.type === 'npc') {
+				context.actor = parent;
+			} else if (parent.type === 'item') {
+				context.item = parent;
+			}
+			parent = parent.parent;
+		}
+		for (const re of this.system.rules.elements) {
+			await re.prepareRenderContext(context);
+		}
+
+		context.expandedRuleElements = this.#expandedRuleElements;
 		return context;
+	}
+
+	/** @inheritdoc */
+	async _onFirstRender(context, options) {
+		await super._onFirstRender(context, options);
+		// Wire up all rule trigger selectors
+		this.element.addEventListener('change', (evt) => {
+			const target = evt.target.closest("[data-action='updateRuleTrigger']");
+			if (!target) return;
+			this.#updateRuleTrigger(evt, target);
+		});
 	}
 
 	/** @inheritDoc */
@@ -93,12 +214,18 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const html = this.element;
 
 		// CHANGES Tab
-		if (!html.querySelector('#effect-key-options')) {
-			const options = getAttributeKeys();
+		const effectKeyOptions = html.querySelector('#effect-key-options');
+		const targetDocument = this.document.target ?? this.dummyActor;
+
+		if (this.#effectKeysRequireUpdate(effectKeyOptions, targetDocument)) {
+			effectKeyOptions?.remove();
+			const attributeKeys = getAttributeKeys(targetDocument);
 			const datalist = document.createElement('datalist');
 			datalist.id = 'effect-key-options';
+			datalist.dataset.documentName = targetDocument.documentName;
+			datalist.dataset.documentType = targetDocument.type;
 
-			options.forEach((opt) => {
+			attributeKeys.forEach((opt) => {
 				const option = document.createElement('option');
 				option.value = opt;
 				datalist.appendChild(option);
@@ -108,42 +235,191 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		}
 
 		html.querySelectorAll('.key input').forEach((el) => {
-			const name = el.getAttribute('name');
-			const value = el.value;
-
-			const newInput = document.createElement('input');
-			newInput.type = 'text';
-			newInput.name = name;
-			newInput.value = value;
-			newInput.setAttribute('list', 'effect-key-options');
-
-			el.parentNode.replaceChild(newInput, el);
+			el.setAttribute('list', 'effect-key-options');
 		});
 
 		// Remove assigning statuses since we don't do that
 		const statusForm = html.querySelector('div.form-group.statuses');
 		statusForm.remove();
+
+		// Add toggle handler to track expanded/contracted state for RE summaries
+		const reElements = this.element.querySelectorAll(`.fu-foldout-item[data-rule-element]:not([data-rule-element=""])`); // Selector should grab only items with a *non-empty* data-rule-element
+		for (const elem of reElements) {
+			if (elem instanceof HTMLDetailsElement) {
+				elem.addEventListener('toggle', () => {
+					this.#expandedRuleElements[elem.dataset.ruleElement] = elem.open;
+				});
+			}
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addRuleElement(event, target) {
+		const type = RuleElementDataModel.TYPE;
+		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, type, this.document);
+		console.debug(`Added rule element`);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #deleteRuleElement(event, target) {
+		const { id } = target.dataset;
+		console.debug(`Deleting rule element ${id}`);
+		/** @type RuleElementDataModel **/
+		const re = this.document.system.rules.elements.get(id);
+		if (re) {
+			const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: re.localization }));
+			if (confirm) {
+				await re.delete();
+			}
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #clearRuleElements(event, target) {
+		const confirm = await FoundryUtils.confirmDialog('FU.Clear', `FU.DialogClearMessage`);
+		if (confirm) {
+			await this.document.update({
+				'system.rules.==elements': {},
+			});
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	async #updateRuleTrigger(event, target) {
+		const { id } = target.dataset;
+		const type = target.value;
+		console.debug(`Updating rule trigger of ${id} to: ${type} (${event.type})`);
+		const re = this.document.system.getRuleElement(id);
+		await re.changeRuleTrigger(type);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addRuleAction(event, target) {
+		const { id } = target.dataset;
+		console.debug(`Adding rule action to ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		await re.addRuleAction();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeRuleAction(event, target) {
+		const { id, actionId } = target.dataset;
+		console.debug(`Removing rule action ${actionId} from ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		const action = re.getAction(actionId);
+		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: action.localization }));
+		if (confirm) {
+			await re.removeRuleAction(actionId);
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addRulePredicate(event, target) {
+		const { id } = target.dataset;
+		console.debug(`Adding rule predicate to ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		await re.addRulePredicate();
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeRulePredicate(event, target) {
+		const { id, predicateId } = target.dataset;
+		console.debug(`Removing rule predicate ${predicateId} from ${id}`);
+		const re = this.document.system.getRuleElement(id);
+		const predicate = re.getPredicate(predicateId);
+		const confirm = await FoundryUtils.confirmDialog('FU.Remove', StringUtils.localize('FU.DialogRemoveMessage', { label: predicate.localization }));
+		if (confirm) {
+			await re.removeRulePredicate(predicateId);
+		}
+	}
+
+	/** @inheritdoc */
+	_onClose(options) {
+		// Reset all expanded elements
+		this.#expandedRuleElements = {};
+		return super._onClose(options);
+	}
+
+	_onChangeForm(formConfig, event) {
+		super._onChangeForm(formConfig, event);
+
+		if (event.target instanceof HTMLInputElement && event.target.name === 'transfer') {
+			this.submit({ updateData: { transfer: event.target.checked } });
+		}
+	}
+
+	#effectKeysRequireUpdate(effectKeyOptions, targetDocument) {
+		if (!effectKeyOptions) {
+			return true;
+		}
+
+		const targetDocumentName = targetDocument.documentName;
+		const targetDocumentType = targetDocument.type;
+
+		const { documentName, documentType } = effectKeyOptions.dataset;
+
+		return documentName !== targetDocumentName || documentType !== targetDocumentType;
 	}
 }
-
-let attributeKeys = undefined;
 
 /**
  * @returns {String[]}
  */
-function getAttributeKeys() {
-	if (!attributeKeys) {
-		attributeKeys = [];
-		const characterFields = CONFIG.Actor.dataModels.character.schema.fields;
-		if (characterFields) {
-			attributeKeys = attributeKeys.concat(flattenSchemaFields(characterFields, 'system'));
+function getAttributeKeys(document) {
+	let attributeKeys = [];
+
+	if (document.system) {
+		document.system.schema.apply(function () {
+			if (this.constructor.recursive) return;
+			attributeKeys.push(this.fieldPath);
+		});
+	}
+
+	if (document.documentName === 'Actor') {
+		if (document.isCharacterType) {
 			// TODO: Derived Keys
 			// Resources
-			for (const res of ['hp', 'mp', 'ip']) {
+			const resources = ['hp', 'mp'];
+			if (document.type === 'character') resources.push('ip');
+			for (const res of resources) {
 				attributeKeys.push(`system.resources.${res}.max`);
 			}
+			attributeKeys.push('system.resources.hp.crisisScore');
 			// Attributes
 			for (const attr of Object.keys(FU.attributes)) {
+				attributeKeys.push(`system.attributes.${attr}`);
 				attributeKeys.push(`system.attributes.${attr}.current`);
 			}
 			// Stats
@@ -152,22 +428,12 @@ function getAttributeKeys() {
 			// }
 			// Affinities
 			for (const aff of Object.keys(FU.damageTypes)) {
+				attributeKeys.push(`system.affinities.${aff}`);
 				attributeKeys.push(`system.affinities.${aff}.current`);
 			}
 		}
-		attributeKeys = attributeKeys.sort((a, b) => b.localeCompare(a));
 	}
-	return attributeKeys;
-}
 
-function flattenSchemaFields(obj, prefix = '', result = []) {
-	for (const [key, value] of Object.entries(obj)) {
-		const path = prefix ? `${prefix}.${key}` : key;
-		if (value.fields) {
-			flattenSchemaFields(value.fields, path, result);
-		} else {
-			result.push(path);
-		}
-	}
-	return result;
+	attributeKeys = attributeKeys.sort((a, b) => a.localeCompare(b));
+	return attributeKeys;
 }

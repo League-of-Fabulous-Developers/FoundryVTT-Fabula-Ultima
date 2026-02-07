@@ -1,14 +1,12 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
-import { FUItem } from '../../item.mjs';
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
-import { FUActor } from '../../../actors/actor.mjs';
-import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { VersesApplication } from './verses-application.mjs';
-import { LocallyEmbeddedDocumentField } from '../../../../fields/locally-embedded-document-field.mjs';
+import { EmbeddedItemUuidField } from '../../../../fields/embedded-item-uuid-field.mjs';
 import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { VerseMigrations } from './verse-migrations.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',
@@ -20,7 +18,7 @@ const volumes = {
  * @param {VerseDataModel} model
  * @returns {Promise<string>}
  */
-async function getDescription(model) {
+async function enrichDescription(model) {
 	const key = model.key;
 	const tone = model.tone;
 
@@ -33,12 +31,7 @@ async function getDescription(model) {
 	} else {
 		rollData = {};
 		const keyData = key.system.data;
-		rollData.key = {
-			type: game.i18n.localize(FU.damageTypes[keyData.type]),
-			status: `@EFFECT[${keyData.status}]`,
-			attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
-			recovery: game.i18n.localize(KeyDataModel.recoveryOptions[keyData.recovery]),
-		};
+		rollData.key = KeyDataModel.getRollData(keyData);
 
 		const actor = model.actor;
 		if (actor) {
@@ -72,10 +65,10 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { SchemaField, NumberField } = foundry.data.fields;
 		return {
-			key: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			key: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof KeyDataModel,
 			}),
-			tone: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+			tone: new EmbeddedItemUuidField({
 				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof ToneDataModel,
 			}),
 			config: new SchemaField({
@@ -84,6 +77,12 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 				high: new NumberField({ initial: 30, min: 0 }),
 			}),
 		};
+	}
+
+	static migrateData(source) {
+		source = super.migrateData(source);
+		VerseMigrations.run(source);
+		return source;
 	}
 
 	static get translation() {
@@ -103,7 +102,7 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 			volumes: volumes,
 			keys: model.parent.parent?.actor?.itemTypes.classFeature.filter((item) => item.system.data instanceof KeyDataModel) ?? [],
 			tones: model.parent.parent?.actor?.itemTypes.classFeature.filter((item) => item.system.data instanceof ToneDataModel) ?? [],
-			description: await getDescription(model),
+			description: await enrichDescription(model),
 		};
 	}
 

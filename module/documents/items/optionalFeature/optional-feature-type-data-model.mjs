@@ -23,8 +23,8 @@ export class OptionalFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
 			optionalType: new StringField({
 				nullable: false,
-				initial: () => OptionalFeatureRegistry.instance?.choices[0],
-				choices: () => OptionalFeatureRegistry.instance?.choices,
+				initial: () => OptionalFeatureRegistry.instance?.qualifiedChoices[0],
+				choices: () => OptionalFeatureRegistry.instance?.qualifiedChoices,
 			}),
 			data: new RegistryDataField(OptionalFeatureRegistry.instance, 'optionalType'),
 		});

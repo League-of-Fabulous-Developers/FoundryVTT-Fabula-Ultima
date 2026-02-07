@@ -1,0 +1,73 @@
+{{#if system.schema.fields.hasRoll }}
+	<label class="checkbox resource-label-sm">
+		<span data-tooltip="{{localize 'FU.PerformCheck'}}"><i class="fas fa-dice icon"></i></span>
+		<input type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
+	</label>
+{{/if}}
+
+<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.Favorite'}}">
+    <span>
+		{{#if item.isFavorite}}
+			<i class="fas fa-star"></i>
+		{{else}}
+			<i class="far fa-star"></i>
+		{{/if}}
+	</span>
+	<input type="checkbox" name="flags.projectfu.favorite" {{ checked item.isFavorite }} />
+</label>
+
+<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.TitleCardInfo'}}">
+    <span>
+		{{#if item.system.showTitleCard.value}}
+			<i class="fas fa-message"></i>
+		{{else}}
+			<i class="far fa-message"></i>
+		{{/if}}
+	</span>
+	<input type="checkbox" name="system.showTitleCard.value" {{ checked system.showTitleCard.value }} />
+</label>
+
+{{#if system.schema.fields.hasClock}}
+	<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
+		<span>
+			{{#if item.system.hasClock.value}}
+				<i class="fas fa-clock"></i>
+			{{else}}
+				<i class="far fa-clock"></i>
+			{{/if}}
+		</span>
+		<input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value }} />
+	</label>
+{{/if}}
+
+{{#if system.schema.fields.isMartial }}
+	<label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span>
+		<input type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
+	</label>
+{{/if}}
+
+{{#if system.schema.fields.hasResource }}
+	<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ResourceStatus'}}">
+			<span>
+				{{#if item.system.hasResource.value}}
+					<i class="fas fa-hashtag"></i>
+				{{else}}
+					<i class="far fa-hashtag"></i>
+				{{/if}}
+			</span><input type="checkbox" name="system.hasResource.value" {{ checked system.hasResource.value }} />
+	</label>
+{{/if}}
+
+{{!-- NPC Options --}}
+{{#if (and (eq actor.type "npc") system.schema.fields.isBehavior)}}
+	<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.BehaviorAdd'}}">    <span>
+		{{#if item.system.isBehavior.value}}
+			<i class="fas fa-address-book"></i>
+		{{else}}
+			<i class="far fa-address-book"></i>
+		{{/if}}
+	</span><input type="checkbox" name="system.isBehavior.value" {{ checked system.isBehavior.value }} />
+	</label>
+{{/if}}
+
+

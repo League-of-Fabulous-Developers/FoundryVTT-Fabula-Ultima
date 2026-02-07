@@ -93,9 +93,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF175"
-    },
+    "source": "FUTF175",
     "fuid": "make-it-or-break-it"
   },
   "effects": [],

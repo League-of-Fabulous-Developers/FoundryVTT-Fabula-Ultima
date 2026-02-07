@@ -87,9 +87,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUHF138"
-    },
+    "source": "FUHF138",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {

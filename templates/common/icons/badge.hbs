@@ -1,0 +1,13 @@
+<div class='fu-icon__container flex-group-center'
+	 style="flex-direction: column;"
+	 data-tooltip="{{localize label}}">
+	<div class='fu-icon__badge'>
+		<i class='fu-icon--{{size}} {{icon}}'></i>
+		{{#if (ne value undefined)}}
+			<span class="fu-icon__badge-overlay">{{value}}</span>
+		{{/if}}
+	</div>
+	{{#unless compact}}
+		<span class="fu-icon__badge-label">{{localize label}}</span>
+	{{/unless}}
+</div>

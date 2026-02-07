@@ -1,0 +1,28 @@
+.projectfu.party {
+	.items-main-header {
+		justify-content: space-between;
+
+		> * {
+			flex: 0 0 auto;
+		}
+	}
+
+	.stash-controls {
+		display: flex;
+		gap: var(--spacing-xs);
+		align-items: center;
+
+		> * {
+			flex: 0 0 auto;
+		}
+
+		.zenit-style {
+			min-width: 100px;
+			margin-right: 0;
+		}
+
+		.spacer {
+			margin: 0 var(--spacing-sm);
+		}
+	}
+}

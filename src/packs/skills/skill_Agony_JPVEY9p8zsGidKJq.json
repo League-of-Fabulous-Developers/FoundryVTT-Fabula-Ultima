@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you deal damage to one or more creatures, if you have a <strong>Bond</strong> towards at least one of those creatures, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl*2 hp]{SL × 2 HP}, and @GAIN[$sl*2 mp]{SL × 2 MP}</p></li></ul>",
+    "description": "<p>Once per turn (including other creatures’ turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】 </strong>Hit Points and <strong>【SL × 2】 </strong>Mind Points.</p><hr /><p><strong>You</strong>: @GAIN[$sl*2 hp]{SL x 2 HP} @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR185"
-    },
+    "source": "FUCR185",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,24 +118,139 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "agony"
+    "fuid": "agony",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Agony",
+      "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_agony.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "grA677dITyK5ugVJ": {
+              "type": "ruleElement",
+              "_id": "grA677dITyK5ugVJ",
+              "trigger": {
+                "_id": "bWYQO0RoEVpuZESG",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "NVZLOf2l41OpllgF": {
+                  "type": "bondRulePredicate",
+                  "_id": "NVZLOf2l41OpllgF"
+                },
+                "jBEybKjWgl1cpOEM": {
+                  "type": "traitsRulePredicate",
+                  "_id": "jBEybKjWgl1cpOEM",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                },
+                "jasZeLFZt6kJffW4": {
+                  "type": "checkRulePredicate",
+                  "_id": "jasZeLFZt6kJffW4",
+                  "outcome": "success",
+                  "result": null
+                }
+              },
+              "actions": {
+                "QgDZPEPEy9dHthfQ": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "QgDZPEPEy9dHthfQ",
+                  "amount": "$sl*2"
+                },
+                "wJbhj0mK5u2eGvcX": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "wJbhj0mK5u2eGvcX",
+                  "resource": "mp",
+                  "amount": "$sl*2"
+                },
+                "Ih8IlZNuYlq4PD3G": {
+                  "type": "messageRuleAction",
+                  "_id": "Ih8IlZNuYlq4PD3G",
+                  "message": "<p>Once per turn, if you damage one or more <strong>Bond</strong> enemies, you may recover<strong>【SL × 2】</strong>HP & MP.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3CjUfXdmW7p1L7tJ",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1766871996877,
+        "modifiedTime": 1770402838012,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!JPVEY9p8zsGidKJq.3CjUfXdmW7p1L7tJ"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706496854934,
-    "modifiedTime": 1744665039954,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770248455463,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

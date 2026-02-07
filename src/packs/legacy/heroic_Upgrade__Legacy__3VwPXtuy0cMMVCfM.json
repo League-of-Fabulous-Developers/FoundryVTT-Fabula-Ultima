@@ -1,0 +1,62 @@
+{
+  "name": "Upgrade [Legacy]",
+  "type": "heroic",
+  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Modify equipment abilities."
+    },
+    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Tinkerer</strong> Class.</span></p></blockquote><p><span>Once per <strong>rest</strong>, you may choose one option: add a <strong>Quality</strong> to a single weapon, armor, or shield that doesn't have one; <strong>or</strong> replace the current <strong>Quality</strong> of a single weapon, armor, or shield with a different <strong>Quality</strong>.</span></p><p><span>When you use this Skill, you must select a Quality from the default list for that item type as long as the cost modifier associated with that ability is <strong>+1000 zenit or lower</strong>. Then, you must spend an amount of zenit equal to <strong>twice</strong> the cost modifier of the chosen ability. The modified item will be ready at the end of the rest; you may only modify <strong>one item per rest</strong>.</span></p><p><span>The default list of <strong>weapon abilities</strong> can be found on page <strong>269</strong> (<strong>Core Rulebook</strong>), while the default list of <strong>armor and shield abilities</strong> can be found on page <strong>280</strong> (<strong>Core Rulebook</strong>).</span></p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Tinkerer"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": "FUCR241",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "upgrade-legacy"
+  },
+  "effects": [],
+  "folder": "nlJCekCcdyb2RFPe",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768875850422,
+    "modifiedTime": 1768875864060,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "3VwPXtuy0cMMVCfM",
+  "sort": 125000,
+  "_key": "!items!3VwPXtuy0cMMVCfM"
+}

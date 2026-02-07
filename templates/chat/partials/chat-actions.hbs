@@ -1,0 +1,77 @@
+{{#if targets}}
+    <div style="clear: both"></div>
+    <section class="targets">
+        {{#each targets as |target|}}
+            <span class="flexrow">
+                <span class="target total {{#if (eq target.result "hit")}}hit{{else if (eq target.result "miss")}}miss{{else}}default{{/if}} flexrow">
+                    <!-- Label -->
+                    <div style="padding: 2px;">
+						{{target.name}}
+					</div>
+                    <!-- Accuracy Information -->
+					{{#if (or (eq target.result "hit") (eq target.result "miss"))}}
+						<div class="endcap gap-5" style="flex: 0 1 auto;">
+							<span class="{{target.result}}">
+								{{#if (eq target.result "hit")}}
+									{{localize 'FU.Hit'}}
+								{{else}}
+									{{localize 'FU.Miss'}}
+								{{/if}}
+							</span>
+					  </div>
+					{{/if}}
+                </span>
+                <!-- Actions -->
+                {{#each ../actions as |action|}}
+					{{#if targeted}}
+						<span class="fu-tags fu-target-action">
+							<a data-action="{{name}}"
+							   data-id="{{target.uuid}}"
+							   data-fields="{{fields}}"
+								{{#each dataset}}
+							   data-{{@key}}="{{this}}"
+								{{/each}}
+							   data-tooltip="{{localize tooltip}}">
+								<span class='fu-tag button flex-group-center fu-target-action__icon__container'>
+									{{#if img}}
+										<img class="fu-target-action__icon {{classes}}" alt="{{localize tooltip}}"
+											 style="{{style}} {{#if color}}color: {{color}};{{/if}}"
+											 src="{{img}}" />
+									{{else}}
+										<i class="fu-icon {{icon}} fu-target-action__icon {{classes}}"
+										   style="{{style}} {{#if color}}color: {{color}};{{/if}}"></i>
+									{{/if}}
+								</span>
+							</a>
+					</span>
+					{{/if}}
+                {{/each}}
+            </span>
+        {{/each}}
+    </section>
+{{/if}}
+{{#each actions as |action|}}
+	{{#if selected}}
+		<div class="fu-tags flexrow gap-5">
+			<a data-action="{{name}}"
+			   data-fields="{{fields}}"
+				{{#each dataset}}
+			   data-{{@key}}="{{this}}"
+				{{/each}}
+			   data-tooltip="{{localize tooltip}}">
+            <span class='fu-tag button flex-group-center gap-5 fu-target-action__icon__container'
+				  style="width: 100%;white-space: nowrap;">
+				{{~localize action.label}}
+				{{#if img}}
+					<img class="fu-target-action__icon {{classes}}" alt="{{localize tooltip}}"
+						 style="{{style}} {{#if color}}color: {{color}};{{/if}}"
+						 src="{{img}}" />
+				{{else}}
+					<i class="fu-icon {{icon}} fu-target-action__icon {{classes}}"
+					   style="{{style}} {{#if color}}color: {{color}};{{/if}}"></i>
+				{{/if}}
+			</span>
+			</a>
+		</div>
+	{{/if}}
+{{/each}}

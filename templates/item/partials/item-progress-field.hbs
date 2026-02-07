@@ -5,21 +5,30 @@
 			<label class="resource-label-m">{{localize 'FU.Clock'}}</label>
 		</legend>
 		<div class="grid grid-3col">
-			<div class="resource-content flexcol flex-group-center">
-				<label class="resource-label-m">{{localize 'FU.Current'}}</label>
+
+			<label class="resource-label-m resource-content flexcol flex-group-center grid-span-3">
+				{{localize 'FU.Name'}}
+				<input type="text" name="system.progress.name" value="{{ system.progress.name }}"
+					   class="resource-inputs select-dropdown-full" />
+			</label>
+
+			<label class="resource-label-m resource-content flexcol flex-group-center">
+				{{localize 'FU.Current'}}
 				<input type="number" name="system.progress.current" value="{{ system.progress.current }}"
-					   max="{{ system.progress.max }}" class="resource-inputs select-dropdown-m" />
-			</div>
-			<div class="resource-content flexcol flex-group-center">
-				<label class="resource-label-m">{{localize 'FU.Step'}}</label>
+					   min="0" max="{{ system.progress.max }}" class="resource-inputs select-dropdown-m" />
+			</label>
+
+			<label class="resource-label-m resource-content flexcol flex-group-center">
+				{{localize 'FU.Step'}}
 				<input type="number" name="system.progress.step" value="{{ system.progress.step }}"
-					   class="resource-inputs select-dropdown-m" />
-			</div>
-			<div class="resource-content flexcol flex-group-center">
-				<label class="resource-label-m">{{localize 'FU.Max'}}</label>
-				<input type="number" value="{{ system.progress.max }}" class="resource-inputs select-dropdown-m"
-					   disabled>
-			</div>
+					   min="1" max="{{ system.progress.max }}" class="resource-inputs select-dropdown-m" />
+			</label>
+
+			<label class="resource-label-m resource-content flexcol flex-group-center">
+				{{localize 'FU.Max'}}
+				<input type="number" name="system.progress.max" value="{{ system.progress.max }}"
+					   min="2" class="resource-inputs select-dropdown-m">
+			</label>
 		</div>
 	</fieldset>
 {{/if}}

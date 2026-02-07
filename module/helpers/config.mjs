@@ -1,6 +1,3 @@
-import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
-import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
-
 /**
  * @description The system's id
  */
@@ -21,9 +18,10 @@ export function systemPath(path) {
 }
 
 /**
- * The set of Ability Scores used within the system.
+ * @desc The set of Ability Scores used within the system.
  * @typedef {"dex", "ins", "mig", "wlp"} Attribute
  */
+
 /**
  * @type {Object<Attribute, string>}
  */
@@ -44,6 +42,16 @@ FU.attributeAbbreviations = {
 	wlp: 'FU.AttributeWlpAbbr',
 };
 
+/**
+ * @type {Object<Attribute, string>}
+ */
+FU.attributeIcons = {
+	dex: 'fu-dex',
+	ins: 'fu-ins',
+	mig: 'fu-mig',
+	wlp: 'fu-wlp',
+};
+
 FU.currencies = {
 	zenit: {
 		label: 'FU.Zenit',
@@ -55,6 +63,7 @@ FU.currencies = {
 /**
  * @typedef {"untyped" | "physical" | "air" | "bolt" | "dark" | "earth" | "fire" | "ice" | "light" | "poison"} DamageType
  */
+
 /**
  * @type {Object<DamageType, string>}
  */
@@ -74,12 +83,13 @@ FU.damageTypes = {
 /**
  * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} AffIcon
  */
+
 /**
  * @type {Object<DamageType, string>}
  */
 FU.affIcon = {
-	physical: 'fua fu-phys',
-	air: 'fua fu-wind',
+	physical: 'fua fu-physical',
+	air: 'fua fu-air',
 	bolt: 'fua fu-bolt',
 	dark: 'fua fu-dark',
 	earth: 'fua fu-earth',
@@ -87,31 +97,49 @@ FU.affIcon = {
 	ice: 'fua fu-ice',
 	light: 'fua fu-light',
 	poison: 'fua fu-poison',
+	untyped: 'fua fu-untyped',
 };
 
-FU.allIcon = {
-	offensive: 'is-offensive',
-	martial: 'is-martial',
-	melee: 'is-melee',
-	range: 'is-range',
-	spell: 'is-spell',
-	skill: 'is-skill',
-	twoweapon: 'is-two-weapon',
-	header: 'is-header',
-	diamond: 'is-diamond',
-	club: 'is-club',
-	heart: 'is-heart',
-	spade: 'is-spade',
-	physical: 'fua fu-phys',
-	air: 'fua fu-wind',
-	bolt: 'fua fu-bolt',
-	dark: 'fua fu-dark',
-	earth: 'fua fu-earth',
-	fire: 'fua fu-fire',
-	ice: 'fua fu-ice',
-	light: 'fua fu-light',
-	poison: 'fua fu-poison',
-	weaponEnchant: 'fu-weapon-enchant',
+/**
+ * @type {Object<DamageType, string>}
+ * @remarks Since the original `affIcon` includes a prestyle.
+ */
+FU.affinityIcons = {
+	physical: 'fu-physical',
+	air: 'fu-air',
+	bolt: 'fu-bolt',
+	dark: 'fu-dark',
+	earth: 'fu-earth',
+	fire: 'fu-fire',
+	ice: 'fu-ice',
+	light: 'fu-light',
+	poison: 'fu-poison',
+	untyped: 'fu-untyped',
+};
+
+FU.checkIcons = {
+	accuracy: 'fu-check-accuracy',
+	attribute: 'fu-check-attribute',
+	magic: 'fu-check-magic',
+	open: 'fu-check-open',
+	group: 'fu-check-ritual',
+	opposed: 'fu-check-opposed',
+	ritual: 'fu-check-ritual',
+	difficulty: 'fu-roll-difficulty',
+	result: 'fu-roll-result',
+	mod: 'fu-roll-modifier',
+	hr: 'fu-roll-high',
+	target: 'fu-roll-target',
+};
+
+FU.resourceIcons = {
+	hp: 'fu-hp',
+	mp: 'fu-mp',
+	ip: 'fu-ip',
+	fp: 'fu-fp',
+	up: 'fu-up',
+	exp: 'fu-xp',
+	zenit: 'fu-zenit',
 };
 
 FU.affType = {
@@ -137,6 +165,10 @@ FU.affValue = {
 	immunity: 2,
 	absorption: 3,
 };
+
+/**
+ * @typedef {"beast" | "construct" | "demon" | "elemental" | "humanoid" | "monster" | "plant" | "undead" | "custom"} FUSpeciesKey
+ */
 
 FU.species = {
 	beast: 'FU.Beast',
@@ -205,6 +237,10 @@ FU.itemTypes = {
 	effect: 'TYPES.Item.effect',
 };
 
+/**
+ * @typedef {'attack'|'equipment'|'guard'|'hinder'|'inventory'|'objective'|'spell'|'study'|'skill'} FUActionType
+ */
+
 FU.actionTypes = {
 	attack: 'FU.Attack',
 	equipment: 'FU.Equipment',
@@ -215,6 +251,18 @@ FU.actionTypes = {
 	spell: 'FU.Spell',
 	study: 'FU.Study',
 	skill: 'FU.Skill',
+};
+
+FU.actionIcons = {
+	attack: 'ra ra-crossed-swords', // attack / melee
+	equipment: 'ra ra-armor', // equipment / gear
+	guard: 'ra ra-shield', // guard / defense
+	hinder: 'ra ra-interdiction', // hinder / block
+	inventory: 'ra ra-ammo-bag', // inventory / bag
+	objective: 'ra ra-targeted', // objective / goal
+	spell: 'ra ra-crystal-wand', // spell / magic
+	study: 'ra ra-book', // study / learn
+	skill: 'ra ra-muscle-up', // skill / ability improvement
 };
 
 FU.actionRule = {
@@ -237,6 +285,11 @@ FU.temporaryEffects = {
 	enraged: 'FU.Enraged',
 	poisoned: 'FU.Poisoned',
 };
+
+/**
+ * @typedef {"aura" | "barrier" | "crisis" | "cover" | "flying" | "guard" | "provoked" | "focus"|"slow" | "dazed" | "weak" | "shaken" | "enraged" | "poisoned" |
+ * "wlp-down" | "wlp-up" | "dex-down" | "dex-up" | "ins-down" | "ins-up" | "mig-down" | "mig-up"} FUStatusEffectKey
+ */
 
 FU.statusEffects = {
 	aura: 'FU.Aura',
@@ -287,7 +340,7 @@ FU.statusEffectRule = {
 };
 
 /**
- * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown", "custom"} WeaponCategory
+ * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown"} WeaponCategory
  */
 /**
  * @type {Object.<WeaponCategory, string>}
@@ -303,7 +356,19 @@ FU.weaponCategories = {
 	spear: 'FU.Spear',
 	sword: 'FU.Sword',
 	thrown: 'FU.Thrown',
-	custom: 'FU.Custom',
+};
+
+FU.weaponCategoryIcons = {
+	arcane: 'fu-arcane',
+	bow: 'fu-bow',
+	brawling: 'fu-brawling',
+	dagger: 'fu-dagger',
+	firearm: 'fu-firearm',
+	flail: 'fu-flail',
+	heavy: 'fu-heavy',
+	spear: 'fu-spear',
+	sword: 'fu-sword',
+	thrown: 'fu-thrown',
 };
 
 /**
@@ -382,7 +447,7 @@ FU.weaponTypes = {
 };
 
 /**
- * @typedef {"def", "mdef"} Defense
+ * @typedef {"def", "mdef", "dex", "ins", "mig", "wlp"} Defense
  */
 /**
  * @type {Object.<Defense, Object.<"name"|"abbr", string>>}
@@ -395,6 +460,22 @@ FU.defenses = {
 	mdef: {
 		name: 'FU.MagicDefense',
 		abbr: 'FU.MagicDefenseAbbr',
+	},
+	dex: {
+		name: 'FU.AttributeDex',
+		abbr: 'FU.AttributeDexAbbr',
+	},
+	ins: {
+		name: 'FU.AttributeIns',
+		abbr: 'FU.AttributeInsAbbr',
+	},
+	mig: {
+		name: 'FU.AttributeMig',
+		abbr: 'FU.AttributeMigAbbr',
+	},
+	wlp: {
+		name: 'FU.AttributeWlp',
+		abbr: 'FU.AttributeWlpAbbr',
 	},
 };
 
@@ -409,8 +490,9 @@ FU.handedness = {
 	'two-handed': 'FU.TwoHanded',
 };
 
-FU.classFeatureRegistry = ClassFeatureRegistry.instance;
-FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
+/**
+ * @typedef {"hp" | "mp" | "ip" | "fp" | "exp" | "zenit"} FUResourceType
+ */
 
 FU.resources = {
 	hp: 'FU.HealthPoints',
@@ -419,6 +501,12 @@ FU.resources = {
 	fp: 'FU.FabulaPoints',
 	exp: 'FU.Exp',
 	zenit: 'FU.Zenit',
+};
+
+FU.resourcesCombat = {
+	hp: 'FU.HealthPoints',
+	mp: 'FU.MindPoints',
+	ip: 'FU.InventoryPoints',
 };
 
 FU.resourcesAbbr = {
@@ -430,22 +518,15 @@ FU.resourcesAbbr = {
 	zenit: 'FU.Zenit',
 };
 
-FU.resourceIcons = {
-	hp: 'fas fa-heart',
-	mp: 'fas fa-hat-wizard',
-	ip: 'ra ra-gear-hammer',
-	fp: 'fas fa-pen-fancy',
-	exp: 'fas fa-feather-pointed',
-};
-
 FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 	zeropower: 'ITEM.TypeZeroPower',
 	none: 'FU.None',
 });
 
 /**
- * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "initiative", "display"} CheckType
+ * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "ritual", "initiative", "display"} CheckType
  */
+
 /**
  * @type {Object<CheckType, string>}
  */
@@ -456,9 +537,19 @@ FU.checkTypes = {
 	magic: 'FU.MagicCheck',
 	open: 'FU.OpenCheck',
 	opposed: 'FU.OpposedCheck',
+	ritual: 'FU.RitualCheck',
 	support: 'FU.SupportCheck',
 	initiative: 'FU.InitiativeCheck',
 	display: 'FU.DisplayItem',
+};
+
+/**
+ * @description Check types for which a dialog is opened.
+ * @type {Object<CheckType, string>}
+ */
+FU.dialogCheckTypes = {
+	opposed: 'FU.OpposedCheck',
+	ritual: 'FU.RitualCheck',
 };
 
 FU.classFeatures = {};
@@ -517,6 +608,10 @@ FU.improvisedEffect = {
 };
 
 /**
+ * @typedef {"instantaneous", "scene", "special"} FUDurationType
+ */
+
+/**
  * @description Spell durations
  */
 FU.duration = {
@@ -524,6 +619,10 @@ FU.duration = {
 	scene: 'FU.Scene',
 	special: 'FU.Special',
 };
+
+/**
+ * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
+ */
 
 /**
  * @description Events dispatched during conflict scenes
@@ -535,6 +634,10 @@ FU.combatEvent = {
 	endOfRound: 'FU.EndOfRound',
 	endOfCombat: `FU.EndOfCombat`,
 };
+
+/**
+ * @typedef {'none' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfScene' | 'rest'} FUEffectDuration
+ */
 
 /**
  * @description Active effect durations
@@ -590,13 +693,19 @@ FU.combatHudThemes = {
 	'fu-default': 'FU.CombatHudDefault',
 	'fu-modern': 'FU.CombatHudModern',
 	'fu-mother': 'FU.CombatHudMother',
+	'fu-pixel': 'FU.CombatHudPixel',
 };
 
 FU.combatHudThemeTemplates = {
 	'fu-default': 'combat-hud-default',
 	'fu-modern': 'combat-hud-modern',
 	'fu-mother': 'combat-hud-mother',
+	'fu-pixel': 'combat-hud-pixel',
 };
+
+/**
+ * @typedef {'soldier', 'elite', 'champion'} FUAdversaryRank
+ */
 
 FU.rank = {
 	soldier: 'FU.Soldier',
@@ -638,6 +747,16 @@ FU.difficultyLevel = {
 };
 
 /**
+ * @type {Object<DifficultyLevel, string>}
+ */
+FU.difficultyLevelIcon = {
+	easy: 'ra ra-sheep',
+	normal: 'ra ra-aware',
+	hard: 'ra ra-monster-skull',
+	veryHard: 'ra ra-player-despair',
+};
+
+/**
  * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
  */
 FU.targetingRules = {
@@ -654,3 +773,307 @@ FU.damageOverrideScope = {
 	spell: 'FU.Spell',
 	skill: 'FU.Skill',
 };
+
+FU.trackStyles = {
+	clock: 'FU.Clock',
+	basic: 'FU.Basic',
+	bar: 'FU.Bar',
+};
+
+FU.unarmedStrike = 'unarmed-strike';
+
+FU.weaponItemTypes = {
+	weapon: 'FU.Weapon',
+	customWeapon: 'FU.CustomWeapon',
+};
+
+FU.technospheres = {
+	armorSlots: {
+		alpha: {
+			label: 'FU.TechnospheresSlotsAlpha',
+			slots: 1,
+			mnemospheres: 1,
+		},
+		beta: {
+			label: 'FU.TechnospheresSlotsBeta',
+			slots: 2,
+			mnemospheres: 1,
+		},
+		gamma: {
+			label: 'FU.TechnospheresSlotsGamma',
+			slots: 3,
+			mnemospheres: 2,
+		},
+	},
+	weaponSlots: {
+		alpha: {
+			label: 'FU.TechnospheresSlotsAlpha',
+			slots: 1,
+			mnemospheres: 1,
+		},
+		beta: {
+			label: 'FU.TechnospheresSlotsBeta',
+			slots: 2,
+			mnemospheres: 1,
+		},
+		gamma: {
+			label: 'FU.TechnospheresSlotsGamma',
+			slots: 3,
+			mnemospheres: 2,
+		},
+		delta: {
+			label: 'FU.TechnospheresSlotsDelta',
+			slots: 4,
+			mnemospheres: 2,
+		},
+	},
+};
+
+// RULE ELEMENTS
+/**
+ * @typedef {"ally" | "enemy"} FUFactionRelationKey
+ */
+
+FU.factionRelation = Object.freeze({
+	ally: 'FU.Ally',
+	enemy: 'FU.Enemy',
+});
+
+/**
+ * @typedef {"source" | "target"} FUEventRelationKey
+ */
+
+/**
+ * @description Used to determine the actor's relation to am event
+ */
+FU.eventRelation = Object.freeze({
+	source: 'FU.Source',
+	target: 'FU.Target',
+});
+
+// TODO: Rename actor?subject?entity?object?
+/**
+ * @typedef {"source" | "initial" | "self" | "allies" | "enemies" | "scene" | "none"} FUTargetSelectorKey
+ */
+
+/**
+ * @description Used to determine how to select the targets from a given event.
+ */
+FU.targetSelector = Object.freeze({
+	source: 'FU.Source',
+	initial: 'FU.Initial',
+	self: 'FU.Self',
+	allies: 'FU.Allies',
+	enemies: 'FU.Enemies',
+	scene: 'FU.Scene',
+	none: 'FU.None',
+});
+
+/**
+ * @typedef {"attack" | "skill" | "spell" | "item"} FUItemGroup
+ */
+
+FU.itemGroup = {
+	attack: 'FU.Attack',
+	skill: 'FU.Skill',
+	spell: 'FU.Spell',
+	item: 'FU.Item',
+};
+
+FU.damageSource = FU.itemGroup;
+
+/**
+ * @typedef {"skill" | "spell" | "item"} FUExpenseSource
+ */
+FU.expenseSource = {
+	skill: 'FU.Skill',
+	spell: 'FU.Spell',
+	item: 'FU.Item',
+};
+
+/**
+ * @typedef {"damage" | "resource" | "effect" } FUConsumableAction
+ */
+FU.consumableAction = {
+	damage: 'FU.Damage',
+	resource: 'FU.Resource',
+	effect: 'FU.Effect',
+};
+
+/**
+ * @typedef {"odd" | "even"} FUCheckParity
+ */
+
+/**
+ * @description Used as a predicate for rules involving accuracy checks
+ */
+FU.checkParity = Object.freeze({
+	even: 'FU.Even',
+	odd: 'FU.Odd',
+});
+
+/**
+ * @typedef {"success" | "failure" | "critical" | "fumble"} FUCheckOutcome
+ */
+
+/**
+ * @description A predicate based on the outcome of an attack check.
+ */
+FU.checkOutcome = Object.freeze({
+	success: 'FU.Success',
+	failure: 'FU.Failure',
+	critical: 'FU.Critical',
+	fumble: 'FU.Fumble',
+});
+
+/**
+ * @typedef {"admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondPredicateKey
+ */
+
+FU.bondPredicate = {
+	admiration: 'FU.Admiration',
+	inferiority: 'FU.Inferiority',
+	loyalty: 'FU.Loyalty',
+	mistrust: 'FU.Mistrust',
+	affection: 'FU.Affection',
+	hatred: 'FU.Hatred',
+};
+
+/**
+ * @remarks Used in order to represent tri-state booleans using a StringField with a blank option
+ */
+FU.booleanOption = {
+	true: 'FU.True',
+	false: 'FU.False',
+};
+
+/**
+ * @typedef {"add" | "remove"} FUChangeSetMode
+ */
+
+FU.changeSetMode = {
+	add: 'FU.Add',
+	remove: 'FU.Remove',
+};
+
+FU.collectionChange = {
+	added: 'FU.Added',
+	removed: 'FU.Removed',
+};
+
+/**
+ * @typedef {"single" | "all"} FUCollectionRemovalRule
+ */
+
+FU.collectionRemovalRule = Object.freeze({
+	single: 'FU.Single',
+	all: 'FU.All',
+});
+
+/**
+ * @typedef {"increment" | "decrement"} FUScalarChange
+ */
+
+FU.scalarChange = {
+	increment: 'FU.Increment',
+	decrement: 'FU.Decrement',
+};
+
+/**
+ * @typedef {"add"|"multiply"} FUScalarOperation
+ */
+
+FU.scalarOperation = {
+	add: 'FU.Add',
+	multiply: 'FU.Multiply',
+};
+
+/**
+ * @typedef {"greaterThan" | "lessThan"} FUComparisonOperator
+ */
+
+FU.comparisonOperator = {
+	greaterThan: 'FU.GreaterThan',
+	equals: 'FU.Equals',
+	lessThan: 'FU.LessThan',
+};
+
+/**
+ * @typedef {"any" | "all" | "none"} FUPredicateQuantifier
+ */
+
+FU.predicateQuantifier = {
+	any: 'FU.Any',
+	all: 'FU.All',
+	none: 'FU.None',
+};
+
+/**
+ * @typedef {"none", "single", "multiple"} FUTargetingPredicate
+ */
+FU.targetingPredicate = {
+	none: 'FU.None',
+	single: 'FU.Single',
+	multiple: 'FU.Multiple',
+};
+
+// TODO: Better name?
+/**
+ * @typedef {"update" | "reset"} FUCommand
+ */
+
+FU.commandAction = {
+	update: 'FU.Update',
+	reset: 'FU.Reset',
+};
+
+FU.modifyDamageVariant = {
+	overChannel: 'FU.OverChannel',
+	psychicGift: 'FU.ClassFeaturePsychicGiftLabel',
+};
+
+/**
+ * @desc All commonly-used icons throughout the system.
+ * @remarks Make sure icon declarations in this file are before this one.
+ */
+FU.allIcon = {
+	offensive: 'is-offensive',
+	martial: 'is-martial',
+	melee: 'is-melee',
+	range: 'is-range',
+	spell: 'is-spell',
+	skill: 'is-skill',
+	twoweapon: 'is-two-weapon',
+	header: 'is-header',
+	diamond: 'is-diamond',
+	club: 'is-club',
+	heart: 'is-heart',
+	spade: 'is-spade',
+	weaponEnchant: 'fu-weapon-enchant',
+	damage: 'fu-damage',
+	type: 'fu-type',
+	stagger: 'fu-stagger',
+	info: 'fas fa-circle-info',
+	compendium: 'fas fa-book',
+	warning: 'fas fa-triangle-exclamation',
+	roll: FU.checkIcons.open,
+	...FU.checkIcons,
+	...FU.affinityIcons,
+	...FU.resourceIcons,
+	...FU.attributeIcons,
+	...FU.weaponCategoryIcons,
+};
+
+/**
+ * Set of theme classes for pressure gauge
+ */
+FU.pressureGaugeThemes = {};
+
+/**
+ * @desc What compendium packs to use.
+ */
+FU.compendiumBrowserPacks = Object.freeze({
+	all: 'FU.All',
+	system: 'FU.System',
+	custom: 'FU.Custom',
+});

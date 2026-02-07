@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Until the <strong>start of your next turn</strong>, when a target <strong>succeeds</strong> on a <strong>Check</strong> that includes <strong>【@DATA[key.attributeLocal]】</strong> and that Check allows them to advance or turn back a Clock, they may <strong>fill or erase</strong> an additional section of that Clock.</p>"
+      "description": "<p>Until the <strong>start of your next turn</strong>, when a target <strong>succeeds</strong> on a <strong>Check</strong> that includes<strong> @ICON[@DATA[key.attribute]]</strong> and that <strong>Check</strong> allows them to advance or turn back a Clock, they may <strong>fill or erase</strong> an additional section of that Clock.</p>"
     },
     "source": "FUHF139",
     "fuid": "energetic-tone"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1710039830425,
-    "modifiedTime": 1741997114254,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1757184465697,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

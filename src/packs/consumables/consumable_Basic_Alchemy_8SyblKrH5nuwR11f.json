@@ -21,9 +21,7 @@
     "ipCost": {
       "value": 3
     },
-    "source": {
-      "value": "FUCR212"
-    },
+    "source": "FUCR212",
     "fuid": "basic-alchemy"
   },
   "effects": [],

@@ -13,7 +13,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
@@ -29,6 +28,6 @@ export class BehaviorDataModel extends FUStandardItemDataModel {
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.controls, ItemPartialTemplates.behavior];
+		return [ItemPartialTemplates.standard, ItemPartialTemplates.behavior];
 	}
 }

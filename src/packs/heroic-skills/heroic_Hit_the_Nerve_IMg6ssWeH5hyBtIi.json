@@ -93,9 +93,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUTF174"
-    },
+    "source": "FUTF174",
     "fuid": "hit-the-nerve"
   },
   "effects": [],

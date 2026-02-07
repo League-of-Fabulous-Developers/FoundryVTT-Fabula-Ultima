@@ -1,9 +1,20 @@
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 import { Flags } from './flags.mjs';
 import { getTargeted } from './target-handler.mjs';
+import { ChatAction } from './chat-action.mjs';
 
 /**
  * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
+ */
+
+/**
+ * @typedef DefenseData
+ * @property {Number} def
+ * @property {Number} mdef
+ * @property {Number} dex
+ * @property {Number} ins
+ * @property {Number} mig
+ * @property {Number} wlp
  */
 
 /**
@@ -13,8 +24,10 @@ import { getTargeted } from './target-handler.mjs';
  * @property {string} link An html link to the actor
  * @property {Number} def
  * @property {Number} mdef
+ * @property {DefenseData} defenses
  * @property {number} difficulty
  * @property {"none", "hit", "miss"} result
+ * @property {Boolean} isOwner
  */
 
 // TODO: Make an option for GM
@@ -41,7 +54,7 @@ async function filterTargetsByRule(actor, item, targets) {
 
 	switch (targeting.rule) {
 		case 'self':
-			return [actor];
+			return [];
 		case 'single':
 			if (targets.length === 0) {
 				return [];
@@ -68,26 +81,10 @@ async function filterTargetsByRule(actor, item, targets) {
 }
 
 /**
- * @property {String} name The name of the action to be used
- * @property {String} icon The font awesome icon
- * @property {String} tooltip The localized tooltip to use
- * @property {Object} fields The fields to use for the action's dataset
- * @remarks Expects an action handler where dataset.id is a reference to an actor
- */
-export class TargetAction {
-	constructor(name, icon, tooltip, fields) {
-		this.name = name;
-		this.icon = icon;
-		this.tooltip = tooltip;
-		this.fields = fields ?? {};
-	}
-}
-
-/**
- * @type {TargetAction}
+ * @type {ChatAction}
  * @description Target the token
  */
-const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatPingTarget');
+const defaultAction = new ChatAction('targetSingle', 'fas fa-bullseye', 'FU.ChatPingTarget');
 
 /**
  * @returns {TargetData[]}
@@ -103,13 +100,34 @@ function getSerializedTargetData() {
  */
 function serializeTargetData(targets) {
 	return targets.map((target) => {
-		return {
-			name: target.name,
-			uuid: target.uuid,
-			link: target.link,
-			result: 'none',
-		};
+		return constructData(target);
 	});
+}
+
+/**
+ * @param {FUActor} actor
+ * @returns {TargetData}
+ */
+function constructData(actor) {
+	/** @type TargetData **/
+	return {
+		name: actor.name,
+		uuid: actor.uuid,
+		link: actor.link,
+		result: 'none', // Updated during evaluation
+		// LEGACY
+		def: actor.system.derived.def.value,
+		mdef: actor.system.derived.mdef.value,
+		defenses: {
+			def: actor.system.derived.def.value,
+			mdef: actor.system.derived.mdef.value,
+			dex: actor.system.attributes.dex.current,
+			ins: actor.system.attributes.ins.current,
+			mig: actor.system.attributes.mig.current,
+			wlp: actor.system.attributes.wlp.current,
+		},
+		isOwner: actor.isOwner,
+	};
 }
 
 /**
@@ -165,21 +183,6 @@ async function panToCombatant(token) {
 	const canvas = game.canvas;
 	const { x, y } = token.center;
 	await canvas.animatePan({ x, y, scale: Math.max(canvas.stage.scale.x, 0.5) });
-}
-
-/**
- * @param {FUActor} actor
- * @returns {TargetData}
- */
-function constructData(actor) {
-	/** @type TargetData **/
-	return {
-		name: actor.name,
-		uuid: actor.uuid,
-		link: actor.link,
-		def: actor.system.derived.def.value,
-		mdef: actor.system.derived.mdef.value,
-	};
 }
 
 export const Targeting = Object.freeze({

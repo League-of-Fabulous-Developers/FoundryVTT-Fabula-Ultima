@@ -68,9 +68,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR196"
-    },
+    "source": "FUCR196",
     "fuid": "guardian"
   },
   "effects": [],

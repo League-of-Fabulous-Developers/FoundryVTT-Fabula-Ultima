@@ -4,8 +4,7 @@
 			src="{{ actor.img }}"
 			data-edit="img"
 			data-action="editImage"
-			data-tooltip="{{ actor.name }}"
-			style="flex-shrink: 0;" />
+			data-tooltip="{{ actor.name }}" />
 		
 		<div class="header-fields"
 			style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
@@ -35,4 +34,8 @@
 	{{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
 	{{!-- Affinity Section --}}
 	{{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
+	{{!-- Pressure Points --}}
+	{{#if pressurePoints}}
+		{{>"systems/projectfu/templates/actor/partials/actor-pressure-points.hbs" actor=actor}}
+	{{/if}}
 </header>

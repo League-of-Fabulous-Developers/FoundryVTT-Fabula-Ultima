@@ -1,29 +1,28 @@
-<fieldset class="title-fieldset desc resource-content">
-	<legend class="resource-label-full">
-		<label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
-		 'FU.Damage'}}</label>
-	</legend>
-
-	<div class="item-settings">
-		<label class="checkbox resource-label-m"> <span>{{localize 'FU.HasDamage'}}</span><input
-		 type="checkbox" name="system.rollInfo.damage.hasDamage.value" {{ checked
-			 system.rollInfo.damage.hasDamage.value }} /> </label>
-	</div>
-
-	<div class="grid grid-2col">
+{{#> 'systems/projectfu/templates/common/fieldset-toggle.hbs'
+ name="system.rollInfo.damage.hasDamage.value"
+ value=system.rollInfo.damage.hasDamage.value
+ icon="fas fa-dice icon"
+ label=(localize "FU.Damage")
+}}
+	<div class="grid grid-3col">
 		<div class="resource-content flexcol flex-group-center">
-			<label for="system.rollInfo.damage.type.value" class="resource-label-m flexlarge">{{localize
-			 'FU.DamageType'}} </label>
+			<label for="system.rollInfo.damage.type.value" class="resource-label-m flexlarge">
+				{{localize 'FU.DamageType'}}
+			</label>
 			<select name="system.rollInfo.damage.type.value" class="resource-inputs select-dropdown-m">
-				{{selectOptions damageTypes selected=system.rollInfo.damage.type.value sort=true
-								localize=true}}
+				{{selectOptions damageTypes selected=system.rollInfo.damage.type.value sort=true localize=true}}
 			</select>
 		</div>
 		<div class="resource-content flexcol flex-group-center">
 			<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
 			<input type="number" name="system.rollInfo.damage.value"
-				   value="{{ system.rollInfo.damage.value }}" class="resource-inputs"
+				   value="{{ system.rollInfo.damage.value }}"
+				   class="resource-inputs"
 				   data-dtype="Number" />
 		</div>
+		<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span>
+			<input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+			 system.rollInfo.useWeapon.hrZero.value }} />
+		</label>
 	</div>
-</fieldset>
+{{/ 'systems/projectfu/templates/common/fieldset-toggle.hbs'}}

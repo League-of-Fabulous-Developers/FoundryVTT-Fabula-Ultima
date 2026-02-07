@@ -10,7 +10,7 @@ import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { registerSystemSettings } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
-import { FUCombat } from './ui/combat.mjs';
+import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
 import { CharacterDataModel } from './documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from './documents/actors/npc/npc-data-model.mjs';
@@ -85,6 +85,34 @@ import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
 import { OpportunityHandler } from './pipelines/opportunity.mjs';
 import { FUTokenRuler } from './ui/token-ruler.mjs';
+import { CustomWeaponDataModel } from './documents/items/customWeapon/custom-weapon-data-model.mjs';
+import { CustomWeaponSheet } from './sheets/custom-weapon-sheet.mjs';
+import { MnemosphereDataModel } from './documents/items/mnemosphere/mnemosphere-data-model.mjs';
+import { MnemosphereSheet } from './documents/items/mnemosphere/mnemosphere-sheet.mjs';
+import { HoplosphereDataModel } from './documents/items/hoplosphere/hoplosphere-data-model.mjs';
+import { HoplosphereSheet } from './documents/items/hoplosphere/hoplosphere-sheet.mjs';
+import { MnemosphereReceptacleDataModel } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-data-model.mjs';
+import { MnemosphereReceptacleSheet } from './documents/items/mnemosphereReceptacle/mnemosphere-receptacle-sheet.mjs';
+import { FUItemArmorSheet } from './sheets/item-armor-sheet.mjs';
+import { RuleElements } from './pipelines/rule-elements.mjs';
+import { PseudoItem } from './documents/items/pseudo-item.mjs';
+import { PseudoActiveEffect } from './documents/effects/pseudo-active-effect.mjs';
+import { PdfPagerIntegration } from './integration/pdf-pager-integration.mjs';
+import { ClassFeatureRegistry } from './documents/items/classFeature/class-feature-registry.mjs';
+import { OptionalFeatureRegistry } from './documents/items/optionalFeature/optional-feature-registry.mjs';
+import { RuleElementRegistry } from './documents/effects/rule-element-data-model.mjs';
+import { RuleActionRegistry } from './documents/effects/actions/rule-action-data-model.mjs';
+import { RuleTriggerRegistry } from './documents/effects/triggers/rule-trigger-data-model.mjs';
+import { RulePredicateRegistry } from './documents/effects/predicates/rule-predicate-data-model.mjs';
+import { ProgressPipeline } from './pipelines/progress-pipeline.mjs';
+import { ApplicationPipeline } from './pipelines/application-pipeline.mjs';
+import { InlineAction } from './helpers/inline-action.mjs';
+import { CompendiumBrowser } from './ui/compendium/compendium-browser.mjs';
+import { CompendiumIndex } from './ui/compendium/compendium-index.mjs';
+import { PressureSystem } from './systems/pressure-system.mjs';
+import { FUToken } from './ui/token.mjs';
+import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
+import { FUChatLog } from './ui/chat-log.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -137,9 +165,48 @@ Hooks.once('init', async () => {
 			return Checks;
 		},
 		socket: new FUSocketHandler(),
+		get party() {
+			return FUPartySheet;
+		},
+		index: CompendiumIndex.instance,
 	};
 
-	// Add custom constants for configuration.
+	// (!) Data Models: Moved here due to lexical declaration issues otherwise
+	FU.classFeatureRegistry = ClassFeatureRegistry.instance;
+	FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
+	FU.ruleElementRegistry = RuleElementRegistry.instance;
+	FU.ruleActionRegistry = RuleActionRegistry.instance;
+	FU.ruleTriggerRegistry = RuleTriggerRegistry.instance;
+	FU.rulePredicateRegistry = RulePredicateRegistry.instance;
+
+	// Set up pressure gauge things
+	FU.pressureGaugeThemes = {
+		default: FUPressureGauge,
+		modern: FUModernPressureGauge,
+		pixel: FUPixelPressureGauge,
+	};
+
+	Hooks.on('canvasPan', () => {
+		const start = performance.now();
+		const tokens = canvas.scene.tokens.filter((token) => token.object instanceof FUToken);
+		tokens.forEach((token) => token.object.pressureGauge.onCanvasScale());
+		const duration = performance.now() - start;
+		if (duration > 16) {
+			console.warn(`Rescaling ${tokens.length} tokens with pressure gauges took ${duration}ms`);
+		}
+	});
+
+	/**
+	 * @type {Record<string, DataModelRegistry>}
+	 */
+	FU.dataModelRegistries = {
+		optionalFeature: FU.optionalFeatureRegistry,
+		classFeature: FU.classFeatureRegistry,
+		ruleElement: FU.ruleElementRegistry,
+		ruleAction: FU.ruleActionRegistry,
+		ruleTrigger: FU.ruleTriggerRegistry,
+		rulePredicate: FU.rulePredicateRegistry,
+	};
 	CONFIG.FU = FU;
 
 	/**
@@ -150,6 +217,7 @@ Hooks.once('init', async () => {
 		formula: '1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value',
 		decimals: 2,
 	};
+	CONFIG.Combat.dataModels.base = FUCombatDataModel;
 
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = FUActor;
@@ -190,6 +258,10 @@ Hooks.once('init', async () => {
 		treasure: TreasureDataModel,
 		weapon: WeaponDataModel,
 		effect: EffectDataModel,
+		customWeapon: CustomWeaponDataModel,
+		mnemosphere: MnemosphereDataModel,
+		hoplosphere: HoplosphereDataModel,
+		mnemosphereReceptacle: MnemosphereReceptacleDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
@@ -210,6 +282,7 @@ Hooks.once('init', async () => {
 	//CONFIG.ui.combat = FUCombatTracker;
 	Object.assign(CONFIG.ui, {
 		combat: FUCombatTracker,
+		chat: FUChatLog,
 	});
 
 	// Register status effects
@@ -240,28 +313,55 @@ Hooks.once('init', async () => {
 		label: 'Standard Stash Sheet',
 	});
 
-	const itemTypesWithSpecialSheets = ['effect', 'classFeature', 'optionalFeature'];
-	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
-	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
+	const itemTypesWithSpecialSheets = ['armor', 'classFeature', 'customWeapon', 'effect', 'hoplosphere', 'mnemosphere', 'mnemosphereReceptacle', 'optionalFeature'];
+	const Items = foundry.documents.collections.Items;
+	Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+	Items.registerSheet('projectfu', FUStandardItemSheet, {
 		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+	Items.registerSheet(SYSTEM, FUItemArmorSheet, {
+		types: ['armor'],
+		makeDefault: true,
+		label: 'Armor Sheet',
+	});
+	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
 		label: 'Class Feature Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
 	});
-	foundry.documents.collections.Items.registerSheet(SYSTEM, FUEffectItemSheet, {
+	Items.registerSheet(SYSTEM, FUEffectItemSheet, {
 		types: ['effect'],
 		makeDefault: true,
 		label: 'Effect Item Sheet',
 	});
+	Items.registerSheet(SYSTEM, CustomWeaponSheet, {
+		types: ['customWeapon'],
+		makeDefault: true,
+		label: 'Custom Weapon Sheet',
+	});
+	Items.registerSheet(SYSTEM, MnemosphereSheet, {
+		types: ['mnemosphere'],
+		makeDefault: true,
+		label: 'Mnemosphere Sheet',
+	});
+	Items.registerSheet(SYSTEM, HoplosphereSheet, {
+		types: ['hoplosphere'],
+		makeDefault: true,
+		label: 'Hoplosphere Sheet',
+	});
+	Items.registerSheet(SYSTEM, MnemosphereReceptacleSheet, {
+		types: ['mnemosphereReceptacle'],
+		makeDefault: true,
+		label: 'Mnemosphere Receptacle Sheet',
+	});
+
 	const { DocumentSheetConfig } = foundry.applications.apps;
 	DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
 	DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
@@ -270,8 +370,12 @@ Hooks.once('init', async () => {
 
 	DamagePipeline.initialize();
 	ResourcePipeline.initialize();
+	ProgressPipeline.initialize();
+	ApplicationPipeline.initialize();
 	Effects.initialize();
+	RuleElements.initialize();
 	InventoryPipeline.initialize();
+	CheckPrompt.initialize();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();
@@ -290,12 +394,16 @@ Hooks.once('init', async () => {
 	InlineHelper.registerCommand(InlineType);
 	InlineHelper.registerCommand(InlineClocks);
 	InlineHelper.registerCommand(InlineIcon);
+	InlineHelper.registerCommand(InlineAction);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
 	TextEditorCommandDropdown.initialize();
 	SystemControls.initialize();
 	PlayerListEnhancements.initialize();
+	PdfPagerIntegration.initialize();
+	PressureSystem.initialize();
+	CompendiumBrowser.initialize();
 
 	// // Disable the token drag ruler measurement, unless they've specifically
 	// // gone in and enabled it for some reason.
@@ -305,9 +413,18 @@ Hooks.once('init', async () => {
 
 	// Override token ruler class
 	CONFIG.Token.rulerClass = FUTokenRuler;
+	CONFIG.Token.objectClass = FUToken;
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
+});
+
+const pseudoDocuments = [PseudoItem, PseudoActiveEffect];
+
+Hooks.once('i18nInit', () => {
+	for (const pseudoDocumentClass of pseudoDocuments) {
+		game.i18n.constructor.localizeDataModel(pseudoDocumentClass);
+	}
 });
 
 Hooks.once('setup', () => {});
@@ -410,10 +527,8 @@ Hooks.once('ready', async function () {
 	Hooks.on('createItem', (item, options, userId) => {
 		if (!item.parent) return; // Make sure the item belongs to an actor or entity
 		if (!game.settings.get('projectfu', 'optionAlwaysFavorite')) return;
-		if (item.system?.isFavored?.value === true) return; // Already favored
-		if (Object.prototype.hasOwnProperty.call(item.system.isFavored, 'value')) {
-			item.update({ 'system.isFavored.value': true });
-		}
+		if (item.isFavorite === true) return; // Already favored
+		item.toggleFavorite(true);
 	});
 });
 
@@ -432,8 +547,8 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
 		const dice = context.roll.dice;
 		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
-			const dieValue = dice[0].results[0].result;
-			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).result) {
+			const dieValue = dice[0].results[0].check;
+			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).check) {
 				for (const d of dice) {
 					d.options.sfx = { id: 'doubles', result: dieValue };
 				}

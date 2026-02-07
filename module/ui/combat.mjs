@@ -5,53 +5,12 @@ import { CombatHUD } from './combat-hud.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { CombatEvent } from './combatEvent.mjs';
+import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 
 export const FRIENDLY = 'friendly';
 export const HOSTILE = 'hostile';
-
-/**
- * @description Dispatched by the combat during its lifetime
- * @property {FU.combatEvent} type The type of event
- * @property {Number} round The round the event is taking place in
- * @property {Combatant} combatant The current combatant taking a turn, which can be null.
- * @property {FUActor|*} actor The actor involved in the event, which can be null.
- * @property {Token|*} token The token of the combatant taking a turn, which can be null.
- * @property {Combatant[]} combatants The actors involved in the combat
- * @property {FUActor[]} actors The actors involved in the combat
- * @remarks Depending on the {@linkcode type} of the event, some properties will be assigned and others will not.
- * Combat and round events will include all combatants, whereas turn events are relegated to the single combatant.
- */
-export class CombatEvent {
-	constructor(type, round, combatants) {
-		this.type = type;
-		this.round = round;
-		this.combatants = combatants;
-	}
-
-	forCombatant(combatant) {
-		this.combatant = combatant;
-		return this;
-	}
-
-	get token() {
-		return this.combatant.token;
-	}
-
-	get actor() {
-		return this.combatant.actor;
-	}
-
-	get actors() {
-		return Array.from(this.combatants.map((c) => c.actor));
-	}
-
-	/**
-	 * @returns {boolean} True if this combat event has an actor
-	 */
-	get hasActor() {
-		return !!this.combatant;
-	}
-}
 
 /**
  * @typedef CombatHistoryData
@@ -89,6 +48,18 @@ export class CombatEvent {
  * @property {Function<Promise>} endCombat Display a dialog querying the GM whether they wish to end the combat encounter and empty the tracker
  * @remarks {@link https://foundryvtt.com/api/classes/client.Combat.html}
  */
+
+/**
+ * @description Data specific to a conflict in the system, which can includes clocks, etc
+ */
+export class FUCombatDataModel extends foundry.abstract.TypeDataModel {
+	static defineSchema() {
+		const { ArrayField, EmbeddedDataField } = foundry.data.fields;
+		return {
+			tracks: new ArrayField(new EmbeddedDataField(ProgressDataModel, {})),
+		};
+	}
+}
 
 /**
  * @property {Collection<FUCombatant>} combatants
@@ -309,6 +280,7 @@ export class FUCombat extends foundry.documents.Combat {
 			const turns = this.combatants.contents.sort(this._sortCombatants);
 			if (this.turn !== null) this.turn = Math.clamp(this.turn, 0, turns.length - 1);
 			this.current = this._getCurrentState(combatant);
+
 			// Notify
 			this.setupTurns();
 			this.notifyCombatTurnChange();
@@ -321,6 +293,7 @@ export class FUCombat extends foundry.documents.Combat {
 			}
 		}
 
+		await combatant.clearMovementHistory();
 		await this._onStartTurn(combatant);
 	}
 
@@ -359,6 +332,8 @@ export class FUCombat extends foundry.documents.Combat {
 				// TODO: Inform user?
 			}
 		}
+
+		await combatant.clearMovementHistory();
 	}
 
 	/**
@@ -658,6 +633,14 @@ export class FUCombat extends foundry.documents.Combat {
 	}
 
 	/**
+	 * @param {FUActor} actor
+	 * @returns {FUCombatant}
+	 */
+	getCombatant(actor) {
+		return this.combatants.find((a) => a.resolveUuid() === actor);
+	}
+
+	/**
 	 * @returns {Boolean}
 	 */
 	static get hasActiveEncounter() {
@@ -669,5 +652,51 @@ export class FUCombat extends foundry.documents.Combat {
 	 */
 	static get activeEncounter() {
 		return game.combat;
+	}
+
+	/**
+	 * @param {ProgressDataModel|undefined} track
+	 * @returns {Promise<void>}
+	 */
+	async addTrack(track) {
+		if (track) {
+			return ProgressDataModel.addToDocument(this, 'system.tracks', track);
+		} else {
+			return ProgressDataModel.promptAddToDocument(this, 'system.tracks', true);
+		}
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 */
+	async removeTrack(index) {
+		return ProgressDataModel.removeAtIndexForDocument(this, 'system.tracks', index);
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 * @param {number} increment
+	 */
+	async updateTrack(index, increment) {
+		return ProgressDataModel.updateAtIndexForDocument(this, 'system.tracks', Number.parseInt(index), increment);
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {String} id
+	 * @param {Number} increment
+	 */
+	async updateTrackById(id, increment) {
+		return ProgressDataModel.updateAtIdForDocument(this, 'system.tracks', id, increment);
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 * @param {number} index
+	 */
+	async promptTrack(index) {
+		await ProgressPipeline.promptCheckAtIndexForDocument(this, 'system.tracks', index);
 	}
 }

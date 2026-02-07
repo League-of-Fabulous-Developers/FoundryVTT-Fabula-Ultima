@@ -28,7 +28,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": false,
+      "disabled": true,
       "name": "Placophora",
       "_id": "ZDcnVoPzAVT9GcRO",
       "changes": [
@@ -49,12 +49,12 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1747072288712,
-        "lastModifiedBy": "aXKDYFrGlbJKqLXI",
+        "modifiedTime": 1767291784340,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null

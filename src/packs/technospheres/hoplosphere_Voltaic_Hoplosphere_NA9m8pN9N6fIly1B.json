@@ -1,0 +1,56 @@
+{
+  "name": "Voltaic Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/voltaic.png",
+  "system": {
+    "fuid": "voltaic-hoplosphere",
+    "source": "FUTF143",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainResistance",
+        "coagulationLevel": 1,
+        "damageType": "bolt"
+      },
+      {
+        "type": "changeWeaponDamageType",
+        "coagulationLevel": 1,
+        "damageType": "bolt"
+      },
+      {
+        "type": "gainImmunity",
+        "coagulationLevel": 2,
+        "damageType": "bolt"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 3,
+        "name": "Bolt Mastery",
+        "text": "Ignore Resistances (Bolt); Alter Damage Type (Bolt)"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658522485,
+    "modifiedTime": 1760404456085,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "NA9m8pN9N6fIly1B",
+  "sort": 0,
+  "_key": "!items!NA9m8pN9N6fIly1B"
+}

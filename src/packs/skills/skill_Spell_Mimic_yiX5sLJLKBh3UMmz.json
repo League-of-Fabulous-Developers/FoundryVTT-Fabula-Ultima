@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you see a creature belonging to the <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> Species cast a spell, you may immediately choose to learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p><p>When you first acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your offensive ( @ICON[offensive] ) Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</p><p>You may have up to <strong>【SL + 2】</strong> different Chimerist spells memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p>",
+    "description": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p><p>When you first acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your offensive ( @ICON[offensive] ) Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</p><p>You may have <strong>up to 【SL + 2】 different Chimerist spells</strong> memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR183"
-    },
+    "source": "FUCR183",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,24 +118,121 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "spell-mimic"
+    "fuid": "spell-mimic",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Spell Mimic",
+      "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_spell_mimic.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "gV4JoLHDd53BVD78": {
+              "type": "ruleElement",
+              "_id": "gV4JoLHDd53BVD78",
+              "trigger": {
+                "_id": "ate421kuSXwlruFV",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "72E5kUiLUBiNIiMv": {
+                  "type": "speciesRulePredicate",
+                  "_id": "72E5kUiLUBiNIiMv",
+                  "species": [
+                    "beast",
+                    "monster",
+                    "plant"
+                  ],
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "TmtaC4LiXQe9p888": {
+                  "type": "messageRuleAction",
+                  "_id": "TmtaC4LiXQe9p888",
+                  "message": "<p>The chimerist may learn this as a Chimerist spell.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LSKs1p3YHGDXv1IS",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1768067184150,
+        "modifiedTime": 1770401343525,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!yiX5sLJLKBh3UMmz.LSKs1p3YHGDXv1IS"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706495666417,
-    "modifiedTime": 1742002097412,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770270611403,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

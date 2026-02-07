@@ -1,0 +1,47 @@
+{
+  "name": "Medical Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/medical.png",
+  "system": {
+    "fuid": "medical-hoplosphere",
+    "source": "FUTF141",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "freeText",
+        "coagulationLevel": 1,
+        "name": "Improved Potions",
+        "text": "Extra Healing +2 HP/MP"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 2,
+        "name": "Further Improved Potions",
+        "text": "Extra Healing +1 HP/MP"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658496583,
+    "modifiedTime": 1760404567867,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "RlBSNSmJQog2rMTf",
+  "sort": 1100000,
+  "_key": "!items!RlBSNSmJQog2rMTf"
+}

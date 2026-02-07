@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You unleash a searing barrage against your foes, conjuring flames out of thin air. Each target hit by this spell suffers <strong>【HR + 15】 fire</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[shaken].</p>",
+    "description": "<p>You unleash a searing barrage against your foes, conjuring flames out of thin air. Each target hit by this spell suffers <strong>【HR + 15】 fire</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[shaken].</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR189"
-    },
+    "source": "FUCR189",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -128,15 +126,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706565586057,
-    "modifiedTime": 1746640939896,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1768577468423,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

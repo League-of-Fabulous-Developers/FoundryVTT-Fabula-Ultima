@@ -1,32 +1,27 @@
 import { CharacterMigrations } from './character-migrations.mjs';
-import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
-import { AttributesDataModel } from '../common/attributes-data-model.mjs';
-import { BonusesDataModel, MultipliersDataModel } from '../common/bonuses-data-model.mjs';
-import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { CharacterSkillTracker } from './character-skill-tracker.mjs';
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
-import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
-import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
-import { OverridesDataModel } from '../common/overrides-data-model.mjs';
 import { FloralistDataModel } from './floralist-data-model.mjs';
+import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
+import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
 const CLASS_IP_BENEFITS = 2;
-const HEROIC_IP_BENEFITS = 4;
-
-function heroicHpBenefits(dataModel) {
-	return dataModel.level.value >= 40 ? 20 : 10;
-}
-
-function heroicMpBenefits(dataModel) {
-	return dataModel.level.value >= 40 ? 20 : 10;
-}
 
 /**
+ * @class
+ * @extends BaseCharacterDataModel
+ * @property {AffinitiesDataModel} affinities
+ * @property {AttributesDataModel} attributes
+ * @property {DerivedValuesDataModel} derived
+ * @property {BonusesDataModel} bonuses Flat amounts
+ * @property {BonusesDataModel} multipliers Multiplies the base amount
+ * @property {OverridesDataModel} overrides Overrides for default behaviour
+ * @property {string} description
  * @property {number} level.value
  * @property {number} resources.hp.max
  * @property {number} resources.hp.value
@@ -41,28 +36,21 @@ function heroicMpBenefits(dataModel) {
  * @property {number} resources.ip.bonus
  * @property {Object} resources.fp
  * @property {number} resources.fp.value
- * @property {BondDataModel[]} bonds
  * @property {number} resources.exp.value
  * @property {string} resources.identity.name
  * @property {string} resources.pronouns.name
  * @property {string} resources.theme.name
  * @property {string} resources.origin.name
- * @property {AffinitiesDataModel} affinities
- * @property {AttributesDataModel} attributes
- * @property {DerivedValuesDataModel} derived
- * @property {BonusesDataModel} bonuses Flat amounts
- * @property {BonusesDataModel} multipliers Multiplies the base amount
+ * @property {BondDataModel[]} bonds
  * @property {PilotVehicleDataModel} vehicle
- * @property {string} description
  * @property {CharacterSkillTracker} tlTracker
- * @property {OverridesDataModel} overrides Overrides for default behaviour
  * @property {FloralistDataModel} floralist
- *
+ * @inheritDoc
  */
-export class CharacterDataModel extends foundry.abstract.TypeDataModel {
+export class CharacterDataModel extends BaseCharacterDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, ArrayField, EmbeddedDataField, HTMLField } = foundry.data.fields;
-		return {
+		const { SchemaField, NumberField, StringField, ArrayField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			level: new SchemaField({
 				value: new NumberField({
 					initial: 5,
@@ -101,31 +89,16 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 					}
 				},
 			}),
-			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
-			attributes: new EmbeddedDataField(AttributesDataModel, {}),
-			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
-			equipped: new EmbeddedDataField(EquipDataModel, {}),
-			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
-			multipliers: new EmbeddedDataField(MultipliersDataModel, {}),
-			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
-			overrides: new EmbeddedDataField(OverridesDataModel, {}),
+			// TODO: Refactor
 			floralist: new EmbeddedDataField(FloralistDataModel, {}),
-			description: new HTMLField(),
-		};
+		});
 	}
 
 	static migrateData(source) {
+		source = super.migrateData(source);
 		CharacterMigrations.run(source);
-
 		return source;
-	}
-
-	/**
-	 * @return FUActor
-	 */
-	get actor() {
-		return this.parent;
 	}
 
 	/**
@@ -134,7 +107,9 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	prepareBaseData() {
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
+		this.#prepareBasicResources();
 		this.vehicle.prepareData();
+		this.floralist.prepareData();
 		this.derived.prepareData();
 	}
 
@@ -143,44 +118,57 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	prepareDerivedData() {
 		this.tlTracker = new CharacterSkillTracker(this);
-	}
-
-	prepareEmbeddedData() {
-		this.#prepareBasicResources();
+		this.actor.equipmentHandler ??= new EquipmentHandler(this.actor);
 	}
 
 	#prepareBasicResources() {
-		const itemTypes = this.actor.itemTypes;
-		let benefits = itemTypes.class.reduce(
-			(agg, curr) => {
-				if (curr.system.benefits.resources.hp.value) {
-					agg.hp += CLASS_HP_BENEFITS;
-				}
-				if (curr.system.benefits.resources.mp.value) {
-					agg.mp += CLASS_MP_BENEFITS;
-				}
-				if (curr.system.benefits.resources.ip.value) {
-					agg.ip += CLASS_IP_BENEFITS;
-				}
-				return agg;
-			},
-			{ hp: 0, mp: 0, ip: 0 },
-		);
-		benefits = itemTypes.heroic.reduce((agg, curr) => {
-			if (curr.system.benefits.resources.hp.value) {
-				agg.hp += heroicHpBenefits(this);
-			}
-			if (curr.system.benefits.resources.mp.value) {
-				agg.mp += heroicMpBenefits(this);
-			}
-			if (curr.system.benefits.resources.ip.value) {
-				agg.ip += HEROIC_IP_BENEFITS;
-			}
-			return agg;
-		}, benefits);
+		const data = this;
+
+		const benefits = {};
+		const initializeBenefits = (resource) => () => {
+			const itemTypes = data.actor.itemTypes;
+
+			const computed = itemTypes.class.reduce(
+				(agg, curr) => {
+					if (curr.system.benefits.resources.hp.value) {
+						agg.hp += CLASS_HP_BENEFITS;
+					}
+					if (curr.system.benefits.resources.mp.value) {
+						agg.mp += CLASS_MP_BENEFITS;
+					}
+					if (curr.system.benefits.resources.ip.value) {
+						agg.ip += CLASS_IP_BENEFITS;
+					}
+					return agg;
+				},
+				{ hp: 0, mp: 0, ip: 0 },
+			);
+
+			benefits.hp = computed.hp;
+			benefits.mp = computed.mp;
+			benefits.ip = computed.ip;
+			return benefits[resource];
+		};
+
+		const setBenefit = (resource) => (value) => {
+			delete benefits[resource];
+			benefits[resource] = value;
+		};
+
+		const benefitPropertyDescriptor = (resource) => ({
+			configurable: true,
+			get: initializeBenefits(resource),
+			set: setBenefit(resource),
+		});
+
+		Object.defineProperties(benefits, {
+			hp: benefitPropertyDescriptor('hp'),
+			mp: benefitPropertyDescriptor('mp'),
+			ip: benefitPropertyDescriptor('ip'),
+		});
 
 		// Calculate multipliers based on actor type and attributes.
-		const data = this;
+
 		// Define maximum hit points (hp) calculation, replace calculation with actual value on write.
 		Object.defineProperty(this.resources.hp, 'max', {
 			configurable: true,
@@ -192,6 +180,27 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			set(newValue) {
 				delete this.max;
 				this.max = newValue;
+			},
+		});
+
+		Object.defineProperty(this.resources.hp, 'crisisScore', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const multiplier = game.settings.get(SYSTEM, SETTINGS.optionCrisisMultiplier) ?? 0.5;
+				return Math.floor(this.max * multiplier);
+			},
+			set(newValue) {
+				delete this.crisisScore;
+				this.crisisScore = newValue;
+			},
+		});
+
+		Object.defineProperty(this.resources.hp, 'inCrisis', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				return this.value <= this.crisisScore;
 			},
 		});
 

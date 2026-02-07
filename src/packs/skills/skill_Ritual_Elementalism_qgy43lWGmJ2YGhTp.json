@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR187"
-    },
+    "source": "FUCR187",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,24 +118,116 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "ritual-elementalism"
+    "fuid": "ritual-elementalism",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ritual Elementalism",
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_ritual_elementalism.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "WjOHZLpGpJp1XQWO": {
+              "type": "ruleElement",
+              "_id": "WjOHZLpGpJp1XQWO",
+              "trigger": {
+                "_id": "SbE2BQ8k50BlnETI",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "Zm9edoqk3U0RSKF8": {
+                  "type": "performCheckRuleAction",
+                  "_id": "Zm9edoqk3U0RSKF8",
+                  "check": "ritual",
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "wlp"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "y87yr4Bae2qYe1n4",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767130702416,
+        "modifiedTime": 1770343698262,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!qgy43lWGmJ2YGhTp.y87yr4Bae2qYe1n4"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706498017708,
-    "modifiedTime": 1741989051191,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768060751461,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

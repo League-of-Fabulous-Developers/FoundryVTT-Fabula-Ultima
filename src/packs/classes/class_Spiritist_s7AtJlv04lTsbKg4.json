@@ -8,7 +8,7 @@
     "summary": {
       "value": "Show me the truth in your heart."
     },
-    "description": "<h5><strong>ALSO: Healer, Priest, Witch</strong></h5><p><strong>Spiritists </strong>have developed a powerful connection with the raw aspects of soul: emotion, energy, life, and death. They wield power both miraculous and frightening, and are quite often affiliated with cults or religions. Several worlds see the powers of Spiritism as gifts from a deity or proof that a person’s heart is pure; however, there is no definite proof of these abilities coming from anything but discipline, empathy, and focus.</p><hr /><h5><strong>SPIRITIST FREE BENEFITS</strong></h5><ul><li>Permanently increase your maximum Mind Points by 5.</li><li>You may perform Rituals whose effects fall within the <strong>Ritualism </strong>discipline.</li></ul><h2><strong>SPIRITIST SKILLS</strong></h2><p>@UUID[Compendium.projectfu.skills.Item.rVM7HhQ5OwdPtFwa]{Healing Power} <strong>(SL2)</strong></p><p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【SL, multiplied by the number of Bonds you have】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.ek0pzfo1bSWGHfzb]{Ritual Spiritism}</p><p>You may perform Rituals whose effects fall within the Spiritism discipline.</p><p>Spiritism Rituals use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.dwVQpxDTOZeNbcjy]{Spiritual Magic} <strong>(SL10)</strong></p><p>Each time you acquire this Skill, learn one Spiritist spell (see <strong>Core Rulebook</strong>, page <strong>208</strong>).</p><p>Offensive (@ICON[offensive]) Spiritist spells use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.pIkEDFcA5pnIpsu3]{Support Magic}</p><p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may choose one of those allies you have a <strong>Bond </strong>towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength </strong>of your Bond towards them.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.affUHtuCYoDxmO4h]{Vismagus}</p><p>When you cast a spell, if you don’t have enough Mind Points to pay for its total cost, you may choose to spend <strong>twice as many</strong> Hit Points instead. You cannot use this Skill if doing so would reduce you to 0 Hit Points. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p><h2><strong>SPIRITIST SPELLS</strong></h2><ul><li><p>For <strong>spell</strong> breakdown and a list of Spiritist Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.L65ajg6cmHEk3zAP]{Spiritist Rules}</p></li></ul>",
+    "description": "<h5><strong>ALSO: Healer, Priest, Witch</strong></h5><p><strong>Spiritists </strong>have developed a powerful connection with the raw aspects of soul: emotion, energy, life, and death. They wield power both miraculous and frightening, and are quite often affiliated with cults or religions. Several worlds see the powers of Spiritism as gifts from a deity or proof that a person’s heart is pure; however, there is no definite proof of these abilities coming from anything but discipline, empathy, and focus.</p><hr /><h5><strong>SPIRITIST FREE BENEFITS</strong></h5><ul><li>Permanently increase your maximum Mind Points by 5.</li><li>You may perform Rituals whose effects fall within the <strong>Ritualism </strong>discipline.</li></ul><h2><strong>SPIRITIST SKILLS</strong></h2><p>@UUID[Compendium.projectfu.skills.Item.rVM7HhQ5OwdPtFwa]{Healing Power} <strong>(SL2)</strong></p><p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【3 + (SL, multiplied by the number of Bonds you have)】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.ek0pzfo1bSWGHfzb]{Ritual Spiritism}</p><p>You may perform Rituals whose effects fall within the Spiritism discipline.</p><p>Spiritism Rituals use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.dwVQpxDTOZeNbcjy]{Spiritual Magic} <strong>(SL10)</strong></p><p>Each time you acquire this Skill, learn one Spiritist spell (see <strong>Core Rulebook</strong>, page <strong>208</strong>).</p><p>Offensive (@ICON[offensive]) Spiritist spells use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.pIkEDFcA5pnIpsu3]{Support Magic}</p><p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may choose one of those allies you have a <strong>Bond </strong>towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength </strong>of your Bond towards them.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.affUHtuCYoDxmO4h]{Vismagus}</p><p>When you cast a spell, if you don’t have enough Mind Points to pay for its total cost, you may choose to spend <strong>twice as many</strong> Hit Points instead. You cannot use this Skill if doing so would reduce you to 0 Hit Points. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p><h2><strong>SPIRITIST SPELLS</strong></h2><ul><li><p>For <strong>spell</strong> breakdown and a list of Spiritist Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.L65ajg6cmHEk3zAP]{Spiritist Rules}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -67,24 +67,25 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR206"
-    },
+    "source": "FUCR206",
     "fuid": "spiritist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist.png",
   "effects": [],
   "folder": null,
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706418604181,
-    "modifiedTime": 1742794788024,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768783189640,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

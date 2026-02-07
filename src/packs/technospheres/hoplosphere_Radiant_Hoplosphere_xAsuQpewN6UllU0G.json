@@ -1,0 +1,56 @@
+{
+  "name": "Radiant Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/radiant.png",
+  "system": {
+    "fuid": "radiant-hoplosphere",
+    "source": "FUTF1422",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "gainResistance",
+        "coagulationLevel": 1,
+        "damageType": "light"
+      },
+      {
+        "type": "changeWeaponDamageType",
+        "coagulationLevel": 1,
+        "damageType": "light"
+      },
+      {
+        "type": "gainImmunity",
+        "coagulationLevel": 2,
+        "damageType": "light"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 3,
+        "name": "Light Mastery",
+        "text": "Ignore Resistances (Light); Alter Damage Type (Light)"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658503755,
+    "modifiedTime": 1760404380181,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "xAsuQpewN6UllU0G",
+  "sort": 200000,
+  "_key": "!items!xAsuQpewN6UllU0G"
+}

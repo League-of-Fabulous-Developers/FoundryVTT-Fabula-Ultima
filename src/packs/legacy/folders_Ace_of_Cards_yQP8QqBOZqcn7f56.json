@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "rPrp9QRfOtEloqMP",
+  "name": "Ace of Cards",
+  "color": null,
+  "sorting": "a",
+  "_id": "yQP8QqBOZqcn7f56",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!yQP8QqBOZqcn7f56"
+}

@@ -1,7 +1,6 @@
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
-import { InlineHelper } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
@@ -9,7 +8,12 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
-import { HTMLUtils } from '../helpers/html-utils.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { FUItem } from '../documents/items/item.mjs';
+import { statusEffects } from '../documents/effects/statuses.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
+import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -47,13 +51,18 @@ import { HTMLUtils } from '../helpers/html-utils.mjs';
  */
 
 /**
+ * @typedef ApplyEffectData
+ * @property {String[]} entries
+ */
+
+/**
  * @param {Actor|Item} owner The owning document which manages this effect
  * @param {String} effectType
  * @param {String} name
  * @returns {*}
  * @remarks Effects created this way will by default be removed at the end of the scene
  */
-function createTemporaryEffect(owner, effectType, name) {
+function createTemporaryEffect(owner, effectType, name = undefined) {
 	const system = {
 		duration: {
 			event: effectType === 'passive' ? 'none' : 'endOfScene',
@@ -61,7 +70,7 @@ function createTemporaryEffect(owner, effectType, name) {
 	};
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
-			name: name ?? game.i18n.localize('FU.NewEffect'),
+			name: name ?? (owner instanceof FUItem ? owner.name : game.i18n.localize('FU.NewEffect')),
 			img: 'icons/svg/aura.svg',
 			source: owner.uuid,
 			system: system,
@@ -72,6 +81,46 @@ function createTemporaryEffect(owner, effectType, name) {
 }
 
 /**
+ * @param {String} id
+ * @return {ActiveEffectData}
+ */
+function resolveBaseEffect(id) {
+	return statusEffects.find((value) => value.id === id);
+}
+
+/** *
+ * @param {String} id An uuid or fuid
+ * @returns {Promise<ActiveEffectData>}
+ */
+async function getEffectData(id) {
+	let effect;
+	// Resolve by status id
+	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
+		effect = statusEffects.find((value) => value.id === id);
+	} else {
+		// Resolve by uuid
+		if (FoundryUtils.isUUID(id)) {
+			effect = await fromUuid(id);
+		}
+		// Resolve by fuid
+		else {
+			const entry = await CompendiumIndex.instance.getItemByFuid(id);
+			if (entry) {
+				effect = await fromUuid(entry.uuid);
+			}
+		}
+		// Get the first AE attached to the item
+		if (effect && effect instanceof FUItem) {
+			effect = effect.effects.entries().next().value[1];
+		}
+	}
+	if (!effect) {
+		console.error(`No effect with id '${id}' could be resolved.`);
+	}
+	return effect;
+}
+
+/**
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
  * @param {PointerEvent} event     The left-click event on the effect control
  * @param {Actor|Item} owner       The owning document which manages this effect
@@ -79,34 +128,41 @@ function createTemporaryEffect(owner, effectType, name) {
  */
 export async function onManageActiveEffect(event, owner, action) {
 	event.preventDefault();
-	const anchor = HTMLUtils.findWithDataset(event.target);
-	const listItem = anchor.closest('li');
+	const actionElement = event.target.closest('[data-action]');
+	const effectIdElement = event.target.closest('[data-effect-id]');
 
 	/**
 	 * @returns {FUActiveEffect}
 	 */
 	const resolveEffect = () => {
-		const effectId = listItem.dataset.effectId;
+		const effectId = effectIdElement.dataset.effectId;
 		let effect;
 		// We check allEffects in order to get effects from the ITEMS as well
 		if (owner instanceof FUActor) {
-			effect = Array.from(owner.allEffects()).find((value) => value.id === effectId);
+			effect = owner.getEffect(effectId);
 		} else {
 			effect = owner.effects.get(effectId);
 		}
 		return effect;
 	};
 
-	switch (action ?? anchor.dataset.action) {
+	switch (action ?? actionElement.dataset.action) {
 		case 'create':
-			return createTemporaryEffect(owner, listItem.dataset.effectType);
-		case 'edit':
-			return resolveEffect().sheet.render(true);
+			return createTemporaryEffect(owner, actionElement.dataset.effectType);
+		case 'edit': {
+			const effect = resolveEffect();
+			return effect.sheet.render(true, { editable: owner === effect.parent });
+		}
 		case 'delete': {
 			const _effect = resolveEffect();
 			if (canBeRemoved(_effect)) {
-				sendToChatEffectRemoved(_effect, owner);
-				return _effect.delete();
+				const title = StringUtils.localize('FU.DialogDeleteItemTitle', { item: _effect.name });
+				const content = StringUtils.localize('FU.DialogDeleteItemDescription', { item: _effect.name });
+				const confirm = await FoundryUtils.confirmDialog(title, content);
+				if (confirm) {
+					sendToChatEffectRemoved(_effect, owner);
+					return _effect.delete();
+				}
 			}
 			break;
 		}
@@ -184,12 +240,32 @@ export function prepareActiveEffectCategories(effects) {
  * @returns {boolean} True if the effect can only be managed by the system
  */
 function canBeRemoved(effect) {
-	return !effect.statuses.has('crisis') && !effect.statuses.has('ko');
+	const list = ['crisis', 'ko'];
+	for (const el of list) {
+		if (effect.statuses.has(el)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
+ * @param effect
+ * @returns {boolean} True if the effect can be mentioned in chat messages.
+ */
+function isVerbose(effect) {
+	const list = ['crisis', 'ko', 'pressure', 'stagger'];
+	for (const el of list) {
+		if (effect.statuses.has(el)) {
+			return false;
+		}
+	}
+	return true;
 }
 
 // Helper function to generate the @EFFECT format string
 function formatEffect(effect) {
-	const encodedEffect = InlineHelper.toBase64(effect.toJSON());
+	const encodedEffect = StringUtils.toBase64(effect.toJSON());
 	return `@EFFECT[${encodedEffect}]`;
 }
 
@@ -229,12 +305,12 @@ async function renderEffect(effect, owner) {
 }
 
 /**
- * @typedef InlineEffectConfiguration
- * @property {String} name
- * @property {String} event e:
- * @property {Number} interval i:
- * @property {String} tracking t:
+ * @param {String} id
+ * @returns {boolean}
  */
+function isStatusEffect(id) {
+	return id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES;
+}
 
 /**
  * A helper function to toggle a status effect on an Actor.
@@ -261,13 +337,13 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 		);
 		return false;
 	} else {
-		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
+		const statusEffect = resolveBaseEffect(statusEffectId);
 		if (statusEffect) {
 			const instance = await ActiveEffect.create(
 				{
 					...statusEffect,
 					statuses: [statusEffectId],
-					flags: createEffectFlags(statusEffect, sourceInfo),
+					flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
 				},
 				{ parent: actor },
 			);
@@ -303,67 +379,90 @@ export async function disableStatusEffect(actor, statusEffectId) {
 	return false;
 }
 
+/**
+ * @param {FUActor|FUItem} document
+ * @param {ActiveEffectData} effect
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {InlineEffectConfiguration} config
+ * @returns {FUActiveEffect}
+ */
+async function applyEffect(document, effect, sourceInfo, config = undefined) {
+	if (document) {
+		if (document instanceof FUActor && !document.isCharacterType) {
+			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+			return;
+		}
+		const flags = createEffectFlags(effect, sourceInfo, sourceInfo?.fuid);
+		const instance = await ActiveEffect.create(
+			{
+				...effect,
+				flags: flags,
+			},
+			{ parent: document },
+		);
+		await applyConfiguration(instance, config);
+		await sendToChatEffectAdded(instance, document, sourceInfo?.name);
+		return instance;
+	}
+}
+
+/**
+ * @param {FUActor|FUItem} document
+ * @param {InlineSourceInfo} source
+ * @param {FUActiveEffect} effect
+ */
+function removeEffect(document, source, effect) {
+	if (!document) return;
+
+	const existingEffect = document.effects.find(
+		(e) =>
+			e.getFlag(SYSTEM, Flags.ActiveEffect.Temporary) &&
+			e.sourceItem === source &&
+			e.changes.length === effect.changes.length &&
+			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
+	);
+
+	if (existingEffect) {
+		sendToChatEffectRemoved(effect, document);
+		existingEffect.delete();
+	} else {
+		console.log('No matching effect found to remove.');
+	}
+}
+
+/**
+ * @param {FUActiveEffect} effect
+ * @param {FUActor|FUItem} document
+ * @param {String} source
+ * @returns {Promise<void>}
+ */
+async function sendToChatEffectAdded(effect, document, source) {
+	console.info(`Added effect: ${effect.uuid} on actor uuid: ${document.uuid}`);
+	if (game.combat && isVerbose(effect)) {
+		await ChatMessage.create({
+			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
+			content: await FoundryUtils.renderTemplate('chat/chat-apply-effect', {
+				message: 'FU.ChatApplyEffect',
+				document: document,
+				effect: effect,
+				source: source,
+			}),
+			speaker: ChatMessage.getSpeaker({ actor: document }),
+		});
+	}
+}
+
 function sendToChatEffectRemoved(effect, actor) {
-	console.log(`Removing effect: ${effect.name}`);
-	// TODO: Implement alongside message window
-	if (game.combat) {
+	console.log(`Removing effect: ${effect.name} from actor ${actor.uuid}`);
+	if (game.combat && isVerbose(effect)) {
 		ChatMessage.create({
+			flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 			content: game.i18n.format('FU.EffectRemoveMessage', {
 				effect: effect.name,
 				actor: actor.name,
 			}),
 			speaker: ChatMessage.getSpeaker({ actor }),
 		});
-	}
-}
-
-/**
- * @param {FUActor|FUItem} target
- * @param {ActiveEffectData} effect
- * @param {InlineSourceInfo} sourceInfo
- * @param {InlineEffectConfiguration} config
- * @returns {FUActiveEffect}
- */
-async function onApplyEffect(target, effect, sourceInfo, config = undefined) {
-	if (target) {
-		if (target instanceof FUActor && !target.isCharacterType) {
-			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
-			return;
-		}
-		const flags = createEffectFlags(effect, sourceInfo);
-		const instance = await ActiveEffect.create(
-			{
-				...effect,
-				flags: flags,
-			},
-			{ parent: target },
-		);
-		await applyConfiguration(instance, config);
-		return instance;
-	}
-}
-
-/**
- * @param {FUActor} actor
- * @param source
- * @param {FUActiveEffect} effect
- */
-function onRemoveEffectFromActor(actor, source, effect) {
-	if (!actor) return;
-
-	const existingEffect = actor.effects.find(
-		(e) =>
-			e.getFlag(SYSTEM, FUActiveEffect.TEMPORARY_FLAG) &&
-			e.source === source &&
-			e.changes.length === effect.changes.length &&
-			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
-	);
-
-	if (existingEffect) {
-		sendToChatEffectRemoved(effect, actor);
-		existingEffect.delete();
-	} else {
-		console.log('No matching effect found to remove.');
 	}
 }
 
@@ -398,13 +497,15 @@ async function applyConfiguration(effect, configuration) {
 /**
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
+ * @param {String} identifier An unique identifier for the effect
  * @returns {Object}
  */
-function createEffectFlags(effect, sourceInfo) {
+function createEffectFlags(effect, sourceInfo, identifier) {
 	return foundry.utils.mergeObject(effect.flags ?? {}, {
 		[SYSTEM]: {
-			[FUActiveEffect.TEMPORARY_FLAG]: true,
+			[Flags.ActiveEffect.Temporary]: true,
 			[Flags.ActiveEffect.Source]: sourceInfo,
+			[Flags.ActiveEffect.Identifier]: identifier,
 		},
 	});
 }
@@ -514,7 +615,6 @@ async function manageEffectDuration(event) {
 	await Promise.all(updates);
 
 	// TODO: Maybe link to the originals if deletions are about to happen
-
 	ChatMessage.create({
 		//speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
@@ -536,7 +636,7 @@ async function manageEffectDuration(event) {
  * @param {CombatEvent} event
  * @returns {Promise<void>}
  */
-async function promptEffectRemoval(event) {
+async function promptExpiredEffectRemoval(event) {
 	let count = 0;
 	if (
 		event.actors.every((actor) => {
@@ -549,7 +649,9 @@ async function promptEffectRemoval(event) {
 
 	if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
 		event.actors.forEach((actor) => {
-			actor.clearTemporaryEffects(false, false);
+			actor.clearTemporaryEffects({
+				duration: true,
+			});
 		});
 		return;
 	}
@@ -577,6 +679,150 @@ async function promptEffectRemoval(event) {
 }
 
 /**
+ * @param {FUActor} actor
+ * @param {FUActor[]} targets
+ * @param {FUActiveEffect[]} effects
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<void>}
+ */
+async function promptApplyEffect(actor, targets, effects, sourceInfo) {
+	let actions = await Promise.all(effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo)));
+	actions = actions.filter((a) => a !== null);
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Targets, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Effects, true);
+	const targetData = Targeting.serializeTargetData(targets);
+
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		flags: flags,
+		content: await FoundryUtils.renderTemplate('chat/chat-apply-effect-prompt', {
+			actor: actor,
+			source: sourceInfo.name,
+			effects: effects,
+			actions: actions,
+			targets: targetData,
+			fields: StringUtils.toBase64({
+				sourceInfo: sourceInfo,
+			}),
+		}),
+	});
+}
+
+async function promptRemoveEffect(actor, source) {
+	const tempEffects = actor.temporaryEffects;
+	if (tempEffects.length === 0) {
+		return;
+	}
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
+		content: await FoundryUtils.renderTemplate('chat/chat-remove-effect-prompt', {
+			actor: actor,
+			source: source,
+			effects: tempEffects,
+		}),
+	});
+}
+
+/**
+ * @param {String} id An uuid or fuid.
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<ChatAction>}
+ */
+async function getTargetedAction(id, sourceInfo) {
+	let name;
+	let icon;
+	let img;
+	const effectData = await getEffectData(id);
+	if (effectData) {
+		if (effectData.img) {
+			img = effectData.img;
+		} else {
+			if (resolveBaseEffect(id)) {
+				icon = `fuk fu-${id}`;
+			} else {
+				icon = 'ra ra-biohazard';
+			}
+		}
+		name = StringUtils.localize(effectData.name);
+	} else {
+		return null;
+	}
+
+	const tooltip = StringUtils.localize('FU.ChatApplyEffectHint', {
+		effect: name,
+	});
+	const label = StringUtils.localize('FU.ChatApplyEffectLabel', {
+		effect: name,
+	});
+
+	return new ChatAction('applyEffect', icon, tooltip, {
+		sourceInfo: sourceInfo,
+	})
+		.requiresOwner()
+		.setFlag(Flags.ChatMessage.Effects)
+		.withSelected()
+		.withLabel(label)
+		.withImage(img)
+		.withDataset({
+			['effect-id']: id,
+		});
+}
+
+/**
+ * @param {String} id An uuid or fuid.
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<ChatAction>}
+ */
+async function getClearAction(id, sourceInfo) {
+	let name;
+	let icon;
+	let img;
+
+	// Clear a single effect
+	if (id) {
+		const effectData = await getEffectData(id);
+		if (effectData) {
+			if (effectData.img) {
+				img = effectData.img;
+			} else {
+				if (resolveBaseEffect(id)) {
+					icon = `fuk fu-${id}`;
+				} else {
+					icon = 'ra ra-biohazard';
+				}
+			}
+			name = StringUtils.localize(effectData.name);
+		}
+	}
+	// Clear status effects
+	else {
+		name = `${StringUtils.localize('FU.All')} ${StringUtils.localize('FU.StatusEffect')}`;
+		icon = 'ra ra-biohazard';
+	}
+
+	const tooltip = StringUtils.localize('FU.ChatClearEffectLabel', {
+		effect: name,
+	});
+	const label = StringUtils.localize('FU.ChatClearEffectLabel', {
+		effect: name,
+	});
+
+	return new ChatAction('clearEffect', icon, tooltip, {
+		sourceInfo: sourceInfo,
+	})
+		.requiresOwner()
+		.setFlag(Flags.ChatMessage.Effects)
+		.withSelected()
+		.withLabel(label)
+		.withClasses('fu-chat__clear-effect')
+		.withImage(img)
+		.withDataset({
+			['effect-id']: id,
+		});
+}
+
+/**
  * @param {Document} message
  * @param {HTMLElement} element
  */
@@ -585,16 +831,52 @@ function onRenderChatMessage(message, element) {
 		return;
 	}
 
-	Pipeline.handleClick(message, element, 'removeEffect', (dataset) => {
-		const effectId = dataset.id;
+	Pipeline.handleClickRevert(message, element, 'removeEffect', (dataset) => {
 		const actorId = dataset.actorId;
-		console.debug(`Removing effect ${effectId} on ${actorId}`);
+		const effectId = dataset.id;
+		console.debug(`Removing effect ${effectId} from ${actorId}`);
 		/** @type FUActor **/
 		const actor = fromUuidSync(actorId);
-		// TODO: Add revert-like behaviour
 		const effect = actor.effects.get(effectId);
 		if (effect) {
 			effect.delete();
+		}
+	});
+
+	Pipeline.handleClick(message, element, 'applyEffect', async (dataset) => {
+		const effectId = dataset.effectId;
+		const isStatus = isStatusEffect(effectId);
+
+		let sourceInfo = InlineSourceInfo.none;
+		if (dataset.fields) {
+			const fields = StringUtils.fromBase64(dataset.fields);
+			if (fields.sourceInfo) {
+				sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+			}
+		}
+
+		const targets = await Pipeline.getTargetsFromAction(dataset);
+		console.debug(`Applying effect ${effectId} to ${targets}`);
+		if (isStatus) {
+			for (const target of targets) {
+				if (!target.isOwner) {
+					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+					continue;
+				}
+				await toggleStatusEffect(target, effectId, sourceInfo);
+			}
+		} else {
+			const effect = await getEffectData(effectId);
+			if (!effect) {
+				return;
+			}
+			for (const target of targets) {
+				if (!target.isOwner) {
+					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+					continue;
+				}
+				await applyEffect(target, effect, sourceInfo);
+			}
 		}
 	});
 
@@ -608,9 +890,34 @@ function onRenderChatMessage(message, element) {
 		});
 	});
 
+	Pipeline.handleClick(message, element, 'clearEffect', async (dataset) => {
+		const effectId = dataset.effectId;
+		const targets = await Pipeline.getTargetsFromAction(dataset);
+		targets.forEach((actor) => {
+			if (!actor.isOwner) {
+				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+				return;
+			}
+			if (effectId) {
+				const effect = actor.resolveEffect(effectId);
+				if (effect) {
+					effect.delete();
+				}
+			} else {
+				actor.clearTemporaryEffects({
+					status: true,
+				});
+			}
+		});
+	});
+
 	Pipeline.handleClick(message, element, 'clearEffects', (dataset) => {
 		const actors = Targeting.deserializeTargetData(dataset.actors);
 		actors.forEach((actor) => {
+			if (!actor.isOwner) {
+				ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+				return;
+			}
 			actor.clearTemporaryEffects();
 		});
 	});
@@ -628,7 +935,7 @@ async function onCombatEvent(event) {
 	switch (event.type) {
 		case FU.combatEvent.startOfCombat:
 		case FU.combatEvent.endOfCombat:
-			await promptEffectRemoval(event);
+			await promptExpiredEffectRemoval(event);
 			break;
 
 		case FU.combatEvent.startOfTurn:
@@ -645,11 +952,15 @@ async function onCombatEvent(event) {
  */
 async function onRestEvent(event) {
 	// Remove statuses and other effects that last until rest
-	event.actor.clearTemporaryEffects(true, false);
+	event.actor.clearTemporaryEffects({
+		duration: true,
+	});
 }
 
 const BOONS_AND_BANES = Object.freeze(
-	Object.fromEntries(['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'].map((value) => [value, FU.statusEffects[value]])),
+	Object.fromEntries(
+		['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked', 'focus', 'pressure', 'stagger'].map((value) => [value, FU.statusEffects[value]]),
+	),
 );
 const DAMAGE_TYPES = Object.freeze((({ untyped, ...rest }) => rest)(FU.damageTypes));
 const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });
@@ -668,12 +979,21 @@ function initialize() {
  */
 export const Effects = Object.freeze({
 	initialize,
-	onRemoveEffectFromActor,
-	onApplyEffect,
-	onApplyEffectToActor: onApplyEffect,
+	getEffectData,
+	removeEffect,
+	applyEffect,
 	canBeRemoved,
+	isStatusEffect,
 	toggleStatusEffect,
+	createTemporaryEffect,
 	formatEffect,
+	sendToChatEffectAdded,
+	promptRemoveEffect,
+	promptApplyEffect,
+	getTargetedAction,
+	getClearAction,
+	createEffectFlags,
+
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,

@@ -1,60 +1,202 @@
+{{#if attributeValues}}
+	<section>
+		<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
+			<legend class="resource-text-m">{{localize 'FU.Actor'}}</legend>
+			<img class="profile-img flexcol" src="{{actor.img}}"
+				 data-edit="img" title="{{actor.name}}"
+				 style="height: 96px; width: auto; object-fit: contain;" />
+			{{#each attributes}}
+				{{pfuIconAttribute @key value=(lookup @root/attributeValues @key)}}
+			{{/each}}
+		</fieldset>
+	</section>
+{{/if}}
+
 <section>
-	<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
-		<legend class="resource-text-m">{{localize 'FU.Attributes'}}</legend>
-		{{#each attributes}}
-			<fieldset>
-				<label class="resource-label-sm">
-					<abbr title="{{localize this}}">
-						{{localize (lookup @root/attributeAbbr @key)}}
-					</abbr>
-					<span>:</span>
-					<span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
+	{{#if actors}}
+		<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
+			<legend class="resource-text-m">{{localize 'Actors'}}</legend>
+			{{> 'systems/projectfu/templates/ui/partials/document-carousel.hbs' documents=actors}}
+		</fieldset>
+	{{/if}}
+
+	<div class="flexrow">
+		{{#if label}}
+			<fieldset class="flex-group-center resource-content">
+				<legend class="resource-text-m">{{localize 'Label'}}</legend>
+				<label class="resource-text-m">
+					<input name="label" type="text" value="{{label}}">
 				</label>
 			</fieldset>
-		{{/each}}
-	</fieldset>
-</section>
-<section>
-	<fieldset class="flexrow resource-content">
-		<legend class="resource-text-m">{{localize 'FU.Primary'}}</legend>
-		<span class="radio-container">{{radioBoxes 'primary' attributes checked=primary localize=true }}</span>
-	</fieldset>
-	<fieldset class="flexrow resource-content">
-		<legend class="resource-text-m">{{localize 'FU.Secondary'}}</legend>
-		<span class="radio-container">{{radioBoxes 'secondary' attributes checked=secondary localize=true }}</span>
-	</fieldset>
-
-	<fieldset class="flex-group-left resource-content">
-		<legend class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</legend>
-		{{#if (eq type 'open')}}
-			<label class="resource-text-m">
-				<span>{{localize 'FU.DialogCheckOpenCheck'}} {{localize 'FU.Bonus'}}: {{bonus}}</span>
-			</label>
 		{{/if}}
-		<label class="resource-text-m">
-			{{localize 'FU.DialogCheckModifier'}}
-			<input name="modifier" type="number" value="{{modifier}}">
-		</label>
-	</fieldset>
 
-	{{#if (ne type 'open')}}
-		<fieldset class="flex-group-left resource-content">
-			<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
-			{{#if (eq type 'group')}}
+		{{#if increment}}
+			<fieldset class="flex-group-center resource-content">
+				<legend class="resource-text-m">{{localize 'Increment'}}</legend>
 				<label class="resource-text-m">
-					{{localize 'FU.DialogGroupCheckDifficulty'}}
-					<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+					<input name="increment" type="checkbox" {{checked increment}}>
 				</label>
-				<label class="resource-text-m">
-					{{localize 'FU.DialogGroupCheckSupportDifficulty'}}
-					<input name="supportDifficulty" type="number" value="{{supportDifficulty}}" min="0">
+			</fieldset>
+		{{/if}}
+	</div>
+
+	<div class="flexrow flex-group-center">
+		<fieldset class="flexrow resource-content">
+			<legend class="resource-text-m">{{localize 'FU.Attributes'}}</legend>
+			<div class="fu-form__row">
+				<label class="fu-form__row">
+					{{localize 'FU.Primary'}}
+					<div class="fu-icon__radio-group">
+						{{#each attributeOptions as |attr| }}
+							<label class="fu-icon__radio__label fu-icon fu-icon--s {{icon}}" data-tooltip="{{localize label}}" for="{{label}}">
+								<input checked="checked" id="{{label}}" type="radio" name="primary" value="{{value}}">
+							</label>
+						{{/each}}
+					</div>
 				</label>
-			{{else}}
-				<label class="resource-text-m">
-					{{localize 'FU.DialogCheckDifficulty'}}
-					<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+				<label class="fu-form__row">
+					{{localize 'FU.Secondary'}}
+					<div class="fu-icon__radio-group">
+						{{#each attributeOptions as |attr| }}
+							<label class="fu-icon__radio__label fu-icon fu-icon--s {{icon}}"
+								   data-tooltip="{{localize label}}"
+								   for="{{label}}">
+								<input checked="checked"
+									   id="{{label}}"
+									   type="radio"
+									   name="secondary"
+									   value="{{value}}">
+							</label>
+						{{/each}}
+					</div>
 				</label>
-			{{/if}}
+			</div>
 		</fieldset>
+	</div>
+
+	{{#if (eq type 'ritual')}}
+		<fieldset class="flexrow resource-content">
+			<legend class="resource-text-m">{{localize 'FU.Potency'}}</legend>
+			<table class="table-compact">
+				<thead>
+				<tr>
+					<th></th>
+					<th>{{localize 'FU.Potency'}}</th>
+					<th>{{localize 'FU.MindPoints'}}</th>
+					<th>{{localize 'FU.DifficultyLevel'}}</th>
+				</tr>
+				</thead>
+				<tbody>
+				{{#each potencyList as |potency|}}
+					<tr class="{{#if potency.selected}}selected{{/if}}"
+						data-action="updateRitual">
+						<td>
+							<label>
+								<input
+								 type="radio"
+								 name="potency"
+								 value="{{potency.key}}"
+								 {{#if potency.selected}}checked{{/if}}
+								/>
+							</label>
+						</td>
+						<th>{{localize potency.label}}</th>
+						<td>{{potency.cost}}</td>
+						<td>{{potency.difficulty}}</td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</fieldset>
+
+		<fieldset class="flexrow resource-content">
+			<legend class="resource-text-m">{{localize 'FU.Area'}}</legend>
+
+			<table class="table-compact">
+				<thead>
+				<tr>
+					<th></th>
+					<th>{{localize 'FU.Area'}}</th>
+					<th>{{localize 'FU.Multiplier'}}</th>
+				</tr>
+				</thead>
+
+				<tbody>
+				{{#each areaList as |area index|}}
+					<tr>
+						<td>
+							<label>
+								<input
+								 type="radio"
+								 name="area"
+								 data-action="updateRitual"
+								 value="{{area.key}}"
+								 {{#if area.selected}}checked{{/if}}/>
+							</label>
+						</td>
+						<th>{{localize area.label}}</th>
+						<td>{{area.multiplier}}</td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</fieldset>
+
+		<fieldset class="title-fieldset desc resource-content">
+			<legend class="resource-label-full">
+				<label class="resource-label-m">{{localize 'FU.Cost'}}</label>
+			</legend>
+			<div class="flexcol">
+				<span class="fu-dialog__output" id="ritual-cost">
+					{{cost}}
+				</span>
+			</div>
+		</fieldset>
+
+		<!-- Hidden: used by the result-->
+		<label><input name="difficulty" type="number" value="{{potency.difficulty}}" min="0" hidden/></label>
+		<label><input name="cost" type="number" value="{{cost}}" min="0" hidden/></label>
+
+	{{else}}
+		<div class="flexrow">
+			<fieldset class="flex-group-left resource-content">
+				<legend class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</legend>
+				<div class="flexrow flex-group-center">
+					{{pfuBadge 'mod' label='FU.Bonus' value=bonus }}
+					<label class="resource-text-m">
+						{{localize 'FU.DialogCheckModifier'}}
+						<input name="modifier" type="number" value="{{modifier}}">
+					</label>
+				</div>
+			</fieldset>
+			{{#if (and (ne type 'open') (ne type 'opposed'))}}
+				<fieldset class="flex-group-left resource-content">
+					<legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
+
+					{{#if (eq type 'group')}}
+						<label class="resource-text-m">
+							{{localize 'FU.DialogGroupCheckDifficulty' type=typeLabel}}
+							<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+						</label>
+						<label class="resource-text-m">
+							{{localize 'FU.DialogGroupCheckSupportDifficulty'}}
+							<input name="supportDifficulty" type="number" value="{{supportDifficulty}}" min="0">
+						</label>
+					{{else}}
+						<label class="resource-text-m">
+							{{localize 'FU.DialogCheckDifficulty'}}
+							<input name="difficulty" type="number" value="{{difficulty}}" min="0">
+						</label>
+					{{/if}}
+
+					<div class="flexrow" style="flex-wrap: nowrap;">
+						<button type="button" style="background: var(--difficulty-easy)" data-action="setDifficulty" data-value="7" data-tooltip="{{localize 'FU.Easy'}}"><i class="icon ra ra-sheep"></i></button>
+						<button type="button" style="background: var(--difficulty-normal)" data-action="setDifficulty" data-value="10" data-tooltip="{{localize 'FU.Normal'}}"><i class="icon ra ra-aware"></i></button>
+						<button type="button" style="background: var(--difficulty-hard)" data-action="setDifficulty" data-value="13" data-tooltip="{{localize 'FU.Hard'}}"><i class="icon ra ra-monster-skull"></i></button>
+						<button type="button" style="background: var(--difficulty-veryHard)" data-action="setDifficulty" data-value="16" data-tooltip="{{localize 'FU.VeryHard'}}"><i class="icon ra ra-player-despair"></i></button>
+					</div>
+				</fieldset>
+			{{/if}}
+		</div>
 	{{/if}}
 </section>

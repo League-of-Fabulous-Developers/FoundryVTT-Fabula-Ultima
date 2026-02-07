@@ -8,13 +8,10 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You have Resistance to <strong>dark</strong> damage.</p></li><li><p>You gain a +1 bonus to your Magic Defense.</p></li></ul>",
-      "dismiss": "<p>When you <strong>dismiss</strong> this Arcanum, choose <strong>Oblivion</strong> or <strong>Warp</strong>:</p><ul><li><p><strong>Oblivion.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 dark] damage. This damage ignores Resistances.</p></li><li><p><strong>Warp.</strong> You teleport yourself and up to five other nearby willing creatures to a location you previously visited, if that location is within <strong>1 travel day</strong>.</p></li></ul>",
+      "dismiss": "<p>When you <strong>dismiss</strong> this Arcanum, choose <strong>Oblivion</strong> or <strong>Warp</strong>:</p><ul><li><p><strong>Oblivion.</strong> Choose any number of creatures you can see: each of them <strong>suffers 30 dark damage</strong>. This damage <strong>ignores Resistances.</strong></p></li><li><p><strong>Warp.</strong> You teleport yourself and up to five other nearby willing creatures to a location you previously visited, if that location is within <strong>1 travel day</strong>.</p><hr></li></ul><ul><li><p><strong>Targets</strong>: @DMG[&step(30,40,50) dark|ignore-resistances|]{Oblivion}</p></li></ul>",
       "domains": "space, travel, void"
     },
     "source": "FUCR179",
@@ -84,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710463996976,
-    "modifiedTime": 1724180862317,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1768129329248,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

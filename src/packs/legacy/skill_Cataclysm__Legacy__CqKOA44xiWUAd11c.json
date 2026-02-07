@@ -1,0 +1,208 @@
+{
+  "folder": "IiIlJG6pPTDD4KFq",
+  "name": "Cataclysm [Legacy]",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_cataclysm.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you cast an <strong>instantaneous</strong> spell, if you have an <strong>arcane</strong> weapon equipped, you may increase the spell's total MP cost by up to <strong>【SL × 10】</strong> Mind Points. If you do so and the spell deals damage to one or more creatures, it will deal 5 extra damage to each creature for every 10 Mind Points by which you increased its total MP cost.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "source": "FUCR187",
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "defense": "def",
+    "fuid": "cataclysm-legacy",
+    "cost": {
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "effects": [
+    {
+      "name": "Cataclysm",
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_cataclysm.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "mwqxq5RZ2uX5Iyzv": {
+              "type": "ruleElement",
+              "_id": "mwqxq5RZ2uX5Iyzv",
+              "trigger": {
+                "_id": "Pc2XVX08qsypdnQR",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": []
+              },
+              "predicates": {
+                "3i8OFA8Qwk5Lqqz5": {
+                  "type": "weaponRulePredicate",
+                  "_id": "3i8OFA8Qwk5Lqqz5",
+                  "categories": [
+                    "arcane"
+                  ],
+                  "selector": "initial",
+                  "martial": "",
+                  "handedness": "",
+                  "weaponType": ""
+                },
+                "hBGetuaUyjiB9K3S": {
+                  "type": "spellRulePredicate",
+                  "_id": "hBGetuaUyjiB9K3S",
+                  "offensive": "true",
+                  "duration": "instantaneous"
+                }
+              },
+              "actions": {
+                "pEDv6onCfA8WnUKB": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "pEDv6onCfA8WnUKB",
+                  "amount": "5",
+                  "cost": {
+                    "amount": "10",
+                    "resource": "mp",
+                    "perTarget": false
+                  },
+                  "variant": "overChannel",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  }
+                }
+              },
+              "selector": "initial",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Dd03wzpbYRkqDcq9",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!CqKOA44xiWUAd11c.Dd03wzpbYRkqDcq9"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768575907563,
+    "modifiedTime": 1768620191779,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "CqKOA44xiWUAd11c",
+  "sort": 1000000,
+  "_key": "!items!CqKOA44xiWUAd11c"
+}

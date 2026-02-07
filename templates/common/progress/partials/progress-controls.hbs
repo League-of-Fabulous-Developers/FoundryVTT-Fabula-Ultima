@@ -1,0 +1,45 @@
+{{#if controls}}
+	<div class="progress-controls">
+		<a class="increment-button"
+		   data-type="{{type}}"
+		   data-id="{{id}}"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-index="{{index}}"
+		   data-update-amount="1"
+		   data-tooltip="{{localize
+			'FU.IncreaseTooltip'}} ({{data.step}})">
+			<i class="icon fas fa-plus"></i>
+		</a>
+		<a class="decrement-button"
+		   data-type="{{type}}"
+		   data-id="{{id}}"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-index="{{index}}"
+		   data-update-amount="-1"
+		   data-tooltip="{{localize
+			'FU.DecreaseTooltip'}} ({{data.step}})">
+			<i class="icon fas fa-minus"></i>
+		</a>
+		{{#if prompt}}
+			<a data-action="promptTrack"
+			   data-id="{{id}}"
+			   data-data-path="{{dataPath}}"
+			   data-tooltip="{{localize 'FU.DialogPromptCheck'}}"
+			   data-index="{{index}}">
+				<i class="icon ra ra-perspective-dice-six"></i>
+			</a>
+		{{/if}}
+		{{#if isCollection}}
+			<a data-action="removeTrack"
+			   data-id="{{id}}"
+			   data-data-path="{{dataPath}}"
+			   data-tooltip="{{localize 'FU.Delete'}}"
+			   data-index="{{index}}">
+				<i class="icon fas fa-close"></i>
+			</a>
+		{{/if}}
+	</div>
+{{/if}}
+

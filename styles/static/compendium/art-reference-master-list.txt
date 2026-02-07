@@ -112,3 +112,9 @@ With the exception of the following:
 [projectfu\styles\static\compendium\classes\arcanist\arcanum*] (fantasy-rpg, gem_*)
 [projectfu\styles\static\compendium\classes\arcanist-rework\arcanum*] (fantasy-rpg, recolor of gem_*)
 [projectfu\styles\static\compendium\classes\guardian\twin-shields\*] Twin Shield Assets: twin-shield (fantasy-rpg, recolor of shield_110)
+[projectfu\styles\static\compendium\classes\elementalist\spells\boulder.png] Boulder (custom-made by Kami lucky)
+
+--------------------------------------------------
+The Mnemosphere icons in the following folders are a combination of the respective class icon by Javier Aumente (Tarot) and orb_002.png by Pixeltier, created with permission by the respective authors.
+[projectfu\styles\static\compendium\classes\*\*_mnemosphere.png]
+

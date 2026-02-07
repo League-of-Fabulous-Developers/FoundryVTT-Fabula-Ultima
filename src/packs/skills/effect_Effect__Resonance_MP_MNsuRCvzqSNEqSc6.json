@@ -1,0 +1,112 @@
+{
+  "folder": "W4fiI5cqJwfMJtiD",
+  "name": "Effect: Resonance MP",
+  "type": "effect",
+  "_id": "MNsuRCvzqSNEqSc6",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
+  "system": {
+    "fuid": "effect-resonance-mp",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: Resonance MP",
+      "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "15RIyH3dI1lesVGP": {
+              "type": "ruleElement",
+              "_id": "15RIyH3dI1lesVGP",
+              "trigger": {
+                "_id": "PM8p8GuYjKIPWQaZ",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "",
+                "damageSources": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "actions": {
+                "M08PHT16iox0yZde": {
+                  "type": "messageRuleAction",
+                  "_id": "M08PHT16iox0yZde",
+                  "message": "<p>The chanter recovers MP from @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance} <strong>every time</strong> you suffer damage.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "g7hwVC7QG8txOt3H",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The chanter recovers <strong>【SL】</strong> Mind Points <strong>every time</strong> you suffer damage. This is due to @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance}.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770268511650,
+        "modifiedTime": 1770400628082,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!MNsuRCvzqSNEqSc6.g7hwVC7QG8txOt3H"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770268502028,
+    "modifiedTime": 1770268743257,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!MNsuRCvzqSNEqSc6"
+}

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action to interfere with the flow of time by spending up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers <strong>slow</strong>; or one creature you can see recovers from <strong>slow</strong>; or one creature you can see may immediately perform the <strong>Equipment action</strong> for free; <strong>or</strong> choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</p><p>Each option can only be chosen once per use of this Skill.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[slow]</p></li></ul>",
+    "description": "<p>During a conflict, you may use an action to interfere with the flow of time by spending up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option:</p><ul><li><p>One creature you can see suffers <strong>slow.</strong></p></li><li><p>One creature you can see recovers from <strong>slow.</strong></p></li><li><p>One enemy you can see that is suffering from <strong>slow</strong> loses <strong>【10 + (SL × 5)】</strong> Hit Points.</p></li><li><p>One creature you can see may perform the <strong>Equipment </strong>action for free.</p></li><li><p>Choose one ally you can see that has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</p></li></ul><p>Each option can only be chosen <strong>once</strong> per use of this Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR191"
-    },
+    "source": "FUCR191",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -123,24 +121,112 @@
     "fuid": "stolen-time",
     "cost": {
       "amount": 5
+    },
+    "effects": {
+      "entries": [
+        "slow"
+      ]
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "-(10+($sl*5))"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Stolen Time",
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_stolen_time.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "gUNBY7VIdlmgH003": {
+              "type": "ruleElement",
+              "_id": "gUNBY7VIdlmgH003",
+              "trigger": {
+                "_id": "M39Ikqb1UtmtYGIr",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "mddDZWySI2NK0ojv": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "mddDZWySI2NK0ojv",
+                  "identifier": "slow"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "pRy6iKZ3Imk7vAbT",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770343573167,
+        "modifiedTime": 1770343593101,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!84JARbmkQ5r0j39r.pRy6iKZ3Imk7vAbT"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706486840722,
-    "modifiedTime": 1744486874088,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770253499998,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

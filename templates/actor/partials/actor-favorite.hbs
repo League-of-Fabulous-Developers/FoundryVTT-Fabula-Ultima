@@ -1,107 +1,12 @@
 {{!-- Favorite Template --}}
-<fieldset class="section-container title-fieldset desc resource-content">
+<fieldset class="section-container title-fieldset desc resource-content flexgrow-1">
 	<legend class="resource-label-m" aria-describedby="tooltip">
 		<a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.FavoriteAdd'}}"
-		   data-type="newFavorite"><i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}</a>
+		   data-type="newFavorite" data-action="createFavorite"><i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}</a>
 	</legend>
 
 	{{!-- Equipped Item Header--}}
-	{{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs" item=item}}
+	{{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs"}}
 
-	<ol class="items-list">
-		<li class="item flexrow items-header">
-			<div class="item-name start"><i class="fas fa-star icon"></i>{{localize 'FU.Favorite'}}</div>
-			<div class="item-m end">
-				<a id="sortButton" data-action="sortFavorites" class="item-control sort"
-				   data-tooltip="{{localize 'FU.Sort'}}" data-type="sort">
-					<i class="fas fa-sort icon"></i>
-					{{localize 'FU.Sort'}}
-				</a>
-			</div>
-		</li>
-		{{#each items as |item id|}}
-			{{#if item.system.isFavored.value}}
-				<li class="item draggable" data-item-id="{{ item._id }}">
-					<div class="flexrow">
-						{{!-- Item Name --}}
-						{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-						{{!-- Class Features --}}
-						{{#if (eq item.type 'classFeature')}}
-							{{#with (lookup @root.classFeatures item.system.featureType) as | featureType |}}
-								{{#with (lookup featureType.items item._id) as | itemData |}}
-									{{> (lookup featureType.feature 'previewTemplate') itemData.item additionalData=itemData.additionalData
-									 item=itemData.item}}
-								{{/with}}
-							{{/with}}
-						{{/if}}
-
-						{{!-- Optional Features --}}
-						{{#if (eq item.type "optionalFeature")}}
-							{{#unless item.system.data.progress}}
-								{{#with (lookup @root.optionalFeatures item.system.optionalType) as |optionalType|}}
-									{{#with (lookup optionalType.items item._id) as |itemData|}}
-										{{> (lookup optionalType.optional 'previewTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
-									{{/with}}
-								{{/with}}
-							{{/unless}}
-						{{/if}}
-
-						{{!-- Item Equip--}}
-						{{#if (or (eq @root.actor.type "character") @root.actor.system.useEquipment.value)}}
-							{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
-						{{/if}}
-
-						{{!-- Resource Points --}}
-						{{#if item.system.data.hasResource.value}}
-							{{progress item 'system.data.rp' style='basic' type='optionalRPCounter' }}
-						{{/if}}
-
-						{{!-- Resource Points --}}
-						{{#if item.system.hasResource.value}}
-							{{progress item 'system.rp' style='basic' type='resourceCounter' }}
-						{{/if}}
-
-						{{#if (eq item.type "project")}}
-						{{!-- Progress Bar --}}
-							{{!-- Progress Counter --}}
-							{{progress item 'system.progress' style='bar' type='projectCounter' }}
-						{{/if}}
-
-						{{!-- Item Control--}}
-						{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item unarmed=item.unarmedStrike}}
-					</div>
-					{{#if item.quality}}
-						<div class="item-quality align-left">{{ item.quality }}</div>
-					{{/if}}
-					<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-						{{#if item.detail}}
-							<div class="item-quality align-left">
-								<strong>{{item.detail}}</strong>
-							</div>
-						{{/if}}
-
-						{{#if item.system.description}}
-							{{{item.enrichedHtml.description}}}
-						{{/if}}
-
-						{{#if (eq item.type "classFeature")}}
-							{{#with (lookup @root.classFeatures item.system.featureType) as |featureType|}}
-								{{#with (lookup featureType.items item._id) as |itemData|}}
-									{{> (lookup featureType.feature 'expandTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
-								{{/with}}
-							{{/with}}
-						{{/if}}
-
-						{{#if (eq item.type "optionalFeature")}}
-							{{#with (lookup @root.optionalFeatures item.system.optionalType) as |optionalType|}}
-								{{#with (lookup optionalType.items item._id) as |itemData|}}
-									{{> (lookup optionalType.optional 'expandTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
-								{{/with}}
-							{{/with}}
-						{{/if}}
-					</div>
-				</li>
-			{{/if}}
-		{{/each}}
-	</ol>
+	{{{favoritesTable}}}
 </fieldset>

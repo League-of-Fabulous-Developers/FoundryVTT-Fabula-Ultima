@@ -1,0 +1,47 @@
+{
+  "name": "Piercing Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/piercing.png",
+  "system": {
+    "fuid": "piercing-hoplosphere",
+    "source": "FUTF141",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "freeText",
+        "coagulationLevel": 1,
+        "name": "Piercing Strikes",
+        "text": "Ignore Resistances"
+      },
+      {
+        "type": "freeText",
+        "coagulationLevel": 2,
+        "name": "Improved Piercing Strikes",
+        "text": "Ignore Resistances and Immunities"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658499507,
+    "modifiedTime": 1760404582654,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "0xQyUTmzDPNI3goa",
+  "sort": 300000,
+  "_key": "!items!0xQyUTmzDPNI3goa"
+}

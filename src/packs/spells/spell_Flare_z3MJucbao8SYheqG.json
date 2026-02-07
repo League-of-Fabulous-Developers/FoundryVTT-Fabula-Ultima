@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You channel a single ray of fire towards your foe, its temperature so high that it will pierce through most defenses. The target suffers <strong>【HR + 25】 fire</strong> damage.</p><p>Damage dealt by this spell <strong>ignores Resistances</strong>.</p>",
+    "description": "<p>You channel a single ray of fire towards your foe, its temperature so high that it will pierce through most defenses. You deal <strong>【HR + 25】 fire</strong> damage to the target; this damage ignores Resistances</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": true
     },
-    "source": {
-      "value": "FUCR188"
-    },
+    "source": "FUCR188",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -121,7 +119,7 @@
     },
     "fuid": "flare",
     "traits": [
-      "IgnoreResistances"
+      "ignore-resistances"
     ]
   },
   "effects": [],
@@ -131,15 +129,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706564602981,
-    "modifiedTime": 1746640905449,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1768577145901,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

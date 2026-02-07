@@ -1,0 +1,23 @@
+<section class="chat-prompt__message">
+	{{{localize 'FU.ChatRemoveEffectPrompt' source=source }}}
+</section>
+
+<table class="table-compact">
+	<tbody>
+	{{#each effects as |effect|}}
+		<tr class="table-compact__row">
+			<td class="table">
+				<a data-action="display" data-description="{{effect.description}}" data-actor-id="{{../actor.uuid}}">
+					<img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
+				</a>
+				<span>{{effect.name}}</span>
+			</td>
+			<td>
+				<a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect.id}}" data-actor-id="{{../actor.uuid}}">
+					<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-minus }"></i></span>
+				</a>
+			</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>

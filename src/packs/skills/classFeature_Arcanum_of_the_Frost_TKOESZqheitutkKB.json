@@ -8,13 +8,10 @@
     "summary": {
       "value": ""
     },
-    "isFavored": {
-      "value": false
-    },
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal <strong>ignores Resistances</strong>.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Ice Age.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 ice]</strong> damage. This damage ignores Resistances.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Ice Age.</strong> Choose any number of creatures you can see: each of them <strong>suffers</strong> <strong>30 ice damage</strong>. This damage <strong>ignores Resistances.</strong></p><hr></li><li><p><strong>Targets</strong>: @DMG[&step(30,40,50) ice|ignore-resistances|]{Ice Age}</p></li></ul>",
       "domains": "cold, ice, silence"
     },
     "source": "FUCR179",
@@ -37,7 +34,49 @@
       "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-frost.png",
       "_id": "NlNLwaqwYxflNKXr",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "elements": {
+            "1W8xsrNxlmKrCJy2": {
+              "type": "ruleElement",
+              "_id": "1W8xsrNxlmKrCJy2",
+              "trigger": {
+                "_id": "4AVi7hxQrAx1KRch",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [],
+                "damageTypes": [
+                  "ice"
+                ]
+              },
+              "actions": {
+                "Vb17erUOqix9kPLr": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "Vb17erUOqix9kPLr",
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  },
+                  "amount": "",
+                  "cost": {
+                    "amount": null,
+                    "resource": ""
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.ice",
@@ -67,12 +106,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.348",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725596891866,
-        "modifiedTime": 1741996364875,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1767979167430,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
         "exportSource": null
       },
       "_key": "!items.effects!TKOESZqheitutkKB.NlNLwaqwYxflNKXr"
@@ -84,10 +123,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710463982993,
-    "modifiedTime": 1724180862295,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1768129329248,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

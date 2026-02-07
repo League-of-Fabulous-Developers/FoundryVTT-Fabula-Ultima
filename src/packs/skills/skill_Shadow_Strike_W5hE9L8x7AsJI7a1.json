@@ -70,9 +70,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR185"
-    },
+    "source": "FUCR185",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -118,7 +116,7 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
+    "defense": "",
     "fuid": "shadow-strike",
     "targeting": {
       "rule": "special"
@@ -131,15 +129,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706496911469,
-    "modifiedTime": 1740068853274,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1770342956042,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

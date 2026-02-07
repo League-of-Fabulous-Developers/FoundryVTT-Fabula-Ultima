@@ -1,0 +1,40 @@
+{
+  "name": "Mighty Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/mighty.png",
+  "system": {
+    "fuid": "mighty-hoplosphere",
+    "source": "FUTF141",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "increaseAttributeDieSize",
+        "coagulationLevel": 1,
+        "attribute": "mig"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658497509,
+    "modifiedTime": 1760404572486,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "HHo9oo6heFKhXLWI",
+  "sort": 800000,
+  "_key": "!items!HHo9oo6heFKhXLWI"
+}

@@ -1,0 +1,15 @@
+<div class="cell-equipment-weapon-details">
+	{{#with check}}
+		<div class="cell-equipment-weapon-details__check">
+			【{{localize (lookup @root.FU.attributeAbbreviations primary)}} + {{localize (lookup @root.FU.attributeAbbreviations secondary)}}】
+			{{~signum}}
+			{{modifier}}
+		</div>
+	{{/with}}
+	<div class="cell-equipment-weapon-details__divider"></div>
+	{{#with damage}}
+		<div class="cell-equipment-weapon-details__damage">
+			【{{#unless hrZero}}{{localize "FU.HighRollAbbr"}}{{else}}{{localize "FU.HRZero"}}{{/unless}} {{signum}} {{value}}】{{localize (lookup @root.FU.damageTypes type)}}
+		</div>
+	{{/with}}
+</div>

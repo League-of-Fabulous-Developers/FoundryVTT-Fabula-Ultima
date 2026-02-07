@@ -77,9 +77,7 @@
       "max": 6,
       "name": "Name"
     },
-    "source": {
-      "value": "FUHF148"
-    },
+    "source": "FUHF148",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {

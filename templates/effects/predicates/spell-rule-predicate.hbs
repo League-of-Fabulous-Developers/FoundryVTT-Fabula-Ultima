@@ -1,0 +1,15 @@
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.IsOffensive'}}</span>
+	<select name="{{pfuConcat path ".offensive"}}">
+		<option value="">-</option>
+		{{selectOptions options.booleanOption selected=predicate.offensive localize=true}}
+	</select>
+</label>
+
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Duration'}}</span>
+	<select name="{{pfuConcat path ".duration"}}">
+		<option value="">-</option>
+		{{selectOptions options.duration selected=predicate.duration localize=true}}
+	</select>
+</label>

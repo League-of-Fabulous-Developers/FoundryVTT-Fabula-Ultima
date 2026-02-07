@@ -1,0 +1,9 @@
+.cell-equip-status {
+	color: var(--color-primary);
+	font-size: 110%;
+
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}

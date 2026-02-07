@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Companion grows stronger."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faithful Companion</strong> Skill.</p></blockquote><p>Your bond with your companion grows stronger. You gain the following benefits:</p><ul><li>The companion's maximum Hit Points increase by 10.</li><li>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</li><li>The companion gains an additional Skill. When you reach level <strong>40</strong>, or if you have already reached it, the companion gains an additional Skill. Make sure to discuss your Skill choices with the Game Master and the other Players.</li></ul><hr /><ul><li><p><strong>Companion Receives:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.qZPjSnXWgwN7Wg0t]{Effect: Heroic Companion}</p></li><li><p>Then, navigate to the active effect's \"<strong>Effects</strong>\" tab, choose one attribute to increase, and remove the rest.</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faithful Companion</strong> Skill.</p></blockquote><p>Your bond with your companion grows stronger. You gain the following benefits:</p><ul><li>The companion's maximum Hit Points increase by 10.</li><li>The companion deals 5 extra damage.</li><li>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</li><li>The companion gains an additional Skill. When you reach level <strong>40</strong>, or if you have already reached it, the companion gains an additional Skill. Make sure to discuss your Skill choices with the Game Master and the other Players.</li></ul><hr /><ul><li><p><strong>Companion Receives:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.qZPjSnXWgwN7Wg0t]{Effect: Heroic Companion}</p></li><li><p>Then, navigate to the active effect's \"<strong>Effects</strong>\" tab, choose one attribute to increase, and remove the rest.</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUCR236"
-    },
+    "source": "FUCR236",
     "hasResource": {
       "value": false
     },
@@ -104,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706584415337,
-    "modifiedTime": 1744251315171,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768869325199,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

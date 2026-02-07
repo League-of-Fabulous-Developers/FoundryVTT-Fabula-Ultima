@@ -3,6 +3,7 @@ import { SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
 
 /**
  * @extends ClassFeatureDataModel
@@ -65,9 +66,11 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
 		const chatMessage = {
 			speaker,
-			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			flavor: await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+				item: model.parent.parent,
+			}),
 			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/arcanist/feature-arcanum-chat-message.hbs', data),
-			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid } },
 		};
 
 		CommonEvents.skill(item.actor, item);
@@ -76,5 +79,19 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 
 	transferEffects() {
 		return this.item?.isEquipped ?? false;
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	toggleActiveArcanum(event, target) {
+		const currentArcanumId = this.actor.system.equipped.arcanum;
+		// Toggle arcanum slot
+		const newArcanumId = currentArcanumId === this.item.id ? null : this.item.id;
+		this.actor.update({
+			'system.equipped.arcanum': newArcanumId,
+		});
 	}
 }

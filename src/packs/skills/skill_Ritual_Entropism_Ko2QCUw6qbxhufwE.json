@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUCR191"
-    },
+    "source": "FUCR191",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,24 +118,108 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "ritual-entropism"
+    "fuid": "ritual-entropism",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ritual Entropism",
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_ritual_entropism.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Wn6jfhjwuPxOrvwi": {
+              "type": "ruleElement",
+              "_id": "Wn6jfhjwuPxOrvwi",
+              "trigger": {
+                "_id": "RTb21nXYsl1N7N31",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "WsXtNSc6ULBghhsQ": {
+                  "type": "performCheckRuleAction",
+                  "_id": "WsXtNSc6ULBghhsQ",
+                  "check": "ritual"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "91QkE5cUgSCD6X16",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1767130620967,
+        "modifiedTime": 1770343679306,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Ko2QCUw6qbxhufwE.91QkE5cUgSCD6X16"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1706486739037,
-    "modifiedTime": 1741985036122,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1768060737870,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

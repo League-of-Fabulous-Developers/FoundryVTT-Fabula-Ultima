@@ -43,7 +43,7 @@ export class ToneDataModel extends RollableClassFeatureDataModel {
 				type: game.i18n.localize('FU.ClassFeatureToneDescriptionKeyDamageType'),
 				status: game.i18n.localize('FU.ClassFeatureToneDescriptionKeyStatus'),
 				attribute: game.i18n.localize('FU.ClassFeatureToneDescriptionKeyAttribute'),
-				recovery: game.i18n.localize('FU.ClassFeatureToneDescriptionKeyRecovery'),
+				resource: game.i18n.localize('FU.Resource'),
 			},
 			attribute: {
 				dex: game.i18n.format('FU.ClassFeatureToneDescriptionAttributeCurrent', { attribute: game.i18n.localize('FU.AttributeDex') }),

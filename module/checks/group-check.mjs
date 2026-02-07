@@ -6,6 +6,12 @@ import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { SupportCheck } from './support-check.mjs';
 import FUApplication from '../ui/application.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { CommonSections } from './common-sections.mjs';
+import { CheckPrompt } from './check-prompt.mjs';
+import { Pipeline } from '../pipelines/pipeline.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
 
 /**
  * @typedef SupporterV2
@@ -20,8 +26,10 @@ import FUApplication from '../ui/application.mjs';
  * @property {string} id
  * @property {string} initiatingUser
  * @property {string} leader
+ * @property {'ritual'|'group'} type
  * @property {Attribute} primary
  * @property {Attribute} secondary
+ * @property {String} itemUuid
  * @property {number} checkDifficulty
  * @property {number} supportDifficulty
  * @property {boolean} [initiative]
@@ -50,6 +58,7 @@ const onReadyResumeGroupChecks = () => {
 			},
 		],
 	});
+	// TODO: Add in item data
 	for (const chatMessage of search) {
 		const actor = ChatMessage.getSpeakerActor(chatMessage.speaker);
 		/** @type GroupCheckV2Flag */
@@ -84,6 +93,7 @@ const initGroupCheck = async (check, actor) => {
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
 			attributes: FU.attributes,
+			type: check.type,
 			difficulty: {
 				check: 10,
 				support: 10,
@@ -186,9 +196,8 @@ const critThresholdFlags = {
  * @type PrepareCheckHook
  */
 const onPrepareGroupCheck = (check, actor, item, registerCallback) => {
-	if (['group', 'initiative'].includes(check.type)) {
+	if (isGroupCheck(check.type)) {
 		registerCallback(waitForSupportChecks, Number.MAX_VALUE);
-
 		const flag = actor.getFlag(SYSTEM, critThresholdFlags[check.type]);
 		if (flag) {
 			check.critThreshold = Math.min(check.critThreshold, Number(flag));
@@ -253,11 +262,14 @@ class GroupCheckApp extends FUApplication {
 			.at(0);
 		if (!this.#chatMessage) {
 			const inspector = CheckConfiguration.inspect(groupCheck);
+			const typeLabel = StringUtils.localize(FU.checkTypes[groupCheck.type]);
 			/** @type GroupCheckV2Flag */
 			const groupCheckData = {
 				id: groupCheck.id,
 				initiatingUser: game.user.id,
 				leader: actor.id,
+				type: groupCheck.type,
+				typeLabel: typeLabel,
 				initiative: groupCheck.type === 'initiative',
 				primary: groupCheck.primary,
 				secondary: groupCheck.secondary,
@@ -266,7 +278,7 @@ class GroupCheckApp extends FUApplication {
 				supporters: [],
 				status: 'open',
 			};
-			const flavorPromise = foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: groupCheckData.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck' });
+			const flavorPromise = foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: typeLabel });
 			const contentPromise = this.#renderChatMessage(groupCheckData);
 			Promise.all([flavorPromise, contentPromise])
 				.then(([flavor, content]) =>
@@ -296,8 +308,10 @@ class GroupCheckApp extends FUApplication {
 	async #renderChatMessage(groupCheck) {
 		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-group-check-initiated.hbs', {
 			groupCheckId: groupCheck.id,
+			type: StringUtils.localize(FU.checkTypes[groupCheck.type ?? 'group']),
 			leader: game.actors.get(groupCheck.leader),
 			attributes: { attr1: groupCheck.primary, attr2: groupCheck.secondary },
+			icons: FU.attributeIcons,
 			supporters: groupCheck.supporters.map((value) => ({
 				name: game.actors.get(value.id).name,
 				result: value.result,
@@ -323,6 +337,8 @@ class GroupCheckApp extends FUApplication {
 					attr2: groupCheck.secondary,
 				},
 			},
+			type: groupCheck.type,
+			typeLabel: groupCheck.typeLabel,
 			leader: game.actors.get(groupCheck.leader),
 			supporters: Object.fromEntries(groupCheck.supporters.map((supporter) => [supporter.id, game.actors.get(supporter.id)])),
 		};
@@ -364,7 +380,9 @@ class GroupCheckApp extends FUApplication {
 			const cancel = await foundry.applications.api.DialogV2.confirm({
 				window: { title: game.i18n.localize('FU.GroupCheckCancelDialogTitle') },
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
+				content: await FoundryUtils.renderTemplate('dialog/dialog-group-check-cancel', {
+					type: StringUtils.localize(options.type ?? 'FU.GroupCheck'),
+				}),
 				rejectClose: false,
 			});
 			if (!cancel) {
@@ -437,11 +455,25 @@ class GroupCheckApp extends FUApplication {
 }
 
 /**
+ * @param {CheckType} type
+ * @returns {boolean}
+ */
+function isGroupCheck(type) {
+	switch (type) {
+		case 'group':
+		case 'initiative':
+		case 'ritual':
+			return true;
+	}
+	return false;
+}
+
+/**
  * @type {RenderCheckHook}
  */
-const onRenderGroupCheck = (sections, check, actor) => {
+const onRenderGroupCheck = (sections, check, actor, item, flags) => {
 	const { type, primary, modifierTotal, secondary, result, critical, fumble } = check;
-	if (type === 'group' || type === 'initiative') {
+	if (isGroupCheck(type)) {
 		const inspector = CheckConfiguration.inspect(check);
 		sections.push({
 			order: CHECK_ROLL,
@@ -464,15 +496,45 @@ const onRenderGroupCheck = (sections, check, actor) => {
 					attr2: {
 						attribute: secondary.attribute,
 					},
+					type,
 				},
 				difficulty: inspector.getDifficulty(),
 				modifiers: check.modifiers,
 			},
 		});
+
+		const targets = inspector.getTargets();
+		CommonSections.actions(sections, actor, item, targets, flags, inspector);
 	}
 };
 
+/**
+ * @param {ChatMessage} message
+ * @param {HTMLElement} html
+ */
+function onRenderChatMessage(message, html) {
+	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
+		Pipeline.handleClick(message, html, 'ritualCheck', async (dataset) => {
+			/** @type RitualCheckData **/
+			const fields = StringUtils.fromBase64(dataset.fields);
+			const actor = await fromUuid(fields.actorId);
+			if (!actor) {
+				return;
+			}
+			const item = await fromUuid(fields.itemId);
+			if (!item) {
+				return;
+			}
+			return CheckPrompt.ritualCheck(actor, item, {
+				primary: fields.primary,
+				secondary: fields.secondary,
+			});
+		});
+	}
+}
+
 const initialize = () => {
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 	Hooks.once('ready', onReadyResumeGroupChecks);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareGroupCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderGroupCheck);
@@ -509,4 +571,5 @@ export const GroupCheck = Object.freeze({
 	initInitiativeCheck,
 	initGroupCheck,
 	setSupportCheckDifficulty,
+	isGroupCheck,
 });

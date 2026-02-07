@@ -11,17 +11,17 @@
 	{{#if (eq actor.type "character")}}
 		<!-- Deposit/Withdraw Zenit -->
 		<div class="item-control" style="gap: 4px;">
-			<a class="item-control zenit-deposit" data-tooltip="{{ localize 'FU.InventoryDepositZenit' currency=(getGameSetting 'optionRenameCurrency') }}"
+			<a class="item-control zenit-deposit" data-tooltip="{{ localize 'FU.InventoryDepositZenit' currency=(pfuGetSetting 'optionRenameCurrency') }}"
 			   aria-describedby="tooltip" data-action="zenitTransfer" data-zenit-action="deposit">
 				<i class="fa fa-paper-plane button-style"></i>
 			</a>
-			<a class="item-control zenit-withdraw" data-tooltip="{{ localize 'FU.InventoryWithdrawZenit' currency=(getGameSetting 'optionRenameCurrency') }}"
+			<a class="item-control zenit-withdraw" data-tooltip="{{ localize 'FU.InventoryWithdrawZenit' currency=(pfuGetSetting 'optionRenameCurrency') }}"
 			   aria-describedby="tooltip" data-action="zenitTransfer" data-zenit-action="withdraw">
 				<i class="fa fa-university button-style"></i>
 			</a>
 		</div>
 		<!-- Zenit -->
-		<a class="item rollable tab button-style zenit-style" data-tooltip="{{getGameSetting 'optionRenameCurrency'}}">
+		<a class="item rollable tab button-style zenit-style" data-tooltip="{{pfuGetSetting 'optionRenameCurrency'}}">
 			<i class="fuk fu-zenit icon-aff"></i>
 			<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}"
 				   data-dtype="Number" />

@@ -1,0 +1,10 @@
+<input type="text"
+	   list="{{name}}-list"
+	   name="{{name}}"
+	   value="{{value}}" />
+
+<datalist id="{{name}}-list">
+	{{#each options}}
+		<option value="{{this}}"></option>
+	{{/each}}
+</datalist>

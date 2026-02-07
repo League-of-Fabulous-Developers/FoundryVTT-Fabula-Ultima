@@ -1,0 +1,40 @@
+{
+  "name": "Agile Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/agile.png",
+  "system": {
+    "fuid": "agile-hoplosphere",
+    "source": "FUTF139",
+    "summary": "",
+    "socketable": "all",
+    "requiredSlots": 2,
+    "effects": [
+      {
+        "type": "increaseAttributeDieSize",
+        "attribute": "dex",
+        "coagulationLevel": 1
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658472522,
+    "modifiedTime": 1760404487797,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "OMKRkWaSkcrGgFBQ",
+  "sort": 2100000,
+  "_key": "!items!OMKRkWaSkcrGgFBQ"
+}

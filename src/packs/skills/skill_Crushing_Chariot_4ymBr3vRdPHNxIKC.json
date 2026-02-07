@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you use <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, or <strong>King's Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</p><hr /><ul><li><p><strong>Trigger:</strong> @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, <strong>or</strong> @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</p></li></ul>",
+    "description": "<p>After you use <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, or <strong>King's Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</p><hr /><p><strong>Trigger:</strong> @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, <strong>or</strong> @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</p>",
     "isFavored": {
       "value": false
     },
@@ -71,9 +71,7 @@
         "value": "physical"
       }
     },
-    "source": {
-      "value": "FUHF141"
-    },
+    "source": "FUHF141",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -120,24 +118,152 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "crushing-chariot"
+    "fuid": "crushing-chariot",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Crushing Chariot",
+      "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_crushing_chariot.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "E7MAXi5LkWYCsB6S": {
+              "type": "ruleElement",
+              "_id": "E7MAXi5LkWYCsB6S",
+              "trigger": {
+                "_id": "6Gf1P1sPfE9FEhzF",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "bishops-edict"
+              },
+              "actions": {
+                "MOPj55yDDw7IVn3T": {
+                  "type": "messageRuleAction",
+                  "_id": "MOPj55yDDw7IVn3T",
+                  "message": "<p>Another PC may take their turn after yours.</p>"
+                }
+              }
+            },
+            "HevpSpv3wgC43yKF": {
+              "type": "ruleElement",
+              "_id": "HevpSpv3wgC43yKF",
+              "trigger": {
+                "_id": "fZnkmVrtVaUEvkU8",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "charging-cavalry"
+              },
+              "actions": {
+                "t2CHaeDvIyiJDWgD": {
+                  "type": "messageRuleAction",
+                  "_id": "t2CHaeDvIyiJDWgD",
+                  "message": "<p>Another PC may take their turn after yours.</p>"
+                }
+              }
+            },
+            "ADMRCgpWHIIZ1Sdq": {
+              "type": "ruleElement",
+              "_id": "ADMRCgpWHIIZ1Sdq",
+              "trigger": {
+                "_id": "Km538Z0FkDsRJhRL",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "kings-castle"
+              },
+              "actions": {
+                "mgpd0YdxZyCCod2F": {
+                  "type": "messageRuleAction",
+                  "_id": "mgpd0YdxZyCCod2F",
+                  "message": "<p>Another PC may take their turn after yours.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "bo9XH8Km5H7Yflyz",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770274361322,
+        "modifiedTime": 1770331699680,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!4ymBr3vRdPHNxIKC.bo9XH8Km5H7Yflyz"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706555533504,
-    "modifiedTime": 1741995563989,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770331797837,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

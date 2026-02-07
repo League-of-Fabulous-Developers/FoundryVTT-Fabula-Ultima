@@ -1,7 +1,7 @@
-import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { CharacterDataModel } from '../../actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 
 /**
  * @param {FUActor} actor
@@ -14,7 +14,7 @@ function getWeapon(actor, slot) {
 			.filter((value) => value)
 			.map((value) => actor.items.get(value))
 			.filter((value) => value)
-			.filter((value) => value.system instanceof WeaponDataModel)
+			.filter((value) => value.type in FU.weaponItemTypes)
 			.at(0) ?? null
 	);
 }
@@ -61,22 +61,13 @@ async function prompt(actor, includeWeaponModules = false) {
 		return equippedWeapons[0];
 	}
 
+	const title = game.i18n.localize('FU.ChooseWeaponDialogTitle');
 	const data = {
 		equippedWeapons,
 		FU,
 	};
-
-	const content = await foundry.applications.handlebars.renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-weapon.hbs', data);
-
-	const { selected } = await foundry.applications.api.DialogV2.input({
-		window: { title: game.i18n.localize('FU.ChooseWeaponDialogTitle') },
-		label: game.i18n.localize('FU.Submit'),
-		rejectClose: false,
-		content: content,
-		ok: {
-			label: 'FU.Confirm',
-		},
-	});
+	const content = await FoundryUtils.renderTemplate('dialog/dialog-choose-weapon', data);
+	const { selected } = await FoundryUtils.input(title, content);
 
 	if (selected) {
 		return actor.items.get(selected) ?? null;
@@ -85,6 +76,59 @@ async function prompt(actor, includeWeaponModules = false) {
 	}
 }
 
+/**
+ * @param {FUItem} weapon
+ */
+function getAccuracy(weapon) {
+	let accuracy = 0;
+	switch (weapon.type) {
+		case 'weapon':
+			accuracy = weapon.system.accuracy.value;
+			break;
+
+		case 'customWeapon':
+			accuracy = weapon.system.accuracy;
+			break;
+
+		// Weapon Modules
+		case 'classFeature':
+			accuracy = weapon.system.data.accuracy.modifier;
+			break;
+	}
+	return accuracy;
+}
+
+/**
+ * @param {FUItem} weapon
+ * @return {CheckAttributes}
+ */
+function getAttributes(weapon) {
+	let primary, secondary;
+	switch (weapon.type) {
+		case 'weapon':
+			primary = weapon.system.attributes.primary.value;
+			secondary = weapon.system.attributes.secondary.value;
+			break;
+
+		case 'customWeapon':
+			primary = weapon.system.attributes.primary;
+			secondary = weapon.system.attributes.secondary;
+			break;
+
+		case 'classFeature':
+			primary = weapon.system.data.accuracy.attr1;
+			secondary = weapon.system.data.accuracy.attr2;
+			break;
+	}
+	return {
+		primary: primary,
+		secondary: secondary,
+	};
+}
+
 export const ChooseWeaponDialog = Object.freeze({
 	prompt,
+	getWeapon,
+	getAccuracy,
+	getAttributes,
 });

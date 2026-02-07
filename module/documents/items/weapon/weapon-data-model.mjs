@@ -8,6 +8,9 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 
 /**
  * @param {CheckV2} check
@@ -23,7 +26,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		check.secondary = weapon.attributes.secondary.value;
 
 		CheckConfiguration.configure(check)
-			.addWeaponAccuracy(weapon)
+			.addWeaponAccuracy(item)
 			.setDamage(weapon.damageType.value, weapon.damage.value)
 			.setWeaponTraits({
 				weaponType: weapon.type.value,
@@ -31,6 +34,8 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				handedness: weapon.hands.value,
 			})
 			.addTraits(weapon.damageType.value)
+			.addTraits(Traits.Damage)
+			.addTraitsFromItemModel(weapon.traits)
 			.setTargetedDefense(weapon.defense)
 			.setDamageOverride(actor, 'attack')
 			.modifyHrZero((hrZero) => hrZero || weapon.rollInfo.useWeapon.hrZero.value);
@@ -52,13 +57,12 @@ function onRenderCheck(data, result, actor, item) {
 			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
 			data: {
 				weapon: {
-					category: item.system.category.value,
-					hands: item.system.hands.value,
 					type: item.system.type.value,
 					quality: item.system.quality.value,
 				},
 			},
 		}));
+		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 }
@@ -69,7 +73,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {number} cost.value
  * @property {boolean} isMartial.value
@@ -85,13 +88,17 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {DamageType} damageType.value
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
- * @property {boolean} isCustomWeapon.value
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
+ * @property {Set<String>} traits
  */
 export class WeaponDataModel extends FUStandardItemDataModel {
+	static {
+		deprecationNotice(this, 'isCustomWeapon.value');
+	}
+
 	static defineSchema() {
-		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
@@ -100,9 +107,11 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
+			// TODO: Factor out of schema field
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			hasDamage: new BooleanField({ initial: true, nullable: false }),
 			type: new SchemaField({ value: new StringField({ initial: 'melee', choices: Object.keys(FU.weaponTypes) }) }),
 			category: new SchemaField({ value: new StringField({ initial: 'brawling', choices: Object.keys(FU.weaponCategories) }) }),
 			hands: new SchemaField({ value: new StringField({ initial: 'one-handed', choices: Object.keys(FU.handedness) }) }),
@@ -110,26 +119,19 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			isCustomWeapon: new SchemaField({ value: new BooleanField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
 					hrZero: new SchemaField({ value: new BooleanField() }),
 				}),
 			}),
+			traits: new SetField(new StringField()),
 		});
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		WeaponMigrations.run(source);
 		return source;
-	}
-
-	prepareBaseData() {
-		if (this.isCustomWeapon.value) {
-			this.hands.value = 'two-handed';
-			this.cost.value = Math.max(300, this.cost.value);
-		}
 	}
 
 	transferEffects() {
@@ -141,18 +143,62 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
-		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeWeaponCheck(modifiers));
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeWeaponCheck(modifiers) {
+		return async (check, actor, item) => {
+			const configure = CheckConfiguration.configure(check);
+			configure.setHrZero(modifiers.shift);
+		};
 	}
 
 	get attributePartials() {
 		return [
-			ItemPartialTemplates.controls,
-			ItemPartialTemplates.weaponSettings,
+			ItemPartialTemplates.standard,
+			ItemPartialTemplates.traitsLegacy,
 			ItemPartialTemplates.qualityCost,
 			ItemPartialTemplates.weapon,
 			ItemPartialTemplates.attackAccuracy,
 			ItemPartialTemplates.attackDamage,
 			ItemPartialTemplates.behaviorField,
+			ItemPartialTemplates.attackTypeField,
 		];
+	}
+
+	/**
+	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
+	 * @param {PointerEvent} event
+	 * @param {HTMLElement} target
+	 */
+	equipWeapon(event, target) {
+		// TODO: find better solution, equipment data model maybe?
+		return this.parent.actor.equipmentHandler.handleItemClick(event, target);
+	}
+
+	/**
+	 * @param {Boolean} includeTraits
+	 * @return {Tag[]}
+	 */
+	getTags(includeTraits = true) {
+		let result = [
+			{
+				tag: `FU.${StringUtils.capitalize(this.category.value)}`,
+			},
+			{
+				tag: `FU.${StringUtils.capitalize(this.type.value)}`,
+			},
+			{
+				tag: `FU.${this.hands.value === 'two-handed' ? 'TwoHanded' : 'OneHanded'}`,
+			},
+		];
+		if (includeTraits) {
+			result.push(...TraitUtils.toTags(this.traits));
+		}
+		return result;
 	}
 }

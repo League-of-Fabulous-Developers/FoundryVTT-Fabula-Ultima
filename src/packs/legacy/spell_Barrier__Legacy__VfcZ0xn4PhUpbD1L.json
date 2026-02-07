@@ -1,0 +1,153 @@
+{
+  "folder": "rFNLH1qDltOQIbZn",
+  "name": "Barrier [Legacy]",
+  "type": "spell",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/barrier.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "duration": {
+      "value": "scene"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": "FUCR208",
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "fuid": "barrier",
+    "effects": {
+      "entries": [
+        "barrier"
+      ]
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": true
+    },
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1768686934861,
+    "modifiedTime": 1768694699313,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "_id": "VfcZ0xn4PhUpbD1L",
+  "sort": 1100000,
+  "_key": "!items!VfcZ0xn4PhUpbD1L"
+}

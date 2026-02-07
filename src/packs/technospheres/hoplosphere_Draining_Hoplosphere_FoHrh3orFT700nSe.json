@@ -1,0 +1,41 @@
+{
+  "name": "Draining Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/draining.png",
+  "system": {
+    "fuid": "draining-hoplosphere",
+    "source": "FUTF141",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "freeText",
+        "coagulationLevel": 1,
+        "name": "Drain",
+        "text": "Recover 3 HP/MP on hit"
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658490813,
+    "modifiedTime": 1760404536413,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "FoHrh3orFT700nSe",
+  "sort": 1500000,
+  "_key": "!items!FoHrh3orFT700nSe"
+}

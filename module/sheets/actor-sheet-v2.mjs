@@ -74,7 +74,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 			crisisHP: FUActorSheetV2.CrisisHP,
 			addBond: FUActorSheetV2.AddBond,
 			deleteBond: FUActorSheetV2.DeleteBond,
-			updateProgress: { handler: FUActorSheetV2.UpdateProgress, buttons: [0, 2] },
+			updateTrack: { handler: FUActorSheetV2.UpdateProgress, buttons: [0, 2] },
 			rest: FUActorSheetV2.handleRestClick,
 			sortFavorites: FUActorSheetV2.sortFavorites,
 			levelUp: FUActorSheetV2.levelUp,
@@ -317,7 +317,6 @@ export class FUActorSheetV2 extends FUActorSheet {
 							}),
 						};
 					}
-					await ActorSheetUtils.prepareFeatures(context);
 				}
 				break;
 
@@ -326,36 +325,21 @@ export class FUActorSheetV2 extends FUActorSheet {
 				break;
 
 			case 'features':
-				await ActorSheetUtils.prepareProjects(context);
-				await ActorSheetUtils.prepareFeatures(context);
-				await ActorSheetUtils.prepareAbilities(context);
 				break;
 
 			case 'classes':
-				await ActorSheetUtils.prepareClasses(context);
 				break;
 
 			case 'spells':
-				await ActorSheetUtils.prepareSpells(context);
 				break;
 
 			case 'combat':
-				await ActorSheetUtils.prepareAbilities(context);
-				await ActorSheetUtils.prepareNpcCombat(context);
-				await ActorSheetUtils.prepareSpells(context);
 				break;
 
 			case 'behavior':
-				context.behaviors = this.actor.getItemsByType('behavior');
 				break;
 
 			case 'items':
-				{
-					// Set up item data
-					await ActorSheetUtils.prepareInventory(context);
-					await ActorSheetUtils.prepareItems(context);
-					ActorSheetUtils.prepareSorting(context);
-				}
 				break;
 
 			case 'effects':
@@ -589,8 +573,6 @@ export class FUActorSheetV2 extends FUActorSheet {
 		if (!this.isEditable) {
 			return;
 		}
-
-		ActorSheetUtils.activateInventoryListeners(this.element, this);
 
 		// TODO: V2 Sheet issue
 		// Prevent Enter key from triggering unwanted actions in input fields
@@ -944,8 +926,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 			return;
 		}
 
-		const isFavoredBool = item.system.isFavored?.value ?? false;
-		await this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+		await item.toggleFavorite();
 	}
 
 	/**
@@ -965,8 +946,7 @@ export class FUActorSheetV2 extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async CrisisHP(event, target) {
-		const maxHP = this.actor.system.resources.hp.max;
-		const crisisHP = Math.floor(maxHP / 2);
+		const crisisHP = this.actor.system.resources.hp.crisisScore;
 		const updateData = {
 			'system.resources.hp.value': crisisHP,
 		};

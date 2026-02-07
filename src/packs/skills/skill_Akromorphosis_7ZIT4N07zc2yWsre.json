@@ -79,9 +79,7 @@
       "step": 1,
       "max": 6
     },
-    "source": {
-      "value": "FUTF155"
-    },
+    "source": "FUTF155",
     "rollInfo": {
       "useWeapon": {
         "accuracy": {
@@ -122,14 +120,18 @@
     "fuid": "akromorphosis"
   },
   "effects": [],
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.348",
     "createdTime": 1711429218464,
-    "modifiedTime": 1742699658949,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1767800537152,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

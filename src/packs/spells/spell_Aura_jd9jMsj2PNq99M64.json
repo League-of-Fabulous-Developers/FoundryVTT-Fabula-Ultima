@@ -3,7 +3,7 @@
   "name": "Aura",
   "type": "spell",
   "_id": "jd9jMsj2PNq99M64",
-  "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/aura.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr><ul><li><p><strong>Targets Receive:</strong> @EFFECT[aura e:eos i:1 t:self]</p></li></ul>",
+    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -82,9 +82,7 @@
     "isOffensive": {
       "value": false
     },
-    "source": {
-      "value": "FUCR208"
-    },
+    "source": "FUCR208",
     "rollInfo": {
       "useWeapon": {
         "hrZero": {
@@ -119,7 +117,12 @@
     "maxTargets": {
       "value": 3
     },
-    "fuid": "aura"
+    "fuid": "aura",
+    "effects": {
+      "entries": [
+        "aura"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -128,15 +131,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706571961584,
-    "modifiedTime": 1745162952155,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1768688618442,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

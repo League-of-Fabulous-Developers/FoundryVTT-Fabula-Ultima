@@ -1,0 +1,104 @@
+{
+  "name": "Rondo Of Nightmare [Legacy]",
+  "type": "skill",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you cast an offensive spell ( @ICON[offensive] ) with a <strong>target</strong> of “One creature”, you may spend 2 Grave Points to have it target <strong>all</strong> creatures you can see that are present on the scene (perform a single Magic Check and confront it with the Magic Defense of each target). If you do, all damage dealt by the spell becomes <strong>dark</strong> and its type cannot change.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update -2]{Spend 2 Grave Points}</p></li></ul>",
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Necromancer"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "showTitleCard": {
+      "value": true
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "source": "FUNM3",
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "fuid": "rondo-of-nightmare-legacy",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
+  },
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/rondo_of_nightmare.png",
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1769024182773,
+    "modifiedTime": 1769024224669,
+    "lastModifiedBy": "bgUzjEHd80A79gwp"
+  },
+  "folder": "8lW5YyWxQ1X625X8",
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "bgUzjEHd80A79gwp": 3
+  },
+  "_id": "RhpHxrRYyaH3qoYl",
+  "sort": 0,
+  "_key": "!items!RhpHxrRYyaH3qoYl"
+}

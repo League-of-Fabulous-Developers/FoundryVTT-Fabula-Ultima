@@ -1,0 +1,20 @@
+<div class="bar-container">
+    <div class="resource-value">
+        <div class="resource-label">
+            <span>IP</span>
+        </div>
+        <div class="resource-text">
+            <span>{{ this.actor.system.resources.ip.value }} / {{ this.actor.system.resources.ip.max }}</span>
+        </div>
+    </div>
+    <div class="bar bar-progress" data-tooltip="{{localize 'FU.InventoryPoints'}}">
+        <div class="bar-progress-bar bar-ip"
+            style="width: {{pfuPercentage this.actor.system.resources.ip.value this.actor.system.resources.ip.max}};"></div>
+        <span class="bar-value"></span>
+    </div>  
+    <div class="resource-value-compact">
+        <div class="resource-text">
+            <span>{{ this.actor.system.resources.ip.value }} / {{ this.actor.system.resources.ip.max }} IP</span>
+        </div>
+    </div>
+</div>

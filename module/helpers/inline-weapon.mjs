@@ -9,6 +9,8 @@ import { ClassFeatureTypeDataModel } from '../documents/items/classFeature/class
 import { WeaponModuleDataModel } from '../documents/items/classFeature/pilot/weapon-module-data-model.mjs';
 import { InlineEffects } from './inline-effects.mjs';
 import { StringUtils } from './string-utils.mjs';
+import { systemAssetPath } from './system-utils.mjs';
+import { CustomWeaponDataModel } from '../documents/items/customWeapon/custom-weapon-data-model.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
 const className = `inline-weapon`;
@@ -18,7 +20,7 @@ const className = `inline-weapon`;
  */
 const editorEnricher = {
 	id: 'InlineWeaponEnricher',
-	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.configurationPropertyGroups),
+	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.effectPropertyGroups),
 	enricher: (match, options) => {
 		const choices = match.groups.choices.split(' ');
 
@@ -29,7 +31,7 @@ const editorEnricher = {
 			anchor.dataset.choices = match.groups.choices;
 
 			// ICON
-			InlineHelper.appendImageToAnchor(anchor, 'systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_weapon.png');
+			InlineHelper.appendImage(anchor, systemAssetPath('icons/inline/weapon.svg'));
 
 			// TOOLTIP
 			anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineWeapon')} (${choices})`);
@@ -45,7 +47,7 @@ const editorEnricher = {
 
 			// CONFIG
 			const config = InlineEffects.parseConfigData(match);
-			anchor.dataset.config = InlineHelper.toBase64(config);
+			anchor.dataset.config = StringUtils.toBase64(config);
 			return anchor;
 		}
 
@@ -65,7 +67,7 @@ async function onRender(element) {
 		const targets = await targetHandler();
 		if (targets.length > 0) {
 			const choices = renderContext.dataset.choices.split(' ');
-			const config = InlineHelper.fromBase64(renderContext.dataset.config);
+			const config = StringUtils.fromBase64(renderContext.dataset.config);
 			for (const target of targets) {
 				await applyEffectToWeapon(target, renderContext.sourceInfo, choices, config);
 			}
@@ -77,7 +79,7 @@ async function onRender(element) {
 		const data = {
 			type: INLINE_WEAPON,
 			sourceInfo: renderContext.sourceInfo,
-			config: InlineHelper.fromBase64(renderContext.dataset.config),
+			config: StringUtils.fromBase64(renderContext.dataset.config),
 			traits: renderContext.dataset.choices,
 		};
 
@@ -104,25 +106,27 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	let key = null;
 	if (weapon.system instanceof WeaponDataModel) {
 		key = 'system.damageType.value';
+	} else if (weapon.system instanceof CustomWeaponDataModel) {
+		key = 'system.damage.type';
 	} else if (weapon.system instanceof ClassFeatureTypeDataModel && weapon.system.data instanceof WeaponModuleDataModel) {
 		key = 'system.data.damage.type';
 	}
 	const localizedDamageType = game.i18n.localize(`FU.Damage${StringUtils.capitalize(type)}`);
+	let changes = [];
+	if (key) {
+		changes.push({
+			key: key,
+			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			value: type,
+		});
+	}
 
 	return {
 		fuid: `alter-damage-type-${type}`,
 		name: label ? `${label} (${localizedDamageType})` : game.i18n.format('FU.InlineWeaponActiveEffectName', { damageType: localizedDamageType }),
 		img: type === 'untyped' ? 'icons/svg/circle.svg' : `systems/projectfu/styles/static/affinities/${type}.svg`,
 		transfer: false,
-		changes: key
-			? [
-					{
-						key: key,
-						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-						value: type,
-					},
-				]
-			: [],
+		changes: changes,
 	};
 }
 
@@ -147,8 +151,9 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 				const effectData = createAlterDamageTypeEffect(weapon, choice, config.name);
 				// The name is modified
 				config.name = effectData.name;
+				config.event = 'endOfScene';
 
-				Effects.onApplyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
+				Effects.applyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
 					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
 				});
 			}

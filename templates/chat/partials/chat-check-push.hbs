@@ -2,7 +2,7 @@
     <div>
         {{localize 'FU.ChatCheckPushBond'}}
         {{#each push.feelings}}
-            <u>{{localize (concat 'FU.' (capitalize this))}}</u>
+            <u>{{localize (pfuConcat 'FU.' (pfuCapitalize this))}}</u>
             {{#unless @last}}{{localize 'FU.ChatCheckPushAnd'}}{{/unless}}
         {{/each}}
         {{localize 'FU.ChatCheckPushWith'}}

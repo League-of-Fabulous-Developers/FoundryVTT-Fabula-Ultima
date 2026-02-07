@@ -15,6 +15,11 @@ import { Flags } from '../../../helpers/flags.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { FU } from '../../../helpers/config.mjs';
+import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
+import { ResourceDataModel } from '../common/resource-data-model.mjs';
+import { ExpressionContext } from '../../../expressions/expressions.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -26,29 +31,16 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
  */
 function onRenderCheck(data, result, actor, item, flags) {
 	if (item && item.system instanceof SpellDataModel) {
-		// TODO: Replace with CommonSections.tags
-		data.push(async () => ({
-			order: CHECK_DETAILS,
-			partial: 'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
-			data: {
-				spell: {
-					duration: item.system.duration.value,
-					target: item.system.targeting.rule,
-					max: item.system.targeting.max,
-					mpCost: item.system.cost.amount,
-					opportunity: item.system.opportunity,
-				},
-			},
-		}));
-
-		CommonSections.traits(data, item.system.traits, CHECK_DETAILS);
+		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
+		CommonSections.opportunity(data, item.system.opportunity, CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
-		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();
+		const inspector = CheckConfiguration.inspect(result);
+		const targets = inspector.getTargetsOrDefault();
 
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.targeted(data, actor, item, targets, flags, null, null);
+			CommonSections.actions(data, actor, item, targets, flags, inspector);
 		}
 
 		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
@@ -57,24 +49,25 @@ function onRenderCheck(data, result, actor, item, flags) {
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
-/**
+/**tt
  * @property {String} fuid
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
- * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {string} class.value
  * @property {UseWeaponDataModel} useWeapon
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
- * @property {DamageDataModel} damage
+ * @property {Defense} defense
+ * @property {EffectApplicationDataModel} effects
+ * @property {ResourceDataModel} resource
  * @property {ImprovisedDamageDataModel} impdamage
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
  * @property {string} mpCost.value
  * @property {string} target.value
- * @property {string} duration.value
+ * @property {"instantaneous", "scene", "special"} duration.value
  * @property {boolean} isOffensive.value
  * @property {string} opportunity
  * @property {string} source.value
@@ -96,11 +89,13 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			damage: new EmbeddedDataField(DamageDataModel, {}),
+			defense: new StringField({ initial: 'mdef', choices: Object.keys(FU.defenses), blank: true }),
+			resource: new EmbeddedDataField(ResourceDataModel, {}),
+			effects: new EmbeddedDataField(EffectApplicationDataModel, {}),
 			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			duration: new SchemaField({ value: new StringField() }),
+			duration: new SchemaField({ value: new StringField({ initial: 'instantaneous', choices: Object.keys(FU.duration) }) }),
 			isOffensive: new SchemaField({ value: new BooleanField() }),
 			opportunity: new StringField(),
 			rollInfo: new SchemaField({
@@ -119,7 +114,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	}
 
 	static migrateData(source) {
-		source = super.migrateData(source) ?? source;
+		source = super.migrateData(source);
 		SpellMigrations.run(source);
 		return source;
 	}
@@ -129,12 +124,34 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
+		CommonEvents.spell(this.parent.actor, this.parent);
 		if (this.hasRoll.value) {
 			return Checks.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
 		} else {
-			CommonEvents.spell(this.parent.actor, this.parent);
-			return Checks.display(this.parent.actor, this.parent);
+			return Checks.display(this.parent.actor, this.parent, this.#initializeMagicDisplay(modifiers));
 		}
+	}
+
+	#initializeMagicDisplay(modifiers) {
+		return async (check, actor, item) => {
+			/** @type SpellDataModel **/
+			const spell = item.system;
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			// Configure
+			this.#addCommon(spell, config);
+			if (spell.resource.enabled) {
+				config.setResource(spell.resource.type, spell.resource.amount);
+			}
+			this.#addSpellDamage(config, actor, spell, context);
+		};
+	}
+
+	#addCommon(spell, config) {
+		config.addEffects(spell.effects.entries);
+		config.addTraits('spell').addTraitsFromItemModel(spell.traits);
 	}
 
 	/**
@@ -143,47 +160,66 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeMagicCheck(modifiers) {
 		return async (check, actor, item) => {
-			const configure = CheckConfiguration.configure(check);
-			configure.setHrZero(modifiers.shift);
+			const config = CheckConfiguration.configure(check);
+			config.setHrZero(modifiers.shift);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
+			// Configure
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
 				const weapon = await ChooseWeaponDialog.prompt(actor, true);
 				if (weapon) {
-					check.primary = weapon.system.attributes.primary.value;
-					check.secondary = weapon.system.attributes.secondary.value;
+					const weaponAttributes = ChooseWeaponDialog.getAttributes(weapon);
+					check.primary = weaponAttributes.primary;
+					check.secondary = weaponAttributes.secondary;
 					attributeOverride = true;
-					configure.addWeaponAccuracy(weapon.system);
+					config.addWeaponAccuracy(weapon);
+					config.setWeaponReference(weapon);
 				}
 			}
 
+			/** @type SpellDataModel **/
+			const spell = item.system;
+			this.#addCommon(spell, config);
+
 			if (!attributeOverride) {
-				check.primary = item.system.rollInfo.attributes.primary.value;
-				check.secondary = item.system.rollInfo.attributes.secondary.value;
+				check.primary = spell.rollInfo.attributes.primary.value;
+				check.secondary = spell.rollInfo.attributes.secondary.value;
 			}
 
 			check.modifiers.push({
 				label: 'FU.MagicCheckBaseAccuracy',
-				value: item.system.rollInfo.accuracy.value,
+				value: spell.rollInfo.accuracy.value,
 			});
 
-			check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
+			this.#addSpellDamage(config, actor, spell, context);
+			config.setTargetedDefense(this.defense);
+		};
+	}
 
-			// Add typical bonuses
-			configure
-				.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
-				.addTraits(item.system.rollInfo.damage.type.value, 'spell')
-				.addTraitsFromItemModel(item.system.traits)
-				.setTargetedDefense('mdef')
+	/**
+	 * @param {CheckConfigurer} config
+	 * @param {FUActor} actor
+	 * @param {SpellDataModel} spell
+	 * @param context
+	 */
+	#addSpellDamage(config, actor, spell, context) {
+		config.check.additionalData.hasDamage = spell.rollInfo.damage.hasDamage.value;
+		if (config.check.additionalData.hasDamage) {
+			config
+				.setDamage(spell.rollInfo.damage.type.value, spell.rollInfo.damage.value)
 				.setDamageOverride(actor, 'spell')
 				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
-				.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
-		};
+				.modifyHrZero((hrZero) => hrZero || spell.rollInfo.useWeapon.hrZero.value)
+				.addTraits(spell.rollInfo.damage.type.value, Traits.Damage);
+		}
 	}
 
 	get attributePartials() {
 		return [
-			ItemPartialTemplates.controls,
+			ItemPartialTemplates.standard,
+			ItemPartialTemplates.traitsLegacy,
 			ItemPartialTemplates.classField,
 			ItemPartialTemplates.opportunityField,
 			ItemPartialTemplates.durationField,
@@ -191,7 +227,28 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			ItemPartialTemplates.targeting,
 			ItemPartialTemplates.legacyAccuracy,
 			ItemPartialTemplates.legacyDamage,
+			ItemPartialTemplates.resource,
+			ItemPartialTemplates.effects,
 			ItemPartialTemplates.behaviorField,
+		];
+	}
+
+	/**
+	 * @return {Tag[]}
+	 */
+	getTags() {
+		return [
+			{
+				tag: FU.duration[this.duration.value],
+			},
+			{
+				tag: this.targeting.getTargetTranslationKey(),
+			},
+			{
+				tag: `${this.cost.amount} ${game.i18n.localize(FU.resourcesAbbr[this.cost.resource])}`,
+				value: this.cost.perTarget ? game.i18n.localize('FU.CostPerTargetAbbreviation') : '',
+			},
+			...TraitUtils.toTags(this.traits),
 		];
 	}
 }

@@ -1,25 +1,21 @@
-<div>
-    <fieldset class="title-fieldset section-container desc resource-content">
-        <label class="resource-label-m">
-            {{localize 'FU.ClassFeatureArcanumDomains'}}
-            <input type='text' name='system.data.domains' value='{{system.data.domains}}'
-                   class="resource-inputs select-dropdown-full resource-text-m" />
-        </label>
-    </fieldset>
-    <fieldset class="title-fieldset section-container desc resource-content">
-        <div class="grid grid-2col gap-5 border-rc">
-            <div>
-                <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</label>
-				<prose-mirror name="system.data.merge" value="{{system.data.merge}}" toggled>
-					{{{enrichedHtml.merge}}}
-				</prose-mirror>
-            </div>
-            <div>
-                <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDismiss'}}</label>
-				<prose-mirror name="system.data.dismiss" value="{{system.data.dismiss}}" toggled>
-					{{{enrichedHtml.dismiss}}}
-				</prose-mirror>
-            </div>
-        </div>
-    </fieldset>
+<div class="flexcol flexgrow-1">
+	<fieldset class="title-fieldset section-container desc resource-content">
+		<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDomains'}}</legend>
+		<input type='text' name='system.data.domains' value='{{system.data.domains}}'
+			   class="resource-inputs select-dropdown-full resource-text-m" />
+	</fieldset>
+	<div class="grid grid-2col gap-5 border-rc flexgrow-1">
+		<fieldset class="title-fieldset section-container desc resource-content">
+			<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</legend>
+			<prose-mirror name="system.data.merge" value="{{system.data.merge}}" toggled>
+				{{{enrichedHtml.merge}}}
+			</prose-mirror>
+		</fieldset>
+		<fieldset class="title-fieldset section-container desc resource-content">
+			<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDismiss'}}</legend>
+			<prose-mirror name="system.data.dismiss" value="{{system.data.dismiss}}" toggled>
+				{{{enrichedHtml.dismiss}}}
+			</prose-mirror>
+		</fieldset>
+	</div>
 </div>

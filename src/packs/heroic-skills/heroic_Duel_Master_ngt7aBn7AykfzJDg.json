@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Magic Pairs enhance your attacks."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Fury</strong>, <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and you must have acquired the <strong>Magic Cards</strong> Skill.</p></blockquote><p>When you resolve the <strong>Magic Pair</strong> effect, if you attack with a weapon belonging to the <strong>arcane</strong> or <strong>thrown</strong> Category, you deal extra damage equal to the common value of the resolved cards and regain an amount of Mind Points equal to twice the common value of the resolved cards (for instance, resolving a pair of <strong>5s</strong> will allow you to deal 5 extra damage and regain 10 Mind Points).</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Fury</strong>, <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>.</p></blockquote><p>When you resolve the <strong>Magic Pair</strong> effect, if you attack with a weapon belonging to the <strong>arcane</strong>, <strong>dagger</strong>, <strong>firearm</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category, you deal extra damage equal to <strong>【the common value of the resolved cards】</strong> and regain an amount of Mind Points equal to <strong>【twice the common value of the resolved cards】</strong>. For instance, resolving a pair of <strong>5s</strong> will allow you to deal 5 extra damage and regain 10 Mind Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -83,9 +83,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUAC6"
-    },
+    "source": "FUBC10",
     "hasResource": {
       "value": false
     },
@@ -98,26 +96,29 @@
     "fuid": "duel-master"
   },
   "effects": [],
-  "folder": "1Ky2u7fi2lfxr4JB",
+  "folder": "rsp4XZ4yS3zcZY8x",
   "ownership": {
     "default": 0,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1708940657180,
-    "modifiedTime": 1724180864018,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1769017259699,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "_id": "ngt7aBn7AykfzJDg",
-  "sort": 0,
+  "sort": 150000,
   "_key": "!items!ngt7aBn7AykfzJDg"
 }

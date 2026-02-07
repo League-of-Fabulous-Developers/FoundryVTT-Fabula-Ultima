@@ -170,3 +170,9 @@
 		/* background: rgba(255, 255, 240, 0.8); */
 	}
 }
+
+.dialog-buttons-grid .form-footer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 0.5rem;
+}

@@ -1,3 +1,15 @@
-{{#if system.traits}}
-    {{formGroup system.schema.fields.traits value=system.traits options=traitOptions classes="stacked"}}
-{{/if}}
+<fieldset class="title-fieldset desc resource-content"
+		  style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+	<legend class="resource-label-full">
+		<label class="resource-label-m">
+			<i class="ra ra-ammo-bag icon"></i>
+			{{localize 'FU.Traits'}}
+		</label>
+	</legend>
+
+	<div class="fu-traits">
+		{{pfuTraits system.traits 'system.traits' showLabel=false}}
+	</div>
+</fieldset>
+
+

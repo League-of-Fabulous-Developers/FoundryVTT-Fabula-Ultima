@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast an offensive spell ( @ICON[offensive] ) with a <strong>target</strong> of “One creature”, you may spend 2 Grave Points to have it target <strong>all</strong> creatures you can see that are present on the scene (perform a single Magic Check and confront it with the Magic Defense of each target). If you do, all damage dealt by the spell becomes <strong>dark</strong> and its type cannot change.</p><hr><ul><li><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update -2]{Spend 2 Grave Points}</p></li></ul>",
+    "description": "<p>When you cast an offensive spell ( @ICON[offensive] ) with a <strong>target</strong> of \"One creature\", you may spend 2 Grave Points to have its <strong>target</strong> become \"Every creature present on the scene\" (perform a single Magic Check and compare it to the Magic Defense of each target). If you do, all damage dealt by the spell becomes <strong>dark</strong> and its type cannot change.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update -2]{Spend 2 Grave Points}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -101,9 +101,7 @@
         "value": 0
       }
     },
-    "source": {
-      "value": "FUNM3"
-    },
+    "source": "FUBC13",
     "subtype": {},
     "defense": "def",
     "hasResource": {
@@ -121,15 +119,18 @@
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1684757023346,
-    "modifiedTime": 1747010684691,
-    "lastModifiedBy": "aXKDYFrGlbJKqLXI",
+    "modifiedTime": 1769024968778,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

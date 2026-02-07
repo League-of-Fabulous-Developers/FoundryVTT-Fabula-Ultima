@@ -1,0 +1,33 @@
+.cell-equipment-armor-details {
+	height: 100%;
+	color: var(--color-primary);
+
+	font-size: 110%;
+	text-align: end;
+
+	display: flex;
+	justify-content: end;
+	align-items: center;
+
+	.cell-equipment-armor-details__defense {
+		flex: 0 1 90px;
+	}
+
+	.cell-equipment-armor-details__magic-defense {
+		flex: 0 1 90px;
+	}
+
+	.cell-equipment-armor-details__initiative {
+		flex: 0 1 60px;
+	}
+
+	.cell-equipment-armor-details__value {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.cell-equipment-armor-details__divider {
+		border-left: 1px solid var(--color-primary);
+		margin-left: 0.5rem;
+		height: 80%;
+	}
+}

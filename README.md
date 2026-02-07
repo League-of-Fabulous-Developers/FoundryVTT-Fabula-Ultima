@@ -2,8 +2,7 @@
 
 ![Fabula Ultima Mod Logo - White Background](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/040a116d-3419-47ee-af36-5aed128bdb2d)
 
-![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
-![foundry-v12-green](https://img.shields.io/badge/foundry-v12-green)
+![foundry-v13-green](https://img.shields.io/badge/foundry-v13-green)
 
 Welcome to the ProjectFU system for [Foundry Virtual Tabletop](https://foundryvtt.com/).
 
@@ -45,7 +44,7 @@ Fabula Ultima is a roleplaying game created by Emanuele Galletto and published b
 If you have any questions or concerns, feel free to reach out to us through the following channels:
 
 - Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
-- Discord: [Project FU Discord](https://discord.gg/uEc3wj9G7c) - `#support` channel
+- Discord: [Project FU Discord](https://discord.gg/tbyQv6DzY8) - `#support` channel
 
 ## Submitting Issues
 

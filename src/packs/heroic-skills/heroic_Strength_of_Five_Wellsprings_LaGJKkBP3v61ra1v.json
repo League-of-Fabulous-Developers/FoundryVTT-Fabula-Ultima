@@ -45,9 +45,7 @@
         }
       }
     },
-    "source": {
-      "value": "FUNF169"
-    },
+    "source": "FUNF169",
     "fuid": "strength-of-five-wellsprings"
   },
   "effects": [],

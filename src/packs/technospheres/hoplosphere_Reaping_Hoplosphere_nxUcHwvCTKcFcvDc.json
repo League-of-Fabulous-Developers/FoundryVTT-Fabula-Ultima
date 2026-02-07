@@ -1,0 +1,47 @@
+{
+  "name": "Reaping Hoplosphere",
+  "type": "hoplosphere",
+  "img": "systems/projectfu/styles/static/compendium/technospheres/hoplospheres/reaping.png",
+  "system": {
+    "fuid": "reaping-hoplosphere",
+    "source": "FUTF142",
+    "summary": "",
+    "socketable": "weapon",
+    "requiredSlots": 1,
+    "effects": [
+      {
+        "type": "addExtraDamageToSpecies",
+        "coagulationLevel": 1,
+        "species": "plant",
+        "amount": 2
+      },
+      {
+        "type": "increaseDefense",
+        "coagulationLevel": 2,
+        "defense": "def",
+        "amount": 1
+      }
+    ]
+  },
+  "effects": [],
+  "folder": "pIAOmLB7jnha0Ab3",
+  "ownership": {
+    "default": 0,
+    "VpDy3go69LzoCFsX": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1759658504967,
+    "modifiedTime": 1760404400649,
+    "lastModifiedBy": "93RRHGE4s1SwaU2P"
+  },
+  "_id": "nxUcHwvCTKcFcvDc",
+  "sort": 0,
+  "_key": "!items!nxUcHwvCTKcFcvDc"
+}

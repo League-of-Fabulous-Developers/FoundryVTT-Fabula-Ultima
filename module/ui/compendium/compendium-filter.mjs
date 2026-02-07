@@ -1,0 +1,137 @@
+/**
+ * @typedef CompendiumFilterCategory
+ * @property {String} label
+ * @property {String|String[]} propertyPath
+ * @property {FormSelectOption[]} options
+ * @property {Set<String>} selected
+ */
+
+/**
+ * @typedef CompendiumFilterInputOptions
+ * @property {String} text
+ * @property {String} type The item or actor type.
+ * @property {String} actorId A reference to an actor, which can be used to apply filtering on opening the browser.
+ */
+
+/**
+ * @desc Used for filtering the compendiums.
+ */
+export class CompendiumFilter {
+	/**
+	 * @type String
+	 */
+	#text;
+	/**
+	 * @type {Record<string, CompendiumFilterCategory>}
+	 * @desc Matches against the document type;
+	 */
+	#categories;
+
+	constructor() {
+		this.#text = '';
+		this.#categories = [];
+		this.filter = this.filter.bind(this);
+	}
+
+	/**
+	 * @param {CompendiumIndexEntry} entry
+	 * @return {Boolean}
+	 */
+	filter(entry) {
+		if (this.text) {
+			if (!entry.name.toLowerCase().includes(this.text.toLowerCase())) {
+				return false;
+			}
+		}
+
+		const textMatch = Object.values(entry).some((value) => {
+			if (typeof value !== 'string') return false;
+			if (this.categories) {
+				for (const category of Object.values(this.categories)) {
+					if (category.selected?.size > 0) {
+						const paths = Array.isArray(category.propertyPath) ? category.propertyPath : [category.propertyPath];
+						const matchesAnyPath = paths.some((path) => {
+							const value = foundry.utils.getProperty(entry, path);
+							return value && category.selected.has(value);
+						});
+						if (!matchesAnyPath) {
+							return false;
+						}
+					}
+				}
+			}
+			return true;
+		});
+		return textMatch;
+	}
+
+	/**
+	 * @desc Clears the filter.
+	 */
+	clear() {
+		this.setText('');
+		this.#categories = undefined;
+	}
+
+	get text() {
+		return this.#text;
+	}
+
+	/**
+	 * @param {Record<string, CompendiumFilterCategory>} categories Document types.
+	 */
+	setCategories(categories) {
+		for (const [id, category] of Object.entries(categories)) {
+			const selected = category.selected
+				? category.selected.filter((entry) =>
+						category.options.some((opt) => {
+							return opt.value === entry || opt.label === entry;
+						}),
+					)
+				: [];
+			categories[id].selected = new Set(selected);
+		}
+
+		this.#categories = categories;
+	}
+
+	/**
+	 * @param {String} id
+	 * @return CompendiumFilterCategory
+	 */
+	getCategory(id) {
+		return this.#categories[id];
+	}
+
+	/**
+	 * @returns {Record<string, CompendiumFilterCategory>}
+	 */
+	get categories() {
+		return this.#categories;
+	}
+
+	setText(text) {
+		this.#text = text;
+	}
+
+	/**
+	 * @desc Updates an existing filter based from input.
+	 * @param {String} key The id of the category.
+	 * @param {String} option The value of the option being checked.
+	 * @param {Boolean} checked
+	 */
+	toggle(key, option, checked) {
+		if (!this.categories) {
+			return;
+		}
+		const category = this.categories[key];
+		if (!(category.selected instanceof Set)) {
+			category.selected = new Set(category.selected ?? []);
+		}
+		if (checked) {
+			category.selected.add(option);
+		} else {
+			category.selected.delete(option);
+		}
+	}
+}
