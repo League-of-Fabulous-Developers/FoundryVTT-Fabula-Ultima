@@ -180,7 +180,7 @@ async function processRecovery(request) {
 			continue;
 		}
 		const incomingRecoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
-		const incomingRecoveryMultiplier = actor.system.multipliers.incomingRecovery[request.resourceType] || 1;
+		const incomingRecoveryMultiplier = actor.system.multipliers.incomingRecovery[request.resourceType] ?? 1;
 		let amountRecovered = Math.max(0, Math.floor((request.amount + incomingRecoveryBonus + outgoingRecoveryBonus) * (incomingRecoveryMultiplier * outgoingRecoveryMultiplier)));
 		const attr = foundry.utils.getProperty(actor.system, request.attributeKey);
 		const uncappedRecoveryValue = amountRecovered + attr.value;
@@ -205,12 +205,12 @@ async function processRecovery(request) {
 			else {
 				// Lower amount recovered by how much the target is missing
 				amountRecovered = Math.min(amountRecovered, calculateMissingResource(actor, request.attributePath));
-				// No recovery possible
 				if (amountRecovered === 0) {
+					const message = incomingRecoveryMultiplier > 0 ? 'FU.ChatRecoveryNotNeeded' : 'FU.ChatRecoveryNotPossible';
 					ChatMessage.create({
 						speaker: ChatMessage.getSpeaker({ actor }),
 						flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true),
-						content: game.i18n.format('FU.ChatRecoveryNotNeeded', {
+						content: game.i18n.format(message, {
 							actor: actor.name,
 							resource: request.resourceType.toUpperCase(),
 						}),
