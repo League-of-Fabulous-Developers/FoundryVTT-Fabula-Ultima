@@ -259,7 +259,7 @@ function resolveAffinity(context) {
 
 	if (context.actor.type === 'npc') {
 		// Pressure System Support
-		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.actor.resolveEffect('pressure')) {
 			let pressurePointTriggered = false;
 
 			// Check if the damage type hit a vulnerable affinity

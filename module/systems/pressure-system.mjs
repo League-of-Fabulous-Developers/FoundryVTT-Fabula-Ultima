@@ -85,14 +85,18 @@ async function onCombatEvent(event) {
 	switch (event.type) {
 		case FU.combatEvent.endOfRound:
 			for (const actor of event.actors.filter((a) => a.type === 'npc')) {
-				const se = actor.resolveEffect('stagger');
-				if (se) {
-					// Delete the stagger effect
-					se.delete();
-					// Reset pressure
+				const stagger = actor.resolveEffect('stagger');
+				if (stagger) {
+					stagger.delete();
 					const pressure = actor.resolveProgress('pressure');
 					await actor.updateProgress('pressure', -pressure.current);
 				}
+			}
+			break;
+
+		case FU.combatEvent.endOfCombat:
+			for (const actor of event.actors.filter((a) => a.type === 'npc')) {
+				await removePressureEffect(actor);
 			}
 			break;
 	}
@@ -104,8 +108,15 @@ async function applyPressureEffect(actor) {
 		case 'champion':
 		case 'elite':
 			{
+				// If they somehow already have the pressure effect
+				const pressure = actor.resolveEffect('pressure');
+				if (pressure) {
+					await pressure.delete();
+				}
+				// Toggle it on
+				const segments = rank.value === 'champion' ? 2 + rank.replacedSoldiers * 2 : 4;
 				const pressureData = await Effects.getEffectData('pressure');
-				pressureData.system.rules.progress.max = rank.value === 'champion' ? 2 + rank.replacedSoldiers * 2 : 4;
+				pressureData.system.rules.progress.max = segments;
 				if (pressureData) {
 					await Effects.toggleStatusEffect(actor, 'pressure', InlineSourceInfo.scene);
 				}
