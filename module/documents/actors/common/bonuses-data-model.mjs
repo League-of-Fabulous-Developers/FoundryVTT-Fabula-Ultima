@@ -56,20 +56,35 @@ export class MultipliersDataModel extends foundry.abstract.DataModel {
 		const { NumberField, SchemaField } = foundry.data.fields;
 		return {
 			incomingRecovery: new SchemaField({
-				hp: new NumberField({ initial: 0, integer: true }),
-				mp: new NumberField({ initial: 0, integer: true }),
-				ip: new NumberField({ initial: 0, integer: true }),
+				mp: new NumberField({ initial: 1, integer: true }),
+				ip: new NumberField({ initial: 1, integer: true }),
+				hp: new NumberField({ initial: 1, integer: true }),
 			}),
 			incomingLoss: new SchemaField({
-				hp: new NumberField({ initial: 0, integer: true }),
-				mp: new NumberField({ initial: 0, integer: true }),
-				ip: new NumberField({ initial: 0, integer: true }),
+				hp: new NumberField({ initial: 1, integer: true }),
+				mp: new NumberField({ initial: 1, integer: true }),
+				ip: new NumberField({ initial: 1, integer: true }),
 			}),
 			outgoingRecovery: new SchemaField({
-				hp: new NumberField({ initial: 0, integer: true }),
-				mp: new NumberField({ initial: 0, integer: true }),
-				ip: new NumberField({ initial: 0, integer: true }),
+				hp: new NumberField({ initial: 1, integer: true }),
+				mp: new NumberField({ initial: 1, integer: true }),
+				ip: new NumberField({ initial: 1, integer: true }),
 			}),
 		};
+	}
+
+	static migrateData(source) {
+		for (const res of ['hp', 'mp', 'ip']) {
+			if (source.incomingRecovery[res] === 0) {
+				source.incomingRecovery[res] = 1;
+			}
+			if (source.incomingLoss[res] === 0) {
+				source.incomingLoss[res] = 1;
+			}
+			if (source.outgoingRecovery[res] === 0) {
+				source.outgoingRecovery[res] = 1;
+			}
+		}
+		return super.migrateData(source);
 	}
 }

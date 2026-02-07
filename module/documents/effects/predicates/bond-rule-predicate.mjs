@@ -23,9 +23,6 @@ export class BondRulePredicate extends RulePredicateDataModel {
 	}
 
 	static migrateData(source) {
-		if (source.bond === 'any') {
-			source.bond = '';
-		}
 		return super.migrateData(source);
 	}
 
