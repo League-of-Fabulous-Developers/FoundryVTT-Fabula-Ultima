@@ -9,7 +9,7 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
-import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
+import { SectionChatBuilder } from '../../../../helpers/section-chat-builder.mjs';
 
 /**
  * @param {VerseDataModel} model
@@ -281,20 +281,14 @@ export class VersesApplication extends FUApplication {
 		const actor = this.#verse.actor;
 		const item = this.#verse.item;
 		const targets = Targeting.getSerializedTargetData();
-
-		// SpendResource
-		const sections = [];
 		const expense = new ActionCostDataModel({
 			resource: 'mp',
 			amount: cost,
 			perTarget: false,
 		});
-		CommonSections.spendResource(sections, actor, item, expense, targets, flags);
-		CommonEvents.skill(actor, item);
-
-		const enriched = await enrichDescription(this.#verse);
 
 		// Data for the template
+		const enriched = await enrichDescription(this.#verse);
 		const data = {
 			verse: this.#verse,
 			volume: volumes[volumeSelection],
@@ -303,21 +297,32 @@ export class VersesApplication extends FUApplication {
 			key: this.#verse.key?.name || '',
 			tone: this.#verse.tone?.name || '',
 			description: enriched,
-			sections: sections,
 		};
+		/** @type Tag[] **/
+		const tags = [
+			{
+				tag: data.volume,
+			},
+			{
+				tag: data.key,
+			},
+			{
+				tag: data.tone,
+			},
+			{
+				tag: data.targets,
+			},
+		];
 
-		// Prepare the chat message data
-		const chatMessage = {
-			speaker: ChatMessage.implementation.getSpeaker({ actor }),
-			flavor: await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
-				item: this.#verse.parent.parent,
-			}),
-			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
-			flags: flags,
-		};
+		const builder = new SectionChatBuilder(actor, item);
+		builder.withFlags(flags);
+		CommonSections.itemFlavor(builder.renderData, this.#verse.parent.parent);
+		CommonSections.tags(builder.renderData, tags);
+		CommonSections.genericText(builder.renderData, enriched);
+		CommonSections.spendResource(builder.renderData, actor, item, expense, targets, flags);
+		await builder.create();
 
-		// Create the chat message
-		await ChatMessage.create(chatMessage);
+		CommonEvents.skill(actor, item);
 		this.close();
 	}
 }
