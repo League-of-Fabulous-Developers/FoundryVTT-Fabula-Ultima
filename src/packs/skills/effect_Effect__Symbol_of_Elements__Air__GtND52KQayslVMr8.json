@@ -1,6 +1,6 @@
 {
   "folder": "XW8tPjIw2b07tMQv",
-  "name": "Effect: Symbol of Elements",
+  "name": "Effect: Symbol of Elements (Air)",
   "type": "effect",
   "_id": "GtND52KQayslVMr8",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -8,7 +8,8 @@
     "fuid": "effect-symbol-of-elements",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -23,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Elements",
+      "name": "Symbol of Elements (Air)",
       "_id": "fcRQNVO71bIFIHF9",
       "type": "base",
       "system": {
@@ -37,31 +38,41 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. When the creature bearing this <strong>symbol</strong> deals damage to one or more creatures, if you can see the creature bearing this <strong>symbol</strong>, you may spend an amount of Mind Points equal to <strong>one third of the total damage being inflicted to those creatures</strong> (including any sources of extra damage). If you do, all damage dealt this way changes type to the type chosen when you created this <strong>symbol</strong>.</p>",
+      "description": "<p>When you deal damage to one or more creatures while you bear the <strong>Symbol of Elements</strong>, if the symbolist can see you, they may spend an amount of MP equal to <strong>one third of the total damage being inflicted to those creatures</strong> (including any sources of extra damage). If you do, all damage dealt this way becomes to <strong>air</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": true,
+      "transfer": false,
       "statuses": [],
       "sort": 0,
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744738097160,
-        "modifiedTime": 1744738117033,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770634145842,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!GtND52KQayslVMr8.fcRQNVO71bIFIHF9"
     }
   ],
-  "sort": 0,
+  "sort": 4100000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -70,12 +81,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744738093667,
-    "modifiedTime": 1744738107725,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!GtND52KQayslVMr8"

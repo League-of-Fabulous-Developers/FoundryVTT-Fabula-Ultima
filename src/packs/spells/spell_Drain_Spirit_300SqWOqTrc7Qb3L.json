@@ -107,7 +107,7 @@
         "type": {
           "value": "untyped"
         },
-        "value": 15
+        "value": 20
       }
     },
     "hasRoll": {
@@ -118,7 +118,10 @@
       "value": 1
     },
     "fuid": "drain-spirit",
-    "traits": []
+    "traits": [
+      "absorb-half",
+      "mind-point-loss"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -137,8 +140,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706571054952,
-    "modifiedTime": 1768578918820,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770622854483,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

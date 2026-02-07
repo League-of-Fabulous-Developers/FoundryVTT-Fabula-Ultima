@@ -110,7 +110,7 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
+    "defense": "",
     "fuid": "cheap-shot",
     "targeting": {
       "rule": "single"
@@ -123,15 +123,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706504733585,
-    "modifiedTime": 1740435390578,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1770454678983,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict <strong>dazed </strong>on each target hit by the attack; <strong>or</strong> inflict <strong>weak</strong> on each target hit by the attack; <strong>or</strong> each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points. Describe your maneuver!</p>",
+    "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>dazed </strong>on each target hit by the attack.</p></li><li><p>Inflict <strong>weak</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,21 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "bone-crusher"
+    "fuid": "bone-crusher",
+    "targeting": {
+      "rule": "special"
+    },
+    "effects": {
+      "entries": [
+        "dazed",
+        "weak"
+      ]
+    },
+    "resource": {
+      "enabled": true,
+      "type": "mp",
+      "amount": "-10*$sl"
+    }
   },
   "effects": [
     {
@@ -158,7 +172,7 @@
                 "9e9YoPMUF2VqMiU1": {
                   "type": "messageRuleAction",
                   "_id": "9e9YoPMUF2VqMiU1",
-                  "message": "<p>Instead targets can suffer from @EFFECT[dazed], @EFFECT[weak], or @LOSS[&sl('bone-crusher')*10 mp]{SL × 10 MP}.</p>"
+                  "message": "<p>Deal no damage to instead have targets suffer one of the following: @EFFECT[dazed], @EFFECT[weak], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
                 }
               },
               "predicates": {
@@ -166,7 +180,15 @@
                   "type": "checkRulePredicate",
                   "_id": "qyfjrVjUjfGzjNdB",
                   "outcome": "success",
-                  "result": null
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
                 },
                 "jXE1ZYNF1tmxz1t9": {
                   "type": "weaponRulePredicate",
@@ -206,12 +228,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766788902986,
-        "modifiedTime": 1767889920931,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770618934303,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!7jWycVYFgZ1BMxch.YkOEtHV4uwAnjQnW"
     }
@@ -230,10 +252,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706514091257,
-    "modifiedTime": 1766788898998,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770619292917,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

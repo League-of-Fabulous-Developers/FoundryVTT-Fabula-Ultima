@@ -1,7 +1,7 @@
 {
   "name": "Hope",
   "type": "heroic",
-  "img": "icons/magic/life/cross-yellow-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/hope.png",
   "system": {
     "subtype": {
       "value": "skill"
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706584753266,
-    "modifiedTime": 1743170622084,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770625413377,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

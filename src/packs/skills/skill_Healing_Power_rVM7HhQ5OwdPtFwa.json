@@ -118,7 +118,14 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "healing-power"
+    "fuid": "healing-power",
+    "targeting": {
+      "rule": "special"
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "3+($sl*$bc)"
+    }
   },
   "effects": [
     {
@@ -141,13 +148,15 @@
               "type": "ruleElement",
               "_id": "3r9EN6jQ5PpVIDkM",
               "trigger": {
-                "_id": "FNHzyIhcJxxOtifn",
-                "type": "initializeCheckRuleTrigger",
+                "_id": "qIo8VesU6jbQVlak",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [],
                 "itemGroups": [
                   "spell"
-                ]
+                ],
+                "local": false,
+                "identifier": ""
               },
               "predicates": {
                 "an4AjvgdpalGsLdy": {
@@ -155,7 +164,8 @@
                   "_id": "an4AjvgdpalGsLdy",
                   "categories": [
                     "arcane"
-                  ]
+                  ],
+                  "selector": "self"
                 },
                 "glm5H9MTeov0nbOw": {
                   "type": "factionRelationRulePredicate",
@@ -164,9 +174,14 @@
                 }
               },
               "actions": {
-                "ujhSGa6GNUZDN1xq": {
+                "X47SaNqzFbRPyrEp": {
+                  "type": "messageRuleAction",
+                  "_id": "X47SaNqzFbRPyrEp",
+                  "message": "<p>Targeted allies recover<strong>【3 + (SL x Bonds)】</strong>HP.</p>"
+                },
+                "YaNI3PWxfkOSyAdw": {
                   "type": "updateResourceRuleAction",
-                  "_id": "ujhSGa6GNUZDN1xq",
+                  "_id": "YaNI3PWxfkOSyAdw",
                   "amount": "3+($sl*$bc)"
                 }
               }
@@ -205,8 +220,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766773499942,
-        "modifiedTime": 1768664098906,
-        "lastModifiedBy": "bgUzjEHd80A79gwp"
+        "modifiedTime": 1770608483262,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!rVM7HhQ5OwdPtFwa.buYFIqyFA25Zi9JL"
     }
@@ -228,8 +243,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706507903931,
-    "modifiedTime": 1768583528611,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770606889315,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

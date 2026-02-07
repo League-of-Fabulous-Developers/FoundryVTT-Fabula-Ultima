@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Frenetic Footwork",
+      "name": "Frenetic Footwork",
       "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
       "system": {
         "duration": {
@@ -69,7 +69,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770277281768,
-        "modifiedTime": 1770280491323,
+        "modifiedTime": 1770632267577,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!8Tm8w8F0xQm7FmvL.bx3hSlf2c3pew8HW"

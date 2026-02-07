@@ -1,0 +1,89 @@
+{
+  "folder": "awpXMmcK8pUDEUcc",
+  "name": "Effect: Enrage (Restrict Guard Spell)",
+  "type": "effect",
+  "_id": "AZnLD3nCoMk2GJRe",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/enrage.png",
+  "system": {
+    "fuid": "effect-enrage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Enrage (Restrict Guard Spell)",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/enrage.png",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "R7WCR6yv0JeAmM7b",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You cannot perform the <strong>Guard</strong> or <strong>Spell</strong> actions until the end of your next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770625127076,
+        "modifiedTime": 1770631802964,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!AZnLD3nCoMk2GJRe.R7WCR6yv0JeAmM7b"
+    }
+  ],
+  "sort": 900000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770625103639,
+    "modifiedTime": 1770627047650,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!AZnLD3nCoMk2GJRe"
+}

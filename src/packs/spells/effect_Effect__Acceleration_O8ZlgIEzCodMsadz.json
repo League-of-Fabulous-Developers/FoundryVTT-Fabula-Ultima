@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Acceleration",
+      "name": "Acceleration",
       "_id": "d125R8pbNjfmRku0",
       "type": "base",
       "system": {
@@ -40,9 +40,9 @@
         "stack": 1,
         "rules": {
           "progress": {
-            "id": "acceleration",
-            "name": "Acceleration",
-            "style": "clock",
+            "id": "acceleration-used",
+            "name": "Acceleration Used",
+            "style": "basic",
             "enabled": true,
             "max": 2
           }
@@ -63,8 +63,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742672629257,
-        "modifiedTime": 1768578499948,
-        "lastModifiedBy": "bgUzjEHd80A79gwp",
+        "modifiedTime": 1770629030553,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!O8ZlgIEzCodMsadz.d125R8pbNjfmRku0"

@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Rebirth",
+      "name": "Symbol of Rebirth",
       "_id": "HFdxx7xuPNifHpWJ",
       "type": "base",
       "system": {
@@ -37,10 +37,20 @@
           "tracking": "self",
           "remaining": 0
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">If the creature bearing this </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">symbol </strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">is about to be reduced to 0 Hit Points, they may destroy this </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">symbol</strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">: if they do, they are instead reduced to exactly @GAIN[1 hp].</span></p>",
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">If you are about to be reduced to 0 HP while bearing the <strong>Symbol of Rebirth</strong>, you may destroy this <strong>symbol</strong>: if you do, you are instead reduced to exactly 1 HP.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,18 +60,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742583349321,
-        "modifiedTime": 1744748447964,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770634329628,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!PKduzohKSvwQRaa1.HFdxx7xuPNifHpWJ"
     }
   ],
-  "sort": 100000,
+  "sort": 5400000,
   "ownership": {
     "default": 0,
     "JXPd932s9DHQRD0w": 3
@@ -70,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742583341742,
-    "modifiedTime": 1744735291725,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!PKduzohKSvwQRaa1"

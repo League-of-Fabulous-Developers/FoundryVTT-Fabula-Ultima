@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Effect: Symbol of Flux (Dazed Immunity)}, @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Effect: Symbol of Flux (Shaken Immunity)}, @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Effect: Symbol of Flux (Slow Immunity)}, or @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Effect: Symbol of Flux (Weak Immunity)}</p></li></ul><p></p>"
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.G7eb8vHOu48YfAeC], @EFFECT[Compendium.projectfu.skills.Item.xjkcH1jtZyJjBEfJ], @EFFECT[Compendium.projectfu.skills.Item.1amz1YVyXCJuwFGQ], @EFFECT[Compendium.projectfu.skills.Item.nNzzp5fPDyq4XVmE], @EFFECT[Compendium.projectfu.skills.Item.jb9fisS1YJ5FVG2P], @EFFECT[Compendium.projectfu.skills.Item.n5RbU9RxPYyGwB5B], @EFFECT[Compendium.projectfu.skills.Item.eVV95GhWiRTEK5my], or @EFFECT[Compendium.projectfu.skills.Item.kDgnLl4tCn8nEIES]</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-flux"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177560234,
-    "modifiedTime": 1744740866760,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635231635,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

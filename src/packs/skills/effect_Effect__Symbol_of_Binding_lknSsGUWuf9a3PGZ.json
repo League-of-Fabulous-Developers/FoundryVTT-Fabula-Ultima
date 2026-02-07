@@ -1,12 +1,13 @@
 {
-  "name": "Effect: Symbol of Binding (INS)",
+  "name": "Effect: Symbol of Binding",
   "type": "effect",
   "img": "icons/magic/symbols/rune-sigil-green.webp",
   "system": {
-    "fuid": "effect-symbol-of-binding-ins",
+    "fuid": "effect-symbol-of-binding",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -21,7 +22,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Binding (INS)",
+      "name": "Symbol of Binding",
       "_id": "TsULTAOsbp0aRzWi",
       "type": "base",
       "system": {
@@ -35,17 +36,45 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
+        {
+          "key": "system.attributes.dex.current",
+          "mode": 3,
+          "value": "@system.attributes.dex.base",
+          "priority": null
+        },
         {
           "key": "system.attributes.ins.current",
           "mode": 3,
           "value": "@system.attributes.ins.base",
           "priority": null
+        },
+        {
+          "key": "system.attributes.mig.current",
+          "mode": 3,
+          "value": "@system.attributes.mig.base",
+          "priority": null
+        },
+        {
+          "key": "system.attributes.wlp.current",
+          "mode": 3,
+          "value": "@system.attributes.wlp.base",
+          "priority": null
         }
       ],
-      "description": "<p>The <strong>current </strong>Attribute die sizes of the creature bearing this <strong>symbol </strong>can <strong>never </strong>be <strong>higher </strong>than that creature’s corresponding <strong>base </strong>Attribute die sizes (this does <strong>not</strong> end any spells or effects, but it will negate their influence over the creature’s Attributes).</p>",
+      "description": "<p>While you bear the <strong>Symbol of Binding</strong>, your <strong>current </strong>Attribute die sizes can <strong>never </strong>be <strong>higher </strong>than your corresponding <strong>base </strong>Attribute die sizes.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -55,15 +84,15 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1770628776945,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
-      "_key": "!items.effects!7E1mq6AqtWcpG0Up.TsULTAOsbp0aRzWi"
+      "_key": "!items.effects!lknSsGUWuf9a3PGZ.TsULTAOsbp0aRzWi"
     }
   ],
   "folder": "XW8tPjIw2b07tMQv",
@@ -75,15 +104,15 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1744735291649,
-    "modifiedTime": 1744735291725,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "createdTime": 1744735286988,
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
-  "_id": "7E1mq6AqtWcpG0Up",
-  "sort": 200000,
-  "_key": "!items!7E1mq6AqtWcpG0Up"
+  "_id": "lknSsGUWuf9a3PGZ",
+  "sort": 5500000,
+  "_key": "!items!lknSsGUWuf9a3PGZ"
 }

@@ -84,7 +84,8 @@
                   ],
                   "amount": "",
                   "cost": {
-                    "resource": ""
+                    "resource": "",
+                    "amount": null
                   }
                 }
               }
@@ -119,12 +120,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767290441788,
-        "modifiedTime": 1767291768265,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770430840846,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!vNgf1mOEsQSpbOiv.rpmUEDujHcoMFtnv"
     }

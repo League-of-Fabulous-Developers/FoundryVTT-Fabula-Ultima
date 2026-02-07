@@ -1,0 +1,106 @@
+{
+  "folder": "MIfFDYnI6CPOLrSB",
+  "name": "Effect: Aero Hex (Wellspring Expansion)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/compendium/classes/invoker/invocation.png",
+  "system": {
+    "fuid": "effect-aero-hex",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Aero Hex (Wellspring Expansion)",
+      "_id": "RtFM34BQ68oqfLXw",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": "",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "style": "basic"
+          },
+          "elements": {}
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.bolt",
+          "mode": 2,
+          "value": "5+(~&sl('wellspring-expansion'))",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.incomingDamage.fire",
+          "mode": 2,
+          "value": "5+(~&sl('wellspring-expansion'))",
+          "priority": null
+        }
+      ],
+      "description": "<p><span class=\"fontstyle0\">Until the start of the invoker's next turn, you suffer</span><strong>【5 + Wellspring Expansion SL】</strong><span class=\"fontstyle0\">extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770633187659
+      },
+      "_key": "!items.effects!0gA7OpsSZiQoLM79.RtFM34BQ68oqfLXw"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770633056753,
+    "modifiedTime": 1770633083996,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "0gA7OpsSZiQoLM79",
+  "sort": 700000,
+  "_key": "!items!0gA7OpsSZiQoLM79"
+}

@@ -118,6 +118,10 @@
     "fuid": "theriomorphosis",
     "targeting": {
       "rule": "self"
+    },
+    "cost": {
+      "amount": "floor($hp/3)",
+      "resource": "hp"
     }
   },
   "effects": [
@@ -181,7 +185,7 @@
       "description": "",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": true,
+      "transfer": false,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -189,12 +193,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767389458707,
-        "modifiedTime": 1767389487122,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770428966578,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!pmwdU2AGU0JtrWw8.RPlOX0C6CSWtmnFM"
     }
@@ -207,10 +211,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1767389552006,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770428912871,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

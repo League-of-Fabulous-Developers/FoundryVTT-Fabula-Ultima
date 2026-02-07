@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When a creature you can see that is bearing one of your <strong>symbols</strong> suffers damage or recovers Hit Points and/or Mind Points, you may have that creature suffer <strong>【SL】</strong> extra damage or recover <strong>【SL】</strong> additional Hit Points and/or Mind Points, respectively).</p><hr><ul><li><p><strong>Ally Recovers: </strong>@GAIN[$sl hp]{SL HP} @GAIN[$sl mp]{SL MP}</p></li><li><p><strong>Enemy Suffers:</strong> @LOSS[$sl hp]{SL HP}</p></li></ul>",
+    "description": "<p>When a creature you can see that is bearing one of your <strong>symbols</strong> suffers damage or recovers Hit Points and/or Mind Points, you may have that creature suffer <strong>【SL】</strong> extra damage or recover <strong>【SL】</strong> additional Hit Points and/or Mind Points, respectively.</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,16 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "personal-touch"
+    "fuid": "personal-touch",
+    "targeting": {
+      "rule": "special"
+    },
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.Q6EZyCIiILYVlmAW",
+        "Compendium.projectfu.skills.Item.YbvwZKzEu25o0Lun"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -127,15 +136,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "3.0.2",
-    "coreVersion": "13.346",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "13.351",
     "createdTime": 1706563160000,
-    "modifiedTime": 1745602145639,
-    "lastModifiedBy": "2sIzoqmFNykqXyPi",
+    "modifiedTime": 1770611910110,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

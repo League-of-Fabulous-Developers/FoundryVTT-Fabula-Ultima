@@ -118,24 +118,134 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "support-magic"
+    "fuid": "support-magic",
+    "targeting": {
+      "rule": "single"
+    },
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.Fl82KkmDq9R7i86N",
+        "Compendium.projectfu.skills.Item.s9gRkNI1b5eSIuxi",
+        "Compendium.projectfu.skills.Item.bZ6Lm98z1vNg1rHs"
+      ]
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Support Magic",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "V2J7u2tnkQtTmhhG": {
+              "type": "ruleElement",
+              "_id": "V2J7u2tnkQtTmhhG",
+              "trigger": {
+                "_id": "rJoNv3Oef4BXvgD1",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "VCIXsjeNpMM6xLvL": {
+                  "type": "weaponRulePredicate",
+                  "_id": "VCIXsjeNpMM6xLvL",
+                  "selector": "self",
+                  "categories": [
+                    "arcane"
+                  ]
+                },
+                "pTk6zFhDWbnI8Te8": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "pTk6zFhDWbnI8Te8",
+                  "relation": "ally"
+                },
+                "MphJwqfru4en8QVR": {
+                  "type": "bondRulePredicate",
+                  "_id": "MphJwqfru4en8QVR"
+                }
+              },
+              "actions": {
+                "CJ1BDSAuZrGfQJLt": {
+                  "type": "messageRuleAction",
+                  "_id": "CJ1BDSAuZrGfQJLt",
+                  "message": "<p>Choose one <strong>Bonded</strong> ally targeted to grant a check bonus equal to your <strong>Bond strength</strong> towards them.</p><hr><p><strong>Target Gains:</strong> @EFFECT[Compendium.projectfu.skills.Item.Fl82KkmDq9R7i86N]{Check Up +1}, @EFFECT[Compendium.projectfu.skills.Item.s9gRkNI1b5eSIuxi]{Check Up +2}, or @EFFECT[Compendium.projectfu.skills.Item.bZ6Lm98z1vNg1rHs]{Check Up +3}</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "rRpOsI2RT5P5mbMW",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770609517157,
+        "modifiedTime": 1770610016497,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!pIkEDFcA5pnIpsu3.rRpOsI2RT5P5mbMW"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706507941545,
-    "modifiedTime": 1741950975865,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770609509980,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When a creature in <strong>Crisis</strong> hits the creature bearing this <strong>symbol</strong> with an attack or offensive spell ( @ICON[offensive] ), the creature in Crisis recovers 5 Hit Points and 5 Mind Points.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.k0yGhYRLGR4XuqU6]{Effect: Symbol of Revenge}</p></li></ul>"
+      "description": "<p>When a creature in <strong>Crisis</strong> hits the creature bearing this <strong>symbol</strong> with an attack or offensive spell (@ICON[offensive]), the creature in Crisis recovers 5 Hit Points and 5 Mind Points.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.k0yGhYRLGR4XuqU6]</p>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-revenge"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177999155,
-    "modifiedTime": 1744745978602,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635321187,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

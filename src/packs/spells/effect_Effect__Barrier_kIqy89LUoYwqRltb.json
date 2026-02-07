@@ -1,0 +1,96 @@
+{
+  "folder": "awpXMmcK8pUDEUcc",
+  "name": "Effect: Barrier",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/barrier.png",
+  "system": {
+    "fuid": "effect-barrier",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Barrier",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/barrier.png",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "M8M8UYTrWoAbj0F5",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 4,
+          "value": "&step(12,13,14)",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the <strong>Barrier </strong>spell ends, you treat your <strong>Defense</strong> as being equal to 12. This value increases to 13 at <strong>level 20</strong>, or to 14 at <strong>level 40</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770627307689
+      },
+      "_key": "!items.effects!kIqy89LUoYwqRltb.M8M8UYTrWoAbj0F5"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770624104815,
+    "modifiedTime": 1770627047650,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "kIqy89LUoYwqRltb",
+  "sort": 1400000,
+  "_key": "!items!kIqy89LUoYwqRltb"
+}

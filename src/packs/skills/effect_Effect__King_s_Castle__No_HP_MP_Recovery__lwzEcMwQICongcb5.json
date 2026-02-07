@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: King No HP/MP Recovery",
+      "name": "King's Castle (No HP/MP Recovery)",
       "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
       "system": {
         "duration": {
@@ -94,7 +94,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770276191960,
-        "modifiedTime": 1770332175555,
+        "modifiedTime": 1770632144363,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!lwzEcMwQICongcb5.ncSlU2nJDypBoneS"

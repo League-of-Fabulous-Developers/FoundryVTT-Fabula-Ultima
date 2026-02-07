@@ -1,14 +1,14 @@
 {
   "folder": "XW8tPjIw2b07tMQv",
-  "name": "Effect: Symbol of Forbiddance",
+  "name": "Effect: Symbol of Forbiddance (Spell)",
   "type": "effect",
-  "_id": "JVYPNQEFS4xHxy5y",
   "img": "icons/magic/symbols/mask-metal-silver-white.webp",
   "system": {
     "fuid": "effect-symbol-of-forbiddance",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Forbiddance",
+      "name": "Symbol of Forbiddance (Spell)",
       "_id": "fU1zRMKc6PFM0uOW",
       "type": "base",
       "system": {
@@ -37,10 +37,21 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        }
       },
       "changes": [],
-      "description": "<p>When you create this symbol, choose an action type: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. When the creature bearing this <strong>symbol</strong> performs the chosen action, they lose 5 Hit Points and 5 Mind Points (<strong>before</strong> performing that action). Both amounts increase to 10 if you are <strong>level 20 or higher</strong>, or to 20 if you are <strong>level 40 or higher</strong>.</p>",
+      "description": "<p>When you perform the <strong>Spell </strong>action while bearing the <strong>Symbol of Forbiddance</strong>, you lose 5 HP and MP (<strong>before</strong> performing that action). Both amounts increase to 10 if the symbolist is <strong>level 20 or higher</strong>, or to 20 if they are <strong>level 40 or higher</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,33 +61,34 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744743430323,
-        "modifiedTime": 1744744118674,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
-        "exportSource": null
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770634248114
       },
-      "_key": "!items.effects!JVYPNQEFS4xHxy5y.fU1zRMKc6PFM0uOW"
+      "_key": "!items.effects!895XAiPlHLScPmCU.fU1zRMKc6PFM0uOW"
     }
   ],
-  "sort": 0,
   "ownership": {
     "default": 0,
-    "LokWlpJRX2uVxtGn": 3
+    "LokWlpJRX2uVxtGn": 3,
+    "mA8SNY2rY4X5tOHa": 3
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "exportSource": null,
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1744743418808,
-    "modifiedTime": 1744743425717,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
-    "exportSource": null
+    "createdTime": 1770615990430,
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "_key": "!items!JVYPNQEFS4xHxy5y"
+  "_id": "895XAiPlHLScPmCU",
+  "sort": 2600000,
+  "_key": "!items!895XAiPlHLScPmCU"
 }

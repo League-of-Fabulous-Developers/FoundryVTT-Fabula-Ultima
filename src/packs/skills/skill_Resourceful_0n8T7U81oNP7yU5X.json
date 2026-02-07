@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You recover <strong>【SL】</strong> Inventory Points after each <strong>travel roll</strong> (see <strong>Core Rulebook</strong>, page <strong>106</strong>).</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl ip]{SL IP}</p></li></ul>",
+    "description": "<p>You recover <strong>【SL】</strong> Inventory Points after each <strong>travel roll</strong> (see <strong>Core Rulebook</strong>, page <strong>106</strong>).</p><hr /><p><strong>You Recover: </strong>@GAIN[$sl ip]{SL IP}</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,13 @@
     "fuid": "resourceful",
     "cost": {
       "resource": "ip"
+    },
+    "resource": {
+      "enabled": false,
+      "type": "ip"
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [],
@@ -130,15 +137,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706513073568,
-    "modifiedTime": 1744749651695,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770618720235,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

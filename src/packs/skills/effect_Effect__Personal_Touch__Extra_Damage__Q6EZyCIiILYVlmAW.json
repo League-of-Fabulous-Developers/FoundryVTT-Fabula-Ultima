@@ -1,0 +1,96 @@
+{
+  "folder": "XW8tPjIw2b07tMQv",
+  "name": "Effect: Personal Touch (Extra Damage)",
+  "type": "effect",
+  "_id": "Q6EZyCIiILYVlmAW",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_personal_touch.png",
+  "system": {
+    "fuid": "effect-personal-touch-extra-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Personal Touch (Damage)",
+      "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_personal_touch.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LYgTJyvbIHs5z3hR",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "~&sl(\"personal-touch\")",
+          "priority": null
+        }
+      ],
+      "description": "<p>When you suffer damage while bearing a <strong>symbol</strong>, you suffer<strong>【SL】</strong>extra damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770611648472,
+        "modifiedTime": 1770634106703,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Q6EZyCIiILYVlmAW.LYgTJyvbIHs5z3hR"
+    }
+  ],
+  "sort": 5200000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770611305395,
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Q6EZyCIiILYVlmAW"
+}

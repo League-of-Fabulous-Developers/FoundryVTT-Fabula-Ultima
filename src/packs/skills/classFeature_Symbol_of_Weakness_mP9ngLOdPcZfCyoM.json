@@ -13,56 +13,12 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Suffers: </strong>@EFFECT[Compendium.projectfu.actor-effects.aI4tsuVswH5gfGab]{Effect: Symbol of Weakness (Air)}, @EFFECT[Compendium.projectfu.actor-effects.MRNCMGIcZStGVV9J]{Effect: Symbol of Weakness (Bolt)}, @EFFECT[Compendium.projectfu.actor-effects.zFQpa3KcSAmBCWdE]{Effect: Symbol of Weakness (Dark)}, @EFFECT[Compendium.projectfu.actor-effects.YpXM5ClzMzIcwCgd]{Effect: Symbol of Weakness (Earth}, @EFFECT[Compendium.projectfu.actor-effects.dAFACJSQzCbcU9We]{Effect: Symbol of Weakness (Fire)}, @EFFECT[Compendium.projectfu.actor-effects.BVOW692emrw4yxR0]{Effect: Symbol of Weakness (Ice)}, @EFFECT[Compendium.projectfu.actor-effects.aPBdnNy1hA8aRctl]{Effect: Symbol of Weakness (Light)}, or @EFFECT[Compendium.projectfu.actor-effects.2sXIFIXiWxRHt8CP]{Effect: Symbol of Weakness (Poison)}</p></li></ul>"
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives: </strong>@EFFECT[Compendium.projectfu.skills.Item.fibQb1UfU30emdPw], @EFFECT[Compendium.projectfu.skills.Item.OZQP3SwLMPreHOoH], @EFFECT[Compendium.projectfu.skills.Item.dRxsZ0W1HOvl9UhW], @EFFECT[Compendium.projectfu.skills.Item.miRcuE6VNnxP0lgg], @EFFECT[Compendium.projectfu.skills.Item.NkE6UCLYl7ib9ft6], @EFFECT[Compendium.projectfu.skills.Item.ZoTGGhZH7ShEMImB], @EFFECT[Compendium.projectfu.skills.Item.p90qw9XnvGFHDwUU], or @EFFECT[Compendium.projectfu.skills.Item.m0bGyMRsayBmSyTt]</p>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-weakness"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.skills.Item.mP9ngLOdPcZfCyoM",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Symbol of Weakness",
-      "img": "icons/magic/death/skull-poison-green.webp",
-      "_id": "1k3J3U9qsFPObWVa",
-      "type": "base",
-      "system": {},
-      "changes": [],
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF151",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1730910825288,
-        "modifiedTime": 1730910881562,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3",
-        "exportSource": null
-      },
-      "_key": "!items.effects!mP9ngLOdPcZfCyoM.1k3J3U9qsFPObWVa"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -75,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710178202872,
-    "modifiedTime": 1744747506678,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770634797365,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

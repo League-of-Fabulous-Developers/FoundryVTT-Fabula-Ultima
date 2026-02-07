@@ -1,0 +1,105 @@
+{
+  "folder": "qNRGZXmchYjR0e4z",
+  "name": "Effect: Stop",
+  "type": "effect",
+  "_id": "3TCvFEruZDYy6BNx",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/stop.png",
+  "system": {
+    "fuid": "effect-stop",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Stop",
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/stop.png",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "tBOWzvZ3pRd387rG": {
+              "type": "ruleElement",
+              "_id": "tBOWzvZ3pRd387rG",
+              "trigger": {
+                "eventRelation": "source",
+                "eventType": "startOfTurn"
+              },
+              "actions": {
+                "YKCrtbI2oicxczdt": {
+                  "type": "messageRuleAction",
+                  "_id": "YKCrtbI2oicxczdt",
+                  "message": "<p>You will perform one fewer action on this turn (to a minimum of 0 actions).</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "UdGbGayAOCXrLjuh",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You will perform one fewer action on your next turn (to a minimum of 0 actions).</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770623541984,
+        "modifiedTime": 1770629064480,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!3TCvFEruZDYy6BNx.UdGbGayAOCXrLjuh"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770623531449,
+    "modifiedTime": 1770623539636,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!3TCvFEruZDYy6BNx"
+}

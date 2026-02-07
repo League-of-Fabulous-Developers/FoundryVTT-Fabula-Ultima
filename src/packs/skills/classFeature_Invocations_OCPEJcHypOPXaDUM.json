@@ -21,7 +21,7 @@
         },
         "advanced": {
           "name": "Aero Hex",
-          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.gLmFM7sGvsT3YEEQ]{Effect: Aero Hex}</span></p>"
+          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.gLmFM7sGvsT3YEEQ] or @EFFECT[Compendium.projectfu.skills.Item.0gA7OpsSZiQoLM79]</span></p>"
         },
         "superior1": {
           "name": "Breeze",
@@ -39,7 +39,7 @@
         },
         "advanced": {
           "name": "Geo Hex",
-          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</span></p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.XneKAK7lEd344SDX]{Effect: Geo Hex}</span></p>"
+          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</span></p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.XneKAK7lEd344SDX] or @EFFECT[Compendium.projectfu.skills.Item.bBrv53NViJtpvdol]</span></p>"
         },
         "superior1": {
           "name": "Growth",
@@ -57,7 +57,7 @@
         },
         "advanced": {
           "name": "Pyro Hex",
-          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.P35wmm9xOT0bnImB]{Effect: Pyro Hex}</span></p>"
+          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.P35wmm9xOT0bnImB] or @EFFECT[Compendium.projectfu.skills.Item.4sBRI5eerg9x3eXM]</span></p>"
         },
         "superior1": {
           "name": "Burst",
@@ -75,7 +75,7 @@
         },
         "advanced": {
           "name": "Electro Hex",
-          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.Aotszm4Q25ys3Mbv]{Effect: Electro Hex}</span></p>"
+          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.Aotszm4Q25ys3Mbv] or @EFFECT[Compendium.projectfu.skills.Item.fTW9GoIRmH9L0KkI]</span></p>"
         },
         "superior1": {
           "name": "Static",
@@ -93,7 +93,7 @@
         },
         "advanced": {
           "name": "Hydro Hex",
-          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.XpYrgDtYILIGS7Sf]{Effect: Hydro Hex}</span></p>"
+          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p><hr><p><strong>You Spend:</strong> @LOSS[5 mp]<strong><br></strong><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.XpYrgDtYILIGS7Sf] or @EFFECT[Compendium.projectfu.skills.Item.Th7FXd7ohgY8Rfx7]</span></p>"
         },
         "superior1": {
           "name": "Chill",
@@ -123,7 +123,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1770415220231,
+    "modifiedTime": 1770633546790,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

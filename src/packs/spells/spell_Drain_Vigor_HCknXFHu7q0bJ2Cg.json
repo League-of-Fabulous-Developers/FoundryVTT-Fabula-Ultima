@@ -118,7 +118,9 @@
       "value": 1
     },
     "fuid": "drain-vigor",
-    "traits": []
+    "traits": [
+      "absorb-half"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -137,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706571214060,
-    "modifiedTime": 1768578958387,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770622873779,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

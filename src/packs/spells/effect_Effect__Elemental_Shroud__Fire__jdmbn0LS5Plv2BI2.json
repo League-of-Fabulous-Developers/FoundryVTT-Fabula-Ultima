@@ -1,0 +1,96 @@
+{
+  "folder": "XHWSs6dH0zQEDE21",
+  "name": "Effect: Elemental Shroud (Fire)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud.png",
+  "system": {
+    "fuid": "effect-elemental-shroud",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Elemental Shroud (Fire)",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kHcShxkx44ViFsOr",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.fire",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the <strong>Elemental Shroud</strong> spell ends, you gain Resistance to <strong>fire </strong>damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770631602391
+      },
+      "_key": "!items.effects!jdmbn0LS5Plv2BI2.kHcShxkx44ViFsOr"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770627831763,
+    "modifiedTime": 1770627873428,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "jdmbn0LS5Plv2BI2",
+  "sort": 400000,
+  "_key": "!items!jdmbn0LS5Plv2BI2"
+}

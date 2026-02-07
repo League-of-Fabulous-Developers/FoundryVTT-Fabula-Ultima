@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p><hr /><ul><li><p><strong>Targets Receive: </strong>@TYPE[affinity air resistance e:eos i:1 t:source], @TYPE[affinity bolt resistance e:eos i:1 t:source], @TYPE[affinity earth resistance e:eos i:1 t:source], @TYPE[affinity fire resistance e:eos i:1 t:source], or @TYPE[affinity ice resistance e:eos i:1 t:source]</p></li></ul>",
+    "description": "<p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,16 @@
     "maxTargets": {
       "value": 3
     },
-    "fuid": "elemental-shroud"
+    "fuid": "elemental-shroud",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.spells.Item.xp2bMd7jkx1rfjrb",
+        "Compendium.projectfu.spells.Item.JxkkqwY0eyzqjIXU",
+        "Compendium.projectfu.spells.Item.0gQINms2ddJW2vVr",
+        "Compendium.projectfu.spells.Item.jdmbn0LS5Plv2BI2",
+        "Compendium.projectfu.spells.Item.l7FVA1qEtGVhFRne"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -140,15 +149,18 @@
         "resourceType": "MP",
         "perTarget": false
       }
+    },
+    "projectfu": {
+      "favorite": false
     }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706564403943,
-    "modifiedTime": 1746640959029,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1770627975945,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,96 @@
+{
+  "folder": "awpXMmcK8pUDEUcc",
+  "name": "Effect: Reinforce (Slow)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce.png",
+  "system": {
+    "fuid": "effect-reinforce",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Reinforce (Slow)",
+      "img": "systems/projectfu/styles/static/statuses/immunities/SlowImmune.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "sJloIrKsBjrUWGxt",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.slow.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the <strong>Reinforce</strong> spell ends, you become immune to <strong>slow</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770631856225
+      },
+      "_key": "!items.effects!YPwd8ncv62T8md10.sJloIrKsBjrUWGxt"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770626107985,
+    "modifiedTime": 1770627047650,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "YPwd8ncv62T8md10",
+  "sort": 300000,
+  "_key": "!items!YPwd8ncv62T8md10"
+}

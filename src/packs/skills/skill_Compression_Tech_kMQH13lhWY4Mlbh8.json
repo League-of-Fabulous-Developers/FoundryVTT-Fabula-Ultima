@@ -120,6 +120,9 @@
     "cost": {
       "resource": "ip",
       "amount": 2
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [],
@@ -129,14 +132,18 @@
     "YN7AhHIwAZeH33Tw": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711431286236,
-    "modifiedTime": 1741968117172,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770452962499,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

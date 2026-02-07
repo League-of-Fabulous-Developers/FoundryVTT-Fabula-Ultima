@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>At the end of each of their turns, the target may choose <strong>one</strong> option: perform a <strong>free attack</strong> with a weapon they have equipped; <strong>or</strong> perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost). After the same creature benefits from this effect a second time, this spell ends.</p><hr /><ul><li><p><strong>Target Receives</strong>: @EFFECT[Compendium.projectfu.spells.Item.O8ZlgIEzCodMsadz]{Effect: Acceleration}</p></li></ul>",
+    "description": "<p>At the end of each of their turns, the target may choose <strong>one</strong> option: perform a <strong>free attack</strong> with a weapon they have equipped; <strong>or</strong> perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost). After the same creature benefits from this effect a second time, this spell ends.</p>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,12 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "acceleration"
+    "fuid": "acceleration",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.spells.Item.O8ZlgIEzCodMsadz"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -136,8 +141,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706567990806,
-    "modifiedTime": 1768578513516,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770622555380,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.MYSEZ2cBLYO5yqkL]</p></li></ul>"
+      "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.MYSEZ2cBLYO5yqkL]</p>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-despair"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177366191,
-    "modifiedTime": 1744740759361,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770612464729,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

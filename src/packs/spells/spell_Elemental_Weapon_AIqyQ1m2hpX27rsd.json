@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You imbue a weapon with elemental energy. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><hr><ul><li><p><strong>Targets Receive:</strong> @WEAPON[air bolt earth fire ice]{Elemental Weapon}</p></li></ul>",
+    "description": "<p>You imbue a weapon with elemental energy. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><hr /><p><strong>Targets Receive:</strong> @WEAPON[air bolt earth fire ice]{Elemental Weapon}</p>",
     "isFavored": {
       "value": false
     },
@@ -19,7 +19,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Elementalist"
     },
     "useWeapon": {
       "accuracy": {
@@ -119,7 +119,7 @@
     },
     "fuid": "elemental-weapon",
     "targeting": {
-      "rule": "single"
+      "rule": "weapon"
     }
   },
   "effects": [],
@@ -129,15 +129,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706564486966,
-    "modifiedTime": 1748083071029,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1770619867425,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>or </strong>perform a <strong>Hinder </strong>or <strong>Objective </strong>action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
+    "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</span></p><ul><li><p><span>Perform a <strong>free attack</strong> with a weapon you have equipped.</span></p></li><li><p><span>Perform a <strong>Hinder </strong>or <strong>Objective </strong>action.</span></p></li></ul><p><span>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,9 @@
     "fuid": "high-speed",
     "cost": {
       "amount": 10
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [],
@@ -130,15 +133,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706504755033,
-    "modifiedTime": 1741971384010,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770454736558,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

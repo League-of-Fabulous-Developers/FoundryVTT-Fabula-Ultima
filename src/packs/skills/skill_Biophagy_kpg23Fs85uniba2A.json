@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p>",
+    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -115,7 +115,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "biophagy"
+    "fuid": "biophagy",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -134,43 +137,149 @@
         },
         "rules": {
           "elements": {
-            "C6KZyVmVfBwifjz4": {
+            "ZVmXT5qwqBX75VSD": {
               "type": "ruleElement",
-              "_id": "C6KZyVmVfBwifjz4",
+              "_id": "ZVmXT5qwqBX75VSD",
               "trigger": {
-                "_id": "TzJan9G3dRTybkQP",
-                "type": "damageRuleTrigger",
+                "_id": "SBCsaQCxm3H2g7Nu",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
-                "damageType": "",
-                "damageSources": [
-                  "attack",
-                  "spell"
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
                 ],
-                "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
-                }
+                "local": false,
+                "identifier": ""
               },
               "predicates": {
-                "Lo9cgp7csl17ZYXm": {
+                "4EunxyLHd2I2Nlo5": {
                   "type": "targetEffectRulePredicate",
-                  "_id": "Lo9cgp7csl17ZYXm",
+                  "_id": "4EunxyLHd2I2Nlo5",
                   "selector": "self",
                   "effect": "crisis"
+                },
+                "lYEJzjkaHEYIlIUE": {
+                  "type": "traitsRulePredicate",
+                  "_id": "lYEJzjkaHEYIlIUE",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
                 }
               },
               "actions": {
-                "yvKXdZ95vLY0F2BK": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "yvKXdZ95vLY0F2BK",
-                  "amount": "$sl*5"
+                "UY578Gh9ibkcAaWg": {
+                  "type": "messageRuleAction",
+                  "_id": "UY578Gh9ibkcAaWg",
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover<strong>【SL × 5】</strong>HP.</p>"
                 },
-                "GscrPVa6sJROhLIw": {
-                  "type": "notifyRuleAction",
-                  "_id": "GscrPVa6sJROhLIw"
+                "CqmfDSkexO622LiX": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "CqmfDSkexO622LiX",
+                  "amount": "$sl*5"
+                }
+              }
+            },
+            "vu6YuEN6vlerB62H": {
+              "type": "ruleElement",
+              "_id": "vu6YuEN6vlerB62H",
+              "trigger": {
+                "_id": "22jH2MuqnObsz2El",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "32gT2Qs7F5m9xraz": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "32gT2Qs7F5m9xraz",
+                  "selector": "self",
+                  "effect": "crisis"
+                },
+                "MtfWKjf3Dakhv83n": {
+                  "type": "traitsRulePredicate",
+                  "_id": "MtfWKjf3Dakhv83n",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                },
+                "CwIkSoJiw4WHH2x2": {
+                  "type": "spellRulePredicate",
+                  "_id": "CwIkSoJiw4WHH2x2",
+                  "offensive": "true"
                 }
               },
-              "selector": "self"
+              "actions": {
+                "G7KWjDzT9URVrjjq": {
+                  "type": "messageRuleAction",
+                  "_id": "G7KWjDzT9URVrjjq",
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover<strong>【SL × 5】</strong>HP.</p>"
+                },
+                "2kfZKSRbaN70RlPi": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "2kfZKSRbaN70RlPi",
+                  "amount": "$sl*5"
+                }
+              }
+            },
+            "hhpK7dHww70Ln8a3": {
+              "type": "ruleElement",
+              "_id": "hhpK7dHww70Ln8a3",
+              "trigger": {
+                "_id": "EtEt4Bxl80S1GVSd",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "YQVezlfr2f4Rj30j": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "YQVezlfr2f4Rj30j",
+                  "selector": "self",
+                  "effect": "crisis"
+                },
+                "n8afOBh3UypoCbIA": {
+                  "type": "spellRulePredicate",
+                  "_id": "n8afOBh3UypoCbIA",
+                  "offensive": "true"
+                },
+                "VUnFPolySETxUlWP": {
+                  "type": "traitsRulePredicate",
+                  "_id": "VUnFPolySETxUlWP",
+                  "traits": {
+                    "entries": [
+                      "loss",
+                      "hit-point"
+                    ],
+                    "quantifier": "all"
+                  }
+                }
+              },
+              "actions": {
+                "RrimQoKy6AraLGPA": {
+                  "type": "messageRuleAction",
+                  "_id": "RrimQoKy6AraLGPA",
+                  "message": "<p>If you cause one or more enemies to lose HP, you may recover<strong>【SL × 5】</strong>HP.</p>"
+                },
+                "cUp7Ytuedl5yNPpI": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "cUp7Ytuedl5yNPpI",
+                  "amount": "$sl*5"
+                }
+              }
             }
           },
           "progress": {
@@ -202,12 +311,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767289793419,
-        "modifiedTime": 1767291470387,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770428116246,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!kpg23Fs85uniba2A.cHLNid8K4n73xxvO"
     }
@@ -220,10 +329,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1767289784646,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770431753262,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

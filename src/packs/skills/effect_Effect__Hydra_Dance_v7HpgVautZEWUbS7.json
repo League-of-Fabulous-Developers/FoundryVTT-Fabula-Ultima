@@ -24,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Hydra Dance",
+      "name": "Hydra Dance",
       "_id": "6pWZZ25JH3nhZdjg",
       "type": "base",
       "system": {
@@ -76,7 +76,7 @@
         }
       },
       "changes": [],
-      "description": "<p>After you <strong>suffer</strong> <strong>damage</strong>, choose one option: you recover 5 HP, <strong>or</strong> you recover 5 MP.</p>",
+      "description": "<p>Until the start of your next turn, after you <strong>suffer</strong> <strong>damage</strong>, choose one option: you recover 5 HP, <strong>or</strong> you recover 5 MP.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -90,7 +90,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742579460750,
-        "modifiedTime": 1770406472944,
+        "modifiedTime": 1770632291835,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

@@ -13,56 +13,12 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>If a <strong>Villain</strong> is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol</strong> trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.CDC3VvFP8ZTCuxXk]{Effect: Symbol of Rebellion}</p></li></ul>"
+      "description": "<p>If a <strong>Villain</strong> is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol</strong> trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.CDC3VvFP8ZTCuxXk]</p>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-rebellion"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.skills.Item.9nJVufRrPpqtlnqM",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Symbol of Rebellion",
-      "img": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
-      "_id": "hKMM7HHVjXKBXyWd",
-      "type": "base",
-      "system": {},
-      "changes": [],
-      "description": "<p>If a <strong>Villain</strong> is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol</strong> trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF151",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1730912656043,
-        "modifiedTime": 1730912806848,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3",
-        "exportSource": null
-      },
-      "_key": "!items.effects!9nJVufRrPpqtlnqM.hKMM7HHVjXKBXyWd"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -75,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177904614,
-    "modifiedTime": 1744745497789,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635310059,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

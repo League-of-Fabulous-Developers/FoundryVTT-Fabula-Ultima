@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Accuracy Check Up",
+      "name": "Charging Cavalry (Accuracy Up)",
       "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
       "system": {
         "duration": {
@@ -69,7 +69,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770273473908,
-        "modifiedTime": 1770280565916,
+        "modifiedTime": 1770632170336,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!X4L3sibcGEi8LPvd.6FbGNzBSHKFc7umq"

@@ -120,13 +120,16 @@
       }
     },
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "opportunity": "",
     "defense": "def",
     "fuid": "magitech-override",
     "cost": {
       "amount": 10
+    },
+    "targeting": {
+      "rule": "single"
     }
   },
   "effects": [],
@@ -150,8 +153,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711293254460,
-    "modifiedTime": 1768746411470,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770618481116,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Comet</h4><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: you deal 60 damage to one creature you can see; <strong>or</strong> you deal 40 damage to every enemy you can see. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p>",
+    "description": "<p><strong>Required Heroic Skill:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.zggGDIOSuvO8uzHg]{Comet}</p><hr /><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option:</p><ul><li><p>You deal 60 damage to one creature you can see.</p></li><li><p>You deal 40 damage to every enemy you can see.</p></li></ul><p>These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p>",
     "isFavored": {
       "value": false
     },
@@ -103,7 +103,7 @@
         },
         "value": 40,
         "type": {
-          "value": "physical"
+          "value": "untyped"
         }
       }
     },
@@ -111,7 +111,7 @@
       "value": false
     },
     "opportunity": "",
-    "fuid": "comet-multi-target"
+    "fuid": "comet"
   },
   "effects": [
     {
@@ -248,8 +248,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710548744272,
-    "modifiedTime": 1768869116822,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770622656161,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

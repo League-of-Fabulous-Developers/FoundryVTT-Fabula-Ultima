@@ -37,7 +37,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -53,7 +63,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p>",
+      "description": "<p>When you recover HP and/or MP during conflicts while you bear the <strong>Symbol of Despair</strong>, instead you only recover <strong>half </strong>the normal amount of HP and/or MP.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -63,18 +73,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744737091711,
-        "modifiedTime": 1744737656660,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770614092058,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!MYSEZ2cBLYO5yqkL.mW4KxjbQ2kx3aKaA"
     }
   ],
-  "sort": 0,
+  "sort": 4300000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -83,12 +93,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744737030830,
-    "modifiedTime": 1744737087908,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!MYSEZ2cBLYO5yqkL"

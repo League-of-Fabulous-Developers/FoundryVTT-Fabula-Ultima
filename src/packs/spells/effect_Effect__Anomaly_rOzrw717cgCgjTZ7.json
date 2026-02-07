@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Anomaly",
+      "name": "Anomaly",
       "_id": "mYnEsYLJMdCobMhd",
       "type": "base",
       "system": {
@@ -41,7 +41,8 @@
         "rules": {
           "progress": {
             "id": "",
-            "name": ""
+            "name": "",
+            "style": "basic"
           }
         }
       },
@@ -56,12 +57,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744487288438,
-        "modifiedTime": 1747177116484,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+        "modifiedTime": 1770629037079,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!rOzrw717cgCgjTZ7.mYnEsYLJMdCobMhd"
