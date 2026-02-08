@@ -133,6 +133,10 @@ globalThis.projectfu = {
 	},
 };
 
+// These are pulled out of the init hook to ensure they are overridden before any modules that may apply mixins later
+CONFIG.Token.rulerClass = FUTokenRuler;
+CONFIG.Token.objectClass = FUToken;
+
 /* -------------------------------------------- */
 /*  Init Hook                                   */
 /* -------------------------------------------- */
@@ -410,10 +414,6 @@ Hooks.once('init', async () => {
 	// if (!game.settings.get(SYSTEM, SETTINGS.optionEnableDragRuler)) {
 	// 	CONFIG.Token.rulerClass = null;
 	// }
-
-	// Override token ruler class
-	CONFIG.Token.rulerClass = FUTokenRuler;
-	CONFIG.Token.objectClass = FUToken;
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
