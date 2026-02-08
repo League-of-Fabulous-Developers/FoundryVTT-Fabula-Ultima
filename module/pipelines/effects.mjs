@@ -556,7 +556,7 @@ async function manageEffectDuration(event) {
 							return false;
 						}
 					} else if (duration.tracking === 'source') {
-						if (effect.source.actorUuid !== event.actor.uuid) {
+						if (effect.sourceInfo.actorUuid !== event.actor.uuid) {
 							return false;
 						}
 					}
