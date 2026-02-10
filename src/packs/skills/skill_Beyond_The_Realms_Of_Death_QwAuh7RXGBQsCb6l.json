@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After another creature you can see loses Hit Points, if they are in <strong>Crisis</strong> and are not <strong>undead</strong>, you gain <strong>1 Grave Point</strong>. You may never have more than <strong>【SL + 1】 </strong>Grave Points.</p><p>When you are reduced to 0 Hit Points, you <strong>lose all Grave Points</strong>; then, if you lost at least 1 Grave Point this way and this is the <strong>first time</strong> you are reduced to 0 HP during this scene, your current Hit Points instead become equal to <strong>【SL, multiplied by the amount of Grave Points you lost this way】</strong> .</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[(@item.level.value)+(@item.rp.current) hp]{SL × Lost Grave Points HP}</p></li></ul>",
+    "description": "<p>After another creature you can see loses Hit Points, if they are in <strong>Crisis</strong> and are not <strong>undead</strong>, you gain <strong>1 Grave Point</strong>. You may never have more than <strong>【SL + 1】 </strong>Grave Points.</p><p>When you are reduced to 0 Hit Points, you <strong>lose all Grave Points</strong>; then, if you lost at least 1 Grave Point this way and this is the <strong>first time</strong> you are reduced to 0 HP during this scene, your current Hit Points instead become equal to <strong>【SL, multiplied by the amount of Grave Points you lost this way】</strong> .</p><hr /><p><strong>You Recover:</strong> @GAIN[(@item.level.value)+(@item.rp.current) hp]{SL × Grave Points HP}<br /><strong>Reset:</strong> @PROGRESS[beyond-the-realms-of-death reset]{Lose All Grave Points}</p>",
     "isFavored": {
       "value": false
     },
@@ -113,7 +113,10 @@
       "step": 1
     },
     "defense": "def",
-    "fuid": "beyond-the-realms-of-death"
+    "fuid": "beyond-the-realms-of-death",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "img": "systems/projectfu/styles/static/compendium/classes/necromancer/beyond_the_realms_of_death.png",
   "effects": [],
@@ -129,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1684757023667,
-    "modifiedTime": 1769024920712,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770432043373,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

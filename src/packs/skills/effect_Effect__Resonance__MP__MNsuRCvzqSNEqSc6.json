@@ -1,6 +1,6 @@
 {
   "folder": "W4fiI5cqJwfMJtiD",
-  "name": "Effect: Resonance MP",
+  "name": "Effect: Resonance (MP)",
   "type": "effect",
   "_id": "MNsuRCvzqSNEqSc6",
   "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Resonance MP",
+      "name": "Resonance (MP)",
       "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
       "system": {
         "duration": {
@@ -70,7 +70,7 @@
       "_id": "g7hwVC7QG8txOt3H",
       "type": "base",
       "changes": [],
-      "description": "<p>The chanter recovers <strong>【SL】</strong> Mind Points <strong>every time</strong> you suffer damage. This is due to @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance}.</p>",
+      "description": "<p>The chanter recovers <strong>【SL】</strong> Mind Points <strong>every time</strong> you suffer damage. This lasts until the start of their next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -85,7 +85,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770268511650,
-        "modifiedTime": 1770400628082,
+        "modifiedTime": 1770632005973,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!MNsuRCvzqSNEqSc6.g7hwVC7QG8txOt3H"
@@ -105,7 +105,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770268502028,
-    "modifiedTime": 1770268743257,
+    "modifiedTime": 1770631979358,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!MNsuRCvzqSNEqSc6"

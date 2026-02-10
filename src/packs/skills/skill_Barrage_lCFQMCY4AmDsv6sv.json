@@ -31,7 +31,7 @@
     },
     "accuracy": 0,
     "damage": {
-      "hasDamage": true,
+      "hasDamage": false,
       "value": 0,
       "type": "",
       "onRoll": "",
@@ -40,7 +40,7 @@
     },
     "source": "FUCR205",
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "hasResource": {
       "value": false
@@ -60,7 +60,7 @@
       "perTarget": false
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 2
     },
     "traits": []
@@ -80,10 +80,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706506734196,
-    "modifiedTime": 1759588864522,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770606743330,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

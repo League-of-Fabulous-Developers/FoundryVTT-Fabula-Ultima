@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
+    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><hr /><p><em>The consumable items being used must have the potion and restore traits.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -121,7 +121,10 @@
     "fuid": "potion-rain",
     "cost": {
       "resource": "ip",
-      "amount": 3
+      "amount": ""
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [
@@ -226,10 +229,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706508730921,
-    "modifiedTime": 1767560789058,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770618393949,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

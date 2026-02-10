@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "vismagus"
+    "fuid": "vismagus",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -137,8 +140,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706507954756,
-    "modifiedTime": 1768686775455,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770610112575,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

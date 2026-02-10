@@ -120,7 +120,8 @@
     "fuid": "enrage",
     "effects": {
       "entries": [
-        "enraged"
+        "enraged",
+        "Compendium.projectfu.spells.Item.AZnLD3nCoMk2GJRe"
       ]
     }
   },
@@ -141,8 +142,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706572370902,
-    "modifiedTime": 1768694588958,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770625122038,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

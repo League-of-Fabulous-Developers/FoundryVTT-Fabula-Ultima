@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Mirror",
+      "name": "Mirror",
       "_id": "5AM5DRlt9st1DfDo",
       "type": "base",
       "system": {
@@ -41,7 +41,8 @@
         "rules": {
           "progress": {
             "id": "",
-            "name": ""
+            "name": "",
+            "style": "basic"
           }
         }
       },
@@ -56,12 +57,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744504147205,
-        "modifiedTime": 1747173765308,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+        "modifiedTime": 1770629050540,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!cyA5qMihPTXCsCyD.5AM5DRlt9st1DfDo"

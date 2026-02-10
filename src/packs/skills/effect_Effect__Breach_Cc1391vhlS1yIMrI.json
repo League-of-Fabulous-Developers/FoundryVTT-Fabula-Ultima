@@ -8,7 +8,8 @@
     "fuid": "effect-breach",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -37,7 +38,17 @@
           "tracking": "source",
           "remaining": 0
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -47,7 +58,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Whenever you suffer damage from a source before the start of your next turn, that source deals <strong>【SL × 2】</strong> extra damage to you.</p>",
+      "description": "<p>Whenever you suffer damage before the start of the weaponmaster's next turn, that source deals<strong>【SL × 2】</strong>extra damage to you.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -57,12 +68,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742152985738,
-        "modifiedTime": 1742155195565,
-        "lastModifiedBy": "JXPd932s9DHQRD0w",
+        "modifiedTime": 1770631373845,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!Cc1391vhlS1yIMrI.zoOqCdNwgemMCpvA"
@@ -77,12 +88,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742152963885,
-    "modifiedTime": 1742492895869,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1770628149637,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!Cc1391vhlS1yIMrI"

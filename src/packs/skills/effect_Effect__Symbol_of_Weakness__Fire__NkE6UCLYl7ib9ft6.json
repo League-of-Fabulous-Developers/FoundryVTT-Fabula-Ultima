@@ -1,0 +1,96 @@
+{
+  "name": "Effect: Symbol of Weakness (Fire)",
+  "type": "effect",
+  "img": "icons/magic/death/skull-poison-green.webp",
+  "system": {
+    "fuid": "effect-symbol-of-weakness",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Symbol of Weakness (Fire)",
+      "img": "icons/magic/death/skull-poison-green.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "aMv8LMCFMPRRUDWk",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.fire",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you bear the <strong>Symbol of Weakness</strong>, you suffer 5 extra damage from sources dealing <strong>fire </strong>damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770634623590
+      },
+      "_key": "!items.effects!NkE6UCLYl7ib9ft6.aMv8LMCFMPRRUDWk"
+    }
+  ],
+  "folder": "XW8tPjIw2b07tMQv",
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770634488929,
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_id": "NkE6UCLYl7ib9ft6",
+  "sort": 1700000,
+  "_key": "!items!NkE6UCLYl7ib9ft6"
+}

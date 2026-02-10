@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>A pillar of ice magic envelops your foe, dropping their temperature to critical levels.</p><p>You deal <strong>【HR + 25】 ice</strong> damage to the target; this damage ignores Resistances</p>",
+    "description": "<p>A pillar of ice magic envelops your foe, dropping their temperature to critical levels. You deal <strong>【HR + 25】 ice</strong> damage to the target; this damage ignores Resistances</p>",
     "isFavored": {
       "value": false
     },
@@ -139,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706565426259,
-    "modifiedTime": 1768577408010,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770620004481,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

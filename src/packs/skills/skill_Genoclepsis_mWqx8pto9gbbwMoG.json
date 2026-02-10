@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you deal damage to one or more NPCs, you learn their <strong>Species</strong> and the GM chooses <strong>【SL】 therioforms</strong> appropriate to those NPCs (see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>): if you have acquired the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, you may immediately pay its HP cost and use it to manifest those <strong>therioforms</strong> (even if they are not among those you have learned).</p><hr><ul><li><p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">For </span><strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</p></li></ul>",
+    "description": "<p>When you deal damage to one or more NPCs, you learn their <strong>Species</strong> and the GM chooses <strong>【SL】 therioforms</strong> appropriate to those NPCs (see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>): if you have acquired the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, you may immediately pay its HP cost and use it to manifest those <strong>therioforms</strong> (even if they are not among those you have learned).</p><hr /><p><span style=\"font-family:'PT Sans Narrow', sans-serif\">For </span><strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</p>",
     "isFavored": {
       "value": false
     },
@@ -115,17 +115,28 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "genoclepsis"
+    "fuid": "genoclepsis",
+    "targeting": {
+      "rule": "self"
+    },
+    "cost": {
+      "resource": "hp",
+      "amount": "floor($hp/3)"
+    }
   },
   "effects": [],
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1745170216581,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770429089867,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

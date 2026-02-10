@@ -1,14 +1,15 @@
 {
   "folder": "EIzrDEB3tfT8rDNo",
-  "name": "Effect: Hawkeye (Range Weapon Up)",
+  "name": "Effect: Hawkeye",
   "type": "effect",
   "_id": "enboiNabyACt4OUB",
   "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_hawkeye.png",
   "system": {
-    "fuid": "effect-hawkeye-range-weapon-up",
+    "fuid": "effect-hawkeye",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -23,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Hawkeye (Range Weapon Up)",
+      "name": "Hawkeye",
       "_id": "6aO2CAugt4Ec5wfC",
       "type": "base",
       "system": {
@@ -37,17 +38,27 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
           "key": "system.bonuses.damage.ranged",
           "mode": 2,
-          "value": "&sl(\"hawkeye\")*2",
+          "value": "&sl(\"hawkeye\")*3",
           "priority": null
         }
       ],
-      "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option: the next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 2】</strong> extra damage.</p>",
+      "description": "<p>The next <strong>ranged</strong> attack you perform before the end of the current scene will deal<strong>【SL × 3】</strong>extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -57,12 +68,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744661392768,
-        "modifiedTime": 1744661658625,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770633949840,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!enboiNabyACt4OUB.6aO2CAugt4Ec5wfC"
@@ -77,12 +88,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744661381342,
-    "modifiedTime": 1744661391316,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770633942077,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!enboiNabyACt4OUB"

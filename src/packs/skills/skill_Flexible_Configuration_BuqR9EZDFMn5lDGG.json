@@ -115,7 +115,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "flexible-configuration"
+    "fuid": "flexible-configuration",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +137,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711431286236,
-    "modifiedTime": 1769013332333,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770452969408,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

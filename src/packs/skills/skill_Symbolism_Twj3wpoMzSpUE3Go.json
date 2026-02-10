@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, you learn <strong>two symbols</strong> (see <strong>High Fantasy Atlas</strong>, page <strong>148</strong>).</p><p>You may have up to <strong>up to 【SL + 1】 symbols active at the same time</strong>; if you create more while at your limit, you must first choose and destroy some of your previous <strong>symbols</strong>.</p><p>You may perform the <strong>Inventory</strong> action and spend <strong>2 Inventory Points</strong> to create a <strong>symbol</strong> you have learned and choose one option: apply that <strong>symbol</strong> to yourself; <strong>or</strong> apply that <strong>symbol</strong> to an ally you can see; <strong>or</strong> perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen <strong>symbol</strong> to each enemy hit by the attack (each copy counts as a separate <strong>symbol</strong> towards your limit or <strong>【SL + 1】</strong> active <strong>symbols</strong>).</p><hr /><ul><li><p>For <strong>symbol</strong> breakdown and a list of Symbols, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</p></li></ul>",
+    "description": "<p>Each time you acquire this Skill, you learn <strong>two symbols</strong> (see <strong>High Fantasy Atlas</strong>, page <strong>148</strong>).</p><p>You may have up to <strong>up to 【SL + 1】 symbols active at the same time</strong>; if you create more while at your limit, you must first choose and destroy some of your previous <strong>symbols</strong>.</p><p>You may perform the <strong>Inventory</strong> action and spend <strong>2 Inventory Points</strong> to create a <strong>symbol</strong> you have learned and choose one option: apply that <strong>symbol</strong> to yourself; <strong>or</strong> apply that <strong>symbol</strong> to an ally you can see; <strong>or</strong> perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen <strong>symbol</strong> to each enemy hit by the attack (each copy counts as a separate <strong>symbol</strong> towards your limit or <strong>【SL + 1】</strong> active <strong>symbols</strong>).</p><hr /><p>For <strong>symbol</strong> breakdown and a list of Symbols, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</p>",
     "isFavored": {
       "value": false
     },
@@ -109,7 +109,7 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def",
+    "defense": "",
     "fuid": "symbolism",
     "cost": {
       "resource": "ip",
@@ -123,15 +123,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706563320133,
-    "modifiedTime": 1744723270364,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770612048798,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

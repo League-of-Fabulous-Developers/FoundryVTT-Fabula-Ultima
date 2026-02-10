@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>. </strong>If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p><hr><ul><li><p><strong>You Receive:</strong> @UUID[Compendium.projectfu.skills.Item.XoMumkEXtYQOF7Et]{Effect: Heart in the Engine (Offensive)}, or @UUID[Compendium.projectfu.skills.Item.VM5F00GYKYInRjgM]{Effect: Heart in the Engine (Defensive)}</p></li></ul>",
+    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>. </strong>If you do, choose one option:</span></p><ul><li><p><span>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</span></p></li><li><p><span>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</span></p></li><li><p><span>You recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.XoMumkEXtYQOF7Et]{Effect: Heart in the Engine (Offensive)} or @EFFECT[Compendium.projectfu.skills.Item.VM5F00GYKYInRjgM]{Effect: Heart in the Engine (Defensive)}</p>",
     "isFavored": {
       "value": false
     },
@@ -120,24 +120,112 @@
     "fuid": "heart-in-the-engine",
     "cost": {
       "amount": 10
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Heart in the Engine",
+      "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "qa7XeKAn1iljRv9t": {
+              "type": "ruleElement",
+              "_id": "qa7XeKAn1iljRv9t",
+              "trigger": {
+                "_id": "U0gmSYwJhyo8ntD7",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "selector": "self",
+              "actions": {
+                "RVE6u2gmkfQplEeL": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "RVE6u2gmkfQplEeL",
+                  "identifier": "slow"
+                },
+                "4CkcBxK61QGbH2Qc": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "4CkcBxK61QGbH2Qc",
+                  "identifier": "weak"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "nPQt2DcRKMJqYXcX",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770453203830,
+        "modifiedTime": 1770453225062,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!HCzLtYgEWScIeJNq.nPQt2DcRKMJqYXcX"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711431286236,
-    "modifiedTime": 1745169777328,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770453299608,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

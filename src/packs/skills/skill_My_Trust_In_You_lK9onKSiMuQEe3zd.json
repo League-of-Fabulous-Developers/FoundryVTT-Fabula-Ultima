@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their <strong>Traits</strong> or <strong>Bonds</strong> in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a <strong>Bond</strong> towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p><hr /><ul><li><p><strong>Target Recovers: </strong>@GAIN[10*$sl mp]{SL × 10 MP}</p></li></ul>",
+    "description": "<p>After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their <strong>Traits</strong> or <strong>Bonds</strong> in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a <strong>Bond</strong> towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -125,6 +125,11 @@
     },
     "targeting": {
       "rule": "single"
+    },
+    "resource": {
+      "enabled": true,
+      "type": "mp",
+      "amount": "$sl*10"
     }
   },
   "effects": [],
@@ -134,15 +139,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706504129588,
-    "modifiedTime": 1744655448300,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770452683034,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

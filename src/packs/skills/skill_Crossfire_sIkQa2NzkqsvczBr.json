@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "crossfire"
+    "fuid": "crossfire",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -177,7 +180,7 @@
                 "Jg8qePO1hy7kyP6V": {
                   "type": "messageRuleAction",
                   "_id": "Jg8qePO1hy7kyP6V",
-                  "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + MP equal to the Accuracy Check}.</p>"
+                  "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + the Accuracy Check MP}.</p>"
                 }
               }
             }
@@ -215,8 +218,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766863644203,
-        "modifiedTime": 1768582461308,
-        "lastModifiedBy": "bgUzjEHd80A79gwp"
+        "modifiedTime": 1770606202162,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!sIkQa2NzkqsvczBr.ZUwqffH7kP8rWg0g"
     }
@@ -237,8 +240,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706506746453,
-    "modifiedTime": 1768582494597,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770604787006,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -117,7 +117,12 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "stop"
+    "fuid": "stop",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.spells.Item.3TCvFEruZDYy6BNx"
+      ]
+    }
   },
   "effects": [],
   "ownership": {
@@ -126,15 +131,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706571789055,
-    "modifiedTime": 1747173822302,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1770623624752,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

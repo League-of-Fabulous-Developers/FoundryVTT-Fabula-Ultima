@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. When the creature bearing this <strong>symbol</strong> deals damage to one or more creatures, if you can see the creature bearing this <strong>symbol</strong>, you may spend an amount of Mind Points equal to <strong>one third of the total damage being inflicted to those creatures</strong> (including any sources of extra damage). If you do, all damage dealt this way changes type to the type chosen when you created this <strong>symbol</strong>.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.GtND52KQayslVMr8]</p></li></ul>"
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. When the creature bearing this <strong>symbol</strong> deals damage to one or more creatures, if you can see the creature bearing this <strong>symbol</strong>, you may spend an amount of Mind Points equal to <strong>one third of the total damage being inflicted to those creatures</strong> (including any sources of extra damage). If you do, all damage dealt this way changes type to the type chosen when you created this <strong>symbol</strong>.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.GtND52KQayslVMr8], @EFFECT[Compendium.projectfu.skills.Item.AxnYdlFw95SMlzy2], @EFFECT[Compendium.projectfu.skills.Item.HYslhpppuYk1Ek9y], @EFFECT[Compendium.projectfu.skills.Item.q45xjl2CWQVFfug6], @EFFECT[Compendium.projectfu.skills.Item.4MtPVMFEpzD5vAhR], @EFFECT[Compendium.projectfu.skills.Item.iTQWwW2fooB3VLBw], @EFFECT[Compendium.projectfu.skills.Item.Wcy1rMLTbcLqPYBM]{Effect: Symbol of Elements (Light)}, or @EFFECT[Compendium.projectfu.skills.Item.roKWDQzH8UyeFTYk]{Effect: Symbol of Elements (Poison)}</p>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-elements"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177465971,
-    "modifiedTime": 1745168823040,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770614593042,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: King Extra MP",
+      "name": "King's Castle (Extra MP)",
       "_id": "2mQqAVnnbLdrFiG8",
       "type": "base",
       "system": {
@@ -37,7 +37,17 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -47,7 +57,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">All effects that restore Mind Points restore </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points until the start of the commander's next turn.</span> </p>",
+      "description": "<p><span class=\"fontstyle0\">All effects that restore Mind Points restore</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points until the start of the commander's next turn.</span> </p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -61,7 +71,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744461747223,
-        "modifiedTime": 1770280653612,
+        "modifiedTime": 1770632132202,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

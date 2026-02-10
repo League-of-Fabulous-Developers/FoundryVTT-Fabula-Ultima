@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You imbue a weapon with the cleansing energy of your spirit. Until this spell ends, all damage dealt by the weapon becomes of the <strong>light</strong> type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><hr /><ul><li><p><strong>Target Receive:</strong> @WEAPON[light]</p></li></ul>",
+    "description": "<p>You imbue a weapon with the cleansing energy of your spirit. Until this spell ends, all damage dealt by the weapon becomes of the <strong>light</strong> type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><hr /><p><strong>Target Receives:</strong> @WEAPON[light]{Soul Weapon}</p>",
     "isFavored": {
       "value": false
     },
@@ -139,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706573120165,
-    "modifiedTime": 1768699866679,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770626311605,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

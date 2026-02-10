@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Together with your group, create a <strong>level 5 beast, construct, elemental </strong>or<strong> plant</strong> NPC (see <strong>Core Rulebook</strong>, page <strong>302</strong>), that becomes your <strong>companion</strong>: this creature has <strong>no initiative score</strong> and <strong>does not level up</strong>, can have a <strong>maximum of two basic attacks</strong>, gains a bonus equal to <strong>【SL】</strong> to Accuracy Checks and Magic Checks, and their maximum Hit Points are equal to <strong>【(SL, multiplied by the companion's base Might size) + half your level】</strong>.</p><p>Your companion doesn't get an independent turn during conflicts, but you can use an action to have them perform an action (once per turn). If your companion is affected by any <strong>turn-related effects</strong> (see <strong>Core Rulebook</strong>, page <strong>77</strong>), these are based on <strong>your</strong> turn.</p><p>Your companion joins and leaves scenes when you do, and gains your same benefits for <strong>rests</strong>. If reduced to 0 HP, your companion flees the scene and rejoins you at the start of the next scene in which you are present, with current HP equal to their <strong>Crisis</strong> score.</p><hr /><ul><li><p>To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.7J6fSVwbaWwi3Ojv]{Faithful Companion}</p></li><li><p>Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this companion, and for '<strong>Skill</strong>,' select the '<strong>Faithful Companion</strong>' skill.</p></li></ul>",
+    "description": "<p>Together with your group, create a <strong>level 5 beast, construct, elemental </strong>or<strong> plant</strong> NPC (see <strong>Core Rulebook</strong>, page <strong>302</strong>), that becomes your <strong>companion</strong>: this creature has <strong>no initiative score</strong> and <strong>does not level up</strong>, can have a <strong>maximum of two basic attacks</strong>, gains a bonus equal to <strong>【SL】</strong> to Accuracy Checks and Magic Checks, and their maximum Hit Points are equal to <strong>【(SL, multiplied by the companion's base Might size) + half your level】</strong>.</p><p>Your companion doesn't get an independent turn during conflicts, but you can use an action to have them perform an action (once per turn). If your companion is affected by any <strong>turn-related effects</strong> (see <strong>Core Rulebook</strong>, page <strong>77</strong>), these are based on <strong>your</strong> turn.</p><p>Your companion joins and leaves scenes when you do, and gains your same benefits for <strong>rests</strong>. If reduced to 0 HP, your companion flees the scene and rejoins you at the start of the next scene in which you are present, with current HP equal to their <strong>Crisis</strong> score.</p><hr /><p>To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.7J6fSVwbaWwi3Ojv]{Faithful Companion}<br />Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this companion, and for '<strong>Skill</strong>,' select the '<strong>Faithful Companion</strong>' skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "faithful-companion"
+    "fuid": "faithful-companion",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -127,15 +130,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706513058235,
-    "modifiedTime": 1744749550799,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770618695111,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

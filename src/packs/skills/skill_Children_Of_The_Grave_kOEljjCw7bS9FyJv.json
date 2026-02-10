@@ -63,7 +63,7 @@
       }
     },
     "showTitleCard": {
-      "value": true
+      "value": false
     },
     "hasRoll": {
       "value": false
@@ -113,7 +113,10 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "children-of-the-grave"
+    "fuid": "children-of-the-grave",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "img": "systems/projectfu/styles/static/compendium/classes/necromancer/children_of_the_grave.png",
   "effects": [],
@@ -129,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1684757022956,
-    "modifiedTime": 1769024554938,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770431931079,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

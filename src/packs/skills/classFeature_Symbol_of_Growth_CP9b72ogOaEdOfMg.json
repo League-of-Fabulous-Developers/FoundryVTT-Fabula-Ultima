@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.YtgyBRBBi9tBoJ4H]{Effect: Symbol of Growth}</p></li></ul>"
+      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.YtgyBRBBi9tBoJ4H]</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-growth"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177680940,
-    "modifiedTime": 1744744271717,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635274172,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -13,56 +13,12 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol</strong> suffers damage, if you are able to see them, you may destroy this <strong>symbol</strong>: if you do, you suffer the same amount of damage instead of that creature.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.O8wUtXymIN3rrFNz]{Effect: Symbol of Sacrifice}</p></li></ul>"
+      "description": "<p>When the creature bearing this <strong>symbol</strong> suffers damage, if you are able to see them, you may destroy this <strong>symbol</strong>: if you do, you suffer the same amount of damage instead of that creature.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.O8wUtXymIN3rrFNz]</p>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-sacrifice"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.skills.Item.XOrWUE6boHzXhAdF",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Symbol of Sacrifice",
-      "img": "icons/magic/symbols/rune-sigil-hook-white-red.webp",
-      "_id": "SxWmfWFIUBrTKEza",
-      "type": "base",
-      "system": {},
-      "changes": [],
-      "description": "<p>When the creature bearing this <strong>symbol</strong> suffers damage, if you are able to see them, you may destroy this <strong>symbol</strong>: if you do, you suffer the same amount of damage instead of that creature.</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF151",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1730911039085,
-        "modifiedTime": 1730911102188,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3",
-        "exportSource": null
-      },
-      "_key": "!items.effects!XOrWUE6boHzXhAdF.SxWmfWFIUBrTKEza"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -75,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710178066071,
-    "modifiedTime": 1744746143137,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635326735,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

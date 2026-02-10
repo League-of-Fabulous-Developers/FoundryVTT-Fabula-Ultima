@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Hope</h4><p>You rekindle the flames of courage and hope within a defeated hero. Choose a Player Character who <strong>surrendered</strong> but is still present on the scene: that Player Character immediately regains consciousness and recovers an amount of Hit Points equal to their <strong>Crisis</strong> score. Note that this spell will not undo the <strong>consequences</strong> of the character's surrender and is of no use if the character left the scene as part of their surrender — such as if they were captured and dragged away, or if they were trapped in a parallel dimension, and so on.</p><p>A Player Character may only be affected by this spell once per scene; if a character is brought back into the conflict by this spell and is subsequently reduced to 0 Hit Points again, they must <strong>sacrifice</strong> themselves or <strong>surrender</strong> as per the normal rules (including a new <strong>consequence</strong> and 2 more Fabula Points if they surrender).</p><hr /><ul><li><p><strong>Target Recovers:</strong> @GAIN[@target.resources.hp.max/2 hp]{Crisis HP}</p></li></ul>",
+    "description": "<p><strong>Required Heroic Skill:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.kAoA3OAXH6E6tt9I]{Hope}</p><hr /><p>You rekindle the flames of courage and hope within a defeated hero. Choose a Player Character who <strong>surrendered</strong> but is still present on the scene: that Player Character immediately regains consciousness and recovers an amount of Hit Points equal to their <strong>Crisis</strong> score. Note that this spell will not undo the <strong>consequences</strong> of the character's surrender and is of no use if the character left the scene as part of their surrender — such as if they were captured and dragged away, or if they were trapped in a parallel dimension, and so on.</p><p>A Player Character may only be affected by this spell once per scene; if a character is brought back into the conflict by this spell and is subsequently reduced to 0 Hit Points again, they must <strong>sacrifice</strong> themselves or <strong>surrender</strong> as per the normal rules (including a new <strong>consequence</strong> and 2 more Fabula Points if they surrender).</p><hr /><p><strong>Target Recovers:</strong> @GAIN[@target.resources.hp.max/2 hp]{Crisis HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "createdTime": 1710549080835,
-    "modifiedTime": 1760481696387,
-    "lastModifiedBy": "93RRHGE4s1SwaU2P",
+    "modifiedTime": 1770625407194,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

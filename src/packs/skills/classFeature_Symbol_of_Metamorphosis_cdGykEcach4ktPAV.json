@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this <strong>symbol</strong>, choose a Species: <strong>beast</strong>, <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, <strong>monster</strong>, <strong>plant</strong>, or <strong>undead</strong>. The creature bearing this <strong>symbol</strong> is treated as belonging to the chosen Species for the sake of Skills and effects, instead of their normal Species (this does <strong>not</strong> otherwise alter any of the creature’s profile, such as their Affinities or any special rules they may have). This <strong>symbol cannot</strong> be applied to Player Characters.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.gyTLuhExw4Rn2InK]{Effect: Symbol of Metamorphosis}</p></li></ul>"
+      "description": "<p>When you create this <strong>symbol</strong>, choose a Species: <strong>beast</strong>, <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, <strong>monster</strong>, <strong>plant</strong>, or <strong>undead</strong>. The creature bearing this <strong>symbol</strong> is treated as belonging to the chosen Species for the sake of Skills and effects, instead of their normal Species (this does <strong>not</strong> otherwise alter any of the creature’s profile, such as their Affinities or any special rules they may have). This <strong>symbol cannot</strong> be applied to Player Characters.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.gyTLuhExw4Rn2InK], @EFFECT[Compendium.projectfu.skills.Item.Qun06TC7LIgnLz60], @EFFECT[Compendium.projectfu.skills.Item.4Q6ztZrAeyG6fUVl], @EFFECT[Compendium.projectfu.skills.Item.HMZGShTATF4mXDlI], @EFFECT[Compendium.projectfu.skills.Item.5CdrCfIHLvMPur3R], @EFFECT[Compendium.projectfu.skills.Item.wTylepZOcsnwKbzm], or @EFFECT[Compendium.projectfu.skills.Item.u5Ok2009o841sZcN]</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-metamorphosis"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177733002,
-    "modifiedTime": 1745169348233,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770616750255,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

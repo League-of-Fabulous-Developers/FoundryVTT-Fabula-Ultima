@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Enmity",
+      "name": "Symbol of Enmity",
       "_id": "2WewSSAYYbjV3Shf",
       "type": "base",
       "system": {
@@ -37,10 +37,20 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>As long as the creature bearing this <strong>symbol</strong> is in <strong>Crisis</strong>, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( @ICON[offensive] ), if possible.</p>",
+      "description": "<p>As long as you are in <strong>Crisis</strong> and bearing the <strong>Symbol of Enmity</strong>, any of that your enemies who are able to see you must include you among the targets of their attacks and offensive spells, if possible.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,18 +60,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744738855196,
-        "modifiedTime": 1744738874537,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770634207573,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!9Itxh0JRWMOSz58v.2WewSSAYYbjV3Shf"
     }
   ],
-  "sort": 0,
+  "sort": 3700000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -70,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744738844671,
-    "modifiedTime": 1744738865985,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!9Itxh0JRWMOSz58v"

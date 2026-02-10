@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend 10 HP to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p><hr /><ul><li><p><strong>You Receive:</strong> @TYPE[affinity air resistance], @TYPE[affinity bolt resistance], @TYPE[affinity dark resistance], @TYPE[affinity earth resistance], @TYPE[affinity fire resistance], @TYPE[affinity ice resistance], @TYPE[affinity light resistance], @TYPE[affinity poison resistance]</p></li></ul>",
+    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend 10 HP to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p><hr /><p><strong>You Receive:</strong> @TYPE[affinity air resistance], @TYPE[affinity bolt resistance], @TYPE[affinity dark resistance], @TYPE[affinity earth resistance], @TYPE[affinity fire resistance], @TYPE[affinity ice resistance], @TYPE[affinity light resistance], or @TYPE[affinity poison resistance]</p>",
     "isFavored": {
       "value": false
     },
@@ -119,17 +119,24 @@
     "cost": {
       "amount": 10,
       "resource": "hp"
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [],
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1744556882044,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770428828756,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

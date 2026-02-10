@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p><p>At the start of your turn during a conflict, you may choose a weapon Category other than <strong>brawling</strong>. If you do, your <strong>unarmed strikes</strong> now belong to the chosen Category; if you choose <strong>bow</strong>, <strong>firearm</strong> or <strong>thrown</strong>, they become <strong>ranged</strong> weapons instead of <strong>melee</strong>; if you choose <strong>dagger</strong> or <strong>sword</strong>, they cannot be used with <strong>Triple Slash</strong> (see <strong>High Fantasy Atlas</strong>, page <strong>161</strong>). These changes last until the start of your next turn.</p><hr /><ul><li><p>To <strong>automate, </strong>add @UUID[Compendium.projectfu.skills.XlN2TtdK4Sn4ssQS]{Unarmed Strike: Mutant} to your character sheet to automate the bonuses.</p></li></ul>",
+    "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p><p>At the start of your turn during a conflict, you may choose a weapon Category other than <strong>brawling</strong>. If you do, your <strong>unarmed strikes</strong> now belong to the chosen Category; if you choose <strong>bow</strong>, <strong>firearm</strong> or <strong>thrown</strong>, they become <strong>ranged</strong> weapons instead of <strong>melee</strong>; if you choose <strong>dagger</strong> or <strong>sword</strong>, they cannot be used with <strong>Triple Slash</strong> (see <strong>High Fantasy Atlas</strong>, page <strong>161</strong>). These changes last until the start of your next turn.</p><hr /><p>To <strong>automate, </strong>add @UUID[Compendium.projectfu.skills.XlN2TtdK4Sn4ssQS]{Unarmed Strike: Mutant} to your character sheet to automate the bonuses.</p>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "akromorphosis"
+    "fuid": "akromorphosis",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "flags": {
@@ -128,10 +131,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1767800537152,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770427568184,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

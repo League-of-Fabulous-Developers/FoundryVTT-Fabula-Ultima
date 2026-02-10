@@ -45,10 +45,10 @@
                 "change": "increment"
               },
               "actions": {
-                "upcvpAUzVWITjOKa": {
-                  "type": "clearEffectRuleAction",
-                  "_id": "upcvpAUzVWITjOKa",
-                  "identifier": ""
+                "V3tVGstCJo70aJXD": {
+                  "type": "messageRuleAction",
+                  "_id": "V3tVGstCJo70aJXD",
+                  "message": "<p>You may recover from a status effect.</p>"
                 }
               }
             }
@@ -89,12 +89,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767290101882,
-        "modifiedTime": 1767291754096,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770429451706,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!R2Opf7lWAOrOiiC6.RfljzCCy3mfkZEzo"
     }

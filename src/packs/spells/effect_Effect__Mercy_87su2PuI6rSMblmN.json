@@ -24,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Mercy",
+      "name": "Mercy",
       "_id": "C6pRUA9cFTWSGauX",
       "type": "base",
       "system": {
@@ -51,7 +51,7 @@
         }
       },
       "changes": [],
-      "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly @GAIN[1 hp]. Once that happens, this spell ends.</p>",
+      "description": "<p>Until the <strong>Mercy</strong> spell ends, if you would be reduced to 0 HP, you are instead left standing with exactly 1 HP. Once that happens, this spell ends.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -61,18 +61,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.350",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744722453780,
-        "modifiedTime": 1760481636367,
-        "lastModifiedBy": "93RRHGE4s1SwaU2P",
+        "modifiedTime": 1770627335951,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!87su2PuI6rSMblmN.C6pRUA9cFTWSGauX"
     }
   ],
-  "sort": 0,
+  "sort": 1200000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -81,12 +81,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744722451665,
-    "modifiedTime": 1760481627668,
-    "lastModifiedBy": "93RRHGE4s1SwaU2P",
+    "modifiedTime": 1770627047650,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!87su2PuI6rSMblmN"

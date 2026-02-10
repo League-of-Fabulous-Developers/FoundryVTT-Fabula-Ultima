@@ -1,7 +1,7 @@
 {
   "name": "Volcano",
   "type": "heroic",
-  "img": "icons/magic/lightning/bolt-cloud-sky-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/volcano.png",
   "system": {
     "subtype": {
       "value": "skill"
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706587625271,
-    "modifiedTime": 1768876341633,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770620342989,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

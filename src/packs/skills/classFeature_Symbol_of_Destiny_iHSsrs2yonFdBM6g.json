@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend 1 Fabula Point to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip] and @LOSS[1 fp]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.DeP3zdCRSwwMbKmX]</p></li></ul>"
+      "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend 1 Fabula Point to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.DeP3zdCRSwwMbKmX]</p>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-destiny"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177406622,
-    "modifiedTime": 1744740765909,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770612502157,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

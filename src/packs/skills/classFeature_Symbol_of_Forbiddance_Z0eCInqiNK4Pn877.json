@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this symbol, choose an action type: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. When the creature bearing this <strong>symbol</strong> performs the chosen action, they lose 5 Hit Points and 5 Mind Points (<strong>before</strong> performing that action). Both amounts increase to 10 if you are <strong>level 20 or higher</strong>, or to 20 if you are <strong>level 40 or higher</strong>.</p><hr><ul><li><p><strong>You:</strong> @LOSS[2 ip]</p></li><li><p><strong>Target Loses: </strong>@LOSS[&step(5,10,20) hp]{5/10/20 HP}, and @LOSS[&step(5,10,20) mp]{5/10/20 MP}</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.JVYPNQEFS4xHxy5y]{Effect: Symbol of Forbiddance}</p></li></ul>"
+      "description": "<p>When you create this symbol, choose an action type: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. When the creature bearing this <strong>symbol</strong> performs the chosen action, they lose 5 Hit Points and 5 Mind Points (<strong>before</strong> performing that action). Both amounts increase to 10 if you are <strong>level 20 or higher</strong>, or to 20 if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.JVYPNQEFS4xHxy5y], @EFFECT[Compendium.projectfu.skills.Item.d8dAXHZMXS4AshTX], @EFFECT[Compendium.projectfu.skills.Item.SscehEBtATkmthJT], @EFFECT[Compendium.projectfu.skills.Item.17jxpxbzMLoRbZQe], or @EFFECT[Compendium.projectfu.skills.Item.895XAiPlHLScPmCU]<br /><strong>Target Loses: </strong>@LOSS[&amp;step(5,10,20) hp]{5/10/20 HP} and @LOSS[&amp;step(5,10,20) mp]{5/10/20 MP}</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-forbiddance"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177608648,
-    "modifiedTime": 1744743851523,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770616288413,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

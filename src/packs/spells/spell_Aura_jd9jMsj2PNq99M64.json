@@ -120,7 +120,7 @@
     "fuid": "aura",
     "effects": {
       "entries": [
-        "aura"
+        "Compendium.projectfu.spells.Item.j37149fnaCxNS08N"
       ]
     }
   },
@@ -141,8 +141,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706571961584,
-    "modifiedTime": 1768688618442,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770624159231,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

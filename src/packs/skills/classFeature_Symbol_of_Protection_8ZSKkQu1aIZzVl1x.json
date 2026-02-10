@@ -13,56 +13,12 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> <strong>gains Resistance</strong> to the chosen damage type.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @TYPE[affinity air resistance]{Effect: Symbol of Protection (Air)}, @TYPE[affinity bolt resistance]{Effect: Symbol of Protection (Bolt)}, @TYPE[affinity dark resistance]{Effect: Symbol of Protection (Dark)}, @TYPE[affinity earth resistance]{Effect: Symbol of Protection (Fire)}, @TYPE[affinity ice resistance]{Effect: Symbol of Protection (Ice)}, @TYPE[affinity light resistance]{Effect: Symbol of Protection (Light)}, or @TYPE[affinity poison resistance]{Effect: Symbol of Protection (Poison)},</p></li></ul>"
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> <strong>gains Resistance</strong> to the chosen damage type.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.DIIjNoX0kFH4kLLJ], @EFFECT[Compendium.projectfu.skills.Item.nGajoBTZKWiBR3iT], @EFFECT[Compendium.projectfu.skills.Item.xUpWUYONnQaJXZOE], @EFFECT[Compendium.projectfu.skills.Item.ih8nc2XW6EvbEeP9], @EFFECT[Compendium.projectfu.skills.Item.7GNmX9JfWl8SWJhi], @EFFECT[Compendium.projectfu.skills.Item.xcymcgcV8ki9jjmy], @EFFECT[Compendium.projectfu.skills.Item.WEOShNDbjf9BEQzE], or @EFFECT[Compendium.projectfu.skills.Item.jWFQV3GgAoXLvQ2W]</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-protection"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.skills.Item.8ZSKkQu1aIZzVl1x",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Symbol of Protection",
-      "img": "icons/magic/defensive/shield-barrier-glowing-triangle-teal.webp",
-      "_id": "8XkL4vgl5zST1zen",
-      "type": "base",
-      "system": {},
-      "changes": [],
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> <strong>gains Resistance</strong> to the chosen damage type.</p><hr /><p>@UUID[Compendium.projectfu.actor-effects.Item.3tMyw1mCjd7SfGTD]{Air Resistance} @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} @UUID[Compendium.projectfu.actor-effects.Item.fBbLvII5LUEqInQQ]{Dark Resistance} @UUID[Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG]{Earth Resistance} @UUID[Compendium.projectfu.actor-effects.Item.FAfKTXxluiqIVP5t]{Fire Resistance} @UUID[Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8]{Ice Resistance} @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance} @UUID[Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX]{Poison Resistance}</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF150",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1730912884697,
-        "modifiedTime": 1730915692145,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3",
-        "exportSource": null
-      },
-      "_key": "!items.effects!8ZSKkQu1aIZzVl1x.8XkL4vgl5zST1zen"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -75,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177845433,
-    "modifiedTime": 1744745214588,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635645816,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -24,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Peacock Dance",
+      "name": "Peacock Dance",
       "_id": "3OKMqmXgMxSVzoXI",
       "type": "base",
       "system": {
@@ -35,7 +35,7 @@
         "duration": {
           "event": "endOfScene",
           "interval": 1,
-          "tracking": "self",
+          "tracking": "source",
           "remaining": 1
         },
         "stack": 1,
@@ -51,7 +51,7 @@
         }
       },
       "changes": [],
-      "description": "<p>The next time you perform an attack or offensive spell (<span>@ICON[offensive]</span>) during this scene, that attack or spell must include the dancer among your targets if possible.</p>",
+      "description": "<p>The next time you perform an attack or offensive spell during this scene, that attack or spell must include the dancer among your targets if possible.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -65,7 +65,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744467622828,
-        "modifiedTime": 1770280202141,
+        "modifiedTime": 1770632321399,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

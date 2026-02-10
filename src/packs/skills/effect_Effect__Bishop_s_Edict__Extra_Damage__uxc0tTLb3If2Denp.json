@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Bishop Extra Damage",
+      "name": "Bishop's Edict (Extra Damage)",
       "_id": "JzMDbxLQ1uT85e7C",
       "type": "base",
       "system": {
@@ -37,7 +37,17 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -61,7 +71,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744460652448,
-        "modifiedTime": 1770280635267,
+        "modifiedTime": 1770630763023,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

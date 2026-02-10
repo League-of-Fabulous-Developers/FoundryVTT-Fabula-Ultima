@@ -13,56 +13,12 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol</strong> spends 1 Fabula Point to <strong>invoke a Trait or Bond</strong>, they also receive 100 zenit.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.EYyJjUSLrW8HcmA3]{Effect: Symbol of Prosperity}</p></li></ul>"
+      "description": "<p>When the creature bearing this <strong>symbol</strong> spends 1 Fabula Point to <strong>invoke a Trait or Bond</strong>, they also receive 100 zenit.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.EYyJjUSLrW8HcmA3]</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-prosperity"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.skills.Item.KKldqSKGvST62xI1",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Symbol of Prosperity",
-      "img": "icons/commodities/currency/coin-engraved-sun-smile-copper.webp",
-      "_id": "PYe2GW1MLyRgNJRb",
-      "type": "base",
-      "system": {},
-      "changes": [],
-      "description": "<p>When the creature bearing this <strong>symbol</strong> spends @LOSS[1 fp] to <strong>invoke a Trait or Bond</strong>, they also receive @GAIN[100 zenit].</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF150",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "13.346",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1730915198170,
-        "modifiedTime": 1730915714709,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3",
-        "exportSource": null
-      },
-      "_key": "!items.effects!KKldqSKGvST62xI1.PYe2GW1MLyRgNJRb"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -75,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710177778190,
-    "modifiedTime": 1744744889514,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635293920,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

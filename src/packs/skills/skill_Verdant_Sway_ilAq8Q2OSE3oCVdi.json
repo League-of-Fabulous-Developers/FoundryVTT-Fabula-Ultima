@@ -88,7 +88,9 @@
                 "_id": "B5TVkslZqhw6S2Ye",
                 "type": "renderCheckRuleTrigger",
                 "eventRelation": "",
-                "checkTypes": [],
+                "checkTypes": [
+                  "display"
+                ],
                 "itemGroups": [],
                 "local": true,
                 "identifier": ""
@@ -143,7 +145,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770369753697,
-        "modifiedTime": 1770369792546,
+        "modifiedTime": 1770609181254,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!ilAq8Q2OSE3oCVdi.QCCwyyS8K7E3xYAW"

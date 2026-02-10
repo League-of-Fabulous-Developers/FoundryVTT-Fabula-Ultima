@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Divination",
+      "name": "Divination",
       "_id": "jjylFI3HoTrd25kY",
       "type": "base",
       "system": {
@@ -40,8 +40,12 @@
         "stack": 1,
         "rules": {
           "progress": {
-            "id": "",
-            "name": ""
+            "id": "divination-used",
+            "name": "Divination Used",
+            "current": 0,
+            "max": 2,
+            "style": "basic",
+            "enabled": true
           }
         }
       },
@@ -56,12 +60,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744503925677,
-        "modifiedTime": 1747173689638,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+        "modifiedTime": 1770629042304,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!7Lt7jZqWTtyWXzYR.jjylFI3HoTrd25kY"

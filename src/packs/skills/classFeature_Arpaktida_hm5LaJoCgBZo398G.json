@@ -56,7 +56,8 @@
                   "_id": "cHpLhpTvcCFkEZF2",
                   "amount": "5",
                   "cost": {
-                    "resource": ""
+                    "resource": "",
+                    "amount": null
                   }
                 }
               }
@@ -98,12 +99,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767290294355,
-        "modifiedTime": 1767291742822,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770430558291,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!hm5LaJoCgBZo398G.OKAIP7W9NuJUYMRY"
     }

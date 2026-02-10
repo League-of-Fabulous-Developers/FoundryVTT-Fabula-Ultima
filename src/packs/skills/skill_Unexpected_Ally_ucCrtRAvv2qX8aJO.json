@@ -122,6 +122,9 @@
     "cost": {
       "resource": "fp",
       "amount": 1
+    },
+    "targeting": {
+      "rule": "self"
     }
   },
   "effects": [],
@@ -131,15 +134,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706504159609,
-    "modifiedTime": 1741951947253,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770452711095,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You are able to fly. In addition to the obvious advantages in mobility, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures and you cannot be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while you are unable to fly freely (such as when inside a vehicle designed for human-sized creatures, or inside a narrow corridor). Additionally, when you suffer <strong>air</strong>, <strong>bolt</strong> or <strong>ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</p>"
+      "description": "<p>You are able to fly. In addition to the obvious advantages in mobility, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures and you cannot be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while you are unable to fly freely (such as when inside a vehicle designed for human-sized creatures, or inside a narrow corridor). Additionally, when you suffer <strong>air</strong>, <strong>bolt</strong> or <strong>ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</p><hr /><p><strong>You Gain:</strong> @EFFECT[flying]</p>"
     },
     "source": "FUTF157",
     "fuid": "pterotheria"
@@ -84,10 +84,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1744594141283,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770431151508,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

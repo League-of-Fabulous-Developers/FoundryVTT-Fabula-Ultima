@@ -120,10 +120,10 @@
     "fuid": "awaken",
     "effects": {
       "entries": [
-        "dex-up",
-        "wlp-up",
-        "mig-up",
-        "ins-up"
+        "Compendium.projectfu.spells.Item.lS4NFmMsRQKik2wz",
+        "Compendium.projectfu.spells.Item.vUP4Ve1DYa6LmHwZ",
+        "Compendium.projectfu.spells.Item.SocdSpwFMRBjPiR4",
+        "Compendium.projectfu.spells.Item.z63l91zniIYaS30H"
       ]
     }
   },
@@ -142,10 +142,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706572044662,
-    "modifiedTime": 1766779460974,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770624519079,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Wardancer",
+      "name": "Wardancer",
       "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
       "system": {
         "duration": {
@@ -117,7 +117,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane </strong>weapon equipped<strong>, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+      "description": "<p>Your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal<strong>【SL】</strong>extra damage until the start of your next turn. If you have an <strong>arcane </strong>weapon equipped<strong>, </strong>offensive spells you cast also deal<strong>【SL】</strong>extra damage until the start of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -132,7 +132,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770278548545,
-        "modifiedTime": 1770280504741,
+        "modifiedTime": 1770632346215,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!T9rvLMTdI2aICL1u.YUBjlreN7TSb29z7"

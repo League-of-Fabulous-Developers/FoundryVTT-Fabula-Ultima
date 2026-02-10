@@ -24,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: For Whom The Bell Tolls",
+      "name": "For Whom The Bell Tolls",
       "_id": "RCtie3pzKMTEmDkR",
       "type": "base",
       "system": {
@@ -58,7 +58,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you deal damage to one or more enemies with a spell, you may spend 1 Grave Point. If you do, choose one option: choose one of those enemies, and the spell deals extra damage equal to <strong>【SL + the number of status effects the chosen enemy is suffering from】</strong> ; <strong>or</strong> each of those enemies suffers <strong>shaken</strong> after the effects of the spell are resolved.</p>",
+      "description": "<p>The spell the necromancer casts deals extra damage to you equal to<strong>【SL + the number of status effects you are suffering from】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -72,8 +72,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744596303090,
-        "modifiedTime": 1769024743220,
-        "lastModifiedBy": "bgUzjEHd80A79gwp",
+        "modifiedTime": 1770633672472,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!Jc1KEmU0iN7Ul8dZ.RCtie3pzKMTEmDkR"

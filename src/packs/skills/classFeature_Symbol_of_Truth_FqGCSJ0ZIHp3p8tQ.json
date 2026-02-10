@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells ( @ICON[offensive] ) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.qMUUYxxeMN8nFWG9]{Effect: Symbol of Truth}</p></li></ul>"
+      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells (@ICON[offensive]) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.qMUUYxxeMN8nFWG9]</p>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-truth"
@@ -31,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710178159947,
-    "modifiedTime": 1744747135173,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635340213,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

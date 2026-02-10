@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Growth",
+      "name": "Symbol of Growth",
       "_id": "1xHIU81sGFarw5Lz",
       "type": "base",
       "system": {
@@ -37,10 +37,20 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p>",
+      "description": "<p>While bearing the <strong>Symbol of Growth</strong>, spells you cast with a <strong>target</strong> of “Up to three creatures” have a <strong>target</strong> of “Up to four creatures” instead. You still need to spend additional Mind Points for a fourth target.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,18 +60,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744744210181,
-        "modifiedTime": 1744744242691,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770634255207,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!YtgyBRBBi9tBoJ4H.1xHIU81sGFarw5Lz"
     }
   ],
-  "sort": 0,
+  "sort": 4700000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -70,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744744196769,
-    "modifiedTime": 1744744206126,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!YtgyBRBBi9tBoJ4H"

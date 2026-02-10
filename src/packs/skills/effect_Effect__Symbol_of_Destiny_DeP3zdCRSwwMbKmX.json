@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Symbol of Destiny",
+      "name": "Symbol of Destiny",
       "_id": "dYTJiTq2oXwQSmaE",
       "type": "base",
       "system": {
@@ -37,10 +37,20 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend @LOSS[1 fp] to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p>",
+      "description": "<p>After you make a Check while you bear the <strong>Symbol of Destiny</strong>, if the symbolist is able to see you, they may spend 1 <strong>Fabula Point</strong> to force you to reroll both dice. They may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,18 +60,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744737913623,
-        "modifiedTime": 1744737994183,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770634140061,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!DeP3zdCRSwwMbKmX.dYTJiTq2oXwQSmaE"
     }
   ],
-  "sort": 0,
+  "sort": 3900000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -70,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744737903255,
-    "modifiedTime": 1744737922810,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770635423777,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!DeP3zdCRSwwMbKmX"

@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Bishop MP Costs Doubled",
+      "name": "Bishop's Edict (MP Costs Doubled)",
       "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
       "system": {
         "duration": {
@@ -86,7 +86,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770272549908,
-        "modifiedTime": 1770332091771,
+        "modifiedTime": 1770630775073,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!i9wagJN9DD7bjJ3k.zi1lyBp3AwroUHpJ"

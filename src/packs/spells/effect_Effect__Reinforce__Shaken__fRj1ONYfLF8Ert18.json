@@ -1,0 +1,96 @@
+{
+  "folder": "awpXMmcK8pUDEUcc",
+  "name": "Effect: Reinforce (Shaken)",
+  "type": "effect",
+  "_id": "fRj1ONYfLF8Ert18",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce.png",
+  "system": {
+    "fuid": "effect-reinforce",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Reinforce (Shaken)",
+      "img": "systems/projectfu/styles/static/statuses/immunities/ShakenImmune.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "sJloIrKsBjrUWGxt",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.shaken.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the <strong>Reinforce</strong> spell ends, you become immune to <strong>shaken</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770625643893,
+        "modifiedTime": 1770631843500,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!fRj1ONYfLF8Ert18.sJloIrKsBjrUWGxt"
+    }
+  ],
+  "sort": 1100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770625631426,
+    "modifiedTime": 1770627047650,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!fRj1ONYfLF8Ert18"
+}

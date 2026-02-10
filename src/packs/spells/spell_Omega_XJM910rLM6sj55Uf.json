@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to <strong>【20 + half the target's level】</strong>.</p><hr /><ul><li><p><strong>Target Loses:</strong> @LOSS[20+($cl/2) hp]{20 + half the target's level HP}</p></li></ul>",
+    "description": "<p>You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to <strong>【20 + half the target's level】</strong>.</p><hr /><p><strong>Target Loses:</strong> @LOSS[20+floor(@target.level.value/2) hp]{20 + Half Level HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -120,6 +120,9 @@
     "fuid": "omega",
     "cost": {
       "amount": "15"
+    },
+    "resource": {
+      "enabled": false
     }
   },
   "effects": [],
@@ -139,8 +142,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706571698922,
-    "modifiedTime": 1768579440636,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770623484843,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

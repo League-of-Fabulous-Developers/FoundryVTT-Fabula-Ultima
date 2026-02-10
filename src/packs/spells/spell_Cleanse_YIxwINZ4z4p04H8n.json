@@ -143,8 +143,12 @@
                 "_id": "AwVj9QkaoGtM81Vv",
                 "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [],
-                "itemGroups": [],
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
                 "local": true,
                 "identifier": ""
               },
@@ -178,7 +182,7 @@
       "description": "",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": true,
+      "transfer": false,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -190,8 +194,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770042196415,
-        "modifiedTime": 1770042210838,
-        "lastModifiedBy": "jBlPH673nHpUCC6V"
+        "modifiedTime": 1770626401646,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YIxwINZ4z4p04H8n.UagQX4OgszpslcIo"
     }

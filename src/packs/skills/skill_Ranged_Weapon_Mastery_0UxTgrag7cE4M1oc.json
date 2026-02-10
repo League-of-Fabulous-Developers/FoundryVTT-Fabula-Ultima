@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "ranged-weapon-mastery"
+    "fuid": "ranged-weapon-mastery",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -142,7 +145,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a bonus equal to<strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">【SL</strong><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">】</strong>to all Accuracy Checks with <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">ranged </strong>weapons. </span></p>",
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a bonus equal to</span><span style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\"><strong>【SL</strong></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>】</strong>to all Accuracy Checks with </span><span style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\"><strong>ranged</strong> </span><span style=\"font-family:'PT Sans Narrow', sans-serif\">weapons. </span></p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -154,19 +157,30 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1744661828239,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1770606470886,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "origin": null,
       "sort": 0,
       "_key": "!items.effects!0UxTgrag7cE4M1oc.M8kqwCdFQHllfjGs"
@@ -180,15 +194,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706506773814,
-    "modifiedTime": 1741951326214,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770606450412,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
