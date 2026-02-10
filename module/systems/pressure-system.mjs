@@ -29,8 +29,6 @@ async function processVulnerability(context) {
 		return null;
 	}
 
-	console.log('Processing vulnerability:', context);
-
 	// TODO: Refactor to not have to re-resolve
 
 	// If this NPC is pressured because they are VU to the damage type,
