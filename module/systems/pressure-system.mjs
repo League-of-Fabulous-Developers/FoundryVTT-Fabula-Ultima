@@ -30,7 +30,16 @@ async function processVulnerability(context) {
 	}
 
 	// TODO: Refactor to not have to re-resolve
-	pressureClock = await context.actor.updateProgress('pressure', 1);
+
+	// If this NPC is pressured because they are VU to the damage type,
+	// AND the amount of HP loss is equal to or higher than 10 + half their level,
+	// fill the clock by 2
+	if (context.affinity === FU.affValue.vulnerability && context.amount >= 10 + Math.floor(context.actor.system.level.value / 2)) {
+		pressureClock = await context.actor.updateProgress('pressure', 2);
+	} else {
+		pressureClock = await context.actor.updateProgress('pressure', 1);
+	}
+
 	let staggered = false;
 	// If now at max, apply stagger
 	if (pressureClock.isMaximum) {
