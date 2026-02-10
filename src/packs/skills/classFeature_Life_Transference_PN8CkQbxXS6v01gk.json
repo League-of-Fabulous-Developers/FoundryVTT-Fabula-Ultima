@@ -51,7 +51,7 @@
                 "cLNBh20iD0JqbiRC": {
                   "type": "messageRuleAction",
                   "_id": "cLNBh20iD0JqbiRC",
-                  "message": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis:</strong></p><ul><li><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>Target Recovers: </strong>@GAIN[5+(&cs('brainwave-clock')*5) hp]{Life Transference}</p></li><li><p><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p></li></ul>"
+                  "message": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis:</strong></p><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}<br><strong>Target Recovers: </strong>@GAIN[5+(&cs('brainwave-clock')*5) hp]{Life Transference}<br><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
                 }
               },
               "predicates": {
@@ -96,12 +96,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767892291552,
-        "modifiedTime": 1767892596642,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770368232264,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!PN8CkQbxXS6v01gk.xwEhzjhC0fLRc28M"
     }

@@ -5,10 +5,4 @@
 	</select>
 </label>
 
-{{pfuTraits action.traits path}}
-
-<div class="fu-rule-element__property" style="flex: 2; background: var(--color-background);">
-	{{formGroup action.schema.fields.traits value=action.traits options=options.traits name=(pfuConcat path ".traits") classes="flexlarge stacked"}}
-</div>
-
-
+{{pfuTraits action.traits (pfuConcat path '.traits')}}

@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "After you cover an ally with the Guard action",
-      "description": "<p>That ally recovers an amount of Mind Points equal to <strong>【10 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. If that ally is your <strong>focus</strong>, they heal from a single status effect of their choice out of <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</p><hr><ul><li><p><strong>Cost: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>Ally Recovers:</strong> @GAIN[10+(&cs('brainwave-clock')*5) mp]{Reassuring Presence}</p></li><li><p><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p></li></ul>"
+      "description": "<p>That ally recovers an amount of Mind Points equal to <strong>【10 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. If that ally is your <strong>focus</strong>, they heal from a single status effect of their choice out of <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</p><hr /><p><strong>Cost: </strong>@LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Psychic Gift}<br /><strong>Ally Recovers:</strong> @GAIN[10+(&amp;cs('brainwave-clock')*5) mp]{Reassuring Presence}<br /><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
     },
     "source": "FUTF153",
     "fuid": "reassuring-presence"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711423314741,
-    "modifiedTime": 1744506324375,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770368954326,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>).</p><p>The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p><hr /><ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul><ul><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p></li></ul>",
+    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>).</p><p>The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p><hr /><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p>",
     "isFavored": {
       "value": false
     },
@@ -114,7 +114,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "psychic-gifts"
+    "fuid": "psychic-gifts",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -145,7 +148,7 @@
                 }
               },
               "trigger": {
-                "eventType": "startOfCombat"
+                "eventType": "endOfCombat"
               }
             }
           },
@@ -167,7 +170,7 @@
       "_id": "7cmcuxTm8MqCKIWi",
       "type": "base",
       "changes": [],
-      "description": "<ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul>",
+      "description": "<p>This tracks your <strong>Brainwave Clock</strong> for your <strong>Psychic Gifts</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -182,8 +185,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1769306151242,
-        "modifiedTime": 1769306278548,
-        "lastModifiedBy": "jBlPH673nHpUCC6V"
+        "modifiedTime": 1770368025358,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!uiXJvj0qK0pVfnwY.7cmcuxTm8MqCKIWi"
     }
@@ -195,15 +198,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1744505450834,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770368039045,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

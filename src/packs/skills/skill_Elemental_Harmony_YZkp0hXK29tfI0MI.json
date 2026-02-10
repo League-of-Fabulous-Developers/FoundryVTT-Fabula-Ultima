@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><ul><li><p><strong>Target Restores:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p></li></ul>",
+    "description": "<p>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><p><strong>Target Restores:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -59,7 +59,7 @@
       "amount": 0
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 0
     }
   },
@@ -70,17 +70,20 @@
     "aylHtMTxbnWEKFH9": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.p2XGjdrHOm4MZDw7",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1744519419811,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770413743107,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "YZkp0hXK29tfI0MI",

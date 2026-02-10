@@ -64,18 +64,13 @@
                 }
               },
               "actions": {
-                "DRc1mSvZQTh5u3GY": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "DRc1mSvZQTh5u3GY",
-                  "amount": "5"
-                },
-                "f9YgfPh366UVVYJL": {
-                  "type": "updateResourceRuleAction",
-                  "_id": "f9YgfPh366UVVYJL",
-                  "resource": "mp",
-                  "amount": "5"
+                "FccrcuFwACJGfubk": {
+                  "type": "messageRuleAction",
+                  "_id": "FccrcuFwACJGfubk",
+                  "message": "<p>After you suffer damage, you recover 5 HP <strong>or</strong> 5 MP.</p><hr><p><strong>You Recover:</strong> @GAIN[5 hp] or @GAIN[5 mp]</p>"
                 }
-              }
+              },
+              "selector": "self"
             }
           }
         }
@@ -95,7 +90,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742579460750,
-        "modifiedTime": 1770401506933,
+        "modifiedTime": 1770406472944,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

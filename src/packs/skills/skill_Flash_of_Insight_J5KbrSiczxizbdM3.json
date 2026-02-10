@@ -118,24 +118,120 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "flash-of-insight"
+    "fuid": "flash-of-insight",
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Flash of Insight",
+      "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "5qIf7IG9ZAkwVt9R": {
+              "type": "ruleElement",
+              "_id": "5qIf7IG9ZAkwVt9R",
+              "trigger": {
+                "_id": "gkqkk1BJmj01J9jB",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "open"
+                ]
+              },
+              "predicates": {
+                "udvpE739WHduDidd": {
+                  "type": "checkRulePredicate",
+                  "_id": "udvpE739WHduDidd",
+                  "result": 13,
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "ins"
+                    }
+                  }
+                }
+              },
+              "actions": {
+                "OqeboGimrr953F0i": {
+                  "type": "messageRuleAction",
+                  "_id": "OqeboGimrr953F0i",
+                  "message": "<p>If this was to investigate a creature, item or location, you may ask the GM up to<strong>【SL】</strong>questions concerning the subject.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "45F7umTTsKZUmmgj",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location, you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770415635015,
+        "modifiedTime": 1770417674691,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!J5KbrSiczxizbdM3.45F7umTTsKZUmmgj"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706487096304,
-    "modifiedTime": 1741974717441,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770415508933,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you or an ally who is able to hear and understand you perform a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to <strong>【SL × 2】</strong>to the Result of that Check.</p><hr /><ul><li><p><strong>You/Ally Performs:</strong>  @CHECK[dex dex ($sl*2)]</p></li><li><p><strong>Resource: </strong>@PROGRESS[winds-of-trade update -1]{Spend 1 Trade Point}</p></li></ul>",
+    "description": "<p>When you or an ally who is able to hear and understand you perform a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to <strong>【SL × 2】</strong>to the Result of that Check.</p><hr /><p><strong>Resource: </strong>@PROGRESS[winds-of-trade update -1]{Spend 1 Trade Point}</p>",
     "isFavored": {
       "value": false
     },
@@ -60,7 +60,7 @@
       "amount": 0
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 0
     }
   },
@@ -69,16 +69,20 @@
     "default": 0,
     "aylHtMTxbnWEKFH9": 3
   },
-  "flags": {},
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bDP47SDoLzbmoRxq",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1744558219528,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770419008080,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "GkFFLkshtNlg0vgV",

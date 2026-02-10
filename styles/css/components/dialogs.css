@@ -176,3 +176,14 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 0.5rem;
 }
+
+/* Fix WebKit/Safari dialog content collapse.
+   Foundry core sets flex: 1 (= flex: 1 1 0) on .window-content. The flex-basis: 0
+   means it starts at 0 height, and because .window-content also has overflow: hidden,
+   its CSS automatic minimum size is 0 (not min-content). WebKit strictly resolves this
+   as 0px, collapsing the dialog to just the title bar and submit button.
+   Fix: use flex-basis: auto so .window-content sizes to its content. */
+.projectfu.unique-dialog .window-content {
+	flex: 1 0 auto;
+	height: auto;
+}

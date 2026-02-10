@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When an NPC becomes your focus or when you create a Bond towards an NPC",
-      "description": "<p>You ask the Game Master a single question about that NPC, and the Game Master must answer truthfully. Then, describe what sensation revealed this information to you. You may use this gift <strong>only once</strong> on each NPC.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p></li></ul>"
+      "description": "<p>You ask the Game Master a single question about that NPC, and the Game Master must answer truthfully. Then, describe what sensation revealed this information to you. You may use this gift <strong>only once</strong> on each NPC.</p><hr /><p><strong>You Spend: </strong>@LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Psychic Gift}<br /><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
     },
     "source": "FUTF152",
     "fuid": "clairvoyance"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711423314741,
-    "modifiedTime": 1744507702051,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770368201538,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

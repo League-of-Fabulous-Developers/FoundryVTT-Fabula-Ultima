@@ -17,17 +17,17 @@
         {
           "start": 1,
           "end": 1,
-          "effect": "<p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>dazed</strong>.</p><hr><ul><li><p><strong>Target Suffers:</strong> @EFFECT[dazed]</p></li></ul>"
+          "effect": "<p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>dazed</strong>.</p><hr><p><strong>Target Suffers:</strong> @EFFECT[dazed]</p>"
         },
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>At the end of your turn, every enemy you can see suffers <strong>dazed</strong>.</p><hr><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[dazed]</p></li></ul>"
+          "effect": "<p>At the end of your turn, every enemy you can see suffers <strong>dazed</strong>.</p><hr><p><strong>Targets Suffer:</strong> @EFFECT[dazed]</p>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>At the end of your turn, you deal an amount of <strong>light</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>dazed</strong>.</p><hr><ul><li><p><strong>Targets Loses:</strong> @DMG[15+&sl('chloromancy') light]{15 + (SL in Chloromancy)}</p></li></ul>"
+          "effect": "<p>At the end of your turn, you deal an amount of <strong>light</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>dazed</strong>.</p><hr><p><strong>Targets Suffer:</strong> @DMG[15+&sl('chloromancy')+5*floor($cl/30) light]{15 + (SL in Chloromancy)}</p>"
         }
       ]
     },
@@ -39,12 +39,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.nr58MSF7itK1aql0",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1745172449788,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770370743822,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

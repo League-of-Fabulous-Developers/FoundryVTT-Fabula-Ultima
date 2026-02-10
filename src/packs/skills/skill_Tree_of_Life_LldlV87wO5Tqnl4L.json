@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>When you <strong>remove</strong> a </span><strong>magiseed</strong><span> from your <strong>garden</strong>, you may choose one creature you can see: if that creature is in <strong>Crisis</strong>, they recover <strong>【5 + (SL × 5)】</strong> Hit Points.</span></p><hr /><ul><li><p><strong>Target Recovers:</strong> @GAIN[5+(5*$sl) hp]{5 + (SL × 5) HP}</p></li></ul>",
+    "description": "<p><span>When you <strong>remove</strong> a </span><strong>magiseed</strong><span> from your <strong>garden</strong>, you may choose one creature you can see: if that creature is in <strong>Crisis</strong>, they recover <strong>【5 + (SL × 5)】</strong> Hit Points.</span></p><hr /><p><strong>Target Recovers:</strong> @GAIN[5+(5*$sl) hp]{5 + (SL × 5) HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -60,7 +60,7 @@
       "amount": 0
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 0
     }
   },
@@ -70,17 +70,20 @@
     "aylHtMTxbnWEKFH9": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bzts77PlpTm21uNN",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1744508326853,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770369742429,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "LldlV87wO5Tqnl4L",

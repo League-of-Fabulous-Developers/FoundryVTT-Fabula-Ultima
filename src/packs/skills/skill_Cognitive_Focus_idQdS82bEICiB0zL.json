@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells ( <span>@ICON[offensive] </span>) that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p>",
+    "description": "<p>At the start of your turn during a conflict, you may choose one ally who is able to hear you <strong>or</strong> one enemy you can see that is suffering from <strong>dazed</strong>, <strong>enraged</strong>, and/or <strong>shaken</strong>. Until the start of your next turn, the chosen creature becomes your <strong>focus</strong>.</p><p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells (<span>@ICON[offensive]</span>) that include your <strong>focus</strong> among the targets. When you cause your <strong>focus</strong> to recover Hit Points and/or Mind Points, they recover <strong>【SL × 2】</strong> additional HP and/or MP, respectively.</p>",
     "isFavored": {
       "value": false
     },
@@ -119,6 +119,9 @@
       "entries": [
         "focus"
       ]
+    },
+    "targeting": {
+      "rule": "single"
     }
   },
   "effects": [
@@ -207,7 +210,7 @@
                 "mYbH78f8MSjL2Gzo": {
                   "type": "messageRuleAction",
                   "_id": "mYbH78f8MSjL2Gzo",
-                  "message": "<p>Your focus recovers an additional @GAIN[&sl('cognitive-focus')*2 hp].</p>"
+                  "message": "<p>Your <strong>focus</strong> recovers extra @GAIN[&sl('cognitive-focus')*2 hp]{SL × 2 HP}.</p>"
                 }
               }
             },
@@ -227,7 +230,7 @@
                 "gL2C8YwZzHTmV4Ob": {
                   "type": "messageRuleAction",
                   "_id": "gL2C8YwZzHTmV4Ob",
-                  "message": "<p>Your focus recovers an additional @GAIN[&sl('cognitive-focus')*2 mp].</p>"
+                  "message": "<p>Your <strong>focus</strong> recovers extra @GAIN[&sl('cognitive-focus')*2 mp]{SL × 2 MP}.</p>"
                 }
               },
               "predicates": {
@@ -243,7 +246,8 @@
                     "entries": [
                       "gain",
                       "mind-point"
-                    ]
+                    ],
+                    "quantifier": "all"
                   }
                 }
               }
@@ -299,8 +303,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767260254243,
-        "modifiedTime": 1770244894248,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1770421562068,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!idQdS82bEICiB0zL.3vHmCpjussdJcEgM"
     }
@@ -322,8 +326,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1770237282989,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770367820556,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

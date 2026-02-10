@@ -133,6 +133,10 @@ globalThis.projectfu = {
 	},
 };
 
+// These are pulled out of the init hook to ensure they are overridden before any modules that may apply mixins later
+CONFIG.Token.rulerClass = FUTokenRuler;
+CONFIG.Token.objectClass = FUToken;
+
 /* -------------------------------------------- */
 /*  Init Hook                                   */
 /* -------------------------------------------- */
@@ -411,10 +415,6 @@ Hooks.once('init', async () => {
 	// 	CONFIG.Token.rulerClass = null;
 	// }
 
-	// Override token ruler class
-	CONFIG.Token.rulerClass = FUTokenRuler;
-	CONFIG.Token.objectClass = FUToken;
-
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
@@ -547,8 +547,8 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
 		const dice = context.roll.dice;
 		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
-			const dieValue = dice[0].results[0].check;
-			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).check) {
+			const dieValue = dice[0].results[0].result;
+			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).result) {
 				for (const d of dice) {
 					d.options.sfx = { id: 'doubles', result: dieValue };
 				}

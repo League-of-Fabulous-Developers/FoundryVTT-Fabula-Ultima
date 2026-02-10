@@ -59,7 +59,7 @@
       "amount": 0
     },
     "targeting": {
-      "rule": "special",
+      "rule": "self",
       "max": 0
     }
   },
@@ -70,17 +70,20 @@
     "aylHtMTxbnWEKFH9": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.4jvTChuT4ubm1lgD",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1742676970366,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1770413783845,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "HlSeaheZt8969qI7",

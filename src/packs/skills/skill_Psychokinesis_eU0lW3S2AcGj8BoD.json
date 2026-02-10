@@ -114,7 +114,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "psychokinesis"
+    "fuid": "psychokinesis",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "folder": "KIqoW0FNwwyC7ygb",
@@ -124,15 +127,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1741977805323,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770368065080,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

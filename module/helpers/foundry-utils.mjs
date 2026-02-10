@@ -375,7 +375,7 @@ export default class FoundryUtils {
 		/** @type ItemMigrationAction[] **/
 		const updates = [];
 		for (const item of items) {
-			if (item.system.fuid) {
+			if (item.system.fuid && item.system.fuid !== '') {
 				const compendiumEntry = await CompendiumIndex.instance.getItemByFuid(item.system.fuid);
 				if (!compendiumEntry) {
 					continue;
