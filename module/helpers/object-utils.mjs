@@ -35,6 +35,15 @@ function getProperty(obj, path) {
 }
 
 /**
+ * @param {Object} obj The object to set the property on
+ * @param {String} path The path to the property, in dot notation
+ * @param {*} value The value to set on the property.
+ */
+function setProperty(obj, path, value) {
+	return foundry.utils.setProperty(obj, path, value);
+}
+
+/**
  *
  * @param {Object} obj
  * @returns {Object} An object without any undefined properties
@@ -56,6 +65,7 @@ function pick(record, keys) {
 export const ObjectUtils = Object.freeze({
 	mergeRecursive,
 	getProperty,
+	setProperty,
 	cleanObject,
 	pick,
 });

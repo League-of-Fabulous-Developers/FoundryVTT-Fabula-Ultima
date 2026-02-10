@@ -243,6 +243,10 @@ export class SkillDataModel extends BaseSkillDataModel {
 		return [...this.commonPartials, ItemPartialTemplates.classField, ItemPartialTemplates.skillAttributes];
 	}
 
+	get retainedFieldPaths() {
+		return ['level.value'];
+	}
+
 	/**
 	 * Action definition, invoked by sheets when 'data-action' equals the method name and no action defined on the sheet matches that name.
 	 * @param {PointerEvent} event

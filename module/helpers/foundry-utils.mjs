@@ -2,6 +2,7 @@ import { StringUtils } from './string-utils.mjs';
 import { systemTemplatePath } from './system-utils.mjs';
 import { TextEditor } from './text-editor.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
+import { ObjectUtils } from './object-utils.mjs';
 
 const { api, fields, handlebars } = foundry.applications;
 
@@ -405,6 +406,16 @@ export default class FoundryUtils {
 	 * @async
 	 */
 	static async migrateItem(sourceItem, targetItem) {
+		// Gather retained data model properties
+		const retainedFields = {};
+		for (const fieldPath of targetItem.system.retainedFieldPaths) {
+			const systemPath = `system.${fieldPath}`;
+			const fieldValue = ObjectUtils.getProperty(targetItem, systemPath);
+			if (fieldValue !== undefined) {
+				retainedFields[systemPath] = fieldValue;
+			}
+		}
+
 		// Properties
 		await targetItem.update(
 			{
@@ -415,6 +426,9 @@ export default class FoundryUtils {
 			},
 			{ diff: false },
 		);
+
+		// After the deep clone, apply them again.
+		await targetItem.update(retainedFields);
 
 		// Effects
 		const updates = [];
