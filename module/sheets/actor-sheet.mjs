@@ -166,6 +166,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 
 			items = updates.map((upd) => upd.item);
 
+			// TODO: Custom table?
 			const title = 'FU.CompendiumMigrateActorItems';
 			/** @type ItemSelectionData **/
 			const data = {
