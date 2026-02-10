@@ -27,7 +27,7 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 			}),
 			identifier: new fields.StringField(),
 			notify: new fields.BooleanField(),
-			value: new fields.StringField({ blank: true }),
+			amount: new fields.StringField({ blank: true }),
 		});
 	}
 
