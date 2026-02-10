@@ -1765,6 +1765,7 @@
 		"PressurePoint": "Pressure Point",
 		"Stagger": "Stagger",
 		"CompendiumBrowser": "Compendium Browser",
+		"CompendiumItem": "Compendium Item",
 		"CompendiumMigrateItem": "Migrate Item",
 		"CompendiumMigrateItemMessage": "Would you like to migrate the data in the item <strong>{name}</strong> to that of the compendium?",
 		"CompendiumMigrateActorItems": "Migrate Actor Items",

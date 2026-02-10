@@ -42,6 +42,15 @@
 				</span>
 			</legend>
 			<table class="table-compact fu-scrollable" style="max-height: 400px;">
+				<thead>
+					<tr>
+						<th></th>
+						<th>{{localize 'FU.Item'}}</th>
+						{{#if compendiumItems}}
+							<th>{{localize 'FU.CompendiumItem'}}</th>
+						{{/if}}
+					</tr>
+				</thead>
 				{{#each items as |item|}}
 					<tr>
 						<td>
@@ -56,10 +65,16 @@
 						</td>
 						<td>
 							{{pfuItemAnchor item}}
-						</td>
-						<td>
 							<span data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
 						</td>
+						{{#if @root.compendiumItems}}
+							<td>
+								{{#with (lookup ../compendiumItems @index) as |item|}}
+									{{pfuItemAnchor item}}
+									<span>{{item.name}}</span>
+								{{/with}}
+							</td>
+						{{/if}}
 					</tr>
 				{{/each}}
 			</table>

@@ -5,6 +5,7 @@ import FoundryUtils from '../../helpers/foundry-utils.mjs';
  * @property {String} title
  * @property {String} message
  * @property {FUItem[]|FUActiveEffect[]} items
+ * @property {FUItem[]} compendiumItems If assigned, will be used to compare to the original items.
  * @property {Object[]} initial
  * @property {'grid'|'list'} style
  * @property {Number} max

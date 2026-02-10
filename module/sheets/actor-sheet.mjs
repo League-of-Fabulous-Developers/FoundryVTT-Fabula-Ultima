@@ -165,6 +165,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			});
 
 			items = updates.map((upd) => upd.item);
+			const compendiumItems = updates.map((upd) => upd.compendiumItem);
 
 			// TODO: Custom table?
 			const title = 'FU.CompendiumMigrateActorItems';
@@ -174,6 +175,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 				message,
 				style: 'list',
 				items: items,
+				compendiumItems: compendiumItems,
 				initial: items,
 				getDescription: async (item) => {
 					const text = item.system?.description ?? '';
