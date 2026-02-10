@@ -520,6 +520,7 @@ export class CompendiumBrowser extends FUApplication {
 	#spellRenderer = new SpellsCompendiumTableRenderer({ id: 'compendium-spells' });
 	#weaponRenderer = new WeaponCompendiumTableRenderer({ id: 'compendium-weapon' });
 	#armorRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-armor' });
+	#shieldRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-shield' });
 	#accessoryRenderer = new ArmorCompendiumTableRenderer({ id: 'compendium-accessory' });
 	#consumableRenderer = new ConsumableCompendiumTableRenderer({ id: 'compendium-consumable' });
 	#skillRenderer = new SkillsCompendiumTableRenderer({ id: 'compendium-skills' });
@@ -660,6 +661,10 @@ export class CompendiumBrowser extends FUApplication {
 								renderer: this.#armorRenderer,
 							},
 							{
+								entries: equipment.shield,
+								renderer: this.#shieldRenderer,
+							},
+							{
 								entries: equipment.accessory,
 								renderer: this.#accessoryRenderer,
 							},
@@ -688,6 +693,10 @@ export class CompendiumBrowser extends FUApplication {
 									{
 										value: 'consumable',
 										label: 'FU.Consumable',
+									},
+									{
+										value: 'shield',
+										label: 'FU.Shield',
 									},
 								],
 							},
