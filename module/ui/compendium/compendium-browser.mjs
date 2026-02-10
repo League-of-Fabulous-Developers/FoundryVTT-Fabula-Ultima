@@ -749,7 +749,7 @@ export class CompendiumBrowser extends FUApplication {
 			case 'spells':
 				{
 					const spells = await this.index.getItemsOfType('spell');
-					const classes = ['Spiritist', 'Entropist', 'Elementalist']; // hardcoded for now
+					const classes = ['Elementalist', 'Entropist', 'Spiritist', 'NPC']; // hardcoded for now
 					const classOptions = classes.map((c) => {
 						return {
 							value: c,
