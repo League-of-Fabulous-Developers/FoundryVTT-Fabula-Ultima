@@ -1,4 +1,4 @@
-<div class="grid grid-3col">
+<div class="flexrow gap-5">
 
 	{{#if system.schema.fields.subtype}}
 	{{!-- Sub Type --}}
@@ -62,4 +62,18 @@
 			</a>
 		{{/each}}
 	</nav>
+
+	{{#if item}}
+		<div class="resource-content desc flexrow flex-group-center gap-5">
+			<label class="resource-label-m flexrow gap-4" for="system.type.value">
+				<span>{{localize 'FU.FUID.Long'}}</span>
+				<input class="resource-inputs select-dropdown-full" type="text" name="system.fuid" value="{{ system.fuid }}">
+			</label>
+			<button type="button" style="flex-grow: 0;" data-action="regenerateFuid"
+					data-tooltip="{{localize 'FU.FUID.Regenerate'}}">
+				<i class="fas fa-rotate-right"></i>
+			</button>
+		</div>
+	{{/if}}
+
 </div>
