@@ -7,9 +7,6 @@
       "value": ""
     },
     "description": "<p>You recover 20 Hit Points. This amount increases to 30 Hit Points if you are <strong>level 20 or higher</strong>, to 40 Hit Points if you are <strong>level 40 or higher</strong>, or to 50 Hit Points if you are <strong>level 60</strong> or higher.</p>",
-    "isFavored": {
-      "value": false
-    },
     "class": {
       "value": "NPC"
     },
@@ -35,15 +32,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -64,12 +52,6 @@
     },
     "showTitleCard": {
       "value": false
-    },
-    "mpCost": {
-      "value": "5"
-    },
-    "target": {
-      "value": "Self"
     },
     "duration": {
       "value": "instantaneous"
@@ -108,19 +90,27 @@
       }
     },
     "source": "FUCR311",
-    "subtype": {},
     "opportunity": "",
-    "maxTargets": {
-      "value": 1
-    },
     "fuid": "lick-wounds",
     "targeting": {
-      "rule": "self"
+      "rule": "self",
+      "max": 0
     },
     "resource": {
       "enabled": true,
-      "amount": "&step(20,30,40,50)"
-    }
+      "amount": "&step(20,30,40,50)",
+      "type": "hp"
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": false
+    },
+    "defense": "mdef",
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [],
   "flags": {
@@ -135,8 +125,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770042811165,
-    "lastModifiedBy": "jBlPH673nHpUCC6V",
+    "modifiedTime": 1770872387812,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

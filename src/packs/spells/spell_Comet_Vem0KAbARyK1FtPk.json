@@ -4,14 +4,10 @@
   "type": "spell",
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/comet.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p><strong>Required Heroic Skill:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.zggGDIOSuvO8uzHg]{Comet}</p><hr /><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option:</p><ul><li><p>You deal 60 damage to one creature you can see.</p></li><li><p>You deal 40 damage to every enemy you can see.</p></li></ul><p>These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -40,15 +36,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -66,12 +53,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "50"
-    },
-    "target": {
-      "value": "Any creature you can see"
     },
     "duration": {
       "value": "instantaneous"
@@ -111,7 +92,26 @@
       "value": false
     },
     "opportunity": "",
-    "fuid": "comet"
+    "fuid": "comet",
+    "cost": {
+      "resource": "mp",
+      "amount": "50",
+      "perTarget": false
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
   },
   "effects": [
     {
@@ -248,7 +248,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710548744272,
-    "modifiedTime": 1770622656161,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

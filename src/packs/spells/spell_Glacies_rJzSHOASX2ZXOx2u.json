@@ -5,16 +5,10 @@
   "_id": "rJzSHOASX2ZXOx2u",
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/glacies.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You coat your foes under a thick layer of frost. You deal <strong>【HR + 15】 ice</strong> damage to each target hit by this spell.</p><hr /><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[slow].</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "10"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "instantaneous"
@@ -114,10 +93,26 @@
       "value": true
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
+    "fuid": "glacies",
+    "cost": {
+      "resource": "mp",
+      "amount": "10",
+      "perTarget": true
     },
-    "fuid": "glacies"
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -136,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706565263509,
-    "modifiedTime": 1770625476967,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

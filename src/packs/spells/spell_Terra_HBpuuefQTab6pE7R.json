@@ -5,16 +5,10 @@
   "_id": "HBpuuefQTab6pE7R",
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/terra.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>Spires of jagged rock erupt from the ground beneath your foes, closing around them. You deal <strong>【HR + 15】earth</strong> damage to each target hit by this spell. This spell cannot target creatures who are flying, floating, falling, or otherwise in mid-air.</p><hr /><p><strong>Opportunity:</strong> Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions).<br />@EFFECT[Compendium.projectfu.spells.Item.MzygNOJrSay8vRv9]</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "10"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "instantaneous"
@@ -114,10 +93,26 @@
       "value": true
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
+    "fuid": "terra",
+    "cost": {
+      "resource": "mp",
+      "amount": "10",
+      "perTarget": true
     },
-    "fuid": "terra"
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -136,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706567040241,
-    "modifiedTime": 1770629398537,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

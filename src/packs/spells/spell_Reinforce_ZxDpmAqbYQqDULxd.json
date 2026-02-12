@@ -5,16 +5,10 @@
   "_id": "ZxDpmAqbYQqDULxd",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p><p></p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "5"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "scene"
@@ -114,9 +93,6 @@
       "value": false
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
-    },
     "fuid": "reinforce",
     "effects": {
       "entries": [
@@ -127,7 +103,23 @@
         "Compendium.projectfu.spells.Item.YPwd8ncv62T8md10",
         "Compendium.projectfu.spells.Item.YapKaTVoWMghwB3V"
       ]
-    }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": true
+    },
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -146,7 +138,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706573024313,
-    "modifiedTime": 1770626878084,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

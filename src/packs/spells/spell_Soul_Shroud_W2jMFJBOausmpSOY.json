@@ -38,15 +38,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "resource": {
       "enabled": false,
       "amount": "",
@@ -124,7 +115,8 @@
     },
     "traits": [],
     "source": "FUCR209",
-    "opportunity": ""
+    "opportunity": "",
+    "defense": "mdef"
   },
   "effects": [],
   "sort": 0,
@@ -145,7 +137,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768694796790,
-    "modifiedTime": 1770627176651,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!W2jMFJBOausmpSOY"

@@ -7,9 +7,6 @@
       "value": ""
     },
     "description": "<p>The target suffers <strong>HR + 15</strong> <strong>(choose type)</strong> damage. Then, you recover an amount of Mind Points equal to half the Hit Point loss they suffered.</p>",
-    "isFavored": {
-      "value": false
-    },
     "class": {
       "value": "NPC"
     },
@@ -35,15 +32,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -64,12 +52,6 @@
     },
     "showTitleCard": {
       "value": false
-    },
-    "mpCost": {
-      "value": "10"
-    },
-    "target": {
-      "value": "One creature"
     },
     "duration": {
       "value": "instantaneous"
@@ -108,16 +90,30 @@
       }
     },
     "source": "FUCR311",
-    "subtype": {},
     "opportunity": "",
-    "maxTargets": {
-      "value": 1
-    },
     "fuid": "mind-theft",
     "traits": [
       "absorb-half",
       "mind-point-absorption"
-    ]
+    ],
+    "cost": {
+      "resource": "mp",
+      "amount": "10",
+      "perTarget": false
+    },
+    "targeting": {
+      "max": 1,
+      "rule": "single"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    }
   },
   "effects": [],
   "flags": {
@@ -132,8 +128,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770042873863,
-    "lastModifiedBy": "jBlPH673nHpUCC6V",
+    "modifiedTime": 1770872387812,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

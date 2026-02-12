@@ -5,16 +5,10 @@
   "_id": "jd9jMsj2PNq99M64",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/aura.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12). This value increases to 13 if you are <strong>level 20 or higher</strong>, or to 14 if you are <strong>level 40 or higher</strong>.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "5"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "scene"
@@ -114,15 +93,28 @@
       "value": false
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
-    },
     "fuid": "aura",
     "effects": {
       "entries": [
         "Compendium.projectfu.spells.Item.j37149fnaCxNS08N"
       ]
-    }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": true
+    },
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -141,7 +133,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706571961584,
-    "modifiedTime": 1770624159231,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -5,16 +5,10 @@
   "_id": "e8zOkUsnSVLHBFLZ",
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/vortex.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You slash through your foe with high-pressure wind. You deal <strong>【HR + 25】 air</strong> damage to the target; this damage ignores Resistances.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "10"
-    },
-    "target": {
-      "value": "Self"
     },
     "duration": {
       "value": "instantaneous"
@@ -114,15 +93,27 @@
       "value": true
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 1
-    },
     "fuid": "vortex",
     "traits": [
       "ignore-resistances"
     ],
     "cost": {
-      "amount": "20"
+      "amount": "20",
+      "resource": "mp",
+      "perTarget": false
+    },
+    "targeting": {
+      "max": 1,
+      "rule": "single"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
     }
   },
   "effects": [],
@@ -142,8 +133,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706567400781,
-    "modifiedTime": 1768577824201,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770872382467,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

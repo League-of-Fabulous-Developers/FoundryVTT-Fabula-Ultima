@@ -5,16 +5,10 @@
   "_id": "9ENpDMvIOH9FJAka",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/torpor.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose <strong>slow</strong> or <strong>weak</strong>: you inflict the chosen status effect on each target hit by this spell.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "5"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "instantaneous"
@@ -114,16 +93,29 @@
       "value": true
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
-    },
     "fuid": "torpor",
     "effects": {
       "entries": [
         "slow",
         "weak"
       ]
-    }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": true
+    },
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -140,10 +132,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706573295761,
-    "modifiedTime": 1766775566520,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770872382467,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

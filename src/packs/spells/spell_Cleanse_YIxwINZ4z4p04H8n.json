@@ -5,16 +5,10 @@
   "_id": "YIxwINZ4z4p04H8n",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/cleanse.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You strengthen and purify the soul energy coursing through your companions. Each target recovers from <strong>all status effects.</strong></p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "5"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "instantaneous"
@@ -114,10 +93,26 @@
       "value": false
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
+    "fuid": "cleanse",
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": true
     },
-    "fuid": "cleanse"
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [
     {
@@ -216,8 +211,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706572278932,
-    "modifiedTime": 1770042190472,
-    "lastModifiedBy": "jBlPH673nHpUCC6V",
+    "modifiedTime": 1770872382467,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
