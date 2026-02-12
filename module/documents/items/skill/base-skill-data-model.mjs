@@ -54,6 +54,19 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 		});
 	}
 
+	prepareBaseData() {
+		if (!this.hasRoll.value) {
+			this.useWeapon.accuracy = false;
+		}
+		if (!this.damage.hasDamage) {
+			this.useWeapon.damage = false;
+		}
+		// If not using weapon damage, and it's not set, reset to default
+		if (!this.useWeapon.damage && !this.damage.type) {
+			this.damage.type = 'physical';
+		}
+	}
+
 	/**
 	 * @desc Common configuration for attribute checks.
 	 * @param {CheckConfigurer} config

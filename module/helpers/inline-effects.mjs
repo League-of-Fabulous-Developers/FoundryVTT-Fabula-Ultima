@@ -152,7 +152,12 @@ async function inlineEffectEnricher(match, options) {
 				return createBrokenAnchor();
 			}
 			if (instancedEffect instanceof FUItem) {
-				const firstEffect = instancedEffect.effects.entries().next().value[1];
+				const iterator = instancedEffect.effects?.values();
+				const firstEffect = iterator?.next()?.value;
+				if (!firstEffect) {
+					console.warn('FUItem has no effects:', instancedEffect);
+					return null; // or handle appropriately
+				}
 				instancedEffect = firstEffect;
 			}
 			return createCompendiumEffectAnchor(instancedEffect, config, label);

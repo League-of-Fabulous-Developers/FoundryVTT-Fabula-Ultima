@@ -144,22 +144,6 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 		return source;
 	}
 
-	prepareBaseData() {
-		if (!this.hasRoll.value) {
-			this.useWeapon.accuracy = false;
-			this.damage.hasDamage = false;
-		}
-		if (!this.useWeapon.accuracy) {
-			this.damage.hasDamage = false;
-		}
-		if (!this.damage.hasDamage) {
-			this.useWeapon.damage = false;
-		}
-		if (!this.useWeapon.damage && !this.damage.type) {
-			this.damage.type = 'physical';
-		}
-	}
-
 	/**
 	 * @param {KeyboardModifiers} modifiers
 	 * @return {Promise<void>}
