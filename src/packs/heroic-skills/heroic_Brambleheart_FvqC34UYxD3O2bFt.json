@@ -2,7 +2,7 @@
   "folder": "G957A8IFiy9ML4w0",
   "name": "Brambleheart",
   "type": "heroic",
-  "img": "icons/magic/nature/root-vine-entangled-hand.webp",
+  "img": "icons/magic/nature/root-vine-thorned-fire-purple.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Your brambles protect you and react to enemy attacks."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more classes among <strong>Darkblade</strong> and <strong>Floralist</strong>, and must have acquired the <strong>Chloromancy</strong> Skill</p></blockquote><p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p><p>Additionally, when you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage (the damage type still cannot be changed). If you do, your <strong>Shadow Strike</strong> deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more classes among <strong>Darkblade</strong> and <strong>Floralist</strong>, and must have acquired the <strong>Chloromancy</strong> Skill.</p><hr /><p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p><p>Additionally, when you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage (the damage type still cannot be changed). If you do, your <strong>Shadow Strike</strong> deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -61,7 +61,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Brambleheart: Resistance",
+      "name": "Brambleheart",
       "_id": "ZxLj2AuUV9ocHtuC",
       "changes": [
         {
@@ -77,7 +77,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p>",
+      "description": "<p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -91,33 +91,75 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1743167848584,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770886268337,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
-      "img": "icons/magic/nature/root-vine-entangled-hand.webp",
+      "img": "icons/magic/nature/root-vine-thorned-fire-purple.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "rdPSz3gF6mPqJrEK": {
+              "type": "ruleElement",
+              "_id": "rdPSz3gF6mPqJrEK",
+              "trigger": {
+                "_id": "wN5ZJXLvqe8fLzVH",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "target",
+                "resource": "hp",
+                "change": "decrement"
+              },
+              "predicates": {
+                "WZgDEsoXhdoocj0p": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "WZgDEsoXhdoocj0p",
+                  "selector": "self",
+                  "effect": "crisis"
+                }
+              },
+              "actions": {
+                "78DvTiGrCr6CuwmF": {
+                  "type": "messageRuleAction",
+                  "_id": "78DvTiGrCr6CuwmF",
+                  "message": "<p>You may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p>"
+                }
+              }
+            }
+          }
+        }
+      },
       "sort": 0,
       "_key": "!items.effects!FvqC34UYxD3O2bFt.ZxLj2AuUV9ocHtuC"
     }
   ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.FvqC34UYxD3O2bFt",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1743948329347,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770877728957,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "FvqC34UYxD3O2bFt",

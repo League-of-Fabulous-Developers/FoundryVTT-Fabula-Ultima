@@ -9,7 +9,7 @@
     "summary": {
       "value": "Learn spells from new Species and increase spell limit."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Chimerist </strong>Class. </p></blockquote><p>Choose two creature Species among <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, and <strong>undead</strong>. You can now use <strong>spell mimic</strong> to learn spells from creatures of the chosen Species. </p><p>This Heroic Skill <strong>may be acquired up to twice</strong>, each time selecting two Species from the list above.</p><p>Whenever you acquire this Skill, you also increase your upper limit for memorized Chimerist spells by 2. </p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Chimerist </strong>Class. </p><hr /><p>Choose two creature Species among <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, and <strong>undead</strong>. You can now use <strong>spell mimic</strong> to learn spells from creatures of the chosen Species. </p><p>This Heroic Skill <strong>may be acquired up to twice</strong>, each time selecting two Species from the list above.</p><p>Whenever you acquire this Skill, you also increase your upper limit for memorized Chimerist spells by 2. </p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706583718474,
-    "modifiedTime": 1724180863867,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770708309656,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

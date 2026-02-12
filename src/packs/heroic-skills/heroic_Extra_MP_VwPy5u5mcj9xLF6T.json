@@ -117,7 +117,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Permanently increase your maximum Mind Points by 10.  The amount of additional MP increases to 20 if you are <strong>level 40 or higher</strong>.</p>",
+      "description": "<p>Permanently increase your maximum MP by 10. The amount of additional MP increases to 20 at <strong>level 40</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -129,19 +129,30 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1743595488961,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770709065843,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "img": "icons/magic/symbols/chevron-elipse-circle-blue.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "origin": null,
       "sort": 0,
       "_key": "!items.effects!VwPy5u5mcj9xLF6T.ppw04iGfH1dGa3jv"

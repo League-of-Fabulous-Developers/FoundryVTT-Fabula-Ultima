@@ -9,7 +9,7 @@
     "summary": {
       "value": "Equip three daggers/swords and perform triple attacks."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Dancer </strong>and <strong>Weaponmaster</strong>.</p></blockquote><p>As long as you have a one-handed <strong>melee </strong>weapon that belongs to the <strong>dagger </strong>or <strong>sword </strong>Categories equipped in each of your normal hand slots, you may treat your <strong>armor </strong>slot as if it were a second <strong>off-hand</strong> slot. You may only use this special slot to equip a one-handed <strong>melee </strong>weapon that belongs to the <strong>dagger </strong>or <strong>sword </strong>Categories — note that the <strong>Monkey Grip</strong> Skill does not turn two-handed weapons into one-handed weapons, and thus cannot be used in combination with <strong>Triple Slash</strong>.</p><p>When you perform the <strong>Attack </strong>action while you have three <strong>daggers </strong>and/or <strong>swords </strong>equipped, you may attack once with each weapon. This follows the normal rules for <strong>two-weapon fighting</strong>: each of the three attacks loses the multi property and cannot gain it, and you treat the <strong>High Roll (HR)</strong> of each Accuracy Check as being equal to 0 when determining damage.</p><hr /><ul><li><p>To <strong>automate</strong>, navigate to the '<strong>Items</strong>\" tab where the weapon you want to equip is located, and press <strong>Ctrl+Click</strong> on the icon in the '<strong>Equip?</strong>' column. The item will be added to the <strong>Phantom Slot</strong>. Equip weapons in both your main and off-hand slots. <strong>Shift+Click</strong> each weapon to roll as <strong>HR Zero</strong>. Make sure your <strong>Armor Slot</strong> is empty.</p></li></ul>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Dancer </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>As long as you have a one-handed <strong>melee </strong>weapon that belongs to the <strong>dagger </strong>or <strong>sword </strong>Categories equipped in each of your normal hand slots, you may treat your <strong>armor </strong>slot as if it were a second <strong>off-hand</strong> slot. You may only use this special slot to equip a one-handed <strong>melee </strong>weapon that belongs to the <strong>dagger </strong>or <strong>sword </strong>Categories — note that the <strong>Monkey Grip</strong> Skill does not turn two-handed weapons into one-handed weapons, and thus cannot be used in combination with <strong>Triple Slash</strong>.</p><p>When you perform the <strong>Attack </strong>action while you have three <strong>daggers </strong>and/or <strong>swords </strong>equipped, you may attack once with each weapon. This follows the normal rules for <strong>two-weapon fighting</strong>: each of the three attacks loses the multi property and cannot gain it, and you treat the <strong>High Roll (HR)</strong> of each Accuracy Check as being equal to 0 when determining damage.</p><hr /><p>To <strong>automate</strong>, navigate to the '<strong>Items</strong>\" tab where the weapon you want to equip is located, and press <strong>Ctrl+Click</strong> on the icon in the '<strong>Equip?</strong>' column. The item will be added to the <strong>Phantom Slot</strong>. Equip weapons in both your main and off-hand slots. <strong>Shift+Click</strong> each weapon to roll as <strong>HR Zero</strong>. Make sure your <strong>Armor Slot</strong> is empty.</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684778697,
-    "modifiedTime": 1744079668005,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770776351674,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

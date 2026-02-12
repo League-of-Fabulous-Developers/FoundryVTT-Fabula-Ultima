@@ -1,0 +1,132 @@
+{
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Effect: Hunter's Trick (Recover)",
+  "type": "effect",
+  "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
+  "system": {
+    "fuid": "effect-hunters-trick-recover",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Hunter's Trick (Recover)",
+      "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "JayWJfWpcKXycLyG": {
+              "type": "ruleElement",
+              "_id": "JayWJfWpcKXycLyG",
+              "trigger": {
+                "_id": "BfhQcCy26Sg3GVOj",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "X82dweGdmzf560Gf": {
+                  "type": "checkRulePredicate",
+                  "_id": "X82dweGdmzf560Gf",
+                  "outcome": "success",
+                  "result": null
+                }
+              },
+              "actions": {
+                "faqcYnNXOWgV8BEO": {
+                  "type": "messageRuleAction",
+                  "_id": "faqcYnNXOWgV8BEO",
+                  "message": "<p>If you hit one or more, you recover 5 HP and MP.</p>"
+                },
+                "fuDP4PgO8cnEc9lR": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "fuDP4PgO8cnEc9lR",
+                  "amount": "5"
+                },
+                "cJdq5okRgiQUT0ib": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "cJdq5okRgiQUT0ib",
+                  "resource": "mp",
+                  "amount": "5"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "XEl6sAxB5DPiQoeS",
+      "type": "base",
+      "changes": [],
+      "description": "<p>If you hit one or more creatures with an attack using this weapon during this turn, you recover 5 HP and MP.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771012189405
+      },
+      "_key": "!items.effects!3PRgAxgGjeOiBjKg.XEl6sAxB5DPiQoeS"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771009954442,
+    "modifiedTime": 1771013806540,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "3PRgAxgGjeOiBjKg",
+  "sort": 200000,
+  "_key": "!items!3PRgAxgGjeOiBjKg"
+}

@@ -1,7 +1,7 @@
 {
   "name": "Black & White",
   "type": "heroic",
-  "img": "icons/commodities/currency/coin-yingyang.webp",
+  "img": "icons/sundries/gaming/playing-cards.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Modify your Double Trouble Set; Jokers become stronger."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Darkblade</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.<br /></p></blockquote><p>When you resolve the <strong>Double Trouble</strong> effect, you may have all of its damage become light or dark (instead of being of a type matching the <strong>suits</strong> of the resolved cards).</p><p>Additionally, as long as there is a <strong>joker</strong> in your <strong>discard pile</strong>, all damage dealt by your <strong>Blinding Flush</strong>, <strong>Double Trouble</strong>, and <strong>Magic Flush</strong> effects ignores Immunities and Resistances.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Darkblade</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p><hr /><p>When you resolve the <strong>Double Trouble</strong> effect, you may have all of its damage become <strong>light</strong> or <strong>dark</strong> (instead of being of a type matching the <strong>suits</strong> of the resolved cards).</p><p>Additionally, as long as there is a <strong>joker</strong> in your <strong>discard pile</strong>, all damage dealt by your <strong>Blinding Flush</strong>, <strong>Double Trouble</strong>, and <strong>Magic Flush</strong> effects ignores Immunities and Resistances.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1708940657180,
-    "modifiedTime": 1769017116813,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771007930192,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

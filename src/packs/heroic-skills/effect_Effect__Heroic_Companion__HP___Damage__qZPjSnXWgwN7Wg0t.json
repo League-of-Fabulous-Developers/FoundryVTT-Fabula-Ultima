@@ -1,18 +1,19 @@
 {
-  "folder": "5kSHxgDcJ4VNObCO",
-  "name": "Effect: Side by Side",
+  "folder": "WHNpwToyVPMpfLEu",
+  "name": "Effect: Heroic Companion (HP & Damage)",
   "type": "effect",
-  "_id": "tfiHN8sIoo9lMl0C",
-  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "_id": "qZPjSnXWgwN7Wg0t",
+  "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
   "system": {
-    "fuid": "side-by-side",
+    "fuid": "effect-heroic-companion",
     "cost": {
       "value": 0
-    }
+    },
+    "source": "FUCR236"
   },
   "effects": [
     {
-      "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+      "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
       "duration": {
         "rounds": null,
         "startTime": null,
@@ -23,8 +24,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Side by Side",
-      "_id": "nJHoE47tFyNEOMiP",
+      "name": "Heroic Companion (HP & Damage)",
+      "_id": "4h30fp8qRSio9SiR",
       "type": "base",
       "system": {
         "type": "default",
@@ -37,9 +38,25 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
+        {
+          "key": "system.resources.hp.bonus",
+          "mode": 2,
+          "value": "10",
+          "priority": null
+        },
         {
           "key": "system.bonuses.damage.all",
           "mode": 2,
@@ -47,7 +64,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When your companion deals damage, they deal 5 extra damage.</p>",
+      "description": "<p>Your max HP increases by 10 and you deal 5 extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -57,18 +74,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1744251100445,
-        "modifiedTime": 1744251193578,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "createdTime": 1744074912707,
+        "modifiedTime": 1771013590846,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
-      "_key": "!items.effects!tfiHN8sIoo9lMl0C.nJHoE47tFyNEOMiP"
+      "_key": "!items.effects!qZPjSnXWgwN7Wg0t.4h30fp8qRSio9SiR"
     }
   ],
-  "sort": 0,
+  "sort": 1200000,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -77,13 +94,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1744251088055,
-    "modifiedTime": 1744251188248,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "createdTime": 1744074899880,
+    "modifiedTime": 1771013586877,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
-  "_key": "!items!tfiHN8sIoo9lMl0C"
+  "_key": "!items!qZPjSnXWgwN7Wg0t"
 }

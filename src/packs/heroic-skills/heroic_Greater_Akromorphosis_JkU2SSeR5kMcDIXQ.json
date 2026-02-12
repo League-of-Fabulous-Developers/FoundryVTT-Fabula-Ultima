@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Greater Akromorphosis",
   "type": "heroic",
-  "img": "icons/creatures/abilities/wolf-howl-moon-white.webp",
+  "img": "icons/creatures/claws/claw-talons-yellow-red.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Gain different benefits based on the Category of your unarmed strikes."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Mutant</strong> Class, and must have acquired the <strong>Akromorphosis</strong> Skill.</p></blockquote><p>You gain the following benefits based on the current Category of your <strong>unarmed strikes</strong>.</p><ul><li><p><strong>Arcane, brawling, dagger, thrown</strong>: your attacks with unarmed strikes treat the Defense of each target as being equal to their current Insight die size.</p></li><li><p><strong>Bow, sword</strong>: your attacks with <strong>unarmed strikes</strong> that target <strong>two or more creatures</strong> deal 5 extra damage.</p></li><li><p><strong>Firearm, heavy</strong>: your <strong>unarmed strikes</strong> deal 5 extra damage to <strong>constructs</strong>, and deal 5 extra damage to non-<strong>construct</strong> creatures who have at least one <strong>shield</strong> and/or <strong>martial armor</strong> equipped.</p></li><li><p><strong>Flail, spear</strong>: you gain a +2 bonus to Defense, and your attacks with <strong>unarmed strikes</strong> may target <strong>flying</strong> creatures.</p></li></ul><p>If your <strong>unarmed strikes</strong> are treated as belonging to <strong>more than one Category</strong> (for instance due to the @UUID[Compendium.projectfu.heroic-skills.Item.s316rQUTr3lgeTx7]{Blade Adept} Heroic Skill; see <strong>High Fantasy Atlas, </strong>page <strong>154</strong>), you gain all the benefits of the corresponding Categories.</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Mutant</strong> Class, and must have acquired the <strong>Akromorphosis</strong> Skill.</p><hr /><p>You gain the following benefits based on the current Category of your <strong>unarmed strikes</strong>.</p><ul><li><p><strong>Arcane, brawling, dagger, thrown</strong>: your attacks with unarmed strikes treat the Defense of each target as being equal to their current Insight die size.</p></li><li><p><strong>Bow, sword</strong>: your attacks with <strong>unarmed strikes</strong> that target <strong>two or more creatures</strong> deal 5 extra damage.</p></li><li><p><strong>Firearm, heavy</strong>: your <strong>unarmed strikes</strong> deal 5 extra damage to <strong>constructs</strong>, and deal 5 extra damage to non-<strong>construct</strong> creatures who have at least one <strong>shield</strong> and/or <strong>martial armor</strong> equipped.</p></li><li><p><strong>Flail, spear</strong>: you gain a +2 bonus to Defense, and your attacks with <strong>unarmed strikes</strong> may target <strong>flying</strong> creatures.</p></li></ul><p>If your <strong>unarmed strikes</strong> are treated as belonging to <strong>more than one Category</strong> (for instance due to the @UUID[Compendium.projectfu.heroic-skills.Item.s316rQUTr3lgeTx7]{Blade Adept} Heroic Skill), you gain all the benefits of the corresponding Categories.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.uC3DZwPezU8UYOBM] or @EFFECT[Compendium.projectfu.heroic-skills.Item.s7qW1SP4kVyDNt5N]</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -98,15 +98,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1743171093566,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770960942415,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

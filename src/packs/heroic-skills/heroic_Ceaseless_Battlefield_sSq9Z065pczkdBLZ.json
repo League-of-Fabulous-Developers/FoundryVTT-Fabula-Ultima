@@ -1,7 +1,7 @@
 {
   "name": "Ceaseless Battlefield",
   "type": "heroic",
-  "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
+  "img": "icons/sundries/gaming/chess-pawn-white-glass.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Halve the MP cost of Commander Skills."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p></blockquote><p>The MP costs for your @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, and @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle} are halved. </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p><hr /><p>The MP costs for your @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, and @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle} are halved. </p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684572929,
-    "modifiedTime": 1724180864088,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770766478139,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,96 @@
+{
+  "folder": "e3zECeHXNzQeoA04",
+  "name": "Effect: Strength of Five Wellsprings (WLP)",
+  "type": "effect",
+  "img": "icons/magic/symbols/elements-air-earth-fire-water.webp",
+  "system": {
+    "fuid": "effect-strength-of-five-wellsprings",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Strength of Five Wellsprings (WLP)",
+      "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "alVp1FAZGl6DmpyI",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.wlp",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your <strong>Willpower </strong>is increased by one die size. This lasts until the end of the scene, or until you use the <strong>Strength of Five Wellsprings</strong> Heroic Skill again.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770888009843
+      },
+      "_key": "!items.effects!TBTNmD7kvs0INTUI.alVp1FAZGl6DmpyI"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770887935362,
+    "modifiedTime": 1770887991425,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "TBTNmD7kvs0INTUI",
+  "sort": 0,
+  "_key": "!items!TBTNmD7kvs0INTUI"
+}

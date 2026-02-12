@@ -2,7 +2,7 @@
   "folder": "G957A8IFiy9ML4w0",
   "name": "Green Thumb",
   "type": "heroic",
-  "img": "icons/commodities/flowers/daisy-white-teal.webp",
+  "img": "icons/consumables/plants/leaf-hastate-glowing-green.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Quicken or delay the growth of your magiseeds"
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Floralist</strong> Class</p></blockquote><p>When <strong>you fill 1 or more sections of your Growth Clock</strong>, you may choose one option: you fill <strong>1 additional section</strong> of your Growth Clock; <strong>or</strong> you fill <strong>1 fewer section</strong> of your Growth Clock (to a minimum of 0 sections filled). If you do, you cannot use this effect again until after your <strong>Growth Clock</strong> has become completely empty.</p><p>Additionally, damage dealt by your <strong>magiseeds</strong> ignores Resistances.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Floralist</strong> Class.</p><hr /><p>When <strong>you fill 1 or more sections of your Growth Clock</strong>, you may choose one option:</p><ul><li><p>You fill <strong>1 additional section</strong> of your Growth Clock.</p></li><li><p>You fill <strong>1 fewer section</strong> of your Growth Clock (to a minimum of 0 sections filled).</p></li></ul><p>If you do, you cannot use this effect again until after your <strong>Growth Clock</strong> has become completely empty.</p><p>Additionally, damage dealt by your <strong>magiseeds</strong> ignores Resistances.</p>",
     "isFavored": {
       "value": false
     },
@@ -50,17 +50,20 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.nm6Ec7nbsrNlRZCf",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1770884538648,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "nm6Ec7nbsrNlRZCf",

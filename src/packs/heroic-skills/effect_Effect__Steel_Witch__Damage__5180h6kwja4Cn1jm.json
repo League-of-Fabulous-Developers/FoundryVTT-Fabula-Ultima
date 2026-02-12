@@ -1,0 +1,135 @@
+{
+  "folder": "rWZeRzjYC59veWKl",
+  "name": "Effect: Steel Witch (Damage)",
+  "type": "effect",
+  "_id": "5180h6kwja4Cn1jm",
+  "img": "icons/commodities/tech/detonator-timer.webp",
+  "system": {
+    "fuid": "effect-steel-witch-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Steel Witch (Damage)",
+      "img": "icons/commodities/tech/detonator-timer.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "kWMyXjt2nO7ljOyN": {
+              "type": "ruleElement",
+              "_id": "kWMyXjt2nO7ljOyN",
+              "trigger": {
+                "_id": "gEeX8PezQBtHTz8T",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "dVBiUd1Ouf3m8j6T": {
+                  "type": "traitsRulePredicate",
+                  "_id": "dVBiUd1Ouf3m8j6T",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "QxcEc5hJjTeSeDMd": {
+                  "type": "messageRuleAction",
+                  "_id": "QxcEc5hJjTeSeDMd",
+                  "message": "<p>Remove this effect.</p>"
+                },
+                "8UCp1qpkKRfqplYZ": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "8UCp1qpkKRfqplYZ",
+                  "identifier": "effect-steel-witch-damage"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BdFeozbPR8HuhxVC",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.spell",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770964625497,
+        "modifiedTime": 1770965096746,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!5180h6kwja4Cn1jm.BdFeozbPR8HuhxVC"
+    }
+  ],
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770964612031,
+    "modifiedTime": 1770964804130,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!5180h6kwja4Cn1jm"
+}

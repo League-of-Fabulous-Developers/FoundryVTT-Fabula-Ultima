@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Power Chord",
+      "name": "Power Chord",
       "_id": "LAq3Ne4TIsc1YkBU",
       "type": "base",
       "system": {
@@ -37,10 +37,33 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
-      "changes": [],
-      "description": "<p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn: your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
+      "changes": [
+        {
+          "key": "flags.projectfu.critThreshold.accuracyCheck.melee",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.critThreshold.accuracyCheck.ranged",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,12 +73,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744077526157,
-        "modifiedTime": 1744077623870,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770764058515,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!BMx3YxxDpgUahmgI.LAq3Ne4TIsc1YkBU"

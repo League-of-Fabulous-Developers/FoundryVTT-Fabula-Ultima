@@ -1,12 +1,12 @@
 {
   "name": "Harvester of Sorrow",
   "type": "heroic",
-  "img": "icons/magic/control/energy-stream-link-large-teal.webp",
+  "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
   "system": {
     "summary": {
       "value": "Increase the potency of Drain spells."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist </strong>and <strong>Necromancer</strong>, and must have learned both the <strong>Drain Spirit</strong> and <strong>Drain Vigor</strong> spells.</p></blockquote><p>When you cast the @UUID[Compendium.projectfu.spells.Item.300SqWOqTrc7Qb3L]{Drain Spirit} or @UUID[Compendium.projectfu.spells.Item.HCknXFHu7q0bJ2Cg]{Drain Vigor} spells, the amount of Mind Points or Hit Points you recover is <strong>equal</strong> to the MP or HP loss suffered by the target, respectively (instead of being halved).</p><p>Additionally, the amount of Mind Point loss caused by <strong>Drain Spirit</strong> spells you cast is increased by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist </strong>and <strong>Necromancer</strong>, and must have learned both the <strong>Drain Spirit</strong> and <strong>Drain Vigor</strong> spells.</p><hr /><p>When you cast the <strong>Drain Spirit</strong> or <strong>Drain Vigor</strong> spells, the amount of Mind Points or Hit Points you recover is <strong>equal</strong> to the MP or HP loss suffered by the target, respectively (instead of being halved).</p><p>Additionally, the amount of Mind Point loss caused by <strong>Drain Spirit</strong> spells you cast is increased by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -107,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1697668153306,
-    "modifiedTime": 1769018293432,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771010379380,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

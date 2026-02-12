@@ -2,7 +2,7 @@
   "folder": "G957A8IFiy9ML4w0",
   "name": "Side by Side",
   "type": "heroic",
-  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "img": "icons/sundries/misc/pet-collar-red.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve your synergy with your Faithful Companion."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faitfhul Companion</strong> Skill</p></blockquote><p>When your companion deals damage, they deal 5 extra damage.</p><p>When your companion performs a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of your companion's <strong>Traits</strong> in order to let them reroll one or both dice (as per the rules on page <strong>46</strong> of the <strong>Core Rulebook</strong>).</p><p>After you use the @UUID[Compendium.projectfu.skills.Item.L34pOGhdH0ZwV4Bt]{Faithful Companion} Skill to have your companion perform an action during your turn, you may choose one option (after the companion's action has been resolved): you and your companion each recover 10 Mind Points; <strong>or</strong> the first time you or your companion perform a Check before the end of your next turn, that Check gains a bonus equal to <strong>【your Skill Level in Faithful Companion】</strong>.</p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[1 fp]</p></li><li><p><strong>Targets Recovers:</strong> @GAIN[10 mp]</p></li><li><p><strong>Companion Receives:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.tfiHN8sIoo9lMl0C]{Effect: Side by Side}</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faithful Companion</strong> Skill.</p><hr /><p>When your companion deals damage, they deal 5 extra damage.</p><p>When your companion performs a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of your companion's <strong>Traits</strong> in order to let them reroll one or both dice (as per the rules on page <strong>46</strong> of the <strong>Core Rulebook</strong>).</p><p>After you use the @UUID[Compendium.projectfu.skills.Item.L34pOGhdH0ZwV4Bt]{Faithful Companion} Skill to have your companion perform an action during your turn, you may choose one option (after the companion's action has been resolved):</p><ul><li><p>You and your companion each recover 10 Mind Points.</p></li><li><p>The first time you or your companion perform a Check before the end of your next turn, that Check gains a bonus equal to <strong>【your Skill Level in Faithful Companion】</strong>.</p></li></ul><hr /><p><strong>Companion Receives:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.tfiHN8sIoo9lMl0C]<br /><strong>You Spend:</strong> @LOSS[1 fp]<br /><strong>Targets Recovers:</strong> @GAIN[10 mp] or @EFFECT[Compendium.projectfu.heroic-skills.Item.m8syR9MuczFEI1l8]</p>",
     "isFavored": {
       "value": false
     },
@@ -50,17 +50,20 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.v2oHTRDdfnDEXURD",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744251312724,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771012033562,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "v2oHTRDdfnDEXURD",

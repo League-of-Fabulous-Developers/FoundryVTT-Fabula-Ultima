@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Dreamslice",
   "type": "heroic",
-  "img": "icons/skills/melee/strike-blade-scimitar-green-purple.webp",
+  "img": "icons/skills/melee/strike-blade-knife-green-purple.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Shadow Strike reduces MP and causes action loss with swords."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Esper</strong>.</p></blockquote><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a weapon that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>. Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a <strong>Bond</strong> towards them, that creature will perform one fewer action during their next turn (to a minimum of zero actions).</p><hr><ul><li><p><strong>Target Loses:</strong> @LOSS[(^backlash(mig,hp)+$sl) mp]</p></li></ul>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Esper</strong>.</p><hr /><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a weapon that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>. Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a <strong>Bond</strong> towards them, that creature will perform one fewer action during their next turn (to a minimum of zero actions).</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -96,17 +96,108 @@
     "source": "FUTF173",
     "fuid": "dreamslice"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Dreamslice",
+      "img": "icons/skills/melee/strike-blade-knife-green-purple.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "4LWSuv6OubzmlAOT": {
+              "type": "ruleElement",
+              "_id": "4LWSuv6OubzmlAOT",
+              "trigger": {
+                "_id": "OhQHbFV3osd9LEHQ",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "shadow-strike"
+              },
+              "actions": {
+                "0n6DsITkN1pHu6Bh": {
+                  "type": "messageRuleAction",
+                  "_id": "0n6DsITkN1pHu6Bh",
+                  "message": "<p>Hit targets lose MP equal to the <strong>Might</strong> die result.</p>"
+                }
+              },
+              "predicates": {
+                "Roqixz9AYyZImi4G": {
+                  "type": "checkRulePredicate",
+                  "_id": "Roqixz9AYyZImi4G",
+                  "outcome": "success",
+                  "result": null
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "lC0vrmonf2x2uiO1",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770955523195,
+        "modifiedTime": 1770956002798,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!jdhnFWPhnFtLRLe8.lC0vrmonf2x2uiO1"
+    }
+  ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1745163078256,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770956169859,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

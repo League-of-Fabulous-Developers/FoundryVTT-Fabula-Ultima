@@ -23,11 +23,22 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Weapoon Damage Up",
+      "name": "Weapon Damage Up",
       "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "_id": "BR1Px5kJR8al9qWM",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damage.value",
@@ -51,12 +62,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728758779688,
-        "modifiedTime": 1736274518342,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "modifiedTime": 1770964360387,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!Xyj06G4k7oBerngN.BR1Px5kJR8al9qWM"

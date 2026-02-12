@@ -1,7 +1,7 @@
 {
   "name": "Unbreakable",
   "type": "heroic",
-  "img": "icons/equipment/shield/heater-crystal-blue.webp",
+  "img": "icons/equipment/shield/heater-steel-crystal-red.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Survive a fatal hit once per scene."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Guardian</strong> Class.</span></p></blockquote><p><span>Once per scene when you are about to be reduced to 0 Hit Points, you may instead choose to withstand the pain and be reduced to exactly 1 Hit Point.</span></p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[1 hp]</p></li></ul>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Guardian</strong> Class.</span></p><hr /><p><span>Once per scene when you are about to be reduced to 0 Hit Points, you may instead choose to withstand the pain and be reduced to exactly 1 Hit Point.</span></p><hr /><p><strong>You Recover:</strong> @GAIN[1 hp]</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706586949165,
-    "modifiedTime": 1743635328535,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770711694929,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

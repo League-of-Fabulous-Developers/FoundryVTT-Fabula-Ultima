@@ -1,0 +1,148 @@
+{
+  "folder": "5kSHxgDcJ4VNObCO",
+  "name": "Effect: Side by Side (Check)",
+  "type": "effect",
+  "img": "icons/sundries/misc/pet-collar-red.webp",
+  "system": {
+    "fuid": "effect-side-by-side-check",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "img": "icons/sundries/misc/pet-collar-red.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Side by Side (Check)",
+      "_id": "nJHoE47tFyNEOMiP",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {
+            "farZdLle9czqLK8r": {
+              "type": "ruleElement",
+              "_id": "farZdLle9czqLK8r",
+              "trigger": {
+                "_id": "xWlbZa7SAUBCDokZ",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy",
+                  "attribute",
+                  "group",
+                  "magic",
+                  "open",
+                  "opposed",
+                  "ritual",
+                  "support"
+                ],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "actions": {
+                "0l7bo13QPnpA8IHg": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "0l7bo13QPnpA8IHg",
+                  "identifier": "effect-side-by-side-check"
+                }
+              }
+            }
+          }
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "~&sl(\"faithful-companion\")",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.magicCheck",
+          "mode": 2,
+          "value": "~&sl(\"faithful-companion\")",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.openCheck",
+          "mode": 2,
+          "value": "~&sl(\"faithful-companion\")",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.opposedCheck",
+          "mode": 2,
+          "value": "~&sl(\"faithful-companion\")",
+          "priority": null
+        }
+      ],
+      "description": "<p>The first time you perform a Check before the end of the wayfarer's next turn, that Check gains a bonus equal to<strong>【Wafarer's SL in Faithful Companion】</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771014019577
+      },
+      "_key": "!items.effects!m8syR9MuczFEI1l8.nJHoE47tFyNEOMiP"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770886822514,
+    "modifiedTime": 1771014015453,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "m8syR9MuczFEI1l8",
+  "sort": 0,
+  "_key": "!items!m8syR9MuczFEI1l8"
+}

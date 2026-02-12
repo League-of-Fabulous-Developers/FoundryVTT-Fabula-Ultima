@@ -1,0 +1,89 @@
+{
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Effect: Witchvoice (Poisoned)",
+  "type": "effect",
+  "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
+  "system": {
+    "fuid": "effect-witchvoice-poisoned",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Witchvoice (Poisoned)",
+      "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "fGE882waVH5825FI",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You are <strong>bewitched</strong>. You must include the originator among the targets of your attacks and offensive spells, if able. This lasts until the start of their next turn or until you recover from <strong>poisoned</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771013842819
+      },
+      "_key": "!items.effects!Ye37QSABFzxlPXSk.fGE882waVH5825FI"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771013806512,
+    "modifiedTime": 1771013834779,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "Ye37QSABFzxlPXSk",
+  "sort": 300000,
+  "_key": "!items!Ye37QSABFzxlPXSk"
+}

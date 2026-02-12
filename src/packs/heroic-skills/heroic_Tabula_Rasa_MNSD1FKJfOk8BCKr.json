@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Skills cause HP loss."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p></blockquote><p>After you use @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict} or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King’s Castle} Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose 10 Hit Points. This amount increases to 20 Hit Points if you are <strong>level 20 or higher,</strong> or 30 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr /><ul><li><p><strong>Targets Loses:</strong> @LOSS[10 hp], @LOSS[20 hp], or @LOSS[30 hp]</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p><hr /><p>After you use @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict} or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King’s Castle} Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose 10 Hit Points. This amount increases to 20 Hit Points if you are <strong>level 20 or higher,</strong> or 30 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>Targets Lose:</strong> @LOSS[&amp;step(10,20,30) hp]{Lose HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -97,45 +97,117 @@
   },
   "effects": [
     {
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Tabula Rasa",
-      "_id": "ZMs2CS4MAtGN1CEH",
-      "changes": [],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">After you use <strong style=\"box-sizing:border-box;user-select:text\">Bishop’s Edict</strong> or <strong style=\"box-sizing:border-box;user-select:text\">King’s Castle</strong> Skills, if you are in <strong style=\"box-sizing:border-box;user-select:text\">Crisis</strong>, you may have every enemy creature present on the scene lose <strong>10 Hit Points</strong>. This amount increases to </span><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>20 Hit Points</strong></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> if you are <strong style=\"box-sizing:border-box;user-select:text\">level 20 or higher</strong>, or </span><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>30 Hit Points </strong></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">if you are<strong style=\"box-sizing:border-box;user-select:text\"> level 40 or higher</strong>. </span></p>",
-      "transfer": true,
-      "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "active"
+      "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "rules": {
+          "elements": {
+            "qudZs9r7N9vwFpZd": {
+              "type": "ruleElement",
+              "_id": "qudZs9r7N9vwFpZd",
+              "trigger": {
+                "_id": "GcqVW10VGZyv48ME",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "bishops-edict"
+              },
+              "actions": {
+                "ZcT5z71VyuR1BRCA": {
+                  "type": "messageRuleAction",
+                  "_id": "ZcT5z71VyuR1BRCA",
+                  "message": "<p>You may have every enemy lose Hit Points.</p>"
+                },
+                "X0K3sMIxs2uTW2y6": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "X0K3sMIxs2uTW2y6",
+                  "amount": "-&step(10,20,30)"
+                }
+              }
+            },
+            "tOuKCYwNN3UNaaTj": {
+              "type": "ruleElement",
+              "_id": "tOuKCYwNN3UNaaTj",
+              "trigger": {
+                "_id": "6ziO0G7GpmdFqHTU",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "kings-castle"
+              },
+              "actions": {
+                "BtuPleYgjNdRp8Jb": {
+                  "type": "messageRuleAction",
+                  "_id": "BtuPleYgjNdRp8Jb",
+                  "message": "<p>You may have every enemy lose Hit Points.</p>"
+                },
+                "ZNQGhm42rQhOOuBt": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "ZNQGhm42rQhOOuBt",
+                  "amount": "-&step(10,20,30)"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
         }
       },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "EDMMGpxBX8YE8K7J",
+      "type": "base",
+      "changes": [],
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">After you use <strong style=\"box-sizing:border-box;user-select:text\">Bishop’s Edict</strong> or <strong style=\"box-sizing:border-box;user-select:text\">King’s Castle</strong> Skills, if you are in <strong style=\"box-sizing:border-box;user-select:text\">Crisis</strong>, you may have every enemy creature present on the scene lose <strong>Hit Points</strong>.</span></p>",
+      "origin": null,
       "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
       "_stats": {
-        "coreVersion": "13.346",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770766214886,
+        "modifiedTime": 1770766450818,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!MNSD1FKJfOk8BCKr.ZMs2CS4MAtGN1CEH"
+      "_key": "!items.effects!MNSD1FKJfOk8BCKr.EDMMGpxBX8YE8K7J"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -144,15 +216,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684758296,
-    "modifiedTime": 1743170782795,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770766186388,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

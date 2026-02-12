@@ -1,7 +1,7 @@
 {
   "name": "Tempest Strike",
   "type": "heroic",
-  "img": "icons/skills/melee/weapons-crossed-swords-purple.webp",
+  "img": "icons/skills/melee/strikes-sword-scimitar.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Concentrate multi attacks on a single target."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Weaponmaster</strong> Class.</span></p></blockquote><p><span>When you perform a <strong>melee</strong> attack with the <strong>multi</strong> property, you gain a bonus to your Accuracy Check equal to the value of that <strong>multi</strong> property, and the attack deals 5 extra damage. If the attack targets <strong>only one creature</strong>, it deals another 5 extra damage.</span></p>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Weaponmaster</strong> Class.</span></p><hr /><p><span>When you perform a <strong>melee</strong> attack with the <strong>multi</strong> property, you gain a bonus to your Accuracy Check equal to the value of that <strong>multi</strong> property, and the attack deals 5 extra damage. If the attack targets <strong>only one creature</strong>, it deals another 5 extra damage.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -97,7 +97,7 @@
   },
   "effects": [
     {
-      "img": "icons/skills/melee/weapons-crossed-swords-purple.webp",
+      "img": "icons/skills/melee/strikes-sword-scimitar.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -108,7 +108,7 @@
         "startTurn": null
       },
       "disabled": true,
-      "name": "Tempest Strike: Multi(2)",
+      "name": "Tempest Strike (Multi 2)",
       "_id": "OszmOSMgr5pWc5ys",
       "type": "base",
       "system": {
@@ -122,7 +122,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -146,14 +156,14 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743609215142,
-        "modifiedTime": 1768875764525,
-        "lastModifiedBy": "bgUzjEHd80A79gwp",
+        "modifiedTime": 1770711651262,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!eRWAdOPqb5aU9k9x.OszmOSMgr5pWc5ys"
     },
     {
-      "img": "icons/skills/melee/weapons-crossed-swords-purple.webp",
+      "img": "icons/skills/melee/strikes-sword-scimitar.webp",
       "duration": {
         "rounds": null,
         "startTime": null,
@@ -164,7 +174,7 @@
         "startTurn": null
       },
       "disabled": true,
-      "name": "Tempest Strike: Multi(3)",
+      "name": "Tempest Strike (Multi 3)",
       "_id": "AnJSaWwS4Js3UClX",
       "type": "base",
       "system": {
@@ -178,7 +188,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -198,12 +218,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743621859462,
-        "modifiedTime": 1743621909335,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770711659910,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!eRWAdOPqb5aU9k9x.AnJSaWwS4Js3UClX"
@@ -225,8 +245,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706586867466,
-    "modifiedTime": 1768875712234,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770711636132,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

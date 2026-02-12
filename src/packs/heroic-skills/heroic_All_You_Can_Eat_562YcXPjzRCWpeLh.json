@@ -2,7 +2,7 @@
   "folder": "G957A8IFiy9ML4w0",
   "name": "All You Can Eat",
   "type": "heroic",
-  "img": "icons/commodities/flowers/daisy-white-teal.webp",
+  "img": "icons/consumables/meat/hock-leg-stylized.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Combine four ingredients into a delicacy."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Gourmet</strong> Class</p></blockquote><p>Once per scene when you use the <strong>Cooking</strong> Skill, you may combine <strong>four ingredients into a delicacy</strong> (thus ignoring the normal limit of three ingredients). Other than that, the delicacy follows the normal rules.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Gourmet</strong> Class.</p><hr /><p>Once per scene when you use the <strong>Cooking</strong> Skill, you may combine <strong>four ingredients into a delicacy</strong> (thus ignoring the normal limit of three ingredients). Other than that, the delicacy follows the normal rules.</p>",
     "isFavored": {
       "value": false
     },
@@ -50,7 +50,7 @@
   },
   "effects": [
     {
-      "img": "icons/commodities/flowers/daisy-white-teal.webp",
+      "img": "icons/consumables/meat/hock-leg-stylized.webp",
       "origin": "Item.562YcXPjzRCWpeLh",
       "duration": {
         "rounds": null,
@@ -65,7 +65,18 @@
       "name": "All You Can Eat",
       "_id": "8fu9YepxdQf4rPFb",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "flags.projectfu.allYouCanEat",
@@ -89,29 +100,32 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1770873557808,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!562YcXPjzRCWpeLh.8fu9YepxdQf4rPFb"
     }
   ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.562YcXPjzRCWpeLh",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1770873534198,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "562YcXPjzRCWpeLh",

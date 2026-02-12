@@ -1,0 +1,137 @@
+{
+  "folder": "rWZeRzjYC59veWKl",
+  "name": "Effect: Steel Witch (Recovery)",
+  "type": "effect",
+  "img": "icons/commodities/tech/detonator-timer.webp",
+  "system": {
+    "fuid": "effect-steel-witch-recovery",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Steel Witch (Recovery)",
+      "img": "icons/commodities/tech/detonator-timer.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "kWMyXjt2nO7ljOyN": {
+              "type": "ruleElement",
+              "_id": "kWMyXjt2nO7ljOyN",
+              "trigger": {
+                "_id": "gEeX8PezQBtHTz8T",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "actions": {
+                "QxcEc5hJjTeSeDMd": {
+                  "type": "messageRuleAction",
+                  "_id": "QxcEc5hJjTeSeDMd",
+                  "message": "<p>Targets recover an extra 10 HP. Then, remove this.</p>"
+                },
+                "8UCp1qpkKRfqplYZ": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "8UCp1qpkKRfqplYZ",
+                  "identifier": "effect-steel-witch-recovery"
+                },
+                "hBlk2DeCyyv8pvAM": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "hBlk2DeCyyv8pvAM",
+                  "amount": "10"
+                }
+              },
+              "predicates": {
+                "DXbEORbaziiZXzqF": {
+                  "type": "traitsRulePredicate",
+                  "_id": "DXbEORbaziiZXzqF",
+                  "traits": {
+                    "entries": [
+                      "gain",
+                      "hit-point"
+                    ],
+                    "quantifier": "all"
+                  }
+                }
+              },
+              "selector": "initial",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BdFeozbPR8HuhxVC",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770967381664
+      },
+      "_key": "!items.effects!MbSByyJGE4BJekAX.BdFeozbPR8HuhxVC"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770964804103,
+    "modifiedTime": 1770964817037,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "MbSByyJGE4BJekAX",
+  "sort": 500000,
+  "_key": "!items!MbSByyJGE4BJekAX"
+}

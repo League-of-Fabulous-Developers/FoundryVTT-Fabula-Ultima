@@ -9,7 +9,7 @@
     "summary": {
       "value": "Learn the Comet spell."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Entropist</strong> Class. <br /></p></blockquote><p>You learn the ultimate <strong>Entropist</strong> spell: <strong>Comet</strong>. <br /></p><table style=\"width:94.2636%\" border=\"1\"><colgroup><col style=\"width:12.973%\"></col><col style=\"width:13.1532%\"></col><col style=\"width:27.9279%\"></col><col style=\"width:45.7658%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Comet</strong></td><td style=\"text-align:center\"><strong>MP: </strong>50</td><td style=\"text-align:center\"><strong>Target: </strong>Special</td><td style=\"text-align:center\"><strong>Duration: </strong>Instantaneous</td></tr></tbody></table><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: you deal 60 damage to one creature you can see; <strong>or</strong> you deal 40 damage to every enemy you can see. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p><hr /><p>Add the @UUID[Compendium.projectfu.spells.Item.Vem0KAbARyK1FtPk]{Comet} spell to your character sheet from the <strong>Entropist</strong> spell list.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Entropist</strong> Class. </p><hr /><p>You learn the ultimate <strong>Entropist</strong> spell: <strong>Comet</strong>. </p><table style=\"width:94.2636%\" border=\"1\"><colgroup><col style=\"width:12.973%\"></col><col style=\"width:13.1532%\"></col><col style=\"width:27.9279%\"></col><col style=\"width:45.7658%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Comet</strong></td><td style=\"text-align:center\"><strong>MP: </strong>50</td><td style=\"text-align:center\"><strong>Target: </strong>Special</td><td style=\"text-align:center\"><strong>Duration: </strong>Instantaneous</td></tr></tbody></table><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: you deal 60 damage to one creature you can see; <strong>or</strong> you deal 40 damage to every enemy you can see. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p><hr /><p>Add the @UUID[Compendium.projectfu.spells.Item.Vem0KAbARyK1FtPk] spell to your character sheet from the <strong>Entropist</strong> spell list.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,7 +112,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706583798150,
-    "modifiedTime": 1770622605530,
+    "modifiedTime": 1770708336615,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

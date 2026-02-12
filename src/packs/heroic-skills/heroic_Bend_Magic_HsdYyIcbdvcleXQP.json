@@ -10,7 +10,7 @@
     "summary": {
       "value": "React to enemy spells with your invocations."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Elementalist</strong>, <strong>Entropist</strong>, <strong>Invoker</strong>, and <strong>Symbolist</strong> (see <strong>High Fantasy</strong>, page <strong>146</strong>), and must have acquired the <strong>Invocation</strong> Skill</p></blockquote><p>After an enemy you can see hits or misses you with an offensive spell<strong> ( </strong>@ICON[offensive] <strong>)</strong>, if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free (after the spell has been fully resolved) to perform an <strong>invocation</strong> you have access to against that enemy, without spending Mind Points. This invocation must not be a \"<strong>hex</strong>\", and it may target <strong>only</strong> that enemy (you cannot use the <strong>Linked Invocation</strong> Skill with it).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Elementalist</strong>, <strong>Entropist</strong>, <strong>Invoker</strong>, and <strong>Symbolist</strong>, and must have acquired the <strong>Invocation</strong> Skill.</p><hr /><p>After an enemy you can see hits or misses you with an offensive spell (@ICON[offensive]), if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free (after the spell has been fully resolved) to perform an <strong>invocation</strong> you have access to against that enemy, without spending Mind Points. This invocation must not be a \"<strong>hex</strong>\", and it may target <strong>only</strong> that enemy (you cannot use the <strong>Linked Invocation</strong> Skill with it).</p>",
     "isFavored": {
       "value": false
     },
@@ -48,19 +48,147 @@
     "source": "FUNF162",
     "fuid": "bend-magic"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Bend Magic",
+      "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "aDeQ9cqfNSgNt5gT": {
+              "type": "ruleElement",
+              "_id": "aDeQ9cqfNSgNt5gT",
+              "trigger": {
+                "_id": "PXNjhhtCyx4s4nKh",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "TReEzSGP86Na5wnZ": {
+                  "type": "checkRulePredicate",
+                  "_id": "TReEzSGP86Na5wnZ",
+                  "parity": "even",
+                  "result": null
+                }
+              },
+              "actions": {
+                "TJgUq7nCcodY74d2": {
+                  "type": "messageRuleAction",
+                  "_id": "TJgUq7nCcodY74d2",
+                  "message": "<p>The invoker may use an <strong>Invocation</strong> back.</p>"
+                }
+              }
+            },
+            "jotNPxvUv3VfB2R8": {
+              "type": "ruleElement",
+              "_id": "jotNPxvUv3VfB2R8",
+              "trigger": {
+                "_id": "d5qWYffdmxtsd9XF",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "23jc960agpUFBwlg": {
+                  "type": "spellRulePredicate",
+                  "_id": "23jc960agpUFBwlg",
+                  "offensive": "true"
+                },
+                "4JUflNoXPiCPK0sr": {
+                  "type": "checkRulePredicate",
+                  "_id": "4JUflNoXPiCPK0sr",
+                  "parity": "even",
+                  "result": null
+                }
+              },
+              "actions": {
+                "Ez8GhdHPNpnCOxXK": {
+                  "type": "messageRuleAction",
+                  "_id": "Ez8GhdHPNpnCOxXK",
+                  "message": "<p>The invoker may use an <strong>Invocation</strong> back.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Y5NywAw1nL87QTHa",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770875865113,
+        "modifiedTime": 1770876885246,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!HsdYyIcbdvcleXQP.Y5NywAw1nL87QTHa"
+    }
+  ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.HsdYyIcbdvcleXQP",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1770875840089,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "HsdYyIcbdvcleXQP",

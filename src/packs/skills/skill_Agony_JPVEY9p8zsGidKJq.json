@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per turn (including other creatures’ turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】 </strong>Hit Points and <strong>【SL × 2】 </strong>Mind Points.</p><hr /><p><strong>You</strong>: @GAIN[$sl*2 hp]{SL x 2 HP} @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
+    "description": "<p>Once per turn (including other creatures’ turns), after you deal damage to one or more enemies you have a <strong>Bond</strong> towards, you may recover <strong>【SL × 2】 </strong>Hit Points and <strong>【SL × 2】 </strong>Mind Points.</p><hr /><p><strong>You</strong>: @GAIN[$sl*2 hp]{SL × 2 HP} @GAIN[$sl*2 mp]{SL × 2 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -249,7 +249,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706496854934,
-    "modifiedTime": 1770248455463,
+    "modifiedTime": 1770962162511,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Strenghten attacks when you fight with weapon and shield."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Guardian</strong>.</p></blockquote><p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot </strong>be combined with <strong>custom weapons </strong>with the <strong>defence boost</strong> customization (<strong>High Fantasy</strong>, page <strong>106</strong>), <strong>nor </strong>with the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill (<strong>Core Rulebook</strong>, page <strong>197</strong>).</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Guardian</strong>.</p><hr /><p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot </strong>be combined with <strong>custom weapons </strong>with the <strong>defense boost</strong> customization (<strong>High Fantasy</strong>, page <strong>106</strong>), <strong>nor </strong>with the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill (<strong>Core Rulebook</strong>, page <strong>197</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -165,15 +165,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684635660,
-    "modifiedTime": 1743170708568,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770757394476,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

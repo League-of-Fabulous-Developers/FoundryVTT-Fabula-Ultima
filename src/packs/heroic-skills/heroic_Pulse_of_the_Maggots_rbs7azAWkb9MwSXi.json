@@ -6,7 +6,7 @@
     "summary": {
       "value": "Grave Points modify your Affinities."
     },
-    "description": "<blockquote><p><strong>Requirements</strong>: you must have mastered the Necromancer Class.</p></blockquote><p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark </strong>and <strong>poison </strong>damage, Resistance to <strong>physical </strong>damage, and Vulnerability to <strong>light </strong>damage.  These Affinities take precedence over any other effect, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point</p>",
+    "description": "<p><strong>Requirements</strong>: you must have mastered the <strong>Necromancer</strong> Class.</p><hr /><p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark </strong>and <strong>poison </strong>damage, Resistance to <strong>physical </strong>damage, and Vulnerability to <strong>light </strong>damage. These Affinities take precedence over any other effect, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.BB5jHS32g8Wcsvwr]</p>",
     "isFavored": {
       "value": false
     },
@@ -68,7 +68,7 @@
       "value": "skill"
     },
     "requirement": {
-      "value": "You must have mastered the Necromancer Class."
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -95,74 +95,7 @@
     },
     "fuid": "pulse-of-the-maggots"
   },
-  "effects": [
-    {
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
-      "name": "Pulse of the Maggots",
-      "_id": "X7DKHY2l8J5pswlG",
-      "changes": [
-        {
-          "key": "system.affinities.dark.bonus",
-          "mode": 5,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.affinities.poison.bonus",
-          "mode": 5,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.affinities.physical.bonus",
-          "mode": 5,
-          "value": "1",
-          "priority": null
-        },
-        {
-          "key": "system.affinities.light.bonus",
-          "mode": 5,
-          "value": "-1",
-          "priority": null
-        }
-      ],
-      "description": "<p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark </strong>and <strong>poison </strong>damage, Resistance to <strong>physical </strong>damage, and Vulnerability to <strong>light </strong>damage. These Affinities <strong>overwrite </strong>any other Affinity for those damage types, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p>",
-      "transfer": true,
-      "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none"
-        }
-      },
-      "tint": "#ffffff",
-      "_stats": {
-        "coreVersion": "13.346",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": 1744253431471,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "img": "icons/magic/death/skull-horned-white-purple.webp",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!rbs7azAWkb9MwSXi.X7DKHY2l8J5pswlG"
-    }
-  ],
+  "effects": [],
   "flags": {
     "core": {},
     "projectfu": {
@@ -174,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1697668153306,
-    "modifiedTime": 1769030423432,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770968708887,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Steel Witch",
   "type": "heroic",
-  "img": "icons/tools/nautical/anchor-blue-orange.webp",
+  "img": "icons/commodities/tech/detonator-timer.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Gain beneﬁts when you cast spells on a personal vehicle"
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class.</p></blockquote><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved): choose one enabled module and <strong>disable</strong> it, then choose one disabled module and <strong>enable</strong> it; <strong>or</strong> the next spell you cast before the end of this scene that deals damage deals 5 extra damage; <strong>or</strong> the next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p><hr /><ul><li><p><strong>Spell Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.hQ4zcpGgtwoEOgbR e:eos i:1 t:self]{Spell Damage Up}, or @GAIN[10 hp]</p></li></ul>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class.</p><hr contenteditable=\"false\" /><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved):</p><ul><li><p>Choose one enabled module and <strong>disable</strong> it, then choose one disabled module and <strong>enable</strong> it.</p></li><li><p>The next spell you cast before the end of this scene that deals damage deals 5 extra damage.</p></li><li><p>The next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p></li></ul><hr contenteditable=\"false\" /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.5180h6kwja4Cn1jm] or @EFFECT[Compendium.projectfu.heroic-skills.Item.MbSByyJGE4BJekAX]</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -98,15 +98,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1744239659108,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770966594026,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

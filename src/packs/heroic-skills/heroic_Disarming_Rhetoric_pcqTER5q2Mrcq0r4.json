@@ -9,7 +9,7 @@
     "summary": {
       "value": "Persuade enemies to retreat."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Orator</strong> Class.</p></blockquote><p>During a conflict scene, you may use an action and choose a <strong>soldier</strong>-rank creature that can hear and understand you (the Game Master must tell you who is a valid target). If that creature is <strong>shaken</strong> or in <strong>Crisis</strong>, you may spend an amount of Mind Points equal to <strong>【20 + half that creature's level】</strong> to have them peacefully leave the conflict.</p><p>Describe how you convince them to desist.</p><hr><ul><li><p><strong>You Lose:</strong> @LOSS[20+(@target.level.value/2) mp]{20 + half that creature's level MP}</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Orator</strong> Class.</p><hr /><p>During a conflict scene, you may use an action and choose a <strong>soldier</strong>-rank creature that can hear and understand you (the Game Master must tell you who is a valid target). If that creature is <strong>shaken</strong> or in <strong>Crisis</strong>, you may spend an amount of Mind Points equal to <strong>【20 + half that creature's level】</strong> to have them peacefully leave the conflict.</p><p>Describe how you convince them to desist.</p><hr /><p><strong>You Spend:</strong> @LOSS[20+floor(@target.level.value/2) mp]{20 + half that creature's level MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706584078929,
-    "modifiedTime": 1745164182483,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770708976776,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

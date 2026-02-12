@@ -1,0 +1,100 @@
+{
+  "folder": "5kSHxgDcJ4VNObCO",
+  "name": "Effect: Side by Side (Damage)",
+  "type": "effect",
+  "_id": "tfiHN8sIoo9lMl0C",
+  "img": "icons/sundries/misc/pet-collar-red.webp",
+  "system": {
+    "fuid": "effect-side-by-side-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "img": "icons/sundries/misc/pet-collar-red.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Side by Side (Damage)",
+      "_id": "nJHoE47tFyNEOMiP",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>When your companion deals damage, they deal 5 extra damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744251100445,
+        "modifiedTime": 1771014029047,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "exportSource": null
+      },
+      "_key": "!items.effects!tfiHN8sIoo9lMl0C.nJHoE47tFyNEOMiP"
+    }
+  ],
+  "sort": 2000000,
+  "ownership": {
+    "default": 0,
+    "uG2TkwmswfdRqaAv": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744251088055,
+    "modifiedTime": 1771014025165,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
+  },
+  "_key": "!items!tfiHN8sIoo9lMl0C"
+}

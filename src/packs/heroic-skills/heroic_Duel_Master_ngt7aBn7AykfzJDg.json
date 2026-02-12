@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Magic Pairs enhance your attacks."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Fury</strong>, <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>.</p></blockquote><p>When you resolve the <strong>Magic Pair</strong> effect, if you attack with a weapon belonging to the <strong>arcane</strong>, <strong>dagger</strong>, <strong>firearm</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category, you deal extra damage equal to <strong>【the common value of the resolved cards】</strong> and regain an amount of Mind Points equal to <strong>【twice the common value of the resolved cards】</strong>. For instance, resolving a pair of <strong>5s</strong> will allow you to deal 5 extra damage and regain 10 Mind Points.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Fury</strong>, <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p>When you resolve the <strong>Magic Pair</strong> effect, if you attack with a weapon belonging to the <strong>arcane</strong>, <strong>dagger</strong>, <strong>firearm</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category, you deal extra damage equal to <strong>【the common value of the resolved cards】</strong> and regain an amount of Mind Points equal to <strong>【twice the common value of the resolved cards】</strong>. For instance, resolving a pair of <strong>5s</strong> will allow you to deal 5 extra damage and regain 10 Mind Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Ace of Cards"
     },
     "useWeapon": {
       "accuracy": {
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1708940657180,
-    "modifiedTime": 1769017259699,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770968359643,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

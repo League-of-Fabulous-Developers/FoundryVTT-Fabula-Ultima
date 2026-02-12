@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Quick Scan",
   "type": "heroic",
-  "img": "icons/sundries/books/book-open-purple.webp",
+  "img": "icons/magic/perception/orb-eye-scrying.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Examine multiple creatures."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Loremaster</strong> Class.</p></blockquote><p>When you perform the <strong>Study</strong> action during a conflict, you may examine the <strong>profiles </strong>of <strong>all enemies</strong> you can see. If you do, you perform a single <strong>【INS + INS】</strong> Open Check and apply the Result <strong>separately</strong> to each enemy (<strong>Core Rulebook</strong>, page <strong>319</strong>).</p><p>However, this Check <strong>cannot</strong> trigger your @UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight} Skill (if you have it).</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Loremaster</strong> Class.</p><hr /><p>When you perform the <strong>Study</strong> action during a conflict, you may examine the <strong>profiles </strong>of <strong>all enemies</strong> you can see. If you do, you perform a single <strong>【INS + INS】</strong> Open Check and apply the Result <strong>separately</strong> to each enemy (<strong>Core Rulebook</strong>, page <strong>319</strong>).</p><p>However, this Check <strong>cannot</strong> trigger your @UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight} Skill (if you have it).</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -98,15 +98,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180863690,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770964528872,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

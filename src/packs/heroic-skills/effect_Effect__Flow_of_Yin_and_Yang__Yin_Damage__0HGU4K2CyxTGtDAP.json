@@ -1,0 +1,114 @@
+{
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Effect: Flow of Yin and Yang (Yin Damage)",
+  "type": "effect",
+  "_id": "0HGU4K2CyxTGtDAP",
+  "img": "icons/commodities/currency/coin-yingyang.webp",
+  "system": {
+    "fuid": "effect-flow-of-yin-and-yang-yin-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Flow of Yin and Yang (Yin Damage)",
+      "img": "icons/commodities/currency/coin-yingyang.webp",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "8vOqPCvwa7JxPB3u",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.air",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.bolt",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.fire",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.light",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>When you deal <strong>air</strong>, <strong>bolt</strong>, <strong>fire</strong>, or <strong>light</strong> damage for the first time during a turn, if you have <strong>at least 1 Yin Point</strong>, you deal 5 extra damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771008637153,
+        "modifiedTime": 1771008697004,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!0HGU4K2CyxTGtDAP.8vOqPCvwa7JxPB3u"
+    }
+  ],
+  "sort": 1100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771008628227,
+    "modifiedTime": 1771013806540,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!0HGU4K2CyxTGtDAP"
+}

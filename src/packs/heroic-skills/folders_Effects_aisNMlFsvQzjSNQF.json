@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "rsp4XZ4yS3zcZY8x",
+  "name": "Effects",
+  "color": "#6d7897",
+  "sorting": "a",
+  "_id": "aisNMlFsvQzjSNQF",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1770967926318
+  },
+  "_key": "!folders!aisNMlFsvQzjSNQF"
+}

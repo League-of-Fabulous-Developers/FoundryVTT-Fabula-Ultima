@@ -1,7 +1,7 @@
 {
   "name": "Heroic Companion",
   "type": "heroic",
-  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Companion grows stronger."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faithful Companion</strong> Skill.</p></blockquote><p>Your bond with your companion grows stronger. You gain the following benefits:</p><ul><li>The companion's maximum Hit Points increase by 10.</li><li>The companion deals 5 extra damage.</li><li>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</li><li>The companion gains an additional Skill. When you reach level <strong>40</strong>, or if you have already reached it, the companion gains an additional Skill. Make sure to discuss your Skill choices with the Game Master and the other Players.</li></ul><hr /><ul><li><p><strong>Companion Receives:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.qZPjSnXWgwN7Wg0t]{Effect: Heroic Companion}</p></li><li><p>Then, navigate to the active effect's \"<strong>Effects</strong>\" tab, choose one attribute to increase, and remove the rest.</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faithful Companion</strong> Skill.</p><hr /><p>Your bond with your companion grows stronger. You gain the following benefits:</p><ul><li><p>The companion's maximum Hit Points increase by 10.</p></li><li><p>The companion deals 5 extra damage.</p></li><li><p>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</p></li><li><p>The companion gains an additional Skill. When you reach level <strong>40</strong>, or if you have already reached it, the companion gains an additional Skill. Make sure to discuss your Skill choices with the Game Master and the other Players.</p></li></ul><hr /><p><strong>Companion Receives:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.qZPjSnXWgwN7Wg0t]<br /><strong>Companion Receives:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.Aj8gZRAf8PxCe2iD], @EFFECT[Compendium.projectfu.heroic-skills.Item.WlifKopbhgkf8FU0], @EFFECT[Compendium.projectfu.heroic-skills.Item.RvOS6hQbNg9xJx8B], or @EFFECT[Compendium.projectfu.heroic-skills.Item.irW4oE03uNk3t6PS]</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706584415337,
-    "modifiedTime": 1768869325199,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771011978043,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

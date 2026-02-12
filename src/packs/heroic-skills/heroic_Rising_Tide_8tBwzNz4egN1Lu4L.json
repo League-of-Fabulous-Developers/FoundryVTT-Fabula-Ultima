@@ -1,7 +1,7 @@
 {
   "name": "Rising Tide",
   "type": "heroic",
-  "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
+  "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain benefits for consecutive attacks with brawling weapons."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury </strong>and <strong>Weaponmaster</strong>.</p></blockquote><p>When you perform a <strong>melee </strong>attack using a weapon that belongs to the <strong>brawling </strong>Category,<strong> if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Bravery Point</strong>.</p><p>As long as you have no <strong>martial armor</strong> and no <strong>shields</strong> equipped, your <strong>melee</strong> attacks with <strong>brawling</strong> weapons deal extra damage equal to <strong>【2 + your current Bravery Points】</strong>.</p><p>At the end of each scene, <strong>or </strong>if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you lose all accumulated Bravery Points. Then, if you lost at least 1 point this way, you recover 10 Hit Points <strong>and</strong> 10 Mind Points</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance Bravery Point}, or @PROGRESS[rising-tide reset]{Reset Bravery Point}</p></li><li><p><strong>You Recover:</strong> @GAIN[10 hp] and/or @GAIN[10 mp]</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>When you perform a <strong>melee </strong>attack using a weapon that belongs to the <strong>brawling </strong>Category,<strong> if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Bravery Point</strong>.</p><p>As long as you have no <strong>martial armor</strong> and no <strong>shields</strong> equipped, your <strong>melee</strong> attacks with <strong>brawling</strong> weapons deal extra damage equal to <strong>【2 + your current Bravery Points】</strong>.</p><p>At the end of each scene, <strong>or </strong>if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you lose all accumulated Bravery Points. Then, if you lost at least 1 point this way, you recover 10 Hit Points <strong>and</strong> 10 Mind Points</p><hr /><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance Bravery Point} or @PROGRESS[rising-tide reset]{Reset Bravery Point}<br /><strong>You Recover:</strong> @GAIN[10 hp] @GAIN[10 mp]</p>",
     "isFavored": {
       "value": true
     },
@@ -97,52 +97,21 @@
   },
   "effects": [
     {
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Rising Tide",
-      "_id": "lTgUUbrlqrtghr5V",
-      "changes": [
-        {
-          "key": "system.bonuses.damage.brawling",
-          "mode": 2,
-          "value": "2+@system.rp.current",
-          "priority": null
-        }
-      ],
-      "description": "<p><span class=\"fontstyle2\">Your </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attacks using weapons that belonacg to the </span><span class=\"fontstyle0\"><strong>brawling </strong></span><span class=\"fontstyle2\">Category deal extra damage equal to your current </span><span class=\"fontstyle0\"><strong>Bravery Points</strong></span><span class=\"fontstyle2\">.</span></p>",
-      "transfer": true,
-      "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": "FUHF158"
-        }
-      },
-      "tint": "#ffffff",
-      "_stats": {
-        "coreVersion": "13.351",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1769012147727,
-        "lastModifiedBy": "bgUzjEHd80A79gwp",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
-      "type": "base",
+      "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
             "enabled": false,
             "id": "",
@@ -153,9 +122,40 @@
           }
         }
       },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Q4OWLn6rBzIOGRxo",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.brawling",
+          "mode": 2,
+          "value": "2+&cs('rising-tide')",
+          "priority": null
+        }
+      ],
+      "description": "<p><span class=\"fontstyle2\">Your </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attacks using weapons that belong to the </span><span class=\"fontstyle0\"><strong>brawling </strong></span><span class=\"fontstyle2\">Category deal extra damage equal to your current </span><span class=\"fontstyle0\"><strong>Bravery Points</strong></span><span class=\"fontstyle2\">.</span></p>",
       "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
       "sort": 0,
-      "_key": "!items.effects!8tBwzNz4egN1Lu4L.lTgUUbrlqrtghr5V"
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770764390879,
+        "modifiedTime": 1770963719783,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!8tBwzNz4egN1Lu4L.Q4OWLn6rBzIOGRxo"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -171,8 +171,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684696121,
-    "modifiedTime": 1769012088067,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771013751613,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

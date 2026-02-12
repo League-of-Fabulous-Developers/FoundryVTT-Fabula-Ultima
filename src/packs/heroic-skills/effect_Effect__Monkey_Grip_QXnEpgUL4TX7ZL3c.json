@@ -1,0 +1,161 @@
+{
+  "folder": "WHNpwToyVPMpfLEu",
+  "name": "Effect: Monkey Grip",
+  "type": "effect",
+  "_id": "QXnEpgUL4TX7ZL3c",
+  "img": "icons/weapons/axes/axe-crooked-crystal-pink.webp",
+  "system": {
+    "fuid": "effect-monkey-grip",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Effect: Monkey Grip",
+      "img": "icons/weapons/axes/axe-crooked-crystal-pink.webp",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "lfoOwTmQ3m7e8gbf": {
+              "type": "ruleElement",
+              "_id": "lfoOwTmQ3m7e8gbf",
+              "trigger": {
+                "_id": "Msyr7dQcGEPEKrCZ",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": []
+              },
+              "actions": {
+                "3jJmNb791vQkGK99": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "3jJmNb791vQkGK99",
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  },
+                  "amount": "5",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              },
+              "predicates": {
+                "xoFKBGQjJM8AiFN5": {
+                  "type": "weaponRulePredicate",
+                  "_id": "xoFKBGQjJM8AiFN5",
+                  "handedness": "two-handed",
+                  "selector": "source"
+                }
+              }
+            },
+            "zCpFab5AN4OhGC2S": {
+              "type": "ruleElement",
+              "_id": "zCpFab5AN4OhGC2S",
+              "trigger": {
+                "_id": "vgdrRPGyiyHHRSEP",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "Atps70THBJEZWgPA": {
+                  "type": "weaponRulePredicate",
+                  "_id": "Atps70THBJEZWgPA",
+                  "selector": "source",
+                  "handedness": "two-handed"
+                }
+              },
+              "actions": {
+                "kZ0CTPhVzlQhDYNg": {
+                  "type": "messageRuleAction",
+                  "_id": "kZ0CTPhVzlQhDYNg",
+                  "message": "<p>Remove this effect after the first attack each turn.</p>"
+                },
+                "SyOK0sfudclvsjsK": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "SyOK0sfudclvsjsK",
+                  "identifier": "effect-monkey-grip"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "pOvxMMrIBKF7W5Oj",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The <strong>first</strong> attack you perform with a <strong>two-handed</strong> weapon during each turn deals 5 extra damage, and its damage ignores Resistances.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770709840400,
+        "modifiedTime": 1770710110219,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!QXnEpgUL4TX7ZL3c.pOvxMMrIBKF7W5Oj"
+    }
+  ],
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770709804399,
+    "modifiedTime": 1770711006618,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!QXnEpgUL4TX7ZL3c"
+}

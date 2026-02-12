@@ -1,7 +1,7 @@
 {
   "name": "Adversity",
   "type": "heroic",
-  "img": "icons/weapons/daggers/dagger-ritual-crooked-crystal.webp",
+  "img": "icons/magic/unholy/hand-fire-skeleton-pink.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Status effects make you stronger."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p></blockquote><p>As long as you are suffering from one or more status effects, you gain a +1 bonus on all Checks for every status effect you are suffering from, and you deal 2 extra damage for every status effect you are suffering from (be it with attacks, spells, Arcana, items or any other method).</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p><hr /><p>As long as you are suffering from one or more status effects, you gain a +1 bonus on all Checks for every status effect you are suffering from, and you deal 2 extra damage for every status effect you are suffering from (be it with attacks, spells, Arcana, items or any other method).</p>",
     "isFavored": {
       "value": false
     },
@@ -122,7 +122,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -138,7 +148,7 @@
           "priority": null
         }
       ],
-      "description": "<p>As long as you are suffering from one or more status effects, you gain a +1 bonus on all Checks for every status effect you are suffering from, and you deal 2 extra damage for every status effect you are suffering from (be it with attacks, spells, Arcana, items or any other method).</p>",
+      "description": "<p>As long as you are suffering from one or more status effects, you gain a +1 bonus on all Checks for every status effect you are suffering from, and you deal 2 extra damage for every status effect you are suffering from.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -148,12 +158,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743594038173,
-        "modifiedTime": 1743594093524,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770707901682,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!MoUQhgRVKo5HTqhl.B5eBWAm9WZSen0Mp"
@@ -165,15 +175,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706583513351,
-    "modifiedTime": 1724180863813,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1771011786584,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

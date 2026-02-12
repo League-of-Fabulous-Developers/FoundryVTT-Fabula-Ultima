@@ -9,7 +9,7 @@
     "summary": {
       "value": "Attack twice with flails"
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more classes among <strong>Fury</strong> and <strong>Weaponmaster</strong>.</p></blockquote><p>'When you perform the <strong>Attack </strong>action with a <strong>melee </strong>weapon that belongs to the <strong>flail </strong>Category, if you have <strong>no other weapon equipped</strong>, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi </strong>property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage.</p><p>'Note that this Heroic Skill <strong>does not stack</strong> with a custom weapon's <strong>quick </strong>customization (using <strong>Spider's Web</strong> with a <strong>quick </strong>flail doesn't allow more than two attacks, in short).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more classes among <strong>Fury</strong> and <strong>Weaponmaster</strong>.</p><hr /><p>'When you perform the <strong>Attack </strong>action with a <strong>melee </strong>weapon that belongs to the <strong>flail </strong>Category, if you have <strong>no other weapon equipped</strong>, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi </strong>property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage.</p><p>'Note that this Heroic Skill <strong>does not stack</strong> with a custom weapon's <strong>quick </strong>customization (using <strong>Spider's Web</strong> with a <strong>quick </strong>flail doesn't allow more than two attacks, in short).</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684724160,
-    "modifiedTime": 1724180863715,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770764918399,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

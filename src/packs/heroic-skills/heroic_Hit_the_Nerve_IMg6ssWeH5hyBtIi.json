@@ -10,7 +10,7 @@
     "summary": {
       "value": "Use Condemn to inﬂict enraged and gain beneﬁts against enraged creatures."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chanter</strong> (<strong>High Fantasy</strong>, page <strong>136</strong>) and <strong>Orator</strong>, and must have acquired the <strong>Condemn</strong> Skill.</p></blockquote><p>When you successfully use the @UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} Skill against an enemy you know <strong>one or more Traits of</strong>, you recover an amount of Mind Points equal to <strong>half</strong> the amount of MP lost by the target, and you may have them suffer <strong>enraged</strong> instead of the normal status effects.</p><p>Additionally, when you perform an <strong>Opposed Check</strong> against an <strong>enraged</strong> creature, or an <strong>Accuracy Check or Magic Check</strong> for an attack or offensive spell ( @ICON[offensive] ) that includes one or more <strong>enraged</strong> creatures among its targets, you trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>)</p><hr /><ul><li><p><strong>You Recover</strong>: @LOSS[(&amp;sl('condemn')*10)/2 mp]</p></li><li><p><strong>Target Suffers:</strong> @EFFECT[enraged]</p></li></ul>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>, and must have acquired the <strong>Condemn</strong> Skill.</p><hr /><p>When you successfully use the @UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} Skill against an enemy you know <strong>one or more Traits of</strong>, you recover an amount of Mind Points equal to <strong>half</strong> the amount of MP lost by the target, and you may have them suffer <strong>enraged</strong> instead of the normal status effects.</p><p>Additionally, when you perform an <strong>Opposed Check</strong> against an <strong>enraged</strong> creature, or an <strong>Accuracy Check or Magic Check</strong> for an attack or offensive spell (@ICON[offensive]) that includes one or more <strong>enraged</strong> creatures among its targets, you trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>)</p><hr /><p><strong>You Recover</strong>: @GAIN[floor(&amp;sl('condemn')*5/2) mp]{(Condemn SL) × 5 / 2 MP}<br /><strong>Target Suffers:</strong> @EFFECT[enraged]</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -98,15 +98,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1744228511949,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770969534849,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

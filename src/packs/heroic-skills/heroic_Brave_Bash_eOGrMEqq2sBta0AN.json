@@ -10,7 +10,7 @@
     "summary": {
       "value": "Use Bone Crusher to challenge foes with a shield, then deal additional damage."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> (see <strong>High Fantasy</strong>, page <strong>140</strong>), <strong>Guardian</strong>, and <strong>Weaponmaster</strong></p></blockquote><p><span class=\"fontstyle0\">When you use the </span><span class=\"fontstyle2\">@UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher} </span><span class=\"fontstyle0\">Skill, if your attack targets </span><span class=\"fontstyle2\"><strong>only one creature</strong> </span><span class=\"fontstyle0\">and you have a </span><span class=\"fontstyle2\"><strong>shield</strong> </span><span class=\"fontstyle0\">equipped, you may </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">that creature until the end of your next turn. The </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">also ends if that creature is </span><span class=\"fontstyle2\">challenged </span><span class=\"fontstyle0\">by someone else, or if you </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">another creature.</span></p><p><span class=\"fontstyle0\">The creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">must include you among the targets of their attacks and offensive spells ( </span><span class=\"fontstyle3\">@ICON[offensive] </span><span class=\"fontstyle0\">), if able; additionally, once per turn (including other creatures' turns), when you deal damage to the creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">using a </span><span class=\"fontstyle2\"><strong>one-handed melee</strong> </span><span class=\"fontstyle0\">weapon or a </span><span class=\"fontstyle2\"><strong>custom weapon</strong> </span><span class=\"fontstyle0\">belonging to the </span><span class=\"fontstyle2\"><strong>dagger</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>sword</strong> </span><span class=\"fontstyle0\">Category, you may deal 5 extra damage to that creature.</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong>, <strong>Guardian</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p><span class=\"fontstyle0\">When you use the </span><span class=\"fontstyle2\">@UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher} </span><span class=\"fontstyle0\">Skill, if your attack targets </span><span class=\"fontstyle2\"><strong>only one creature</strong> </span><span class=\"fontstyle0\">and you have a </span><span class=\"fontstyle2\"><strong>shield</strong> </span><span class=\"fontstyle0\">equipped, you may </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">that creature until the end of your next turn. The </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">also ends if that creature is </span><span class=\"fontstyle2\">challenged </span><span class=\"fontstyle0\">by someone else, or if you </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">another creature.</span></p><p><span class=\"fontstyle0\">The creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">must include you among the targets of their attacks and offensive spells (</span><span class=\"fontstyle3\">@ICON[offensive]</span><span class=\"fontstyle0\">), if able; additionally, once per turn (including other creatures' turns), when you deal damage to the creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">using a </span><span class=\"fontstyle2\"><strong>one-handed melee</strong> </span><span class=\"fontstyle0\">weapon or a </span><span class=\"fontstyle2\"><strong>custom weapon</strong> </span><span class=\"fontstyle0\">belonging to the </span><span class=\"fontstyle2\"><strong>dagger</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>sword</strong> </span><span class=\"fontstyle0\">Category, you may deal 5 extra damage to that creature.</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
     "isFavored": {
       "value": false
     },
@@ -48,19 +48,124 @@
     "source": "FUNF163",
     "fuid": "brave-bash"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Brave Bash",
+      "img": "icons/equipment/shield/heater-steel-sword-yellow-black.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "jSyfhkNBMgdExjkd": {
+              "type": "ruleElement",
+              "_id": "jSyfhkNBMgdExjkd",
+              "trigger": {
+                "_id": "g3xrrTfVbbXagmDv",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "dsJNXUbkjLFCSAJ3": {
+                  "type": "checkRulePredicate",
+                  "_id": "dsJNXUbkjLFCSAJ3",
+                  "outcome": "success",
+                  "result": null
+                },
+                "Sx9KLjtPAYxrOTse": {
+                  "type": "weaponRulePredicate",
+                  "_id": "Sx9KLjtPAYxrOTse",
+                  "weaponType": "melee"
+                },
+                "yiuL8QSaHjaiJKop": {
+                  "type": "targetingRulePredicate",
+                  "_id": "yiuL8QSaHjaiJKop"
+                }
+              },
+              "actions": {
+                "4ZsJK9M5n7S1fwcA": {
+                  "type": "messageRuleAction",
+                  "_id": "4ZsJK9M5n7S1fwcA",
+                  "message": "<p>If you use <strong>Bone Crusher</strong>, you may <strong>challenge</strong> them.</p>"
+                },
+                "B0SsR6jxEMr1vXCg": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "B0SsR6jxEMr1vXCg",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.JARz8rLQIoE9qUSe"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "nt0AFKj8t7JinPXd",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770877829220,
+        "modifiedTime": 1770878271232,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!eOGrMEqq2sBta0AN.nt0AFKj8t7JinPXd"
+    }
+  ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.eOGrMEqq2sBta0AN",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744244793003,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770877797993,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "eOGrMEqq2sBta0AN",

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Prepare a unique delicacy with alternative effects."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Gourmet</strong> Class</p></blockquote><p>When you acquire this Heroic Skill, choose <strong>three different tastes</strong> among <strong>bitter, salty, sour, sweet,</strong> and <strong>umami.</strong> Then, choose <strong>three different effects</strong> among the following:</p><ul><li>You deal 20 <strong>(choose one: </strong>@DMG[20 dark],<strong> </strong>@DMG[20 light]<strong>)</strong> damage to each of this <strong>delicacy's</strong> targets. This amount increases to 30 damage if you are <strong>level 30 or higher</strong>. Choose the type of this effect when you acquire this Heroic Skill.</li><li>During the next turn of each of this <strong>delicacy's</strong> targets, all damage they deal becomes <strong>(choose one: </strong>@TYPE[damage all dark], @TYPE[damage all light]<strong>)</strong> and its type cannot change. Choose the type of this effect when you acquire this Heroic Skill.</li><li>For each of this <strong>delicacy's</strong> targets, if they are affected by one or more spells with a <strong>duration</strong> of \"\"Scene\"\", instead they are no longer affected by any of those spells.</li><li>Choose yourself or an ally you can see. For each of this <strong>delicacy's</strong> targets, the next time that target performs an attack or cast an offensive spell ( @ICON[offensive] ) before the end of this scene, they must include the chosen creature among the targets of that attack or spell (if able).</li><li>Each of this <strong>delicacy</strong>'s targets suffers @EFFECT[enraged].</li><li>Each of this <strong>delicacy</strong>'s targets suffers<strong> </strong>@EFFECT[poisoned].</li><li>Each of this <strong>delicacy</strong>'s targets recovers @GAIN[30 hp] and @GAIN[30 mp], or @GAIN[40 hp] and @GAIN[40 mp] if you are <strong>level 30 or higher</strong>.</li><li>Each of this <strong>delicacy</strong>'s targets recovers from a single status of their choice.</li><li>Each of this <strong>delicacy</strong>'s targets recovers from <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</li><li>Each of this <strong>delicacy</strong>'s targets recovers from <strong>poisoned</strong>, <strong>slow</strong>, and <strong>weak</strong>.</li></ul><p>When you create a <strong>delicacy</strong> using <strong>exactly 3 ingredients</strong> during a conflict, if each ingredient matches one of the <strong>tastes</strong> you chose when you acquired this Heroic Skill, you may ignore <strong>all</strong> of that <strong>delicacy</strong>'s normal effects. If you do, you may instead apply <strong>one</strong>, <strong>two</strong>, or <strong>all</strong> the effects you chose when you acquired this Heroic Skill.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Gourmet</strong> Class.</p><hr /><p>When you acquire this Heroic Skill, choose <strong>three different tastes</strong> among <strong>bitter, salty, sour, sweet,</strong> and <strong>umami.</strong> Then, choose <strong>three different effects</strong> among the following:</p><ul><li>You deal 20 <strong>(choose one: </strong>@DMG[20 dark],<strong> </strong>@DMG[20 light]<strong>)</strong> damage to each of this <strong>delicacy's</strong> targets. This amount increases to 30 damage if you are <strong>level 30 or higher</strong>. Choose the type of this effect when you acquire this Heroic Skill.</li><li>During the next turn of each of this <strong>delicacy's</strong> targets, all damage they deal becomes <strong>(choose one: </strong>@TYPE[damage all dark], @TYPE[damage all light]<strong>)</strong> and its type cannot change. Choose the type of this effect when you acquire this Heroic Skill.</li><li>For each of this <strong>delicacy's</strong> targets, if they are affected by one or more spells with a <strong>duration</strong> of \"\"Scene\"\", instead they are no longer affected by any of those spells.</li><li>Choose yourself or an ally you can see. For each of this <strong>delicacy's</strong> targets, the next time that target performs an attack or cast an offensive spell ( @ICON[offensive] ) before the end of this scene, they must include the chosen creature among the targets of that attack or spell (if able).</li><li>Each of this <strong>delicacy</strong>'s targets suffers @EFFECT[enraged].</li><li>Each of this <strong>delicacy</strong>'s targets suffers<strong> </strong>@EFFECT[poisoned].</li><li>Each of this <strong>delicacy</strong>'s targets recovers @GAIN[30 hp] and @GAIN[30 mp], or @GAIN[40 hp] and @GAIN[40 mp] if you are <strong>level 30 or higher</strong>.</li><li>Each of this <strong>delicacy</strong>'s targets recovers from a single status of their choice.</li><li>Each of this <strong>delicacy</strong>'s targets recovers from <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</li><li>Each of this <strong>delicacy</strong>'s targets recovers from <strong>poisoned</strong>, <strong>slow</strong>, and <strong>weak</strong>.</li></ul><p>When you create a <strong>delicacy</strong> using <strong>exactly 3 ingredients</strong> during a conflict, if each ingredient matches one of the <strong>tastes</strong> you chose when you acquired this Heroic Skill, you may ignore <strong>all</strong> of that <strong>delicacy</strong>'s normal effects. If you do, you may instead apply <strong>one</strong>, <strong>two</strong>, or <strong>all</strong> the effects you chose when you acquired this Heroic Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -50,17 +50,20 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.HMQApiczSy0sas6z",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744253008852,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770887741264,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "HMQApiczSy0sas6z",

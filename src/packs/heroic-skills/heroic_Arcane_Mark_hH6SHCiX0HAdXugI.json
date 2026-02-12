@@ -9,7 +9,7 @@
     "summary": {
       "value": "Improve spells’ critical chance with arcane weapons."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong>, <strong>Symbolist</strong>, and <strong>Weaponmaster</strong>.</p></blockquote><p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell ( @ICON[offensive] ) you cast during this scene <strong>only </strong>targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>) </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong>, <strong>Symbolist</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell (@ICON[offensive]) you cast during this scene <strong>only </strong>targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>) </p>",
     "isFavored": {
       "value": false
     },
@@ -159,15 +159,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684532126,
-    "modifiedTime": 1724180863963,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770873428436,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

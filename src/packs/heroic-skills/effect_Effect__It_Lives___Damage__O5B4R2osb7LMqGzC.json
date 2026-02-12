@@ -1,0 +1,96 @@
+{
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Effect: It Lives! (Damage)",
+  "type": "effect",
+  "_id": "O5B4R2osb7LMqGzC",
+  "img": "icons/environment/creatures/golem-stone-purple.webp",
+  "system": {
+    "fuid": "effect-it-lives-damage",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "It Lives! (Damage)",
+      "img": "icons/environment/creatures/golem-stone-purple.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "PHejcsLPKYt3Yd5B",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "~&sl('visionary')",
+          "priority": null
+        }
+      ],
+      "description": "<p>When you deal damage, if the wayfarer has no weapons equipped, you deal extra damage equal to<strong>【their SL in Visionary】</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771010731378,
+        "modifiedTime": 1771010821143,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!O5B4R2osb7LMqGzC.PHejcsLPKYt3Yd5B"
+    }
+  ],
+  "sort": 500000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771010713243,
+    "modifiedTime": 1771013806540,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!O5B4R2osb7LMqGzC"
+}
