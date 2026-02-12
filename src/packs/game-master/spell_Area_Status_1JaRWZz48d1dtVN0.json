@@ -7,9 +7,6 @@
       "value": ""
     },
     "description": "<p>Every enemy you can see suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p><hr /><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], or @EFFECT[weak]</p></li></ul>",
-    "isFavored": {
-      "value": false
-    },
     "class": {
       "value": "NPC"
     },
@@ -35,15 +32,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -64,12 +52,6 @@
     },
     "showTitleCard": {
       "value": false
-    },
-    "mpCost": {
-      "value": "20"
-    },
-    "target": {
-      "value": "Special"
     },
     "duration": {
       "value": "instantaneous"
@@ -107,10 +89,28 @@
         }
       }
     },
-    "subtype": {},
     "source": "FUCR310",
     "opportunity": "",
-    "fuid": "area-status"
+    "fuid": "area-status",
+    "cost": {
+      "resource": "mp",
+      "amount": "20",
+      "perTarget": false
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
   },
   "effects": [],
   "flags": {
@@ -125,8 +125,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1768876504703,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770872387812,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

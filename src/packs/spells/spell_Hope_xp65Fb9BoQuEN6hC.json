@@ -5,14 +5,10 @@
   "_id": "xp65Fb9BoQuEN6hC",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/hope.png",
   "system": {
-    "subtype": {},
     "summary": {
       "value": ""
     },
     "description": "<p><strong>Required Heroic Skill:</strong> @UUID[Compendium.projectfu.heroic-skills.Item.kAoA3OAXH6E6tt9I]{Hope}</p><hr /><p>You rekindle the flames of courage and hope within a defeated hero. Choose a Player Character who <strong>surrendered</strong> but is still present on the scene: that Player Character immediately regains consciousness and recovers an amount of Hit Points equal to their <strong>Crisis</strong> score. Note that this spell will not undo the <strong>consequences</strong> of the character's surrender and is of no use if the character left the scene as part of their surrender — such as if they were captured and dragged away, or if they were trapped in a parallel dimension, and so on.</p><p>A Player Character may only be affected by this spell once per scene; if a character is brought back into the conflict by this spell and is subsequently reduced to 0 Hit Points again, they must <strong>sacrifice</strong> themselves or <strong>surrender</strong> as per the normal rules (including a new <strong>consequence</strong> and 2 more Fabula Points if they surrender).</p><hr /><p><strong>Target Recovers:</strong> @GAIN[@target.resources.hp.max/2 hp]{Crisis HP}</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -41,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -67,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "40"
-    },
-    "target": {
-      "value": "Special"
     },
     "duration": {
       "value": "instantaneous"
@@ -112,10 +93,26 @@
       "value": false
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 1
+    "fuid": "hope",
+    "cost": {
+      "resource": "mp",
+      "amount": "40",
+      "perTarget": false
     },
-    "fuid": "hope"
+    "targeting": {
+      "max": 1,
+      "rule": "special"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [],
   "sort": 1400000,
@@ -135,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710549080835,
-    "modifiedTime": 1770625407194,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

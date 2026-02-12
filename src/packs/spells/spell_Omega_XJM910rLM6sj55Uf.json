@@ -5,16 +5,10 @@
   "_id": "XJM910rLM6sj55Uf",
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/omega.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to <strong>【20 + half the target's level】</strong>.</p><hr /><p><strong>Target Loses:</strong> @LOSS[20+floor(@target.level.value/2) hp]{20 + Half Level HP}</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "20"
-    },
-    "target": {
-      "value": "One creature"
     },
     "duration": {
       "value": "instantaneous"
@@ -114,16 +93,26 @@
       "value": true
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 1
-    },
     "fuid": "omega",
     "cost": {
-      "amount": "15"
+      "amount": "15",
+      "resource": "mp",
+      "perTarget": false
     },
     "resource": {
-      "enabled": false
-    }
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "targeting": {
+      "max": 1,
+      "rule": "single"
+    },
+    "defense": "mdef",
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -142,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706571698922,
-    "modifiedTime": 1770623484843,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

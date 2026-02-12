@@ -5,16 +5,10 @@
   "_id": "P33D2g4z1WlN9o6a",
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/gamble.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You summon a vortex of chaotic energy. Roll your current <strong>Willpower </strong>die once for every 10 Mind Points spent while casting this spell, then keep the <strong>single</strong> die you prefer: the number on that die determines the effects of this spell.</p><p>@Embed[Compendium.projectfu.rollable-tables.RollTable.ZAY11CArn1cYCyqP inline rollable]</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "X"
-    },
-    "target": {
-      "value": "Special"
     },
     "duration": {
       "value": "instantaneous"
@@ -116,8 +95,24 @@
     "opportunity": "",
     "fuid": "gamble",
     "cost": {
-      "amount": 10
-    }
+      "amount": "10",
+      "resource": "mp",
+      "perTarget": false
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -131,10 +126,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706571324381,
-    "modifiedTime": 1747173732894,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1770872382467,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

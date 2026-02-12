@@ -5,16 +5,10 @@
   "_id": "jyakaYH34Wp0AlVZ",
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "5"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "scene"
@@ -114,9 +93,6 @@
       "value": false
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
-    },
     "fuid": "elemental-shroud",
     "effects": {
       "entries": [
@@ -126,7 +102,23 @@
         "Compendium.projectfu.spells.Item.jdmbn0LS5Plv2BI2",
         "Compendium.projectfu.spells.Item.l7FVA1qEtGVhFRne"
       ]
-    }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": true
+    },
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -159,7 +151,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706564403943,
-    "modifiedTime": 1770627975945,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

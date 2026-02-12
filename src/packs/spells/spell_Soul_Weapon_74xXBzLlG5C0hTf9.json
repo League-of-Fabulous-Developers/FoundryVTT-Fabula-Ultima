@@ -5,16 +5,10 @@
   "_id": "74xXBzLlG5C0hTf9",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/soul_weapon.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You imbue a weapon with the cleansing energy of your spirit. Until this spell ends, all damage dealt by the weapon becomes of the <strong>light</strong> type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><hr /><p><strong>Target Receives:</strong> @WEAPON[light]{Soul Weapon}</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "10"
-    },
-    "target": {
-      "value": "One equipped weapon"
     },
     "duration": {
       "value": "scene"
@@ -114,13 +93,26 @@
       "value": false
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 1
-    },
     "fuid": "soul-weapon",
     "cost": {
-      "amount": "5"
-    }
+      "amount": "5",
+      "resource": "mp",
+      "perTarget": false
+    },
+    "targeting": {
+      "max": 1,
+      "rule": "weapon"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -139,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706573120165,
-    "modifiedTime": 1770626311605,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

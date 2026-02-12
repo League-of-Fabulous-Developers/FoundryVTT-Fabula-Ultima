@@ -5,16 +5,10 @@
   "_id": "NfVMYKMJ8Qp1DHJL",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
   "system": {
-    "subtype": {
-      "value": ""
-    },
     "summary": {
       "value": ""
     },
     "description": "<p>You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of <strong>d12</strong>)</p>",
-    "isFavored": {
-      "value": false
-    },
     "showTitleCard": {
       "value": false
     },
@@ -43,15 +37,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -69,12 +54,6 @@
     },
     "weight": {
       "value": 1
-    },
-    "mpCost": {
-      "value": "20"
-    },
-    "target": {
-      "value": "One creature"
     },
     "duration": {
       "value": "scene"
@@ -114,9 +93,6 @@
       "value": false
     },
     "opportunity": "",
-    "maxTargets": {
-      "value": 1
-    },
     "fuid": "awaken",
     "effects": {
       "entries": [
@@ -125,7 +101,23 @@
         "Compendium.projectfu.spells.Item.SocdSpwFMRBjPiR4",
         "Compendium.projectfu.spells.Item.z63l91zniIYaS30H"
       ]
-    }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "20",
+      "perTarget": false
+    },
+    "targeting": {
+      "max": 1,
+      "rule": "single"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": []
   },
   "effects": [],
   "ownership": {
@@ -144,7 +136,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706572044662,
-    "modifiedTime": 1770624519079,
+    "modifiedTime": 1770872382467,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

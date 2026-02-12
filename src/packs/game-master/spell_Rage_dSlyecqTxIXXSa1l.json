@@ -7,9 +7,6 @@
       "value": ""
     },
     "description": "<p>Each target hit by this spell suffers @EFFECT[enraged].</p>",
-    "isFavored": {
-      "value": false
-    },
     "class": {
       "value": "NPC"
     },
@@ -35,15 +32,6 @@
     "accuracy": {
       "value": 0
     },
-    "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
-      "type": {
-        "value": "physical"
-      }
-    },
     "impdamage": {
       "hasImpDamage": {
         "value": false
@@ -64,12 +52,6 @@
     },
     "showTitleCard": {
       "value": false
-    },
-    "mpCost": {
-      "value": "10"
-    },
-    "target": {
-      "value": "Up to three creatures"
     },
     "duration": {
       "value": "instantaneous"
@@ -107,13 +89,28 @@
         }
       }
     },
-    "subtype": {},
     "source": "FUCR311",
     "opportunity": "",
-    "maxTargets": {
-      "value": 3
+    "fuid": "rage",
+    "cost": {
+      "resource": "mp",
+      "amount": "10",
+      "perTarget": true
     },
-    "fuid": "rage"
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "effects": {
+      "entries": []
+    },
+    "traits": []
   },
   "effects": [],
   "flags": {
@@ -123,10 +120,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1742702612213,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770872387812,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
