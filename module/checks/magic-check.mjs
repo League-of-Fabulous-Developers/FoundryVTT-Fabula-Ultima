@@ -67,7 +67,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 /**
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
- * @param {CheckRenderData} data
+ * @param {FUChatData} data
  * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
@@ -79,10 +79,10 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 /**
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
- * @param {CheckRenderData} data
+ * @param {FUChatData} data
  */
 function renderNonCombatMagicCheck(checkResult, inspector, data) {
-	data.push({
+	data.sections.push({
 		order: CHECK_ROLL,
 		partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 		data: {
@@ -117,9 +117,9 @@ const onRenderCheck = (data, checkResult, actor, item, flags) => {
 		const inspector = CheckConfiguration.inspect(checkResult);
 
 		if (inspector.getDifficulty()) {
-			renderNonCombatMagicCheck(checkResult, inspector, data.sections);
+			renderNonCombatMagicCheck(checkResult, inspector, data);
 		} else {
-			renderCombatMagicCheck(checkResult, inspector, data.sections, actor, item, flags);
+			renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags);
 		}
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;

@@ -25,7 +25,7 @@ const onRenderCheck = (data, check, actor, item, flags, postRenderActions) => {
 		const config = CheckConfiguration.configure(check);
 
 		const targets = config.getTargetsOrDefault();
-		CommonSections.actions(data.sections, actor, item, targets, flags, config);
+		CommonSections.actions(data, actor, item, targets, flags, config);
 		const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
 		CommonSections.spendResource(data, actor, item, cost, [], flags);
 		CommonEvents.item(actor, item);

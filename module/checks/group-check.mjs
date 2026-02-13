@@ -504,7 +504,7 @@ const onRenderGroupCheck = (data, check, actor, item, flags) => {
 		});
 
 		const targets = inspector.getTargets();
-		CommonSections.actions(data.sections, actor, item, targets, flags, inspector);
+		CommonSections.actions(data, actor, item, targets, flags, inspector);
 	}
 };
 

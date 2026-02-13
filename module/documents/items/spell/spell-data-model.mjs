@@ -33,7 +33,7 @@ const onRenderCheck = (data, result, actor, item, flags, postRenderActions) => {
 
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.actions(data.sections, actor, item, targets, flags, inspector);
+			CommonSections.actions(data, actor, item, targets, flags, inspector);
 		}
 
 		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);

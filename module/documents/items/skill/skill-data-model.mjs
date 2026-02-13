@@ -53,7 +53,7 @@ let onRenderAttributeCheck = (data, check, actor, item, flags) => {
 			CommonSections.resource(data.sections, skill.system.rp, CHECK_DETAILS);
 		}
 		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
-		CommonSections.actions(data.sections, actor, item, [], flags, inspector);
+		CommonSections.actions(data, actor, item, [], flags, inspector);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
@@ -73,7 +73,7 @@ const onRenderDisplay = (data, check, actor, item, flags) => {
 		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.actions(data.sections, actor, item, targets, flags, inspector);
+			CommonSections.actions(data, actor, item, targets, flags, inspector);
 		}
 		CommonEvents.skill(actor, item);
 	}

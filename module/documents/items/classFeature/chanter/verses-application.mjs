@@ -314,12 +314,20 @@ export class VersesApplication extends FUApplication {
 			},
 		];
 
+		/** @type FUChatData **/
+		const renderData = {
+			sections: [],
+			postRenderActions: [],
+		};
+
+		CommonSections.itemFlavor(renderData.sections, this.#verse.parent.parent);
+		CommonSections.tags(renderData.sections, tags);
+		CommonSections.genericText(renderData.sections, enriched);
+		CommonSections.spendResource(renderData, actor, item, expense, targets, flags);
+
 		const builder = new FUChatBuilder(actor, item);
 		builder.withFlags(flags);
-		CommonSections.itemFlavor(builder.renderData, this.#verse.parent.parent);
-		CommonSections.tags(builder.renderData, tags);
-		CommonSections.genericText(builder.renderData, enriched);
-		CommonSections.spendResource(builder.renderData, actor, item, expense, targets, flags);
+		builder.withRenderData(renderData);
 		await builder.create();
 
 		CommonEvents.skill(actor, item);

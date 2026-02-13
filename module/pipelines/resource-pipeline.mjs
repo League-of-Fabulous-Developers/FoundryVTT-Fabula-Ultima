@@ -1,6 +1,6 @@
 import { Pipeline, PipelineRequest } from './pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
@@ -345,16 +345,16 @@ async function process(request) {
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targets
- * @param source
  * @return {ResourceExpense}
  */
 async function calculateExpense(cost, actor, item, targets, source) {
+	const itemGroup = InlineHelper.resolveItemGroup(item);
 	const context = ExpressionContext.fromTargetData(actor, item, targets);
 	const amount = await Expressions.evaluateAsync(cost.amount, context);
 	return {
 		resource: cost.resource,
 		amount: amount * (cost.perTarget ? Math.max(1, targets.length) : 1),
-		source: source,
+		source: itemGroup,
 	};
 }
 

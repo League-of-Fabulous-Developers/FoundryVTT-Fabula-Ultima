@@ -274,19 +274,20 @@ const opportunity = (sections, opportunity, order) => {
 
 /**
  * @description Adds a target section to the message that lists the targets and provides contextual buttons
- * @param {CheckRenderData} sections
+ * @param {FUChatData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targetData
  * @param {Map} flags
  * @param {CheckInspector} inspector
  */
-const actions = (sections, actor, item, targetData, flags, inspector = undefined) => {
+const actions = (data, actor, item, targetData, flags, inspector = undefined) => {
 	const isTargeted = targetData?.length > 0 || !Targeting.STRICT_TARGETING;
 
 	let checkData;
 	/** @type DamageData **/
 	let damageData;
+	let expenseData;
 
 	if (inspector) {
 		checkData = inspector.getCheck();
@@ -294,7 +295,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		switch (checkData.type) {
 			case 'accuracy':
 			case 'magic':
-				sections.push({
+				data.sections.push({
 					order: CHECK_ROLL,
 					partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
 					data: {
@@ -311,7 +312,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				break;
 
 			case 'display':
-				sections.push({
+				data.sections.push({
 					order: CHECK_ROLL,
 					partial: 'systems/projectfu/templates/chat/chat-display-container.hbs',
 					data: {
@@ -326,10 +327,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		}
 
 		// Expense action
-		const expenseData = inspector.getExpense();
-		if (expenseData) {
-			CommonSections.spendResource(sections, actor, item, expenseData, targetData, flags);
-		}
+		expenseData = inspector.getExpense();
 	}
 
 	if (isTargeted) {
@@ -338,7 +336,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		const targets = Targeting.deserializeTargetData(targetData);
 		const traits = inspector.getTraits();
 
-		sections.push(async function () {
+		data.sections.push(async function () {
 			/** @type {ChatAction[]} **/
 			let actions = [];
 			actions.push(Targeting.defaultAction);
@@ -374,7 +372,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				// TODO: Combine expenses among all actions?
 				for (const mod of damageData.modifiers) {
 					if (mod.expense && mod.expense.amount > 0) {
-						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
+						CommonSections.spendResource(data, actor, item, mod.expense, targetData, flags);
 						if (mod.expense.traits) {
 							const expenseTraits = new Set(mod.expense.traits);
 							if (expenseTraits.has(FeatureTraits.Gift)) {
@@ -449,6 +447,11 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 			};
 		});
 	}
+
+	// If expense data was provided for the actions
+	if (expenseData) {
+		CommonSections.spendResource(data, actor, item, expenseData, targetData, flags);
+	}
 };
 
 /**
@@ -486,7 +489,7 @@ const spendResource = (data, actor, item, cost, targets, flags) => {
 		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
 
 		// This can be modified here...
-		await CommonEvents.calculateExpense(actor, item, targets, expense);
+		await CommonEvents.calculateExpense(actor, item, targets, expense, data);
 		return {
 			order: CHECK_ACTIONS + 500,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
