@@ -13,11 +13,10 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 /**
- * @typedef UpdateResourceData
+ * @class
  * @property {String} type
  * @property {ScalarModifier[]} modifiers
  */
-
 export class UpdateResourceData {
 	static get baseModifier() {
 		return 'FU.Base';
@@ -49,7 +48,7 @@ export class UpdateResourceData {
 	addModifier(label, amount) {
 		/** @type DamageModifier **/
 		const modifier = {
-			label: label,
+			label: label ?? UpdateResourceData.baseModifier,
 			amount: amount,
 			enabled: true,
 		};
@@ -345,10 +344,18 @@ async function process(request) {
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targets
- * @return {ResourceExpense}
+ * @return {Promise<ResourceExpense>}
  */
-async function calculateExpense(cost, actor, item, targets, source) {
+async function calculateExpense(cost, actor, item, targets) {
 	const itemGroup = InlineHelper.resolveItemGroup(item);
+	if (!cost.amount) {
+		return {
+			resource: cost.resource,
+			amount: 0,
+			source: itemGroup,
+		};
+	}
+
 	const context = ExpressionContext.fromTargetData(actor, item, targets);
 	const amount = await Expressions.evaluateAsync(cost.amount, context);
 	return {
@@ -468,6 +475,20 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 };
 
 /**
+ * @param config
+ * @param actor
+ * @param item
+ * @param {ActionCostDataModel} cost
+ * @returns {Promise<void>}
+ */
+async function configureExpense(config, actor, item, cost) {
+	const targets = config.getTargets();
+	const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+	await CommonEvents.calculateExpense(actor, item, targets, expense);
+	config.setExpense(expense.resource, expense.amount);
+}
+
+/**
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
@@ -484,4 +505,5 @@ export const ResourcePipeline = {
 	calculateMissingResource,
 	prompt,
 	getTargetedAction,
+	configureExpense,
 };

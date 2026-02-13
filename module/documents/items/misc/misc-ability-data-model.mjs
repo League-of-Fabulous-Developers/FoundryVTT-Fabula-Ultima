@@ -39,8 +39,6 @@ let onRenderAccuracyCheck = (data, check, actor, item, flags) => {
 			}
 		}
 		CommonSections.tags(data.sections, tags, CHECK_DETAILS);
-		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
-		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
@@ -78,7 +76,6 @@ const onRenderDisplay = (data, check, actor, item, flags) => {
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargetsOrDefault();
-		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 		CommonSections.actions(data, actor, item, targets, flags, inspector);
 		CommonEvents.skill(actor, item);
 	}
@@ -217,7 +214,7 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 			config.setWeaponReference(weapon);
-			this.configureCheck(config);
+			await this.configureCheck(config);
 			await this.addSkillAccuracy(config, actor, item, context);
 			await this.addSkillDamage(config, item, context);
 		};

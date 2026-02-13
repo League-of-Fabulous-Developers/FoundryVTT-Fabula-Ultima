@@ -33,9 +33,6 @@ let onRenderAccuracyCheck = (data, check, actor, item, flags) => {
 		}
 		CommonSections.tags(data.sections, tags, CHECK_DETAILS);
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-
-		const targets = inspector.getTargets();
-		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
@@ -70,7 +67,6 @@ const onRenderDisplay = (data, check, actor, item, flags) => {
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargetsOrDefault();
-		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
 			CommonSections.actions(data, actor, item, targets, flags, inspector);
@@ -216,7 +212,7 @@ export class SkillDataModel extends BaseSkillDataModel {
 
 			config.setWeaponReference(weapon);
 			config.setHrZero(this.damage.hrZero || modifiers.shift);
-			this.configureCheck(config);
+			await this.configureCheck(config);
 			await this.addSkillDamage(config, item, context, weaponData);
 			await this.addSkillAccuracy(config, actor, item, context);
 		};

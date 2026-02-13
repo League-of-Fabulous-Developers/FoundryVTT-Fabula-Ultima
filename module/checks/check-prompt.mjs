@@ -521,7 +521,7 @@ async function ritualCheck(actor, item, options = {}) {
 			if (promptResult.modifier) {
 				config.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
 			}
-			config.addExpense('mp', promptResult.cost);
+			config.setExpense('mp', promptResult.cost);
 			GroupCheck.setSupportCheckDifficulty(check, promptResult.supportDifficulty);
 
 			if (options.checkCallback) {

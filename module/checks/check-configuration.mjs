@@ -24,7 +24,6 @@ const LABEL_KEY = 'label';
 const TARGETED_ACTIONS = 'targetedActions';
 const WEAPON_USED = 'weaponUsedBySkill';
 const INITIAL_CHECK = 'initialCheck';
-const POST_RENDER_ACTIONS = 'postRenderActions';
 
 /**
  *
@@ -254,17 +253,10 @@ class CheckInspector {
 	}
 
 	/**
-	 * @returns {ResourceExpense}
+	 * @returns {UpdateResourceData}
 	 */
 	getExpense() {
 		return this.#check.additionalData[EXPENSE];
-	}
-
-	/**
-	 * @returns {Promise[]}
-	 */
-	getPostRenderActions() {
-		return this.#check.additionalData[POST_RENDER_ACTIONS] ?? [];
 	}
 }
 
@@ -663,17 +655,11 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {FUResourceType} resource
+	 * @param {FUResourceType} type
 	 * @param {Number} amount
 	 */
-	addExpense(resource, amount) {
-		if (!this.check.additionalData[EXPENSE]) {
-			this.check.additionalData[EXPENSE] = /** @type ResourceExpense* **/ {
-				resource: resource,
-				amount: 0,
-			};
-		}
-		this.check.additionalData[EXPENSE].amount += amount;
+	setExpense(type, amount) {
+		this.check.additionalData[EXPENSE] = UpdateResourceData.construct(type, amount);
 	}
 
 	/**
@@ -681,15 +667,6 @@ export class CheckConfigurer extends CheckInspector {
 	 */
 	setInitialCheck(check) {
 		this.check.additionalData[INITIAL_CHECK] = check;
-	}
-
-	/**
-	 * @param {Promise} action
-	 */
-	addPostRenderAction(action) {
-		let actions = this.getPostRenderActions();
-		actions.push(action);
-		this.check.additionalData[POST_RENDER_ACTIONS] = actions;
 	}
 }
 

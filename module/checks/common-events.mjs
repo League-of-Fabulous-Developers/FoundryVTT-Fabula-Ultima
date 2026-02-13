@@ -298,12 +298,31 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
 /**
  * @param actor
  * @param item
+ * @param {TargetData[]} targetData
+ * @param expense
+ * @returns {Promise}
+ */
+async function calculateExpense(actor, item, targetData, expense) {
+	const source = CharacterInfo.fromActor(actor);
+	const targets = CharacterInfo.fromTargetData(targetData);
+	/** @type CalculateExpenseEvent  **/
+	const event = {
+		expense: expense,
+		item: item,
+		source: source,
+		targets: targets,
+	};
+	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+}
+
+/**
+ * @param actor
+ * @param item
  * @param targetActors
  * @param expense
- * @param {FUChatData} chatData
- * @returns {Promise<void>}
+ * @returns {Promise}
  */
-async function calculateExpense(actor, item, targetActors, expense, chatData = undefined) {
+async function expense(actor, item, targetActors, expense) {
 	const source = CharacterInfo.fromActor(actor);
 	const targets = CharacterInfo.fromTargetData(targetActors);
 	/** @type CalculateExpenseEvent  **/
@@ -313,13 +332,7 @@ async function calculateExpense(actor, item, targetActors, expense, chatData = u
 		source: source,
 		targets: targets,
 	};
-	await AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
-	await new Promise((resolve) => setTimeout(resolve, 250));
-	if (chatData) {
-		chatData.postRenderActions.push(() => AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event));
-	} else {
-		await AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
-	}
+	return AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
 }
 
 /**
@@ -829,6 +842,7 @@ export const CommonEvents = Object.freeze({
 	resolveCheck,
 	renderCheck,
 	calculateExpense,
+	expense,
 	calculateDamage,
 	calculateResource,
 	notify,

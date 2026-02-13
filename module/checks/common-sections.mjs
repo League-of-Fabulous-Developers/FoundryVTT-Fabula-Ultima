@@ -287,7 +287,6 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 	let checkData;
 	/** @type DamageData **/
 	let damageData;
-	let expenseData;
 
 	if (inspector) {
 		checkData = inspector.getCheck();
@@ -326,8 +325,11 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 				break;
 		}
 
-		// Expense action
-		expenseData = inspector.getExpense();
+		// If expense data was provided for the actions
+		const expense = inspector.getExpense();
+		if (expense) {
+			CommonSections.spendResourceV2(data, actor, item, expense, targetData, flags);
+		}
 	}
 
 	if (isTargeted) {
@@ -351,8 +353,6 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 				}
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
 				actions.push(ResourcePipeline.getTargetedAction(request));
-
-				// Trait data
 			}
 
 			const effectData = inspector.getEffects();
@@ -371,8 +371,7 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 
 				// TODO: Combine expenses among all actions?
 				for (const mod of damageData.modifiers) {
-					if (mod.expense && mod.expense.amount > 0) {
-						CommonSections.spendResource(data, actor, item, mod.expense, targetData, flags);
+					if (mod.expense && mod.expense.traits) {
 						if (mod.expense.traits) {
 							const expenseTraits = new Set(mod.expense.traits);
 							if (expenseTraits.has(FeatureTraits.Gift)) {
@@ -409,6 +408,7 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 					onRoll();
 				}
 			}
+
 			// Remaining actions
 			if (inspector) {
 				for (const action of inspector.getTargetedActions()) {
@@ -447,11 +447,6 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 			};
 		});
 	}
-
-	// If expense data was provided for the actions
-	if (expenseData) {
-		CommonSections.spendResource(data, actor, item, expenseData, targetData, flags);
-	}
 };
 
 /**
@@ -485,11 +480,52 @@ const spendResource = (data, actor, item, cost, targets, flags) => {
 
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 	data.sections.push(async () => {
-		const itemGroup = InlineHelper.resolveItemGroup(item);
-		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
 
 		// This can be modified here...
-		await CommonEvents.calculateExpense(actor, item, targets, expense, data);
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
+		return {
+			order: CHECK_ACTIONS + 500,
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+			data: {
+				name: item.name,
+				actor: actor.uuid,
+				item: item.uuid,
+				expense: expense,
+				resourceLabel: FU.resourcesAbbr[expense.resource],
+				icon: FU.resourceIcons[expense.resource],
+			},
+		};
+	});
+};
+
+/**
+ * @param {FUChatData} data
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {UpdateResourceData} updateData
+ * @param {TargetData[]} targets
+ * @param {Object} flags
+ */
+const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
+	if (updateData.total === 0) {
+		return;
+	}
+
+	// TODO: Use the update resource data model?
+	/** @type {ResourceExpense} **/
+	const expense = {
+		resource: updateData.type,
+		amount: updateData.total,
+		traits: [],
+		source: InlineHelper.resolveItemGroup(item),
+	};
+
+	// Allow modification of the amount
+	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
+
+	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
+	data.sections.push(async () => {
 		return {
 			order: CHECK_ACTIONS + 500,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
@@ -559,6 +595,7 @@ export const CommonSections = {
 	opportunity,
 	actions,
 	spendResource,
+	spendResourceV2,
 	expense,
 	slottedTechnospheres,
 };

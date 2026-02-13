@@ -803,6 +803,12 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				if (damage.hrZero) {
 					config.setHrZero(true);
 				}
+				// If costs were added
+				for (const mod of damage.modifiers) {
+					if (mod.expense && mod.expense.amount > 0) {
+						config.getExpense().addModifier(mod.expense.source, mod.expense.amount);
+					}
+				}
 			}
 			for (const modifier of damage.modifiers) {
 				if (modifier.traits && modifier.traits.length > 0) {

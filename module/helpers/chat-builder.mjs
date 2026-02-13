@@ -112,15 +112,6 @@ export class FUChatBuilder {
 	}
 
 	/**
-	 * @param {Promise} action
-	 * @returns {FUChatBuilder}
-	 */
-	withPostRenderAction(action) {
-		this.#postRenderActions.push(action);
-		return this;
-	}
-
-	/**
 	 * @desc Renders the chat message.
 	 * @returns {Promise<void>}
 	 */
@@ -217,7 +208,7 @@ export class FUChatBuilder {
 
 		// Execute post-render actions
 		for (const promise of this.#postRenderActions) {
-			await promise;
+			await promise();
 		}
 	}
 }

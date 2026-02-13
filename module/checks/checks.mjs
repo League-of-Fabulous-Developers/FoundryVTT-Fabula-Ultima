@@ -458,7 +458,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 	);
 
 	// Create the chat builder
-	const chatBuilder = new FUChatBuilder(actor, item).withFlags(flags).withRenderData(chatData.sections);
+	const chatBuilder = new FUChatBuilder(actor, item).withFlags(flags).withData(chatData);
 
 	// Add flavor
 	let flavor;
