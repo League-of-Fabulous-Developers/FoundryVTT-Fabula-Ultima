@@ -1,5 +1,5 @@
 {
-  "folder": "rWZeRzjYC59veWKl",
+  "folder": "tJXzArdm8Rgv281H",
   "name": "Effect: Steel Witch (Damage)",
   "type": "effect",
   "_id": "5180h6kwja4Cn1jm",
@@ -114,7 +114,7 @@
       "_key": "!items.effects!5180h6kwja4Cn1jm.BdFeozbPR8HuhxVC"
     }
   ],
-  "sort": 600000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -128,7 +128,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770964612031,
-    "modifiedTime": 1770964804130,
+    "modifiedTime": 1771018700776,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!5180h6kwja4Cn1jm"

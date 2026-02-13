@@ -1,5 +1,5 @@
 {
-  "folder": "u0X3Kiu9iNgSmdOO",
+  "folder": "4LuFJav8aop3vdnu",
   "name": "Effect: Pulse of the Maggots",
   "type": "effect",
   "_id": "BB5jHS32g8Wcsvwr",
@@ -93,7 +93,7 @@
       "_key": "!items.effects!BB5jHS32g8Wcsvwr.HiTOiiV5YCjIxYfj"
     }
   ],
-  "sort": 0,
+  "sort": 1900000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -107,7 +107,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770968592145,
-    "modifiedTime": 1770968598791,
+    "modifiedTime": 1771018945265,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!BB5jHS32g8Wcsvwr"

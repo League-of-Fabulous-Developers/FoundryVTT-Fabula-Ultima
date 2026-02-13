@@ -1,10 +1,10 @@
 {
   "type": "Item",
-  "folder": "1Ky2u7fi2lfxr4JB",
-  "name": "April Fool's Special 2023",
-  "color": "#4f5a78",
+  "folder": "rWZeRzjYC59veWKl",
+  "name": "Greater Akromorphosis",
+  "color": null,
   "sorting": "a",
-  "_id": "rsp4XZ4yS3zcZY8x",
+  "_id": "hPzkjOt1DiSni91q",
   "description": "",
   "sort": 0,
   "flags": {},
@@ -15,8 +15,7 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "lastModifiedBy": "94wV67htTTVBPn7n",
-    "modifiedTime": 1767916332446
+    "lastModifiedBy": null
   },
-  "_key": "!folders!rsp4XZ4yS3zcZY8x"
+  "_key": "!folders!hPzkjOt1DiSni91q"
 }

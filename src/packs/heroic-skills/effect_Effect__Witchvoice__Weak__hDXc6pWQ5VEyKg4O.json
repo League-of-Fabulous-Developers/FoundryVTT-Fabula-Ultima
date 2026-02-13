@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "PVfX4jrFdAbTnJBp",
   "name": "Effect: Witchvoice (Weak)",
   "type": "effect",
   "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "name": "Witchvoice (Weak)",
+      "name": "Bewitched (Weak)",
       "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
       "system": {
         "duration": {
@@ -62,7 +62,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771013895773
+        "modifiedTime": 1771019141217
       },
       "_key": "!items.effects!hDXc6pWQ5VEyKg4O.fGE882waVH5825FI"
     }
@@ -76,7 +76,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771013810254,
-    "modifiedTime": 1771013888796,
+    "modifiedTime": 1771018993237,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -84,6 +84,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "hDXc6pWQ5VEyKg4O",
-  "sort": 0,
+  "sort": 600000,
   "_key": "!items!hDXc6pWQ5VEyKg4O"
 }

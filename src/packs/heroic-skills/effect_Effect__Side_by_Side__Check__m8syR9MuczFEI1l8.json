@@ -1,5 +1,5 @@
 {
-  "folder": "5kSHxgDcJ4VNObCO",
+  "folder": "FgxSEVMLdU9kxgMn",
   "name": "Effect: Side by Side (Check)",
   "type": "effect",
   "img": "icons/sundries/misc/pet-collar-red.webp",
@@ -135,7 +135,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770886822514,
-    "modifiedTime": 1771014015453,
+    "modifiedTime": 1771018666259,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -143,6 +143,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "m8syR9MuczFEI1l8",
-  "sort": 0,
+  "sort": 100000,
   "_key": "!items!m8syR9MuczFEI1l8"
 }

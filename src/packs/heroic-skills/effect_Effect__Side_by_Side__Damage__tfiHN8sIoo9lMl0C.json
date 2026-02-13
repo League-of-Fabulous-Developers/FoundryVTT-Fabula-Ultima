@@ -1,5 +1,5 @@
 {
-  "folder": "5kSHxgDcJ4VNObCO",
+  "folder": "FgxSEVMLdU9kxgMn",
   "name": "Effect: Side by Side (Damage)",
   "type": "effect",
   "_id": "tfiHN8sIoo9lMl0C",
@@ -79,7 +79,7 @@
       "_key": "!items.effects!tfiHN8sIoo9lMl0C.nJHoE47tFyNEOMiP"
     }
   ],
-  "sort": 2000000,
+  "sort": 0,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -92,7 +92,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744251088055,
-    "modifiedTime": 1771014025165,
+    "modifiedTime": 1771018668022,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

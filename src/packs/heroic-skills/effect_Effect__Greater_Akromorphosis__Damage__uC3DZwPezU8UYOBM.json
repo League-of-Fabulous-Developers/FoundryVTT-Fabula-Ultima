@@ -1,5 +1,5 @@
 {
-  "folder": "rWZeRzjYC59veWKl",
+  "folder": "hPzkjOt1DiSni91q",
   "name": "Effect: Greater Akromorphosis (Damage)",
   "type": "effect",
   "_id": "uC3DZwPezU8UYOBM",
@@ -81,7 +81,7 @@
       "_key": "!items.effects!uC3DZwPezU8UYOBM.fVlH6a9moVuuy4eX"
     }
   ],
-  "sort": 200000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -95,7 +95,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770960151636,
-    "modifiedTime": 1770964804130,
+    "modifiedTime": 1771018693391,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!uC3DZwPezU8UYOBM"

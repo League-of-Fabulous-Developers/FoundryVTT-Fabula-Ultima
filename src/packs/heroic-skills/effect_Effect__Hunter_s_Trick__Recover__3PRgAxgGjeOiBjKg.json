@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "PsNQCrrBoThyk47U",
   "name": "Effect: Hunter's Trick (Recover)",
   "type": "effect",
   "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
@@ -119,7 +119,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771009954442,
-    "modifiedTime": 1771013806540,
+    "modifiedTime": 1771018974167,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {

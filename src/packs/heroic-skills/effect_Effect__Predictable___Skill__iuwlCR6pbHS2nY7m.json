@@ -1,5 +1,5 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
+  "folder": "0jxgBseidPOQjSNK",
   "name": "Effect: Predictable! (Skill)",
   "type": "effect",
   "img": "icons/tools/scribal/magnifying-glass.webp",
@@ -85,10 +85,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770711006593,
-    "modifiedTime": 1771013547708,
+    "modifiedTime": 1771018629133,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "iuwlCR6pbHS2nY7m",
-  "sort": 600000,
+  "sort": 400000,
   "_key": "!items!iuwlCR6pbHS2nY7m"
 }

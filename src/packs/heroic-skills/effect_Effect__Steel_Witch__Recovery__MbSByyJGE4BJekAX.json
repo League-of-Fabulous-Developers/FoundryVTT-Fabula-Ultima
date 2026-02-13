@@ -1,5 +1,5 @@
 {
-  "folder": "rWZeRzjYC59veWKl",
+  "folder": "tJXzArdm8Rgv281H",
   "name": "Effect: Steel Witch (Recovery)",
   "type": "effect",
   "img": "icons/commodities/tech/detonator-timer.webp",
@@ -124,7 +124,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770964804103,
-    "modifiedTime": 1770964817037,
+    "modifiedTime": 1771018701890,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -132,6 +132,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "MbSByyJGE4BJekAX",
-  "sort": 500000,
+  "sort": 200000,
   "_key": "!items!MbSByyJGE4BJekAX"
 }

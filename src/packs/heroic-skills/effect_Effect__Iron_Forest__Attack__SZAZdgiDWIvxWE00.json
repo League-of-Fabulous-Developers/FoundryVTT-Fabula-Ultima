@@ -1,5 +1,5 @@
 {
-  "folder": "54A0ai9tw3nr1izz",
+  "folder": "a3hFt1BMREeCe2QX",
   "name": "Effect: Iron Forest (Attack)",
   "type": "effect",
   "_id": "SZAZdgiDWIvxWE00",
@@ -72,7 +72,7 @@
       "_key": "!items.effects!SZAZdgiDWIvxWE00.qy6MFXprvU5wCxro"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -85,7 +85,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744077116845,
-    "modifiedTime": 1770762696639,
+    "modifiedTime": 1771018647769,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

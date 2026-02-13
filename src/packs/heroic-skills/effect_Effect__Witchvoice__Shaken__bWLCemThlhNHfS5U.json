@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "PVfX4jrFdAbTnJBp",
   "name": "Effect: Witchvoice (Shaken)",
   "type": "effect",
   "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "name": "Witchvoice (Shaken)",
+      "name": "Bewitched (Shaken)",
       "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
       "system": {
         "duration": {
@@ -62,7 +62,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771013864130
+        "modifiedTime": 1771019121994
       },
       "_key": "!items.effects!bWLCemThlhNHfS5U.fGE882waVH5825FI"
     }
@@ -76,7 +76,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771013807707,
-    "modifiedTime": 1771013855368,
+    "modifiedTime": 1771018991177,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -84,6 +84,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "bWLCemThlhNHfS5U",
-  "sort": 0,
+  "sort": 400000,
   "_key": "!items!bWLCemThlhNHfS5U"
 }

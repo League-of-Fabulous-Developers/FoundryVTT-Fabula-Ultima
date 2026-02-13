@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "PVfX4jrFdAbTnJBp",
   "name": "Effect: Witchvoice (Slow)",
   "type": "effect",
   "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "name": "Witchvoice (Slow)",
+      "name": "Bewitched (Slow)",
       "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
       "system": {
         "duration": {
@@ -62,7 +62,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771013881312
+        "modifiedTime": 1771019130182
       },
       "_key": "!items.effects!h37S8sQiTglvs4dP.fGE882waVH5825FI"
     }
@@ -76,7 +76,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771013808940,
-    "modifiedTime": 1771013871741,
+    "modifiedTime": 1771018991946,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -84,6 +84,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "h37S8sQiTglvs4dP",
-  "sort": 0,
+  "sort": 500000,
   "_key": "!items!h37S8sQiTglvs4dP"
 }

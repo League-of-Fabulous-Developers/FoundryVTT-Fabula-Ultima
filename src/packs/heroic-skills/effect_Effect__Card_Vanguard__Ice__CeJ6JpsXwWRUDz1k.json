@@ -1,5 +1,5 @@
 {
-  "folder": "aisNMlFsvQzjSNQF",
+  "folder": "bzi1aleLpp03Cctd",
   "name": "Effect: Card Vanguard (Ice)",
   "type": "effect",
   "img": "icons/sundries/gaming/playing-cards-grey.webp",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770968121267,
-    "modifiedTime": 1770968210302,
+    "modifiedTime": 1771018958529,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "CeJ6JpsXwWRUDz1k",
-  "sort": 0,
+  "sort": 400000,
   "_key": "!items!CeJ6JpsXwWRUDz1k"
 }

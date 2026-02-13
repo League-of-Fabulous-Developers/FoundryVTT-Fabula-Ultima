@@ -1,5 +1,5 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
+  "folder": "F1T3CDFbG76byCfr",
   "name": "Effect: Heroic Companion (INS)",
   "type": "effect",
   "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
@@ -87,7 +87,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770709487845,
-    "modifiedTime": 1771013595492,
+    "modifiedTime": 1771018614057,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -95,6 +95,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "WlifKopbhgkf8FU0",
-  "sort": 100000,
+  "sort": 300000,
   "_key": "!items!WlifKopbhgkf8FU0"
 }

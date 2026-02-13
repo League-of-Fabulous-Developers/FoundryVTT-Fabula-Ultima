@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "dbvm4xOW2m0gFmt1",
   "name": "Effect: It Lives! (Damage)",
   "type": "effect",
   "_id": "O5B4R2osb7LMqGzC",
@@ -75,7 +75,7 @@
       "_key": "!items.effects!O5B4R2osb7LMqGzC.PHejcsLPKYt3Yd5B"
     }
   ],
-  "sort": 500000,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -89,7 +89,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771010713243,
-    "modifiedTime": 1771013806540,
+    "modifiedTime": 1771018983428,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!O5B4R2osb7LMqGzC"

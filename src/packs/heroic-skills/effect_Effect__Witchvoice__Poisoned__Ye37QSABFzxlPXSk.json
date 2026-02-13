@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "PVfX4jrFdAbTnJBp",
   "name": "Effect: Witchvoice (Poisoned)",
   "type": "effect",
   "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "name": "Witchvoice (Poisoned)",
+      "name": "Bewitched (Poisoned)",
       "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
       "system": {
         "duration": {
@@ -62,7 +62,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771013842819
+        "modifiedTime": 1771019114018
       },
       "_key": "!items.effects!Ye37QSABFzxlPXSk.fGE882waVH5825FI"
     }
@@ -76,7 +76,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771013806512,
-    "modifiedTime": 1771013834779,
+    "modifiedTime": 1771018990337,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {

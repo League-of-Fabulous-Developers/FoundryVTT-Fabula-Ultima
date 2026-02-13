@@ -1,5 +1,5 @@
 {
-  "folder": "aisNMlFsvQzjSNQF",
+  "folder": "bzi1aleLpp03Cctd",
   "name": "Effect: Card Vanguard (Fire)",
   "type": "effect",
   "img": "icons/sundries/gaming/playing-cards-grey.webp",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770968119752,
-    "modifiedTime": 1770968162122,
+    "modifiedTime": 1771018957674,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "rb2CVOWvXQDOvUVw",
-  "sort": 200000,
+  "sort": 300000,
   "_key": "!items!rb2CVOWvXQDOvUVw"
 }

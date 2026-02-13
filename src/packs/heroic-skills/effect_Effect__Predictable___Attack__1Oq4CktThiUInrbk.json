@@ -1,5 +1,5 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
+  "folder": "0jxgBseidPOQjSNK",
   "name": "Effect: Predictable! (Attack)",
   "type": "effect",
   "_id": "1Oq4CktThiUInrbk",
@@ -72,7 +72,7 @@
       "_key": "!items.effects!1Oq4CktThiUInrbk.6Nk8ZZvyW3wreVGc"
     }
   ],
-  "sort": 900000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -85,7 +85,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744067522060,
-    "modifiedTime": 1771013521213,
+    "modifiedTime": 1771018626673,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

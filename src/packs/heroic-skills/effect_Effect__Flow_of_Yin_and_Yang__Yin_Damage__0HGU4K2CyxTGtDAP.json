@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "fekOogK7LcO7MfnG",
   "name": "Effect: Flow of Yin and Yang (Yin Damage)",
   "type": "effect",
   "_id": "0HGU4K2CyxTGtDAP",
@@ -93,7 +93,7 @@
       "_key": "!items.effects!0HGU4K2CyxTGtDAP.8vOqPCvwa7JxPB3u"
     }
   ],
-  "sort": 1100000,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -107,7 +107,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771008628227,
-    "modifiedTime": 1771013806540,
+    "modifiedTime": 1771018966931,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!0HGU4K2CyxTGtDAP"

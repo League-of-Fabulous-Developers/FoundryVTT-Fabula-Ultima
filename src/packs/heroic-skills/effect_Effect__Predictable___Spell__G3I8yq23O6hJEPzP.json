@@ -1,5 +1,5 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
+  "folder": "0jxgBseidPOQjSNK",
   "name": "Effect: Predictable! (Spell)",
   "type": "effect",
   "img": "icons/tools/scribal/magnifying-glass.webp",
@@ -85,10 +85,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770711004956,
-    "modifiedTime": 1771013556767,
+    "modifiedTime": 1771018631110,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "G3I8yq23O6hJEPzP",
-  "sort": 700000,
+  "sort": 500000,
   "_key": "!items!G3I8yq23O6hJEPzP"
 }

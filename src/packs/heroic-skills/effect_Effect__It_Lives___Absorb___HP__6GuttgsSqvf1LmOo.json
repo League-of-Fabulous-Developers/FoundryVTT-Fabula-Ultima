@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "dbvm4xOW2m0gFmt1",
   "name": "Effect: It Lives! (Absorb & HP)",
   "type": "effect",
   "_id": "6GuttgsSqvf1LmOo",
@@ -80,7 +80,7 @@
       "_key": "!items.effects!6GuttgsSqvf1LmOo.DwTfCw0g4bBQadvK"
     }
   ],
-  "sort": 400000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -94,7 +94,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771010527364,
-    "modifiedTime": 1771013806540,
+    "modifiedTime": 1771018982303,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!6GuttgsSqvf1LmOo"

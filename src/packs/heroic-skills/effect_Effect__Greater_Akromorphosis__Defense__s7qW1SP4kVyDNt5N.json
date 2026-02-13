@@ -1,5 +1,5 @@
 {
-  "folder": "rWZeRzjYC59veWKl",
+  "folder": "hPzkjOt1DiSni91q",
   "name": "Effect: Greater Akromorphosis (Defense)",
   "type": "effect",
   "img": "icons/creatures/claws/claw-talons-yellow-red.webp",
@@ -82,7 +82,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770960285122,
-    "modifiedTime": 1770964804130,
+    "modifiedTime": 1771018694575,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -90,6 +90,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "s7qW1SP4kVyDNt5N",
-  "sort": 300000,
+  "sort": 200000,
   "_key": "!items!s7qW1SP4kVyDNt5N"
 }

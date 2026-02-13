@@ -1,5 +1,5 @@
 {
-  "folder": "aisNMlFsvQzjSNQF",
+  "folder": "bzi1aleLpp03Cctd",
   "name": "Effect: Card Vanguard (Earth)",
   "type": "effect",
   "img": "icons/sundries/gaming/playing-cards-grey.webp",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770968118421,
-    "modifiedTime": 1770968138163,
+    "modifiedTime": 1771018956709,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "WXh8k8YTJeGtdzLg",
-  "sort": 300000,
+  "sort": 200000,
   "_key": "!items!WXh8k8YTJeGtdzLg"
 }

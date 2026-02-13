@@ -1,5 +1,5 @@
 {
-  "folder": "4LuFJav8aop3vdnu",
+  "folder": "fekOogK7LcO7MfnG",
   "name": "Effect: Flow of Yin and Yang (Yang Damage)",
   "type": "effect",
   "img": "icons/commodities/currency/coin-yingyang.webp",
@@ -101,7 +101,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771008712771,
-    "modifiedTime": 1771013806540,
+    "modifiedTime": 1771018965586,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -109,6 +109,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "XziwyFx5pn8OHLM1",
-  "sort": 1000000,
+  "sort": 100000,
   "_key": "!items!XziwyFx5pn8OHLM1"
 }

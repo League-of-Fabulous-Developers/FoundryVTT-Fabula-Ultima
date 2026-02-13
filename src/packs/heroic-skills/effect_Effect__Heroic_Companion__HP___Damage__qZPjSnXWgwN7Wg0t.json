@@ -1,5 +1,5 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
+  "folder": "F1T3CDFbG76byCfr",
   "name": "Effect: Heroic Companion (HP & Damage)",
   "type": "effect",
   "_id": "qZPjSnXWgwN7Wg0t",
@@ -85,7 +85,7 @@
       "_key": "!items.effects!qZPjSnXWgwN7Wg0t.4h30fp8qRSio9SiR"
     }
   ],
-  "sort": 1200000,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -98,7 +98,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744074899880,
-    "modifiedTime": 1771013586877,
+    "modifiedTime": 1771018613265,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -1,5 +1,5 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
+  "folder": "F1T3CDFbG76byCfr",
   "name": "Effect: Heroic Companion (DEX)",
   "type": "effect",
   "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
@@ -87,7 +87,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770709328195,
-    "modifiedTime": 1771013577518,
+    "modifiedTime": 1771018612177,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -95,6 +95,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "Aj8gZRAf8PxCe2iD",
-  "sort": 1300000,
+  "sort": 100000,
   "_key": "!items!Aj8gZRAf8PxCe2iD"
 }

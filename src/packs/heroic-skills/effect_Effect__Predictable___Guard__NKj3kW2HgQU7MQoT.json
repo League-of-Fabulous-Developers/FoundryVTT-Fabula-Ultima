@@ -1,5 +1,5 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
+  "folder": "0jxgBseidPOQjSNK",
   "name": "Effect: Predictable! (Guard)",
   "type": "effect",
   "img": "icons/tools/scribal/magnifying-glass.webp",
@@ -85,10 +85,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770711000500,
-    "modifiedTime": 1771013529736,
+    "modifiedTime": 1771018627493,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "NKj3kW2HgQU7MQoT",
-  "sort": 800000,
+  "sort": 200000,
   "_key": "!items!NKj3kW2HgQU7MQoT"
 }
