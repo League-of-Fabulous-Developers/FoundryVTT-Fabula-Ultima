@@ -113,6 +113,7 @@ import { PressureSystem } from './systems/pressure-system.mjs';
 import { FUToken } from './ui/token.mjs';
 import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
 import { FUChatLog } from './ui/chat-log.mjs';
+import { AutomationPipeline } from './pipelines/automation.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -378,6 +379,7 @@ Hooks.once('init', async () => {
 	ApplicationPipeline.initialize();
 	Effects.initialize();
 	RuleElements.initialize();
+	AutomationPipeline.initialize();
 	InventoryPipeline.initialize();
 	CheckPrompt.initialize();
 

@@ -55,6 +55,19 @@ export class UpdateResourceData {
 		};
 		this.modifiers.push(modifier);
 	}
+
+	/**
+	 * @returns {number}
+	 */
+	get total() {
+		let result = 0;
+		for (const mod of this.modifiers) {
+			if (mod.enabled) {
+				result += mod.amount;
+			}
+		}
+		return result;
+	}
 }
 
 /**

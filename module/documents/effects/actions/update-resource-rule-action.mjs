@@ -54,12 +54,10 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 				targetAction.forActor(context.character.actor);
 			}
 			context.config.addTargetedAction(targetAction);
-		} else {
-			if (game.settings.get(SYSTEM, SETTINGS.automationUpdateResource)) {
-				await ResourcePipeline.process(request);
-			} else {
-				await ResourcePipeline.prompt(request);
-			}
+		}
+
+		if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
+			await ResourcePipeline.process(request);
 		}
 	}
 }

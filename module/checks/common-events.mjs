@@ -291,6 +291,7 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
  * @typedef CalculateExpenseEvent
  * @property {ResourceExpense} expense
  * @property {CharacterInfo} source
+ * @property {FUItem} item
  * @property {CharacterInfo[]} targets
  */
 
@@ -300,10 +301,13 @@ async function calculateExpense(actor, item, targetActors, expense) {
 	/** @type CalculateExpenseEvent  **/
 	const event = {
 		expense: expense,
+		item: item,
 		source: source,
 		targets: targets,
 	};
-	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+	await AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+	await new Promise((resolve) => setTimeout(resolve, 250));
+	await AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
 }
 
 /**
