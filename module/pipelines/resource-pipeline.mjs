@@ -61,8 +61,8 @@ export class UpdateResourceData {
 	get total() {
 		let result = 0;
 		for (const mod of this.modifiers) {
-			if (mod.enabled) {
-				result += mod.amount;
+			if (mod.enabled && mod.amount) {
+				result += Number.parseInt(mod.amount);
 			}
 		}
 		return result;
