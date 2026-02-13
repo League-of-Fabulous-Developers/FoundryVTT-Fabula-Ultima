@@ -73,7 +73,7 @@ function addRerollEntry(application, menuItems) {
 const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
 	const rerollData = checkResult.additionalData.reroll;
 	if (rerollData) {
-		data.push({
+		data.sections.push({
 			order: CHECK_REROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 			data: rerollData,

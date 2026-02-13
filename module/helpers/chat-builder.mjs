@@ -1,11 +1,17 @@
 import FoundryUtils from './foundry-utils.mjs';
 
 /**
+ * @typedef FUChatData
+ * @property {CheckRenderData} sections
+ * @property {Promise[]} postRenderActions
+ */
+
+/**
  * @desc Builder of actionable chat messages for the system.
  */
 export class FUChatBuilder {
 	/**
-	 * @type {CheckRenderData}
+	 * @type {CheckRenderData} The sections of that chat message.
 	 */
 	#renderData = [];
 	/**
@@ -41,6 +47,20 @@ export class FUChatBuilder {
 	}
 
 	/**
+	 * @returns {FUActor}
+	 */
+	get actor() {
+		return this.#actor;
+	}
+
+	/**
+	 * @returns {FUItem}
+	 */
+	get item() {
+		return this.#item;
+	}
+
+	/**
 	 * @returns {CheckRenderData}
 	 */
 	get sections() {
@@ -71,6 +91,16 @@ export class FUChatBuilder {
 		return this;
 	}
 
+	/**
+	 * @param {FUChatData} data
+	 * @returns {FUChatBuilder}
+	 */
+	withData(data) {
+		this.#renderData = data.sections;
+		this.#postRenderActions = data.postRenderActions;
+		return this;
+	}
+
 	withRenderData(renderData) {
 		this.#renderData = renderData;
 		return this;
@@ -90,6 +120,10 @@ export class FUChatBuilder {
 		return this;
 	}
 
+	/**
+	 * @desc Renders the chat message.
+	 * @returns {Promise<void>}
+	 */
 	async create() {
 		const actor = this.#actor;
 		const flags = this.#flags;

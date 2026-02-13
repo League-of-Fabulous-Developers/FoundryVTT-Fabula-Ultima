@@ -135,23 +135,17 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	}
 };
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} checkResult
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {Object} flags
- */
-function onRenderCheck(data, checkResult, actor, item, flags) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, checkResult, actor, item, flags) => {
 	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-		CommonSections.actions(data, actor, item, targets, flags, inspector);
+		CommonSections.actions(data.sections, actor, item, targets, flags, inspector);
 		CommonEvents.attack(inspector, actor, item);
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
-}
+};
 
 const initialize = () => {
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);

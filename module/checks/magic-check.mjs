@@ -111,26 +111,20 @@ function renderNonCombatMagicCheck(checkResult, inspector, data) {
 	});
 }
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} checkResult
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {Object} flags
- */
-function onRenderCheck(data, checkResult, actor, item, flags) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, checkResult, actor, item, flags) => {
 	if (checkResult.type === 'magic') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 
 		if (inspector.getDifficulty()) {
-			renderNonCombatMagicCheck(checkResult, inspector, data);
+			renderNonCombatMagicCheck(checkResult, inspector, data.sections);
 		} else {
-			renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags);
+			renderCombatMagicCheck(checkResult, inspector, data.sections, actor, item, flags);
 		}
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
-}
+};
 
 const initialize = () => {
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);

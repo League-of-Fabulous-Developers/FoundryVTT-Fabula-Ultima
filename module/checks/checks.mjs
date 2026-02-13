@@ -431,16 +431,19 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
  */
 async function renderCheck(result, actor, item, flags = {}) {
 	/**
-	 * @type {CheckRenderData}
+	 * @type FUChatData
 	 */
-	const renderData = [];
+	const chatData = {
+		sections: [],
+		postRenderActions: [],
+	};
 	const additionalFlags = {};
+
 	const config = CheckConfiguration.configure(result);
 
-	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
-	// We subscribe to both events here, since either approach would work.
-	await CommonEvents.renderCheck(renderData, config, actor, item);
-	await CommonEvents.renderMessage(renderData, actor, item);
+	Hooks.callAll(CheckHooks.renderCheck, chatData, result, actor, item, additionalFlags);
+	await CommonEvents.renderCheck(chatData.sections, config, actor, item);
+	await CommonEvents.renderMessage(chatData.sections, actor, item);
 
 	// Merge flags
 	flags = foundry.utils.mergeObject(
@@ -455,7 +458,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 	);
 
 	// Create the chat builder
-	const chatBuilder = new FUChatBuilder(actor, item).withFlags(flags).withRenderData(renderData);
+	const chatBuilder = new FUChatBuilder(actor, item).withFlags(flags).withRenderData(chatData.sections);
 
 	// Add flavor
 	let flavor;

@@ -813,12 +813,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	});
 };
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
+/** @type RenderCheckHook */
 function onRenderCheck(data, result, actor, item) {
 	const inspector = CheckConfiguration.inspect(result);
 	if (inspector.hasDamage) {
@@ -831,7 +826,7 @@ function onRenderCheck(data, result, actor, item) {
 		}
 		if (traits.length > 0) {
 			CommonSections.tags(
-				data,
+				data.sections,
 				TraitUtils.toTags(
 					traits.map((t) => TraitUtils.localize(t)),
 					false,

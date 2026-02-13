@@ -129,16 +129,12 @@ const processCheck = (check, actor, item, registerCallback) => {};
 /**
  * @callback RenderCheckHook
  * @description Hook called to determine how to render the results
- * @param {CheckRenderData} sections
+ * @param {FUChatData} data
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {Object} additionalFlags
- * @param {TargetData[]} targets
  */
 
-/**
- * @type RenderCheckHook
- */
 // eslint-disable-next-line no-unused-vars
-const renderCheck = (sections, check, actor, item, additionalFlags) => {};
+const renderCheck = (data, check, actor, item, additionalFlags) => {};

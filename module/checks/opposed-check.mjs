@@ -37,11 +37,11 @@ const onPrepareCheck = (check, actor) => {
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = (sections, check, actor, item, flags) => {
+const onRenderCheck = (data, check, actor, item, flags) => {
 	if (check.type === 'opposed') {
 		const inspector = CheckConfiguration.inspect(check);
 		const initialCheck = inspector.getInitialCheck();
-		sections.push({
+		data.sections.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 			data: {
@@ -86,7 +86,7 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 				margin = initialCheck.result - check.result;
 			}
 			CommonSections.template(
-				sections,
+				data.sections,
 				'chat/partials/chat-opposed-check-details',
 				{
 					actor,
@@ -97,7 +97,7 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 				CHECK_DETAILS,
 			);
 			CommonSections.template(
-				sections,
+				data.sections,
 				'chat/partials/chat-opposed-check-result',
 				{
 					winner,
@@ -110,11 +110,11 @@ const onRenderCheck = (sections, check, actor, item, flags) => {
 			const tooltip = StringUtils.localize('FU.ChatContextOppose');
 			Pipeline.toggleFlag(flags, Flags.ChatMessage.OpposedCheck);
 			/** @type OpposedCheckData **/
-			const data = {
+			const checkData = {
 				initialCheck: check,
 			};
-			const action = new ChatAction(actionName, FU.checkIcons.opposed, tooltip).withLabel(tooltip).withSelected().withFields(data);
-			CommonSections.chatActions(sections, [action], {}, CHECK_ADDENDUM_ORDER);
+			const action = new ChatAction(actionName, FU.checkIcons.opposed, tooltip).withLabel(tooltip).withSelected().withFields(checkData);
+			CommonSections.chatActions(data.sections, [action], {}, CHECK_ADDENDUM_ORDER);
 		}
 	}
 };

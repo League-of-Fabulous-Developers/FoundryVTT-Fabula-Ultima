@@ -21,35 +21,28 @@ import { EffectApplicationDataModel } from '../common/effect-application-data-mo
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ExpressionContext } from '../../../expressions/expressions.mjs';
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {Object} flags
- * @param {TargetData[]} targets
- */
-function onRenderCheck(data, result, actor, item, flags) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item, flags, postRenderActions) => {
 	if (item && item.system instanceof SpellDataModel) {
-		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
-		CommonSections.opportunity(data, item.system.opportunity, CHECK_DETAILS);
-		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
+		CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const inspector = CheckConfiguration.inspect(result);
 		const targets = inspector.getTargetsOrDefault();
 
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.actions(data, actor, item, targets, flags, inspector);
+			CommonSections.actions(data.sections, actor, item, targets, flags, inspector);
 		}
 
 		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
-/**tt
+/**
  * @property {String} fuid
  * @property {string} subtype.value
  * @property {string} summary.value

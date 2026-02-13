@@ -295,7 +295,15 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
  * @property {CharacterInfo[]} targets
  */
 
-async function calculateExpense(actor, item, targetActors, expense) {
+/**
+ * @param actor
+ * @param item
+ * @param targetActors
+ * @param expense
+ * @param {FUChatBuilder} chatBuilder
+ * @returns {Promise<void>}
+ */
+async function calculateExpense(actor, item, targetActors, expense, chatBuilder = undefined) {
 	const source = CharacterInfo.fromActor(actor);
 	const targets = CharacterInfo.fromTargetData(targetActors);
 	/** @type CalculateExpenseEvent  **/
@@ -307,7 +315,11 @@ async function calculateExpense(actor, item, targetActors, expense) {
 	};
 	await AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
 	await new Promise((resolve) => setTimeout(resolve, 250));
-	await AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
+	if (chatBuilder) {
+		chatBuilder.withPostRenderAction(AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event));
+	} else {
+		await AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
+	}
 }
 
 /**

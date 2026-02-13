@@ -46,17 +46,12 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-function onRenderCheck(data, result, actor, item) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item) => {
 	if (item && item.system instanceof ClassFeatureTypeDataModel && item.system.data instanceof WeaponModuleDataModel) {
 		/** @type WeaponModuleDataModel */
 		const weaponModule = item.system.data;
-		data.push(async () => ({
+		data.sections.push(async () => ({
 			order: CHECK_DETAILS,
 			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
 			data: {
@@ -72,7 +67,7 @@ function onRenderCheck(data, result, actor, item) {
 			},
 		}));
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
