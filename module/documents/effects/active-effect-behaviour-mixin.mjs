@@ -6,7 +6,7 @@ import { PseudoItem } from '../items/pseudo-item.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 import { Pipeline } from '../../pipelines/pipeline.mjs';
 import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
-import { SectionChatBuilder } from '../../helpers/section-chat-builder.mjs';
+import { FUChatBuilder } from '../../helpers/chat-builder.mjs';
 import { CommonEvents } from '../../checks/common-events.mjs';
 import { CommonSections } from '../../checks/common-sections.mjs';
 import { CHECK_FLAVOR } from '../../checks/default-section-order.mjs';
@@ -277,7 +277,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				actor = this.parent;
 			}
 
-			const chatBuilder = new SectionChatBuilder(actor);
+			const chatBuilder = new FUChatBuilder(actor);
 			CommonSections.template(
 				chatBuilder.renderData,
 				'chat/chat-active-effect',

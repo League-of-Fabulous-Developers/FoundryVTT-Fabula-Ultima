@@ -16,6 +16,7 @@ import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
 import { CommonEvents } from './common-events.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 
 const { DiceTerm, NumericTerm } = foundry.dice.terms;
 
@@ -441,95 +442,48 @@ async function renderCheck(result, actor, item, flags = {}) {
 	await CommonEvents.renderCheck(renderData, config, actor, item);
 	await CommonEvents.renderMessage(renderData, actor, item);
 
-	/**
-	 * @type {CheckSection[]}
-	 */
-	const allSections = [];
-	for (let value of renderData) {
-		value = await (value instanceof Function ? value() : value);
-		if (value) {
-			allSections.push(value);
-		}
-	}
-
-	const partitionedSections = allSections.reduce(
-		(agg, curr) => {
-			if (Number.isNaN(curr.order)) {
-				agg.flavor.push(curr);
-			} else {
-				agg.body.push(curr);
-			}
-			return agg;
+	// Merge flags
+	flags = foundry.utils.mergeObject(
+		{
+			[SYSTEM]: {
+				[Flags.ChatMessage.CheckV2]: result,
+				[Flags.ChatMessage.Item]: item?.uuid,
+			},
 		},
-		{ flavor: [], body: [] },
+		foundry.utils.mergeObject(additionalFlags, flags, { overwrite: false }),
+		{ overwrite: false, recursive: true },
 	);
-	/**
-	 * @type {CheckSection[]}
-	 */
-	const flavorSections = partitionedSections.flavor;
-	/**
-	 * @type {CheckSection[]}
-	 */
-	const bodySections = partitionedSections.body;
 
-	bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+	// Create the chat builder
+	const chatBuilder = new FUChatBuilder(actor, item).withFlags(flags).withRenderData(renderData);
 
+	// Add flavor
 	let flavor;
-	if (flavorSections.length) {
-		flavor = '';
-		for (let flavorSection of flavorSections) {
-			if (flavorSection.content) {
-				flavor = flavor + flavorSection.content;
-			} else {
-				flavor = flavor + (await foundry.applications.handlebars.renderTemplate(flavorSection.partial, flavorSection.data));
-			}
-		}
-	}
-	if (!flavor?.trim()) {
+	if (item) {
 		let linked = [];
 		const weaponReference = config.getWeaponReference();
 		if (weaponReference) {
 			linked.push(await fromUuid(weaponReference));
 		}
-
-		flavor = item
-			? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
-					item: item,
-					linked: linked,
-				})
-			: await FoundryUtils.renderTemplate('chat/chat-check-flavor-check', {
-					title: FU.checkTypes[result.type] || 'FU.RollCheck',
-					type: result.type,
-					label: config.getLabel(),
-				});
+		flavor = await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+			item: item,
+			linked: linked,
+		});
+	} else {
+		flavor = await FoundryUtils.renderTemplate('chat/chat-check-flavor-check', {
+			title: FU.checkTypes[result.type] || 'FU.RollCheck',
+			type: result.type,
+			label: config.getLabel(),
+		});
 	}
+	chatBuilder.withFlavor(flavor);
 
+	// Roll data
 	const rolls = [result.roll, ...result.additionalRolls].filter(Boolean);
+	chatBuilder.withRolls(rolls);
 
-	let speaker = ChatMessage.getSpeaker({ actor });
-	if (speaker.scene && speaker.token) {
-		const token = game.scenes.get(speaker.scene)?.tokens?.get(speaker.token);
-		if (token) {
-			speaker = ChatMessage.getSpeaker({ token });
-		}
-	}
-	const chatMessage = {
-		flavor: flavor,
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
-		rolls: rolls,
-		speaker: speaker,
-		flags: foundry.utils.mergeObject(
-			{
-				[SYSTEM]: {
-					[Flags.ChatMessage.CheckV2]: result,
-					[Flags.ChatMessage.Item]: item?.uuid,
-				},
-			},
-			foundry.utils.mergeObject(additionalFlags, flags, { overwrite: false }),
-			{ overwrite: false, recursive: true },
-		),
-	};
-	return void ChatMessage.create(chatMessage, { rollMode: 'roll' });
+	// Create the chat message
+	return chatBuilder.create();
 }
 
 /**

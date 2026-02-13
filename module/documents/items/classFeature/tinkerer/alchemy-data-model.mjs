@@ -5,7 +5,7 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import { Checks } from '../../../../checks/checks.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
-import { SectionChatBuilder } from '../../../../helpers/section-chat-builder.mjs';
+import { FUChatBuilder } from '../../../../helpers/chat-builder.mjs';
 import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
 import { StringUtils } from '../../../../helpers/string-utils.mjs';
 
@@ -194,14 +194,14 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				}
 
 				const content = await FoundryUtils.renderTemplate('feature/tinkerer/feature-alchemy-chat-message', data);
-				const builder = new SectionChatBuilder(actor, item);
+				const builder = new FUChatBuilder(actor, item);
 				CommonSections.itemFlavor(builder.sections, item);
 				CommonSections.content(builder.sections, content);
 				builder.withRolls([roll]);
 				builder.withFlags(flags);
 				await builder.create();
 			} else {
-				const builder = new SectionChatBuilder(actor, item);
+				const builder = new FUChatBuilder(actor, item);
 				CommonSections.itemFlavor(builder.sections, item);
 				const text = StringUtils.localize('FU.ClassFeatureAlchemyRollTableMissing');
 				CommonSections.genericText(builder.sections, text);

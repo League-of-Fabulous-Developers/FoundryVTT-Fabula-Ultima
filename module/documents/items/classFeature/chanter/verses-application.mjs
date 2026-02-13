@@ -9,7 +9,7 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
-import { SectionChatBuilder } from '../../../../helpers/section-chat-builder.mjs';
+import { FUChatBuilder } from '../../../../helpers/chat-builder.mjs';
 
 /**
  * @param {VerseDataModel} model
@@ -314,7 +314,7 @@ export class VersesApplication extends FUApplication {
 			},
 		];
 
-		const builder = new SectionChatBuilder(actor, item);
+		const builder = new FUChatBuilder(actor, item);
 		builder.withFlags(flags);
 		CommonSections.itemFlavor(builder.renderData, this.#verse.parent.parent);
 		CommonSections.tags(builder.renderData, tags);

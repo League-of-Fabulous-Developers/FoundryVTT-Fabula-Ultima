@@ -1,6 +1,9 @@
 import FoundryUtils from './foundry-utils.mjs';
 
-export class SectionChatBuilder {
+/**
+ * @desc Builder of actionable chat messages for the system.
+ */
+export class FUChatBuilder {
 	/**
 	 * @type {CheckRenderData}
 	 */
@@ -21,11 +24,20 @@ export class SectionChatBuilder {
 	 * @type {(Roll|Object)[]}
 	 */
 	#rolls;
+	/**
+	 * @type {String} Custom flavor text.
+	 */
+	#flavor;
+	/**
+	 * @type {Promise[]} Actions to execute after rendering the chat message.
+	 */
+	#postRenderActions;
 
 	constructor(actor, item) {
 		this.#actor = actor;
 		this.#item = item;
 		this.#flags = {};
+		this.#postRenderActions = [];
 	}
 
 	/**
@@ -42,6 +54,9 @@ export class SectionChatBuilder {
 		return this.#renderData;
 	}
 
+	/**
+	 * @returns {Object}
+	 */
 	get flags() {
 		return this.#flags;
 	}
@@ -53,6 +68,25 @@ export class SectionChatBuilder {
 
 	withRolls(rolls) {
 		this.#rolls = rolls;
+		return this;
+	}
+
+	withRenderData(renderData) {
+		this.#renderData = renderData;
+		return this;
+	}
+
+	withFlavor(flavor) {
+		this.#flavor = flavor;
+		return this;
+	}
+
+	/**
+	 * @param {Promise} action
+	 * @returns {FUChatBuilder}
+	 */
+	withPostRenderAction(action) {
+		this.#postRenderActions.push(action);
 		return this;
 	}
 
@@ -94,7 +128,7 @@ export class SectionChatBuilder {
 		const bodySections = partitionedSections.body;
 		bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-		// Flavor text
+		// Gather flavor text
 		let flavor;
 		if (flavorSections.length) {
 			flavor = '';
@@ -106,12 +140,18 @@ export class SectionChatBuilder {
 				}
 			}
 		}
+		// TODO: Maybe prioritize?
+		// If no flavor text was provided...
 		if (!flavor?.trim()) {
-			flavor = item
-				? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
-						item: item,
-					})
-				: '';
+			if (this.#flavor) {
+				flavor = this.#flavor;
+			} else {
+				flavor = item
+					? await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+							item: item,
+						})
+					: '';
+			}
 		}
 
 		// Resolve speaker
@@ -139,6 +179,11 @@ export class SectionChatBuilder {
 		}
 
 		// Render to chat
-		return void ChatMessage.create(chatMessage, options);
+		await ChatMessage.create(chatMessage, options);
+
+		// Execute post-render actions
+		for (const promise of this.#postRenderActions) {
+			await promise;
+		}
 	}
 }

@@ -12,7 +12,7 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { FeatureTraits } from './traits.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
-import { SectionChatBuilder } from '../helpers/section-chat-builder.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 
 /**
@@ -61,7 +61,7 @@ async function handleArcanum(actor, item) {
 			await actor.update({
 				'system.equipped.arcanum': null,
 			});
-			const builder = new SectionChatBuilder(actor, item);
+			const builder = new FUChatBuilder(actor, item);
 			CommonSections.itemFlavor(builder.sections, currentArcanum);
 			const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
 				item: currentArcanum,
@@ -108,7 +108,7 @@ async function handleArcanum(actor, item) {
 				await actor.update({
 					'system.equipped.arcanum': selectedArcana.id,
 				});
-				const builder = new SectionChatBuilder(actor, item);
+				const builder = new FUChatBuilder(actor, item);
 				CommonSections.itemFlavor(builder.sections, selectedArcana);
 				const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
 					item: selectedArcana,

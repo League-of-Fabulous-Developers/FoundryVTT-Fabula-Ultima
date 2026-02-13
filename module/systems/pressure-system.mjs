@@ -5,7 +5,7 @@ import { FU } from '../helpers/config.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
-import { SectionChatBuilder } from '../helpers/section-chat-builder.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 
@@ -77,7 +77,7 @@ async function processVulnerability(context) {
  * @returns {Promise<void>}
  */
 async function createStaggerChatMessage(context) {
-	let builder = new SectionChatBuilder(context.sourceActor, context.item);
+	let builder = new FUChatBuilder(context.sourceActor, context.item);
 	let content = await FoundryUtils.renderTemplate('chat/chat-stagger-message', {
 		sourceActor: context.sourceActor,
 		actor: context.actor,
