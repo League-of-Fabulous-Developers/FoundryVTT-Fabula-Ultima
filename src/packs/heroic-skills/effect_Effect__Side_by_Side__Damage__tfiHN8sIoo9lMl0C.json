@@ -1,18 +1,19 @@
 {
-  "folder": "5kSHxgDcJ4VNObCO",
-  "name": "Effect: Side by Side",
+  "folder": "FgxSEVMLdU9kxgMn",
+  "name": "Effect: Side by Side (Damage)",
   "type": "effect",
   "_id": "tfiHN8sIoo9lMl0C",
-  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "img": "icons/sundries/misc/pet-collar-red.webp",
   "system": {
-    "fuid": "side-by-side",
+    "fuid": "effect-side-by-side-damage",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
-      "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+      "img": "icons/sundries/misc/pet-collar-red.webp",
       "duration": {
         "rounds": null,
         "startTime": null,
@@ -23,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Side by Side",
+      "name": "Side by Side (Damage)",
       "_id": "nJHoE47tFyNEOMiP",
       "type": "base",
       "system": {
@@ -37,7 +38,17 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [
         {
@@ -57,12 +68,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744251100445,
-        "modifiedTime": 1744251193578,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771014029047,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!tfiHN8sIoo9lMl0C.nJHoE47tFyNEOMiP"
@@ -77,12 +88,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744251088055,
-    "modifiedTime": 1744251188248,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771018668022,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!tfiHN8sIoo9lMl0C"

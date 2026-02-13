@@ -1,14 +1,14 @@
 {
   "name": "Arcane Sacrifice",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/death/skeleton-eye-skull-glow-orange.webp",
   "system": {
     "summary": {
       "value": "Dismiss an Arcanum to protect your group."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong> and <strong>Guardian</strong>.</p></blockquote><p>Once per scene, when you and/or one or more allies you can see are reduced to 0 Hit Points, if you are <strong>merged</strong> with an Arcanum, you may instead be reduced to exactly 1 Hit Point. If you do, you must immediately <strong>dismiss</strong> that Arcanum (without applying any dismiss effect), and cannot summon them again until the end of the scene.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong> and <strong>Guardian</strong>.</p><hr /><p>Once per scene, when you and/or one or more allies you can see are reduced to 0 Hit Points, if you are <strong>merged</strong> with an Arcanum, you may instead be reduced to exactly 1 Hit Point. If you do, you must immediately <strong>dismiss</strong> that Arcanum (without applying any dismiss effect), and cannot summon them again until the end of the scene.</p><hr /><p><strong>You Receive:</strong> @GAIN[1 hp]</p>",
     "class": {
-      "value": "Necromancer"
+      "value": ""
     },
     "showTitleCard": {
       "value": false
@@ -47,10 +47,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1769030551451,
-    "lastModifiedBy": "bgUzjEHd80A79gwp"
+    "modifiedTime": 1770969198987,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "folder": "L3ZyYRKlHEggv0aF",
+  "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "uDjrET5eZnO6yaoQ",
   "ownership": {
     "default": 0,

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Force enemies to spend MP to act after hitting with a spear."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Weaponmaster</strong>.</p></blockquote><p>After you hit one or more creatures with a <strong>melee </strong>attack using a weapon that belongs to the <strong>spear </strong>Category, if you have <strong>no other weapon equipped</strong>, you may spend 20 Mind Points and choose one of those creatures. If you do so, the attack deals <strong>half </strong>the normal amount of damage to each of its targets, and you choose one type of action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, <strong>Spell</strong>, or <strong>Skill</strong>. From now on, the chosen creature must spend 10 Mind points whenever they wish to perform that type of action. If they can’t, they must perform a different type of action. This effect lasts until the start of your next turn, or until you use this Skill again.</p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[20 mp]</p></li><li><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.SZAZdgiDWIvxWE00]{Effect: Iron Forest}</p></li></ul>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>After you hit one or more creatures with a <strong>melee </strong>attack using a weapon that belongs to the <strong>spear </strong>Category, if you have <strong>no other weapon equipped</strong>, you may spend 20 Mind Points and choose one of those creatures. If you do so, the attack deals <strong>half </strong>the normal amount of damage to each of its targets, and you choose one type of action among the following: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, <strong>Skill</strong>, or <strong>Spell</strong>. From now on, the chosen creature must spend 10 Mind points whenever they wish to perform that type of action. If they can’t, they must perform a different type of action. This effect lasts until the start of your next turn, or until you use this Skill again.</p><hr /><p><strong>You Spend:</strong> @LOSS[20 mp]<br /><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.SZAZdgiDWIvxWE00], @EFFECT[Compendium.projectfu.heroic-skills.Item.oRft212JDPyEPtgK], @EFFECT[Compendium.projectfu.heroic-skills.Item.OyKecnR9UFPl2K54], @EFFECT[Compendium.projectfu.heroic-skills.Item.ypy8r2tt2cuQEqF6], or @EFFECT[Compendium.projectfu.heroic-skills.Item.hCtWyKj1o9x8UfdL]</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684646291,
-    "modifiedTime": 1744077489351,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770763228455,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

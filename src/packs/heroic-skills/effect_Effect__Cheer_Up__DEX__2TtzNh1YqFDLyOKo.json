@@ -1,0 +1,96 @@
+{
+  "folder": "41GXengP17rM8Gl4",
+  "name": "Effect: Cheer Up (DEX)",
+  "type": "effect",
+  "_id": "2TtzNh1YqFDLyOKo",
+  "img": "icons/skills/social/peace-luck-insult.webp",
+  "system": {
+    "fuid": "effect-cheer-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Cheer Up (DEX)",
+      "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "p2eB16wif50bOYGt",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.dex",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your <strong>Dexterity</strong> is increased by one die size. This lasts until the end of the scene or until the originator uses <strong>My Trust in You</strong> on you again.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770878341194,
+        "modifiedTime": 1770878441331,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!2TtzNh1YqFDLyOKo.p2eB16wif50bOYGt"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770878329117,
+    "modifiedTime": 1770884913223,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!2TtzNh1YqFDLyOKo"
+}

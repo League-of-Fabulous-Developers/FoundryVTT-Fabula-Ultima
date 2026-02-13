@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "54A0ai9tw3nr1izz",
+  "name": "Iron Forest",
+  "color": null,
+  "sorting": "a",
+  "_id": "a3hFt1BMREeCe2QX",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!a3hFt1BMREeCe2QX"
+}

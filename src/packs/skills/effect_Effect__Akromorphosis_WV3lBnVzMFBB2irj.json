@@ -68,7 +68,7 @@
       "_key": "!items.effects!WV3lBnVzMFBB2irj.LxZDU3Qgsf5a6Vfh"
     }
   ],
-  "sort": 100000,
+  "sort": 500000,
   "ownership": {
     "default": 0,
     "esOkelwPNblkbxW3": 3
@@ -77,12 +77,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1740171578030,
-    "modifiedTime": 1744557393361,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770961248343,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!WV3lBnVzMFBB2irj"

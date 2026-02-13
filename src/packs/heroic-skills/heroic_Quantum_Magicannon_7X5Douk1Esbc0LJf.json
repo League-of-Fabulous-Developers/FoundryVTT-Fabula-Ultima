@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Quantum Magicannon",
   "type": "heroic",
-  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "img": "icons/commodities/tech/tube-chamber-lightning.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve your magicannon and use it for an explosive attack."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Magitech</strong> benefit from the <strong>Gadget</strong> Skill.</p></blockquote><p>Your attacks with the @UUID[Compendium.projectfu.consumables.Item.AbazTRyaMTW4ouhx]{Magicannon (Item)} deal 5 extra damage.</p><p>When you perform the <strong>Attack</strong> action with your <strong>magicannon</strong>, , if you have no other weapon equipped, you may choose one option: destroy the <strong>magicannon</strong>, then create and equip a new one <strong>for free</strong> (ignore the IP cost), using this newly equipped <strong>magicannon</strong> for your attack; <strong>or</strong> the attack gains <strong>multi (3)</strong>; <strong>or</strong> you perform two separate attacks instead of one, following the rules for <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>).</p><hr /><ul><li><p><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>Magicannon Receives:</strong> @UUID[Compendium.projectfu.equipment-effects.Item.Xyj06G4k7oBerngN]{Weapon Damage Up}</span></p></li></ul>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Magitech</strong> benefit from the <strong>Gadget</strong> Skill.</p><hr /><p>Your attacks with the @UUID[Compendium.projectfu.consumables.Item.AbazTRyaMTW4ouhx]{Magicannon (Item)} deal 5 extra damage.</p><p>When you perform the <strong>Attack</strong> action with your <strong>magicannon</strong>, , if you have no other weapon equipped, you may choose one option:</p><ul><li><p>Destroy the <strong>magicannon</strong>, then create and equip a new one <strong>for free</strong> (ignore the IP cost), using this newly equipped <strong>magicannon</strong> for your attack.</p></li><li><p>The attack gains <strong>multi (3)</strong>.</p></li><li><p>You perform two separate attacks instead of one, following the rules for <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>).</p></li></ul><hr /><p><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>Magicannon Receives:</strong> @EFFECT[Compendium.projectfu.equipment-effects.Item.Xyj06G4k7oBerngN]</span></p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -108,8 +108,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1769014297778,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771011944046,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,0 +1,94 @@
+{
+  "folder": "a3hFt1BMREeCe2QX",
+  "name": "Effect: Iron Forest (Objective)",
+  "type": "effect",
+  "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
+  "system": {
+    "fuid": "effect-iron-forest",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Iron Forest (Objective)",
+      "_id": "qy6MFXprvU5wCxro",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          },
+          "elements": {}
+        }
+      },
+      "changes": [],
+      "description": "<p>You must spend 10 MP whenever you wish to perform the <strong>Objective </strong>action. If you can’t, you must perform a different type of action. This effect lasts until the start of the originator's next turn, or until the originator uses this Skill again.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770763113468
+      },
+      "_key": "!items.effects!OyKecnR9UFPl2K54.qy6MFXprvU5wCxro"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "uG2TkwmswfdRqaAv": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770763066137,
+    "modifiedTime": 1771018648982,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_id": "OyKecnR9UFPl2K54",
+  "sort": 150000,
+  "_key": "!items!OyKecnR9UFPl2K54"
+}

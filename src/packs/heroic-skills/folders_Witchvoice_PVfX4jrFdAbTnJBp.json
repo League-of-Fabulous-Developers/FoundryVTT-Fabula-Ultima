@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Witchvoice",
+  "color": null,
+  "sorting": "a",
+  "_id": "PVfX4jrFdAbTnJBp",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!PVfX4jrFdAbTnJBp"
+}

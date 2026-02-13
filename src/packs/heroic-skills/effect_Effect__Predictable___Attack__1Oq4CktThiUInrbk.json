@@ -1,18 +1,19 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
-  "name": "Effect: Predictable!",
+  "folder": "0jxgBseidPOQjSNK",
+  "name": "Effect: Predictable! (Attack)",
   "type": "effect",
   "_id": "1Oq4CktThiUInrbk",
-  "img": "icons/sundries/books/book-open-purple.webp",
+  "img": "icons/tools/scribal/magnifying-glass.webp",
   "system": {
     "fuid": "effect-predictable",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
-      "img": "icons/sundries/books/book-open-purple.webp",
+      "img": "icons/tools/scribal/magnifying-glass.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -23,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Predictable!",
+      "name": "Predictable! (Attack)",
       "_id": "6Nk8ZZvyW3wreVGc",
       "type": "base",
       "system": {
@@ -34,13 +35,23 @@
         "duration": {
           "event": "startOfTurn",
           "interval": 1,
-          "tracking": "self",
+          "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p><span>Choose one type of action among the following: <strong>Attack, Guard, Objective, Spell, </strong>or<strong> Skill</strong>. Until the start of your next turn, the creature must spend @LOSS[20 hp] whenever they wish to perform that action. If they can't, they must perform a different action.</span></p>",
+      "description": "<p><span>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Attack</strong> action. If you can't, you must perform a different action.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,18 +61,18 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744067540926,
-        "modifiedTime": 1744067673848,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771013525349,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!1Oq4CktThiUInrbk.6Nk8ZZvyW3wreVGc"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -70,12 +81,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744067522060,
-    "modifiedTime": 1744067530745,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771018626673,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!1Oq4CktThiUInrbk"

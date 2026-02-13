@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Card Vanguard",
+  "color": null,
+  "sorting": "a",
+  "_id": "bzi1aleLpp03Cctd",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!bzi1aleLpp03Cctd"
+}

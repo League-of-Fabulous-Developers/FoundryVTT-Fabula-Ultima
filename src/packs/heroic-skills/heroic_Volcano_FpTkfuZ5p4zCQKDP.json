@@ -9,7 +9,7 @@
     "summary": {
       "value": "Learn the Volcano spell."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Elementalist</strong> Class.</p></blockquote><p><span>You learn the ultimate <strong>Elementalist</strong> spell: <strong>Volcano</strong>.</span></p><table style=\"width:96.2791%\" border=\"1\"><colgroup><col style=\"width:15.3584%\"></col><col style=\"width:12.9693%\"></col><col style=\"width:27.3038%\"></col><col style=\"width:44.3686%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Volcano</strong></td><td style=\"text-align:center\"><strong>MP:</strong> 40</td><td style=\"text-align:center\"><strong>Target:</strong> Special</td><td style=\"text-align:center\"><strong>Duration:</strong> Instantaneous</td></tr></tbody></table><p><span>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: you deal 50 <strong>fire</strong> damage to one creature you can see; <strong>or</strong> you deal 30 <strong>fire</strong> damage to every enemy you can see. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</span></p><p><span>Damage dealt by this spell ignores Resistances and Immunities.</span></p><hr /><p>Add the @UUID[Compendium.projectfu.spells.Item.BfZqKbr38FBxLtmH]{Volcano} spell to your character sheet from the <strong>Elementalist</strong> spell list.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Elementalist</strong> Class.</p><hr /><p><span>You learn the ultimate <strong>Elementalist</strong> spell: <strong>Volcano</strong>.</span></p><table style=\"width:96.2791%\" border=\"1\"><colgroup><col style=\"width:15.3584%\"></col><col style=\"width:12.9693%\"></col><col style=\"width:27.3038%\"></col><col style=\"width:44.3686%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Volcano</strong></td><td style=\"text-align:center\"><strong>MP:</strong> 40</td><td style=\"text-align:center\"><strong>Target:</strong> Special</td><td style=\"text-align:center\"><strong>Duration:</strong> Instantaneous</td></tr></tbody></table><p><span>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: you deal 50 <strong>fire</strong> damage to one creature you can see; <strong>or</strong> you deal 30 <strong>fire</strong> damage to every enemy you can see. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</span></p><p><span>Damage dealt by this spell ignores Resistances and Immunities.</span></p><hr /><p>Add the @UUID[Compendium.projectfu.spells.Item.BfZqKbr38FBxLtmH]{Volcano} spell to your character sheet from the <strong>Elementalist</strong> spell list.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,7 +112,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706587625271,
-    "modifiedTime": 1770620342989,
+    "modifiedTime": 1770711844321,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Gain several benefits from Dodge and Stolen Time."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Rogue</strong>, and must have acquired one or more Skills among <strong>Dodge</strong> and <strong>Stolen Time</strong>.</p></blockquote><p>You gain a bonus to your Initiative modiﬁer equal to <strong>【your Skill Level in Dodge + your Skill Level in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【your SL in Dodge】 </strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to <strong>【your SL in Stolen Time】</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Rogue</strong>, and must have acquired one or more Skills among <strong>Dodge</strong> and <strong>Stolen Time</strong>.</p><hr /><p>You gain a bonus to your Initiative modiﬁer equal to <strong>【your Skill Level in Dodge + your Skill Level in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【your SL in Dodge】 </strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to <strong>【your SL in Stolen Time】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -113,7 +113,18 @@
       "name": "Bullet Time",
       "_id": "oeo4K8RBL4Xwo6xH",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.all",
@@ -134,7 +145,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain a bonus to your Initiative modiﬁer equal to <strong>【your Skill Level in Dodge + your Skill Level in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【your SL in Dodge】 </strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to <strong>【your SL in Stolen Time】</strong>.</p>",
+      "description": "<p>You gain a bonus to your Initiative modiﬁer equal to<strong>【SL in Dodge + SL in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to<strong>【SL in Dodge】</strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to<strong>【SL in Stolen Time】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -149,27 +160,30 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743135978096,
-        "modifiedTime": 1743954104997,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770954199497,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!RD8MoXlaZMNolEnN.oeo4K8RBL4Xwo6xH"
     }
   ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180863831,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770953636555,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

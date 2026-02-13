@@ -1,7 +1,7 @@
 {
   "name": "Fleeting Moment",
   "type": "heroic",
-  "img": "icons/skills/melee/weapons-crossed-swords-purple.webp",
+  "img": "icons/skills/melee/swords-parry-block-blue.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Add High Roll when you Counterattack with a sword."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Weaponmaster </strong>Class, and must have acquired the <strong>Counterattack </strong>Skill.</p></blockquote><p>When you perform a @UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack}<strong> </strong>using a <strong>melee </strong>weapon that belongs to the <strong>sword </strong>Category, you may add your High Roll to the damage dealt by the attack (you do not have to treat it as being 0). </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Weaponmaster </strong>Class, and must have acquired the <strong>Counterattack </strong>Skill.</p><hr /><p>When you perform a @UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack}<strong> </strong>using a <strong>melee </strong>weapon that belongs to the <strong>sword </strong>Category, you may add your High Roll to the damage dealt by the attack (you do not have to treat it as being 0). </p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684612525,
-    "modifiedTime": 1743170687052,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770756882829,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

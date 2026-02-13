@@ -1,0 +1,96 @@
+{
+  "folder": "bzi1aleLpp03Cctd",
+  "name": "Effect: Card Vanguard (Earth)",
+  "type": "effect",
+  "img": "icons/sundries/gaming/playing-cards-grey.webp",
+  "system": {
+    "fuid": "effect-card-vanguard-earth",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Card Vanguard (Earth)",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "REv4Gjq9KCxwOKvk",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.earth",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain Resistance to <strong>earth </strong>until the end of the current turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1770968154091
+      },
+      "_key": "!items.effects!WXh8k8YTJeGtdzLg.REv4Gjq9KCxwOKvk"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770968118421,
+    "modifiedTime": 1771018956709,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "WXh8k8YTJeGtdzLg",
+  "sort": 200000,
+  "_key": "!items!WXh8k8YTJeGtdzLg"
+}

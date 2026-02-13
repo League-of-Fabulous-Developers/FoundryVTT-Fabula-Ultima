@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Greater Ecdysis",
   "type": "heroic",
-  "img": "icons/creatures/abilities/wolf-howl-moon-white.webp",
+  "img": "icons/creatures/eyes/humanoid-single-purple-blue.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Ecdysis allows you to end status effects and spells."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Mutant</strong> Class.</p></blockquote><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options: you recover from all status effects, <strong>and/or</strong> if you are affected by one or more spells with a <strong>duration </strong>of “Scene”, you are no longer affected by any of those spells.</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Mutant</strong> Class.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options: you recover from all status effects, <strong>and/or</strong> if you are affected by one or more spells with a <strong>duration </strong>of “Scene”, you are no longer affected by any of those spells.</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Mutant"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -96,17 +96,100 @@
     "source": "FUTF174",
     "fuid": "greater-ecdysis"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Greater Ecdysis",
+      "img": "icons/creatures/eyes/humanoid-single-purple-blue.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "HfMkk5jM1Y82YWoo": {
+              "type": "ruleElement",
+              "_id": "HfMkk5jM1Y82YWoo",
+              "trigger": {
+                "_id": "OFmG6vwHkuHqETYz",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "ecdysis"
+              },
+              "actions": {
+                "eJC1hdN9CJQQcshD": {
+                  "type": "messageRuleAction",
+                  "_id": "eJC1hdN9CJQQcshD",
+                  "message": "<p>You may recover a status or dispel on yourself.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "dNIr7MVVPt2HfMst",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770960949158,
+        "modifiedTime": 1770961052237,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!gMC0t7NhWgv6BTcl.dNIr7MVVPt2HfMst"
+    }
+  ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1743171079072,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770960938906,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

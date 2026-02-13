@@ -1,0 +1,101 @@
+{
+  "folder": "dbvm4xOW2m0gFmt1",
+  "name": "Effect: It Lives! (Absorb & HP)",
+  "type": "effect",
+  "_id": "6GuttgsSqvf1LmOo",
+  "img": "icons/environment/creatures/golem-stone-purple.webp",
+  "system": {
+    "fuid": "effect-it-lives-absorb-hp",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "It Lives! (Absorb & HP)",
+      "img": "icons/environment/creatures/golem-stone-purple.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "DwTfCw0g4bBQadvK",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.bolt.current",
+          "mode": 5,
+          "value": "3",
+          "priority": -1
+        },
+        {
+          "key": "system.resources.hp.bonus",
+          "mode": 2,
+          "value": "2*~&sl('visionary')",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your base Affinity towards <strong>bolt</strong> damage is replaced with <strong>Absorption</strong>, and your maximum Hit Point score is increased by an amount equal to<strong>【twice the wayfarer's SL in Visionary】</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771010632022,
+        "modifiedTime": 1771010788491,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!6GuttgsSqvf1LmOo.DwTfCw0g4bBQadvK"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771010527364,
+    "modifiedTime": 1771018982303,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!6GuttgsSqvf1LmOo"
+}

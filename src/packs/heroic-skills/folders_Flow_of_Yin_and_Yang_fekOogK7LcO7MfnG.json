@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Flow of Yin and Yang",
+  "color": null,
+  "sorting": "a",
+  "_id": "fekOogK7LcO7MfnG",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!fekOogK7LcO7MfnG"
+}

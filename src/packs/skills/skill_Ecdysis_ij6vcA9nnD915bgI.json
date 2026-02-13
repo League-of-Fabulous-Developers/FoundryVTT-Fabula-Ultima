@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend 10 HP to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p><hr /><p><strong>You Receive:</strong> @TYPE[affinity air resistance], @TYPE[affinity bolt resistance], @TYPE[affinity dark resistance], @TYPE[affinity earth resistance], @TYPE[affinity fire resistance], @TYPE[affinity ice resistance], @TYPE[affinity light resistance], or @TYPE[affinity poison resistance]</p>",
+    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend 10 HP to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.Kty7mXV2rYWYlh7P], @EFFECT[Compendium.projectfu.skills.Item.oRw9IgQb5O3y925W], @EFFECT[Compendium.projectfu.skills.Item.QYm9cOLsAy3z8lYk], @EFFECT[Compendium.projectfu.skills.Item.AalpjgPYtAnE2xUG], @EFFECT[Compendium.projectfu.skills.Item.35Nc53wsvpkolIJo], @EFFECT[Compendium.projectfu.skills.Item.MNqeb3czLk2niQCJ], @EFFECT[Compendium.projectfu.skills.Item.uw4oQDHCsyWLtTCO], or @EFFECT[Compendium.projectfu.skills.Item.ShWqhaoHw5jU8vLU]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1770428828756,
+    "modifiedTime": 1770961514908,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

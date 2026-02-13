@@ -10,7 +10,7 @@
     "summary": {
       "value": "Use Trade Points instead of Fabula Points and improve settlements with donations."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Merchant</strong> Class, and must have acquired the <strong>Real Treasure</strong> and <strong>Winds of Trade</strong> Skills</p></blockquote><p>When you need to spend one or more Fabula Points, if you are <strong>not</strong> spending them to <strong>alter the story</strong> (see <strong>Core Rulebook</strong>, page <strong>98</strong>), you may spend that many <strong>Trade Points</strong> instead. Describe which memories of your trades and journeys give you strength!</p><p>Additionally, when you gain <strong>two or more</strong> Trade Points through the @UUID[Compendium.projectfu.skills.Item.lFYCdvybWS7x8e6L]{Real Treasure} or @UUID[Compendium.projectfu.skills.Item.zXB7pBEv1JED1xkh]{Winds of Trade} Skills, you may choose to gain <strong>exactly 1 Trade Point</strong> instead. If you do, choose a settlement within <strong>1 travel day</strong> of your position and increase its <strong>prosperity</strong> by an amount equal to <strong>【your Skill Level in Winds of Trade + your Skill Level in Real Treasure】</strong>; a settlement's <strong>prosperity</strong> starts at 0 and has no upper limit.</p><p>The chart below indicates the effects of your donations on the settlement and on anything within <strong>1 travel day</strong> of it.</p><table border><tbody><tr><th><p>Prosperity</p></th><th><p>Effects within 1 travel day of the settlement</p></th></tr><tr><td><p>10 or more</p></td><td><p>When you or an ally need to pay a cost in zenit, whatever the reason, that cost is <strong>halved</strong>.</p></td></tr><tr><td><p>15 or more</p></td><td><p>People gladly accommodate you and your allies: while in this area, you can always <strong>rest</strong> freely, without spending zenit. Furthermore, any <strong>travel rolls</strong> made in this area never use a die greater than <strong>d8</strong>.</p></td></tr><tr><td><p>20 or more</p></td><td><p>When a Villain in this area spends Ultima Points, they must spend <strong>twice</strong> as many Ultima Points.</p></td></tr></tbody></table>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Merchant</strong> Class, and must have acquired the <strong>Real Treasure</strong> and <strong>Winds of Trade</strong> Skills.</p><hr /><p>When you need to spend one or more Fabula Points, if you are <strong>not</strong> spending them to <strong>alter the story</strong> (see <strong>Core Rulebook</strong>, page <strong>98</strong>), you may spend that many <strong>Trade Points</strong> instead. Describe which memories of your trades and journeys give you strength!</p><p>Additionally, when you gain <strong>two or more</strong> Trade Points through the @UUID[Compendium.projectfu.skills.Item.lFYCdvybWS7x8e6L]{Real Treasure} or @UUID[Compendium.projectfu.skills.Item.zXB7pBEv1JED1xkh]{Winds of Trade} Skills, you may choose to gain <strong>exactly 1 Trade Point</strong> instead. If you do, choose a settlement within <strong>1 travel day</strong> of your position and increase its <strong>prosperity</strong> by an amount equal to <strong>【your Skill Level in Winds of Trade + your Skill Level in Real Treasure】</strong>; a settlement's <strong>prosperity</strong> starts at 0 and has no upper limit.</p><p>The chart below indicates the effects of your donations on the settlement and on anything within <strong>1 travel day</strong> of it.</p><table border><tbody><tr><th><p>Prosperity</p></th><th><p>Effects within 1 travel day of the settlement</p></th></tr><tr><td><p>10 or more</p></td><td><p>When you or an ally need to pay a cost in zenit, whatever the reason, that cost is <strong>halved</strong>.</p></td></tr><tr><td><p>15 or more</p></td><td><p>People gladly accommodate you and your allies: while in this area, you can always <strong>rest</strong> freely, without spending zenit. Furthermore, any <strong>travel rolls</strong> made in this area never use a die greater than <strong>d8</strong>.</p></td></tr><tr><td><p>20 or more</p></td><td><p>When a Villain in this area spends Ultima Points, they must spend <strong>twice</strong> as many Ultima Points.</p></td></tr></tbody></table>",
     "isFavored": {
       "value": false
     },
@@ -50,17 +50,20 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.KT1FGhqeq1MYkrtJ",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1743170918964,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770884258782,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "KT1FGhqeq1MYkrtJ",

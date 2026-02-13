@@ -1,7 +1,7 @@
 {
   "name": "Showstopper",
   "type": "heroic",
-  "img": "icons/magic/control/control-influence-crown-yellow.webp",
+  "img": "icons/magic/light/explosion-star-glow-blue.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Perform three dances, then take a temporary break."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Dancer</strong> Class.</p></blockquote><p>At the start of your turn during a conflict, if you have <strong>nomartial armor </strong>equipped, you may spend 1 Fabula Point to immediately perform<strong> up to three different dances </strong>among those you know, in the order you prefer and without paying their MP cost. If you do, you <strong>cannot perform dances in any way</strong> until the end of your next turn.</p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[1 fp]</p></li><li><p><strong>You Suffer:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.WJD7tqc73P24UFg4]{Effect: Showstopper}</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Dancer</strong> Class.</p><hr /><p>At the start of your turn during a conflict, if you have no<strong> martial armor </strong>equipped, you may spend 1 Fabula Point to immediately perform<strong> up to three different dances </strong>among those you know, in the order you prefer and without paying their MP cost. If you do, you <strong>cannot perform dances in any way</strong> until the end of your next turn.</p><hr /><p><strong>You Spend:</strong> @LOSS[1 fp]<br /><strong>You Suffer:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.WJD7tqc73P24UFg4]</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684713224,
-    "modifiedTime": 1744507348034,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770764844294,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

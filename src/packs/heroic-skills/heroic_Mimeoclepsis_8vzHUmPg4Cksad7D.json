@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Mimeoclepsis",
   "type": "heroic",
-  "img": "icons/creatures/abilities/paw-print-yellow.webp",
+  "img": "icons/creatures/abilities/wolf-heads-swirl-purple.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Learn spells through the Mutant's Genoclepsis."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes between <strong>Chimerist</strong> and <strong>Mutant</strong>, and have acquired the <strong>Genoclepsis</strong> and <strong>Spell Mimic</strong> Skill of the two Classes.</p></blockquote><p>When you use the @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis} Skill on an NPC, if that NPC's Species is among the ones you can learn spells from with the <strong>Spell Mimic</strong> Skill (<strong>Core Rulebook</strong>, page <strong>183</strong>), the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spell, you may <strong>learn one of those spells</strong> as a Chimerist spell of your own.</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chimerist</strong> and <strong>Mutant</strong>, and must have acquired both the <strong>Genoclepsis</strong> and <strong>Spell Mimic</strong> Skills.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis} Skill on an NPC, if that NPC’s Species is among those you can learn spells from with the <strong>Spell Mimic</strong> Skill, the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spells, you may learn <strong>one of those spells</strong> as a Chimerist spell of your own.</p>",
     "isFavored": {
       "value": false
     },
@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Chimerist"
+      "value": ""
     },
     "useWeapon": {
       "accuracy": {
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -98,15 +98,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1743171049899,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770962018104,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

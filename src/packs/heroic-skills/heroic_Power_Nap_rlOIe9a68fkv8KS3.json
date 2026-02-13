@@ -10,7 +10,7 @@
     "summary": {
       "value": "Take a little nap during a conﬂict to regain your energies."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Guardian</strong>, <strong>Merchant</strong>, and <strong>Wayfarer</strong></p></blockquote><p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】 </strong>and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the @UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect} Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> ( @ICON[offensive] ).</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[20+($cl/2) hp] and @GAIN[20+($cl/2) mp]</p></li><li><p><strong>You Suffer:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.dweyiPp3Ujt9sE43]{Effect: Power Nap}</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Guardian</strong>, <strong>Merchant</strong>, and <strong>Wayfarer</strong>.</p><hr /><p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】 </strong>and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the @UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect} Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> (@ICON[offensive]).</p><hr /><p><strong>You Recover:</strong> @GAIN[20+($cl/2) hp]{20 + Half Level HP} and @GAIN[20+($cl/2) mp]{20 + Half Level MP}<br /><strong>You Suffer:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.dweyiPp3Ujt9sE43]</p>",
     "isFavored": {
       "value": false
     },
@@ -50,17 +50,20 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.rlOIe9a68fkv8KS3",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744250856904,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770886284603,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "rlOIe9a68fkv8KS3",

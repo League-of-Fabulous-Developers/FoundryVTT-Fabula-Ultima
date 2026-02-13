@@ -10,7 +10,7 @@
     "summary": {
       "value": "Your spells can remove status effects and spells from targets."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Spiritist</strong></p></blockquote><p>When you hit one or more creatures with an offensive spell ( @ICON[offensive] ), if you have an <strong>arcane</strong> weapon equipped and the <strong>High Roll</strong> of your <strong>Magic Check</strong> is <strong>8 or higher</strong>, you may have each of those creatures no longer be affected by <strong>all</strong> spells with a duration of \"\"Scene\"\" that are currently affecting them.</p><p>When you cast a spell targeting one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one status effect among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if you do, each target recovers from the chosen status effect.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Spiritist</strong>.</p><hr /><p>When you hit one or more creatures with an offensive spell (@ICON[offensive]), if you have an <strong>arcane</strong> weapon equipped and the <strong>High Roll</strong> of your <strong>Magic Check</strong> is <strong>8 or higher</strong>, you may have each of those creatures no longer be affected by <strong>all</strong> spells with a duration of \"Scene\" that are currently affecting them.</p><p>When you cast a spell targeting one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one status effect among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if you do, each target recovers from the chosen status effect.</p>",
     "isFavored": {
       "value": false
     },
@@ -48,19 +48,160 @@
     "source": "FUNF164",
     "fuid": "cleansing-moonlight"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cleansing Moonlight",
+      "img": "icons/magic/light/hand-sparks-smoke-teal.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "kkmO2TYrtcqcjRRP": {
+              "type": "ruleElement",
+              "_id": "kkmO2TYrtcqcjRRP",
+              "trigger": {
+                "_id": "1BBiVlfD79SJ82yK",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy",
+                  "magic"
+                ],
+                "itemGroups": [
+                  "attack",
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "QclBLkqSfJtjVFb6": {
+                  "type": "checkRulePredicate",
+                  "_id": "QclBLkqSfJtjVFb6",
+                  "outcome": "success",
+                  "result": null
+                },
+                "TeJinREnV7kKVb7v": {
+                  "type": "weaponRulePredicate",
+                  "_id": "TeJinREnV7kKVb7v",
+                  "categories": [
+                    "arcane"
+                  ]
+                },
+                "mBOiMa0hmUbjHPtv": {
+                  "type": "spellRulePredicate",
+                  "_id": "mBOiMa0hmUbjHPtv",
+                  "offensive": "true"
+                }
+              },
+              "actions": {
+                "rmcmu307SqWmZK3r": {
+                  "type": "messageRuleAction",
+                  "_id": "rmcmu307SqWmZK3r",
+                  "message": "<p>If <strong>High Roll</strong> is <strong>8+</strong>, you may dispel from targets hit.</p>"
+                }
+              }
+            },
+            "ZE4eUSNPd7GIv4VY": {
+              "type": "ruleElement",
+              "_id": "ZE4eUSNPd7GIv4VY",
+              "trigger": {
+                "_id": "fjbJOaoAR3YEIk0I",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "predicates": {
+                "SsnrLHCtz4HQu7Hh": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "SsnrLHCtz4HQu7Hh",
+                  "relation": "ally"
+                },
+                "gM46q1H1wMthPvS5": {
+                  "type": "weaponRulePredicate",
+                  "_id": "gM46q1H1wMthPvS5",
+                  "categories": [
+                    "arcane"
+                  ]
+                }
+              },
+              "actions": {
+                "ZqlNpQR6vsuBkNvG": {
+                  "type": "messageRuleAction",
+                  "_id": "ZqlNpQR6vsuBkNvG",
+                  "message": "<p>All targets may recover from the same status.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "qQnAoHAqC8JE5ifS",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770882603108,
+        "modifiedTime": 1770882986987,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!KLo8fztm26jzY2Zn.qQnAoHAqC8JE5ifS"
+    }
+  ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.KLo8fztm26jzY2Zn",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1770882579903,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "KLo8fztm26jzY2Zn",

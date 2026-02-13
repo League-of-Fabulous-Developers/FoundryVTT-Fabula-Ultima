@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Decoy Bait",
   "type": "heroic",
-  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "img": "icons/commodities/treasure/totem-wood-face-brown.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Hawkeye creates a decoy and grants a punishing attack."
     },
-    "description": "<blockquote><p>Requirements: you must have mastered the <strong>Sharpshooter</strong> Class, and must have acquired the <strong>Hawkeye</strong> Skill.</p></blockquote><p>When you use your @UUID[Compendium.projectfu.skills.Item.hmDCgX5OEk5l4uXW]{Hawkeye} Skill and choose the <strong>first option</strong>, if no <strong>decoy bait</strong> is present on the scene, you may spend 10 Mind Points. If you do, you create a <strong>decoy bait</strong> with Hit Points equal to <strong>【half your level + (your SL in Hawkeye, multiplied by 5)】</strong>.</p><p>When an enemy who can see your <strong>decoy bait</strong> deals damage to one or more creatures, your <strong>decoy bait</strong> automatically suffers damage <strong>in place of one of those creatures</strong>, chosen <strong>randomly</strong> (your <strong>decoy bait</strong> is always treated as having neutral Affinity towards all damage types, and cannot gain any other Affinity).</p><p>When an enemy reduces your <strong>decoy bait</strong> to 0 Hit Points, your <strong>decoy bait</strong> is automatically destroyed and you roll [[/r 1d10]]. If the number rolled is equal to or lower than <strong>【3 + your SL in Hawkeye】</strong>, you may immediately perform a free attack with a <strong>bow</strong> or <strong>firearm</strong> weapon you have equipped. This attack may <strong>only</strong> target that enemy, gains a bonus equal to <strong>【your SL in Hawkeye】</strong> to its Accuracy Check, and its damage ignores Immunities and Resistances.</p><p>Your <strong>decoy bait</strong> cannot recover Hit Points and is automatically destroyed at the end of the scene. Make sure to describe what it looks like!</p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[10 mp]</p></li><li><p>To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.3Nt3Kj1uUlYg7P1E]{Decoy Bait}</p></li><li><p>Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this decoy bait, and for '<strong>Skill</strong>,' select the '<strong>Hawkeye</strong>' skill.</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter</strong> Class, and must have acquired the <strong>Hawkeye</strong> Skill.</p><hr /><p>When you use your @UUID[Compendium.projectfu.skills.Item.hmDCgX5OEk5l4uXW]{Hawkeye} Skill and choose the <strong>first option</strong>, if no <strong>decoy bait</strong> is present on the scene, you may spend 10 Mind Points. If you do, you create a <strong>decoy bait</strong> with Hit Points equal to <strong>【half your level + (your SL in Hawkeye, multiplied by 5)】</strong>.</p><p>When an enemy who can see your <strong>decoy bait</strong> deals damage to one or more creatures, your <strong>decoy bait</strong> automatically suffers damage <strong>in place of one of those creatures</strong>, chosen <strong>randomly</strong> (your <strong>decoy bait</strong> is always treated as having neutral Affinity towards all damage types, and cannot gain any other Affinity).</p><p>When an enemy reduces your <strong>decoy bait</strong> to 0 Hit Points, your <strong>decoy bait</strong> is automatically destroyed and you roll [[/r 1d10]]. If the number rolled is equal to or lower than <strong>【3 + your SL in Hawkeye】</strong>, you may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> weapon you have equipped. This attack may <strong>only</strong> target that enemy, gains a bonus equal to <strong>【your SL in Hawkeye】</strong> to its Accuracy Check, and its damage ignores Immunities and Resistances.</p><p>Your <strong>decoy bait</strong> cannot recover Hit Points and is automatically destroyed at the end of the scene. Make sure to describe what it looks like!</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp]<br /><strong>You Receive Before Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.IU181rG9SX4PeZVS]<br />To <strong>automate</strong>, import the following actor into the world: @UUID[Compendium.projectfu.npcs.Actor.3Nt3Kj1uUlYg7P1E]{Decoy Bait}<br />Then, navigate to the '<strong>Settings</strong>' tab. For '<strong>Player</strong>,' select the actor who owns this decoy bait, and for '<strong>Skill</strong>,' select the '<strong>Hawkeye</strong>' skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -98,15 +98,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1744083091860,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770956675112,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

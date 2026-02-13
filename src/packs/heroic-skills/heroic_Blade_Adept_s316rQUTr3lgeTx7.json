@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain bonuses with daggers and treat them as brawling, sword, and thrown weapons."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue </strong>and <strong>Weaponmaster</strong> .</p></blockquote><p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the <strong>brawling</strong> , <strong>sword</strong> , and <strong>thrown</strong> Categories for the purpose of Skills and effects.</p><p>Additionally, your attacks with weapons that belong to the <strong>dagger </strong>Category may target creatures that cannot normally be targeted by <strong>melee </strong>attacks.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the <strong>brawling</strong> , <strong>sword</strong> , and <strong>thrown</strong> Categories for the purpose of Skills and effects.</p><p>Additionally, your attacks with weapons that belong to the <strong>dagger </strong>Category may target creatures that cannot normally be targeted by <strong>melee </strong>attacks.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,7 +112,18 @@
       "name": "Blade Adept",
       "_id": "bLqbrguWmvlCLC5J",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.derived.def.bonus",
@@ -127,7 +138,7 @@
           "priority": null
         }
       ],
-      "description": "<p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the <strong>brawling</strong> , <strong>sword</strong> , and <strong>thrown</strong> Categories for the purpose of Skills and effects.</p>",
+      "description": "<p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -142,12 +153,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743169217237,
-        "modifiedTime": 1743169285907,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1770750382060,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!s316rQUTr3lgeTx7.bLqbrguWmvlCLC5J"
@@ -159,15 +170,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684553854,
-    "modifiedTime": 1724180864077,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770750357003,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

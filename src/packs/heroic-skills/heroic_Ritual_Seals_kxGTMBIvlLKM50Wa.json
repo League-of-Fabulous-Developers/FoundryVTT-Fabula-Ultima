@@ -1,7 +1,7 @@
 {
   "name": "Ritual Seals",
   "type": "heroic",
-  "img": "icons/magic/symbols/rune-sigil-horned-blue.webp",
+  "img": "icons/magic/symbols/rune-sigil-black-pink.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Place Rituals into seals."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist </strong>Class.</p></blockquote><p>When you perform a Ritual outside a conflict scene, if that Ritual has a <strong>total cost equal to or lower than 60 Mind Points</strong>, you may stop the process immediately before the Magic Check and store the Ritual's effect inside a <strong>Ritual seal</strong> placed on a surface you can touch. If you do, name a <strong>condition </strong>— this can be anything from “when I enter <strong>Crisis</strong>” to “as soon as I snap my fingers”. When that condition is met, the <strong>seal </strong>vanishes and the Ritual is unleashed at the <strong>seal</strong>'s location: you perform the Magic Check and resolve the effects as normal (even if you are unconscious or not present on the scene).</p><p>You may only have<strong> one Ritual seal</strong> active at the same time — if you die or create a new <strong>Ritual seal</strong>, the one you previously created will vanish.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist </strong>Class.</p><hr /><p>When you perform a Ritual outside a conflict scene, if that Ritual has a <strong>total cost equal to or lower than 60 Mind Points</strong>, you may stop the process immediately before the Magic Check and store the Ritual's effect inside a <strong>Ritual seal</strong> placed on a surface you can touch. If you do, name a <strong>condition </strong>— this can be anything from “when I enter <strong>Crisis</strong>” to “as soon as I snap my fingers”. When that condition is met, the <strong>seal </strong>vanishes and the Ritual is unleashed at the <strong>seal</strong>'s location: you perform the Magic Check and resolve the effects as normal (even if you are unconscious or not present on the scene).</p><p>You may only have<strong> one Ritual seal</strong> active at the same time — if you die or create a new <strong>Ritual seal</strong>, the one you previously created will vanish.</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684704873,
-    "modifiedTime": 1724180863993,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770764676640,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

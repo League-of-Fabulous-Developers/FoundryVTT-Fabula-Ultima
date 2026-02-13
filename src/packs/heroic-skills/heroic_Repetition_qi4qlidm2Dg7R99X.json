@@ -1,7 +1,7 @@
 {
   "name": "Repetition",
   "type": "heroic",
-  "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+  "img": "icons/skills/social/diplomacy-peace-alliance.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -9,7 +9,7 @@
     "summary": {
       "value": "Condemn or Encourage twice."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Orator</strong> Class.</span></p></blockquote><p><span>Once per turn during a conflict, after you use the @UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} Skill or the @UUID[Compendium.projectfu.skills.Item.04DiGVKhF3DtmJ4n]{Encourage} Skill, you may immediately perform that same Skill again (on the same target or a different one). You must still pay the Mind Point cost for the second use of the Skill.</span></p>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Orator</strong> Class.</span></p><hr /><p><span>Once per turn during a conflict, after you use the @UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} Skill or the @UUID[Compendium.projectfu.skills.Item.04DiGVKhF3DtmJ4n]{Encourage} Skill, you may immediately perform that same Skill again (on the same target or a different one). You must still pay the Mind Point cost for the second use of the Skill.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706586578358,
-    "modifiedTime": 1743170429910,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771011885305,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -2,7 +2,7 @@
   "folder": "G957A8IFiy9ML4w0",
   "name": "Auramancer's Refraction",
   "type": "heroic",
-  "img": "icons/creatures/magical/spirit-fire-orange.webp",
+  "img": "icons/equipment/shield/heater-steel-segmented-purple.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improves Aura and Barrier, and punishes enemies who damage protected targets."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong> and <strong>Spiritist</strong>, and must have learned the <strong>Aura</strong> spell and/or the <strong>Barrier</strong> spell</p></blockquote><p>Choose a damage type among <strong>air, bolt, earth, fire, ice,</strong> and <strong>light</strong>.<br />When an enemy you can see deals damage to one or more creatures who are affected by an @UUID[Compendium.projectfu.spells.Item.jd9jMsj2PNq99M64]{Aura} and/or @UUID[Compendium.projectfu.spells.Item.pGDJPfT1bc2vErY9]{Barrier} spell you cast, the damage suffered by each of those creatures is reduced by an amount equal to <strong>【half your level in the Spiritist Class】</strong> <strong>or</strong> to <strong>【your level, divided by 10】</strong> (use whichever value is <strong>higher</strong>; this reduction is applied <strong>before </strong>damage Affinities). Then, you may deal an amount of damage of the chosen type equal to <strong>【half your level】 </strong>to that enemy. If you do, you cannot deal damage this way until the start of your next turn.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong> and <strong>Spiritist</strong>, and must have learned the <strong>Aura</strong> spell and/or the <strong>Barrier</strong> spell.</p><hr /><p>Choose a damage type among <strong>air, bolt, earth, fire, ice,</strong> and <strong>light</strong>.</p><p>When an enemy you can see deals damage to one or more creatures who are affected by an @UUID[Compendium.projectfu.spells.Item.jd9jMsj2PNq99M64]{Aura} and/or @UUID[Compendium.projectfu.spells.Item.pGDJPfT1bc2vErY9]{Barrier} spell you cast, the damage suffered by each of those creatures is reduced by an amount equal to <strong>【half your level in the Spiritist Class】</strong> <strong>or</strong> to <strong>【your level, divided by 10】</strong> (use whichever value is <strong>higher</strong>; this reduction is applied <strong>before </strong>damage Affinities). Then, you may deal an amount of damage of the chosen type equal to <strong>【half your level】 </strong>to that enemy. If you do, you cannot deal damage this way until the start of your next turn.</p><hr /><p><em>Replace below damage type with type chosen.</em></p><p><strong>Allies with Aura/Barrier:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.3R2eg2AIytTZLT3x]<br /><strong>Enemy Suffers:</strong> @DMG[floor($cl/2) untyped]{Refraction Damage}</p>",
     "isFavored": {
       "value": false
     },
@@ -54,17 +54,20 @@
     "aylHtMTxbnWEKFH9": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Item.IxfcFPxfZ8xDmJTO",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744243215566,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770875290614,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "DVaiA90aHgq9gPYI",

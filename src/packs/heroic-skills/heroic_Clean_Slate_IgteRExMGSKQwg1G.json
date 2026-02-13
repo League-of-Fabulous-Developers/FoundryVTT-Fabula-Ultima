@@ -9,7 +9,7 @@
     "summary": {
       "value": "Remove spells and status effects from creatures."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist </strong>Class.</p></blockquote><p>You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a <strong>duration </strong>of “Scene” that were affecting them. </p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[5 mp]{1 Creature: 5 MP}, @LOSS[10 mp]{2 Creature: 10 MP}, @LOSS[15 mp]{3 Creature: 15 MP}, @LOSS[20 mp]{4 Creature: 20 MP}, @LOSS[25 mp]{5 Creature: 25 MP}, or @LOSS[30 mp]{6 Creature: 30 MP}</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist </strong>Class.</p><hr /><p>You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a <strong>duration </strong>of “Scene” that were affecting them. </p><hr /><p><strong>You Spend for Each Creature:</strong> @LOSS[5 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -95,22 +95,103 @@
     },
     "fuid": "clean-slate"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Clean Slate",
+      "img": "icons/magic/symbols/rune-sigil-horned-blue.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "0ziInr3GpLSeQwFS": {
+              "type": "ruleElement",
+              "_id": "0ziInr3GpLSeQwFS",
+              "trigger": {
+                "_id": "jawSw2ohfWUTaFuq",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "actions": {
+                "vauj4T4GiqyW20Ml": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "vauj4T4GiqyW20Ml",
+                  "identifier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3EAZ42QOyjxfcLjq",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770750585719,
+        "modifiedTime": 1770750615826,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!IgteRExMGSKQwg1G.3EAZ42QOyjxfcLjq"
+    }
+  ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
     "default": 0,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684583539,
-    "modifiedTime": 1743644473942,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770751226146,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

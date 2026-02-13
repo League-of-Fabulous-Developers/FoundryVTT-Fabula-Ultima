@@ -1,0 +1,114 @@
+{
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Effect: Pulse of the Maggots",
+  "type": "effect",
+  "_id": "BB5jHS32g8Wcsvwr",
+  "img": "icons/magic/death/skull-horned-white-purple.webp",
+  "system": {
+    "fuid": "effect-pulse-of-the-maggots",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Pulse of the Maggots",
+      "img": "icons/magic/death/skull-horned-white-purple.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "HiTOiiV5YCjIxYfj",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark.current",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.poison.current",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.physical.current",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.light.current",
+          "mode": 5,
+          "value": "-1",
+          "priority": null
+        }
+      ],
+      "description": "<p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark </strong>and <strong>poison </strong>damage, Resistance to <strong>physical </strong>damage, and Vulnerability to <strong>light </strong>damage. These Affinities <strong>overwrite </strong>any other Affinity for those damage types, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770968600350,
+        "modifiedTime": 1770968679009,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!BB5jHS32g8Wcsvwr.HiTOiiV5YCjIxYfj"
+    }
+  ],
+  "sort": 1900000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770968592145,
+    "modifiedTime": 1771018945265,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!BB5jHS32g8Wcsvwr"
+}

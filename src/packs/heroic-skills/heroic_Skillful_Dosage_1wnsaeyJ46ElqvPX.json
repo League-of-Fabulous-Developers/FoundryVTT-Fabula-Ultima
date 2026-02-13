@@ -10,7 +10,7 @@
     "summary": {
       "value": "Delicacies, potions and spells heal above maximum HP and MP."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Gourmet</strong>, <strong>Loremaster</strong>, <strong>Merchant</strong>, and <strong>Tinkerer</strong></p></blockquote><p>Potions and delicacies you create, as well as <strong>spells</strong> you cast, can now cause creatures to recover Hit Points and Mind Points beyond their <strong>maximum HP and MP</strong> scores, up to 150% of the respective scores. At the end of each scene, if the <strong>current Hit Points and/or Mind Points</strong> of a creature are still above the maximum scores, they become equal to the maximum score.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Gourmet</strong>, <strong>Loremaster</strong>, <strong>Merchant</strong>, and <strong>Tinkerer</strong>.</p><hr /><p>Potions and delicacies you create, as well as <strong>spells</strong> you cast, can now cause creatures to recover Hit Points and Mind Points beyond their <strong>maximum HP and MP</strong> scores, up to 150% of the respective scores. At the end of each scene, if the <strong>current Hit Points and/or Mind Points</strong> of a creature are still above the maximum scores, they become equal to the maximum score.</p>",
     "isFavored": {
       "value": false
     },
@@ -50,17 +50,20 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.1wnsaeyJ46ElqvPX",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744252474204,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770887407376,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "1wnsaeyJ46ElqvPX",

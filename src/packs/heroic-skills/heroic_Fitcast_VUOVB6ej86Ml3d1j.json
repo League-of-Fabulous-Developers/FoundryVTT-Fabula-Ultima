@@ -10,7 +10,7 @@
     "summary": {
       "value": "Use Might for Magic Checks, and treat weapons relying on Might as being arcane."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Darkblade</strong>, <strong>Esper</strong> (see <strong>Techno Fantasy</strong>, page <strong>150</strong>), <strong>Fury</strong>, and <strong>Wayfarer</strong></p></blockquote><p><span class=\"fontstyle0\">When you perform a Magic Check for a spell or Ritual, you may replace </span><span class=\"fontstyle2\"><strong>one</strong> </span><span class=\"fontstyle0\">of the Attributes with </span><span class=\"fontstyle2\"><strong>Might</strong> </span><span class=\"fontstyle0\">(such as </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>MIG + MIG</strong></span><span class=\"fontstyle3\"><strong>】</strong> </span><span class=\"fontstyle0\">for a Chimerism Ritual).<br />As long as the </span><span class=\"fontstyle2\"><strong>Accuracy</strong> </span><span class=\"fontstyle0\">formula of a weapon you have equipped includes </span><span class=\"fontstyle2\"><strong>Might</strong></span><span class=\"fontstyle0\">, you may treat that weapon as also belonging to the </span><span class=\"fontstyle2\"><strong>arcane</strong> </span><span class=\"fontstyle0\">Category for the purpose of Skills and effects that require it.</span></p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Darkblade</strong>, <strong>Esper</strong>, <strong>Fury</strong>, and <strong>Wayfarer</strong>.</p><hr /><p><span class=\"fontstyle0\">When you perform a Magic Check for a spell or Ritual, you may replace </span><span class=\"fontstyle2\"><strong>one</strong> </span><span class=\"fontstyle0\">of the Attributes with </span><span class=\"fontstyle2\"><strong>Might</strong> </span><span class=\"fontstyle0\">(such as</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>MIG + MIG</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">for a Chimerism Ritual).</span></p><p><span class=\"fontstyle0\">As long as the </span><span class=\"fontstyle2\"><strong>Accuracy</strong> </span><span class=\"fontstyle0\">formula of a weapon you have equipped includes </span><span class=\"fontstyle2\"><strong>Might</strong></span><span class=\"fontstyle0\">, you may treat that weapon as also belonging to the </span><span class=\"fontstyle2\"><strong>arcane</strong> </span><span class=\"fontstyle0\">Category for the purpose of Skills and effects that require it.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -50,17 +50,20 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.VUOVB6ej86Ml3d1j",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1770884222363,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "VUOVB6ej86Ml3d1j",

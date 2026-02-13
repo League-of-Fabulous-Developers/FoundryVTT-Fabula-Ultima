@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "5kSHxgDcJ4VNObCO",
+  "name": "Side by Side",
+  "color": null,
+  "sorting": "a",
+  "_id": "FgxSEVMLdU9kxgMn",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!FgxSEVMLdU9kxgMn"
+}

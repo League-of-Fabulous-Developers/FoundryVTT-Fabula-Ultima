@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Brainwave Discharge",
   "type": "heroic",
-  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Erase your Brainwave Clock and deal damage."
     },
-    "description": "<blockquote><p>Requirements: you must have mastered the <strong>Esper</strong> Class.</p></blockquote><p>While your <strong>Brainwave Clock</strong> is <strong>full</strong>, you may use an action to erase all of its sections. If you do, you may choose one option: you deal @DMG[20 physical] damage to every enemy that is present on the scene; <strong>or</strong> you deal @DMG[30 physical] damage to a single enemy you can see. This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher.</strong></p><hr /><ul><li><p><strong>Reset:</strong> @CLOCK[brainwave-clock reset]{Reset Brainwave Clock}</p></li><li><p><strong>Target Loses:</strong> @DMG[&amp;step(20,30,40) physical]{20|30|40 physical (single)}, or @DMG[&amp;step(30,40,50) physical]{30|40|50 physical (multi)}</p><p></p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Esper</strong> Class.</p><hr /><p>While your <strong>Brainwave Clock</strong> is <strong>full</strong>, you may use an action to erase all of its sections. If you do, you may choose one option:</p><ul><li><p>You deal 20 <strong>physical</strong> damage to every enemy that is present on the scene.</p></li><li><p>You deal 30 <strong>physical</strong> damage to a single enemy you can see.</p></li></ul><p>This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher.</strong></p><hr /><p><strong>Reset:</strong> @CLOCK[brainwave-clock reset]{Reset Brainwave Clock}<br /><strong>Targets Suffer:</strong> @DMG[&amp;step(20,30,40) physical]{20|30|40 Physical (Single)} or @DMG[&amp;step(30,40,50) physical]{30|40|50 Physical (Multi)}</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -98,15 +98,18 @@
   },
   "effects": [],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1744080666116,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1770953546328,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

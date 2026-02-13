@@ -1,0 +1,120 @@
+{
+  "folder": "rWZeRzjYC59veWKl",
+  "name": "Effect: Overload Burst",
+  "type": "effect",
+  "_id": "mAHfyO2MN7VPIiez",
+  "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+  "system": {
+    "fuid": "effect-overload-burst",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Overload Burst",
+      "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Qxp9S3gpowoJs0L0": {
+              "type": "ruleElement",
+              "_id": "Qxp9S3gpowoJs0L0",
+              "trigger": {
+                "_id": "TFJV9GxcdTpUsE3v",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "compression-tech"
+              },
+              "actions": {
+                "awzPfbZ8FoUzCCnJ": {
+                  "type": "messageRuleAction",
+                  "_id": "awzPfbZ8FoUzCCnJ",
+                  "message": "<p>This costs 1 Fabula Point. Then, remove this effect.</p>"
+                },
+                "O6Ho4fuzQIqak2NK": {
+                  "type": "clearEffectRuleAction",
+                  "_id": "O6Ho4fuzQIqak2NK",
+                  "identifier": "effect-overload-burst"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ZAR5bQfnAnyQfH8R",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Your <strong>personal vehicle</strong> has been <strong>destroyed</strong>. The next use of your <strong>Compression Tech</strong> will have an additional cost of 1 Fabula Point.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770963965276,
+        "modifiedTime": 1770964733484,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!mAHfyO2MN7VPIiez.ZAR5bQfnAnyQfH8R"
+    }
+  ],
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770963953293,
+    "modifiedTime": 1770964804130,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!mAHfyO2MN7VPIiez"
+}

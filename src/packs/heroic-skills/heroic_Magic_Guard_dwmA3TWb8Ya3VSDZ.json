@@ -9,7 +9,7 @@
     "summary": {
       "value": "Negate enemy spells while you are in Guard."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p></blockquote><p>When you perform the <strong>Guard </strong>action, if you choose not to provide cover to another creature, you gain the following benefit until the start of your next turn: when a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of Mind Points equal to <strong>【10 + the spell's total MP cost】</strong> in order to completely stop the casting of the spell and negate its effects (the spell isn't cast, but the creature is still considered to have spent their action).</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p><hr /><p>When you perform the <strong>Guard </strong>action, if you choose not to provide cover to another creature, you gain the following benefit until the start of your next turn:</p><p>When a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of Mind Points equal to <strong>【10 + the spell's total MP cost】</strong> in order to completely stop the casting of the spell and negate its effects (the spell isn't cast, but the creature is still considered to have spent their action).</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.31aBh1Qf91fjWhdl]</p>",
     "isFavored": {
       "value": false
     },
@@ -102,15 +102,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706684656698,
-    "modifiedTime": 1724180863926,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770763502156,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

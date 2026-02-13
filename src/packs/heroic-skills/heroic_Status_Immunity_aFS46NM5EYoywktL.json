@@ -9,7 +9,7 @@
     "summary": {
       "value": "Ignore a status effect."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Wayfarer</strong> Class.</span></p></blockquote><p><span>You become completely immune to a single status effect of your choice.</span></p>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class.</span></p><hr /><p><span>You become completely immune to a single status effect of your choice.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -391,15 +391,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706586741656,
-    "modifiedTime": 1724180863908,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1770711576956,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

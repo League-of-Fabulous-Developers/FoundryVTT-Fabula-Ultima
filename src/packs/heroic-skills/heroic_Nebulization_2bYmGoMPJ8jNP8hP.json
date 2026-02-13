@@ -2,7 +2,7 @@
   "folder": "NWyKWh1qGp8D9yvJ",
   "name": "Nebulization",
   "type": "heroic",
-  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "img": "icons/consumables/potions/potion-flash-open-blue.webp",
   "system": {
     "subtype": {
       "value": "skill"
@@ -10,7 +10,7 @@
     "summary": {
       "value": "Your potions are strengthened by repeated use."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Alchemy</strong> benefit from the <strong>Gadget</strong> Skill.</p></blockquote><p>When you create a <strong>potion</strong>, you gain <strong>1 Nebulization Point</strong>, or <strong>2 Nebulization Points </strong>if that potion was created via the <strong>Alchemy</strong> benefit of the <strong>Gadget</strong> Skill.</p><p>Potions and elemental shards you create deal extra damage equal to <strong>twice</strong> your current Nebulization Points.</p><p>Potions you create that restore Hit Points and/or Mind Points restore additional HP and/or MP equal to <strong>【your current Nebulization Points, multiplied by 5】</strong>.</p><p>You may never have more than <strong>5 Nebulization Points</strong>, and you lose all of them at the end of each scene.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance 1 Nebulization Point}, @PROGRESS[rising-tide update 2]{Advance 2 Nebulization Points}, or @PROGRESS[rising-tide reset]{Reset Nebulization Point}</p></li><li><p><strong>You Recover:</strong> @GAIN[@item.rp.current*5 hp] and/or @GAIN[@item.rp.current*5 mp]</p></li></ul>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Alchemy</strong> benefit from the <strong>Gadget</strong> Skill.</p><hr /><p>When you create a <strong>potion</strong>, you gain <strong>1 Nebulization Point</strong>, or <strong>2 Nebulization Points </strong>if that potion was created via the <strong>Alchemy</strong> benefit of the <strong>Gadget</strong> Skill.</p><p>Potions and elemental shards you create deal extra damage equal to <strong>twice</strong> your current Nebulization Points.</p><p>Potions you create that restore Hit Points and/or Mind Points restore additional HP and/or MP equal to <strong>【your current Nebulization Points, multiplied by 5】</strong>.</p><p>You may never have more than <strong>5 Nebulization Points</strong>, and you lose all of them at the end of each scene.</p><hr /><p><strong>Resource:</strong> @PROGRESS[nebulization update 1]{Gain 1 Nebulization Point}, @PROGRESS[nebulization update 2]{Gain 2 Nebulization Points}, or @PROGRESS[nebulization reset]{Reset Nebulization Points}</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "max": 5
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -96,17 +96,110 @@
     "source": "FUTF176",
     "fuid": "nebulization"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Nebulization",
+      "img": "icons/consumables/potions/potion-flash-open-blue.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "wc5aULZBHJV8iYWc": {
+              "type": "ruleElement",
+              "_id": "wc5aULZBHJV8iYWc",
+              "trigger": {
+                "_id": "kI8OvfoS1zoeR7cF",
+                "type": "createConsumableRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "potion"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "predicates": {
+                "anbGUx8mHLDqwidM": {
+                  "type": "traitsRulePredicate",
+                  "_id": "anbGUx8mHLDqwidM",
+                  "traits": {
+                    "entries": [
+                      "restore"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "Zc1Ip3LAioada3OD": {
+                  "type": "modifyConsumableRuleAction",
+                  "_id": "Zc1Ip3LAioada3OD",
+                  "bonus": "5*&cs('nebulization')",
+                  "multiplier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "xRFrBLxYkSl4u8MB",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770962183197,
+        "modifiedTime": 1770963598349,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!2bYmGoMPJ8jNP8hP.xRFrBLxYkSl4u8MB"
+    }
+  ],
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1744640652485,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1770963665635,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Equip some two-handed weapons in a single-hand slot."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Fury </strong>Class. </p></blockquote><p>You may now equip two-handed weapons belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, and <strong>sword</strong> Categories within a single hand slot.</p><p>Additionally, the <strong>first</strong> attack you perform with a <strong>two-handed</strong> weapon during each turn deals 5 extra damage, and its damage ignores Resistances.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Fury </strong>Class. </p><hr /><p>You may now equip two-handed weapons belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, and <strong>sword</strong> Categories within a single hand slot.</p><p>Additionally, the <strong>first</strong> attack you perform with a <strong>two-handed</strong> weapon during each turn deals 5 extra damage, and its damage ignores Resistances.</p><hr /><p><strong>You Receive Before 1st Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.QXnEpgUL4TX7ZL3c]</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706584997270,
-    "modifiedTime": 1768875552371,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1770710043439,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,14 +1,14 @@
 {
   "name": "Broken Wing Tactic",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/commodities/materials/feather-blue-glowing.webp",
   "system": {
     "summary": {
       "value": "Improve your enemies' attacks to deceive them."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among Commander and Guardian.</p></blockquote><p>After an enemy you can see performs an <strong>Accuracy Check</strong> or a <strong>Magic Check</strong> for an offensive spell ( @ICON[offensive] ) on their turn during a conflict, you may grant them a +3 bonus to the Result of the Check. If you do, choose one option: you and every ally who is able to hear you gain Resistance to all damage types until the end of this turn; or you and every ally who is able to hear you deal 5 extra damage until the end of this turn. Once you use this Skill, you cannot use it again until the start of your next turn.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Guardian</strong>.</p><hr /><p>After an enemy you can see performs an <strong>Accuracy Check</strong> or a <strong>Magic Check</strong> for an offensive spell (@ICON[offensive]) on their turn during a conflict, you may grant them a +3 bonus to the Result of the Check. If you do, choose one option:</p><ul><li><p>You and every ally who is able to hear you gain Resistance to all damage types until the end of this turn.</p></li><li><p>You and every ally who is able to hear you deal 5 extra damage until the end of this turn.</p></li></ul><p>Once you use this Skill, you cannot use it again until the start of your next turn.</p><hr /><p><strong>You &amp; Allies Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.lqgayJpoKwrXlPVl]</p>",
     "class": {
-      "value": "Necromancer"
+      "value": ""
     },
     "showTitleCard": {
       "value": false
@@ -47,10 +47,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1769030556935,
-    "lastModifiedBy": "bgUzjEHd80A79gwp"
+    "modifiedTime": 1770969608963,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "folder": "L3ZyYRKlHEggv0aF",
+  "folder": "1Ky2u7fi2lfxr4JB",
   "_id": "qDXaDmoLcasT2o37",
   "ownership": {
     "default": 0,

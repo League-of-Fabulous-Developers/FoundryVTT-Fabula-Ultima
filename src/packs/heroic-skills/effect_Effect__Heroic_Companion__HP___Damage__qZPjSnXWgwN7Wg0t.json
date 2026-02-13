@@ -1,9 +1,9 @@
 {
-  "folder": "WHNpwToyVPMpfLEu",
-  "name": "Effect: Heroic Companion",
+  "folder": "F1T3CDFbG76byCfr",
+  "name": "Effect: Heroic Companion (HP & Damage)",
   "type": "effect",
   "_id": "qZPjSnXWgwN7Wg0t",
-  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
   "system": {
     "fuid": "effect-heroic-companion",
     "cost": {
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+      "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
       "duration": {
         "rounds": null,
         "startTime": null,
@@ -24,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Heroic Companion",
+      "name": "Heroic Companion (HP & Damage)",
       "_id": "4h30fp8qRSio9SiR",
       "type": "base",
       "system": {
@@ -58,37 +58,13 @@
           "priority": null
         },
         {
-          "key": "system.attributes.dex",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        },
-        {
-          "key": "system.attributes.ins",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        },
-        {
-          "key": "system.attributes.mig",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        },
-        {
-          "key": "system.attributes.wlp",
-          "mode": 0,
-          "value": "upgrade",
-          "priority": null
-        },
-        {
           "key": "system.bonuses.damage.all",
           "mode": 2,
           "value": "5",
           "priority": null
         }
       ],
-      "description": "<ul><li>The companion's maximum Hit Points increase by 10.</li><li>The companion deals 5 extra damage.</li><li>Choose one of the companion's Attributes: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. The chosen Attribute is permanently increased by one die size (up to a maximum size of <strong>d12</strong>).</li></ul>",
+      "description": "<p>Your max HP increases by 10 and you deal 5 extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -102,14 +78,14 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744074912707,
-        "modifiedTime": 1768869352826,
-        "lastModifiedBy": "bgUzjEHd80A79gwp",
+        "modifiedTime": 1771013590846,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!qZPjSnXWgwN7Wg0t.4h30fp8qRSio9SiR"
     }
   ],
-  "sort": 0,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "uG2TkwmswfdRqaAv": 3
@@ -122,8 +98,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744074899880,
-    "modifiedTime": 1768869386153,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771018613265,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!qZPjSnXWgwN7Wg0t"

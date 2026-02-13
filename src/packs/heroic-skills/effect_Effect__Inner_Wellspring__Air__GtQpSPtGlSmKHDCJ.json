@@ -1,0 +1,132 @@
+{
+  "folder": "Gjih7hTVobxZ6fV3",
+  "name": "Effect: Inner Wellspring (Air)",
+  "type": "effect",
+  "_id": "GtQpSPtGlSmKHDCJ",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+  "system": {
+    "fuid": "effect-inner-wellspring",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Inner Wellspring (Air)",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+      "system": {
+        "duration": {
+          "event": "rest",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "6rUzkUG1usOhYD4Q": {
+              "type": "ruleElement",
+              "_id": "6rUzkUG1usOhYD4Q",
+              "trigger": {
+                "_id": "c5p21wmlP8zdvSi3",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [],
+                "damageTypes": []
+              },
+              "actions": {
+                "rqrIFXXdeoKuByoE": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "rqrIFXXdeoKuByoE",
+                  "damageTypes": [
+                    "air"
+                  ],
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  },
+                  "amount": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Z6PBi58u7BFlu0Y3",
+      "type": "base",
+      "changes": [
+        {
+          "key": "flags.projectfu.innerWellspring",
+          "mode": 5,
+          "value": "air",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your inner wellspring is <strong>air</strong>.</p><ul><li>You <strong>always</strong> treat the <strong>air wellspring</strong> as being available during each scene.</li><li>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the <strong>air </strong>element.</li><li>You gain <strong>air </strong>Resistance.</li><li>When you deal damage, you may change its type to <strong>air</strong>. If you do, that damage ignores Resistances.</li></ul>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1770884739787,
+        "modifiedTime": 1770885287426,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!GtQpSPtGlSmKHDCJ.Z6PBi58u7BFlu0Y3"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1770884713978,
+    "modifiedTime": 1770884902926,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!GtQpSPtGlSmKHDCJ"
+}
