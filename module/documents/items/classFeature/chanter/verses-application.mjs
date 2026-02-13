@@ -10,6 +10,7 @@ import FUApplication from '../../../../ui/application.mjs';
 import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { FUChatBuilder } from '../../../../helpers/chat-builder.mjs';
+import { ResourcePipeline } from '../../../../pipelines/resource-pipeline.mjs';
 
 /**
  * @param {VerseDataModel} model
@@ -277,22 +278,23 @@ export class VersesApplication extends FUApplication {
 
 		// Prepare the data object for the chat message
 		let flags = { [SYSTEM]: { [Flags.ChatMessage.Item]: this.#verse } };
-		const cost = this.#verse.config[volumeSelection];
+		const mpCost = this.#verse.config[volumeSelection];
 		const actor = this.#verse.actor;
 		const item = this.#verse.item;
 		const targets = Targeting.getSerializedTargetData();
-		const expense = new ActionCostDataModel({
+		const cost = new ActionCostDataModel({
 			resource: 'mp',
-			amount: cost,
+			amount: mpCost,
 			perTarget: false,
 		});
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
 
 		// Data for the template
 		const enriched = await enrichDescription(this.#verse);
 		const data = {
 			verse: this.#verse,
 			volume: volumes[volumeSelection],
-			cost: cost,
+			cost: mpCost,
 			targets: volumeTargets[volumeSelection],
 			key: this.#verse.key?.name || '',
 			tone: this.#verse.tone?.name || '',
@@ -323,11 +325,11 @@ export class VersesApplication extends FUApplication {
 		CommonSections.itemFlavor(renderData.sections, this.#verse.parent.parent);
 		CommonSections.tags(renderData.sections, tags);
 		CommonSections.genericText(renderData.sections, enriched);
-		CommonSections.spendResource(renderData, actor, item, expense, targets, flags);
+		CommonSections.expense(renderData, actor, item, targets, flags, expense);
 
 		const builder = new FUChatBuilder(actor, item);
 		builder.withFlags(flags);
-		builder.withRenderData(renderData);
+		builder.withData(renderData);
 		await builder.create();
 
 		CommonEvents.skill(actor, item);

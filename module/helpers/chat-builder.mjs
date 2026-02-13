@@ -101,11 +101,6 @@ export class FUChatBuilder {
 		return this;
 	}
 
-	withRenderData(renderData) {
-		this.#renderData = renderData;
-		return this;
-	}
-
 	withFlavor(flavor) {
 		this.#flavor = flavor;
 		return this;
