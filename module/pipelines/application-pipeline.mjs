@@ -98,6 +98,12 @@ async function handleArcanum(actor, item) {
 			const selectedArcana = result[0];
 			const selectedArcanaEffect = selectedArcana.effects.size === 1 ? Array.from(selectedArcana.effects.values())[0] : null;
 			if (selectedArcanaEffect) {
+				// Equip the arcana
+				await actor.update({
+					'system.equipped.arcanum': selectedArcana.id,
+				});
+				// Calculate summon cost
+				/** @type ResourceExpense **/
 				const expense = {
 					resource: 'mp',
 					amount: 40,
@@ -105,19 +111,25 @@ async function handleArcanum(actor, item) {
 				};
 				await CommonEvents.calculateExpense(actor, item, [], expense);
 				console.debug(`Arcanum summon cost: ${expense.amount}`);
-				await actor.update({
-					'system.equipped.arcanum': selectedArcana.id,
-				});
-				const builder = new FUChatBuilder(actor, item);
-				CommonSections.itemFlavor(builder.sections, selectedArcana);
+				// Render sections
+				/** @type {FUChatData} **/
+				const data = {
+					sections: [],
+					postRenderActions: [],
+				};
+				let flags = {};
+
+				CommonSections.itemFlavor(data.sections, selectedArcana);
 				const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
 					item: selectedArcana,
 					message: 'FU.ClassFeatureArcanumSummonMessage',
 					details: selectedArcana.system.data.merge,
 				});
-				CommonSections.content(builder.sections, content, CHECK_DETAILS);
+				CommonSections.content(data.sections, content, CHECK_DETAILS);
+				CommonSections.expense(data, actor, item, [], flags, expense);
+				const builder = new FUChatBuilder(actor, item);
 				await CommonEvents.feature(actor, item, expense.traits, builder);
-				CommonSections.expense(builder.sections, actor, item, expense, builder.flags);
+				builder.withData(data).withFlags(flags);
 				await builder.create();
 			}
 		}

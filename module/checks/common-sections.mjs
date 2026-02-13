@@ -542,15 +542,17 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {FUChatData} data
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {ResourceExpense} expense
+ * @param targets
  * @param {Object} flags
+ * @param {ResourceExpense} expense
  */
-const expense = (sections, actor, item, expense, flags) => {
+const expense = (data, actor, item, targets, flags, expense) => {
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	sections.push(async () => {
+	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
+	data.sections.push(async () => {
 		return {
 			order: CHECK_RESULT,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',

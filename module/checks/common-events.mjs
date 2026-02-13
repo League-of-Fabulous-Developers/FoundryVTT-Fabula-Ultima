@@ -299,7 +299,7 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
  * @param actor
  * @param item
  * @param {TargetData[]} targetData
- * @param expense
+ * @param {ResourceExpense} expense
  * @returns {Promise}
  */
 async function calculateExpense(actor, item, targetData, expense) {
@@ -730,7 +730,7 @@ async function renderMessage(renderData, actor, document = undefined) {
  * @property {CharacterInfo} source
  * @property {FUItem} item
  * @property {String[]} traits
- * @property {SectionChatBuilder} builder
+ * @property {FUChatBuilder} builder
  * @property
  */
 
