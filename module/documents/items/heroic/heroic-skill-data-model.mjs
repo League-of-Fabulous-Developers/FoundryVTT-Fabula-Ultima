@@ -6,9 +6,10 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+/** @type RenderCheckHook */
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof HeroicSkillDataModel) {
-		CommonSections.tags(sections, [
+		CommonSections.tags(data.sections, [
 			{
 				tag: FU.heroicType[item.system.subtype.value],
 			},
@@ -21,7 +22,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 		]);
 
 		if (item.system.requirement.value)
-			sections.push({
+			data.sections.push({
 				content: `
                   <div class='chat-desc'>
                     <p><strong>${game.i18n.localize('FU.Requirements')}: </strong>${item.system.requirement.value}</p>
@@ -29,10 +30,10 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 			});
 
 		if (item.system.hasResource.value) {
-			CommonSections.resource(sections, item.system.rp);
+			CommonSections.resource(data.sections, item.system.rp);
 		}
 
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 

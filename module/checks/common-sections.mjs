@@ -503,46 +503,6 @@ const spendResource = (data, actor, item, cost, targets, flags) => {
 };
 
 /**
- * @param {FUChatBuilder} builder
- * @param {ActionCostDataModel} cost
- * @param {TargetData[]} targets
- * @param {Object} flags
- */
-const spendResourceV2 = (builder, cost, targets, flags) => {
-	if (!cost.amount) {
-		return;
-	}
-	const _amount = Number.parseInt(cost.amount);
-	if (_amount === 0) {
-		return;
-	}
-
-	const actor = builder.actor;
-	const item = builder.item;
-
-	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	builder.sections.push(async () => {
-		const itemGroup = InlineHelper.resolveItemGroup(item);
-		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
-
-		// This can be modified here...
-		await CommonEvents.calculateExpense(actor, item, targets, expense);
-		return {
-			order: CHECK_ACTIONS + 500,
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
-			data: {
-				name: item.name,
-				actor: actor.uuid,
-				item: item.uuid,
-				expense: expense,
-				resourceLabel: FU.resourcesAbbr[expense.resource],
-				icon: FU.resourceIcons[expense.resource],
-			},
-		};
-	});
-};
-
-/**
  * @param {CheckRenderData} sections
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -596,7 +556,6 @@ export const CommonSections = {
 	opportunity,
 	actions,
 	spendResource,
-	spendResourceV2,
 	expense,
 	slottedTechnospheres,
 };

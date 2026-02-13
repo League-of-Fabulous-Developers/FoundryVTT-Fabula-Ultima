@@ -18,16 +18,16 @@ const skillForAttributeCheck = 'skillForAttributeCheck';
 /**
  * @type RenderCheckHook
  */
-let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
+let onRenderAccuracyCheck = (data, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
 		const inspector = CheckConfiguration.inspect(check);
 		const weapon = fromUuidSync(inspector.getWeaponReference());
 		if (check.critical) {
-			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
+			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
 		}
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (item.system.hasClock.value) {
-			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
+			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
 		}
 
 		// Tag info
@@ -38,9 +38,9 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
 			}
 		}
-		CommonSections.tags(sections, tags, CHECK_DETAILS);
+		CommonSections.tags(data.sections, tags, CHECK_DETAILS);
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
-		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
+		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);

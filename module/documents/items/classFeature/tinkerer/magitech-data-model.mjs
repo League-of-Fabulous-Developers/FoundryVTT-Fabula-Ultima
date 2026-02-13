@@ -12,18 +12,19 @@ const RANK_TRANSLATION_KEYS = {
 };
 
 // Inject a renderCheck hook to display the enriched description
-Hooks.on('projectfu.renderCheck', (sections, check, actor, item) => {
+
+Hooks.on('projectfu.renderCheck', (data, check, actor, item) => {
 	if (item?.system?.data instanceof MagitechDataModel) {
 		const rank = check.additionalData[MAGITECH_RANK];
 
 		if (rank) {
-			CommonSections.tags(sections, [{ tag: 'FU.ClassFeatureGadgetsRank', value: game.i18n.localize(RANK_TRANSLATION_KEYS[rank]), separator: ':' }]);
+			CommonSections.tags(data.sections, [{ tag: 'FU.ClassFeatureGadgetsRank', value: game.i18n.localize(RANK_TRANSLATION_KEYS[rank]), separator: ':' }]);
 		}
 
-		CommonSections.description(sections, item.system.data.description, item.system.summary.value);
+		CommonSections.description(data.sections, item.system.data.description, item.system.summary.value);
 
 		if (rank) {
-			sections.push(async () => ({
+			data.sections.push(async () => ({
 				content: `<div class="chat-desc">${await TextEditor.enrichHTML(item.system.data[rank] || '')}</div>`,
 			}));
 		}

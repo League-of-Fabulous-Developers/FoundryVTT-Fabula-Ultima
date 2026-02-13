@@ -706,11 +706,11 @@ const registerMetaCurrencyExpenditure = (check) => {
 	/**
 	 * @type RenderCheckHook
 	 */
-	const spendMetaCurrency = (sections, check, actor) => {
+	const spendMetaCurrency = (data, check, actor) => {
 		if (check.additionalData.triggerMetaCurrencyExpenditure === randomId) {
 			delete check.additionalData.triggerMetaCurrencyExpenditure;
 			Hooks.off(CheckHooks.renderCheck, hookId);
-			sections.push(async () => {
+			data.sections.push(async () => {
 				const success = await PlayerListEnhancements.spendMetaCurrency(actor, true);
 				if (!success) {
 					throw new Error('not enough meta currency');

@@ -16,13 +16,13 @@ const skillForAttributeCheck = 'skillForAttributeCheck';
 /**
  * @type RenderCheckHook
  */
-let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
+let onRenderAccuracyCheck = (data, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
 		const inspector = CheckConfiguration.inspect(check);
 		const weapon = fromUuidSync(inspector.getWeaponReference());
 
 		if (check.critical) {
-			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
+			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
 		}
 
 		let tags = getTags(item);
@@ -31,11 +31,11 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
 			}
 		}
-		CommonSections.tags(sections, tags, CHECK_DETAILS);
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.tags(data.sections, tags, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const targets = inspector.getTargets();
-		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
+		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
@@ -43,17 +43,17 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAttributeCheck = (sections, check, actor, item, flags) => {
+let onRenderAttributeCheck = (data, check, actor, item, flags) => {
 	if (check.type === 'attribute' && item?.system instanceof SkillDataModel && check.additionalData[skillForAttributeCheck]) {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
 		const inspector = CheckConfiguration.inspect(check);
-		CommonSections.itemFlavor(sections, skill);
-		CommonSections.tags(sections, getTags(skill), CHECK_DETAILS);
+		CommonSections.itemFlavor(data.sections, skill);
+		CommonSections.tags(data.sections, getTags(skill), CHECK_DETAILS);
 		if (skill.system.hasResource.value) {
-			CommonSections.resource(sections, skill.system.rp, CHECK_DETAILS);
+			CommonSections.resource(data.sections, skill.system.rp, CHECK_DETAILS);
 		}
-		CommonSections.description(sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
-		CommonSections.actions(sections, actor, item, [], flags, inspector);
+		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
+		CommonSections.actions(data.sections, actor, item, [], flags, inspector);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
@@ -61,19 +61,19 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
 /**
  * @type RenderCheckHook
  */
-const onRenderDisplay = (sections, check, actor, item, flags) => {
+const onRenderDisplay = (data, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system instanceof SkillDataModel) {
-		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
+		CommonSections.tags(data.sections, getTags(item), CHECK_DETAILS);
 		if (item.system.hasResource.value) {
-			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
+			CommonSections.resource(data.sections, item.system.rp, CHECK_DETAILS);
 		}
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargetsOrDefault();
-		CommonSections.spendResource(sections, actor, item, item.system.cost, targets, flags);
+		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			CommonSections.actions(sections, actor, item, targets, flags, inspector);
+			CommonSections.actions(data.sections, actor, item, targets, flags, inspector);
 		}
 		CommonEvents.skill(actor, item);
 	}

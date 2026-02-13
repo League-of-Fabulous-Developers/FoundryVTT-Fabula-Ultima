@@ -126,11 +126,11 @@ const onPrepareCheck = (check, actor) => {
 /**
  * @type {RenderCheckHook}
  */
-const onRenderSupportCheck = (sections, check, actor) => {
+const onRenderSupportCheck = (data, check, actor) => {
 	const { type, primary, modifierTotal, secondary, result, critical, fumble } = check;
 	if (type === 'support') {
 		const inspector = CheckConfiguration.inspect(check);
-		sections.push({
+		data.sections.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 			data: {

@@ -15,22 +15,24 @@ import { ConsumableTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { TraitsDataModel } from '../common/traits-data-model.mjs';
 import { DamageData } from '../../../checks/damage-data.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, check, actor, item, flags, postRenderActions) => {
 	if (item?.system instanceof ConsumableDataModel) {
 		/** @type ConsumableDataModel **/
 
-		CommonSections.tags(sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.tags(data.sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		const config = CheckConfiguration.configure(check);
 
 		const targets = config.getTargetsOrDefault();
-		CommonSections.actions(sections, actor, item, targets, flags, config);
+		CommonSections.actions(data.sections, actor, item, targets, flags, config);
 		const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
-		CommonSections.spendResource(sections, actor, item, cost, [], flags);
-
+		CommonSections.spendResource(data, actor, item, cost, [], flags);
 		CommonEvents.item(actor, item);
 	}
-});
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {boolean} enabled
