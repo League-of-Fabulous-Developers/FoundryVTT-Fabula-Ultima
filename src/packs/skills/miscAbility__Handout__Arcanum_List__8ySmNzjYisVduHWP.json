@@ -126,22 +126,28 @@
     },
     "opportunity": "",
     "defense": "def",
-    "fuid": "handout-arcanum-list"
+    "fuid": "handout-arcanum-list",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "flags": {
     "core": {},
     "projectfu-playtest": {
       "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
     }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710465708129,
-    "modifiedTime": 1744500882501,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1771044453257,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

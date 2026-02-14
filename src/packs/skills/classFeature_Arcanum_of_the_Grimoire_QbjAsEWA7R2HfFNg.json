@@ -13,8 +13,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p>You are able to read, write, speak and understand all languages.</p></li><li><p>You treat your <strong>Insight</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Oracle.</strong> You ask the Game Master a single question. The Game Master must answer truthfully, describing the vision shown to you by the Grimoire.</p></li><li><p>Once used, this <strong>dismiss</strong> effect will not be available until the next dawn. Furthermore, the same question may never be asked more than once. The Game Master has final say on which questions are too similar to be asked again.</p></li></ul>",
+      "merge": "<p>You are able to read, write, speak and understand all languages.</p><p>You treat your <strong>Insight</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+      "dismiss": "<p><strong>Oracle.</strong> You ask the Game Master a single question. The Game Master must answer truthfully, describing the vision shown to you by the Grimoire.</p><p>Once used, this <strong>dismiss</strong> effect will not be available until the next dawn. Furthermore, the same question may never be asked more than once. The Game Master has final say on which questions are too similar to be asked again.</p>",
       "domains": "knowledge, revelations, understanding"
     },
     "source": "FUCR180",
@@ -37,7 +37,18 @@
       "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-grimoire.png",
       "_id": "N151Mbt6kugCFoBx",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.attributes.ins",
@@ -46,7 +57,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are able to read, write, speak and understand all languages.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You treat your </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Insight </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">as if it were one die size higher (up to a maximum of </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">d12</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">).</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are able to read, write, speak and understand all languages.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You treat your </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Insight </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">as if it were one die size higher.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -61,12 +72,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725596664723,
-        "modifiedTime": 1741996385265,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771044930431,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!QbjAsEWA7R2HfFNg.N151Mbt6kugCFoBx"
@@ -78,10 +89,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1710464015009,
-    "modifiedTime": 1724180862194,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1771044908930,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

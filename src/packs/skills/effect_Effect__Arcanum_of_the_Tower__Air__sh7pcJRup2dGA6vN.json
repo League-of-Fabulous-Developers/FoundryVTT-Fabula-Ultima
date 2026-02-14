@@ -1,0 +1,96 @@
+{
+  "folder": "w3kDLFUJnb8HVdJf",
+  "name": "Effect: Arcanum of the Tower (Air)",
+  "type": "effect",
+  "_id": "sh7pcJRup2dGA6vN",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-tower.png",
+  "system": {
+    "fuid": "effect-arcanum-of-the-tower-air",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Tower Arcanum (Air)",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "lMGvYapNT9HKIgXG",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain Resistance to <strong>air</strong> damage until your ally dismisses the <strong>Arcanum of the Tower</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771045245445,
+        "modifiedTime": 1771045647675,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!sh7pcJRup2dGA6vN.lMGvYapNT9HKIgXG"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771045235629,
+    "modifiedTime": 1771045329261,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!sh7pcJRup2dGA6vN"
+}

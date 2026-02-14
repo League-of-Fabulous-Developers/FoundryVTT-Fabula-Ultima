@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong>.</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, discard and <strong>resolve 1 card</strong> from your hand for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), draw that many cards.</p><hr /><ul><li><p>For <strong>deck</strong> breakdown and a list of Effects, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.ooqMmifaiQc2Rcgc]{Deck Rules}</p></li><li><p><strong>You Lose: </strong>@LOSS[10+(&amp;sl(\"magic-cards\")*5) mp]{10 + (SL × 5) MP}</p></li></ul>",
+    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong>.</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, discard and <strong>resolve 1 card</strong> from your hand for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), draw that many cards.</p><hr /><p>For <strong>deck</strong> breakdown and a list of Effects, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.ooqMmifaiQc2Rcgc]{Deck Rules}<br /><strong>You Spend for Each Card: </strong>@LOSS[5 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -115,7 +115,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "magic-cards"
+    "fuid": "magic-cards",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +137,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1707643024284,
-    "modifiedTime": 1769029299622,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771043551161,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -1,7 +1,7 @@
 {
   "name": "Decoy Bait",
   "type": "npc",
-  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "img": "icons/commodities/treasure/totem-wood-face-brown.webp",
   "system": {
     "level": {
       "value": 5
@@ -627,12 +627,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1743874869848,
-    "modifiedTime": 1744081470054,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771040369082,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "3Nt3Kj1uUlYg7P1E",

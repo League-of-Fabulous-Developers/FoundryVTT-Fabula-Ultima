@@ -115,7 +115,10 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "trap-card"
+    "fuid": "trap-card",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -135,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1707643024284,
-    "modifiedTime": 1769029401112,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771043572118,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

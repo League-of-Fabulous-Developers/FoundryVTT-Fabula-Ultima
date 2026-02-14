@@ -10,8 +10,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p>You are immune to <strong>slow</strong>.</p></li><li><p>You gain a +1 bonus to your Defense.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Time Freeze.</strong> Choose any number of creatures you can see: each of them suffers <strong>slow</strong> . If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p><hr></li><li><p><strong>Targets</strong>: @EFFECT[slow]</p></li></ul>",
+      "merge": "<p>You are immune to <strong>slow</strong>.</p><p>You gain a +1 bonus to your Defense.</p>",
+      "dismiss": "<p><strong>Time Freeze</strong>. Choose any number of creatures you can see: each of them suffers <strong>slow</strong> . If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p><hr><p><strong>Targets Suffer:</strong> @EFFECT[slow] or @EFFECT[Compendium.projectfu.skills.Item.jM9IP1QwhEH55Qd1]</p>",
       "domains": "destiny, speed, time"
     },
     "source": "FUCR181",
@@ -34,7 +34,18 @@
       "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-wheel.png",
       "_id": "ydG9HFnv5wiV0oTU",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.derived.def.bonus",
@@ -49,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are immune to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">slow</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Defense.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are immune to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">slow</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Defense.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -64,12 +75,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725598840239,
-        "modifiedTime": 1741996507806,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771045887067,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!Dwq6JSEYmSlhpL3b.ydG9HFnv5wiV0oTU"
@@ -83,8 +94,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710464120707,
-    "modifiedTime": 1768129329248,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1771046126878,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

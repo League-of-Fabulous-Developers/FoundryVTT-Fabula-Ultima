@@ -125,7 +125,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "handout-arcana-rules"
+    "fuid": "handout-arcana-rules",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "flags": {
@@ -142,8 +145,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706574599766,
-    "modifiedTime": 1769007582103,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771044442842,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

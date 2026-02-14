@@ -10,8 +10,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p>You have Resistance to <strong>air</strong> and <strong>bolt</strong> damage.</p></li><li><p>You may use an action to accurately predict weather conditions for the next day within a range of <strong>two travel days</strong> — the Game Master will tell you what the weather conditions will be.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Thunderstorm.</strong> Choose any number of creatures you can see: each of them <strong>suffers 30 bolt damage.</strong> This damage <strong>ignores Resistances</strong>.</p><hr></li><li><p><strong>Targets</strong>: @DMG[&step(30,40,50) bolt|ignore-resistances|]{Thunderstorm}</p></li></ul>",
+      "merge": "<p>You gain Resistance to <strong>air</strong> and <strong>bolt</strong> damage.</p><p>You may use an action to accurately predict weather conditions for the next day within a range of <strong>two travel days</strong> — the Game Master will tell you what the weather conditions will be.</p>",
+      "dismiss": "<p><strong>Thunderstorm</strong>. Choose any number of creatures you can see: you deal 30 <strong>bolt</strong> damage to each of them. This damage <strong>ignores Resistances</strong>.</p><hr><p><strong>Targets Suffer:</strong> @DMG[&step(30,40,50) bolt|ignore-resistances|]{Thunderstorm Damage}</p>",
       "domains": "fog, rain, storms"
     },
     "source": "FUCR180",
@@ -34,7 +34,18 @@
       "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-sky.png",
       "_id": "Nm6hnzBAzx3GZpTj",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.air",
@@ -49,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You have Resistance to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">air </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">and </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">bolt </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You may use an action to accurately predict weather conditions for the next day within a range of </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">two travel days</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">— the Game Master will tell you what the weather conditions will be.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain Resistance to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">air </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">and </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">bolt </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You may use an action to accurately predict weather conditions for the next day within a range of </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">two travel days</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">— the Game Master will tell you what the weather conditions will be.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -64,12 +75,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725597617033,
-        "modifiedTime": 1741996437105,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771045073789,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!zabsA5F47r9B5h4f.Nm6hnzBAzx3GZpTj"
@@ -83,8 +94,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710464043159,
-    "modifiedTime": 1768129329248,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1771045060930,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

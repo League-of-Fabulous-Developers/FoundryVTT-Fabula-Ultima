@@ -13,8 +13,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p>You have Resistance to <strong>earth</strong> and <strong>poison</strong> damage and are immune to <strong>poisoned</strong>.</p></li><li><p>Whenever you recover Hit Points, you recover 5 extra Hit Points.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Blossom.</strong> Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the <strong>poisoned</strong> status effect and recovers 40 Hit Points. This amount increases to 50 Hit Points if you are <strong>level 20 or higher</strong>, or to 60 Hit Points if you are <strong>level 40 or higher</strong>.</p></li></ul><hr><ul><li><p><strong>Targets:</strong> @GAIN[&step(40,50,60) hp]{Blossom}</p></li></ul>",
+      "merge": "<p>You gain Resistance to <strong>earth</strong> and <strong>poison</strong> damage and are immune to <strong>poisoned</strong>.</p><p>Whenever you recover Hit Points, you recover 5 additional Hit Points.</p>",
+      "dismiss": "<p><strong>Blossom.</strong> Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the <strong>poisoned</strong> status effect and also recovers 40 Hit Points. This amount increases to 50 Hit Points if you are <strong>level 20 or higher</strong>, or to 60 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr><p><strong>Targets Recover:</strong> @GAIN[&step(40,50,60) hp]{Blossom HP}</p>",
       "domains": "earth, plants, poison"
     },
     "source": "FUCR180",
@@ -37,7 +37,18 @@
       "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-oak.png",
       "_id": "TyNFvNkkXHQxaJeq",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.earth",
@@ -64,7 +75,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p>You have Resistance to <strong>earth</strong> and <strong>poison</strong> damage and are immune to <strong>poisoned</strong>.</p></li><li><p>Whenever you recover Hit Points, you recover 5 extra Hit Points.</p></li></ul>",
+      "description": "<p>You gain Resistance to <strong>earth</strong> and <strong>poison</strong> damage and are immune to <strong>poisoned</strong>.</p><p>Whenever you recover Hit Points, you recover 5 extra Hit Points.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -79,12 +90,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725597554468,
-        "modifiedTime": 1744457070332,
-        "lastModifiedBy": "WNNELbIcUepK9pGq",
+        "modifiedTime": 1771045001336,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!Y3OzDHLCogR32RlH.TyNFvNkkXHQxaJeq"
@@ -96,10 +107,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1710464030279,
-    "modifiedTime": 1768060983856,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1771044982835,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
