@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you resolve a set with <strong>Magic Cards</strong>, if it includes a <strong>joker</strong> and/or a <strong>7</strong>, you deal <strong>【SL】</strong> extra damage until the start of your next turn; if it includes a <strong>joker</strong> and/or a <strong>1</strong>, all damage you suffer is reduced by <strong>【SL 】</strong> until the start of your next turn (before Affinities); if it doesn't include any <strong>joker</strong>, <strong>1</strong>, or <strong>7</strong>, you recover <strong>【SL × 2】 </strong>Hit Points.</p><hr /><ul><li><p><strong>You Gain: </strong>@LOSS[(&amp;sl(\"high-or-low\")*2) mp]{SL × 2 MP}</p></li></ul>",
+    "description": "<p>When you resolve a set with <strong>Magic Cards</strong>, if it includes a <strong>joker</strong> and/or a <strong>7</strong>, you deal <strong>【SL】</strong> extra damage until the start of your next turn; if it includes a <strong>joker</strong> and/or a <strong>1</strong>, all damage you suffer is reduced by <strong>【SL 】</strong> until the start of your next turn (before Affinities); if it doesn't include any <strong>joker</strong>, <strong>1</strong>, or <strong>7</strong>, you recover <strong>【SL × 2】 </strong>Hit Points.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.do8NdI13icFfJflO] and/or @EFFECT[Compendium.projectfu.skills.Item.pM2eTYvKrmR3wATD] or<strong> </strong>@GAIN[&amp;sl(\"high-or-low\")*2 hp]{SL × 2 HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -115,7 +115,10 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "high-or-low"
+    "fuid": "high-or-low",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "ownership": {
@@ -135,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1707643024284,
-    "modifiedTime": 1769029341078,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771043483405,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

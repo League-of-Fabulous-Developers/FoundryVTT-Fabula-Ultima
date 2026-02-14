@@ -10,8 +10,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal <strong>ignores Resistances</strong>.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Ice Age.</strong> Choose any number of creatures you can see: each of them <strong>suffers</strong> <strong>30 ice damage</strong>. This damage <strong>ignores Resistances.</strong></p><hr></li><li><p><strong>Targets</strong>: @DMG[&step(30,40,50) ice|ignore-resistances|]{Ice Age}</p></li></ul>",
+      "merge": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal <strong>ignores Resistances</strong>.</p>",
+      "dismiss": "<p><strong>Ice Age</strong>. Choose any number of creatures you can see: you deal 30 ice damage to each of them. This damage ignores Resistances.</p><hr><p><strong>Targets Suffer:</strong> @DMG[&step(30,40,50) ice|ignore-resistances|]{Ice Age Damage}</p>",
       "domains": "cold, ice, silence"
     },
     "source": "FUCR179",
@@ -91,7 +91,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal ignores Resistances. </p></li></ul>",
+      "description": "<p>You gain Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p><p>Any <strong>ice</strong> damage you deal ignores Resistances. </p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -106,12 +106,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725596891866,
-        "modifiedTime": 1767979167430,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+        "modifiedTime": 1771044787749,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!TKOESZqheitutkKB.NlNLwaqwYxflNKXr"
@@ -125,8 +125,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710463982993,
-    "modifiedTime": 1768129329248,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1771044718933,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

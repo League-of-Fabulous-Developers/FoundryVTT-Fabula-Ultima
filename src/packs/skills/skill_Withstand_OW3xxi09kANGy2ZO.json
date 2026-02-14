@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>You Recover: </strong>@GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br /><strong>You Receive: </strong>@EFFECT[mig-up e:eot i:2] or @EFFECT[wlp-up e:eot i:2]</p>",
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【5 + (SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><p><strong>You Recover: </strong>@GAIN[5+($sl*$mbs) hp]{5 + (SL × High Bond HP)}<br /><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.skills.Item.jSII3l7tDl8xF5O6] or @EFFECT[Compendium.projectfu.skills.Item.YI4Y5gg5ivvqmO5f]</p>",
     "isFavored": {
       "value": false
     },
@@ -140,7 +140,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706502423483,
-    "modifiedTime": 1770409013048,
+    "modifiedTime": 1771051994117,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

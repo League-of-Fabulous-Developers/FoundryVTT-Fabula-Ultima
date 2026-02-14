@@ -1,0 +1,96 @@
+{
+  "folder": "4OmSoHVWTZzlijwJ",
+  "name": "Effect: High or Low (Reduction)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/high_or_low.png",
+  "system": {
+    "fuid": "effect-high-or-low-reduction",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "High or Low (Reduction)",
+      "img": "systems/projectfu/styles/static/compendium/classes/ace-card/high_or_low.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LpmjwMjtklgZlWSR",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "-&sl('high-or-low')",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage you suffer is reduced by<strong>【SL 】</strong>until the start of your next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771043391207
+      },
+      "_key": "!items.effects!pM2eTYvKrmR3wATD.LpmjwMjtklgZlWSR"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771043343618,
+    "modifiedTime": 1771043357642,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "pM2eTYvKrmR3wATD",
+  "sort": 0,
+  "_key": "!items!pM2eTYvKrmR3wATD"
+}

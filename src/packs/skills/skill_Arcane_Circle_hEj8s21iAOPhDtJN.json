@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict (see <strong>Core Rulebook</strong>, page <strong>178</strong>), if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell's MP cost).</p>",
+    "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict, if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell's MP cost).</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "arcane-circle"
+    "fuid": "arcane-circle",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -154,7 +157,8 @@
               "actions": {
                 "w8BWzeteOxxe2dlU": {
                   "type": "messageRuleAction",
-                  "_id": "w8BWzeteOxxe2dlU"
+                  "_id": "w8BWzeteOxxe2dlU",
+                  "message": "<p>You may perform the <strong>Spell</strong> action.</p>"
                 }
               },
               "predicates": {
@@ -198,12 +202,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768060798954,
-        "modifiedTime": 1768062104700,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771044180646,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!hEj8s21iAOPhDtJN.UFyEiFjoYZc4p9e2"
     }
@@ -214,15 +218,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1706494627418,
-    "modifiedTime": 1742692180788,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771044145468,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
