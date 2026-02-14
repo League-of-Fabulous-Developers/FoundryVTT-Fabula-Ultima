@@ -67,7 +67,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 /**
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
- * @param {CheckRenderData} data
+ * @param {FUChatData} data
  * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
@@ -79,10 +79,10 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 /**
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
- * @param {CheckRenderData} data
+ * @param {FUChatData} data
  */
 function renderNonCombatMagicCheck(checkResult, inspector, data) {
-	data.push({
+	data.sections.push({
 		order: CHECK_ROLL,
 		partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 		data: {
@@ -111,14 +111,8 @@ function renderNonCombatMagicCheck(checkResult, inspector, data) {
 	});
 }
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} checkResult
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {Object} flags
- */
-function onRenderCheck(data, checkResult, actor, item, flags) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, checkResult, actor, item, flags) => {
 	if (checkResult.type === 'magic') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 
@@ -130,7 +124,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.uuid;
 	}
-}
+};
 
 const initialize = () => {
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);

@@ -12,7 +12,7 @@ const magiseedActionKey = 'magiseedAction';
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
+const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item && item.system?.data instanceof MagiseedDataModel) {
 		/** @type MagiseedAction */
 		const action = check.additionalData[magiseedActionKey];
@@ -23,7 +23,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 			case 'effect': {
 				let floralistData = actor?.system?.floralist;
 				if (!floralistData?.garden) {
-					sections.push({
+					data.sections.push({
 						partial: 'systems/projectfu/templates/feature/floralist/magiseed-chat-message.hbs',
 						data: { message: game.i18n.localize('FU.ClassFeatureMagiseedGrowthClockNoClockFound') },
 					});
@@ -38,13 +38,13 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					}
 				}
 				if (effect == null) {
-					sections.push({
+					data.sections.push({
 						partial: 'systems/projectfu/templates/feature/floralist/magiseed-chat-message.hbs',
 						data: { message: game.i18n.localize('FU.ClassFeatureMagiseedGrowthClockNoMatchingEffect') },
 					});
 					break;
 				}
-				sections.push(
+				data.sections.push(
 					TextEditor.enrichHTML(effect.effect, { rollData: item.getRollData() }).then((enriched) => ({
 						partial: 'systems/projectfu/templates/feature/floralist/magiseed-chat-effect.hbs',
 						data: { ...effect, effect: enriched },
@@ -53,7 +53,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 				break;
 			}
 			case 'planted': {
-				sections.push({
+				data.sections.push({
 					partial: 'systems/projectfu/templates/feature/floralist/magiseed-chat-message.hbs',
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenAdded', {
@@ -65,7 +65,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 				break;
 			}
 			case 'removed': {
-				sections.push({
+				data.sections.push({
 					partial: 'systems/projectfu/templates/feature/floralist/magiseed-chat-message.hbs',
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenRemoved', {

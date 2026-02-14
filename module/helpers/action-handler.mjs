@@ -15,12 +15,12 @@ const actionKey = 'ruleDefinedAction';
 /**
  * @type {RenderCheckHook}
  */
-const onRenderCheck = (sections, check, actor) => {
+const onRenderCheck = (data, check, actor) => {
 	const action = check.additionalData[actionKey];
 	if (action) {
 		const description = game.i18n.localize(FU.actionRule[action]);
 		if (description) {
-			sections.push(
+			data.sections.push(
 				foundry.applications.handlebars
 					.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 						title: FU.actionTypes[action],
@@ -31,7 +31,7 @@ const onRenderCheck = (sections, check, actor) => {
 					})),
 			);
 
-			sections.push(
+			data.sections.push(
 				TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
 					content: v,
 					order: -1050,

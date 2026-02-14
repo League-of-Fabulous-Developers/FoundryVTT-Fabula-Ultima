@@ -58,16 +58,11 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-/**
- * @param {CheckRenderData} sections
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-function onRenderCheck(sections, result, actor, item) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item) => {
 	if (item && item.system instanceof CustomWeaponDataModel) {
 		CommonSections.tags(
-			sections,
+			data.sections,
 			[
 				{
 					tag: 'FU.CustomWeapon',
@@ -93,19 +88,19 @@ function onRenderCheck(sections, result, actor, item) {
 			],
 			CHECK_DETAILS,
 		);
-		CommonSections.quality(sections, item.system.quality, CHECK_DETAILS);
+		CommonSections.quality(data.sections, item.system.quality, CHECK_DETAILS);
 
 		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
-			sections.push({
+			data.sections.push({
 				partial: 'projectfu.technospheres.chatSlotted',
 				data: { slotted: item.system.slotted },
 				order: CHECK_DETAILS,
 			});
 		} else {
-			CommonSections.description(sections, item.system.description, item.system.summary, CHECK_DETAILS);
+			CommonSections.description(data.sections, item.system.description, item.system.summary, CHECK_DETAILS);
 		}
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 

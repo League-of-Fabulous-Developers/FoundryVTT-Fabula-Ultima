@@ -82,7 +82,7 @@ export const SETTINGS = Object.freeze({
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
 	automationApplyDamage: 'automationApplyDamage',
-	automationUpdateResource: 'automationUpdateResource',
+	automationSpendResource: 'automationUpdateResource',
 	// Homebrew
 	homebrewOptions: 'homebrewOptions',
 	optionBondMaxLength: 'optionBondMaxLength',
@@ -845,7 +845,7 @@ export const registerSystemSettings = async function () {
 			SETTINGS.optionAutomationEffectsReminder,
 			SETTINGS.optionAutomationRemoveExpiredEffects,
 			SETTINGS.automationApplyDamage,
-			SETTINGS.automationUpdateResource,
+			SETTINGS.automationSpendResource,
 		]),
 		restricted: true,
 	});
@@ -895,9 +895,9 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.automationUpdateResource, {
-		name: game.i18n.localize('FU.AutomationUpdateResource'),
-		hint: game.i18n.localize('FU.AutomationUpdateResourceHint'),
+	game.settings.register(SYSTEM, SETTINGS.automationSpendResource, {
+		name: game.i18n.localize('FU.AutomationSpendResource'),
+		hint: game.i18n.localize('FU.AutomationSpendResourceHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,

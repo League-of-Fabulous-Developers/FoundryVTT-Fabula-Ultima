@@ -4,15 +4,12 @@ import { CheckConfiguration } from './check-configuration.mjs';
 
 const SKIP_RENDER = 'SpecialResultSkipRender';
 
-/**
- * @param {CheckRenderData} sections
- * @param {CheckResultV2} check
- */
-const onRenderCheck = (sections, check) => {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, check) => {
 	if (check.type !== 'display' && !check.additionalData[SKIP_RENDER]) {
 		const { critical, fumble, result } = check;
 		const inspector = CheckConfiguration.inspect(check);
-		sections.push({
+		data.sections.push({
 			order: CHECK_RESULT,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
 			data: {

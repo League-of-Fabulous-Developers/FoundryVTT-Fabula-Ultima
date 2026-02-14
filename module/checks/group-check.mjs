@@ -471,11 +471,11 @@ function isGroupCheck(type) {
 /**
  * @type {RenderCheckHook}
  */
-const onRenderGroupCheck = (sections, check, actor, item, flags) => {
+const onRenderGroupCheck = (data, check, actor, item, flags) => {
 	const { type, primary, modifierTotal, secondary, result, critical, fumble } = check;
 	if (isGroupCheck(type)) {
 		const inspector = CheckConfiguration.inspect(check);
-		sections.push({
+		data.sections.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 			data: {
@@ -504,7 +504,7 @@ const onRenderGroupCheck = (sections, check, actor, item, flags) => {
 		});
 
 		const targets = inspector.getTargets();
-		CommonSections.actions(sections, actor, item, targets, flags, inspector);
+		CommonSections.actions(data, actor, item, targets, flags, inspector);
 	}
 };
 

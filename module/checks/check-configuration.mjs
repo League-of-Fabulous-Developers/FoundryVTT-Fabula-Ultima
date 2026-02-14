@@ -253,7 +253,7 @@ class CheckInspector {
 	}
 
 	/**
-	 * @returns {ResourceExpense}
+	 * @returns {UpdateResourceData}
 	 */
 	getExpense() {
 		return this.#check.additionalData[EXPENSE];
@@ -655,17 +655,11 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {FUResourceType} resource
+	 * @param {FUResourceType} type
 	 * @param {Number} amount
 	 */
-	addExpense(resource, amount) {
-		if (!this.check.additionalData[EXPENSE]) {
-			this.check.additionalData[EXPENSE] = /** @type ResourceExpense* **/ {
-				resource: resource,
-				amount: 0,
-			};
-		}
-		this.check.additionalData[EXPENSE].amount += amount;
+	setExpense(type, amount) {
+		this.check.additionalData[EXPENSE] = UpdateResourceData.construct(type, amount);
 	}
 
 	/**
@@ -689,11 +683,11 @@ const registerMetaCurrencyExpenditure = (check) => {
 	/**
 	 * @type RenderCheckHook
 	 */
-	const spendMetaCurrency = (sections, check, actor) => {
+	const spendMetaCurrency = (data, check, actor) => {
 		if (check.additionalData.triggerMetaCurrencyExpenditure === randomId) {
 			delete check.additionalData.triggerMetaCurrencyExpenditure;
 			Hooks.off(CheckHooks.renderCheck, hookId);
-			sections.push(async () => {
+			data.sections.push(async () => {
 				const success = await PlayerListEnhancements.spendMetaCurrency(actor, true);
 				if (!success) {
 					throw new Error('not enough meta currency');

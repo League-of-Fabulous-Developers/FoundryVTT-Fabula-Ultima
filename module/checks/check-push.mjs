@@ -41,7 +41,7 @@ function addRollContextMenuEntries(application, menuItems) {
 const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
 	const pushData = checkResult.additionalData.push;
 	if (pushData) {
-		data.push({
+		data.sections.push({
 			order: CHECK_PUSH,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
 			data: { push: pushData },

@@ -25,20 +25,20 @@ const invocationKey = 'invocation';
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
+const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.system?.data instanceof InvocationsDataModel) {
 		if (!check.additionalData[invocationKey]) {
-			CommonSections.tags(sections, [
+			CommonSections.tags(data.sections, [
 				{
 					tag: 'FU.Rank',
 					value: game.i18n.localize(RANKS[item.system.data.level]),
 					separator: ':',
 				},
 			]);
-			CommonSections.description(sections, item.system.description, item.system.summary.value);
+			CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		} else {
 			const { element, invocation } = check.additionalData[invocationKey];
-			sections.push({
+			data.sections.push({
 				partial: 'systems/projectfu/templates/feature/invoker/invocation-use-flavor.hbs',
 				data: {
 					uuid: item.uuid,
@@ -48,7 +48,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 				},
 				order: CHECK_FLAVOR,
 			});
-			CommonSections.description(sections, item.system.data[element][invocation].description);
+			CommonSections.description(data.sections, item.system.data[element][invocation].description);
 		}
 	}
 };

@@ -274,14 +274,14 @@ const opportunity = (sections, opportunity, order) => {
 
 /**
  * @description Adds a target section to the message that lists the targets and provides contextual buttons
- * @param {CheckRenderData} sections
+ * @param {FUChatData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targetData
  * @param {Map} flags
  * @param {CheckInspector} inspector
  */
-const actions = (sections, actor, item, targetData, flags, inspector = undefined) => {
+const actions = (data, actor, item, targetData, flags, inspector = undefined) => {
 	const isTargeted = targetData?.length > 0 || !Targeting.STRICT_TARGETING;
 
 	let checkData;
@@ -294,7 +294,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		switch (checkData.type) {
 			case 'accuracy':
 			case 'magic':
-				sections.push({
+				data.sections.push({
 					order: CHECK_ROLL,
 					partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
 					data: {
@@ -311,7 +311,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				break;
 
 			case 'display':
-				sections.push({
+				data.sections.push({
 					order: CHECK_ROLL,
 					partial: 'systems/projectfu/templates/chat/chat-display-container.hbs',
 					data: {
@@ -325,10 +325,10 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				break;
 		}
 
-		// Expense action
-		const expenseData = inspector.getExpense();
-		if (expenseData) {
-			CommonSections.spendResource(sections, actor, item, expenseData, targetData, flags);
+		// If expense data was provided for the actions
+		const expense = inspector.getExpense();
+		if (expense) {
+			CommonSections.spendResourceV2(data, actor, item, expense, targetData, flags);
 		}
 	}
 
@@ -338,7 +338,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 		const targets = Targeting.deserializeTargetData(targetData);
 		const traits = inspector.getTraits();
 
-		sections.push(async function () {
+		data.sections.push(async function () {
 			/** @type {ChatAction[]} **/
 			let actions = [];
 			actions.push(Targeting.defaultAction);
@@ -353,8 +353,6 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 				}
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
 				actions.push(ResourcePipeline.getTargetedAction(request));
-
-				// Trait data
 			}
 
 			const effectData = inspector.getEffects();
@@ -373,8 +371,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 
 				// TODO: Combine expenses among all actions?
 				for (const mod of damageData.modifiers) {
-					if (mod.expense && mod.expense.amount > 0) {
-						CommonSections.spendResource(sections, actor, item, mod.expense, targetData, flags);
+					if (mod.expense && mod.expense.traits) {
 						if (mod.expense.traits) {
 							const expenseTraits = new Set(mod.expense.traits);
 							if (expenseTraits.has(FeatureTraits.Gift)) {
@@ -411,6 +408,7 @@ const actions = (sections, actor, item, targetData, flags, inspector = undefined
 					onRoll();
 				}
 			}
+
 			// Remaining actions
 			if (inspector) {
 				for (const action of inspector.getTargetedActions()) {
@@ -464,14 +462,14 @@ async function showFloatyText(targetData, localizedText) {
 }
 
 /**
- * @param {CheckRenderData} sections
+ * @param {FUChatData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {ActionCostDataModel} cost
  * @param {TargetData[]} targets
  * @param {Object} flags
  */
-const spendResource = (sections, actor, item, cost, targets, flags) => {
+const spendResource = (data, actor, item, cost, targets, flags) => {
 	if (!cost.amount) {
 		return;
 	}
@@ -481,9 +479,8 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 	}
 
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	sections.push(async () => {
-		const itemGroup = InlineHelper.resolveItemGroup(item);
-		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets, itemGroup);
+	data.sections.push(async () => {
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
 
 		// This can be modified here...
 		await CommonEvents.calculateExpense(actor, item, targets, expense);
@@ -503,15 +500,59 @@ const spendResource = (sections, actor, item, cost, targets, flags) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {FUChatData} data
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {ResourceExpense} expense
+ * @param {UpdateResourceData} updateData
+ * @param {TargetData[]} targets
  * @param {Object} flags
  */
-const expense = (sections, actor, item, expense, flags) => {
+const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
+	if (updateData.total === 0) {
+		return;
+	}
+
+	// TODO: Use the update resource data model?
+	/** @type {ResourceExpense} **/
+	const expense = {
+		resource: updateData.type,
+		amount: updateData.total,
+		traits: [],
+		source: InlineHelper.resolveItemGroup(item),
+	};
+
+	// Allow modification of the amount
+	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
+
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
-	sections.push(async () => {
+	data.sections.push(async () => {
+		return {
+			order: CHECK_ACTIONS + 500,
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
+			data: {
+				name: item.name,
+				actor: actor.uuid,
+				item: item.uuid,
+				expense: expense,
+				resourceLabel: FU.resourcesAbbr[expense.resource],
+				icon: FU.resourceIcons[expense.resource],
+			},
+		};
+	});
+};
+
+/**
+ * @param {FUChatData} data
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param targets
+ * @param {Object} flags
+ * @param {ResourceExpense} expense
+ */
+const expense = (data, actor, item, targets, flags, expense) => {
+	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
+	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
+	data.sections.push(async () => {
 		return {
 			order: CHECK_RESULT,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
@@ -556,6 +597,7 @@ export const CommonSections = {
 	opportunity,
 	actions,
 	spendResource,
+	spendResourceV2,
 	expense,
 	slottedTechnospheres,
 };

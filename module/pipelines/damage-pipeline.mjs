@@ -803,6 +803,16 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				if (damage.hrZero) {
 					config.setHrZero(true);
 				}
+				// If costs were added
+				for (const mod of damage.modifiers) {
+					if (mod.expense && mod.expense.amount > 0) {
+						if (!config.getExpense()) {
+							config.setExpense(mod.expense.resource, mod.expense.amount);
+						} else {
+							config.getExpense().addModifier(mod.expense.source, mod.expense.amount);
+						}
+					}
+				}
 			}
 			for (const modifier of damage.modifiers) {
 				if (modifier.traits && modifier.traits.length > 0) {
@@ -813,12 +823,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 	});
 };
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
+/** @type RenderCheckHook */
 function onRenderCheck(data, result, actor, item) {
 	const inspector = CheckConfiguration.inspect(result);
 	if (inspector.hasDamage) {
@@ -831,7 +836,7 @@ function onRenderCheck(data, result, actor, item) {
 		}
 		if (traits.length > 0) {
 			CommonSections.tags(
-				data,
+				data.sections,
 				TraitUtils.toTags(
 					traits.map((t) => TraitUtils.localize(t)),
 					false,

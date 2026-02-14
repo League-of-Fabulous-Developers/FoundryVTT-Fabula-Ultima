@@ -14,23 +14,24 @@ import { ConsumableTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 import { TraitsDataModel } from '../common/traits-data-model.mjs';
 import { DamageData } from '../../../checks/damage-data.mjs';
+import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, check, actor, item, flags, postRenderActions) => {
 	if (item?.system instanceof ConsumableDataModel) {
 		/** @type ConsumableDataModel **/
 
-		CommonSections.tags(sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.tags(data.sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		const config = CheckConfiguration.configure(check);
 
 		const targets = config.getTargetsOrDefault();
-		CommonSections.actions(sections, actor, item, targets, flags, config);
-		const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
-		CommonSections.spendResource(sections, actor, item, cost, [], flags);
-
+		CommonSections.actions(data, actor, item, targets, flags, config);
 		CommonEvents.item(actor, item);
 	}
-});
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {boolean} enabled
@@ -107,6 +108,9 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 			const consumable = item.system;
 			const targets = config.getTargetsOrDefault();
 
+			const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
+			await ResourcePipeline.configureExpense(config, actor, item, cost);
+
 			let builder = new ConsumableBuilder();
 			if (consumable.resource.enabled) {
 				builder.action = 'resource';
@@ -121,7 +125,6 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 				const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 
 				await CommonEvents.createConsumable(actor, item, targets, builder);
-				//config.setDamage(consumable.damage.types, builder.amount);
 				for (const type of consumable.damage.types) {
 					const data = DamageData.construct(type, builder.amount);
 					const action = DamagePipeline.getTargetedAction(data, sourceInfo);

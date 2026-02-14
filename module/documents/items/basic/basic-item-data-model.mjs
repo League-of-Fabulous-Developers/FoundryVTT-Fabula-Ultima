@@ -45,15 +45,10 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
-function onRenderCheck(data, result, actor, item) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item) => {
 	if (item && item.system instanceof BasicItemDataModel) {
-		data.push(async () => ({
+		data.sections.push(async () => ({
 			order: CHECK_DETAILS,
 			partial: 'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
 			data: {
@@ -63,10 +58,10 @@ function onRenderCheck(data, result, actor, item) {
 				},
 			},
 		}));
-		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
-		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 

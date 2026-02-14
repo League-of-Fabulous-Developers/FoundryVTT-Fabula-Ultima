@@ -7,9 +7,9 @@ import { SYSTEM } from '../../../../helpers/config.mjs';
 /**
  * @type RenderCheckHook
  */
-const renderCheck = (sections, check, actor, item, additionalFlags) => {
+const renderCheck = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.system?.data instanceof CookbookDataModel && check.additionalData['action'] === 'cooking') {
-		sections.push({
+		data.sections.push({
 			partial: 'systems/projectfu/templates/feature/gourmet/cooking-chat-message.hbs',
 			data: check.additionalData['cooking'],
 		});

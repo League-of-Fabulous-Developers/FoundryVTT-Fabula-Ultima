@@ -20,17 +20,12 @@ const onPrepareCheck = (check, actor) => {
 	}
 };
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} checkResult
- * @param {FUActor} actor
- * @param {FUItem} [item]
- */
+/** @type RenderCheckHook */
 const onRenderCheck = (data, checkResult, actor, item) => {
 	const { type, primary, modifierTotal, secondary, result, critical, fumble } = checkResult;
 	if (type === 'attribute') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-		data.push({
+		data.sections.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 			data: {

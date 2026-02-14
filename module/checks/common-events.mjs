@@ -291,19 +291,48 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
  * @typedef CalculateExpenseEvent
  * @property {ResourceExpense} expense
  * @property {CharacterInfo} source
+ * @property {FUItem} item
  * @property {CharacterInfo[]} targets
  */
 
-async function calculateExpense(actor, item, targetActors, expense) {
+/**
+ * @param actor
+ * @param item
+ * @param {TargetData[]} targetData
+ * @param {ResourceExpense} expense
+ * @returns {Promise}
+ */
+async function calculateExpense(actor, item, targetData, expense) {
+	const source = CharacterInfo.fromActor(actor);
+	const targets = CharacterInfo.fromTargetData(targetData);
+	/** @type CalculateExpenseEvent  **/
+	const event = {
+		expense: expense,
+		item: item,
+		source: source,
+		targets: targets,
+	};
+	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+}
+
+/**
+ * @param actor
+ * @param item
+ * @param targetActors
+ * @param expense
+ * @returns {Promise}
+ */
+async function expense(actor, item, targetActors, expense) {
 	const source = CharacterInfo.fromActor(actor);
 	const targets = CharacterInfo.fromTargetData(targetActors);
 	/** @type CalculateExpenseEvent  **/
 	const event = {
 		expense: expense,
+		item: item,
 		source: source,
 		targets: targets,
 	};
-	return AsyncHooks.callSequential(FUHooks.CALCULATE_EXPENSE_EVENT, event);
+	return AsyncHooks.callSequential(FUHooks.EXPENSE_EVENT, event);
 }
 
 /**
@@ -701,7 +730,7 @@ async function renderMessage(renderData, actor, document = undefined) {
  * @property {CharacterInfo} source
  * @property {FUItem} item
  * @property {String[]} traits
- * @property {SectionChatBuilder} builder
+ * @property {FUChatBuilder} builder
  * @property
  */
 
@@ -813,6 +842,7 @@ export const CommonEvents = Object.freeze({
 	resolveCheck,
 	renderCheck,
 	calculateExpense,
+	expense,
 	calculateDamage,
 	calculateResource,
 	notify,

@@ -13,6 +13,7 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
 import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
+import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 
 /**
  * @property {string} description
@@ -70,8 +71,10 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	/**
 	 * @desc Common configuration for attribute checks.
 	 * @param {CheckConfigurer} config
+	 * @param actor
+	 * @param item
 	 */
-	configureCheck(config) {
+	async configureCheck(config, actor, item) {
 		config.addTraits('skill');
 		config.addTraitsFromItemModel(this.traits);
 		config.addEffects(this.effects.entries);
@@ -79,6 +82,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 		if (this.resource.enabled) {
 			config.setResource(this.resource.type, this.resource.amount);
 		}
+		await ResourcePipeline.configureExpense(config, actor, item, this.cost);
 	}
 
 	/**
@@ -122,7 +126,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	async configureDisplayCheck(config, actor, item) {
 		const targets = config.getTargets();
 		const context = ExpressionContext.fromTargetData(actor, item, targets);
-		this.configureCheck(config);
+		await this.configureCheck(config);
 		if (this.damage.hasDamage) {
 			if (this.useWeapon.damage) {
 				const weapon = await this.getWeapon(actor);

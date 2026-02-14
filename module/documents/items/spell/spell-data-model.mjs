@@ -20,20 +20,14 @@ import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ExpressionContext } from '../../../expressions/expressions.mjs';
+import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 
-/**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {Object} flags
- * @param {TargetData[]} targets
- */
-function onRenderCheck(data, result, actor, item, flags) {
+/** @type RenderCheckHook */
+const onRenderCheck = (data, result, actor, item, flags, postRenderActions) => {
 	if (item && item.system instanceof SpellDataModel) {
-		CommonSections.tags(data, item.system.getTags(), CHECK_DETAILS);
-		CommonSections.opportunity(data, item.system.opportunity, CHECK_DETAILS);
-		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
+		CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const inspector = CheckConfiguration.inspect(result);
 		const targets = inspector.getTargetsOrDefault();
@@ -42,14 +36,12 @@ function onRenderCheck(data, result, actor, item, flags) {
 		if (!item.system.hasRoll.value) {
 			CommonSections.actions(data, actor, item, targets, flags, inspector);
 		}
-
-		CommonSections.spendResource(data, actor, item, item.system.cost, targets, flags);
 	}
-}
+};
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
-/**tt
+/**
  * @property {String} fuid
  * @property {string} subtype.value
  * @property {string} summary.value
@@ -140,8 +132,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
-			// Configure
-			this.#addCommon(spell, config);
+			await this.#configureCommon(config, actor, item);
 			if (spell.resource.enabled) {
 				config.setResource(spell.resource.type, spell.resource.amount);
 			}
@@ -149,9 +140,17 @@ export class SpellDataModel extends FUStandardItemDataModel {
 		};
 	}
 
-	#addCommon(spell, config) {
+	/**
+	 * @param {CheckConfigurer} config
+	 * @param actor
+	 * @param item
+	 * @returns {Promise<void>}
+	 */
+	async #configureCommon(config, actor, item) {
+		const spell = item.system;
 		config.addEffects(spell.effects.entries);
 		config.addTraits('spell').addTraitsFromItemModel(spell.traits);
+		await ResourcePipeline.configureExpense(config, actor, item, spell.cost);
 	}
 
 	/**
@@ -165,7 +164,6 @@ export class SpellDataModel extends FUStandardItemDataModel {
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
-			// Configure
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
 				const weapon = await ChooseWeaponDialog.prompt(actor, true);
@@ -181,7 +179,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 
 			/** @type SpellDataModel **/
 			const spell = item.system;
-			this.#addCommon(spell, config);
+			await this.#configureCommon(config, actor, item);
 
 			if (!attributeOverride) {
 				check.primary = spell.rollInfo.attributes.primary.value;

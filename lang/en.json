@@ -594,6 +594,8 @@
 		"AutomationEffectsReminderHint": "Whether to post chat messages as effect durations decrease",
 		"AutomationApplyDamage": "Apply Damage",
 		"AutomationApplyDamageHint": "Automatically apply damage from actions when possible",
+		"AutomationSpendResource": "Spend Resource",
+		"AutomationSpendResourceHint": "Automatically spend resources from actions when possible",
 		"Actor": "Actor\r",
 		"Combatant": "Combatant",
 		"Quirk": "Quirk",
