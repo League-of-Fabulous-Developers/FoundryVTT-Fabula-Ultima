@@ -258,11 +258,11 @@ async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
 	// Now execute directly on GM or request as user
 	if (game.user?.isGM) {
 		/** @type FUActor **/
-		const sourceActor = fromUuidSync(sourceActorId);
+		const sourceActor = await fromUuid(sourceActorId);
 
 		if (validateFunds(sourceActor, amount)) {
 			/** @type FUActor **/
-			const targetActor = fromUuidSync(targetActorId);
+			const targetActor = await fromUuid(targetActorId);
 
 			await updateResources(sourceActor, -amount);
 			await updateResources(targetActor, amount);

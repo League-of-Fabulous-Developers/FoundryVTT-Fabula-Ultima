@@ -18,10 +18,10 @@ const skillForAttributeCheck = 'skillForAttributeCheck';
 /**
  * @type RenderCheckHook
  */
-let onRenderAccuracyCheck = (data, check, actor, item, flags) => {
+let onRenderAccuracyCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
 		const inspector = CheckConfiguration.inspect(check);
-		const weapon = fromUuidSync(inspector.getWeaponReference());
+		const weapon = await fromUuid(inspector.getWeaponReference());
 		if (check.critical) {
 			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
 		}
@@ -46,10 +46,10 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAttributeCheck = (sections, check, actor, item, flags) => {
+let onRenderAttributeCheck = async (sections, check, actor, item, flags) => {
 	if (check.type === 'attribute' && item?.system instanceof MiscAbilityDataModel && check.additionalData[skillForAttributeCheck]) {
 		const inspector = CheckConfiguration.inspect(check);
-		const ability = fromUuidSync(inspector.getWeaponReference());
+		const ability = await fromUuid(inspector.getWeaponReference());
 		CommonSections.itemFlavor(sections, ability);
 		if (check.critical) {
 			CommonSections.opportunity(sections, ability.system.opportunity, CHECK_DETAILS);
@@ -216,7 +216,7 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 			config.setWeaponReference(weapon);
 			await this.configureCheck(config);
 			await this.addSkillAccuracy(config, actor, item, context);
-			await this.addSkillDamage(config, item, context);
+			await this.addSkillDamage(config, item, context, weapon.system);
 		};
 	}
 

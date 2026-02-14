@@ -16,10 +16,10 @@ const skillForAttributeCheck = 'skillForAttributeCheck';
 /**
  * @type RenderCheckHook
  */
-let onRenderAccuracyCheck = (data, check, actor, item, flags) => {
+let onRenderAccuracyCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
 		const inspector = CheckConfiguration.inspect(check);
-		const weapon = fromUuidSync(inspector.getWeaponReference());
+		const weapon = await fromUuid(inspector.getWeaponReference());
 
 		if (check.critical) {
 			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
@@ -40,9 +40,9 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAttributeCheck = (data, check, actor, item, flags) => {
+let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'attribute' && item?.system instanceof SkillDataModel && check.additionalData[skillForAttributeCheck]) {
-		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
+		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
 		const inspector = CheckConfiguration.inspect(check);
 		CommonSections.itemFlavor(data.sections, skill);
 		CommonSections.tags(data.sections, getTags(skill), CHECK_DETAILS);
@@ -196,8 +196,6 @@ export class SkillDataModel extends BaseSkillDataModel {
 	#initializeAccuracyCheck(modifiers) {
 		return async (check, actor, item) => {
 			const weapon = await this.getWeapon(actor);
-			/** @type WeaponDataModel **/
-			const weaponData = weapon.system;
 			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
 			if (error) {
 				throw error;
@@ -213,7 +211,7 @@ export class SkillDataModel extends BaseSkillDataModel {
 			config.setWeaponReference(weapon);
 			config.setHrZero(this.damage.hrZero || modifiers.shift);
 			await this.configureCheck(config);
-			await this.addSkillDamage(config, item, context, weaponData);
+			await this.addSkillDamage(config, item, context, weapon.system);
 			await this.addSkillAccuracy(config, actor, item, context);
 		};
 	}
