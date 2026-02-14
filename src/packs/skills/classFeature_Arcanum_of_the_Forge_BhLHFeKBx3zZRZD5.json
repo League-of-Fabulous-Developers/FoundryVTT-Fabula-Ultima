@@ -10,7 +10,7 @@
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<p>You gain Resistance to <strong>fire</strong> damage.</p><p>Any <strong>fire</strong> damage you deal ignores Resistances.</p>",
-      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a <strong>basic armor</strong>, <strong>shield</strong>, or <strong>weapon</strong> of your choice (see <strong>Core Rulebook,</strong> pages <strong>130</strong> to<strong> 133</strong>). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals <strong>fire</strong> damage instead of <strong>physical</strong>.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: you deal 30 <strong>fire</strong> damage to each of them<strong>. </strong>This damage <strong>ignores Resistances.</strong></p></li></ul><hr><p><strong>Targets Suffer</strong>: @DMG[&step(30,40,50) fire|ignore-resistances|]{Inferno Damage}</p>",
+      "dismiss": "<p>When you <strong>dismiss</strong> this Arcanum, choose <strong>Forge</strong> or <strong>Inferno</strong>:</p><ul><li><p><strong>Forge.</strong> You create a <strong>basic armor</strong>, <strong>shield</strong>, or <strong>weapon</strong> of your choice (see <strong>Core Rulebook,</strong> pages <strong>130</strong> to<strong> 133</strong>). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals <strong>fire</strong> damage instead of <strong>physical</strong>.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: you deal 30 <strong>fire</strong> damage to each of them<strong>. </strong>This damage <strong>ignores Resistances.</strong></p></li></ul><hr><p><strong>Targets Suffer</strong>: @DMG[&step(30,40,50) fire|ignore-resistances|]{Inferno Damage}</p>",
       "domains": "fire, heat, metal"
     },
     "source": "FUCR179",
@@ -122,7 +122,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710029700564,
-    "modifiedTime": 1771044727651,
+    "modifiedTime": 1771052412556,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
