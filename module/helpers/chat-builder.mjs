@@ -15,7 +15,7 @@ export class FUChatBuilder {
 	 */
 	#renderData = [];
 	/**
-	 * @type {Object}
+	 * @type {Object[]}
 	 */
 	#flags;
 	/**
@@ -42,7 +42,7 @@ export class FUChatBuilder {
 	constructor(actor, item) {
 		this.#actor = actor;
 		this.#item = item;
-		this.#flags = {};
+		this.#flags = [];
 		this.#postRenderActions = [];
 	}
 
@@ -77,12 +77,22 @@ export class FUChatBuilder {
 	/**
 	 * @returns {Object}
 	 */
-	get flags() {
-		return this.#flags;
+	getMergedFlags() {
+		// Merge all current flags
+		let merged = {};
+		for (const current of this.#flags) {
+			foundry.utils.mergeObject(merged, current, { overwrite: false });
+			//ObjectUtils.mergeRecursive(merged, flag);
+		}
+		return merged;
 	}
 
+	/**
+	 * @param {Object} flags Adds a flags object to the chat message. It will be merged with others.
+	 * @returns {FUChatBuilder}
+	 */
 	withFlags(flags) {
-		this.#flags = flags;
+		this.#flags.push(flags);
 		return this;
 	}
 
@@ -112,7 +122,6 @@ export class FUChatBuilder {
 	 */
 	async create() {
 		const actor = this.#actor;
-		const flags = this.#flags;
 		const item = this.#item;
 
 		/**
@@ -137,6 +146,9 @@ export class FUChatBuilder {
 			},
 			{ flavor: [], body: [] },
 		);
+
+		// Get the merged flags now
+		const flags = this.getMergedFlags();
 
 		/**
 		 * @type {CheckSection[]}

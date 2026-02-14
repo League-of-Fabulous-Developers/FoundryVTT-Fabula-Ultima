@@ -438,27 +438,22 @@ async function renderCheck(result, actor, item, flags = {}) {
 		postRenderActions: [],
 	};
 	const additionalFlags = {};
-
 	const config = CheckConfiguration.configure(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, chatData, result, actor, item, additionalFlags);
 	await CommonEvents.renderCheck(chatData.sections, config, actor, item);
 	await CommonEvents.renderMessage(chatData.sections, actor, item);
 
-	// Merge flags
-	flags = foundry.utils.mergeObject(
-		{
-			[SYSTEM]: {
-				[Flags.ChatMessage.CheckV2]: result,
-				[Flags.ChatMessage.Item]: item?.uuid,
-			},
+	// Check-specific flags
+	const checkFlags = {
+		[SYSTEM]: {
+			[Flags.ChatMessage.CheckV2]: result,
+			[Flags.ChatMessage.Item]: item?.uuid,
 		},
-		foundry.utils.mergeObject(additionalFlags, flags, { overwrite: false }),
-		{ overwrite: false, recursive: true },
-	);
+	};
 
 	// Create the chat builder
-	const chatBuilder = new FUChatBuilder(actor, item).withFlags(flags).withData(chatData);
+	const chatBuilder = new FUChatBuilder(actor, item).withFlags(checkFlags).withFlags(flags).withFlags(additionalFlags).withData(chatData);
 
 	// Add flavor
 	let flavor;
