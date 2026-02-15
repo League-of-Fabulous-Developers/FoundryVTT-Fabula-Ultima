@@ -4,13 +4,13 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof RuleDataModel) {
 		if (item.system.hasClock.value) {
-			CommonSections.clock(sections, item.system.progress);
+			CommonSections.clock(data.sections, item.system.progress);
 		}
 
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 

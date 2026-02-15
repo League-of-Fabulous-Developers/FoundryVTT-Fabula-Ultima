@@ -18,9 +18,9 @@ const alchemyRanks = {
 /**
  * @type {RenderCheckHook}
  */
-const onRenderCheck = (sections, check, actor, item) => {
+const onRenderCheck = (data, check, actor, item) => {
 	if (check.type === 'display' && item?.system?.data instanceof AlchemyDataModel) {
-		CommonSections.description(sections, item.system.data.description, item.system.summary.value);
+		CommonSections.description(data.sections, item.system.data.description, item.system.summary.value);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);

@@ -6,15 +6,15 @@ import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (sections, check, actor, item) => {
+const onRenderCheck = (data, check, actor, item) => {
 	if (item?.system instanceof OptionalFeatureTypeDataModel && item.system.data instanceof QuirkDataModel) {
 		/** @type QuirkDataModel */
 		const quirk = item.system.data;
 		if (quirk.hasResource.value) {
-			CommonSections.resource(sections, quirk.rp, -1);
+			CommonSections.resource(data.sections, quirk.rp, -1);
 		}
 		if (quirk.hasClock.value) {
-			CommonSections.clock(sections, quirk.progress, -1);
+			CommonSections.clock(data.sections, quirk.progress, -1);
 		}
 	}
 };

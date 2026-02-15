@@ -20,12 +20,12 @@ const tagProperties = {
 	'benefits.rituals.spiritism.value': 'FU.Spiritism',
 };
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof ClassDataModel) {
 		const tags = item.system.getTags();
-		CommonSections.tags(sections, tags);
+		CommonSections.tags(data.sections, tags);
 
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 

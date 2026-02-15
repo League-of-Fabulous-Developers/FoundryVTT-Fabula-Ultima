@@ -10,7 +10,6 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
-import { ExpressionContext } from '../../../expressions/expressions.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -46,17 +45,17 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAttributeCheck = async (sections, check, actor, item, flags) => {
+let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'attribute' && item?.system instanceof MiscAbilityDataModel && check.additionalData[skillForAttributeCheck]) {
 		const inspector = CheckConfiguration.inspect(check);
 		const ability = await fromUuid(inspector.getWeaponReference());
-		CommonSections.itemFlavor(sections, ability);
+		CommonSections.itemFlavor(data.sections, ability);
 		if (check.critical) {
-			CommonSections.opportunity(sections, ability.system.opportunity, CHECK_DETAILS);
+			CommonSections.opportunity(data.sections, ability.system.opportunity, CHECK_DETAILS);
 		}
-		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS, true);
+		CommonSections.description(data.sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS, true);
 		if (ability.system.hasClock.value) {
-			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
+			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
 		}
 	}
 };
@@ -157,7 +156,7 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 						secondary: this.attributes.secondary,
 					},
 					this.parent,
-					this.#initializeAttributeCheck(),
+					this.#initializeAttributeCheck(modifiers),
 				);
 			}
 		}
@@ -179,11 +178,9 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 	/**
 	 * @return {CheckCallback}
 	 */
-	#initializeAttributeCheck() {
+	#initializeAttributeCheck(modifiers) {
 		return async (check, actor, item) => {
-			const config = CheckConfiguration.configure(check);
-			await this.configureAttributeCheck(config, actor, item);
-			config.setWeaponReference(this.parent);
+			await this.configureAttributeCheck(modifiers, check, actor, item);
 		};
 	}
 
@@ -210,13 +207,7 @@ export class MiscAbilityDataModel extends BaseSkillDataModel {
 			check.primary = weaponCheck.primary;
 			check.secondary = weaponCheck.secondary;
 
-			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-			config.setWeaponReference(weapon);
-			await this.configureCheck(config);
-			await this.addSkillAccuracy(config, actor, item, context);
-			await this.addSkillDamage(config, item, context, weapon.system);
+			return this.configureAccuracyCheck(modifiers, check, actor, item, weapon);
 		};
 	}
 

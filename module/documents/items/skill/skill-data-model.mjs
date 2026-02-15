@@ -5,7 +5,6 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
-import { ExpressionContext } from '../../../expressions/expressions.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
@@ -183,8 +182,7 @@ export class SkillDataModel extends BaseSkillDataModel {
 	#initializeAttributeCheck(modifiers) {
 		return async (check, actor, item) => {
 			const config = CheckConfiguration.configure(check);
-			await this.configureAttributeCheck(config, actor, item);
-			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
+			await this.configureAttributeCheck(modifiers, config, actor, item);
 		};
 	}
 
@@ -204,15 +202,7 @@ export class SkillDataModel extends BaseSkillDataModel {
 			check.primary = weaponCheck.primary;
 			check.secondary = weaponCheck.secondary;
 
-			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-
-			config.setWeaponReference(weapon);
-			config.setHrZero(this.damage.hrZero || modifiers.shift);
-			await this.configureCheck(config);
-			await this.addSkillDamage(config, item, context, weapon.system);
-			await this.addSkillAccuracy(config, actor, item, context);
+			return this.configureAccuracyCheck(modifiers, check, actor, item, weapon);
 		};
 	}
 

@@ -6,9 +6,9 @@ import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
 import { ClassFeatureRegistry } from './class-feature-registry.mjs';
 import { EmbeddedFeatureDataModel } from '../embedded-feature-data-model.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof ClassFeatureTypeDataModel && !(item.system.data instanceof RollableClassFeatureDataModel)) {
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 

@@ -5,7 +5,7 @@ import { SETTINGS } from '../../../settings.js';
 import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof TreasureDataModel) {
 		const tags = [
 			{
@@ -27,8 +27,8 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 				value: `${game.i18n.localize('FU.Origin')}: ${item.system.origin.value}`,
 			});
 		}
-		CommonSections.tags(sections, tags);
-		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		CommonSections.tags(data.sections, tags);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });
 

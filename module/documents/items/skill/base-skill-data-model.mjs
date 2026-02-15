@@ -15,6 +15,9 @@ import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
 import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
 import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 import { BasicItemDataModel } from '../basic/basic-item-data-model.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+
+const skillForAttributeCheck = 'skillForAttributeCheck';
 
 /**
  * @property {string} description
@@ -29,7 +32,6 @@ import { BasicItemDataModel } from '../basic/basic-item-data-model.mjs';
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-
 export class BaseSkillDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, BooleanField, EmbeddedDataField, SetField } = foundry.data.fields;
@@ -72,8 +74,8 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	/**
 	 * @desc Common configuration for attribute checks.
 	 * @param {CheckConfigurer} config
-	 * @param actor
-	 * @param item
+	 * @param {FUActor} actor
+	 * @param {FUItem} item
 	 */
 	async configureCheck(config, actor, item) {
 		config.addTraits('skill');
@@ -94,15 +96,22 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
-	 * @desc Common configuration for display checks.
-	 * @param {CheckConfigurer} config
+	 * @param {KeyboardModifiers} modifiers
+	 * @param {CheckV2|CheckResultV2} check
 	 * @param {FUActor} actor
 	 * @param {FUItem} item
 	 */
-	async configureAttributeCheck(config, actor, item) {
+	async configureAttributeCheck(modifiers, check, actor, item) {
+		const config = CheckConfiguration.configure(check);
 		const targets = config.getTargets();
 		const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+		config.setWeaponReference(this.parent);
+		config.check.additionalData[skillForAttributeCheck] = this.parent.uuid;
+		config.setHrZero(this.damage.hrZero || modifiers.shift);
+		await this.configureCheck(config, actor, item);
 		await this.addSkillAccuracy(config, actor, item, context);
+		await this.addSkillDamage(config, item, context);
 		if (this.defense && targets.length === 1) {
 			let dl;
 			switch (this.defense) {
@@ -119,6 +128,25 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @param {CheckV2|CheckResultV2} check
+	 * @param {FUActor} actor
+	 * @param {FUItem} item
+	 * @param {FUItem} weapon
+	 */
+	async configureAccuracyCheck(modifiers, check, actor, item, weapon) {
+		const config = CheckConfiguration.configure(check);
+		const targets = config.getTargets();
+		const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+		config.setWeaponReference(weapon);
+		config.setHrZero(this.damage.hrZero || modifiers.shift);
+		await this.configureCheck(config, actor, item);
+		await this.addSkillDamage(config, item, context, weapon.system);
+		await this.addSkillAccuracy(config, actor, item, context);
+	}
+
+	/**
 	 * @desc Common configuration for display checks.
 	 * @param {CheckConfigurer} config
 	 * @param {FUActor} actor
@@ -127,7 +155,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	async configureDisplayCheck(config, actor, item) {
 		const targets = config.getTargets();
 		const context = ExpressionContext.fromTargetData(actor, item, targets);
-		await this.configureCheck(config);
+		await this.configureCheck(config, actor, item);
 		if (this.damage.hasDamage) {
 			if (this.useWeapon.damage) {
 				const weapon = await this.getWeapon(actor);

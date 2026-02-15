@@ -68,9 +68,9 @@ export class MnemosphereDataModel extends PseudoDocumentEnabledTypeDataModel {
 }
 
 /** @type {RenderCheckHook} */
-const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
+const onRenderDisplay = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.type === 'mnemosphere') {
-		CommonSections.tags(sections, [
+		CommonSections.tags(data.sections, [
 			{
 				tag: 'FU.Class',
 				separator: ':',
@@ -94,7 +94,7 @@ const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
 		} else {
 			skillText = '<div><strong>—</strong></div>';
 		}
-		CommonSections.genericText(sections, `<p><strong>${game.i18n.localize('FU.Skills')}</strong></p>` + skillText);
+		CommonSections.genericText(data.sections, `<p><strong>${game.i18n.localize('FU.Skills')}</strong></p>` + skillText);
 	}
 };
 

@@ -10,9 +10,9 @@ import { PseudoItem } from '../pseudo-item.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof ArmorDataModel) {
-		CommonSections.tags(sections, [
+		CommonSections.tags(data.sections, [
 			{
 				tag: 'FU.Martial',
 				show: item.system.isMartial.value,
@@ -31,12 +31,12 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 			},
 		]);
 
-		CommonSections.quality(sections, item.system.quality.value);
+		CommonSections.quality(data.sections, item.system.quality.value);
 
 		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
-			CommonSections.slottedTechnospheres(sections, item.system.slotted);
+			CommonSections.slottedTechnospheres(data.sections, item.system.slotted);
 		} else {
-			CommonSections.description(sections, item.system.description, item.system.summary.value);
+			CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		}
 	}
 });

@@ -24,10 +24,10 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof RitualDataModel) {
 		CommonSections.tags(
-			sections,
+			data.sections,
 			[
 				{
 					tag: 'FU.MindAbbr',
@@ -49,10 +49,10 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 		);
 
 		if (item.system.hasClock.value) {
-			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
+			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
 		}
 
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 });
 

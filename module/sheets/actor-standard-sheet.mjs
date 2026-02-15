@@ -50,7 +50,7 @@ const affinityKey = 'affinity';
 /**
  * @type {RenderCheckHook}
  */
-const onDisplayAffinity = (sections, check, actor, item, additionalFlags, targets) => {
+const onDisplayAffinity = (data, check, actor, item, additionalFlags, targets) => {
 	const affinity = check.additionalData[affinityKey];
 	if (check.type === 'display' && affinity) {
 		const affinityData = actor.system.affinities[affinity];
@@ -59,8 +59,8 @@ const onDisplayAffinity = (sections, check, actor, item, additionalFlags, target
 			affinityName: game.i18n.localize(FU.damageTypes[affinity]),
 			affinityValue: game.i18n.localize(FU.affType[affinityData.current]),
 		});
-		CommonSections.genericFlavor(sections, game.i18n.localize('FU.CurrentAffinity'));
-		CommonSections.genericText(sections, description);
+		CommonSections.genericFlavor(data.sections, game.i18n.localize('FU.CurrentAffinity'));
+		CommonSections.genericText(data.sections, description);
 	}
 };
 

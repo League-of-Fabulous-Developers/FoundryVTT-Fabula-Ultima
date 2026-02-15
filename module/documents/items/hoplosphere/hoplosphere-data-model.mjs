@@ -561,10 +561,10 @@ export class HoplosphereDataModel extends foundry.abstract.TypeDataModel {
 }
 
 /** @type {RenderCheckHook} */
-const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
+const onRenderDisplay = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.type === 'hoplosphere') {
 		CommonSections.genericText(
-			sections,
+			data.sections,
 			foundry.applications.handlebars.renderTemplate('projectfu.hoplosphere.displayEffects', {
 				effects: item.system.effects.map((effect) => ({
 					name: effect.effectLabel,

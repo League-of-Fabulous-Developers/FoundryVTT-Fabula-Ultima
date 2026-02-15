@@ -5,10 +5,10 @@ import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /** @type RenderCheckHook */
-const onRenderCheck = (sections, check, actor, item, additionalFlags, targets) => {
+const onRenderCheck = (data, check, actor, item, additionalFlags, targets) => {
 	if (check.type === 'display' && item?.system?.data instanceof IngredientDataModel) {
 		CommonSections.tags(
-			sections,
+			data.sections,
 			[
 				{
 					tag: 'FU.ClassFeatureIngredientTaste',
