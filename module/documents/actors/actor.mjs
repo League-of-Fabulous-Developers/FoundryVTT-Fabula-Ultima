@@ -401,6 +401,8 @@ export class FUActor extends Actor {
 	 * @typedef ClearEffectOptions
 	 * @property {Boolean} status Whether the effect must have one of the core statuses (dazed, etc...)
 	 * @property {Boolean} duration Whether the effect must have a duration. (Ignored for system statuses, which have no duration by default.)
+	 * @property {Boolean} rest Whether to clear effects with rest. (Skipped when set to false)
+	 * @property {(effect: FUActiveEffect) => boolean} predicate A custom predicate for whether to remove an effect.
 	 */
 
 	/**
@@ -409,6 +411,7 @@ export class FUActor extends Actor {
 	static defaultClearEffectOptions = {
 		status: undefined,
 		duration: undefined,
+		rest: undefined,
 	};
 
 	/**
@@ -428,7 +431,7 @@ export class FUActor extends Actor {
 					}
 					break;
 				case false:
-					if (statusEffectId) {
+					if (statusEffectId && statusEffectId in Effects.STATUS_EFFECTS) {
 						return false;
 					}
 					break;
@@ -446,6 +449,25 @@ export class FUActor extends Actor {
 						return false;
 					}
 					break;
+			}
+
+			switch (options.rest) {
+				case true:
+					if (effect.system.duration.event !== 'rest') {
+						return false;
+					}
+					break;
+				case false:
+					if (effect.system.duration.event === 'rest') {
+						return false;
+					}
+					break;
+			}
+
+			if (options.predicate) {
+				if (!options.predicate(effect)) {
+					return false;
+				}
 			}
 
 			if (statusEffectId) {
