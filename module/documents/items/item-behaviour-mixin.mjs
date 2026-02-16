@@ -45,7 +45,9 @@ export function ItemBehaviourMixin(BaseClass) {
 				for (let collection of Object.values(this.nestedCollections)) {
 					if (collection.documentClass === PseudoItem) {
 						for (let item of collection) {
-							effects.push(...item.transferredEffects);
+							if (this.system.transferNestedItem ? this.system.transferNestedItem(item) : true) {
+								effects.push(...item.transferredEffects);
+							}
 						}
 					}
 				}
@@ -60,10 +62,12 @@ export function ItemBehaviourMixin(BaseClass) {
 				yield effect;
 			}
 			for (let collection of Object.values(this.nestedCollections)) {
-				if (collection.documentClass === PseudoItem) {
+				if (foundry.utils.isSubclass(collection.documentClass, PseudoItem)) {
 					for (let item of collection) {
-						for (let effect of item.allEffects()) {
-							yield effect;
+						if (this.system.transferNestedItem ? this.system.transferNestedItem(item) : true) {
+							for (let effect of item.allEffects()) {
+								yield effect;
+							}
 						}
 					}
 				}
