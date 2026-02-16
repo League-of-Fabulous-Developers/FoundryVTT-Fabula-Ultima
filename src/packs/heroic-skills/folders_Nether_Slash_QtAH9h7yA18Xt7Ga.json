@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "4LuFJav8aop3vdnu",
+  "name": "Nether Slash",
+  "color": null,
+  "sorting": "a",
+  "_id": "QtAH9h7yA18Xt7Ga",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!QtAH9h7yA18Xt7Ga"
+}

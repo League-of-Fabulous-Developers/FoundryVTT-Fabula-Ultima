@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each target hit by this spell suffers @EFFECT[poisoned].</p>",
+    "description": "<p>Each target hit by this spell suffers <strong>poisoned</strong>.</p>",
     "class": {
       "value": "NPC"
     },
@@ -65,10 +65,10 @@
     "rollInfo": {
       "attributes": {
         "primary": {
-          "value": "dex"
+          "value": "ins"
         },
         "secondary": {
-          "value": "dex"
+          "value": "wlp"
         }
       },
       "accuracy": {
@@ -108,21 +108,26 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [
+        "poisoned"
+      ]
     },
     "traits": []
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1771280435411,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -81,7 +81,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "value": 30,
         "type": {
@@ -134,95 +134,59 @@
         },
         "rules": {
           "elements": {
-            "LLjAUjm1atiHjNOr": {
+            "bpEHcAozT1dTq7uI": {
               "type": "ruleElement",
-              "_id": "LLjAUjm1atiHjNOr",
+              "_id": "bpEHcAozT1dTq7uI",
               "trigger": {
-                "_id": "hrm2f70g97hm7hai",
-                "type": "initializeCheckRuleTrigger",
+                "_id": "UyoH5dlBTqOYvF3a",
+                "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "display"
-                ],
-                "itemGroups": [
+                "damageSources": [
                   "spell"
                 ],
-                "local": true
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
               },
               "predicates": {
-                "0VQk17DxBEUD6l7f": {
+                "tERBowIlByYXufgz": {
                   "type": "targetingRulePredicate",
-                  "_id": "0VQk17DxBEUD6l7f"
+                  "_id": "tERBowIlByYXufgz"
                 }
               },
               "actions": {
-                "BTcueuJ9Sn7ZSvKt": {
-                  "type": "applyDamageRuleAction",
-                  "_id": "BTcueuJ9Sn7ZSvKt",
-                  "damageType": "fire",
-                  "amount": "&step(50,55,60)"
+                "GVyAF0eRAHeOV4DL": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "GVyAF0eRAHeOV4DL",
+                  "amount": "20",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               }
             },
-            "qTbVxDiyfeahghsE": {
+            "YEgOpVaDNX6JdTIh": {
               "type": "ruleElement",
-              "_id": "qTbVxDiyfeahghsE",
+              "_id": "YEgOpVaDNX6JdTIh",
               "trigger": {
-                "_id": "KWDj8owDZWo9PNor",
-                "type": "initializeCheckRuleTrigger",
+                "_id": "3Bq3iIz8TMscOOAs",
+                "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "display"
-                ],
-                "itemGroups": [
+                "damageSources": [
                   "spell"
                 ],
-                "local": true
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
               },
               "actions": {
-                "wktxan2BwxpdjTOE": {
-                  "type": "applyDamageRuleAction",
-                  "_id": "wktxan2BwxpdjTOE",
-                  "damageType": "fire",
-                  "amount": "&step(30,35,40)"
-                }
-              },
-              "predicates": {
-                "DbL8rFxoEAJVZN9o": {
-                  "type": "targetingRulePredicate",
-                  "_id": "DbL8rFxoEAJVZN9o",
-                  "rule": "multiple"
-                }
-              }
-            },
-            "2BEdovVEUu8UE7y3": {
-              "type": "ruleElement",
-              "_id": "2BEdovVEUu8UE7y3",
-              "trigger": {
-                "_id": "Prkb1QGQj4ecENhh",
-                "type": "initializeCheckRuleTrigger",
-                "eventRelation": "source",
-                "checkTypes": [
-                  "display"
-                ],
-                "itemGroups": [
-                  "spell"
-                ],
-                "local": true
-              },
-              "predicates": {
-                "z0h0MsJJHJhgNylF": {
-                  "type": "targetingRulePredicate",
-                  "_id": "z0h0MsJJHJhgNylF",
-                  "rule": "none"
-                }
-              },
-              "actions": {
-                "s7zxORGGFSKiYJGL": {
-                  "type": "applyDamageRuleAction",
-                  "_id": "s7zxORGGFSKiYJGL",
-                  "damageType": "fire",
-                  "amount": "&step(30,35,40)"
+                "KTcroBv5g7VeP0ev": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "KTcroBv5g7VeP0ev",
+                  "amount": "&step(0,5,10)",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               }
             }
@@ -260,7 +224,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766869743926,
-        "modifiedTime": 1770621373193,
+        "modifiedTime": 1771279894138,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!BfZqKbr38FBxLtmH.zV3cnqvXYnDpSY9s"
@@ -283,7 +247,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710548265766,
-    "modifiedTime": 1770872382467,
+    "modifiedTime": 1771279790779,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

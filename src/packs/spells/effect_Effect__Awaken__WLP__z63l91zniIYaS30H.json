@@ -4,7 +4,7 @@
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
   "system": {
-    "fuid": "effect-awaken",
+    "fuid": "effect-awaken-wlp",
     "cost": {
       "value": 0
     },
@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Until the <strong>Awaken</strong> spell ends, you treat your <strong>Willpower</strong> as one die size higher.</p>",
+      "description": "<p>Until this spell ends, you treat your <strong>Willpower</strong> as one die size higher.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,7 +69,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1770631791449
+        "modifiedTime": 1771281643108
       },
       "_key": "!items.effects!z63l91zniIYaS30H.GS8gEfxwHzU6mt0Y"
     }
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770624327572,
-    "modifiedTime": 1770872382467,
+    "modifiedTime": 1771281637381,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {

@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You recover 20 Hit Points. This amount increases to 30 Hit Points if you are <strong>level 20 or higher</strong>, to 40 Hit Points if you are <strong>level 40 or higher</strong>, or to 50 Hit Points if you are <strong>level 60</strong> or higher.</p>",
+    "description": "<p>You recover 20 Hit Points.</p><p>This amount increases to 30 Hit Points if you are <strong>level 20 or higher</strong>, to 40 Hit Points if you are <strong>level 40 or higher</strong>, or to 50 Hit Points if you are <strong>level 60</strong> or higher.</p>",
     "class": {
       "value": "NPC"
     },
@@ -125,7 +125,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1771280402888,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

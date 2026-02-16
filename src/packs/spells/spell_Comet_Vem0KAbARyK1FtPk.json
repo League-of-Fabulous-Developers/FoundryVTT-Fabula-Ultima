@@ -80,7 +80,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "value": 40,
         "type": {
@@ -130,64 +130,59 @@
         },
         "rules": {
           "elements": {
-            "CoR1jyfKzPYZu0UK": {
+            "SXh3717drl3PK78W": {
               "type": "ruleElement",
-              "_id": "CoR1jyfKzPYZu0UK",
+              "_id": "SXh3717drl3PK78W",
               "trigger": {
-                "_id": "395fSgy9eYR09Ou2",
-                "type": "initializeCheckRuleTrigger",
+                "_id": "0aRmLO2YsD8scS1X",
+                "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "display"
-                ],
-                "itemGroups": [
+                "damageSources": [
                   "spell"
                 ],
-                "local": true
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
               },
               "predicates": {
-                "VHcYdgzP3G35aWUH": {
+                "AodT2MdkVB5tsQV2": {
                   "type": "targetingRulePredicate",
-                  "_id": "VHcYdgzP3G35aWUH"
+                  "_id": "AodT2MdkVB5tsQV2"
                 }
               },
               "actions": {
-                "5UdRNclWvgXm4XSI": {
-                  "type": "applyDamageRuleAction",
-                  "_id": "5UdRNclWvgXm4XSI",
-                  "damageType": "untyped",
-                  "amount": "&step(60,65,70)"
+                "WyX6PaIobET2yoYb": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "WyX6PaIobET2yoYb",
+                  "amount": "20",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               }
             },
-            "tI4N8LT6RTeRECcB": {
+            "jnuMlX7Qb1nEZMn6": {
               "type": "ruleElement",
-              "_id": "tI4N8LT6RTeRECcB",
+              "_id": "jnuMlX7Qb1nEZMn6",
               "trigger": {
-                "_id": "uuIk2ySmgQwdqeMh",
-                "type": "initializeCheckRuleTrigger",
+                "_id": "0cnbhoYqDGElIX9Y",
+                "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "checkTypes": [
-                  "display"
-                ],
-                "itemGroups": [
+                "damageSources": [
                   "spell"
                 ],
-                "local": true
-              },
-              "predicates": {
-                "dhS3ciD0FaimwJHS": {
-                  "type": "targetingRulePredicate",
-                  "_id": "dhS3ciD0FaimwJHS",
-                  "rule": "multiple"
-                }
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
               },
               "actions": {
-                "M8Z4VifZdLnXFZio": {
-                  "type": "applyDamageRuleAction",
-                  "_id": "M8Z4VifZdLnXFZio",
-                  "damageType": "untyped",
-                  "amount": "&step(40,45,50)"
+                "19CGjOE3D0EP7J0n": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "19CGjOE3D0EP7J0n",
+                  "amount": "&step(0,5,10)",
+                  "cost": {
+                    "amount": null
+                  }
                 }
               }
             }
@@ -213,7 +208,7 @@
       "description": "",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": true,
+      "transfer": false,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -221,12 +216,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925762344,
-        "modifiedTime": 1766925891865,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771280103688,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!Vem0KAbARyK1FtPk.wscCbuVvN366MDvB"
     }
@@ -248,7 +243,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710548744272,
-    "modifiedTime": 1770872382467,
+    "modifiedTime": 1771280040168,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

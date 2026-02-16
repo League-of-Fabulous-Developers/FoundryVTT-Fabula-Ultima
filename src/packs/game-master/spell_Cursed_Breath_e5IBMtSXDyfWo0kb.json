@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target suffers <strong>【HR + 15】</strong> <strong>(choose type)</strong> damage and suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], or @EFFECT[weak]</p></li></ul>",
+    "description": "<p>The target suffers <strong>【HR + 15】</strong> <strong>(choose type)</strong> damage and suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p>",
     "class": {
       "value": "NPC"
     },
@@ -108,21 +108,29 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [
+        "dazed",
+        "shaken",
+        "slow",
+        "weak"
+      ]
     },
     "traits": []
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1771280369566,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

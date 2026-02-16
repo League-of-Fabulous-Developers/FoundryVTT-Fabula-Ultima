@@ -1,10 +1,10 @@
 {
-  "folder": "awpXMmcK8pUDEUcc",
-  "name": "Effect: Awaken (MIG)",
+  "folder": "qtilkg7wFw1xG6Pb",
+  "name": "Effect: Weaken (Fire)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
+  "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
   "system": {
-    "fuid": "effect-awaken-mig",
+    "fuid": "effect-weaken-fire",
     "cost": {
       "value": 0
     },
@@ -12,8 +12,8 @@
   },
   "effects": [
     {
-      "name": "Awaken (MIG)",
-      "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
+      "name": "Weaken (Fire)",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "system": {
         "duration": {
           "event": "endOfScene",
@@ -44,17 +44,17 @@
         "combat": null
       },
       "disabled": false,
-      "_id": "GS8gEfxwHzU6mt0Y",
+      "_id": "BdTKt9mxqBDGbnAR",
       "type": "base",
       "changes": [
         {
-          "key": "system.attributes.mig",
-          "mode": 0,
-          "value": "upgrade",
+          "key": "system.bonuses.incomingDamage.fire",
+          "mode": 2,
+          "value": "5",
           "priority": null
         }
       ],
-      "description": "<p>Until this spell ends, you treat your <strong>Might</strong> as one die size higher.</p>",
+      "description": "<p>Until this spell ends, you suffer 5 extra damage from all sources that deal <strong>fire </strong>damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,9 +69,9 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771281631722
+        "modifiedTime": 1771281196021
       },
-      "_key": "!items.effects!SocdSpwFMRBjPiR4.GS8gEfxwHzU6mt0Y"
+      "_key": "!items.effects!U91NHOxpVmtqN7Pd.BdTKt9mxqBDGbnAR"
     }
   ],
   "flags": {},
@@ -82,15 +82,15 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770624325060,
-    "modifiedTime": 1771281626605,
+    "createdTime": 1771280843178,
+    "modifiedTime": 1771280939404,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
   },
-  "_id": "SocdSpwFMRBjPiR4",
-  "sort": 700000,
-  "_key": "!items!SocdSpwFMRBjPiR4"
+  "_id": "U91NHOxpVmtqN7Pd",
+  "sort": 0,
+  "_key": "!items!U91NHOxpVmtqN7Pd"
 }

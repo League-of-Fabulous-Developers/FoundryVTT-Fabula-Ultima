@@ -1,10 +1,10 @@
 {
-  "folder": "awpXMmcK8pUDEUcc",
-  "name": "Effect: Awaken (MIG)",
+  "folder": "QtAH9h7yA18Xt7Ga",
+  "name": "Effect: Nether Slash (Ice Resist)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
+  "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-red.webp",
   "system": {
-    "fuid": "effect-awaken-mig",
+    "fuid": "effect-nether-slash-ice-resist",
     "cost": {
       "value": 0
     },
@@ -12,11 +12,11 @@
   },
   "effects": [
     {
-      "name": "Awaken (MIG)",
-      "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
+      "name": "Nether Slash (Ice Resist)",
+      "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-red.webp",
       "system": {
         "duration": {
-          "event": "endOfScene",
+          "event": "startOfTurn",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
@@ -44,17 +44,17 @@
         "combat": null
       },
       "disabled": false,
-      "_id": "GS8gEfxwHzU6mt0Y",
+      "_id": "Src1r6gZ1bxNWOn3",
       "type": "base",
       "changes": [
         {
-          "key": "system.attributes.mig",
+          "key": "system.affinities.ice",
           "mode": 0,
           "value": "upgrade",
           "priority": null
         }
       ],
-      "description": "<p>Until this spell ends, you treat your <strong>Might</strong> as one die size higher.</p>",
+      "description": "<p>You gain Resistance to <strong>ice </strong>damage until the start of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,9 +69,9 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771281631722
+        "modifiedTime": 1771282842526
       },
-      "_key": "!items.effects!SocdSpwFMRBjPiR4.GS8gEfxwHzU6mt0Y"
+      "_key": "!items.effects!YD0Qid4TdxUVksXQ.Src1r6gZ1bxNWOn3"
     }
   ],
   "flags": {},
@@ -82,15 +82,15 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770624325060,
-    "modifiedTime": 1771281626605,
+    "createdTime": 1771282804868,
+    "modifiedTime": 1771282829344,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
   },
-  "_id": "SocdSpwFMRBjPiR4",
-  "sort": 700000,
-  "_key": "!items!SocdSpwFMRBjPiR4"
+  "_id": "YD0Qid4TdxUVksXQ",
+  "sort": 0,
+  "_key": "!items!YD0Qid4TdxUVksXQ"
 }
