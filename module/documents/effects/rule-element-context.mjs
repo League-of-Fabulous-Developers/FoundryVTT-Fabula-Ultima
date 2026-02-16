@@ -61,11 +61,30 @@ export class RuleElementContext {
 				if (item.system.fuid === id) {
 					return true;
 				}
-				if (item.name === id) {
+				if (item.name.toLowerCase() === id.toLowerCase()) {
 					return true;
 				}
 			}
 		}
+		return false;
+	}
+
+	/**
+	 * @return {Boolean} True if the item in the event is that of the item the rule element is attached to.
+	 */
+	isLocalItem() {
+		if (!this.item || !this.sourceInfo?.itemUuid) {
+			return false;
+		}
+
+		if (this.event.sourceInfo) {
+			return this.event.sourceInfo.itemUuid === this.sourceInfo.itemUuid;
+		}
+
+		if (this.event.item) {
+			return this.event.item.uuid === this.sourceInfo.itemUuid;
+		}
+
 		return false;
 	}
 

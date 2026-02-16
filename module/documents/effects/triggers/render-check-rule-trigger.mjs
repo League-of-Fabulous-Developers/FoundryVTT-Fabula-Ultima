@@ -62,8 +62,8 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 		}
 
 		// If this RE is on an item, and it doesn't match the item in the event.
-		if (this.local && context.item) {
-			if (context.event.sourceInfo.itemUuid !== context.sourceInfo.itemUuid) {
+		if (this.local) {
+			if (!context.isLocalItem()) {
 				return false;
 			}
 		}

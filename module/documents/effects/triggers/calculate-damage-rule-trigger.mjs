@@ -60,8 +60,8 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 				return false;
 			}
 		}
-		if (this.local && context.item) {
-			if (context.event.sourceInfo.itemUuid !== context.sourceInfo.itemUuid) {
+		if (this.local) {
+			if (!context.isLocalItem()) {
 				return false;
 			}
 		}
