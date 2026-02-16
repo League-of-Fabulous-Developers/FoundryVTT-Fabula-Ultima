@@ -47,6 +47,7 @@ export class FUPartySheet extends FUActorSheet {
 			clearInventory: this.#onClearInventory,
 			createEquipment: this.#onCreateEquipment,
 			shareItem: this.#onShareItem,
+			lootItem: this.#onLootItem,
 			distributeZenit: this.#onDistributeZenit,
 
 			revealMetaCurrency: this.#revealMetaCurrency,
@@ -636,6 +637,10 @@ export class FUPartySheet extends FUActorSheet {
 		if (item) {
 			return InventoryPipeline.tradeItem(this.actor, item, 'loot');
 		}
+	}
+
+	static #onLootItem(event, target) {
+		return ActorSheetUtils.lootItem(event, target, this.actor);
 	}
 
 	static #onDistributeZenit() {
