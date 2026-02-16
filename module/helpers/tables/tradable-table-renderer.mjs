@@ -20,6 +20,9 @@ export class TradableTableRenderer extends FUTableRenderer {
 				return !item.actor.system.merchant;
 			},
 			hideLoot: (item) => {
+				if (item.actor.isCharacterType) {
+					return true;
+				}
 				if (item.actor.type === 'stash') {
 					return !!item.actor.system.merchant;
 				} else if (item.actor.type === 'party') {
