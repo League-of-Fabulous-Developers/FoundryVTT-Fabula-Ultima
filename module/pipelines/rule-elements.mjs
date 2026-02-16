@@ -326,6 +326,18 @@ async function getTemporaryItem(effect) {
 }
 
 /**
+ * @param {FUActiveEffect} effect
+ * @returns {boolean}
+ */
+function canProcessEffect(effect) {
+	const disabled = effect.isSuppressed || effect.disabled;
+	if (disabled || effect.system.rules.elements.size === 0) {
+		return false;
+	}
+	return true;
+}
+
+/**
  * @param {String} type
  * @param {*} event
  * @param {CharacterInfo} source
@@ -342,8 +354,7 @@ async function evaluate(type, event, source, targets, data = undefined) {
 	const sceneCharacters = getSceneCharacters([source, ...targets]);
 	for (const character of sceneCharacters) {
 		for (const effect of character.actor.allEffects()) {
-			const disabled = effect.isSuppressed || effect.disabled;
-			if (disabled || effect.system.rules.elements.size === 0) {
+			if (!canProcessEffect(effect)) {
 				continue;
 			}
 			/** @type RuleElementContext **/
