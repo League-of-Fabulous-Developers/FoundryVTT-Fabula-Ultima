@@ -12,12 +12,21 @@
 		</a>
 	{{/unless}}
 	{{#unless hideShare}}
-		<a class="cell-item-controls__control {{#if disableShare ~}} cell-item-controls__control--disabled {{~/if}}"
-		   data-tooltip="{{ localize 'FU.Share' }}"
-		   aria-describedby="tooltip"
-		   data-action="shareItem">
-			<i class="fa fa-share"></i>
-		</a>
+		{{#if isGM}}
+			<a class="cell-item-controls__control {{#if disableShare ~}} cell-item-controls__control--disabled {{~/if}}"
+				data-tooltip="{{ localize 'FU.Share' }}"
+				aria-describedby="tooltip"
+				data-action="shareItem">
+				<i class="fa fa-share"></i>
+			</a>
+		{{else}}
+			<a class="cell-item-controls__control {{#if disableLoot ~}} cell-item-controls__control--disabled {{~/if}}"
+				data-tooltip="{{ localize 'FU.Loot' }}<br>{{ localize 'FU.LootDelete' }}"
+				aria-describedby="tooltip"
+				data-action="lootItem">
+				<i class="fa fa-hand button-style"></i>
+			</a>
+		{{/if}}
 	{{/unless}}
 	{{#unless hideSell}}
 		{{#if isGM}}
