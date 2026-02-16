@@ -25,6 +25,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 import { PressureSystem } from '../systems/pressure-system.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -495,28 +496,6 @@ async function process(request) {
 			continue;
 		}
 
-		updates.push(
-			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then((result) => {
-				CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin);
-				return result; // keep the result from modifyTokenAttribute if needed
-			}),
-			CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin),
-		);
-
-		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
-
-		// Dispatch event
-		damageTaken = Math.abs(damageTaken);
-
-		// Chat message
-		const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damage: damageTaken,
-			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
-			pressureTrigger: context.pressureTrigger,
-			icon: FU.affIcon[context.damageType],
-		});
-
-		// Additional content
 		let content = [];
 		/** @type PressureProcessResult **/
 		let pressureProcess;
@@ -527,33 +506,59 @@ async function process(request) {
 			}
 		}
 
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
-		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
-		const rootUuid = actor.resolveUuid();
-
+		// Dispatch damage event, which may end up modifying the damage message
 		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: game.i18n.localize(FU.affType[context.affinity]),
-				flags: flags,
-				content: await FoundryUtils.renderTemplate('chat/chat-apply-damage', {
-					message: context.affinityMessage,
-					actor: actor.name,
-					uuid: actor.uuid,
-					rootUuid: rootUuid,
-					inspect: actor.type === 'npc',
-					// TODO: Replace damage with amount in the localizations
+			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then(async (result) => {
+				/** @type FUChatData **/
+				let renderData = {
+					sections: [],
+					postRenderActions: [],
+				};
+
+				await CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
+				await CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin, renderData);
+				TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
+
+				// Chat message
+				damageTaken = Math.abs(damageTaken);
+				const chat = new FUChatBuilder(actor, request.item).withData(renderData);
+				let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
+				flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
+				chat.withFlags(flags);
+				const affinityMessage = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 					damage: damageTaken,
-					amount: damageTaken,
-					affinityMessage: affinityMessage,
-					content: content,
-					pressureContent: pressureProcess?.content,
-					from: request.sourceInfo.name,
-					sourceActorUuid: request.sourceInfo.actorUuid,
-					resource: resource.toUpperCase(),
-					sourceItemUuid: request.sourceInfo.itemUuid,
-					breakdown: context.breakdown,
-				}),
+					damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
+					pressureTrigger: context.pressureTrigger,
+					icon: FU.affIcon[context.damageType],
+				});
+				CommonSections.template(
+					chat.sections,
+					'chat/chat-apply-damage',
+					{
+						message: context.affinityMessage,
+						actor: actor.name,
+						uuid: actor.uuid,
+						rootUuid: actor.resolveUuid(),
+						inspect: actor.type === 'npc',
+						// TODO: Replace damage with amount in the localizations
+						damage: damageTaken,
+						amount: damageTaken,
+						affinityMessage: affinityMessage,
+						content: content,
+						pressureContent: pressureProcess?.content,
+						from: request.sourceInfo.name,
+						sourceActorUuid: request.sourceInfo.actorUuid,
+						resource: resource.toUpperCase(),
+						sourceItemUuid: request.sourceInfo.itemUuid,
+						breakdown: context.breakdown,
+					},
+					CHECK_DETAILS,
+				);
+
+				chat.withFlavor(StringUtils.localize(FU.affType[context.affinity]));
+				await chat.create();
+
+				return result; // keep the result from modifyTokenAttribute if needed
 			}),
 		);
 
