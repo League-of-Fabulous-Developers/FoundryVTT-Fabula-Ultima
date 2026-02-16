@@ -514,8 +514,9 @@ async function process(request) {
 					sections: [],
 					postRenderActions: [],
 				};
-				CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
 
+				await CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
+				await CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin, renderData);
 				TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
 
 				// Chat message
@@ -559,7 +560,6 @@ async function process(request) {
 
 				return result; // keep the result from modifyTokenAttribute if needed
 			}),
-			CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin),
 		);
 
 		// OPTIONAL: If staggered

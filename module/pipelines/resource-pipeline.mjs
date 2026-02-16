@@ -11,6 +11,9 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { FUChatBuilder } from '../helpers/chat-builder.mjs';
+import { CommonSections } from '../checks/common-sections.mjs';
+import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 
 /**
  * @class
@@ -176,13 +179,45 @@ function calculateMissingResource(actor, resourcePath) {
 }
 
 /**
+ * @param request
+ * @param actor
+ * @param amount
+ * @param flavor
+ * @param message
+ * @param template
+ * @param renderData
+ * @returns {Promise<void>}
+ */
+async function createChatMessage(request, actor, amount, flavor, template, message, renderData) {
+	const chat = new FUChatBuilder(actor, request.item).withData(renderData).withFlags(Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true)).withFlavor(flavor);
+	CommonSections.template(
+		chat.sections,
+		template,
+		{
+			message: message,
+			actor: actor.name,
+			uuid: actor.uuid,
+			amount: amount,
+			key: request.attributeKey,
+			resource: request.resourceType,
+			resourceLabel: request.resourceLabel,
+			from: request.sourceInfo.name,
+		},
+		CHECK_DETAILS,
+	);
+	return chat.create();
+}
+
+/**
  * @param {ResourceRequest} request
  * @return {Promise<Awaited<unknown>[]>}
  */
 async function processRecovery(request) {
-	const flavor = game.i18n.localize(recoveryFlavor[request.resourceType]);
 	const outgoingRecoveryBonus = request.sourceActor?.system.bonuses.outgoingRecovery[request.resourceType] || 0;
 	const outgoingRecoveryMultiplier = request.sourceActor?.system.multipliers.outgoingRecovery[request.resourceType] || 1;
+	const template = 'chat/chat-apply-recovery';
+	const message = recoveryMessages[request.resourceType];
+	const flavor = game.i18n.localize(recoveryFlavor[request.resourceType]);
 
 	const updates = [];
 	console.debug(`Applying recovery from request with traits: ${[...request.traits].join(', ')}`);
@@ -207,8 +242,16 @@ async function processRecovery(request) {
 				const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr));
 				newValue.value = uncappedRecoveryValue;
 				updates.push(
-					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then((result) => {
-						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then(async (result) => {
+						/** @type FUChatData **/
+						let renderData = {
+							sections: [],
+							postRenderActions: [],
+						};
+						await CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+						await CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin, renderData);
+						await createChatMessage(request, actor, amountRecovered, flavor, template, message, renderData);
+						TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 						return result;
 					}),
 				);
@@ -230,33 +273,22 @@ async function processRecovery(request) {
 					continue;
 				}
 				updates.push(
-					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then((result) => {
+					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then(async (result) => {
+						/** @type FUChatData **/
+						let renderData = {
+							sections: [],
+							postRenderActions: [],
+						};
 						CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+						await CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin, renderData);
+						await createChatMessage(request, actor, amountRecovered, flavor, template, message, renderData);
+						TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 						return result;
 					}),
 				);
 			}
 		}
-		TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
-		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: flavor,
-				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true),
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
-					message: recoveryMessages[request.resourceType],
-					actor: actor.name,
-					uuid: actor.uuid,
-					amount: amountRecovered,
-					key: request.attributeKey,
-					resource: request.resourceType,
-					resourceLabel: request.resourceLabel,
-					from: request.sourceInfo.name,
-				}),
-			}),
-		);
 	}
-	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, request.amount, request.origin));
 	return Promise.all(updates);
 }
 
@@ -275,6 +307,8 @@ const lossFlavor = {
  */
 async function processLoss(request) {
 	const flavor = game.i18n.localize(lossFlavor[request.resourceType]);
+	const template = 'chat/chat-apply-loss';
+	const message = 'FU.ChatResourceLoss';
 
 	const updates = [];
 	console.debug(`Applying loss from request with traits: ${[...request.traits].join(', ')}`);
@@ -294,40 +328,36 @@ async function processLoss(request) {
 			const updateData = {};
 			updateData[`system.${request.attributeValuePath}`] = newValue;
 			updates.push(
-				actor.update(updateData).then((result) => {
+				actor.update(updateData).then(async (result) => {
+					/** @type FUChatData **/
+					let renderData = {
+						sections: [],
+						postRenderActions: [],
+					};
 					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
+					await CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, amountLost, request.origin, renderData);
+					TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
+					await createChatMessage(request, actor, Math.abs(amountLost), flavor, template, message, renderData);
 					return result;
 				}),
 			);
 		} else {
 			updates.push(
-				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then((result) => {
+				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then(async (result) => {
+					/** @type FUChatData **/
+					let renderData = {
+						sections: [],
+						postRenderActions: [],
+					};
 					CommonEvents.loss(actor, request.resourceType, amountLost, request.origin);
+					await CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, amountLost, request.origin, renderData);
+					TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
+					await createChatMessage(request, actor, Math.abs(amountLost), flavor, template, message, renderData);
 					return result;
 				}),
 			);
 		}
-
-		TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
-		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: flavor,
-				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceLoss, true),
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
-					message: 'FU.ChatResourceLoss',
-					actor: actor.name,
-					amount: Math.abs(amountLost),
-					uuid: actor.uuid,
-					key: request.attributeKey,
-					resource: request.resourceType,
-					resourceLabel: request.resourceLabel,
-					from: request.sourceInfo.name,
-				}),
-			}),
-		);
 	}
-	updates.push(CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, amount, request.origin));
 	return Promise.all(updates);
 }
 

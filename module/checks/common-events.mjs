@@ -87,7 +87,7 @@ function attack(inspector, actor, item) {
  * @property {String} origin An id used to prevent cascading.
  */
 
-function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, origin, renderData) {
+async function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const target = CharacterInfo.fromActor(targetActor);
 	const item = sourceInfo.resolveItem();
@@ -108,7 +108,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
 		origin: origin,
 		renderData: renderData,
 	};
-	Hooks.call(FUHooks.DAMAGE_EVENT, damageEvent);
+	return AsyncHooks.callSequential(FUHooks.DAMAGE_EVENT, damageEvent);
 }
 
 /**
@@ -256,6 +256,7 @@ function loss(actor, resource, amount, origin) {
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
  * @property {String} origin
+ * @property {FUChatData} renderData
  */
 
 /**
@@ -265,7 +266,7 @@ function loss(actor, resource, amount, origin) {
  * @param {Number} amount
  * @param {String} origin
  */
-function resource(sourceActor, targetActors, resource, amount, origin) {
+async function resource(sourceActor, targetActors, resource, amount, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const targets = CharacterInfo.fromActors(targetActors);
 	/** @type ResourceUpdateEvent  **/
@@ -275,8 +276,9 @@ function resource(sourceActor, targetActors, resource, amount, origin) {
 		source: source,
 		targets: targets,
 		origin: origin,
+		renderData: renderData,
 	};
-	Hooks.call(FUHooks.RESOURCE_UPDATE, event);
+	return AsyncHooks.callSequential(FUHooks.RESOURCE_UPDATE, event);
 }
 
 /**

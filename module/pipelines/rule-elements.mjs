@@ -128,6 +128,8 @@ async function onAttackEvent(event) {
 	await evaluate(FUHooks.ATTACK_EVENT, event, event.source, event.targets, event.check);
 }
 
+// TODO: Use the full FURenderData object, not just sections
+
 /**
  * @param {DamageEvent} event
  * @returns {Promise<void>}
@@ -143,7 +145,9 @@ async function onDamageEvent(event) {
  * @returns {Promise<void>}
  */
 async function onResourceEvent(event) {
-	await evaluate(FUHooks.RESOURCE_UPDATE, event, event.source, event.targets);
+	await evaluate(FUHooks.RESOURCE_UPDATE, event, event.source, event.targets, {
+		renderData: event.renderData.sections,
+	});
 }
 
 /**
@@ -306,22 +310,20 @@ function getSceneCharacters(targets) {
 }
 
 /** @type {FUItem | null} */
-let temporaryItem = null;
+//let temporaryItem = null;
 
 /**
  * @param {FUActiveEffect} effect
  * @returns {Promise<game.projectfu.FUItem|null>}
  */
 async function getTemporaryItem(effect) {
-	if (!temporaryItem) {
-		temporaryItem = await FUItem.create(
-			{
-				name: 'TemporaryItem',
-				type: 'rule',
-			},
-			{ temporary: true },
-		);
-	}
+	const temporaryItem = await FUItem.create(
+		{
+			name: 'TemporaryItem',
+			type: 'rule',
+		},
+		{ temporary: true },
+	);
 	temporaryItem.name = effect.name;
 	temporaryItem.img = effect.img;
 	return temporaryItem;
@@ -399,15 +401,14 @@ function initialize() {
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 	Hooks.on(FUHooks.ATTACK_EVENT, onAttackEvent);
 	Hooks.on(FUHooks.STATUS_EVENT, onStatusEvent);
-	Hooks.on(FUHooks.DAMAGE_EVENT, onDamageEvent);
-	Hooks.on(FUHooks.RESOURCE_UPDATE, onResourceEvent);
+	AsyncHooks.on(FUHooks.DAMAGE_EVENT, onDamageEvent);
+	AsyncHooks.on(FUHooks.RESOURCE_UPDATE, onResourceEvent);
 	Hooks.on(FUHooks.SPELL_EVENT, onSpellEvent);
 	Hooks.on(FUHooks.PERFORM_CHECK_EVENT, onPerformCheckEvent);
 	Hooks.on(FUHooks.RESOLVE_CHECK_EVENT, onResolveCheckEvent);
 	Hooks.on(FUHooks.NOTIFICATION_EVENT, onNotificationEvent);
 	Hooks.on(FUHooks.EFFECT_TOGGLED_EVENT, onEffectToggledEvent);
 	Hooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
-	//AsyncHooks.on(FUHooks.CALCULATE_DAMAGE_EVENT, onCalculateDamageEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_RESOURCE_EVENT, onCalculateResourceEvent);
 	AsyncHooks.on(FUHooks.CALCULATE_EXPENSE_EVENT, onCalculateExpenseEvent);
 	AsyncHooks.on(FUHooks.RENDER_CHECK_EVENT, onRenderCheckEvent);
