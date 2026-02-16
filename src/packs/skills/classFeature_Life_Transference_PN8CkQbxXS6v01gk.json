@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When you cause one or more enemies to lose HP",
-      "description": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis</strong>, they recover an amount of Hit Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】.</strong></p>"
+      "description": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis</strong>, they recover an amount of Hit Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】.</strong></p><hr /><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br /><strong>Target Recovers:</strong> @GAIN[5+(&amp;cs('brainwave-clock')*5) hp]{5 + (Brainwave × 5) HP}<br /><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
     },
     "source": "FUTF153",
     "fuid": "life-transference"
@@ -117,10 +117,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711423314741,
-    "modifiedTime": 1767894223941,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1771231013589,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
