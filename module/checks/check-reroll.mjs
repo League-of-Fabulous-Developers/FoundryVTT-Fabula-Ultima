@@ -27,7 +27,7 @@ function addRerollEntry(application, menuItems) {
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble && speakerActor.system.resources.fp.value;
+			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble;
 		},
 		callback: async (li) => {
 			const messageId = li.dataset.messageId;
@@ -143,7 +143,7 @@ const getRerollParams = async (check, actor) => {
 
 				return {
 					trait: trait.value,
-					value: trait.dataset.value,
+					value: trait.dataset.value ?? '',
 					selection: selection,
 					ignoreFp: ignoreFp,
 				};
