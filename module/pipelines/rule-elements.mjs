@@ -133,7 +133,9 @@ async function onAttackEvent(event) {
  * @returns {Promise<void>}
  */
 async function onDamageEvent(event) {
-	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)]);
+	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)], {
+		renderData: event.renderData.sections,
+	});
 }
 
 /**

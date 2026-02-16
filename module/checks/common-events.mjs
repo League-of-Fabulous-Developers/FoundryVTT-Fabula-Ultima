@@ -83,19 +83,11 @@ function attack(inspector, actor, item) {
  * @property {FUActor} actor
  * @property {Token} token
  * @property {Set<String>} traits
+ * @property {FUChatData} renderData
  * @property {String} origin An id used to prevent cascading.
  */
 
-/**
- * @description Dispatches an event to signal damage taken by an actor
- * @param {FU.damageTypes} type
- * @param {Number} amount
- * @param {Set<String>} traits
- * @param {FUActor} sourceActor
- * @param {FUActor} targetActor
- * @param {InlineSourceInfo} sourceInfo
- */
-function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, origin) {
+function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const target = CharacterInfo.fromActor(targetActor);
 	const item = sourceInfo.resolveItem();
@@ -114,6 +106,7 @@ function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, orig
 		token: target.token,
 		traits: traits,
 		origin: origin,
+		renderData: renderData,
 	};
 	Hooks.call(FUHooks.DAMAGE_EVENT, damageEvent);
 }
