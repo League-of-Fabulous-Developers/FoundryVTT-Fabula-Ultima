@@ -6,7 +6,6 @@ import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { TreasuresTableRenderer } from '../helpers/tables/treasures-table-renderer.mjs';
 import { ConsumablesTableRenderer } from '../helpers/tables/consumables-table-renderer.mjs';
 import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-renderer.mjs';
-import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
@@ -167,42 +166,21 @@ export class FUStashSheet extends FUActorSheet {
 	}
 
 	static #onLootItem(event, target) {
-		const item = FUStashSheet.#resolveItem(this.actor, target);
-		if (item) {
-			const targetActor = getPrioritizedUserTargeted();
-			if (!targetActor) return;
-
-			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, false, targetActor.uuid, {
-				shift: event?.shiftKey ?? false,
-				ctrl: event?.ctrlKey ?? false,
-				alt: event?.altKey ?? false,
-				meta: event?.metaKey ?? false,
-			});
-		}
+		return ActorSheetUtils.lootItem(event, target, this.actor);
 	}
 
 	static #onSellItem(event, target) {
-		const item = FUStashSheet.#resolveItem(this.actor, target);
+		const item = ActorSheetUtils.resolveItem(this.actor, target);
 		if (item) {
 			return InventoryPipeline.tradeItem(this.actor, item, 'sell');
 		}
 	}
 
 	static #onBuyItem(event, target) {
-		const item = FUStashSheet.#resolveItem(this.actor, target);
+		const item = ActorSheetUtils.resolveItem(this.actor, target);
 		if (item) {
 			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, true, undefined);
 		}
-	}
-
-	static #resolveItem(actor, target) {
-		const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
-		let item = actor.items.get(dataItemId);
-		if (!item) {
-			const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
-			item = foundry.utils.fromUuidSync(uuid);
-		}
-		return item;
 	}
 
 	static #onDistributeZenit() {

@@ -1,7 +1,7 @@
-import { FUTableRenderer } from './table-renderer.mjs';
 import { CommonColumns } from './common-columns.mjs';
+import { TradableTableRenderer } from './tradable-table-renderer.mjs';
 
-export class OtherItemsTableRenderer extends FUTableRenderer {
+export class OtherItemsTableRenderer extends TradableTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: 'other-items-table',
@@ -11,15 +11,7 @@ export class OtherItemsTableRenderer extends FUTableRenderer {
 		columns: {
 			name: CommonColumns.itemNameColumn({ columnName: 'FU.Other' }),
 			type: CommonColumns.textColumn({ columnLabel: 'FU.ItemType', getText: (item) => CONFIG.Item.typeLabels[item.type] ?? item.constructor.metadata.label, importance: 'high' }),
-			controls: CommonColumns.itemControlsColumn(
-				{ custom: `<span></span>` },
-				{
-					hideFavorite: (item) => !item.actor.isCharacterType,
-					hideShare: (item) => item.actor.type !== 'party',
-					hideSell: (item) => !(item.actor.type === 'stash' && item.actor.system.merchant),
-					hideLoot: (item) => !(item.actor.type === 'stash' && !item.actor.system.merchant),
-				},
-			),
+			controls: CommonColumns.itemControlsColumn({ custom: `<span></span>` }, TradableTableRenderer.getCellOptions()),
 		},
 	};
 

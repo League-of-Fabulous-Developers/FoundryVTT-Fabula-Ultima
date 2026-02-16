@@ -1,8 +1,8 @@
-import { FUTableRenderer } from './table-renderer.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { CommonDescriptions } from './common-descriptions.mjs';
 import { FU } from '../config.mjs';
+import { TradableTableRenderer } from './tradable-table-renderer.mjs';
 
 const includedItemTypes = new Set(['accessory', 'armor', 'shield', 'weapon']);
 
@@ -100,7 +100,7 @@ const details = {
 	},
 };
 
-export class EquipmentTableRenderer extends FUTableRenderer {
+export class EquipmentTableRenderer extends TradableTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: 'equipment-table',
@@ -114,15 +114,7 @@ export class EquipmentTableRenderer extends FUTableRenderer {
 				renderCell: EquipmentTableRenderer.#renderDetails,
 			},
 			cost: CommonColumns.textColumn({ columnLabel: 'FU.Cost', importance: 'high', getText: EquipmentTableRenderer.#getCost }),
-			controls: CommonColumns.itemControlsColumn(
-				{ headerAlignment: 'end', custom: EquipmentTableRenderer.#renderCustomControlsHeader },
-				{
-					hideFavorite: (item) => !item.actor.isCharacterType,
-					hideShare: (item) => item.actor.type !== 'party',
-					hideSell: (item) => !(item.actor.type === 'stash' && item.actor.system.merchant),
-					hideLoot: (item) => !(item.actor.type === 'stash' && !item.actor.system.merchant),
-				},
-			),
+			controls: CommonColumns.itemControlsColumn({ headerAlignment: 'end', custom: EquipmentTableRenderer.#renderCustomControlsHeader }, TradableTableRenderer.getCellOptions()),
 		},
 	};
 

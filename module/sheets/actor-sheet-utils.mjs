@@ -5,6 +5,7 @@ import { FUItem } from '../documents/items/item.mjs';
 import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -360,6 +361,31 @@ function onRenderFUActorSheet(sheet, element) {
 	}
 }
 
+function resolveItem(actor, target) {
+	const dataItemId = target.closest('[data-item-id]')?.dataset?.itemId;
+	let item = actor.items.get(dataItemId);
+	if (!item) {
+		const uuid = target.closest('[data-uuid]')?.dataset?.uuid;
+		item = foundry.utils.fromUuidSync(uuid);
+	}
+	return item;
+}
+
+async function lootItem(event, target, actor) {
+	const item = ActorSheetUtils.resolveItem(actor, target);
+	if (item) {
+		const targetActor = getPrioritizedUserTargeted();
+		if (!targetActor) return;
+
+		return InventoryPipeline.requestTrade(actor.uuid, item.uuid, false, targetActor.uuid, {
+			shift: event?.shiftKey ?? false,
+			ctrl: event?.ctrlKey ?? false,
+			alt: event?.altKey ?? false,
+			meta: event?.metaKey ?? false,
+		});
+	}
+}
+
 Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 
 /**
@@ -368,6 +394,8 @@ Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
 	findItemConfig,
+	resolveItem,
+	lootItem,
 	prepareCharacterData,
 	activateDefaultListeners,
 	handleStashDrop,

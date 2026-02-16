@@ -1,6 +1,6 @@
-import { FUTableRenderer } from './table-renderer.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { CommonDescriptions } from './common-descriptions.mjs';
+import { TradableTableRenderer } from './tradable-table-renderer.mjs';
 
 const technosphereItemTypes = new Set(['hoplosphere', 'mnemosphere']);
 
@@ -54,7 +54,7 @@ const detailsRenderers = {
 	mnemosphere: CommonColumns.textColumn({ getText: (item) => `${item.system.level} / ${item.system.maxLevel}`, alignment: 'center', importance: 'high' }).renderCell,
 };
 
-export class TechnospheresTableRenderer extends FUTableRenderer {
+export class TechnospheresTableRenderer extends TradableTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: 'technospheres-table',
@@ -67,15 +67,7 @@ export class TechnospheresTableRenderer extends FUTableRenderer {
 				hideHeader: true,
 				renderCell: TechnospheresTableRenderer.#renderDetails,
 			},
-			controls: CommonColumns.itemControlsColumn(
-				{ label: 'FU.Technospheres', type: 'mnemosphere,hoplosphere' },
-				{
-					hideFavorite: (item) => !item.actor.isCharacterType,
-					hideShare: (item) => item.actor.type !== 'party',
-					hideSell: (item) => !(item.actor.type === 'stash' && item.actor.system.merchant),
-					hideLoot: (item) => !(item.actor.type === 'stash' && !item.actor.system.merchant),
-				},
-			),
+			controls: CommonColumns.itemControlsColumn({ label: 'FU.Technospheres', type: 'mnemosphere,hoplosphere' }, TradableTableRenderer.getCellOptions()),
 		},
 	};
 
