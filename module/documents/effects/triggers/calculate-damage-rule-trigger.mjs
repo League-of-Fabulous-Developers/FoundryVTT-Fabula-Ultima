@@ -10,6 +10,7 @@ const fields = foundry.data.fields;
  * @property {Set<FUItemGroup>} damageSources
  * @property {Set<DamageType>} damageTypes
  * @property {String} identifier
+ * @property {Boolean} local
  * @inheritDoc
  */
 export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
@@ -30,6 +31,7 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 			damageSources: new fields.SetField(new fields.StringField()),
 			damageTypes: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
+			local: new fields.BooleanField(),
 		});
 		return schema;
 	}
@@ -55,6 +57,11 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 		}
 		if (this.identifier) {
 			if (!context.matchesItem(this.identifier)) {
+				return false;
+			}
+		}
+		if (this.local && context.item) {
+			if (context.event.sourceInfo.itemUuid !== context.sourceInfo.itemUuid) {
 				return false;
 			}
 		}
