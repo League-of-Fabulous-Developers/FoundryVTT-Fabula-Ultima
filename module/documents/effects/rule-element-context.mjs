@@ -41,7 +41,7 @@ export class RuleElementContext {
 	}
 
 	/**
-	 * @param {String} id
+	 * @param {String} id An identifier to match against.
 	 * @return {Boolean}
 	 */
 	matchesItem(id) {

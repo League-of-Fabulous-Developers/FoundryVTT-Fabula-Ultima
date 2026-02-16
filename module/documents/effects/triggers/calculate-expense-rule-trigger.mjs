@@ -12,6 +12,7 @@ const fields = foundry.data.fields;
  * @extends RuleTriggerDataModel
  * @property {FUResourceType} resource
  * @property {FUExpenseSource} expenseSource
+ * @property {String} identifier
  * @property {TraitsPredicateDataModel} traits
  * @inheritDoc
  */
@@ -40,6 +41,7 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 				choices: Object.keys(FU.expenseSource),
 				blank: true,
 			}),
+			identifier: new fields.StringField(),
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
 				options: TraitUtils.getOptions(FeatureTraits),
 			}),
@@ -73,6 +75,11 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 		}
 		if (!this.traits.evaluate(context.event.expense.traits)) {
 			return false;
+		}
+		if (this.identifier) {
+			if (!context.matchesItem(this.identifier)) {
+				return false;
+			}
 		}
 		return true;
 	}
