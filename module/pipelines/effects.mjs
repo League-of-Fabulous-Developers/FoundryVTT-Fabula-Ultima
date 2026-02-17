@@ -51,11 +51,6 @@ import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
  */
 
 /**
- * @typedef ApplyEffectData
- * @property {String[]} entries
- */
-
-/**
  * @param {Actor|Item} owner The owning document which manages this effect
  * @param {String} effectType
  * @param {String} name
@@ -671,9 +666,8 @@ async function getClearAction(id, sourceInfo) {
  * @returns {Promise<ChatAction[]>}
  */
 async function promptEffectChoices(effectData, sourceInfo) {
-	if (effectData.entries.length === 1) {
-		const action = await Effects.getTargetedAction(effectData.entries[0], sourceInfo);
-		return [action];
+	if (effectData.entries.length === 1 || !effectData.prompt) {
+		return await Promise.all(effectData.entries.map((id) => getTargetedAction(id, sourceInfo)).filter(Boolean));
 	}
 
 	/** @type DialogSelectableItem[] **/
@@ -694,7 +688,6 @@ async function promptEffectChoices(effectData, sourceInfo) {
 		title: `${sourceInfo.name} ${StringUtils.localize('FU.Effect')} ${StringUtils.localize('FU.Selection')}`,
 		style: 'list',
 		items: choices,
-		initial: choices,
 		getDescription: async (item) => {
 			return item.name;
 		},
@@ -703,8 +696,7 @@ async function promptEffectChoices(effectData, sourceInfo) {
 	const dialog = new ItemSelectionDialog(data);
 	const result = await dialog.open();
 	if (result && result.length > 0) {
-		const actions = await Promise.all(result.map((choice) => getTargetedAction(choice.id, sourceInfo)));
-		return actions;
+		return await Promise.all(result.map((choice) => getTargetedAction(choice.id, sourceInfo)));
 	}
 	return [];
 }

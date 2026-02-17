@@ -148,7 +148,7 @@ export class SpellDataModel extends FUStandardItemDataModel {
 	 */
 	async #configureCommon(config, actor, item) {
 		const spell = item.system;
-		config.addEffects(spell.effects.entries);
+		config.setEffects(spell.effects);
 		config.addTraits('spell').addTraitsFromItemModel(spell.traits);
 		await ResourcePipeline.configureExpense(config, actor, item, spell.cost);
 	}

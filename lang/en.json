@@ -1741,6 +1741,7 @@
 		"Application": "Application",
 		"Transform": "Transform",
 		"Selection": "Selection",
+		"Prompt": "Prompt",
 		"Perform": "Perform",
 		"FUID": {
 			"Long": "Fabula Ultima ID",

@@ -80,7 +80,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	async configureCheck(config, actor, item) {
 		config.addTraits('skill');
 		config.addTraitsFromItemModel(this.traits);
-		config.addEffects(this.effects.entries);
+		config.setEffects(this.effects);
 		config.addTraitsFromItemModel(this.traits);
 		if (this.resource.enabled) {
 			config.setResource(this.resource.type, this.resource.amount);
