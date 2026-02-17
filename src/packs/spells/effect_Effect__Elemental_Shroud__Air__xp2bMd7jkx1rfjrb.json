@@ -5,7 +5,7 @@
   "_id": "xp2bMd7jkx1rfjrb",
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud.png",
   "system": {
-    "fuid": "effect-elemental-shroud",
+    "fuid": "effect-elemental-shroud-air",
     "cost": {
       "value": 0
     },
@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Until the <strong>Elemental Shroud</strong> spell ends, you gain Resistance to <strong>air</strong> damage.</p>",
+      "description": "<p>Until this spell ends, you gain Resistance to <strong>air</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,7 +69,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770627717689,
-        "modifiedTime": 1770631565269,
+        "modifiedTime": 1771281362577,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!xp2bMd7jkx1rfjrb.kHcShxkx44ViFsOr"
@@ -89,7 +89,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770627702784,
-    "modifiedTime": 1770872382467,
+    "modifiedTime": 1771281580321,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!xp2bMd7jkx1rfjrb"

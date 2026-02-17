@@ -51,7 +51,7 @@
         }
       },
       "changes": [],
-      "description": "<p>Until the <strong>Mercy</strong> spell ends, if you would be reduced to 0 HP, you are instead left standing with exactly 1 HP. Once that happens, this spell ends.</p>",
+      "description": "<p>Until this spell ends, if you would be reduced to 0 HP, you are instead left standing with exactly 1 HP. Once that happens, this spell ends.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -65,7 +65,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744722453780,
-        "modifiedTime": 1770627335951,
+        "modifiedTime": 1771281671102,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

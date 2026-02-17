@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p><hr /><ul><li><p><strong>You Receive:</strong> @TYPE[affinity physical resistance e:eos i:1 t:source]</p></li></ul>",
+    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p>",
     "class": {
       "value": "NPC"
     },
@@ -108,21 +108,26 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [
+        "Compendium.projectfu.game-master.Item.60Gs2LnMIy6uPGhK"
+      ]
     },
     "traits": []
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1771280630751,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

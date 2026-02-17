@@ -50,7 +50,7 @@
         }
       },
       "changes": [],
-      "description": "<p>You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p>",
+      "description": "<p>Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -64,7 +64,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744503925677,
-        "modifiedTime": 1770629042304,
+        "modifiedTime": 1771281504834,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

@@ -142,6 +142,13 @@
                   "_id": "Roqixz9AYyZImi4G",
                   "outcome": "success",
                   "result": null
+                },
+                "SuCS8XvGUBqiaajH": {
+                  "type": "weaponRulePredicate",
+                  "_id": "SuCS8XvGUBqiaajH",
+                  "categories": [
+                    "sword"
+                  ]
                 }
               }
             }
@@ -179,7 +186,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770955523195,
-        "modifiedTime": 1770956002798,
+        "modifiedTime": 1771284494235,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!jdhnFWPhnFtLRLe8.lC0vrmonf2x2uiO1"
@@ -196,7 +203,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770956169859,
+    "modifiedTime": 1771285262898,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

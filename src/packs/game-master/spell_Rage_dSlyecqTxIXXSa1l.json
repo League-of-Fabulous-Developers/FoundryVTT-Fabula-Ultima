@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each target hit by this spell suffers @EFFECT[enraged].</p>",
+    "description": "<p>Each target hit by this spell suffers <strong>enraged</strong>.</p>",
     "class": {
       "value": "NPC"
     },
@@ -108,21 +108,26 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [
+        "enraged"
+      ]
     },
     "traits": []
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1771280459480,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

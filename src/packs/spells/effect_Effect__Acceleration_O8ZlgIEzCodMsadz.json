@@ -49,7 +49,7 @@
         }
       },
       "changes": [],
-      "description": "<p>At the end of each of their turns, the target may choose <strong>one</strong> option: perform a <strong>free attack</strong> with a weapon they have equipped; <strong>or</strong> perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost). After the same creature benefits from this effect a second time, this spell ends.</p>",
+      "description": "<p>Until this spell ends, at the end of each of your turns, you may choose <strong>one</strong> option:</p><ul><li><p>Perform a <strong>free attack</strong> with a weapon they have equipped.</p></li><li><p>Perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total MP cost equal to or lower than 10</strong> (paying its MP cost).</p></li></ul><p>After you benefit from this effect a second time, this spell ends.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -63,7 +63,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742672629257,
-        "modifiedTime": 1770629030553,
+        "modifiedTime": 1771281450278,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

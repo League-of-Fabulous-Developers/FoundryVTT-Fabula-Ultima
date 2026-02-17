@@ -6,7 +6,7 @@
     "summary": {
       "value": "Converts Shadow Strike into fire or ice."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Elementalist</strong> and <strong>Pilot</strong>, and have acquired the <strong>Shadow Strike</strong> Skill.</p><hr /><p>When you use the <strong>Shadow Strike</strong> Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong> (its damage type cannot change, as usual), and you gain Resistance to the damage type you did not choose until the start of your next turn.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Shadow Strike</strong> Skill, the attack may target enemies that cannot be targeted by <strong>melee</strong> attacks.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Elementalist</strong> and <strong>Pilot</strong>, and have acquired the <strong>Shadow Strike</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong> (its damage type cannot change, as usual), and you gain Resistance to the damage type you did not choose until the start of your next turn.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Shadow Strike</strong> Skill, the attack may target enemies that cannot be targeted by <strong>melee</strong> attacks.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.gJWZDrbPrRIA0Udi] or @EFFECT[Compendium.projectfu.heroic-skills.Item.YD0Qid4TdxUVksXQ]</p>",
     "class": {
       "value": ""
     },
@@ -32,7 +32,153 @@
     },
     "fuid": "nether-slash"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Nether Slash",
+      "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-red.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "wScMVICn0F2ev7dk": {
+              "type": "ruleElement",
+              "_id": "wScMVICn0F2ev7dk",
+              "trigger": {
+                "_id": "8T4P54R2WEUd1osm",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "skill"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": "shadow-strike"
+              },
+              "actions": {
+                "xKBD8uKbfnzC3QIT": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "xKBD8uKbfnzC3QIT",
+                  "damageTypes": [
+                    "fire"
+                  ],
+                  "amount": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            },
+            "NKCQxdlVWP9lSNMF": {
+              "type": "ruleElement",
+              "_id": "NKCQxdlVWP9lSNMF",
+              "trigger": {
+                "_id": "wxxPXqhBvvX1UAHu",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "skill"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": "shadow-strike"
+              },
+              "actions": {
+                "nGF5hAaWFTccUdvR": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "nGF5hAaWFTccUdvR",
+                  "damageTypes": [
+                    "ice"
+                  ],
+                  "amount": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            },
+            "V9bQPirBkNCOhBVR": {
+              "type": "ruleElement",
+              "_id": "V9bQPirBkNCOhBVR",
+              "trigger": {
+                "_id": "JtQAyZwVfFRVfMpz",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "shadow-strike"
+              },
+              "predicates": {},
+              "actions": {
+                "3Atfvxwmd0FJmkYQ": {
+                  "type": "messageRuleAction",
+                  "_id": "3Atfvxwmd0FJmkYQ",
+                  "message": "<p>If you changed the damage to <strong>fire</strong> or <strong>ice</strong>, you gain Resistance to the damage type you did not choose.</p>"
+                },
+                "jTpilrr1G8rOePO4": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "jTpilrr1G8rOePO4",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.gJWZDrbPrRIA0Udi"
+                },
+                "ZMgJg0536UjwnISg": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "ZMgJg0536UjwnISg",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.YD0Qid4TdxUVksXQ"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "GhlfMRLPbvFfYsSe",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771282679453,
+        "modifiedTime": 1771283346460,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!DkaqHnTnEw2eMRDa.GhlfMRLPbvFfYsSe"
+    }
+  ],
   "flags": {
     "core": {},
     "projectfu": {
@@ -47,7 +193,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1771012828527,
+    "modifiedTime": 1771285299046,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "folder": "1Ky2u7fi2lfxr4JB",

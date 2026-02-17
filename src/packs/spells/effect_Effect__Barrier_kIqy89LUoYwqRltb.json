@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Until the <strong>Barrier </strong>spell ends, you treat your <strong>Defense</strong> as being equal to 12. This value increases to 13 at <strong>level 20</strong>, or to 14 at <strong>level 40</strong>.</p>",
+      "description": "<p>Until this spell ends, you treat your <strong>Defense</strong> as being equal to 12. This value increases to 13 at <strong>level 20</strong>, or to 14 at <strong>level 40</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,7 +69,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1770627307689
+        "modifiedTime": 1771281650607
       },
       "_key": "!items.effects!kIqy89LUoYwqRltb.M8M8UYTrWoAbj0F5"
     }

@@ -95,7 +95,135 @@
     },
     "fuid": "ceaseless-battlefield"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Ceaseless Battlefield",
+      "img": "icons/sundries/gaming/chess-pawn-white-glass.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "NjPkFBisD5mpvsWD": {
+              "type": "ruleElement",
+              "_id": "NjPkFBisD5mpvsWD",
+              "trigger": {
+                "_id": "N8cdMJzky48FzWXb",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "bishops-edict"
+              },
+              "actions": {
+                "zYkdHthJiIHXvHBw": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "zYkdHthJiIHXvHBw",
+                  "amount": "0.5",
+                  "operation": "multiply"
+                }
+              }
+            },
+            "kpxwrUTB7jVkhbHe": {
+              "type": "ruleElement",
+              "_id": "kpxwrUTB7jVkhbHe",
+              "trigger": {
+                "_id": "lfF7wHg6BAtfR02l",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "charging-cavalry"
+              },
+              "actions": {
+                "EsOpeoTnp4Ykb19M": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "EsOpeoTnp4Ykb19M",
+                  "amount": "0.5",
+                  "operation": "multiply"
+                }
+              }
+            },
+            "C4LaB9K2j26OL0Iw": {
+              "type": "ruleElement",
+              "_id": "C4LaB9K2j26OL0Iw",
+              "trigger": {
+                "_id": "CdyJUvSo0V12BCjU",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "kings-castle"
+              },
+              "actions": {
+                "VqRbwlQtXDU75brJ": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "VqRbwlQtXDU75brJ",
+                  "amount": "0.5",
+                  "operation": "multiply"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Ejt7E1O7r1aIWzpe",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The MP costs for <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, and <strong>King's Castle</strong> are halved. </p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771283421596,
+        "modifiedTime": 1771283574450,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!sSq9Z065pczkdBLZ.Ejt7E1O7r1aIWzpe"
+    }
+  ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
     "default": 0,

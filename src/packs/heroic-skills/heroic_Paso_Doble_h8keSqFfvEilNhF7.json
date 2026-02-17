@@ -116,7 +116,7 @@
               "type": "ruleElement",
               "_id": "lhWH7pURWojI0Zgx",
               "trigger": {
-                "_id": "jtyeiU4x6USZzLKZ",
+                "_id": "67ua5hzY1RXHqhok",
                 "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
@@ -133,6 +133,30 @@
                   "type": "messageRuleAction",
                   "_id": "kgb5OOAOyfqNqBuE",
                   "message": "<p>While you are in <strong>Crisis</strong>, you ignore the MP cost.</p>"
+                }
+              }
+            },
+            "Q95dMk0g4AHFStD0": {
+              "type": "ruleElement",
+              "_id": "Q95dMk0g4AHFStD0",
+              "trigger": {
+                "_id": "lSPJvwv3It3BMmMf",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "follow-my-lead"
+              },
+              "actions": {
+                "GzWahT3Bq3W9768E": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "GzWahT3Bq3W9768E",
+                  "amount": "0",
+                  "operation": "multiply"
                 }
               }
             }
@@ -170,7 +194,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770763544541,
-        "modifiedTime": 1770763769039,
+        "modifiedTime": 1771283945234,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!h8keSqFfvEilNhF7.Le5vpTg6eOOHgTTZ"
@@ -192,7 +216,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684669665,
-    "modifiedTime": 1770763527289,
+    "modifiedTime": 1771285278245,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

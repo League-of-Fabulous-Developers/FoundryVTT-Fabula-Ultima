@@ -1,12 +1,12 @@
 {
   "name": "War Cry",
   "type": "spell",
-  "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+  "img": "icons/sundries/flags/banner-flag-red-white.webp",
   "system": {
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks.</p><hr /><ul><li><p><strong>Targets Receive: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.62RZnGQvUWIEyeJ7 e:eos i:1 t:source]{Effect: War Cry}</p></li></ul>",
+    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks.</p>",
     "class": {
       "value": "NPC"
     },
@@ -108,21 +108,26 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [
+        "Compendium.projectfu.game-master.Item.aKy3uZj38HTEBtG1"
+      ]
     },
     "traits": []
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1771280721082,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

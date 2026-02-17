@@ -165,7 +165,12 @@
                 "YAHJUD5SD1ClxolQ": {
                   "type": "checkRulePredicate",
                   "_id": "YAHJUD5SD1ClxolQ",
-                  "result": null
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "dex"
+                    }
+                  }
                 },
                 "jhaZQdISJVvn4vew": {
                   "type": "weaponRulePredicate",
@@ -225,7 +230,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743535722306,
-        "modifiedTime": 1770343420812,
+        "modifiedTime": 1771351077371,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
