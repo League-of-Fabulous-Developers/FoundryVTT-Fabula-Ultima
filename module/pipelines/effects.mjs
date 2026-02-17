@@ -13,6 +13,7 @@ import { statusEffects } from '../documents/effects/statuses.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
+import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -572,10 +573,10 @@ async function promptRemoveEffect(actor, source) {
  * @returns {Promise<ChatAction>}
  */
 async function getTargetedAction(id, sourceInfo) {
+	const effectData = await getEffectData(id);
 	let name;
 	let icon;
 	let img;
-	const effectData = await getEffectData(id);
 	if (effectData) {
 		if (effectData.img) {
 			img = effectData.img;
@@ -662,6 +663,50 @@ async function getClearAction(id, sourceInfo) {
 		.withDataset({
 			['effect-id']: id,
 		});
+}
+
+/**
+ * @param {ApplyEffectData} effectData
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<ChatAction[]>}
+ */
+async function promptEffectChoices(effectData, sourceInfo) {
+	if (effectData.entries.length === 1) {
+		const action = await Effects.getTargetedAction(effectData.entries[0], sourceInfo);
+		return [action];
+	}
+
+	/** @type DialogSelectableItem[] **/
+	let choices = [];
+	for (const id of effectData.entries) {
+		const effect = await getEffectData(id);
+		if (effect) {
+			let choice = {
+				id: id,
+				name: StringUtils.localize(effect.name),
+				img: effect.img,
+			};
+			choices.push(choice);
+		}
+	}
+
+	const data = {
+		title: `${sourceInfo.name} ${StringUtils.localize('FU.Effect')} ${StringUtils.localize('FU.Selection')}`,
+		style: 'list',
+		items: choices,
+		initial: choices,
+		getDescription: async (item) => {
+			return item.name;
+		},
+	};
+
+	const dialog = new ItemSelectionDialog(data);
+	const result = await dialog.open();
+	if (result && result.length > 0) {
+		const actions = await Promise.all(result.map((choice) => getTargetedAction(choice.id, sourceInfo)));
+		return actions;
+	}
+	return [];
 }
 
 /**
@@ -811,6 +856,7 @@ export const Effects = Object.freeze({
 	getTargetedAction,
 	getClearAction,
 	createEffectFlags,
+	promptEffectChoices,
 
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,

@@ -355,14 +355,11 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}
 
+			// Effect Action
 			const effectData = inspector.getEffects();
-			if (effectData) {
-				for (const entry of effectData.entries) {
-					const ea = await Effects.getTargetedAction(entry, sourceInfo);
-					if (ea) {
-						actions.push(ea);
-					}
-				}
+			if (effectData && effectData.entries.length > 0) {
+				const effectActions = await Effects.promptEffectChoices(effectData, sourceInfo);
+				actions.push(...effectActions);
 			}
 
 			// Damage action

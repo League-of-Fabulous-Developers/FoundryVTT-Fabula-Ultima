@@ -1,10 +1,17 @@
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
+
+/**
+ * @typedef DialogSelectableItem
+ * @property {String} name
+ * @property {String} img
+ */
 
 /**
  * @typedef ItemSelectionData
  * @property {String} title
  * @property {String} message
- * @property {FUItem[]|FUActiveEffect[]} items
+ * @property {DialogSelectableItem[]} items
  * @property {FUItem[]} compendiumItems If assigned, will be used to compare to the original items.
  * @property {Object[]} initial
  * @property {'grid'|'list'} style
@@ -32,6 +39,7 @@ export class ItemSelectionDialog {
 	 */
 	constructor(data) {
 		data.style = data.style ?? 'grid';
+		data.title = data.title ?? StringUtils.localize('FU.Selection');
 		this.#data = data;
 		this.#selectedItems = [];
 		if (data.initial) {
