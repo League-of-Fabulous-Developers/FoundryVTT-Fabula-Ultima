@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When you deal damage",
-      "description": "<p>That damage becomes <strong>air</strong> or <strong>bolt</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>.</p>"
+      "description": "<p>That damage becomes <strong>air</strong> or <strong>bolt</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[max(5, (&amp;cs('brainwave-clock')*5)) mp]{Lose Brainwave MP}<br /><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
     },
     "source": "FUTF152",
     "fuid": "atmokinesis"
@@ -111,10 +111,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711423314741,
-    "modifiedTime": 1767268451276,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1771230778401,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
