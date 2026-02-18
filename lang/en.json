@@ -706,6 +706,7 @@
 		"DialogRemoveTitle": "Remove",
 		"DialogRemoveMessage": "Remove <strong>{label}</strong>?",
 		"DialogClearMessage": "Clear all elements?",
+		"DialogSelectionMissingError": "No items were selected!",
 		"Success": "Success",
 		"Critical": "Critical",
 		"Failure": "Failure",
