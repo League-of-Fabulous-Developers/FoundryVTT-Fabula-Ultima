@@ -341,7 +341,19 @@ export class CheckConfigurer extends CheckInspector {
 	}
 
 	/**
-	 * @param {...(string|string[])} effects
+	 * @param {ApplyEffectData|EffectApplicationDataModel} effectData
+	 */
+	setEffects(effectData) {
+		this.check.additionalData[EFFECTS] = {
+			prompt: effectData.prompt,
+			entries: effectData.entries,
+			duration: effectData.duration,
+		};
+		return this;
+	}
+
+	/**
+	 * @param {...(string|Iterable<string>)} effects
 	 * @return {CheckConfigurer}
 	 */
 	addEffects(...effects) {

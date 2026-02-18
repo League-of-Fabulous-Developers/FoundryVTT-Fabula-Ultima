@@ -15,7 +15,6 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
 			effect: new fields.StringField({ nullable: true }),
-			//effect: new DocumentUUIDField({ nullable: true, fieldType: 'ActiveEffect' }),
 		});
 	}
 

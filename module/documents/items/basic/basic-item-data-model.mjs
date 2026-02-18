@@ -35,7 +35,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		config
 			.setTargetedDefense(attack.defense)
 			.addTraits('attack')
-			.addEffects(attack.effects.entries)
+			.setEffects(attack.effects)
 			.setWeaponTraits({
 				weaponType: attack.type.value,
 			})

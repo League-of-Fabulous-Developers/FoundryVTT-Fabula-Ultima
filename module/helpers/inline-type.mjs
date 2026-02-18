@@ -245,7 +245,7 @@ function composeEffectData(type, args) {
  * @param {InlineSourceInfo} sourceInfo
  * @param {String} type
  * @param {String} args
- * @param {InlineEffectConfiguration} config
+ * @param {FUActiveEffectConfiguration} config
  *
  */
 async function applyEffect(actor, sourceInfo, type, args, config) {

@@ -17,6 +17,7 @@ import { FeatureTraits } from '../pipelines/traits.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -355,14 +356,16 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}
 
+			// Effect Action
 			const effectData = inspector.getEffects();
-			if (effectData) {
-				for (const entry of effectData.entries) {
-					const ea = await Effects.getTargetedAction(entry, sourceInfo);
-					if (ea) {
-						actions.push(ea);
-					}
+			if (effectData && effectData.entries.length > 0) {
+				const effectActions = await Effects.promptEffectChoices(effectData, sourceInfo);
+				if (effectActions.length === 0) {
+					let msg = StringUtils.localize('FU.DialogSelectionMissingError');
+					ui.notifications.error(msg);
+					throw Error(msg);
 				}
+				actions.push(...effectActions);
 			}
 
 			// Damage action
