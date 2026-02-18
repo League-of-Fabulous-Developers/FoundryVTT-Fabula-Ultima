@@ -51,6 +51,14 @@ import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
  */
 
 /**
+ * @typedef FUActiveEffectConfiguration
+ * @property {String} name
+ * @property {FUEffectDuration} event e:
+ * @property {Number} interval i:
+ * @property {String} tracking t:
+ */
+
+/**
  * @param {Actor|Item} owner The owning document which manages this effect
  * @param {String} effectType
  * @param {String} name
@@ -313,7 +321,7 @@ function isStatusEffect(id) {
  * @param {FUActor} actor the actor the status should get applied to
  * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
  * @param {InlineSourceInfo} sourceInfo
- * @param {InlineEffectConfiguration} config
+ * @param {FUActiveEffectConfiguration} config
  * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
  */
 export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = undefined, config = undefined) {
@@ -378,7 +386,7 @@ export async function disableStatusEffect(actor, statusEffectId) {
  * @param {FUActor|FUItem} document
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
- * @param {InlineEffectConfiguration} config
+ * @param {FUActiveEffectConfiguration} config
  * @returns {FUActiveEffect}
  */
 async function applyEffect(document, effect, sourceInfo, config = undefined) {
@@ -463,7 +471,7 @@ function sendToChatEffectRemoved(effect, actor) {
 
 /**
  * @param {FUActiveEffect} effect
- * @param {InlineEffectConfiguration} configuration
+ * @param {FUActiveEffectConfiguration} configuration
  * @returns {Promise<void>}
  */
 async function applyConfiguration(effect, configuration) {
@@ -565,9 +573,10 @@ async function promptRemoveEffect(actor, source) {
 /**
  * @param {String} id An uuid or fuid.
  * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActiveEffectDuration} duration
  * @returns {Promise<ChatAction>}
  */
-async function getTargetedAction(id, sourceInfo) {
+async function getTargetedAction(id, sourceInfo, duration = undefined) {
 	const effectData = await getEffectData(id);
 	let name;
 	let icon;
@@ -596,6 +605,7 @@ async function getTargetedAction(id, sourceInfo) {
 
 	return new ChatAction('applyEffect', icon, tooltip, {
 		sourceInfo: sourceInfo,
+		duration: duration,
 	})
 		.requiresOwner()
 		.setFlag(Flags.ChatMessage.Effects)
@@ -667,7 +677,7 @@ async function getClearAction(id, sourceInfo) {
  */
 async function promptEffectChoices(effectData, sourceInfo) {
 	if (effectData.entries.length === 1 || !effectData.prompt) {
-		return await Promise.all(effectData.entries.map((id) => getTargetedAction(id, sourceInfo)).filter(Boolean));
+		return await Promise.all(effectData.entries.map((id) => getTargetedAction(id, sourceInfo, effectData.duration)).filter(Boolean));
 	}
 
 	/** @type DialogSelectableItem[] **/
@@ -696,7 +706,7 @@ async function promptEffectChoices(effectData, sourceInfo) {
 	const dialog = new ItemSelectionDialog(data);
 	const result = await dialog.open();
 	if (result && result.length > 0) {
-		return await Promise.all(result.map((choice) => getTargetedAction(choice.id, sourceInfo)));
+		return await Promise.all(result.map((choice) => getTargetedAction(choice.id, sourceInfo, effectData.duration)));
 	}
 	return [];
 }
@@ -727,10 +737,20 @@ function onRenderChatMessage(message, element) {
 		const isStatus = isStatusEffect(effectId);
 
 		let sourceInfo = InlineSourceInfo.none;
+		let duration;
+		/** @type FUActiveEffectConfiguration **/
+		let configuration;
+
 		if (dataset.fields) {
 			const fields = StringUtils.fromBase64(dataset.fields);
 			if (fields.sourceInfo) {
 				sourceInfo = InlineSourceInfo.fromObject(fields.sourceInfo);
+			}
+			if (fields.duration) {
+				duration = fields.duration;
+				configuration = {
+					...duration,
+				};
 			}
 		}
 
@@ -742,7 +762,7 @@ function onRenderChatMessage(message, element) {
 					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
 					continue;
 				}
-				await toggleStatusEffect(target, effectId, sourceInfo);
+				await toggleStatusEffect(target, effectId, sourceInfo, configuration);
 			}
 		} else {
 			const effect = await getEffectData(effectId);
@@ -754,7 +774,7 @@ function onRenderChatMessage(message, element) {
 					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
 					continue;
 				}
-				await applyEffect(target, effect, sourceInfo);
+				await applyEffect(target, effect, sourceInfo, configuration);
 			}
 		}
 	});

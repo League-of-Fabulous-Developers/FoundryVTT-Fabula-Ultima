@@ -9,8 +9,32 @@
 		</a>
 	</legend>
 
-	<div class="item-settings grid grid3-col">
-		<label class="checkbox resource-label-sm">
+	<div class="item-settings grid grid2-col">
+		<label class="resource-label-m flex-group-center">
+			{{localize 'FU.Event'}}
+			<select class="resource-inputs select-dropdown-m" name="system.effects.duration.event">
+				<option value="">-</option>
+				{{selectOptions FU.effectDuration selected=system.effects.duration.event localize=true}}
+			</select>
+		</label>
+
+		<label class="resource-label-m flex-group-center">
+			{{localize 'FU.Interval'}}
+			<input type="number" name="system.effects.duration.interval" value="{{ system.effects.duration.interval }}"
+				   class="resource-inputs" {{disabled (eq system.effects.duration.event FU.EndOfScene)}} />
+		</label>
+	</div>
+
+	<div class="item-settings grid grid2-col">
+		<label class="resource-label-m flex-group-center">
+			{{localize 'FU.Tracking'}}
+			<select class="resource-inputs select-dropdown-m" name="system.effects.duration.tracking">
+				<option value="">-</option>
+				{{selectOptions FU.effectTracking selected=system.effects.duration.tracking localize=true}}
+			</select>
+		</label>
+
+		<label class="resource-label-sm flex-group-center">
 			<span>{{localize 'FU.Prompt'}}?</span>
 			<input type="checkbox" name="system.effects.prompt" {{ checked system.effects.prompt }} />
 		</label>

@@ -134,7 +134,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
  * @param {FUActor} actor
  * @param {InlineSourceInfo} sourceInfo
  * @param {string[]} choices *
- * @param {InlineEffectConfiguration} config
+ * @param {FUActiveEffectConfiguration} config
  */
 async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 	if (actor.system instanceof CharacterDataModel) {
