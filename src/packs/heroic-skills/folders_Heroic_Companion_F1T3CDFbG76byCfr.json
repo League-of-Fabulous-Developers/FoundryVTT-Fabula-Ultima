@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "WHNpwToyVPMpfLEu",
   "name": "Heroic Companion",
-  "color": null,
+  "color": "#689286",
   "sorting": "a",
   "_id": "F1T3CDFbG76byCfr",
   "description": "",
@@ -15,7 +15,8 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "lastModifiedBy": null
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771477522457
   },
   "_key": "!folders!F1T3CDFbG76byCfr"
 }

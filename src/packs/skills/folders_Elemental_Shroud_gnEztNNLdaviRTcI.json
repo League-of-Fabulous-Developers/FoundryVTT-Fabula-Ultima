@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "XHWSs6dH0zQEDE21",
+  "name": "Elemental Shroud",
+  "color": "#05193f",
+  "sorting": "a",
+  "_id": "gnEztNNLdaviRTcI",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771474197554
+  },
+  "_key": "!folders!gnEztNNLdaviRTcI"
+}

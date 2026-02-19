@@ -135,7 +135,11 @@
         "Compendium.projectfu.skills.Item.F9ep5ecBHb7R4RRr",
         "Compendium.projectfu.skills.Item.eTDq4RldNEYv5XTd",
         "Compendium.projectfu.skills.Item.nBSrAu72JcvvNcWq"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      },
+      "prompt": true
     }
   },
   "effects": [],
@@ -155,7 +159,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706504115400,
-    "modifiedTime": 1770637825569,
+    "modifiedTime": 1771453746406,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

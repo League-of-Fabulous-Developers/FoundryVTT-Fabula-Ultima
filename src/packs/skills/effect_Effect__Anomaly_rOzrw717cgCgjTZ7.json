@@ -1,0 +1,92 @@
+{
+  "folder": "qNRGZXmchYjR0e4z",
+  "name": "Effect: Anomaly",
+  "type": "effect",
+  "_id": "rOzrw717cgCgjTZ7",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_anomaly.png",
+  "system": {
+    "fuid": "effect-anomaly",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_anomaly.png",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Anomaly",
+      "_id": "mYnEsYLJMdCobMhd",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": "",
+            "style": "basic",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "elements": {}
+        }
+      },
+      "changes": [],
+      "description": "<p>Until this spell ends, if you would suffer damage of a type you Absorb or are Immune to, you are instead treated as if you were Vulnerable to that damage type. Once that happens, this spell ends.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!rOzrw717cgCgjTZ7.mYnEsYLJMdCobMhd"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771474219373,
+    "modifiedTime": 1771474219373,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!rOzrw717cgCgjTZ7"
+}

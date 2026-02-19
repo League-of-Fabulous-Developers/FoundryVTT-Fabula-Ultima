@@ -78,17 +78,6 @@
 			}
 		},
 		{
-			"label": "Spells",
-			"type": "Item",
-			"name": "spells",
-			"path": "packs/spells",
-			"system": "projectfu",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
 			"label": "Basic Equipment",
 			"type": "Item",
 			"name": "basic-equipment",
@@ -232,7 +221,7 @@
 			"name": "Character Creation",
 			"sorting": "a",
 			"color": "#276625",
-			"packs": ["classes", "skills", "heroic-skills", "spells"]
+			"packs": ["classes", "skills", "heroic-skills"]
 		},
 		{
 			"name": "Effects",

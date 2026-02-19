@@ -1,0 +1,169 @@
+{
+  "folder": "MQ3l4WYwAkXz8jPg",
+  "name": "Elemental Shroud",
+  "type": "spell",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "duration": {
+      "value": "scene"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": "FUCR188",
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "fuid": "elemental-shroud",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.skills.Item.xp2bMd7jkx1rfjrb",
+        "Compendium.projectfu.skills.Item.JxkkqwY0eyzqjIXU",
+        "Compendium.projectfu.skills.Item.0gQINms2ddJW2vVr",
+        "Compendium.projectfu.skills.Item.jdmbn0LS5Plv2BI2",
+        "Compendium.projectfu.skills.Item.l7FVA1qEtGVhFRne"
+      ],
+      "duration": {
+        "interval": null,
+        "event": "",
+        "tracking": ""
+      },
+      "prompt": true
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "5",
+      "perTarget": true
+    },
+    "targeting": {
+      "max": 3,
+      "rule": "multiple"
+    },
+    "defense": "mdef",
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    },
+    "traits": []
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "core": {},
+    "fu-roll-enhancements": {
+      "autoTarget": {
+        "enable": false,
+        "repeat": false,
+        "targetType": "ENEMIES",
+        "maxTargets": null
+      },
+      "autoSpend": {
+        "enable": false,
+        "cost": null,
+        "resourceType": "MP",
+        "perTarget": false
+      }
+    },
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771454299082,
+    "modifiedTime": 1771474042122,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_id": "eJMcolfWWUBU4oWA",
+  "sort": 1300000,
+  "_key": "!items!eJMcolfWWUBU4oWA"
+}

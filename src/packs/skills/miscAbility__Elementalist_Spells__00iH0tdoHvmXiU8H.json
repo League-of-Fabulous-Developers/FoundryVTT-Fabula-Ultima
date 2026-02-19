@@ -1,0 +1,120 @@
+{
+  "folder": "MQ3l4WYwAkXz8jPg",
+  "name": "[Elementalist Spells]",
+  "type": "miscAbility",
+  "img": "icons/sundries/books/book-symbol-fire-gold-orange.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Spells marked with (@ICON[offensive]) are <strong>offensive spells</strong> and require <strong>Magic Checks</strong>!</p><table style=\"height:51px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.7i3Zat2ctLyi1z8l]{Boulder} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You summon a colossal block of stone and send it straight towards your enemy. You deal <strong>【HR + 25】 earth</strong> damage to the target; this damage ignores Resistances.</p><table style=\"height:51px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:34px\"><td style=\"height:34px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.eJMcolfWWUBU4oWA]{Elemental Shroud}</p></td><td style=\"height:34px;border-width:1px;width:15%\"><p style=\"text-align:center\">5 × T</p></td><td style=\"height:34px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:34px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.GLQMtlajiccDx6oY]{Elemental Weapon}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One equipped weapon</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Scene</p></td></tr></tbody></table><p>You imbue a weapon with elemental energy. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.WLzrT6tVslNHrQZA]{Flare} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You channel a single ray of fire towards your foe, its temperature so high that it will pierce through most defenses. You deal <strong>【HR + 25】 fire</strong> damage to the target; this damage ignores Resistances.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.aFLirnrD8OYJOz5O]{Fulgur} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You weave electricity into a wave of crackling bolts. You deal <strong>【HR + 15】 bolt</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>dazed</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.yiIuMcjHsK0ch1Fh]{Glacies} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You coat your foes under a thick layer of frost. You deal <strong>【HR + 15】 ice</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>slow</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.sB647bIQ23qlvgGg]{Iceberg} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>A pillar of ice magic envelops your foe, dropping their temperature to critical levels. You deal <strong>【HR + 25】 ice</strong> damage to the target; this damage ignores Resistances.</p><table style=\"height:51px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:34px\"><td style=\"height:34px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.smvo8sxjGdaHFgtl]{Ignis} @ICON[offensive]</p></td><td style=\"height:34px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:34px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:34px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You unleash a searing barrage against your foes, conjuring flames out of thin air. You deal <strong>【HR + 15】 fire</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>shaken</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.YNo4gKczuJWRKPJ9]{Soaring Strike}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Self</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>The wind carries your strikes across the battlefield. You may immediately perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack may target creatures that can only be targeted by <strong>ranged</strong> attacks.</p><p>If you used a weapon belonging to the <strong>brawling</strong>, <strong>spear,</strong> or <strong>sword</strong> Category for this attack, it deals 5 extra damage.</p><p>If you hit a flying target with this attack, you may force them to land immediately.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.VtuW7j5FAIWw56gi]{Terra} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>Spires of jagged rock erupt from the ground beneath your foes, closing around them. You deal <strong>【HR + 15】earth</strong> damage to each target hit by this spell. This spell cannot target creatures who are flying, floating, falling, or otherwise in mid-air.</p><p><strong>Opportunity:</strong> Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions).</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.jZRTJfKbjPzSvKV4]{Thunderbolt} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You send lightning striking at your foe. You deal <strong>【HR + 25】bolt</strong> damage to the target; this damage ignores Resistances.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.czRvhEWniKUB6B1K]{Ventus} @ICON[offensive]</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You summon the power of winds against your enemy. You deal <strong>【HR + 15】air</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each <strong>flying</strong> target hit by this spell is forced to land immediately.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.uw114Kvtwea82d2X]{Vortex}</p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\">20</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">One creature</p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p>You slash through your foe with high-pressure wind. You deal <strong>【HR + 25】 air</strong> damage to the target; this damage ignores Resistances.</p>",
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false,
+      "traits": true
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": "0",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "source": "FUCR188",
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def",
+    "fuid": "elementalist-spells",
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "traits": [],
+    "effects": {
+      "entries": [],
+      "prompt": false,
+      "duration": {
+        "event": "",
+        "tracking": "",
+        "interval": null
+      }
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": "",
+      "perTarget": false
+    },
+    "resource": {
+      "enabled": false,
+      "amount": "",
+      "type": "hp"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771454296189,
+    "modifiedTime": 1771479333189,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_id": "00iH0tdoHvmXiU8H",
+  "sort": 1200000,
+  "_key": "!items!00iH0tdoHvmXiU8H"
+}
