@@ -1,4 +1,3 @@
-import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
@@ -28,22 +27,6 @@ import { BaseSkillDataModel } from './base-skill-data-model.mjs';
  * @property {Set<String>} traits
  */
 export class SkillDataModel extends BaseSkillDataModel {
-	static {
-		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
-		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
-		deprecationNotice(this, 'rollInfo.useWeapon.hrZero.value', 'damage.hrZero');
-		deprecationNotice(this, 'rollInfo.attributes.primary.value', 'attributes.primary');
-		deprecationNotice(this, 'rollInfo.attributes.secondary.value', 'attributes.secondary');
-		deprecationNotice(this, 'rollInfo.accuracy.value', 'accuracy');
-		deprecationNotice(this, 'rollInfo.damage.hasDamage.value', 'damage.hasDamage');
-		deprecationNotice(this, 'rollInfo.damage.value', 'damage.value');
-		deprecationNotice(this, 'rollInfo.damage.type.value', 'damage.type');
-		deprecationNotice(this, 'impdamage.hasImpDamage.value');
-		deprecationNotice(this, 'impdamage.value');
-		deprecationNotice(this, 'impdamage.impType.value');
-		deprecationNotice(this, 'impdamage.type.value');
-	}
-
 	static defineSchema() {
 		const { SchemaField, StringField, NumberField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
