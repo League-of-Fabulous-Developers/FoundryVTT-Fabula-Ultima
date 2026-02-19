@@ -153,6 +153,13 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
+	 * @return Tag[]
+	 */
+	getTags() {
+		return TraitUtils.toTags(this.traits);
+	}
+
+	/**
 	 * @param {KeyboardModifiers} modifiers
 	 * @return {Promise<void>}
 	 */
@@ -191,7 +198,15 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			check.primary = weaponCheck.primary;
 			check.secondary = weaponCheck.secondary;
 
-			return this.configureAccuracyCheck(modifiers, check, actor, item, weapon);
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			config.setWeaponReference(weapon);
+			config.setHrZero(this.damage.hrZero || modifiers.shift);
+			await this.configureCheck(config, actor, item);
+			await this.addSkillDamage(config, item, context, weapon.system);
+			await this.addSkillAccuracy(config, actor, item, context);
 		};
 	}
 
@@ -201,7 +216,29 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeAttributeCheck(modifiers) {
 		return async (check, actor, item) => {
-			await this.configureAttributeCheck(modifiers, check, actor, item);
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
+			config.setWeaponReference(this.parent);
+			config.check.additionalData[skillForAttributeCheck] = this.parent.uuid;
+			config.setHrZero(this.damage.hrZero || modifiers.shift);
+			await this.configureCheck(config, actor, item);
+			await this.addSkillAccuracy(config, actor, item, context);
+			await this.addSkillDamage(config, item, context);
+			if (this.defense && targets.length === 1) {
+				let dl;
+				switch (this.defense) {
+					case 'def':
+						dl = targets[0].def;
+						break;
+
+					case 'mdef':
+						dl = targets[0].mdef;
+						break;
+				}
+				config.setDifficulty(dl);
+			}
 		};
 	}
 
@@ -213,7 +250,19 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	#initializeSkillDisplay(modifiers) {
 		return async (check, actor, item) => {
 			const config = CheckConfiguration.configure(check);
-			await this.configureDisplayCheck(config, actor, item);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
+			await this.configureCheck(config, actor, item);
+			if (this.damage.hasDamage) {
+				if (this.useWeapon.damage) {
+					const weapon = await this.getWeapon(actor);
+					config.setWeaponReference(weapon);
+					/** @type WeaponDataModel **/
+					const weaponData = weapon.system;
+					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+				}
+				await this.addSkillDamage(config, item, context);
+			}
 		};
 	}
 
@@ -232,86 +281,6 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			config.setResource(this.resource.type, this.resource.amount);
 		}
 		await ResourcePipeline.configureExpense(config, actor, item, this.cost);
-	}
-
-	/**
-	 * @return Tag[]
-	 */
-	getTags() {
-		return TraitUtils.toTags(this.traits);
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @param {CheckV2|CheckResultV2} check
-	 * @param {FUActor} actor
-	 * @param {FUItem} item
-	 */
-	async configureAttributeCheck(modifiers, check, actor, item) {
-		const config = CheckConfiguration.configure(check);
-		const targets = config.getTargets();
-		const context = ExpressionContext.fromTargetData(actor, item, targets);
-
-		config.setWeaponReference(this.parent);
-		config.check.additionalData[skillForAttributeCheck] = this.parent.uuid;
-		config.setHrZero(this.damage.hrZero || modifiers.shift);
-		await this.configureCheck(config, actor, item);
-		await this.addSkillAccuracy(config, actor, item, context);
-		await this.addSkillDamage(config, item, context);
-		if (this.defense && targets.length === 1) {
-			let dl;
-			switch (this.defense) {
-				case 'def':
-					dl = targets[0].def;
-					break;
-
-				case 'mdef':
-					dl = targets[0].mdef;
-					break;
-			}
-			config.setDifficulty(dl);
-		}
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @param {CheckV2|CheckResultV2} check
-	 * @param {FUActor} actor
-	 * @param {FUItem} item
-	 * @param {FUItem} weapon
-	 */
-	async configureAccuracyCheck(modifiers, check, actor, item, weapon) {
-		const config = CheckConfiguration.configure(check);
-		const targets = config.getTargets();
-		const context = ExpressionContext.fromTargetData(actor, item, targets);
-
-		config.setWeaponReference(weapon);
-		config.setHrZero(this.damage.hrZero || modifiers.shift);
-		await this.configureCheck(config, actor, item);
-		await this.addSkillDamage(config, item, context, weapon.system);
-		await this.addSkillAccuracy(config, actor, item, context);
-	}
-
-	/**
-	 * @desc Common configuration for display checks.
-	 * @param {CheckConfigurer} config
-	 * @param {FUActor} actor
-	 * @param {FUItem} item
-	 */
-	async configureDisplayCheck(config, actor, item) {
-		const targets = config.getTargets();
-		const context = ExpressionContext.fromTargetData(actor, item, targets);
-		await this.configureCheck(config, actor, item);
-		if (this.damage.hasDamage) {
-			if (this.useWeapon.damage) {
-				const weapon = await this.getWeapon(actor);
-				config.setWeaponReference(weapon);
-				/** @type WeaponDataModel **/
-				const weaponData = weapon.system;
-				config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
-			}
-			await this.addSkillDamage(config, item, context);
-		}
 	}
 
 	/**
