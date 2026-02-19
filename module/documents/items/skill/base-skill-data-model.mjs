@@ -16,8 +16,89 @@ import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
 import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 import { BasicItemDataModel } from '../basic/basic-item-data-model.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+import { Checks } from '../../../checks/checks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
 
 const skillForAttributeCheck = 'skillForAttributeCheck';
+
+/**
+ * @type RenderCheckHook
+ */
+let onRenderAccuracyCheck = async (data, check, actor, item, flags) => {
+	if (check.type === 'accuracy' && item?.system instanceof BaseSkillDataModel) {
+		const inspector = CheckConfiguration.inspect(check);
+		const weapon = await fromUuid(inspector.getWeaponReference());
+
+		if (check.critical) {
+			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
+		}
+
+		let tags = item.system.getTags();
+		if (weapon) {
+			if (weapon.system.getTags instanceof Function) {
+				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
+			}
+		}
+		CommonSections.tags(data.sections, tags, CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+
+		if (item.system.hasClock?.value) {
+			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
+		}
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
+
+/**
+ * @type RenderCheckHook
+ */
+let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
+	if (check.type === 'attribute' && item?.system instanceof BaseSkillDataModel && check.additionalData[skillForAttributeCheck]) {
+		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
+		const inspector = CheckConfiguration.inspect(check);
+		CommonSections.itemFlavor(data.sections, skill);
+		CommonSections.tags(data.sections, skill.system.getTags(), CHECK_DETAILS);
+		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
+		CommonSections.actions(data, actor, item, [], flags, inspector);
+
+		if (check.critical) {
+			CommonSections.opportunity(data.sections, skill.system.opportunity, CHECK_DETAILS);
+		}
+
+		if (skill.system.hasResource?.value) {
+			CommonSections.resource(data.sections, skill.system.rp, CHECK_DETAILS);
+		}
+		if (skill.system.hasClock?.value) {
+			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
+		}
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
+
+/**
+ * @type RenderCheckHook
+ */
+const onRenderDisplay = (data, check, actor, item, flags) => {
+	if (check.type === 'display' && item?.system instanceof BaseSkillDataModel) {
+		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
+		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargetsOrDefault();
+		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
+		if (!item.system.hasRoll.value) {
+			CommonSections.actions(data, actor, item, targets, flags, inspector);
+		}
+		if (item.system.hasResource?.value) {
+			CommonSections.resource(data.sections, item.system.rp, CHECK_DETAILS);
+		}
+		CommonEvents.skill(actor, item);
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
 
 /**
  * @property {string} description
@@ -72,6 +153,71 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		if (this.hasRoll.value) {
+			if (this.useWeapon.accuracy) {
+				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
+			} else {
+				return Checks.attributeCheck(
+					this.parent.actor,
+					{
+						primary: this.attributes.primary,
+						secondary: this.attributes.secondary,
+					},
+					this.parent,
+					this.#initializeAttributeCheck(modifiers),
+				);
+			}
+		}
+		return Checks.display(this.parent.actor, this.parent, this.#initializeSkillDisplay(modifiers));
+	}
+
+	/**
+	 * @param modifiers
+	 * @return {CheckCallback}
+	 * @override
+	 */
+	#initializeAccuracyCheck(modifiers) {
+		return async (check, actor, item) => {
+			const weapon = await this.getWeapon(actor);
+			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
+			if (error) {
+				throw error;
+			}
+
+			check.primary = weaponCheck.primary;
+			check.secondary = weaponCheck.secondary;
+
+			return this.configureAccuracyCheck(modifiers, check, actor, item, weapon);
+		};
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeAttributeCheck(modifiers) {
+		return async (check, actor, item) => {
+			await this.configureAttributeCheck(modifiers, check, actor, item);
+		};
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 * @remarks Expects a weapon
+	 */
+	#initializeSkillDisplay(modifiers) {
+		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			await this.configureDisplayCheck(config, actor, item);
+		};
+	}
+
+	/**
 	 * @desc Common configuration for attribute checks.
 	 * @param {CheckConfigurer} config
 	 * @param {FUActor} actor
@@ -91,7 +237,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	/**
 	 * @return Tag[]
 	 */
-	getCommonTags() {
+	getTags() {
 		return TraitUtils.toTags(this.traits);
 	}
 

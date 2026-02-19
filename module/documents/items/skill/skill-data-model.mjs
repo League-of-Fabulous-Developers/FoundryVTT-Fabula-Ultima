@@ -1,87 +1,8 @@
-import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { Checks } from '../../../checks/checks.mjs';
-import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
-import { CommonSections } from '../../../checks/common-sections.mjs';
-import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
-import { CommonEvents } from '../../../checks/common-events.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { BaseSkillDataModel } from './base-skill-data-model.mjs';
-
-const skillForAttributeCheck = 'skillForAttributeCheck';
-
-/**
- * @type RenderCheckHook
- */
-let onRenderAccuracyCheck = async (data, check, actor, item, flags) => {
-	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
-		const inspector = CheckConfiguration.inspect(check);
-		const weapon = await fromUuid(inspector.getWeaponReference());
-
-		if (check.critical) {
-			CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
-		}
-
-		let tags = getTags(item);
-		if (weapon) {
-			if (weapon.system.getTags instanceof Function) {
-				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
-			}
-		}
-		CommonSections.tags(data.sections, tags, CHECK_DETAILS);
-		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
-
-/**
- * @type RenderCheckHook
- */
-let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
-	if (check.type === 'attribute' && item?.system instanceof SkillDataModel && check.additionalData[skillForAttributeCheck]) {
-		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
-		const inspector = CheckConfiguration.inspect(check);
-		CommonSections.itemFlavor(data.sections, skill);
-		CommonSections.tags(data.sections, getTags(skill), CHECK_DETAILS);
-		if (skill.system.hasResource.value) {
-			CommonSections.resource(data.sections, skill.system.rp, CHECK_DETAILS);
-		}
-		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
-		CommonSections.actions(data, actor, item, [], flags, inspector);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
-
-/**
- * @type RenderCheckHook
- */
-const onRenderDisplay = (data, check, actor, item, flags) => {
-	if (check.type === 'display' && item?.system instanceof SkillDataModel) {
-		CommonSections.tags(data.sections, getTags(item), CHECK_DETAILS);
-		if (item.system.hasResource.value) {
-			CommonSections.resource(data.sections, item.system.rp, CHECK_DETAILS);
-		}
-		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-		const inspector = CheckConfiguration.inspect(check);
-		const targets = inspector.getTargetsOrDefault();
-		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
-		if (!item.system.hasRoll.value) {
-			CommonSections.actions(data, actor, item, targets, flags, inspector);
-		}
-		CommonEvents.skill(actor, item);
-	}
-};
-Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
-
-/**
- * @param {FUItem} skill
- * @return Tag[]
- */
-function getTags(skill) {
-	return [{ tag: 'FU.Class', separator: ':', value: skill.system.class.value, show: skill.system.class.value }, { tag: 'FU.SkillLevelAbbr', separator: ' ', value: skill.system.level.value }, ...TraitUtils.toTags(skill.system.traits)];
-}
 
 /**
  * @property {string} subtype.value
@@ -141,71 +62,6 @@ export class SkillDataModel extends BaseSkillDataModel {
 		return source;
 	}
 
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {Promise<void>}
-	 */
-	async roll(modifiers) {
-		if (this.hasRoll.value) {
-			if (this.useWeapon.accuracy) {
-				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
-			} else {
-				return Checks.attributeCheck(
-					this.parent.actor,
-					{
-						primary: this.attributes.primary,
-						secondary: this.attributes.secondary,
-					},
-					this.parent,
-					this.#initializeAttributeCheck(modifiers),
-				);
-			}
-		}
-		return Checks.display(this.parent.actor, this.parent, this.#initializeSkillDisplay(modifiers));
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {CheckCallback}
-	 * @remarks Expects a weapon
-	 */
-	#initializeSkillDisplay(modifiers) {
-		return async (check, actor, item) => {
-			const config = CheckConfiguration.configure(check);
-			await this.configureDisplayCheck(config, actor, item);
-		};
-	}
-
-	/**
-	 * @return {CheckCallback}
-	 */
-	#initializeAttributeCheck(modifiers) {
-		return async (check, actor, item) => {
-			const config = CheckConfiguration.configure(check);
-			await this.configureAttributeCheck(modifiers, config, actor, item);
-		};
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {CheckCallback}
-	 * @remarks Expects a weapon
-	 */
-	#initializeAccuracyCheck(modifiers) {
-		return async (check, actor, item) => {
-			const weapon = await this.getWeapon(actor);
-			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
-			if (error) {
-				throw error;
-			}
-
-			check.primary = weaponCheck.primary;
-			check.secondary = weaponCheck.secondary;
-
-			return this.configureAccuracyCheck(modifiers, check, actor, item, weapon);
-		};
-	}
-
 	shouldApplyEffect(effect) {
 		return this.level.value > 0;
 	}
@@ -216,6 +72,13 @@ export class SkillDataModel extends BaseSkillDataModel {
 
 	get retainedFieldPaths() {
 		return ['level.value'];
+	}
+
+	/**
+	 * @override
+	 */
+	getTags() {
+		return [{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value }, { tag: 'FU.SkillLevelAbbr', separator: ' ', value: this.level.value }, ...TraitUtils.toTags(this.traits)];
 	}
 
 	/**
