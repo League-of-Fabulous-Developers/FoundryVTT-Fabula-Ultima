@@ -126,7 +126,11 @@
       "entries": [
         "Compendium.projectfu.skills.Item.i9wagJN9DD7bjJ3k",
         "Compendium.projectfu.skills.Item.uxc0tTLb3If2Denp"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      },
+      "prompt": true
     },
     "targeting": {
       "rule": "self"
@@ -149,7 +153,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706555501421,
-    "modifiedTime": 1770276849908,
+    "modifiedTime": 1771453595137,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

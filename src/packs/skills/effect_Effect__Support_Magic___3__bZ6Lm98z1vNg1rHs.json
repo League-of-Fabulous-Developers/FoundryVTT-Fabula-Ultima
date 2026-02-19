@@ -1,5 +1,5 @@
 {
-  "folder": "xu7ltKbkoSkcBLDc",
+  "folder": "Kygq9Ep5BWhLZxvd",
   "name": "Effect: Support Magic (+3)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
@@ -101,7 +101,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770609452839,
-    "modifiedTime": 1770634058383,
+    "modifiedTime": 1771475707332,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -109,6 +109,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "bZ6Lm98z1vNg1rHs",
-  "sort": 200000,
+  "sort": 300000,
   "_key": "!items!bZ6Lm98z1vNg1rHs"
 }

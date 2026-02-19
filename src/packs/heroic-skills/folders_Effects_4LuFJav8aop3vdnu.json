@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "1Ky2u7fi2lfxr4JB",
   "name": "Effects",
-  "color": "#6d7897",
+  "color": "#535978",
   "sorting": "a",
   "_id": "4LuFJav8aop3vdnu",
   "description": "",
@@ -16,7 +16,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-    "modifiedTime": 1770968783127
+    "modifiedTime": 1771477507998
   },
   "_key": "!folders!4LuFJav8aop3vdnu"
 }

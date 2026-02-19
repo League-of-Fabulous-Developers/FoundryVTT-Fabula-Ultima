@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "4LuFJav8aop3vdnu",
   "name": "It Lives!",
-  "color": null,
+  "color": "#6d7897",
   "sorting": "a",
   "_id": "dbvm4xOW2m0gFmt1",
   "description": "",
@@ -15,7 +15,8 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "lastModifiedBy": null
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771477497038
   },
   "_key": "!folders!dbvm4xOW2m0gFmt1"
 }

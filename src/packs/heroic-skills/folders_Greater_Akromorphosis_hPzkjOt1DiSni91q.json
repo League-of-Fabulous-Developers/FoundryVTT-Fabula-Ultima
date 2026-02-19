@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "rWZeRzjYC59veWKl",
   "name": "Greater Akromorphosis",
-  "color": null,
+  "color": "#7697b2",
   "sorting": "a",
   "_id": "hPzkjOt1DiSni91q",
   "description": "",
@@ -15,7 +15,8 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "lastModifiedBy": null
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771477586784
   },
   "_key": "!folders!hPzkjOt1DiSni91q"
 }

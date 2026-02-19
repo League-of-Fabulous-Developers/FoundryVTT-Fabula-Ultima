@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "4LuFJav8aop3vdnu",
   "name": "Card Vanguard",
-  "color": null,
+  "color": "#6d7897",
   "sorting": "a",
   "_id": "bzi1aleLpp03Cctd",
   "description": "",
@@ -15,7 +15,8 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "lastModifiedBy": null
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771477490321
   },
   "_key": "!folders!bzi1aleLpp03Cctd"
 }
