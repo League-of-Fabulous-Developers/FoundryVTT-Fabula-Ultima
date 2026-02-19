@@ -1,86 +1,36 @@
-import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
-import { CommonSections } from '../../../checks/common-sections.mjs';
-import { FUSubTypedItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-
-/** @type RenderCheckHook */
-Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
-	if (item?.system instanceof HeroicSkillDataModel) {
-		CommonSections.tags(data.sections, [
-			{
-				tag: FU.heroicType[item.system.subtype.value],
-			},
-			{
-				tag: 'FU.Class',
-				separator: ':',
-				value: item.system.class.value,
-				show: item.system.class.value,
-			},
-		]);
-
-		if (item.system.requirement.value)
-			data.sections.push({
-				content: `
-                  <div class='chat-desc'>
-                    <p><strong>${game.i18n.localize('FU.Requirements')}: </strong>${item.system.requirement.value}</p>
-                  </div>`,
-			});
-
-		if (item.system.hasResource.value) {
-			CommonSections.resource(data.sections, item.system.rp);
-		}
-
-		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
-	}
-});
+import { TraitUtils } from '../../../pipelines/traits.mjs';
+import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
 
 /**
  * @property {string} subtype.value
- * @property {string} summary.value
- * @property {string} description
- * @property {boolean} showTitleCard.value
  * @property {string} class.value
  * @property {string} requirement.value
- * @property {string} source.value
+ * @property {string} description
+ * @property {string} opportunity
+ * @property {UseWeaponDataModelV2} useWeapon
+ * @property {ItemAttributesDataModelV2} attributes
+ * @property {number} accuracy
+ * @property {Defense} defense
+ * @property {DamageDataModelV2} damage
+ * @property {EffectApplicationDataModel} effects
+ * @property {ActionCostDataModel} cost
+ * @property {TargetingDataModel} targeting
+ * @property {Set<String>} traits
  */
-export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
-	static {
-		deprecationNotice(this, 'level.min');
-		deprecationNotice(this, 'level.value');
-		deprecationNotice(this, 'level.max');
-		deprecationNotice(this, 'useWeapon.accuracy.value');
-		deprecationNotice(this, 'useWeapon.damage.value');
-		deprecationNotice(this, 'useWeapon.hrZero.value');
-		deprecationNotice(this, 'attributes.primary.value');
-		deprecationNotice(this, 'attributes.secondary.value');
-		deprecationNotice(this, 'accuracy.value');
-		deprecationNotice(this, 'damage.hasDamage.value');
-		deprecationNotice(this, 'damage.value');
-		deprecationNotice(this, 'damage.type.value');
-		deprecationNotice(this, 'impdamage.hasImpDamage.value');
-		deprecationNotice(this, 'impdamage.value');
-		deprecationNotice(this, 'impdamage.impType.value');
-		deprecationNotice(this, 'impdamage.type.value');
-		deprecationNotice(this, 'benefits.resources.hp.value');
-		deprecationNotice(this, 'benefits.resources.mp.value');
-		deprecationNotice(this, 'benefits.resources.ip.value');
-	}
-
+export class HeroicSkillDataModel extends BaseSkillDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, BooleanField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {
+			subtype: new SchemaField({ value: new StringField() }),
 			class: new SchemaField({ value: new StringField() }),
-			hasResource: new SchemaField({ value: new BooleanField() }),
-			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			requirement: new SchemaField({ value: new StringField() }),
 		});
 	}
 
 	get attributePartials() {
-		return [ItemPartialTemplates.standard, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill, ItemPartialTemplates.resourcePoints];
+		return [...this.commonPartials, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill];
 	}
 
 	/**
@@ -92,5 +42,12 @@ export class HeroicSkillDataModel extends FUSubTypedItemDataModel {
 		return this.parent.update({
 			'system.rp': this.rp.getProgressUpdate(event, target, { indirect: { dataAttribute: 'data-resource-action', attributeValueIncrement: 'increment', attributeValueDecrement: 'decrement' } }),
 		});
+	}
+
+	/**
+	 * @override
+	 */
+	getTags() {
+		return [{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value }, { tag: FU.heroicType[this.subtype.value] }, ...TraitUtils.toTags(this.traits)];
 	}
 }
