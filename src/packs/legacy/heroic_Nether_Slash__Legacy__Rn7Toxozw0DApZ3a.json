@@ -1,7 +1,7 @@
 {
   "name": "Nether Slash [Legacy]",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-red.webp",
   "system": {
     "summary": {
       "value": "Converts Shadow Strike into fire or ice."
@@ -47,7 +47,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769015404602,
-    "modifiedTime": 1769015467077,
+    "modifiedTime": 1771473372715,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "nlJCekCcdyb2RFPe",

@@ -1,7 +1,7 @@
 {
   "name": "It Lives! [Legacy]",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/environment/creatures/golem-stone-purple.webp",
   "system": {
     "summary": {
       "value": "Improve construct-Species Faithful Companions."
@@ -47,7 +47,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769015304122,
-    "modifiedTime": 1769015314660,
+    "modifiedTime": 1771473347995,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "nlJCekCcdyb2RFPe",

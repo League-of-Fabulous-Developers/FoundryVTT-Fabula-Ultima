@@ -17,7 +17,7 @@
       "value": 2
     },
     "source": "FUCR104",
-    "fuid": "tonic",
+    "fuid": "tonic-legacy",
     "damage": {
       "onApply": "",
       "enabled": false,
@@ -57,7 +57,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768876707271,
-    "modifiedTime": 1768876721457,
+    "modifiedTime": 1771472952369,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "EYGLUBKxfFKzdD2o",

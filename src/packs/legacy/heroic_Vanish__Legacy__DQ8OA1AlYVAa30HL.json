@@ -30,7 +30,7 @@
       "max": 6,
       "enabled": false
     },
-    "fuid": "vanish"
+    "fuid": "vanish-legacy"
   },
   "effects": [],
   "folder": "nlJCekCcdyb2RFPe",
@@ -53,7 +53,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768876098041,
-    "modifiedTime": 1768876235161,
+    "modifiedTime": 1771473401327,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "DQ8OA1AlYVAa30HL",

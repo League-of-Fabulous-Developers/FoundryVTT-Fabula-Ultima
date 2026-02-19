@@ -1,7 +1,7 @@
 {
   "name": "Ofuda Mastery [Legacy]",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/sundries/documents/document-worn-symbol-brown.webp",
   "system": {
     "summary": {
       "value": "Use Mind Points instead of Inventory Points to create symbols during conflicts."
@@ -47,7 +47,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769015453381,
-    "modifiedTime": 1769015468119,
+    "modifiedTime": 1771473388679,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "nlJCekCcdyb2RFPe",

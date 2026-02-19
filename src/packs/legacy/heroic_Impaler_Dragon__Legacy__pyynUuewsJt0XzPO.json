@@ -1,7 +1,7 @@
 {
   "name": "Impaler Dragon [Legacy]",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/weapons/polearms/spear-flared-silver-pink.webp",
   "system": {
     "summary": {
       "value": "Use Charging Cavalry after Shadow Strike."
@@ -47,7 +47,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769015048149,
-    "modifiedTime": 1769015296727,
+    "modifiedTime": 1771473329358,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "nlJCekCcdyb2RFPe",

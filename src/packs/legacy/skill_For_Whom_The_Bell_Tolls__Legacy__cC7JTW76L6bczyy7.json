@@ -50,7 +50,7 @@
       "max": 6,
       "enabled": false
     },
-    "fuid": "for-whom-the-bell-tolls",
+    "fuid": "for-whom-the-bell-tolls-legacy",
     "resource": {
       "enabled": false,
       "amount": "",
@@ -87,7 +87,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769024188829,
-    "modifiedTime": 1769024337872,
+    "modifiedTime": 1771473432197,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "8lW5YyWxQ1X625X8",

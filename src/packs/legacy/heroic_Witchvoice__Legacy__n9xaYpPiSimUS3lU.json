@@ -1,7 +1,7 @@
 {
   "name": "Witchvoice [Legacy]",
   "type": "heroic",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/death/mouth-bite-fangs-vampire.webp",
   "system": {
     "summary": {
       "value": "Draw enemy attacks using Condemn or verses"
@@ -47,7 +47,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769014542471,
-    "modifiedTime": 1769014555934,
+    "modifiedTime": 1771473420876,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "folder": "nlJCekCcdyb2RFPe",

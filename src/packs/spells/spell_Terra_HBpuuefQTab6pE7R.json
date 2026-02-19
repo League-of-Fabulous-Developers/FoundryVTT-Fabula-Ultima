@@ -110,7 +110,9 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [
+        "Compendium.projectfu.spells.Item.MzygNOJrSay8vRv9"
+      ]
     },
     "traits": []
   },
@@ -131,8 +133,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706567040241,
-    "modifiedTime": 1770872382467,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771102273260,
+    "lastModifiedBy": "bgUzjEHd80A79gwp",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

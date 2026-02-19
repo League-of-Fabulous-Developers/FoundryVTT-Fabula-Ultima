@@ -101,7 +101,7 @@
       "value": false
     },
     "opportunity": "",
-    "fuid": "mirror",
+    "fuid": "mirror-legacy",
     "cost": {
       "resource": "mp",
       "amount": "10",
@@ -142,7 +142,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1768579238305,
-    "modifiedTime": 1768579379164,
+    "modifiedTime": 1771473183084,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "eR5AhZHwGbzLh4Cr",

@@ -52,7 +52,7 @@
       "max": 6,
       "enabled": false
     },
-    "fuid": "wardancer",
+    "fuid": "wardancer-legacy",
     "resource": {
       "enabled": false,
       "amount": "",
@@ -177,7 +177,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1769014350883,
-    "modifiedTime": 1769014447073,
+    "modifiedTime": 1771473259465,
     "lastModifiedBy": "bgUzjEHd80A79gwp"
   },
   "_id": "BJrTOCsOHGVQKZbu",
