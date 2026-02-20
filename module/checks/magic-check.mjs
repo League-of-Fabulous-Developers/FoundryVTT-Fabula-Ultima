@@ -67,7 +67,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 /**
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
- * @param {FUChatData} data
+ * @param {FURenderData} data
  * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
@@ -79,7 +79,7 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 /**
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
- * @param {FUChatData} data
+ * @param {FURenderData} data
  */
 function renderNonCombatMagicCheck(checkResult, inspector, data) {
 	data.sections.push({

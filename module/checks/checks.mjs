@@ -17,6 +17,8 @@ import { SupportCheck } from './support-check.mjs';
 import { CommonEvents } from './common-events.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
+import { TraitUtils } from '../pipelines/traits.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const { DiceTerm, NumericTerm } = foundry.dice.terms;
 
@@ -431,18 +433,25 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
  */
 async function renderCheck(result, actor, item, flags = {}) {
 	/**
-	 * @type FUChatData
+	 * @type FURenderData
 	 */
-	const chatData = {
+	const renderData = {
 		sections: [],
 		postRenderActions: [],
+		tags: [],
 	};
 	const additionalFlags = {};
 	const config = CheckConfiguration.configure(result);
 
-	Hooks.callAll(CheckHooks.renderCheck, chatData, result, actor, item, additionalFlags);
-	await CommonEvents.renderCheck(chatData.sections, config, actor, item);
-	await CommonEvents.renderMessage(chatData.sections, actor, item);
+	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
+	await CommonEvents.renderCheck(renderData.sections, config, actor, item);
+	await CommonEvents.renderMessage(renderData.sections, actor, item);
+
+	if (result.critical) {
+		CommonEvents.opportunity(renderData, actor, result.type, item, false);
+	} else if (result.fumble) {
+		CommonEvents.opportunity(renderData, actor, result.type, item, true);
+	}
 
 	// Check-specific flags
 	const checkFlags = {
@@ -452,8 +461,18 @@ async function renderCheck(result, actor, item, flags = {}) {
 		},
 	};
 
+	// Treat traits as tags as well
+	for (const trait of config.getTraits()) {
+		const traitTag = TraitUtils.toTag(trait);
+		if (StringUtils.hasLocalization(traitTag.tag)) {
+			if (!renderData.tags.some((tag) => tag.tag === traitTag.tag)) {
+				renderData.tags.push(traitTag);
+			}
+		}
+	}
+
 	// Create the chat builder
-	const chatBuilder = new FUChatBuilder(actor, item).withFlags(checkFlags).withFlags(flags).withFlags(additionalFlags).withData(chatData);
+	const chatBuilder = new FUChatBuilder(actor, item).withFlags(checkFlags).withFlags(flags).withFlags(additionalFlags).withData(renderData);
 
 	// Add flavor
 	let flavor;
@@ -529,11 +548,6 @@ const performCheck = async (check, actor, item, prepareCheckCallback = undefined
 		await renderCheckCallback(result);
 	}
 	CommonEvents.resolveCheck(result, actor, item);
-	if (result.critical) {
-		CommonEvents.opportunity(actor, check.type, item, false);
-	} else if (result.fumble) {
-		CommonEvents.opportunity(actor, check.type, item, true);
-	}
 };
 
 /**

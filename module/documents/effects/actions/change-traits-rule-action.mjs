@@ -50,7 +50,7 @@ export class ChangeTraitsRuleAction extends RuleActionDataModel {
 		if (context.config) {
 			switch (this.mode) {
 				case 'add':
-					context.config.addTraits(values);
+					context.config.addTraits(...values);
 					break;
 				case 'remove':
 					//context.config.removeTraits(values);

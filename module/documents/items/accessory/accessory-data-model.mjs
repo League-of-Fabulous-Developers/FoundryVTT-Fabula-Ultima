@@ -6,8 +6,7 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof AccessoryDataModel) {
-		CommonSections.tags(data.sections, item.system.getTags());
-
+		data.tags.push(...item.system.getTags());
 		CommonSections.quality(data.sections, item.system.quality.value);
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}

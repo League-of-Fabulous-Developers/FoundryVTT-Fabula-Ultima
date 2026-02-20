@@ -1,6 +1,5 @@
 import { SkillMigrations } from './skill-migrations.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { BaseSkillDataModel } from './base-skill-data-model.mjs';
 
 /**
@@ -61,7 +60,10 @@ export class SkillDataModel extends BaseSkillDataModel {
 	 * @override
 	 */
 	getTags() {
-		return [{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value }, { tag: 'FU.SkillLevelAbbr', separator: ' ', value: this.level.value }, ...TraitUtils.toTags(this.traits)];
+		return [
+			{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value },
+			{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: this.level.value },
+		];
 	}
 
 	/**

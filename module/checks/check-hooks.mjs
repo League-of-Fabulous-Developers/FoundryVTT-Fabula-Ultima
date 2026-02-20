@@ -129,7 +129,7 @@ const processCheck = (check, actor, item, registerCallback) => {};
 /**
  * @callback RenderCheckHook
  * @description Hook called to determine how to render the results
- * @param {FUChatData} data
+ * @param {FURenderData} data
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]

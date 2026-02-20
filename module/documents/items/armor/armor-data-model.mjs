@@ -12,7 +12,7 @@ import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document
 
 Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof ArmorDataModel) {
-		CommonSections.tags(data.sections, [
+		data.tags.push(...data.sections, [
 			{
 				tag: 'FU.Martial',
 				show: item.system.isMartial.value,

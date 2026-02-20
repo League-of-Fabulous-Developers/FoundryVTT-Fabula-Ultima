@@ -38,6 +38,14 @@ function localize(key, data = undefined) {
 }
 
 /**
+ * @param {String} key
+ * @returns {Boolean}
+ */
+function hasLocalization(key) {
+	return foundry.utils.hasProperty(game.i18n.translations, key) || foundry.utils.hasProperty(game.i18n._fallback, key);
+}
+
+/**
  * @param {String|*} input
  * @returns {String}
  */
@@ -101,6 +109,7 @@ export const StringUtils = Object.freeze({
 	kebabToPascal,
 	titleToKebab,
 	localize,
+	hasLocalization,
 	capitalize,
 	truncate,
 	toBase64,

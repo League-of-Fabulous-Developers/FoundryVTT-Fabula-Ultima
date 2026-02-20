@@ -83,7 +83,7 @@ function attack(inspector, actor, item) {
  * @property {FUActor} actor
  * @property {Token} token
  * @property {Set<String>} traits
- * @property {FUChatData} renderData
+ * @property {FURenderData} renderData
  * @property {String} origin An id used to prevent cascading.
  */
 
@@ -256,7 +256,7 @@ function loss(actor, resource, amount, origin) {
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
  * @property {String} origin
- * @property {FUChatData} renderData
+ * @property {FURenderData} renderData
  */
 
 /**
@@ -510,15 +510,17 @@ function reveal(actor, revealed) {
 /**
  * @typedef OpportunityEvent
  * @description Dispatched when a character gets an opportunity
+ * @property {FURenderData} renderData
  * @property {FUActor} actor
  * @property {String} type The type of check that led to the opportunity
  * @property {FUItem} item The item that prompted the check
  * @property {Boolean} fumble If the opportunity came from a fumble, which goes to the opposition of the actor.
  */
 
-function opportunity(actor, type, item, fumble) {
+function opportunity(renderData, actor, type, item, fumble) {
 	/** @type OpportunityEvent  **/
 	const event = {
+		renderData: renderData,
 		actor: actor,
 		type: type,
 		item: item,

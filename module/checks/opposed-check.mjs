@@ -2,7 +2,7 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
-import { CHECK_ADDENDUM_ORDER, CHECK_DETAILS, CHECK_ROLL } from './default-section-order.mjs';
+import { ChatSectionOrder, CHECK_DETAILS, CHECK_ROLL } from './default-section-order.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
@@ -102,7 +102,7 @@ const onRenderCheck = (data, check, actor, item, flags) => {
 				{
 					winner,
 				},
-				CHECK_ADDENDUM_ORDER,
+				ChatSectionOrder.addendum,
 			);
 		}
 		//
@@ -114,7 +114,7 @@ const onRenderCheck = (data, check, actor, item, flags) => {
 				initialCheck: check,
 			};
 			const action = new ChatAction(actionName, FU.checkIcons.opposed, tooltip).withLabel(tooltip).withSelected().withFields(checkData);
-			CommonSections.chatActions(data.sections, [action], {}, CHECK_ADDENDUM_ORDER);
+			CommonSections.chatActions(data.sections, [action], {}, ChatSectionOrder.addendum);
 		}
 	}
 };

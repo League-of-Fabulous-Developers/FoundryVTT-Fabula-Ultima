@@ -316,14 +316,14 @@ export class VersesApplication extends FUApplication {
 			},
 		];
 
-		/** @type FUChatData **/
+		/** @type FURenderData **/
 		const renderData = {
 			sections: [],
 			postRenderActions: [],
+			tags: tags,
 		};
 
 		CommonSections.itemFlavor(renderData.sections, this.#verse.parent.parent);
-		CommonSections.tags(renderData.sections, tags);
 		CommonSections.genericText(renderData.sections, enriched);
 		CommonSections.expense(renderData, actor, item, targets, flags, expense);
 

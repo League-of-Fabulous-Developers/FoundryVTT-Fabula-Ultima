@@ -1,9 +1,12 @@
 import FoundryUtils from './foundry-utils.mjs';
+import { CommonSections } from '../checks/common-sections.mjs';
+import { ChatSectionOrder } from '../checks/default-section-order.mjs';
 
 /**
- * @typedef FUChatData
+ * @typedef FURenderData
  * @property {CheckRenderData} sections
  * @property {Promise[]} postRenderActions
+ * @property {Tag[]} tags
  */
 
 /**
@@ -11,9 +14,9 @@ import FoundryUtils from './foundry-utils.mjs';
  */
 export class FUChatBuilder {
 	/**
-	 * @type {CheckRenderData} The sections of that chat message.
+	 * @type {FURenderData}
 	 */
-	#renderData = [];
+	#renderData;
 	/**
 	 * @type {Object[]}
 	 */
@@ -34,16 +37,16 @@ export class FUChatBuilder {
 	 * @type {String} Custom flavor text.
 	 */
 	#flavor;
-	/**
-	 * @type {Promise[]} Actions to execute after rendering the chat message.
-	 */
-	#postRenderActions;
 
 	constructor(actor, item) {
 		this.#actor = actor;
 		this.#item = item;
 		this.#flags = [];
-		this.#postRenderActions = [];
+		this.#renderData = {
+			tags: [],
+			sections: [],
+			postRenderActions: [],
+		};
 	}
 
 	/**
@@ -64,14 +67,7 @@ export class FUChatBuilder {
 	 * @returns {CheckRenderData}
 	 */
 	get sections() {
-		return this.#renderData;
-	}
-
-	/**
-	 * @returns {CheckRenderData}
-	 */
-	get renderData() {
-		return this.#renderData;
+		return this.#renderData.sections;
 	}
 
 	/**
@@ -102,12 +98,17 @@ export class FUChatBuilder {
 	}
 
 	/**
-	 * @param {FUChatData} data
+	 * @param {FURenderData} data
 	 * @returns {FUChatBuilder}
 	 */
 	withData(data) {
-		this.#renderData = data.sections;
-		this.#postRenderActions = data.postRenderActions;
+		this.#renderData = data;
+		if (!this.#renderData.tags) {
+			this.#renderData.tags = [];
+		}
+		if (!this.#renderData.postRenderActions) {
+			this.#renderData.postRenderActions = [];
+		}
 		return this;
 	}
 
@@ -128,10 +129,22 @@ export class FUChatBuilder {
 		 * @type {CheckSection[]}
 		 */
 		const allSections = [];
-		for (let value of this.#renderData) {
+		for (let value of this.sections) {
 			value = await (value instanceof Function ? value() : value);
 			if (value) {
 				allSections.push(value);
+			}
+		}
+
+		// Tag Support: We need to run the functions above first which could end up adding tags
+		if (this.#renderData.tags.length > 0) {
+			let secondPassSections = [];
+			CommonSections.tags(secondPassSections, this.#renderData.tags, ChatSectionOrder.tags);
+			for (let value of secondPassSections) {
+				value = await (value instanceof Function ? value() : value);
+				if (value) {
+					allSections.push(value);
+				}
 			}
 		}
 
@@ -214,7 +227,7 @@ export class FUChatBuilder {
 		await ChatMessage.create(chatMessage, options);
 
 		// Execute post-render actions
-		for (const promise of this.#postRenderActions) {
+		for (const promise of this.#renderData.postRenderActions) {
 			await promise();
 		}
 	}

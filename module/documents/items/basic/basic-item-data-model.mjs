@@ -7,7 +7,6 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 
 /**
@@ -58,7 +57,6 @@ const onRenderCheck = (data, result, actor, item) => {
 				},
 			},
 		}));
-		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 };
@@ -148,6 +146,6 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 * @return {Tag[]}
 	 */
 	getTags() {
-		return [...TraitUtils.toTags(this.traits)];
+		return [];
 	}
 }

@@ -1,7 +1,7 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Checks } from './checks.mjs';
-import { CHECK_REROLL } from './default-section-order.mjs';
+import { ChatSectionOrder } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
@@ -74,7 +74,7 @@ const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) =>
 	const rerollData = checkResult.additionalData.reroll;
 	if (rerollData) {
 		data.sections.push({
-			order: CHECK_REROLL,
+			order: ChatSectionOrder.reroll,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 			data: rerollData,
 		});

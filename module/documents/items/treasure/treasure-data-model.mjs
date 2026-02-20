@@ -27,7 +27,7 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 				value: `${game.i18n.localize('FU.Origin')}: ${item.system.origin.value}`,
 			});
 		}
-		CommonSections.tags(data.sections, tags);
+		data.tags.push(...tags);
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });

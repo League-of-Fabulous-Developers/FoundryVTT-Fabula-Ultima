@@ -16,7 +16,7 @@ import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { Traits } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ExpressionContext } from '../../../expressions/expressions.mjs';
@@ -25,7 +25,7 @@ import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 /** @type RenderCheckHook */
 const onRenderCheck = (data, result, actor, item, flags, postRenderActions) => {
 	if (item && item.system instanceof SpellDataModel) {
-		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
+		data.tags.push(...item.system.getTags());
 		CommonSections.opportunity(data.sections, item.system.opportunity, CHECK_DETAILS);
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
@@ -246,7 +246,6 @@ export class SpellDataModel extends FUStandardItemDataModel {
 				tag: `${this.cost.amount} ${game.i18n.localize(FU.resourcesAbbr[this.cost.resource])}`,
 				value: this.cost.perTarget ? game.i18n.localize('FU.CostPerTargetAbbreviation') : '',
 			},
-			...TraitUtils.toTags(this.traits),
 		];
 	}
 }

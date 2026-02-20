@@ -1,4 +1,4 @@
-import { CHECK_ACTIONS, CHECK_DETAILS, CHECK_FLAVOR, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
+import { ChatSectionOrder, CHECK_DETAILS, CHECK_FLAVOR, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
@@ -275,7 +275,7 @@ const opportunity = (sections, opportunity, order) => {
 
 /**
  * @description Adds a target section to the message that lists the targets and provides contextual buttons
- * @param {FUChatData} data
+ * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {TargetData[]} targetData
@@ -438,7 +438,7 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 			}
 
 			return {
-				order: CHECK_ACTIONS,
+				order: ChatSectionOrder.actions,
 				partial: 'systems/projectfu/templates/chat/partials/chat-actions.hbs',
 				data: {
 					retarget: true,
@@ -465,7 +465,7 @@ async function showFloatyText(targetData, localizedText) {
 }
 
 /**
- * @param {FUChatData} data
+ * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {ActionCostDataModel} cost
@@ -488,7 +488,7 @@ const spendResource = (data, actor, item, cost, targets, flags) => {
 		// This can be modified here...
 		await CommonEvents.calculateExpense(actor, item, targets, expense);
 		return {
-			order: CHECK_ACTIONS + 500,
+			order: ChatSectionOrder.actions + 500,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
@@ -503,7 +503,7 @@ const spendResource = (data, actor, item, cost, targets, flags) => {
 };
 
 /**
- * @param {FUChatData} data
+ * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {UpdateResourceData} updateData
@@ -530,7 +530,7 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 	data.sections.push(async () => {
 		return {
-			order: CHECK_ACTIONS + 500,
+			order: ChatSectionOrder.actions + 500,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
@@ -545,7 +545,7 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
 };
 
 /**
- * @param {FUChatData} data
+ * @param {FURenderData} data
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param targets
@@ -557,7 +557,7 @@ const expense = (data, actor, item, targets, flags, expense) => {
 	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
 	data.sections.push(async () => {
 		return {
-			order: CHECK_RESULT,
+			order: ChatSectionOrder.actions + 100,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
