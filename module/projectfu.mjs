@@ -561,6 +561,9 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 
 		const chatMessage = game.messages.get(_messageId);
 		const checkV2 = chatMessage?.flags?.projectfu?.CheckV2;
+
+		if (!checkV2) return;
+
 		const { critical = false, fumble = false } = checkV2;
 
 		const pfuSfx = { id: SYSTEM, result: null };
