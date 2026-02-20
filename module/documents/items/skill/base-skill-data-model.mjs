@@ -345,7 +345,16 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 					}
 				}
 				if (this.useWeapon.damage) {
-					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+					// We do this in case we are using both a damage bonus AND weapon damage
+					if (config.hasDamage) {
+						config.modifyDamage((damage) => {
+							damage.type = this.damage.type || weaponData.damageType.value;
+							damage.addModifier('FU.WeaponDamageBonus', weaponData.damage.value);
+							return damage;
+						});
+					} else {
+						config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+					}
 				}
 				if (this.useWeapon.accuracy) {
 					config.addModifier('FU.CheckBonus', weaponData.accuracy.value);
