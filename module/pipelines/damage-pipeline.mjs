@@ -820,7 +820,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				}
 			}
 			for (const modifier of damage.modifiers) {
-				if (modifier.traits && modifier.traits.length > 0) {
+				if (modifier.enabled && modifier.traits && modifier.traits.length > 0) {
 					config.addTraits(modifier.traits);
 				}
 			}
