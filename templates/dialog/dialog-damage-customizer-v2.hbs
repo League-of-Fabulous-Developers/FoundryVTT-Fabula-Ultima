@@ -26,38 +26,40 @@
 			</thead>
 			<tbody>
 			{{#each context.damage.rawModifiers as |change index|}}
-				<tr>
-					<th>{{localize this.label}}</th>
-					<td>
-						{{#each this.types as |type| }}
-							<i class="icon {{lookup @root.FU.affIcon type}}" style="flex: 0 1 auto;"></i>
-						{{/each}}
-					</td>
-					<td>
-						{{#if this.amount}}
-							{{this.amount}}
-						{{/if}}
-					</td>
-					<td>
-						{{#each this.traits as |trait|}}
-							<span>{{pfuLocalizeTrait trait}} </span>
-						{{/each}}
-					</td>
-					<td>
-						{{#if (and this.expense this.expense.amount)}}
-							<span>{{this.expense.amount}} {{localize (lookup @root.FU.resources this.expense.resource)}}</span>
-						{{/if}}
-					</td>
-					<td>
-						<label>
-							<input type="checkbox"
-								   id="{{this.label}}"
-								   data-index="{{index}}"
-								   name="context.damage._modifiers.{{index}}.enabled"
-								{{checked this.enabled}} />
-						</label>
-					</td>
-				</tr>
+				{{#if (gt this.amount 0)}}
+					<tr>
+						<th>{{localize this.label}}</th>
+						<td>
+							{{#each this.types as |type| }}
+								<i class="icon {{lookup @root.FU.affIcon type}}" style="flex: 0 1 auto;"></i>
+							{{/each}}
+						</td>
+						<td>
+							{{#if this.amount}}
+								{{this.amount}}
+							{{/if}}
+						</td>
+						<td>
+							{{#each this.traits as |trait|}}
+								<span>{{pfuLocalizeTrait trait}} </span>
+							{{/each}}
+						</td>
+						<td>
+							{{#if (and this.expense this.expense.amount)}}
+								<span>{{this.expense.amount}} {{localize (lookup @root.FU.resources this.expense.resource)}}</span>
+							{{/if}}
+						</td>
+						<td>
+							<label>
+								<input type="checkbox"
+									   id="{{this.label}}"
+									   data-index="{{index}}"
+									   name="context.damage._modifiers.{{index}}.enabled"
+									{{checked this.enabled}} />
+							</label>
+						</td>
+					</tr>
+				{{/if}}
 			{{/each}}
 			<!-- HR -->
 			{{#if context.damage.hr}}
