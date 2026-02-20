@@ -178,7 +178,8 @@ export const FUHandlebars = Object.freeze({
 			 * @param difficulty
 			 */
 			function (result, difficulty) {
-				if (result.critical) {
+				console.log(result, difficulty);
+				if (result.crit) {
 					return 'critical';
 				} else if (result.fumble) {
 					return 'fumble';
