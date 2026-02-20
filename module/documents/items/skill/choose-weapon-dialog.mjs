@@ -67,10 +67,9 @@ async function prompt(actor, includeWeaponModules = false) {
 		FU,
 	};
 	const content = await FoundryUtils.renderTemplate('dialog/dialog-choose-weapon', data);
-	const { selected } = await FoundryUtils.input(title, content);
-
-	if (selected) {
-		return actor.items.get(selected) ?? null;
+	const result = await FoundryUtils.input(title, content);
+	if (result && result.selected) {
+		return actor.items.get(result.selected) ?? null;
 	} else {
 		return null;
 	}

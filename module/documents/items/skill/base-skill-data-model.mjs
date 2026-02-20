@@ -165,7 +165,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 */
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
-			if (this.useWeapon.accuracy) {
+			if (this.useWeapon.accuracy || this.damage.hasDamage) {
 				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
 			} else {
 				return Checks.attributeCheck(
@@ -195,8 +195,13 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 				throw error;
 			}
 
-			check.primary = weaponCheck.primary;
-			check.secondary = weaponCheck.secondary;
+			if (this.useWeapon.accuracy) {
+				check.primary = weaponCheck.primary;
+				check.secondary = weaponCheck.secondary;
+			} else {
+				check.primary = this.attributes.primary;
+				check.secondary = this.attributes.secondary;
+			}
 
 			const config = CheckConfiguration.configure(check);
 			const targets = config.getTargets();
