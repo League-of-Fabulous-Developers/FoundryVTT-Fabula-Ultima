@@ -10,8 +10,7 @@ const fields = foundry.data.fields;
  * @extends RuleTriggerDataModel
  * @property {DamageType} damageTypes
  * @property {Set<FUItemGroup>} damageSource
- * @property {FUComparisonOperator} damageThreshold.operator
- * @property {Number} damageThreshold.amount
+ * @property {FUThreshold} damageThreshold
  * @inheritDoc
  */
 export class DamageRuleTrigger extends RuleTriggerDataModel {
