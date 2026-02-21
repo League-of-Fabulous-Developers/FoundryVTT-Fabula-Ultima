@@ -110,6 +110,7 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 				choices: Object.keys(CONFIG.FU.weaponCategoriesWithoutCustom),
 			}),
 			complex: new BooleanField(),
+			cost: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }),
 			quality: new StringField(),
 			shield: new SchemaField({
 				defense: new NumberField({ initial: 2 }),
