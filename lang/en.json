@@ -1741,6 +1741,7 @@
 		"Inclusive": "Inclusive",
 		"SkillConditionMet": "The condition for this skill has been met.",
 		"ChatPerformRitual": "Perform Ritual",
+		"ChatPerform": "Perform {action}",
 		"Application": "Application",
 		"Transform": "Transform",
 		"Selection": "Selection",
