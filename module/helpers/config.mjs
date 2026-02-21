@@ -158,6 +158,10 @@ FU.affTypeAbbr = {
 	3: 'FU.AffinityAbsorptionAbbr',
 };
 
+/**
+ * @typedef {'none'|'vulnerability'|'resistance'|'immunity'|'absorption'} FUAffinity
+ */
+
 FU.affValue = {
 	vulnerability: -1,
 	none: 0,
@@ -165,6 +169,19 @@ FU.affValue = {
 	immunity: 2,
 	absorption: 3,
 };
+
+FU.affinities = {
+	vulnerability: 'FU.AffinityVulnerable',
+	none: 'FU.AffinityNormal',
+	resistance: 'FU.AffinityResistance',
+	immunity: 'FU.AffinityImmune',
+	absorption: 'FU.AffinityAbsorption',
+};
+
+/**
+ * @desc For reverse lookups.
+ */
+FU.affinityKeyByValue = Object.fromEntries(Object.entries(FU.affValue).map(([k, v]) => [v, k]));
 
 /**
  * @typedef {"beast" | "construct" | "demon" | "elemental" | "humanoid" | "monster" | "plant" | "undead" | "custom"} FUSpeciesKey

@@ -11,6 +11,14 @@
 	{{formGroup trigger.schema.fields.damageSources value=trigger.damageSources options=options.damageSourceOptions name=(pfuConcat path ".damageSources") classes="fu-rule-element__set stacked"}}
 </div>
 
+<label class="fu-rule-element__property">
+	<span>{{localize 'FU.Affinity'}}</span>
+	<select name="{{pfuConcat path ".affinity"}}">
+		<option value="">-</option>
+		{{selectOptions options.affinities selected=trigger.affinity sort=true localize=true}}
+	</select>
+</label>
+
 <div class="fu-rule-element__property-row">
 	<label class="fu-rule-element__property">
 		<span>{{localize 'FU.ComparisonOperator'}}</span>
