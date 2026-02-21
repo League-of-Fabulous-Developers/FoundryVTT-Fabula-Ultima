@@ -12,6 +12,7 @@ import { ProgressDataModel } from '../documents/items/common/progress-data-model
  * @typedef InlineCheckDataset
  * @extends DOMStringMap
  * @inheritDoc
+ * @property {CheckType} type
  * @property first
  * @property second
  * @property modifier
@@ -22,6 +23,8 @@ import { ProgressDataModel } from '../documents/items/common/progress-data-model
  * @property increment
  */
 
+const DEFAULT_CHECK_TYPE = 'attribute';
+
 /**
  * @type {TextEditorEnricherConfig}
  */
@@ -30,7 +33,7 @@ const inlineCheckEnricher = {
 	pattern: InlineHelper.compose(
 		'CHECK',
 		'\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?',
-		InlineHelper.documentPropertyGroup.concat(InlineHelper.propertyPattern('increment', 'increment', '(true|false)', true)),
+		InlineHelper.documentPropertyGroup.concat(InlineHelper.propertyPattern('increment', 'increment', '(true|false)', true), InlineHelper.propertyPattern('type', 't', '\\w+')),
 	),
 	enricher: checkEnricher,
 	onRender: onRender,
@@ -45,17 +48,19 @@ function checkEnricher(match, options) {
 	let first = match[1];
 	let second = match[2];
 	const label = match.groups.label;
+	const type = match.groups.type ?? DEFAULT_CHECK_TYPE;
 
 	if (first in FU.attributes && second in FU.attributes) {
 		const anchor = document.createElement('a');
 		anchor.dataset.first = first;
 		anchor.dataset.second = second;
+		anchor.dataset.type = type;
 		anchor.classList.add('inline', 'inline-check');
 
 		let tooltip = game.i18n.localize('FU.InlineRollCheck');
 
 		// ICON
-		InlineHelper.appendSystemIcon(anchor, 'open');
+		InlineHelper.appendSystemIcon(anchor, type);
 
 		if (label) {
 			anchor.append(label);
@@ -141,9 +146,10 @@ async function onRender(element) {
 		const second = dataset.second;
 		const difficulty = dataset.difficulty;
 		const prompt = event.shiftKey;
-
 		const attributes = { primary: first, secondary: second };
 		const targets = await targetHandler();
+		let type = dataset.type;
+
 		/** @type CheckResultCallback **/
 		const onResult = async (check) => {
 			if (difficulty && dataset.document) {
@@ -181,45 +187,107 @@ async function onRender(element) {
 					}
 				}
 
-				await CheckPrompt.attributeCheck(actor, {
-					initialConfig: {
-						primary: attributes.primary,
-						secondary: attributes.secondary,
-						difficulty: difficulty,
-						modifier: modifier,
-						label: dataset.label,
-					},
-					checkCallback: (check) => {
-						let config = CheckConfiguration.configure(check);
-						config.setLabel(dataset.label);
-					},
-					resultCallback: onResult,
-				});
+				switch (type) {
+					case 'attribute':
+						await CheckPrompt.attributeCheck(actor, {
+							initialConfig: {
+								primary: attributes.primary,
+								secondary: attributes.secondary,
+								difficulty: difficulty,
+								modifier: modifier,
+								label: dataset.label,
+							},
+							checkCallback: (check) => {
+								let config = CheckConfiguration.configure(check);
+								config.setLabel(dataset.label);
+							},
+							resultCallback: onResult,
+						});
+						break;
+
+					case 'open':
+						await CheckPrompt.openCheck(actor, {
+							initialConfig: {
+								primary: attributes.primary,
+								secondary: attributes.secondary,
+								modifier: modifier,
+								label: dataset.label,
+							},
+							checkCallback: (check) => {
+								let config = CheckConfiguration.configure(check);
+								config.setLabel(dataset.label);
+							},
+						});
+						break;
+
+					case 'opposed':
+						await CheckPrompt.opposedCheck(actor, {
+							initialConfig: {
+								primary: attributes.primary,
+								secondary: attributes.secondary,
+								modifier: modifier,
+								label: dataset.label,
+							},
+							checkCallback: (check) => {
+								let config = CheckConfiguration.configure(check);
+								config.setLabel(dataset.label);
+							},
+						});
+						break;
+				}
 			} else {
-				await Checks.attributeCheck(
-					actor,
-					attributes,
-					renderContext.sourceInfo.resolveItem(),
-					async (check) => {
-						let config = CheckConfiguration.configure(check);
-						config.setLabel(dataset.label);
-						let modifier = 0;
+				switch (type) {
+					case 'attribute':
+						await Checks.attributeCheck(
+							actor,
+							attributes,
+							renderContext.sourceInfo.resolveItem(),
+							async (check) => {
+								let config = CheckConfiguration.configure(check);
+								config.setLabel(dataset.label);
+								let modifier = 0;
 
-						if (dataset.modifier !== undefined) {
-							const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
-							modifier = await Expressions.evaluateAsync(dataset.modifier, context);
-						}
+								if (dataset.modifier !== undefined) {
+									const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+									modifier = await Expressions.evaluateAsync(dataset.modifier, context);
+								}
 
-						if (difficulty > 0) {
-							config.setDifficulty(difficulty);
-						}
+								if (difficulty > 0) {
+									config.setDifficulty(difficulty);
+								}
 
-						if (modifier !== 0) {
-							config.addModifier('Inline Modifier', modifier);
-						}
-					},
-					onResult,
-				);
+								if (modifier !== 0) {
+									config.addModifier('Inline Modifier', modifier);
+								}
+							},
+							onResult,
+						);
+						break;
+
+					case 'open':
+						await Checks.openCheck(actor, attributes, async (check) => {
+							let config = CheckConfiguration.configure(check);
+							config.setLabel(dataset.label);
+							let modifier = 0;
+
+							if (dataset.modifier !== undefined) {
+								const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+								modifier = await Expressions.evaluateAsync(dataset.modifier, context);
+							}
+
+							if (modifier !== 0) {
+								config.addModifier('Inline Modifier', modifier);
+							}
+						});
+						break;
+
+					case 'opposed':
+						await Checks.opposedCheckV2(actor, attributes, {}, async (check) => {
+							let config = CheckConfiguration.configure(check);
+							config.setLabel(dataset.label);
+						});
+						break;
+				}
 			}
 		}
 	});
