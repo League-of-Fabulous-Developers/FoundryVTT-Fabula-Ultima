@@ -243,7 +243,7 @@ async function processRecovery(request) {
 				newValue.value = uncappedRecoveryValue;
 				updates.push(
 					actor.modifyTokenAttribute(request.attributeKey, newValue, false, false).then(async (result) => {
-						/** @type FUChatData **/
+						/** @type FURenderData **/
 						let renderData = {
 							sections: [],
 							postRenderActions: [],
@@ -274,7 +274,7 @@ async function processRecovery(request) {
 				}
 				updates.push(
 					actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true).then(async (result) => {
-						/** @type FUChatData **/
+						/** @type FURenderData **/
 						let renderData = {
 							sections: [],
 							postRenderActions: [],
@@ -329,7 +329,7 @@ async function processLoss(request) {
 			updateData[`system.${request.attributeValuePath}`] = newValue;
 			updates.push(
 				actor.update(updateData).then(async (result) => {
-					/** @type FUChatData **/
+					/** @type FURenderData **/
 					let renderData = {
 						sections: [],
 						postRenderActions: [],
@@ -344,7 +344,7 @@ async function processLoss(request) {
 		} else {
 			updates.push(
 				actor.modifyTokenAttribute(request.attributeKey, amountLost, true).then(async (result) => {
-					/** @type FUChatData **/
+					/** @type FURenderData **/
 					let renderData = {
 						sections: [],
 						postRenderActions: [],

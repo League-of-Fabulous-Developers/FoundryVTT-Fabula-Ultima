@@ -26,9 +26,8 @@ Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
 Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof RitualDataModel) {
-		CommonSections.tags(
-			data.sections,
-			[
+		data.tags.push(
+			...[
 				{
 					tag: 'FU.MindAbbr',
 					value: item.system.mpCost.value,

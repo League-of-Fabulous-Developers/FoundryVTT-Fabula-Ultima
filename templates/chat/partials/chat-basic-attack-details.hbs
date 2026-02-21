@@ -1,8 +1,3 @@
-<div class="toggle-section tags {{#if (pfuGetSetting 'optionChatMessageHideTags')}}hidden{{/if}}">
-    <div class="fu-tags">
-        <div class="fu-tag">{{localize (pfuConcat 'FU.' (pfuCapitalize basic.type))}}</div>
-    </div>
-</div>
 {{#if basic.quality}}
     <div class="toggle-section quality {{#if (pfuGetSetting 'optionChatMessageHideQuality')}}hidden{{/if}}">
         {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=basic.quality}}

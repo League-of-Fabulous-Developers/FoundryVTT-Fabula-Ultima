@@ -8,7 +8,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { Traits } from '../../../pipelines/traits.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 
@@ -57,7 +57,7 @@ const onRenderCheck = (data, result, actor, item) => {
 				},
 			},
 		}));
-		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
+		data.tags.push(...item.system.getTags());
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 };
@@ -176,11 +176,10 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 	}
 
 	/**
-	 * @param {Boolean} includeTraits
 	 * @return {Tag[]}
 	 */
-	getTags(includeTraits = true) {
-		let result = [
+	getTags() {
+		return [
 			{
 				tag: `FU.${StringUtils.capitalize(this.category.value)}`,
 			},
@@ -191,9 +190,5 @@ export class WeaponDataModel extends FUStandardItemDataModel {
 				tag: `FU.${this.hands.value === 'two-handed' ? 'TwoHanded' : 'OneHanded'}`,
 			},
 		];
-		if (includeTraits) {
-			result.push(...TraitUtils.toTags(this.traits));
-		}
-		return result;
 	}
 }

@@ -222,6 +222,7 @@
 		"BasicEdit": "Edit Basic Attack",
 		"BasicDelete": "Delete BasicAttack",
 		"Weapon": "Weapon",
+		"WeaponDamageBonus": "Weapon Damage Bonus",
 		"Weapons": "Weapons",
 		"WeaponCreate": "Create Weapon",
 		"WeaponEdit": "Edit Weapon",

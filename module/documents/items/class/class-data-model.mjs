@@ -22,9 +22,7 @@ const tagProperties = {
 
 Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof ClassDataModel) {
-		const tags = item.system.getTags();
-		CommonSections.tags(data.sections, tags);
-
+		data.tags.push(...item.system.getTags());
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 	}
 });

@@ -1,9 +1,9 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Checks } from './checks.mjs';
-import { CHECK_PUSH } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { ChatSectionOrder } from './default-section-order.mjs';
 
 const { DiceTerm, OperatorTerm, NumericTerm } = foundry.dice.terms;
 
@@ -42,7 +42,7 @@ const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) =>
 	const pushData = checkResult.additionalData.push;
 	if (pushData) {
 		data.sections.push({
-			order: CHECK_PUSH,
+			order: ChatSectionOrder.push,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
 			data: { push: pushData },
 		});

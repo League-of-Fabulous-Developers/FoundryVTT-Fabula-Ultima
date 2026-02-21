@@ -1,5 +1,5 @@
 import { CheckHooks } from './check-hooks.mjs';
-import { CHECK_RESULT } from './default-section-order.mjs';
+import { ChatSectionOrder } from './default-section-order.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
 const SKIP_RENDER = 'SpecialResultSkipRender';
@@ -10,7 +10,7 @@ const onRenderCheck = (data, check) => {
 		const { critical, fumble, result } = check;
 		const inspector = CheckConfiguration.inspect(check);
 		data.sections.push({
-			order: CHECK_RESULT,
+			order: ChatSectionOrder.result,
 			partial: 'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
 			data: {
 				difficulty: inspector.getDifficulty(),

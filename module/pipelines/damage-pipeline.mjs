@@ -509,7 +509,7 @@ async function process(request) {
 		// Dispatch damage event, which may end up modifying the damage message
 		updates.push(
 			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then(async (result) => {
-				/** @type FUChatData **/
+				/** @type FURenderData **/
 				let renderData = {
 					sections: [],
 					postRenderActions: [],
@@ -820,39 +820,13 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				}
 			}
 			for (const modifier of damage.modifiers) {
-				if (modifier.traits && modifier.traits.length > 0) {
+				if (modifier.enabled && modifier.traits && modifier.traits.length > 0) {
 					config.addTraits(modifier.traits);
 				}
 			}
 		}
 	});
 };
-
-/** @type RenderCheckHook */
-function onRenderCheck(data, result, actor, item) {
-	const inspector = CheckConfiguration.inspect(result);
-	if (inspector.hasDamage) {
-		const damage = inspector.getDamage();
-		let traits = [];
-		for (const modifier of damage.modifiers) {
-			if (modifier.traits && modifier.traits.length > 0) {
-				traits.push(...modifier.traits);
-			}
-		}
-		if (traits.length > 0) {
-			CommonSections.tags(
-				data.sections,
-				TraitUtils.toTags(
-					traits.map((t) => TraitUtils.localize(t)),
-					false,
-				),
-				CHECK_DETAILS,
-			);
-		}
-	}
-}
-
-Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @description Initialize the pipeline's hooks

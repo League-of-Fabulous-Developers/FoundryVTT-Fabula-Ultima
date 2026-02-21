@@ -8,7 +8,7 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { Traits } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
@@ -42,7 +42,7 @@ let onRenderAccuracyCheck = async (data, check, actor, item, flags) => {
 				tags.push(...weapon.system.getTags(item.system.useWeapon.traits));
 			}
 		}
-		CommonSections.tags(data.sections, tags, CHECK_DETAILS);
+		data.tags.push(...tags);
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		if (item.system.hasClock?.value) {
@@ -60,7 +60,7 @@ let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
 		const skill = await fromUuid(check.additionalData[skillForAttributeCheck]);
 		const inspector = CheckConfiguration.inspect(check);
 		CommonSections.itemFlavor(data.sections, skill);
-		CommonSections.tags(data.sections, skill.system.getTags(), CHECK_DETAILS);
+		data.tags.push(...skill.system.getTags());
 		CommonSections.description(data.sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
 		CommonSections.actions(data, actor, item, [], flags, inspector);
 
@@ -84,7 +84,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
  */
 const onRenderDisplay = (data, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system instanceof BaseSkillDataModel) {
-		CommonSections.tags(data.sections, item.system.getTags(), CHECK_DETAILS);
+		data.tags.push(...item.system.getTags());
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		const inspector = CheckConfiguration.inspect(check);
 		const targets = inspector.getTargetsOrDefault();
@@ -156,7 +156,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @return Tag[]
 	 */
 	getTags() {
-		return TraitUtils.toTags(this.traits);
+		return [];
 	}
 
 	/**
@@ -165,7 +165,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 */
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
-			if (this.useWeapon.accuracy) {
+			if (this.useWeapon.accuracy || this.damage.hasDamage) {
 				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
 			} else {
 				return Checks.attributeCheck(
@@ -195,8 +195,13 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 				throw error;
 			}
 
-			check.primary = weaponCheck.primary;
-			check.secondary = weaponCheck.secondary;
+			if (this.useWeapon.accuracy) {
+				check.primary = weaponCheck.primary;
+				check.secondary = weaponCheck.secondary;
+			} else {
+				check.primary = this.attributes.primary;
+				check.secondary = this.attributes.secondary;
+			}
 
 			const config = CheckConfiguration.configure(check);
 			const targets = config.getTargets();
@@ -345,7 +350,16 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 					}
 				}
 				if (this.useWeapon.damage) {
-					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+					// We do this in case we are using both a damage bonus AND weapon damage
+					if (config.hasDamage) {
+						config.modifyDamage((damage) => {
+							damage.type = this.damage.type || weaponData.damageType.value;
+							damage.addModifier('FU.WeaponDamageBonus', weaponData.damage.value);
+							return damage;
+						});
+					} else {
+						config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+					}
 				}
 				if (this.useWeapon.accuracy) {
 					config.addModifier('FU.CheckBonus', weaponData.accuracy.value);

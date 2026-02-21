@@ -4,7 +4,7 @@ import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { Pipeline } from '../../../pipelines/pipeline.mjs';
-import { CHECK_ADDENDUM_ORDER } from '../../../checks/default-section-order.mjs';
+import { ChatSectionOrder } from '../../../checks/default-section-order.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { InlineSourceInfo } from '../../../helpers/inline-helper.mjs';
 
@@ -63,7 +63,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 		if (context.renderData && context.source) {
 			// TODO: Resolve actor for pseudo-documents too
 			const actor = context.source.actor !== context.character.actor ? context.item?.parent : null;
-			CommonSections.itemText(context.renderData, _message, actor, context.item, flags, CHECK_ADDENDUM_ORDER);
+			CommonSections.itemText(context.renderData, _message, actor, context.item, flags, ChatSectionOrder.addendum);
 		} else {
 			const actor = context.character.actor;
 			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {

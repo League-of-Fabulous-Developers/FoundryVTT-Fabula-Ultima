@@ -28,13 +28,11 @@ const invocationKey = 'invocation';
 const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.system?.data instanceof InvocationsDataModel) {
 		if (!check.additionalData[invocationKey]) {
-			CommonSections.tags(data.sections, [
-				{
-					tag: 'FU.Rank',
-					value: game.i18n.localize(RANKS[item.system.data.level]),
-					separator: ':',
-				},
-			]);
+			data.tags.push({
+				tag: 'FU.Rank',
+				value: game.i18n.localize(RANKS[item.system.data.level]),
+				separator: ':',
+			});
 			CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		} else {
 			const { element, invocation } = check.additionalData[invocationKey];

@@ -21,10 +21,10 @@ const onRenderCheck = (data, check, actor, item, flags, postRenderActions) => {
 	if (item?.system instanceof ConsumableDataModel) {
 		/** @type ConsumableDataModel **/
 
-		CommonSections.tags(data.sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
+		const tags = [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }];
+		data.tags.push(...tags);
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		const config = CheckConfiguration.configure(check);
-
 		const targets = config.getTargetsOrDefault();
 		CommonSections.actions(data, actor, item, targets, flags, config);
 		CommonEvents.item(actor, item);

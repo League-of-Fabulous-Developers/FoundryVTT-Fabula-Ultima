@@ -70,7 +70,7 @@ export class MnemosphereDataModel extends PseudoDocumentEnabledTypeDataModel {
 /** @type {RenderCheckHook} */
 const onRenderDisplay = (data, check, actor, item, additionalFlags) => {
 	if (check.type === 'display' && item?.type === 'mnemosphere') {
-		CommonSections.tags(data.sections, [
+		data.tags.push(...data.sections, [
 			{
 				tag: 'FU.Class',
 				separator: ':',

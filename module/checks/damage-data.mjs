@@ -104,7 +104,9 @@ export class DamageData {
 			}
 			if (modifier.types) {
 				modifier.types.forEach((type) => {
-					available.add(type);
+					if (type) {
+						available.add(type);
+					}
 				});
 			}
 		}

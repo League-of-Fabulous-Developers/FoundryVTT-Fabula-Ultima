@@ -18,7 +18,7 @@ Hooks.on('projectfu.renderCheck', (data, check, actor, item) => {
 		const rank = check.additionalData[MAGITECH_RANK];
 
 		if (rank) {
-			CommonSections.tags(data.sections, [{ tag: 'FU.ClassFeatureGadgetsRank', value: game.i18n.localize(RANK_TRANSLATION_KEYS[rank]), separator: ':' }]);
+			data.tags.push(...[{ tag: 'FU.ClassFeatureGadgetsRank', value: game.i18n.localize(RANK_TRANSLATION_KEYS[rank]), separator: ':' }]);
 		}
 
 		CommonSections.description(data.sections, item.system.data.description, item.system.summary.value);

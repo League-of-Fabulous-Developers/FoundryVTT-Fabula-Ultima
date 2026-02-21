@@ -357,7 +357,7 @@ async function evaluate(type, event, source, targets, data = undefined) {
 	// Always include the source as part of the scene character pool; useful for when they are not part of the encounter
 	const sceneCharacters = getSceneCharacters([source, ...targets]);
 	for (const character of sceneCharacters) {
-		for (const effect of character.actor.allEffects()) {
+		for (const effect of character.actor.allApplicableEffects()) {
 			if (!canProcessEffect(effect)) {
 				continue;
 			}

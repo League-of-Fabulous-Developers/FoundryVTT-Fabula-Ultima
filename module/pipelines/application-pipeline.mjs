@@ -112,7 +112,7 @@ async function handleArcanum(actor, item) {
 				await CommonEvents.calculateExpense(actor, item, [], expense);
 				console.debug(`Arcanum summon cost: ${expense.amount}`);
 				// Render sections
-				/** @type {FUChatData} **/
+				/** @type {FURenderData} **/
 				const data = {
 					sections: [],
 					postRenderActions: [],

@@ -1,6 +1,5 @@
 import { FU } from '../../../helpers/config.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { TraitUtils } from '../../../pipelines/traits.mjs';
 import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
 
 /**
@@ -48,6 +47,6 @@ export class HeroicSkillDataModel extends BaseSkillDataModel {
 	 * @override
 	 */
 	getTags() {
-		return [{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value }, { tag: FU.heroicType[this.subtype.value] }, ...TraitUtils.toTags(this.traits)];
+		return [{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value }, { tag: FU.heroicType[this.subtype.value] }];
 	}
 }

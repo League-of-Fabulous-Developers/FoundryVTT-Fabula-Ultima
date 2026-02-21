@@ -80,13 +80,41 @@ export const Traits = Object.freeze({
 
 export const TraitUtils = Object.freeze({
 	/**
-	 * @param {Set<String>} traits
-	 * @param prefix
+	 * @param{String} trait
+	 * @returns {string}
+	 */
+	normalize(trait) {
+		return `FU.${StringUtils.kebabToPascal(trait)}`;
+	},
+
+	/**
+	 * @param {String} trait
+	 */
+	localize(trait) {
+		return StringUtils.localize(this.normalize(trait));
+	},
+
+	/**
+	 * @param {String} trait
+	 * @returns {Tag}
+	 */
+	toTag(trait) {
+		return {
+			tag: this.normalize(trait),
+			separator: '',
+			value: '',
+			show: true,
+		};
+	},
+
+	/**
+	 * @param {Iterable<String>} traits
+	 * @param {Boolean} prefix
 	 * @returns {{tag: string, separator: string, value: string, show: boolean}[]}
 	 */
 	toTags(traits, prefix = true) {
 		return [...traits].map((trait) => ({
-			tag: prefix ? `FU.${trait}` : trait,
+			tag: StringUtils.localize(prefix ? `FU.${trait}` : trait),
 			separator: '',
 			value: '',
 			show: true,
@@ -114,12 +142,5 @@ export const TraitUtils = Object.freeze({
 			label: StringUtils.localize(value),
 			value: key,
 		}));
-	},
-
-	/**
-	 * @param {String} trait
-	 */
-	localize(trait) {
-		return StringUtils.localize(`FU.${StringUtils.kebabToPascal(trait)}`);
 	},
 });

@@ -61,33 +61,31 @@ Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 /** @type RenderCheckHook */
 const onRenderCheck = (data, result, actor, item) => {
 	if (item && item.system instanceof CustomWeaponDataModel) {
-		CommonSections.tags(
-			data.sections,
-			[
-				{
-					tag: 'FU.CustomWeapon',
-					show: !item.system.isTransforming,
-				},
-				{
-					tag: item.system.primaryForm.name || 'FU.CustomWeaponFormPrimary',
-					show: item.system.isTransforming && item.system.activeForm === 'primaryForm',
-				},
-				{
-					tag: item.system.secondaryForm.name || 'FU.CustomWeaponFormSecondary',
-					show: item.system.activeForm === 'secondaryForm',
-				},
-				{
-					tag: `FU.${item.system.category.capitalize()}`,
-				},
-				{
-					tag: 'FU.TwoHanded',
-				},
-				{
-					tag: `FU.${item.system.type.capitalize()}`,
-				},
-			],
-			CHECK_DETAILS,
-		);
+		const tags = [
+			{
+				tag: 'FU.CustomWeapon',
+				show: !item.system.isTransforming,
+			},
+			{
+				tag: item.system.primaryForm.name || 'FU.CustomWeaponFormPrimary',
+				show: item.system.isTransforming && item.system.activeForm === 'primaryForm',
+			},
+			{
+				tag: item.system.secondaryForm.name || 'FU.CustomWeaponFormSecondary',
+				show: item.system.activeForm === 'secondaryForm',
+			},
+			{
+				tag: `FU.${item.system.category.capitalize()}`,
+			},
+			{
+				tag: 'FU.TwoHanded',
+			},
+			{
+				tag: `FU.${item.system.type.capitalize()}`,
+			},
+		];
+
+		data.tags.push(...tags);
 		CommonSections.quality(data.sections, item.system.quality, CHECK_DETAILS);
 
 		if (game.settings.get(SYSTEM, SETTINGS.technospheres)) {
