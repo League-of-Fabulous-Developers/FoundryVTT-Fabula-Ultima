@@ -46,6 +46,7 @@ export const DamageTraits = Object.freeze({
 	IgnoreResistances: 'ignore-resistances',
 	IgnoreImmunities: 'ignore-immunities',
 	IgnoreAbsorption: 'ignore-absorption',
+	IgnoreVulnerable: 'ignore-vulnerable',
 	AbsorbHalf: 'absorb-half',
 	Absorb: 'absorb',
 	MindPointLoss: 'mind-point-loss',
