@@ -155,8 +155,8 @@
 		"Edit": "Edit",
 		"Delete": "Delete",
 		"Duplicate": "Duplicate",
-		"Sort": "Sort",
 		"Operation": "Operation",
+		"Sort": "Sort",
 		"SortTypes": "Sorting Types",
 		"SortEdit": "Edit Sorting Types",
 		"Zenit": "Zenit",
@@ -1666,6 +1666,7 @@
 		"RuleTriggerDamage": "Damage",
 		"RuleTriggerStatus": "Status",
 		"RuleTriggerResourceUpdate": "Resource Update",
+		"RuleTriggerResourceExpend": "Resource Expenditure",
 		"RuleTriggerCalculateExpense": "Calculate Expense",
 		"RuleTriggerCalculateDamage": "Calculate Damage",
 		"RuleTriggerCalculateResource": "Calculate Resource",
@@ -1744,14 +1745,6 @@
 		"Selection": "Selection",
 		"Prompt": "Prompt",
 		"Perform": "Perform",
-		"FUID": {
-			"Long": "Fabula Ultima ID",
-			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
-		},
 		"OptionPressureSystem": "Enable Pressure System?",
 		"OptionPressureSystemHint": "Enables the Pressure and Stagger system.",
 		"OptionPressureGaugeShow": "Show Pressure Gauge",
@@ -1782,6 +1775,14 @@
 		"Abilities": "Abilities",
 		"System": "System",
 		"SelectAll": "Select All",
-		"DeselectAll": "Deselect All"
+		"DeselectAll": "Deselect All",
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }
