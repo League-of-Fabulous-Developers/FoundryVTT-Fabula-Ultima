@@ -516,7 +516,7 @@ async function process(request) {
 					postRenderActions: [],
 				};
 
-				await CommonEvents.damage(request.damageType, damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
+				await CommonEvents.damage(request.damageType, FU.affinityKeyByValue[context.affinity], damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
 				await CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin, renderData);
 				TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
 

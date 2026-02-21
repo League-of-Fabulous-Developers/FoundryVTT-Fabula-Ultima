@@ -11,6 +11,7 @@ const fields = foundry.data.fields;
  * @property {DamageType} damageTypes
  * @property {Set<FUItemGroup>} damageSource
  * @property {FUThreshold} damageThreshold
+ * @property {FUAffinity} affinity
  * @inheritDoc
  */
 export class DamageRuleTrigger extends RuleTriggerDataModel {
@@ -31,6 +32,11 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 			damageType: new fields.StringField({
 				initial: '',
 				choices: Object.keys(FU.damageTypes),
+				blank: true,
+			}),
+			affinity: new fields.StringField({
+				initial: '',
+				choices: Object.keys(FU.affValue),
 				blank: true,
 			}),
 			damageSources: new fields.SetField(new fields.StringField()),
@@ -85,6 +91,12 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 					break;
 			}
 			return false;
+		}
+
+		if (this.affinity) {
+			if (context.event.affinity !== this.affinity) {
+				return false;
+			}
 		}
 
 		return true;

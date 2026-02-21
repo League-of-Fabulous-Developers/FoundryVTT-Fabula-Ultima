@@ -542,6 +542,7 @@
 		"DamageIce": "Ice",
 		"DamageLight": "Light",
 		"DamagePoison": "Poison",
+		"Affinity": "Affinity",
 		"AffinityNormal": "Normal",
 		"AffinityVulnerable": "Vulnerable",
 		"AffinityVulnerableHint": "Vulnerable Multiplier",

@@ -75,6 +75,7 @@ function attack(inspector, actor, item) {
  * @typedef DamageEvent
  * @property {CharacterInfo|null} source
  * @property {DamageType} type
+ * @property {FUAffinity} affinity
  * @property {InlineSourceInfo} sourceInfo
  * @property {FUItemGroup} damageSource
  * @property {Number} amount
@@ -87,7 +88,7 @@ function attack(inspector, actor, item) {
  * @property {String} origin An id used to prevent cascading.
  */
 
-async function damage(type, amount, traits, sourceActor, targetActor, sourceInfo, origin, renderData) {
+async function damage(type, affinity, amount, traits, sourceActor, targetActor, sourceInfo, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const target = CharacterInfo.fromActor(targetActor);
 	const item = sourceInfo.resolveItem();
@@ -98,6 +99,7 @@ async function damage(type, amount, traits, sourceActor, targetActor, sourceInfo
 		amount: amount,
 		item: item,
 		type: type,
+		affinity: affinity,
 		source: source,
 		sourceActor: sourceInfo,
 		damageSource: damageSource,
