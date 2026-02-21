@@ -129,6 +129,31 @@ const onRenderCheck = (data, check, actor, item, flags) => {
  * @param {HTMLElement} html
  */
 function onRenderChatMessage(message, html) {
+	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
+		Pipeline.handleClick(message, html, 'opposedCheck', async (dataset) => {
+			/** @type PromptCheckData **/
+			const fields = StringUtils.fromBase64(dataset.fields);
+			const actor = await fromUuid(fields.actorId);
+			if (!actor) {
+				return;
+			}
+			const item = await fromUuid(fields.itemId);
+			if (!item) {
+				return;
+			}
+			/** @type CheckConfig **/
+			const config = fields.config;
+			return CheckPrompt.opposedCheck(
+				actor,
+				{},
+				{
+					initialConfig: {
+						...config,
+					},
+				},
+			);
+		});
+	}
 	if (message.getFlag(systemId, Flags.ChatMessage.OpposedCheck)) {
 		Pipeline.handleClick(message, html, actionName, async (dataset) => {
 			/** @type OpposedCheckData **/
@@ -152,6 +177,34 @@ function onRenderChatMessage(message, html) {
 	}
 }
 
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {CheckConfig} config
+ * @returns {ChatAction}
+ */
+function getAction(actor, item, config) {
+	const icon = FU.checkIcons.opposed;
+	const tooltip = StringUtils.localize('FU.ChatPerform', {
+		action: StringUtils.localize('FU.OpposedCheck', {}),
+	});
+	return new ChatAction(
+		'opposedCheck',
+		icon,
+		tooltip,
+		/** @type PromptCheckData **/ {
+			actorId: actor.uuid,
+			itemId: item.uuid,
+			config: config,
+		},
+	)
+		.setFlag(Flags.ChatMessage.PromptCheck)
+		.notTargeted()
+		.withSelected()
+		.requiresOwner()
+		.withLabel(tooltip);
+}
+
 function initialize() {
 	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
@@ -160,4 +213,5 @@ function initialize() {
 
 export const OpposedCheck = Object.freeze({
 	initialize,
+	getAction,
 });

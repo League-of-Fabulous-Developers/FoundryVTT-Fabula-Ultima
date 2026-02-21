@@ -4,16 +4,18 @@ import { CheckConfiguration } from './check-configuration.mjs';
 import { GroupCheck } from './group-check.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
-import { Flags } from '../helpers/flags.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
-import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
- * @typedef AttributeCheckConfig
+ * @typedef CheckConfig
  * @property {Attribute} primary
  * @property {Attribute} secondary
- * @property {number} difficulty
  * @property {number} modifier
+ */
+
+/**
+ * @typedef {CheckConfig} AttributeCheckConfig
+ * @property {number} difficulty
  * @property {String} title
  */
 
@@ -496,7 +498,7 @@ async function groupCheck(actor, options = {}) {
 }
 
 /**
- * @typedef RitualCheckData
+ * @typedef PromptCheckData
  * @property actorId
  * @property itemId
  * @property primary
@@ -532,34 +534,6 @@ async function ritualCheck(actor, item, options = {}) {
 }
 
 /**
- * @param {FUActor} actor
- * @param {FUItem} item
- * @param {Attribute} primary
- * @param {Attribute} secondary
- * @returns {ChatAction}
- */
-function getRitualCheckAction(actor, item, primary, secondary) {
-	const icon = FU.checkIcons.ritual;
-	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
-	return new ChatAction(
-		'ritualCheck',
-		icon,
-		tooltip,
-		/** @type RitualCheckData **/ {
-			actorId: actor.uuid,
-			itemId: item.uuid,
-			primary: primary,
-			secondary: secondary,
-		},
-	)
-		.setFlag(Flags.ChatMessage.PromptCheck)
-		.notTargeted()
-		.withSelected()
-		.requiresOwner()
-		.withLabel('FU.ChatPerformRitual');
-}
-
-/**
  * @description Initialize the pipeline's hooks
  */
 function initialize() {}
@@ -571,6 +545,5 @@ export const CheckPrompt = Object.freeze({
 	opposedCheck,
 	ritualCheck,
 	promptForConfigurationV2,
-	getRitualCheckAction,
 	initialize,
 });

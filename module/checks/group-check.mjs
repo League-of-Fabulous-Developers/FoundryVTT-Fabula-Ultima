@@ -12,6 +12,7 @@ import { CommonSections } from './common-sections.mjs';
 import { CheckPrompt } from './check-prompt.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
+import { ChatAction } from '../helpers/chat-action.mjs';
 
 /**
  * @typedef SupporterV2
@@ -515,7 +516,7 @@ const onRenderGroupCheck = (data, check, actor, item, flags) => {
 function onRenderChatMessage(message, html) {
 	if (message.getFlag(systemId, Flags.ChatMessage.PromptCheck)) {
 		Pipeline.handleClick(message, html, 'ritualCheck', async (dataset) => {
-			/** @type RitualCheckData **/
+			/** @type PromptCheckData **/
 			const fields = StringUtils.fromBase64(dataset.fields);
 			const actor = await fromUuid(fields.actorId);
 			if (!actor) {
@@ -525,12 +526,39 @@ function onRenderChatMessage(message, html) {
 			if (!item) {
 				return;
 			}
+			/** @type CheckConfig **/
+			const config = fields.config;
 			return CheckPrompt.ritualCheck(actor, item, {
-				primary: fields.primary,
-				secondary: fields.secondary,
+				...config,
 			});
 		});
 	}
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {CheckConfig} config
+ * @returns {ChatAction}
+ */
+function getRitualAction(actor, item, config) {
+	const icon = FU.checkIcons.ritual;
+	const tooltip = StringUtils.localize('FU.ChatPerformRitual', {});
+	return new ChatAction(
+		'ritualCheck',
+		icon,
+		tooltip,
+		/** @type PromptCheckData **/ {
+			actorId: actor.uuid,
+			itemId: item.uuid,
+			config: config,
+		},
+	)
+		.setFlag(Flags.ChatMessage.PromptCheck)
+		.notTargeted()
+		.withSelected()
+		.requiresOwner()
+		.withLabel('FU.ChatPerformRitual');
 }
 
 const initialize = () => {
@@ -572,4 +600,5 @@ export const GroupCheck = Object.freeze({
 	initGroupCheck,
 	setSupportCheckDifficulty,
 	isGroupCheck,
+	getRitualAction,
 });

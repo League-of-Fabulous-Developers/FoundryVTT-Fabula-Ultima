@@ -5,7 +5,13 @@
 	</select>
 </label>
 
-<div class="grid grid-2col">
+<div class="grid grid-3col">
+	<div class="flexcol flex-group-center">
+		<label>
+			<span>{{localize 'FU.Bonus'}}</span>
+			<input type="text" name="{{pfuConcat path ".bonus"}}" value="{{ action.bonus }}" />
+		</label>
+	</div>
 	<div class="flexcol flex-group-center">
 		<label>
 			{{localize 'FU.Primary'}}
