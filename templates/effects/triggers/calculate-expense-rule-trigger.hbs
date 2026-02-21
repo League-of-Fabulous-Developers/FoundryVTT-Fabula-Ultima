@@ -18,5 +18,19 @@
 	<input type="text" name={{pfuConcat path ".identifier"}} value="{{ trigger.identifier }}" />
 </label>
 
-{{pfuTraits trigger.traits (pfuConcat path ".traits")}}
+<div class="fu-rule-element__property-row">
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.ComparisonOperator'}}</span>
+		<select name="{{pfuConcat path ".threshold.operator"}}">
+			<option value="">-</option>
+			{{selectOptions options.comparisonOperator selected=trigger.threshold.operator sort=true localize=true}}
+		</select>
+	</label>
 
+	<label class="fu-rule-element__property">
+		<span>{{localize 'FU.Amount'}}</span>
+		<input type="number" name="{{pfuConcat path ".threshold.amount"}}" value="{{ trigger.threshold.amount }}" />
+	</label>
+</div>
+
+{{pfuTraits trigger.traits (pfuConcat path ".traits")}}

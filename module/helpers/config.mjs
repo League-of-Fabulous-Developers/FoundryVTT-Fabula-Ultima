@@ -992,6 +992,12 @@ FU.scalarOperation = {
  * @typedef {"greaterThan" | "lessThan"} FUComparisonOperator
  */
 
+/**
+ * @typedef FUThreshold
+ * @property {FUComparisonOperator} operator
+ * @property {Number} amount
+ */
+
 FU.comparisonOperator = {
 	greaterThan: 'FU.GreaterThan',
 	equals: 'FU.Equals',

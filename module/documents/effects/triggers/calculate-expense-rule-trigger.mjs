@@ -14,6 +14,7 @@ const fields = foundry.data.fields;
  * @property {FUExpenseSource} expenseSource
  * @property {String} identifier
  * @property {TraitsPredicateDataModel} traits
+ * @property {FUThreshold} threshold
  * @inheritDoc
  */
 export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
@@ -40,6 +41,10 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 				initial: '',
 				choices: Object.keys(FU.expenseSource),
 				blank: true,
+			}),
+			threshold: new fields.SchemaField({
+				operator: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.comparisonOperator) }),
+				amount: new fields.NumberField({ initial: 0 }),
 			}),
 			identifier: new fields.StringField(),
 			traits: new fields.EmbeddedDataField(TraitsPredicateDataModel, {
@@ -79,6 +84,27 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 		if (this.identifier) {
 			if (!context.matchesItem(this.identifier)) {
 				return false;
+			}
+		}
+		if (this.threshold.operator) {
+			const amount = context.event.expense.amount;
+			if (Number.isInteger(amount)) {
+				switch (this.threshold.operator) {
+					case 'greaterThan':
+						if (amount >= this.threshold.amount) {
+							return true;
+						}
+						break;
+
+					case 'lessThan':
+						if (amount <= this.threshold.amount) {
+							return true;
+						}
+						break;
+				}
+				return false;
+			} else {
+				console.warn(`The given amount in the event was not an integer.`);
 			}
 		}
 		return true;
