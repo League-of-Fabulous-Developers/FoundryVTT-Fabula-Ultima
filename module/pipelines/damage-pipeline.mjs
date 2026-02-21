@@ -228,8 +228,9 @@ function resolveAffinity(context) {
 	// Check if affinity should be ignored
 	if (affinity === FU.affValue.vulnerability) {
 		affinityMessage = 'FU.ChatApplyDamageVulnerable';
-		if (context.damageOverride.ignoreVulnerable) {
+		if (context.damageOverride.ignoreVulnerable || context.traits.has(Traits.IgnoreVulnerable)) {
 			affinity = FU.affValue.none;
+			affinityMessage = 'FU.ChatApplyDamageNormal';
 		}
 	}
 	if (affinity === FU.affValue.resistance) {
