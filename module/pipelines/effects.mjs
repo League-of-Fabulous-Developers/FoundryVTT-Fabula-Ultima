@@ -76,6 +76,7 @@ function createTemporaryEffect(owner, effectType, name = undefined) {
 			name: name ?? (owner instanceof FUItem ? owner.name : game.i18n.localize('FU.NewEffect')),
 			img: 'icons/svg/aura.svg',
 			source: owner.uuid,
+			origin: owner.uuid,
 			system: system,
 			'duration.rounds': effectType === 'temporary' ? 1 : undefined,
 			disabled: effectType === 'inactive',
@@ -879,3 +880,4 @@ export const Effects = Object.freeze({
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,
 });
+
