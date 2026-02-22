@@ -52,9 +52,10 @@ export class SubDocumentCollectionField extends TypedObjectField {
 	/**
 	 * @param {SubDocumentCollectionField} field
 	 * @param {String} type
+	 * @param {Object} data
 	 * @param document
 	 */
-	static async addModel(field, type, document) {
-		return field.documentClass.create({ type }, { parent: document });
+	static async addModel(field, type, document, data = {}) {
+		return field.documentClass.create({ type, ...data }, { parent: document });
 	}
 }

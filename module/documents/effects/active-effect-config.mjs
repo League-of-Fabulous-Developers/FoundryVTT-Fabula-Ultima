@@ -1,7 +1,6 @@
 import { FU } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { PseudoDocument } from '../pseudo/pseudo-document.mjs';
-//import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 import { RuleElements } from '../../pipelines/rule-elements.mjs';
 import { RuleElementDataModel } from './rule-element-data-model.mjs';
 import { RuleActionRegistry } from './actions/rule-action-data-model.mjs';
@@ -10,6 +9,7 @@ import { RulePredicateRegistry } from './predicates/rule-predicate-data-model.mj
 import { ConsumableTraits, Traits, TraitUtils } from '../../pipelines/traits.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
+import { SubDocumentCollectionField } from '../sub/sub-document-collection-field.mjs';
 
 RuleElements.register();
 
@@ -263,12 +263,17 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 		const options = FoundryUtils.generateConfigOptions(triggerTypes);
 		const type = await FoundryUtils.selectOptionDialog(
 			StringUtils.localize('FU.AddElement', {
-				element: StringUtils.localize('FU.RuleElement', target),
+				element: StringUtils.localize('FU.RuleElement'),
 			}),
 			options,
 		);
 
-		//await SubDocumentCollectionField.addModel(this.document.system.rules.elements, RuleElementDataModel.TYPE, this.document);
+		const triggerModel = RuleTriggerRegistry.instance.types[type];
+		const trigger = new triggerModel();
+		const data = {
+			trigger: trigger,
+		};
+		await SubDocumentCollectionField.addModel(this.document.system.rules.elements, RuleElementDataModel.TYPE, this.document, data);
 		console.debug(`Added rule element with trigger ${type}`);
 	}
 

@@ -73,7 +73,12 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	async addRuleAction() {
 		let subTypes = this.getMatchingSubTypes(RuleActionRegistry.instance);
 		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog('FU.RuleElementNew', options);
+		const type = await FoundryUtils.selectOptionDialog(
+			StringUtils.localize('FU.AddElement', {
+				element: StringUtils.localize('FU.RuleActions'),
+			}),
+			options,
+		);
 		if (type) {
 			await SubDocumentCollectionField.addModel(this.actions, type, this);
 		}
@@ -112,7 +117,12 @@ export class RuleElementDataModel extends SubDocumentDataModel {
 	async addRulePredicate() {
 		let subTypes = this.getMatchingSubTypes(RulePredicateRegistry.instance);
 		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const type = await FoundryUtils.selectOptionDialog('FU.Add', options);
+		const type = await FoundryUtils.selectOptionDialog(
+			StringUtils.localize('FU.AddElement', {
+				element: StringUtils.localize('FU.RulePredicates'),
+			}),
+			options,
+		);
 		if (type) {
 			await SubDocumentCollectionField.addModel(this.predicates, type, this);
 		}
