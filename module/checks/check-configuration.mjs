@@ -9,6 +9,7 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from './damage-data.mjs';
 import { UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 // Data keys
 const TARGETS = 'targets';
@@ -344,11 +345,8 @@ export class CheckConfigurer extends CheckInspector {
 	 * @param {ApplyEffectData|EffectApplicationDataModel} effectData
 	 */
 	setEffects(effectData) {
-		this.check.additionalData[EFFECTS] = {
-			prompt: effectData.prompt,
-			entries: effectData.entries,
-			duration: effectData.duration,
-		};
+		// We make a deep copy here since this will be modified during pipelines
+		this.check.additionalData[EFFECTS] = FoundryUtils.safeClone(effectData);
 		return this;
 	}
 

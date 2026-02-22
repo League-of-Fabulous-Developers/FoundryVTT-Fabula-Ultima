@@ -399,6 +399,15 @@ export default class FoundryUtils {
 	}
 
 	/**
+	 * @param {*} data
+	 * @returns {Object}
+	 */
+	static safeClone(data) {
+		if (data?.toObject instanceof Function) return data.toObject();
+		return foundry.utils.deepClone(data);
+	}
+
+	/**
 	 * @desc Migrates the data of an item onto another.
 	 * @param {FUItem} sourceItem
 	 * @param {FUItem} targetItem

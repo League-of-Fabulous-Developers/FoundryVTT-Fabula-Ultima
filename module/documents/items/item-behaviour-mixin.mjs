@@ -218,17 +218,22 @@ export function ItemBehaviourMixin(BaseClass) {
 		 */
 		getProgress() {
 			// Search for legacy clock data among the data models
+			// MiscAbilityDataModel
 			if (this.system.hasClock?.value) {
-				// MiscAbilityDataModel
 				return this.system.progress;
 			}
+			// SkillDataModel
 			if (this.system.hasResource?.value) {
-				// SkillDataModel
 				return this.system.rp;
 			}
+
+			// OptionalFeatureDataModel
 			if (this.system.data?.hasClock?.value) {
-				// OptionalFeatureDataModel
 				return this.system.data.progress;
+			}
+			// ClassFeatureDataModel (some such as GardenDataModel)
+			else if (this.system.data?.clock) {
+				return this.system.data.clock;
 			}
 			// Search among active effects in the item
 			for (const effect of this.effects.values()) {
