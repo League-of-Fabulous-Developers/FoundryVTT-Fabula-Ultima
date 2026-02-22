@@ -6,12 +6,13 @@ import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { TraitsDataModel } from '../../items/common/traits-data-model.mjs';
 import { DamageTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { DamageData } from '../../../checks/damage-data.mjs';
 
 const fields = foundry.data.fields;
 
 /**
  * @property {String} amount
- * @property {FU.damageTypes} damageType
+ * @property {DamageType} damageType
  * @property {TraitsDataModel} traits
  */
 export class ApplyDamageRuleAction extends RuleActionDataModel {
@@ -64,10 +65,8 @@ export class ApplyDamageRuleAction extends RuleActionDataModel {
 				}
 			}
 		} else {
-			const request = new DamageRequest(context.sourceInfo, targets, {
-				type: this.damageType,
-				total: evalAmount,
-			});
+			const damageData = DamageData.construct(this.damageType, evalAmount);
+			const request = new DamageRequest(context.sourceInfo, targets, damageData);
 			if (!this.traits.empty) {
 				request.addTraits(this.traits.values);
 			}

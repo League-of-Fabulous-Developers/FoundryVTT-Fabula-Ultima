@@ -739,8 +739,13 @@ async function absorbDamage(resource, amount, sourceInfo, targets) {
 async function promptApply(request) {
 	const targets = Targeting.serializeTargetData(request.targets);
 	const damageData = request.damageData;
+	const icon = FU.allIcon[request.damageType];
+	const tooltip = StringUtils.localize('FU.ChatApplyDamageTooltip', {
+		amount: damageData.total,
+		type: StringUtils.localize(FU.damageTypes[request.damageType]),
+	});
 	const actions = [
-		new ChatAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
+		new ChatAction('applyDamage', icon, tooltip, {
 			damageData: damageData,
 			sourceInfo: request.sourceInfo,
 		}).requiresOwner(),
