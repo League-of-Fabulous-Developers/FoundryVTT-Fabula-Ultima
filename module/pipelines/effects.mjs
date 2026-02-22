@@ -120,6 +120,11 @@ async function getEffectData(id) {
 	if (!effect) {
 		console.error(`No effect with id '${id}' could be resolved.`);
 	}
+
+	if (effect) {
+		effect = FoundryUtils.safeClone(effect);
+	}
+
 	return effect;
 }
 

@@ -57,8 +57,10 @@ import { CalculateExpenseRuleTrigger } from '../documents/effects/triggers/calcu
 import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-trigger.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { RenderMessageRuleTrigger } from '../documents/effects/triggers/render-message-rule-trigger.mjs';
+import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigger.mjs';
 
 function register() {
+	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, AttackRuleTrigger.TYPE, AttackRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, StatusRuleTrigger.TYPE, StatusRuleTrigger);
