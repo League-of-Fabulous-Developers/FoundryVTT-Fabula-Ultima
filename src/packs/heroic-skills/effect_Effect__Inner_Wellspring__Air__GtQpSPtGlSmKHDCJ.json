@@ -3,7 +3,7 @@
   "name": "Effect: Inner Wellspring (Air)",
   "type": "effect",
   "_id": "GtQpSPtGlSmKHDCJ",
-  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+  "img": "icons/magic/fire/flame-burning-hand-white.webp",
   "system": {
     "fuid": "effect-inner-wellspring",
     "cost": {
@@ -125,7 +125,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770884713978,
-    "modifiedTime": 1770884902926,
+    "modifiedTime": 1771893423637,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!GtQpSPtGlSmKHDCJ"

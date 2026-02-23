@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Wrathful Carnation",
+      "name": "Wrathful Carnation",
       "_id": "P89De9wCGgRAXFYS",
       "type": "base",
       "system": {
@@ -37,10 +37,20 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
       },
       "changes": [],
-      "description": "<p>When this <strong>magiseed</strong> leaves your <strong>garden</strong>, choose up to one enemy you can see.</p><p>Until the end of your next turn, when the chosen enemy performs an attack or casts an offensive spell (@ICON[offensive]), they must include you among the targets of that attack of spell (if able).</p>",
+      "description": "<p>Until the end of the <strong>floralist's</strong> next turn, when you perform an attack or offensive spell, you must include the <strong>floralist</strong> among the targets of that attack of spell (if able).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -50,12 +60,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744517118451,
-        "modifiedTime": 1744517201073,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1771836326007,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!GByosgzlkIfFCsKP.P89De9wCGgRAXFYS"

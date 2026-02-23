@@ -144,12 +144,38 @@
                   "type": "updateTrackRuleAction",
                   "_id": "HjnLNGtPXTyrqcf5",
                   "identifier": "brainwave-clock",
-                  "action": "reset"
+                  "action": "reset",
+                  "notify": true
                 }
               },
               "trigger": {
+                "_id": "ykOI8xL7tsGMpIpx",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "startOfCombat"
+              },
+              "selector": "self"
+            },
+            "wrgz6uZUeNUDwhoe": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "2bYFszkDTDraX00x",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
                 "eventType": "endOfCombat"
-              }
+              },
+              "_id": "wrgz6uZUeNUDwhoe",
+              "actions": {
+                "caTcaCtMhsDBeR5P": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "caTcaCtMhsDBeR5P",
+                  "identifier": "brainwave-clock",
+                  "action": "reset",
+                  "amount": "",
+                  "notify": true
+                }
+              },
+              "selector": "self"
             }
           },
           "progress": {
@@ -170,7 +196,7 @@
       "_id": "7cmcuxTm8MqCKIWi",
       "type": "base",
       "changes": [],
-      "description": "<p>This tracks your <strong>Brainwave Clock</strong> for your <strong>Psychic Gifts</strong>.</p>",
+      "description": "<p>This tracks your <strong>Brainwave Clock</strong> for your <strong>Psychic Gifts</strong>.</p><p>Your Brainwave Clock has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -185,7 +211,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1769306151242,
-        "modifiedTime": 1770368025358,
+        "modifiedTime": 1771876259599,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!uiXJvj0qK0pVfnwY.7cmcuxTm8MqCKIWi"

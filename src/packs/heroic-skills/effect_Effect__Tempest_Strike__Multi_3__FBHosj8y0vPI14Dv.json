@@ -1,0 +1,160 @@
+{
+  "folder": "p2Tj0iqvaThktHhI",
+  "name": "Effect: Tempest Strike (Multi 3)",
+  "type": "effect",
+  "img": "icons/skills/melee/strikes-sword-scimitar.webp",
+  "system": {
+    "fuid": "effect-tempest-strike-multi-3",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Tempest Strike (Multi 3)",
+      "img": "icons/skills/melee/strikes-sword-scimitar.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.9KVveaaOdfnUyqOW",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "t2prMGrzUepkw1GD": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "L7WfgBcefRqHnMz3",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "t2prMGrzUepkw1GD",
+              "actions": {
+                "MkjCKtyG31VPo133": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "MkjCKtyG31VPo133",
+                  "amount": "5",
+                  "damageTypes": [],
+                  "traits": {
+                    "entries": []
+                  },
+                  "cost": {
+                    "resource": "mp",
+                    "amount": null,
+                    "perTarget": false
+                  },
+                  "variant": ""
+                }
+              },
+              "predicates": {
+                "FzpuCPP9VwFDDx1R": {
+                  "type": "targetingRulePredicate",
+                  "_id": "FzpuCPP9VwFDDx1R",
+                  "rule": "single"
+                }
+              },
+              "selector": "initial",
+              "enabled": true
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "csMZTOpC9vk75DQi",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.melee",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.ranged",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p><span>When you perform a <strong>melee</strong> attack with <strong>multi</strong> <strong>3</strong>, you gain a +3 to Accuracy, and it deals 5 extra damage. If it targets <strong>only one creature</strong>, it deals another 5 extra damage.</span></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Tempest Strike (Multi 2)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.9KVveaaOdfnUyqOW",
+            "effectUuid": null,
+            "fuid": "effect-tempest-strike-multi-2"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771890510459
+      },
+      "_key": "!items.effects!FBHosj8y0vPI14Dv.csMZTOpC9vk75DQi"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771890435442,
+    "modifiedTime": 1771890457423,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "FBHosj8y0vPI14Dv",
+  "sort": 0,
+  "_key": "!items!FBHosj8y0vPI14Dv"
+}

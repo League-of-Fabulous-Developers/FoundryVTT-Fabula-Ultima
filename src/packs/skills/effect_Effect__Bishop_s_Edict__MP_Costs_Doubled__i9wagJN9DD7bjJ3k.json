@@ -1,5 +1,5 @@
 {
-  "folder": "VIkMulwyAc8dw5pH",
+  "folder": "lldd8puXmRwLfQKo",
   "name": "Effect: Bishop's Edict (MP Costs Doubled)",
   "type": "effect",
   "_id": "i9wagJN9DD7bjJ3k",
@@ -92,7 +92,7 @@
       "_key": "!items.effects!i9wagJN9DD7bjJ3k.zi1lyBp3AwroUHpJ"
     }
   ],
-  "sort": 0,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -106,7 +106,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770272532643,
-    "modifiedTime": 1770272540646,
+    "modifiedTime": 1771831141113,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!i9wagJN9DD7bjJ3k"

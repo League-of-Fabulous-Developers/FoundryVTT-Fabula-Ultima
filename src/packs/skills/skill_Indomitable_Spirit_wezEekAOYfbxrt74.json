@@ -121,6 +121,11 @@
     "fuid": "indomitable-spirit",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -140,7 +145,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706502402161,
-    "modifiedTime": 1770405419985,
+    "modifiedTime": 1771836701759,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -127,7 +127,10 @@
         "Compendium.projectfu.skills.Item.Fl82KkmDq9R7i86N",
         "Compendium.projectfu.skills.Item.s9gRkNI1b5eSIuxi",
         "Compendium.projectfu.skills.Item.bZ6Lm98z1vNg1rHs"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -207,7 +210,7 @@
       "_id": "rRpOsI2RT5P5mbMW",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one of those allies you have a <strong>Bond</strong> towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength</strong> of your Bond towards them.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -222,7 +225,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770609517157,
-        "modifiedTime": 1770610016497,
+        "modifiedTime": 1771877126749,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!pIkEDFcA5pnIpsu3.rRpOsI2RT5P5mbMW"
@@ -244,7 +247,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706507941545,
-    "modifiedTime": 1770609509980,
+    "modifiedTime": 1771877131330,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

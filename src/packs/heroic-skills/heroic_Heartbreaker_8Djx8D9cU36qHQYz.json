@@ -9,7 +9,7 @@
     "summary": {
       "value": "Sacrifice HP for massive damage."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p><hr /><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[floor(@source.level.value/2) hp]<br /><strong>Target Loses:</strong> @DMG[10 untyped]{1 Bond: 10 Untyped}, @DMG[20 untyped]{2 Bond: 20 Untyped}, or @DMG[30 untyped]{3 Bond: 30 Untyped}</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p><hr /><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><p><strong>Target Suffers:</strong> @DMG[10 untyped]{1 Bond: 10 Untyped}, @DMG[20 untyped]{2 Bond: 20 Untyped}, or @DMG[30 untyped]{3 Bond: 30 Untyped}</p>",
     "isFavored": {
       "value": false
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,9 +95,126 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "heartbreaker"
+    "fuid": "heartbreaker",
+    "cost": {
+      "amount": "floor($hp/2)",
+      "resource": "hp"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Heartbreaker",
+      "img": "icons/weapons/daggers/dagger-ritual-crooked-crystal.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.8Djx8D9cU36qHQYz",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "P07ch1U6FR84vk01": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "274bC1klpVPzix1d",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "P07ch1U6FR84vk01",
+              "predicates": {
+                "Wa2t37OYnTFC1o9k": {
+                  "type": "bondRulePredicate",
+                  "_id": "Wa2t37OYnTFC1o9k"
+                },
+                "LuXLD2NihjEyRRws": {
+                  "type": "targetingRulePredicate",
+                  "_id": "LuXLD2NihjEyRRws"
+                },
+                "XjC9PesIPX5CjdDv": {
+                  "type": "checkRulePredicate",
+                  "_id": "XjC9PesIPX5CjdDv",
+                  "outcome": "success",
+                  "result": null
+                }
+              },
+              "actions": {
+                "1N1IiaSaAHGepxd2": {
+                  "type": "messageRuleAction",
+                  "_id": "1N1IiaSaAHGepxd2",
+                  "message": "<p>You may spend half your HP to deal extra damage.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Lbkn2cBwEfIjUW4x",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Heartbreaker",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.8Djx8D9cU36qHQYz",
+            "effectUuid": null,
+            "fuid": "heartbreaker"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771887910802,
+        "modifiedTime": 1771888027001,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!8Djx8D9cU36qHQYz.Lbkn2cBwEfIjUW4x"
+    }
+  ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
     "default": 0,
@@ -112,7 +231,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706584345254,
-    "modifiedTime": 1770709202486,
+    "modifiedTime": 1771887883497,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

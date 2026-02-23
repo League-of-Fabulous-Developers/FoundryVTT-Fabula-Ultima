@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -78,7 +80,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": ""
     },
     "benefits": {
       "resources": {
@@ -94,7 +96,15 @@
       }
     },
     "source": "FUTF172",
-    "fuid": "bullet-time"
+    "fuid": "bullet-time",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -145,7 +155,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain a bonus to your Initiative modiﬁer equal to<strong>【SL in Dodge + SL in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to<strong>【SL in Dodge】</strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to<strong>【SL in Stolen Time】</strong>.</p>",
+      "description": "<p>You gain a bonus to your Initiative modiﬁer equal to <strong>【Dodge SL + Stolen Time SL】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【Dodge SL】 </strong>and you deal extra damage equal to <strong>【Stolen Time SL】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -164,7 +174,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743135978096,
-        "modifiedTime": 1770954199497,
+        "modifiedTime": 1771895774775,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
@@ -182,7 +192,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770953636555,
+    "modifiedTime": 1771895726759,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

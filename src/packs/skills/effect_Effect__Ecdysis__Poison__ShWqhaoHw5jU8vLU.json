@@ -1,5 +1,5 @@
 {
-  "folder": "ZUCXTaaKDqwXAZy0",
+  "folder": "rrGR4HhJKNVPu0rJ",
   "name": "Effect: Ecdysis (Poison)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_ecdysis.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770961255580,
-    "modifiedTime": 1770961410156,
+    "modifiedTime": 1771838570558,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "ShWqhaoHw5jU8vLU",
-  "sort": 0,
+  "sort": 106250,
   "_key": "!items!ShWqhaoHw5jU8vLU"
 }

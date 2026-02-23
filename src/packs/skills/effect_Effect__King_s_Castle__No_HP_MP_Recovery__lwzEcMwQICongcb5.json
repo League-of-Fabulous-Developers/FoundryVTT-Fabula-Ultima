@@ -1,5 +1,5 @@
 {
-  "folder": "VIkMulwyAc8dw5pH",
+  "folder": "UiAwRVydh0shBzCP",
   "name": "Effect: King's Castle (No HP/MP Recovery)",
   "type": "effect",
   "_id": "lwzEcMwQICongcb5",
@@ -100,7 +100,7 @@
       "_key": "!items.effects!lwzEcMwQICongcb5.ncSlU2nJDypBoneS"
     }
   ],
-  "sort": 0,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -114,7 +114,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770276181332,
-    "modifiedTime": 1770276190640,
+    "modifiedTime": 1771831143202,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!lwzEcMwQICongcb5"

@@ -46,7 +46,19 @@
       }
     },
     "source": "FUNF164",
-    "fuid": "cleansing-moonlight"
+    "fuid": "cleansing-moonlight",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -200,7 +212,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770882579903,
+    "modifiedTime": 1771894208445,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

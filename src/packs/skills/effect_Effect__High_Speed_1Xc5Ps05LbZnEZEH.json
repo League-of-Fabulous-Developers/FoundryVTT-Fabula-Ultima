@@ -1,0 +1,96 @@
+{
+  "folder": "rQmMmixedC5WcKu3",
+  "name": "Effect: High Speed",
+  "type": "effect",
+  "_id": "1Xc5Ps05LbZnEZEH",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
+  "system": {
+    "fuid": "effect-high-speed",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "High Speed (Accuracy)",
+      "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "E6ygYISuUvF9iZmc",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "&sl('high-speed')",
+          "priority": null
+        }
+      ],
+      "description": "<p><span>You gain a bonus equal to <strong>【SL】</strong> to Accuracy Checks you perform as part of the chosen option.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771839784633,
+        "modifiedTime": 1771839963681,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!1Xc5Ps05LbZnEZEH.E6ygYISuUvF9iZmc"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771839774855,
+    "modifiedTime": 1771839995124,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!1Xc5Ps05LbZnEZEH"
+}

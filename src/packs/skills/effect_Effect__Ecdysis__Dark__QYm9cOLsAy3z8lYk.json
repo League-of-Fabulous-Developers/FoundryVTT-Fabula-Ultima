@@ -1,5 +1,5 @@
 {
-  "folder": "ZUCXTaaKDqwXAZy0",
+  "folder": "rrGR4HhJKNVPu0rJ",
   "name": "Effect: Ecdysis (Dark)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_ecdysis.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770961244382,
-    "modifiedTime": 1770961281591,
+    "modifiedTime": 1771838564229,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "QYm9cOLsAy3z8lYk",
-  "sort": 400000,
+  "sort": 300000,
   "_key": "!items!QYm9cOLsAy3z8lYk"
 }

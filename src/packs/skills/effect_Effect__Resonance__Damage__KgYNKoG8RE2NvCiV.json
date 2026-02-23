@@ -1,5 +1,5 @@
 {
-  "folder": "W4fiI5cqJwfMJtiD",
+  "folder": "4rMSvzuVciWX3C25",
   "name": "Effect: Resonance (Damage)",
   "type": "effect",
   "_id": "KgYNKoG8RE2NvCiV",
@@ -80,7 +80,7 @@
       "_key": "!items.effects!KgYNKoG8RE2NvCiV.Lev9SGzxq42XCB8M"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "JXPd932s9DHQRD0w": 3
@@ -93,7 +93,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742581874929,
-    "modifiedTime": 1770631921387,
+    "modifiedTime": 1771830432470,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

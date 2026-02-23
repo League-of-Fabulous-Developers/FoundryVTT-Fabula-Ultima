@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "W4fiI5cqJwfMJtiD",
+  "name": "Resonance",
+  "color": "#b1bf45",
+  "sorting": "a",
+  "_id": "4rMSvzuVciWX3C25",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771830429045
+  },
+  "_key": "!folders!4rMSvzuVciWX3C25"
+}

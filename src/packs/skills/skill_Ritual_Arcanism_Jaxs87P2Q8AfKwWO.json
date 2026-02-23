@@ -150,7 +150,9 @@
                 "checkTypes": [
                   "display"
                 ],
-                "itemGroups": [],
+                "itemGroups": [
+                  "skill"
+                ],
                 "local": true,
                 "identifier": ""
               },
@@ -166,7 +168,8 @@
                     "secondary": {
                       "value": "wlp"
                     }
-                  }
+                  },
+                  "bonus": ""
                 }
               }
             }
@@ -189,7 +192,7 @@
       "_id": "lNfJOdjv92KpoGE2",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Ritual Arcanism</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -204,7 +207,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767130570015,
-        "modifiedTime": 1771044405754,
+        "modifiedTime": 1771822352946,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!Jaxs87P2Q8AfKwWO.lNfJOdjv92KpoGE2"

@@ -25,12 +25,8 @@
       "value": "Sharpshooter"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
+      "accuracy": true,
+      "damage": true,
       "hrZero": {
         "value": false
       }
@@ -43,17 +39,14 @@
         "value": "mig"
       }
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "0",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": true,
       "value": 0,
-      "type": {
-        "value": "physical"
-      }
+      "type": "",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": true
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +86,16 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "bullet-break"
+    "fuid": "bullet-break",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "defense": ""
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -112,7 +114,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684563458,
-    "modifiedTime": 1770750454787,
+    "modifiedTime": 1771892232537,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

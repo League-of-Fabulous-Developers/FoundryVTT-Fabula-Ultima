@@ -1,5 +1,5 @@
 {
-  "folder": "ZUCXTaaKDqwXAZy0",
+  "folder": "rrGR4HhJKNVPu0rJ",
   "name": "Effect: Ecdysis (Fire)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_ecdysis.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770961250983,
-    "modifiedTime": 1770961339721,
+    "modifiedTime": 1771838565817,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "35Nc53wsvpkolIJo",
-  "sort": 0,
+  "sort": 150000,
   "_key": "!items!35Nc53wsvpkolIJo"
 }

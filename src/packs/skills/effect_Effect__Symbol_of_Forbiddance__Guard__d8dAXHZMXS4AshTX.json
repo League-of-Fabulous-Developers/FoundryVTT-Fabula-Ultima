@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "9PRZuTlhTRUzfkQ6",
   "name": "Effect: Symbol of Forbiddance (Guard)",
   "type": "effect",
   "img": "icons/magic/symbols/mask-metal-silver-white.webp",
@@ -85,10 +85,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770615986805,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877914560,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "d8dAXHZMXS4AshTX",
-  "sort": 2400000,
+  "sort": 200000,
   "_key": "!items!d8dAXHZMXS4AshTX"
 }

@@ -113,7 +113,7 @@
                 "wctGWCNNFyK5NSh4": {
                   "type": "messageRuleAction",
                   "_id": "wctGWCNNFyK5NSh4",
-                  "message": "<p>Deal no damage to instead have targets suffer one of the following: @EFFECT[shaken], @EFFECT[slow], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
+                  "message": "<p>Deal no damage to have targets: @EFFECT[shaken], @EFFECT[slow], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
                 }
               },
               "predicates": {
@@ -150,7 +150,7 @@
       "_id": "3KfzmQiRr49axQxk",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you hit one or more targets with a <strong>ranged</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>shaken</strong>, <strong>slow</strong>, or <strong>lose MP</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -165,7 +165,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766862777392,
-        "modifiedTime": 1770606647823,
+        "modifiedTime": 1771888518689,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!Ovmw7cMrN6qvagG4.3KfzmQiRr49axQxk"

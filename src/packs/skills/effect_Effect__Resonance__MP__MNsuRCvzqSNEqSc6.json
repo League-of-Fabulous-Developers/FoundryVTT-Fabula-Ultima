@@ -1,5 +1,5 @@
 {
-  "folder": "W4fiI5cqJwfMJtiD",
+  "folder": "4rMSvzuVciWX3C25",
   "name": "Effect: Resonance (MP)",
   "type": "effect",
   "_id": "MNsuRCvzqSNEqSc6",
@@ -91,7 +91,7 @@
       "_key": "!items.effects!MNsuRCvzqSNEqSc6.g7hwVC7QG8txOt3H"
     }
   ],
-  "sort": 0,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -105,7 +105,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770268502028,
-    "modifiedTime": 1770631979358,
+    "modifiedTime": 1771830433515,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!MNsuRCvzqSNEqSc6"

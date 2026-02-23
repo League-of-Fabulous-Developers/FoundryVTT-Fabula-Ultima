@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improves Hallucination and Torpor, and cleanses status effects to cause HP loss."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong>, <strong>Esper</strong>, <strong>Rogue</strong>, <strong>Spiritist</strong>, and <strong>Symbolist</strong>.</p><hr /><p>When you cast the @UUID[Compendium.projectfu.spells.Item.JTyMViMTOUrc7bms]{Hallucination} or @UUID[Compendium.projectfu.spells.Item.9ENpDMvIOH9FJAka]{Torpor} spells, you may apply <strong>both</strong> status effects to each target hit by the spell.</p><p>During a conflict, you may use an action and spend up to 20 Mind Points. For every 10 Mind Points spent this way, you may choose a different enemy you can see who is suffering from <strong>two or more status effects</strong>. Every enemy chosen this way recovers from all status effects and loses an amount of Hit Points equal to <strong>【half your level + (the number of status effects that enemy recovered from this way, multiplied by 10)】</strong>. Then, you recover 20 Mind Points for each of those enemies that entered <strong>Crisis</strong> or was reduced to 0 Hit Points by this effect.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[20 mp]<br /><strong>Target Loses:</strong> @LOSS[floor(@source.level.value/2)+($tsc*10) hp]{Lose HP}<br /><strong>You Recover:</strong> @GAIN[20 mp]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong>, <strong>Esper</strong>, <strong>Rogue</strong>, <strong>Spiritist</strong>, and <strong>Symbolist</strong>.</p><hr /><p>When you cast the @UUID[Compendium.projectfu.skills.Item.JTyMViMTOUrc7bms]{Hallucination} or @UUID[Compendium.projectfu.skills.Item.9ENpDMvIOH9FJAka]{Torpor} spells, you may apply <strong>both</strong> status effects to each target hit by the spell.</p><p>During a conflict, you may use an action and spend up to 20 Mind Points. For every 10 Mind Points spent this way, you may choose a different enemy you can see who is suffering from <strong>two or more status effects</strong>. Every enemy chosen this way recovers from all status effects and loses an amount of Hit Points equal to <strong>【half your level + (the number of status effects that enemy recovered from this way, multiplied by 10)】</strong>. Then, you recover 20 Mind Points for each of those enemies that entered <strong>Crisis</strong> or was reduced to 0 Hit Points by this effect.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[20 mp]<br /><strong>Target Loses:</strong> @LOSS[floor(@source.level.value/2)+($tsc*10) hp]{Lose HP}<br /><strong>You Recover:</strong> @GAIN[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -46,7 +46,19 @@
       }
     },
     "source": "FUNF164",
-    "fuid": "ephemeral-tranquility"
+    "fuid": "ephemeral-tranquility",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "cost": {
+      "amount": ""
+    }
   },
   "effects": [
     {
@@ -182,7 +194,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770883700277,
+    "modifiedTime": 1771894277954,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

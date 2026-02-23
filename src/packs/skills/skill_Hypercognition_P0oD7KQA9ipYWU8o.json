@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> (High Fantasy, page <strong>138</strong>) that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
+    "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -117,6 +117,11 @@
     "fuid": "hypercognition",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -148,7 +153,8 @@
                 "traits": {
                   "entries": [],
                   "quantifier": "any"
-                }
+                },
+                "identifier": ""
               },
               "predicates": {
                 "ne9InszuSAjoMZuo": {
@@ -181,7 +187,8 @@
                 "traits": {
                   "entries": [],
                   "quantifier": "any"
-                }
+                },
+                "identifier": ""
               },
               "predicates": {
                 "zDayx35nHIPslmjn": {
@@ -222,7 +229,7 @@
       "_id": "KfTNS2FY3rStlm5m",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>The total MP cost of your <strong>spells</strong> that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -237,7 +244,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767266062677,
-        "modifiedTime": 1770369186552,
+        "modifiedTime": 1771833920722,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!P0oD7KQA9ipYWU8o.KfTNS2FY3rStlm5m"
@@ -260,7 +267,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1770367840384,
+    "modifiedTime": 1771833577518,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

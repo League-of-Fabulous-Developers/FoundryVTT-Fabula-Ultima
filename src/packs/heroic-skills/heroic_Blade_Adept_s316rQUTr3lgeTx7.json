@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain bonuses with daggers and treat them as brawling, sword, and thrown weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the <strong>brawling</strong> , <strong>sword</strong> , and <strong>thrown</strong> Categories for the purpose of Skills and effects.</p><p>Additionally, your attacks with weapons that belong to the <strong>dagger </strong>Category may target creatures that cannot normally be targeted by <strong>melee </strong>attacks.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the <strong>brawling</strong>, <strong>sword</strong>, and <strong>thrown</strong> Categories for the purpose of Skills and effects.</p><p>Additionally, your attacks with weapons that belong to the <strong>dagger </strong>Category may target creatures that cannot normally be targeted by <strong>melee </strong>attacks.</p>",
     "isFavored": {
       "value": false
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "blade-adept"
+    "fuid": "blade-adept",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -180,7 +190,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684553854,
-    "modifiedTime": 1770750357003,
+    "modifiedTime": 1771892202477,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

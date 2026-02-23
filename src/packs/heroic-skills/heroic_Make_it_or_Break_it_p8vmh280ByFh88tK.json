@@ -10,7 +10,7 @@
     "summary": {
       "value": "Double the HR of an attack but risk damaging the weapon."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Fury</strong>.</p><hr /><p>Before you perform an Accuracy Check, you may declare \"make it or break it!\". If you do, the Check's <strong>High Roll</strong> is <strong>doubled</strong> when determining damage, but if the Result is an <strong>even</strong> number, you apply the following penalties after the attack is resolved:</p><ul><li><p>If the weapon you used is <strong>transforming</strong>, it <strong>immediately changes form</strong> and <strong>it cannot change form again</strong> until the end of the scene.</p></li><li><p>If the weapon you used <strong>is not transforming,</strong> or if it is a <strong>transforming</strong> weapon that <strong>cannot change form</strong> (see above), it is <strong>placed inside your backpack</strong> and <strong>cannot be equipped</strong> until the end of the scene; however, you may <strong>immediately</strong> perform the <strong>Equipment</strong> action <strong>for free</strong>.</p></li></ul><p>This Heroic Skill does not apply to attacks with <strong>unarmed strikes</strong>, <strong>improvised weapons</strong>, <strong>weapon modules</strong> (see page <strong>161</strong>), or <strong>Twin Shields</strong> (see <strong>Core Rulebook</strong>, page <strong>197</strong>).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Fury</strong>.</p><hr /><p>Before you perform an Accuracy Check, you may declare <strong>\"make it or break it!\"</strong>. If you do, the Check's <strong>High Roll</strong> is <strong>doubled</strong> when determining damage, but if the Result is an <strong>even</strong> number, you apply the following penalties after the attack is resolved:</p><ul><li><p>If the weapon you used is <strong>transforming</strong>, it <strong>immediately changes form</strong> and <strong>it cannot change form again</strong> until the end of the scene.</p></li><li><p>If the weapon you used <strong>is not transforming,</strong> or if it is a <strong>transforming</strong> weapon that <strong>cannot change form</strong> (see above), it is <strong>placed inside your backpack</strong> and <strong>cannot be equipped</strong> until the end of the scene; however, you may <strong>immediately</strong> perform the <strong>Equipment</strong> action <strong>for free</strong>.</p></li></ul><p>This Heroic Skill does not apply to attacks with <strong>unarmed strikes</strong>, <strong>improvised weapons</strong>, <strong>weapon modules</strong>, or <strong>Twin Shields</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,7 +96,15 @@
       }
     },
     "source": "FUTF175",
-    "fuid": "make-it-or-break-it"
+    "fuid": "make-it-or-break-it",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "flags": {
@@ -108,7 +118,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711519472393,
-    "modifiedTime": 1770961905203,
+    "modifiedTime": 1771896921163,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

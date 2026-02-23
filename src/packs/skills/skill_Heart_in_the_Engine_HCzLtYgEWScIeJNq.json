@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>. </strong>If you do, choose one option:</span></p><ul><li><p><span>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</span></p></li><li><p><span>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</span></p></li><li><p><span>You recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.XoMumkEXtYQOF7Et]{Effect: Heart in the Engine (Offensive)} or @EFFECT[Compendium.projectfu.skills.Item.VM5F00GYKYInRjgM]{Effect: Heart in the Engine (Defensive)}</p>",
+    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>. </strong>If you do, choose one option:</span></p><ul><li><p><span>The next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage.</span></p></li><li><p><span>The next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities).</span></p></li><li><p><span>You recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.XoMumkEXtYQOF7Et] or @EFFECT[Compendium.projectfu.skills.Item.VM5F00GYKYInRjgM]</p>",
     "isFavored": {
       "value": false
     },
@@ -123,6 +123,11 @@
     },
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -146,10 +151,12 @@
               "type": "ruleElement",
               "_id": "qa7XeKAn1iljRv9t",
               "trigger": {
-                "_id": "U0gmSYwJhyo8ntD7",
+                "_id": "eBXSeqgQKdoPKI42",
                 "type": "renderCheckRuleTrigger",
-                "eventRelation": "",
-                "checkTypes": [],
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
                 "itemGroups": [],
                 "local": true,
                 "identifier": ""
@@ -165,6 +172,23 @@
                   "type": "clearEffectRuleAction",
                   "_id": "4CkcBxK61QGbH2Qc",
                   "identifier": "weak"
+                }
+              }
+            },
+            "StD7HXK1kxQNywZq": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "X18XV6jFPqXmqVcP",
+                "type": "combatRuleTrigger",
+                "eventRelation": "source",
+                "eventType": "startOfTurn"
+              },
+              "_id": "StD7HXK1kxQNywZq",
+              "actions": {
+                "wmcnRwTaUnnDU4NZ": {
+                  "type": "messageRuleAction",
+                  "_id": "wmcnRwTaUnnDU4NZ",
+                  "message": "<p>If driving your <strong>vehicle</strong>, you may use this Skill.</p>"
                 }
               }
             }
@@ -187,10 +211,10 @@
       "_id": "nPQt2DcRKMJqYXcX",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points to use this Skill.</span></p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -202,7 +226,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770453203830,
-        "modifiedTime": 1770453225062,
+        "modifiedTime": 1771839477419,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!HCzLtYgEWScIeJNq.nPQt2DcRKMJqYXcX"
@@ -224,7 +248,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711431286236,
-    "modifiedTime": 1770453299608,
+    "modifiedTime": 1771839522952,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "heroic-hope"
+    "fuid": "heroic-hope",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
@@ -112,7 +122,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706584753266,
-    "modifiedTime": 1771477295114,
+    "modifiedTime": 1771888192311,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

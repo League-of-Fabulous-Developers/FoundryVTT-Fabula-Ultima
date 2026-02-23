@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target gains <strong>【@EFFECT[@DATA[key.attribute]-up e:sot i:1 t:source]】 </strong>until the start of your next turn.</p>"
+      "description": "<p>Each target treats their <strong>@DATA[key.attributeLocal]</strong> as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><p><strong>Targets Receive:</strong> @EFFECT[@DATA[key.attribute]-up e:sot i:1 t:source]</p>"
     },
     "source": "FUHF139",
     "fuid": "lively-tone"
@@ -32,8 +32,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710040149139,
-    "modifiedTime": 1769011444550,
-    "lastModifiedBy": "bgUzjEHd80A79gwp",
+    "modifiedTime": 1771828539749,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

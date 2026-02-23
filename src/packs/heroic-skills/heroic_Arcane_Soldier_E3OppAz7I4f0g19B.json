@@ -26,12 +26,8 @@
       "value": ""
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
+      "accuracy": true,
+      "damage": true,
       "hrZero": {
         "value": false
       }
@@ -44,17 +40,14 @@
         "value": "mig"
       }
     },
-    "accuracy": {
-      "value": 0
-    },
+    "accuracy": "",
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": true,
       "value": 0,
-      "type": {
-        "value": "physical"
-      }
+      "type": "",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": true
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,7 +87,19 @@
       }
     },
     "source": "FUTF171",
-    "fuid": "arcane-soldier"
+    "fuid": "arcane-soldier",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "single"
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "defense": ""
   },
   "effects": [],
   "flags": {
@@ -108,7 +113,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770952890415,
+    "modifiedTime": 1771895181239,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

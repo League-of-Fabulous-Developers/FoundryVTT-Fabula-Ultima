@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "Zfxi0VCnXiMqz2Em",
   "name": "Effect: Symbol of Metamorphosis (Undead)",
   "type": "effect",
   "img": "icons/magic/control/encase-creature-spider-hold.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770616541910,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877937666,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "u5Ok2009o841sZcN",
-  "sort": 2300000,
+  "sort": 700000,
   "_key": "!items!u5Ok2009o841sZcN"
 }

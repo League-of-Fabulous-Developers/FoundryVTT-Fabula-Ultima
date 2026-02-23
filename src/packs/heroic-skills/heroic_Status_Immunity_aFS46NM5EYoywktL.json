@@ -9,7 +9,7 @@
     "summary": {
       "value": "Ignore a status effect."
     },
-    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class.</span></p><hr /><p><span>You become completely immune to a single status effect of your choice.</span></p>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class.</span></p><hr /><p><span>You become completely immune to a single status effect of your choice.</span></p><hr /><p><em>Enable the passive effect on this Skill that matches your chosen status effect and delete the others.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,20 +95,39 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "status-immunity"
+    "fuid": "status-immunity",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
       "name": "Dazed Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+      "img": "systems/projectfu/styles/static/statuses/immunities/DazedImmune.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.immunities.dazed.base",
-          "value": "true",
           "mode": 5,
-          "priority": 60
+          "value": "true",
+          "priority": null
         }
       ],
       "disabled": true,
@@ -119,7 +140,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You are immune to <strong>dazed</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B",
       "tint": "#ffffff",
       "transfer": true,
@@ -133,12 +154,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743124188945,
-        "modifiedTime": 1743608239541,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771889935784,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_id": "YRGjUvOPdnz184Ci",
@@ -146,15 +167,26 @@
     },
     {
       "name": "Enraged Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
+      "img": "systems/projectfu/styles/static/statuses/immunities/EnragedImmune.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.immunities.enraged.base",
-          "value": "true",
           "mode": 5,
-          "priority": 60
+          "value": "true",
+          "priority": null
         }
       ],
       "disabled": true,
@@ -167,7 +199,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You are immune to <strong>enraged</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs",
       "tint": "#ffffff",
       "transfer": true,
@@ -181,12 +213,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743124191618,
-        "modifiedTime": 1743608240255,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771889959605,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_id": "h6HH9q8HGNvsDM5m",
@@ -194,15 +226,26 @@
     },
     {
       "name": "Poisoned Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+      "img": "systems/projectfu/styles/static/statuses/immunities/PoisonedImmune.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.immunities.poisoned.base",
-          "value": "true",
           "mode": 5,
-          "priority": 60
+          "value": "true",
+          "priority": null
         }
       ],
       "disabled": true,
@@ -215,7 +258,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You are immune to <strong>poisoned</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q",
       "tint": "#ffffff",
       "transfer": true,
@@ -229,12 +272,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743124193376,
-        "modifiedTime": 1743608240669,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771889979221,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_id": "u7iKFqmDec3FwaFN",
@@ -242,15 +285,26 @@
     },
     {
       "name": "Shaken Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Shaken.webp",
+      "img": "systems/projectfu/styles/static/statuses/immunities/ShakenImmune.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.immunities.shaken.base",
-          "value": "true",
           "mode": 5,
-          "priority": 60
+          "value": "true",
+          "priority": null
         }
       ],
       "disabled": true,
@@ -263,7 +317,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You are immune to <strong>shaken</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz",
       "tint": "#ffffff",
       "transfer": true,
@@ -277,12 +331,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743124195358,
-        "modifiedTime": 1743608240961,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771889994135,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_id": "lxV8fAopDYfWSndK",
@@ -290,15 +344,26 @@
     },
     {
       "name": "Slow Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+      "img": "systems/projectfu/styles/static/statuses/immunities/SlowImmune.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.immunities.slow.base",
-          "value": "true",
           "mode": 5,
-          "priority": 60
+          "value": "true",
+          "priority": null
         }
       ],
       "disabled": true,
@@ -311,7 +376,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You are immune to <strong>slow</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp",
       "tint": "#ffffff",
       "transfer": true,
@@ -325,12 +390,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743124197373,
-        "modifiedTime": 1743608241357,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771890015599,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_id": "m3uIzxOUvRFWbPwG",
@@ -338,15 +403,26 @@
     },
     {
       "name": "Weak Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Weak.webp",
+      "img": "systems/projectfu/styles/static/statuses/immunities/WeakImmune.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.immunities.weak.base",
-          "value": "true",
           "mode": 5,
-          "priority": 60
+          "value": "true",
+          "priority": null
         }
       ],
       "disabled": true,
@@ -359,7 +435,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You are immune to <strong>weak</strong>.</p>",
       "origin": "Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG",
       "tint": "#ffffff",
       "transfer": true,
@@ -373,12 +449,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743124199919,
-        "modifiedTime": 1743608241755,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771890036907,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_id": "uWGrcgM1XbnxmvFP",
@@ -401,7 +477,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706586741656,
-    "modifiedTime": 1770711576956,
+    "modifiedTime": 1771890089401,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

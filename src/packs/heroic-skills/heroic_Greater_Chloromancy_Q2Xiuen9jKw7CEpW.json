@@ -46,7 +46,19 @@
       }
     },
     "source": "FUNF165",
-    "fuid": "greater-chloromancy"
+    "fuid": "greater-chloromancy",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "flags": {
@@ -62,7 +74,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770884320789,
+    "modifiedTime": 1771894348944,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

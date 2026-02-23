@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p><p>When you first acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your offensive ( @ICON[offensive] ) Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</p><p>You may have <strong>up to 【SL + 2】 different Chimerist spells</strong> memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p>",
+    "description": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p><p>When you first acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your offensive (@ICON[offensive]) Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</p><p>You may have <strong>up to 【SL + 2】 different Chimerist spells</strong> memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "spell-mimic",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -194,7 +199,7 @@
       "_id": "LSKs1p3YHGDXv1IS",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -209,7 +214,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768067184150,
-        "modifiedTime": 1770401343525,
+        "modifiedTime": 1771831120025,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!yiX5sLJLKBh3UMmz.LSKs1p3YHGDXv1IS"
@@ -231,7 +236,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706495666417,
-    "modifiedTime": 1770270611403,
+    "modifiedTime": 1771831101994,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

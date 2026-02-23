@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against an enemy you can see — describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong> and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p><hr /><p><strong>You Perform:</strong> @CHECK[mig wlp ($sl)]</p>",
+    "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against an enemy you can see — describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong> and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -126,13 +126,103 @@
       "entries": [
         "enraged",
         "Compendium.projectfu.skills.SBaaNDpwZQDafu3J"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      }
     },
     "targeting": {
       "rule": "single"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Provoke",
+      "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "9PICIQnEPdbweedJ": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "FynMq2jXxkUTTkBl",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "9PICIQnEPdbweedJ",
+              "actions": {
+                "gOvGI2Ap68JAm9PD": {
+                  "type": "performCheckRuleAction",
+                  "_id": "gOvGI2Ap68JAm9PD",
+                  "check": "opposed",
+                  "bonus": "$sl",
+                  "attributes": {
+                    "primary": {
+                      "value": "mig"
+                    },
+                    "secondary": {
+                      "value": "wlp"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "xP5YT1ZhyYRekamk",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Performing the <strong>Provoke</strong> Skill allows you to perform an <strong>Opposed Check</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771836732403,
+        "modifiedTime": 1771905735141,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!XaopYEAay9e86srI.xP5YT1ZhyYRekamk"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -149,7 +239,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706502413549,
-    "modifiedTime": 1770418840434,
+    "modifiedTime": 1771836907040,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

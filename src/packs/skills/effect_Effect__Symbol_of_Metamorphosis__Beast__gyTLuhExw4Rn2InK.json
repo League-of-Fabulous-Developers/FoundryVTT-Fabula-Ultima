@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "Zfxi0VCnXiMqz2Em",
   "name": "Effect: Symbol of Metamorphosis (Beast)",
   "type": "effect",
   "_id": "gyTLuhExw4Rn2InK",
@@ -72,7 +72,7 @@
       "_key": "!items.effects!gyTLuhExw4Rn2InK.i7k3HOyS5R7mLXKH"
     }
   ],
-  "sort": 4800000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -85,7 +85,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744744421839,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877930162,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

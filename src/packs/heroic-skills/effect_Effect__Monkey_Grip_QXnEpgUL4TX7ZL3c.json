@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Monkey Grip",
+      "name": "Monkey Grip",
       "img": "icons/weapons/axes/axe-crooked-crystal-pink.webp",
       "system": {
         "duration": {
@@ -38,7 +38,8 @@
                 "damageSources": [
                   "attack"
                 ],
-                "damageTypes": []
+                "damageTypes": [],
+                "identifier": ""
               },
               "actions": {
                 "3jJmNb791vQkGK99": {
@@ -134,7 +135,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770709840400,
-        "modifiedTime": 1770710110219,
+        "modifiedTime": 1771888217681,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!QXnEpgUL4TX7ZL3c.pOvxMMrIBKF7W5Oj"

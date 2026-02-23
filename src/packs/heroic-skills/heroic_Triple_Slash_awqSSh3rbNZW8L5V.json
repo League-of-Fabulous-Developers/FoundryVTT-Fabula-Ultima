@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "triple-slash"
+    "fuid": "triple-slash",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -112,7 +122,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684778697,
-    "modifiedTime": 1770776351674,
+    "modifiedTime": 1771893380713,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

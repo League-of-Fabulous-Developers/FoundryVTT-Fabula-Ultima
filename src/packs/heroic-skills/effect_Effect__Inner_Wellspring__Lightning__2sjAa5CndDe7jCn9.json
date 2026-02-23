@@ -2,7 +2,7 @@
   "folder": "Gjih7hTVobxZ6fV3",
   "name": "Effect: Inner Wellspring (Lightning)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+  "img": "icons/magic/fire/flame-burning-hand-white.webp",
   "system": {
     "fuid": "effect-inner-wellspring",
     "cost": {
@@ -125,7 +125,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770884901750,
-    "modifiedTime": 1770884990574,
+    "modifiedTime": 1771893435984,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {

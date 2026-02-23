@@ -140,7 +140,18 @@
       "name": "Defensive Mastery",
       "_id": "w7qI5rqewX56TrEC",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.all",
@@ -149,7 +160,7 @@
           "priority": null
         }
       ],
-      "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p>",
+      "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -164,12 +175,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737920245228,
-        "modifiedTime": 1741975052104,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771837100711,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!7wF1oulk0Zn7ITTF.w7qI5rqewX56TrEC"

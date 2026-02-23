@@ -1,11 +1,11 @@
 {
-  "folder": "VIkMulwyAc8dw5pH",
+  "folder": "UiAwRVydh0shBzCP",
   "name": "Effect: King's Castle (Extra MP)",
   "type": "effect",
   "_id": "DRnzFsqj5BimQFa5",
   "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
   "system": {
-    "fuid": "effect-kings-castle",
+    "fuid": "effect-kings-castle-extra-mp",
     "cost": {
       "value": 0
     }
@@ -78,7 +78,7 @@
       "_key": "!items.effects!DRnzFsqj5BimQFa5.2mQqAVnnbLdrFiG8"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "WNNELbIcUepK9pGq": 3
@@ -87,12 +87,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744461733226,
-    "modifiedTime": 1744462048768,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1771831215038,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!DRnzFsqj5BimQFa5"

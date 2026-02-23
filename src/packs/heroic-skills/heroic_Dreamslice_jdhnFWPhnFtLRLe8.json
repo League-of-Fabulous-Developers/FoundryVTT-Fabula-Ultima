@@ -10,7 +10,7 @@
     "summary": {
       "value": "Shadow Strike reduces MP and causes action loss with swords."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Esper</strong>.</p><hr /><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a weapon that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>. Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a <strong>Bond</strong> towards them, that creature will perform one fewer action during their next turn (to a minimum of zero actions).</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Esper</strong>.</p><hr /><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a weapon that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>.</p><p>Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a <strong>Bond</strong> towards them, that creature will perform one fewer action during their next turn (to a minimum of zero actions).</p>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,7 +96,18 @@
       }
     },
     "source": "FUTF173",
-    "fuid": "dreamslice"
+    "fuid": "dreamslice",
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.aLED91LvFGUlFNFz"
+      ]
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [
     {
@@ -171,7 +184,7 @@
       "_id": "lC0vrmonf2x2uiO1",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you hit one or more creatures with an attack from your <strong>Shadow Strike</strong> Skill using a <strong>sword</strong> , each of those creatures loses an amount of MP equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -186,7 +199,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770955523195,
-        "modifiedTime": 1771284494235,
+        "modifiedTime": 1771895893906,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!jdhnFWPhnFtLRLe8.lC0vrmonf2x2uiO1"
@@ -203,7 +216,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1771285262898,
+    "modifiedTime": 1771895992280,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

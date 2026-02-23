@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,11 +95,19 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "adversity"
+    "fuid": "adversity",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
-      "img": "icons/weapons/daggers/dagger-ritual-crooked-crystal.webp",
+      "img": "icons/magic/unholy/hand-fire-skeleton-pink.webp",
       "duration": {
         "rounds": null,
         "startTime": null,
@@ -162,7 +172,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743594038173,
-        "modifiedTime": 1770707901682,
+        "modifiedTime": 1771887129087,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
@@ -185,7 +195,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706583513351,
-    "modifiedTime": 1771011786584,
+    "modifiedTime": 1771887152761,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

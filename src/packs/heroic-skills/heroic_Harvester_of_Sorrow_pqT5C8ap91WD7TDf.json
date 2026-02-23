@@ -47,7 +47,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,9 +95,164 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "harvester-of-sorrow"
+    "fuid": "harvester-of-sorrow",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Harvester of Sorrow",
+      "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.pqT5C8ap91WD7TDf",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "rp6rEjVxiYRwGxaL": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "rhPXHVTOHLEMng4t",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": "drain-spirit"
+              },
+              "_id": "rp6rEjVxiYRwGxaL",
+              "actions": {
+                "Lo5lqfBJppLkRLJp": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "Lo5lqfBJppLkRLJp",
+                  "mode": "remove",
+                  "traits": {
+                    "entries": [
+                      "absorb-half"
+                    ]
+                  }
+                },
+                "GCfxcQwKiT3Osnni": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "GCfxcQwKiT3Osnni",
+                  "traits": {
+                    "entries": [
+                      "absorb"
+                    ]
+                  }
+                },
+                "ZIg4U5F3Prjutqje": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "ZIg4U5F3Prjutqje",
+                  "amount": "&step(0,5,10)",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              },
+              "predicates": {}
+            },
+            "fHK5np1eT44IkHPB": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "N1AaoYazttkyMl92",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": "drain-vigor"
+              },
+              "_id": "fHK5np1eT44IkHPB",
+              "actions": {
+                "8jfInqqybK6fMoVr": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "8jfInqqybK6fMoVr",
+                  "mode": "remove",
+                  "traits": {
+                    "entries": [
+                      "absorb-half"
+                    ]
+                  }
+                },
+                "gTn5xgb5SalFufGN": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "gTn5xgb5SalFufGN",
+                  "traits": {
+                    "entries": [
+                      "absorb"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Iwa7YOG1PJYGFKPy",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you cast the <strong>Drain Spirit</strong> or <strong>Drain Vigor</strong> spells, the amount of MP or HP you recover is <strong>equal</strong> to the MP or HP loss suffered, respectively.</p><p>Additionally, the amount of MP loss caused by <strong>Drain Spirit</strong> spells you cast is increased by 5 at <strong>level 20</strong>, or 10 at <strong>level 40</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Harvester of Sorrow",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.pqT5C8ap91WD7TDf",
+            "effectUuid": null,
+            "fuid": "harvester-of-sorrow"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771885258417,
+        "modifiedTime": 1771886019819,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!pqT5C8ap91WD7TDf.Iwa7YOG1PJYGFKPy"
+    }
+  ],
   "flags": {
     "core": {},
     "projectfu": {
@@ -107,7 +264,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1697668153306,
-    "modifiedTime": 1771480398777,
+    "modifiedTime": 1771885221937,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

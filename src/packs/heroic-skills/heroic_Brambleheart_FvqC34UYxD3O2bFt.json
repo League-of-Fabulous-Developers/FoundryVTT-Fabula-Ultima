@@ -46,7 +46,19 @@
       }
     },
     "source": "FUNF162",
-    "fuid": "brambleheart"
+    "fuid": "brambleheart",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -186,7 +198,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771285249431,
+    "modifiedTime": 1771893607962,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

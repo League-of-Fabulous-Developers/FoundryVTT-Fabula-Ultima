@@ -180,7 +180,7 @@
       "_id": "5VkoqLalYTeuaJX1",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After you suffer damage, you may immediately recover <strong>【SL × 2】 </strong>Mind Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -195,7 +195,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766925670202,
-        "modifiedTime": 1770402003693,
+        "modifiedTime": 1771832471492,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!jgGLuOvN8xCSQWLK.5VkoqLalYTeuaJX1"

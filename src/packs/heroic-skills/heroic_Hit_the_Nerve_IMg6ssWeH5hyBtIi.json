@@ -10,7 +10,7 @@
     "summary": {
       "value": "Use Condemn to inﬂict enraged and gain beneﬁts against enraged creatures."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>, and must have acquired the <strong>Condemn</strong> Skill.</p><hr /><p>When you successfully use the @UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} Skill against an enemy you know <strong>one or more Traits of</strong>, you recover an amount of Mind Points equal to <strong>half</strong> the amount of MP lost by the target, and you may have them suffer <strong>enraged</strong> instead of the normal status effects.</p><p>Additionally, when you perform an <strong>Opposed Check</strong> against an <strong>enraged</strong> creature, or an <strong>Accuracy Check or Magic Check</strong> for an attack or offensive spell (@ICON[offensive]) that includes one or more <strong>enraged</strong> creatures among its targets, you trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>)</p><hr /><p><strong>You Recover</strong>: @GAIN[floor(&amp;sl('condemn')*5/2) mp]{(Condemn SL) × 5 / 2 MP}<br /><strong>Target Suffers:</strong> @EFFECT[enraged]</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>, and must have acquired the <strong>Condemn</strong> Skill.</p><hr /><p>When you successfully use the @UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} Skill against an enemy you know <strong>one or more Traits of</strong>, you recover an amount of Mind Points equal to <strong>half</strong> the amount of MP lost by the target, and you may have them suffer <strong>enraged</strong> instead of the normal status effects.</p><p>Additionally, when you perform an <strong>Opposed Check</strong> against an <strong>enraged</strong> creature, or an <strong>Accuracy Check or Magic Check</strong> for an attack or offensive spell (@ICON[offensive]) that includes one or more <strong>enraged</strong> creatures among its targets, you trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>)</p>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,9 +96,199 @@
       }
     },
     "source": "FUTF174",
-    "fuid": "hit-the-nerve"
+    "fuid": "hit-the-nerve",
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": []
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Hit the Nerve",
+      "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.IMg6ssWeH5hyBtIi",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "4HCXbmzgChm0PQkg": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "25oMSlWBqzEbZlTv",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "condemn"
+              },
+              "_id": "4HCXbmzgChm0PQkg",
+              "actions": {
+                "vdTckqsqXVH0lcqs": {
+                  "type": "messageRuleAction",
+                  "_id": "vdTckqsqXVH0lcqs",
+                  "message": "<p>If you know <strong>1+ Traits</strong> of target, you recover half MP they lose and you may inflict <strong>enraged</strong> instead.</p>"
+                },
+                "5Ki5654Imw5yAiuw": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "5Ki5654Imw5yAiuw",
+                  "effect": "enraged"
+                }
+              }
+            },
+            "CkA38X1uz507DODu": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "SIjZnRuXc6xqxbKJ",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [
+                  "opposed"
+                ],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "CkA38X1uz507DODu",
+              "predicates": {},
+              "actions": {
+                "aFNeSArViQZku5Cp": {
+                  "type": "messageRuleAction",
+                  "_id": "aFNeSArViQZku5Cp",
+                  "message": "<p>If the opponent is <strong>enraged</strong>, you trigger a <strong>critical success</strong> when both dice show the same number (when it's not a <strong>fumble</strong>).</p>"
+                }
+              }
+            },
+            "XvqmgMEq18qRQHw0": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "goB9v6SSGJnaPGZV",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "XvqmgMEq18qRQHw0",
+              "predicates": {
+                "flEDIDPFTwcjGOtB": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "flEDIDPFTwcjGOtB",
+                  "effect": "enraged"
+                }
+              },
+              "actions": {
+                "Kr964O05yN4LfjAJ": {
+                  "type": "messageRuleAction",
+                  "_id": "Kr964O05yN4LfjAJ",
+                  "message": "<p>You trigger a <strong>critical success</strong> when both dice show the same number (when it's not a <strong>fumble</strong>).</p>"
+                }
+              }
+            },
+            "O0yGWlA2xlfiGALN": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Fd9cbTMq2wXSehUx",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "O0yGWlA2xlfiGALN",
+              "predicates": {
+                "Hg7xmhS8EopBsfPx": {
+                  "type": "spellRulePredicate",
+                  "_id": "Hg7xmhS8EopBsfPx",
+                  "offensive": "true"
+                },
+                "zpl5GctkNcpLgbRe": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "zpl5GctkNcpLgbRe",
+                  "effect": "enraged"
+                }
+              },
+              "actions": {
+                "Txy7bQlFjGXwRcUm": {
+                  "type": "messageRuleAction",
+                  "_id": "Txy7bQlFjGXwRcUm",
+                  "message": "<p>You trigger a <strong>critical success</strong> when both dice show the same number (when it's not a <strong>fumble</strong>).</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3JdfcRPTTvBXeRzY",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you successfully use the <strong>Condemn</strong> Skill against an enemy you know <strong>one or more Traits of</strong>, you recover MP equal to half the amount of MP lost by the target, and you may have them suffer <strong>enraged</strong> instead of the normal status effects.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Hit the Nerve",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.IMg6ssWeH5hyBtIi",
+            "effectUuid": null,
+            "fuid": "hit-the-nerve"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771896197951,
+        "modifiedTime": 1771896812775,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!IMg6ssWeH5hyBtIi.3JdfcRPTTvBXeRzY"
+    }
+  ],
   "flags": {
     "core": {},
     "projectfu": {
@@ -108,7 +300,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770969534849,
+    "modifiedTime": 1771896889924,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

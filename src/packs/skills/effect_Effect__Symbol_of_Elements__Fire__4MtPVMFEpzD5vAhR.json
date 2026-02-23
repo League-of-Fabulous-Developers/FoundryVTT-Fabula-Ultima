@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "e9rFgLeMh5ELsNZX",
   "name": "Effect: Symbol of Elements (Fire)",
   "type": "effect",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770614200767,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877883367,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "4MtPVMFEpzD5vAhR",
-  "sort": 3400000,
+  "sort": 500000,
   "_key": "!items!4MtPVMFEpzD5vAhR"
 }

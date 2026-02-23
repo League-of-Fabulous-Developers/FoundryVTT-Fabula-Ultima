@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "e9rFgLeMh5ELsNZX",
   "name": "Effect: Symbol of Elements (Air)",
   "type": "effect",
   "_id": "GtND52KQayslVMr8",
@@ -72,7 +72,7 @@
       "_key": "!items.effects!GtND52KQayslVMr8.fcRQNVO71bIFIHF9"
     }
   ],
-  "sort": 4100000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -85,7 +85,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744738093667,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877878361,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

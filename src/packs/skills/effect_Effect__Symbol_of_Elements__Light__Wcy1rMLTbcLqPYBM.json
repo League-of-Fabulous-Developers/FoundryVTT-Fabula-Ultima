@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "e9rFgLeMh5ELsNZX",
   "name": "Effect: Symbol of Elements (Light)",
   "type": "effect",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770614448836,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877885400,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "Wcy1rMLTbcLqPYBM",
-  "sort": 3200000,
+  "sort": 700000,
   "_key": "!items!Wcy1rMLTbcLqPYBM"
 }

@@ -116,6 +116,11 @@
     "fuid": "rondo-of-nightmare",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "img": "systems/projectfu/styles/static/compendium/classes/necromancer/rondo_of_nightmare.png",
@@ -132,7 +137,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1684757023346,
-    "modifiedTime": 1770431976728,
+    "modifiedTime": 1771838944606,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

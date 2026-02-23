@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "Zfxi0VCnXiMqz2Em",
   "name": "Effect: Symbol of Metamorphosis (Monster)",
   "type": "effect",
   "img": "icons/magic/control/encase-creature-spider-hold.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770616538690,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877935472,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "5CdrCfIHLvMPur3R",
-  "sort": 2100000,
+  "sort": 500000,
   "_key": "!items!5CdrCfIHLvMPur3R"
 }

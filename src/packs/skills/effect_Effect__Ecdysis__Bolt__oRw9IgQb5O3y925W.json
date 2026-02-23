@@ -1,5 +1,5 @@
 {
-  "folder": "ZUCXTaaKDqwXAZy0",
+  "folder": "rrGR4HhJKNVPu0rJ",
   "name": "Effect: Ecdysis (Bolt)",
   "type": "effect",
   "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_ecdysis.png",
@@ -83,7 +83,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770961241928,
-    "modifiedTime": 1770961260662,
+    "modifiedTime": 1771838563391,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -91,6 +91,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "oRw9IgQb5O3y925W",
-  "sort": 300000,
+  "sort": 200000,
   "_key": "!items!oRw9IgQb5O3y925W"
 }

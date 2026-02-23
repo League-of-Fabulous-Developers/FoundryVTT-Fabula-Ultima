@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "9PRZuTlhTRUzfkQ6",
   "name": "Effect: Symbol of Forbiddance (Attack)",
   "type": "effect",
   "_id": "JVYPNQEFS4xHxy5y",
@@ -73,7 +73,7 @@
       "_key": "!items.effects!JVYPNQEFS4xHxy5y.fU1zRMKc6PFM0uOW"
     }
   ],
-  "sort": 4200000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -86,7 +86,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744743418808,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877912779,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

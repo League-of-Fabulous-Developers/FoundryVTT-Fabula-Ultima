@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop’s Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p></li></ul><hr /><p><strong>Ally Recovers: </strong>@GAIN[5+($sl*5) hp]{5 + (SL × 5) HP}</p>",
+    "description": "<p>During a conflict, you may use an action to perform a <strong>free attack</strong> with a weapon you have equipped, treating your <strong>High Roll (HR)</strong> as 0 when calculating damage. After the attack is resolved, choose one option:</p><ul><li><p>One ally who is able to hear you recovers <strong>【5 + (SL × 5)】</strong> Hit Points.</p></li><li><p>You may immediately use a Skill you acquired among <strong>Bishop’s Edict</strong>, <strong>Charging Cavalry</strong> or <strong>King’s Castle</strong> for free (spending the appropriate MP).</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -119,6 +119,15 @@
     "fuid": "queens-gambit",
     "targeting": {
       "rule": "special"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "5+($sl*5)"
     }
   },
   "effects": [],
@@ -138,7 +147,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706555569192,
-    "modifiedTime": 1770331824519,
+    "modifiedTime": 1771831292694,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

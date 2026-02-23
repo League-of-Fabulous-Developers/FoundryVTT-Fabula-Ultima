@@ -182,10 +182,10 @@
       "_id": "RPlOX0C6CSWtmnFM",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Theriomorphosis</strong> Skill allows you to <strong>transform</strong> and manifest Therioforms.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -197,7 +197,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767389458707,
-        "modifiedTime": 1770428966578,
+        "modifiedTime": 1771837663379,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!pmwdU2AGU0JtrWw8.RPlOX0C6CSWtmnFM"

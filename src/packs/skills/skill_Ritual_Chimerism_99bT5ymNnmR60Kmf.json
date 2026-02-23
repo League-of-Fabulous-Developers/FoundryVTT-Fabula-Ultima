@@ -161,12 +161,13 @@
                   "check": "ritual",
                   "attributes": {
                     "primary": {
-                      "value": "ins"
+                      "value": "mig"
                     },
                     "secondary": {
                       "value": "wlp"
                     }
-                  }
+                  },
+                  "bonus": ""
                 }
               }
             }
@@ -189,10 +190,10 @@
       "_id": "uSyOw5nEsFXbdQ4M",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Ritual Chimerism </strong>Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -204,7 +205,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767130495961,
-        "modifiedTime": 1770343708161,
+        "modifiedTime": 1771831079923,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!99bT5ymNnmR60Kmf.uSyOw5nEsFXbdQ4M"

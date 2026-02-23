@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,7 +96,15 @@
       }
     },
     "source": "FUTF176",
-    "fuid": "nebulization"
+    "fuid": "nebulization",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -146,6 +156,41 @@
                   "multiplier": ""
                 }
               }
+            },
+            "tF7giJrmAW0fZCIk": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "qMKFKMdzSQ4ZGBcS",
+                "type": "createConsumableRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "potion",
+                    "elemental-shard"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "_id": "tF7giJrmAW0fZCIk",
+              "predicates": {
+                "7GwU6Nx2zInXcWwc": {
+                  "type": "traitsRulePredicate",
+                  "_id": "7GwU6Nx2zInXcWwc",
+                  "traits": {
+                    "entries": [
+                      "damage"
+                    ]
+                  }
+                }
+              },
+              "actions": {
+                "KiRHlmcidsKmGeHu": {
+                  "type": "modifyConsumableRuleAction",
+                  "_id": "KiRHlmcidsKmGeHu",
+                  "bonus": "2*&cs('nebulization')",
+                  "multiplier": ""
+                }
+              }
             }
           },
           "progress": {
@@ -166,7 +211,7 @@
       "_id": "xRFrBLxYkSl4u8MB",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p><strong>Potions</strong> and <strong>elemental shards</strong> you create deal extra damage equal to<strong>【2 × Nebulization Points】</strong>.</p><p><strong>Potions</strong> you create that restore HP and/or MP restore additional HP and/or MP equal to <strong>【5 × Nebulization Points】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -181,7 +226,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770962183197,
-        "modifiedTime": 1770963598349,
+        "modifiedTime": 1771897599087,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!2bYmGoMPJ8jNP8hP.xRFrBLxYkSl4u8MB"
@@ -198,7 +243,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770963665635,
+    "modifiedTime": 1771896938693,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

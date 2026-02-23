@@ -2,7 +2,7 @@
   "folder": "Gjih7hTVobxZ6fV3",
   "name": "Effect: Inner Wellspring (Water)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "img": "icons/magic/fire/flame-burning-hand-white.webp",
   "system": {
     "fuid": "effect-inner-wellspring",
     "cost": {
@@ -125,7 +125,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770884906014,
-    "modifiedTime": 1770885102449,
+    "modifiedTime": 1771893440090,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {

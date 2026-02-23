@@ -124,6 +124,11 @@
     },
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -178,7 +183,7 @@
       "_id": "Nqx8jTC7Xyci6rmi",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Bind and Summon</strong> Skill allows you to either <strong>summon</strong> an Arcanum or <strong>dismiss</strong> an Arcanum.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -189,12 +194,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768060526969,
-        "modifiedTime": 1768060552099,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771821966668,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!gbkA1CRgQ9OxPstd.Nqx8jTC7Xyci6rmi"
     }
@@ -215,7 +220,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706494654131,
-    "modifiedTime": 1771052753308,
+    "modifiedTime": 1771821894536,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

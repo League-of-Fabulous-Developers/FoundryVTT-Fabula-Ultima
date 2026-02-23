@@ -1,0 +1,99 @@
+{
+  "folder": "54A0ai9tw3nr1izz",
+  "name": "Effect: Arcane Mark",
+  "type": "effect",
+  "_id": "GR0CrwobiEnbVsFm",
+  "img": "icons/magic/symbols/runes-carved-stone-red.webp",
+  "system": {
+    "fuid": "effect-arcane-mark",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Arcane Marked",
+      "img": "icons/magic/symbols/runes-carved-stone-red.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "byrpDMAnc3QbZycB",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You have been <strong>arcane marked</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Arcane Mark",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm",
+            "effectUuid": null,
+            "fuid": "effect-arcane-mark"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771891695270,
+        "modifiedTime": 1771892079422,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!GR0CrwobiEnbVsFm.byrpDMAnc3QbZycB"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771891682962,
+    "modifiedTime": 1771891692009,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!GR0CrwobiEnbVsFm"
+}
