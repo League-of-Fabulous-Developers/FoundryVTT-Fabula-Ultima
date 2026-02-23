@@ -49,7 +49,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 		// Flag information
 		let sourceInfo;
 		if (context.item) {
-			sourceInfo = new InlineSourceInfo(context.item.name, context.source.actor.uuid, context.item.uuid);
+			sourceInfo = new InlineSourceInfo(context.item.name, context.source ? context.source.actor.uuid : null, context.item.uuid);
 		} else {
 			sourceInfo = context.sourceInfo;
 		}

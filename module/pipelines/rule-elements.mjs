@@ -311,9 +311,6 @@ function getSceneCharacters(targets) {
 	return [...new Map(sceneCharacters.filter((ci) => ci.actor?.uuid).map((ci) => [ci.actor.uuid, ci])).values()];
 }
 
-/** @type {FUItem | null} */
-//let temporaryItem = null;
-
 /**
  * @param {FUActiveEffect} effect
  * @returns {Promise<game.projectfu.FUItem|null>}
@@ -332,7 +329,7 @@ async function getTemporaryItem(effect) {
 }
 
 /**
- * @param {FUActiveEffect} effect
+ * @param {ActiveEffect|FUActiveEffect} effect
  * @returns {boolean}
  */
 function canProcessEffect(effect) {
@@ -342,6 +339,11 @@ function canProcessEffect(effect) {
 	}
 	return true;
 }
+
+/**
+ * @type {Set<string>} Events that can possibly have no source character.
+ */
+const eventsWithoutSourceCharacter = new Set([FUHooks.COMBAT_EVENT]);
 
 /**
  * @param {String} type
@@ -354,10 +356,13 @@ function canProcessEffect(effect) {
 async function evaluate(type, event, source, targets, data = undefined) {
 	// This can happen when sending items to chat.
 	if (!source) {
-		return;
+		// But some events
+		if (!eventsWithoutSourceCharacter.has(type)) {
+			return;
+		}
 	}
 	// Always include the source as part of the scene character pool; useful for when they are not part of the encounter
-	const sceneCharacters = getSceneCharacters([source, ...targets]);
+	const sceneCharacters = getSceneCharacters(source ? [source, ...targets] : targets);
 	for (const character of sceneCharacters) {
 		for (const effect of character.actor.allApplicableEffects()) {
 			if (!canProcessEffect(effect)) {
