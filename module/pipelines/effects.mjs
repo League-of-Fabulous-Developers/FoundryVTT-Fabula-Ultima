@@ -95,9 +95,12 @@ function resolveBaseEffect(id) {
 /** *
  * @param {String} id An uuid or fuid
  * @returns {Promise<ActiveEffectData>}
+ * @remarks It makes a safe clone of the data when returning it, thus it will NOT be an ActiveEffect instance.
  */
 async function getEffectData(id) {
 	let effect;
+	let sourceInfo;
+
 	// Resolve by status id
 	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
 		effect = statusEffects.find((value) => value.id === id);
@@ -115,6 +118,7 @@ async function getEffectData(id) {
 		}
 		// Get the first AE attached to the item
 		if (effect && effect instanceof FUItem) {
+			sourceInfo = new InlineSourceInfo(effect.name, null, effect.uuid, null, effect.system.fuid);
 			effect = effect.effects.entries().next().value[1];
 		}
 	}
@@ -123,7 +127,20 @@ async function getEffectData(id) {
 	}
 
 	if (effect) {
+		// TODO: Perhaps it be really instanced each time?
+		// effect = await ActiveEffect.create(
+		// 	{
+		// 		...effect,
+		// 		statuses: [statusEffectId],
+		// 		flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
+		// 	},
+		// 	{ parent: actor },
+		// );
+
 		effect = FoundryUtils.safeClone(effect);
+		if (sourceInfo) {
+			effect.flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
+		}
 	}
 
 	return effect;
