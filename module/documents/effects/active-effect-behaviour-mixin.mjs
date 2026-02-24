@@ -287,7 +287,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				},
 				CHECK_FLAVOR,
 			);
-			await CommonEvents.renderMessage(chatBuilder.sections, actor, item ?? this);
+			await CommonEvents.renderMessage(chatBuilder.renderData, actor, item ?? this);
 			await chatBuilder.withFlags(flags).create();
 		}
 

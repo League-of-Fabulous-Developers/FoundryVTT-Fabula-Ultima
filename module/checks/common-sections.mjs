@@ -20,7 +20,7 @@ import { ChatAction } from '../helpers/chat-action.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string | Promise<string>} description
  * @param {string} summary
  * @param {number} [order]
@@ -42,7 +42,7 @@ const description = (sections, description, summary, order = CHECK_DETAILS, open
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} content
  * @param {number} [order]
  */
@@ -54,7 +54,7 @@ const content = (sections, content, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} template
  * @param {Object} context
  * @param {number} [order]
@@ -70,7 +70,7 @@ const template = (sections, template, context, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {ChatAction[]} actions
  * @param {Object} flags
  * @param {number} [order]
@@ -91,7 +91,7 @@ const chatActions = (sections, actions, flags = {}, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string, Promise<string>} text
  * @param {number} [order]
  */
@@ -106,7 +106,7 @@ const genericText = (sections, text, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string, Promise<string>} text
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -128,7 +128,7 @@ const itemText = (sections, text, actor, item, flags, order) => {
 
 /**
  * A description section with customizable title and without summary.
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} title
  * @param {string} description
  * @param {number} [order]
@@ -148,7 +148,7 @@ const collapsibleDescription = (sections, title, description, order, open = true
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {ProgressDataModel} clock
  * @param {number} [order]
  */
@@ -175,7 +175,7 @@ const clock = (sections, clock, order) => {
  */
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {Tag[]} tags
  * @param {number} [order]
  */
@@ -193,7 +193,7 @@ const tags = (sections, tags = [], order = CHECK_DETAILS) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} quality
  * @param {number} [order]
  */
@@ -210,7 +210,7 @@ const quality = (sections, quality, order) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {ProgressDataModel} resource
  * @param {number} [order]
  */
@@ -226,7 +226,7 @@ const resource = (sections, resource, order) => {
 
 /**
  * Sets chat message flavor by default. Specify order for other usecases.
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {{name: string, img: string, id: string, uuid: string}|FUItem} item
  * @param {number} [order]
  */
@@ -242,7 +242,7 @@ const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
 
 /**
  * Sets chat message flavor by default. Specify order for other usecases.
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} flavor
  * @param {number} [order]
  */
@@ -257,7 +257,7 @@ const genericFlavor = (sections, flavor, order = CHECK_FLAVOR) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {string} opportunity
  * @param {number} [order]
  */
@@ -571,7 +571,7 @@ const expense = (data, actor, item, targets, flags, expense) => {
 };
 
 /**
- * @param {CheckRenderData} sections
+ * @param {CheckSectionRenderData} sections
  * @param {FUItem[]} slottedTechnospheres
  * @param {number} [order]
  */

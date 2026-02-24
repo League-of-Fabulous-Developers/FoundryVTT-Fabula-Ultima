@@ -123,7 +123,7 @@ const processCheck = (check, actor, item, registerCallback) => {};
  */
 
 /**
- * @typedef {(CheckSection | Promise<CheckSection> | (() => CheckSection) | (() => Promise<CheckSection>))[]} CheckRenderData
+ * @typedef {(CheckSection | Promise<CheckSection> | (() => CheckSection) | (() => Promise<CheckSection>))[]} CheckSectionRenderData
  */
 
 /**

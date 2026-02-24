@@ -880,4 +880,3 @@ export const Effects = Object.freeze({
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,
 });
-
