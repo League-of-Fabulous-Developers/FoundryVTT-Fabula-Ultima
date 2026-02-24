@@ -3,8 +3,9 @@ import { Effects, disableStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from './inline-helper.mjs';
-import { FUItem } from '../documents/items/item.mjs';
 import { StringUtils } from './string-utils.mjs';
+import { systemId } from './system-utils.mjs';
+import { Flags } from './flags.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
@@ -51,8 +52,14 @@ function createCompendiumEffectAnchor(effect, config, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
 	anchor.dataset.effect = StringUtils.toBase64(effect);
-	anchor.dataset.uuid = effect.uuid;
-	anchor.dataset.fuid = effect.parent.system.fuid;
+	if (effect.flags[systemId][Flags.ActiveEffect.Source]) {
+		const sourceInfo = effect.flags[systemId][Flags.ActiveEffect.Source];
+		anchor.dataset.uuid = sourceInfo.effectUuid;
+		anchor.dataset.fuid = sourceInfo.fuid;
+	} else {
+		anchor.dataset.uuid = effect.uuid;
+		anchor.dataset.fuid = effect.parent?.system?.fuid;
+	}
 	anchor.dataset.config = StringUtils.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
@@ -137,22 +144,9 @@ async function inlineEffectEnricher(match, options) {
 			return createStatusAnchor(id, status, config);
 		}
 	} else {
-		/** @type ActiveEffect **/
-		if (id.includes('.')) {
-			let instancedEffect = await fromUuid(id);
-			if (!instancedEffect) {
-				return createBrokenAnchor();
-			}
-			if (instancedEffect instanceof FUItem) {
-				const iterator = instancedEffect.effects?.values();
-				const firstEffect = iterator?.next()?.value;
-				if (!firstEffect) {
-					console.warn('FUItem has no effects:', instancedEffect);
-					return null; // or handle appropriately
-				}
-				instancedEffect = firstEffect;
-			}
-			return createCompendiumEffectAnchor(instancedEffect, config, label);
+		const effectData = await Effects.getEffectData(id);
+		if (effectData) {
+			return createCompendiumEffectAnchor(effectData, config, label);
 		}
 
 		// TODO: Deprecate someday
