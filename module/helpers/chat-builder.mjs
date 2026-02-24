@@ -4,7 +4,7 @@ import { ChatSectionOrder } from '../checks/default-section-order.mjs';
 
 /**
  * @typedef FURenderData
- * @property {CheckRenderData} sections
+ * @property {CheckSectionRenderData} sections
  * @property {Promise[]} postRenderActions
  * @property {Tag[]} tags
  */
@@ -64,10 +64,17 @@ export class FUChatBuilder {
 	}
 
 	/**
-	 * @returns {CheckRenderData}
+	 * @returns {CheckSectionRenderData}
 	 */
 	get sections() {
 		return this.#renderData.sections;
+	}
+
+	/**
+	 * @returns {FURenderData}
+	 */
+	get renderData() {
+		return this.#renderData;
 	}
 
 	/**

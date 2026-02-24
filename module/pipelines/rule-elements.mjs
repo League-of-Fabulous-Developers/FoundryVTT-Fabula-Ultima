@@ -130,15 +130,13 @@ async function onAttackEvent(event) {
 	await evaluate(FUHooks.ATTACK_EVENT, event, event.source, event.targets, event.check);
 }
 
-// TODO: Use the full FURenderData object, not just sections
-
 /**
  * @param {DamageEvent} event
  * @returns {Promise<void>}
  */
 async function onDamageEvent(event) {
 	await evaluate(FUHooks.DAMAGE_EVENT, event, event.source, [CharacterInfo.fromActor(event.actor)], {
-		renderData: event.renderData.sections,
+		renderData: event.renderData,
 	});
 }
 
@@ -148,7 +146,7 @@ async function onDamageEvent(event) {
  */
 async function onResourceEvent(event) {
 	await evaluate(FUHooks.RESOURCE_UPDATE, event, event.source, event.targets, {
-		renderData: event.renderData.sections,
+		renderData: event.renderData,
 	});
 }
 
@@ -288,7 +286,7 @@ async function onEffectToggledEvent(event) {
  */
 async function onFeatureEvent(event) {
 	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, [], {
-		renderData: event.builder.sections,
+		renderData: event.renderData,
 	});
 }
 

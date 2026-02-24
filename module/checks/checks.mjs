@@ -444,8 +444,8 @@ async function renderCheck(result, actor, item, flags = {}) {
 	const config = CheckConfiguration.configure(result);
 
 	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
-	await CommonEvents.renderCheck(renderData.sections, config, actor, item);
-	await CommonEvents.renderMessage(renderData.sections, actor, item);
+	await CommonEvents.renderCheck(renderData, config, actor, item);
+	await CommonEvents.renderMessage(renderData, actor, item);
 
 	if (result.critical) {
 		CommonEvents.opportunity(renderData, actor, result.type, item, false);

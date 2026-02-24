@@ -63,7 +63,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 		if (context.renderData && context.source) {
 			// TODO: Resolve actor for pseudo-documents too
 			const actor = context.source.actor !== context.character.actor ? context.item?.parent : null;
-			CommonSections.itemText(context.renderData, _message, actor, context.item, flags, ChatSectionOrder.addendum);
+			CommonSections.itemText(context.renderData.sections, _message, actor, context.item, flags, ChatSectionOrder.addendum);
 		} else {
 			const actor = context.character.actor;
 			const content = await FoundryUtils.renderTemplate('chat/partials/chat-item-text', {

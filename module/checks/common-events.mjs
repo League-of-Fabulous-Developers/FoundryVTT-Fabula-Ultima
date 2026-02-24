@@ -261,13 +261,6 @@ function loss(actor, resource, amount, origin) {
  * @property {FURenderData} renderData
  */
 
-/**
- * @param {FUActor} sourceActor
- * @param {FUActor[]} targetActors
- * @param {FUResourceType} resource
- * @param {Number} amount
- * @param {String} origin
- */
 async function resource(sourceActor, targetActors, resource, amount, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const targets = CharacterInfo.fromActors(targetActors);
@@ -384,11 +377,6 @@ function spell(actor, item) {
  * @property {CharacterInfo[]} targets
  */
 
-/**
- * @description Dispatches an event to signal a skill event
- * @param {FUActor} actor
- * @param {FUItem} item
- */
 function skill(actor, item, targets = undefined) {
 	/** @type SkillDataModel **/
 	const skill = item.system;
@@ -618,7 +606,7 @@ function resolveCheck(check, actor, item) {
 
 /**
  * @typedef RenderCheckEvent
- * @property {CheckRenderData} renderData
+ * @property {FURenderData} renderData
  * @property {CheckConfigurer} config
  * @property {CheckResultV2} check
  * @property {CharacterInfo} source
@@ -629,13 +617,6 @@ function resolveCheck(check, actor, item) {
  * @remarks Emitted when a check is about to be rendered.
  */
 
-/**
- * @param {CheckRenderData} renderData
- * @param {CheckConfigurer} config
- * @param actor
- * @param item
- * @returns {Promise<[]|*>}
- */
 async function renderCheck(renderData, config, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const check = config.check;
@@ -699,18 +680,12 @@ function notify(source, id, origin) {
 
 /**
  * @typedef RenderMessageEvent
- * @property {CheckRenderData} renderData
+ * @property {FURenderData} renderData
  * @property {CharacterInfo} source
  * @property {*} document A reference to a document such as an actor or item.
  * @remarks Emitted when a message is about to be rendered.
  */
 
-/**
- * @param {CheckRenderData} renderData
- * @param {FUActor} actor
- * @param {*} document
- * @returns {Promise<[]|*>}
- */
 async function renderMessage(renderData, actor, document = undefined) {
 	const source = CharacterInfo.fromActor(actor);
 
@@ -729,18 +704,18 @@ async function renderMessage(renderData, actor, document = undefined) {
  * @property {CharacterInfo} source
  * @property {FUItem} item
  * @property {String[]} traits
- * @property {FUChatBuilder} builder
+ * @property {FURenderData} renderData
  * @property
  */
 
-async function feature(actor, item, traits, builder) {
+async function feature(actor, item, traits, renderData) {
 	const source = CharacterInfo.fromActor(actor);
 	/** @type FeatureEvent  **/
 	const event = {
 		source: source,
 		item: item,
 		traits: traits,
-		builder: builder,
+		renderData: renderData,
 	};
 	return AsyncHooks.callSequential(FUHooks.FEATURE_EVENT, event);
 }

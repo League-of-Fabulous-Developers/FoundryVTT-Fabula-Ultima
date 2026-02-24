@@ -39,6 +39,7 @@ async function handleArcanum(actor, item) {
 	const currentArcanumId = actor.system.equipped.arcanum;
 	const currentArcanum = actor.items.get(currentArcanumId);
 
+	// TODO: Pass in render data, check over summon branch
 	// Dismiss
 	if (currentArcanum) {
 		/** @type ArcanumDataModel **/
@@ -61,15 +62,20 @@ async function handleArcanum(actor, item) {
 			await actor.update({
 				'system.equipped.arcanum': null,
 			});
-			const builder = new FUChatBuilder(actor, item);
-			CommonSections.itemFlavor(builder.sections, currentArcanum);
+			/** @type {FURenderData} **/
+			const renderData = {
+				sections: [],
+				postRenderActions: [],
+			};
+			CommonSections.itemFlavor(renderData.sections, currentArcanum);
 			const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
 				item: currentArcanum,
 				message: 'FU.ClassFeatureArcanumDismissMessage',
 				details: currentArcanumData.dismiss,
 			});
-			CommonSections.content(builder.sections, content, CHECK_DETAILS);
-			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumDismiss], builder);
+			CommonSections.content(renderData.sections, content, CHECK_DETAILS);
+			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumDismiss], renderData);
+			const builder = new FUChatBuilder(actor, item).withData(renderData);
 			await builder.create();
 		}
 
@@ -113,23 +119,22 @@ async function handleArcanum(actor, item) {
 				console.debug(`Arcanum summon cost: ${expense.amount}`);
 				// Render sections
 				/** @type {FURenderData} **/
-				const data = {
+				const renderData = {
 					sections: [],
 					postRenderActions: [],
 				};
 				let flags = {};
 
-				CommonSections.itemFlavor(data.sections, selectedArcana);
+				CommonSections.itemFlavor(renderData.sections, selectedArcana);
 				const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
 					item: selectedArcana,
 					message: 'FU.ClassFeatureArcanumSummonMessage',
 					details: selectedArcana.system.data.merge,
 				});
-				CommonSections.content(data.sections, content, CHECK_DETAILS);
-				CommonSections.expense(data, actor, item, [], flags, expense);
-				const builder = new FUChatBuilder(actor, item);
-				await CommonEvents.feature(actor, item, expense.traits, builder);
-				builder.withData(data).withFlags(flags);
+				CommonSections.content(renderData.sections, content, CHECK_DETAILS);
+				CommonSections.expense(renderData, actor, item, [], flags, expense);
+				await CommonEvents.feature(actor, item, expense.traits, renderData);
+				const builder = new FUChatBuilder(actor, item).withData(renderData).withFlags(flags);
 				await builder.create();
 			}
 		}
