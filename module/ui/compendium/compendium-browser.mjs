@@ -160,11 +160,19 @@ export class CompendiumBrowser extends FUApplication {
 			icon: 'fas fa-book',
 			contentClasses: ['fu-application__browser'],
 			resizable: true,
+			controls: [
+				{
+					action: 'refreshIndex',
+					icon: 'fa-regular fa-refresh',
+					label: 'FU.CompendiumIndexRefresh',
+					ownership: 'OWNER',
+				},
+			],
 		},
 		form: { closeOnSubmit: false },
 		position: { width: 800, height: '800' },
 		actions: {
-			refresh: this.refresh,
+			refreshIndex: this.refreshIndex,
 		},
 	};
 
@@ -471,6 +479,7 @@ export class CompendiumBrowser extends FUApplication {
 	 */
 	toggleCompendiumEntries(element = null) {
 		if (!this.#tabData) {
+			console.debug('Cannot toggle compendium entries without tab data.');
 			return;
 		}
 
@@ -484,17 +493,33 @@ export class CompendiumBrowser extends FUApplication {
 			for (const entry of filteredEntries) {
 				tableData.visible.add(entry.uuid);
 			}
+
+			// Find active tab inside this application only
+			const activeTab = root.querySelector('.tab.active');
+			if (!activeTab) {
+				console.warn('No active tab found.');
+				return;
+			}
+
 			// Look up the table in the DOM by its data-table-id dataset property
 			const selector = `#${CSS.escape(tableData.id)}`;
-			const renderedTable = root.querySelector(selector);
+			const matches = activeTab.querySelectorAll(selector);
+			if (matches.length > 1) {
+				console.error(`More than one table with the ID ${tableData.id} was found!`);
+			} else if (matches.length === 0) {
+				throw Error(`Did not find the rendered table ${tableData.id} in the DOM.`);
+			}
+
+			const renderedTable = matches[0];
 			if (!renderedTable) {
 				throw Error(`Did not find the rendered table ${tableData.id} in the DOM.`);
 			}
+
 			// If no entries are visible, hide the table
 			const showTable = filteredEntries.length > 0;
-			renderedTable.classList.toggle('hidden', !showTable);
 			if (showTable) {
 				// Look up all its list elements
+				let visibleCount = 0;
 				const listElements = renderedTable.querySelectorAll('li.fu-table__row-container.item');
 				for (const li of listElements) {
 					const uuid = li.dataset.uuid;
@@ -506,13 +531,21 @@ export class CompendiumBrowser extends FUApplication {
 					// Toggle visibility based on filter
 					const visible = tableData.visible.has(uuid);
 					li.classList.toggle('hidden', !visible);
-					//console.debug(`Toggle list element ${uuid}? ${visible}`);
+					if (visible) {
+						visibleCount++;
+					}
+					console.debug(`Visible list element ${uuid}? ${visible} (Hidden: ${li.classList.contains('hidden')}, Connected: ${li.isConnected}) `);
 				}
+				console.debug(`Compendium browser table ${tableData.id} has been updated. (${visibleCount} elements now visible). Connected? ${root.isConnected}`);
+			} else {
+				console.debug(`Compendium browser table ${tableData.id} is now hidden. Connected? ${root.isConnected}`);
 			}
+
+			renderedTable.classList.toggle('hidden', !showTable);
 		}
 	}
 
-	#basicRenderer = new BasicCompendiumTableRenderer();
+	#basicRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-basic' });
 	#abilityRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-abilities' });
 	#classRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-classes' });
 	#classFeatureRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-class-features' });
@@ -537,6 +570,7 @@ export class CompendiumBrowser extends FUApplication {
 		if (this.activeTabId === tabId && !force) {
 			return;
 		}
+		this.filter.clear();
 		switch (tabId) {
 			case 'classes':
 				{
@@ -860,7 +894,12 @@ export class CompendiumBrowser extends FUApplication {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async refresh(event, target) {
+	static async refreshIndex(event, target) {
 		CompendiumIndex.reinitialize();
+		ui.notifications.info(`FU.CompendiumIndexRefreshMessage`, { localize: true });
+		if (CompendiumBrowser.instance) {
+			CompendiumBrowser.instance.filter.clear();
+			CompendiumBrowser.instance.render(true);
+		}
 	}
 }
