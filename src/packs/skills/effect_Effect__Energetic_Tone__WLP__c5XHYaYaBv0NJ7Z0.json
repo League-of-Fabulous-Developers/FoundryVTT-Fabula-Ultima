@@ -1,0 +1,89 @@
+{
+  "folder": "lNVxV0bn5M7lMquW",
+  "name": "Effect: Energetic Tone (WLP)",
+  "type": "effect",
+  "img": "icons/magic/time/hourglass-tilted-gray.webp",
+  "system": {
+    "fuid": "effect-energetic-tone-wlp",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Energetic Tone (WLP)",
+      "img": "icons/magic/time/hourglass-tilted-gray.webp",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic",
+            "step": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "rF8QzuzEXc3LD2sB",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Until the start of the <strong>chanter's</strong> next turn, when you <strong>succeed</strong> on a <strong>Check</strong> that includes<strong> Willpower </strong>and that <strong>Check</strong> allows you to advance or turn back a Clock, you may <strong>fill or erase</strong> an additional section of that Clock.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771826753020
+      },
+      "_key": "!items.effects!c5XHYaYaBv0NJ7Z0.rF8QzuzEXc3LD2sB"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1771826688510,
+    "modifiedTime": 1771826739478,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "c5XHYaYaBv0NJ7Z0",
+  "sort": 0,
+  "_key": "!items!c5XHYaYaBv0NJ7Z0"
+}

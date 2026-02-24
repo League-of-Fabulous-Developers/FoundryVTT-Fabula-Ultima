@@ -10,7 +10,7 @@
     "summary": {
       "value": "Examine multiple creatures."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Loremaster</strong> Class.</p><hr /><p>When you perform the <strong>Study</strong> action during a conflict, you may examine the <strong>profiles </strong>of <strong>all enemies</strong> you can see. If you do, you perform a single <strong>【INS + INS】</strong> Open Check and apply the Result <strong>separately</strong> to each enemy (<strong>Core Rulebook</strong>, page <strong>319</strong>).</p><p>However, this Check <strong>cannot</strong> trigger your @UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight} Skill (if you have it).</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Loremaster</strong> Class.</p><hr /><p>When you perform the <strong>Study</strong> action during a conflict, you may examine the <strong>profiles </strong>of <strong>all enemies</strong> you can see. If you do, you perform a single <strong>【INS + INS】</strong> Open Check and apply the Result <strong>separately</strong> to each enemy.</p><p>However, this Check <strong>cannot</strong> trigger your @UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight} Skill (if you have it).</p>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,7 +96,15 @@
       }
     },
     "source": "FUTF177",
-    "fuid": "quick-scan"
+    "fuid": "quick-scan",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "flags": {
@@ -108,7 +118,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770964528872,
+    "modifiedTime": 1771898178052,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

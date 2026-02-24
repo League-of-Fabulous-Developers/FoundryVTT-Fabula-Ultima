@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "e9rFgLeMh5ELsNZX",
   "name": "Effect: Symbol of Elements (Ice)",
   "type": "effect",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770614206766,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877884435,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "iTQWwW2fooB3VLBw",
-  "sort": 3600000,
+  "sort": 600000,
   "_key": "!items!iTQWwW2fooB3VLBw"
 }

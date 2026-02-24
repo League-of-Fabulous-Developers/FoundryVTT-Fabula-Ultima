@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "Zfxi0VCnXiMqz2Em",
   "name": "Effect: Symbol of Metamorphosis (Plant)",
   "type": "effect",
   "img": "icons/magic/control/encase-creature-spider-hold.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770616540179,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877936450,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "wTylepZOcsnwKbzm",
-  "sort": 2200000,
+  "sort": 600000,
   "_key": "!items!wTylepZOcsnwKbzm"
 }

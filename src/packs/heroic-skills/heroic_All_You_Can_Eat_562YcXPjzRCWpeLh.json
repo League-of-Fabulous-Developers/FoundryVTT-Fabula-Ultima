@@ -46,7 +46,19 @@
       }
     },
     "source": "FUNF161",
-    "fuid": "all-you-can-eat"
+    "fuid": "all-you-can-eat",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -85,7 +97,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>Once per scene when you use the <strong>Cooking</strong> Skill, you may combine <strong>four ingredients into a delicacy</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -104,7 +116,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1770873557808,
+        "modifiedTime": 1771893489031,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
@@ -124,7 +136,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770873534198,
+    "modifiedTime": 1771893473614,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

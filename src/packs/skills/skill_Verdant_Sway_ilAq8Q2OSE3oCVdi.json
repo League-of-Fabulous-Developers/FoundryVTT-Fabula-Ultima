@@ -87,7 +87,7 @@
               "trigger": {
                 "_id": "B5TVkslZqhw6S2Ye",
                 "type": "renderCheckRuleTrigger",
-                "eventRelation": "",
+                "eventRelation": "source",
                 "checkTypes": [
                   "display"
                 ],
@@ -107,7 +107,8 @@
                     "secondary": {
                       "value": "wlp"
                     }
-                  }
+                  },
+                  "bonus": ""
                 }
               }
             }
@@ -130,10 +131,10 @@
       "_id": "QCCwyyS8K7E3xYAW",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Verdant Sway</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -145,7 +146,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770369753697,
-        "modifiedTime": 1770609181254,
+        "modifiedTime": 1771835499776,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!ilAq8Q2OSE3oCVdi.QCCwyyS8K7E3xYAW"

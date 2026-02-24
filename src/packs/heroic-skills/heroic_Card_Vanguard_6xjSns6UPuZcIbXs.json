@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "card-vanguard"
+    "fuid": "card-vanguard",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "folder": "1Ky2u7fi2lfxr4JB",
@@ -112,7 +122,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1708940657180,
-    "modifiedTime": 1770969595131,
+    "modifiedTime": 1771885144256,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

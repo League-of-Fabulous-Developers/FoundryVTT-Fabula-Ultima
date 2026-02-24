@@ -1,11 +1,11 @@
 {
-  "folder": "wU0wYafQu5AjChaf",
+  "folder": "sKnezupplQgHL52D",
   "name": "Effect: Hookleaf Nightshade (Damage Up)",
   "type": "effect",
   "_id": "hf8Ge2xUwVULAeRw",
   "img": "icons/commodities/flowers/lotus-violet.webp",
   "system": {
-    "fuid": "effect-hookleaf-nightshade",
+    "fuid": "effect-hookleaf-nightshade-damage-up",
     "cost": {
       "value": 0
     },
@@ -24,7 +24,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Hookleaf Damage Up",
+      "name": "Hookleaf Nightshade (Damage Up)",
       "_id": "2XWchLTOoMqRPAWv",
       "type": "base",
       "system": {
@@ -96,7 +96,7 @@
           "priority": null
         }
       ],
-      "description": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances. Additionally, when you deal <strong>poison</strong> damage for the first time during your turn, you deal extra damage equal to <strong>【your Skill Level in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p>",
+      "description": "<p>When you deal <strong>poison</strong> damage for the first time during your turn, you deal extra damage equal to <strong>【your Skill Level in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -110,14 +110,14 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744511346207,
-        "modifiedTime": 1770423260237,
+        "modifiedTime": 1771836035333,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!hf8Ge2xUwVULAeRw.2XWchLTOoMqRPAWv"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LokWlpJRX2uVxtGn": 3
@@ -130,7 +130,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744511343361,
-    "modifiedTime": 1770423105679,
+    "modifiedTime": 1771835848801,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

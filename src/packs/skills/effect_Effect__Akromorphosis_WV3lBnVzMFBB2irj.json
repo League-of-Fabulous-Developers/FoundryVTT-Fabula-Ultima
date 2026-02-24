@@ -24,10 +24,21 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Akromorphosis",
+      "name": "Akromorphosis",
       "_id": "LxZDU3Qgsf5a6Vfh",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damage.value",
@@ -57,12 +68,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1740171581074,
-        "modifiedTime": 1740774915731,
-        "lastModifiedBy": "esOkelwPNblkbxW3",
+        "modifiedTime": 1771838576559,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!WV3lBnVzMFBB2irj.LxZDU3Qgsf5a6Vfh"

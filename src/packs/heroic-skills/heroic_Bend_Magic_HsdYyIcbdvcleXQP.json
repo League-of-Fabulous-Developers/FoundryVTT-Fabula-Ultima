@@ -46,7 +46,19 @@
       }
     },
     "source": "FUNF162",
-    "fuid": "bend-magic"
+    "fuid": "bend-magic",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -187,7 +199,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770875840089,
+    "modifiedTime": 1771893598675,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

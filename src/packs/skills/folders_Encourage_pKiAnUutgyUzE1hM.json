@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "BQsXQFkUlykSj1ht",
+  "name": "Encourage",
+  "color": "#cf9a07",
+  "sorting": "a",
+  "_id": "pKiAnUutgyUzE1hM",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771839069204
+  },
+  "_key": "!folders!pKiAnUutgyUzE1hM"
+}

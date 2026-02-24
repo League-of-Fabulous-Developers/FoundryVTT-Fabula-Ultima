@@ -180,7 +180,7 @@
                 "Jg8qePO1hy7kyP6V": {
                   "type": "messageRuleAction",
                   "_id": "Jg8qePO1hy7kyP6V",
-                  "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + the Accuracy Check MP}.</p>"
+                  "message": "<p>This attack may be interrupted by spending @LOSS[5+$chk mp]{5 + Accuracy Check MP}.</p>"
                 }
               }
             }
@@ -203,7 +203,7 @@
       "_id": "ZUwqffH7kP8rWg0g",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to <strong>【5 + the Result of their Accuracy Check】</strong> to have the attack automatically miss all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -218,7 +218,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766863644203,
-        "modifiedTime": 1770606202162,
+        "modifiedTime": 1771840136883,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!sIkQa2NzkqsvczBr.ZUwqffH7kP8rWg0g"

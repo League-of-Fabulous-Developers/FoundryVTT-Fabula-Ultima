@@ -1,11 +1,11 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
-  "name": "Effect: Personal Touch (Extra HP/MP)",
+  "folder": "ybRLpAU2eIWK9ldR",
+  "name": "Effect: Personal Touch (Damage)",
   "type": "effect",
-  "_id": "YbvwZKzEu25o0Lun",
+  "_id": "Q6EZyCIiILYVlmAW",
   "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_personal_touch.png",
   "system": {
-    "fuid": "effect-personal-touch-extra-hpmp",
+    "fuid": "effect-personal-touch-damage",
     "cost": {
       "value": 0
     },
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "Personal Touch (HP/MP)",
+      "name": "Personal Touch (Damage)",
       "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_personal_touch.png",
       "system": {
         "duration": {
@@ -44,23 +44,17 @@
         "combat": null
       },
       "disabled": false,
-      "_id": "UMQsO62oibwtFkqG",
+      "_id": "LYgTJyvbIHs5z3hR",
       "type": "base",
       "changes": [
         {
-          "key": "system.bonuses.incomingRecovery.hp",
-          "mode": 2,
-          "value": "~&sl(\"personal-touch\")",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.incomingRecovery.mp",
+          "key": "system.bonuses.incomingDamage.all",
           "mode": 2,
           "value": "~&sl(\"personal-touch\")",
           "priority": null
         }
       ],
-      "description": "<p>When you recover HP and/or MP while bearing a <strong>symbol</strong>, you recover<strong>【SL】</strong>additional HP and/or MP, respectively.</p>",
+      "description": "<p>When you suffer damage while bearing a <strong>symbol</strong>, you suffer<strong>【SL】</strong>extra damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -74,14 +68,14 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770611851125,
-        "modifiedTime": 1770634114579,
+        "createdTime": 1770611648472,
+        "modifiedTime": 1770634106703,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!YbvwZKzEu25o0Lun.UMQsO62oibwtFkqG"
+      "_key": "!items.effects!Q6EZyCIiILYVlmAW.LYgTJyvbIHs5z3hR"
     }
   ],
-  "sort": 5300000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -94,9 +88,9 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770611320959,
-    "modifiedTime": 1770635423777,
+    "createdTime": 1770611305395,
+    "modifiedTime": 1771877859225,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "_key": "!items!YbvwZKzEu25o0Lun"
+  "_key": "!items!Q6EZyCIiILYVlmAW"
 }

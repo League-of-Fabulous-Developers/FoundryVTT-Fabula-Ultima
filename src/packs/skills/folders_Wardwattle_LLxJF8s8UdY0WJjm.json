@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Wardwattle",
+  "color": "#342022",
+  "sorting": "a",
+  "_id": "LLxJF8s8UdY0WJjm",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1771835702131
+  },
+  "_key": "!folders!LLxJF8s8UdY0WJjm"
+}

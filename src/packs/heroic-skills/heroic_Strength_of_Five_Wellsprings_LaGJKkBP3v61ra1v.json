@@ -10,7 +10,7 @@
     "summary": {
       "value": "Invocations improve Attributes."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Invoker</strong> Class.</p><hr /><p>After you perform an <strong>invocation</strong> during a conflict, you <strong>and</strong> up to one ally you can see increase one of your Attributes' die sizes by one (up to a maximum of <strong>d12</strong>). This increase lasts until the end of the scene or until you use this Skill again, and the Attribute is based on the <strong>wellspring</strong> you invoked: <strong>air (Insight)</strong>, <strong>earth (one Attribute of your choice)</strong>, <strong>fire (Dexterity)</strong>, <strong>lightning (Might)</strong>, or <strong>water (Willpower)</strong>.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.ZXQFkQDYAgYKjRlM], @EFFECT[Compendium.projectfu.heroic-skills.Item.riX7ckO58NUX7E1I], @EFFECT[Compendium.projectfu.heroic-skills.Item.4cvTHMz0zN043Mew], or @EFFECT[Compendium.projectfu.heroic-skills.Item.TBTNmD7kvs0INTUI]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Invoker</strong> Class.</p><hr /><p>After you perform an <strong>invocation</strong> during a conflict, you <strong>and</strong> up to one ally you can see increase one of your Attributes' die sizes by one (up to a maximum of <strong>d12</strong>). This increase lasts until the end of the scene or until you use this Skill again, and the Attribute is based on the <strong>wellspring</strong> you invoked: <strong>air (Insight)</strong>, <strong>earth (one Attribute of your choice)</strong>, <strong>fire (Dexterity)</strong>, <strong>lightning (Might)</strong>, or <strong>water (Willpower)</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -46,7 +46,23 @@
       }
     },
     "source": "FUNF169",
-    "fuid": "strength-of-five-wellsprings"
+    "fuid": "strength-of-five-wellsprings",
+    "effects": {
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.ZXQFkQDYAgYKjRlM",
+        "Compendium.projectfu.heroic-skills.Item.riX7ckO58NUX7E1I",
+        "Compendium.projectfu.heroic-skills.Item.4cvTHMz0zN043Mew",
+        "Compendium.projectfu.heroic-skills.Item.TBTNmD7kvs0INTUI"
+      ],
+      "duration": {
+        "interval": null
+      },
+      "prompt": true
+    },
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    }
   },
   "effects": [],
   "flags": {
@@ -62,7 +78,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770888087523,
+    "modifiedTime": 1771895039181,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

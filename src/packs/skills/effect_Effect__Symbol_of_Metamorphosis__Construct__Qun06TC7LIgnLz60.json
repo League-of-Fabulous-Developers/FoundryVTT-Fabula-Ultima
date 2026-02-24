@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "Zfxi0VCnXiMqz2Em",
   "name": "Effect: Symbol of Metamorphosis (Construct)",
   "type": "effect",
   "img": "icons/magic/control/encase-creature-spider-hold.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770616531326,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877931342,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "Qun06TC7LIgnLz60",
-  "sort": 2900000,
+  "sort": 200000,
   "_key": "!items!Qun06TC7LIgnLz60"
 }

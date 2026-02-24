@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "powerful-spell"
+    "fuid": "powerful-spell",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -117,7 +127,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you cast a spell that deals damage to one or more creatures, that spell deals 5 extra damage to each creature. The amount of extra damage increases to 10 at<strong> level 40</strong>. </p>",
+      "description": "<p>Your <strong>spells</strong> deal 5 extra damage. This increases to 10 at <strong>level 40</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {},
@@ -127,7 +137,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1770710545332,
+        "modifiedTime": 1771888940911,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
@@ -168,7 +178,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706585369283,
-    "modifiedTime": 1770710520697,
+    "modifiedTime": 1771888706587,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

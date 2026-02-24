@@ -158,7 +158,12 @@
                 "qCg97rBP9FP1HKun": {
                   "type": "messageRuleAction",
                   "_id": "qCg97rBP9FP1HKun",
-                  "message": "<p>You recover<strong> </strong>@GAIN[&sl(\"arcane-regeneration\")*5 hp]{SL × 5 HP}.</p>"
+                  "message": "<p>You recover<strong>【SL × 5】</strong>HP.</p>"
+                },
+                "JQ5QM9OFG5fIDQ0r": {
+                  "type": "updateResourceRuleAction",
+                  "_id": "JQ5QM9OFG5fIDQ0r",
+                  "amount": "$sl*5"
                 }
               }
             }
@@ -181,7 +186,7 @@
       "_id": "gKZZD74mFFu4HKUm",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you <strong>summon</strong> an Arcanum, you recover <strong>【SL × 5】</strong> Hit Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -196,7 +201,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767997070953,
-        "modifiedTime": 1771046292702,
+        "modifiedTime": 1771821878074,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!ZTEuKRcX9erp1NDC.gKZZD74mFFu4HKUm"

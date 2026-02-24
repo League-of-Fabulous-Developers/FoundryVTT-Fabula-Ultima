@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "",
+    "description": "<p>A version of an <strong>unarmed strike</strong> granted by the <strong>Akromorphosis</strong> Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -85,7 +85,7 @@
   },
   "effects": [
     {
-      "name": "Effect: Akromorphosis",
+      "name": "Akromorphosis",
       "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_akromorphosis.png",
       "type": "base",
       "system": {
@@ -144,7 +144,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1740172175749,
-        "modifiedTime": 1770960503157,
+        "modifiedTime": 1771838624387,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
@@ -169,7 +169,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1740172132903,
-    "modifiedTime": 1770960487118,
+    "modifiedTime": 1771838767067,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

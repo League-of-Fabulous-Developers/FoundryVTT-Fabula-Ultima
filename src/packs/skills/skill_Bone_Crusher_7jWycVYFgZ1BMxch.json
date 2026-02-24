@@ -172,7 +172,7 @@
                 "9e9YoPMUF2VqMiU1": {
                   "type": "messageRuleAction",
                   "_id": "9e9YoPMUF2VqMiU1",
-                  "message": "<p>Deal no damage to instead have targets suffer one of the following: @EFFECT[dazed], @EFFECT[weak], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
+                  "message": "<p>Deal no damage to have targets: @EFFECT[dazed], @EFFECT[weak], or @LOSS[10*$sl mp]{SL × 10 MP}.</p>"
                 }
               },
               "predicates": {
@@ -217,7 +217,7 @@
       "_id": "YkOEtHV4uwAnjQnW",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you hit one or more targets with a <strong>melee </strong>attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>dazed</strong>, <strong>weak</strong>, or <strong>lose MP</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -232,7 +232,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766788902986,
-        "modifiedTime": 1770618934303,
+        "modifiedTime": 1771888543372,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!7jWycVYFgZ1BMxch.YkOEtHV4uwAnjQnW"

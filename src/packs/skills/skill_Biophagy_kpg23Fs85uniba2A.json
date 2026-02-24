@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p>",
+    "description": "<p>After one of your attacks or offensive spells (@ICON[offensive]) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><p><strong>You Gain:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p>",
     "isFavored": {
       "value": false
     },
@@ -118,6 +118,11 @@
     "fuid": "biophagy",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -300,7 +305,7 @@
       "_id": "cHLNid8K4n73xxvO",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After one of your attacks or offensive spells causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -315,7 +320,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767289793419,
-        "modifiedTime": 1770428116246,
+        "modifiedTime": 1771837693053,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!kpg23Fs85uniba2A.cHLNid8K4n73xxvO"
@@ -331,7 +336,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711429218464,
-    "modifiedTime": 1770431753262,
+    "modifiedTime": 1771837684593,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

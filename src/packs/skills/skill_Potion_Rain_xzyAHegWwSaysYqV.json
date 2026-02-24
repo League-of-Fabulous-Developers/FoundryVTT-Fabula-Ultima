@@ -194,7 +194,7 @@
       "_id": "06fNYI2FaCIWg7HX",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you target <strong>multiple</strong> creatures with a potion that restores HP and/or MP, the potion will only restore half that normal amount of HP and MP.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -205,12 +205,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766773134400,
-        "modifiedTime": 1767730050049,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771879246205,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!xzyAHegWwSaysYqV.06fNYI2FaCIWg7HX"
     }

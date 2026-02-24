@@ -5,7 +5,7 @@
   "_id": "X4L3sibcGEi8LPvd",
   "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
   "system": {
-    "fuid": "effect-charging-cavalry-accuracy-up",
+    "fuid": "effect-charging-cavalry",
     "cost": {
       "value": 0
     },
@@ -89,7 +89,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770273462177,
-    "modifiedTime": 1770273594067,
+    "modifiedTime": 1771831231845,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!X4L3sibcGEi8LPvd"

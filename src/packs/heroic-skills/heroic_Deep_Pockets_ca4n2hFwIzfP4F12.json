@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,11 +95,19 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "deep-pockets"
+    "fuid": "deep-pockets",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
-      "img": "icons/magic/symbols/cog-orange-red.webp",
+      "img": "icons/containers/bags/pack-leather-tan.webp",
       "duration": {
         "rounds": null,
         "startTime": null,
@@ -145,6 +155,11 @@
                 "traits": {
                   "entries": [],
                   "quantifier": "any"
+                },
+                "identifier": "",
+                "threshold": {
+                  "operator": "greaterThan",
+                  "amount": 2
                 }
               },
               "actions": {
@@ -173,7 +188,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744384152979,
-        "modifiedTime": 1770708913756,
+        "modifiedTime": 1771887630819,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
@@ -196,7 +211,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706584047656,
-    "modifiedTime": 1771011537181,
+    "modifiedTime": 1771887260834,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

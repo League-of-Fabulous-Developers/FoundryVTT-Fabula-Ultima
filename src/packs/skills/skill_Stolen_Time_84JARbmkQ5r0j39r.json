@@ -155,8 +155,10 @@
               "trigger": {
                 "_id": "M39Ikqb1UtmtYGIr",
                 "type": "renderCheckRuleTrigger",
-                "eventRelation": "",
-                "checkTypes": [],
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
                 "itemGroups": [],
                 "local": true,
                 "identifier": ""
@@ -188,10 +190,10 @@
       "_id": "pRy6iKZ3Imk7vAbT",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>One option of the <strong>Stolen Time</strong> Skill is: One creature you can see recovers from <strong>slow.</strong></p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -203,7 +205,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770343573167,
-        "modifiedTime": 1770343593101,
+        "modifiedTime": 1771832529457,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!84JARbmkQ5r0j39r.pRy6iKZ3Imk7vAbT"

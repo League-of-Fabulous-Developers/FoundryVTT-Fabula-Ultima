@@ -73,7 +73,7 @@
       "_key": "!items.effects!jWFQV3GgAoXLvQ2W.BFUNcHMDr5SD9edA"
     }
   ],
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "FpXllTk8decOXqf3",
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -87,10 +87,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770635431079,
-    "modifiedTime": 1770635568040,
+    "modifiedTime": 1771877957081,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "jWFQV3GgAoXLvQ2W",
-  "sort": 0,
+  "sort": 106250,
   "_key": "!items!jWFQV3GgAoXLvQ2W"
 }

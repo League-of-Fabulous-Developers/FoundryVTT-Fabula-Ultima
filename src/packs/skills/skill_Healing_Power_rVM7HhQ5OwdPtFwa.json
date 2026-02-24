@@ -205,7 +205,7 @@
       "_id": "buYFIqyFA25Zi9JL",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an Hit Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -220,7 +220,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766773499942,
-        "modifiedTime": 1770608483262,
+        "modifiedTime": 1771876922583,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!rVM7HhQ5OwdPtFwa.buYFIqyFA25Zi9JL"

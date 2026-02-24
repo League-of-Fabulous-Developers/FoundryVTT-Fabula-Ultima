@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain benefits for consecutive attacks with brawling weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>When you perform a <strong>melee </strong>attack using a weapon that belongs to the <strong>brawling </strong>Category,<strong> if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Bravery Point</strong>.</p><p>As long as you have no <strong>martial armor</strong> and no <strong>shields</strong> equipped, your <strong>melee</strong> attacks with <strong>brawling</strong> weapons deal extra damage equal to <strong>【2 + your current Bravery Points】</strong>.</p><p>At the end of each scene, <strong>or </strong>if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you lose all accumulated Bravery Points. Then, if you lost at least 1 point this way, you recover 10 Hit Points <strong>and</strong> 10 Mind Points</p><hr /><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance Bravery Point} or @PROGRESS[rising-tide reset]{Reset Bravery Point}<br /><strong>You Recover:</strong> @GAIN[10 hp] @GAIN[10 mp]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury </strong>and <strong>Weaponmaster</strong>.</p><hr /><p>When you perform a <strong>melee </strong>attack using a weapon that belongs to the <strong>brawling </strong>Category,<strong> if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Bravery Point</strong>.</p><p>As long as you have no <strong>martial armor</strong> and no <strong>shields</strong> equipped, your <strong>melee</strong> attacks with <strong>brawling</strong> weapons deal extra damage equal to <strong>【2 + your current Bravery Points】</strong>.</p><p>At the end of each scene, <strong>or </strong>if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you lose all accumulated Bravery Points. Then, if you lost at least 1 point this way, you recover 10 Hit Points <strong>and</strong> 10 Mind Points.</p><hr /><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance Bravery Point} or @PROGRESS[rising-tide reset]{Reset Bravery Point}<br /><strong>You Recover:</strong> @GAIN[10 hp] @GAIN[10 mp]</p>",
     "isFavored": {
       "value": true
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,12 @@
       "step": 1,
       "max": 10
     },
-    "fuid": "rising-tide"
+    "fuid": "rising-tide",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [
     {
@@ -111,7 +118,50 @@
           "crisisInteraction": "none"
         },
         "rules": {
-          "elements": {},
+          "elements": {
+            "eNc8rZnFFdqqvNIX": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "nZsGKMk9SJKZ1AXO",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "startOfCombat"
+              },
+              "_id": "eNc8rZnFFdqqvNIX",
+              "actions": {
+                "yIvOMVXBseiywq3C": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "yIvOMVXBseiywq3C",
+                  "identifier": "rising-tide",
+                  "action": "reset",
+                  "notify": true,
+                  "amount": ""
+                }
+              },
+              "selector": "self"
+            },
+            "kooO5eTb4iWFDMzF": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "u1fXiuoLYb9QIkQj",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "endOfCombat"
+              },
+              "_id": "kooO5eTb4iWFDMzF",
+              "actions": {
+                "tYdr7WgPfImsmLuS": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "tYdr7WgPfImsmLuS",
+                  "identifier": "rising-tide",
+                  "action": "reset",
+                  "notify": true,
+                  "amount": ""
+                }
+              },
+              "selector": "self"
+            }
+          },
           "progress": {
             "enabled": false,
             "id": "",
@@ -137,7 +187,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle2\">Your </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attacks using weapons that belong to the </span><span class=\"fontstyle0\"><strong>brawling </strong></span><span class=\"fontstyle2\">Category deal extra damage equal to your current </span><span class=\"fontstyle0\"><strong>Bravery Points</strong></span><span class=\"fontstyle2\">.</span></p>",
+      "description": "<p><span class=\"fontstyle2\">Your </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attacks using weapons that belong to the </span><span class=\"fontstyle0\"><strong>brawling </strong></span><span class=\"fontstyle2\">Category deal extra damage equal to your current </span><span class=\"fontstyle0\"><strong>Bravery Points</strong></span><span class=\"fontstyle2\">.</span></p><p>At the end of each scene, you lose all accumulated Bravery Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -152,7 +202,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770764390879,
-        "modifiedTime": 1770963719783,
+        "modifiedTime": 1771893280339,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!8tBwzNz4egN1Lu4L.Q4OWLn6rBzIOGRxo"
@@ -171,7 +221,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684696121,
-    "modifiedTime": 1771013751613,
+    "modifiedTime": 1771893139526,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

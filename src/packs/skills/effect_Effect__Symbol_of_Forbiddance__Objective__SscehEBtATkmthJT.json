@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "9PRZuTlhTRUzfkQ6",
   "name": "Effect: Symbol of Forbiddance (Objective)",
   "type": "effect",
   "img": "icons/magic/symbols/mask-metal-silver-white.webp",
@@ -85,10 +85,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770615988819,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877915788,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "SscehEBtATkmthJT",
-  "sort": 2500000,
+  "sort": 300000,
   "_key": "!items!SscehEBtATkmthJT"
 }

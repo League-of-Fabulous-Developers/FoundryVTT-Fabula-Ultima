@@ -9,7 +9,7 @@
     "summary": {
       "value": "Improve allies’ critical success chance with songs."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Chanter </strong>Class.</p><hr /><p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn:</p><p>Your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr /><p><strong>You Spend:</strong> @LOSS[1 fp]<br /><strong>You &amp; Allies Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.BMx3YxxDpgUahmgI]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Chanter </strong>Class.</p><hr /><p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn:</p><p>Your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,19 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "power-chord"
+    "fuid": "power-chord",
+    "cost": {
+      "resource": "fp",
+      "amount": "1"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.BMx3YxxDpgUahmgI"
+      ]
+    }
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -112,7 +126,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684677557,
-    "modifiedTime": 1771011670506,
+    "modifiedTime": 1771892910795,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

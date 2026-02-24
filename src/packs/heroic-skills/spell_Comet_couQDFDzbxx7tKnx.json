@@ -232,10 +232,10 @@
       "_id": "wscCbuVvN366MDvB",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you have the <strong>Comet</strong> spell target a single creature, it deals 60 damage instead.</p><p>The amount of damage the <strong>Comet</strong> spell deals increase by 5 at <strong>level 20</strong>, or 10 at <strong>level 40</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -246,7 +246,8 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771895308445
       },
       "_key": "!items.effects!couQDFDzbxx7tKnx.wscCbuVvN366MDvB"
     }

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Disappear after an attack."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Rogue</strong> Class.</p><hr /><p><span>When you hit one or more creatures with an attack or offensive spell (@ICON[offensive]), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</span></p><hr /><p><strong>You Spend:</strong> @LOSS[1 fp]<br /><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.4suciB7e8kbt17Zh]</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Rogue</strong> Class.</p><hr /><p><span>When you hit one or more creatures with an attack or offensive spell (@ICON[offensive]), you may spend 1 Fabula Point. If you do, each of those creatures becomes unable to see you until the start of your next turn.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,22 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "vanish"
+    "fuid": "vanish",
+    "cost": {
+      "resource": "fp",
+      "amount": "1"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.4suciB7e8kbt17Zh"
+      ]
+    },
+    "targeting": {
+      "rule": "special"
+    }
   },
   "effects": [],
   "folder": "z63bpKominWoy7Nw",
@@ -112,7 +129,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706587099416,
-    "modifiedTime": 1770711825132,
+    "modifiedTime": 1771890621356,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

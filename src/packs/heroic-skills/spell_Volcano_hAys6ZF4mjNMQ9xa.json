@@ -234,10 +234,10 @@
       "_id": "zV3cnqvXYnDpSY9s",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you have the <strong>Volcano </strong>spell target a single creature, it deals 50 damage instead.</p><p>The amount of damage the <strong>Volcano </strong>spell deals increase by 5 at <strong>level 20</strong>, or 10 at <strong>level 40</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -248,7 +248,8 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1771895432258
       },
       "_key": "!items.effects!hAys6ZF4mjNMQ9xa.zV3cnqvXYnDpSY9s"
     }

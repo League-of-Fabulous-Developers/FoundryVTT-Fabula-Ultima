@@ -10,7 +10,7 @@
     "summary": {
       "value": "Erase your Brainwave Clock and deal damage."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Esper</strong> Class.</p><hr /><p>While your <strong>Brainwave Clock</strong> is <strong>full</strong>, you may use an action to erase all of its sections. If you do, you may choose one option:</p><ul><li><p>You deal 20 <strong>physical</strong> damage to every enemy that is present on the scene.</p></li><li><p>You deal 30 <strong>physical</strong> damage to a single enemy you can see.</p></li></ul><p>This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher.</strong></p><hr /><p><strong>Reset:</strong> @CLOCK[brainwave-clock reset]{Reset Brainwave Clock}<br /><strong>Targets Suffer:</strong> @DMG[&amp;step(20,30,40) physical]{20|30|40 Physical (Single)} or @DMG[&amp;step(30,40,50) physical]{30|40|50 Physical (Multi)}</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Esper</strong> Class.</p><hr /><p>While your <strong>Brainwave Clock</strong> is <strong>full</strong>, you may use an action to erase all of its sections. If you do, you may choose one option:</p><ul><li><p>You deal 20 <strong>physical</strong> damage to every enemy that is present on the scene.</p></li><li><p>You deal 30 <strong>physical</strong> damage to a single enemy you can see.</p></li></ul><p>This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher.</strong></p><hr /><p><strong>Resource:</strong> @CLOCK[brainwave-clock reset]{Reset Brainwave Clock}<br /><strong>Targets Suffer:</strong> @DMG[&amp;step(20,30,40) physical]{20|30|40 Physical (Single)} or @DMG[&amp;step(30,40,50) physical]{30|40|50 Physical (Multi)}</p>",
     "isFavored": {
       "value": false
     },
@@ -34,7 +34,8 @@
       },
       "hrZero": {
         "value": false
-      }
+      },
+      "traits": false
     },
     "attributes": {
       "primary": {
@@ -48,13 +49,14 @@
       "value": 0
     },
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
-      "value": 0,
+      "hasDamage": true,
+      "value": 20,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": true
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,9 +96,132 @@
       }
     },
     "source": "FUTF171",
-    "fuid": "brainwave-discharge"
+    "fuid": "brainwave-discharge",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Brainwave Discharge",
+      "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.iZIhU35ZCZ1zrbfL",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "VdMWlCBIK0dUfvBh": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "QmCshNDxJHjF3eeu",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [],
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "VdMWlCBIK0dUfvBh",
+              "predicates": {
+                "FAcvuCfAfKZLJ1Tf": {
+                  "type": "targetingRulePredicate",
+                  "_id": "FAcvuCfAfKZLJ1Tf"
+                }
+              },
+              "actions": {
+                "VloFlAua00cbNLKJ": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "VloFlAua00cbNLKJ",
+                  "amount": "10",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            },
+            "s9Y9xH4nDeo6yyyo": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "bB8Jtzkbozh4XYgf",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [],
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "s9Y9xH4nDeo6yyyo",
+              "actions": {
+                "A2kvpDJg1slTzXP8": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "A2kvpDJg1slTzXP8",
+                  "amount": "&step(0,10,20)",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "0Fos8RmUb79tMvRz",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you have the <strong>Brainwave Discharge</strong> Heroic Skill target a single enemy, it deals 30 damage instead.</p><p>The amount of damage the <strong>Brainwave Discharge </strong>Heroic Skill deals increase by 10 at <strong>level 20</strong>, or 20 at <strong>level 40</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Brainwave Discharge",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.iZIhU35ZCZ1zrbfL",
+            "effectUuid": null,
+            "fuid": "brainwave-discharge"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771895229869,
+        "modifiedTime": 1771895660148,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!iZIhU35ZCZ1zrbfL.0Fos8RmUb79tMvRz"
+    }
+  ],
   "flags": {
     "core": {},
     "projectfu": {
@@ -108,7 +233,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770953546328,
+    "modifiedTime": 1771895225353,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

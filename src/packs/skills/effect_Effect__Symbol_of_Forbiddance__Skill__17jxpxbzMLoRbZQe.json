@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "9PRZuTlhTRUzfkQ6",
   "name": "Effect: Symbol of Forbiddance (Skill)",
   "type": "effect",
   "img": "icons/magic/symbols/mask-metal-silver-white.webp",
@@ -85,10 +85,10 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770615992557,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877916843,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_id": "17jxpxbzMLoRbZQe",
-  "sort": 2800000,
+  "sort": 400000,
   "_key": "!items!17jxpxbzMLoRbZQe"
 }

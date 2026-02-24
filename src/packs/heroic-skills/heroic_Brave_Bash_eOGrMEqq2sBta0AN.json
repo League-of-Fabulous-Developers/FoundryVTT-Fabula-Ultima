@@ -46,7 +46,22 @@
       }
     },
     "source": "FUNF163",
-    "fuid": "brave-bash"
+    "fuid": "brave-bash",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.JARz8rLQIoE9qUSe"
+      ]
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [
     {
@@ -91,7 +106,8 @@
                 "Sx9KLjtPAYxrOTse": {
                   "type": "weaponRulePredicate",
                   "_id": "Sx9KLjtPAYxrOTse",
-                  "weaponType": "melee"
+                  "weaponType": "melee",
+                  "selector": "source"
                 },
                 "yiuL8QSaHjaiJKop": {
                   "type": "targetingRulePredicate",
@@ -130,7 +146,7 @@
       "_id": "nt0AFKj8t7JinPXd",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p><span class=\"fontstyle0\">When you use the </span><span class=\"fontstyle2\"><strong>Bone Crusher</strong> </span><span class=\"fontstyle0\">Skill, if your attack targets </span><span class=\"fontstyle2\"><strong>only one creature</strong> </span><span class=\"fontstyle0\">and you have a </span><span class=\"fontstyle2\"><strong>shield</strong> </span><span class=\"fontstyle0\">equipped, you may </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">that creature until the end of your next turn.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -145,7 +161,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770877829220,
-        "modifiedTime": 1770878271232,
+        "modifiedTime": 1771893699657,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!eOGrMEqq2sBta0AN.nt0AFKj8t7JinPXd"
@@ -164,7 +180,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770877797993,
+    "modifiedTime": 1771893635978,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

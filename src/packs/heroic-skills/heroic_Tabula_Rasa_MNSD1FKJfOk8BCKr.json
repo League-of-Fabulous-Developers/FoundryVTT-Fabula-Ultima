@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Skills cause HP loss."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p><hr /><p>After you use @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict} or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King’s Castle} Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose 10 Hit Points. This amount increases to 20 Hit Points if you are <strong>level 20 or higher,</strong> or 30 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>Targets Lose:</strong> @LOSS[&amp;step(10,20,30) hp]{Lose HP}</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p><hr /><p>After you use @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict} or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King’s Castle} Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose 10 Hit Points. This amount increases to 20 Hit Points if you are <strong>level 20 or higher,</strong> or 30 Hit Points if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,16 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "tabula-rasa"
+    "fuid": "tabula-rasa",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "-&step(10,20,30)"
+    }
   },
   "effects": [
     {
@@ -204,7 +215,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770766214886,
-        "modifiedTime": 1770766450818,
+        "modifiedTime": 1771893354434,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!MNSD1FKJfOk8BCKr.EDMMGpxBX8YE8K7J"
@@ -226,7 +237,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684758296,
-    "modifiedTime": 1770766186388,
+    "modifiedTime": 1771893341146,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

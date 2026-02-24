@@ -158,7 +158,16 @@
                 "WsXtNSc6ULBghhsQ": {
                   "type": "performCheckRuleAction",
                   "_id": "WsXtNSc6ULBghhsQ",
-                  "check": "ritual"
+                  "check": "ritual",
+                  "bonus": "",
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": "wlp"
+                    }
+                  }
                 }
               }
             }
@@ -181,10 +190,10 @@
       "_id": "91QkE5cUgSCD6X16",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Ritual Entropism </strong>Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -196,7 +205,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767130620967,
-        "modifiedTime": 1770343679306,
+        "modifiedTime": 1771877017723,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!Ko2QCUw6qbxhufwE.91QkE5cUgSCD6X16"

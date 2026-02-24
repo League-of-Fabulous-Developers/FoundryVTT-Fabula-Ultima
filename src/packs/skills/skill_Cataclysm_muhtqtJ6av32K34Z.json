@@ -152,7 +152,8 @@
                 "eventRelation": "source",
                 "damageSources": [
                   "spell"
-                ]
+                ],
+                "identifier": ""
               },
               "predicates": {
                 "3i8OFA8Qwk5Lqqz5": {
@@ -210,7 +211,7 @@
       "_id": "Dd03wzpbYRkqDcq9",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you cast a spell with a <strong>duration</strong> of “Instantaneous”, if you have an <strong>arcane</strong> weapon equipped, you may <strong>increase the spell’s total MP cost</strong> by up to <strong>【SL × 10】</strong> Mind Points.</p><p>If you do so, the spell deals 5 extra damage for every 10 Mind Points by which you increased its cost this way.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -225,7 +226,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766869378193,
-        "modifiedTime": 1770277943881,
+        "modifiedTime": 1771832259894,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!muhtqtJ6av32K34Z.Dd03wzpbYRkqDcq9"

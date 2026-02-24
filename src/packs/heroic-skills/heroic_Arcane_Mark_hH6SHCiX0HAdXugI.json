@@ -9,7 +9,7 @@
     "summary": {
       "value": "Improve spells’ critical chance with arcane weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong>, <strong>Symbolist</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell (@ICON[offensive]) you cast during this scene <strong>only </strong>targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>) </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong>, <strong>Symbolist</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell (@ICON[offensive]) you cast during this scene <strong>only </strong>targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,18 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "arcane-mark"
+    "fuid": "arcane-mark",
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm"
+      ]
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [
     {
@@ -122,7 +135,64 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          },
+          "elements": {
+            "vxBZPLrURm9Dgopr": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "LvxbJ2lZBzmeRyvR",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "vxBZPLrURm9Dgopr",
+              "predicates": {
+                "HQ3Gp7tgS4jOTtg9": {
+                  "type": "weaponRulePredicate",
+                  "_id": "HQ3Gp7tgS4jOTtg9",
+                  "selector": "source",
+                  "categories": [
+                    "arcane"
+                  ]
+                },
+                "vuKLXKgu6r5iBKn8": {
+                  "type": "checkRulePredicate",
+                  "_id": "vuKLXKgu6r5iBKn8",
+                  "outcome": "success",
+                  "result": null
+                }
+              },
+              "actions": {
+                "pJ5wDrr9mAU2FWnq": {
+                  "type": "messageRuleAction",
+                  "_id": "pJ5wDrr9mAU2FWnq",
+                  "message": "<p>You may choose one of the targets to be <strong>marked</strong>.</p>"
+                },
+                "laWcdDSjNKgSAHJe": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "laWcdDSjNKgSAHJe",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.GR0CrwobiEnbVsFm"
+                }
+              }
+            }
+          }
+        }
       },
       "changes": [
         {
@@ -132,7 +202,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell ( @ICON[offensive] ) you cast during this scene <strong>only </strong>targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>) </p>",
+      "description": "<p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -142,12 +212,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743640772686,
-        "modifiedTime": 1743640827687,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "modifiedTime": 1771892697288,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!hH6SHCiX0HAdXugI.6pGjQG1mO1FILmQ4"
@@ -169,7 +239,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684532126,
-    "modifiedTime": 1770873428436,
+    "modifiedTime": 1771892101080,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

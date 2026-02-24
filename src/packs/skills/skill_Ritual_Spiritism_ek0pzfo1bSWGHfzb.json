@@ -158,7 +158,8 @@
                 "MKPu6Ccv1ZmHDR9z": {
                   "type": "performCheckRuleAction",
                   "_id": "MKPu6Ccv1ZmHDR9z",
-                  "check": "ritual"
+                  "check": "ritual",
+                  "bonus": ""
                 }
               }
             }
@@ -181,10 +182,10 @@
       "_id": "9yy6BFLcB9551EvD",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Ritual Spiritism </strong>Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -196,7 +197,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767130663077,
-        "modifiedTime": 1770609133829,
+        "modifiedTime": 1771877001786,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!ek0pzfo1bSWGHfzb.9yy6BFLcB9551EvD"

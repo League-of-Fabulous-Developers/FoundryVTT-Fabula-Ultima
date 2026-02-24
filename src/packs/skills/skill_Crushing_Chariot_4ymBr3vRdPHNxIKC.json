@@ -225,7 +225,7 @@
       "_id": "bo9XH8Km5H7Yflyz",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After you use <strong>Bishop's Edict</strong>, <strong>Charging Cavalry</strong>, or <strong>King's Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -240,7 +240,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770274361322,
-        "modifiedTime": 1770331699680,
+        "modifiedTime": 1771831260273,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!4ymBr3vRdPHNxIKC.bo9XH8Km5H7Yflyz"

@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "e9rFgLeMh5ELsNZX",
   "name": "Effect: Symbol of Elements (Earth)",
   "type": "effect",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770614198823,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877881986,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "q45xjl2CWQVFfug6",
-  "sort": 3300000,
+  "sort": 400000,
   "_key": "!items!q45xjl2CWQVFfug6"
 }

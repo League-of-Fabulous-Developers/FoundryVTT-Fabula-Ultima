@@ -158,7 +158,7 @@
                 "w8BWzeteOxxe2dlU": {
                   "type": "messageRuleAction",
                   "_id": "w8BWzeteOxxe2dlU",
-                  "message": "<p>You may perform the <strong>Spell</strong> action.</p>"
+                  "message": "<p>If the Arcanum had not been <strong>summoned</strong> this turn, you may perform the <strong>Spell</strong> action.</p>"
                 }
               },
               "predicates": {
@@ -191,7 +191,7 @@
       "_id": "UFyEiFjoYZc4p9e2",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum, if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -206,7 +206,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1768060798954,
-        "modifiedTime": 1771044180646,
+        "modifiedTime": 1771822083678,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!hEj8s21iAOPhDtJN.UFyEiFjoYZc4p9e2"

@@ -143,6 +143,48 @@
                   "message": "<p>This character must spend all <strong>Momentum Points</strong> and check to see if this attack would still hit.</p>"
                 }
               }
+            },
+            "cRHuJxog5Hq8tYUv": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "xkHMNik5BkLJFaJz",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "startOfCombat"
+              },
+              "_id": "cRHuJxog5Hq8tYUv",
+              "actions": {
+                "YWKJb8YOeIz6qpgI": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "YWKJb8YOeIz6qpgI",
+                  "identifier": "swirling-swarm",
+                  "action": "reset",
+                  "notify": true,
+                  "amount": ""
+                }
+              },
+              "selector": "self"
+            },
+            "4AzuFv02u7D0wZh4": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "DPrCmEFRaw0B0aKB",
+                "type": "combatRuleTrigger",
+                "eventRelation": "",
+                "eventType": "endOfCombat"
+              },
+              "_id": "4AzuFv02u7D0wZh4",
+              "actions": {
+                "pa03XzbTSkd1djjN": {
+                  "type": "updateTrackRuleAction",
+                  "_id": "pa03XzbTSkd1djjN",
+                  "identifier": "swirling-swarm",
+                  "action": "reset",
+                  "notify": true,
+                  "amount": ""
+                }
+              },
+              "selector": "self"
             }
           },
           "progress": {
@@ -170,7 +212,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your <strong>ranged </strong>attacks using weapons that belong to the <strong>thrown </strong>Category deal extra damage equal to your current <strong>Momentum Points</strong>.</p><p>When a creature hits you with an attack targeting your <strong>Defense</strong>, you <strong>must </strong>spend all your accumulated <strong>Momentum Points</strong> and increase your Defense score by an equal amount against that attack (this may turn the hit into a miss).</p>",
+      "description": "<p>Your <strong>ranged </strong>attacks using weapons that belong to the <strong>thrown </strong>Category deal extra damage equal to your current <strong>Momentum Points</strong>.</p><p>When a creature hits you with an attack targeting your <strong>Defense</strong>, you <strong>must </strong>spend all your accumulated <strong>Momentum Points</strong> and increase your Defense score by an equal amount against that attack (this may turn the hit into a miss).</p><p>You also lose all <strong>Momentum Points</strong> at the end of each scene.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -185,7 +227,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770765412760,
-        "modifiedTime": 1770765477807,
+        "modifiedTime": 1771893307891,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!WKJ4ZSPBnlg4U3qt.iAZxATXrL2K1NHc4"

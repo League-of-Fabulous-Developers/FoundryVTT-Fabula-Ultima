@@ -158,7 +158,7 @@
       "_id": "GhlfMRLPbvFfYsSe",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you use the <strong>Shadow Strike</strong> Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong>, and you gain Resistance to the damage type you did not choose until the start of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -173,7 +173,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1771282679453,
-        "modifiedTime": 1771283346460,
+        "modifiedTime": 1771886895638,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!DkaqHnTnEw2eMRDa.GhlfMRLPbvFfYsSe"

@@ -2,7 +2,7 @@
   "folder": "Gjih7hTVobxZ6fV3",
   "name": "Effect: Inner Wellspring (Fire)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+  "img": "icons/magic/fire/flame-burning-hand-white.webp",
   "system": {
     "fuid": "effect-inner-wellspring",
     "cost": {
@@ -125,7 +125,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770884904322,
-    "modifiedTime": 1770885059823,
+    "modifiedTime": 1771893432653,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {

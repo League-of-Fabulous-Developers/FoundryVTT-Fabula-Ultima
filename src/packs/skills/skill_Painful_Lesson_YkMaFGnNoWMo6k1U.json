@@ -176,7 +176,7 @@
       "_id": "UFwFf5qcdGZ0EtWc",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After another creature causes you to lose Hit Points, you may immediately perform the <strong>Study</strong> action on that creature for free. If you do, gain a bonus equal to <strong>【SL】</strong> to your Check.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -191,7 +191,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767730525954,
-        "modifiedTime": 1770401942162,
+        "modifiedTime": 1771832237978,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YkMaFGnNoWMo6k1U.UFwFf5qcdGZ0EtWc"

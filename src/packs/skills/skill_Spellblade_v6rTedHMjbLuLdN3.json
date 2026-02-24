@@ -216,7 +216,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your <strong>Magic Check</strong> for spells will use the <em>chosen weapon'</em>s <strong>Accuracy Check</strong> formula.</p>",
+      "description": "<p>Your <strong>Magic Check</strong> for spells will use the <em>chosen weapon'</em>s <strong>Accuracy Check</strong> formula. If that formula includes <strong>Dexterity</strong>, the Magic Check also gains a bonus equal to <strong>【SL】</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -230,7 +230,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743535722306,
-        "modifiedTime": 1771351077371,
+        "modifiedTime": 1771832393259,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

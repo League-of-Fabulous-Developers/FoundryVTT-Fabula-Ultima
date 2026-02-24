@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For 4 Inventory Points, roll <strong>three d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> <strong>Advanced </strong>benefits of @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}.</p><hr /><p>For 4 Inventory Points, roll <strong>three d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,15 @@
       "value": 4
     },
     "source": "FUCR212",
-    "fuid": "advanced-alchemy"
+    "fuid": "advanced-alchemy",
+    "damage": {
+      "onApply": ""
+    },
+    "traits": {
+      "entries": [
+        "potion"
+      ]
+    }
   },
   "effects": [],
   "sort": 200000,
@@ -32,15 +40,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1707098208405,
-    "modifiedTime": 1743184367709,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1771879641477,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

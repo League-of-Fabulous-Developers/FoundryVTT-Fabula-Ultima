@@ -1,10 +1,10 @@
 {
-  "folder": "wU0wYafQu5AjChaf",
-  "name": "Effect: Hookleaf Nightshade (Poison Damage)",
+  "folder": "sKnezupplQgHL52D",
+  "name": "Effect: Hookleaf Nightshade (Poison)",
   "type": "effect",
   "img": "icons/commodities/flowers/lotus-violet.webp",
   "system": {
-    "fuid": "effect-hookleaf-nightshade",
+    "fuid": "effect-hookleaf-nightshade-poison-damage",
     "cost": {
       "value": 0
     },
@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Hookleaf Poison Damage",
+      "name": "Hookleaf Nightshade (Poison)",
       "_id": "2XWchLTOoMqRPAWv",
       "type": "base",
       "system": {
@@ -47,21 +47,18 @@
                 "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
                 "damageSources": [],
-                "damageTypes": []
+                "damageTypes": [],
+                "identifier": ""
               },
               "actions": {
-                "bzZBd4XkCyeHe3d6": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "bzZBd4XkCyeHe3d6",
+                "66prvetQwmE2o3Up": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "66prvetQwmE2o3Up",
                   "traits": {
                     "entries": [
                       "ignore-resistances",
                       "ignore-immunities"
                     ]
-                  },
-                  "amount": "",
-                  "cost": {
-                    "amount": null
                   }
                 }
               }
@@ -100,7 +97,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1770372515874
+        "modifiedTime": 1771836236071
       },
       "_key": "!items.effects!gboMfVDKKggDNDw3.2XWchLTOoMqRPAWv"
     }
@@ -114,7 +111,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770370431058,
-    "modifiedTime": 1770371329603,
+    "modifiedTime": 1771835833097,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -122,6 +119,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "gboMfVDKKggDNDw3",
-  "sort": 0,
+  "sort": 200000,
   "_key": "!items!gboMfVDKKggDNDw3"
 }

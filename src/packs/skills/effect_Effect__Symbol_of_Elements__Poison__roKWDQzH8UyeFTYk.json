@@ -1,5 +1,5 @@
 {
-  "folder": "XW8tPjIw2b07tMQv",
+  "folder": "e9rFgLeMh5ELsNZX",
   "name": "Effect: Symbol of Elements (Poison)",
   "type": "effect",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -80,7 +80,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770614204462,
-    "modifiedTime": 1770635423777,
+    "modifiedTime": 1771877886756,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {
@@ -88,6 +88,6 @@
     "mA8SNY2rY4X5tOHa": 3
   },
   "_id": "roKWDQzH8UyeFTYk",
-  "sort": 3500000,
+  "sort": 800000,
   "_key": "!items!roKWDQzH8UyeFTYk"
 }

@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,15 @@
       "step": 1,
       "max": 6
     },
-    "fuid": "powerful-strike"
+    "fuid": "powerful-strike",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -117,7 +127,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you hit one or more creatures with a <strong>melee </strong>attack, that attack deals 5 extra damage to each creature.  The amount of extra damage increases to 10 at <strong>level 40</strong>. </p>",
+      "description": "<p>Your <strong>melee</strong> attacks deal 5 extra damage. This increases to 10 at <strong>level 40</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {},
@@ -127,7 +137,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1770710690716,
+        "modifiedTime": 1771888955192,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
@@ -168,7 +178,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706585658140,
-    "modifiedTime": 1770750298493,
+    "modifiedTime": 1771888716068,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

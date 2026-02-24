@@ -162,7 +162,8 @@
                     "secondary": {
                       "value": "wlp"
                     }
-                  }
+                  },
+                  "bonus": ""
                 }
               }
             }
@@ -185,7 +186,7 @@
       "_id": "6mKj1xGOi50dNxwI",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>Performing the <strong>Navigator</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -196,12 +197,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767266328077,
-        "modifiedTime": 1767266511489,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1771875900801,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!51Ws5AS0aD5MTJRI.6mKj1xGOi50dNxwI"
     }

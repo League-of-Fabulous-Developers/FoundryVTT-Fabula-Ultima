@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improves My Trust in You."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong>, <strong>Esper</strong>, and <strong>Orator</strong>, and must have acquired the <strong>My Trust in You</strong> Skill.</p><hr /><p>When you use @UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust in You} on another Player Character, that character chooses <strong>Dexterity, Insight, Might, </strong>or<strong> Willpower</strong>: they treat the chosen Attribute as being increased by one die size (up to a maximum of <strong>d12</strong>) until the end of the scene or until you use <strong>My Trust in You</strong> on them again.</p><hr /><p><strong>Ally Receives:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.2TtzNh1YqFDLyOKo], @EFFECT[Compendium.projectfu.heroic-skills.Item.aGBmSaKFRyInlX7r], @EFFECT[Compendium.projectfu.heroic-skills.Item.GChgfUsVVDlhM9Y8], or @EFFECT[Compendium.projectfu.heroic-skills.Item.0cahhGuSayt6t5CW]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong>, <strong>Esper</strong>, and <strong>Orator</strong>, and must have acquired the <strong>My Trust in You</strong> Skill.</p><hr /><p>When you use @UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust in You} on another Player Character, that character chooses <strong>Dexterity, Insight, Might, </strong>or<strong> Willpower</strong>: they treat the chosen Attribute as being increased by one die size (up to a maximum of <strong>d12</strong>) until the end of the scene or until you use <strong>My Trust in You</strong> on them again.</p>",
     "isFavored": {
       "value": false
     },
@@ -46,9 +46,138 @@
       }
     },
     "source": "FUNF163",
-    "fuid": "cheer-up"
+    "fuid": "cheer-up",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      },
+      "entries": [
+        "Compendium.projectfu.heroic-skills.Item.2TtzNh1YqFDLyOKo",
+        "Compendium.projectfu.heroic-skills.Item.aGBmSaKFRyInlX7r",
+        "Compendium.projectfu.heroic-skills.Item.GChgfUsVVDlhM9Y8",
+        "Compendium.projectfu.heroic-skills.Item.0cahhGuSayt6t5CW"
+      ],
+      "prompt": true
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cheer Up!",
+      "img": "icons/skills/social/peace-luck-insult.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.cSzzcGmQur0Zo6R5",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "rj0B1dKIhAzmOELD": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "zG22KkXXSdAhpo1I",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "my-trust-in-you"
+              },
+              "_id": "rj0B1dKIhAzmOELD",
+              "actions": {
+                "8WP69Jw04C6vdxwY": {
+                  "type": "messageRuleAction",
+                  "_id": "8WP69Jw04C6vdxwY",
+                  "message": "<p>The ally may choose an Attribute to increase.</p>"
+                },
+                "BfgG59qwzOUIGJMf": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "BfgG59qwzOUIGJMf",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.2TtzNh1YqFDLyOKo"
+                },
+                "2BBMdhclHL61oXif": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "2BBMdhclHL61oXif",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.aGBmSaKFRyInlX7r"
+                },
+                "5yd3YXhQlC1It3LF": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "5yd3YXhQlC1It3LF",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.GChgfUsVVDlhM9Y8"
+                },
+                "3mgiNUIcVvmeDBI5": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "3mgiNUIcVvmeDBI5",
+                  "effect": "Compendium.projectfu.heroic-skills.Item.0cahhGuSayt6t5CW"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "basic"
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "lasxz3C8GPbS6O5w",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you use <strong>My Trust in You</strong> on another Player Character, they may choose an Attribute to increase by one die size.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Cheer Up!",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.heroic-skills.Item.cSzzcGmQur0Zo6R5",
+            "effectUuid": null,
+            "fuid": "cheer-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1771893815816,
+        "modifiedTime": 1771894102904,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!cSzzcGmQur0Zo6R5.lasxz3C8GPbS6O5w"
+    }
+  ],
   "flags": {
     "core": {},
     "projectfu": {
@@ -62,7 +191,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1770878603336,
+    "modifiedTime": 1771893798968,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

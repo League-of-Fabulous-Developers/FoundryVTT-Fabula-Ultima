@@ -10,7 +10,7 @@
     "summary": {
       "value": "Ecdysis allows you to end status effects and spells."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Mutant</strong> Class.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options: you recover from all status effects, <strong>and/or</strong> if you are affected by one or more spells with a <strong>duration </strong>of “Scene”, you are no longer affected by any of those spells.</p>",
+    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Mutant</strong> Class.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options:</p><ul><li><p>You recover from all status effects.</p></li><li><p>If you are affected by one or more spells with a <strong>duration </strong>of “Scene”, you are no longer affected by any of those spells.</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -94,7 +96,15 @@
       }
     },
     "source": "FUTF174",
-    "fuid": "greater-ecdysis"
+    "fuid": "greater-ecdysis",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -156,7 +166,7 @@
       "_id": "dNIr7MVVPt2HfMst",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you use the <strong>Ecdysis</strong> Skill, you may also choose one or both options: you recover from all status effects, <strong>and/or</strong> if you are affected by one or more spells with a <strong>duration</strong> of “Scene”, you are no longer affected by any of those spells.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -171,7 +181,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770960949158,
-        "modifiedTime": 1770961052237,
+        "modifiedTime": 1771896104012,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!gMC0t7NhWgv6BTcl.dNIr7MVVPt2HfMst"
@@ -188,7 +198,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1770960938906,
+    "modifiedTime": 1771896066833,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
