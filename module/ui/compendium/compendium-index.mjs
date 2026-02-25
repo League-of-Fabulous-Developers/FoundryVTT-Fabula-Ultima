@@ -3,6 +3,24 @@ import { SYSTEM } from '../../helpers/config.mjs';
 import { SETTINGS } from '../../settings.js';
 
 /**
+ * @typedef CompendiumIndexEntry
+ * @property {string} _id            Document ID within the compendium
+ * @property {string} uuid           Fully-qualified UUID
+ * @property {string} name           Document name
+ * @property {string|null} img       Image path
+ * @property {string} type           Document subtype
+ * @property {string} pack           Compendium collection key (e.g. "fu.items")
+ * @property {Object} [system]       Partial system data (indexed fields only)
+ */
+
+/**
+ * @typedef CompendiumSourceInfo
+ * @property {String} id The package id.
+ * @property {'system'|'module'|'world'}  type
+ * @property {String} title Human readable name.
+ */
+
+/**
  * @typedef EquipmentEntries
  * @property {CompendiumIndexEntry[]} armor
  * @property {CompendiumIndexEntry[]} weapon
@@ -255,6 +273,51 @@ export class CompendiumIndex {
 	}
 
 	/**
+	 * @returns {CompendiumSourceInfo[]}
+	 */
+	getLoadedCompendiumSourceInfo() {
+		const sources = new Map();
+
+		for (const pack of game.packs) {
+			const pkg = pack.metadata.packageName;
+			if (!pkg || sources.has(pkg)) continue;
+			if (pack.metadata.system !== systemId) continue;
+
+			// World packs
+			if (pkg === 'world') {
+				sources.set(pkg, {
+					id: 'world',
+					type: 'world',
+					title: game.world.title,
+				});
+				continue;
+			}
+
+			// System packs
+			if (pkg === game.system.id) {
+				sources.set(pkg, {
+					id: pkg,
+					type: 'system',
+					title: game.system.title,
+				});
+				continue;
+			}
+
+			// Module packs
+			const module = game.modules.get(pkg);
+			if (module) {
+				sources.set(pkg, {
+					id: pkg,
+					type: 'module',
+					title: module.title,
+				});
+			}
+		}
+
+		return [...sources.values()];
+	}
+
+	/**
 	 * @param {string} document Document type (e.g. "Item")
 	 * @param {string} type The document subtype. (Such as what type of items like armor, weapons)
 	 * @param {string[]} fields The fields to record
@@ -287,6 +350,7 @@ export class CompendiumIndex {
 				(result[key] ??= []).push({
 					...entry,
 					pack: pack.collection,
+					packageName: pack.metadata.packageName,
 				});
 			}
 		}

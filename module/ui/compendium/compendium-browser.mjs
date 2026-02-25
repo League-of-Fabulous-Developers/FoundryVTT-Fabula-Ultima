@@ -10,17 +10,6 @@ import { HTMLUtils } from '../../helpers/html-utils.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 
 /**
- * @typedef CompendiumIndexEntry
- * @property {string} _id            Document ID within the compendium
- * @property {string} uuid           Fully-qualified UUID
- * @property {string} name           Document name
- * @property {string|null} img       Image path
- * @property {string} type           Document subtype
- * @property {string} pack           Compendium collection key (e.g. "fu.items")
- * @property {Object} [system]       Partial system data (indexed fields only)
- */
-
-/**
  * @typedef {"classes"|"skills"|"equipment"|"spells"|"adversaries"|"abilities"|"effects"} CompendiumBrowserTab
  */
 
@@ -160,11 +149,19 @@ export class CompendiumBrowser extends FUApplication {
 			icon: 'fas fa-book',
 			contentClasses: ['fu-application__browser'],
 			resizable: true,
+			controls: [
+				{
+					action: 'refreshIndex',
+					icon: 'fa-regular fa-refresh',
+					label: 'FU.CompendiumIndexRefresh',
+					ownership: 'OWNER',
+				},
+			],
 		},
 		form: { closeOnSubmit: false },
 		position: { width: 800, height: '800' },
 		actions: {
-			refresh: this.refresh,
+			refreshIndex: this.refreshIndex,
 		},
 	};
 
@@ -471,6 +468,7 @@ export class CompendiumBrowser extends FUApplication {
 	 */
 	toggleCompendiumEntries(element = null) {
 		if (!this.#tabData) {
+			console.debug('Cannot toggle compendium entries without tab data.');
 			return;
 		}
 
@@ -484,17 +482,33 @@ export class CompendiumBrowser extends FUApplication {
 			for (const entry of filteredEntries) {
 				tableData.visible.add(entry.uuid);
 			}
+
+			// Find active tab inside this application only
+			const activeTab = root.querySelector('.tab.active');
+			if (!activeTab) {
+				console.warn('No active tab found.');
+				return;
+			}
+
 			// Look up the table in the DOM by its data-table-id dataset property
 			const selector = `#${CSS.escape(tableData.id)}`;
-			const renderedTable = root.querySelector(selector);
+			const matches = activeTab.querySelectorAll(selector);
+			if (matches.length > 1) {
+				console.error(`More than one table with the ID ${tableData.id} was found!`);
+			} else if (matches.length === 0) {
+				throw Error(`Did not find the rendered table ${tableData.id} in the DOM.`);
+			}
+
+			const renderedTable = matches[0];
 			if (!renderedTable) {
 				throw Error(`Did not find the rendered table ${tableData.id} in the DOM.`);
 			}
+
 			// If no entries are visible, hide the table
 			const showTable = filteredEntries.length > 0;
-			renderedTable.classList.toggle('hidden', !showTable);
 			if (showTable) {
 				// Look up all its list elements
+				let visibleCount = 0;
 				const listElements = renderedTable.querySelectorAll('li.fu-table__row-container.item');
 				for (const li of listElements) {
 					const uuid = li.dataset.uuid;
@@ -506,13 +520,20 @@ export class CompendiumBrowser extends FUApplication {
 					// Toggle visibility based on filter
 					const visible = tableData.visible.has(uuid);
 					li.classList.toggle('hidden', !visible);
-					//console.debug(`Toggle list element ${uuid}? ${visible}`);
+					if (visible) {
+						visibleCount++;
+					}
 				}
+				console.debug(`Compendium browser table ${tableData.id} has been updated. (${visibleCount} elements now visible).`);
+			} else {
+				console.debug(`Compendium browser table ${tableData.id} is now hidden.`);
 			}
+
+			renderedTable.classList.toggle('hidden', !showTable);
 		}
 	}
 
-	#basicRenderer = new BasicCompendiumTableRenderer();
+	#basicRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-basic' });
 	#abilityRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-abilities' });
 	#classRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-classes' });
 	#classFeatureRenderer = new BasicCompendiumTableRenderer({ id: 'compendium-class-features' });
@@ -526,6 +547,17 @@ export class CompendiumBrowser extends FUApplication {
 	#skillRenderer = new SkillsCompendiumTableRenderer({ id: 'compendium-skills' });
 	#attackRenderer = new AttackCompendiumTableRenderer({ id: 'compendium-attack' });
 
+	#compendiumFilter = {
+		label: 'FU.Compendium',
+		propertyPath: ['packageName'],
+		options: CompendiumIndex.instance.getLoadedCompendiumSourceInfo().map((info) => {
+			return {
+				value: info.id,
+				label: info.title,
+			};
+		}),
+	};
+
 	/**
 	 *
 	 * @param {String} tabId
@@ -537,6 +569,7 @@ export class CompendiumBrowser extends FUApplication {
 		if (this.activeTabId === tabId && !force) {
 			return;
 		}
+		this.filter.clear();
 		switch (tabId) {
 			case 'classes':
 				{
@@ -595,6 +628,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: ['system.class.value', 'metadata.class'],
 								options: classOptions,
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -642,6 +676,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: CompendiumIndex.itemFields.weaponDamageType,
 								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -710,6 +745,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: CompendiumIndex.itemFields.weaponDamageType,
 								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -741,6 +777,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: 'system.role.value',
 								options: FoundryUtils.getFormOptions(FU.role),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -774,6 +811,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: CompendiumIndex.itemFields.spellDamageType,
 								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -789,7 +827,9 @@ export class CompendiumBrowser extends FUApplication {
 								renderer: this.#basicRenderer,
 							},
 						],
-						{},
+						{
+							compendium: this.#compendiumFilter,
+						},
 					);
 				}
 				break;
@@ -860,7 +900,12 @@ export class CompendiumBrowser extends FUApplication {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async refresh(event, target) {
+	static async refreshIndex(event, target) {
 		CompendiumIndex.reinitialize();
+		ui.notifications.info(`FU.CompendiumIndexRefreshMessage`, { localize: true });
+		if (CompendiumBrowser.instance) {
+			CompendiumBrowser.instance.filter.clear();
+			CompendiumBrowser.instance.render(true);
+		}
 	}
 }
