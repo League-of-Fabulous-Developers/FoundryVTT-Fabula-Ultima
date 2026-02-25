@@ -20,6 +20,7 @@ export class AccuracyBonusesDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { NumberField } = foundry.data.fields;
 		return {
+			all: new NumberField({ initial: 0, integer: true, nullable: false }),
 			accuracyCheck: new NumberField({ initial: 0, integer: true, nullable: false }),
 			accuracyMelee: new NumberField({ initial: 0, integer: true, nullable: false }),
 			accuracyRanged: new NumberField({ initial: 0, integer: true, nullable: false }),

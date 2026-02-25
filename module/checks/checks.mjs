@@ -239,9 +239,11 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.additionalData ??= {};
 	check.critThreshold = CRITICAL_THRESHOLD;
 	Object.seal(check);
+
 	// Set initial targets (actions without rolls can have targeting)
 	const config = CheckConfiguration.configure(check);
 	config.setDefaultTargets();
+
 	// Initial callback
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	Object.defineProperty(check, 'type', {
@@ -260,6 +262,14 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	});
 	if (!check.id) {
 		throw new Error('check id missing');
+	}
+
+	// Universal bonus
+	if (actor.system.bonuses?.accuracy?.all) {
+		check.modifiers.push({
+			label: `FU.AllCheckBonus`,
+			value: actor.system.bonuses.accuracy.all,
+		});
 	}
 
 	await invokeWithCallbacks(CheckHooks.prepareCheck, check, actor, item);

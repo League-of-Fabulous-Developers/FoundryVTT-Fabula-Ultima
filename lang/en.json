@@ -508,6 +508,7 @@
 		"MagicCheckBonus": "Magic Check Bonus",
 		"AccuracyBonus": "Accuracy Check Bonus",
 		"CheckBonus": "Check Bonus",
+		"AllCheckBonus": "All Check Bonus",
 		"AccuracyTest": "Accuracy Test",
 		"Accuracy": "Accuracy",
 		"UseWeaponAccuracy": "Use Weapon Accuracy?",
