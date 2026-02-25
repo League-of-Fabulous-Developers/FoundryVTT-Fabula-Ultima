@@ -10,17 +10,6 @@ import { HTMLUtils } from '../../helpers/html-utils.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 
 /**
- * @typedef CompendiumIndexEntry
- * @property {string} _id            Document ID within the compendium
- * @property {string} uuid           Fully-qualified UUID
- * @property {string} name           Document name
- * @property {string|null} img       Image path
- * @property {string} type           Document subtype
- * @property {string} pack           Compendium collection key (e.g. "fu.items")
- * @property {Object} [system]       Partial system data (indexed fields only)
- */
-
-/**
  * @typedef {"classes"|"skills"|"equipment"|"spells"|"adversaries"|"abilities"|"effects"} CompendiumBrowserTab
  */
 
@@ -534,11 +523,10 @@ export class CompendiumBrowser extends FUApplication {
 					if (visible) {
 						visibleCount++;
 					}
-					console.debug(`Visible list element ${uuid}? ${visible} (Hidden: ${li.classList.contains('hidden')}, Connected: ${li.isConnected}) `);
 				}
-				console.debug(`Compendium browser table ${tableData.id} has been updated. (${visibleCount} elements now visible). Connected? ${root.isConnected}`);
+				console.debug(`Compendium browser table ${tableData.id} has been updated. (${visibleCount} elements now visible).`);
 			} else {
-				console.debug(`Compendium browser table ${tableData.id} is now hidden. Connected? ${root.isConnected}`);
+				console.debug(`Compendium browser table ${tableData.id} is now hidden.`);
 			}
 
 			renderedTable.classList.toggle('hidden', !showTable);
@@ -558,6 +546,17 @@ export class CompendiumBrowser extends FUApplication {
 	#consumableRenderer = new ConsumableCompendiumTableRenderer({ id: 'compendium-consumable' });
 	#skillRenderer = new SkillsCompendiumTableRenderer({ id: 'compendium-skills' });
 	#attackRenderer = new AttackCompendiumTableRenderer({ id: 'compendium-attack' });
+
+	#compendiumFilter = {
+		label: 'FU.Compendium',
+		propertyPath: ['packageName'],
+		options: CompendiumIndex.instance.getLoadedCompendiumSourceInfo().map((info) => {
+			return {
+				value: info.id,
+				label: info.title,
+			};
+		}),
+	};
 
 	/**
 	 *
@@ -629,6 +628,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: ['system.class.value', 'metadata.class'],
 								options: classOptions,
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -676,6 +676,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: CompendiumIndex.itemFields.weaponDamageType,
 								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -744,6 +745,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: CompendiumIndex.itemFields.weaponDamageType,
 								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -775,6 +777,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: 'system.role.value',
 								options: FoundryUtils.getFormOptions(FU.role),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -808,6 +811,7 @@ export class CompendiumBrowser extends FUApplication {
 								propertyPath: CompendiumIndex.itemFields.spellDamageType,
 								options: FoundryUtils.getFormOptions(FU.damageTypes),
 							},
+							compendium: this.#compendiumFilter,
 						},
 					);
 				}
@@ -823,7 +827,9 @@ export class CompendiumBrowser extends FUApplication {
 								renderer: this.#basicRenderer,
 							},
 						],
-						{},
+						{
+							compendium: this.#compendiumFilter,
+						},
 					);
 				}
 				break;
