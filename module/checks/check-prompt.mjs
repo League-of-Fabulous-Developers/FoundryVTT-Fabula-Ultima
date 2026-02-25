@@ -169,80 +169,6 @@ const areaList = [
 
 /**
  * @template T
- * @param {Actor} actor
- * @param {"attribute", "open", "group", "ritual"} type
- * @param {T} initialConfig
- * @returns {Promise<AttributeCheckConfig | OpenCheckConfig | GroupCheckConfig>}
- */
-async function promptForConfiguration(actor, type, initialConfig = {}) {
-	const recentCheck = retrieveRecentCheck(actor, type);
-
-	Object.keys(recentCheck).forEach((key) => {
-		if (initialConfig[key] != null) {
-			recentCheck[key] = initialConfig[key];
-		}
-	});
-
-	const attributes = actor.system.attributes;
-
-	const attributeValues = Object.entries(attributes).reduce(
-		(previousValue, [attribute, { current }]) => ({
-			...previousValue,
-			[attribute]: current,
-		}),
-		{},
-	);
-
-	let context = {
-		actor: actor,
-		type: type,
-		typeLabel: StringUtils.localize(FU.checkTypes[type]),
-		attributes: FU.attributes,
-		attributeAbbr: FU.attributeAbbreviations,
-		attributeValues: attributeValues,
-		attributeOptions: FoundryUtils.generateConfigIconOptions(Object.keys(FU.attributes), FU.attributes, FU.attributeIcons),
-		attributeIcons: FU.attributeIcons,
-		primary: recentCheck.primary,
-		secondary: recentCheck.secondary,
-		modifier: recentCheck.modifier,
-		difficulty: recentCheck.difficulty,
-		potencyList: potencyList,
-		areaList: areaList,
-		supportDifficulty: recentCheck.supportDifficulty,
-		bonus: actor.system.bonuses.accuracy.openCheck,
-	};
-
-	const title = initialConfig.title ?? FU.checkTypes[type];
-	const result = await foundry.applications.api.DialogV2.input({
-		window: {
-			title: game.i18n.localize(title),
-			icon: 'fa-solid fa-dice',
-		},
-		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-		actions: {
-			setDifficulty: onSetDifficulty,
-		},
-		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-prompt-unified.hbs', context),
-		rejectClose: false,
-		ok: {
-			icon: FU.allIcon.roll,
-			label: game.i18n.localize('FU.DialogCheckRoll'),
-		},
-		/** @param {Event} event
-		 *  @param {HTMLElement} dialog **/
-		render: (event, dialog) => {
-			HTMLUtils.initializeIconRadioGroups(dialog.element, context);
-		},
-	});
-	if (result) {
-		saveRecentCheck(actor, type, result);
-		return result;
-	}
-	return null;
-}
-
-/**
- * @template T
  * @param {Document|FUActor} document
  * @param {CheckType} type
  * @param {T} initialConfig
@@ -281,16 +207,16 @@ async function promptForConfigurationV2(document, type, initialConfig = {}) {
 		modifier: recentCheck.modifier,
 		difficulty: recentCheck.difficulty,
 		supportDifficulty: recentCheck.supportDifficulty,
-		bonus: 0,
+		bonus: document.system?.bonuses?.accuracy?.all ?? 0,
 	};
 
 	switch (type) {
 		case 'open': {
-			context.bonus = document.system.bonuses.accuracy.openCheck;
+			context.bonus += document.system.bonuses.accuracy.openCheck;
 			break;
 		}
 		case 'opposed': {
-			context.bonus = document.system.bonuses.accuracy.opposedCheck;
+			context.bonus += document.system.bonuses.accuracy.opposedCheck;
 			break;
 		}
 		case 'ritual':
@@ -381,12 +307,12 @@ async function onUpdateRitual(event, target) {
 }
 
 /**
- * @param {Actor} actor
+ * @param {FUActor} actor
  * @param {CheckPromptOptions<AttributeCheckConfig>} [options]
  * @returns {Promise<void>}
  */
 async function attributeCheck(actor, options = {}) {
-	const promptResult = await promptForConfiguration(actor, 'attribute', options.initialConfig);
+	const promptResult = await promptForConfigurationV2(actor, 'attribute', options.initialConfig);
 	if (promptResult) {
 		return Checks.attributeCheck(
 			actor,
@@ -412,7 +338,7 @@ async function attributeCheck(actor, options = {}) {
 }
 
 /**
- * @param {Actor} actor
+ * @param {FUActor} actor
  * @param {CheckPromptOptions<OpenCheckConfig>} [options]
  * @returns {Promise<void>}
  */
@@ -472,7 +398,7 @@ async function opposedCheck(actor, data = {}, options = {}) {
 }
 
 /**
- * @param {Actor} actor
+ * @param {FUActor} actor
  * @param {CheckPromptOptions<GroupCheckConfig>} [options]
  * @returns {Promise<void>}
  */
