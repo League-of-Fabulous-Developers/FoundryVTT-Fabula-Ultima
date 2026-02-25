@@ -186,6 +186,7 @@ async function onCombatEvent(event) {
 						actor.clearTemporaryEffects({
 							status: false,
 							rest: false,
+							duration: true,
 							predicate: (effect) => {
 								// It's handled by the pressure system
 								if (effect.statuses.has('pressure')) {
