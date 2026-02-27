@@ -96,9 +96,11 @@ Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
 	if (effect.identifier) {
 		const matchingEffect = actor.resolveEffect(effect.identifier);
 		if (matchingEffect) {
-			const stackable = matchingEffect.system.rules.stacking.enabled;
+			const stackable = matchingEffect.stackable;
 			console.debug(`Found a matching effect of ${effect.identifier}. Stackable? ${stackable}`);
 			if (stackable) {
+				// TODO: Add a stacking message
+				matchingEffect.addStack();
 				return false;
 			}
 		}

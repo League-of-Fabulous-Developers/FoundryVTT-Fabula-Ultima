@@ -62,6 +62,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		return ProgressDataModel.generateProgressArray(this);
 	}
 
+	// TODO: Used in a template
 	get clockSegments() {
 		return Array(this.max)
 			.fill(null)
@@ -69,6 +70,26 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 				segment: i + 1,
 				filled: this.current > i,
 			}));
+	}
+
+	/**
+	 * @param {Number} increment
+	 * @param {Boolean }useMultiplier
+	 * @returns {number}
+	 */
+	calculateUpdatedValue(increment, useMultiplier = false) {
+		const maxProgress = this.max;
+		let result;
+		if (useMultiplier) {
+			const stepMultiplier = this.step || 1;
+			result = this.current + increment * stepMultiplier;
+		} else {
+			result = this.current + increment;
+		}
+		if (maxProgress !== 0) {
+			result = Math.min(result, maxProgress);
+		}
+		return result;
 	}
 
 	/**
@@ -132,23 +153,9 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	static async updateForDocument(document, propertyPath, increment, useMultiplier) {
 		/** @type ProgressDataModel **/
 		const progress = foundry.utils.getProperty(document, propertyPath);
-		const maxProgress = progress.max;
-
-		let newProgress;
-
-		if (useMultiplier) {
-			const stepMultiplier = progress.step || 1;
-			newProgress = progress.current + increment * stepMultiplier;
-		} else {
-			newProgress = progress.current + increment;
-		}
-
-		if (maxProgress !== 0) {
-			newProgress = Math.min(newProgress, maxProgress);
-		}
-
+		const updatedValue = progress.calculateUpdatedValue(increment, useMultiplier);
 		const currentPropertyPath = `${propertyPath}.current`;
-		await document.update({ [currentPropertyPath]: newProgress });
+		await document.update({ [currentPropertyPath]: updatedValue });
 	}
 
 	/**

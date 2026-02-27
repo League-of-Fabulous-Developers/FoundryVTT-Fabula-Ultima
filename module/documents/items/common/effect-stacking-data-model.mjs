@@ -9,11 +9,11 @@ export class EffectStackingDataModel extends foundry.abstract.DataModel {
 		return {
 			progress: new BooleanField(),
 			duration: new BooleanField(),
-			increment: new NumberField({ initial: 1 }),
+			increment: new NumberField({ initial: 1, nullable: false }),
 		};
 	}
 
 	get enabled() {
-		return this.progress || this.duration;
+		return (this.progress || this.duration) && this.increment;
 	}
 }

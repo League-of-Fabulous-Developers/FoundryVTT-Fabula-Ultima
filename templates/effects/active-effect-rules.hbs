@@ -41,15 +41,19 @@
 			</label>
 			<label class="fu-form__property stack">
 				<span>{{localize 'FU.Progress'}}</span>
-				<input type="checkbox" name="system.rules.stacking.progress" value="{{ system.rules.stacking.progress }}"/>
+				<input type="checkbox"
+					   name="system.rules.stacking.progress"
+					{{checked system.rules.stacking.progress}} />
 			</label>
 			<label class="fu-form__property stack">
 				<span>{{localize 'FU.Duration'}}</span>
-				<input type="checkbox" name="system.rules.stacking.duration" value="{{ system.rules.stacking.duration }}"/>
+				<input type="checkbox" name="system.rules.stacking.duration"
+					{{checked system.rules.stacking.duration }} />
 			</label>
 			<label class="fu-form__property stack">
 				<span>{{localize 'FU.Increment'}}</span>
-				<input type="number" name="system.rules.stacking.increment" value="{{ system.rules.stacking.increment }}"/>
+				<input type="number" name="system.rules.stacking.increment"
+					   value="{{ system.rules.stacking.increment }}"/>
 			</label>
 		</div>
 	</div>

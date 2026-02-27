@@ -427,8 +427,11 @@ async function applyEffect(document, effect, sourceInfo, config = undefined) {
 			},
 			{ parent: document },
 		);
-		await applyConfiguration(instance, config);
-		await sendToChatEffectAdded(instance, document, sourceInfo?.name);
+		// The creation could have been rejected
+		if (instance) {
+			await applyConfiguration(instance, config);
+			await sendToChatEffectAdded(instance, document, sourceInfo?.name);
+		}
 		return instance;
 	}
 }

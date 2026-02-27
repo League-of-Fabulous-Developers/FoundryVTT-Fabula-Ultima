@@ -10,6 +10,8 @@ import { FUChatBuilder } from '../../helpers/chat-builder.mjs';
 import { CommonEvents } from '../../checks/common-events.mjs';
 import { CommonSections } from '../../checks/common-sections.mjs';
 import { CHECK_FLAVOR } from '../../checks/default-section-order.mjs';
+import { ProgressDataModel } from '../items/common/progress-data-model.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 const HIGH_PRIORITY_CHANGES = new Set([
 	'system.resources.hp.bonus',
@@ -257,6 +259,55 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				context.setSourceItem(this.sourceInfo.itemUuid);
 			}
 			return context;
+		}
+
+		/**
+		 * @returns {Boolean} Whether this effect is stackable
+		 */
+		get stackable() {
+			return this.system.rules.stacking.enabled;
+		}
+
+		/**
+		 * @desc Apply one stack onto the effect, if stacking behaviour is enabled.
+		 */
+		async addStack() {
+			if (this.stackable) {
+				console.debug(`Incrementing stack of ${this.name}`);
+				let changes = {};
+				const increment = this.system.rules.stacking.increment;
+
+				if (this.system.rules.stacking.progress) {
+					// TODO: Message that stacks are at maximum
+					if (this.system.rules.progress.isMaximum) {
+						/* empty */
+					} else {
+						const updatedValue = this.system.rules.progress.calculateUpdatedValue(increment);
+						changes['system.rules.progress.current'] = updatedValue;
+					}
+				}
+
+				if (this.system.rules.stacking.duration) {
+					const remaining = this.system.duration?.remaining ?? 0;
+					changes['system.duration.remaining'] = remaining + 1;
+				}
+
+				if (Object.keys(changes).length > 0) {
+					await this.update(changes);
+				}
+				if (this.system.rules.stacking.progress) {
+					await ProgressDataModel.sendToChat(this.parent, this.system.rules.progress);
+				}
+				if (this.system.rules.stacking.duration) {
+					await ChatMessage.create({
+						speaker: ChatMessage.getSpeaker({ actor: this.parent }),
+						content: StringUtils.localize(`FU.DurationIncrementMessage`, {
+							label: this.name,
+							current: this.system.duration.remaining,
+						}),
+					});
+				}
+			}
 		}
 
 		/**
