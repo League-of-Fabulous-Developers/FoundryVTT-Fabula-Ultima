@@ -150,11 +150,10 @@ export class FUActor extends Actor {
 	 */
 	async _onCreate(createData, options, userId) {
 		await super._onCreate(createData, options, userId);
-		if (this.isCharacterType) {
+		if (this.isCharacterType && this.type === 'character') {
 			// Load the compendium
 			const pack = game.packs.get('projectfu.basic-equipment');
 			const content = await pack.getDocuments();
-
 			// Find the item with system.fuid === 'unarmed-strike'
 			const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
 			if (unarmedStrikeItem) {
@@ -163,9 +162,7 @@ export class FUActor extends Actor {
 				switch (existingCopies.length) {
 					case 0:
 						{
-							if (this.type === 'character') {
-								await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
-							}
+							await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
 						}
 						break;
 				}

@@ -1,12 +1,12 @@
-<div class="fu-rule-element__property-row">
-	<label class="fu-rule-element__property" data-tooltip="{{localize 'FU.TargetRelationHint'}}">
+<div class="fu-form__property-row">
+	<label class="fu-form__property" data-tooltip="{{localize 'FU.TargetRelationHint'}}">
 		<span>{{localize 'FU.FactionRelation'}}</span>
 		<select name="{{pfuConcat path ".relation"}}">
 			{{selectOptions options.factionRelation selected=predicate.relation localize=true}}
 		</select>
 	</label>
 
-	<label class="fu-rule-element__property">
+	<label class="fu-form__property">
 		<span>{{localize 'FU.Inclusive'}}</span>
 		{{formGroup predicate.schema.fields.inclusive value=predicate.inclusive name=(pfuConcat path ".inclusive") }}
 	</label>

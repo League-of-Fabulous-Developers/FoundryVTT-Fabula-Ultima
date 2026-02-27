@@ -1,5 +1,5 @@
-<div class="fu-rule-element__property-row">
-	<label class="fu-rule-element__property">
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
 		<span>{{localize 'FU.Outcome'}}</span>
 		<select name="{{pfuConcat path ".outcome"}}">
 			<option value="">-</option>
@@ -7,7 +7,7 @@
 		</select>
 	</label>
 
-	<label class="fu-rule-element__property">
+	<label class="fu-form__property">
 		<span>{{localize 'FU.CheckParity'}}</span>
 		<select name="{{pfuConcat path ".parity"}}">
 			<option value="">-</option>
@@ -16,7 +16,7 @@
 	</label>
 </div>
 
-<label class="fu-rule-element__property">
+<label class="fu-form__property">
 	<span>{{localize 'FU.Result'}}</span>
 	<input type="number" name="{{pfuConcat path ".result"}}" value="{{ predicate.result }}" />
 </label>

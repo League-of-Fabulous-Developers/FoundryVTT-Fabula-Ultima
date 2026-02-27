@@ -14,6 +14,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -792,13 +793,18 @@ function onRenderChatMessage(message, element) {
 			if (!effect) {
 				return;
 			}
-			for (const target of targets) {
-				if (!target.isOwner) {
-					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-					continue;
-				}
-				await applyEffect(target, effect, sourceInfo, configuration);
+			const esi = effect.flags?.[systemId]?.[Flags.ActiveEffect.Source];
+			if (esi) {
+				sourceInfo.withFuid(esi.fuid);
 			}
+			if (effect)
+				for (const target of targets) {
+					if (!target.isOwner) {
+						ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+						continue;
+					}
+					await applyEffect(target, effect, sourceInfo, configuration);
+				}
 		}
 	});
 

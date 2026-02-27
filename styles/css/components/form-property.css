@@ -1,21 +1,21 @@
-.fu-rule-element {
+.fu-form {
 	--rule-element-label-width: 120px;
 
 	color: var(--color-primary);
 	font-weight: var(--font-weight-normal);
 
-	.-fu-rule-element__title {
+	.-fu-form__title {
 		display: flex;
 		gap: 4px;
 	}
 
-	.fu-rule-element__section {
+	.fu-form__section {
 		background: linear-gradient(rgba(240, 246, 232, 0.7), rgba(230, 240, 220, 0.7));
 		border-radius: 5px;
 		border: 1px solid var(--border-primary);
 	}
 
-	.fu-rule-element__header {
+	.fu-form__header {
 		padding: 0 0.5rem;
 		background: var(--color-tabStyle-gradient);
 		color: var(--color-text-primary);
@@ -31,22 +31,22 @@
 		}
 	}
 
-	.fu-rule-element__content {
+	.fu-form__content {
 		background: linear-gradient(var(--gradient-button-bg), rgba(230, 240, 220, 0.7));
 		padding: 0.5rem;
 	}
 
-	.fu-rule-element__item {
+	.fu-form__item {
 		border-radius: 5px;
 		border: 1px solid var(--border-primary);
 	}
 
-	.fu-rule-element__set {
+	.fu-form__set {
 		background: var(--color-background);
 		flex: 2;
 	}
 
-	.fu-rule-element__item__header {
+	.fu-form__item__header {
 		padding: 0 0.5rem;
 		display: flex;
 		justify-content: space-between;
@@ -62,21 +62,26 @@
 		}
 	}
 
-	.fu-rule-element__item__content {
+	.fu-form__item__content {
 		background: linear-gradient(var(--gradient-button-bg), rgba(230, 240, 220, 0.7));
 		padding: 0.5rem;
 		backdrop-filter: saturate(200%); /* Vivid colors */
 	}
 
-	.fu-rule-element__property-row {
+	.fu-form__property-row {
 		display: flex;
 		gap: 1rem;
+		align-items: center;
 	}
 
-	.fu-rule-element__property {
+	.fu-form__property__prefix {
+		min-width: 80px;
+	}
+
+	.fu-form__property {
 		display: flex;
 		flex: 2;
-		align-items: center;
+		align-items: flex-start;
 		white-space: nowrap; /* prevent wrapping */
 		margin-bottom: 0.5rem;
 
@@ -86,7 +91,13 @@
 		}
 	}
 
-	.fu-rule-element__editor {
+	.fu-form__property.stack {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.fu-form__editor {
 		height: 160px;
 		padding: 4px;
 		background: var(--gradient-button-bg);
@@ -94,18 +105,18 @@
 	}
 
 	/* Any form control inside adapts automatically */
-	.fu-rule-element__property > *:not(:first-child) {
+	.fu-form__property > *:not(:first-child) {
 		flex: 1; /* controls take remaining width */
 		min-width: 0; /* allows proper shrinking inside flex */
 	}
 
 	/* Prevent label text overflow */
-	.fu-rule-element__property > :first-child {
+	.fu-form__property > :first-child {
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 
-	.fu-rule-element__group {
+	.fu-form__group {
 		background-color: rgba(0, 0, 0, 0.08);
 		padding-left: 8px;
 		padding-right: 8px;
@@ -114,7 +125,7 @@
 			0 1px 2px rgba(0, 0, 0, 0.2);
 	}
 
-	.fu-rule-element__group__header {
+	.fu-form__group__header {
 		display: flex;
 		padding: 4px;
 		font-weight: bolder;

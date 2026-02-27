@@ -297,7 +297,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Unlike `_onCreate`, is managed by the GM.
 		 */
 		async _preCreate(data, options, user) {
-			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}`);
+			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}, identifier: ${this.identifier}`);
 			const changes = {
 				name: game.i18n.localize(data.name),
 				[`system.duration.remaining`]: this.system.duration.interval,
