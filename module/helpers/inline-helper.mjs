@@ -204,6 +204,7 @@ function determineSource(document, element) {
 			if (effect) {
 				effectUuid = effect.uuid;
 				fuid ??= effect.system.fuid;
+				name = effect.name;
 			}
 		}
 	} // ITEM SHEET
