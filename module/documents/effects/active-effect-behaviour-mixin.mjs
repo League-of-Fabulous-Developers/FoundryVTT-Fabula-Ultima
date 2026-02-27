@@ -292,7 +292,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 					}
 				}
 
-				if (this.system.rules.stacking.duration) {
+				if (this.system.rules.stacking.duration && this.system.isIntervalBased) {
 					const remaining = this.system.duration?.remaining ?? 0;
 					changes['system.duration.remaining'] = remaining + 1;
 					message = StringUtils.localize(`FU.DurationIncrementMessage`, {

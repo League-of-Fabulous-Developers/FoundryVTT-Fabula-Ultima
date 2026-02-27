@@ -55,6 +55,19 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 	}
 
 	/**
+	 * @returns {boolean}
+	 */
+	get isIntervalBased() {
+		switch (this.duration.event) {
+			case 'startOfTurn':
+			case 'endOfTurn':
+			case 'endOfRound':
+				return true;
+		}
+		return false;
+	}
+
+	/**
 	 * @returns {String}
 	 */
 	get eventLabel() {
