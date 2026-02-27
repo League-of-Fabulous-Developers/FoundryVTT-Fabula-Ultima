@@ -1876,6 +1876,8 @@
 	text-overflow: ellipsis;
 	word-wrap: break-word;
 	white-space: wrap;
+	gap: 8px;
+	margin: 4px;
 }
 .unique-clock .stats {
 	display: -webkit-box;
@@ -2044,11 +2046,11 @@
 }
 .unique-clock .progress .pie:checked,
 .unique-clock .progress .pie:checked ~ .pie {
-	background-color: #2b4a42;
+	background-color: var(--color-checkbox-checked-bg);
 }
 .unique-clock .progress .pie:hover,
 .unique-clock .progress .pie:hover ~ .pie {
-	background-color: #ebf7af;
+	background-color: var(--hover-bg);
 }
 .unique-clock .progress .pie:checked:hover,
 .unique-clock .progress .pie:checked:hover ~ .pie,

@@ -132,13 +132,15 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 * @param {ProgressDataModel} track
 	 * @param {String} message
 	 * @param {Boolean} displayName
+	 * @param {String} img
 	 * @returns {Promise<String>}
 	 */
-	static async renderDetails(track, message = undefined, displayName = true) {
+	static async renderDetails(track, message = undefined, displayName = true, img = undefined) {
 		return FoundryUtils.renderTemplate('chat/partials/chat-clock-details', {
 			progress: track,
 			segments: this.generateProgressArray(track),
 			message: message,
+			img: img,
 			displayName: displayName,
 		});
 	}

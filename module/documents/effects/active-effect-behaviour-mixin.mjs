@@ -276,35 +276,41 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 				console.debug(`Incrementing stack of ${this.name}`);
 				let changes = {};
 				const increment = this.system.rules.stacking.increment;
+				let message;
+				let progressUpdated;
 
 				if (this.system.rules.stacking.progress) {
 					// TODO: Message that stacks are at maximum
 					if (this.system.rules.progress.isMaximum) {
-						/* empty */
+						message = StringUtils.localize('FU.ProgressAtMaximum', {
+							label: this.system.rules.progress.name ?? this.name,
+						});
 					} else {
 						const updatedValue = this.system.rules.progress.calculateUpdatedValue(increment);
 						changes['system.rules.progress.current'] = updatedValue;
+						progressUpdated = true;
 					}
 				}
 
 				if (this.system.rules.stacking.duration) {
 					const remaining = this.system.duration?.remaining ?? 0;
 					changes['system.duration.remaining'] = remaining + 1;
+					message = StringUtils.localize(`FU.DurationIncrementMessage`, {
+						label: this.name,
+						current: this.system.duration.remaining + 1,
+					});
 				}
 
 				if (Object.keys(changes).length > 0) {
 					await this.update(changes);
 				}
-				if (this.system.rules.stacking.progress) {
+				if (progressUpdated) {
 					await ProgressDataModel.sendToChat(this.parent, this.system.rules.progress);
 				}
-				if (this.system.rules.stacking.duration) {
+				if (message) {
 					await ChatMessage.create({
 						speaker: ChatMessage.getSpeaker({ actor: this.parent }),
-						content: StringUtils.localize(`FU.DurationIncrementMessage`, {
-							label: this.name,
-							current: this.system.duration.remaining,
-						}),
+						content: message,
 					});
 				}
 			}

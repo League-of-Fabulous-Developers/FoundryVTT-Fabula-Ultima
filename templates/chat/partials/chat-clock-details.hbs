@@ -15,11 +15,19 @@
 					<div class="divider" style="--index: {{obj.id}}"></div>
 				{{/each}}
 			</div>
+
 		</div>
 		<div class="flexcol flex-group-center" style="display: flex; width: 100%;">
-			{{#if displayName}}
-				<div class="rp-label">{{localize progress.name}}</div>
-			{{/if}}
+			<div class="flexrow flex-group-center">
+				{{#if displayName}}
+					<div class="rp-label flexrow flex-group-center">
+						{{#if progress.parent.parent.img }}
+							<img class='fu-icon--s' alt="icon" src="{{{progress.parent.parent.img}}}" />
+						{{/if}}
+						{{localize progress.name}}
+					</div>
+				{{/if}}
+			</div>
 			<div class="flex-group-center stats">
 				<span class="stat-current">{{progress.current}}</span>
 				<span class="stat-divider">/</span>

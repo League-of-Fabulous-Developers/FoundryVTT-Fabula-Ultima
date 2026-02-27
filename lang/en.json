@@ -1794,6 +1794,7 @@
 		},
 		"Stacking": "Stacking",
 		"Bar": "Bar",
-		"DurationIncrementMessage": "The duration of <strong>{label}</strong> has been extended to {current}."
+		"DurationIncrementMessage": "The duration of <strong>{label}</strong> has been extended to {current}.",
+		"ProgressAtMaximum": "<strong>{label}</strong> is already at maximum value."
 	}
 }
