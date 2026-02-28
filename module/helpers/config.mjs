@@ -1078,9 +1078,9 @@ FU.modifyDamageVariant = {
 FU.allIcon = {
 	offensive: 'is-offensive',
 	martial: 'is-martial',
-	melee: 'is-melee',
-	range: 'is-range',
-	spell: 'is-spell',
+	melee: 'fa-solid fa-sword',
+	range: 'fa-solid fa-bow-arrow',
+	spell: 'fa-solid fa-wand-magic-sparkles',
 	skill: 'is-skill',
 	twoweapon: 'is-two-weapon',
 	header: 'is-header',
