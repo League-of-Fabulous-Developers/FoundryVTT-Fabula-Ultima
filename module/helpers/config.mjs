@@ -132,6 +132,15 @@ FU.checkIcons = {
 	target: 'fu-roll-target',
 };
 
+FU.statusIcons = {
+	slow: 'fu-slow',
+	dazed: 'fu-dazed',
+	weak: 'fu-weak',
+	shaken: 'fu-shaken',
+	enraged: 'fu-enraged',
+	poisoned: 'fu-poisoned',
+};
+
 FU.resourceIcons = {
 	hp: 'fu-hp',
 	mp: 'fu-mp',
@@ -1083,6 +1092,7 @@ FU.allIcon = {
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,
+	...FU.statusIcons,
 	...FU.resourceIcons,
 	...FU.attributeIcons,
 	...FU.weaponCategoryIcons,
