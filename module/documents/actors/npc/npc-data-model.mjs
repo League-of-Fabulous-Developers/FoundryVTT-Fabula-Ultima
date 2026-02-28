@@ -233,9 +233,13 @@ export class NpcDataModel extends BaseCharacterDataModel {
 async function setRoleAttributes(actor, newRole, newLevel) {
 	/** @type RoleType **/
 	const role = newRole ?? actor.system.role.value;
-	if (role === 'none') {
+
+	// The custom role does nothing.
+	if (role === 'custom') {
 		return;
 	}
+
+	// TODO: Perhaps separate the global bonuses application from the role
 
 	const level = newLevel ?? actor.system.level.value;
 	console.info(`Setting attributes for role ${role} at level ${level}`);
@@ -250,8 +254,8 @@ async function setRoleAttributes(actor, newRole, newLevel) {
 	updates['system.bonuses.damage.ranged'] = damageBonus;
 	updates['system.bonuses.damage.spell'] = damageBonus;
 
-	// 2. Apply attribute array based on role
-	if (role !== 'custom') {
+	// 2. Apply attribute array based on role (except baseline)
+	if (role !== 'baseline') {
 		let roleData = Role.resolve(role);
 		let attributes = roleData.getAttributesForLevel(level);
 		updates['system.attributes.dex.base'] = attributes.dex;
