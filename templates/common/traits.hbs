@@ -9,7 +9,7 @@
 			{{#if showLabel}}
 				<span>{{localize 'FU.Traits'}}</span>
 			{{/if}}
-			{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-rule-element__set stacked"}}
+			{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-form__set stacked"}}
 		</div>
 
 		<label class="fu-form__property">
@@ -24,6 +24,6 @@
 		{{#if showLabel}}
 			<span>{{localize 'FU.Traits'}}</span>
 		{{/if}}
-		{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-rule-element__set stacked"}}
+		{{formGroup model.schema.fields.entries value=model.entries name=(pfuConcat path ".entries") options=traitOptions classes="fu-form__set stacked"}}
 	</div>
 {{/if}}

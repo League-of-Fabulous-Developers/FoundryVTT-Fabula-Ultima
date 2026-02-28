@@ -122,6 +122,7 @@ const onRenderCheck = (data, check, actor, item, flags) => {
 /**
  * @typedef OpposedCheckData
  * @property {CheckResultV2} initialCheck The original check.
+ * @property {FUItem} item Optionally, the item that led to the check.
  */
 
 /**
@@ -145,7 +146,9 @@ function onRenderChatMessage(message, html) {
 			const config = fields.config;
 			return CheckPrompt.opposedCheck(
 				actor,
-				{},
+				{
+					item: item,
+				},
 				{
 					initialConfig: {
 						...config,
@@ -166,6 +169,11 @@ function onRenderChatMessage(message, html) {
 			if (data.initialCheck.actorUuid === actor.uuid) {
 				ui.notifications.warn(`Thou cannot oppose thyself.`);
 				return;
+			}
+			const inspector = CheckConfiguration.inspect(data.initialCheck);
+			const itemReference = inspector.getItemReference();
+			if (itemReference) {
+				data.item = await fromUuid(itemReference);
 			}
 			return CheckPrompt.opposedCheck(actor, data, {
 				initialConfig: {

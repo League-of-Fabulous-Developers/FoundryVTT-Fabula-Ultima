@@ -36,11 +36,6 @@ const editorEnricher = {
 			// ICON
 			const icon = FU.actionIcons[type];
 			InlineHelper.appendIcon(anchor, 'fu-icon-s', icon);
-			/** @type FUActionType **/
-			switch (type) {
-				case 'study':
-					break;
-			}
 			anchor.append(StringUtils.localize(FU.actionTypes[type]));
 
 			return anchor;
@@ -79,7 +74,9 @@ async function onRender(element) {
 			}
 
 			switch (type) {
+				case 'guard':
 				case 'study':
+				case 'hinder':
 					await actionHandler.handleAction(type, false);
 					break;
 			}

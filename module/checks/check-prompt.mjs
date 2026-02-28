@@ -389,6 +389,9 @@ async function opposedCheck(actor, data = {}, options = {}) {
 				if (data.initialCheck) {
 					config.setInitialCheck(data.initialCheck);
 				}
+				if (data.item) {
+					config.setItemReference(data.item);
+				}
 				if (options.checkCallback) {
 					options.checkCallback(check, callbackActor, item);
 				}
@@ -448,6 +451,9 @@ async function ritualCheck(actor, item, options = {}) {
 			}
 			if (promptResult.modifier) {
 				config.addModifier('FU.CheckSituationalModifier', promptResult.modifier);
+			}
+			if (item) {
+				config.setItemReference(item);
 			}
 			config.setExpense('mp', promptResult.cost);
 			GroupCheck.setSupportCheckDifficulty(check, promptResult.supportDifficulty);

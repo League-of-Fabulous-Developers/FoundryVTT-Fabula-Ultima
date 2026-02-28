@@ -9,7 +9,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
-import { Traits, TraitUtils } from './traits.mjs';
+import { DamageTraits, Traits, TraitUtils } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
@@ -829,6 +829,9 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 				if (modifier.enabled && modifier.traits && modifier.traits.length > 0) {
 					config.addTraits(modifier.traits);
 				}
+			}
+			if (config.hasTrait(DamageTraits.HighRollZero)) {
+				config.setHrZero(true);
 			}
 		}
 	});

@@ -176,6 +176,8 @@ async function onRender(element) {
 
 		if (targets.length === 0) return;
 
+		const item = renderContext.sourceInfo.resolveItem();
+
 		for (const actor of targets) {
 			if (prompt) {
 				let modifier = 0;
@@ -241,11 +243,15 @@ async function onRender(element) {
 						await Checks.attributeCheck(
 							actor,
 							attributes,
-							renderContext.sourceInfo.resolveItem(),
+							null,
 							async (check) => {
 								let config = CheckConfiguration.configure(check);
 								config.setLabel(dataset.label);
 								let modifier = 0;
+
+								if (item) {
+									config.setItemReference(item);
+								}
 
 								if (dataset.modifier !== undefined) {
 									const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
@@ -275,6 +281,10 @@ async function onRender(element) {
 								modifier = await Expressions.evaluateAsync(dataset.modifier, context);
 							}
 
+							if (item) {
+								config.setItemReference(item);
+							}
+
 							if (modifier !== 0) {
 								config.addModifier('Inline Modifier', modifier);
 							}
@@ -284,6 +294,9 @@ async function onRender(element) {
 					case 'opposed':
 						await Checks.opposedCheckV2(actor, attributes, {}, async (check) => {
 							let config = CheckConfiguration.configure(check);
+							if (item) {
+								config.setItemReference(item);
+							}
 							config.setLabel(dataset.label);
 						});
 						break;
