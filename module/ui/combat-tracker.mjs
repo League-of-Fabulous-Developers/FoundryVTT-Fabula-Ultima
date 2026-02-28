@@ -217,7 +217,9 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 	 * @returns {Promise<void>}
 	 */
 	static async #onAddTrack(event, target) {
-		return this.viewed.addTrack();
+		if (this.viewed) {
+			return this.viewed.addTrack();
+		}
 	}
 
 	/**

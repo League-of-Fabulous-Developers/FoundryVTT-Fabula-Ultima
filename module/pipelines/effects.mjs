@@ -14,6 +14,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
+import { systemId } from '../helpers/system-utils.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -426,8 +427,11 @@ async function applyEffect(document, effect, sourceInfo, config = undefined) {
 			},
 			{ parent: document },
 		);
-		await applyConfiguration(instance, config);
-		await sendToChatEffectAdded(instance, document, sourceInfo?.name);
+		// The creation could have been rejected
+		if (instance) {
+			await applyConfiguration(instance, config);
+			await sendToChatEffectAdded(instance, document, sourceInfo?.name);
+		}
 		return instance;
 	}
 }
@@ -792,13 +796,18 @@ function onRenderChatMessage(message, element) {
 			if (!effect) {
 				return;
 			}
-			for (const target of targets) {
-				if (!target.isOwner) {
-					ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
-					continue;
-				}
-				await applyEffect(target, effect, sourceInfo, configuration);
+			const esi = effect.flags?.[systemId]?.[Flags.ActiveEffect.Source];
+			if (esi) {
+				sourceInfo.withFuid(esi.fuid);
 			}
+			if (effect)
+				for (const target of targets) {
+					if (!target.isOwner) {
+						ui.notifications.warn('FU.ChatActorOwnershipWarning', { localize: true });
+						continue;
+					}
+					await applyEffect(target, effect, sourceInfo, configuration);
+				}
 		}
 	});
 

@@ -10,6 +10,8 @@ import { FUChatBuilder } from '../../helpers/chat-builder.mjs';
 import { CommonEvents } from '../../checks/common-events.mjs';
 import { CommonSections } from '../../checks/common-sections.mjs';
 import { CHECK_FLAVOR } from '../../checks/default-section-order.mjs';
+import { ProgressDataModel } from '../items/common/progress-data-model.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 const HIGH_PRIORITY_CHANGES = new Set([
 	'system.resources.hp.bonus',
@@ -260,6 +262,61 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		}
 
 		/**
+		 * @returns {Boolean} Whether this effect is stackable
+		 */
+		get stackable() {
+			return this.system.rules.stacking.enabled;
+		}
+
+		/**
+		 * @desc Apply one stack onto the effect, if stacking behaviour is enabled.
+		 */
+		async addStack() {
+			if (this.stackable) {
+				console.debug(`Incrementing stack of ${this.name}`);
+				let changes = {};
+				const increment = this.system.rules.stacking.increment;
+				let message;
+				let progressUpdated;
+
+				if (this.system.rules.stacking.progress) {
+					// TODO: Message that stacks are at maximum
+					if (this.system.rules.progress.isMaximum) {
+						message = StringUtils.localize('FU.ProgressAtMaximum', {
+							label: this.system.rules.progress.name ?? this.name,
+						});
+					} else {
+						const updatedValue = this.system.rules.progress.calculateUpdatedValue(increment);
+						changes['system.rules.progress.current'] = updatedValue;
+						progressUpdated = true;
+					}
+				}
+
+				if (this.system.rules.stacking.duration && this.system.isIntervalBased) {
+					const remaining = this.system.duration?.remaining ?? 0;
+					changes['system.duration.remaining'] = remaining + 1;
+					message = StringUtils.localize(`FU.DurationIncrementMessage`, {
+						label: this.name,
+						current: this.system.duration.remaining + 1,
+					});
+				}
+
+				if (Object.keys(changes).length > 0) {
+					await this.update(changes);
+				}
+				if (progressUpdated) {
+					await ProgressDataModel.sendToChat(this.parent, this.system.rules.progress);
+				}
+				if (message) {
+					await ChatMessage.create({
+						speaker: ChatMessage.getSpeaker({ actor: this.parent }),
+						content: message,
+					});
+				}
+			}
+		}
+
+		/**
 		 * @description Emits a chat message with this effect
 		 * @returns {Promise<void>}
 		 */
@@ -297,7 +354,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @remarks Unlike `_onCreate`, is managed by the GM.
 		 */
 		async _preCreate(data, options, user) {
-			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}`);
+			console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.sourceInfo ? this.sourceInfo.name : ''}, identifier: ${this.identifier}`);
 			const changes = {
 				name: game.i18n.localize(data.name),
 				[`system.duration.remaining`]: this.system.duration.interval,

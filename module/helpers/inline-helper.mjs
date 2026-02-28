@@ -12,7 +12,7 @@ import FoundryUtils from './foundry-utils.mjs';
  * @property {String} itemUuid
  * @property {String} actorUuid
  * @property {String} effectUuid
- * @property {String} fuid If an item is provided.
+ * @property {String} fuid If an item is provided, used for referencing it from the compendium.
  */
 export class InlineSourceInfo {
 	constructor(name, actorUuid, itemUuid, effectUuid, fuid) {
@@ -38,6 +38,15 @@ export class InlineSourceInfo {
 		} else if (item) {
 			return new InlineSourceInfo(name ?? item.name, null, item.uuid);
 		}
+	}
+
+	/**
+	 * @param {String} fuid
+	 * @returns {InlineSourceInfo}
+	 */
+	withFuid(fuid) {
+		this.fuid = fuid;
+		return this;
 	}
 
 	/**
@@ -195,6 +204,7 @@ function determineSource(document, element) {
 			if (effect) {
 				effectUuid = effect.uuid;
 				fuid ??= effect.system.fuid;
+				name = effect.name;
 			}
 		}
 	} // ITEM SHEET
