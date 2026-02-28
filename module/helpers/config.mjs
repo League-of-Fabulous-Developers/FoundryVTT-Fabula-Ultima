@@ -52,6 +52,12 @@ FU.attributeIcons = {
 	wlp: 'fu-wlp',
 };
 
+FU.derivedIcons = {
+	def: 'fas fa-shield',
+	mdef: 'fas fa-shield-halved',
+	init: 'fas fa-clock',
+};
+
 FU.currencies = {
 	zenit: {
 		label: 'FU.Zenit',
@@ -1095,6 +1101,7 @@ FU.allIcon = {
 	...FU.statusIcons,
 	...FU.resourceIcons,
 	...FU.attributeIcons,
+	...FU.derivedIcons,
 	...FU.weaponCategoryIcons,
 };
 
