@@ -52,6 +52,12 @@ FU.attributeIcons = {
 	wlp: 'fu-wlp',
 };
 
+FU.derivedIcons = {
+	def: 'fas fa-shield',
+	mdef: 'fas fa-shield-halved',
+	init: 'fas fa-clock',
+};
+
 FU.currencies = {
 	zenit: {
 		label: 'FU.Zenit',
@@ -130,6 +136,15 @@ FU.checkIcons = {
 	mod: 'fu-roll-modifier',
 	hr: 'fu-roll-high',
 	target: 'fu-roll-target',
+};
+
+FU.statusIcons = {
+	slow: 'fu-slow',
+	dazed: 'fu-dazed',
+	weak: 'fu-weak',
+	shaken: 'fu-shaken',
+	enraged: 'fu-enraged',
+	poisoned: 'fu-poisoned',
 };
 
 FU.resourceIcons = {
@@ -733,7 +748,7 @@ FU.rank = {
 };
 
 /**
- * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support"} RoleType
+ * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support", "baseline"} RoleType
  */
 
 /**
@@ -747,6 +762,7 @@ FU.role = {
 	saboteur: 'FU.Saboteur',
 	sentinel: 'FU.Sentinel',
 	support: 'FU.Support',
+	baseline: 'FU.Baseline',
 };
 
 /**
@@ -1062,9 +1078,9 @@ FU.modifyDamageVariant = {
 FU.allIcon = {
 	offensive: 'is-offensive',
 	martial: 'is-martial',
-	melee: 'is-melee',
-	range: 'is-range',
-	spell: 'is-spell',
+	melee: 'fa-solid fa-sword',
+	range: 'fa-solid fa-bow-arrow',
+	spell: 'fa-solid fa-wand-magic-sparkles',
 	skill: 'is-skill',
 	twoweapon: 'is-two-weapon',
 	header: 'is-header',
@@ -1082,8 +1098,10 @@ FU.allIcon = {
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,
+	...FU.statusIcons,
 	...FU.resourceIcons,
 	...FU.attributeIcons,
+	...FU.derivedIcons,
 	...FU.weaponCategoryIcons,
 };
 
