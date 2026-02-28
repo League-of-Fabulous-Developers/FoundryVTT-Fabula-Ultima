@@ -733,7 +733,7 @@ FU.rank = {
 };
 
 /**
- * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support"} RoleType
+ * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support", "none"} RoleType
  */
 
 /**
@@ -747,6 +747,7 @@ FU.role = {
 	saboteur: 'FU.Saboteur',
 	sentinel: 'FU.Sentinel',
 	support: 'FU.Support',
+	none: 'FU.None',
 };
 
 /**
