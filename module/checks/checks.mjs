@@ -497,9 +497,17 @@ async function renderCheck(result, actor, item, flags = {}) {
 			linked: linked,
 		});
 	} else {
+		let flavorTitle = StringUtils.localize(FU.checkTypes[result.type] || 'FU.RollCheck');
+		const itemRef = config.getItemReference();
+		let referencedItem;
+		if (itemRef) {
+			referencedItem = await fromUuid(itemRef);
+			flavorTitle += ` - ${referencedItem.name}`;
+		}
 		flavor = await FoundryUtils.renderTemplate('chat/chat-check-flavor-check', {
-			title: FU.checkTypes[result.type] || 'FU.RollCheck',
+			title: flavorTitle,
 			type: result.type,
+			item: referencedItem,
 			label: config.getLabel(),
 		});
 	}

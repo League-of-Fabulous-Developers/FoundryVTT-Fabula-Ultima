@@ -24,6 +24,7 @@ const WEAPON_TRAITS = 'weaponTraits';
 const LABEL_KEY = 'label';
 const TARGETED_ACTIONS = 'targetedActions';
 const WEAPON_USED = 'weaponUsedBySkill';
+const ITEM_REFERENCE = 'itemReference';
 const INITIAL_CHECK = 'initialCheck';
 
 /**
@@ -195,6 +196,13 @@ class CheckInspector {
 	 */
 	hasTrait(trait) {
 		return this.getTraits().includes(trait);
+	}
+
+	/**
+	 * @returns {String} The uuid of the item that this check is associated with.
+	 */
+	getItemReference() {
+		return this.#check.additionalData[ITEM_REFERENCE] ?? null;
 	}
 
 	/**
@@ -677,6 +685,14 @@ export class CheckConfigurer extends CheckInspector {
 	 */
 	setInitialCheck(check) {
 		this.check.additionalData[INITIAL_CHECK] = check;
+	}
+
+	/**
+	 * @param {FUItem} item
+	 * @remarks Sometimes used when a check is made due to an item (but not DIRECTLY by the item in question).
+	 */
+	setItemReference(item) {
+		this.check.additionalData[ITEM_REFERENCE] = item.uuid;
 	}
 }
 

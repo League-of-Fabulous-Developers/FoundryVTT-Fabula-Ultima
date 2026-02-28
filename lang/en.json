@@ -726,6 +726,7 @@
 		"DialogCheckOpposedCheck": "Opposed Check",
 		"DialogCheckRitualCheck": "Ritual Check",
 		"HighRollAbbr": "HR",
+		"HighRollZero": "HR0",
 		"ExperimentalCombatTracker": "Enable Experimental Combat Tracker",
 		"ExperimentalCombatTrackerHint": "Experimental combat tracker featuring back and forth initiative.",
 		"DialogDefeatedTurnTitle": "Take Turn?",
