@@ -337,6 +337,7 @@
 
 .fu-traits {
 	background: var(--color-background);
+	color: var(--color-primary);
 	border-style: inset;
 	border-width: thin;
 	padding: 4px;

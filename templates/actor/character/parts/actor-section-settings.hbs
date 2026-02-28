@@ -7,7 +7,7 @@
 				{{localize 'FU.BaseAffinity'}}
 			</legend>
 
-			<div class="header-fields grid grid-5col" style="margin: 5px 0;">
+			<div class="header-fields grid grid-5col" style="gap: 8px;">
 				{{#if system.affinities}}
 					{{#each system.affinities as |affinity key|}}
 						<div class="affinity resource-content flex-group-center flexcol">
@@ -254,7 +254,7 @@
 		</fieldset>
 
 		{{!-- Pressure Points Section --}}
-		{{#if pressurePoints}}
+		{{#if (and pressurePoints (not (eq actor.system.rank.value "companion")))}}
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m">
 					{{localize 'FU.PressurePoints'}}
