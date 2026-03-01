@@ -224,8 +224,8 @@
 		"BasicEdit": "Edit Basic Attack",
 		"BasicDelete": "Delete BasicAttack",
 		"Weapon": "Weapon",
-		"WeaponDamageBonus": "Weapon Damage Bonus",
 		"Weapons": "Weapons",
+		"WeaponDamageBonus": "Weapon Damage Bonus",
 		"WeaponCreate": "Create Weapon",
 		"WeaponEdit": "Edit Weapon",
 		"WeaponDelete": "Delete Weapon",
@@ -1771,9 +1771,9 @@
 		"Compendium": "Compendium",
 		"CompendiumBrowser": "Compendium Browser",
 		"CompendiumItem": "Compendium Item",
-		"CompendiumMigrateItem": "Migrate Item",
 		"CompendiumIndexRefresh": "Refresh Compendium Index",
 		"CompendiumIndexRefreshMessage": "The compendium index has been refreshed.",
+		"CompendiumMigrateItem": "Migrate Item",
 		"CompendiumMigrateItemMessage": "Would you like to migrate the data in the item <strong>{name}</strong> to that of the compendium?",
 		"CompendiumMigrateActorItems": "Migrate Actor Items",
 		"CompendiumMigrateActorItemsMessage": "Would you like to migrate the data in the selected items of the actor to that of the compendiums?",
@@ -1786,6 +1786,11 @@
 		"System": "System",
 		"SelectAll": "Select All",
 		"DeselectAll": "Deselect All",
+		"Default": "Default",
+		"Stacking": "Stacking",
+		"Bar": "Bar",
+		"DurationIncrementMessage": "The duration of <strong>{label}</strong> has been extended to {current}.",
+		"ProgressAtMaximum": "<strong>{label}</strong> is already at maximum value.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
@@ -1793,10 +1798,6 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		},
-		"Stacking": "Stacking",
-		"Bar": "Bar",
-		"DurationIncrementMessage": "The duration of <strong>{label}</strong> has been extended to {current}.",
-		"ProgressAtMaximum": "<strong>{label}</strong> is already at maximum value."
+		}
 	}
 }
