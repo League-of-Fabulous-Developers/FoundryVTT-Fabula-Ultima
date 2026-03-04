@@ -46,20 +46,20 @@ export class SpellsTableRenderer extends FUTableRenderer {
 
 	static #renderSpellCaption(item) {
 		const data = {};
+		const { attributes, accuracy, damage, useWeapon } = item.system.rollInfo;
 		if (item.system.hasRoll.value) {
-			const { attributes, accuracy, damage, useWeapon } = item.system.rollInfo;
 			data.roll = {
 				primary: FU.attributeAbbreviations[attributes.primary.value],
 				secondary: FU.attributeAbbreviations[attributes.secondary.value],
 				bonus: accuracy.value,
 			};
-			if (damage.hasDamage.value) {
-				data.damage = {
-					hrZero: useWeapon.hrZero.value,
-					value: damage.value,
-					type: FU.damageTypes[damage.type.value],
-				};
-			}
+		}
+		if (damage.hasDamage.value) {
+			data.damage = {
+				hrZero: useWeapon.hrZero.value,
+				value: damage.value,
+				type: FU.damageTypes[damage.type.value],
+			};
 		}
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/caption/caption-spell'), data);
 	}

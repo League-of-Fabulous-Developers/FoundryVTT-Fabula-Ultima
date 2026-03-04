@@ -10,4 +10,8 @@
 		{{~/if~}}
 		&nbsp;+&nbsp;{{~damage.value~}}】&NoBreak;{{~localize damage.type~}}
 	{{~/if~}}
+{{else}}
+	{{~#if damage~}}
+		【{{~damage.value~}}】&NoBreak;{{~localize damage.type~}}
+	{{/if}}
 {{~/if~}}
