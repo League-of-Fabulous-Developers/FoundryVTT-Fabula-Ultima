@@ -75,7 +75,7 @@ export class DamageData {
 	 */
 	get modifiers() {
 		return this._modifiers.filter((m) => {
-			return m.enabled && (m.amount > 0 || (m.traits && m.traits.length > 0));
+			return m.enabled && (m.amount !== 0 || (m.traits && m.traits.length > 0));
 		});
 	}
 
