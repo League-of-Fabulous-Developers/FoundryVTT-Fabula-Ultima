@@ -96,6 +96,11 @@ export class IngredientDataModel extends ClassFeatureDataModel {
 	}
 
 	onActorDrop(actor) {
+		// If the item is already on the actor, ignore this operation and instead operate as an organization
+		if (this.actor === actor) {
+			return true;
+		}
+
 		const similarIngredient = actor.itemTypes.classFeature.find((item) => item.system.featureType === this.parent.featureType && item.name === this.item.name && item.system.data.taste === this.taste);
 		if (similarIngredient) {
 			similarIngredient.update({ 'system.data.quantity': similarIngredient.system.data.quantity + this.quantity });
