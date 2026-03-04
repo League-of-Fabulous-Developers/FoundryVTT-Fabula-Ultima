@@ -91,7 +91,7 @@ export class DamageCustomizerV2 {
 					}
 					// Modifiers
 					context.damage.modifiers.forEach((modifier) => {
-						if (modifier.amount > 0) {
+						if (modifier.amount !== 0) {
 							components.push(`${modifier.amount} (${StringUtils.localize(modifier.label)})`);
 						}
 					});
