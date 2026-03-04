@@ -87,7 +87,7 @@ export class DamageCustomizerV2 {
 					let components = [];
 					// HR (Not always available)
 					if (hrInput && context.damage.hr > 0 && hrInput.checked) {
-						components.push(`${context.damage.hr} (${StringUtils.localize('FU.HighRollAbbr')})`);
+						components.push(`? (${StringUtils.localize('FU.HighRollAbbr')})`);
 					}
 					// Modifiers
 					context.damage.modifiers.forEach((modifier) => {
