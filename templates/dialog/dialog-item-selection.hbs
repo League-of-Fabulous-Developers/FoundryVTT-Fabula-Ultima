@@ -1,12 +1,12 @@
-{{#if message}}
-	<div class="fu-form__message">
+<main>
+	{{#if message}}
+		<div class="fu-form__message">
 			<span>
 				{{{message}}}
 			</span>
-	</div>
-{{/if}}
+		</div>
+	{{/if}}
 
-<main class="fu-scrollable">
 	{{#if (eq style 'grid')}}
 		<div id="items" class="background fu-item-grid flex-group-center fu-icon__radio-group">
 			{{#each items as |item| }}
@@ -41,8 +41,9 @@
 					</a>
 				</span>
 			</legend>
-			<table class="table-compact fu-scrollable" style="max-height: 400px;">
-				<thead>
+			<div class="fu-table__wrapper">
+				<table class="table-compact scrollable" style="max-height: 400px;">
+					<thead>
 					<tr>
 						<th></th>
 						<th>{{localize 'FU.Item'}}</th>
@@ -50,34 +51,35 @@
 							<th>{{localize 'FU.CompendiumItem'}}</th>
 						{{/if}}
 					</tr>
-				</thead>
-				{{#each items as |item|}}
-					<tr>
-						<td>
-							<label class="fu-item"
-								   data-index="{{@index}}"
-								   data-name="{{item.name}}">
-								<input type="checkbox"
-									   name="selected"
-									   {{#if (pfuCollectionContains item ../initial)}}checked{{/if}}
-									   value="{{item.name}}">
-							</label>
-						</td>
-						<td>
-							{{pfuItemAnchor item}}
-							<span data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
-						</td>
-						{{#if @root.compendiumItems}}
+					</thead>
+					{{#each items as |item|}}
+						<tr>
 							<td>
-								{{#with (lookup ../compendiumItems @index) as |item|}}
-									{{pfuItemAnchor item}}
-									<span>{{item.name}}</span>
-								{{/with}}
+								<label class="fu-item"
+									   data-index="{{@index}}"
+									   data-name="{{item.name}}">
+									<input type="checkbox"
+										   name="selected"
+										   {{#if (pfuCollectionContains item ../initial)}}checked{{/if}}
+										   value="{{item.name}}">
+								</label>
 							</td>
-						{{/if}}
-					</tr>
-				{{/each}}
-			</table>
+							<td>
+								{{pfuItemAnchor item}}
+								<span data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
+							</td>
+							{{#if @root.compendiumItems}}
+								<td>
+									{{#with (lookup ../compendiumItems @index) as |item|}}
+										{{pfuItemAnchor item}}
+										<span>{{item.name}}</span>
+									{{/with}}
+								</td>
+							{{/if}}
+						</tr>
+					{{/each}}
+				</table>
+			</div>
 		</fieldset>
 	{{/if}}
 </main>

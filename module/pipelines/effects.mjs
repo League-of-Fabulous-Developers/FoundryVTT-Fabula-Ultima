@@ -124,20 +124,11 @@ async function getEffectData(id) {
 		}
 	}
 	if (!effect) {
-		console.error(`No effect with id '${id}' could be resolved.`);
+		console.warn(`No effect with id '${id}' could be resolved.`);
 	}
 
 	if (effect) {
 		// TODO: Perhaps it be really instanced each time?
-		// effect = await ActiveEffect.create(
-		// 	{
-		// 		...effect,
-		// 		statuses: [statusEffectId],
-		// 		flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
-		// 	},
-		// 	{ parent: actor },
-		// );
-
 		effect = FoundryUtils.safeClone(effect);
 		if (sourceInfo) {
 			effect.flags = Pipeline.initializedFlags(Flags.ActiveEffect.Source, sourceInfo);
