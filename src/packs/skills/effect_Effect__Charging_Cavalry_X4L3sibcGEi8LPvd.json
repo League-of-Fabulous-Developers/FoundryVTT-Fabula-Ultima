@@ -27,7 +27,38 @@
           "crisisInteraction": "none"
         },
         "rules": {
-          "elements": {},
+          "elements": {
+            "xv58stjBNv1FM6gq": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Fxwp6KV9YQlO5YP2",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "xv58stjBNv1FM6gq",
+              "actions": {
+                "2bCWGBIbBYIXuvLE": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "2bCWGBIbBYIXuvLE",
+                  "traits": {
+                    "entries": [
+                      "high-roll-zero"
+                    ]
+                  },
+                  "amount": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
           "progress": {
             "enabled": false,
             "id": "",
@@ -35,6 +66,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -69,8 +105,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770273473908,
-        "modifiedTime": 1770632170336,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "modifiedTime": 1772306823909,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!X4L3sibcGEi8LPvd.6FbGNzBSHKFc7umq"
     }

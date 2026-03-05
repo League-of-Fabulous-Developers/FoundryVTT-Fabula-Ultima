@@ -376,7 +376,8 @@
                 "eventRelation": "source",
                 "damageSources": [
                   "attack"
-                ]
+                ],
+                "identifier": ""
               },
               "actions": {
                 "lJMbxGComOsR053y": {
@@ -389,11 +390,7 @@
                   "cost": {
                     "resource": "ip",
                     "amount": "2"
-                  }
-                },
-                "enEX2W9hjJyvRYFc": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "enEX2W9hjJyvRYFc",
+                  },
                   "effect": "poisoned"
                 }
               },
@@ -414,6 +411,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -436,11 +438,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767645170601,
-        "modifiedTime": 1767890390974,
+        "modifiedTime": 1772720016338,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!1tfYFkiXLuTOUmre.mZBX5ATHRQquUFEN"

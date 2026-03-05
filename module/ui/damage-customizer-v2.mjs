@@ -1,6 +1,7 @@
 import { FU } from '../helpers/config.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { Effects } from '../pipelines/effects.mjs';
 
 export class DamageCustomizerV2 {
 	/**
@@ -18,6 +19,17 @@ export class DamageCustomizerV2 {
 			initialType: damageData.type,
 			/** @type DamageType **/
 			selectedType: damageData.type,
+			effectIcons: await Promise.all(
+				damageData.rawModifiers.map(async (m) => {
+					if (m.effect) {
+						const effectData = await Effects.getEffectData(m.effect);
+						if (effectData) {
+							return effectData.img;
+						}
+					}
+					return '';
+				}),
+			),
 		};
 
 		const result = await foundry.applications.api.DialogV2.input({
@@ -26,7 +38,7 @@ export class DamageCustomizerV2 {
 				icon: 'fas fa-heartbeat',
 			},
 			position: {
-				width: 480,
+				width: 600,
 			},
 			actions: {
 				/** @param {Event} event
