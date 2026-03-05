@@ -178,6 +178,13 @@ const SUPPORTED_CHANGE_TYPES = {
 };
 
 class TempActiveEffectConfig extends FUActiveEffectConfig {
+	/** @inheritdoc */
+	static DEFAULT_OPTIONS = {
+		form: {
+			closeOnSubmit: true,
+		},
+	};
+
 	async _processSubmitData(event, form, submitData, options = {}) {
 		this.document.updateSource(submitData);
 		this.render();
