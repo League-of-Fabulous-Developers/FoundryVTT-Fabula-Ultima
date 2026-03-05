@@ -348,3 +348,16 @@
 	border-radius: 10px;
 	background-color: rgba(9, 66, 34, 0.14);
 }
+
+.fu-table__wrapper {
+	max-height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+/* 3.  Optional: make the table header sticky */
+.fu-table__wrapper thead th {
+	position: sticky;
+	top: 0; /* stays at the top of the wrapper */
+	z-index: 1; /* stays above the rows */
+}
