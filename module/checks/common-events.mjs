@@ -135,7 +135,6 @@ function calculateDamage(actor, item, config) {
 		type: config.getDamage()?.type,
 	};
 	Hooks.call(FUHooks.CALCULATE_DAMAGE_EVENT, event);
-	//await AsyncHooks.callSequential(FUHooks.CALCULATE_DAMAGE_EVENT, event);
 }
 
 /**

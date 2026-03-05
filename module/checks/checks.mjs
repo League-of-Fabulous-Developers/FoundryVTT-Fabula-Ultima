@@ -571,10 +571,9 @@ const performCheck = async (check, actor, item, prepareCheckCallback = undefined
 /**
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {CheckCallback} [initialConfigCallback]
- * @return {Promise<void>}
+ * @returns {CheckResultV2}
  */
-const display = async (actor, item, initialConfigCallback = undefined) => {
+const constructDisplayCheck = (actor, item) => {
 	/** @type CheckResultV2 */
 	const check = Object.freeze({
 		type: 'display',
@@ -593,13 +592,22 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 		critical: null,
 		additionalData: {},
 	});
+	return check;
+};
+
+/**
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {CheckCallback} [initialConfigCallback]
+ * @return {Promise<void>}
+ */
+const display = async (actor, item, initialConfigCallback = undefined) => {
+	const check = constructDisplayCheck(actor, item);
 	// Set initial targets (actions without rolls can have targeting)
 	const config = CheckConfiguration.configure(check);
 	config.setDefaultTargets();
 	await CommonEvents.initializeCheck(config, actor, item);
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
-
-	//Hooks.callAll(CheckHooks.processCheck, check, actor, item);
 	await invokeWithCallbacks(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
 };
@@ -689,6 +697,7 @@ export const Checks = Object.freeze({
 	modifyCheck,
 	isCheck,
 	prepareCheckDryRun,
+	constructDisplayCheck,
 });
 
 CheckRetarget.initialize();
