@@ -4,11 +4,13 @@ import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
 import { Flags } from './flags.mjs';
-import { DamageData } from '../checks/damage-data.mjs';
 import { StringUtils } from './string-utils.mjs';
 import { HTMLUtils } from './html-utils.mjs';
 import { DamageCustomizerV2 } from '../ui/damage-customizer-v2.mjs';
 import { DamageTraits } from '../pipelines/traits.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { Checks } from '../checks/checks.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -86,7 +88,22 @@ async function onRender(element) {
 				context = context.withCheck(check);
 			}
 			let amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
-			const damageData = DamageData.construct(type, amount);
+
+			// TODO: Can the source check be used?
+			const eventCheck = Checks.constructDisplayCheck(context.actor, context.item);
+			const config = CheckConfiguration.configure(eventCheck);
+			config.setDefaultTargets();
+			config.setDamage(type, amount);
+			const damageData = config.getDamage();
+
+			// Check source actor for outgoing damage bonuses
+			if (context.actor) {
+				DamagePipeline.collectOutgoingBonuses(context.actor, damageData);
+				CommonEvents.calculateDamage(context.actor, context.item, config);
+				// TODO: Better solution
+				await new Promise((resolve) => setTimeout(resolve, 10));
+			}
+
 			let traits = [];
 			// SHIFT: Ignore resistances
 			if (keyboardModifiers.shift) {
@@ -101,10 +118,7 @@ async function onRender(element) {
 					traits.push(DamageTraits.IgnoreImmunities);
 				}
 			}
-			// Check source actor for outgoing damage bonuses
-			if (context.actor) {
-				DamagePipeline.collectOutgoingBonuses(context.actor, damageData);
-			}
+
 			const request = new DamageRequest(renderContext.sourceInfo, targets, damageData);
 			request.addTraits(traits);
 			if (renderContext.dataset.traits) {
