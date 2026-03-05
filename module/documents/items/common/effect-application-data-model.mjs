@@ -1,11 +1,11 @@
+import { FU } from '../../../helpers/config.mjs';
+
 /**
  * @typedef ApplyEffectData
  * @property {String[]} entries
  * @property {Boolean} prompt Whether to prompt a selection dialog.
  * @property {FUActiveEffectDuration} duration
  */
-
-import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @description Used when rolls are performed.

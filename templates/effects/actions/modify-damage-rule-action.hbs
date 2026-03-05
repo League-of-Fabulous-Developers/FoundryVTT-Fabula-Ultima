@@ -18,6 +18,16 @@
 	</select>
 </label>
 
+<label class="fu-form__property">
+	<span>{{localize 'FU.Effect'}}</span>
+	<input
+	 type="text"
+	 name="{{pfuConcat path ".effect"}}"
+	 value="{{action.effect}}"
+	 placeholder="e.g. Item.XYZ123.ActiveEffect.ABC123"
+	/>
+</label>
+
 <div class="fu-form__group">
 	<label class="fu-form__group__header flex-group-center">
 		<i class="ra ra-wrench"></i>{{localize 'FU.Cost'}}
