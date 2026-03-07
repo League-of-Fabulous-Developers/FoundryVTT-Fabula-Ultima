@@ -17,6 +17,7 @@
 @import 'css/global/form.css';
 @import 'css/global/application.css';
 @import 'css/global/theme.css';
+@import 'css/global/layout.css';
 
 @import 'css/components/item-grid.css';
 @import 'css/components/checks.css';

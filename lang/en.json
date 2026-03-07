@@ -1724,6 +1724,8 @@
 		"Enabled": "Enabled",
 		"Update": "Update",
 		"Reset": "Reset",
+		"Save": "Save",
+		"Apply": "Apply",
 		"Equals": "Equals",
 		"SelectDamageType": "Damage Type Selection",
 		"Scale": "Scale",

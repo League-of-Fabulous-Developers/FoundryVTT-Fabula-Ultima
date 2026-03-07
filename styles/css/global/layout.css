@@ -1,0 +1,30 @@
+.fu-layout__menu {
+	display: grid;
+	height: 100vh;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 0.8fr 0.2fr;
+	gap: 1rem;
+	grid-template-areas:
+		'header'
+		'main'
+		'footer';
+
+	header {
+		grid-area: header;
+	}
+
+	main {
+		grid-area: main;
+		overflow: auto;
+		padding: 15px 5px 10px 5px;
+
+		background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+		background-blend-mode: multiply;
+		background-repeat: repeat-y;
+		background-position: right top;
+	}
+
+	footer {
+		grid-area: footer;
+	}
+}
