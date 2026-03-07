@@ -12,14 +12,13 @@
 			</label>
 		</div>
 		<div class="form-group buttons">
-			<button type="button" name="import">
+			<button type="button" data-action="importTheme" name="import">
 				<i class="fas fa-file-import"></i>{{localize "FU.Import"}}
 			</button>
-			<button type="button" name="export">
+			<button type="button" data-action="exportTheme" name="export">
 				<i class="fas fa-file-export"></i>{{localize "FU.Export"}}
 			</button>
 		</div>
-		<hr>
 	</header>
 	<main>
 		<div>
@@ -32,8 +31,17 @@
 				{{else}}
 					<label class="fu-form__property" data-tooltip="{{localize hint}}">
 						<span>{{localize label}}</span>
-						<input type="text" name="{{@key}}" {{#if (eq this.type "color")}}data-color-picker="{alphaChannel: true, format: 'hexa', required: false}"{{/if}} value="{{lookup ../current @key}}">
-						{{#if (eq this.type "image")}}{{filePicker target=@key type="image"}}{{/if}}
+						<input {{#if (eq this.type "color")}}type="color"{{else}}type="text"{{/if}} name="{{@key}}" value="{{lookup ../current @key}}">
+						{{#if (eq this.type "image")}}
+							<button
+							 type="button"
+							 class="file-picker"
+							 data-action="filePicker"
+							 data-target="{{@key}}"
+							 data-type="image">
+								<i class="fas fa-file-import"></i>
+							</button>
+						{{/if}}
 					</label>
 				{{/if}}
 			{{/each}}

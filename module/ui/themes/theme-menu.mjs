@@ -2,6 +2,8 @@ import FUApplication from '../application.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { Theme, THEME_OPTIONS, THEMES } from './theme.mjs';
 import { getSystemSetting, setSystemSetting } from '../../settings.js';
+import FoundryUtils from '../../helpers/foundry-utils.mjs';
+import { ObjectUtils } from '../../helpers/object-utils.mjs';
 
 /**
  * A form for viewing and updating theme settings.
@@ -19,6 +21,10 @@ export class ThemeMenu extends FUApplication {
 			icon: 'fas fa-color',
 		},
 		form: { closeOnSubmit: false },
+		actions: {
+			importTheme: ThemeMenu.#importTheme,
+			exportTheme: ThemeMenu.#exportTheme,
+		},
 		position: { width: 600 },
 	};
 
@@ -48,69 +54,126 @@ export class ThemeMenu extends FUApplication {
 		setSystemSetting('theme', data);
 	}
 
-	/**
-	 * Populates the form fields with the data for the theme.
-	 *
-	 * @param {jQuery} form A jQuery object containing the form element.
-	 * @param {object} themeData The theme data.
-	 */
 	setThemeFields(form, themeData) {
-		Object.keys(themeData).forEach((themeKey) => {
-			const themeEntry = themeData[themeKey];
-			const input = form.find(`input[name="${themeKey}"]`);
-			input.val(themeEntry).each((i, inputElement) => {
-				// Update color picker for this input, if enabled.
-				inputElement.jscolor?.processValueInput(themeEntry);
-			});
+		for (const element of form.elements) {
+			if (!element.name) continue;
+			if (!(element.name in themeData)) continue;
+
+			element.value = themeData[element.name] ?? '';
+		}
+	}
+
+	/** @override */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+
+		const form = this.element;
+
+		// Set color fields and their associated color pickers when a theme is selected
+		const themeSelect = form.querySelector('select[name="theme"]');
+		themeSelect?.addEventListener('change', (event) => {
+			const value = event.target.value;
+			if (!value) return;
+
+			const theme = THEMES[value];
+			if (theme) {
+				this.setThemeFields(form, theme);
+			}
 		});
-		const advancedTextArea = form.find('textarea[name="advanced"]');
-		advancedTextArea.val(themeData.advanced);
+
+		// Unset the theme when any other field changes
+		for (const input of form.querySelectorAll('.form-fields input:not([name="theme"])')) {
+			input.addEventListener('change', () => {
+				if (themeSelect) themeSelect.value = '';
+			});
+		}
+
+		// Export button
+		const exportBtn = form.querySelector('button[name="export"]');
+		exportBtn?.addEventListener('click', () => {
+			const data = foundry.utils.expandObject(Object.fromEntries(new FormData(form)));
+			new Theme(data).exportToJson();
+		});
+
+		// Import button
+		const importBtn = form.querySelector('button[name="import"]');
+		importBtn?.addEventListener('click', async () => {
+			const theme = await Theme.importFromJSONDialog();
+			if (!theme) return;
+
+			this.setThemeFields(form, theme);
+			if (themeSelect) themeSelect.value = '';
+		});
 	}
 
 	/**
-	 *
-	 * @param {jQuery} form A jQuery object containing the form element.
+	 * @desc Opens a dialog that allows the user to import a Theme from an uploaded .json file.
+	 * @returns {Promise<Theme>} A promise that resolves to the imported Theme.
 	 */
-	activateListeners(form) {
-		super.activateListeners(form);
-		// Enable color pickers.
-		// eslint-disable-next-line no-undef
-		form.each((i, element) => ColorPicker.install(element));
-		// Reset color pickers on form reset.
-		form.on('reset', (event) => {
-			// Defer execution until after the event has been fully resolved and fields have been reset.
-			setTimeout(() => {
-				form.find('.jscolor').each((i, colorElement) => {
-					colorElement.jscolor.processValueInput(colorElement.value);
-				});
-			}, 0);
-		});
-		// Set color fields and their associated color pickers when a theme is selected.
-		form.find('select[name="theme"]').on('change', (event) => {
-			const value = $(event.target).val();
-			if (value) {
-				const theme = THEMES[value];
-				if (theme) {
-					this.setThemeFields(form, theme);
-				}
-			}
-		});
-		// Unset the theme when any other field changes.
-		form.find('.form-fields :input:not(select[name="theme"])').on('change', (event) => {
-			const themeSelect = form.find('select[name="theme"]');
-			themeSelect.val('');
-		});
-		form.find('button[name="export"]').on('click', (event) => {
-			const data = foundry.utils.expandObject(new FormData(form[0]));
-			new Theme(Object.fromEntries(data)).exportToJson();
-		});
-		form.find('button[name="import"]').on('click', async (event) => {
-			const theme = await Theme.importFromJSONDialog();
-			if (theme) {
-				this.setThemeFields(form, theme);
-				const themeSelect = form.find('select[name="theme"]');
-				themeSelect.val('');
-			}
-		});
+	static async importFromJSONDialog() {
+		return foundry.applications.api.DialogV2.wait(
+			{
+				window: { title: game.i18n.localize('FU.DialogImportThemeTitle') },
+				classes: ['projectfu', 'backgroundstyle', 'fu-dialog'],
+				content: await FoundryUtils.renderTemplate('ui/themes/import-theme-dialog'),
+				buttons: [
+					{
+						action: 'import',
+						icon: 'fas fa-file-import',
+						label: game.i18n.localize('FU.Import'),
+						callback: (event, button, dialog) => {
+							const fileInput = dialog.querySelector('input[type="file"]');
+
+							if (!fileInput?.files?.length) {
+								ui.notifications.error(game.i18n.localize('FU.ErrorNoFileUploaded'));
+								return false; // Keeps dialog open
+							}
+
+							return ObjectUtils.readTextFromFile(fileInput.files[0]).then((json) => Theme.fromJSON(json));
+						},
+					},
+					{
+						action: 'cancel',
+						icon: 'fas fa-times',
+						label: game.i18n.localize('FU.Cancel'),
+					},
+				],
+				default: 'import',
+			},
+			{
+				width: 400,
+			},
+		);
 	}
+
+	/**
+	 * @this ThemeMenu
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #importTheme(event, target) {
+		const theme = await ThemeMenu.importFromJSONDialog();
+		if (!theme) {
+			console.warn(`Failed to import theme`);
+			return;
+		}
+
+		const form = target.closest('form');
+		const select = form.querySelector('select[name="theme"]');
+		const value = select?.value;
+		if (!value) {
+			console.warn(`No theme was selected to import.`);
+			return;
+		}
+		this.setThemeFields(form, theme);
+		ui.notifications.info(`Imported theme ${value}`);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #exportTheme(event, target) {}
 }

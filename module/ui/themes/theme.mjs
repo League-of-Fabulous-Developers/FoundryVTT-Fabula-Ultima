@@ -1,5 +1,4 @@
 import { systemPath } from '../../helpers/config.mjs';
-import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { ObjectUtils } from '../../helpers/object-utils.mjs';
 import { systemId } from '../../helpers/system-utils.mjs';
 
@@ -30,7 +29,7 @@ export class Theme {
 	}
 
 	/**
-	 * @desc Applies this Theme to the game world.
+	 * @desc Applies this theme to the game world.
 	 */
 	async apply() {
 		// Get our generated style block, if it already exists.
@@ -80,7 +79,7 @@ export class Theme {
 	}
 
 	/**
-	 * Downloads a json file of containing this theme's data.
+	 * @desc Downloads a json file of containing this theme's data.
 	 */
 	exportToJson = function () {
 		const data = JSON.stringify(foundry.utils.duplicate(this), null, 2);
@@ -98,41 +97,7 @@ export class Theme {
 	};
 
 	/**
-	 * Opens a dialog that allows the user to import a Theme from an uploaded .json file.
-	 *
-	 * @returns {Promise<Theme>} A promise that resolves to the imported Theme.
-	 */
-	static async importFromJSONDialog() {
-		return foundry.applications.api.DialogV2.wait(
-			{
-				title: game.i18n.localize(`FU.DialogImportThemeTitle`),
-				content: await FoundryUtils.renderTemplate('ui/themes/import-theme-dialog.hbs'),
-				buttons: {
-					import: {
-						icon: '<i class="fas fa-file-import"></i>',
-						label: game.i18n.localize(`FU.DialogImportThemeThemeDataLabel`),
-						callback: (html) => {
-							const form = html.find('form')[0];
-							if (!form.data.files.length) return ui.notifications.error(game.i18n.localize(`FU.ErrorNoFileUploaded`));
-							return ObjectUtils.readTextFromFile(form.data.files[0]).then((json) => this.fromJSON(json));
-						},
-					},
-					no: {
-						icon: '<i class="fas fa-times"></i>',
-						label: game.i18n.localize(`FU.Cancel`),
-					},
-				},
-				default: 'import',
-			},
-			{
-				width: 400,
-			},
-		);
-	}
-
-	/**
-	 * Generates a Theme from a passed in json string.
-	 *
+	 * @desc Generates a Theme from a passed in json string.
 	 * @param {string} json A json string containing the Theme data.
 	 * @returns {Theme} The generated Theme.
 	 */
