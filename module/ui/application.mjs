@@ -20,5 +20,25 @@ export default class FUApplication extends HandlebarsApplicationMixin(Applicatio
 		window: {
 			contentClasses: ['standard-form'],
 		},
+		actions: {
+			filePicker: FUApplication.filePicker,
+		},
 	};
+
+	static async filePicker(event, target) {
+		const field = target.dataset.target;
+		const current = this.element.querySelector(`[name="${field}"]`)?.value ?? '';
+
+		new FilePicker({
+			type: 'image',
+			current,
+			callback: (path) => {
+				const input = this.element.querySelector(`[name="${field}"]`);
+				if (input) {
+					input.value = path;
+					input.dispatchEvent(new Event('change'));
+				}
+			},
+		}).browse();
+	}
 }

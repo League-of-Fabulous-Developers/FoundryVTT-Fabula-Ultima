@@ -31,16 +31,20 @@
 				{{else}}
 					<label class="fu-form__property" data-tooltip="{{localize hint}}">
 						<span>{{localize label}}</span>
-						<input {{#if (eq this.type "color")}}type="color"{{else}}type="text"{{/if}} name="{{@key}}" value="{{lookup ../current @key}}">
-						{{#if (eq this.type "image")}}
+						{{#if (eq this.type "color")}}
+							<input type="color" name="{{@key}}" value="{{lookup ../current @key}}">
+						{{else if (eq this.type "image")}}
+							<input type="text" name="{{@key}}" value="{{lookup ../current @key}}">
 							<button
 							 type="button"
-							 class="file-picker"
 							 data-action="filePicker"
 							 data-target="{{@key}}"
-							 data-type="image">
+							 data-type="image"
+							 title="Browse Files">
 								<i class="fas fa-file-import"></i>
 							</button>
+						{{else}}
+							<input type="text" name="{{@key}}" value="{{lookup ../current @key}}">
 						{{/if}}
 					</label>
 				{{/if}}

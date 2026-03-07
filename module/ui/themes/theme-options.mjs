@@ -112,127 +112,130 @@ import { systemPath } from '../../helpers/config.mjs';
  * @property {string} advanced
  */
 
+/**
+ * @type {Readonly<Record<String, Object>>}
+ */
 export const ThemeOptionFields = ObjectUtils.deepFreeze({
 	/* Controls - Default */
-	colorControlContent: { label: 'projectfu-theme.color-control-content.label', type: 'color' },
-	colorControlFocusContent: { label: 'projectfu-theme.color-control-focus-content.label', type: 'color' },
-	colorControlInactiveContent: { label: 'projectfu-theme.color-control-inactive-content.label', type: 'color' },
-	colorControlBorder: { label: 'projectfu-theme.color-control-border.label', type: 'color' },
-	colorControlFill1: { label: 'projectfu-theme.color-control-fill-1.label', type: 'color' },
-	colorControlFill2: { label: 'projectfu-theme.color-control-fill-2.label', type: 'color' },
+	colorControlContent: { label: 'FU.ColorControlContentLabel', type: 'color' },
+	colorControlFocusContent: { label: 'FU.ColorControlFocusContentLabel', type: 'color' },
+	colorControlInactiveContent: { label: 'FU.ColorControlInactiveContentLabel', type: 'color' },
+	colorControlBorder: { label: 'FU.ColorControlBorderLabel', type: 'color' },
+	colorControlFill1: { label: 'FU.ColorControlFill1Label', type: 'color' },
+	colorControlFill2: { label: 'FU.ColorControlFill2Label', type: 'color' },
 
 	/* Controls - Highlight */
-	colorControlHighlightContent: { label: 'projectfu-theme.color-control-highlight-content.label', type: 'color' },
-	colorControlHighlightBorder: { label: 'projectfu-theme.color-control-highlight-border.label', type: 'color' },
-	colorControlHighlightFill1: { label: 'projectfu-theme.color-control-highlight-fill-1.label', type: 'color' },
-	colorControlHighlightFill2: { label: 'projectfu-theme.color-control-highlight-fill-2.label', type: 'color' },
+	colorControlHighlightContent: { label: 'FU.ColorControlHighlightContentLabel', type: 'color' },
+	colorControlHighlightBorder: { label: 'FU.ColorControlHighlightBorderLabel', type: 'color' },
+	colorControlHighlightFill1: { label: 'FU.ColorControlHighlightFill1Label', type: 'color' },
+	colorControlHighlightFill2: { label: 'FU.ColorControlHighlightFill2Label', type: 'color' },
 
 	/* Controls - Active */
-	colorControlActiveContent: { label: 'projectfu-theme.color-control-active-content.label', type: 'color' },
-	colorControlActiveBorder: { label: 'projectfu-theme.color-control-active-border.label', type: 'color' },
-	colorControlActiveFill1: { label: 'projectfu-theme.color-control-active-fill-1.label', type: 'color' },
-	colorControlActiveFill2: { label: 'projectfu-theme.color-control-active-fill-2.label', type: 'color' },
+	colorControlActiveContent: { label: 'FU.ColorControlActiveContentLabel', type: 'color' },
+	colorControlActiveBorder: { label: 'FU.ColorControlActiveBorderLabel', type: 'color' },
+	colorControlActiveFill1: { label: 'FU.ColorControlActiveFill1Label', type: 'color' },
+	colorControlActiveFill2: { label: 'FU.ColorControlActiveFill2Label', type: 'color' },
 
 	/* Apps - Default */
-	colorAppBorder: { label: 'projectfu-theme.color-app-border.label', type: 'color' },
+	colorAppBorder: { label: 'FU.ColorAppBorderLabel', type: 'color' },
 
 	/* Apps - Header */
-	colorAppHeaderContent: { label: 'projectfu-theme.color-app-header-content.label', type: 'color' },
-	colorAppHeaderFocusContent: { label: 'projectfu-theme.color-app-header-focus-content.label', type: 'color' },
-	colorAppHeaderFill1: { label: 'projectfu-theme.color-app-header-fill-1.label', type: 'color' },
-	colorAppHeaderFill2: { label: 'projectfu-theme.color-app-header-fill-2.label', type: 'color' },
+	colorAppHeaderContent: { label: 'FU.ColorAppHeaderContentLabel', type: 'color' },
+	colorAppHeaderFocusContent: { label: 'FU.ColorAppHeaderContentFocusContentLabel', type: 'color' },
+	colorAppHeaderFill1: { label: 'FU.ColorAppHeaderFill1Label', type: 'color' },
+	colorAppHeaderFill2: { label: 'FU.ColorAppHeaderFill2Label', type: 'color' },
 
 	/* Apps - Name Section */
-	colorAppNameSectionContent: { label: 'projectfu-theme.color-app-name-section-content.label', type: 'color' },
-	colorAppNameSectionShadow: { label: 'projectfu-theme.color-app-name-section-shadow.label', type: 'color' },
-	colorAppNameSectionFill1: { label: 'projectfu-theme.color-app-name-section-fill-1.label', type: 'color' },
-	colorAppNameSectionFill2: { label: 'projectfu-theme.color-app-name-section-fill-2.label', type: 'color' },
+	colorAppNameSectionContent: { label: 'FU.ColorAppHeaderNameSectionContentLabel', type: 'color' },
+	colorAppNameSectionShadow: { label: 'FU.ColorAppHeaderNameSectionShadowLabel', type: 'color' },
+	colorAppNameSectionFill1: { label: 'FU.ColorAppHeaderNameSectionFill1Label', type: 'color' },
+	colorAppNameSectionFill2: { label: 'FU.ColorAppHeaderNameSectionFill2Label', type: 'color' },
 
 	/* Apps - Body */
-	colorAppBodyContent: { label: 'projectfu-theme.color-app-body-content.label', type: 'color' },
-	colorAppBodyContentSecondary: { label: 'projectfu-theme.color-app-body-content-secondary.label', type: 'color' },
-	colorAppBodyPrimaryFill1: { label: 'projectfu-theme.color-app-body-primary-fill-1.label', type: 'color' },
-	colorAppBodyPrimaryFill2: { label: 'projectfu-theme.color-app-body-primary-fill-2.label', type: 'color' },
+	colorAppBodyContent: { label: 'FU.ColorAppBodyContentLabel', type: 'color' },
+	colorAppBodyContentSecondary: { label: 'FU.ColorAppBodyContentSecondaryLabel', type: 'color' },
+	colorAppBodyPrimaryFill1: { label: 'FU.ColorAppBodyPrimaryFill1Label', type: 'color' },
+	colorAppBodyPrimaryFill2: { label: 'FU.ColorAppBodyPrimaryFill2Label', type: 'color' },
 
 	/* Apps - Controls */
-	colorAppControlContent: { label: 'projectfu-theme.color-app-control-content.label', type: 'color' },
-	colorAppControlFocusContent: { label: 'projectfu-theme.color-app-control-focus-content.label', type: 'color' },
-	colorAppControlBorder: { label: 'projectfu-theme.color-app-control-border.label', type: 'color' },
-	colorAppControlShadow: { label: 'projectfu-theme.color-app-control-shadow.label', type: 'color' },
-	colorAppControlFill1: { label: 'projectfu-theme.color-app-control-fill-1.label', type: 'color' },
-	colorAppControlFill2: { label: 'projectfu-theme.color-app-control-fill-2.label', type: 'color' },
-	colorAppControlHighlightContent: { label: 'projectfu-theme.color-app-control-highlight-content.label', type: 'color' },
-	colorAppControlHighlightBorder: { label: 'projectfu-theme.color-app-control-highlight-border.label', type: 'color' },
-	colorAppControlHighlightShadow: { label: 'projectfu-theme.color-app-control-highlight-shadow.label', type: 'color' },
-	colorAppControlHighlightFill1: { label: 'projectfu-theme.color-app-control-highlight-fill-1.label', type: 'color' },
-	colorAppControlHighlightFill2: { label: 'projectfu-theme.color-app-control-highlight-fill-2.label', type: 'color' },
-	colorAppControlActiveContent: { label: 'projectfu-theme.color-app-control-active-content.label', type: 'color' },
-	colorAppControlActiveBorder: { label: 'projectfu-theme.color-app-control-active-border.label', type: 'color' },
-	colorAppControlActiveShadow: { label: 'projectfu-theme.color-app-control-active-shadow.label', type: 'color' },
-	colorAppControlActiveFill1: { label: 'projectfu-theme.color-app-control-active-fill-1.label', type: 'color' },
-	colorAppControlActiveFill2: { label: 'projectfu-theme.color-app-control-active-fill-2.label', type: 'color' },
+	colorAppControlContent: { label: 'FU.ColorControlContentLabel', type: 'color' },
+	colorAppControlFocusContent: { label: 'FU.ColorAppControlFocusContentLabel', type: 'color' },
+	colorAppControlBorder: { label: 'FU.ColorAppControlBorderLabel', type: 'color' },
+	colorAppControlShadow: { label: 'FU.ColorAppControlShadowLabel', type: 'color' },
+	colorAppControlFill1: { label: 'FU.ColorControlFill1Label', type: 'color' },
+	colorAppControlFill2: { label: 'FU.ColorControlFill2Label', type: 'color' },
+	colorAppControlHighlightContent: { label: 'FU.ColorAppControlHighlightContentLabel', type: 'color' },
+	colorAppControlHighlightBorder: { label: 'FU.ColorAppControlHighlightBorderLabel', type: 'color' },
+	colorAppControlHighlightShadow: { label: 'FU.ColorAppControlHighlightShadowLabel', type: 'color' },
+	colorAppControlHighlightFill1: { label: 'FU.ColorAppControlHighlightFill1Label', type: 'color' },
+	colorAppControlHighlightFill2: { label: 'FU.ColorAppControlHighlightFill2Label', type: 'color' },
+	colorAppControlActiveContent: { label: 'FU.ColorAppControlActiveContentLabel', type: 'color' },
+	colorAppControlActiveBorder: { label: 'FU.ColorAppControlActiveBorderLabel', type: 'color' },
+	colorAppControlActiveShadow: { label: 'FU.ColorAppControlActiveShadowLabel', type: 'color' },
+	colorAppControlActiveFill1: { label: 'FU.ColorAppControlActiveFill1Label', type: 'color' },
+	colorAppControlActiveFill2: { label: 'FU.ColorAppControlActiveFill2Label', type: 'color' },
 
 	/* Apps - Item Header */
-	colorAppItemHeaderContent: { label: 'projectfu-theme.color-app-item-header-content.label', type: 'color' },
-	colorAppItemHeaderContentFocus: { label: 'projectfu-theme.color-app-item-header-content-focus.label', type: 'color' },
-	colorAppItemHeaderFill1: { label: 'projectfu-theme.color-app-item-header-fill-1.label', type: 'color' },
-	colorAppItemHeaderFill2: { label: 'projectfu-theme.color-app-item-header-fill-2.label', type: 'color' },
-	colorAppItemHeaderShadow: { label: 'projectfu-theme.color-app-item-header-shadow.label', type: 'color' },
-	colorAppItemHighlightBorder: { label: 'projectfu-theme.color-app-item-highlight-border.label', type: 'color' },
-	colorAppItemHighlightFill1: { label: 'projectfu-theme.color-app-item-highlight-fill-1.label', type: 'color' },
-	colorAppItemHighlightFill2: { label: 'projectfu-theme.color-app-item-highlight-fill-2.label', type: 'color' },
+	colorAppItemHeaderContent: { label: 'FU.ColorAppItemHeaderContentLabel', type: 'color' },
+	colorAppItemHeaderContentFocus: { label: 'FU.ColorAppItemHeaderContentFocusLabel', type: 'color' },
+	colorAppItemHeaderFill1: { label: 'FU.ColorAppItemHeaderFill1Label', type: 'color' },
+	colorAppItemHeaderFill2: { label: 'FU.ColorAppItemHeaderFill2Label', type: 'color' },
+	colorAppItemHeaderShadow: { label: 'FU.ColorAppItemHeaderShadowLabel', type: 'color' },
+	colorAppItemHighlightBorder: { label: 'FU.ColorAppItemHighlightBorderLabel', type: 'color' },
+	colorAppItemHighlightFill1: { label: 'FU.ColorAppItemHighlightFill1Label', type: 'color' },
+	colorAppItemHighlightFill2: { label: 'FU.ColorAppItemHighlightFill2Label', type: 'color' },
 
 	/* Apps - Clock */
-	colorAppClockBorder: { label: 'projectfu-theme.color-app-clock-border.label', type: 'color' },
-	colorAppClockFill1: { label: 'projectfu-theme.color-app-clock-fill-1.label', type: 'color' },
-	colorAppClockFill2: { label: 'projectfu-theme.color-app-clock-fill-2.label', type: 'color' },
-	colorAppClockBg1: { label: 'projectfu-theme.color-app-clock-bg-1.label', type: 'color' },
-	colorAppClockBg2: { label: 'projectfu-theme.color-app-clock-bg-2.label', type: 'color' },
+	colorAppClockBorder: { label: 'FU.ColorAppClockBorderLabel', type: 'color' },
+	colorAppClockFill1: { label: 'FU.ColorAppClockFill1Label', type: 'color' },
+	colorAppClockFill2: { label: 'FU.ColorAppClockFill2Label', type: 'color' },
+	colorAppClockBg1: { label: 'FU.ColorAppClockBg1Label', type: 'color' },
+	colorAppClockBg2: { label: 'FU.ColorAppClockBg2Label', type: 'color' },
 
 	/* Apps - Image */
-	colorAppImageFill1: { label: 'projectfu-theme.color-app-image-fill-1.label', type: 'color' },
-	colorAppImageFill2: { label: 'projectfu-theme.color-app-image-fill-2.label', type: 'color' },
+	colorAppImageFill1: { label: 'FU.ColorAppImageFill1Label', type: 'color' },
+	colorAppImageFill2: { label: 'FU.ColorAppImageFill2Label', type: 'color' },
 
 	/* Apps - Section */
-	colorAppSectionContentPrimary: { label: 'projectfu-theme.color-app-section-content-primary.label', type: 'color' },
-	colorAppSectionContentSecondary: { label: 'projectfu-theme.color-app-section-content-secondary.label', type: 'color' },
-	colorAppSectionContentTertiary: { label: 'projectfu-theme.color-app-section-content-tertiary.label', type: 'color' },
-	colorAppSectionBorder: { label: 'projectfu-theme.color-app-section-border.label', type: 'color' },
-	colorAppSectionPrimaryFill1: { label: 'projectfu-theme.color-app-section-primary-fill-1.label', type: 'color' },
-	colorAppSectionPrimaryFill2: { label: 'projectfu-theme.color-app-section-primary-fill-2.label', type: 'color' },
+	colorAppSectionContentPrimary: { label: 'FU.ColorAppSectionContentPrimaryLabel', type: 'color' },
+	colorAppSectionContentSecondary: { label: 'FU.ColorAppSectionContentSecondaryLabel', type: 'color' },
+	colorAppSectionContentTertiary: { label: 'FU.ColorAppSectionContentTertiaryLabel', type: 'color' },
+	colorAppSectionBorder: { label: 'FU.ColorAppSectionBorderLabel', type: 'color' },
+	colorAppSectionPrimaryFill1: { label: 'FU.ColorAppSectionFill1Label', type: 'color' },
+	colorAppSectionPrimaryFill2: { label: 'FU.ColorAppSectionFill2Label', type: 'color' },
 
 	/* Apps - Detail Section */
-	colorAppDetailSectionContentPrimary: { label: 'projectfu-theme.color-app-detail-section-content-primary.label', type: 'color' },
-	colorAppDetailSectionContentSecondary: { label: 'projectfu-theme.color-app-detail-section-content-secondary.label', type: 'color' },
-	colorAppDetailSectionContentTertiary: { label: 'projectfu-theme.color-app-detail-section-content-tertiary.label', type: 'color' },
-	colorAppDetailSectionShadow: { label: 'projectfu-theme.color-app-detail-section-shadow.label', type: 'color' },
-	colorAppDetailSectionPrimaryFill1: { label: 'projectfu-theme.color-app-detail-section-primary-fill-1.label', type: 'color' },
-	colorAppDetailSectionPrimaryFill2: { label: 'projectfu-theme.color-app-detail-section-primary-fill-2.label', type: 'color' },
+	colorAppDetailSectionContentPrimary: { label: 'FU.ColorAppDetailSectionContentPrimaryLabel', type: 'color' },
+	colorAppDetailSectionContentSecondary: { label: 'FU.ColorAppDetailSectionContentSecondaryLabel', type: 'color' },
+	colorAppDetailSectionContentTertiary: { label: 'FU.ColorAppDetailSectionContentTertiaryLabel', type: 'color' },
+	colorAppDetailSectionShadow: { label: 'FU.ColorAppDetailSectionShadowLabel', type: 'color' },
+	colorAppDetailSectionPrimaryFill1: { label: 'FU.ColorAppDetailSectionPrimaryFill1Label', type: 'color' },
+	colorAppDetailSectionPrimaryFill2: { label: 'FU.ColorAppDetailSectionPrimaryFill2Label', type: 'color' },
 
 	/* Apps - Scrollbar */
-	colorAppScrollbar: { label: 'projectfu-theme.color-app-scrollbar.label', type: 'color' },
-	colorAppScrollbarTrack: { label: 'projectfu-theme.color-app-scrollbar-track.label', type: 'color' },
+	colorAppScrollbar: { label: 'FU.ColorAppScrollbarLabel', type: 'color' },
+	colorAppScrollbarTrack: { label: 'FU.ColorAppScrollbarTrackLabel', type: 'color' },
 
 	/* Combat HUD */
-	colorHudBackgroundFill1: { label: 'projectfu-theme.color-hud-background-fill-1.label', type: 'color' },
-	colorHudBackgroundFill2: { label: 'projectfu-theme.color-hud-background-fill-2.label', type: 'color' },
+	colorHudBackgroundFill1: { label: 'FU.ColorHudBackgroundFill1Label', type: 'color' },
+	colorHudBackgroundFill2: { label: 'FU.ColorHudBackgroundFill2Label', type: 'color' },
 
 	/* Misc */
-	colorMiscShadowPrimary: { label: 'projectfu-theme.color-misc-shadow-primary.label', type: 'color' },
-	colorMiscShadowHighlight: { label: 'projectfu-theme.color-misc-shadow-highlight.label', type: 'color' },
-	colorMiscBorderHighlight: { label: 'projectfu-theme.color-misc-border-highlight.label', type: 'color' },
+	colorMiscShadowPrimary: { label: 'FU.ColorMiscShadowPrimaryLabel', type: 'color' },
+	colorMiscShadowHighlight: { label: 'FU.ColorMiscShadowHighlightLabel', type: 'color' },
+	colorMiscBorderHighlight: { label: 'FU.ColorMiscBorderHighlightLabel', type: 'color' },
 
 	/* Images */
-	uiAccentImage: { label: 'projectfu-theme.ui-accent-image.label', type: 'image' },
-	appAccentImage: { label: 'projectfu-theme.app-accent-image.label', type: 'image' },
-	appBgImage: { label: 'projectfu-theme.app-bg-image.label', type: 'image' },
-	appSectionBgImage: { label: 'projectfu-theme.app-section-bg-image.label', type: 'image' },
-	sidebarBgImage: { label: 'projectfu-theme.sidebar-bg-image.label', type: 'image' },
+	uiAccentImage: { label: 'FU.UiAccentImageLabel', type: 'image' },
+	appAccentImage: { label: 'FU.AppAccentImageLabel', type: 'image' },
+	appBgImage: { label: 'FU.AppBgImageLabel', type: 'image' },
+	appSectionBgImage: { label: 'FU.AppSectionBgImageLabel', type: 'image' },
+	sidebarBgImage: { label: 'FU.SidebarBgImageLabel', type: 'image' },
 
 	/* Advanced */
 	advanced: {
-		label: 'projectfu-theme.advanced.label',
-		hint: 'projectfu-theme.advanced.hint',
+		label: 'FU.AdvancedLabel',
+		hint: 'FU.AdvancedHint',
 		type: 'multiline-text',
 	},
 });

@@ -9,6 +9,8 @@
 		'main'
 		'footer';
 
+	--property-label-width: 160px;
+
 	header {
 		grid-area: header;
 	}
@@ -26,5 +28,9 @@
 
 	footer {
 		grid-area: footer;
+	}
+
+	span {
+		min-width: 160px;
 	}
 }
