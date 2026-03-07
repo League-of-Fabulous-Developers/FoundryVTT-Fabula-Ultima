@@ -172,7 +172,10 @@ export const registerSystemSettings = async function () {
 		type: Object,
 		requiresReload: false,
 		default: THEMES.default,
-		onChange: (value) => Theme.from(value).apply(),
+		onChange: (value) => {
+			console.info(`Applying theme ${value}`);
+			return Theme.from(value).apply();
+		},
 	});
 
 	// CHAT MESSAGE OPTIONS

@@ -6,106 +6,6 @@ import { systemId } from '../../helpers/system-utils.mjs';
  * A global UI theme that can be applied to the current world.
  */
 export class Theme {
-	/**
-	 * Creates a Theme instance.
-	 * @param {object} data The data to construct the Theme from.
-	 */
-	constructor(data = {}) {
-		Object.keys(this).forEach((key) => {
-			if (Object.prototype.hasOwnProperty.call(data, key)) {
-				this[key] = data[key];
-			}
-		});
-	}
-
-	/**
-	 * Convenient factory method for getting a Theme instance from passed in data.
-	 *
-	 * @param {*} themeData
-	 * @returns {Theme} The passed in themeData if it was already an instance of Theme, or a Theme generated from the themeData.
-	 */
-	static from(themeData) {
-		return themeData instanceof Theme ? themeData : new Theme(themeData);
-	}
-
-	/**
-	 * @desc Applies this theme to the game world.
-	 */
-	async apply() {
-		// Get our generated style block, if it already exists.
-		const $head = $('head');
-		let $style = $head.find(`style#${systemId}`);
-		// Generate a new style block to hold our styles if it doesn't already exist.
-		if ($style.length <= 0) {
-			$style = $(`<style id="${systemId}"></style>`);
-			$head.append($style);
-		}
-
-		// Construct basic style content from theme string properties, excluding "advanced".
-		const styleData = Object.keys(this)
-			.filter((key) => key !== 'advanced')
-			.map((themeKey) => {
-				const themeType = THEME_OPTIONS[themeKey]?.type;
-				let themeValue = this[themeKey];
-				if (themeType === 'image') {
-					// Handle image values, including the case where no image is defined.
-					if (!themeValue) {
-						themeValue = 'url("")';
-					} else
-						try {
-							const isRelativeUrl = new URL(document.baseURI).origin === new URL(themeValue, document.baseURI).origin;
-							const prefix = isRelativeUrl ? '/' : '';
-							themeValue = `url("${prefix}${themeValue}")`;
-						} catch (e) {
-							console.error(e);
-							themeValue = 'url("")';
-						}
-				} else if (!themeValue || typeof themeValue !== 'string') return;
-				const rule = `--pfu-${themeKey}: ${themeValue};`;
-				return rule;
-			})
-			.filter((style) => style)
-			.join('\n\t');
-
-		// Generate style content from data.
-		let styleContent = `:root {\n\t${styleData}\n}`;
-		// Add advanced content.
-		styleContent += `\n\n${this.advanced}`;
-
-		$style.html(styleContent);
-
-		// Add the ui accent to the left sidebar, if it doesn't already exist.
-		$('#ui-left:not(:has(#ui-accent))').prepend('<div id="ui-accent"></div>');
-	}
-
-	/**
-	 * @desc Downloads a json file of containing this theme's data.
-	 */
-	exportToJson = function () {
-		const data = JSON.stringify(foundry.utils.duplicate(this), null, 2);
-		const filename = `${systemId}-theme.json`;
-		const blob = new Blob([data], { type: 'text/json' });
-
-		// Create an element to trigger the download
-		let a = document.createElement('a');
-		a.href = window.URL.createObjectURL(blob);
-		a.download = filename;
-
-		// Dispatch a click event to the element
-		a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
-		setTimeout(() => window.URL.revokeObjectURL(a.href), 100);
-	};
-
-	/**
-	 * @desc Generates a Theme from a passed in json string.
-	 * @param {string} json A json string containing the Theme data.
-	 * @returns {Theme} The generated Theme.
-	 */
-	static async fromJSON(json) {
-		const data = JSON.parse(json);
-		return new Theme(data);
-	}
-
 	/* Controls - Default */
 	'color-control-content' = '#ebf7afff';
 	'color-control-border' = '#148782ff';
@@ -234,6 +134,105 @@ export class Theme {
 		'  --pfu-app-section-bg-image-size: clamp(25%, 250px, 100%) auto;',
 		'}',
 	].join('\n');
+
+	/**
+	 * Creates a Theme instance.
+	 * @param {object} data The data to construct the Theme from.
+	 */
+	constructor(data = {}) {
+		Object.keys(this).forEach((key) => {
+			if (Object.prototype.hasOwnProperty.call(data, key)) {
+				this[key] = data[key];
+			}
+		});
+	}
+
+	/**
+	 * @desc Convenient factory method for getting a Theme instance from passed in data.
+	 * @param {*} themeData
+	 * @returns {Theme} The passed in themeData if it was already an instance of Theme, or a Theme generated from the themeData.
+	 */
+	static from(themeData) {
+		return themeData instanceof Theme ? themeData : new Theme(themeData);
+	}
+
+	/**
+	 * @desc Applies this theme to the game world.
+	 */
+	async apply() {
+		// Get our generated style block, if it already exists.
+		const $head = $('head');
+		let $style = $head.find(`style#${systemId}`);
+		// Generate a new style block to hold our styles if it doesn't already exist.
+		if ($style.length <= 0) {
+			$style = $(`<style id="${systemId}"></style>`);
+			$head.append($style);
+		}
+
+		// Construct basic style content from theme string properties, excluding "advanced".
+		const styleData = Object.keys(this)
+			.filter((key) => key !== 'advanced')
+			.map((themeKey) => {
+				const themeType = THEME_OPTIONS[themeKey]?.type;
+				let themeValue = this[themeKey];
+				if (themeType === 'image') {
+					// Handle image values, including the case where no image is defined.
+					if (!themeValue) {
+						themeValue = 'url("")';
+					} else
+						try {
+							const isRelativeUrl = new URL(document.baseURI).origin === new URL(themeValue, document.baseURI).origin;
+							const prefix = isRelativeUrl ? '/' : '';
+							themeValue = `url("${prefix}${themeValue}")`;
+						} catch (e) {
+							console.error(e);
+							themeValue = 'url("")';
+						}
+				} else if (!themeValue || typeof themeValue !== 'string') return;
+				const rule = `--pfu-${themeKey}: ${themeValue};`;
+				return rule;
+			})
+			.filter((style) => style)
+			.join('\n\t');
+
+		// Generate style content from data.
+		let styleContent = `:root {\n\t${styleData}\n}`;
+		// Add advanced content.
+		styleContent += `\n\n${this.advanced}`;
+
+		$style.html(styleContent);
+
+		// Add the ui accent to the left sidebar, if it doesn't already exist.
+		$('#ui-left:not(:has(#ui-accent))').prepend('<div id="ui-accent"></div>');
+	}
+
+	/**
+	 * @desc Downloads a json file of containing this theme's data.
+	 */
+	exportToJson = function () {
+		const data = JSON.stringify(foundry.utils.duplicate(this), null, 2);
+		const filename = `${systemId}-theme.json`;
+		const blob = new Blob([data], { type: 'text/json' });
+
+		// Create an element to trigger the download
+		let a = document.createElement('a');
+		a.href = window.URL.createObjectURL(blob);
+		a.download = filename;
+
+		// Dispatch a click event to the element
+		a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+		setTimeout(() => window.URL.revokeObjectURL(a.href), 100);
+	};
+
+	/**
+	 * @desc Generates a Theme from a passed in json string.
+	 * @param {string} json A json string containing the Theme data.
+	 * @returns {Theme} The generated Theme.
+	 */
+	static async fromJSON(json) {
+		const data = JSON.parse(json);
+		return new Theme(data);
+	}
 }
 
 export const THEME_OPTIONS = ObjectUtils.deepFreeze({
