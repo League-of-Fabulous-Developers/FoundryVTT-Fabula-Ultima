@@ -46,8 +46,8 @@ export class Theme {
 		if (!style) {
 			style = document.createElement('style');
 			style.id = id;
-			style.prepend(document.createComment('ProjectFU Themes'));
 			head.appendChild(style);
+			head.insertBefore(document.createComment(' ProjectFU Themes '), style);
 		}
 
 		const properties = Object.keys(this).filter((key) => key !== 'advanced');
