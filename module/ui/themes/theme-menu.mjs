@@ -112,7 +112,7 @@ export class ThemeMenu extends FUApplication {
 						label: game.i18n.localize('FU.Cancel'),
 					},
 				],
-				default: 'import',
+				default: 'cancel',
 			},
 			{
 				width: 400,

@@ -3,6 +3,10 @@ import { ObjectUtils } from '../../helpers/object-utils.mjs';
 import { systemId } from '../../helpers/system-utils.mjs';
 
 /**
+ * @typedef ThemeOptions
+ */
+
+/**
  * A global UI theme that can be applied to the current world.
  */
 export class Theme {
