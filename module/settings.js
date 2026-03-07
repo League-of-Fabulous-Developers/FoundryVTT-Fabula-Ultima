@@ -158,9 +158,9 @@ export const registerSystemSettings = async function () {
 
 	// THEME
 	game.settings.registerMenu(SYSTEM, SETTINGS.themeOptions, {
-		name: `FU.THemeMenuName`,
+		name: `FU.ThemeMenuName`,
 		label: `FU.ThemeMenuLabel`,
-		hint: `FU.THemeMenuHint`,
+		hint: `FU.ThemeMenuHint`,
 		icon: 'fas fa-bars',
 		type: ThemeMenu,
 		restricted: true,

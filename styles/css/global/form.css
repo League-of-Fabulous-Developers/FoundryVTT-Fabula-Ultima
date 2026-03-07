@@ -2,6 +2,30 @@
 .fu-form {
 }
 
+.fu-layout__menu {
+	/* Flexbox stacks the 3 children vertically */
+	display: flex;
+	flex-direction: column;
+	/* You can set a fixed height or let it grow with its parent */
+	height: 100vh; /* or 80vh, 500px, etc. */
+
+	main {
+		/* Grow to fill the remaining space */
+		flex: 1 1 auto;
+		/* Enable scrolling */
+		overflow-y: auto;
+		/* Optional styling */
+		padding: 1rem;
+	}
+
+	header,
+	footer {
+		/* Do NOT grow or shrink – keep the natural height */
+		flex: 0 0 auto;
+		padding: 1rem;
+	}
+}
+
 .fu-form__button {
 	background-color: var(--color-primary);
 	color: #ebf7af;

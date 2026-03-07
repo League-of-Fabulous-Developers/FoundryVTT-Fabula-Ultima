@@ -13,10 +13,10 @@ export class ThemeMenu extends FUApplication {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['fu', 'fu-application'],
+		classes: ['fu-form'],
 		window: {
-			title: 'FU.ThemeMenu',
-			icon: 'fas fa-book',
+			title: 'FU.ThemeMenuName',
+			icon: 'fas fa-color',
 		},
 		form: { closeOnSubmit: false },
 		position: { width: 600 },

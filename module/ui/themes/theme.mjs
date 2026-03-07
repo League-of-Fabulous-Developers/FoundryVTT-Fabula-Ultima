@@ -250,8 +250,7 @@ export class Theme {
 	'color-misc-border-highlight' = '#E03A3ACC';
 	'color-misc-scrollbar' = '#5d142bff';
 	'color-misc-scrollbar-track' = '#00000000';
-	// TODO: This doesn't seem to do anything, but it's in the base foundry styles.
-	// 'color-misc-scrollbar-border' = '#8d151bff';
+
 	advanced = [
 		':root {',
 		'  --pfu-ui-accent-width: 500px;',
@@ -631,8 +630,8 @@ export const THEME_OPTIONS = ObjectUtils.deepFreeze({
 });
 
 export const THEMES = ObjectUtils.deepFreeze({
-	default: new Theme(),
-	'blue-techno': new Theme({
+	Default: new Theme(),
+	BlueTechno: new Theme({
 		'color-control-content': '#F7FEFFFF',
 		'color-control-border': '#ADC9FF80',
 		'color-control-focus-content': '#F7FEFFFF',

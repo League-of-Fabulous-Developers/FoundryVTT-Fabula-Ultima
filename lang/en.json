@@ -1860,7 +1860,12 @@
 		"ColorAppSectionShadowLabel": "App Section Shadow",
 		"ColorAppSectionFill1Label": "App Section Fill (Start)",
 		"ColorAppSectionFill2Label": "App Section Fill (End)",
-		"ControlJsonImportLabel": "Import",
-		"ControlJsonImportHint": "Image to use as an accent for the UI as a whole."
+		"Import": "Import",
+		"Export": "Export",
+		"ControlJsonImportHint": "Image to use as an accent for the UI as a whole.",
+		"THEMES": {
+			"Default": "Greenly Default",
+			"BlueTechno": "Blue Techno"
+		}
 	}
 }
