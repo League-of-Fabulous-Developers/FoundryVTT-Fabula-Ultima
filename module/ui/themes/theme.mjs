@@ -9,14 +9,12 @@ import { ThemeOptionFields, THEMES } from './theme-options.mjs';
 export class Theme {
 	/**
 	 * Creates a Theme instance.
-	 * @param {object} data The data to construct the Theme from.
+	 * @param {ThemeOptions} data The data to construct the Theme from.
 	 */
 	constructor(data = {}) {
 		const source = data && Object.keys(data).length > 0 ? data : THEMES.Default;
-		Object.keys(this).forEach((key) => {
-			if (Object.prototype.hasOwnProperty.call(source, key)) {
-				this[key] = source[key];
-			}
+		Object.keys(source).forEach((key) => {
+			this[key] = source[key];
 		});
 	}
 
@@ -42,26 +40,23 @@ export class Theme {
 	 * @return {Promise}
 	 */
 	async apply() {
-		// Get our generated style block, if it already exists.
-		const $head = $('head');
-		let $style = $head.find(`style#${systemId}`);
-		// Generate a new style block to hold our styles if it doesn't already exist.
-		if ($style.length <= 0) {
-			$style = $(`<style id="${systemId}"></style>`);
-			$head.append($style);
+		const head = document.head;
+		let style = head.querySelector(`style#${systemId}`);
+		if (!style) {
+			style = document.createElement('style');
+			style.id = systemId;
+			head.appendChild(style);
 		}
 
-		// Construct basic style content from theme string properties, excluding "advanced".
-		const styleData = Object.keys(this)
-			.filter((key) => key !== 'advanced')
+		const properties = Object.keys(this).filter((key) => key !== 'advanced');
+		const styleData = properties
 			.map((themeKey) => {
 				const themeType = ThemeOptionFields[themeKey]?.type;
 				let themeValue = this[themeKey];
 				if (themeType === 'image') {
-					// Handle image values, including the case where no image is defined.
 					if (!themeValue) {
 						themeValue = 'url("")';
-					} else
+					} else {
 						try {
 							const isRelativeUrl = new URL(document.baseURI).origin === new URL(themeValue, document.baseURI).origin;
 							const prefix = isRelativeUrl ? '/' : '';
@@ -70,23 +65,27 @@ export class Theme {
 							console.error(e);
 							themeValue = 'url("")';
 						}
-				} else if (!themeValue || typeof themeValue !== 'string') return;
-				const cssClass = StringUtils.camelToKebab(themeKey);
-				const rule = `--pfu-${cssClass}: ${themeValue};`;
-				return rule;
+					}
+				} else if (!themeValue || typeof themeValue !== 'string') {
+					return;
+				}
+				const cssKey = StringUtils.camelToKebab(themeKey);
+				return `--pfu-${cssKey}: ${themeValue};`;
 			})
-			.filter((style) => style)
+			.filter(Boolean)
 			.join('\n\t');
 
-		// Generate style content from data.
 		let styleContent = `:root {\n\t${styleData}\n}`;
-		// Add advanced content.
-		styleContent += `\n\n${this.advanced}`;
+		if (this.advanced) {
+			styleContent += `\n\n${this.advanced}`;
+		}
 
-		$style.html(styleContent);
+		style.textContent = styleContent;
 
-		// Add the ui accent to the left sidebar, if it doesn't already exist.
-		$('#ui-left:not(:has(#ui-accent))').prepend('<div id="ui-accent"></div>');
+		if (!document.querySelector('#ui-left #ui-accent')) {
+			document.querySelector('#ui-left')?.insertAdjacentHTML('afterbegin', '<div id="ui-accent"></div>');
+		}
+
 		console.info(`The selected theme has been applied.`);
 	}
 
