@@ -41,10 +41,12 @@ export class Theme {
 	 */
 	async apply() {
 		const head = document.head;
-		let style = head.querySelector(`style#${systemId}`);
+		const id = `${systemId}-themes`;
+		let style = head.querySelector(`style#${id}`);
 		if (!style) {
 			style = document.createElement('style');
-			style.id = systemId;
+			style.id = id;
+			style.prepend(document.createComment('ProjectFU Themes'));
 			head.appendChild(style);
 		}
 

@@ -140,11 +140,11 @@
 	--pfu-app-accent-position-left: -47px;
 
 	/* Assets */
-	--pfu-ui-accent-image: url('../assets/images/logo.png');
-	--pfu-app-accent-image: url('../assets/images/logo.png');
-	--pfu-app-section-bg-image: url('../assets/images/Bkg_pattern_highres');
-	--pfu-app-bg-image: url('../assets/images/Hojitas_highres.png');
-	--pfu-sidebar-bg-image: url('../assets/images/Hojitas_double_highres.png');
+	--pfu-ui-accent-image: url('../../static/ui/logo.png');
+	--pfu-app-accent-image: url('../../static/ui/logo.png');
+	--pfu-app-section-bg-image: url('../../static/ui/Bkg_pattern_highres.png');
+	--pfu-app-bg-image: url('../../static/ui/Hojitas_highres.png');
+	--pfu-sidebar-bg-image: url('../../static/ui/HojitasDouble_highres.png');
 }
 
 /* Foundry Overrides */
