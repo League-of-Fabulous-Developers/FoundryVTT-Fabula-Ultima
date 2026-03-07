@@ -158,6 +158,7 @@ export class Theme {
 
 	/**
 	 * @desc Applies this theme to the game world.
+	 * @return {Promise}
 	 */
 	async apply() {
 		// Get our generated style block, if it already exists.
@@ -204,6 +205,7 @@ export class Theme {
 
 		// Add the ui accent to the left sidebar, if it doesn't already exist.
 		$('#ui-left:not(:has(#ui-accent))').prepend('<div id="ui-accent"></div>');
+		console.info(`The selected theme has been applied.`);
 	}
 
 	/**

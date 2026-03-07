@@ -22,8 +22,11 @@ export class ThemeMenu extends FUApplication {
 		},
 		form: { closeOnSubmit: false },
 		actions: {
+			changeTheme: ThemeMenu.#changeTheme,
 			importTheme: ThemeMenu.#importTheme,
 			exportTheme: ThemeMenu.#exportTheme,
+			applyTheme: ThemeMenu.#applyTheme,
+			saveTheme: ThemeMenu.#saveTheme,
 		},
 		position: { width: 600 },
 	};
@@ -44,14 +47,14 @@ export class ThemeMenu extends FUApplication {
 	}
 
 	/**
-	 * Updates the theme upon form submission.
-	 *
+	 * @desc Updates the theme upon form submission.
 	 * @param {Event} event The submit event that initiated the update.
 	 * @param {*} formData The data collected from the submitted form.
 	 */
 	_updateObject(event, formData) {
 		const data = foundry.utils.expandObject(formData);
 		setSystemSetting('theme', data);
+		console.info(`Set theme data`);
 	}
 
 	setThemeFields(form, themeData) {
@@ -67,43 +70,14 @@ export class ThemeMenu extends FUApplication {
 	_attachFrameListeners() {
 		super._attachFrameListeners();
 
-		const form = this.element;
-
-		// Set color fields and their associated color pickers when a theme is selected
-		const themeSelect = form.querySelector('select[name="theme"]');
-		themeSelect?.addEventListener('change', (event) => {
-			const value = event.target.value;
-			if (!value) return;
-
-			const theme = THEMES[value];
-			if (theme) {
-				this.setThemeFields(form, theme);
-			}
-		});
-
 		// Unset the theme when any other field changes
+		const form = this.element;
+		const themeSelect = form.querySelector('select[name="theme"]');
 		for (const input of form.querySelectorAll('.form-fields input:not([name="theme"])')) {
 			input.addEventListener('change', () => {
 				if (themeSelect) themeSelect.value = '';
 			});
 		}
-
-		// Export button
-		const exportBtn = form.querySelector('button[name="export"]');
-		exportBtn?.addEventListener('click', () => {
-			const data = foundry.utils.expandObject(Object.fromEntries(new FormData(form)));
-			new Theme(data).exportToJson();
-		});
-
-		// Import button
-		const importBtn = form.querySelector('button[name="import"]');
-		importBtn?.addEventListener('click', async () => {
-			const theme = await Theme.importFromJSONDialog();
-			if (!theme) return;
-
-			this.setThemeFields(form, theme);
-			if (themeSelect) themeSelect.value = '';
-		});
 	}
 
 	/**
@@ -171,9 +145,57 @@ export class ThemeMenu extends FUApplication {
 	}
 
 	/**
+	 * @this ThemeMenu
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #exportTheme(event, target) {}
+	static async #exportTheme(event, target) {
+		const form = target.closest('form');
+		const data = foundry.utils.expandObject(Object.fromEntries(new FormData(form)));
+		new Theme(data).exportToJson();
+	}
+
+	/**
+	 * @this ThemeMenu
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #changeTheme(event, target) {
+		const value = event.target.value;
+		if (!value) return;
+
+		// Set color fields and their associated color pickers when a theme is selected
+		const form = target.closest('form');
+		const theme = THEMES[value];
+		if (theme) {
+			this.setThemeFields(form, theme);
+		}
+	}
+
+	/**
+	 * @this ThemeMenu
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #applyTheme(event, target) {
+		const data = FoundryUtils.getFormData(target);
+		const theme = new Theme(data);
+		return theme.apply();
+	}
+
+	/**
+	 * @this ThemeMenu
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @param formData
+	 * @returns {Promise<void>}
+	 */
+	static async #saveTheme(event, target, formData) {
+		const data = FoundryUtils.getFormData(target);
+		setSystemSetting('theme', data);
+		console.info(`Set theme data`);
+	}
 }
