@@ -7,6 +7,9 @@ import { CombatHudSettings } from './settings/combatHudSettings.js';
 import { SettingsConfigurationApp } from './settings/settings-configuration-app.js';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 import { FUToken } from './ui/token.mjs';
+import { Theme, THEMES } from './ui/themes/theme.mjs';
+import { ThemeMenu } from './ui/themes/theme-menu.mjs';
+import { systemId } from './helpers/system-utils.mjs';
 
 /**
  * @description All system settings
@@ -45,6 +48,9 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
 	optionCombatHudWidth: 'optionCombatHudWidth',
+	// Theme
+	theme: 'theme',
+	themeOptions: 'themeOptions',
 	// Chat Message
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
@@ -126,11 +132,48 @@ function getClientSetting(setting, defaultValue) {
 }
 
 /**
+ *
+ * @param {String} key
+ * @param defaultValue
+ * @returns {*|undefined}
+ */
+export function getSystemSetting(key, defaultValue = undefined) {
+	return game.settings.get(systemId, key) || defaultValue;
+}
+
+/**
+ * @param {String} key
+ * @param value
+ */
+export function setSystemSetting(key, value) {
+	game.settings.set(systemId, key, value);
+}
+
+/**
  * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
  * @returns {Promise<void>}
  */
 export const registerSystemSettings = async function () {
 	const fields = foundry.data.fields;
+
+	// THEME
+	game.settings.registerMenu(SYSTEM, SETTINGS.themeOptions, {
+		name: `FU.THemeMenuName`,
+		label: `FU.ThemeMenuLabel`,
+		hint: `FU.THemeMenuHint`,
+		icon: 'fas fa-bars',
+		type: ThemeMenu,
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.theme, {
+		scope: 'world',
+		config: false,
+		type: Object,
+		requiresReload: false,
+		default: THEMES.default,
+		onChange: (value) => Theme.from(value).apply(),
+	});
 
 	// CHAT MESSAGE OPTIONS
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {

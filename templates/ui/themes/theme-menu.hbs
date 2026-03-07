@@ -1,0 +1,66 @@
+<main>
+
+</main>
+<form id="themeMenuForm" autocomplete="off" onsubmit="event.preventDefault();">
+	<header>
+		<div class="form-group">
+			<label for="theme">{{localize "projectfu-theme.settings.theme.label"}}</label>
+			<div class="form-fields">
+				<select type="text" name="theme">
+					<option value="">{{localize "projectfu-theme.themes.custom.label"}}</option>
+					{{#each themes}}
+						<option value="{{@key}}">{{localize (concat "projectfu-theme.themes." @key ".label")}}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+		<div class="form-group buttons">
+			<button type="button" name="import">
+				<i class="fas fa-file-import"></i>{{localize "projectfu-theme.settings.themeMenu.jsonImport.label"}}
+			</button>
+			<button type="button" name="export">
+				<i class="fas fa-file-export"></i>{{localize "projectfu-theme.settings.themeMenu.jsonExport.label"}}
+			</button>
+		</div>
+		<hr>
+	</header>
+	<div class="settings">
+		{{#each settings}}
+
+			{{#if (eq this.type "multiline-text")}}
+				<div class="form-fields">
+					<details>
+						<summary>
+							<h4>{{localize label}}</h4>
+							<p class="notes">{{localize hint}}</p>
+						</summary>
+						<textarea name="{{@key}}" rows="15">{{lookup ../current @key}}</textarea>
+					</details>
+				</div>
+			{{else}}
+				<div class="form-group">
+					<label for="{{@key}}">{{localize label}}</label>
+					<div class="form-fields">
+						<input type="text" name="{{@key}}" {{#if (eq this.type "color")}}data-color-picker="{alphaChannel: true, format: 'hexa', required: false}"{{/if}} value="{{lookup ../current @key}}">
+						{{#if (eq this.type "image")}}{{filePicker target=@key type="image"}}{{/if}}
+					</div>
+					<p class="notes">{{localize hint}}</p>
+				</div>
+			{{/if}}
+		{{/each}}
+	</div>
+	<footer>
+		<hr>
+		<div class="form-group buttons">
+			<button type="submit" name="apply">
+				<i class="fas fa-palette"></i>{{localize "projectfu-theme.settings.themeMenu.apply.label"}}
+			</button>
+			<button type="submit" name="submit">
+				<i class="fas fa-floppy-disk"></i>{{localize "projectfu-theme.settings.themeMenu.save.label"}}
+			</button>
+			<button type="reset" name="reset">
+				<i class="fas fa-undo"></i>{{localize "projectfu-theme.settings.themeMenu.reset.label"}}
+			</button>
+		</div>
+	</footer>
+</form>
