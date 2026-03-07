@@ -12,6 +12,15 @@ function kebabToPascal(str) {
 }
 
 /**
+ * Converts a camelCase string to kebab-case.
+ * @param {string} str
+ * @returns {string}
+ */
+function camelToKebab(str) {
+	return str.replace(/([A-Z])/g, (_, char) => `-${char.toLowerCase()}`);
+}
+
+/**
  * @param {String} str
  * @returns {string}
  */
@@ -107,6 +116,7 @@ function fromBase64(base64) {
 
 export const StringUtils = Object.freeze({
 	kebabToPascal,
+	camelToKebab,
 	titleToKebab,
 	localize,
 	hasLocalization,

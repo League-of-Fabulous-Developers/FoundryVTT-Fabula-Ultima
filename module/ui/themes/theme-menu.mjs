@@ -1,9 +1,10 @@
 import FUApplication from '../application.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
-import { Theme, THEME_OPTIONS, THEMES } from './theme.mjs';
+import { Theme } from './theme.mjs';
 import { getSystemSetting, setSystemSetting } from '../../settings.js';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { ObjectUtils } from '../../helpers/object-utils.mjs';
+import { ThemeOptionFields, THEMES } from './theme-options.mjs';
 
 /**
  * A form for viewing and updating theme settings.
@@ -41,7 +42,7 @@ export class ThemeMenu extends FUApplication {
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.current = getSystemSetting('theme');
-		context.settings = THEME_OPTIONS;
+		context.fields = ThemeOptionFields;
 		context.themes = THEMES;
 		return context;
 	}
