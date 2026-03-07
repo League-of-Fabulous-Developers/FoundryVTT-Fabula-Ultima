@@ -1245,25 +1245,3 @@ a.inline-macro-execution {
 		}
 	}
 }
-
-/* Theme Menu */
-#projectfu-theme-menu {
-	& form#themeMenuForm {
-		display: flex;
-		flex-direction: column;
-		height: 1vh;
-
-		.settings {
-			flex: 1 1 auto;
-			overflow-y: auto;
-		}
-
-		& summary {
-			cursor: pointer;
-
-			& h4 {
-				display: inline-block;
-			}
-		}
-	}
-}

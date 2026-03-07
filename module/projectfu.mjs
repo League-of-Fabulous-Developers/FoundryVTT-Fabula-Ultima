@@ -8,7 +8,7 @@ import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { registerSystemSettings } from './settings.js';
+import { getSystemSetting, registerSystemSettings } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -114,6 +114,7 @@ import { FUToken } from './ui/token.mjs';
 import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
 import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
+import { Theme } from './ui/themes/theme.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -410,6 +411,9 @@ Hooks.once('init', async () => {
 	PdfPagerIntegration.initialize();
 	PressureSystem.initialize();
 	CompendiumBrowser.initialize();
+
+	// Initialize theme
+	Theme.from(getSystemSetting('theme')).apply();
 
 	// // Disable the token drag ruler measurement, unless they've specifically
 	// // gone in and enabled it for some reason.
