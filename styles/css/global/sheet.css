@@ -51,10 +51,10 @@
 }
 
 .projectfu .sheet-header .item-profile-img {
+	border: 1px solid var(--pfu-color-app-section-border);
+	background: var(--pfu-color-app-image-fill);
 	flex: 0 0 144px;
 	max-height: 144px;
-	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
 	object-fit: contain;
 	object-position: center;
@@ -62,13 +62,28 @@
 }
 
 .projectfu .sheet-header .charname-container {
-	background: linear-gradient(to right, #532853, #bfb8c4);
-	border-color: #c1b7c7;
+	background: var(--pfu-color-app-name-section-fill);
+	margin-right: 1px;
+
 	border-radius: 0;
 	display: flex;
 	align-items: center;
 	padding: 0;
-	border-right: groove #ffffff 3px;
+	border: none #c1b7c7;
+	border-right: 3px groove #ffffff;
+
+	& input[type='text'] {
+		color: var(--pfu-color-app-name-section-content);
+		background: none;
+	}
+
+	& .charname input[type='text'] {
+		text-shadow: 2px 2px 1px var(--pfu-color-app-name-section-shadow);
+	}
+
+	& .pronouns input[type='text'] {
+		text-shadow: 1px 1px 1px var(--pfu-color-app-name-section-shadow);
+	}
 }
 
 .projectfu .sheet-header .charname-container input {
@@ -77,6 +92,47 @@
 
 .projectfu .sheet-header .header-fields {
 	flex: 1;
+	border: none;
+	background: var(--pfu-app-section-bg-image), var(--pfu-color-app-section-primary-fill);
+	background-blend-mode: multiply;
+	background-position: right top;
+	background-size: var(--pfu-app-section-bg-image-size), cover;
+	background-repeat: var(--pfu-app-section-bg-image-repeat);
+
+	& span.combineBar:has(> .species-select) {
+		border: none !important;
+
+		& > .species-select {
+			border-radius: unset;
+		}
+	}
+
+	& > .desc {
+		border: none;
+	}
+
+	& .header-start {
+		border: none;
+	}
+
+	& .header-center {
+		background: none;
+	}
+
+	& span:has(.levelup-container) {
+		border: none !important;
+	}
+
+	& .resource-content.level-field {
+		border: none;
+		background: none;
+		margin: 0 1px 0 1px;
+	}
+
+	& .npc-level-container > label {
+		border: none;
+		background: none;
+	}
 }
 
 .projectfu .sheet-header .header-fields .header-start {

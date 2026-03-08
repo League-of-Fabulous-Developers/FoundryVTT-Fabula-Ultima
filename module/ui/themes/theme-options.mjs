@@ -1,5 +1,6 @@
 import { ObjectUtils } from '../../helpers/object-utils.mjs';
 import { systemPath } from '../../helpers/config.mjs';
+import { systemAssetPath } from '../../helpers/system-utils.mjs';
 
 /**
  * @typedef {Object} ThemeOptions
@@ -337,10 +338,10 @@ export const THEMES = ObjectUtils.deepFreeze({
 		colorHudBackgroundFill2: '#49a499ff',
 
 		uiAccentImage: '',
-		appAccentImage: systemPath(`ui/Acento_highres.png`),
-		appBgImage: systemPath(`ui/HojitasDouble_highres.png`),
-		appSectionBgImage: systemPath(`ui/Bkg_highres.png`),
-		sidebarBgImage: systemPath(`ui/Hojitas_highres.png`),
+		appAccentImage: systemAssetPath(`ui/Acento_highres.png`),
+		appBgImage: systemAssetPath(`ui/HojitasDouble_highres.png`),
+		appSectionBgImage: systemAssetPath(`ui/Bkg_highres.png`),
+		sidebarBgImage: systemAssetPath(`ui/Hojitas_highres.png`),
 
 		colorMiscShadowPrimary: '#77ebd7ff',
 		colorMiscShadowHighlight: '#E03A3AFF',

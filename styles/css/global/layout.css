@@ -29,3 +29,43 @@
 		min-width: 160px;
 	}
 }
+
+.separator {
+	margin: 1rem 0;
+	height: 1px;
+	background: linear-gradient(to right, transparent, var(--color-border), transparent);
+}
+
+/* =========================
+   Main Tab Layout
+   ========================= */
+.tab.main .sidebar {
+	overflow-y: auto;
+}
+
+.tab.main .main-content {
+	overflow-y: auto;
+	padding-left: 0.5rem;
+}
+
+.tab.main .sidebar::-webkit-scrollbar,
+.tab.main .main-content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.tab.main .sidebar::-webkit-scrollbar-track,
+.tab.main .main-content::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 0;
+}
+
+.tab.main .sidebar::-webkit-scrollbar-thumb,
+.tab.main .main-content::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 0;
+}
+
+.tab.main .sidebar::-webkit-scrollbar-thumb:hover,
+.tab.main .main-content::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.5);
+}

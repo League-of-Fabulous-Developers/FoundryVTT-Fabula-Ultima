@@ -2,9 +2,6 @@
 	--fu-grid-size: 64px;
 }
 
-.fu-item {
-}
-
 .fu-item.selected {
 	-webkit-filter: unset;
 	filter: unset;
