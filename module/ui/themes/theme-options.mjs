@@ -1,5 +1,5 @@
 import { ObjectUtils } from '../../helpers/object-utils.mjs';
-import { systemAssetPath } from '../../helpers/system-utils.mjs';
+import { readJsonFromSystemFile, systemAssetPath } from '../../helpers/system-utils.mjs';
 
 /**
  * @typedef {Object} ThemeOptions
@@ -240,235 +240,160 @@ export const ThemeOptionFields = ObjectUtils.deepFreeze({
 	},
 });
 
+const themeFiles = Object.freeze({
+	Default: systemAssetPath('ui/themes/default.json'),
+	BlueTechno: systemAssetPath('ui/themes/blue-techno.json'),
+	RedThirteen: systemAssetPath('ui/themes/red-thirteen.json'),
+});
+
 /**
- * @type {Record<String, ThemeOptions>}
+ * @type {Record<String, Object>} Instantiated themes.
  */
-export const THEMES = ObjectUtils.deepFreeze({
-	Default: {
-		colorControlContent: '#ebf7afff',
-		colorControlBorder: '#148782ff',
-		colorControlFocusContent: '#ffffffff',
-		colorControlInactiveContent: '#ebf7af80',
-		colorControlFill1: '#11292999',
-		colorControlFill2: '#49a49999',
+let systemThemes;
 
-		colorControlHighlightContent: '#047470ff',
-		colorControlHighlightBorder: '#047470ff',
-		colorControlHighlightFill1: '#dcd374ff',
-		colorControlHighlightFill2: '#fff79aff',
+async function getSystemThemes(reload = false) {
+	if (!systemThemes || reload) {
+		systemThemes = {};
+		for (const [label, filePath] of Object.entries(themeFiles)) {
+			const json = await readJsonFromSystemFile(filePath);
+			if (json) {
+				systemThemes[label] = json;
+			}
+		}
+	}
+	return systemThemes;
+}
 
-		colorControlActiveContent: '#fff79aff',
-		colorControlActiveBorder: '#fff79aff',
-		colorControlActiveFill1: '#e28079cc',
-		colorControlActiveFill2: '#f1a372cc',
+// TODO: Remove or?
+/**
+ * @desc The default theme.
+ * @type {ThemeOptions}
+ */
+const defaultTheme = Object.freeze({
+	colorControlContent: '#ebf7afff',
+	colorControlBorder: '#148782ff',
+	colorControlFocusContent: '#ffffffff',
+	colorControlInactiveContent: '#ebf7af80',
+	colorControlFill1: '#11292999',
+	colorControlFill2: '#49a49999',
 
-		colorAppBorder: '#148782ff',
+	colorControlHighlightContent: '#047470ff',
+	colorControlHighlightBorder: '#047470ff',
+	colorControlHighlightFill1: '#dcd374ff',
+	colorControlHighlightFill2: '#fff79aff',
 
-		colorAppHeaderContent: '#ebf7afff',
-		colorAppHeaderFocusContent: '#ffffffff',
-		colorAppHeaderFill1: '#23574bdd',
-		colorAppHeaderFill2: '#011f13dd',
+	colorControlActiveContent: '#fff79aff',
+	colorControlActiveBorder: '#fff79aff',
+	colorControlActiveFill1: '#e28079cc',
+	colorControlActiveFill2: '#f1a372cc',
 
-		colorAppBodyContent: '#ebF7afff',
-		colorAppBodyContentSecondary: '#ebF7afc0',
-		colorAppBodyPrimaryFill1: '#112929e0',
-		colorAppBodyPrimaryFill2: '#25544fe0',
+	colorAppBorder: '#148782ff',
 
-		colorAppNameSectionContent: '#ebf7afff',
-		colorAppNameSectionShadow: '#000000ff',
-		colorAppNameSectionFill1: '#532853ff',
-		colorAppNameSectionFill2: '#bfb8c4ff',
+	colorAppHeaderContent: '#ebf7afff',
+	colorAppHeaderFocusContent: '#ffffffff',
+	colorAppHeaderFill1: '#23574bdd',
+	colorAppHeaderFill2: '#011f13dd',
 
-		colorAppControlContent: '#ebf7afff',
-		colorAppControlFocusContent: '#ffffffff',
-		colorAppControlBorder: '#148782ff',
-		colorAppControlShadow: '#2b4a42ff',
-		colorAppControlFill1: '#2b4a42ff',
-		colorAppControlFill2: '#2b4a42ff',
-		colorAppControlHighlightContent: '#047470ff',
-		colorAppControlHighlightBorder: '#3A6359FF',
-		colorAppControlHighlightShadow: '#3A6359FF',
-		colorAppControlHighlightFill1: '#dcd374ff',
-		colorAppControlHighlightFill2: '#fff79aff',
-		colorAppControlActiveContent: '#fff79aff',
-		colorAppControlActiveBorder: '#753002ff',
-		colorAppControlActiveShadow: '#753002ff',
-		colorAppControlActiveFill1: '#e28079cc',
-		colorAppControlActiveFill2: '#f1a372cc',
+	colorAppBodyContent: '#ebF7afff',
+	colorAppBodyContentSecondary: '#ebF7afc0',
+	colorAppBodyPrimaryFill1: '#112929e0',
+	colorAppBodyPrimaryFill2: '#25544fe0',
 
-		colorAppImageFill1: '#2b4a42ff',
-		colorAppImageFill2: '#3d665aff',
+	colorAppNameSectionContent: '#ebf7afff',
+	colorAppNameSectionShadow: '#000000ff',
+	colorAppNameSectionFill1: '#532853ff',
+	colorAppNameSectionFill2: '#bfb8c4ff',
 
-		colorAppItemHeaderContent: '#ebf7afff',
-		colorAppItemHeaderContentFocus: '#ffffffff',
-		colorAppItemHeaderFill1: '#2c584dff',
-		colorAppItemHeaderFill2: '#a0cdbcff',
-		colorAppItemHeaderShadow: '#2b4a42ff',
+	colorAppControlContent: '#ebf7afff',
+	colorAppControlFocusContent: '#ffffffff',
+	colorAppControlBorder: '#148782ff',
+	colorAppControlShadow: '#2b4a42ff',
+	colorAppControlFill1: '#2b4a42ff',
+	colorAppControlFill2: '#2b4a42ff',
+	colorAppControlHighlightContent: '#047470ff',
+	colorAppControlHighlightBorder: '#3A6359FF',
+	colorAppControlHighlightShadow: '#3A6359FF',
+	colorAppControlHighlightFill1: '#dcd374ff',
+	colorAppControlHighlightFill2: '#fff79aff',
+	colorAppControlActiveContent: '#fff79aff',
+	colorAppControlActiveBorder: '#753002ff',
+	colorAppControlActiveShadow: '#753002ff',
+	colorAppControlActiveFill1: '#e28079cc',
+	colorAppControlActiveFill2: '#f1a372cc',
 
-		colorAppItemHighlightBorder: '#2b4a42ff',
-		colorAppItemHighlightFill1: '#e1efe3ff',
-		colorAppItemHighlightFill2: '#e1efe300',
+	colorAppImageFill1: '#2b4a42ff',
+	colorAppImageFill2: '#3d665aff',
 
-		colorAppClockBorder: '#2b4a42ff',
-		colorAppClockFill1: '#2b4a42e0',
-		colorAppClockFill2: '#2b4a42e0',
-		colorAppClockBg1: '#ffffffb0',
-		colorAppClockBg2: '#ffffffb0',
+	colorAppItemHeaderContent: '#ebf7afff',
+	colorAppItemHeaderContentFocus: '#ffffffff',
+	colorAppItemHeaderFill1: '#2c584dff',
+	colorAppItemHeaderFill2: '#a0cdbcff',
+	colorAppItemHeaderShadow: '#2b4a42ff',
 
-		colorAppDetailSectionContentPrimary: '#272a2aff',
-		colorAppDetailSectionContentSecondary: '#2b4a42ff',
-		colorAppDetailSectionContentTertiary: '#3d665aff',
-		colorAppDetailSectionBorder: '#c9c7b8ff',
-		colorAppDetailSectionShadow: '#2b4a42ff',
-		colorAppDetailSectionLabel: '#2b4a42ff',
-		colorAppDetailSectionPrimaryFill1: '#d4e7e8ff',
-		colorAppDetailSectionPrimaryFill2: '#c3dbd6b3',
+	colorAppItemHighlightBorder: '#2b4a42ff',
+	colorAppItemHighlightFill1: '#e1efe3ff',
+	colorAppItemHighlightFill2: '#e1efe300',
 
-		colorAppSectionContentPrimary: '#191813ff',
-		colorAppSectionContentSecondary: '#2b4a42ff',
-		colorAppSectionContentTertiary: '#4b4a44ff',
-		colorAppSectionBorder: '#aeb8a8ff',
-		colorAppSectionPrimaryFill1: '#f5f5dcff',
-		colorAppSectionPrimaryFill2: '#c9c7b8ff',
-		colorAppScrollbar: '#5d142bff',
-		colorAppScrollbarTrack: '#00000000',
+	colorAppClockBorder: '#2b4a42ff',
+	colorAppClockFill1: '#2b4a42e0',
+	colorAppClockFill2: '#2b4a42e0',
+	colorAppClockBg1: '#ffffffb0',
+	colorAppClockBg2: '#ffffffb0',
 
-		colorHudBackgroundFill1: '#49a499ff',
-		colorHudBackgroundFill2: '#49a499ff',
+	colorAppDetailSectionContentPrimary: '#272a2aff',
+	colorAppDetailSectionContentSecondary: '#2b4a42ff',
+	colorAppDetailSectionContentTertiary: '#3d665aff',
+	colorAppDetailSectionBorder: '#c9c7b8ff',
+	colorAppDetailSectionShadow: '#2b4a42ff',
+	colorAppDetailSectionLabel: '#2b4a42ff',
+	colorAppDetailSectionPrimaryFill1: '#d4e7e8ff',
+	colorAppDetailSectionPrimaryFill2: '#c3dbd6b3',
 
-		uiAccentImage: '',
-		appAccentImage: systemAssetPath(`ui/Acento_highres.png`),
-		appBgImage: systemAssetPath(`ui/HojitasDouble_highres.png`),
-		appSectionBgImage: systemAssetPath(`ui/Bkg_highres.png`),
-		sidebarBgImage: systemAssetPath(`ui/Hojitas_highres.png`),
+	colorAppSectionContentPrimary: '#191813ff',
+	colorAppSectionContentSecondary: '#2b4a42ff',
+	colorAppSectionContentTertiary: '#4b4a44ff',
+	colorAppSectionBorder: '#aeb8a8ff',
+	colorAppSectionPrimaryFill1: '#f5f5dcff',
+	colorAppSectionPrimaryFill2: '#c9c7b8ff',
+	colorAppScrollbar: '#5d142bff',
+	colorAppScrollbarTrack: '#00000000',
 
-		colorMiscShadowPrimary: '#77ebd7ff',
-		colorMiscShadowHighlight: '#E03A3AFF',
-		colorMiscBorderHighlight: '#E03A3ACC',
-		colorMiscScrollbar: '#5d142bff',
-		colorMiscScrollbarTrack: '#00000000',
+	colorHudBackgroundFill1: '#49a499ff',
+	colorHudBackgroundFill2: '#49a499ff',
 
-		advanced: [
-			':root {',
-			'  --pfu-ui-accent-width: 500px;',
-			'  --pfu-ui-accent-height: 500px;',
-			'  --pfu-ui-accent-position-top: -24px;',
-			'  --pfu-ui-accent-position-left: 1px;',
-			'  --pfu-ui-accent-clip-path: inset(0 370px 402px 0);',
-			'  --pfu-app-accent-width: 200px;',
-			'  --pfu-app-accent-height: 200px;',
-			'  --pfu-app-accent-position-top: -42px;',
-			'  --pfu-app-accent-position-left: -47px;',
-			'  --pfu-border-radius-large: 20px;',
-			'  --pfu-border-radius-medium: 10px;',
-			'  --pfu-border-radius-small: 5px;',
-			'  --pfu-border-width: 1px;',
-			'  --pfu-app-section-bg-image-size: clamp(25%, 250px, 100%) auto;',
-			'}',
-		].join('\n'),
-	},
-	BlueTechno: {
-		colorControlContent: '#F7FEFFFF',
-		colorControlBorder: '#ADC9FF80',
-		colorControlFocusContent: '#F7FEFFFF',
-		colorControlInactiveContent: '#F7FEFF80',
-		colorControlFill1: '#2D388599',
-		colorControlFill2: '#4758D199',
+	uiAccentImage: '',
+	appAccentImage: systemAssetPath(`ui/Acento_highres.png`),
+	appBgImage: systemAssetPath(`ui/HojitasDouble_highres.png`),
+	appSectionBgImage: systemAssetPath(`ui/Bkg_highres.png`),
+	sidebarBgImage: systemAssetPath(`ui/Hojitas_highres.png`),
 
-		colorControlHighlightContent: '#3C4685FF',
-		colorControlHighlightBorder: '#6F83D1FF',
-		colorControlHighlightFill1: '#D9ECFFFF',
-		colorControlHighlightFill2: '#F7FEFFFF',
+	colorMiscShadowPrimary: '#77ebd7ff',
+	colorMiscShadowHighlight: '#E03A3AFF',
+	colorMiscBorderHighlight: '#E03A3ACC',
+	colorMiscScrollbar: '#5d142bff',
+	colorMiscScrollbarTrack: '#00000000',
 
-		colorControlActiveContent: '#F7FEFFFF',
-		colorControlActiveBorder: '#F7FEFFB3',
-		colorControlActiveFill1: '#7D7D7DCC',
-		colorControlActiveFill2: '#E3E3E3CC',
+	advanced: [
+		':root {',
+		'  --pfu-ui-accent-width: 500px;',
+		'  --pfu-ui-accent-height: 500px;',
+		'  --pfu-ui-accent-position-top: -24px;',
+		'  --pfu-ui-accent-position-left: 1px;',
+		'  --pfu-ui-accent-clip-path: inset(0 370px 402px 0);',
+		'  --pfu-app-accent-width: 200px;',
+		'  --pfu-app-accent-height: 200px;',
+		'  --pfu-app-accent-position-top: -42px;',
+		'  --pfu-app-accent-position-left: -47px;',
+		'  --pfu-border-radius-large: 20px;',
+		'  --pfu-border-radius-medium: 10px;',
+		'  --pfu-border-radius-small: 5px;',
+		'  --pfu-border-width: 1px;',
+		'  --pfu-app-section-bg-image-size: clamp(25%, 250px, 100%) auto;',
+		'}',
+	].join('\n'),
+});
 
-		colorAppBorder: '#00000000',
-
-		colorAppHeaderContent: '#F7FEFFFF',
-		colorAppHeaderFocusContent: '#FFFFFFFF',
-		colorAppHeaderFill1: '#3A4587DD',
-		colorAppHeaderFill2: '#0F1224DD',
-
-		colorAppBodyContent: '#F7FEFFFF',
-		colorAppBodyContentSecondary: '#F7FEFFC0',
-		colorAppBodyPrimaryFill1: '#101129FF',
-		colorAppBodyPrimaryFill2: '#28275CFF',
-
-		colorAppNameSectionContent: '#F7FEFFFF',
-		colorAppNameSectionShadow: '#000000FF',
-		colorAppNameSectionFill1: '#532853FF',
-		colorAppNameSectionFill2: '#5328538C',
-
-		colorAppControlContent: '#D6F9FFFF',
-		colorAppControlBorder: '#D6F9FF5C',
-		colorAppControlShadow: '#2D3885FF',
-		colorAppControlFill1: '#2D3885FF',
-		colorAppControlFill2: '#2D3885FF',
-		colorAppControlHighlightContent: '#2D3885FF',
-		colorAppControlHighlightBorder: '#2D3885FF',
-		colorAppControlHighlightShadow: '#2D3885FF',
-		colorAppControlHighlightFill1: '#D6F9FFFF',
-		colorAppControlHighlightFill2: '#D6F9FFFF',
-		colorAppControlActiveContent: '#2D3885FF',
-		colorAppControlActiveBorder: '#2D3885FF',
-		colorAppControlActiveShadow: '#2D3885FF',
-		colorAppControlActiveFill1: '#D6F9FFFF',
-		colorAppControlActiveFill2: '#D6F9FFFF',
-
-		colorAppImageFill1: '#303573FF',
-		colorAppImageFill2: '#3A49A1FF',
-
-		colorAppItemHeaderContent: '#F8F7FFFF',
-		colorAppItemHeaderContentFocus: '#D6F9FFFF',
-		colorAppItemHeaderFill1: '#2D3885FF',
-		colorAppItemHeaderFill2: '#A1DAFFFF',
-		colorAppItemHeaderShadow: '#2D3885FF',
-		colorAppItemHighlightBorder: '#2D3885FF',
-		colorAppItemHighlightFill1: '#D6F9FFFF',
-		colorAppItemHighlightFill2: '#D6F9FF00',
-
-		colorAppClockBorder: '#1E2559FF',
-		colorAppClockFill1: '#2D3885E0',
-		colorAppClockFill2: '#2D3885E0',
-		colorAppClockBg1: '#FFFFFFB0',
-		colorAppClockBg2: '#FFFFFFB0',
-
-		colorAppDetailSectionContentPrimary: '#272A2AFF',
-		colorAppDetailSectionContentSecondary: '#1E2559FF',
-		colorAppDetailSectionContentTertiary: '#4B4A44FF',
-		colorAppDetailSectionBorder: '#c9c7b8ff',
-		colorAppDetailSectionShadow: '#2D3885FF',
-		colorAppDetailSectionLabel: '#2b4a42ff',
-		colorAppDetailSectionPrimaryFill1: '#D6F9FFFF',
-		colorAppDetailSectionPrimaryFill2: '#D6F9FFA3',
-
-		colorAppSectionContentPrimary: '#191813FF',
-		colorAppSectionContentSecondary: '#1E2559FF',
-		colorAppSectionContentTertiary: '#4B4A44FF',
-		colorAppSectionBorder: '#F8F7FFE0',
-		colorAppSectionPrimaryFill1: '#F8F7FFE0',
-		colorAppSectionPrimaryFill2: '#F5F5FFED',
-
-		colorAppScrollbar: '#F8F7FFE0',
-		colorAppScrollbarTrack: '',
-
-		colorHudBackgroundFill1: '#2D3885FF',
-		colorHudBackgroundFill2: '#2D3885FF',
-
-		uiAccentImage: '',
-		appAccentImage: '',
-		appBgImage: systemAssetPath('ui/Page_deco.png'),
-		appSectionBgImage: '',
-		sidebarBgImage: systemAssetPath('ui/Page_deco_half.png'),
-
-		colorMiscShadowPrimary: '#73BEFFFF',
-		colorMiscShadowHighlight: '#F78946FF',
-		colorMiscBorderHighlight: '#F78946CC',
-
-		advanced:
-			':root {\n  --pfu-ui-accent-width: 70px;\n  --pfu-ui-accent-height: auto;\n  --pfu-ui-accent-position-top: -111px;\n  --pfu-ui-accent-position-left: 72px;\n  --pfu-ui-accent-clip-path: unset;\n  --pfu-border-radius-large: 20px;\n  --pfu-border-radius-medium: 10px;\n  --pfu-border-radius-small: 5px;\n  --pfu-border-width: 0.1em;\n  --pfu-control-shadow: 0 0 10px var(--color-shadow-dark);\n}\n\n#ui-accent {\n  transform: rotate(90deg) scaleY(-1);\n}\n\n#chat-form #chat-message {\n  background: var(--pfu-color-app-section-primary-fill);\n}',
-	},
+export const Themes = Object.freeze({
+	getSystemThemes,
+	defaultTheme,
 });

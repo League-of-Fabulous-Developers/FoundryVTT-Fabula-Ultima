@@ -3,8 +3,8 @@ import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { Theme } from './theme.mjs';
 import { getSystemSetting, setSystemSetting } from '../../settings.js';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
-import { ObjectUtils } from '../../helpers/object-utils.mjs';
-import { ThemeOptionFields, THEMES } from './theme-options.mjs';
+import { ThemeOptionFields, Themes } from './theme-options.mjs';
+import { FileUtils } from '../../helpers/file-utils.mjs';
 
 /**
  * A form for viewing and updating theme settings.
@@ -42,8 +42,9 @@ export class ThemeMenu extends FUApplication {
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.current = getSystemSetting('theme');
+		const themes = await Themes.getSystemThemes();
 		context.fields = ThemeOptionFields;
-		context.themes = THEMES;
+		context.themes = themes;
 		return context;
 	}
 
@@ -67,17 +68,41 @@ export class ThemeMenu extends FUApplication {
 		}
 	}
 
-	/** @override */
-	_attachFrameListeners() {
-		super._attachFrameListeners();
+	/**
+	 * @override
+	 * @param partId
+	 * @param element
+	 * @param options
+	 * @private
+	 */
+	_attachPartListeners(partId, element, options) {
+		super._attachPartListeners(partId, element, options);
+		switch (partId) {
+			case 'main': {
+				// Unset the theme when any other field changes
+				const themeSelect = element.querySelector('select[name="theme"]');
+				if (!themeSelect) return;
 
-		// Unset the theme when any other field changes
-		const form = this.element;
-		const themeSelect = form.querySelector('select[name="theme"]');
-		for (const input of form.querySelectorAll('.form-fields input:not([name="theme"])')) {
-			input.addEventListener('change', () => {
-				if (themeSelect) themeSelect.value = '';
-			});
+				// Target all inputs and textareas inside <main>, excluding the theme select
+				const fields = element.querySelectorAll('main input, main textarea');
+				for (const field of fields) {
+					field.addEventListener('change', () => {
+						themeSelect.value = '';
+					});
+				}
+
+				const resetButton = element.querySelector('button[name="reset"]');
+				if (resetButton) {
+					resetButton.addEventListener('click', () => {
+						const fields = element.querySelectorAll('main input, main textarea');
+						for (const field of fields) {
+							field.value = field.defaultValue;
+						}
+						// Also reset the theme select to its default
+						themeSelect.value = themeSelect.options[0].value;
+					});
+				}
+			}
 		}
 	}
 
@@ -104,7 +129,7 @@ export class ThemeMenu extends FUApplication {
 								return false; // Keeps dialog open
 							}
 
-							return ObjectUtils.readTextFromFile(fileInput.files[0]).then((json) => Theme.fromJSON(json));
+							return FileUtils.readTextFromFile(fileInput.files[0]).then((json) => Theme.fromJSON(json));
 						},
 					},
 					{
@@ -169,7 +194,8 @@ export class ThemeMenu extends FUApplication {
 
 		// Set color fields and their associated color pickers when a theme is selected
 		const form = target.closest('form');
-		const theme = THEMES[value];
+		const themes = await Themes.getSystemThemes();
+		const theme = themes[value];
 		if (theme) {
 			this.setThemeFields(form, theme);
 		}

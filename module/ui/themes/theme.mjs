@@ -1,6 +1,6 @@
 import { systemId } from '../../helpers/system-utils.mjs';
 import { StringUtils } from '../../helpers/string-utils.mjs';
-import { ThemeOptionFields, THEMES } from './theme-options.mjs';
+import { ThemeOptionFields, Themes } from './theme-options.mjs';
 
 /**
  * @desc A global UI theme that can be applied to the current world.
@@ -12,7 +12,7 @@ export class Theme {
 	 * @param {ThemeOptions} data The data to construct the Theme from.
 	 */
 	constructor(data = {}) {
-		const source = data && Object.keys(data).length > 0 ? data : THEMES.Default;
+		const source = data && Object.keys(data).length > 0 ? data : Themes.defaultTheme;
 		Object.keys(source).forEach((key) => {
 			this[key] = source[key];
 		});

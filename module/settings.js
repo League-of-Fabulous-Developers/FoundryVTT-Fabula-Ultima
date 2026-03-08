@@ -10,7 +10,7 @@ import { FUToken } from './ui/token.mjs';
 import { Theme } from './ui/themes/theme.mjs';
 import { ThemeMenu } from './ui/themes/theme-menu.mjs';
 import { systemId } from './helpers/system-utils.mjs';
-import { THEMES } from './ui/themes/theme-options.mjs';
+import { Themes } from './ui/themes/theme-options.mjs';
 
 /**
  * @description All system settings
@@ -172,7 +172,7 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Object,
 		requiresReload: false,
-		default: THEMES.Default,
+		default: Themes.defaultTheme,
 		onChange: (value) => {
 			console.info(`Applying theme ${value}`);
 			return Theme.from(value).apply();
