@@ -1,5 +1,4 @@
 import { ObjectUtils } from '../../helpers/object-utils.mjs';
-import { systemPath } from '../../helpers/config.mjs';
 import { systemAssetPath } from '../../helpers/system-utils.mjs';
 
 /**
@@ -461,9 +460,9 @@ export const THEMES = ObjectUtils.deepFreeze({
 
 		uiAccentImage: '',
 		appAccentImage: '',
-		appBgImage: systemPath('ui/Page_deco.png'),
+		appBgImage: systemAssetPath('ui/Page_deco.png'),
 		appSectionBgImage: '',
-		sidebarBgImage: systemPath('ui/Page_deco_half.png'),
+		sidebarBgImage: systemAssetPath('ui/Page_deco_half.png'),
 
 		colorMiscShadowPrimary: '#73BEFFFF',
 		colorMiscShadowHighlight: '#F78946FF',
