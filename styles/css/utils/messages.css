@@ -47,22 +47,66 @@
 	font-size: 1.25rem;
 }
 
+.chat-message .message-content .chat-header img.item-img {
+	border-radius: unset;
+	background: unset;
+}
+
 .chat-message,
 .chat-message.whisper {
-	background:
-		url('../../static/ui/Bkg_highres.png'),
-		-webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-	background: var(--background-card);
-	background-blend-mode: multiply !important;
-	background-repeat: repeat-y;
+	--color-text-primary: var(--pfu-color-app-section-content-primary);
+	--color-primary: var(--pfu-color-app-section-content-secondary);
+	--color-secondary: var(--pfu-color-app-section-content-tertiary);
+	--color-shadow-primary: var(--pfu-color-misc-shadow-highlight);
+
+	color: var(--pfu-color-app-section-content-primary);
+	border: 2px solid var(--pfu-color-app-section-border);
+	background: var(--pfu-app-section-bg-image), var(--pfu-color-app-section-primary-fill);
 	background-position: right top;
+	background-size: var(--pfu-app-section-bg-image-size), cover;
+	background-repeat: var(--pfu-app-section-bg-image-repeat);
+
 	margin: 0.25rem;
 	padding: 0.5rem;
 	font-size: var(--font-size-14);
-	border: 2px solid #6f6c66;
-	background-size: cover;
 	border-radius: 5px;
+
+	& .message-header {
+		color: var(--pfu-color-app-section-content-tertiary);
+
+		& .item-img {
+			filter: drop-shadow(2px 2px 4px var(--pfu-color-app-item-header-shadow));
+		}
+	}
+
+	& .chat-desc {
+		&:not(.fu-check) {
+			color: var(--pfu-color-app-detail-section-content-primary);
+			background: var(--pfu-color-app-detail-section-primary-fill-to-bottom);
+		}
+
+		border-top: unset;
+		box-shadow: 1px 2px var(--pfu-color-app-detail-section-shadow);
+
+		& strong {
+			color: var(--pfu-color-app-detail-section-content-primary);
+		}
+
+		& .summary {
+			color: var(--pfu-color-app-detail-section-content-tertiary);
+		}
+	}
+
+	& h2 {
+		color: var(--pfu-color-app-section-content-tertiary);
+	}
+
+	& h3 {
+		color: var(--pfu-color-app-section-content-tertiary);
+		border-color: var(--pfu-color-app-section-content-tertiary);
+	}
 }
+
 .chat-message .chat-desc,
 .chat-message.whisper .chat-desc {
 	text-align: left;
