@@ -142,41 +142,8 @@
 	--pfu-app-bg-image: url('../../static/ui/Hojitas_highres.png');
 	--pfu-sidebar-bg-image: url('../../static/ui/HojitasDouble_highres.png');
 }
-.fu-rule-element {
-	--border-primary: var(--color-border-secondary);
 
-	& .fu-rule-element__section {
-		background: none;
-	}
-
-	& .fu-rule-element__item {
-		background: none;
-	}
-
-	& .fu-rule-element__content,
-	& .fu-rule-element__item__content {
-		background: none;
-	}
-
-	& .fu-rule-element__header,
-	& .fu-rule-element__item__header {
-		--color-text-primary: var(--pfu-color-app-item-header-content);
-		text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
-	}
-}
-
-.projectfu .icon-toggle input:checked + .toggle-icon {
-	color: var(--color-primary);
-}
-
-& .fu-foldout-content {
-	background: none;
-}
-
-.fu-foldout-summary {
-	--color-text-primary: var(--pfu-color-app-item-header-content);
-	text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
-}
+/* Foundry Classes	*/
 
 .themed:is(.theme-dark, .theme-light) .ui-control,
 .themed:is(.theme-dark, .theme-light) .placeable-hud,
@@ -216,11 +183,12 @@ body.theme-dark {
 	--color-text-selection-bg: var(--color-cool-3);
 }
 
+/* Token Action HUD */
 #combat-hud.pixel,
 #token-action-hud.tah-style-pixel-style {
 	--pixel-hud-background-color: var(--pfu-color-hud-background-fill-1) !important;
 }
-/* Token Action HUD */
+
 .tah-style-fu-style {
 	--tah-text-primary-color: var(--pfu-color-control-content);
 	--tah-text-shadow: var(--pfu-color-misc-shadow-primary);
@@ -247,6 +215,7 @@ body.theme-dark {
 		box-shadow: var(--pfu-control-shadow);
 	}
 }
+
 /*Quick Fixes*/
 h4.divider::before,
 h4.divider::after {
@@ -273,35 +242,8 @@ h4.divider::after {
 	 * with --color-border-primary, which is a pfu variable
 	 */
 	--border-primary: var(--pfu-color-app-section-divider);
-
 	--table-row-color-odd: transparent;
 	--table-row-color-even: rgba(0, 0, 0, 0.1);
-
-	& .fu-icon__badge-overlay {
-		background: var(--color-background);
-		color: var(--pfu-color-app-control-content);
-	}
-
-	& table {
-		&.table-compact {
-			background: unset;
-
-			& thead {
-				border: unset;
-
-				& th {
-					border: unset;
-					background: unset;
-				}
-			}
-		}
-
-		& thead tr {
-			color: var(--pfu-color-app-control-content);
-			background: var(--pfu-color-app-control-fill);
-		}
-	}
-
 	--checkbox-font-weight: bold;
 
 	& input[type='checkbox'],

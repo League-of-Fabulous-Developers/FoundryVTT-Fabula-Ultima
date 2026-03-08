@@ -3,6 +3,7 @@
 
 	color: var(--color-primary);
 	font-weight: var(--font-weight-normal);
+	--border-primary: var(--color-border-secondary);
 
 	.-fu-form__title {
 		display: flex;
@@ -10,7 +11,7 @@
 	}
 
 	.fu-form__section {
-		background: linear-gradient(rgba(240, 246, 232, 0.7), rgba(230, 240, 220, 0.7));
+		background: none;
 		border-radius: 5px;
 		border: 1px solid var(--border-primary);
 	}
@@ -19,7 +20,8 @@
 		padding: 0 0.5rem;
 		background: var(--color-tabStyle-gradient);
 		color: var(--color-text-primary);
-		text-shadow: 1px 1px 1px #000000;
+		--color-text-primary: var(--pfu-color-app-item-header-content);
+		text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
 		font-weight: var(--font-weight-bold);
 		border-radius: 4px;
 		box-shadow: 1px 2px var(--color-primary);
@@ -32,13 +34,14 @@
 	}
 
 	.fu-form__content {
-		background: linear-gradient(var(--gradient-button-bg), rgba(230, 240, 220, 0.7));
 		padding: 0.5rem;
+		background: none;
 	}
 
 	.fu-form__item {
 		border-radius: 5px;
 		border: 1px solid var(--border-primary);
+		background: none;
 	}
 
 	.fu-form__set {
@@ -63,7 +66,7 @@
 	}
 
 	.fu-form__item__content {
-		background: linear-gradient(var(--gradient-button-bg), rgba(230, 240, 220, 0.7));
+		background: none;
 		padding: 0.5rem;
 		backdrop-filter: saturate(200%); /* Vivid colors */
 	}
