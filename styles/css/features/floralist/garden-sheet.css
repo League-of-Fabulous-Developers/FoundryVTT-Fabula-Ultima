@@ -20,7 +20,7 @@
 		grid-template-columns: min-content min-content auto;
 		column-gap: 0.5rem;
 
-		.progress {
+		.pfu-progress__segments {
 			grid-area: clock;
 		}
 

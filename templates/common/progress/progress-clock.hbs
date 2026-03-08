@@ -1,7 +1,7 @@
-<div class="inline-desc flexrow flex-group-center" data-item-id="{{id}}">
+<div class="pfu-progress inline-desc flexrow flex-group-center resource-content" data-item-id="{{id}}">
 
-	<div class="progress-container">
-		<div class="progress" style="--segments: {{data.max}};" data-segments="{{data.max}}" data-index="{{index}}"
+	<div class="pfu-progress__segments__container">
+		<div class="pfu-progress__segments" style="--segments: {{data.max}};" data-segments="{{data.max}}" data-index="{{index}}"
 			 data-action="{{action}}"
 			 data-id="{{id}}"
 			 data-index="{{index}}"
@@ -21,7 +21,7 @@
 
 	{{#if displayName}}
 		<label>
-			<span class="resource-label-sm">{{localize displayName}}</span>
+			<span>{{localize displayName}}</span>
 		</label>
 	{{/if}}
 

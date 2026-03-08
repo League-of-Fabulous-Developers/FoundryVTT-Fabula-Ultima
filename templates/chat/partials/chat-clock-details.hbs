@@ -5,8 +5,8 @@
 {{/if}}
 <div style="display: grid; margin-top: 4px;">
 	<div class="pfu-progress__chat gap-10">
-		<div class="progress-container">
-			<div class="progress" style="--segments: {{progress.max}}; --size: 50px" data-segments="{{progress.max}}"
+		<div class="pfu-progress__segments__container">
+			<div class="pfu-progress__segments" style="--segments: {{progress.max}}; --size: 50px" data-segments="{{progress.max}}"
 				 data-tooltip="{{localize 'FU.Progress'}}">
 				<div class="foreground"></div>
 				{{#each segments as |obj key|}}

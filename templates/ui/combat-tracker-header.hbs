@@ -94,7 +94,7 @@
 
 	{{!-- Tracks --}}
 	{{#if combat.system.tracks}}
-		<div class="desc resource-content progress-collection" style="background: unset;">
+		<div class="desc resource-content pfu-progress__collection" style="background: unset;">
 			{{#each combat.system.tracks }}
 				<div>
 					{{pfuProgressCollection ../combat 'system.tracks' @index displayName=true prompt=true controls=../combat.isOwner }}

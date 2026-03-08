@@ -687,18 +687,10 @@ app.projectfu .prosemirror menu {
 	}
 
 	& .pfu-progress__chat,
-	& .growth-clock,
 	&.clock-s,
 	&.clock-m,
 	&.clock-l {
-		& .progress-container,
-		&.growth-clock {
-			padding: 2px;
-
-			& .progress {
-				--border-width: 2px;
-			}
-
+		& .pfu-progress__segments__container {
 			&::after {
 				content: unset;
 				background: unset;
@@ -706,8 +698,8 @@ app.projectfu .prosemirror menu {
 		}
 	}
 
-	& .progress-container .progress,
-	& .growth-clock .progress {
+	& .pfu-progress__segments__container .pfu-progress__segments,
+	& .pfu-progress__segments {
 		& input[type='radio'].pie {
 			background: unset;
 			&:hover,
@@ -762,11 +754,11 @@ app.projectfu .prosemirror menu {
 		}
 	}
 
-	& .inline-desc .progress-container,
-	& .inline-desc .growth-clock {
+	& .inline-desc .pfu-progress__segments__container,
+	& .inline-desc {
 		padding: 2px;
 
-		& .progress {
+		& .pfu-progress__segments {
 			--border-width: 2px;
 		}
 
@@ -775,7 +767,7 @@ app.projectfu .prosemirror menu {
 		}
 	}
 
-	& .progress {
+	& .pfu-progress__segments {
 		background: var(--pfu-color-app-clock-bg);
 		border-radius: 50%;
 	}
@@ -1213,7 +1205,7 @@ app.projectfu .prosemirror menu {
 			--color-tabs-border: var(--pfu-color-app-section-divider);
 			--color-scrollbar: var(--pfu-color-app-control-fill-1);
 
-			& input[type='radio']:not(.progress *) {
+			& input[type='radio']:not(.pfu-progress__segments *) {
 				color: unset !important;
 				background-color: unset !important;
 				--checkbox-background-color: var(--pfu-color-app-control-fill-1);
