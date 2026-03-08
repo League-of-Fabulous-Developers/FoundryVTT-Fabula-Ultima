@@ -526,6 +526,15 @@
 	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
 }
 
+.projectfu .resource-content .resource-inputs {
+	color: var(--pfu-color-app-control-content);
+	background: var(--pfu-color-app-control-fill-1);
+	& option {
+		color: var(--pfu-color-app-control-content);
+		background: var(--pfu-color-app-control-fill-1);
+	}
+}
+
 /* ----------------------------------------- */
 /* Button Styles
   /* ----------------------------------------- */

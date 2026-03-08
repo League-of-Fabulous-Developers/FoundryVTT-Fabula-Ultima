@@ -464,6 +464,15 @@
 	-webkit-text-stroke: 0.05rem black;
 }
 
+.fua {
+	-webkit-text-stroke: inherit;
+	text-shadow:
+		-1px 0 #000,
+		1px 0 #000,
+		0 1px #000,
+		0 -1px #000;
+}
+
 .fui {
 	width: 16px;
 	height: 16px;
