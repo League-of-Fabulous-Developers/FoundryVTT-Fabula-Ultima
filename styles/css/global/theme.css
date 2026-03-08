@@ -465,36 +465,6 @@ h4.divider::after {
 .projectfu .resource-content {
 	color: var(--pfu-color-app-section-content-secondary);
 }
-.projectfu .blur {
-	backdrop-filter: var(--pfu-backdrop-filter);
-	border-radius: var(--pfu-border-radius-small);
-	border: unset;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-
-.resource-label-l,
-.resource-label-m,
-.resource-label-sm {
-	/* color: var(--pfu-color-app-section-content-secondary); */
-	background: none;
-}
-.fu-icon__radio__label {
-	/* Remove brightness from icon filter -- looks better on most themes */
-	filter: grayscale(1) opacity(0.7);
-}
-
-.fu-dialog__output {
-	background: var(--pfu-color-app-control-fill);
-	color: var(--pfu-color-app-control-content);
-	border-radius: var(--pfu-border-radius-small);
-}
-
-.projectfu .sheet-header .profile-img {
-	background: var(--pfu-color-app-body-primary-fill);
-}
 
 .playlists-sidebar .global-control > header {
 	color: var(--pfu-color-app-header-content);
@@ -1808,6 +1778,7 @@ a[data-action='rollEffect'],
 		border-radius: var(--pfu-border-radius-medium) calc(var(--entry-height) / 2) calc(var(--entry-height) / 2) var(--pfu-border-radius-medium);
 	}
 }
+
 /* FU Roll Enhancements*/
 .application.roll-enhancements {
 	--color-text-emphatic: var(--pfu-color-app-body-content);

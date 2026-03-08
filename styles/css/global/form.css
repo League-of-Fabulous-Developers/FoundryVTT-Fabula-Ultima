@@ -113,75 +113,8 @@
 	gap: 5px;
 }
 
-/*		DIALOGS		*/
-.fu-dialog form main {
-	border-radius: 10px;
-	border: 1px solid rgba(44, 74, 66, 0.3294117647);
-	padding: 0.25rem;
-	color: var(--color-text-dark);
-}
-
-.fu-dialog button {
-	background-color: var(--color-primary);
-	color: var(--color-white);
-	border: 0.093rem solid #f5f5dc;
-	border-radius: 0.5rem;
-	box-shadow: 0.063rem 0.1rem #2b4a42;
-}
-
-.fu-dialog__text {
-	text-align: center;
-}
-
-.fu-dialog__output {
-	font-size: large;
-	color: var(--color-text-primary);
-	padding: 4px;
-	text-align: center;
-	border: 1px solid var(--color-border-divider);
-	background: var(--color-background-alt);
-}
-
-.fu-dialog-item_label {
-	font-size: large;
-	text-align: center;
-	display: flex;
-	margin: 4px;
-	gap: 4px;
-}
-
 .-fu-form__row {
 	display: flex;
-}
-
-.fu-dialog__icon-option {
-	display: inline-flex;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
-	padding: 4px;
-	border-radius: 6px;
-	cursor: pointer;
-	transition:
-		outline 0.15s ease,
-		background 0.15s ease;
-}
-
-.fu-dialog__icon-option img {
-	display: block; /* removes inline spacing */
-	width: 100%; /* scale to container */
-	height: 100%;
-	object-fit: contain; /* maintain aspect ratio */
-}
-
-.fu-dialog__icon-option.selected {
-	background: var(--background-critical);
-}
-
-.fu-dialog__icon-option:disabled {
-	opacity: 0.5;
-	background: dimgrey;
-	pointer-events: none;
 }
 
 .fu-traits {

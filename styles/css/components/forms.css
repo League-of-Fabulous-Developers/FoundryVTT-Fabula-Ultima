@@ -12,6 +12,7 @@
 .sheet-header-left .profile-img {
 	border-radius: 0;
 	box-shadow: 0 2px 8px #000a;
+	background: var(--pfu-color-app-body-primary-fill);
 }
 
 .sheet-header-center {

@@ -19,12 +19,14 @@
 @import 'css/global/theme.css';
 @import 'css/global/layout.css';
 @import 'css/global/icon.css';
+@import 'css/global/dialog.css';
+@import 'css/global/sheet.css';
 
 @import 'css/components/item-grid.css';
 @import 'css/components/checks.css';
 @import 'css/components/carousel.css';
 @import 'css/components/affinity.css';
-@import 'css/components/dialogs.css';
+
 @import 'css/components/clocks.css';
 @import 'css/components/barmeter.css';
 @import 'css/components/combat.css';
