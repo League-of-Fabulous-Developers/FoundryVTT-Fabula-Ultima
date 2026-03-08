@@ -774,3 +774,53 @@
 	-webkit-filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
 	filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
 }
+
+.projectfu .start {
+	display: flex;
+	justify-content: flex-start;
+	-webkit-box-align: inherit;
+	-ms-flex-align: inherit;
+	align-items: inherit;
+	text-align: left;
+	padding: 0 5px;
+	-ms-flex-line-pack: center;
+	align-content: center;
+}
+
+.projectfu .end {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 95px;
+	flex: 0 0 95px;
+	display: flex;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+	-webkit-box-align: inherit;
+	-ms-flex-align: inherit;
+	align-items: inherit;
+	-ms-flex-line-pack: center;
+	align-content: center;
+}
+
+.projectfu .end a {
+	text-align: center;
+	margin: 0 2px;
+}
+
+@keyframes floating {
+	0% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	50% {
+		-webkit-transform: translateY(2px);
+		transform: translateY(2px);
+		/* Adjust the downward distance as needed */
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
