@@ -686,7 +686,7 @@ app.projectfu .prosemirror menu {
 		color: var(--pfu-color-app-section-content-secondary) !important;
 	}
 
-	& .unique-clock,
+	& .pfu-progress__chat,
 	& .growth-clock,
 	&.clock-s,
 	&.clock-m,
@@ -879,8 +879,7 @@ app.projectfu .prosemirror menu {
 
 	& :is(.window-content, .dialog-content) .desc :is(.inline-desc, .item-m),
 	& .desc .inline-desc,
-	& .unique-rp,
-	& .unique-clock,
+	& .pfu-progress__chat,
 	& .cell-class-level {
 		background: var(--pfu-color-app-detail-section-primary-fill-to-bottom);
 		border: 1px solid var(--pfu-color-app-detail-section-content-secondary);

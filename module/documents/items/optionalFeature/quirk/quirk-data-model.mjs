@@ -69,21 +69,10 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 
 	static async getResourceDataString(model) {
 		const { rp, hasResource } = model;
-
-		// Determine resource display status
-		const resourceDisplay =
-			(hasResource?.value ?? true)
-				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
-						data: rp,
-					})
-				: '';
-
-		// Create HTML content
-		return `
-		<div style="display: grid;">
-			${resourceDisplay}
-		</div>
-		`;
+		if (hasResource) {
+			return await ProgressDataModel.renderDetails(rp);
+		}
+		return '';
 	}
 
 	static async getClockDataString(model) {

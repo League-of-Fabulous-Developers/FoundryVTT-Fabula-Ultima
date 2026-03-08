@@ -1,158 +1,159 @@
 /* ----------------------------------------- */
 /* Clocks Styles                       
  /* ----------------------------------------- */
-.projectfu .progress {
-	--size: 50px;
-	--border-width: 2px;
-	width: var(--size);
-	height: var(--size);
-	position: relative;
+.projectfu {
+	/* Progress Clock */
+	.progress {
+		--size: 50px;
+		--border-width: 2px;
+		width: var(--size);
+		height: var(--size);
+		position: relative;
+	}
+
+	.progress-container {
+		display: flex;
+		justify-content: space-evenly;
+		gap: 2em;
+	}
+
+	.progress-collection {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 0;
+		gap: 4px;
+	}
+
+	/* Segment clip-paths */
+	.progress[data-segments='1'] .divider {
+		display: none;
+	}
+	.progress[data-segments='2'] .pie {
+		clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
+	}
+	.progress[data-segments='3'] .pie {
+		clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
+	}
+	.progress[data-segments='4'] .pie {
+		clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
+	}
+	.progress[data-segments='5'] .pie {
+		clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
+	}
+	.progress[data-segments='6'] .pie {
+		clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
+	}
+	.progress[data-segments='7'] .pie {
+		clip-path: polygon(50% 0, 50% 50%, 110% 0);
+	}
+	.progress[data-segments='8'] .pie {
+		clip-path: polygon(50% 0, 50% 50%, 100% 0);
+	}
+	.progress[data-segments='9'] .pie {
+		clip-path: polygon(50% 0, 50% 50%, 95% 0);
+	}
+	.progress[data-segments='10'] .pie {
+		clip-path: polygon(50% 0, 50% 50%, 85% 0);
+	}
+	.progress[data-segments='11'] .pie {
+		clip-path: polygon(50% 0, 50% 50%, 85% 0);
+	}
+	.progress[data-segments='12'] .pie {
+		clip-path: polygon(50% 0, 50% 50%, 80% 0);
+	}
+
+	/* Foreground ring */
+	.progress .foreground {
+		pointer-events: none;
+		position: absolute;
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+		border: var(--border-width) solid #2b4a42;
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+		z-index: 2;
+	}
+
+	/* Segment dividers */
+	.progress .divider {
+		pointer-events: none;
+		position: absolute;
+		width: var(--border-width);
+		height: calc(50% - 0.5 * var(--border-width));
+		top: calc(0.5 * var(--border-width));
+		right: calc(50% - var(--border-width) / 2);
+		background: #3d665a;
+		transform-origin: center bottom;
+		transform: rotate(calc(var(--index) * 1turn / var(--segments)));
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+		z-index: 2;
+	}
+
+	/* Pie slice inputs */
+	.progress input[type='radio'].pie {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		appearance: none;
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+		transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
+		z-index: 1;
+	}
+
+	.progress .pie:hover {
+		cursor: pointer;
+	}
+
+	.progress .pie:checked,
+	.progress .pie:checked ~ .pie {
+		background-color: #2b4a42;
+	}
+
+	.progress .pie:hover,
+	.progress .pie:hover ~ .pie {
+		background-color: #ebf7af;
+	}
+
+	/* Checked + hover interactions */
+	.progress .pie:checked:hover,
+	.progress .pie:checked:hover ~ .pie,
+	.progress .pie:checked ~ .pie:hover,
+	.progress .pie:checked ~ .pie:hover ~ .pie,
+	.progress .pie:hover ~ .pie:checked,
+	.progress .pie:hover ~ .pie:checked ~ .pie {
+		background-color: #2b4a42;
+	}
+
+	/* Clock layouts */
+	.clock-m,
+	.growth-clock {
+		display: grid;
+		grid-template-areas: 'clock name name' 'clock minus plus';
+		grid-template-columns: 50px 1fr 1fr;
+
+		.progress {
+			grid-area: clock;
+		}
+		.increment-button {
+			grid-area: plus;
+		}
+		.decrement-button {
+			grid-area: minus;
+		}
+		.item-name {
+			grid-area: name;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-wrap: nowrap !important;
+			font-size: 75% !important;
+		}
+	}
 }
 
-.projectfu .progress-container {
-	display: flex;
-	justify-content: space-evenly;
-	gap: 2em;
-}
-
-.projectfu .progress-controls {
-}
-
-.projectfu .progress[data-segments='1'] .divider {
-	display: none;
-}
-.projectfu .progress[data-segments='2'] .pie {
-	clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
-}
-.projectfu .progress[data-segments='3'] .pie {
-	clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
-}
-.projectfu .progress[data-segments='4'] .pie {
-	clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
-}
-.projectfu .progress[data-segments='5'] .pie {
-	clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
-}
-.projectfu .progress[data-segments='6'] .pie {
-	clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
-}
-.projectfu .progress[data-segments='7'] .pie {
-	clip-path: polygon(50% 0, 50% 50%, 110% 0);
-}
-.projectfu .progress[data-segments='8'] .pie {
-	clip-path: polygon(50% 0, 50% 50%, 100% 0);
-}
-.projectfu .progress[data-segments='9'] .pie {
-	clip-path: polygon(50% 0, 50% 50%, 95% 0);
-}
-.projectfu .progress[data-segments='10'] .pie {
-	clip-path: polygon(50% 0, 50% 50%, 85% 0);
-}
-.projectfu .progress[data-segments='11'] .pie {
-	clip-path: polygon(50% 0, 50% 50%, 85% 0);
-}
-.projectfu .progress[data-segments='12'] .pie {
-	clip-path: polygon(50% 0, 50% 50%, 80% 0);
-}
-.projectfu .progress .foreground {
-	pointer-events: none;
-	position: absolute;
-	width: var(--size);
-	height: var(--size);
-	border-radius: 50%;
-	border: var(--border-width) solid #2b4a42;
-	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-	z-index: 2;
-}
-.projectfu .progress .divider {
-	pointer-events: none;
-	position: absolute;
-	width: var(--border-width);
-	height: calc(50% - 0.5 * var(--border-width));
-	top: calc(0.5 * var(--border-width));
-	right: calc(50% - var(--border-width) / 2);
-	background: #3d665a;
-	-webkit-transform-origin: center bottom;
-	-ms-transform-origin: center bottom;
-	transform-origin: center bottom;
-	-webkit-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
-	-ms-transform: rotate(calc(var(--index) * 1turn / var(--segments)));
-	transform: rotate(calc(var(--index) * 1turn / var(--segments)));
-	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-	z-index: 2;
-}
-.projectfu .progress input[type='radio'].pie {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	width: var(--size);
-	height: var(--size);
-	border-radius: 50%;
-	-webkit-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
-	-ms-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
-	transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
-	z-index: 1;
-}
-.projectfu .progress .pie:hover {
-	cursor: pointer;
-}
-.projectfu .progress .pie:checked,
-.projectfu .progress .pie:checked ~ .pie {
-	background-color: #2b4a42;
-}
-.projectfu .progress .pie:hover,
-.projectfu .progress .pie:hover ~ .pie {
-	background-color: #ebf7af;
-}
-.projectfu .progress .pie:checked:hover,
-.projectfu .progress .pie:checked:hover ~ .pie,
-.projectfu .progress .pie:checked ~ .pie:hover,
-.projectfu .progress .pie:checked ~ .pie:hover ~ .pie,
-.projectfu .progress .pie:hover ~ .pie:checked,
-.projectfu .progress .pie:hover ~ .pie:checked ~ .pie {
-	background-color: #2b4a42;
-}
-.projectfu .clock-m,
-.projectfu .growth-clock {
-	display: grid;
-	grid-template-areas: 'clock name name' 'clock minus plus';
-	grid-template-columns: 50px 1fr 1fr;
-}
-.projectfu .clock-m .progress,
-.projectfu .growth-clock .progress {
-	grid-area: clock;
-}
-.projectfu .clock-m .increment-button,
-.projectfu .growth-clock .increment-button {
-	grid-area: plus;
-}
-.projectfu .clock-m .decrement-button,
-.projectfu .growth-clock .decrement-button {
-	grid-area: minus;
-}
-.projectfu .clock-m .item-name,
-.projectfu .growth-clock .item-name {
-	grid-area: name;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	text-wrap: nowrap !important;
-	font-size: 75% !important;
-}
-
-.projectfu .progress-collection {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 0;
-	gap: 4px;
-}
-
-.unique-rp {
+.pfu-progress__chat {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -163,47 +164,42 @@
 	-ms-flex-align: center;
 	align-items: center;
 	font-family: 'Yanone Kaffeesatz', sans-serif;
-	background-color: #2b4a42;
-	color: #fff79a;
 	border-radius: 10px;
 	padding: 10px 20px;
 	width: 100%;
 	font-size: 20px;
 	font-weight: bold;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	white-space: nowrap;
 	text-transform: uppercase;
-	text-align: center;
-	-ms-flex-line-pack: center;
 	align-content: center;
 	line-height: 1.2;
-	/* Hue overlay */
+
+	label {
+		color: var(--color-primary);
+		-webkit-box-flex: 1;
+		flex-grow: 1;
+		min-width: 0;
+		overflow: hidden;
+		align-content: center;
+		text-align: left;
+		text-overflow: ellipsis;
+		word-wrap: break-word;
+		white-space: wrap;
+		gap: 8px;
+		margin: 4px;
+	}
 }
-.unique-rp .rp-label {
-	color: var(--color-text-primary);
-	-webkit-box-flex: 1;
-	-ms-flex-positive: 1;
-	flex-grow: 1;
-	min-width: 0;
-	overflow: hidden;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	text-align: left;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	white-space: wrap;
-}
-.unique-rp .stats {
+
+.pfu-progress__chat .stats {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	gap: 5px;
 }
-.unique-rp .stat-current,
-.unique-rp .stat-max {
+.pfu-progress__chat .stat-current,
+.pfu-progress__chat .stat-max {
 	color: #2b4a42;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
 	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
 	border-radius: 4px;
 	-ms-flex-negative: 0;
@@ -219,8 +215,8 @@
 	z-index: 1;
 	font-family: 'PT Sans', sans-serif;
 }
-.unique-rp .stat-current::after,
-.unique-rp .stat-max::after {
+.pfu-progress__chat .stat-current::after,
+.pfu-progress__chat .stat-max::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -233,103 +229,13 @@
 	border-radius: 4px;
 	z-index: 0;
 }
-.unique-rp .stat-divider {
+.pfu-progress__chat .stat-divider {
 	color: #fff79a;
 	-ms-flex-negative: 0;
 	flex-shrink: 0;
 	font-size: larger;
 }
-
-.unique-clock {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	font-family: 'Yanone Kaffeesatz', sans-serif;
-	background-color: #2b4a42;
-	color: #fff79a;
-	border-radius: 10px;
-	padding: 10px 20px;
-	width: 100%;
-	font-size: 20px;
-	font-weight: bold;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	white-space: nowrap;
-	text-transform: uppercase;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	line-height: 1.2;
-	/* Hue overlay */
-	/* Hue overlay */
-}
-.unique-clock .rp-label {
-	color: #fff79a;
-	-webkit-box-flex: 1;
-	-ms-flex-positive: 1;
-	flex-grow: 1;
-	min-width: 0;
-	overflow: hidden;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	text-align: left;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	white-space: wrap;
-	gap: 8px;
-	margin: 4px;
-}
-.unique-clock .stats {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	gap: 5px;
-}
-.unique-clock .stat-current,
-.unique-clock .stat-max {
-	color: #2b4a42;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
-	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
-	border-radius: 4px;
-	-ms-flex-negative: 0;
-	flex-shrink: 0;
-	width: 2em;
-	height: -webkit-fit-content;
-	height: -moz-fit-content;
-	height: fit-content;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	text-align: center;
-	position: relative;
-	z-index: 1;
-	font-family: 'PT Sans', sans-serif;
-}
-.unique-clock .stat-current::after,
-.unique-clock .stat-max::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #fff79a;
-	mix-blend-mode: hue;
-	opacity: 0.7;
-	border-radius: 4px;
-	z-index: 0;
-}
-.unique-clock .stat-divider {
-	color: #fff79a;
-	-ms-flex-negative: 0;
-	flex-shrink: 0;
-	font-size: larger;
-}
-.unique-clock .progress-container {
+.pfu-progress__chat .progress-container {
 	position: relative;
 	padding: 5px;
 	background-color: #e1e5d1;
@@ -345,7 +251,7 @@
 	align-items: center;
 	z-index: 1;
 }
-.unique-clock .progress-container::after {
+.pfu-progress__chat .progress-container::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -359,50 +265,50 @@
 	border-radius: 50%;
 	z-index: 0;
 }
-.unique-clock .progress {
+.pfu-progress__chat .progress {
 	--size: 50px;
 	--border-width: 2px;
 	width: var(--size);
 	height: var(--size);
 	position: relative;
 }
-.unique-clock .progress[data-segments='1'] .divider {
+.pfu-progress__chat .progress[data-segments='1'] .divider {
 	display: none;
 }
-.unique-clock .progress[data-segments='2'] .pie {
+.pfu-progress__chat .progress[data-segments='2'] .pie {
 	clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
 }
-.unique-clock .progress[data-segments='3'] .pie {
+.pfu-progress__chat .progress[data-segments='3'] .pie {
 	clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
 }
-.unique-clock .progress[data-segments='4'] .pie {
+.pfu-progress__chat .progress[data-segments='4'] .pie {
 	clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
 }
-.unique-clock .progress[data-segments='5'] .pie {
+.pfu-progress__chat .progress[data-segments='5'] .pie {
 	clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
 }
-.unique-clock .progress[data-segments='6'] .pie {
+.pfu-progress__chat .progress[data-segments='6'] .pie {
 	clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
 }
-.unique-clock .progress[data-segments='7'] .pie {
+.pfu-progress__chat .progress[data-segments='7'] .pie {
 	clip-path: polygon(50% 0, 50% 50%, 110% 0);
 }
-.unique-clock .progress[data-segments='8'] .pie {
+.pfu-progress__chat .progress[data-segments='8'] .pie {
 	clip-path: polygon(50% 0, 50% 50%, 100% 0);
 }
-.unique-clock .progress[data-segments='9'] .pie {
+.pfu-progress__chat .progress[data-segments='9'] .pie {
 	clip-path: polygon(50% 0, 50% 50%, 95% 0);
 }
-.unique-clock .progress[data-segments='10'] .pie {
+.pfu-progress__chat .progress[data-segments='10'] .pie {
 	clip-path: polygon(50% 0, 50% 50%, 85% 0);
 }
-.unique-clock .progress[data-segments='11'] .pie {
+.pfu-progress__chat .progress[data-segments='11'] .pie {
 	clip-path: polygon(50% 0, 50% 50%, 85% 0);
 }
-.unique-clock .progress[data-segments='12'] .pie {
+.pfu-progress__chat .progress[data-segments='12'] .pie {
 	clip-path: polygon(50% 0, 50% 50%, 80% 0);
 }
-.unique-clock .progress .foreground {
+.pfu-progress__chat .progress .foreground {
 	pointer-events: none;
 	position: absolute;
 	width: var(--size);
@@ -413,7 +319,7 @@
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 	z-index: 2;
 }
-.unique-clock .progress .divider {
+.pfu-progress__chat .progress .divider {
 	pointer-events: none;
 	position: absolute;
 	width: var(--border-width);
@@ -431,7 +337,7 @@
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 	z-index: 2;
 }
-.unique-clock .progress input[type='radio'].pie {
+.pfu-progress__chat .progress input[type='radio'].pie {
 	position: absolute;
 	top: 0;
 	margin: 0;
@@ -446,26 +352,26 @@
 	transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
 	z-index: 1;
 }
-.unique-clock .progress .pie:hover {
+.pfu-progress__chat .progress .pie:hover {
 	cursor: pointer;
 }
-.unique-clock .progress .pie:checked,
-.unique-clock .progress .pie:checked ~ .pie {
+.pfu-progress__chat .progress .pie:checked,
+.pfu-progress__chat .progress .pie:checked ~ .pie {
 	background-color: var(--color-checkbox-checked-bg);
 }
-.unique-clock .progress .pie:hover,
-.unique-clock .progress .pie:hover ~ .pie {
+.pfu-progress__chat .progress .pie:hover,
+.pfu-progress__chat .progress .pie:hover ~ .pie {
 	background-color: var(--hover-bg);
 }
-.unique-clock .progress .pie:checked:hover,
-.unique-clock .progress .pie:checked:hover ~ .pie,
-.unique-clock .progress .pie:checked ~ .pie:hover,
-.unique-clock .progress .pie:checked ~ .pie:hover ~ .pie,
-.unique-clock .progress .pie:hover ~ .pie:checked,
-.unique-clock .progress .pie:hover ~ .pie:checked ~ .pie {
+.pfu-progress__chat .progress .pie:checked:hover,
+.pfu-progress__chat .progress .pie:checked:hover ~ .pie,
+.pfu-progress__chat .progress .pie:checked ~ .pie:hover,
+.pfu-progress__chat .progress .pie:checked ~ .pie:hover ~ .pie,
+.pfu-progress__chat .progress .pie:hover ~ .pie:checked,
+.pfu-progress__chat .progress .pie:hover ~ .pie:checked ~ .pie {
 	background-color: #2b4a42;
 }
 
-.unique-clock .pie {
+.pfu-progress__chat .pie {
 	pointer-events: none;
 }
