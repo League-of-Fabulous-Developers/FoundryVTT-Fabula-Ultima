@@ -1,3 +1,44 @@
+.projectfu .items-header > * {
+	font-size: var(--font-size-small);
+	background: var(--pfu-color-app-item-header-fill);
+	border-radius: 4px;
+	box-shadow: 1px 2px var(--pfu-color-app-item-header-shadow);
+	text-align: center;
+}
+
+.projectfu .items-header .item-name {
+	font-weight: bold;
+	text-align: left;
+	display: flex;
+	align-items: center;
+}
+
+.projectfu .items-main-header {
+	height: 34px;
+	margin: 5px;
+	padding-right: 2px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.projectfu .items-main {
+	height: inherit;
+	width: fit-content;
+	min-width: 174px;
+	font-weight: bold;
+	text-align: left;
+	text-shadow: 1px 1px 1px #000000;
+	font-size: 24px;
+	color: var(--pfu-color-app-control-content) !important;
+	box-shadow: 2px 4px var(--pfu-color-app-control-shadow);
+	border: thin solid var(--pfu-color-app-control-border);
+	background: var(--pfu-color-app-control-fill) !important;
+	border-radius: 10px 30px 5px 5px;
+	padding: 5px;
+}
+
 /* =========================
    Item Styles
    ========================= */

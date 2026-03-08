@@ -557,14 +557,6 @@ app.projectfu .prosemirror menu {
 
 #logo {
 	visibility: hidden !important;
-	/*
-	clip-path: inset(0 74px 39.3px 0);
-	z-index: -10;
-	content: var(--pfu-image-accent);
-	margin: 20px 0 12px 10px;
-	transform: scale(5, 10) translate(38px, 18px);
-	pointer-events: none;
-	*/
 }
 
 #ui-accent {

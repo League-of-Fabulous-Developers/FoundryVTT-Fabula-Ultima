@@ -879,67 +879,6 @@
 	padding: 2px 0;
 }
 
-.projectfu .items-header > * {
-	font-size: var(--font-size-small);
-	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc));
-	background: linear-gradient(to bottom, #2c584d, #a0cdbc);
-	border-radius: 4px;
-	box-shadow: 1px 2px var(--color-primary);
-	text-align: center;
-}
-
-.projectfu .items-header .item-name {
-	font-weight: bold;
-	text-align: left;
-	display: flex;
-	align-items: center;
-}
-
-.projectfu .items-main-header {
-	height: 34px;
-	margin: 5px;
-	padding-right: 2px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.projectfu .items-main-header .items-levels {
-	height: inherit;
-	width: 100px;
-	font-weight: bold;
-	color: Ivory;
-	font-size: 22px;
-	box-shadow: 2px 5px var(--color-primary);
-	border: thin solid #2a4a41;
-	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc));
-	background: linear-gradient(to bottom, #2c584d, #a0cdbc);
-	border-radius: 30px 8px 0px 4px;
-	text-align: right;
-}
-
-.projectfu .items-main {
-	height: inherit;
-	width: fit-content;
-	min-width: 174px;
-	font-weight: bold;
-	text-align: left;
-	text-shadow: 1px 1px 1px #000000;
-	color: #ebf7af;
-	font-size: 24px;
-	box-shadow: 2px 4px var(--color-primary);
-	border: thin #2a4a41;
-	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc));
-	background: linear-gradient(to bottom, #2c584d, #a0cdbc);
-	border-radius: 10px 30px 5px 5px;
-	padding: 5px;
-}
-
-.projectfu .items-main.items-label {
-	margin: 5em;
-}
-
 .projectfu .items-main.zenit-container {
 	width: 10.5em;
 	border-radius: 10px;

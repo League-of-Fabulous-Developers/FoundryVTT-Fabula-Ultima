@@ -382,13 +382,6 @@
 			font-weight: var(--font-weight-bold);
 			font-family: var(--font-secondary);
 		}
-
-		.resource-label-l,
-		.resource-label-m,
-		.resource-label-sm {
-			/* color: var(--pfu-color-app-section-content-secondary); */
-			background: none;
-		}
 	}
 
 	label.is-crisis {
