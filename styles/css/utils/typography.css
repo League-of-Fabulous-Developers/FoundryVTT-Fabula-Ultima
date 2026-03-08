@@ -541,7 +541,7 @@
 }
 
 .is-two-weapon.equip {
-	color: var(--color-primary);
+	color: var(--pfu-color-app-section-content-secondary) !important;
 	-webkit-text-stroke: transparent;
 }
 

@@ -1455,32 +1455,6 @@ a.inline-macro-execution {
 	}
 }
 
-.is-two-weapon.equip {
-	color: var(--pfu-color-app-section-content-secondary) !important;
-}
-
-.settings-config-app {
-	--color-form-label: var(--pfu-color-app-section-content-primary);
-	--color-form-hint: var(--pfu-color-app-section-content-tertiary);
-	--color-form-hint-hover: var(--pfu-color-app-section-content-secondary);
-}
-
-.standard-form {
-	& .projectfu.settings-config-app {
-		background: var(--pfu-color-app-section-primary-fill);
-		border-color: var(--pfu-color-app-section-border);
-		color: var(--pfu-color-app-section-content-primary);
-
-		& legend {
-			border: 1px solid var(--pfu-color-app-control-border);
-			color: var(--pfu-color-app-control-content);
-			background: var(--pfu-color-app-control-fill);
-			border-radius: var(--pfu-border-radius-medium);
-			padding: 2px 8px;
-		}
-	}
-}
-
 .application:not(.themed.theme-light),
 .application.backgroundstyle,
 .app:not(.themed.theme-light),
@@ -1527,35 +1501,6 @@ a.inline-macro-execution {
 		padding: 2px 8px;
 		border-radius: var(--pfu-border-radius-small);
 	}
-}
-
-/* Theme Menu */
-#projectfu-theme-menu {
-	& form#themeMenuForm {
-		display: flex;
-		flex-direction: column;
-		height: 1vh;
-
-		& .settings {
-			flex: 1 1 auto;
-			overflow-y: auto;
-		}
-
-		& summary {
-			cursor: pointer;
-
-			& h4 {
-				display: inline-block;
-			}
-		}
-	}
-}
-
-a[data-action='roll'],
-a[data-action='rollEffect'],
-.cell-item-name a[data-link] {
-	--color-primary: var(--pfu-color-app-image-fill-1);
-	--color-secondary: var(--pfu-color-app-image-fill-2);
 }
 
 /* Global Progress Clocks */
