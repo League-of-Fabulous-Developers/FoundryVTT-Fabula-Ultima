@@ -172,11 +172,9 @@
 }
 
 .detail-desc {
-	color: #000000;
-	-webkit-box-shadow: 1px 2px #2b4a42;
-	box-shadow: 1px 2px #2b4a42;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
-	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+	color: var(--pfu-color-app-detail-section-content-primary);
+	background: var(--pfu-color-app-detail-section-primary-fill-to-bottom);
+	box-shadow: 1px 2px var(--pfu-color-app-detail-section-shadow);
 	border-radius: 10px;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -191,6 +189,31 @@
 	margin: 2px auto 5px;
 	font-family: 'PT Sans';
 	font-size: 20px;
+
+	& .summary {
+		color: var(--pfu-color-app-detail-section-content-tertiary);
+		font-size: 16px;
+	}
+
+	& strong {
+		color: var(--pfu-color-app-detail-section-content-primary);
+	}
+
+	& label.title {
+		font-family: 'PT Sans Caption' !important;
+		font-weight: 700;
+		font-size: 0.75rem;
+		font-variant: small-caps;
+		color: var(--pfu-color-app-detail-section-content-secondary);
+	}
+
+	& label.damageType:is(.phys, .wind, .bolt, .dark, .earth, .fire, .ice, .light, .poison) {
+		font-weight: normal;
+	}
+
+	& > div {
+		padding: 0;
+	}
 }
 
 .detail-desc .value {
@@ -201,17 +224,6 @@
 	font-size: 15px;
 }
 
-.detail-desc .summary {
-	font-size: 16px;
-	color: #2b4a42;
-}
-.detail-desc label.title {
-	font-family: 'PT Sans Caption' !important;
-	font-weight: 700;
-	font-size: 0.75rem;
-	color: #2b4a42;
-	font-variant: small-caps;
-}
 .detail-desc label.detail {
 	font-family: 'PT Sans';
 	font-weight: 700;
@@ -550,6 +562,7 @@
 	-ms-flex: 1 2 0px;
 	flex: 1 2 0px;
 }
+
 .detail-desc label.damageType {
 	font-family: 'PT Sans Caption';
 	font-weight: 700;

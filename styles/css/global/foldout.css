@@ -7,6 +7,9 @@
 }
 
 .fu-foldout-summary {
+	--color-text-primary: var(--pfu-color-app-item-header-content);
+	background: var(--color-tabStyle-gradient);
+	color: var(--color-text-primary);
 	cursor: pointer;
 	outline: none;
 	display: flex;
@@ -15,7 +18,6 @@
 	transition: background-color 0.2s ease;
 	font-size: large;
 	padding: 0 0.5rem;
-	--color-text-primary: var(--pfu-color-app-item-header-content);
 	text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
 	font-weight: var(--font-weight-bold);
 	border-radius: 4px;

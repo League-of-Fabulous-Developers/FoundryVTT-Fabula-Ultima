@@ -675,52 +675,6 @@ a.inline-macro-execution {
 	}
 }
 
-.fu-tags .fu-tag {
-	color: var(--pfu-color-app-control-content);
-	background: var(--pfu-color-app-control-fill);
-	box-shadow: 0.063rem 0.1rem var(--pfu-color-app-control-shadow);
-	border: 0.063rem solid var(--pfu-color-app-control-border);
-	text-shadow: 1px 1px var(--pfu-color-app-control-content-shadow);
-
-	& i {
-		color: var(--pfu-color-app-control-content);
-	}
-
-	&:hover {
-		color: var(--pfu-color-control-focus-content);
-
-		& i {
-			color: var(--pfu-color-control-focus-content);
-		}
-	}
-}
-
-.detail-desc {
-	color: var(--pfu-color-app-detail-section-content-primary);
-	background: var(--pfu-color-app-detail-section-primary-fill-to-bottom);
-	box-shadow: 1px 2px var(--pfu-color-app-detail-section-shadow);
-
-	& .summary {
-		color: var(--pfu-color-app-detail-section-content-tertiary);
-	}
-
-	& strong {
-		color: var(--pfu-color-app-detail-section-content-primary);
-	}
-
-	& label.title {
-		color: var(--pfu-color-app-detail-section-content-secondary);
-	}
-
-	& label.damageType:is(.phys, .wind, .bolt, .dark, .earth, .fire, .ice, .light, .poison) {
-		font-weight: normal;
-	}
-
-	& > div {
-		padding: 0;
-	}
-}
-
 .roll-table-config header.sheet-header > img,
 .table-results .table-result :is(img.result-image, div.result-image > img),
 .chat-message .message-content img.item-img,

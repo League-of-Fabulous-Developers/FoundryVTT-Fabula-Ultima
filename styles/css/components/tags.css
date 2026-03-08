@@ -1,0 +1,51 @@
+.fu-tags {
+	margin: 0;
+	padding: 0.125rem 0;
+}
+.fu-tags .fu-tag {
+	color: var(--pfu-color-app-control-content);
+	background: var(--pfu-color-app-control-fill);
+	box-shadow: 0.063rem 0.1rem var(--pfu-color-app-control-shadow);
+	border: 0.063rem solid var(--pfu-color-app-control-border);
+	text-shadow: 1px 1px var(--pfu-color-app-control-content-shadow);
+
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-variant: small-caps;
+	font-size: 0.813rem;
+	font-weight: 700;
+	letter-spacing: 0.063rem;
+	text-rendering: optimizeLegibility;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-color: #3d665a;
+	border-radius: 0.5rem;
+	padding: 0 0.375rem;
+	white-space: wrap;
+	word-break: break-all;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	margin: 0.0625rem 0;
+
+	& i {
+		color: var(--pfu-color-app-control-content);
+	}
+
+	&:hover {
+		color: var(--pfu-color-control-focus-content);
+
+		& i {
+			color: var(--pfu-color-control-focus-content);
+		}
+	}
+}
+
+.fu-tags .fu-tag.button {
+	padding: 0.188rem;
+	letter-spacing: 0;
+}
+.fu-tags .fu-tag:not(.button) {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
