@@ -998,35 +998,6 @@ a.inline-macro-execution {
 		}
 	}
 
-	& .icon-toggle .toggle-icon {
-		color: var(--pfu-color-app-section-content-secondary);
-		opacity: 0.5;
-	}
-
-	& .icon-toggle input:checked + .toggle-icon {
-		opacity: 1;
-	}
-
-	& .fu-table .fu-table__row-container {
-		color: var(--pfu-color-app-detail-section-content-secondary);
-		&:hover {
-			border-color: var(--pfu-color-app-item-highlight-border);
-			background: var(--pfu-color-app-item-highlight-fill);
-		}
-	}
-
-	& .fu-table > .fu-table__header > .fu-table__header-cell {
-		color: var(--pfu-color-app-item-header-content);
-		background: var(--pfu-color-app-item-header-fill);
-		text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
-		box-shadow: 1px 2px var(--pfu-color-app-item-header-shadow);
-
-		& a:hover {
-			color: var(--pfu-color-app-item-header-content-focus);
-			text-shadow: inherit;
-		}
-	}
-
 	& .body-section .section-container .desc-header.resource-content .traitdesc {
 		color: var(--pfu-color-app-control-content);
 		background: var(--pfu-color-app-control-fill);
@@ -1503,7 +1474,7 @@ a.inline-macro-execution {
 	}
 }
 
-/* Global Progress Clocks */
+/* MODULE: Global Progress Clocks */
 #clock-panel {
 	--control-bg-color: var(--pfu-color-control-fill);
 	--control-icon-color: var(--pfu-color-control-content);
@@ -1534,7 +1505,7 @@ a.inline-macro-execution {
 	}
 }
 
-/* FU Roll Enhancements*/
+/* MODULE: FU Roll Enhancements*/
 .application.roll-enhancements {
 	--color-text-emphatic: var(--pfu-color-app-body-content);
 	--color-text-primary: var(--pfu-color-app-body-content);

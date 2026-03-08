@@ -747,8 +747,8 @@
 
 .projectfu .icon-toggle .toggle-icon {
 	font-size: 1.5rem;
-	opacity: 0.3;
-	color: #666;
+	color: var(--pfu-color-app-section-content-secondary);
+	opacity: 0.5;
 	-webkit-transition:
 		opacity 0.2s ease,
 		color 0.2s ease,
