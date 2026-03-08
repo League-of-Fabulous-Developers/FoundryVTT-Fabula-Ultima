@@ -28,6 +28,7 @@
 		border-radius: 10px;
 		border: 1px solid var(--color-border-secondary);
 		padding: 3px;
+		gap: 2px;
 
 		display: flex;
 		flex-direction: row;
@@ -36,6 +37,25 @@
 
 		> * {
 			flex: 0 0 auto;
+		}
+
+		& .cell-clock__clock {
+			--color-border-primary: var(--pfu-color-app-clock-fill-1);
+			--color-secondary: var(--pfu-color-app-clock-border);
+			--color-text-primary: var(--pfu-color-app-clock-fill-1);
+			background: var(--pfu-color-app-clock-bg);
+			border-radius: 50%;
+		}
+
+		& .cell-clock__button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			&:hover {
+				color: var(--pfu-color-app-control-content);
+				background: var(--pfu-color-app-control-fill);
+			}
 		}
 	}
 

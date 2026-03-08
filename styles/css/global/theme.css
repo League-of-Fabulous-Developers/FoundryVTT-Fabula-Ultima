@@ -690,14 +690,6 @@ app.projectfu .prosemirror menu {
 		color: var(--pfu-color-app-section-content-secondary) !important;
 	}
 
-	& .unique-clock .pie {
-		pointer-events: none;
-	}
-
-	& .unique-clock .rp-label {
-		color: var(--color-text-primary);
-	}
-
 	& .unique-clock,
 	& .growth-clock,
 	&.clock-s,
@@ -887,41 +879,6 @@ app.projectfu .prosemirror menu {
 
 	& .breakline-border {
 		background: linear-gradient(to right, transparent, var(--pfu-color-app-section-primary-fill-1), transparent);
-	}
-
-	& .cell-clock .cell-clock__tracker {
-		gap: 2px;
-		& .cell-clock__clock {
-			--color-border-primary: var(--pfu-color-app-clock-fill-1);
-			--color-secondary: var(--pfu-color-app-clock-border);
-			--color-text-primary: var(--pfu-color-app-clock-fill-1);
-			background: var(--pfu-color-app-clock-bg);
-			border-radius: 50%;
-		}
-
-		& .cell-clock__button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			&:hover {
-				color: var(--pfu-color-app-control-content);
-				background: var(--pfu-color-app-control-fill);
-			}
-		}
-	}
-
-	& .cell-resource .cell-resource__tracker {
-		gap: 2px;
-		& .cell-resource__button {
-			&:hover {
-				color: var(--pfu-color-app-control-content);
-				background: var(--pfu-color-app-control-fill);
-			}
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
 	}
 
 	& :is(.window-content, .dialog-content) .desc :is(.inline-desc, .item-m),

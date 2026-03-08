@@ -181,7 +181,7 @@
 	/* Hue overlay */
 }
 .unique-rp .rp-label {
-	color: #fff79a;
+	color: var(--color-text-primary);
 	-webkit-box-flex: 1;
 	-ms-flex-positive: 1;
 	flex-grow: 1;
@@ -464,4 +464,8 @@
 .unique-clock .progress .pie:hover ~ .pie:checked,
 .unique-clock .progress .pie:hover ~ .pie:checked ~ .pie {
 	background-color: #2b4a42;
+}
+
+.unique-clock .pie {
+	pointer-events: none;
 }
