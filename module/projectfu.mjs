@@ -4,11 +4,10 @@ import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
 import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
-// import { FUActorSheetV2 } from './sheets/actor-sheet-v2.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { getSystemSetting, registerSystemSettings } from './settings.js';
+import { registerSystemSettings } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -114,7 +113,7 @@ import { FUToken } from './ui/token.mjs';
 import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './ui/pressureGauges/index.mjs';
 import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
-import { Theme } from './ui/themes/theme.mjs';
+import { Themes } from './ui/themes/theme-options.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -411,15 +410,7 @@ Hooks.once('init', async () => {
 	PdfPagerIntegration.initialize();
 	PressureSystem.initialize();
 	CompendiumBrowser.initialize();
-
-	// Initialize theme
-	Theme.from(getSystemSetting('theme')).apply();
-
-	// // Disable the token drag ruler measurement, unless they've specifically
-	// // gone in and enabled it for some reason.
-	// if (!game.settings.get(SYSTEM, SETTINGS.optionEnableDragRuler)) {
-	// 	CONFIG.Token.rulerClass = null;
-	// }
+	Themes.initialize();
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();

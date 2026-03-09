@@ -1,5 +1,7 @@
 import { ObjectUtils } from '../../helpers/object-utils.mjs';
 import { readJsonFromSystemFile, systemAssetPath } from '../../helpers/system-utils.mjs';
+import { Theme } from './theme.mjs';
+import { getSystemSetting } from '../../settings.js';
 
 /**
  * @typedef {Object} ThemeOptions
@@ -364,7 +366,8 @@ const defaultTheme = Object.freeze({
 
 	uiAccentImage: '',
 	appBgImage: systemAssetPath(`ui/HojitasDouble_highres.png`),
-	appSectionBgImage: systemAssetPath(`ui/Bkg_highres.png`),
+	appSectionBgImage: '',
+	sidebarBgImage: systemAssetPath('ui/Page_deco_half.png'),
 
 	colorMiscShadowPrimary: '#77ebd7ff',
 	colorMiscShadowHighlight: '#E03A3AFF',
@@ -392,7 +395,19 @@ const defaultTheme = Object.freeze({
 	].join('\n'),
 });
 
+function initialize() {
+	Theme.from(getSystemSetting('theme')).apply();
+	Hooks.once('ready', () => {
+		const MODULE_ID = 'projectfu-theme'; // Replace with the module's ID
+		if (game.modules.get(MODULE_ID)?.active) {
+			ui.notifications.warn(`The module "${game.modules.get(MODULE_ID).title}" is no longer needed with this system version and should be disabled.`, { permanent: true });
+			console.warn(`[PFU] Module "${MODULE_ID}" is active but no longer required.`);
+		}
+	});
+}
+
 export const Themes = Object.freeze({
 	getSystemThemes,
 	defaultTheme,
+	initialize,
 });
