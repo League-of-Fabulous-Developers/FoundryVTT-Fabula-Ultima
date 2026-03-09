@@ -1,12 +1,12 @@
-.fu-foldout-item {
+.pfu-foldout {
 	border-bottom: 1px solid #e0e0e0;
 }
 
-.fu-foldout-item:last-child {
+.pfu-foldout:last-child {
 	border-bottom: none;
 }
 
-.fu-foldout-summary {
+.pfu-foldout > summary {
 	background: var(--color-tabStyle-gradient);
 	cursor: pointer;
 	outline: none;
@@ -29,26 +29,26 @@
 	}
 }
 
-.fu-foldout-summary:hover {
+.pfu-foldout > summary:hover {
 	background-color: #f9f9f9;
 }
 
-.fu-foldout-summary::after {
+.pfu-foldout > summary::after {
 	content: '\002B'; /* Plus sign */
 	font-size: 1.2em;
 	transition: transform 0.3s ease;
 }
 
-.fu-foldout-item[open] > .fu-foldout-summary {
+.pfu-foldout[open] > summary {
 	background-color: #e9e9e9;
 }
 
-.fu-foldout-item[open] > .fu-foldout-summary::after {
+.pfu-foldout[open] > summary::after {
 	content: '\2212'; /* Minus sign */
 	transform: rotate(180deg);
 }
 
-.fu-foldout-content {
+.pfu-foldout > .pfu-foldout__content {
 	padding: 15px 20px;
 	line-height: 1.6;
 	background: none;
@@ -57,7 +57,7 @@
 }
 
 /* Optional smooth animation */
-.fu-foldout-item[open] .fu-foldout-content {
+.pfu-foldout[open] > .pfu-foldout__content {
 	animation: fadeIn 0.5s ease;
 }
 
