@@ -1,8 +1,8 @@
-.fu-tags {
+.pfu-tags {
 	margin: 0;
 	padding: 0.125rem 0;
 }
-.fu-tags .fu-tag {
+.pfu-tags .fu-tag {
 	color: var(--pfu-color-app-control-content);
 	background: var(--pfu-color-app-control-fill);
 	box-shadow: 0.063rem 0.1rem var(--pfu-color-app-control-shadow);
@@ -41,11 +41,11 @@
 	}
 }
 
-.fu-tags .fu-tag.button {
+.pfu-tags .fu-tag.button {
 	padding: 0.188rem;
 	letter-spacing: 0;
 }
-.fu-tags .fu-tag:not(.button) {
+.pfu-tags .fu-tag:not(.button) {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
 }
