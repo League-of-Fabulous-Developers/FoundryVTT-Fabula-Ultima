@@ -1,0 +1,116 @@
+{
+  "folder": "423RpDks0B2eewCA",
+  "name": "Apex of Willpower",
+  "type": "effect",
+  "_id": "3bSDigs6OycCOBop",
+  "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
+  "system": {
+    "fuid": "apex-of-willpower",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Apex of Willpower",
+      "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.3bSDigs6OycCOBop",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "jW4nxSExG4gSqqFP",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.wlp",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.apexAttribute",
+          "mode": 5,
+          "value": "wlp",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Apex of Willpower",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.3bSDigs6OycCOBop",
+            "effectUuid": null,
+            "fuid": "apex-of-willpower"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773072548325,
+        "modifiedTime": 1773072576298,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!3bSDigs6OycCOBop.jW4nxSExG4gSqqFP"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "J5B4HfVqUaCPvzGg": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1773072537428,
+    "modifiedTime": 1773072545655,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+  },
+  "_key": "!items!3bSDigs6OycCOBop"
+}
