@@ -7,21 +7,26 @@
 }
 
 .fu-foldout-summary {
-	--color-text-primary: var(--pfu-color-app-item-header-content);
 	background: var(--color-tabStyle-gradient);
-	color: var(--color-text-primary);
 	cursor: pointer;
 	outline: none;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	transition: background-color 0.2s ease;
-	font-size: large;
 	padding: 0 0.5rem;
-	text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
-	font-weight: var(--font-weight-bold);
 	border-radius: 4px;
 	box-shadow: 1px 2px var(--color-primary);
+
+	span,
+	label,
+	i {
+		--color-text-primary: var(--pfu-color-app-item-header-content);
+		color: var(--color-text-primary);
+		text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
+		font-weight: var(--font-weight-bold);
+		font-size: large;
+	}
 }
 
 .fu-foldout-summary:hover {
@@ -46,7 +51,6 @@
 .fu-foldout-content {
 	padding: 15px 20px;
 	line-height: 1.6;
-	color: #555;
 	background: none;
 	border-radius: 5px;
 	border: 1px solid var(--border-primary);

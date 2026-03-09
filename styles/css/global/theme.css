@@ -678,15 +678,15 @@ app.projectfu .prosemirror menu {
 	background: var(--pfu-color-app-image-fill);
 }
 
+.active-effect-sheet label,
+.active-effect-sheet p,
+.active-effect-sheet .tab.changes header,
+.active-effect-sheet {
+	color: var(--pfu-color-app-section-content-secondary);
+}
+
 .projectfu,
 .chat-message {
-	& .active-effect-sheet label,
-	& .active-effect-sheet p,
-	& .active-effect-sheet .tab.changes header,
-	& .active-effect-sheet .fa-trash {
-		color: var(--pfu-color-app-section-content-secondary) !important;
-	}
-
 	& .pfu-progress__chat,
 	&.clock-s,
 	&.clock-m,

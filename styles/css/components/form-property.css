@@ -1,7 +1,7 @@
 .fu-form {
 	--property-label-width: 120px;
 
-	color: var(--color-primary);
+	color: var(--pfu-color-app-section-content-primary);
 	font-weight: var(--font-weight-normal);
 	--border-primary: var(--color-border-secondary);
 
@@ -19,17 +19,17 @@
 	.fu-form__header {
 		padding: 0 0.5rem;
 		background: var(--color-tabStyle-gradient);
-		color: var(--color-text-primary);
-		--color-text-primary: var(--pfu-color-app-item-header-content);
-		text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
-		font-weight: var(--font-weight-bold);
-		border-radius: 4px;
 		box-shadow: 1px 2px var(--color-primary);
 		display: flex;
 		justify-content: space-between;
 
-		label {
-			color: var(--color-text-primary) !important;
+		span,
+		label,
+		i {
+			color: var(--pfu-color-app-item-header-content) !important;
+			text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
+			font-weight: var(--font-weight-bold);
+			border-radius: 4px;
 		}
 	}
 
@@ -47,22 +47,6 @@
 	.fu-form__set {
 		background: var(--color-background);
 		flex: 2;
-	}
-
-	.fu-form__item__header {
-		padding: 0 0.5rem;
-		display: flex;
-		justify-content: space-between;
-		background: var(--color-tabStyle-gradient);
-		color: var(--color-text-primary);
-		text-shadow: 1px 1px 1px #000000;
-		font-weight: var(--font-weight-bold);
-		border-bottom: 1px solid var(--border-primary);
-		border-radius: 4px 4px 0 0;
-
-		label {
-			color: var(--color-text-primary) !important;
-		}
 	}
 
 	.fu-form__item__content {

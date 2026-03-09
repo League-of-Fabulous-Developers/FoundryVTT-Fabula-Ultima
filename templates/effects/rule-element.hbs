@@ -49,7 +49,7 @@
 			<div class="fu-form__content">
 				{{#each element.predicates as |predicate|}}
 					<div class="fu-form__item">
-						<div class="fu-form__item__header">
+						<div class="fu-form__header">
 							<label class="flexrow">
 								{{localize (lookup (lookup (lookup predicate "schema") "model") "localization")}}
 							</label>
@@ -94,7 +94,7 @@
 				<!-- 4. Actions -->
 				{{#each element.actions as |action|}}
 					<div class="fu-form__item">
-						<div class="fu-form__item__header">
+						<div class="fu-form__header">
 							<label class="flexrow">
 								{{localize (lookup (lookup (lookup action "schema") "model") "localization")}}
 							</label>
