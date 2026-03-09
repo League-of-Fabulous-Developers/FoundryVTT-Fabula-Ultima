@@ -1,8 +1,7 @@
 .settings-config-app {
-	--color-form-label: var(--color-dark-1);
-	--color-form-label-hover: var(--color-dark-1);
-	--color-form-hint: var(--color-dark-2);
-	--color-form-hint-hover: var(--color-dark-2);
+	--color-form-label: var(--pfu-color-app-section-content-primary);
+	--color-form-hint: var(--pfu-color-app-section-content-tertiary);
+	--color-form-hint-hover: var(--pfu-color-app-section-content-secondary);
 
 	input[type='checkbox'] {
 		--checkbox-checkmark-color: var(--color-dark-1);
@@ -17,5 +16,21 @@
 
 	.setting {
 		padding-bottom: 0.5em;
+	}
+}
+
+.standard-form {
+	& .projectfu.settings-config-app {
+		background: var(--pfu-color-app-section-primary-fill);
+		border-color: var(--pfu-color-app-section-border);
+		color: var(--pfu-color-app-section-content-primary);
+
+		& legend {
+			border: 1px solid var(--pfu-color-app-control-border);
+			color: var(--pfu-color-app-control-content);
+			background: var(--pfu-color-app-control-fill);
+			border-radius: var(--pfu-border-radius-medium);
+			padding: 2px 8px;
+		}
 	}
 }

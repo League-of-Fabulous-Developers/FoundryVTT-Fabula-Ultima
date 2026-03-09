@@ -1734,3 +1734,23 @@
 .projectfu#combat-hud.pixel .window-button.hidden {
 	display: none;
 }
+
+/* TODO: Can this be refactored?*/
+.projectfu#combat-hud > :not(.pixel, .mother, .modern) {
+	& .faction-list {
+		background: var(--pfu-color-app-item-header-fill);
+
+		& .combat-row {
+			color: var(--pfu-color-control-content);
+			text-shadow: 1px 1px var(--pfu-color-app-item-header-content-shadow, black);
+			background: var(--pfu-color-control-fill-1);
+		}
+	}
+
+	& .window-button {
+		color: var(--pfu-color-app-item-header-content);
+		text-shadow: 1px 1px var(--pfu-color-app-item-header-content-shadow, black);
+		box-shadow: 3px 3px var(--pfu-color-app-item-header-shadow);
+		background: var(--pfu-color-app-item-header-fill);
+	}
+}

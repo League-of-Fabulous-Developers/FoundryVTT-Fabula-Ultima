@@ -25,6 +25,7 @@
 
 	.cell-resource__tracker {
 		display: flex;
+		gap: 2px;
 		flex-direction: row;
 		justify-content: space-evenly;
 		align-items: center;
@@ -46,9 +47,14 @@
 			height: 20px;
 			text-align: center;
 
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
 			&:hover {
 				border-radius: 30%;
-				background: var(--color-button-hover-bg);
+				color: var(--pfu-color-app-control-content);
+				background: var(--pfu-color-app-control-fill);
 			}
 		}
 

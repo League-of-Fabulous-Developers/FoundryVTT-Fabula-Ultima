@@ -62,7 +62,7 @@ export class GardenDataModel extends ClassFeatureDataModel {
 			});
 		});
 
-		html.querySelectorAll('.progress input').forEach((el) => {
+		html.querySelectorAll('.pfu-progress__segments input').forEach((el) => {
 			el.addEventListener('click', (e) => item.update({ 'system.data.clock.current': e.currentTarget.value }));
 			el.addEventListener('contextmenu', (e) => item.update({ 'system.data.clock.current': 0 }));
 		});

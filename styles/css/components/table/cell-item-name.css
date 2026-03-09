@@ -95,3 +95,10 @@
 		vertical-align: middle;
 	}
 }
+
+a[data-action='roll'],
+a[data-action='rollEffect'],
+.cell-item-name a[data-link] {
+	--color-primary: var(--pfu-color-app-image-fill-1);
+	--color-secondary: var(--pfu-color-app-image-fill-2);
+}

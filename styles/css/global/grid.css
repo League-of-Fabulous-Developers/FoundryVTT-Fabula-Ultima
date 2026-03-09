@@ -124,3 +124,13 @@
 .grid-span-12 {
 	grid-column-end: span 12;
 }
+
+/* =========================
+   Grid Layouts
+   ========================= */
+@media (max-width: 768px) {
+	.grid-2col,
+	.grid-3col {
+		grid-template-columns: 1fr;
+	}
+}

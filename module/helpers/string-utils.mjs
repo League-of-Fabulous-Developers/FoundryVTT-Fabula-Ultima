@@ -12,6 +12,16 @@ function kebabToPascal(str) {
 }
 
 /**
+ * Converts a camelCase string to kebab-case.
+ * @param {string} str
+ * @returns {string}
+ * @remarks Adds a hyphen before numbers.
+ */
+function camelToKebab(str) {
+	return str.replace(/([A-Z])/g, (_, char) => `-${char.toLowerCase()}`).replace(/([a-z])(\d)/g, (_, letter, digit) => `${letter}-${digit}`);
+}
+
+/**
  * @param {String} str
  * @returns {string}
  */
@@ -107,6 +117,7 @@ function fromBase64(base64) {
 
 export const StringUtils = Object.freeze({
 	kebabToPascal,
+	camelToKebab,
 	titleToKebab,
 	localize,
 	hasLocalization,
