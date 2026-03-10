@@ -1,11 +1,11 @@
-<section class="nav sidebar pfu-layout__sidebar flex-group-center">
+<section class="nav sidebar flex-group-center">
 
 	<!-- NAV -->
 	<nav class="sheet-tabs tabs menu"
 		 aria-roledescription="{{localize "SHEETS.FormNavLabel"}}">
 		{{#each tabs as |tab|}}
 			<a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
-        class="button button-style{{#if tab.cssClass}} {{tab.cssClass}}{{/if}}"
+			   class="button{{#if tab.cssClass}} {{tab.cssClass}}{{/if}}"
 				{{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
 				{{#if tab.icon}}<i class="{{tab.icon}}" inert></i>{{/if}}
 				{{#if tab.label}}<span>{{localize tab.label}}</span>{{/if}}
@@ -13,7 +13,7 @@
 		{{/each}}
 	</nav>
 
-	<div style="width: 100%;">
+	<div class="widgets">
 		<!-- CLOCKS -->
 		<fieldset class="section-container title-fieldset desc resource-content">
 			<legend class="resource-label-m" aria-describedby="tooltip">

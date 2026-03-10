@@ -1,8 +1,10 @@
 /* Added on a foundry form's 'classes' property */
 .fu-form {
-	button {
-		background-color: var(--color-primary);
-		color: #ebf7af;
+	.window-content {
+		button {
+			background-color: var(--color-primary);
+			color: #ebf7af;
+		}
 	}
 }
 

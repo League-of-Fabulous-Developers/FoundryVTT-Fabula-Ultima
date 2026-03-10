@@ -1,4 +1,8 @@
 .projectfu .pfu-sheet__party {
+	.widgets {
+		display: flex;
+	}
+
 	&.theme-default {
 		display: flex;
 		flex-direction: row;
@@ -7,8 +11,56 @@
 		.nav {
 			width: 200px;
 
+			background: var(--pfu-sidebar-bg-image), var(--pfu-color-app-body-primary-fill);
+			background-size: 100% auto;
+			background-blend-mode: overlay;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			margin-right: 16px;
+			border-right: 3px solid var(--pfu-color-app-clock-border); /* gold rule */
+			box-shadow:
+				4px 0 12px rgba(0, 0, 0, 0.6),
+				/* deep drop shadow into content */ inset -2px 0 6px rgba(200, 168, 75, 0.15); /* subtle inner gold glow */
+			position: relative;
+
+			.tabs {
+			}
+
 			.menu {
 				margin-left: -16px;
+				display: flex;
+				padding: 1rem;
+				flex-direction: column;
+				gap: 1rem;
+				justify-content: normal;
+				border-top: none;
+				border-bottom: none;
+
+				.button {
+					font-size: x-large;
+					font-weight: bold;
+					min-width: 200px;
+					background-image: linear-gradient(to right, #1d2b3a, var(--color-primary));
+					border: 1px solid #c9a76f;
+					border-radius: 12px;
+					padding: 10px 20px;
+					font-family: 'Cormorant Garamond', serif;
+					text-shadow: 0 1px 1px #fff5d0;
+					box-shadow: 0 2px 0 #8d6e3d;
+					transition: transform 0.1s ease;
+					align-content: center;
+				}
+
+				.button:hover {
+					transform: scale(1.03) translateY(-4px);
+					background: linear-gradient(to bottom, var(--color-secondary), var(--color-primary));
+				}
+			}
+
+			.widgets {
+				width: 100%;
+				flex-direction: column;
 			}
 
 			.resources {
@@ -22,8 +74,83 @@
 
 	&.theme-modern {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		padding: 0;
+
+		.nav {
+			display: flex;
+			flex-direction: column;
+
+			.tabs {
+				flex-direction: row;
+			}
+
+			.menu {
+				margin-left: -16px;
+				display: flex;
+				padding: 1rem;
+				flex-direction: row;
+				gap: 1rem;
+				justify-content: normal;
+				border-top: none;
+				border-bottom: none;
+
+				.button {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					gap: 1rem;
+					min-width: 100px;
+					height: 100px;
+					padding: 4px;
+					font-family: 'Rajdhani', sans-serif;
+					font-size: small;
+					font-weight: 600;
+					letter-spacing: 0.1em;
+					text-transform: uppercase;
+					box-shadow: none;
+					text-shadow: none;
+					background: transparent;
+					border: unset;
+					transition:
+						background 0.2s ease,
+						color 0.2s ease,
+						border-color 0.2s ease;
+
+					i {
+						font-size: 32px;
+						transition: color 0.2s ease;
+					}
+				}
+
+				.button:hover {
+					transform: none;
+					background: rgba(255, 255, 255, 0.09);
+					border-color: rgba(220, 210, 140, 0.4);
+					color: rgba(255, 255, 255, 1);
+
+					i {
+						color: rgba(220, 210, 140, 1);
+					}
+				}
+
+				.button.active {
+					background: rgba(220, 210, 140, 0.12);
+					border-color: rgba(220, 210, 140, 0.6);
+					color: #fff;
+
+					i {
+						color: #e8d882;
+						filter: drop-shadow(0 0 6px rgba(220, 210, 140, 0.6));
+					}
+				}
+			}
+
+			.widgets {
+				flex-direction: row;
+			}
+		}
 	}
 
 	.items-main-header {
@@ -62,36 +189,6 @@
 .projectfu .pfu-sheet__party .content {
 	flex-grow: 1;
 	padding: 1rem 1rem 1rem 3rem;
-}
-
-.projectfu .pfu-sheet__party .menu {
-	display: flex;
-	padding: 1rem;
-	flex-direction: column;
-	gap: 1rem;
-	justify-content: normal;
-	border-top: none;
-	border-bottom: none;
-}
-
-.projectfu .pfu-sheet__party .menu .button {
-	font-size: x-large;
-	font-weight: bold;
-	min-width: 200px;
-	background-image: linear-gradient(to right, #1d2b3a, var(--color-primary));
-	border: 1px solid #c9a76f;
-	border-radius: 12px;
-	padding: 10px 20px;
-	font-family: 'Cormorant Garamond', serif;
-	text-shadow: 0 1px 1px #fff5d0;
-	box-shadow: 0 2px 0 #8d6e3d;
-	transition: transform 0.1s ease;
-	align-content: center;
-}
-
-.projectfu .pfu-sheet__party .menu .button:hover {
-	transform: scale(1.03) translateY(-4px);
-	background: linear-gradient(to bottom, var(--color-secondary), var(--color-primary));
 }
 
 .projectfu .pfu-sheet__party .portrait {
