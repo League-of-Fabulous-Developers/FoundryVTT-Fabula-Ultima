@@ -2,7 +2,7 @@
 <section class="tab settings {{tab.cssClass}}" data-tab="settings" data-group="primary">
 	<!-- Header  -->
 	<header class="sheet-header desc">
-		<div class="combine-header">
+		<div class="flexrow flex-group-center">
 			<img class="profile-img flexcol" src="{{actor.img}}" data-edit="img" data-action="editImage" title="{{actor.name}}"
 				 style="height: 52px; width: auto; object-fit: contain;" />
 			<div style="flex-grow:1;">
@@ -23,12 +23,9 @@
 					{{localize 'Settings'}}
 				</a>
 			</legend>
-
-			<div>
+			<div class="flexrow flex-group-center">
 				<button data-action="activate" class="set-active-button"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
 			</div>
-
-
 		</fieldset>
 	</main>
 
