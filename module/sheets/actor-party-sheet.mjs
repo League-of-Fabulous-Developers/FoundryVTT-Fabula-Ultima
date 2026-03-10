@@ -247,6 +247,24 @@ export class FUPartySheet extends FUActorSheet {
 		});
 		const theme = this.theme;
 		windowContent.classList.add(`theme-${theme}`);
+
+		// For the modern theme wheel, need to make sure characters below others show up first.
+		if (theme === 'modern') {
+			const portraits = this.element.querySelectorAll('.wheel-portrait');
+			const total = portraits.length;
+			const radius = 160;
+
+			portraits.forEach((el, i) => {
+				const angle = (2 * Math.PI * i) / total - Math.PI / 2;
+				const x = radius * Math.cos(angle);
+				const y = radius * Math.sin(angle);
+
+				el.style.left = `calc(50% + ${x}px)`;
+				el.style.top = `calc(50% + ${y}px)`;
+				el.style.transform = `translate(-50%, -50%)`;
+				el.style.zIndex = Math.round(y + radius + 1);
+			});
+		}
 	}
 
 	/**

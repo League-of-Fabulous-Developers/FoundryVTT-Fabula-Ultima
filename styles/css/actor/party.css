@@ -254,11 +254,104 @@
 		}
 
 		.overview {
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+
+			.character-list {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				min-width: 160px;
+
+				.entry {
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+
+					.header {
+						display: flex;
+						align-items: center;
+						gap: 0.4rem;
+						font-size: 0.75rem;
+
+						.portrait-badge {
+							width: 32px;
+							height: 32px;
+							border-radius: 50%;
+							border: 2px solid var(--pfu-color-control-highlight-border);
+							overflow: hidden;
+							flex-shrink: 0;
+
+							img {
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+								object-position: top;
+							}
+						}
+
+						.name {
+							flex-grow: 1;
+							font-weight: 600;
+							font-size: 0.85rem;
+						}
+					}
+
+					.bars {
+						display: flex;
+						flex-direction: column;
+						gap: 3px;
+						padding-left: 34px;
+
+						.bar {
+							display: flex;
+							align-items: center;
+							gap: 0.3rem;
+
+							i {
+								width: 14px;
+								flex-shrink: 0;
+								font-size: 0.7rem;
+								opacity: 0.8;
+							}
+
+							.track {
+								flex-grow: 1;
+								height: 4px;
+								background: rgba(255, 255, 255, 0.1);
+								border-radius: 2px;
+								overflow: hidden;
+
+								.fill {
+									height: 100%;
+									border-radius: 2px;
+								}
+							}
+
+							.hp-text {
+								font-size: 0.65rem;
+								color: rgba(255, 255, 255, 0.85);
+								white-space: nowrap;
+								min-width: 60px;
+								text-align: right;
+
+								.max {
+									color: rgba(255, 255, 255, 0.4);
+								}
+							}
+						}
+					}
+				}
+			}
+
 			.character-wheel {
 				position: relative;
 				width: 400px;
 				height: 400px;
-				margin: auto;
+				margin: 0 auto; /* horizontal centering only */
 			}
 
 			.wheel-orbit {
@@ -269,8 +362,8 @@
 
 			.wheel-portrait {
 				position: absolute;
-				width: 80px;
-				height: 80px;
+				width: 160px;
+				height: auto;
 				top: calc(50% + sin(calc(var(--index) / var(--total) * 2 * 3.14159 - 1.5708)) * 160px - 40px);
 				left: calc(50% + cos(calc(var(--index) / var(--total) * 2 * 3.14159 - 1.5708)) * 160px - 40px);
 				transition:
@@ -282,16 +375,12 @@
 					height: 100%;
 					object-fit: cover;
 					object-position: top;
-					border-radius: 50%;
-					border: 2px solid rgba(255, 255, 255, 0.2);
 					transition:
 						border-color 0.2s,
 						box-shadow 0.2s;
 				}
 
-				&.active img.portrait,
 				&:hover img.portrait {
-					border-color: rgba(220, 210, 140, 0.9);
 					box-shadow: 0 0 12px rgba(220, 210, 140, 0.5);
 				}
 
