@@ -678,11 +678,45 @@ app.projectfu .prosemirror menu {
 	background: var(--pfu-color-app-image-fill);
 }
 
+.active-effect-sheet section.window-content.standard-form {
+	gap: unset;
+}
+
 .active-effect-sheet label,
 .active-effect-sheet p,
 .active-effect-sheet .tab.changes header,
 .active-effect-sheet {
 	color: var(--pfu-color-app-section-content-secondary);
+}
+
+.active-effect-sheet .sheet-tabs {
+	background: var(--pfu-color-app-control-fill);
+	text-transform: uppercase;
+	border-radius: var(--pfu-border-radius-medium);
+	color: var(--pfu-color-app-section-content-primary);
+
+	a {
+	}
+}
+
+.active-effect-sheet .sheet-header {
+	background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	background-blend-mode: multiply;
+	background-repeat: repeat-y;
+	background-position: right top;
+	border-radius: 10px;
+	padding: 0.25rem;
+	border: thin solid var(--pfu-color-app-control-border);
+	color: var(--pfu-color-app-control-content) !important;
+	box-shadow: 1px 2px var(--pfu-color-app-control-shadow);
+
+	&.img-name input {
+		background: var(--pfu-color-app-name-section-fill);
+		border: none #c1b7c7;
+		font-size: xx-large;
+		align-self: stretch;
+		height: auto;
+	}
 }
 
 .projectfu,
