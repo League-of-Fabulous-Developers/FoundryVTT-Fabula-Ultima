@@ -87,15 +87,15 @@
 						justify-content: center;
 						left: 50%;
 						transform: translateX(-50%);
-					}
 
-					.classes img {
-						width: 24px;
-						height: 24px;
-						object-fit: cover;
-						margin: 0;
-						border: none;
-						filter: drop-shadow(0 0 2px #fff);
+						img {
+							width: 24px;
+							height: 24px;
+							object-fit: cover;
+							margin: 0;
+							border: none;
+							filter: drop-shadow(0 0 2px #fff);
+						}
 					}
 				}
 
@@ -296,20 +296,34 @@
 						.name {
 							flex-grow: 1;
 							font-weight: 600;
-							font-size: 0.85rem;
+							font-size: var(--font-size-base);
+						}
+
+						.classes {
+							display: flex;
+							flex-direction: column;
+							align-items: end;
+							gap: 2px;
+							flex-grow: 1; /* pushes SP to the right */
+
+							.item {
+								width: 16px;
+								height: 16px;
+								object-fit: cover;
+								border: none;
+								opacity: 0.85;
+							}
 						}
 					}
 
 					.bars {
 						display: flex;
 						flex-direction: column;
-						gap: 3px;
 						padding-left: 34px;
 
 						.bar {
 							display: flex;
 							align-items: center;
-							gap: 0.3rem;
 
 							i {
 								width: 14px;
@@ -320,7 +334,7 @@
 
 							.track {
 								flex-grow: 1;
-								height: 4px;
+								height: 6px;
 								background: rgba(255, 255, 255, 0.1);
 								border-radius: 2px;
 								overflow: hidden;
@@ -331,11 +345,10 @@
 								}
 							}
 
-							.hp-text {
-								font-size: 0.65rem;
-								color: rgba(255, 255, 255, 0.85);
+							.text {
+								font-size: 1rem;
 								white-space: nowrap;
-								min-width: 60px;
+								min-width: 50px;
 								text-align: right;
 
 								.max {
