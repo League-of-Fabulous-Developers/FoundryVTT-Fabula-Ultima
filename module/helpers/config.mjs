@@ -730,7 +730,7 @@ FU.combatHudThemes = {
 
 FU.partySheetThemes = {
 	default: 'FU.Default',
-	tales: 'FU.THEMES.Tales',
+	modern: 'FU.THEMES.Modern',
 };
 
 FU.combatHudThemeTemplates = {

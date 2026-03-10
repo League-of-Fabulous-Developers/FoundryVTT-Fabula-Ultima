@@ -1,36 +1,70 @@
-.projectfu .party {
-	display: flex;
-	color: #ebf7af;
-	flex-direction: row;
-	padding: 0;
+.projectfu .pfu-sheet__party {
+	&.theme-default {
+		display: flex;
+		flex-direction: row;
+		padding: 0;
+
+		.nav {
+			width: 200px;
+
+			.menu {
+				margin-left: -16px;
+			}
+
+			.resources {
+				display: flex;
+				justify-content: center;
+				gap: 8px;
+				margin: 4px;
+			}
+		}
+	}
+
+	&.theme-modern {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+
+	.items-main-header {
+		justify-content: space-between;
+
+		> * {
+			flex: 0 0 auto;
+		}
+	}
+
+	.stash-controls {
+		display: flex;
+		gap: var(--spacing-xs);
+		align-items: center;
+
+		> * {
+			flex: 0 0 auto;
+		}
+
+		.zenit-style {
+			min-width: 100px;
+			margin-right: 0;
+		}
+
+		.spacer {
+			margin: 0 var(--spacing-sm);
+		}
+	}
 }
 
-.projectfu .party .editor-menu {
+.projectfu .pfu-sheet__party .editor-menu {
 	color: var(--pfu-color-app-control-content, var(--button-text-color)) !important;
 	background: var(--pfu-color-app-control-fill, var(--menu-background));
 }
 
-.projectfu .party .side {
-	width: 200px;
-}
-
-.projectfu .party .side .menu {
-	margin-left: -16px;
-}
-
-.projectfu .party .side .resources {
-	display: flex;
-	justify-content: center;
-	gap: 8px;
-	margin: 4px;
-}
-
-.projectfu .party .content {
+.projectfu .pfu-sheet__party .content {
 	flex-grow: 1;
 	padding: 1rem 1rem 1rem 3rem;
 }
 
-.projectfu .party .menu {
+.projectfu .pfu-sheet__party .menu {
 	display: flex;
 	padding: 1rem;
 	flex-direction: column;
@@ -40,7 +74,7 @@
 	border-bottom: none;
 }
 
-.projectfu .party .menu .button {
+.projectfu .pfu-sheet__party .menu .button {
 	font-size: x-large;
 	font-weight: bold;
 	min-width: 200px;
@@ -55,12 +89,12 @@
 	align-content: center;
 }
 
-.projectfu .party .menu .button:hover {
+.projectfu .pfu-sheet__party .menu .button:hover {
 	transform: scale(1.03) translateY(-4px);
 	background: linear-gradient(to bottom, var(--color-secondary), var(--color-primary));
 }
 
-.projectfu .party .portrait {
+.projectfu .pfu-sheet__party .portrait {
 	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
 	background-clip: content-box;
 	border: 1px solid #aeb8a8;
@@ -74,20 +108,20 @@
 	}
 }
 
-.projectfu .party .name-container {
+.projectfu .pfu-sheet__party .name-container {
 	background: linear-gradient(to right, #532853, #bfb8c4);
 	border-color: #c1b7c7;
 	border-width: 4px;
 	margin: 8px;
 }
 
-.projectfu .party .name-container h2 {
+.projectfu .pfu-sheet__party .name-container h2 {
 	height: 50px;
 	padding-left: 8px;
 	border-bottom: 0;
 }
 
-.projectfu .party .name-container h2 input {
+.projectfu .pfu-sheet__party .name-container h2 input {
 	color: #ebf7af;
 	border: 0;
 	background-color: transparent;
@@ -96,16 +130,16 @@
 	height: 100%;
 }
 
-.projectfu .party .image-container {
+.projectfu .pfu-sheet__party .image-container {
 	position: relative;
 }
 
-.projectfu .party .image-container img {
+.projectfu .pfu-sheet__party .image-container img {
 	display: block;
 	width: 100%;
 }
 
-.projectfu .party .icon-row {
+.projectfu .pfu-sheet__party .icon-row {
 	position: absolute;
 	bottom: 10px;
 	gap: 8px;
@@ -115,21 +149,21 @@
 	transform: translateX(-50%);
 }
 
-.projectfu .party .icon-row img {
+.projectfu .pfu-sheet__party .icon-row img {
 	filter: drop-shadow(0 0 2px #fff);
 }
 
-.projectfu .party .tab {
+.projectfu .pfu-sheet__party .tab {
 	flex: 1;
 	height: 100%;
 	overflow: auto;
 }
 
-.projectfu .party .inventory {
+.projectfu .pfu-sheet__party .inventory {
 	flex-grow: 1;
 }
 
-.projectfu .party .settings {
+.projectfu .pfu-sheet__party .settings {
 	height: 100%;
 	flex-direction: column;
 	align-items: stretch;
@@ -157,19 +191,19 @@
 	}
 }
 
-.projectfu .party .adversaries {
+.projectfu .pfu-sheet__party .adversaries {
 	display: flex;
 	flex-direction: column;
 	max-width: 100%;
 }
 
-.projectfu .party .adversaries .soldier,
-.projectfu .party .adversaries .elite,
-.projectfu .party .adversaries .champion {
+.projectfu .pfu-sheet__party .adversaries .soldier,
+.projectfu .pfu-sheet__party .adversaries .elite,
+.projectfu .pfu-sheet__party .adversaries .champion {
 	box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
-.projectfu .party .adversaries .entry {
+.projectfu .pfu-sheet__party .adversaries .entry {
 	display: flex;
 	flex-direction: row;
 	font-family: var(--sans-serif);
@@ -178,7 +212,7 @@
 	height: 80px;
 }
 
-.projectfu .party .adversaries .entry:not(:last-child):after {
+.projectfu .pfu-sheet__party .adversaries .entry:not(:last-child):after {
 	content: '';
 	background-color: rgba(68, 55, 48, 0.1);
 	width: 100%;
@@ -187,36 +221,36 @@
 	bottom: 0;
 }
 
-.projectfu .party .adversaries .entry.active {
+.projectfu .pfu-sheet__party .adversaries .entry.active {
 	border: 2px solid #e74c3c !important;
 }
 
-.projectfu .party .adversaries .entry .portrait {
+.projectfu .pfu-sheet__party .adversaries .entry .portrait {
 	margin-right: 8px;
 	position: relative;
 	background: var(--pfu-color-app-image-fill);
 }
 
-.projectfu .party .adversaries .entry .portrait img {
+.projectfu .pfu-sheet__party .adversaries .entry .portrait img {
 	width: 80px;
 	height: 60px;
 	object-fit: cover;
 	border: none;
 }
 
-.projectfu .party .adversaries .entry > .data {
+.projectfu .pfu-sheet__party .adversaries .entry > .data {
 	width: 100%;
 	color: var(--pfu-color-app-section-content-secondary);
 }
 
-.projectfu .party .adversaries .entry > .data header {
+.projectfu .pfu-sheet__party .adversaries .entry > .data header {
 	display: grid;
 	grid: 'name study' 1fr 'blurb study' min-content / auto max-content;
 	margin-bottom: 0.25rem;
 	padding-left: 0.5rem;
 }
 
-.projectfu .party .adversaries .entry > .data header .name {
+.projectfu .pfu-sheet__party .adversaries .entry > .data header .name {
 	grid-area: name;
 	align-items: center;
 	display: flex;
@@ -225,12 +259,12 @@
 	font-weight: 700;
 }
 
-.projectfu .party .adversaries .entry > .data header .name i {
+.projectfu .pfu-sheet__party .adversaries .entry > .data header .name i {
 	font-size: 0.8em;
 	margin-left: 0.125rem;
 }
 
-.projectfu .party .adversaries .entry > .data .blurb {
+.projectfu .pfu-sheet__party .adversaries .entry > .data .blurb {
 	font: 'Yanone Kaffeesatz', sans-serif;
 	align-items: center;
 	color: var(--alt-dark);
@@ -242,14 +276,14 @@
 	position: relative;
 }
 
-.projectfu .party .adversaries .entry > .data .blurb hr.vr {
+.projectfu .pfu-sheet__party .adversaries .entry > .data .blurb hr.vr {
 	border: 1px solid var(--color-border);
 	height: 0.5rem;
 	position: relative;
 	top: 1px;
 }
 
-.projectfu .party .adversaries .entry > .data .study {
+.projectfu .pfu-sheet__party .adversaries .entry > .data .study {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -257,22 +291,22 @@
 	grid-area: study;
 }
 
-.projectfu .party .adversaries .entry > .data .study > * {
+.projectfu .pfu-sheet__party .adversaries .entry > .data .study > * {
 	width: 1.5rem;
 	height: 1.5rem;
 }
 
-.projectfu .party .adversaries .entry > .data .study .empty {
+.projectfu .pfu-sheet__party .adversaries .entry > .data .study .empty {
 	border: 2px dashed rgba(0, 0, 0, 0.5);
 	border-radius: 50%;
 }
 
-.projectfu .party .adversaries .entry > .data .study img {
+.projectfu .pfu-sheet__party .adversaries .entry > .data .study img {
 	border: none;
 	display: block;
 }
 
-.projectfu .party .overview {
+.projectfu .pfu-sheet__party .overview {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -280,7 +314,7 @@
 	gap: 1.5rem;
 }
 
-.projectfu .party .overview .plate {
+.projectfu .pfu-sheet__party .overview .plate {
 	height: 400px;
 	padding: 1rem;
 	border: 2px solid rgba(255, 255, 255, 0.05);
@@ -293,7 +327,7 @@
 	transition: transform 0.3s ease;
 }
 
-.projectfu .party .overview .plate .name {
+.projectfu .pfu-sheet__party .overview .plate .name {
 	margin-top: 4px;
 	margin-bottom: -8px;
 	padding-bottom: 8px;
@@ -310,7 +344,7 @@
 	max-width: 100%;
 }
 
-.projectfu .party .overview .plate .identity {
+.projectfu .pfu-sheet__party .overview .plate .identity {
 	text-align: center;
 	display: flex;
 	align-items: center;
@@ -322,7 +356,7 @@
 	min-height: 45px;
 }
 
-.projectfu .party .overview .plate img {
+.projectfu .pfu-sheet__party .overview .plate img {
 	width: 160px;
 	height: 200px;
 	object-fit: cover;
@@ -331,11 +365,11 @@
 	border-radius: 8px;
 }
 
-.projectfu .party .overview .plate:hover {
+.projectfu .pfu-sheet__party .overview .plate:hover {
 	transform: translateY(-4px);
 }
 
-.projectfu .party .overview .bar {
+.projectfu .pfu-sheet__party .overview .bar {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -347,11 +381,11 @@
 	animation: none;
 }
 
-.projectfu .party .overview .bar .text {
+.projectfu .pfu-sheet__party .overview .bar .text {
 	min-width: 3rem;
 }
 
-.projectfu .party .overview .bar .track {
+.projectfu .pfu-sheet__party .overview .bar .track {
 	flex-grow: 1;
 	height: 0.6rem;
 	background: #222;
@@ -360,25 +394,25 @@
 	position: relative;
 }
 
-.projectfu .party .overview .bar .fill {
+.projectfu .pfu-sheet__party .overview .bar .fill {
 	height: 100%;
 	width: 70%;
 	background: linear-gradient(to top, #e04c4c, #f36b6b);
 }
 
-.projectfu .party .overview .bar.hp .fill {
+.projectfu .pfu-sheet__party .overview .bar.hp .fill {
 	background: linear-gradient(to right, #e04c4c, #f36b6b);
 }
 
-.projectfu .party .overview .bar.mp .fill {
+.projectfu .pfu-sheet__party .overview .bar.mp .fill {
 	background: linear-gradient(to right, #5090ff, #6aaaff);
 }
 
-.projectfu .party .overview .bar.ip .fill {
+.projectfu .pfu-sheet__party .overview .bar.ip .fill {
 	background: linear-gradient(to right, #d1b347, #e6c75c);
 }
 
-.projectfu .party .overview .resources {
+.projectfu .pfu-sheet__party .overview .resources {
 	margin-top: 0.5rem;
 	display: flex;
 	gap: 0.5rem;
@@ -394,31 +428,31 @@
 	}
 }
 
-.projectfu .party .overview .level-up {
+.projectfu .pfu-sheet__party .overview .level-up {
 	animation: levelglow 2s infinite alternate ease-in-out;
 }
 
-.projectfu .party .overview .plate .damage {
+.projectfu .pfu-sheet__party .overview .plate .damage {
 	background: linear-gradient(to bottom, #6a3b3b, #2e1f1f);
 }
 
-.projectfu .party .overview .plate .support {
+.projectfu .pfu-sheet__party .overview .plate .support {
 	background: linear-gradient(to bottom, #3d5c3d, #1c2a1c);
 }
 
-.projectfu .party .overview .plate .tank {
+.projectfu .pfu-sheet__party .overview .plate .tank {
 	background: linear-gradient(to bottom, #3a4c66, #1a1f2a);
 }
 
-.projectfu .party .overview .plate .any {
+.projectfu .pfu-sheet__party .overview .plate .any {
 	background: linear-gradient(to bottom, #d1c38a, #9a8544);
 }
 
-.projectfu .party .overview .classes {
+.projectfu .pfu-sheet__party .overview .classes {
 	min-height: 24px;
 }
 
-.projectfu .party .overview .classes img {
+.projectfu .pfu-sheet__party .overview .classes img {
 	width: 24px;
 	height: 24px;
 	object-fit: cover;
@@ -426,39 +460,10 @@
 	border: none;
 }
 
-.projectfu .party .overview .companion {
+.projectfu .pfu-sheet__party .overview .companion {
 	width: 200px;
 }
 
-.projectfu .party .overview .character {
+.projectfu .pfu-sheet__party .overview .character {
 	width: 200px;
-}
-
-.projectfu.party {
-	.items-main-header {
-		justify-content: space-between;
-
-		> * {
-			flex: 0 0 auto;
-		}
-	}
-
-	.stash-controls {
-		display: flex;
-		gap: var(--spacing-xs);
-		align-items: center;
-
-		> * {
-			flex: 0 0 auto;
-		}
-
-		.zenit-style {
-			min-width: 100px;
-			margin-right: 0;
-		}
-
-		.spacer {
-			margin: 0 var(--spacing-sm);
-		}
-	}
 }

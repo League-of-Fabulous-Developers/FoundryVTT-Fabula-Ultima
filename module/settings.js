@@ -175,7 +175,7 @@ export const registerSystemSettings = async function () {
 		type: String,
 		default: 'classic',
 		choices: FU.partySheetThemes,
-		requiresReload: true,
+		requiresReload: false,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {

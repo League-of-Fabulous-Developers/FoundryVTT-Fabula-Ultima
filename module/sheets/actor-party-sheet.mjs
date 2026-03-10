@@ -1,7 +1,7 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
-import { SETTINGS } from '../settings.js';
+import { getSystemSetting, SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
@@ -39,7 +39,6 @@ export class FUPartySheet extends FUActorSheet {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['party'],
 		actions: {
 			createItem: this.#onCreate,
 			editItem: this.#onEdit,
@@ -66,7 +65,7 @@ export class FUPartySheet extends FUActorSheet {
 		},
 		position: { width: 920, height: 1000 },
 		window: {
-			contentClasses: ['party'],
+			contentClasses: ['pfu-sheet__party'],
 			resizable: true,
 		},
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
@@ -238,6 +237,15 @@ export class FUPartySheet extends FUActorSheet {
 		this.#treasuresTable.activateListeners(this);
 		this.#consumablesTable.activateListeners(this);
 		this.#otherItemsTable.activateListeners(this);
+
+		// Set current theme classes
+		const windowContent = this.element.querySelector('.window-content');
+		if (!windowContent) return;
+		windowContent.classList.forEach((cls) => {
+			if (cls.startsWith('theme-')) windowContent.classList.remove(cls);
+		});
+		const theme = getSystemSetting(SETTINGS.partySheetTheme);
+		windowContent.classList.add(`theme-${theme}`);
 	}
 
 	/**
