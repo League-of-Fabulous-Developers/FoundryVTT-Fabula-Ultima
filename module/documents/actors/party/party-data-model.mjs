@@ -3,6 +3,7 @@
  * @property {FUActor} actor
  * @property {String} name
  * @property {Number} level
+ * @property {Record<Attribute, Number>} attributes
  * @property {PartyCharacterClass} classes
  * @property {PartyCharacterResource[]} resources
  * @property {Number} fp
@@ -199,6 +200,15 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 		const hp = getResourceData(actor, 'hp');
 		const mp = getResourceData(actor, 'mp');
 		const ip = getResourceData(actor, 'ip');
+
+		const attributeValues = Object.entries(actor.system.attributes).reduce(
+			(previousValue, [attribute, { current }]) => ({
+				...previousValue,
+				[attribute]: current,
+			}),
+			{},
+		);
+
 		let statusClass = undefined;
 		if (actor.system.resources.exp.value >= 10) {
 			statusClass = 'level-up';
@@ -214,6 +224,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 		return {
 			actor: actor,
 			name: name,
+			attributes: attributeValues,
 			level: actor.system.level.value,
 			identity: identity,
 			classes: classes,

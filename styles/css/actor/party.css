@@ -254,8 +254,155 @@
 			radial-gradient(ellipse at 80% 30%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, transparent) 0%, transparent 50%),
 			linear-gradient(135deg, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 20%, #050a0f) 0%, #080d12 40%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, #050a0f) 100%);
 
-		.tab.active {
-			padding: 16px;
+		.character {
+			&.active {
+				display: flex;
+				position: relative;
+				flex-direction: row;
+				height: 100%;
+				overflow: hidden;
+			}
+
+			.left {
+				flex: 0 0 400px;
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				padding: 1.5rem;
+				overflow-y: auto;
+				position: relative;
+				z-index: 1;
+
+				.header {
+					border-bottom: 1px solid rgba(200, 216, 64, 0.2);
+					padding-bottom: 0.75rem;
+
+					.level-row {
+						display: flex;
+						align-items: center;
+						gap: 0.5rem;
+						margin-top: 0.25rem;
+
+						.lv-label {
+							font-family: 'Rajdhani', sans-serif;
+							font-size: 0.65rem;
+							letter-spacing: 0.1em;
+							text-transform: uppercase;
+							color: rgba(255, 255, 255, 0.4);
+						}
+
+						.lv-badge {
+							font-family: 'DM Mono', monospace;
+							font-weight: 700;
+							font-size: 1rem;
+							border: 2px solid #c8d840;
+							border-radius: 50%;
+							width: 36px;
+							height: 36px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+					}
+
+					.name {
+						font-family: 'Rajdhani', sans-serif;
+						font-size: 2rem;
+						font-weight: 700;
+						letter-spacing: 0.05em;
+						text-transform: uppercase;
+						color: #fff;
+					}
+				}
+
+				.classes {
+					display: flex;
+					gap: 0.5rem;
+					flex-wrap: wrap;
+
+					.entry {
+						display: flex;
+						align-items: center;
+						gap: 0.3rem;
+						background: rgba(255, 255, 255, 0.05);
+						border: 1px solid rgba(255, 255, 255, 0.08);
+						border-radius: 4px;
+						padding: 4px 8px;
+						font-family: 'Rajdhani', sans-serif;
+						font-size: 0.75rem;
+						font-weight: 600;
+						letter-spacing: 0.05em;
+						text-transform: uppercase;
+						color: rgba(255, 255, 255, 0.7);
+
+						img {
+							width: 18px;
+							height: 18px;
+							object-fit: cover;
+							border: none;
+						}
+					}
+				}
+
+				section {
+					display: flex;
+					flex-direction: column;
+					gap: 0.4rem;
+				}
+
+				label {
+					font-family: 'Rajdhani', sans-serif;
+					font-size: 0.65rem;
+					font-weight: 600;
+					letter-spacing: 0.15em;
+					text-transform: uppercase;
+					color: rgba(255, 255, 255, 0.35);
+					margin-bottom: 0.2rem;
+				}
+			}
+
+			.right {
+				flex: 1;
+				position: relative;
+				overflow: hidden;
+
+				a.portrait {
+					display: block;
+					height: 100%;
+				}
+
+				img.portrait {
+					position: absolute;
+					right: 0;
+					top: 0;
+					height: 100%;
+					width: auto;
+					object-fit: cover;
+					object-position: top center;
+					border: none;
+					border-radius: 0;
+				}
+
+				/* Decorative border overlay */
+				&::after {
+					content: '';
+					position: absolute;
+					inset: 0;
+					border-left: 1px solid var(--pfu-color-app-clock-border);
+					border-bottom: 1px solid var(--pfu-color-app-clock-border);
+					pointer-events: none;
+					box-shadow:
+						inset 4px 0 20px rgba(0, 0, 0, 0.3),
+						inset 0 -4px 20px rgba(0, 0, 0, 0.3);
+				}
+
+				.portrait-fade {
+					position: absolute;
+					inset: 0;
+					background: linear-gradient(to right, #080d12 0%, transparent 40%);
+					pointer-events: none;
+				}
+			}
 		}
 
 		.overview {
@@ -303,6 +450,12 @@
 					display: flex;
 					flex-direction: column;
 					gap: 2px;
+					padding-bottom: 0.4rem;
+					border-bottom: 1px solid var(--pfu-color-app-clock-border);
+
+					&:last-child {
+						border-bottom: none;
+					}
 
 					.header {
 						display: flex;
@@ -334,10 +487,9 @@
 
 						.classes {
 							display: flex;
-							flex-direction: column;
+							flex-direction: row;
 							align-items: end;
 							gap: 2px;
-							flex-grow: 1; /* pushes SP to the right */
 
 							.item {
 								width: 16px;

@@ -1,11 +1,73 @@
-<section class="tab {{tab.cssClass}}" data-tab="character" data-group="primary">
+<section class="tab character {{tab.cssClass}}" data-tab="character" data-group="primary">
+
 	{{#with character}}
-		<div>
-			<div class="name">{{ this.name }}</div>
+		<div class="left">
+			<!-- Header -->
+			<div class="header">
+				<div class="name">{{this.name}}</div>
+				<div class="level-row">
+					<span class="lv-label">LEVEL</span>
+					<span class="lv-badge">{{this.actor.system.level.value}}</span>
+				</div>
+			</div>
+
+			<!-- Classes -->
+			<div class="classes">
+				{{#each this.classes}}
+					<div class="entry">
+						<img src="{{this.img}}" data-tooltip="{{this.name}}" />
+						<span>{{this.name}}</span>
+					</div>
+				{{/each}}
+			</div>
+
+			<!-- Resources -->
+			<div class="section">
+				<div class="section-label">Resources</div>
+				{{#each this.resources}}
+					<div class="bar {{this.name}}">
+						<i class="fu-icon--s {{pfuIconClass this.name}}"
+						   data-tooltip="{{this.label}}"></i>
+						<div class="track">
+							<div class="fill" style="--fill-width: {{this.percentage}}%;"></div>
+						</div>
+						<span class="hp-text">
+                    {{this.current}}<span class="max">/{{this.max}}</span>
+                </span>
+					</div>
+				{{/each}}
+			</div>
+
+			<!-- Attributes -->
+			<div class="section">
+				<div class="section-label">Attributes</div>
+				{{#each this.attributes}}
+					{{pfuIconAttribute @key value=this}}
+				{{/each}}
+			</div>
+
+			<!-- Equipment -->
+			<div class="section">
+				<div class="section-label">Equipment</div>
+				{{#each this.equipment}}
+					<div class="equipment-entry">
+						<img src="{{this.img}}" data-tooltip="{{this.name}}" />
+						<span>{{this.name}}</span>
+					</div>
+				{{/each}}
+			</div>
 		</div>
-		<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="character">
-			<img class="portrait {{role}}" src="{{ this.actor.img }}"
-				 data-tooltip="{{ this.name }}" />
-		</a>
+
+		<div class="right">
+			<!-- Portrait -->
+			<a class="portrait" data-action="revealActor"
+			   data-actor="{{this.actor.uuid}}"
+			   data-type="character">
+				<img class="portrait {{role}}"
+					 src="{{this.actor.img}}"
+					 data-tooltip="{{this.name}}" />
+			</a>
+			<div class="portrait-fade"></div>
+		</div>
 	{{/with}}
 </section>

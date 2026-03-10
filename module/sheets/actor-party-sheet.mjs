@@ -82,7 +82,7 @@ export class FUPartySheet extends FUActorSheet {
 				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
 				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
-				{ id: 'character', label: 'FU.Character', hidden: true },
+				{ id: 'character', label: 'FU.Character' },
 			],
 			initial: 'overview',
 		},
@@ -156,7 +156,8 @@ export class FUPartySheet extends FUActorSheet {
 			zenit: this.party.resources.zenit.value,
 		};
 		context.currency = getCurrencyString();
-
+		console.log('tabs:', context.tabs);
+		console.log('character cssClass:', context.tabs.character.cssClass);
 		return context;
 	}
 
