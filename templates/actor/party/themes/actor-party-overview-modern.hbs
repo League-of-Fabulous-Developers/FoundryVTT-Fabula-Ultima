@@ -1,0 +1,21 @@
+<div class="character-wheel">
+	<div class="wheel-orbit">
+		{{#each characters}}
+			<div class="wheel-portrait {{#if @first}}active{{/if}}"
+				 style="--index: {{@index}}; --total: {{../characters.length}};">
+				<a data-action="revealActor"
+				   data-actor="{{this.actor.uuid}}"
+				   data-type="character">
+					<img class="portrait {{role}}"
+						 src="{{this.actor.img}}"
+						 data-tooltip="{{this.name}}" />
+				</a>
+				<div class="icon-row classes">
+					{{#each this.classes}}
+						<img class="item" src="{{this.img}}" data-tooltip="{{this.name}}" />
+					{{/each}}
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</div>

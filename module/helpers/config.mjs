@@ -728,6 +728,10 @@ FU.combatHudThemes = {
 	'fu-pixel': 'FU.CombatHudPixel',
 };
 
+/**
+ * @typedef {"default"|"modern"} FUPartySheetTheme
+ */
+
 FU.partySheetThemes = {
 	default: 'FU.Default',
 	modern: 'FU.THEMES.Modern',

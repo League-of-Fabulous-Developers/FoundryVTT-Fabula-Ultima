@@ -175,6 +175,7 @@ export class FUPartySheet extends FUActorSheet {
 				context.tabs = this._prepareTabs('primary');
 				break;
 			case 'overview':
+				context.overview = await FoundryUtils.renderTemplate(`actor/party/themes/actor-party-overview-${this.theme}`, context);
 				break;
 			case 'inventory': {
 				const technoSphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
@@ -244,8 +245,15 @@ export class FUPartySheet extends FUActorSheet {
 		windowContent.classList.forEach((cls) => {
 			if (cls.startsWith('theme-')) windowContent.classList.remove(cls);
 		});
-		const theme = getSystemSetting(SETTINGS.partySheetTheme);
+		const theme = this.theme;
 		windowContent.classList.add(`theme-${theme}`);
+	}
+
+	/**
+	 * @returns {FUPartySheetTheme}
+	 */
+	get theme() {
+		return getSystemSetting(SETTINGS.partySheetTheme);
 	}
 
 	/**
