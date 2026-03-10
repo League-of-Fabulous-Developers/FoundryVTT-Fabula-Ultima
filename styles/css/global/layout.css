@@ -34,6 +34,10 @@
 	padding: 0.5rem;
 }
 
+.pfu-form__buttons {
+	color: var(--pfu-color-app-section-content-secondary);
+}
+
 .pfu-layout__sidebar {
 	background: var(--pfu-sidebar-bg-image), var(--pfu-color-app-body-primary-fill);
 	background-size: 100% auto;

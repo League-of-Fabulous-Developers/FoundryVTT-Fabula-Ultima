@@ -332,18 +332,6 @@
 	max-width: 100%;
 }
 
-.projectfu .party .adversaries .soldier {
-	background: #8a7300;
-}
-
-.projectfu .party .adversaries .elite {
-	background: #b34700;
-}
-
-.projectfu .party .adversaries .champion {
-	background: #801e1f;
-}
-
 .projectfu .party .adversaries .soldier,
 .projectfu .party .adversaries .elite,
 .projectfu .party .adversaries .champion {
