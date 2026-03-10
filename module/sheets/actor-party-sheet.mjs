@@ -81,6 +81,7 @@ export class FUPartySheet extends FUActorSheet {
 				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
 				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
+				{ id: 'character', label: 'FU.Character', hidden: true },
 			],
 			initial: 'overview',
 		},
@@ -102,6 +103,9 @@ export class FUPartySheet extends FUActorSheet {
 		// Tabs
 		overview: {
 			template: systemPath('templates/actor/party/actor-party-section-overview.hbs'),
+		},
+		character: {
+			template: systemPath('templates/actor/party/actor-party-section-character.hbs'),
 		},
 		inventory: {
 			template: systemPath('templates/actor/party/actor-party-section-inventory.hbs'),
