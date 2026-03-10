@@ -1,2 +1,11 @@
 <section class="tab {{tab.cssClass}}" data-tab="character" data-group="primary">
+	{{#with character}}
+		<div>
+			<div class="name">{{ this.name }}</div>
+		</div>
+		<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="character">
+			<img class="portrait {{role}}" src="{{ this.actor.img }}"
+				 data-tooltip="{{ this.name }}" />
+		</a>
+	{{/with}}
 </section>

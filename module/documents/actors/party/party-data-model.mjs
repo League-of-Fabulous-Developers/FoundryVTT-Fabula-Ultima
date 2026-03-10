@@ -179,50 +179,59 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	/**
+	 *
+	 * @param {FUActor} actor
+	 * @returns {PartyCharacterData}
+	 */
+	constructCharacterData(actor) {
+		/** @type PartyCharacterClass **/
+		const classes = actor.items
+			.filter((item) => item.type === 'class')
+			.map((item) => {
+				return {
+					name: item.name,
+					fuid: item.system.fuid,
+					img: item.img,
+					level: item.system.level.value,
+				};
+			});
+
+		const hp = getResourceData(actor, 'hp');
+		const mp = getResourceData(actor, 'mp');
+		const ip = getResourceData(actor, 'ip');
+		let statusClass = undefined;
+		if (actor.system.resources.exp.value >= 10) {
+			statusClass = 'level-up';
+		}
+		let identity = actor.system.resources.identity.name;
+		if (!identity) {
+			identity = StringUtils.localize('FU.Adventurer');
+		}
+
+		// Truncate the name
+		const name = actor.name.split(' ')[0];
+
+		return {
+			actor: actor,
+			name: name,
+			level: actor.system.level.value,
+			identity: identity,
+			classes: classes,
+			resources: [hp, mp, ip],
+			fp: actor.system.resources.fp.value,
+			zenit: actor.system.resources.zenit.value,
+			role: deduceCharacterRole(actor, classes),
+			statusClass: statusClass,
+		};
+	}
+
+	/**
 	 * @return {Promise<PartyCharacterData[]>}
 	 */
 	async getCharacterData() {
 		const actors = await this.getCharacterActors();
 		return actors.map((actor) => {
-			/** @type PartyCharacterClass **/
-			const classes = actor.items
-				.filter((item) => item.type === 'class')
-				.map((item) => {
-					return {
-						name: item.name,
-						fuid: item.system.fuid,
-						img: item.img,
-						level: item.system.level.value,
-					};
-				});
-
-			const hp = getResourceData(actor, 'hp');
-			const mp = getResourceData(actor, 'mp');
-			const ip = getResourceData(actor, 'ip');
-			let statusClass = undefined;
-			if (actor.system.resources.exp.value >= 10) {
-				statusClass = 'level-up';
-			}
-			let identity = actor.system.resources.identity.name;
-			if (!identity) {
-				identity = StringUtils.localize('FU.Adventurer');
-			}
-
-			// Truncate the name
-			const name = actor.name.split(' ')[0];
-
-			return {
-				actor: actor,
-				name: name,
-				level: actor.system.level.value,
-				identity: identity,
-				classes: classes,
-				resources: [hp, mp, ip],
-				fp: actor.system.resources.fp.value,
-				zenit: actor.system.resources.zenit.value,
-				role: deduceCharacterRole(actor, classes),
-				statusClass: statusClass,
-			};
+			return this.constructCharacterData(actor);
 		});
 	}
 
