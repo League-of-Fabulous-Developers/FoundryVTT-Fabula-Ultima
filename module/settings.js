@@ -100,6 +100,7 @@ export const SETTINGS = Object.freeze({
 	optionCrisisMultiplier: 'optionCrisisMultiplier',
 	// Party
 	activeParty: 'optionActiveParty',
+	partySheetTheme: 'optionPartySheetTheme',
 	// Class Features
 	activeWellsprings: 'activeWellsprings',
 	// Drag ruler
@@ -156,6 +157,64 @@ export function setSystemSetting(key, value) {
  */
 export const registerSystemSettings = async function () {
 	const fields = foundry.data.fields;
+
+	// DOCUMENT SHEETS
+	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
+		name: game.i18n.localize('FU.SheetOptionsTitle'),
+		label: game.i18n.localize('FU.SheetOptions'),
+		hint: game.i18n.localize('FU.SheetOptionsHint'),
+		icon: 'fas fa-book',
+		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms, SETTINGS.optionAutomaticAdversaryRegistration, SETTINGS.partySheetTheme]),
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.partySheetTheme, {
+		name: game.i18n.localize('FU.PartySheetTheme'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'classic',
+		choices: FU.partySheetThemes,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
+		name: game.i18n.localize('FU.NotesTabSettings'),
+		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
+		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
+		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
+		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
+		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration, {
+		name: game.i18n.localize('FU.AutomaticAdversaryRegistration'),
+		hint: game.i18n.localize('FU.AutomaticAdversaryRegistrationHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+		requiresReload: false,
+	});
 
 	// THEME
 	game.settings.registerMenu(SYSTEM, SETTINGS.themeOptions, {
@@ -426,6 +485,7 @@ export const registerSystemSettings = async function () {
 		restricted: true,
 	});
 
+	// DEFAULT
 	game.settings.register(SYSTEM, SETTINGS.optionDefaultTargetingMode, {
 		name: game.i18n.localize('FU.DefaultTargetingMode'),
 		hint: game.i18n.localize('FU.DefaultTargetingModeHint'),
@@ -830,54 +890,6 @@ export const registerSystemSettings = async function () {
 					wellsprings: newValue,
 				},
 			]),
-	});
-
-	// DOCUMENT SHEETS
-	game.settings.registerMenu(SYSTEM, SETTINGS.sheetOptions, {
-		name: game.i18n.localize('FU.SheetOptionsTitle'),
-		label: game.i18n.localize('FU.SheetOptions'),
-		hint: game.i18n.localize('FU.SheetOptionsHint'),
-		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms, SETTINGS.optionAutomaticAdversaryRegistration]),
-		restricted: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
-		name: game.i18n.localize('FU.NotesTabSettings'),
-		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
-		scope: 'world',
-		config: false,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
-		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
-		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
-		scope: 'client',
-		config: false,
-		type: Boolean,
-		default: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
-		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
-		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
-		scope: 'client',
-		config: false,
-		type: Boolean,
-		default: false,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionAutomaticAdversaryRegistration, {
-		name: game.i18n.localize('FU.AutomaticAdversaryRegistration'),
-		hint: game.i18n.localize('FU.AutomaticAdversaryRegistrationHint'),
-		scope: 'world',
-		config: false,
-		type: Boolean,
-		default: true,
-		requiresReload: false,
 	});
 
 	// AUTOMATION

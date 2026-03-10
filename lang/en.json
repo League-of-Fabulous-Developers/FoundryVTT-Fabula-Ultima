@@ -1907,7 +1907,9 @@
 			"Default": "Greenly Default",
 			"ReactorFive": "Reactor Five",
 			"BravelyRed": "Bravely Red",
-			"AncientForest": "Ancient Forest"
-		}
+			"AncientForest": "Ancient Forest",
+			"Tales": "Tales"
+		},
+		"PartySheetTheme": "Party Sheet Theme"
 	}
 }

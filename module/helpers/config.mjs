@@ -728,6 +728,11 @@ FU.combatHudThemes = {
 	'fu-pixel': 'FU.CombatHudPixel',
 };
 
+FU.partySheetThemes = {
+	default: 'FU.Default',
+	tales: 'FU.THEMES.Tales',
+};
+
 FU.combatHudThemeTemplates = {
 	'fu-default': 'combat-hud-default',
 	'fu-modern': 'combat-hud-modern',
