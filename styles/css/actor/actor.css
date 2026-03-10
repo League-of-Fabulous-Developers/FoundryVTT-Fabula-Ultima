@@ -1,6 +1,13 @@
 /* ----------------------------------------- */
 /* Forms Styles                       
 /* ----------------------------------------- */
+.projectfu.actor .window-content {
+	/*padding: 1rem;*/
+}
+
+.projectfu.actor .tab {
+	padding: 0.5rem;
+}
 
 .projectfu .npc-border-col {
 	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
@@ -151,6 +158,7 @@
 	display: flex;
 	color: #ebf7af;
 	flex-direction: row;
+	padding: 0;
 }
 
 .projectfu .party .editor-menu {
@@ -159,11 +167,7 @@
 }
 
 .projectfu .party .side {
-	width: 160px;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	margin-right: 16px;
+	width: 200px;
 }
 
 .projectfu .party .side .menu {
@@ -459,7 +463,6 @@
 	flex-wrap: wrap;
 	max-width: 100%;
 	gap: 1.5rem;
-	padding: 0.5rem;
 }
 
 .projectfu .party .overview .plate {

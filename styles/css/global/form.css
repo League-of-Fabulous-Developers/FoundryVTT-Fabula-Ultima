@@ -6,6 +6,12 @@
 	}
 }
 
+.TH {
+	& i {
+		color: var(--pfu-color-app-item-content);
+	}
+}
+
 .fu-application .background,
 .fu-dialog .background,
 .fu-form .background {

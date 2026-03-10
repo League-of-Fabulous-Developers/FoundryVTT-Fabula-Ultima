@@ -3,14 +3,6 @@
 	font-family: var(--font-primary);
 }
 
-.projectfu.actor .window-content {
-	padding: 1rem;
-}
-
-.projectfu.actor .tab {
-	padding: 0.5rem;
-}
-
 .projectfu.item .window-content {
 	padding: 0.5rem;
 }
