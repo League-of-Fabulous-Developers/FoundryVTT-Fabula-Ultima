@@ -2,7 +2,15 @@
 /* Progress Styles
  /* ----------------------------------------- */
 .pfu-progress {
-	span {
+	gap: 4px;
+
+	span,
+	i {
+		color: var(--pfu-color-app-control-content);
+	}
+
+	:is(.desc) & span,
+	:is(.desc) & i {
 		color: unset;
 	}
 }
@@ -28,6 +36,13 @@
 	width: var(--size);
 	height: var(--size);
 	position: relative;
+}
+
+.pfu-progress__controls {
+	display: grid;
+	gap: 4px;
+	grid-column: span 2 / span 2;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 /* Segment clip-paths */

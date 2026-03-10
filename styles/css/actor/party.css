@@ -1,6 +1,35 @@
 .projectfu .pfu-sheet__party {
 	.widgets {
 		display: flex;
+		gap: 8px;
+		padding: 8px;
+	}
+
+	.nav {
+		padding: 8px;
+
+		.widgets {
+			gap: 2rem;
+
+			.tracks {
+				color: var(--pfu-color-app-control-content);
+			}
+
+			.resources {
+				display: flex;
+			}
+
+			.actions {
+				display: flex;
+				flex-direction: column;
+				color: var(--pfu-color-app-control-content);
+				gap: 4px;
+
+				i {
+					font-size: 24px;
+				}
+			}
+		}
 	}
 
 	&.theme-default {
@@ -41,13 +70,10 @@
 					font-size: x-large;
 					font-weight: bold;
 					min-width: 200px;
-					background-image: linear-gradient(to right, #1d2b3a, var(--color-primary));
-					border: 1px solid #c9a76f;
+					background: var(--pfu-color-app-control-fill);
 					border-radius: 12px;
 					padding: 10px 20px;
 					font-family: 'Cormorant Garamond', serif;
-					text-shadow: 0 1px 1px #fff5d0;
-					box-shadow: 0 2px 0 #8d6e3d;
 					transition: transform 0.1s ease;
 					align-content: center;
 				}
@@ -61,13 +87,15 @@
 			.widgets {
 				width: 100%;
 				flex-direction: column;
-			}
 
-			.resources {
-				display: flex;
-				justify-content: center;
-				gap: 8px;
-				margin: 4px;
+				.actions {
+					flex-direction: row;
+				}
+
+				.resources {
+					flex-direction: row;
+					gap: 1rem;
+				}
 			}
 		}
 	}
@@ -86,9 +114,7 @@
 			}
 
 			.menu {
-				margin-left: -16px;
 				display: flex;
-				padding: 1rem;
 				flex-direction: row;
 				gap: 1rem;
 				justify-content: normal;
@@ -149,6 +175,19 @@
 
 			.widgets {
 				flex-direction: row;
+
+				.pfu-progress__collection {
+					flex-direction: row;
+				}
+
+				.actions {
+					flex-direction: row;
+				}
+
+				.resources {
+					flex-direction: row;
+					gap: 1rem;
+				}
 			}
 		}
 	}
