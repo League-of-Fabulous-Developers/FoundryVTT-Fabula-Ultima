@@ -45,5 +45,18 @@
 				</a>
 			</div>
 		{{/each}}
+		{{#each companions}}
+			<div class="wheel-portrait character-option {{#if @first}}active{{/if}}"
+				 data-uuid="{{this.actor.uuid}}" data-type="companion"
+				 style="--index: {{@index}}; --total: {{../characters.length}};">
+				<a data-action="revealActor"
+				   data-actor="{{this.actor.uuid}}"
+				   data-type="companion">
+					<img class="portrait"
+						 src="{{this.actor.img}}"
+						 data-tooltip="{{this.name}}"  alt="character"/>
+				</a>
+			</div>
+		{{/each}}
 	</div>
 </div>

@@ -149,8 +149,6 @@
 }
 
 .pfu-progress__chat {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
@@ -169,67 +167,62 @@
 	text-transform: uppercase;
 	align-content: center;
 	line-height: 1.2;
+	color: var(--pfu-color-app-section-content-secondary);
 
-	label {
-		color: var(--color-primary);
-		-webkit-box-flex: 1;
+	.details {
+		display: flex;
 		flex-grow: 1;
-		min-width: 0;
-		overflow: hidden;
-		align-content: center;
-		text-align: left;
-		text-overflow: ellipsis;
-		word-wrap: break-word;
-		white-space: wrap;
-		gap: 8px;
-		margin: 4px;
+		flex-direction: column;
+		justify-content: center;
+		gap: 2px;
+
+		.name {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 8px;
+
+			img {
+				width: 24px;
+				height: 24px;
+				object-fit: cover;
+				border: 1px solid var(--pfu-color-app-section-border);
+				opacity: 0.9;
+			}
+		}
+
+		.divider {
+			display: flex;
+			align-items: center;
+			gap: 0.4rem;
+			opacity: 0.4;
+
+			.divider-line {
+				flex-grow: 1;
+				height: 1px;
+				background: currentColor;
+			}
+
+			i {
+				font-size: 0.4rem;
+			}
+		}
+
+		.counter {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-family: 'DM Mono', monospace;
+
+			.current {
+			}
+
+			.max {
+			}
+		}
 	}
 }
 
-.pfu-progress__chat .stats {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	gap: 5px;
-}
-.pfu-progress__chat .stat-current,
-.pfu-progress__chat .stat-max {
-	color: #2b4a42;
-	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
-	border-radius: 4px;
-	-ms-flex-negative: 0;
-	flex-shrink: 0;
-	width: 2em;
-	height: -webkit-fit-content;
-	height: -moz-fit-content;
-	height: fit-content;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	text-align: center;
-	position: relative;
-	z-index: 1;
-	font-family: 'PT Sans', sans-serif;
-}
-.pfu-progress__chat .stat-current::after,
-.pfu-progress__chat .stat-max::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #fff79a;
-	mix-blend-mode: hue;
-	opacity: 0.7;
-	border-radius: 4px;
-	z-index: 0;
-}
-.pfu-progress__chat .stat-divider {
-	color: #fff79a;
-	-ms-flex-negative: 0;
-	flex-shrink: 0;
-	font-size: larger;
-}
 .pfu-progress__chat .pfu-progress__segments__container {
 	position: relative;
 	padding: 5px;

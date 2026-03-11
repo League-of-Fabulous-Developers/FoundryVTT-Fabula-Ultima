@@ -912,23 +912,6 @@ app.projectfu .prosemirror menu {
 		border: 1px solid var(--pfu-color-app-detail-section-content-secondary);
 		border-radius: 10px;
 
-		& .stat-current,
-		& .stat-max {
-			color: var(--color-primary);
-			background: unset;
-
-			&::after {
-				content: unset;
-				background: unset;
-				z-index: -1;
-				opacity: unset;
-			}
-		}
-
-		& .stat-divider {
-			color: var(--color-secondary);
-		}
-
 		& a:hover {
 			background: var(--pfu-color-app-control-fill);
 			color: var(--pfu-color-app-control-content);
@@ -1008,6 +991,7 @@ app.projectfu .prosemirror menu {
 .unique-dialog,
 .active-effect-sheet,
 .fu-application,
+.fu-dialog,
 .background,
 .fu-form,
 .projectfu {

@@ -199,6 +199,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 				};
 			});
 
+		// Resources
 		const hp = getResourceData(actor, 'hp');
 		const mp = getResourceData(actor, 'mp');
 		const ip = getResourceData(actor, 'ip');

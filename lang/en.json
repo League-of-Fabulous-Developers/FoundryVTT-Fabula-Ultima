@@ -1902,6 +1902,7 @@
 		"AdvancedHint": "Advanced CSS overrides.",
 		"Import": "Import",
 		"Export": "Export",
+		"Display": "Display",
 		"ControlJsonImportHint": "Image to use as an accent for the UI as a whole.",
 		"THEMES": {
 			"Default": "Greenly Default",

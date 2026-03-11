@@ -60,6 +60,7 @@ export class FUPartySheet extends FUActorSheet {
 			removeTrack: this.#onRemoveTrack,
 			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
 			promptTrack: this.#onPromptTrack,
+			openTrackMenu: this.#onOpenTrackMenu,
 
 			callHook: this.#callHook,
 			activate: this.#activate,
@@ -276,8 +277,11 @@ export class FUPartySheet extends FUActorSheet {
 
 				el.style.left = `calc(50% + ${x}px)`;
 				el.style.top = `calc(50% + ${y}px)`;
-				el.style.transform = `translate(-50%, -50%)`;
 				el.style.zIndex = Math.round(y + radius + 1);
+				// Store depth scale as variable, don't set transform directly
+				const depthScale = 0.85 + ((y + radius) / (radius * 2)) * 0.3;
+				el.style.setProperty('--depth-scale', depthScale);
+				//el.style.transform = `translate(-50%, -50%)`;
 			});
 		}
 	}
@@ -388,6 +392,16 @@ export class FUPartySheet extends FUActorSheet {
 	static async #onPromptTrack(event, target) {
 		const index = Number(target.closest('[data-index]').dataset.index);
 		return ProgressPipeline.promptCheckAtIndexForDocument(this.actor, 'system.tracks', index);
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onOpenTrackMenu(event, target) {
+		const { index } = target.dataset;
+		return ProgressPipeline.openTrackMenuAtIndex(event, this.actor, 'system.tracks', Number.parseInt(index));
 	}
 
 	async _onDropItem(event, item) {
