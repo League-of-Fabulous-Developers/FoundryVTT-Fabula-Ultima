@@ -19,7 +19,7 @@ export class ThemeMenu extends FUApplication {
 		classes: ['fu-form'],
 		window: {
 			title: 'FU.ThemeMenuName',
-			icon: 'fas fa-color',
+			icon: 'fas fa-palette',
 		},
 		form: { closeOnSubmit: false },
 		actions: {

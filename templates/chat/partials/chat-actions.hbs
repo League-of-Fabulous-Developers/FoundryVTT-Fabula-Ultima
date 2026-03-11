@@ -24,7 +24,7 @@
                 <!-- Actions -->
                 {{#each ../actions as |action|}}
 					{{#if targeted}}
-						<span class="fu-tags fu-target-action">
+						<span class="pfu-tags fu-target-action">
 							<a data-action="{{name}}"
 							   data-id="{{target.uuid}}"
 							   data-fields="{{fields}}"
@@ -52,7 +52,7 @@
 {{/if}}
 {{#each actions as |action|}}
 	{{#if selected}}
-		<div class="fu-tags flexrow gap-5">
+		<div class="pfu-tags flexrow gap-5">
 			<a data-action="{{name}}"
 			   data-fields="{{fields}}"
 				{{#each dataset}}

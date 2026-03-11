@@ -76,7 +76,7 @@ export default class FoundryUtils {
 	 */
 	static async input(title, content) {
 		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: title },
+			window: { title: title, icon: 'fas fa-comment' },
 			content: content,
 			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
 			rejectClose: false,
@@ -109,7 +109,7 @@ export default class FoundryUtils {
 		const content = `${selectGroup.outerHTML}`;
 
 		const data = await api.DialogV2.input({
-			window: { title: title },
+			window: { title: title, icon: 'fas fa-comment' },
 			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 			content: content,
 		});
@@ -268,7 +268,7 @@ export default class FoundryUtils {
 		const result = await foundry.applications.api.DialogV2.wait({
 			window: {
 				title,
-				icon: null,
+				icon: 'fas fa-square-up-right',
 			},
 			position: {
 				width: 500,

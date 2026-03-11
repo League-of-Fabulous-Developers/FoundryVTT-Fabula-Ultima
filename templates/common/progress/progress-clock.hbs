@@ -20,10 +20,20 @@
 	</div>
 
 	{{#if displayName}}
-		<label>
-			<span>{{localize displayName}}</span>
-		</label>
+		{{#if compact}}
+			<a data-action="openTrackMenu" data-id="{{id}}"
+			   {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}
+			   data-index="{{index}}">
+				<span>{{localize displayName}}</span>
+			</a>
+		{{else}}
+			<label>
+				<span>{{localize displayName}}</span>
+			</label>
+		{{/if}}
 	{{/if}}
 
-	{{> 'systems/projectfu/templates/common/progress/partials/progress-controls.hbs'}}
+	{{#unless compact}}
+		{{> 'systems/projectfu/templates/common/progress/partials/progress-controls.hbs'}}
+	{{/unless}}
 </div>

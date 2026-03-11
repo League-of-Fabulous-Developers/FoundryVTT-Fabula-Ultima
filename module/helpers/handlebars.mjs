@@ -178,7 +178,6 @@ export const FUHandlebars = Object.freeze({
 			 * @param difficulty
 			 */
 			function (result, difficulty) {
-				console.log(result, difficulty);
 				if (result.crit) {
 					return 'critical';
 				} else if (result.fumble) {
@@ -219,6 +218,7 @@ export const FUHandlebars = Object.freeze({
  * @property {Boolean} prompt Whether to support prompting a dialog to request a roll to affect this track
  * @property {Boolean} event Whether to dispatch an event on a change
  * @property {Boolean} controls
+ * @property {Boolean} compact If true, will present the controls in a more compact way.
  * @property action
  * @property {"clock"|"basic"} style
  */
@@ -282,6 +282,7 @@ function renderProgress(progress, document, path, options, index = undefined) {
 					controls: controls,
 					action: action,
 					prompt: options.prompt,
+					compact: options.compact,
 					displayName: options.displayName && (progress.name || document.name),
 				})
 			: '';

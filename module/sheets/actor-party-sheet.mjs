@@ -1,7 +1,7 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
-import { SETTINGS } from '../settings.js';
+import { getSystemSetting, SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
@@ -39,7 +39,6 @@ export class FUPartySheet extends FUActorSheet {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['party'],
 		actions: {
 			createItem: this.#onCreate,
 			editItem: this.#onEdit,
@@ -50,6 +49,7 @@ export class FUPartySheet extends FUActorSheet {
 			lootItem: this.#onLootItem,
 			distributeZenit: this.#onDistributeZenit,
 
+			inspectCharacter: this.#inspectCharacter,
 			revealMetaCurrency: this.#revealMetaCurrency,
 			revealActor: this.#revealActor,
 			revealNpc: this.#onRevealNpc,
@@ -60,14 +60,16 @@ export class FUPartySheet extends FUActorSheet {
 			removeTrack: this.#onRemoveTrack,
 			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
 			promptTrack: this.#onPromptTrack,
+			openTrackMenu: this.#onOpenTrackMenu,
 
 			callHook: this.#callHook,
 			activate: this.#activate,
 		},
 		position: { width: 920, height: 1000 },
 		window: {
-			contentClasses: ['party'],
+			contentClasses: ['pfu-sheet__party'],
 			resizable: true,
+			icon: 'fas fa-people-group',
 		},
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 	};
@@ -82,6 +84,7 @@ export class FUPartySheet extends FUActorSheet {
 				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
 				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
+				{ id: 'character', label: 'FU.Character' },
 			],
 			initial: 'overview',
 		},
@@ -104,6 +107,9 @@ export class FUPartySheet extends FUActorSheet {
 		overview: {
 			template: systemPath('templates/actor/party/actor-party-section-overview.hbs'),
 		},
+		character: {
+			template: systemPath('templates/actor/party/actor-party-section-character.hbs'),
+		},
 		inventory: {
 			template: systemPath('templates/actor/party/actor-party-section-inventory.hbs'),
 		},
@@ -120,6 +126,11 @@ export class FUPartySheet extends FUActorSheet {
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
+
+	/**
+	 * @type PartyCharacterData
+	 */
+	inspectedCharacter;
 
 	/**
 	 * @returns {PartyDataModel}
@@ -147,7 +158,6 @@ export class FUPartySheet extends FUActorSheet {
 			zenit: this.party.resources.zenit.value,
 		};
 		context.currency = getCurrencyString();
-
 		return context;
 	}
 
@@ -176,6 +186,10 @@ export class FUPartySheet extends FUActorSheet {
 				context.tabs = this._prepareTabs('primary');
 				break;
 			case 'overview':
+				context.overview = await FoundryUtils.renderTemplate(`actor/party/themes/actor-party-overview-${this.theme}`, context);
+				break;
+			case 'character':
+				context.character = this.inspectedCharacter;
 				break;
 			case 'inventory': {
 				const technoSphereMode = game.settings.get(SYSTEM, SETTINGS.technospheres);
@@ -231,6 +245,7 @@ export class FUPartySheet extends FUActorSheet {
 		this.setupCharacterContextMenu(html);
 	}
 
+	/** @inheritDoc */
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options);
 		this.#equipmentTable.activateListeners(this);
@@ -238,6 +253,47 @@ export class FUPartySheet extends FUActorSheet {
 		this.#treasuresTable.activateListeners(this);
 		this.#consumablesTable.activateListeners(this);
 		this.#otherItemsTable.activateListeners(this);
+
+		// Set current theme classes
+		const windowContent = this.element.querySelector('.window-content');
+		if (!windowContent) return;
+		windowContent.classList.forEach((cls) => {
+			if (cls.startsWith('theme-')) windowContent.classList.remove(cls);
+		});
+		const theme = this.theme;
+		windowContent.classList.add(`theme-${theme}`);
+	}
+
+	/** @inheritDoc */
+	async _onRender(context, options) {
+		await super._onRender(context, options);
+
+		// For the modern theme wheel, need to make sure characters below others show up first.
+		if (this.theme === 'modern') {
+			const portraits = this.element.querySelectorAll('.wheel-portrait');
+			const total = portraits.length;
+			const radius = 160;
+
+			portraits.forEach((el, i) => {
+				const angle = (2 * Math.PI * i) / total - Math.PI / 2;
+				const x = radius * Math.cos(angle);
+				const y = radius * Math.sin(angle);
+
+				el.style.left = `calc(50% + ${x}px)`;
+				el.style.top = `calc(50% + ${y}px)`;
+				el.style.zIndex = Math.round(y + radius + 1);
+				// Store depth scale as variable, don't set transform directly
+				const depthScale = 0.85 + ((y + radius) / (radius * 2)) * 0.3;
+				el.style.setProperty('--depth-scale', depthScale);
+			});
+		}
+	}
+
+	/**
+	 * @returns {FUPartySheetTheme}
+	 */
+	get theme() {
+		return getSystemSetting(SETTINGS.partySheetTheme);
 	}
 
 	/**
@@ -341,6 +397,16 @@ export class FUPartySheet extends FUActorSheet {
 		return ProgressPipeline.promptCheckAtIndexForDocument(this.actor, 'system.tracks', index);
 	}
 
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onOpenTrackMenu(event, target) {
+		const { index } = target.dataset;
+		return ProgressPipeline.openTrackMenuAtIndex(event, this.actor, 'system.tracks', Number.parseInt(index));
+	}
+
 	async _onDropItem(event, item) {
 		const itemStashed = await ActorSheetUtils.handleStashDrop(this.actor, item);
 		if (itemStashed === true) {
@@ -370,8 +436,26 @@ export class FUPartySheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #revealMetaCurrency() {
+	static async #revealMetaCurrency(event, target) {
 		MetaCurrencyTrackerApplication.renderApp();
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #inspectCharacter(event, target) {
+		const uuid = target.dataset.actor;
+		const actor = fromUuidSync(uuid);
+		const character = this.party.constructCharacterData(actor);
+		if (character) {
+			this.inspectedCharacter = character;
+			this.render(true, {
+				tab: 'character',
+			});
+		}
 	}
 
 	/**
@@ -426,7 +510,7 @@ export class FUPartySheet extends FUActorSheet {
 			const source = result.source;
 			const amount = result.amount;
 			const selectedIds = result.recipients;
-			console.log('Giving', resource, 'to:', selectedIds);
+			console.info('Giving', resource, 'to:', selectedIds);
 			const selectedActors = characters.filter((c) => selectedIds.includes(c.uuid));
 			const request = new ResourceRequest(new InlineSourceInfo(source), selectedActors, resource, amount);
 			if (amount > 0) {

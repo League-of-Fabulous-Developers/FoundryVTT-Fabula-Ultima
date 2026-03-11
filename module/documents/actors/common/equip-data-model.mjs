@@ -28,6 +28,26 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
+	 * @returns {String[]} The ids of the default equipped items (in the actor).
+	 */
+	getDefaultItems() {
+		let equipment = [];
+		if (this.mainHand) {
+			equipment.push(this.mainHand);
+		}
+		if (this.offHand && this.offHand !== this.mainHand) {
+			equipment.push(this.offHand);
+		}
+		if (this.armor) {
+			equipment.push(this.armor);
+		}
+		if (this.accessory) {
+			equipment.push(this.accessory);
+		}
+		return equipment;
+	}
+
+	/**
 	 * @param {FUItem} item
 	 * @return {null,"mainHand","offHand","phantom","armor","accessory","arcanum"}
 	 */

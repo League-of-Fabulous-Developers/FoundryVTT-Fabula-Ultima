@@ -67,6 +67,7 @@
 	background-position: center;
 	background-size: contain;
 	pointer-events: none;
+	object-fit: contain;
 }
 
 .fu-icon--xs {

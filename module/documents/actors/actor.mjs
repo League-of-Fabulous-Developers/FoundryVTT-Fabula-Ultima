@@ -379,7 +379,7 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @param {FU.itemTypes} type
+	 * @param {FUItemType} type
 	 * @returns {FUItem[]}
 	 */
 	getItemsByType(type) {

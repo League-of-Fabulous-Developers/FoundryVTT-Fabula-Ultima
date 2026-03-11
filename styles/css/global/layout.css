@@ -1,4 +1,4 @@
-.fu-layout__menu {
+.pfu-layout__menu {
 	display: grid;
 	height: 100vh;
 	grid-template-columns: 1fr;
@@ -28,6 +28,29 @@
 	span {
 		min-width: 160px;
 	}
+}
+
+.pfu-sheet__padding {
+	padding: 0.5rem;
+}
+
+.pfu-form__buttons {
+	color: var(--pfu-color-app-section-content-secondary);
+}
+
+.pfu-layout__sidebar {
+	background: var(--pfu-sidebar-bg-image), var(--pfu-color-app-body-primary-fill);
+	background-size: 100% auto;
+	background-blend-mode: overlay;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	margin-right: 16px;
+	border-right: 3px solid var(--pfu-color-app-clock-border); /* gold rule */
+	box-shadow:
+		4px 0 12px rgba(0, 0, 0, 0.6),
+		/* deep drop shadow into content */ inset -2px 0 6px rgba(200, 168, 75, 0.15); /* subtle inner gold glow */
+	position: relative;
 }
 
 .separator {

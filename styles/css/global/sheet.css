@@ -399,17 +399,6 @@
 	border-radius: var(--pfu-border-radius-small);
 }
 
-.projectfu .tag {
-	align-items: center;
-	color: var(--color-text-primary);
-	background: var(--pfu-color-app-control-fill);
-	border-radius: 2px;
-	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-	display: inline-flex;
-	font-weight: 500;
-	padding: 0 0.5em;
-}
-
 .projectfu .resource-content {
 	color: var(--pfu-color-app-section-content-secondary);
 	background-color: transparent;

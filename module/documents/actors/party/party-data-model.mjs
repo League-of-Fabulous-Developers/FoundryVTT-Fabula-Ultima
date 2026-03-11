@@ -3,7 +3,10 @@
  * @property {FUActor} actor
  * @property {String} name
  * @property {Number} level
+ * @property {Record<Attribute, Number>} attributes
  * @property {PartyCharacterClass} classes
+ * @property {FUItem[]} equipment
+ * @property {FUItem[]} skills
  * @property {PartyCharacterResource[]} resources
  * @property {Number} fp
  * @property {Number} zenit
@@ -179,50 +182,92 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	/**
+	 *
+	 * @param {FUActor} actor
+	 * @returns {PartyCharacterData}
+	 */
+	constructCharacterData(actor) {
+		/** @type PartyCharacterClass **/
+		const classes = actor.items
+			.filter((item) => item.type === 'class')
+			.map((item) => {
+				return {
+					name: item.name,
+					fuid: item.system.fuid,
+					img: item.img,
+					level: item.system.level.value,
+				};
+			});
+
+		// Resources
+		const hp = getResourceData(actor, 'hp');
+		const mp = getResourceData(actor, 'mp');
+		const ip = getResourceData(actor, 'ip');
+
+		/** @type CharacterDataModel **/
+		const system = actor.system;
+
+		const attributeValues = Object.entries(system.attributes).reduce(
+			(previousValue, [attribute, { current }]) => ({
+				...previousValue,
+				[attribute]: current,
+			}),
+			{},
+		);
+
+		let equipment = [];
+		if (system.equipped) {
+			const itemIds = system.equipped.getDefaultItems();
+			for (const id of itemIds) {
+				const item = actor.items.get(id);
+				if (item) {
+					equipment.push(item);
+				}
+			}
+		}
+
+		let skills = [];
+		skills.push(...actor.getItemsByType('skill'));
+		skills.push(...actor.getItemsByType('classFeature'));
+		skills.push(...actor.getItemsByType('heroic'));
+		skills.push(...actor.getItemsByType('spell'));
+
+		let statusClass = undefined;
+		if (actor.system.resources.exp.value >= 10) {
+			statusClass = 'level-up';
+		}
+		let identity = actor.system.resources.identity.name;
+		if (!identity) {
+			identity = StringUtils.localize('FU.Adventurer');
+		}
+
+		// Truncate the name
+		const name = actor.name.split(' ')[0];
+
+		return {
+			actor: actor,
+			name: name,
+			attributes: attributeValues,
+			level: actor.system.level.value,
+			identity: identity,
+			classes: classes,
+			equipment: equipment,
+			skills: skills,
+			resources: [hp, mp, ip],
+			fp: actor.system.resources.fp.value,
+			zenit: actor.system.resources.zenit.value,
+			role: deduceCharacterRole(actor, classes),
+			statusClass: statusClass,
+		};
+	}
+
+	/**
 	 * @return {Promise<PartyCharacterData[]>}
 	 */
 	async getCharacterData() {
 		const actors = await this.getCharacterActors();
 		return actors.map((actor) => {
-			/** @type PartyCharacterClass **/
-			const classes = actor.items
-				.filter((item) => item.type === 'class')
-				.map((item) => {
-					return {
-						name: item.name,
-						fuid: item.system.fuid,
-						img: item.img,
-						level: item.system.level.value,
-					};
-				});
-
-			const hp = getResourceData(actor, 'hp');
-			const mp = getResourceData(actor, 'mp');
-			const ip = getResourceData(actor, 'ip');
-			let statusClass = undefined;
-			if (actor.system.resources.exp.value >= 10) {
-				statusClass = 'level-up';
-			}
-			let identity = actor.system.resources.identity.name;
-			if (!identity) {
-				identity = StringUtils.localize('FU.Adventurer');
-			}
-
-			// Truncate the name
-			const name = actor.name.split(' ')[0];
-
-			return {
-				actor: actor,
-				name: name,
-				level: actor.system.level.value,
-				identity: identity,
-				classes: classes,
-				resources: [hp, mp, ip],
-				fp: actor.system.resources.fp.value,
-				zenit: actor.system.resources.zenit.value,
-				role: deduceCharacterRole(actor, classes),
-				statusClass: statusClass,
-			};
+			return this.constructCharacterData(actor);
 		});
 	}
 

@@ -243,6 +243,7 @@ h4.divider::after {
 	--border-primary: var(--pfu-color-app-section-divider);
 	--table-row-color-odd: transparent;
 	--table-row-color-even: rgba(0, 0, 0, 0.1);
+	--table-background-color: var(--pfu-color-control-content);
 	--checkbox-font-weight: bold;
 
 	& input[type='checkbox'],
@@ -677,15 +678,49 @@ app.projectfu .prosemirror menu {
 	background: var(--pfu-color-app-image-fill);
 }
 
+.active-effect-sheet section.window-content.standard-form {
+	gap: unset;
+}
+
+.active-effect-sheet label,
+.active-effect-sheet p,
+.active-effect-sheet .tab.changes header,
+.active-effect-sheet {
+	color: var(--pfu-color-app-section-content-secondary);
+}
+
+.active-effect-sheet .sheet-tabs {
+	background: var(--pfu-color-app-control-fill);
+	text-transform: uppercase;
+	border-radius: var(--pfu-border-radius-medium);
+	color: var(--pfu-color-app-section-content-primary);
+
+	a {
+	}
+}
+
+.active-effect-sheet .sheet-header {
+	background: url(../../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	background-blend-mode: multiply;
+	background-repeat: repeat-y;
+	background-position: right top;
+	border-radius: 10px;
+	padding: 0.25rem;
+	border: thin solid var(--pfu-color-app-control-border);
+	color: var(--pfu-color-app-control-content) !important;
+	box-shadow: 1px 2px var(--pfu-color-app-control-shadow);
+
+	&.img-name input {
+		background: var(--pfu-color-app-name-section-fill);
+		border: none #c1b7c7;
+		font-size: xx-large;
+		align-self: stretch;
+		height: auto;
+	}
+}
+
 .projectfu,
 .chat-message {
-	& .active-effect-sheet label,
-	& .active-effect-sheet p,
-	& .active-effect-sheet .tab.changes header,
-	& .active-effect-sheet .fa-trash {
-		color: var(--pfu-color-app-section-content-secondary) !important;
-	}
-
 	& .pfu-progress__chat,
 	&.clock-s,
 	&.clock-m,
@@ -877,23 +912,6 @@ app.projectfu .prosemirror menu {
 		border: 1px solid var(--pfu-color-app-detail-section-content-secondary);
 		border-radius: 10px;
 
-		& .stat-current,
-		& .stat-max {
-			color: var(--color-primary);
-			background: unset;
-
-			&::after {
-				content: unset;
-				background: unset;
-				z-index: -1;
-				opacity: unset;
-			}
-		}
-
-		& .stat-divider {
-			color: var(--color-secondary);
-		}
-
 		& a:hover {
 			background: var(--pfu-color-app-control-fill);
 			color: var(--pfu-color-app-control-content);
@@ -973,6 +991,7 @@ app.projectfu .prosemirror menu {
 .unique-dialog,
 .active-effect-sheet,
 .fu-application,
+.fu-dialog,
 .background,
 .fu-form,
 .projectfu {
@@ -1077,6 +1096,7 @@ app.projectfu .prosemirror menu {
 		color: var(--pfu-color-app-body-content);
 		background: var(--pfu-app-bg-image), var(--pfu-color-app-body-primary-fill);
 		background-size: 100% auto;
+		background-blend-mode: overlay;
 		--color-scrollbar: var(--pfu-color-app-scrollbar) var(--pfu-color-app-scrollbar-track);
 
 		& > :is(select, input) {

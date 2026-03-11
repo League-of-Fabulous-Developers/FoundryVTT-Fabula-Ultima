@@ -91,6 +91,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			createFavorite: FUStandardActorSheet.#onCreateFavorite,
 			createClock: FUStandardActorSheet.#onCreateClock,
 			updateTrack: { handler: this.#onUpdateTrack, buttons: [0, 2] },
+			displayTrack: FUStandardActorSheet.#onDisplayTrack,
 			createClassFeature: FUStandardActorSheet.#onCreateClassFeature,
 			editItem: FUStandardActorSheet.#onEdit,
 			toggleFavorite: FUStandardActorSheet.#onToggleFavorite,
@@ -1150,6 +1151,24 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (document) {
 			return ProgressDataModel.updateForDocument(document, dataPath, increment);
 		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onDisplayTrack(event, target) {
+		const { id, dataPath } = target.dataset;
+		let document;
+		document = this.actor.getEffect(id);
+		if (!document) {
+			document = this.actor.getItemById(id);
+		}
+
+		/** @type ProgressDataModel **/
+		const progress = foundry.utils.getProperty(document, dataPath);
+		return ProgressDataModel.sendToChat(document, progress);
 	}
 
 	// TODO: Re-use with the ones from item sheet?

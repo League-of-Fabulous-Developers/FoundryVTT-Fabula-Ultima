@@ -15,23 +15,27 @@
 					<div class="divider" style="--index: {{obj.id}}"></div>
 				{{/each}}
 			</div>
-
 		</div>
-		<div class="flexcol flex-group-center" style="display: flex; width: 100%;">
-			<div class="flexrow flex-group-center">
-				{{#if displayName}}
-					<label class="flexrow flex-group-center">
-						{{#if progress.parent.parent.img }}
-							<img class='fu-icon--s' alt="icon" src="{{{progress.parent.parent.img}}}" />
-						{{/if}}
-						{{localize progress.name}}
-					</label>
-				{{/if}}
+		<div class="details">
+			{{#if displayName}}
+				<div class="name">
+					{{#if progress.parent.parent.img}}
+						<img class="fu-icon--m" alt="icon" src="{{{progress.parent.parent.img}}}" />
+					{{/if}}
+					<span>{{localize progress.name}}</span>
+				</div>
+			{{/if}}
+
+			<div class="divider">
+				<div class="divider-line"></div>
+				<i class="fas fa-diamond"></i>
+				<div class="divider-line"></div>
 			</div>
-			<div class="flex-group-center stats">
-				<span class="stat-current">{{progress.current}}</span>
-				<span class="stat-divider">/</span>
-				<span class="stat-max">{{progress.max}}</span>
+
+			<div class="counter">
+				<span class="current">{{progress.current}}</span>
+				<span class="">/</span>
+				<span class="max">{{progress.max}}</span>
 			</div>
 		</div>
 	</div>

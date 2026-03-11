@@ -247,6 +247,10 @@ FU.studyResult = {
 	detailed: 'FU.Detailed',
 };
 
+/**
+ * @typedef {'basic' | 'weapon' | 'shield' | 'armor' | 'accessory' | 'consumable' | 'treasure' | 'class' | 'classFeature' | 'optionalFeature' | 'skill' | 'heroic' | 'spell' | 'miscAbility' | 'rule' | 'behavior' | 'ritual' | 'project' | 'effect'} FUItemType
+ */
+
 FU.itemTypes = {
 	basic: 'TYPES.Item.basic',
 	weapon: 'TYPES.Item.weapon',
@@ -726,6 +730,15 @@ FU.combatHudThemes = {
 	'fu-modern': 'FU.CombatHudModern',
 	'fu-mother': 'FU.CombatHudMother',
 	'fu-pixel': 'FU.CombatHudPixel',
+};
+
+/**
+ * @typedef {"classic"|"modern"} FUPartySheetTheme
+ */
+
+FU.partySheetThemes = {
+	classic: 'FU.THEMES.Classic',
+	modern: 'FU.THEMES.Modern',
 };
 
 FU.combatHudThemeTemplates = {

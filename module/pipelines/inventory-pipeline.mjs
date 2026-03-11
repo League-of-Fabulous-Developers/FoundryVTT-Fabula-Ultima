@@ -301,6 +301,7 @@ async function promptPartyZenitTransfer(actor, mode) {
 
 	const result = await foundry.applications.api.DialogV2.input({
 		window: { title: game.i18n.format(label, { currency: currency }) },
+		classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		content: `<form>
       <div class="form-group">        
         <label for="amount"">Amount</label>

@@ -16,6 +16,7 @@ const fields = foundry.data.fields;
  * @property {BonusesDataModel} bonuses Flat amounts
  * @property {BonusesDataModel} multipliers Multiplies the base amount
  * @property {OverridesDataModel} overrides Overrides for default behaviour
+ * @property {EquipDataModel} equipped
  * @property {string} description
  */
 export class BaseCharacterDataModel extends foundry.abstract.TypeDataModel {

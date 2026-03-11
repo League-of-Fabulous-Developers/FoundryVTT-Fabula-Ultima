@@ -23,7 +23,6 @@ import { ItemBehaviourMixin } from './item-behaviour-mixin.mjs';
  */
 export class FUItem extends EnablePseudoDocumentsMixin(ItemBehaviourMixin(Item)) {
 	static async createDialog(data = {}, { parent = null, pack = null, types, ...options } = {}) {
-		console.log(data, parent, pack, types, options);
 		if (!game.settings.get(SYSTEM, SETTINGS.technospheres)) {
 			types ??= FUItem.TYPES.filter((value) => !['mnemosphere', 'hoplosphere', 'mnemosphereReceptacle'].includes(value));
 		}
