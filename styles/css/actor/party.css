@@ -290,7 +290,6 @@
 		display: flex;
 		flex-direction: column-reverse;
 		padding: 0;
-		font-family: 'Rajdhani', sans-serif;
 
 		background:
 			radial-gradient(ellipse at 40% 50%, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 25%, transparent) 0%, transparent 60%),
@@ -341,6 +340,8 @@
 		}
 
 		.character {
+			font-family: 'Rajdhani', sans-serif;
+
 			&.active {
 				display: flex;
 				position: relative;
@@ -519,6 +520,7 @@
 		}
 
 		.overview {
+			font-family: 'Rajdhani', sans-serif;
 			height: 100%;
 			display: flex;
 			flex-direction: row;
