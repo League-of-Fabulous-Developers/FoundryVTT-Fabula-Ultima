@@ -351,7 +351,6 @@ function onRenderFUActorSheet(sheet, element) {
 	if (sheet._expanded) {
 		sheet._expanded.forEach((itemId) => {
 			const expandedDescriptions = element.querySelectorAll(`li[data-item-id="${itemId}"] .individual-description`);
-			console.log(itemId, expandedDescriptions);
 			expandedDescriptions.forEach((el) => {
 				el.classList.remove('hidden');
 				el.style.display = 'block';

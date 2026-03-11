@@ -158,8 +158,6 @@ export class FUPartySheet extends FUActorSheet {
 			zenit: this.party.resources.zenit.value,
 		};
 		context.currency = getCurrencyString();
-		console.log('tabs:', context.tabs);
-		console.log('character cssClass:', context.tabs.character.cssClass);
 		return context;
 	}
 
@@ -512,7 +510,7 @@ export class FUPartySheet extends FUActorSheet {
 			const source = result.source;
 			const amount = result.amount;
 			const selectedIds = result.recipients;
-			console.log('Giving', resource, 'to:', selectedIds);
+			console.info('Giving', resource, 'to:', selectedIds);
 			const selectedActors = characters.filter((c) => selectedIds.includes(c.uuid));
 			const request = new ResourceRequest(new InlineSourceInfo(source), selectedActors, resource, amount);
 			if (amount > 0) {

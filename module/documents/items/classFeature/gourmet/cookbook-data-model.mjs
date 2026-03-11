@@ -75,9 +75,6 @@ export class CookbookDataModel extends RollableClassFeatureDataModel {
 		taste1Radio.value = sheet.taste1;
 		taste2Radio.value = sheet.taste2;
 
-		console.log(sheet.taste1, sheet.taste2);
-		console.log(taste1Radio, taste2Radio);
-
 		const toggleHighlight = () => {
 			console.log(sheet.taste1, sheet.taste2);
 			html.querySelectorAll(`[data-taste1][data-taste2]`).forEach((el) =>

@@ -89,7 +89,6 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 	});
 
 	if (result) {
-		console.log(result);
 		// Retrieve values from the form
 		const damageType = result['damage-type'];
 		const extraDamage = parseInt(result['extra-damage'], 10) || 0;
