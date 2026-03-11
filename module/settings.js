@@ -173,7 +173,7 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: false,
 		type: String,
-		default: 'classic',
+		default: 'modern',
 		choices: FU.partySheetThemes,
 		requiresReload: false,
 	});

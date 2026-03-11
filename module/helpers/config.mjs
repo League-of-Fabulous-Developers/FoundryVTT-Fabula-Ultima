@@ -733,11 +733,11 @@ FU.combatHudThemes = {
 };
 
 /**
- * @typedef {"default"|"modern"} FUPartySheetTheme
+ * @typedef {"classic"|"modern"} FUPartySheetTheme
  */
 
 FU.partySheetThemes = {
-	default: 'FU.Default',
+	classic: 'FU.THEMES.Classic',
 	modern: 'FU.THEMES.Modern',
 };
 

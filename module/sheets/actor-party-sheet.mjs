@@ -247,6 +247,7 @@ export class FUPartySheet extends FUActorSheet {
 		this.setupCharacterContextMenu(html);
 	}
 
+	/** @inheritDoc */
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options);
 		this.#equipmentTable.activateListeners(this);
@@ -263,9 +264,14 @@ export class FUPartySheet extends FUActorSheet {
 		});
 		const theme = this.theme;
 		windowContent.classList.add(`theme-${theme}`);
+	}
+
+	/** @inheritDoc */
+	async _onRender(context, options) {
+		await super._onRender(context, options);
 
 		// For the modern theme wheel, need to make sure characters below others show up first.
-		if (theme === 'modern') {
+		if (this.theme === 'modern') {
 			const portraits = this.element.querySelectorAll('.wheel-portrait');
 			const total = portraits.length;
 			const radius = 160;
@@ -281,7 +287,6 @@ export class FUPartySheet extends FUActorSheet {
 				// Store depth scale as variable, don't set transform directly
 				const depthScale = 0.85 + ((y + radius) / (radius * 2)) * 0.3;
 				el.style.setProperty('--depth-scale', depthScale);
-				//el.style.transform = `translate(-50%, -50%)`;
 			});
 		}
 	}
