@@ -95,6 +95,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		position: { width: 700, height: 'auto' },
 		window: {
 			resizable: true,
+			icon: 'fas fa-toolbox',
 		},
 		form: {
 			submitOnChange: true,

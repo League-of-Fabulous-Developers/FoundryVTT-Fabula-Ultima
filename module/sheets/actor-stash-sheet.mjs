@@ -22,6 +22,9 @@ export class FUStashSheet extends FUActorSheet {
 	static DEFAULT_OPTIONS = {
 		classes: ['stash'],
 		resizable: true,
+		window: {
+			icon: 'fas fa-box-open',
+		},
 		position: { width: 600, height: 768 },
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 		actions: {

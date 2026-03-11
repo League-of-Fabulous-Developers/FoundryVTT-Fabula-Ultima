@@ -68,6 +68,7 @@ export class FUPartySheet extends FUActorSheet {
 		window: {
 			contentClasses: ['pfu-sheet__party'],
 			resizable: true,
+			icon: 'fas fa-people-group',
 		},
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 	};

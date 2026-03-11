@@ -19,6 +19,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		classes: ['projectfu', 'sheet', 'actor', 'projectfu-actor-sheet', 'sheet-content-wrapper', 'h-100', 'backgroundstyle'],
 		scrollY: ['.sheet-body'],
 		window: {
+			icon: 'fas fa-person',
 			resizable: true,
 			controls: [
 				{
