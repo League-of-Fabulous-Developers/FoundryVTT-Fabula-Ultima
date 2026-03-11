@@ -32,6 +32,40 @@
 		}
 	}
 
+	.bar .fill {
+		height: 100%;
+		width: 70%;
+		background: linear-gradient(to top, #e04c4c, #f36b6b);
+	}
+
+	.bar.hp .fill {
+		background: linear-gradient(to right, #e04c4c, #f36b6b);
+	}
+
+	.bar.mp .fill {
+		background: linear-gradient(to right, #5090ff, #6aaaff);
+	}
+
+	.bar.ip .fill {
+		background: linear-gradient(to right, #d1b347, #e6c75c);
+	}
+
+	.damage {
+		background: linear-gradient(to bottom, #6a3b3b, #2e1f1f);
+	}
+
+	.support {
+		background: linear-gradient(to bottom, #3d5c3d, #1c2a1c);
+	}
+
+	.tank {
+		background: linear-gradient(to bottom, #3a4c66, #1a1f2a);
+	}
+
+	.any {
+		background: linear-gradient(to bottom, #d1c38a, #9a8544);
+	}
+
 	&.theme-default {
 		display: flex;
 		flex-direction: row;
@@ -151,22 +185,6 @@
 					animation: levelglow 2s infinite alternate ease-in-out;
 				}
 
-				.damage {
-					background: linear-gradient(to bottom, #6a3b3b, #2e1f1f);
-				}
-
-				.support {
-					background: linear-gradient(to bottom, #3d5c3d, #1c2a1c);
-				}
-
-				.tank {
-					background: linear-gradient(to bottom, #3a4c66, #1a1f2a);
-				}
-
-				.any {
-					background: linear-gradient(to bottom, #d1c38a, #9a8544);
-				}
-
 				.companion {
 					width: 200px;
 				}
@@ -248,11 +266,55 @@
 		display: flex;
 		flex-direction: column-reverse;
 		padding: 0;
+		font-family: 'Rajdhani', sans-serif;
 
 		background:
 			radial-gradient(ellipse at 40% 50%, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 25%, transparent) 0%, transparent 60%),
 			radial-gradient(ellipse at 80% 30%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, transparent) 0%, transparent 50%),
 			linear-gradient(135deg, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 20%, #050a0f) 0%, #080d12 40%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, #050a0f) 100%);
+
+		.bars {
+			display: flex;
+			flex-direction: column;
+
+			.bar {
+				display: flex;
+				align-items: center;
+
+				i {
+					width: 14px;
+					flex-shrink: 0;
+					font-size: 0.7rem;
+					opacity: 0.8;
+				}
+
+				.track {
+					flex-grow: 1;
+					overflow: hidden;
+					height: 8px;
+					background: rgba(0, 0, 0, 0.6);
+					border-radius: 0;
+					border: 1px solid rgba(255, 255, 255, 0.06);
+
+					.fill {
+						height: 100%;
+						border-radius: 0;
+						box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+					}
+				}
+
+				.text {
+					font-size: 1rem;
+					white-space: nowrap;
+					min-width: 50px;
+					text-align: right;
+
+					.max {
+						color: rgba(255, 255, 255, 0.4);
+					}
+				}
+			}
+		}
 
 		.character {
 			&.active {
@@ -261,6 +323,7 @@
 				flex-direction: row;
 				height: 100%;
 				overflow: hidden;
+				padding: 0;
 			}
 
 			.left {
@@ -306,12 +369,16 @@
 					}
 
 					.name {
-						font-family: 'Rajdhani', sans-serif;
 						font-size: 2rem;
 						font-weight: 700;
 						letter-spacing: 0.05em;
 						text-transform: uppercase;
 						color: #fff;
+					}
+
+					.identity {
+						font-size: 1.5rem;
+						font-weight: 500;
 					}
 				}
 
@@ -344,20 +411,46 @@
 					}
 				}
 
-				section {
+				.panel {
 					display: flex;
 					flex-direction: column;
-					gap: 0.4rem;
+					gap: 0;
+					background: rgba(0, 0, 0, 0.35);
+					border: 1px solid rgba(255, 255, 255, 0.06);
+					padding: 0.5rem 0.75rem;
 				}
 
-				label {
+				.panel-label {
 					font-family: 'Rajdhani', sans-serif;
-					font-size: 0.65rem;
+					font-size: 1rem;
 					font-weight: 600;
 					letter-spacing: 0.15em;
 					text-transform: uppercase;
-					color: rgba(255, 255, 255, 0.35);
-					margin-bottom: 0.2rem;
+					margin-bottom: 0;
+				}
+
+				.items {
+					.entry {
+						display: flex;
+						align-items: center;
+						gap: 0.5rem;
+						padding: 4px 0;
+						font-family: 'Rajdhani', sans-serif;
+						font-size: 0.85rem;
+						font-weight: 600;
+
+						&:last-child {
+							border-bottom: none;
+						}
+
+						img {
+							width: 32px;
+							height: 32px;
+							object-fit: cover;
+							border: none;
+							opacity: 0.9;
+						}
+					}
 				}
 			}
 
@@ -412,32 +505,8 @@
 			align-items: center;
 			justify-content: center;
 
-			.modern-background {
-				position: absolute;
-				inset: 0;
-				pointer-events: none;
-				z-index: 0;
-				overflow: hidden;
-			}
-
-			.starfield {
-				position: absolute;
-				inset: 0;
-				width: 100%;
-				height: 100%;
-				opacity: 0.6;
-			}
-
-			.vignette {
-				position: absolute;
-				inset: 0;
-				background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
-			}
-
-			/* Make sure content sits above the background */
-			.window-content > *:not(.modern-background) {
-				position: relative;
-				z-index: 1;
+			.bars {
+				padding-left: 34px;
 			}
 
 			.character-list {
@@ -497,48 +566,6 @@
 								object-fit: cover;
 								border: none;
 								opacity: 0.85;
-							}
-						}
-					}
-
-					.bars {
-						display: flex;
-						flex-direction: column;
-						padding-left: 34px;
-
-						.bar {
-							display: flex;
-							align-items: center;
-
-							i {
-								width: 14px;
-								flex-shrink: 0;
-								font-size: 0.7rem;
-								opacity: 0.8;
-							}
-
-							.track {
-								flex-grow: 1;
-								height: 6px;
-								background: rgba(255, 255, 255, 0.1);
-								border-radius: 2px;
-								overflow: hidden;
-
-								.fill {
-									height: 100%;
-									border-radius: 2px;
-								}
-							}
-
-							.text {
-								font-size: 1rem;
-								white-space: nowrap;
-								min-width: 50px;
-								text-align: right;
-
-								.max {
-									color: rgba(255, 255, 255, 0.4);
-								}
 							}
 						}
 					}
@@ -755,6 +782,7 @@
 	display: flex;
 	flex-direction: column;
 	max-width: 100%;
+	overflow-x: hidden;
 }
 
 .projectfu .pfu-sheet__party .adversaries .soldier,
@@ -889,24 +917,6 @@
 	border-radius: 0.3rem;
 	overflow: hidden;
 	position: relative;
-}
-
-.projectfu .pfu-sheet__party .overview .bar .fill {
-	height: 100%;
-	width: 70%;
-	background: linear-gradient(to top, #e04c4c, #f36b6b);
-}
-
-.projectfu .pfu-sheet__party .overview .bar.hp .fill {
-	background: linear-gradient(to right, #e04c4c, #f36b6b);
-}
-
-.projectfu .pfu-sheet__party .overview .bar.mp .fill {
-	background: linear-gradient(to right, #5090ff, #6aaaff);
-}
-
-.projectfu .pfu-sheet__party .overview .bar.ip .fill {
-	background: linear-gradient(to right, #d1b347, #e6c75c);
 }
 
 .projectfu .pfu-sheet__party .overview .resources {

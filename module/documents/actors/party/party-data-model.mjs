@@ -5,6 +5,8 @@
  * @property {Number} level
  * @property {Record<Attribute, Number>} attributes
  * @property {PartyCharacterClass} classes
+ * @property {FUItem[]} equipment
+ * @property {FUItem[]} skills
  * @property {PartyCharacterResource[]} resources
  * @property {Number} fp
  * @property {Number} zenit
@@ -201,13 +203,33 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 		const mp = getResourceData(actor, 'mp');
 		const ip = getResourceData(actor, 'ip');
 
-		const attributeValues = Object.entries(actor.system.attributes).reduce(
+		/** @type CharacterDataModel **/
+		const system = actor.system;
+
+		const attributeValues = Object.entries(system.attributes).reduce(
 			(previousValue, [attribute, { current }]) => ({
 				...previousValue,
 				[attribute]: current,
 			}),
 			{},
 		);
+
+		let equipment = [];
+		if (system.equipped) {
+			const itemIds = system.equipped.getDefaultItems();
+			for (const id of itemIds) {
+				const item = actor.items.get(id);
+				if (item) {
+					equipment.push(item);
+				}
+			}
+		}
+
+		let skills = [];
+		skills.push(...actor.getItemsByType('skill'));
+		skills.push(...actor.getItemsByType('classFeature'));
+		skills.push(...actor.getItemsByType('heroic'));
+		skills.push(...actor.getItemsByType('spell'));
 
 		let statusClass = undefined;
 		if (actor.system.resources.exp.value >= 10) {
@@ -228,6 +250,8 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			level: actor.system.level.value,
 			identity: identity,
 			classes: classes,
+			equipment: equipment,
+			skills: skills,
 			resources: [hp, mp, ip],
 			fp: actor.system.resources.fp.value,
 			zenit: actor.system.resources.zenit.value,

@@ -45,6 +45,7 @@ const CLASS_IP_BENEFITS = 2;
  * @property {PilotVehicleDataModel} vehicle
  * @property {CharacterSkillTracker} tlTracker
  * @property {FloralistDataModel} floralist
+ * @property {EquipDataModel} equipped
  * @inheritDoc
  */
 export class CharacterDataModel extends BaseCharacterDataModel {

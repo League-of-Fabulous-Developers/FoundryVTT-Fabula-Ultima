@@ -278,65 +278,7 @@ export class FUPartySheet extends FUActorSheet {
 				el.style.transform = `translate(-50%, -50%)`;
 				el.style.zIndex = Math.round(y + radius + 1);
 			});
-
-			this._initStarfield();
 		}
-	}
-
-	async _onClose(options) {
-		await super._onClose(options);
-		if (this._starfieldFrame) {
-			cancelAnimationFrame(this._starfieldFrame);
-			this._starfieldFrame = null;
-		}
-	}
-
-	_initStarfield() {
-		const canvas = this.element.querySelector('.starfield');
-		if (!canvas) return;
-
-		const ctx = canvas.getContext('2d');
-		const W = canvas.offsetWidth;
-		const H = canvas.offsetHeight;
-		canvas.width = W;
-		canvas.height = H;
-
-		// Generate stars
-		const stars = Array.from({ length: 120 }, () => ({
-			x: Math.random() * W,
-			y: Math.random() * H,
-			r: Math.random() * 1.2,
-			speed: 0.05 + Math.random() * 0.1,
-			opacity: 0.1 + Math.random() * 0.5,
-			drift: (Math.random() - 0.5) * 0.02,
-		}));
-
-		const draw = () => {
-			ctx.clearRect(0, 0, W, H);
-
-			for (const star of stars) {
-				ctx.beginPath();
-				ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-				ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
-				ctx.fill();
-
-				// Drift slowly upward
-				star.y -= star.speed;
-				star.x += star.drift;
-
-				// Wrap around
-				if (star.y < 0) {
-					star.y = H;
-					star.x = Math.random() * W;
-				}
-				if (star.x < 0) star.x = W;
-				if (star.x > W) star.x = 0;
-			}
-
-			this._starfieldFrame = requestAnimationFrame(draw);
-		};
-
-		draw();
 	}
 
 	/**
