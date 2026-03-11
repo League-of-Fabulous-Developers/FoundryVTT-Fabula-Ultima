@@ -4,20 +4,20 @@
 		<div class="left">
 			<!-- Header -->
 			<div class="header">
-				<div class="name">{{this.name}}</div>
-				<div class="level-row">
-					<span class="lv-label">LEVEL</span>
-					<span class="lv-badge">{{this.actor.system.level.value}}</span>
+				<div class="flexrow flex-between">
+					<div class="name">{{this.name}}</div>
+					<div class="level-row">
+						<span class="lv-badge">{{this.actor.system.level.value}}</span>
+					</div>
 				</div>
-				{{#if this.actor.system.resources.identity.name}}
-					<span class="identity">{{this.actor.system.resources.identity.name}}</span>
-				{{/if}}
-				{{#if this.actor.system.resources.theme.name}}
-					<span class="theme">{{this.actor.system.resources.theme.name}}</span>
-				{{/if}}
-				{{#if this.actor.system.resources.origin.name}}
-					<span class="origin">{{this.actor.system.resources.origin.name}}</span>
-				{{/if}}
+				<div class="flexrow flex-between">
+					{{#if this.actor.system.resources.identity.name}}
+						<span class="identity">{{this.actor.system.resources.identity.name}}</span>
+					{{/if}}
+					{{#if this.actor.system.resources.origin.name}}
+						<span class="origin">{{this.actor.system.resources.origin.name}}</span>
+					{{/if}}
+				</div>
 			</div>
 
 			<!-- Classes -->

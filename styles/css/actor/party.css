@@ -345,14 +345,7 @@
 						align-items: center;
 						gap: 0.5rem;
 						margin-top: 0.25rem;
-
-						.lv-label {
-							font-family: 'Rajdhani', sans-serif;
-							font-size: 0.65rem;
-							letter-spacing: 0.1em;
-							text-transform: uppercase;
-							color: rgba(255, 255, 255, 0.4);
-						}
+						flex: 0;
 
 						.lv-badge {
 							font-family: 'DM Mono', monospace;
@@ -373,12 +366,16 @@
 						font-weight: 700;
 						letter-spacing: 0.05em;
 						text-transform: uppercase;
-						color: #fff;
 					}
 
 					.identity {
-						font-size: 1.5rem;
-						font-weight: 500;
+						font-size: 1.2rem;
+						font-weight: 400;
+						font-style: italic;
+					}
+
+					.origin {
+						flex: 0;
 					}
 				}
 
@@ -631,54 +628,64 @@
 				border-top: none;
 				border-bottom: none;
 
-				.button {
+				.button2 {
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
-					gap: 1rem;
+					gap: 0.4rem;
 					min-width: 100px;
 					height: 100px;
-					padding: 4px;
+					padding: 8px;
 					font-family: 'Rajdhani', sans-serif;
-					font-size: small;
+					font-size: 0.65rem;
 					font-weight: 600;
-					letter-spacing: 0.1em;
+					letter-spacing: 0.12em;
 					text-transform: uppercase;
+					background: transparent;
+					border: 1px solid transparent;
+					border-radius: 3px;
 					box-shadow: none;
 					text-shadow: none;
-					background: transparent;
-					border: unset;
+					color: var(--pfu-color-control-content);
 					transition:
 						background 0.2s ease,
 						color 0.2s ease,
 						border-color 0.2s ease;
 
 					i {
+						color: var(--pfu-color-control-content);
 						font-size: 32px;
-						transition: color 0.2s ease;
+						transition:
+							color 0.2s ease,
+							filter 0.2s ease;
 					}
-				}
 
-				.button:hover {
-					transform: none;
-					background: rgba(255, 255, 255, 0.09);
-					border-color: rgba(220, 210, 140, 0.4);
-					color: rgba(255, 255, 255, 1);
+					&.active {
+						background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.35) 100%);
+						border: 1px solid rgba(255, 255, 255, 0.15);
+						border-top-color: rgba(255, 255, 255, 0.3);
+						border-radius: 3px;
+						box-shadow:
+							inset 0 1px 0 rgba(255, 255, 255, 0.1),
+							inset 0 0 24px rgba(0, 0, 0, 0.5),
+							0 0 8px rgba(0, 0, 0, 0.4);
+						color: var(--pfu-color-control-active-content);
 
-					i {
-						color: rgba(220, 210, 140, 1);
+						i {
+							color: var(--pfu-color-control-active-content);
+							filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+						}
 					}
-				}
 
-				.button.active {
-					background: rgba(220, 210, 140, 0.12);
-					border-color: rgba(220, 210, 140, 0.6);
-					color: #fff;
+					&:hover {
+						background: rgba(255, 255, 255, 0.06);
+						border-color: rgba(255, 255, 255, 0.1);
+						color: rgba(255, 255, 255, 0.8);
 
-					i {
-						color: #e8d882;
-						filter: drop-shadow(0 0 6px rgba(220, 210, 140, 0.6));
+						i {
+							color: rgba(255, 255, 255, 0.8);
+						}
 					}
 				}
 			}
