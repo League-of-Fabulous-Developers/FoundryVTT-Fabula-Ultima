@@ -751,7 +751,7 @@ async function promptApply(request) {
 		}).requiresOwner(),
 	];
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, true);
-	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, true);
 	ChatMessage.create({
 		flags: flags,
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-damage-prompt', {

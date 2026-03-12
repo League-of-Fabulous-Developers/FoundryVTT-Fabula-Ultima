@@ -17,7 +17,7 @@ function addRollContextMenuEntries(application, menuItems) {
 			const messageId = li.dataset.messageId;
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
-			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
@@ -26,7 +26,7 @@ function addRollContextMenuEntries(application, menuItems) {
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
-				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+				const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 				if (check) {
 					await Checks.modifyCheck(check.id, handlePush);
 				}

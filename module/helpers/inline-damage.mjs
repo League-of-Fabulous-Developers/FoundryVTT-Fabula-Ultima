@@ -83,7 +83,7 @@ async function onRender(element) {
 		let targets = await targetHandler();
 		if (targets.length > 0) {
 			let context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
-			let check = renderContext.document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			let check = renderContext.document.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			if (check) {
 				context = context.withCheck(check);
 			}

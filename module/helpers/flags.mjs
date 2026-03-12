@@ -19,7 +19,7 @@ export const Flags = Object.freeze({
 	}),
 	ChatMessage: Object.freeze({
 		CheckParams: 'CheckParams',
-		CheckV2: 'CheckV2',
+		Check: 'Check',
 		GroupCheck: 'GroupCheck',
 		OpposedCheck: 'OpposedCheck',
 		GroupCheckV2: 'GroupCheckV2',

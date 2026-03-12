@@ -239,7 +239,7 @@ function determineSource(document, element) {
 		}
 		// Get the item from the check data
 		else {
-			const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+			const check = document.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			if (check) {
 				itemUuid = check.itemUuid;
 				if (check.itemName) {

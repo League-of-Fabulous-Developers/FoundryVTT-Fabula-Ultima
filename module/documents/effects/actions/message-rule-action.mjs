@@ -56,7 +56,7 @@ export class MessageRuleAction extends RuleActionDataModel {
 		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, sourceInfo);
 		flags = Pipeline.setFlag(flags, Flags.ChatMessage.Item, context.item.uuid);
 		if (context.check) {
-			flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, context.check);
+			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, context.check);
 		}
 		// Message
 		const _message = this.message || StringUtils.localize('FU.RuleElementTriggered');

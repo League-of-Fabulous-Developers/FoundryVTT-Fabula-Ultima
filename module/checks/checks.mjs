@@ -196,7 +196,7 @@ const modifyCheck = async (checkId, callback) => {
 	const message = game.messages.search({ filters: [{ field: 'flags.projectfu.CheckV2.id', value: checkId }] }).at(0);
 	if (message) {
 		/** @type CheckResultV2 */
-		const oldCheck = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
+		const oldCheck = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.Check));
 		const actor = await fromUuid(oldCheck.actorUuid);
 		const item = await fromUuid(oldCheck.itemUuid);
 		let callbackResult = await callback(oldCheck, actor, item);
@@ -238,6 +238,7 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.modifiers ??= [];
 	check.additionalData ??= {};
 	check.critThreshold = CRITICAL_THRESHOLD;
+	check.generateOpportunity = true;
 	Object.seal(check);
 
 	// Set initial targets (actions without rolls can have targeting)
@@ -432,6 +433,7 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 			dice: secondary.dice,
 			result: secondary.result,
 		}),
+		generateOpportunity: check.generateOpportunity ?? true,
 		modifiers: Object.freeze(check.modifiers.map(Object.freeze)),
 		modifierTotal: check.modifiers.reduce((agg, curr) => agg + curr.value, 0),
 		critThreshold: critThreshold,
@@ -471,16 +473,18 @@ async function renderCheck(result, actor, item, flags = {}) {
 	await CommonEvents.renderCheck(renderData, config, actor, item);
 	await CommonEvents.renderMessage(renderData, actor, item);
 
-	if (result.critical) {
-		CommonEvents.opportunity(renderData, actor, result.type, item, false);
-	} else if (result.fumble) {
-		CommonEvents.opportunity(renderData, actor, result.type, item, true);
+	if (result.generateOpportunity) {
+		if (result.critical) {
+			CommonEvents.opportunity(renderData, actor, result.type, item, false);
+		} else if (result.fumble) {
+			CommonEvents.opportunity(renderData, actor, result.type, item, true);
+		}
 	}
 
 	// Check-specific flags
 	const checkFlags = {
 		[SYSTEM]: {
-			[Flags.ChatMessage.CheckV2]: result,
+			[Flags.ChatMessage.Check]: result,
 			[Flags.ChatMessage.Item]: item?.uuid,
 		},
 	};
@@ -642,7 +646,7 @@ const isCheck = (message, type = allExceptDisplay) => {
 	}
 	if (message instanceof ChatMessage) {
 		/** @type CheckResultV2 */
-		const flag = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		const flag = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 		if (flag) {
 			if (type) {
 				if (Array.isArray(type)) {

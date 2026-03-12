@@ -459,7 +459,7 @@ async function prompt(request) {
 	const actions = [getTargetedAction(request)];
 	const message = gain > 0 ? 'FU.ChatResourceGainPrompt' : 'FU.ChatResourceLossPrompt';
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true);
-	flags = Pipeline.setFlag(flags, Flags.ChatMessage.CheckV2, true);
+	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, true);
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ user: game.users.activeGM }),
 		flags: flags,
