@@ -4,7 +4,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
-import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
+import { BonusesDataModel } from '../documents/actors/common/bonuses-data-model.mjs';
 
 /**
  * @param {CheckV2} check
@@ -113,23 +113,7 @@ const onProcessCheck = (check, actor, item, registerCallback) => {
 		}
 		config.modifyDamage((damage) => {
 			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
-			DamagePipeline.collectOutgoingBonuses(actor, damage);
-
-			// Attack Type
-			if (weaponTraits.weaponType) {
-				const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
-				if (attackTypeBonus) {
-					damage.addModifier(`FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, attackTypeBonus);
-				}
-			}
-			// Weapon Category
-			if (weaponTraits.weaponCategory) {
-				const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
-				if (weaponCategoryBonus) {
-					damage.addModifier(`FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, weaponCategoryBonus);
-				}
-			}
-
+			damage.addModifiers(BonusesDataModel.collectDamageBonuses(actor.system.bonuses, damage.type, weaponTraits));
 			return damage;
 		});
 	}

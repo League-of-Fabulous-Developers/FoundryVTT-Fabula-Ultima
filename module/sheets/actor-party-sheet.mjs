@@ -535,7 +535,7 @@ export class FUPartySheet extends FUActorSheet {
 		// Initialize the context menu options
 		let contextMenuOptions = [
 			{
-				name: game.i18n.localize('FU.Delete'),
+				name: StringUtils.localize('FU.Delete'),
 				icon: '<i class="fas fa-trash"></i>',
 				callback: (el) => {
 					const id = el.dataset.uuid;
@@ -554,7 +554,7 @@ export class FUPartySheet extends FUActorSheet {
 				},
 			},
 			{
-				name: game.i18n.localize('FU.Edit'),
+				name: StringUtils.localize('FU.Edit'),
 				icon: '<i class="fa fa-pencil"></i>',
 				callback: (el) => {
 					const id = el.dataset.uuid;

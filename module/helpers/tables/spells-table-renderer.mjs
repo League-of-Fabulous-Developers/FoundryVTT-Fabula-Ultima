@@ -3,6 +3,7 @@ import { CommonDescriptions } from './common-descriptions.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { FU } from '../config.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
+import { BonusesDataModel } from '../../documents/actors/common/bonuses-data-model.mjs';
 
 export class SpellsTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
@@ -53,6 +54,11 @@ export class SpellsTableRenderer extends FUTableRenderer {
 				secondary: FU.attributeAbbreviations[attributes.secondary.value],
 				bonus: accuracy.value,
 			};
+			if (item.actor) {
+				const modifiers = BonusesDataModel.collectCheckBonuses(item.actor.system.bonuses, 'magic');
+				const bonus = modifiers.reduce((total, m) => total + m.value, 0);
+				data.roll.bonus += bonus;
+			}
 		}
 		if (damage.hasDamage.value) {
 			data.damage = {
@@ -60,6 +66,11 @@ export class SpellsTableRenderer extends FUTableRenderer {
 				value: damage.value,
 				type: FU.damageTypes[damage.type.value],
 			};
+			if (item.actor) {
+				const modifiers = BonusesDataModel.collectDamageBonuses(item.actor.system.bonuses, damage.type, undefined, ['spell']);
+				const bonus = modifiers.reduce((total, m) => total + m.amount, 0);
+				data.damage.value += bonus;
+			}
 		}
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/caption/caption-spell'), data);
 	}

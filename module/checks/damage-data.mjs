@@ -178,6 +178,13 @@ export class DamageData {
 	}
 
 	/**
+	 * @param {DamageModifier[]} modifiers
+	 */
+	addModifiers(modifiers) {
+		this.modifiers.push(...modifiers);
+	}
+
+	/**
 	 *
 	 * @returns {DamageData}
 	 */

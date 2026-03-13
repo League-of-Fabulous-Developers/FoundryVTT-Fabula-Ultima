@@ -316,24 +316,6 @@ function overrideResult(context) {
 }
 
 /**
- * @param {FUActor} actor
- * @param {DamageData} damage
- */
-function collectOutgoingBonuses(actor, damage) {
-	// Global Bonus
-	const globalBonus = actor.system.bonuses.damage.all;
-	if (globalBonus) {
-		damage.addModifier(`FU.DamageBonusAll`, globalBonus);
-	}
-
-	// Damage Type bonus
-	const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-	if (damageTypeBonus) {
-		damage.addModifier(`FU.DamageBonus${damage.type.capitalize()}`, damageTypeBonus);
-	}
-}
-
-/**
  * @param {DamagePipelineContext} context
  * @return {Promise<Boolean>}
  */
@@ -867,5 +849,4 @@ export const DamagePipeline = {
 	process,
 	promptApply,
 	getTargetedAction,
-	collectOutgoingBonuses,
 };

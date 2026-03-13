@@ -11,6 +11,7 @@ import { DamageTraits } from '../pipelines/traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { Checks } from '../checks/checks.mjs';
+import { BonusesDataModel } from '../documents/actors/common/bonuses-data-model.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -98,7 +99,7 @@ async function onRender(element) {
 
 			// Check source actor for outgoing damage bonuses
 			if (context.actor) {
-				DamagePipeline.collectOutgoingBonuses(context.actor, damageData);
+				damageData.addModifiers(BonusesDataModel.collectDamageBonuses(context.actor.system.bonuses, damageData.type));
 				CommonEvents.calculateDamage(context.actor, context.item, config);
 				// TODO: Better solution
 				await new Promise((resolve) => setTimeout(resolve, 10));
