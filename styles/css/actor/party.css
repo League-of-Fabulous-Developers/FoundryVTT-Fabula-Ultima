@@ -66,6 +66,9 @@
 		background: linear-gradient(to bottom, #d1c38a, #9a8544);
 	}
 
+	.overview {
+	}
+
 	&.theme-classic {
 		display: flex;
 		flex-direction: row;
@@ -79,7 +82,7 @@
 			gap: 1.5rem;
 
 			.plate {
-				height: 400px;
+				height: 425px;
 				width: 200px;
 				padding: 1rem;
 				border: 2px solid rgba(255, 255, 255, 0.05);
@@ -117,9 +120,10 @@
 						min-height: 24px;
 						position: absolute;
 						bottom: 10px;
-						gap: 8px;
 						display: flex;
+						flex-wrap: wrap;
 						justify-content: center;
+						max-width: calc(3 * 24px + 2 * 8px); /* 3 icons + 2 gaps */
 						left: 50%;
 						transform: translateX(-50%);
 
@@ -141,6 +145,45 @@
 					object-position: top;
 					border: 4px solid #3a3a3a;
 					border-radius: 8px;
+				}
+
+				.bars {
+					width: 100%;
+					.bar {
+						display: flex;
+						align-items: center;
+						gap: 0.5rem;
+						margin: 0;
+						width: 100%;
+						position: static;
+						height: auto;
+						background-color: transparent;
+						animation: none;
+
+						.track {
+							flex: 1 1 0;
+							min-width: 0;
+							height: 0.6rem;
+							background: #222;
+							border-radius: 0.3rem;
+							overflow: hidden;
+							position: relative;
+						}
+
+						span {
+							width: 2rem; /* enough for "999/999" */
+							min-width: 2rem; /* prevent it from shrinking */
+							text-align: justify;
+							flex-shrink: 0; /* bar shrinks, not the text */
+							font-weight: 400;
+						}
+					}
+				}
+
+				.resources {
+					margin-top: 0.5rem;
+					display: flex;
+					gap: 0.5rem;
 				}
 
 				.identity {
@@ -416,7 +459,6 @@
 						border: 1px solid rgba(255, 255, 255, 0.08);
 						border-radius: 4px;
 						padding: 4px 8px;
-						font-family: 'Rajdhani', sans-serif;
 						font-size: 0.75rem;
 						font-weight: 600;
 						letter-spacing: 0.05em;
@@ -922,35 +964,4 @@
 .projectfu .pfu-sheet__party .adversaries .entry > .data .study img {
 	border: none;
 	display: block;
-}
-
-.projectfu .pfu-sheet__party .overview .bar {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	margin: 0;
-	width: 100%;
-	position: static;
-	height: auto;
-	background-color: transparent;
-	animation: none;
-}
-
-.projectfu .pfu-sheet__party .overview .bar .text {
-	min-width: 3rem;
-}
-
-.projectfu .pfu-sheet__party .overview .bar .track {
-	flex-grow: 1;
-	height: 0.6rem;
-	background: #222;
-	border-radius: 0.3rem;
-	overflow: hidden;
-	position: relative;
-}
-
-.projectfu .pfu-sheet__party .overview .resources {
-	margin-top: 0.5rem;
-	display: flex;
-	gap: 0.5rem;
 }
