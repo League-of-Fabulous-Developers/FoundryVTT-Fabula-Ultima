@@ -725,6 +725,7 @@ async function handleDamageApplication(event, targets, sourceInfo, damageData, d
  * @param {String} resource
  * @param {Number} amount
  * @param {InlineSourceInfo} sourceInfo
+ * @param targets
  * @returns {Promise<void>}
  */
 async function absorbDamage(resource, amount, sourceInfo, targets) {
@@ -750,7 +751,7 @@ async function promptApply(request) {
 			sourceInfo: request.sourceInfo,
 		}).requiresOwner(),
 	];
-	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, true);
+	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageData.total);
 	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, true);
 	ChatMessage.create({
 		flags: flags,
@@ -781,7 +782,7 @@ function getTargetedAction(damageData, sourceInfo, traits) {
 		sourceInfo: sourceInfo,
 		traits: traits,
 	})
-		.setFlag(Flags.ChatMessage.Damage)
+		.setFlag(Flags.ChatMessage.Damage, damageData.total)
 		.withSelected()
 		.withLabel('FU.ChatApplyDamage')
 		.withTraits(traits)
@@ -851,17 +852,14 @@ function initialize() {
 
 	const onAbsorbDamage = async (message, resource) => {
 		const targets = await getSelected();
-		const amount = message.getFlag(SYSTEM, Flags.ChatMessage.Damage) * 0.5;
+		const damage = message.getFlag(SYSTEM, Flags.ChatMessage.Damage);
+		const amount = damage * 0.5;
 		const sourceInfo = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
-		absorbDamage(resource, amount, sourceInfo, targets);
+		return absorbDamage(resource, amount, sourceInfo, targets);
 	};
 
-	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => {
-		onAbsorbDamage(message, 'mp');
-	});
-	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbHitPoints`, FU.resourceIcons.hp, (message) => {
-		onAbsorbDamage(message, 'hp');
-	});
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => onAbsorbDamage(message, 'mp'));
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbHitPoints`, FU.resourceIcons.hp, (message) => onAbsorbDamage(message, 'hp'));
 }
 
 export const DamagePipeline = {

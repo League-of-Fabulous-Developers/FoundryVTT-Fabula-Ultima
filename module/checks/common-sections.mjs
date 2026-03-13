@@ -80,7 +80,7 @@ const chatActions = (sections, actions, flags = {}, order) => {
 		const content = await ChatAction.renderToChat(actions);
 		for (const action of actions) {
 			if (action.flag) {
-				Pipeline.toggleFlag(flags, action.flag);
+				Pipeline.setFlag(flags, action.flag.key, action.flag.value);
 			}
 		}
 		return {
@@ -424,7 +424,7 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, sourceInfo);
 			for (const action of actions) {
 				if (action.flag) {
-					Pipeline.toggleFlag(flags, action.flag);
+					Pipeline.setFlag(flags, action.flag.key, action.flag.value);
 				}
 			}
 

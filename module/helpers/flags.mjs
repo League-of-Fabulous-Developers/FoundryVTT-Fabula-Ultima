@@ -1,6 +1,12 @@
 /**
- * @description The keys for scoped flags commonly used by the system. They are stored and accessed by documents such as actors,
- * chat messages.
+ * @typedef FUFlag
+ * @property {String} key
+ * @property {Object} value
+ * @remarks Flag data can be of any type, as long as it can be JSON.stringify'd. Flags can be used with almost all types of documents — not just Actors and Items, but nearly everything in Foundry. Settings are the only exception.
+ */
+
+/**
+ * @description The keys for scoped flags commonly used by the system. They are stored and accessed by documents such as actors, chat messages.
  * @example Usage: actor.getFlag(Flags.Scope, Flags.CurrentTurn)
  * @example Attribute Key: `projectfu.weaponMagicCheck`, Change Mode: `Override`  Effect Value: `true`
  */
