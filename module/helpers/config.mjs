@@ -657,7 +657,7 @@ FU.duration = {
 };
 
 /**
- * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
+ * @typedef {'startOfCombat' | 'startOfTurn' | 'endOfTurn' | 'startOfRound' | 'endOfRound' | 'endOfCombat'} FUCombatEventType
  */
 
 /**
@@ -667,12 +667,14 @@ FU.combatEvent = {
 	startOfCombat: 'FU.StartOfCombat',
 	startOfTurn: 'FU.StartOfTurn',
 	endOfTurn: 'FU.EndOfTurn',
+	startOfRound: 'FU.StartOfRound',
 	endOfRound: 'FU.EndOfRound',
 	endOfCombat: `FU.EndOfCombat`,
 };
 
 /**
  * @typedef {'none' | 'startOfTurn' | 'endOfTurn' | 'endOfRound' | 'endOfScene' | 'rest'} FUEffectDuration
+ * @remarks Not all combat events are used for effect durations.
  */
 
 /**
@@ -947,13 +949,13 @@ FU.consumableAction = {
 };
 
 /**
- * @typedef {"odd" | "even"} FUCheckParity
+ * @typedef {"odd" | "even"} FUParity
  */
 
 /**
- * @description Used as a predicate for rules involving accuracy checks
+ * @description Property of an integer of whether it is even or odd.
  */
-FU.checkParity = Object.freeze({
+FU.parity = Object.freeze({
 	even: 'FU.Even',
 	odd: 'FU.Odd',
 });

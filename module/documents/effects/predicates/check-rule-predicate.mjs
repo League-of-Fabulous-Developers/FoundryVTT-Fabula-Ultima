@@ -7,7 +7,7 @@ import { FUHooks } from '../../../hooks.mjs';
 const fields = foundry.data.fields;
 
 /**
- * @property {FUCheckParity} parity
+ * @property {FUParity} parity
  * @property {FUCheckOutcome} outcome
  * @property {ItemAttributesDataModel} attributes
  * @property {Number} result A specific result of the check.
@@ -27,7 +27,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	// TODO: Finish porting..
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			parity: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkParity) }),
+			parity: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.parity) }),
 			outcome: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkOutcome) }),
 			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
 			result: new fields.NumberField({ integer: true }),

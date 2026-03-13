@@ -2,7 +2,7 @@ import { systemId } from '../helpers/system-utils.mjs';
 import { SETTINGS } from '../settings.js';
 import { FUHooks as FUhooks, FUHooks } from '../hooks.mjs';
 
-import { CombatEventRuleTrigger } from '../documents/effects/triggers/combat-event-rule-trigger.mjs';
+import { CombatRuleTrigger } from '../documents/effects/triggers/combat-rule-trigger.mjs';
 import { AttackRuleTrigger } from '../documents/effects/triggers/attack-rule-trigger.mjs';
 import { MessageRuleAction } from '../documents/effects/actions/message-rule-action.mjs';
 import { ApplyDamageRuleAction } from '../documents/effects/actions/apply-damage-rule-action.mjs';
@@ -61,7 +61,7 @@ import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigg
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
-	RuleTriggerRegistry.instance.register(systemId, CombatEventRuleTrigger.TYPE, CombatEventRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, CombatRuleTrigger.TYPE, CombatRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, AttackRuleTrigger.TYPE, AttackRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, StatusRuleTrigger.TYPE, StatusRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, DamageRuleTrigger.TYPE, DamageRuleTrigger);

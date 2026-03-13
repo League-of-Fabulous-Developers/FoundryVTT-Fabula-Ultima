@@ -580,6 +580,7 @@
 		"StartOfCombat": "Start of Combat",
 		"StartOfTurn": "Start of Turn",
 		"EndOfTurn": "End Of Turn",
+		"StartOfRound": "Start of Round",
 		"EndOfRound": "End of Round",
 		"EndOfCombat": "End of Combat",
 		"EndOfScene": "End of Scene",

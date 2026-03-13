@@ -59,7 +59,19 @@ export class MessageRuleAction extends RuleActionDataModel {
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Check, context.check);
 		}
 		// Message
-		const _message = this.message || StringUtils.localize('FU.RuleElementTriggered');
+		let _message;
+		if (this.message) {
+			_message = await FoundryUtils.enrichText(this.message, {
+				rollData: {
+					...context,
+					// Flatten this array into an object for accessors
+					selected: Object.fromEntries(selected.map((s, i) => [i, s])),
+					selectedNames: selected.map((s) => s.actor.name).join(', '),
+				},
+			});
+		} else {
+			_message = StringUtils.localize('FU.RuleElementTriggered');
+		}
 		if (context.renderData && context.source) {
 			// TODO: Resolve actor for pseudo-documents too
 			const actor = context.source.actor !== context.character.actor ? context.item?.parent : null;
