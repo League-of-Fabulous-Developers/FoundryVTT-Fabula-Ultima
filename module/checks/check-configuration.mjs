@@ -739,7 +739,7 @@ const configure = (check) => {
  */
 const inspect = (check) => {
 	if (check instanceof ChatMessage) {
-		check = check.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		check = check.getFlag(SYSTEM, Flags.ChatMessage.Check);
 	}
 	return new CheckInspector(check);
 };

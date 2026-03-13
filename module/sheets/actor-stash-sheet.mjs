@@ -12,7 +12,7 @@ import { SETTINGS } from '../settings.js';
 
 /**
  * @property {FUActor} actor
- * @extends {ActorSheet}
+ * @extends {FUActorSheet}
  */
 export class FUStashSheet extends FUActorSheet {
 	/**

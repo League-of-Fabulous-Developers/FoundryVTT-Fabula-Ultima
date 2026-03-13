@@ -66,6 +66,7 @@ async function handleSupportCheck(groupCheck) {
 	return Checks.supportCheck(character, (check, actor) => {
 		check.primary = groupCheck.primary;
 		check.secondary = groupCheck.secondary;
+		check.generateOpportunity = false;
 		if (groupCheck.initiative && actor.system.derived.init.value) {
 			check.modifiers.push({
 				label: 'FU.InitiativeBonus',

@@ -220,7 +220,7 @@ function getChatAction(actor, item, name) {
 		actor: actor.uuid,
 		item: item.uuid,
 	})
-		.setFlag(Flags.ChatMessage.Application)
+		.setFlag(Flags.ChatMessage.Application, name)
 		.notTargeted()
 		.withLabel(tooltip)
 		.withSelected()

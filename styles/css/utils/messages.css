@@ -116,8 +116,7 @@
 	color: #272a2a;
 	-webkit-box-shadow: 1px 2px #2b4a42;
 	box-shadow: 1px 2px #2b4a42;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
-	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+
 	border-radius: 10px;
 	border-top: 1px solid #c9c7b8;
 }

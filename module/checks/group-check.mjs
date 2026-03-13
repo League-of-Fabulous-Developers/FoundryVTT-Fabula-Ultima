@@ -407,15 +407,15 @@ class GroupCheckApp extends FUApplication {
 		const search = game.messages.search({
 			filters: [
 				{
-					field: `flags.${SYSTEM}.${Flags.ChatMessage.CheckV2}.type`,
+					field: `flags.${SYSTEM}.${Flags.ChatMessage.Check}.type`,
 					value: 'support',
 				},
 			],
 		});
 		for (const message of search) {
-			if (SupportCheck.isSupporting(this.#groupCheckId, message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)) && !groupCheck.supporters.find((value) => value.messageId === message.id)) {
+			if (SupportCheck.isSupporting(this.#groupCheckId, message.getFlag(SYSTEM, Flags.ChatMessage.Check)) && !groupCheck.supporters.find((value) => value.messageId === message.id)) {
 				/** @type CheckResultV2 */
-				const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+				const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 				const actor = ChatMessage.getSpeakerActor(message.speaker);
 				groupCheck.supporters = groupCheck.supporters.filter((supporter) => supporter.id !== actor.id);
 				groupCheck.supporters.push({
@@ -436,7 +436,7 @@ class GroupCheckApp extends FUApplication {
 		/**
 		 * @type CheckResultV2
 		 */
-		const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		const check = message.getFlag(SYSTEM, Flags.ChatMessage.Check);
 		const actor = ChatMessage.getSpeakerActor(message.speaker);
 		const groupCheck = this.groupCheckData;
 		if (check && SupportCheck.isSupporting(groupCheck.id, check) && !groupCheck.supporters.find((supporter) => supporter.messageId === message.id)) {

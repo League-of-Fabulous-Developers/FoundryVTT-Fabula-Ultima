@@ -4,3 +4,11 @@
 		{{selectOptions options.combatEvent selected=trigger.eventType localize=true}}
 	</select>
 </label>
+
+<label class="fu-form__property">
+	<span>{{localize 'FU.CheckParity'}}</span>
+	<select name="{{pfuConcat path ".parity"}}">
+		<option value="">-</option>
+		{{selectOptions options.parity selected=trigger.parity localize=true}}
+	</select>
+</label>

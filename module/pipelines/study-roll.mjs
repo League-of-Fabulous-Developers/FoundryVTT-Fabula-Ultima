@@ -5,6 +5,7 @@ import { CommonEvents } from '../checks/common-events.mjs';
 /**
  * @property {FUActor} actor The actor who started the study roll
  * @property {FUActor[]} targets The targets of the study roll.
+ * @property {CheckResultV2} check
  */
 export class StudyRollHandler {
 	static #coreStudyDifficulties = Object.freeze([10, 13, 16]);
@@ -16,9 +17,9 @@ export class StudyRollHandler {
 	 */
 	#studyValueOverride;
 
-	constructor(actor, checkResult, targets) {
+	constructor(actor, check, targets) {
 		this.actor = actor;
-		this.checkResult = checkResult;
+		this.check = check;
 		this.targets = targets || [];
 	}
 
@@ -27,11 +28,18 @@ export class StudyRollHandler {
 		if (this.#studyValueOverride) {
 			return this.#studyValueOverride;
 		}
-		if (this.checkResult) {
-			return this.checkResult.check;
+		if (this.check) {
+			return this.check.result;
 		}
 		return 0;
 	}
+
+	/**
+	 * @typedef FUStudySocketData
+	 * @property {String} actorUuid
+	 * @property {String[]} targetUuids
+	 * @property {Number} result
+	 */
 
 	/**
 	 * Handle the study roll interaction with targeted actors
@@ -51,24 +59,25 @@ export class StudyRollHandler {
 			await game.projectfu.socket.studyRoll({
 				actorUuid: this.actor.uuid,
 				targetUuids: targets.map((t) => t.uuid),
-				checkParity: this.checkResult,
+				result: this.check.result,
 			});
 			return false;
 		}
 	}
 
 	/**
-	 * @param {{actorUuid : String, targetUuids: String[], checkResult: Number}} data
+	 * @param {FUStudySocketData} data
 	 * @returns {Promise<void>}
 	 */
 	static async onStudyEvent(data) {
 		const actor = await fromUuid(data.actorUuid);
+		/** @type {FUActor[]} **/
 		const targets = await Promise.all(
 			data.targetUuids.map(async (target) => {
 				return fromUuid(target);
 			}),
 		);
-		CommonEvents.study(actor, targets, data.checkResult.check);
+		CommonEvents.study(actor, targets, data.result);
 	}
 
 	/**

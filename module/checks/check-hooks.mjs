@@ -24,7 +24,8 @@ export const CheckHooks = Object.freeze({
  * @property {Attribute} primary the first attribute
  * @property {Attribute} secondary the second attribute
  * @property {CheckModifier[]} modifiers array of modifiers
- * @property {number} critThreshold the crit threshold for this check, default 6
+ * @property {number} critThreshold The critical threshold for this check, default 6.
+ * @property {Boolean} generateOpportunity
  * @property {Object} additionalData additional data attached to the check, not used by the core check engine, for extension use
  */
 
@@ -96,6 +97,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {};
  * @property {number} result the total result of the check
  * @property {boolean} fumble
  * @property {boolean} critical
+ * @property {boolean} generateOpportunity
  * @property {Object} additionalData additional data attached to the check
  */
 

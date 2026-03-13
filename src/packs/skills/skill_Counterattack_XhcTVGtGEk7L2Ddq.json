@@ -163,6 +163,12 @@
                   "_id": "AccwRopUxS7jiAR4",
                   "parity": "even",
                   "result": null
+                },
+                "tkEn9IrOdkur7ELc": {
+                  "type": "weaponRulePredicate",
+                  "_id": "tkEn9IrOdkur7ELc",
+                  "weaponType": "melee",
+                  "selector": "source"
                 }
               },
               "actions": {
@@ -181,6 +187,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -207,8 +218,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1766789080881,
-        "modifiedTime": 1771840285293,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "modifiedTime": 1773335742462,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!XhcTVGtGEk7L2Ddq.3I4QKAPzn55nGTVF"
     }

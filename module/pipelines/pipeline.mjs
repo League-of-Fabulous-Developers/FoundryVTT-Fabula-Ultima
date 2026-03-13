@@ -8,6 +8,7 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { getSelected } from '../helpers/target-handler.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 
 /**
  * @property {InlineSourceInfo} sourceInfo
@@ -24,6 +25,7 @@ export class PipelineRequest {
 	 * @param {FUActor[]} targets
 	 */
 	constructor(sourceInfo, targets) {
+		sourceInfo = sourceInfo instanceof InlineSourceInfo ? sourceInfo : InlineSourceInfo.fromObject(sourceInfo);
 		this.sourceInfo = sourceInfo;
 		this.targets = targets;
 		this.traits = new Set();
