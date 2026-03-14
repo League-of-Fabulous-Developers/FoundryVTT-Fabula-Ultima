@@ -115,7 +115,6 @@ export class NpcDataModel extends BaseCharacterDataModel {
 			pressurePoints: new EmbeddedDataField(TraitsDataModel, {
 				options: TraitUtils.getOptionsFromConfig(FU.weaponCategories),
 			}),
-			clocks: new SchemaField({}),
 		});
 	}
 
@@ -131,7 +130,9 @@ export class NpcDataModel extends BaseCharacterDataModel {
 		this.#prepareReplacedSoldiers();
 		this.#prepareBasicResource();
 		this.derived.prepareData();
-		this.#preparePressureResource();
+
+		this.clocks = {};
+		this.#prepareClockResources();
 	}
 
 	/**
@@ -224,28 +225,40 @@ export class NpcDataModel extends BaseCharacterDataModel {
 		});
 	}
 
-	#preparePressureResource() {
+	/**
+	 * Adds a trackable resource to the clocks property of this DataModel
+	 * @param {string} key - Key name for the clock to be added to the DataModel
+	 * @param {string} fuid - fuid of the progress clock -- will be resolved with {@link FUActor.resolveProgress}
+	 */
+	addClockResource(key, fuid) {
+		this.clocks ??= {};
+		this.clocks[key] ??= {};
+
 		const actor = this.parent;
-		this.clocks.pressure = {};
-		Object.defineProperty(this.clocks.pressure, 'value', {
+
+		Object.defineProperty(this.clocks[key], 'value', {
 			configurable: true,
 			enumerable: true,
 			get() {
-				const clock = actor?.resolveProgress('pressure');
+				const clock = actor?.resolveProgress(fuid);
 				if (!clock) return 0;
 				return clock.current;
 			},
 		});
 
-		Object.defineProperty(this.clocks.pressure, 'max', {
+		Object.defineProperty(this.clocks[key], 'max', {
 			configurable: true,
 			enumerable: true,
 			get() {
-				const clock = actor?.resolveProgress('pressure');
+				const clock = actor?.resolveProgress(fuid);
 				if (!clock) return 0;
 				return clock.max;
 			},
 		});
+	}
+
+	#prepareClockResources() {
+		this.addClockResource('pressure', 'pressure');
 	}
 }
 
