@@ -115,6 +115,7 @@ export class NpcDataModel extends BaseCharacterDataModel {
 			pressurePoints: new EmbeddedDataField(TraitsDataModel, {
 				options: TraitUtils.getOptionsFromConfig(FU.weaponCategories),
 			}),
+			clocks: new SchemaField({}),
 		});
 	}
 
@@ -130,6 +131,7 @@ export class NpcDataModel extends BaseCharacterDataModel {
 		this.#prepareReplacedSoldiers();
 		this.#prepareBasicResource();
 		this.derived.prepareData();
+		this.#preparePressureResource();
 	}
 
 	/**
@@ -218,6 +220,30 @@ export class NpcDataModel extends BaseCharacterDataModel {
 			set(newValue) {
 				delete this.max;
 				this.max = newValue;
+			},
+		});
+	}
+
+	#preparePressureResource() {
+		const actor = this.parent;
+		this.clocks.pressure = {};
+		Object.defineProperty(this.clocks.pressure, 'value', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const clock = actor?.resolveProgress('pressure');
+				if (!clock) return 0;
+				return clock.current;
+			},
+		});
+
+		Object.defineProperty(this.clocks.pressure, 'max', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const clock = actor?.resolveProgress('pressure');
+				if (!clock) return 0;
+				return clock.max;
 			},
 		});
 	}
