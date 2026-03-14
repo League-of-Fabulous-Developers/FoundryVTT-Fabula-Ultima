@@ -106,7 +106,7 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 				break;
 			default:
 				if (scaleGauge) {
-					this.y = doc.getSize().height * mesh.anchor.y - doc.getSize().height * doc.texture.scaleY * mesh.anchor.y; // - 4;
+					this.y = doc.getSize().height * mesh.anchor.y - doc.getSize().height * doc.texture.scaleY * mesh.anchor.y - this.height;
 				} else {
 					this.y = -(this.height + 4);
 				}
