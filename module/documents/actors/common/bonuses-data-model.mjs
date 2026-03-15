@@ -119,6 +119,7 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 			modifiers.push({
 				label: `FU.DamageBonusAll`,
 				amount: globalBonus,
+				enabled: true,
 			});
 		}
 
@@ -128,6 +129,7 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 			modifiers.push({
 				label: `FU.DamageBonus${type.capitalize()}`,
 				amount: damageTypeBonus,
+				enabled: true,
 			});
 		}
 
@@ -139,6 +141,7 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 					modifiers.push({
 						label: `FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`,
 						amount: attackTypeBonus,
+						enabled: true,
 					});
 				}
 			}
@@ -149,6 +152,7 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 					modifiers.push({
 						label: `FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`,
 						amount: weaponCategoryBonus,
+						enabled: true,
 					});
 				}
 			}
@@ -161,6 +165,7 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 				modifiers.push({
 					label: `FU.${trait.capitalize()}`,
 					amount: traitBonus,
+					enabled: true,
 				});
 			}
 		}
