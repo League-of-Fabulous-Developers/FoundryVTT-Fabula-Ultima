@@ -1,8 +1,7 @@
 .pfu-layout__menu {
 	display: grid;
 	height: 100vh;
-	grid-template-columns: 1fr;
-	grid-template-rows: auto 0.8fr 0.2fr;
+	grid-template-rows: auto 4fr 1fr;
 	gap: 1rem;
 	grid-template-areas:
 		'header'

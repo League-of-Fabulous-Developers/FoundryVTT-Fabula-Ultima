@@ -243,7 +243,7 @@ export const ThemeOptionFields = ObjectUtils.deepFreeze({
 });
 
 const themeFiles = Object.freeze({
-	Default: systemAssetPath('ui/themes/default.json'),
+	Default: systemAssetPath('ui/themes/greenly-default.json'),
 	ReactorFive: systemAssetPath('ui/themes/reactor-five.json'),
 	BravelyRed: systemAssetPath('ui/themes/bravely-red.json'),
 	AncientForest: systemAssetPath('ui/themes/ancient-forest.json'),
@@ -367,7 +367,7 @@ const defaultTheme = Object.freeze({
 	uiAccentImage: '',
 	appBgImage: systemAssetPath(`ui/HojitasDouble_highres.png`),
 	appSectionBgImage: '',
-	sidebarBgImage: systemAssetPath('ui/Page_deco_half.png'),
+	sidebarBgImage: systemAssetPath('ui/pattern_hojita_half.png'),
 
 	colorMiscShadowPrimary: '#77ebd7ff',
 	colorMiscShadowHighlight: '#E03A3AFF',

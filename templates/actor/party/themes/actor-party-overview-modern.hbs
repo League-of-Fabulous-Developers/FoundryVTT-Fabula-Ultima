@@ -34,9 +34,7 @@
 				<a data-action="inspectCharacter"
 				   data-actor="{{this.actor.uuid}}"
 				   data-type="character">
-					<img class="portrait"
-						 src="{{this.actor.prototypeToken.texture.src}}"
-						 data-tooltip="{{this.name}}"  alt="character"/>
+					{{pfuImage this.actor.prototypeToken.texture.src 'portrait' this.name}}
 				</a>
 			</div>
 		{{/each}}
@@ -47,9 +45,7 @@
 				<a data-action="revealActor"
 				   data-actor="{{this.actor.uuid}}"
 				   data-type="companion">
-					<img class="portrait"
-						 src="{{this.actor.prototypeToken.texture.src}}"
-						 data-tooltip="{{this.name}}"  alt="character"/>
+					{{pfuImage this.actor.prototypeToken.texture.src 'portrait' this.name}}
 				</a>
 			</div>
 		{{/each}}

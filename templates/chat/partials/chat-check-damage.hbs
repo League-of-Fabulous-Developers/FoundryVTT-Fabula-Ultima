@@ -32,7 +32,7 @@
                     {{/if}}
                 </label>
             </div>
-            <div {{#if damage.modifiers}}data-tooltip="{{#each damage.modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
+            <div {{#if damage.modifiers}}data-tooltip="{{#each damage.modifiers}}{{localize label}}: {{amount}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
 				{{pfuBadge 'mod' label='FU.ModAbbr' }}
                 <label class="detail">{{damage.modifierTotal}}</label>
             </div>

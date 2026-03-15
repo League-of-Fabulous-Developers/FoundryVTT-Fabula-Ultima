@@ -29,7 +29,7 @@ export class ThemeMenu extends FUApplication {
 			applyTheme: ThemeMenu.#applyTheme,
 			saveTheme: ThemeMenu.#saveTheme,
 		},
-		position: { width: 600 },
+		position: { width: 600, height: 1024 },
 	};
 
 	/** @type {Record<string, HandlebarsTemplatePart>} */
@@ -122,7 +122,7 @@ export class ThemeMenu extends FUApplication {
 						icon: 'fas fa-file-import',
 						label: game.i18n.localize('FU.Import'),
 						callback: (event, button, dialog) => {
-							const fileInput = dialog.querySelector('input[type="file"]');
+							const fileInput = dialog.element.querySelector('input[type="file"]');
 
 							if (!fileInput?.files?.length) {
 								ui.notifications.error(game.i18n.localize('FU.ErrorNoFileUploaded'));

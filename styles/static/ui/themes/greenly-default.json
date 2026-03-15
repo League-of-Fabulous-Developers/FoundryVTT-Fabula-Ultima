@@ -81,6 +81,6 @@
 	"appAccentImage": "",
 	"appBgImage": "systems/projectfu/styles/static/ui/HojitasDouble_highres.png",
 	"appSectionBgImage": "",
-	"sidebarBgImage": "systems/projectfu/styles/static/ui/Page_deco_half.png",
+	"sidebarBgImage": "systems/projectfu/styles/static/ui/patterns/pattern_hojita_half.png",
 	"advanced": ":root {\n  --pfu-ui-accent-width: 500px;\n  --pfu-ui-accent-height: 500px;\n  --pfu-ui-accent-position-top: -24px;\n  --pfu-ui-accent-position-left: 1px;\n  --pfu-ui-accent-clip-path: inset(0 370px 402px 0);\n  --pfu-app-accent-width: 200px;\n  --pfu-app-accent-height: 200px;\n  --pfu-app-accent-position-top: -42px;\n  --pfu-app-accent-position-left: -47px;\n  --pfu-border-radius-large: 20px;\n  --pfu-border-radius-medium: 10px;\n  --pfu-border-radius-small: 5px;\n  --pfu-border-width: 1px;\n  --pfu-app-section-bg-image-size: clamp(25%, 250px, 100%) auto;\n}"
 }
