@@ -167,8 +167,12 @@ export const FUHandlebars = Object.freeze({
 			}[operator];
 		});
 
-		Handlebars.registerHelper('pfuClamp', (val, min, max) => {
-			return Math.clamp(val, min, max);
+		Handlebars.registerHelper('pfuImage', (src, classes, label) => {
+			if (VideoHelper.hasVideoExtension(src)) {
+				return new Handlebars.SafeString(`<video class="${classes}" autoplay loop muted playsinline src="${src}" data-tooltip="${label}"></video>`);
+			} else {
+				return new Handlebars.SafeString(`<img class="${classes}" src="${src}" data-tooltip="${label}" alt="${label}">`);
+			}
 		});
 
 		Handlebars.registerHelper(
