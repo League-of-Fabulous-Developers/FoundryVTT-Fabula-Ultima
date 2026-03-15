@@ -44,7 +44,7 @@
 }
 
 .fu-dialog__icon-option.selected {
-	background: var(--background-critical);
+	background: var(--background-critical) !important;
 }
 
 .fu-dialog__icon-option:disabled {

@@ -10,7 +10,6 @@ table.table-compact {
 }
 
 table.table-compact thead th {
-	background: #dce2cd;
 	font-weight: bold;
 	border: unset;
 }
