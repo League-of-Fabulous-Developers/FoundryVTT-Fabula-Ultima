@@ -1,15 +1,19 @@
 .projectfu .pfu-sheet__party {
 	&.theme-classic {
-		display: flex;
-		flex-direction: row;
-		padding: 0;
+		grid-template-columns: 200px 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas:
+			'nav active-tab'
+			'widgets active-tab';
 
 		.overview {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			max-width: 100%;
-			gap: 1.5rem;
+			.party {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				max-width: 100%;
+				gap: 1.5rem;
+			}
 
 			.plate {
 				height: 425px;
@@ -163,20 +167,38 @@
 			}
 		}
 
-		.nav {
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
 			width: 200px;
-
+			height: 100%;
 			background: var(--pfu-sidebar-bg-image), var(--pfu-color-app-body-primary-fill);
 			background-size: 100% auto;
-			background-blend-mode: color-burn;
+			background-blend-mode: hard-light;
+			border-right: 3px solid var(--pfu-color-app-clock-border); /* gold rule */
+
+			box-shadow:
+				4px 0 12px rgba(0, 0, 0, 0.6),
+				/* deep drop shadow into content */ inset -2px 0 6px rgba(200, 168, 75, 0.15); /* subtle inner gold glow */
+			z-index: 0;
+			pointer-events: none;
+		}
+
+		.nav,
+		.widgets {
+			position: relative;
+			z-index: 1;
+			background: transparent; /* remove any existing background */
+		}
+
+		.nav {
+			width: 200px;
 			display: flex;
 			justify-content: space-between;
 			flex-direction: column;
 			margin-right: 16px;
-			border-right: 3px solid var(--pfu-color-app-clock-border); /* gold rule */
-			box-shadow:
-				4px 0 12px rgba(0, 0, 0, 0.6),
-				/* deep drop shadow into content */ inset -2px 0 6px rgba(200, 168, 75, 0.15); /* subtle inner gold glow */
 			position: relative;
 
 			.tabs {
@@ -235,8 +257,9 @@
 		}
 
 		.widgets {
-			width: 100%;
 			flex-direction: column;
+			justify-content: center;
+			gap: 3rem;
 
 			.actions {
 				flex-direction: row;

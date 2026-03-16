@@ -1,8 +1,11 @@
 .projectfu .pfu-sheet__party {
 	&.theme-modern {
-		display: flex;
-		flex-direction: column-reverse;
-		padding: 0;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 100px 100px;
+		grid-template-areas:
+			'active-tab'
+			'nav'
+			'widgets';
 
 		background:
 			radial-gradient(ellipse at 40% 50%, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 25%, transparent) 0%, transparent 60%),
@@ -63,13 +66,25 @@
 			}
 		}
 
+		.widgets {
+			flex-direction: row;
+
+			.pfu-progress__collection {
+				flex-direction: row;
+			}
+
+			.actions {
+				flex-direction: row;
+			}
+
+			.resources {
+				flex-direction: row;
+				gap: 1rem;
+			}
+		}
+
 		.overview {
 			font-family: 'Rajdhani', sans-serif;
-			height: 100%;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
 
 			.bars {
 				padding-left: 34px;
@@ -255,23 +270,6 @@
 						}
 					}
 				}
-			}
-		}
-
-		.widgets {
-			flex-direction: row;
-
-			.pfu-progress__collection {
-				flex-direction: row;
-			}
-
-			.actions {
-				flex-direction: row;
-			}
-
-			.resources {
-				flex-direction: row;
-				gap: 1rem;
 			}
 		}
 	}

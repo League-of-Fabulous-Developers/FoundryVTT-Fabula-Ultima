@@ -1,13 +1,10 @@
 .projectfu .pfu-sheet__party {
 	&.theme-crystal {
-		display: grid;
 		grid-template-columns: 200px 1fr;
 		grid-template-rows: 1fr auto;
 		grid-template-areas:
-			'nav overview'
+			'nav active-tab'
 			'widgets widgets';
-		padding: 0;
-		height: 100%;
 
 		background:
 			radial-gradient(ellipse at 40% 50%, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 25%, transparent) 0%, transparent 60%),
@@ -15,14 +12,16 @@
 			linear-gradient(135deg, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 20%, #050a0f) 0%, #080d12 40%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, #050a0f) 100%);
 
 		.overview {
-			display: flex;
-			flex-direction: row;
-			gap: 1.5rem;
-			height: 100%;
-			overflow-x: auto;
-			overflow-y: hidden;
-			scroll-snap-type: x mandatory;
-			padding: 0.5rem;
+			.party {
+				display: flex;
+				flex-direction: row;
+				gap: 1.5rem;
+				height: 100%;
+				overflow-x: auto;
+				overflow-y: hidden;
+				scroll-snap-type: x mandatory;
+				padding: 0.5rem;
+			}
 
 			.plate {
 				min-width: 225px; /* prevent flex from shrinking it */

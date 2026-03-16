@@ -1,17 +1,43 @@
 .projectfu .pfu-sheet__party {
+	display: grid;
+	height: 100%;
+	padding: 0;
+
+	section {
+		height: 100%;
+	}
+
+	.tab,
+	.active {
+		grid-area: active-tab;
+	}
+
 	.overview {
-		grid-area: overview;
+		.party {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+		}
 	}
 
 	.widgets {
 		grid-area: widgets;
 		display: flex;
-		gap: 8px;
+		gap: 3rem;
 		padding: 8px;
+		justify-content: center;
+		align-items: center;
 
 		.actions {
 			display: flex;
+			flex-wrap: wrap;
 			gap: 1rem;
+
+			i {
+				font-size: 20px;
+			}
 		}
 
 		.resources {
