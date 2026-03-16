@@ -1,5 +1,6 @@
 .fu-form {
 	--property-label-width: 120px;
+	--property-label-font-size: 16px;
 
 	color: var(--pfu-color-app-section-content-primary);
 	font-weight: var(--font-weight-normal);
@@ -67,6 +68,7 @@
 
 	.fu-form__property {
 		display: flex;
+		flex-direction: row;
 		flex: 2;
 		align-items: flex-start;
 		white-space: nowrap; /* prevent wrapping */
@@ -75,6 +77,8 @@
 		span {
 			width: var(--property-label-width);
 			font-weight: bold;
+			font-size: var(--property-label-font-size);
+			align-self: center;
 		}
 
 		button {

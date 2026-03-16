@@ -14,38 +14,4 @@
 			{{/unless}}
 		{{/each}}
 	</nav>
-
-	<div class="widgets">
-		<!-- TRACKS -->
-		<div class="tracks resource-content flex-group-center">
-			<div class="pfu-progress__collection" style="background: unset;">
-				{{#each system.tracks }}
-					{{pfuProgressCollection ../document 'system.tracks' @index displayName=true compact=true prompt=true controls=../isGM }}
-				{{/each}}
-			</div>
-		</div>
-
-		<!-- ACTIONS -->
-		<div class="actions flex-group-center">
-			{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="refreshSheet" tooltip="FU.Refresh" icon="fa fa-refresh"}}
-			{{#if isGM}}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="restParty" tooltip="FU.Rest" icon="fas fa-bed" }}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="rewardResource" tooltip="FU.AwardResources" icon="fas fa-feather" }}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="addTrack" tooltip="FU.ClockAdd" icon="fas fa-clock" }}
-			{{/if}}
-			{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="revealMetaCurrency" tooltip="FU.AppMetaCurrencyTrackerTitle" icon="fa-solid fa-chart-line"}}
-
-			{{#each actionHooks}}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="callHook" tooltip=this.name icon=this.icon option=this.hook}}
-			{{/each}}
-		</div>
-
-		<!-- RESOURCES -->
-		<div class="resources flex-group-center">
-			{{pfuBadge 'fp' label='FU.ChatExpAwardSpentFabula' value=stats.fp compact=true }}
-			{{pfuBadge 'up' label='FU.ChatExpAwardUltimaExp' value=stats.up compact=true }}
-			{{pfuBadge 'zenit' label=(localize @root.currency) value=stats.zenit compact=true }}
-			{{pfuBadge 'exp' label='FU.ChatExpAwardEarnedExp' value=stats.xp compact=true }}
-		</div>
-	</div>
 </section>

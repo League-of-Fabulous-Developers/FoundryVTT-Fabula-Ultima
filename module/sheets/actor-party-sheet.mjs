@@ -95,9 +95,8 @@ export class FUPartySheet extends FUActorSheet {
 	 * @type Record<HandlebarsTemplatePart>
 	 */
 	static PARTS = {
-		// Used to inject an HTML element to provide the blurred backdrop background element
-		blur: {
-			template: systemPath(`templates/actor/party/actor-party-blur-background.hbs`),
+		widgets: {
+			template: systemPath(`templates/actor/party/actor-party-section-widgets.hbs`),
 		},
 		// Custom
 		tabs: {
