@@ -238,7 +238,7 @@ Hooks.once('init', async () => {
 			value: ['resources.fp.value', 'resources.exp.value'],
 		},
 		npc: {
-			bar: ['resources.hp', 'resources.mp'],
+			bar: ['resources.hp', 'resources.mp', 'clocks.pressure'],
 			value: ['resources.fp.value'],
 		},
 	};
