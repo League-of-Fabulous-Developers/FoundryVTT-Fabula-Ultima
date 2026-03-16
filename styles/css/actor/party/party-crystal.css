@@ -162,7 +162,7 @@
 				display: flex;
 				padding: 0.5rem 0;
 				flex-direction: column;
-				gap: 0;
+				gap: 4px;
 				justify-content: normal;
 				border: none;
 				box-shadow: none;
@@ -181,20 +181,19 @@
 						background 0.15s ease,
 						color 0.15s ease;
 					align-content: center;
-					background: transparent;
+					background: linear-gradient(to right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08) 60%, transparent 100%);
 					text-align: left;
 					border-left: 20px solid;
 					padding-left: 8px;
 					border-color: var(--pfu-color-app-clock-border);
-					clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
 
 					i {
 						display: none;
 					}
 
 					&.active {
+						background: linear-gradient(to right, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.1) 60%, transparent 100%);
 						border-color: var(--pfu-color-control-highlight-border);
-						background: rgba(255, 255, 255, 0.06);
 						box-shadow: none;
 						color: var(--pfu-color-control-active-content);
 

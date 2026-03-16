@@ -798,7 +798,7 @@ app.projectfu .prosemirror menu {
 		}
 
 		& .resource-label-sm {
-			color: var(--pfu-color-app-control-content);
+			/*color: var(--pfu-color-app-control-content);*/
 		}
 	}
 
