@@ -741,6 +741,7 @@ FU.combatHudThemes = {
 FU.partySheetThemes = {
 	classic: 'FU.THEMES.Classic',
 	modern: 'FU.THEMES.Modern',
+	crystal: 'FU.THEMES.Crystal',
 };
 
 FU.combatHudThemeTemplates = {

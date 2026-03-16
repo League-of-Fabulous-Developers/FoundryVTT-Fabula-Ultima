@@ -1911,7 +1911,8 @@
 			"BravelyRed": "Bravely Red",
 			"AncientForest": "Ancient Forest",
 			"Classic": "Classic",
-			"Modern": "Modern"
+			"Modern": "Modern",
+			"Crystal": "Crystal"
 		},
 		"SkillPoints": "Skill Points",
 		"SkillPointsHint": "Only attribute modifications from skills are tracked. You will want to make use of active effects attached to skills for proper tracking.",

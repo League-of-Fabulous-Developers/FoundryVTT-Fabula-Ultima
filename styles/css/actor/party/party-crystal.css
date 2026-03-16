@@ -1,0 +1,250 @@
+.projectfu .pfu-sheet__party {
+	&.theme-crystal {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		grid-template-rows: 1fr auto;
+		grid-template-areas:
+			'nav overview'
+			'widgets widgets';
+		padding: 0;
+		height: 100%;
+
+		background:
+			radial-gradient(ellipse at 40% 50%, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 25%, transparent) 0%, transparent 60%),
+			radial-gradient(ellipse at 80% 30%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, transparent) 0%, transparent 50%),
+			linear-gradient(135deg, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 20%, #050a0f) 0%, #080d12 40%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, #050a0f) 100%);
+
+		.overview {
+			display: flex;
+			flex-direction: row;
+			gap: 1.5rem;
+			height: 100%;
+			overflow-x: auto;
+			overflow-y: hidden;
+			scroll-snap-type: x mandatory;
+			padding: 0.5rem;
+
+			.plate {
+				min-width: 225px; /* prevent flex from shrinking it */
+				flex-shrink: 0; /* lock the width */
+				scroll-snap-align: start;
+				position: relative;
+				border-radius: 10px;
+				overflow: hidden;
+				border: 2px solid rgba(255, 255, 255, 0.15);
+				box-shadow:
+					0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+					0 8px 32px rgba(0, 0, 0, 0.6);
+				transition: transform 0.3s ease;
+				cursor: pointer;
+
+				&:hover {
+					transform: translateY(-4px);
+				}
+
+				/* === Portrait === */
+				.image-container {
+					position: absolute;
+					inset: 0;
+
+					a {
+						display: block;
+						height: 100%;
+					}
+
+					img.portrait {
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+						object-position: top;
+						display: block;
+						border: none;
+						border-radius: 0;
+					}
+
+					/* bottom fade for stat legibility */
+					&::after {
+						content: '';
+						position: absolute;
+						inset: 0;
+						background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, transparent 30%, transparent 50%, rgba(0, 0, 0, 0.9) 100%);
+						pointer-events: none;
+					}
+				}
+
+				/* === Name — top left === */
+				.name {
+					position: absolute;
+					top: 8px;
+					left: 10px;
+					z-index: 2;
+					font-size: 0.65rem;
+					font-weight: 700;
+					letter-spacing: 1.5px;
+					text-transform: uppercase;
+					color: rgba(255, 255, 255, 0.9);
+					text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+				}
+
+				/* === Identity (role badge) — top right === */
+				.identity {
+					position: absolute;
+					top: 8px;
+					right: 8px;
+					z-index: 2;
+					font-size: 0.6rem;
+					font-weight: 800;
+					letter-spacing: 2px;
+					text-transform: uppercase;
+					padding: 2px 6px;
+					border-radius: 3px;
+					border: 1px solid currentColor;
+					background: rgba(0, 0, 0, 0.5);
+					color: rgba(255, 255, 255, 0.85);
+					text-shadow: none;
+					min-height: unset;
+					text-wrap: unset;
+					text-align: unset;
+				}
+
+				/* === Resources — bottom overlay === */
+				.resources {
+					position: absolute;
+					bottom: 40px;
+					right: 10px;
+					z-index: 2;
+					display: grid;
+					grid-template-columns: auto auto;
+					column-gap: 0.5rem;
+					align-items: baseline;
+					margin-top: 0;
+
+					span:nth-child(odd) {
+						font-size: 0.55rem;
+						font-weight: 600;
+						letter-spacing: 1px;
+						text-transform: uppercase;
+						color: rgba(255, 255, 255, 0.55);
+						text-align: right;
+					}
+
+					span:nth-child(even) {
+						font-size: 1.3rem;
+						font-weight: 800;
+						color: #fff;
+						text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+						line-height: 1;
+						text-align: right;
+					}
+				}
+
+				/* === Currency — very bottom === */
+				.currency {
+					position: absolute;
+					bottom: 10px;
+					left: 0;
+					right: 0;
+					z-index: 2;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 0.35rem;
+					font-size: 0.7rem;
+					color: rgba(255, 255, 255, 0.6);
+					text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+				}
+			}
+
+			.plate:hover {
+				transform: translateY(-4px);
+			}
+		}
+
+		.nav {
+			width: 200px;
+			background-size: 100% auto;
+			background-blend-mode: color-burn;
+			display: flex;
+			flex-direction: column;
+			margin-right: 16px;
+			position: relative;
+			justify-content: center;
+
+			.menu {
+				margin-left: 0;
+				display: flex;
+				padding: 0.5rem 0;
+				flex-direction: column;
+				gap: 0;
+				justify-content: normal;
+				border: none;
+				box-shadow: none;
+				text-shadow: none;
+				color: var(--pfu-color-control-content);
+				width: 100%;
+
+				.button2 {
+					font-size: 20px;
+					font-weight: 600;
+					min-width: unset;
+					width: 100%;
+					text-transform: none;
+					letter-spacing: 0.3px;
+					transition:
+						background 0.15s ease,
+						color 0.15s ease;
+					align-content: center;
+					background: transparent;
+					text-align: left;
+					border-left: 20px solid;
+					padding-left: 8px;
+					border-color: var(--pfu-color-app-clock-border);
+					clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+
+					i {
+						display: none;
+					}
+
+					&.active {
+						border-color: var(--pfu-color-control-highlight-border);
+						background: rgba(255, 255, 255, 0.06);
+						box-shadow: none;
+						color: var(--pfu-color-control-active-content);
+
+						i {
+							color: var(--pfu-color-control-active-content);
+							filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+						}
+					}
+
+					&:hover {
+						background: rgba(255, 255, 255, 0.04);
+						border-color: rgba(255, 255, 255, 0.2);
+						color: rgba(255, 255, 255, 0.9);
+
+						i {
+							color: rgba(255, 255, 255, 0.9);
+						}
+					}
+				}
+			}
+		}
+
+		.widgets {
+			height: 150px;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 3rem;
+
+			.actions {
+				flex-direction: row;
+			}
+
+			.resources {
+				flex-direction: row;
+				gap: 1rem;
+			}
+		}
+	}
+}

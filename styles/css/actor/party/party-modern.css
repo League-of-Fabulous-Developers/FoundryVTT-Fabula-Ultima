@@ -1,0 +1,278 @@
+.projectfu .pfu-sheet__party {
+	&.theme-modern {
+		display: flex;
+		flex-direction: column-reverse;
+		padding: 0;
+
+		background:
+			radial-gradient(ellipse at 40% 50%, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 25%, transparent) 0%, transparent 60%),
+			radial-gradient(ellipse at 80% 30%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, transparent) 0%, transparent 50%),
+			linear-gradient(135deg, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 20%, #050a0f) 0%, #080d12 40%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, #050a0f) 100%);
+
+		.bars {
+			display: flex;
+			flex-direction: column;
+
+			.bar {
+				display: flex;
+				align-items: center;
+
+				i {
+					width: 14px;
+					flex-shrink: 0;
+					font-size: 0.7rem;
+					opacity: 0.8;
+				}
+
+				.track {
+					flex-grow: 1;
+					overflow: hidden;
+					height: 8px;
+					background: rgba(0, 0, 0, 0.6);
+					border-radius: 0;
+					border: 1px solid rgba(255, 255, 255, 0.06);
+
+					.fill {
+						height: 100%;
+						border-radius: 0;
+						box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+					}
+				}
+
+				.text {
+					font-size: 1rem;
+					white-space: nowrap;
+					min-width: 50px;
+					text-align: right;
+
+					.max {
+						color: rgba(255, 255, 255, 0.4);
+					}
+				}
+			}
+		}
+
+		.character {
+			&.active {
+				display: flex;
+				position: relative;
+				flex-direction: row;
+				height: 100%;
+				overflow: hidden;
+				padding: 0;
+			}
+		}
+
+		.overview {
+			font-family: 'Rajdhani', sans-serif;
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+
+			.bars {
+				padding-left: 34px;
+			}
+
+			.character-list {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				min-width: 160px;
+
+				.entry {
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+					padding-bottom: 0.4rem;
+					border-bottom: 1px solid var(--pfu-color-app-clock-border);
+
+					&:last-child {
+						border-bottom: none;
+					}
+
+					.header {
+						display: flex;
+						align-items: center;
+						gap: 0.4rem;
+						font-size: 0.75rem;
+
+						.portrait-badge {
+							width: 32px;
+							height: 32px;
+							border-radius: 50%;
+							border: 2px solid var(--pfu-color-control-highlight-border);
+							overflow: hidden;
+							flex-shrink: 0;
+
+							img {
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+								object-position: top;
+							}
+						}
+
+						.name {
+							flex-grow: 1;
+							font-weight: 600;
+							font-size: var(--font-size-base);
+						}
+
+						.classes {
+							display: flex;
+							flex-direction: row;
+							align-items: end;
+							gap: 2px;
+
+							.item {
+								width: 16px;
+								height: 16px;
+								object-fit: cover;
+								border: none;
+								opacity: 0.85;
+							}
+						}
+					}
+				}
+			}
+
+			.character-wheel {
+				position: relative;
+				width: 400px;
+				height: 400px;
+				margin: 0 auto;
+			}
+
+			.wheel-orbit {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			.wheel-portrait {
+				position: absolute;
+				width: 160px;
+				height: auto;
+				top: calc(50% + sin(calc(var(--index) / var(--total) * 2 * 3.14159 - 1.5708)) * 160px - 40px);
+				left: calc(50% + cos(calc(var(--index) / var(--total) * 2 * 3.14159 - 1.5708)) * 160px - 40px);
+				transition:
+					transform 0.2s ease,
+					box-shadow 0.2s ease;
+				transform: translate(-50%, -50%) scale(var(--depth-scale, 1));
+
+				img.portrait {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: top;
+					transition:
+						border-color 0.2s,
+						box-shadow 0.2s;
+				}
+
+				&:hover {
+					transform: translate(-50%, -50%) scale(calc(var(--depth-scale, 1) * 1.1));
+					filter: drop-shadow(0 0 10px rgba(200, 216, 64, 0.35)) drop-shadow(0 0 25px rgba(200, 216, 64, 0.15)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
+				}
+			}
+		}
+
+		.nav {
+			display: flex;
+			flex-direction: column;
+
+			.tabs {
+				flex-direction: row;
+			}
+
+			.menu {
+				display: flex;
+				flex-direction: row;
+				gap: 1rem;
+				justify-content: normal;
+				border-top: none;
+				border-bottom: none;
+
+				.button2 {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					gap: 0.4rem;
+					min-width: 100px;
+					height: 100px;
+					padding: 8px;
+					font-family: 'Rajdhani', sans-serif;
+					font-size: 0.65rem;
+					font-weight: 600;
+					letter-spacing: 0.12em;
+					text-transform: uppercase;
+					background: transparent;
+					border: 1px solid transparent;
+					border-radius: 3px;
+					box-shadow: none;
+					text-shadow: none;
+					color: var(--pfu-color-control-content);
+					transition:
+						background 0.2s ease,
+						color 0.2s ease,
+						border-color 0.2s ease;
+
+					i {
+						color: var(--pfu-color-control-content);
+						font-size: 32px;
+						transition:
+							color 0.2s ease,
+							filter 0.2s ease;
+					}
+
+					&.active {
+						background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.35) 100%);
+						border: 1px solid rgba(255, 255, 255, 0.15);
+						border-top-color: rgba(255, 255, 255, 0.3);
+						border-radius: 3px;
+						box-shadow:
+							inset 0 1px 0 rgba(255, 255, 255, 0.1),
+							inset 0 0 24px rgba(0, 0, 0, 0.5),
+							0 0 8px rgba(0, 0, 0, 0.4);
+						color: var(--pfu-color-control-active-content);
+
+						i {
+							color: var(--pfu-color-control-active-content);
+							filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+						}
+					}
+
+					&:hover {
+						background: rgba(255, 255, 255, 0.06);
+						border-color: rgba(255, 255, 255, 0.1);
+						color: rgba(255, 255, 255, 0.8);
+
+						i {
+							color: rgba(255, 255, 255, 0.8);
+						}
+					}
+				}
+			}
+		}
+
+		.widgets {
+			flex-direction: row;
+
+			.pfu-progress__collection {
+				flex-direction: row;
+			}
+
+			.actions {
+				flex-direction: row;
+			}
+
+			.resources {
+				flex-direction: row;
+				gap: 1rem;
+			}
+		}
+	}
+}

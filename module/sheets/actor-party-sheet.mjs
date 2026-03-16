@@ -99,6 +99,9 @@ export class FUPartySheet extends FUActorSheet {
 		blur: {
 			template: systemPath(`templates/actor/party/actor-party-blur-background.hbs`),
 		},
+		widgets: {
+			template: systemPath(`templates/actor/party/actor-party-section-widgets.hbs`),
+		},
 		// Custom
 		tabs: {
 			template: systemPath('templates/actor/party/actor-party-section-nav.hbs'),

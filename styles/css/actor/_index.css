@@ -3,3 +3,6 @@
 @import 'stash.css';
 @import 'party.css';
 @import 'profile.css';
+@import 'party/party-modern.css';
+@import 'party/party-classic.css';
+@import 'party/party-crystal.css';

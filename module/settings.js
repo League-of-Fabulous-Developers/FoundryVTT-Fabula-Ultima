@@ -146,9 +146,10 @@ export function getSystemSetting(key, defaultValue = undefined) {
 /**
  * @param {String} key
  * @param value
+ * @return {Promise}
  */
 export function setSystemSetting(key, value) {
-	game.settings.set(systemId, key, value);
+	return game.settings.set(systemId, key, value);
 }
 
 /**
