@@ -319,7 +319,8 @@
 					<table style="margin: unset;">
 						<thead>
 						<tr>
-							<th>{{localize 'FU.Used'}}</th>
+							<th>{{localize 'FU.Category'}}</th>
+							<th>{{localize 'FU.Items'}}</th>
 							<th>{{localize 'FU.Points'}}</th>
 						</tr>
 						</thead>
@@ -328,6 +329,13 @@
 							{{#if this.value}}
 								<tr data-tooltip="{{{this.tooltip}}}">
 									<td>{{localize this.label}}</td>
+									<td style="display: flex; flex-direction: row; gap: 2px;">
+										{{#if this.items}}
+											{{#each this.items}}
+												{{pfuItemAnchor this}}
+											{{/each}}
+										{{/if}}
+									</td>
 									<td>{{ this.value }}</td>
 								</tr>
 							{{/if}}
