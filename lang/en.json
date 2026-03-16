@@ -1913,6 +1913,12 @@
 			"Classic": "Classic",
 			"Modern": "Modern"
 		},
-		"PartySheetTheme": "Party Sheet Theme"
+		"SkillPoints": "Skill Points",
+		"PartySheetTheme": "Party Sheet Theme",
+		"Vulnerabilities": "Vulnerabilities",
+		"Resistances": "Resistances",
+		"SpecialRules": "Special Rules",
+		"Available": "Available",
+		"Used": "Used"
 	}
 }

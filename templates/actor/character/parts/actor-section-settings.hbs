@@ -269,6 +269,58 @@
 
 		{{!-- Settings Section --}}
 		{{#if (eq actor.type "npc")}}
+
+			{{!-- SP TRACKER --}}
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.SkillPoints'}}
+				</legend>
+				<div class="flexcol gap-4">
+
+					<div class="pfu-progressbar" style="grid-column: span 2;">
+						<div class="pfu-progressbar__track">
+							<div class="pfu-progressbar__fill" style="width: {{ spTracker.percentage }}%;"></div>
+						</div>
+					</div>
+
+					{{!-- Available Skills --}}
+					<div class="grid grid-4col resource-content">
+						{{#each spTracker.availableSkills}}
+							<label class="fu-form__property resource-label-sm stack">
+								<i class="fu-icon--s {{pfuIconClass this.icon}}"></i>
+								<span>{{localize label}}</span>
+
+								<input type="number"
+									   value="{{this.value}}"
+									   data-dtype="Number"
+									   class="resource-inputs bonus"
+									   disabled />
+							</label>
+						{{/each}}
+					</div>
+
+					{{!-- Used Skills --}}
+					<table style="margin: unset;">
+						<thead>
+						<tr>
+							<th>{{localize 'FU.Used'}}</th>
+							<th>{{ spTracker.used }}/{{ spTracker.available}}</th>
+						</tr>
+						</thead>
+						<tbody>
+						{{#each spTracker.usedSkills}}
+							{{#if this.value}}
+								<tr>
+									<td>{{localize this.label}}</td>
+									<td>{{ this.value }}</td>
+								</tr>
+							{{/if}}
+						{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m">
 					{{localize 'FU.Custom'}}

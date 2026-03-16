@@ -1,3 +1,6 @@
+/**
+ * @desc Calculates the skill points used for this NPC.
+ */
 export class NpcSkillTracker {
 	/**
 	 * @type NpcDataModel
@@ -12,41 +15,55 @@ export class NpcSkillTracker {
 	}
 
 	get availableSkills() {
-		return {
-			species: this.#calcAvailableSkillsFromSpecies(),
-			level: Math.floor(this.#data.level.value / 10),
-			vulnerabilities: this.#calcAvailableSkillsFromVulnerabilities(),
-			rank: this.#calcAvailableSkillsFromRank(),
-		};
-	}
-
-	get spAvailable() {
-		return Object.values(this.availableSkills).reduce((total, value) => total + value, 0);
+		return [
+			{ label: 'FU.Species', icon: 'species', value: this.#calcAvailableSkillsFromSpecies() },
+			{ label: 'FU.Level', icon: 'level', value: Math.floor(this.#data.level.value / 10) },
+			{ label: 'FU.Vulnerabilities', icon: 'vulnerability', value: this.#calcAvailableSkillsFromVulnerabilities() },
+			{ label: 'FU.Rank', icon: 'rank', value: this.#calcAvailableSkillsFromRank() },
+		];
 	}
 
 	get usedSkills() {
 		const absorption = this.#calcUsedSkillsFromAbsorbs();
 		const [immunities, remainingFromAbsorb] = this.#calcUsedSkillsFromImmunities(absorption);
-		return {
-			specialAttacks: this.#calcUsedSpecialAttacks(),
-			spells: this.#calcUsedSkillsFromSpells(),
-			extraDefense: this.#calcUsedSkillsFromExtraDefs(),
-			extraHP: this.#calcUsedSkillsFromExtraHP(),
-			extraMP: this.#calcUsedSkillsFromExtraMP(),
-			initiativeBonus: this.#calcUsedSkillsFromExtraInit(),
-			accuracyCheck: this.#calcUsedSkillsFromExtraPrecision(),
-			magicCheck: this.#calcUsedSkillsFromExtraMagic(),
-			absorption: absorption,
-			immunities: immunities,
-			resistances: this.#calcUsedSkillsFromResistances(remainingFromAbsorb),
-			specialRules: this.#calcUsedSkillsFromSpecial(),
-			otherActions: this.#calcUsedSkillsFromOtherActions(),
-			equipment: this.#calcUsedSkillsFromEquipment(),
-		};
+		return [
+			{ label: 'FU.SpecialAttacks', value: this.#calcUsedSpecialAttacks() },
+			{ label: 'FU.Spells', value: this.#calcUsedSkillsFromSpells() },
+			{ label: 'FU.ExtraDefense', value: this.#calcUsedSkillsFromExtraDefs() },
+			{ label: 'FU.ExtraHP', value: this.#calcUsedSkillsFromExtraHP() },
+			{ label: 'FU.ExtraMP', value: this.#calcUsedSkillsFromExtraMP() },
+			{ label: 'FU.ExtraInitiativeBonus', value: this.#calcUsedSkillsFromExtraInit() },
+			{ label: 'FU.ExtraAccuracyCheck', value: this.#calcUsedSkillsFromExtraPrecision() },
+			{ label: 'FU.ExtraMagicCheck', value: this.#calcUsedSkillsFromExtraMagic() },
+			{ label: 'FU.Absorption', value: absorption },
+			{ label: 'FU.Immunities', value: immunities },
+			{ label: 'FU.Resistances', value: this.#calcUsedSkillsFromResistances(remainingFromAbsorb) },
+			{ label: 'FU.SpecialRules', value: this.#calcUsedSkillsFromSpecial() },
+			{ label: 'FU.OtherAction', value: this.#calcUsedSkillsFromOtherActions() },
+			{ label: 'FU.Equipment', value: this.#calcUsedSkillsFromEquipment() },
+		];
 	}
 
-	get spUsed() {
-		return Object.values(this.usedSkills).reduce((total, value) => total + value, 0);
+	/**
+	 * @returns {number}
+	 */
+	get percentage() {
+		if (this.available === 0) return 0;
+		return Math.min(100, Math.round((this.used / this.available) * 100));
+	}
+
+	/**
+	 * @returns {number}
+	 */
+	get available() {
+		return this.availableSkills.reduce((total, { value }) => total + value, 0);
+	}
+
+	/**
+	 * @returns {number}
+	 */
+	get used() {
+		return this.usedSkills.reduce((total, { value }) => total + value, 0);
 	}
 
 	#calcAvailableSkillsFromSpecies() {
