@@ -5,7 +5,7 @@
 	font-weight: var(--font-weight-normal);
 	--border-primary: var(--color-border-secondary);
 
-	.-fu-form__title {
+	.fu-form__title {
 		display: flex;
 		gap: 4px;
 	}

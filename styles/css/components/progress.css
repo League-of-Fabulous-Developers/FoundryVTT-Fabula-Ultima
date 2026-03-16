@@ -360,6 +360,43 @@
 	background-color: #2b4a42;
 }
 
+/* Used in sheets */
 .pfu-progress__chat .pie {
 	pointer-events: none;
+}
+
+.pfu-progressbar {
+}
+
+.pfu-progressbar__track {
+	border: var(--border-width) solid var(--pfu-section-border-color);
+	background: var(--pfu-color-control-content);
+	border-radius: 3px;
+	height: 20px;
+	overflow: hidden;
+}
+
+.pfu-progressbar__fill {
+	background: var(--pfu-color-app-control-fill);
+	height: 100%;
+	transition: width 0.3s ease;
+}
+
+.pfu-progressbar__labels {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 2px;
+	text-transform: uppercase;
+	color: var(--pfu-color-app-item-content);
+}
+
+.pfu-progressbar__value {
+	display: inline-block;
+	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content);
+	border-radius: 3px;
+	padding: 0 0.35rem;
+	font-weight: bold;
+	min-width: 1.5rem;
+	text-align: center;
 }

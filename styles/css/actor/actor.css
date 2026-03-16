@@ -173,65 +173,6 @@
 	color: var(--pfu-color-app-control-content);
 }
 
-.projectfu .npc-profile {
-	color: #ebf7af;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
-
-.projectfu .npc-profile .top {
-	display: flex;
-	flex: 1;
-}
-
-.projectfu .npc-profile .left-column,
-.projectfu .npc-profile .right-column {
-	flex: 1;
-	padding: 10px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-}
-
-.projectfu .npc-profile .hp {
-	color: #17b924;
-}
-
-.projectfu .npc-profile .mp {
-	color: #16aad6;
-}
-
-.projectfu .npc-profile .bottom-row {
-	padding: 10px;
-	margin-top: 5px;
-}
-
-.projectfu .npc-profile .name {
-	font-size: xx-large;
-	font-weight: bold;
-	text-align: center;
-	color: var(--pfu-color-app-control-content);
-}
-
-.projectfu .npc-profile .avatar {
-	width: auto;
-	height: 300px;
-	-o-object-fit: contain;
-	object-fit: contain;
-	background: -webkit-gradient(linear, left top, left bottom, from(#6a3986), to(#1e0f2a));
-	background: linear-gradient(to bottom, #6a3986, #1e0f2a);
-	border: 2px solid #c9a76f;
-	border-radius: 1rem;
-}
-
-.projectfu .npc-profile .attrBox {
-	background-color: rgb(239, 236, 245);
-	border-right: 1px solid rgb(255, 255, 255);
-}
-
 .projectfu .bonds {
 	margin: 0 5px;
 	row-gap: 5px;

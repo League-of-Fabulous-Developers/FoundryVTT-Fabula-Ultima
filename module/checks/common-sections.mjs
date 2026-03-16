@@ -1,7 +1,7 @@
 import { ChatSectionOrder, CHECK_DETAILS, CHECK_FLAVOR, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
-import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { ResourcePipeline, ResourceRequest, UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
@@ -511,6 +511,11 @@ const spendResource = (data, actor, item, cost, targets, flags) => {
  * @param {Object} flags
  */
 const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
+	// Reconstruct the class from its data if need be
+	if (updateData && !(updateData instanceof UpdateResourceData)) {
+		updateData = new UpdateResourceData(updateData);
+	}
+
 	if (updateData.total === 0) {
 		return;
 	}

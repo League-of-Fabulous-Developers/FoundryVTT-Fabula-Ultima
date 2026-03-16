@@ -1913,6 +1913,16 @@
 			"Classic": "Classic",
 			"Modern": "Modern"
 		},
-		"PartySheetTheme": "Party Sheet Theme"
+		"SkillPoints": "Skill Points",
+		"SkillPointsHint": "Only attribute modifications from skills are tracked. You will want to make use of active effects attached to skills for proper tracking.",
+		"PartySheetTheme": "Party Sheet Theme",
+		"Vulnerabilities": "Vulnerabilities",
+		"Resistances": "Resistances",
+		"SpecialRules": "Special Rules",
+		"Available": "Available",
+		"Used": "Used",
+		"Points": "Points",
+		"NPCSkills": "NPC Skills",
+		"SpecialAttacks": "Special Attacks"
 	}
 }

@@ -419,7 +419,7 @@ function onRenderChatMessage(message, html) {
 
 	Pipeline.handleClickRevert(message, html, 'revertResourceLoss', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
-		const amount = dataset.amount;
+		const amount = Number.parseInt(dataset.amount);
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, amount, true));
@@ -429,7 +429,7 @@ function onRenderChatMessage(message, html) {
 
 	Pipeline.handleClickRevert(message, html, 'revertResourceGain', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
-		const amount = dataset.amount;
+		const amount = Number.parseInt(dataset.amount);
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, -amount, true));

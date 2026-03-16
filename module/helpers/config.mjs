@@ -1110,6 +1110,12 @@ FU.allIcon = {
 	info: 'fas fa-circle-info',
 	compendium: 'fas fa-book',
 	warning: 'fas fa-triangle-exclamation',
+
+	rank: 'fas fa-shield',
+	species: 'fas fa-paw',
+	vulnerability: 'fas fa-heart-crack',
+	level: 'fas fa-star',
+
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,
