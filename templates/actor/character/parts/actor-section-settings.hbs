@@ -272,14 +272,30 @@
 
 			{{!-- SP TRACKER --}}
 			<fieldset class="section-container title-fieldset desc resource-content">
-				<legend class="resource-label-m">
+				<legend class="fu-form__title resource-label-m">
 					{{localize 'FU.SkillPoints'}}
+					<span class="resource-label-m">
+					<a class="resource-label-m" data-tooltip="{{localize 'FU.SkillPointsHint'}}">
+						<i class="icon fas fa-info-circle"></i>
+					</a>
+				</span>
 				</legend>
 				<div class="flexcol gap-4">
 
-					<div class="pfu-progressbar" style="grid-column: span 2;">
+					<div class="pfu-progressbar">
 						<div class="pfu-progressbar__track">
 							<div class="pfu-progressbar__fill" style="width: {{ spTracker.percentage }}%;"></div>
+						</div>
+						<div class="pfu-progressbar__labels">
+							<span>
+								<strong>{{localize 'FU.Used'}}:</strong>
+								<span class="pfu-progressbar__value">{{ spTracker.used }}</span>
+							</span>
+
+							<span>
+								<strong>{{localize 'FU.Available'}}:</strong>
+								<span class="pfu-progressbar__value">{{ spTracker.available }}</span>
+							</span>
 						</div>
 					</div>
 
@@ -294,7 +310,7 @@
 									   value="{{this.value}}"
 									   data-dtype="Number"
 									   class="resource-inputs bonus"
-									   disabled />
+									   readonly />
 							</label>
 						{{/each}}
 					</div>
@@ -304,13 +320,13 @@
 						<thead>
 						<tr>
 							<th>{{localize 'FU.Used'}}</th>
-							<th>{{ spTracker.used }}/{{ spTracker.available}}</th>
+							<th>{{localize 'FU.Points'}}</th>
 						</tr>
 						</thead>
 						<tbody>
 						{{#each spTracker.usedSkills}}
 							{{#if this.value}}
-								<tr>
+								<tr data-tooltip="{{{this.tooltip}}}">
 									<td>{{localize this.label}}</td>
 									<td>{{ this.value }}</td>
 								</tr>

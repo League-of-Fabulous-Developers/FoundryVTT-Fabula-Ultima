@@ -26,21 +26,23 @@ export class NpcSkillTracker {
 	get usedSkills() {
 		const absorption = this.#calcUsedSkillsFromAbsorbs();
 		const [immunities, remainingFromAbsorb] = this.#calcUsedSkillsFromImmunities(absorption);
+		const npcSkills = this.#data.actor.itemTypes.miscAbility;
+		const specialRules = this.#data.actor.itemTypes.rule;
 		return [
 			{ label: 'FU.SpecialAttacks', value: this.#calcUsedSpecialAttacks() },
 			{ label: 'FU.Spells', value: this.#calcUsedSkillsFromSpells() },
 			{ label: 'FU.ExtraDefense', value: this.#calcUsedSkillsFromExtraDefs() },
 			{ label: 'FU.ExtraHP', value: this.#calcUsedSkillsFromExtraHP() },
 			{ label: 'FU.ExtraMP', value: this.#calcUsedSkillsFromExtraMP() },
-			{ label: 'FU.ExtraInitiativeBonus', value: this.#calcUsedSkillsFromExtraInit() },
-			{ label: 'FU.ExtraAccuracyCheck', value: this.#calcUsedSkillsFromExtraPrecision() },
-			{ label: 'FU.ExtraMagicCheck', value: this.#calcUsedSkillsFromExtraMagic() },
+			// { label: 'FU.ExtraInitiativeBonus', value: this.#calcUsedSkillsFromExtraInit() },
+			// { label: 'FU.ExtraAccuracyCheck', value: this.#calcUsedSkillsFromExtraPrecision() },
+			// { label: 'FU.ExtraMagicCheck', value: this.#calcUsedSkillsFromExtraMagic() },
 			{ label: 'FU.Absorption', value: absorption },
 			{ label: 'FU.Immunities', value: immunities },
-			{ label: 'FU.Resistances', value: this.#calcUsedSkillsFromResistances(remainingFromAbsorb) },
-			{ label: 'FU.SpecialRules', value: this.#calcUsedSkillsFromSpecial() },
-			{ label: 'FU.OtherAction', value: this.#calcUsedSkillsFromOtherActions() },
-			{ label: 'FU.Equipment', value: this.#calcUsedSkillsFromEquipment() },
+			{ label: 'FU.Resistances', value: this.#calcUsedFromResistances(remainingFromAbsorb) },
+			{ label: 'FU.SpecialRules', tooltip: specialRules.map((s) => s.name).join('<br>'), value: specialRules.length },
+			{ label: 'FU.NPCSkills', tooltip: npcSkills.map((s) => s.name).join('<br>'), value: npcSkills.length },
+			{ label: 'FU.Equipment', value: this.#calcUsedFromEquipment() },
 		];
 	}
 
@@ -159,19 +161,19 @@ export class NpcSkillTracker {
 		return Math.max(0, this.#data.resources.mp.bonus) / 20;
 	}
 
-	#calcUsedSkillsFromExtraInit() {
-		return this.#data.derived.init.bonus ? 1 : 0;
-	}
+	// #calcUsedSkillsFromExtraInit() {
+	// 	return this.#data.derived.init.bonus ? 1 : 0;
+	// }
+	//
+	// #calcUsedSkillsFromExtraPrecision() {
+	// 	return Math.floor(this.#data.bonuses.accuracy.accuracyCheck / 3);
+	// }
+	//
+	// #calcUsedSkillsFromExtraMagic() {
+	// 	return Math.floor(this.#data.bonuses.accuracy.magicCheck / 3);
+	// }
 
-	#calcUsedSkillsFromExtraPrecision() {
-		return Math.floor(this.#data.bonuses.accuracy.accuracyCheck / 3);
-	}
-
-	#calcUsedSkillsFromExtraMagic() {
-		return Math.floor(this.#data.bonuses.accuracy.magicCheck / 3);
-	}
-
-	#calcUsedSkillsFromResistances(fromAbsorb) {
+	#calcUsedFromResistances(fromAbsorb) {
 		let sum = fromAbsorb * 0.5;
 
 		const species = this.#data.species.value;
@@ -233,15 +235,7 @@ export class NpcSkillTracker {
 		return sum;
 	}
 
-	#calcUsedSkillsFromOtherActions() {
-		return this.#data.actor.itemTypes.miscAbility.length;
-	}
-
-	#calcUsedSkillsFromSpecial() {
-		return this.#data.actor.itemTypes.rule.length;
-	}
-
-	#calcUsedSkillsFromEquipment() {
+	#calcUsedFromEquipment() {
 		let species = this.#data.species.value;
 		const exclusions = ['unarmed-strike'];
 		const equipmentTypes = ['weapon', 'shield', 'armor'];

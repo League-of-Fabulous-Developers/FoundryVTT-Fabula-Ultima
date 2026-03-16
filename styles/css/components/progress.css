@@ -385,6 +385,18 @@
 .pfu-progressbar__labels {
 	display: flex;
 	justify-content: space-between;
-	font-size: 0.75rem;
 	margin-top: 2px;
+	text-transform: uppercase;
+	color: var(--pfu-color-app-item-content);
+}
+
+.pfu-progressbar__value {
+	display: inline-block;
+	background: var(--pfu-color-app-control-fill);
+	color: var(--pfu-color-app-control-content);
+	border-radius: 3px;
+	padding: 0 0.35rem;
+	font-weight: bold;
+	min-width: 1.5rem;
+	text-align: center;
 }
