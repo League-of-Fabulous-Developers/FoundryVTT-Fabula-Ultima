@@ -13,6 +13,7 @@
 				flex-wrap: wrap;
 				max-width: 100%;
 				gap: 1.5rem;
+				justify-content: center;
 			}
 
 			.plate {
@@ -35,8 +36,7 @@
 						background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
 						background-clip: content-box;
 						border: 1px solid #aeb8a8;
-						border-radius: 10px 0 0 10px;
-						clip-path: rect(auto auto auto auto round 10px 0 0 10px);
+						width: 200px;
 
 						img {
 							object-fit: cover;

@@ -18,13 +18,12 @@
 				<span>{{this.name}}</span>
 				<span>{{this.current}}/{{this.max}}</span>
 			{{/each}}
-		</div>
 
-		<div class="currency">
-			<i class="fu-icon--s {{pfuIconClass 'zenit'}}" data-tooltip="{{localize @root.currency}}"></i>
-			{{this.zenit}}
-			<i class="fu-icon--s {{pfuIconClass 'fp'}}" data-tooltip="{{localize 'FU.FabulaPoints'}}"></i>
-			{{this.fp}}
+			<span>{{localize @root.currency}}</span>
+			<span>{{this.zenit}}</span>
+
+			<span>{{localize 'FU.FabulaAbbr'}}</span>
+			<span>{{this.fp}}</span>
 		</div>
 	</div>
 {{/each}}
