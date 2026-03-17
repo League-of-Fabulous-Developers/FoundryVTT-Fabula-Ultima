@@ -90,6 +90,7 @@ async function handleArcanum(actor, item) {
 		const dialogData = {
 			title: `${title} - ${currentArcanum.name}`,
 			buttons: buttons,
+			item: currentArcanum,
 			sections: sections,
 		};
 

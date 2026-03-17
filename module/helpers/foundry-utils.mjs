@@ -291,9 +291,10 @@ export default class FoundryUtils {
 	 * @param {string} options.title
 	 * @param {FUDialogContentSection[]} options.sections
 	 * @param {DialogV2Button[]} options.buttons
+	 * @param {FUItem} options.item
 	 * @returns {Promise<string|null>}
 	 */
-	static async promptChoiceSections({ title, sections, buttons }) {
+	static async promptChoiceSections({ title, sections, buttons, item }) {
 		const result = await foundry.applications.api.DialogV2.wait({
 			window: {
 				title,
@@ -312,9 +313,13 @@ export default class FoundryUtils {
 				sendToChat: async (event, dialog) => {
 					const text = dialog.dataset.text;
 					const title = dialog.dataset.title;
+					const flavor = await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+						subtitle: title,
+						item: item,
+					});
 					const chatMessage = {
-						content: await FoundryUtils.renderTemplate('chat/chat-description', {
-							flavor: StringUtils.localize(title),
+						flavor: flavor,
+						content: await FoundryUtils.renderTemplate('chat/chat-description-v2', {
 							description: text,
 						}),
 					};
