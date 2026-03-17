@@ -207,13 +207,7 @@ export class FUChatBuilder {
 		}
 
 		// Resolve speaker
-		let speaker = ChatMessage.getSpeaker({ actor });
-		if (speaker.scene && speaker.token) {
-			const token = game.scenes.get(speaker.scene)?.tokens?.get(speaker.token);
-			if (token) {
-				speaker = ChatMessage.getSpeaker({ token });
-			}
-		}
+		let speaker = FoundryUtils.resolveSpeaker(actor);
 
 		// Prepare data
 		const chatMessage = {

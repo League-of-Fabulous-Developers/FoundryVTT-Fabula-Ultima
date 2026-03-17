@@ -11,6 +11,7 @@ import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { FUChatBuilder } from '../../../../helpers/chat-builder.mjs';
 import { ResourcePipeline } from '../../../../pipelines/resource-pipeline.mjs';
+import { FeatureTraits } from '../../../../pipelines/traits.mjs';
 
 /**
  * @param {VerseDataModel} model
@@ -327,12 +328,13 @@ export class VersesApplication extends FUApplication {
 		CommonSections.genericText(renderData.sections, enriched);
 		CommonSections.expense(renderData, actor, item, targets, flags, expense);
 
+		await CommonEvents.feature(actor, item, [FeatureTraits.Verse], renderData);
+
 		const builder = new FUChatBuilder(actor, item);
 		builder.withFlags(flags);
 		builder.withData(renderData);
 		await builder.create();
 
 		CommonEvents.skill(actor, item);
-		this.close();
 	}
 }

@@ -66,6 +66,12 @@ const { api, fields, handlebars } = foundry.applications;
  */
 
 /**
+ * @typedef FUDialogContentSection
+ * @property {String} title
+ * @property {String} text
+ */
+
+/**
  * @remarks Helper usage examples can also be found here: https://foundryvtt.wiki/en/development/api/helpers
  */
 export default class FoundryUtils {
@@ -281,6 +287,53 @@ export default class FoundryUtils {
 	}
 
 	/**
+	 * @param {Object} options
+	 * @param {string} options.title
+	 * @param {FUDialogContentSection[]} options.sections
+	 * @param {DialogV2Button[]} options.buttons
+	 * @param {FUActor} options.actor
+	 * @param {FUItem} options.item
+	 * @returns {Promise<string|null>}
+	 */
+	static async promptChoiceSections({ title, sections, buttons, actor, item }) {
+		const result = await foundry.applications.api.DialogV2.wait({
+			window: {
+				title,
+				icon: 'fas fa-square-up-right',
+				resizable: true,
+			},
+			position: {
+				width: 225 * sections.length,
+			},
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			content: await FoundryUtils.renderTemplate('dialog/dialog-layout', {
+				sections: sections,
+			}),
+			buttons,
+			actions: {
+				sendToChat: async (event, dialog) => {
+					const text = dialog.dataset.text;
+					const title = dialog.dataset.title;
+					const flavor = await FoundryUtils.renderTemplate('chat/chat-check-flavor-item-v2', {
+						subtitle: title,
+						item: item,
+					});
+					const speaker = FoundryUtils.resolveSpeaker(actor);
+					const chatMessage = {
+						speaker: speaker,
+						flavor: flavor,
+						content: await FoundryUtils.renderTemplate('chat/chat-description-v2', {
+							description: text,
+						}),
+					};
+					return ChatMessage.create(chatMessage);
+				},
+			},
+		});
+		return result ?? null;
+	}
+
+	/**
 	 * @param {String} title
 	 * @param {FUActor} actor
 	 * @param {FUItem} item
@@ -430,6 +483,21 @@ export default class FoundryUtils {
 	static safeClone(data) {
 		if (data?.toObject instanceof Function) return data.toObject();
 		return foundry.utils.deepClone(data);
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns {*}
+	 */
+	static resolveSpeaker(actor) {
+		let speaker = ChatMessage.getSpeaker({ actor });
+		if (speaker.scene && speaker.token) {
+			const token = game.scenes.get(speaker.scene)?.tokens?.get(speaker.token);
+			if (token) {
+				speaker = ChatMessage.getSpeaker({ token });
+			}
+		}
+		return speaker;
 	}
 
 	/**

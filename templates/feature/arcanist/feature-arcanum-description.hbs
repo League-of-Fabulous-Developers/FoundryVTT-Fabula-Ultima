@@ -2,7 +2,12 @@
 <div class="flexcol resource-content gap-2 mb-3">
     <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</label>
     <div class="description-effect">{{{additionalData.enrichedMerge}}}</div>
-    
+
+	{{#if (pfuGetSetting 'optionArcanumPulse')}}
+		<label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumPulse'}}</label>
+		<div class="description-effect">{{{additionalData.enrichedPulse}}}</div>
+	{{/if}}
+
     <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDismiss'}}</label>
     <div class="description-effect">{{{additionalData.enrichedDismiss}}}</div>
 </div>
