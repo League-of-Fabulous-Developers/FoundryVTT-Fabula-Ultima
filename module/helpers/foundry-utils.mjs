@@ -291,10 +291,11 @@ export default class FoundryUtils {
 	 * @param {string} options.title
 	 * @param {FUDialogContentSection[]} options.sections
 	 * @param {DialogV2Button[]} options.buttons
+	 * @param {FUActor} options.actor
 	 * @param {FUItem} options.item
 	 * @returns {Promise<string|null>}
 	 */
-	static async promptChoiceSections({ title, sections, buttons, item }) {
+	static async promptChoiceSections({ title, sections, buttons, actor, item }) {
 		const result = await foundry.applications.api.DialogV2.wait({
 			window: {
 				title,
@@ -317,7 +318,9 @@ export default class FoundryUtils {
 						subtitle: title,
 						item: item,
 					});
+					const speaker = ChatMessage.getSpeaker({ actor });
 					const chatMessage = {
+						speaker: speaker,
 						flavor: flavor,
 						content: await FoundryUtils.renderTemplate('chat/chat-description-v2', {
 							description: text,

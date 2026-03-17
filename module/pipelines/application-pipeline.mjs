@@ -89,6 +89,7 @@ async function handleArcanum(actor, item) {
 
 		const dialogData = {
 			title: `${title} - ${currentArcanum.name}`,
+			actor: actor,
 			buttons: buttons,
 			item: currentArcanum,
 			sections: sections,
@@ -156,8 +157,8 @@ async function handleArcanum(actor, item) {
 		if (result && result.length > 0) {
 			/** @type FUItem **/
 			const selectedArcana = result[0];
-			const selectedArcanaEffect = selectedArcana.effects.size === 1 ? Array.from(selectedArcana.effects.values())[0] : null;
-			if (selectedArcanaEffect) {
+			//const selectedArcanaEffect = selectedArcana.effects.size === 1 ? Array.from(selectedArcana.effects.values())[0] : null;
+			if (selectedArcana) {
 				// Equip the arcana
 				await actor.update({
 					'system.equipped.arcanum': selectedArcana.id,
@@ -190,6 +191,8 @@ async function handleArcanum(actor, item) {
 				await CommonEvents.feature(actor, item, expense.traits, renderData);
 				const builder = new FUChatBuilder(actor, item).withData(renderData).withFlags(flags);
 				await builder.create();
+			} else {
+				ui.notifications.error(`Failed to resolve the arcana from the selection.`);
 			}
 		}
 	}
