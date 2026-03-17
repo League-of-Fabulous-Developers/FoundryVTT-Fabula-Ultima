@@ -6,6 +6,8 @@
 			'nav active-tab'
 			'widgets widgets';
 
+		--pfu-party-plate-width: 150px;
+
 		background:
 			radial-gradient(ellipse at 40% 50%, color-mix(in srgb, var(--pfu-color-hud-background-fill-1) 25%, transparent) 0%, transparent 60%),
 			radial-gradient(ellipse at 80% 30%, color-mix(in srgb, var(--pfu-color-hud-background-fill-2) 15%, transparent) 0%, transparent 50%),
@@ -26,7 +28,7 @@
 			}
 
 			.plate {
-				min-width: 150px; /* prevent flex from shrinking it */
+				min-width: var(--pfu-party-plate-width); /* prevent flex from shrinking it */
 				flex-shrink: 0; /* lock the width */
 				scroll-snap-align: start;
 				position: relative;
@@ -72,6 +74,29 @@
 						inset: 0;
 						background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, transparent 30%, transparent 50%, rgba(0, 0, 0, 0.9) 100%);
 						pointer-events: none;
+						z-index: 0;
+					}
+
+					.classes {
+						min-height: 24px;
+						position: absolute;
+						bottom: 10px;
+						display: flex;
+						flex-wrap: wrap;
+						justify-content: center;
+						max-width: calc(3 * 24px + 2 * 8px); /* 3 icons + 2 gaps */
+						left: 50%;
+						transform: translateX(-50%);
+						z-index: 1;
+
+						img {
+							width: 24px;
+							height: 24px;
+							object-fit: cover;
+							margin: 0;
+							border: none;
+							filter: drop-shadow(0 0 2px #fff);
+						}
 					}
 				}
 
@@ -113,21 +138,20 @@
 				/* === Resources — bottom overlay === */
 				.resources {
 					position: absolute;
-					bottom: 40px;
+					bottom: 80px;
 					right: 10px;
 					z-index: 2;
 					display: grid;
 					grid-template-columns: auto auto;
-					column-gap: 0.5rem;
+					column-gap: 0.65rem;
 					align-items: baseline;
 					margin-top: 0;
 
 					span:nth-child(odd) {
-						font-size: 0.55rem;
+						font-size: 0.65rem;
 						font-weight: 600;
 						letter-spacing: 1px;
 						text-transform: uppercase;
-						color: rgba(255, 255, 255, 0.55);
 						text-align: right;
 					}
 

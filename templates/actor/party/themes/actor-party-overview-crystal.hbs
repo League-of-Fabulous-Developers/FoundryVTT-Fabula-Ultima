@@ -1,5 +1,4 @@
 {{#each characters}}
-{{!-- Character Card  --}}
 	<div class="section-container plate character character-option {{this.statusClass}}"
 		 data-uuid="{{this.actor.uuid}}" data-type="character">
 
@@ -8,6 +7,12 @@
 				<img class="portrait {{role}}" src="{{ this.actor.img }}"
 					 data-tooltip="{{ this.name }}" />
 			</a>
+
+			<div class="classes">
+				{{#each this.classes}}
+					<img class="item" src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+				{{/each}}
+			</div>
 		</div>
 
 		<div class="name">{{ this.name }}</div>
@@ -15,21 +20,20 @@
 
 		<div class="resources">
 			{{#each this.resources}}
-				<span>{{this.name}}</span>
+				<span class="{{this.name}}">{{this.name}}</span>
 				<span>{{this.current}}/{{this.max}}</span>
 			{{/each}}
 
-			<span>{{localize @root.currency}}</span>
+			<span class="zenit">{{localize @root.currency}}</span>
 			<span>{{this.zenit}}</span>
 
-			<span>{{localize 'FU.FabulaAbbr'}}</span>
+			<span class="fp">{{localize 'FU.FabulaAbbr'}}</span>
 			<span>{{this.fp}}</span>
 		</div>
 	</div>
 {{/each}}
 
 {{#each companions}}
-{{!-- Companion Card --}}
 	<div class="section-container plate companion character-option" data-uuid="{{this.actor.uuid}}"
 		 data-type="companion">
 

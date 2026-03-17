@@ -1,27 +1,24 @@
 .pfu-layout__menu {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	height: 100vh;
-	grid-template-rows: auto 4fr 1fr;
+	overflow: hidden;
 	gap: 1rem;
-	grid-template-areas:
-		'header'
-		'main'
-		'footer';
 
 	--property-label-width: 160px;
 
 	header {
-		grid-area: header;
+		flex-shrink: 0;
 	}
 
 	main {
-		grid-area: main;
 		overflow: auto;
+		flex-grow: 1;
 		padding: 15px 5px 10px 5px;
 	}
 
 	footer {
-		grid-area: footer;
+		flex-shrink: 0;
 	}
 
 	span {

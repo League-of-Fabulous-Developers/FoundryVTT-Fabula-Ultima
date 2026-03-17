@@ -100,6 +100,31 @@
 		background: linear-gradient(to right, #d1b347, #e6c75c);
 	}
 
+	.hp {
+		color: #e04c4c;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+	}
+
+	.mp {
+		color: #5090ff;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+	}
+
+	.ip {
+		color: #d1b347;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+	}
+
+	.zenit {
+		color: #4caf50;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+	}
+
+	.fp {
+		color: #b44fd4;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+	}
+
 	.damage {
 		background: linear-gradient(to bottom, #6a3b3b, #2e1f1f);
 	}
