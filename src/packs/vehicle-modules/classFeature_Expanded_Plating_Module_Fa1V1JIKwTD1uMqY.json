@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<h5>(MECHA AND STEED FRAMES ONLY)</h5><p>While you are driving this personal vehicle, if it has an active Heavy, Runic, or Standard Plating module, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the armor module in question (they may still use their normal scores if those would be better).</p>",
+      "description": "<p><strong>Mecha and Steed frames only.</strong></p><hr /><p>While you are driving this <strong>personal vehicle</strong>, if it has an active <strong>Heavy</strong>, <strong>Runic</strong>, or <strong>Standard Plating</strong> module, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the <strong>armor module</strong> in question (they may still use their normal scores if those would be better).</p><hr /><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.DwsilbK35F1QPy6u], @EFFECT[Compendium.projectfu.vehicle-modules.Item.AUZm9jLRSF8vvWu9], or @EFFECT[Compendium.projectfu.vehicle-modules.Item.MRgCwdo20vDJm2mO]</p>",
       "complex": false
     },
     "source": "FUTF168",
@@ -25,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711477016894,
-    "modifiedTime": 1724180864701,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1773733243410,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

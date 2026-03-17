@@ -1,0 +1,247 @@
+{
+  "folder": "5LrYW4IGy2CUagKM",
+  "name": "Steed Frame",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/cog-copper.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.vehicle",
+    "data": {
+      "frame": "steed",
+      "passengers": 1,
+      "distanceMultiplier": 2,
+      "moduleSlots": 3,
+      "description": "<p>This <strong>personal vehicle </strong>may have up to <strong>1 weapon module</strong>, <strong>1 armor module </strong>and<strong> any number of support modules </strong>enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>"
+    },
+    "source": "FUTF165",
+    "fuid": "steed-frame"
+  },
+  "effects": [
+    {
+      "name": "Steed Frame",
+      "img": "icons/commodities/tech/cog-copper.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "pjUjui5AkAB51H4a": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "6njmDz03bTcDNnW1",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "heart-in-the-engine"
+              },
+              "_id": "pjUjui5AkAB51H4a",
+              "actions": {
+                "Uwe6673kIoiK1WIp": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "Uwe6673kIoiK1WIp",
+                  "amount": "0",
+                  "operation": "multiply"
+                }
+              },
+              "selector": "self"
+            },
+            "Vzhs2jhRwgwjbkaS": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "vYSoQiozcPnBv8Wh",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "display"
+                ],
+                "itemGroups": [
+                  "skill"
+                ],
+                "local": false,
+                "identifier": "heart-in-the-engine"
+              },
+              "_id": "Vzhs2jhRwgwjbkaS",
+              "actions": {
+                "gRDTYie1YEoaK4ax": {
+                  "type": "messageRuleAction",
+                  "_id": "gRDTYie1YEoaK4ax",
+                  "message": "<p>Ignore the MP cost.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "IGSXsKi2qMmVPdej",
+      "type": "base",
+      "changes": [],
+      "description": "<p>If you use the <strong>Heart in the Engine</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Steed",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9",
+            "effectUuid": null,
+            "fuid": "steed"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773718728254,
+        "modifiedTime": 1773736030307,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!f3h3SoN0g7i31Kj9.IGSXsKi2qMmVPdej"
+    },
+    {
+      "name": "Steed Frame (Module Slots)",
+      "img": "icons/commodities/tech/cog-copper.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "AoAyvDm9C6lDMvVD",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.data.moduleSlots",
+          "mode": 5,
+          "value": "3+&sl(`personal-vehicle`)",
+          "priority": null
+        }
+      ],
+      "description": "<p>The maximum number of modules enabled at the same time on a <strong>personal vehicle</strong> is equal to <strong>【3 + Personal Vehicle SL】</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Steed",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9",
+            "effectUuid": null,
+            "fuid": "steed"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773720210162,
+        "modifiedTime": 1773736034802,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!f3h3SoN0g7i31Kj9.AoAyvDm9C6lDMvVD"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "13.351",
+    "createdTime": 1712878359536,
+    "modifiedTime": 1773735828338,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "f3h3SoN0g7i31Kj9",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!f3h3SoN0g7i31Kj9"
+}
