@@ -12,23 +12,170 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend 1 Inventory Point. If you do, the attacker suffers 10 <strong>physical</strong> damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p><hr><ul><li><p><strong>You Lose:</strong> @LOSS[1 ip]</p></li><li><p><strong>Target Suffers: </strong>@DMG[10 physical], @DMG[15 physical], or @DMG[20 physical]</p></li></ul>",
+      "description": "<p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend 1 Inventory Point. If you do, the attacker suffers 10 <strong>physical</strong> damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[1 ip]<br /><strong>Target Suffers: </strong>@DMG[&amp;step(10,15,20) physical]{Physical Damage}</p>",
       "complex": false
     },
     "source": "FUTF168",
     "fuid": "counterstrike-module"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Counterstrike Module",
+      "img": "icons/skills/melee/swords-parry-block-blue.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.zhzy9ZWLUwZc0BKg",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "6eLQopYArtV6a3n8": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "vFi9zDbDIhZ1wfCv",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "6eLQopYArtV6a3n8",
+              "predicates": {
+                "QsrCtO5y8McEShK8": {
+                  "type": "weaponRulePredicate",
+                  "_id": "QsrCtO5y8McEShK8",
+                  "weaponType": "ranged",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "xv7TYZVFCDbGobXz": {
+                  "type": "messageRuleAction",
+                  "_id": "xv7TYZVFCDbGobXz",
+                  "message": "<p>If the attack hit, you may damage the attacker.</p>"
+                }
+              },
+              "selector": "self"
+            },
+            "Y4ov0jZqwFksN0BO": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "fNcrEZTgzETGRvml",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "Y4ov0jZqwFksN0BO",
+              "predicates": {
+                "jH5PcqqMu2MsxPhW": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "jH5PcqqMu2MsxPhW",
+                  "relation": "ally"
+                },
+                "IWjdYAjlXcZs1dSU": {
+                  "type": "targetEffectRulePredicate",
+                  "_id": "IWjdYAjlXcZs1dSU",
+                  "effect": "effect-passenger"
+                },
+                "Jfq81Gn5zmGWfe0G": {
+                  "type": "weaponRulePredicate",
+                  "_id": "Jfq81Gn5zmGWfe0G",
+                  "weaponType": "ranged",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "YnaNPzSJyx5eOwIC": {
+                  "type": "messageRuleAction",
+                  "_id": "YnaNPzSJyx5eOwIC",
+                  "message": "<p>If the attack hit, you may damage the attacker.</p>"
+                }
+              },
+              "selector": "self"
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "PazRiCWtrHFBxEwq",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend 1 Inventory Point. If you do, the attacker suffers 10 <strong>physical</strong> damage. This amount increases by 5 damage if <strong>level 20</strong>, or by 10 damage if <strong>level 40</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Counterstrike Module",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.zhzy9ZWLUwZc0BKg",
+            "effectUuid": null,
+            "fuid": "counterstrike-module"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773721672375,
+        "modifiedTime": 1773725089031,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!zhzy9ZWLUwZc0BKg.PazRiCWtrHFBxEwq"
+    }
+  ],
   "flags": {
     "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1711477001797,
-    "modifiedTime": 1743171698428,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1773733230592,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

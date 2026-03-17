@@ -1,0 +1,117 @@
+{
+  "folder": "9TI1Ne5OR4LRpyjf",
+  "name": "Effect: Expanded Plating Module (Standard)",
+  "type": "effect",
+  "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+  "system": {
+    "fuid": "effect-expanded-plating-module-standard",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Expanded Plating Module (Standard)",
+      "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.MRgCwdo20vDJm2mO",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "b4vzNvXLCvNTndGK",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 4,
+          "value": "11",
+          "priority": null
+        },
+        {
+          "key": "system.derived.mdef.value",
+          "mode": 4,
+          "value": "10",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you are a passenger of a <strong>personal vehicle</strong> with the <strong>expanded plating module</strong> enabled, you may treat your Defense and Magic Defense scores as being equal to those provided by the <strong>Standard Plating module</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Expanded Plating Module (Standard)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.MRgCwdo20vDJm2mO",
+            "effectUuid": null,
+            "fuid": "effect-expanded-plating-module-standard"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1773722606983,
+        "modifiedTime": 1773722677653,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!MRgCwdo20vDJm2mO.b4vzNvXLCvNTndGK"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1773722222499,
+    "modifiedTime": 1773722334139,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "_id": "MRgCwdo20vDJm2mO",
+  "sort": 200000,
+  "_key": "!items!MRgCwdo20vDJm2mO"
+}
