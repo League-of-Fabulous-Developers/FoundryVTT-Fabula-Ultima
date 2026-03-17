@@ -66,6 +66,12 @@ const { api, fields, handlebars } = foundry.applications;
  */
 
 /**
+ * @typedef FUDialogContentSection
+ * @property {String} title
+ * @property {String} text
+ */
+
+/**
  * @remarks Helper usage examples can also be found here: https://foundryvtt.wiki/en/development/api/helpers
  */
 export default class FoundryUtils {

@@ -9,6 +9,7 @@ import FoundryUtils from '../../../../helpers/foundry-utils.mjs';
  * @extends ClassFeatureDataModel
  * @property {string} domains
  * @property {string} merge
+ * @property {string} pulse
  * @property {string} dismiss
  */
 export class ArcanumDataModel extends RollableClassFeatureDataModel {
@@ -17,6 +18,7 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		return {
 			domains: new StringField(),
 			merge: new HTMLField(),
+			pulse: new HTMLField(),
 			dismiss: new HTMLField(),
 		};
 	}
@@ -48,6 +50,7 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		return {
 			enrichedMerge: await TextEditor.enrichHTML(model.merge),
 			enrichedDismiss: await TextEditor.enrichHTML(model.dismiss),
+			enrichedPulse: await TextEditor.enrichHTML(model.pulse),
 			active: itemId === actorArcanumId,
 		};
 	}
@@ -60,6 +63,7 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		const data = {
 			domains: model.domains,
 			merge: await TextEditor.enrichHTML(model.merge),
+			pulse: await TextEditor.enrichHTML(model.pulse),
 			dismiss: await TextEditor.enrichHTML(model.dismiss),
 		};
 

@@ -1,0 +1,10 @@
+<div class="grid">
+	{{#each sections as |section|}}
+		{{#if section.text}}
+			<fieldset class="title-fieldset section-container desc resource-content">
+				<legend class="resource-label-m">{{localize section.title}}</legend>
+				{{{section.text}}}
+			</fieldset>
+		{{/if}}
+	{{/each}}
+</div>

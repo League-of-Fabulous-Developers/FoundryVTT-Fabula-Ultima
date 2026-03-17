@@ -9,6 +9,14 @@
         {{{merge}}}
     </details>
 </div>
+{{#if (pfuGetSetting 'optionArcanumPulse')}}
+	<div class='chat-desc'>
+		<details {{#unless collapseDescriptions}}open{{/unless}}>
+			<summary class="collapsible-description align-center">{{localize 'FU-PT.arcanum2.pulse'}}</summary>
+			{{{pulse}}}
+		</details>
+	</div>
+{{/if}}
 <div class='chat-desc'>
     <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureArcanumDismiss'}}</summary>

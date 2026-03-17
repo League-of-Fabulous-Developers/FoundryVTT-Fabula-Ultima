@@ -70,6 +70,7 @@ export const SETTINGS = Object.freeze({
 	optionCampingRules: 'optionCampingRules',
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
+	optionArcanumPulse: 'optionArcanumPulse',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	technospheres: 'useTechnospheres',
 	pressureSystem: 'pressureSystem',
@@ -308,6 +309,7 @@ export const registerSystemSettings = async function () {
 		type: createConfigurationApp('FU.OptionalRules', [
 			SETTINGS.optionQuirks,
 			SETTINGS.optionZeroPower,
+			SETTINGS.optionArcanumPulse,
 			SETTINGS.optionCampingRules,
 			SETTINGS.useRevisedStudyRule,
 			SETTINGS.technospheres,
@@ -371,6 +373,16 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.pressureSystem, {
 		name: game.i18n.localize('FU.OptionPressureSystem'),
 		hint: game.i18n.localize('FU.OptionPressureSystemHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionArcanumPulse, {
+		name: game.i18n.localize('FU.OptionArcanumPulse'),
+		hint: game.i18n.localize('FU.OptionArcanumPulseHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,

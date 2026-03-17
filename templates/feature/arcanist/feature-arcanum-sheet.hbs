@@ -4,13 +4,23 @@
 		<input type='text' name='system.data.domains' value='{{system.data.domains}}'
 			   class="resource-inputs select-dropdown-full resource-text-m" />
 	</fieldset>
-	<div class="grid grid-2col gap-5 border-rc flexgrow-1">
+	<div class="grid grid-3col gap-5 border-rc flexgrow-1">
 		<fieldset class="title-fieldset section-container desc resource-content">
 			<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</legend>
 			<prose-mirror name="system.data.merge" value="{{system.data.merge}}" toggled>
 				{{{enrichedHtml.merge}}}
 			</prose-mirror>
 		</fieldset>
+
+		{{#if (pfuGetSetting 'optionArcanumPulse')}}
+			<fieldset class="title-fieldset section-container desc resource-content">
+				<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumPulse'}}</legend>
+				<prose-mirror name="system.data.pulse" value="{{system.data.pulse}}" toggled>
+					{{{enrichedHtml.pulse}}}
+				</prose-mirror>
+			</fieldset>
+		{{/if}}
+
 		<fieldset class="title-fieldset section-container desc resource-content">
 			<legend class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDismiss'}}</legend>
 			<prose-mirror name="system.data.dismiss" value="{{system.data.dismiss}}" toggled>

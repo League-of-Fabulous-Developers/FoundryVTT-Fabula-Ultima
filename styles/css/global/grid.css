@@ -1,4 +1,11 @@
 /* Grid System */
+.grid {
+	/* if only one child, make it full width */
+	> *:only-child {
+		grid-column: 1 / -1;
+	}
+}
+
 .grid,
 .grid-2col {
 	display: grid;

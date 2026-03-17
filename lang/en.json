@@ -856,9 +856,11 @@
 		"ClassFeatureArcanumHint": "Arcanum",
 		"ClassFeatureArcanumDomains": "Domains",
 		"ClassFeatureArcanumMerge": "Merge Benefits",
+		"ClassFeatureArcanumPulse": "Pulse Effect",
 		"ClassFeatureArcanumDismiss": "Dismiss Effect",
 		"ClassFeatureArcanumSummonMessage": "The arcanum has been <strong>merged with.</strong>",
 		"ClassFeatureArcanumDismissMessage": "The arcanum has been <strong>dismissed.</strong>",
+		"ClassFeatureArcanumPulseMessage": "The arcanum's <strong>pulse effect</strong> has been unleashed.",
 		"ClassFeatureKey": "Key",
 		"ClassFeatureKeyDamageType": "Damage type",
 		"ClassFeatureKeyStatus": "Status Effect",
@@ -1924,6 +1926,8 @@
 		"Used": "Used",
 		"Points": "Points",
 		"NPCSkills": "NPC Skills",
-		"SpecialAttacks": "Special Attacks"
+		"SpecialAttacks": "Special Attacks",
+		"OptionArcanumPulse": "Arcanum Pulse",
+		"OptionArcanumPulseHint": "Whether to add pulses to arcanums as per the playtest materials."
 	}
 }

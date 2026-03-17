@@ -14,6 +14,7 @@ import { FeatureTraits } from './traits.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
+import { getSystemSetting, SETTINGS } from '../settings.js';
 
 /**
  * @desc An application used for specific class features.
@@ -39,16 +40,21 @@ async function handleArcanum(actor, item) {
 	const currentArcanumId = actor.system.equipped.arcanum;
 	const currentArcanum = actor.items.get(currentArcanumId);
 
-	// TODO: Pass in render data, check over summon branch
-	// Dismiss
+	// Dismiss/Pulse
 	if (currentArcanum) {
 		/** @type ArcanumDataModel **/
 		const currentArcanumData = currentArcanum.system.data;
-		const choice = await FoundryUtils.promptItemChoice({
-			title: `${title}: ${StringUtils.localize('FU.ClassFeatureArcanumDismiss')}`,
-			actor: actor,
-			item: currentArcanum,
-			description: currentArcanumData.dismiss,
+		/** @type FUDialogContentSection[] **/
+		let sections = [
+			{
+				title: `FU.ClassFeatureArcanumDismiss`,
+				text: await FoundryUtils.enrichText(currentArcanumData.dismiss, {
+					relativeTo: actor,
+				}),
+			},
+		];
+		const dialogData = {
+			title: title,
 			buttons: [
 				{
 					action: 'dismiss',
@@ -57,7 +63,29 @@ async function handleArcanum(actor, item) {
 					primary: true,
 				},
 			],
+		};
+
+		// OPTIONAL: Pulse
+		if (getSystemSetting(SETTINGS.optionArcanumPulse) && currentArcanumData.pulse) {
+			sections.push({
+				title: `FU.ClassFeatureArcanumPulse`,
+				text: await FoundryUtils.enrichText(currentArcanumData.pulse, {
+					relativeTo: actor,
+				}),
+			});
+			dialogData.buttons.push({
+				action: 'pulse',
+				label: `FU.ClassFeatureArcanumPulse`,
+				icon: 'fas fa-burst',
+				primary: false,
+			});
+		}
+
+		dialogData.content = await FoundryUtils.renderTemplate('dialog/dialog-layout', {
+			sections: sections,
 		});
+		const choice = await FoundryUtils.promptActionChoice(dialogData);
+
 		if (choice === 'dismiss') {
 			await actor.update({
 				'system.equipped.arcanum': null,
@@ -75,6 +103,22 @@ async function handleArcanum(actor, item) {
 			});
 			CommonSections.content(renderData.sections, content, CHECK_DETAILS);
 			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumDismiss], renderData);
+			const builder = new FUChatBuilder(actor, item).withData(renderData);
+			await builder.create();
+		} else if (choice === 'pulse') {
+			/** @type {FURenderData} **/
+			const renderData = {
+				sections: [],
+				postRenderActions: [],
+			};
+			CommonSections.itemFlavor(renderData.sections, currentArcanum);
+			const content = await FoundryUtils.renderTemplate('feature/arcanist/feature-arcanum-chat-message-v2', {
+				item: currentArcanum,
+				message: 'FU.ClassFeatureArcanumPulseMessage',
+				details: currentArcanumData.pulse,
+			});
+			CommonSections.content(renderData.sections, content, CHECK_DETAILS);
+			await CommonEvents.feature(actor, item, [FeatureTraits.ArcanumPulse], renderData);
 			const builder = new FUChatBuilder(actor, item).withData(renderData);
 			await builder.create();
 		}
