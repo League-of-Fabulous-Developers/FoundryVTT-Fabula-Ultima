@@ -318,7 +318,7 @@ export default class FoundryUtils {
 						subtitle: title,
 						item: item,
 					});
-					const speaker = ChatMessage.getSpeaker({ actor });
+					const speaker = FoundryUtils.resolveSpeaker(actor);
 					const chatMessage = {
 						speaker: speaker,
 						flavor: flavor,
@@ -483,6 +483,21 @@ export default class FoundryUtils {
 	static safeClone(data) {
 		if (data?.toObject instanceof Function) return data.toObject();
 		return foundry.utils.deepClone(data);
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns {*}
+	 */
+	static resolveSpeaker(actor) {
+		let speaker = ChatMessage.getSpeaker({ actor });
+		if (speaker.scene && speaker.token) {
+			const token = game.scenes.get(speaker.scene)?.tokens?.get(speaker.token);
+			if (token) {
+				speaker = ChatMessage.getSpeaker({ token });
+			}
+		}
+		return speaker;
 	}
 
 	/**
