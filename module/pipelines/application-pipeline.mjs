@@ -44,26 +44,18 @@ async function handleArcanum(actor, item) {
 	if (currentArcanum) {
 		/** @type ArcanumDataModel **/
 		const currentArcanumData = currentArcanum.system.data;
+
 		/** @type FUDialogContentSection[] **/
-		let sections = [
-			{
-				title: `FU.ClassFeatureArcanumDismiss`,
-				text: await FoundryUtils.enrichText(currentArcanumData.dismiss, {
-					relativeTo: actor,
-				}),
-			},
-		];
-		const dialogData = {
-			title: title,
-			buttons: [
-				{
-					action: 'dismiss',
-					label: `FU.ClassFeatureArcanumDismiss`,
-					icon: 'fas fa-bolt',
-					primary: true,
-				},
-			],
-		};
+		let sections = [];
+		let buttons = [];
+
+		// FOR REFERENCE: Merge
+		sections.push({
+			title: `FU.ClassFeatureArcanumMerge`,
+			text: await FoundryUtils.enrichText(currentArcanumData.merge, {
+				relativeTo: actor,
+			}),
+		});
 
 		// OPTIONAL: Pulse
 		if (getSystemSetting(SETTINGS.optionArcanumPulse) && currentArcanumData.pulse) {
@@ -73,7 +65,7 @@ async function handleArcanum(actor, item) {
 					relativeTo: actor,
 				}),
 			});
-			dialogData.buttons.push({
+			buttons.push({
 				action: 'pulse',
 				label: `FU.ClassFeatureArcanumPulse`,
 				icon: 'fas fa-burst',
@@ -81,10 +73,27 @@ async function handleArcanum(actor, item) {
 			});
 		}
 
-		dialogData.content = await FoundryUtils.renderTemplate('dialog/dialog-layout', {
-			sections: sections,
+		// ALWAYS: DISMISS
+		buttons.push({
+			action: 'dismiss',
+			label: `FU.ClassFeatureArcanumDismiss`,
+			icon: 'fas fa-bolt',
+			primary: true,
 		});
-		const choice = await FoundryUtils.promptActionChoice(dialogData);
+		sections.push({
+			title: `FU.ClassFeatureArcanumDismiss`,
+			text: await FoundryUtils.enrichText(currentArcanumData.dismiss, {
+				relativeTo: actor,
+			}),
+		});
+
+		const dialogData = {
+			title: `${title} - ${currentArcanum.name}`,
+			buttons: buttons,
+			sections: sections,
+		};
+
+		const choice = await FoundryUtils.promptChoiceSections(dialogData);
 
 		if (choice === 'dismiss') {
 			await actor.update({

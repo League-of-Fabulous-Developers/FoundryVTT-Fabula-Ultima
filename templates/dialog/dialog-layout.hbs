@@ -1,8 +1,13 @@
-<div class="grid">
+<div class="flexrow">
 	{{#each sections as |section|}}
 		{{#if section.text}}
 			<fieldset class="title-fieldset section-container desc resource-content">
-				<legend class="resource-label-m">{{localize section.title}}</legend>
+				<legend class="resource-label-m" style="gap: 4px;">
+					{{localize section.title}}
+					<a data-action="sendToChat" data-title="{{section.title}}" data-text="{{section.text}}">
+						<i class="fas fas fa-comment"></i>
+					</a>
+				</legend>
 				{{{section.text}}}
 			</fieldset>
 		{{/if}}

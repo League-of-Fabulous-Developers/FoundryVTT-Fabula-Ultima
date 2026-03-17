@@ -287,6 +287,45 @@ export default class FoundryUtils {
 	}
 
 	/**
+	 * @param {Object} options
+	 * @param {string} options.title
+	 * @param {FUDialogContentSection[]} options.sections
+	 * @param {DialogV2Button[]} options.buttons
+	 * @returns {Promise<string|null>}
+	 */
+	static async promptChoiceSections({ title, sections, buttons }) {
+		const result = await foundry.applications.api.DialogV2.wait({
+			window: {
+				title,
+				icon: 'fas fa-square-up-right',
+				resizable: true,
+			},
+			position: {
+				width: 225 * sections.length,
+			},
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			content: await FoundryUtils.renderTemplate('dialog/dialog-layout', {
+				sections: sections,
+			}),
+			buttons,
+			actions: {
+				sendToChat: async (event, dialog) => {
+					const text = dialog.dataset.text;
+					const title = dialog.dataset.title;
+					const chatMessage = {
+						content: await FoundryUtils.renderTemplate('chat/chat-description', {
+							flavor: StringUtils.localize(title),
+							description: text,
+						}),
+					};
+					return ChatMessage.create(chatMessage);
+				},
+			},
+		});
+		return result ?? null;
+	}
+
+	/**
 	 * @param {String} title
 	 * @param {FUActor} actor
 	 * @param {FUItem} item
