@@ -207,9 +207,11 @@
 					align-content: center;
 					background: linear-gradient(to right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08) 60%, transparent 100%);
 					text-align: left;
-					border-left: 20px solid;
+					border-left: 32px solid;
 					padding-left: 8px;
 					border-color: var(--pfu-color-app-clock-border);
+					position: relative;
+					border-radius: 8px;
 
 					i {
 						display: none;
@@ -224,6 +226,16 @@
 						i {
 							color: var(--pfu-color-control-active-content);
 							filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+						}
+
+						:before {
+							content: '';
+							display: block;
+							position: absolute;
+							left: -1.65em;
+							width: 2em;
+							height: 2.5em;
+							background: var(--icon-fu--pointer) no-repeat center / contain;
 						}
 					}
 
@@ -242,18 +254,28 @@
 
 		.widgets {
 			height: 150px;
+			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
 			gap: 3rem;
+			background: linear-gradient(to top, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08) 40%, transparent 100%);
+			padding: 0 1rem;
+
+			.tracks {
+				flex: 1;
+			}
 
 			.actions {
 				flex-direction: row;
+				padding: 0 3rem;
 			}
 
 			.resources {
 				flex-direction: row;
 				gap: 1rem;
+				flex: 1;
+				justify-content: center;
 			}
 		}
 	}
