@@ -1,29 +1,5 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { StringUtils } from '../module/helpers/string-utils.mjs'; // adjust path as needed
-
-// ============================================================================
-// Minimal mocks for localize / hasLocalization only
-// ============================================================================
-
-beforeEach(() => {
-	globalThis.game = {
-		i18n: {
-			localize: vi.fn((key) => `localized:${key}`),
-			format: vi.fn((key, data) => `formatted:${key}`),
-			translations: { 'FU.ExistingKey': 'Existing' },
-			_fallback: { 'FU.FallbackKey': 'Fallback' },
-		},
-	};
-	globalThis.foundry = {
-		utils: {
-			hasProperty: vi.fn((obj, key) => key.split('.').reduce((o, k) => o?.[k], obj) !== undefined),
-		},
-	};
-});
-
-// ============================================================================
-// kebabToPascal
-// ============================================================================
+import { describe, it, expect } from 'vitest';
+import { StringUtils } from '../module/helpers/string-utils.mjs';
 
 describe('kebabToPascal', () => {
 	it('converts a single word', () => {
@@ -42,10 +18,6 @@ describe('kebabToPascal', () => {
 		expect(StringUtils.kebabToPascal('')).toBe('');
 	});
 });
-
-// ============================================================================
-// camelToKebab
-// ============================================================================
 
 describe('camelToKebab', () => {
 	it('converts camelCase to kebab-case', () => {
@@ -69,10 +41,6 @@ describe('camelToKebab', () => {
 	});
 });
 
-// ============================================================================
-// titleToKebab
-// ============================================================================
-
 describe('titleToKebab', () => {
 	it('converts Title Case to kebab-case', () => {
 		expect(StringUtils.titleToKebab('Hello World')).toBe('hello-world');
@@ -94,10 +62,6 @@ describe('titleToKebab', () => {
 		expect(StringUtils.titleToKebab('')).toBe('');
 	});
 });
-
-// ============================================================================
-// capitalize
-// ============================================================================
 
 describe('capitalize', () => {
 	it('capitalizes first letter and lowercases rest', () => {
@@ -121,10 +85,6 @@ describe('capitalize', () => {
 		expect(StringUtils.capitalize('')).toBe('');
 	});
 });
-
-// ============================================================================
-// truncate
-// ============================================================================
 
 describe('truncate', () => {
 	it('returns the string unchanged if within maxLength', () => {
@@ -152,10 +112,6 @@ describe('truncate', () => {
 		expect(StringUtils.truncate('', 5)).toBe('');
 	});
 });
-
-// ============================================================================
-// toBase64 / fromBase64
-// ============================================================================
 
 describe('toBase64 / fromBase64', () => {
 	it('encodes and decodes a plain object', () => {
