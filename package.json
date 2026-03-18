@@ -12,7 +12,8 @@
 		"c2j": "node ./tools/csvtojson/convert-csv-to-json.mjs && prettier --write .",
 		"j2c": "node ./tools/jsontocsv/convert-json-to-csv.mjs && prettier --write .",
 		"localize": "npm run downloadcsv && npm run c2j",
-		"prepare": "husky"
+		"prepare": "husky",
+		"test": "vitest run"
 	},
 	"browserslist": [
 		"last 3 versions"
@@ -32,6 +33,7 @@
 		"globals": "16.4.0",
 		"husky": "9.1.7",
 		"papaparse": "5.5.3",
-		"prettier": "3.6.2"
+		"prettier": "3.6.2",
+		"vitest": "^4.1.0"
 	}
 }
