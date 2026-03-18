@@ -435,7 +435,9 @@ function appendIcon(anchor, ...classes) {
  */
 function appendSystemIcon(anchor, name) {
 	const className = FU.allIcon[name];
-	return appendIcon(anchor, className);
+	if (className) {
+		return appendIcon(anchor, className);
+	}
 }
 
 /**

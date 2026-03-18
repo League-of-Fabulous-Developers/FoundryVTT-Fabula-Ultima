@@ -1,9 +1,9 @@
-import { InlineHelper } from './inline-helper.mjs';
-import { FU } from './config.mjs';
-import { getSelected, targetHandler } from './target-handler.mjs';
-import { ActionHandler } from './action-handler.mjs';
-import { StringUtils } from './string-utils.mjs';
-import { HTMLUtils } from './html-utils.mjs';
+import { InlineHelper } from '../helpers/inline-helper.mjs';
+import { FU } from '../helpers/config.mjs';
+import { getSelected, targetHandler } from '../helpers/target-handler.mjs';
+import { ActionHandler } from '../helpers/action-handler.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 const className = `inline-type`;

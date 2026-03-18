@@ -1,11 +1,11 @@
-import { FU } from './config.mjs';
-import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
-import { targetHandler } from './target-handler.mjs';
+import { FU } from '../helpers/config.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { targetHandler } from '../helpers/target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { InlineEffects } from './inline-effects.mjs';
-import { StringUtils } from './string-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const INLINE_TYPE = 'InlineType';
 const className = `inline-type`;

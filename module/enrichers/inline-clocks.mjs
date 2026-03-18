@@ -1,10 +1,10 @@
-import { InlineHelper } from './inline-helper.mjs';
-import { StringUtils } from './string-utils.mjs';
+import { InlineHelper } from '../helpers/inline-helper.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
-import { targetHandler } from './target-handler.mjs';
+import { targetHandler } from '../helpers/target-handler.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { FUCombat } from '../ui/combat.mjs';
-import { systemAssetPath } from './system-utils.mjs';
+import { systemAssetPath } from '../helpers/system-utils.mjs';
 
 /**
  * @typedef InlineClockDataset

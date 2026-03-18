@@ -1,5 +1,5 @@
 import { FU } from './config.mjs';
-import { InlineEffects } from './inline-effects.mjs';
+import { InlineEffects } from '../enrichers/inline-effects.mjs';
 
 async function promptDamageDialog(state, dispatch, view) {
 	const result = await foundry.applications.api.DialogV2.prompt({
