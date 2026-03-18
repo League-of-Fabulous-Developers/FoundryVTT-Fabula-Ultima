@@ -476,37 +476,6 @@ function propertyPattern(identifier, key, value) {
 
 const documentPropertyGroup = [propertyPattern('document', 'document', '[\\w.-]+'), propertyPattern('propertyPath', 'propertyPath', '[\\w.-]+'), propertyPattern('index', 'index', '\\d')];
 
-/**
- * @param {FUItem} item
- * @returns {string}
- */
-function resolveItemGroup(item) {
-	let source;
-	if (item) {
-		/** @type ItemType **/
-		switch (item.type) {
-			case 'spell':
-				source = 'spell';
-				break;
-			case 'basic':
-			case 'weapon':
-			case 'customWeapon':
-				source = 'attack';
-				break;
-			case 'skill':
-			case 'optionalFeature':
-			case 'classFeature':
-			case 'miscAbility':
-				source = 'skill';
-				break;
-			case 'consumable':
-				source = 'item';
-				break;
-		}
-	}
-	return source;
-}
-
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
@@ -520,5 +489,4 @@ export const InlineHelper = {
 	resolveDocument,
 	getRenderContext,
 	documentPropertyGroup,
-	resolveItemGroup,
 };

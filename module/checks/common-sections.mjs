@@ -7,7 +7,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { SETTINGS } from '../settings.js';
 import { CommonEvents } from './common-events.mjs';
 import { DamagePipeline } from '../pipelines/damage-pipeline.mjs';
@@ -18,6 +18,7 @@ import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
  * @param {CheckSectionRenderData} sections
@@ -526,7 +527,7 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
 		resource: updateData.type,
 		amount: updateData.total,
 		traits: [],
-		source: InlineHelper.resolveItemGroup(item),
+		source: ItemUtils.resolveItemGroup(item),
 	};
 
 	// Allow modification of the amount
