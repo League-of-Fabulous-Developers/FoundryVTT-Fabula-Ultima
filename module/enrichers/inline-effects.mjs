@@ -1,7 +1,7 @@
 import { statusEffects } from '../documents/effects/statuses.mjs';
 import { Effects, disableStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from '../helpers/target-handler.mjs';
-import { InlineEffectConfiguration } from '../helpers/inline-effect-configuration.mjs';
+import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { systemId } from '../helpers/system-utils.mjs';
