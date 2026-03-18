@@ -1,6 +1,6 @@
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
-import { Role } from '../../../helpers/roles.mjs';
+import { Role } from './roles.mjs';
 import { EquipmentHandler } from '../../../helpers/equipment-handler.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { BaseCharacterDataModel } from '../common/base-character-data-model.mjs';

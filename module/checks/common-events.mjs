@@ -1,9 +1,10 @@
 import { FUHooks } from '../hooks.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CharacterInfo } from '../helpers/character-info.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { AsyncHooks } from '../helpers/async-hooks.mjs';
+import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
  * @typedef ItemReference
@@ -92,7 +93,7 @@ async function damage(type, affinity, amount, traits, sourceActor, targetActor, 
 	const source = CharacterInfo.fromActor(sourceActor);
 	const target = CharacterInfo.fromActor(targetActor);
 	const item = sourceInfo.resolveItem();
-	const damageSource = InlineHelper.resolveItemGroup(item);
+	const damageSource = ItemUtils.resolveItemGroup(item);
 
 	/** @type DamageEvent  **/
 	const damageEvent = {
@@ -124,7 +125,7 @@ async function damage(type, affinity, amount, traits, sourceActor, targetActor, 
  */
 
 function calculateDamage(actor, item, config) {
-	const damageSource = InlineHelper.resolveItemGroup(item);
+	const damageSource = ItemUtils.resolveItemGroup(item);
 	const targets = config.getTargets();
 	const event = {
 		source: CharacterInfo.fromActor(actor),
@@ -567,7 +568,7 @@ function performCheck(check, actor, item) {
 		check: check,
 		source: source,
 		item: item,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
 		targets: targets,
 	};
@@ -596,7 +597,7 @@ function resolveCheck(check, actor, item) {
 		check: check,
 		source: source,
 		item: item,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 		sourceInfo: sourceInfo,
 		targets: CharacterInfo.fromTargetData(targets),
 	};
@@ -630,7 +631,7 @@ async function renderCheck(renderData, config, actor, item) {
 		config: config,
 		targets: CharacterInfo.fromTargetData(config.getTargets()),
 		item: item,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 	};
 	return AsyncHooks.callSequential(FUHooks.RENDER_CHECK_EVENT, event);
 }
@@ -655,7 +656,7 @@ async function initializeCheck(configuration, actor, item) {
 		source: source,
 		targets: CharacterInfo.fromTargetData(configuration.getTargets()),
 		sourceInfo: sourceInfo,
-		itemGroup: InlineHelper.resolveItemGroup(item),
+		itemGroup: ItemUtils.resolveItemGroup(item),
 	};
 	return AsyncHooks.callSequential(FUHooks.INITIALIZE_CHECK_EVENT, event);
 }

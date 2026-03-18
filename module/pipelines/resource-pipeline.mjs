@@ -1,6 +1,6 @@
 import { Pipeline, PipelineRequest } from './pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
@@ -14,6 +14,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
+import { ItemUtils } from '../helpers/item-utils.mjs';
 
 /**
  * @class
@@ -377,7 +378,7 @@ async function process(request) {
  * @return {Promise<ResourceExpense>}
  */
 async function calculateExpense(cost, actor, item, targets) {
-	const itemGroup = InlineHelper.resolveItemGroup(item);
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 	if (!cost.amount) {
 		return {
 			resource: cost.resource,
