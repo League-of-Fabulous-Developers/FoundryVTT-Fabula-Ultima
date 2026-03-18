@@ -8,6 +8,20 @@
 	</label>
 
 	<label class="fu-form__property">
+		<span>{{localize 'FU.Quantifier'}}</span>
+		<select name="{{pfuConcat path ".quantifier"}}" class="">
+			{{selectOptions options.predicateQuantifier selected=predicate.quantifier localize=true}}
+		</select>
+	</label>
+</div>
+
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Result'}}</span>
+		<input type="number" name="{{pfuConcat path ".result"}}" value="{{ predicate.result }}" />
+	</label>
+
+	<label class="fu-form__property">
 		<span>{{localize 'FU.CheckParity'}}</span>
 		<select name="{{pfuConcat path ".parity"}}">
 			<option value="">-</option>
@@ -15,11 +29,6 @@
 		</select>
 	</label>
 </div>
-
-<label class="fu-form__property">
-	<span>{{localize 'FU.Result'}}</span>
-	<input type="number" name="{{pfuConcat path ".result"}}" value="{{ predicate.result }}" />
-</label>
 
 <div class="grid grid-2col">
 	<div class="flexcol flex-group-center">

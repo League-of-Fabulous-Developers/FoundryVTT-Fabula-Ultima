@@ -11,6 +11,7 @@ const fields = foundry.data.fields;
  * @property {FUCheckOutcome} outcome
  * @property {ItemAttributesDataModel} attributes
  * @property {Number} result A specific result of the check.
+ * @property {FUPredicateQuantifier} quantifier
  */
 export class CheckRulePredicate extends RulePredicateDataModel {
 	static {
@@ -31,6 +32,11 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 			outcome: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.checkOutcome) }),
 			attributes: new fields.EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: '' }, secondary: { value: '' } } }),
 			result: new fields.NumberField({ integer: true }),
+			quantifier: new fields.StringField({
+				initial: 'any',
+				blank: true,
+				choices: Object.keys(FU.predicateQuantifier),
+			}),
 		});
 	}
 
@@ -82,21 +88,33 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 					break;
 
 				default:
-					if (context.config.isFumble()) {
-						return false;
-					}
-					for (const target of context.config.getTargets()) {
-						switch (target.result) {
-							case 'hit':
-								if (this.outcome !== 'success') {
+					{
+						if (context.config.isFumble()) {
+							return false;
+						}
+
+						const selected = context.config.getTargets();
+						switch (this.quantifier) {
+							case 'all':
+								return selected.every((target) => {
+									if (target.result === 'hit') return this.outcome === 'success';
+									if (target.result === 'miss') return this.outcome === 'failure';
+									return true;
+								});
+
+							case 'any':
+								return selected.some((target) => {
+									if (target.result === 'hit') return this.outcome === 'success';
+									if (target.result === 'miss') return this.outcome === 'failure';
 									return false;
-								}
-								break;
-							case 'miss':
-								if (this.outcome !== 'failure') {
-									return false;
-								}
-								break;
+								});
+
+							case 'none':
+								return selected.every((target) => {
+									if (target.result === 'hit') return this.outcome !== 'success';
+									if (target.result === 'miss') return this.outcome !== 'failure';
+									return true;
+								});
 						}
 					}
 					break;

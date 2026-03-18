@@ -81,7 +81,7 @@
 			</span>
 		</legend>
 
-		<div class="rule-element-forms flexcol">
+		<div class="flexcol">
 			{{#each system.rules.elements as |element|}}
 				{{> (lookup (lookup (lookup element "schema") "model") "template") path=(concat "system.rules.elements." element.id) element=element options=../options expanded=(lookup ../expandedRuleElements id)}}
 			{{/each}}
