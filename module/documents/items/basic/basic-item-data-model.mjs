@@ -81,6 +81,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {number} cost.value
  * @property {string} quality.value
  * @property {string} source.value
+ * @property {Set<String>} traits
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
 export class BasicItemDataModel extends FUStandardItemDataModel {

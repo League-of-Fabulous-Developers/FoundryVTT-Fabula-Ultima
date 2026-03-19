@@ -8,6 +8,7 @@ import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs'
 import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import { WeaponBehaviourMixin } from '../../weapon/weapon-behaviour-mixin.mjs';
+import { Traits } from '../../../../pipelines/traits.mjs';
 
 const weaponModuleTypes = {
 	...FU.weaponTypes,
@@ -23,10 +24,10 @@ const weaponModuleTypes = {
 const prepareCheck = (check, actor, item, registerCallback) => {
 	if (check.type === 'accuracy' && item.system instanceof ClassFeatureTypeDataModel && item.system.data instanceof WeaponModuleDataModel) {
 		/** @type WeaponModuleDataModel */
-		const module = item.system.data;
-		check.primary = module.accuracy.attr1;
-		check.secondary = module.accuracy.attr2;
-		const baseAccuracy = module.accuracy.modifier;
+		const weapon = item.system.data;
+		check.primary = weapon.accuracy.attr1;
+		check.secondary = weapon.accuracy.attr2;
+		const baseAccuracy = weapon.accuracy.modifier;
 		if (baseAccuracy) {
 			check.modifiers.push({
 				label: 'FU.AccuracyCheckBaseAccuracy',
@@ -34,14 +35,18 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			});
 		}
 
-		const configurer = CheckConfiguration.configure(check);
-		configurer.setDamage(module.damage.type, module.damage.bonus);
-		configurer.setWeaponTraits({
-			weaponType: module.type,
-			weaponCategory: module.category,
-		});
-		configurer.setTargetedDefense(module.accuracy.defense);
-		configurer.setDamageOverride(actor, 'attack');
+		CheckConfiguration.configure(check)
+			.setDamage(weapon.damage.type, weapon.damage.bonus)
+			.setWeaponTraits({
+				weaponType: weapon.type,
+				weaponCategory: weapon.category,
+				handedness: weapon.handedness,
+			})
+			.addTraits(Traits.Damage)
+			.addTraits(weapon.damage.type)
+			.addTraitsFromItemModel(weapon.traits)
+			.setTargetedDefense(weapon.accuracy.defense)
+			.setDamageOverride(actor, 'attack');
 	}
 };
 
@@ -58,7 +63,7 @@ const onRenderCheck = (data, result, actor, item) => {
 			data: {
 				weapon: {
 					category: weaponModule.category,
-					hands: 'one-handed',
+					hands: weaponModule.handedness,
 					type: weaponModule.type,
 					quality: weaponModule.quality,
 					summary: item.system.summary.value,
@@ -133,6 +138,13 @@ export class WeaponModuleDataModel extends WeaponBehaviourMixin(RollableClassFea
 
 	static get translation() {
 		return 'FU.ClassFeatureWeaponModule';
+	}
+
+	/**
+	 * @returns {Handedness}
+	 */
+	get handedness() {
+		return 'one-handed';
 	}
 
 	static async getAdditionalData(model) {

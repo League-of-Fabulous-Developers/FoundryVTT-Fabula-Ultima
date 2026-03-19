@@ -2,7 +2,7 @@ import { FU, systemPath } from '../helpers/config.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { targetHandler } from '../helpers/target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
-import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
+import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 import { WeaponDataModel } from '../documents/items/weapon/weapon-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../documents/items/classFeature/class-feature-type-data-model.mjs';
@@ -139,7 +139,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 	if (actor.system instanceof CharacterDataModel) {
 		const source = sourceInfo.resolve();
-		const weapon = await ChooseWeaponDialog.prompt(actor, true);
+		const weapon = await WeaponResolver.prompt(actor, true);
 		if (!weapon) {
 			ui.notifications.error('FU.AbilityNoWeaponEquipped', { localize: true });
 			return;

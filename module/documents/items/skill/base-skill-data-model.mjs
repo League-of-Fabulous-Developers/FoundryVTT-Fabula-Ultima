@@ -11,10 +11,8 @@ import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { Traits } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
-import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
+import { WeaponResolver } from './weapon-resolver.mjs';
 import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
-import { BasicItemDataModel } from '../basic/basic-item-data-model.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
@@ -335,17 +333,11 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 					if (weaponData.traits) {
 						config.addTraitsFromItemModel(weaponData.traits);
 					}
-					if (weaponData instanceof WeaponDataModel) {
-						config.setWeaponTraits({
-							weaponType: weaponData.type.value,
-							weaponCategory: weaponData.category.value,
-							handedness: weaponData.hands.value,
-						});
-					} else if (weaponData instanceof BasicItemDataModel) {
-						config.setWeaponTraits({
-							weaponType: weaponData.type.value,
-						});
-					}
+					config.setWeaponTraits({
+						weaponType: weaponData.type,
+						weaponCategory: weaponData.category ?? undefined,
+						handedness: weaponData.handedness ?? undefined,
+					});
 				}
 				if (this.useWeapon.damage) {
 					// We do this in case we are using both a damage bonus AND weapon damage
@@ -387,7 +379,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @returns {Promise<WeaponResolution>}
 	 */
 	async getWeapon(actor) {
-		const weapon = await ChooseWeaponDialog.prompt(actor, true);
+		const weapon = await WeaponResolver.prompt(actor, true);
 		if (weapon === false) {
 			let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
 			ui.notifications.error(message);

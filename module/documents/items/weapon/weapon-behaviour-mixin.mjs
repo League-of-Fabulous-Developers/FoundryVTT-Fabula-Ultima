@@ -15,6 +15,7 @@
 
 /**
  * @typedef WeaponData
+ * @desc Normalized weapon data.
  * @property {WeaponType} type
  * @property {WeaponCategory} category
  * @property {Handedness} handedness
