@@ -45,13 +45,6 @@ const initHrZero = (hrZero) => (check) => {
 };
 
 /**
- * @typedef WeaponTraits
- * @property {WeaponType} [weaponType]
- * @property {WeaponCategory} [weaponCategory]
- * @property {Handedness} handedness
- */
-
-/**
  * @description Given a {@link CheckResultV2} object, provides additional information from it
  * @remarks Provides read-only access, to be used after {@linkcode CheckConfigurer}
  */

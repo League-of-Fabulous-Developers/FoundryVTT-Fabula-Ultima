@@ -7,6 +7,7 @@ import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { WeaponBehaviourMixin } from '../../weapon/weapon-behaviour-mixin.mjs';
 
 const weaponModuleTypes = {
 	...FU.weaponTypes,
@@ -88,12 +89,13 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {Object} shield
  * @property {number} shield.defense
  * @property {number} shield.magicDefense
+ * @property {Set<String>} traits
  * @property {string} description
  */
-export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
+export class WeaponModuleDataModel extends WeaponBehaviourMixin(RollableClassFeatureDataModel) {
 	static defineSchema() {
-		const { SchemaField, StringField, NumberField, BooleanField, HTMLField } = foundry.data.fields;
-		return {
+		const { SchemaField, StringField, NumberField, BooleanField, HTMLField, SetField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			accuracy: new SchemaField({
 				attr1: new StringField({ initial: 'dex', choices: () => Object.keys(CONFIG.FU.attributeAbbreviations) }),
 				attr2: new StringField({ initial: 'ins', choices: () => Object.keys(CONFIG.FU.attributeAbbreviations) }),
@@ -117,7 +119,8 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 				magicDefense: new NumberField({ initial: 2 }),
 			}),
 			description: new HTMLField(),
-		};
+			traits: new SetField(new StringField()),
+		});
 	}
 
 	static get template() {

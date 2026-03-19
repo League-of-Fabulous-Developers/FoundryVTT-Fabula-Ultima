@@ -11,6 +11,7 @@ import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { Traits } from '../../../pipelines/traits.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
+import { WeaponBehaviourMixin } from './weapon-behaviour-mixin.mjs';
 
 /**
  * @param {CheckV2} check
@@ -87,7 +88,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  * @property {Set<String>} traits
  */
-export class WeaponDataModel extends FUStandardItemDataModel {
+export class WeaponDataModel extends WeaponBehaviourMixin(FUStandardItemDataModel) {
 	static {
 		deprecationNotice(this, 'isCustomWeapon.value');
 	}
