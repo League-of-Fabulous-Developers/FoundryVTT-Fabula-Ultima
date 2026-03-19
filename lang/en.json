@@ -918,6 +918,7 @@
 		"IgnoreResistances": "Ignore Resistances",
 		"IgnoreImmunities": "Ignore Immunities",
 		"IgnoreAbsorption": "Ignore Absorption",
+		"IgnoreAffinities": "Ignore Affinities",
 		"IgnoreAll": "Ignore All",
 		"IgnoreNone": "Ignore None",
 		"ChatApplyTargeted": "Apply to targeted token",

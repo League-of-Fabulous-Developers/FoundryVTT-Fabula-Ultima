@@ -214,8 +214,7 @@ function resolveAffinity(context) {
 	let affinityMessage = 'FU.ChatApplyDamageNormal';
 
 	// Special case (break early)
-	if (context.traits.has(Traits.MindPointLoss)) {
-		context.affinityMessage = 'FU.ChatResourceLoss';
+	if (context.traits.has(Traits.IgnoreAffinities)) {
 		context.affinity = affinity;
 		return true;
 	}
@@ -448,6 +447,7 @@ async function process(request) {
 		let resource = 'hp';
 		if (context.traits.has(Traits.MindPointLoss)) {
 			resource = 'mp';
+			context.affinityMessage = 'FU.ChatResourceLoss';
 		}
 
 		// Damage application
