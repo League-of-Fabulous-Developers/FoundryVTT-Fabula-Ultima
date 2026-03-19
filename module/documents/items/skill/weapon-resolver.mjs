@@ -35,7 +35,9 @@ function getEquippedWeapons(actor, includeWeaponModules) {
 
 	if (actor.system instanceof CharacterDataModel) {
 		if (includeWeaponModules && actor.system.vehicle.embarked && actor.system.vehicle.weapons.length > 0) {
-			equippedWeapons.push(...actor.system.vehicle.weapons);
+			let modules = actor.system.vehicle.weapons;
+			modules = modules.filter((w) => w.system.data.type !== 'shield');
+			equippedWeapons.push(...modules);
 		} else {
 			const mainHand = getWeapon(actor, 'mainHand');
 			const offHand = getWeapon(actor, 'offHand');
