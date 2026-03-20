@@ -42,6 +42,7 @@ import { ActiveEffectsTableRenderer } from '../helpers/tables/active-effects-tab
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 import { SheetUtils } from './sheet-utils.mjs';
+import { FUPartySheet } from './actor-party-sheet.mjs';
 
 const VISIBLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -526,6 +527,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						relativeTo: context.actor,
 					}),
 				};
+				context.bondOptions = await FUPartySheet.getBondOptions();
 			}
 		}
 

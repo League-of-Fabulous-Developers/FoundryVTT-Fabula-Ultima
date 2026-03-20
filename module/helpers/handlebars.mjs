@@ -327,7 +327,7 @@ function renderProgress(progress, document, path, options, index = undefined) {
 function autoComplete(context) {
 	const dataset = context.hash;
 	let options = dataset.options;
-	if (typeof options === 'object') {
+	if (options !== null && typeof options === 'object' && !Array.isArray(options)) {
 		options = Object.keys(options);
 	}
 	const template = Handlebars.partials[systemTemplatePath('common/auto-complete')];

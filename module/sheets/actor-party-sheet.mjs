@@ -642,6 +642,23 @@ export class FUPartySheet extends FUActorSheet {
 		}
 	}
 
+	/**
+	 * @returns {Promise<string[]>}
+	 */
+	static async getBondOptions() {
+		let options = [];
+		const party = await FUPartySheet.getActive();
+		if (party) {
+			/** @type PartyDataModel **/
+			const data = party.system;
+			const characters = await data.getCharacterData();
+			options.push(...characters.map((a) => a.name));
+			const adversaries = await data.getAdversaryData();
+			options.push(...adversaries.map((a) => a.name));
+		}
+		return options;
+	}
+
 	static #onCreate(event, target) {
 		const type = target.dataset.type;
 
