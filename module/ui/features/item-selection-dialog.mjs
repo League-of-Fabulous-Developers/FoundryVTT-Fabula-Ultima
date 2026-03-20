@@ -8,13 +8,17 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  */
 
 /**
+ * @typedef {'grid'|'list'|'deck'} FUSelectionDialogStyle
+ */
+
+/**
  * @typedef ItemSelectionData
  * @property {String} title
  * @property {String} message
  * @property {DialogSelectableItem[]} items
  * @property {FUItem[]} compendiumItems If assigned, will be used to compare to the original items.
  * @property {Object[]} initial
- * @property {'grid'|'list'} style
+ * @property {FUSelectionDialogStyle} style
  * @property {Number} max
  * @property {(item: FUItem) => Promise<string>} getDescription
  * @property {String} okLabel

@@ -1,0 +1,157 @@
+/* ── Grid container ── */
+.fu-arcana__radio-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.25rem;
+	justify-content: center;
+	padding: 1rem;
+}
+
+/* ── Card label (the clickable unit) ── */
+.fu-arcana-card {
+	position: relative;
+	width: 120px;
+	cursor: pointer;
+	user-select: none;
+	transition:
+		transform 0.2s ease,
+		filter 0.2s ease;
+
+	&:hover {
+		transform: translateY(-6px) scale(1.03);
+		filter: brightness(1.1);
+	}
+
+	&.selected {
+		transform: translateY(-4px);
+
+		.fu-arcana-card__selected-overlay {
+			opacity: 1;
+		}
+	}
+}
+
+.fu-arcana-card__selected-overlay {
+	position: absolute;
+	inset: 0;
+	border-radius: 10px;
+	border: 3px solid var(--pfu-color-control-active-border);
+	background: radial-gradient(ellipse at center, transparent 50%, var(--pfu-color-control-highlight-fill) 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
+}
+
+/* Hide the native checkbox */
+.fu-arcana-card input[type='checkbox'] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+/* ── Card body ── */
+.fu-arcana-card__inner {
+	position: relative;
+	width: 100%;
+	background: var(--pfu-color-control-fill);
+	border-radius: 10px;
+	border: 1.5px solid var(--pfu-color-control-border);
+	padding: 6px;
+	box-shadow:
+		0 0 0 1px rgba(201, 168, 76, 0.2),
+		0 6px 18px rgba(0, 0, 0, 0.55);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+
+/* ── Top numeral band ── */
+.fu-arcana-card__top-band {
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+	padding-bottom: 4px;
+}
+
+.fu-arcana-card__numeral {
+	font-family: 'Cinzel', 'Georgia', serif;
+	font-size: 0.6rem;
+	letter-spacing: 0.15em;
+	color: var(--pfu-color-app-body-content);
+}
+
+/* ── Image frame ── */
+.fu-arcana-card__frame {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	border: 1px solid rgba(201, 168, 76, 0.5);
+	border-radius: 4px;
+	overflow: hidden;
+	background: #150f07;
+}
+
+/* Corner accents on the frame using pseudo-elements */
+.fu-arcana-card__frame::before,
+.fu-arcana-card__frame::after {
+	content: '';
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-color: #c9a84c;
+	border-style: solid;
+	opacity: 0.8;
+	z-index: 1;
+}
+.fu-arcana-card__frame::before {
+	top: 3px;
+	left: 3px;
+	border-width: 1.5px 0 0 1.5px;
+}
+.fu-arcana-card__frame::after {
+	bottom: 3px;
+	right: 3px;
+	border-width: 0 1.5px 1.5px 0;
+}
+
+.fu-arcana-card__art {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* ── Bottom name band ── */
+.fu-arcana-card__bottom-band {
+	width: 100%;
+	text-align: center;
+	border-top: 1px solid rgba(201, 168, 76, 0.3);
+	padding-top: 4px;
+	min-height: 2.2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.fu-arcana-card__name {
+	font-family: 'Cinzel', 'Georgia', serif;
+	font-size: 0.55rem;
+	letter-spacing: 0.12em;
+	color: var(--pfu-color-app-body-content);
+	text-transform: uppercase;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	max-width: 100%;
+	line-height: 1.4;
+	white-space: normal;
+	text-overflow: unset;
+	word-break: break-word;
+}

@@ -1,4 +1,4 @@
-<main>
+<main style="border:unset;">
 	{{#if message}}
 		<div class="fu-form__message">
 			<span>
@@ -8,9 +8,9 @@
 	{{/if}}
 
 	{{#if (eq style 'grid')}}
-		<div id="items" class="background fu-item-grid flex-group-center fu-icon__radio-group">
+		<div id="items" class="fu-item-grid fu-icon__radio-group">
 			{{#each items as |item| }}
-				<label class="fu-item fu-item-card"
+				<label class= "fu-item fu-item-grid__element"
 					   for="{{item.name}}"
 					   data-index="{{@index}}"
 					   data-name="{{item.name}}">
@@ -26,6 +26,42 @@
 			{{/each}}
 		</div>
 	{{/if}}
+
+	{{#if (eq style 'deck')}}
+		<div id="items" class="fu-item-grid fu-arcana__radio-group">
+			{{#each items as |item|}}
+				<label class="fu-item fu-arcana-card"
+					   for="{{item.name}}"
+					   data-index="{{@index}}"
+					   data-name="{{item.name}}">
+					<input type="checkbox"
+						   name="selected"
+						   id="{{item.name}}"
+						   {{#if (pfuCollectionContains item ../initial)}}checked{{/if}}
+						   value="{{item.name}}">
+
+					<div class="fu-arcana-card__inner">
+						<div class="fu-arcana-card__top-band">
+							<span class="fu-arcana-card__numeral">· {{pfuRomanNumeral (pfuMath @index '+' 1)}} ·</span>
+						</div>
+
+						<div class="fu-arcana-card__frame">
+							<img class="fu-arcana-card__art" src="{{item.img}}" alt="{{item.name}}"/>
+						</div>
+
+						<div class="fu-arcana-card__bottom-band">
+							<span class="fu-arcana-card__name">{{item.name}}</span>
+						</div>
+					</div>
+
+					<div class="fu-arcana-card__selected-overlay">
+					</div>
+				</label>
+			{{/each}}
+		</div>
+	{{/if}}
+
+
 	{{#if (eq style 'list')}}
 		<fieldset id="items" class='title-fieldset resource-content flex-group-center flexrow desc'>
 			<legend class='resource-label-m' style="gap: 4px;">
