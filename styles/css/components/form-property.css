@@ -1,7 +1,4 @@
 .fu-form {
-	--property-label-width: 120px;
-	--property-label-font-size: 16px;
-
 	color: var(--pfu-color-app-section-content-primary);
 	font-weight: var(--font-weight-normal);
 	--border-primary: var(--color-border-secondary);
@@ -66,45 +63,6 @@
 		min-width: 80px;
 	}
 
-	.fu-form__property {
-		display: flex;
-		flex-direction: row;
-		flex: 2;
-		align-items: flex-start;
-		white-space: nowrap; /* prevent wrapping */
-		margin-bottom: 0.5rem;
-
-		span {
-			width: var(--property-label-width);
-			font-weight: bold;
-			font-size: var(--property-label-font-size);
-			align-self: center;
-		}
-
-		button {
-			margin-left: 0.5rem;
-			flex: 0;
-		}
-	}
-
-	.fu-form__property.stack {
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-	}
-
-	/* Any form control inside adapts automatically */
-	.fu-form__property > *:not(:first-child):not(button) {
-		flex: 1;
-		min-width: 0;
-	}
-
-	/* Prevent label text overflow */
-	.fu-form__property > :first-child {
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
 	.fu-form__group {
 		background-color: rgba(0, 0, 0, 0.08);
 		padding-left: 8px;
@@ -127,4 +85,76 @@
 		background: var(--gradient-button-bg);
 		border: 1px solid var(--border-primary);
 	}
+}
+
+.fu-form__property {
+	--property-label-width: 120px;
+	--property-select-width: 100px;
+	--property-input-width: 120px;
+	--property-label-font-size: 16px;
+
+	display: flex;
+	flex-direction: row;
+	flex: 2;
+	align-items: flex-start;
+	white-space: nowrap; /* prevent wrapping */
+	margin-bottom: 0.5rem;
+	gap: 2px;
+
+	span:first-child {
+		width: var(--property-label-width);
+		font-weight: bold;
+		font-size: var(--property-label-font-size);
+		align-self: center;
+	}
+
+	i {
+		align-self: center;
+	}
+
+	button {
+		margin-left: 0.5rem;
+		flex: 0;
+	}
+
+	select {
+		width: var(--property-select-width);
+	}
+
+	input {
+		width: var(--property-input-width);
+	}
+
+	&.stack {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	&.fit {
+		--property-label-width: unset;
+		flex: unset;
+	}
+
+	.value {
+		display: inline-block;
+		background: var(--pfu-color-app-control-fill);
+		color: var(--pfu-color-app-control-content);
+		border-radius: 3px;
+		padding: 4px;
+		width: 60px;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	:first-child {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+/* Any form control inside adapts automatically */
+.fu-form__property > *:not(:first-child):not(button) {
+	flex: 1;
+	min-width: 0;
 }

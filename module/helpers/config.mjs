@@ -1117,6 +1117,11 @@ FU.allIcon = {
 	vulnerability: 'fas fa-heart-crack',
 	level: 'fas fa-star',
 
+	bond: 'fas fa-bookmark',
+	admInf: 'fas fa-medal',
+	loyMis: 'fas fa-handshake',
+	affHat: 'fas fa-fire',
+
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,

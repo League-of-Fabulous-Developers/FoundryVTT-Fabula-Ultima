@@ -7,12 +7,13 @@
  */
 export class BondDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
-		const { StringField } = foundry.data.fields;
+		const { StringField, NumberField } = foundry.data.fields;
 		return {
 			name: new StringField({ initial: '' }),
 			admInf: new StringField({ initial: '', blank: true, choices: ['Admiration', 'Inferiority'] }),
 			loyMis: new StringField({ initial: '', blank: true, choices: ['Loyalty', 'Mistrust'] }),
 			affHat: new StringField({ initial: '', blank: true, choices: ['Affection', 'Hatred'] }),
+			bonus: new NumberField({ nullable: true }),
 		};
 	}
 
@@ -22,7 +23,9 @@ export class BondDataModel extends foundry.abstract.DataModel {
 	get strength() {
 		const emotions = [this.admInf, this.loyMis, this.affHat].filter(Boolean).length;
 		if (emotions) {
-			return emotions + (this.parent?.bonuses.bondStrength ?? 0);
+			const globalBonus = this.parent?.bonuses.bondStrength ?? 0;
+			const localBonus = this.bonus ?? 0;
+			return emotions + globalBonus + localBonus;
 		} else {
 			return 0;
 		}
