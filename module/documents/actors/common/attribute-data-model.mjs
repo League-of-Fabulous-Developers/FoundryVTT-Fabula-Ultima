@@ -32,7 +32,6 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 
 		// Set the initial current to start off the base value
 		this._current = this.base;
-		// Set the initial unlimit flag to start false
 		// Set the initial abnormal die size to d20 (Neo-Human)
 		this._abnormal = 20;
 
