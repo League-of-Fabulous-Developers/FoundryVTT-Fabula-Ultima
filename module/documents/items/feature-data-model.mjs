@@ -1,4 +1,8 @@
 export class FeatureDataModel extends foundry.abstract.DataModel {
+	static defineSchema() {
+		return {};
+	}
+
 	/**
 	 * @return {string} Template path for sheet rendering.
 	 */

@@ -1,10 +1,21 @@
 <div class="resource-content flexcol grid-span-3 flex-group-center">
 	<label class="resource-label-m">{{localize 'FU.Quality'}}</label>
-	<input type="text" name="system.quality.value" value="{{ system.quality.value }}"
-		   class="resource-inputs select-dropdown-full grid-span-4" />
+	{{#if (ne system.quality.value undefined)}}
+		<input type="text" name="system.quality.value" value="{{ system.quality.value }}"
+			   class="resource-inputs select-dropdown-full grid-span-4" />
+	{{else}}
+		<input type="text" name="system.quality" value="{{ system.quality }}"
+			   class="resource-inputs select-dropdown-full grid-span-4" />
+	{{/if}}
+
 </div>
 <div class="resource-content flexcol flex-group-center">
 	<label class="resource-label-m">{{localize 'FU.Cost'}}</label>
-	<input type="number" name="system.cost.value" value="{{ system.cost.value }}"
-		   data-dtype="Number" class="resource-inputs select-dropdown-m" />
+	{{#if (ne system.cost.value undefined)}}
+		<input type="number" name="system.cost.value" value="{{ system.cost.value }}"
+			   data-dtype="Number" class="resource-inputs select-dropdown-m" />
+	{{else}}
+		<input type="number" name="system.cost" value="{{ system.cost }}"
+			   data-dtype="Number" class="resource-inputs select-dropdown-m" />
+	{{/if}}
 </div>

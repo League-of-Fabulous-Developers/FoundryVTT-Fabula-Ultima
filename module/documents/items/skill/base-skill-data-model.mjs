@@ -11,10 +11,8 @@ import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { Traits } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
-import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
+import { WeaponResolver } from './weapon-resolver.mjs';
 import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
-import { BasicItemDataModel } from '../basic/basic-item-data-model.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
@@ -190,7 +188,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	#initializeAccuracyCheck(modifiers) {
 		return async (check, actor, item) => {
 			const weapon = await this.getWeapon(actor);
-			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon);
+			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon.item);
 			if (error) {
 				throw error;
 			}
@@ -207,10 +205,10 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
-			config.setWeaponReference(weapon);
+			config.setWeaponReference(weapon.item);
 			config.setHrZero(this.damage.hrZero || modifiers.shift);
 			await this.configureCheck(config, actor, item);
-			await this.addSkillDamage(config, item, context, weapon.system);
+			await this.addSkillDamage(config, item, context, weapon.data);
 			await this.addSkillAccuracy(config, actor, item, context);
 		};
 	}
@@ -261,10 +259,8 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			if (this.damage.hasDamage) {
 				if (this.useWeapon.damage) {
 					const weapon = await this.getWeapon(actor);
-					config.setWeaponReference(weapon);
-					/** @type WeaponDataModel **/
-					const weaponData = weapon.system;
-					config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+					config.setWeaponReference(weapon.item);
+					config.setDamage(this.damage.type || weapon.data.damage.type, weapon.data.damage.value);
 				}
 				await this.addSkillDamage(config, item, context);
 			}
@@ -314,7 +310,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @param {CheckConfigurer} config
 	 * @param {FUItem} item
 	 * @param {ExpressionContext} context
-	 * @param {WeaponDataModel|CustomWeaponDataModel} weaponData
+	 * @param {WeaponData} weaponData
 	 * @returns {Promise<void>}
 	 */
 	async addSkillDamage(config, item, context, weaponData = undefined) {
@@ -337,34 +333,28 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 					if (weaponData.traits) {
 						config.addTraitsFromItemModel(weaponData.traits);
 					}
-					if (weaponData instanceof WeaponDataModel) {
-						config.setWeaponTraits({
-							weaponType: weaponData.type.value,
-							weaponCategory: weaponData.category.value,
-							handedness: weaponData.hands.value,
-						});
-					} else if (weaponData instanceof BasicItemDataModel) {
-						config.setWeaponTraits({
-							weaponType: weaponData.type.value,
-						});
-					}
+					config.setWeaponTraits({
+						weaponType: weaponData.type,
+						weaponCategory: weaponData.category ?? undefined,
+						handedness: weaponData.handedness ?? undefined,
+					});
 				}
 				if (this.useWeapon.damage) {
 					// We do this in case we are using both a damage bonus AND weapon damage
 					if (config.hasDamage) {
 						config.modifyDamage((damage) => {
-							damage.type = this.damage.type || weaponData.damageType.value;
+							damage.type = this.damage.type || weaponData.damage.type;
 							damage.addModifier('FU.WeaponDamageBonus', weaponData.damage.value);
 							return damage;
 						});
 					} else {
-						config.setDamage(this.damage.type || weaponData.damageType.value, weaponData.damage.value);
+						config.setDamage(this.damage.type || weaponData.damage.type, weaponData.damage.value);
 					}
 				}
 				if (this.useWeapon.accuracy) {
-					config.addModifier('FU.CheckBonus', weaponData.accuracy.value);
-					if (weaponData.defense) {
-						config.setTargetedDefense(weaponData.defense);
+					config.addModifier('FU.CheckBonus', weaponData.accuracy.bonus);
+					if (weaponData.accuracy.defense) {
+						config.setTargetedDefense(weaponData.accuracy.defense);
 					}
 				}
 			}
@@ -386,10 +376,10 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 
 	/**
 	 * @param {FUActor} actor
-	 * @returns {Promise<game.projectfu.FUItem>}
+	 * @returns {Promise<WeaponResolution>}
 	 */
 	async getWeapon(actor) {
-		const weapon = await ChooseWeaponDialog.prompt(actor, true);
+		const weapon = await WeaponResolver.prompt(actor, true);
 		if (weapon === false) {
 			let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
 			ui.notifications.error(message);

@@ -8,7 +8,7 @@ import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs'
 import { Targeting } from '../helpers/targeting.mjs';
 import { DamageData } from './damage-data.mjs';
 import { UpdateResourceData } from '../pipelines/resource-pipeline.mjs';
-import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
+import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 // Data keys
@@ -43,13 +43,6 @@ const HR_ZERO = 'hrZero';
 const initHrZero = (hrZero) => (check) => {
 	hrZero && (check.additionalData[HR_ZERO] = true);
 };
-
-/**
- * @typedef WeaponTraits
- * @property {WeaponType} [weaponType]
- * @property {WeaponCategory} [weaponCategory]
- * @property {Handedness} handedness
- */
 
 /**
  * @description Given a {@link CheckResultV2} object, provides additional information from it
@@ -414,7 +407,7 @@ export class CheckConfigurer extends CheckInspector {
 	 * @returns {CheckConfigurer}
 	 */
 	addWeaponAccuracy(weapon) {
-		const baseAccuracy = ChooseWeaponDialog.getAccuracy(weapon);
+		const baseAccuracy = WeaponResolver.getAccuracy(weapon);
 		if (baseAccuracy) {
 			this.addModifier('FU.AccuracyCheckBaseAccuracy', baseAccuracy);
 		}

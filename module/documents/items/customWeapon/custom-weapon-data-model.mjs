@@ -9,6 +9,7 @@ import { PseudoDocumentCollectionField } from '../../pseudo/pseudo-document-coll
 import { PseudoItem } from '../pseudo-item.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
+import { WeaponBehaviourMixin } from '../weapon/weapon-behaviour-mixin.mjs';
 
 const slotsByQuality = {
 	alpha: 1,
@@ -159,11 +160,12 @@ const slottableTypes = new Set(['mnemosphere', 'hoplosphere']);
  * @property {CustomWeaponFormDataModel} secondaryForm
  * @property {'alpha','beta','gamma','delta'} slots
  * @property {PseudoDocumentCollection} items
+ * @property {Set<String>} traits
  */
-export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
+export class CustomWeaponDataModel extends WeaponBehaviourMixin(PseudoDocumentEnabledTypeDataModel) {
 	static defineSchema() {
-		const { StringField, HTMLField, SchemaField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
-		return {
+		const { StringField, HTMLField, SchemaField, NumberField, SetField, BooleanField, EmbeddedDataField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			summary: new StringField(),
 			description: new HTMLField(),
 			fuid: new StringField(),
@@ -181,7 +183,7 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 			traits: new SetField(new StringField()),
 			slots: new StringField({ initial: 'alpha', choices: ['alpha', 'beta', 'gamma', 'delta'] }),
 			items: new PseudoDocumentCollectionField(PseudoItem),
-		};
+		});
 	}
 
 	#computedPropertiesSetByActiveEffect;
@@ -229,6 +231,30 @@ export class CustomWeaponDataModel extends PseudoDocumentEnabledTypeDataModel {
 	 */
 	async roll(modifiers) {
 		return Checks.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+	}
+
+	/**
+	 * @returns {CustomWeaponFormDataModel} The active form.
+	 */
+	getActiveForm() {
+		switch (this.activeForm) {
+			case 'primaryForm':
+				return this.primaryForm;
+			case 'secondaryForm':
+				return this.secondaryForm;
+		}
+		return null;
+	}
+
+	/**
+	 * @returns {DamageType|null}
+	 */
+	getDamageType() {
+		const form = this.getActiveForm();
+		if (form) {
+			return form.damage.type;
+		}
+		return null;
 	}
 
 	get slotCount() {

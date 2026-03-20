@@ -12,7 +12,7 @@ import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
-import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
+import { WeaponResolver } from '../skill/weapon-resolver.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { FU } from '../../../helpers/config.mjs';
@@ -166,14 +166,14 @@ export class SpellDataModel extends FUStandardItemDataModel {
 
 			let attributeOverride = false;
 			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
-				const weapon = await ChooseWeaponDialog.prompt(actor, true);
+				const weapon = await WeaponResolver.prompt(actor, true);
 				if (weapon) {
-					const weaponAttributes = ChooseWeaponDialog.getAttributes(weapon);
-					check.primary = weaponAttributes.primary;
-					check.secondary = weaponAttributes.secondary;
+					check.primary = weapon.data.accuracy.primary;
+					check.secondary = weapon.data.accuracy.secondary;
 					attributeOverride = true;
-					config.addWeaponAccuracy(weapon);
-					config.setWeaponReference(weapon);
+					// TODO: Clean up
+					config.addWeaponAccuracy(weapon.item);
+					config.setWeaponReference(weapon.item);
 				}
 			}
 
