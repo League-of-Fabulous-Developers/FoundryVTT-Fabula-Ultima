@@ -1,0 +1,47 @@
+<section class="tab {{tab.cssClass}}" data-tab="bonds" data-group="primary">
+
+	<div class="pfu-bond-chart">
+		<svg class="pfu-bond-chart__svg" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<filter id="pfu-glow-ally" x="-30%" y="-30%" width="160%" height="160%">
+					<feGaussianBlur stdDeviation="3" result="blur" />
+					<feMerge>
+						<feMergeNode in="blur" />
+						<feMergeNode in="SourceGraphic" />
+					</feMerge>
+				</filter>
+				<filter id="pfu-glow-enemy" x="-30%" y="-30%" width="160%" height="160%">
+					<feGaussianBlur stdDeviation="3" result="blur" />
+					<feMerge>
+						<feMergeNode in="blur" />
+						<feMergeNode in="SourceGraphic" />
+					</feMerge>
+				</filter>
+			</defs>
+			<g class="pfu-bond-chart__lines"></g>
+			<g class="pfu-bond-chart__hits"></g>
+			<g class="pfu-bond-chart__icons"></g>
+		</svg>
+
+		<div class="pfu-bond-chart__nodes">
+			{{#each characters as |char|}}
+				<div class="pfu-bond-chart__node"
+					 data-action="revealActor" data-actor="{{char.id}}"
+					 data-id="{{char.id}}"
+					 data-index="{{@index}}"
+					 data-total="{{../characters.length}}">
+					<img src="{{char.img}}" alt="{{char.name}}" />
+					<span>{{char.name}}</span>
+				</div>
+			{{/each}}
+		</div>
+
+		<div class="pfu-bond-chart__tooltip" hidden>
+			<span class="pfu-bond-chart__tooltip-names"></span>
+			<span class="pfu-bond-chart__tooltip-pairing">
+					<i class="fas"></i>
+				</span>
+			<span class="pfu-bond-chart__tooltip-strength"></span>
+		</div>
+	</div>
+</section>

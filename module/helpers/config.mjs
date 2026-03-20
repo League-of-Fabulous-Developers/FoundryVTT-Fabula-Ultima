@@ -976,7 +976,7 @@ FU.checkOutcome = Object.freeze({
 });
 
 /**
- * @typedef {"admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondPredicateKey
+ * @typedef {"admiration" | "inferiority" | "loyalty" | "mistrust" | "affection", "hatred"} FUBondEmotion
  */
 
 FU.bondPredicate = {
@@ -1087,6 +1087,15 @@ FU.modifyDamageVariant = {
 	psychicGift: 'FU.ClassFeaturePsychicGiftLabel',
 };
 
+FU.bondIcons = {
+	admiration: 'ra ra-crowned-heart',
+	inferiority: 'ra ra-player-despair',
+	loyalty: 'ra ra-shield',
+	mistrust: 'ra ra-interdiction',
+	affection: 'ra ra-two-hearts',
+	hatred: 'ra ra-death-skull',
+};
+
 /**
  * @desc All commonly-used icons throughout the system.
  * @remarks Make sure icon declarations in this file are before this one.
@@ -1121,6 +1130,8 @@ FU.allIcon = {
 	admInf: 'fas fa-medal',
 	loyMis: 'fas fa-handshake',
 	affHat: 'fas fa-fire',
+
+	...FU.bondIcons,
 
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,

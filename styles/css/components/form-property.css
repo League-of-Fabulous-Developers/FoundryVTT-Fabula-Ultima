@@ -117,12 +117,14 @@
 		flex: 0;
 	}
 
-	select {
-		width: var(--property-select-width);
-	}
+	&.fixed {
+		select {
+			width: var(--property-select-width);
+		}
 
-	input {
-		width: var(--property-input-width);
+		input {
+			width: var(--property-input-width);
+		}
 	}
 
 	&.stack {

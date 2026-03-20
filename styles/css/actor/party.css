@@ -332,3 +332,127 @@
 	border: none;
 	display: block;
 }
+
+.pfu-bond-chart {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height: 400px;
+}
+
+.pfu-bond-chart__svg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	overflow: visible;
+
+	.pfu-bond-chart__line {
+		transition: opacity 0.2s;
+		pointer-events: stroke;
+		cursor: pointer;
+
+		&:hover {
+			opacity: 1 !important;
+		}
+	}
+
+	.pfu-bond-chart__hit {
+		stroke: transparent;
+		stroke-width: 16;
+		cursor: pointer;
+		pointer-events: stroke;
+	}
+
+	.pfu-bond-chart__bond-icon {
+		pointer-events: none;
+		font-size: 11px;
+	}
+}
+
+/* ── Circular node layout ── */
+.pfu-bond-chart__nodes {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.pfu-bond-chart__node {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+
+	img {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		border: 2px solid var(--pfu-color-control-highlight-fill, #c9a84c);
+		object-fit: cover;
+		object-position: center top;
+		display: block;
+		background: var(--pfu-color-app-image-fill, #1e1508);
+		box-shadow:
+			0 0 0 4px var(--pfu-color-app-bg, #1e1508),
+			0 0 0 6px var(--pfu-color-control-highlight-fill, #c9a84c);
+	}
+
+	span {
+		font-size: 0.65rem;
+		color: var(--pfu-color-app-body-content);
+		text-align: center;
+		max-width: 72px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		background: var(--pfu-color-app-control-fill, #1e1508);
+		border: 1px solid var(--pfu-color-control-highlight-fill, #c9a84c);
+		border-radius: 3px;
+		padding: 1px 5px;
+	}
+}
+
+/* ── Tooltip ── */
+.pfu-bond-chart__tooltip {
+	position: absolute;
+	background: var(--pfu-color-app-body-content, #1e1508);
+	border: 1px solid var(--pfu-color-control-highlight-fill, #c9a84c);
+	border-radius: 6px;
+	padding: 6px 10px;
+	font-size: 0.75rem;
+	color: var(--pfu-color-app-body-content);
+	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	max-width: 180px;
+	z-index: 10;
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+.pfu-bond-chart__tooltip-pairing {
+	color: var(--pfu-color-control-highlight-fill, #c9a84c);
+	font-size: 0.7rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+
+	i {
+		width: 12px;
+		text-align: center;
+	}
+}
+
+.pfu-bond-chart__tooltip-strength {
+	opacity: 0.65;
+	font-size: 0.68rem;
+	text-transform: capitalize;
+}

@@ -24,6 +24,7 @@ import { OtherItemsTableRenderer } from '../helpers/tables/other-items-table-ren
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
+import { FUBondChart } from '../ui/bond-chart.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -83,6 +84,7 @@ export class FUPartySheet extends FUActorSheet {
 				{ id: 'overview', label: 'FU.Overview', icon: 'ra ra-double-team' },
 				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'bonds', label: 'FU.Bonds', icon: 'ra ra-double-team' },
 				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
 				{ id: 'character', label: 'FU.Character' },
 			],
@@ -114,6 +116,9 @@ export class FUPartySheet extends FUActorSheet {
 		},
 		adversaries: {
 			template: systemPath('templates/actor/party/actor-party-section-adversaries.hbs'),
+		},
+		bonds: {
+			template: systemPath('templates/actor/party/actor-party-section-bonds.hbs'),
 		},
 		settings: {
 			template: systemPath('templates/actor/party/actor-party-section-settings.hbs'),
@@ -201,12 +206,83 @@ export class FUPartySheet extends FUActorSheet {
 				context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 				break;
 			}
+			case 'bonds':
+				{
+					const bondData = await this.computeBondData();
+					context.characters = bondData.characters;
+				}
+				break;
 			case 'adversaries':
 				break;
 			case 'settings':
 				break;
 		}
 		return context;
+	}
+
+	/**
+	 * @returns {Promise<BondChartData>}
+	 */
+	async computeBondData() {
+		/** @type BondChartData **/
+		let data = {
+			bonds: [],
+			characters: [],
+		};
+		const characters = await this.party.getCharacterData();
+		const adversaries = await this.party.getAdversaryData();
+
+		const entries = new Map();
+		for (const entry of characters) {
+			const pcData = {
+				name: entry.name,
+				id: entry.actor.uuid,
+				img: entry.actor.img,
+				relation: 'ally',
+			};
+			entries.set(entry.name, pcData);
+			data.characters.push(pcData);
+		}
+		for (const entry of adversaries) {
+			entries.set(entry.name, {
+				name: entry.name,
+				id: entry.uuid,
+				img: entry.img,
+				relation: 'enemy',
+			});
+		}
+
+		for (const character of characters) {
+			const source = entries.get(character.name);
+			/** @type BondDataModel[] **/
+			const bonds = character.actor.system.bonds;
+			for (const bond of bonds) {
+				const target = entries.get(bond.name);
+				if (!target) {
+					continue;
+				}
+				if (!data.characters.find((f) => f.name === bond.name)) {
+					data.characters.push(entries.get(bond.name));
+				}
+
+				data.bonds.push({
+					source: source.id,
+					target: target.id,
+					strength: bond.strength,
+					polarity: target.relation,
+					pairings: [
+						{ key: 'admInf', emotions: ['admiration', 'inferiority'] },
+						{ key: 'affHat', emotions: ['affection', 'hatred'] },
+						{ key: 'loyMis', emotions: ['loyalty', 'mistrust'] },
+					]
+						.filter((p) => !!bond[p.key])
+						.map((p) => ({
+							emotion: bond[p.key],
+						})),
+				});
+			}
+		}
+		return data;
 	}
 
 	/**
@@ -285,6 +361,12 @@ export class FUPartySheet extends FUActorSheet {
 				const depthScale = 0.85 + ((y + radius) / (radius * 2)) * 0.3;
 				el.style.setProperty('--depth-scale', depthScale);
 			});
+		}
+
+		for (const el of this.element.querySelectorAll('.pfu-bond-chart')) {
+			const bondData = await this.computeBondData();
+			const chart = new FUBondChart(el, bondData);
+			chart.render();
 		}
 	}
 

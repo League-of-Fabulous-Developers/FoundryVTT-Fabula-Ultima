@@ -32,7 +32,7 @@ export class BondDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * @param {FUBondPredicateKey} bond
+	 * @param {FUBondEmotion} bond
 	 */
 	matches(bond) {
 		if (bond === 'any') {
