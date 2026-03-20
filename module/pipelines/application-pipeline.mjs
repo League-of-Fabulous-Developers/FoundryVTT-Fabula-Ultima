@@ -140,9 +140,10 @@ async function handleArcanum(actor, item) {
 	else {
 		/** @type ItemSelectionData **/
 		const data = {
-			title: `${title}: ${StringUtils.localize('FU.ClassFeatureArcanumMerge')}`,
+			title: `${title}: ${StringUtils.localize('FU.Summon')}`,
 			max: 1,
 			items: classFeatures,
+			style: 'deck',
 			getDescription: async (item) => {
 				const text = await FoundryUtils.enrichText(item.system.data.merge, {
 					relativeTo: actor,

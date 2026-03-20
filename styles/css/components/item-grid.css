@@ -2,9 +2,7 @@
 	--fu-grid-size: 64px;
 }
 
-.fu-item.selected {
-	-webkit-filter: unset;
-	filter: unset;
+.fu-item {
 }
 
 /* Default grid size */
@@ -19,7 +17,7 @@
 	overflow-y: auto;
 }
 
-.fu-item-card {
+.fu-item-grid__element {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -28,17 +26,20 @@
 	cursor: pointer;
 	user-select: none;
 	transition: 0.2s;
-	-webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
 	filter: brightness(1.8) grayscale(1) opacity(0.7);
+	color: var(--pfu-color-app-body-content);
 
 	img {
 		height: 100%;
 	}
-}
 
-.fu-item-card:hover {
-	-webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
-	filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+	&.selected {
+		filter: unset;
+	}
+
+	&:hover {
+		filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+	}
 }
 
 .fu-item-list {
