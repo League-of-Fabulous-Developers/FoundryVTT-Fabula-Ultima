@@ -16,11 +16,33 @@
 	transition:
 		transform 0.2s ease,
 		filter 0.2s ease;
+
+	&:hover {
+		transform: translateY(-6px) scale(1.03);
+		filter: brightness(1.1);
+	}
+
+	&.selected {
+		transform: translateY(-4px);
+
+		.fu-arcana-card__selected-overlay {
+			opacity: 1;
+		}
+	}
 }
 
-.fu-arcana-card:hover {
-	transform: translateY(-6px) scale(1.03);
-	filter: brightness(1.1);
+.fu-arcana-card__selected-overlay {
+	position: absolute;
+	inset: 0;
+	border-radius: 10px;
+	border: 2px solid #c9a84c;
+	background: rgba(201, 168, 76, 0.12);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
 }
 
 /* Hide the native checkbox */
@@ -132,37 +154,4 @@
 	white-space: normal;
 	text-overflow: unset;
 	word-break: break-word;
-}
-
-/* ── Selected state ── */
-.fu-arcana-card__selected-overlay {
-	position: absolute;
-	inset: 0;
-	border-radius: 10px;
-	border: 2px solid #c9a84c;
-	background: rgba(201, 168, 76, 0.12);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	transition: opacity 0.2s ease;
-	pointer-events: none;
-}
-
-.fu-arcana-card__check {
-	font-size: 1.4rem;
-	color: #c9a84c;
-	text-shadow: 0 0 8px rgba(201, 168, 76, 0.8);
-	line-height: 1;
-}
-
-/* Show overlay when checked */
-.fu-arcana-card input[type='checkbox']:checked ~ .fu-arcana-card__selected-overlay {
-	opacity: 1;
-}
-
-/* Lift checked card slightly */
-.fu-arcana-card:has(input:checked) {
-	transform: translateY(-4px);
-	filter: brightness(1.15);
 }
