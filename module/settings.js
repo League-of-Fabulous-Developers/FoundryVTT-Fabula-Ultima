@@ -1111,3 +1111,25 @@ function createConfigurationApp(name, settings) {
 		}
 	};
 }
+
+function createMenuTool(key) {
+	const menuSetting = game.settings.menus.get(key);
+	if (!menuSetting) return;
+
+	return {
+		id: menuSetting.key,
+		label: menuSetting.label,
+		icon: menuSetting.icon,
+		click: () => {
+			new menuSetting.type().render({ force: true });
+		},
+	};
+}
+
+Hooks.on(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
+	tools.push({
+		id: 'settings',
+		label: 'FU.Settings',
+		tools: [createMenuTool(`${SYSTEM}.${SETTINGS.sheetOptions}`), createMenuTool(`${SYSTEM}.myOptionalRules`), createMenuTool(`${SYSTEM}.combatHudSettings`)],
+	});
+});

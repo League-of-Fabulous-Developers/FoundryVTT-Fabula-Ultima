@@ -76,8 +76,24 @@ function onGetSystemTools(tools) {
 	});
 }
 
+/**
+ * @param {import('../../../../ui/sidebar.mjs').SidebarToolGroup[]} tools
+ */
+function onGetSidebarTools(tools) {
+	const group = tools.find((group) => group.id === 'utilities');
+	if (group) {
+		group.tools.wellspring = {
+			icon: 'fa-solid fa-earth-asia',
+			label: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
+			condition: () => game.user.isGM,
+			click: () => renderApp(),
+		};
+	}
+}
+
 function initialize() {
 	Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
+	Hooks.on(FUHooks.GET_SIDEBAR_TOOLS, onGetSidebarTools);
 
 	Hooks.on('projectfu.actor.dataPrepared', ActorWellspringManager.onActorPrepared);
 

@@ -1,0 +1,19 @@
+.pfuTools-sidebar {
+	padding: 5px 1rem 1rem;
+}
+
+.pfuTools-sidebar__title {
+	text-align: center;
+	font-size: var(--font-size-32);
+	font-family: 'Credit Valley';
+}
+
+.pfuTools-sidebar__header {
+	margin-bottom: 0;
+}
+
+.pfuTools-sidebar__section {
+	column-gap: 0.5rem;
+	row-gap: 0.5rem;
+	padding-bottom: 1.5rem;
+}
