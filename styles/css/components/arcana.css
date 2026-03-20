@@ -35,8 +35,8 @@
 	position: absolute;
 	inset: 0;
 	border-radius: 10px;
-	border: 2px solid #c9a84c;
-	background: rgba(201, 168, 76, 0.12);
+	border: 3px solid var(--pfu-color-control-active-border);
+	background: radial-gradient(ellipse at center, transparent 50%, var(--pfu-color-control-highlight-fill) 100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -58,9 +58,9 @@
 .fu-arcana-card__inner {
 	position: relative;
 	width: 100%;
-	background: #1e1508;
+	background: var(--pfu-color-control-fill);
 	border-radius: 10px;
-	border: 1.5px solid #c9a84c;
+	border: 1.5px solid var(--pfu-color-control-border);
 	padding: 6px;
 	box-shadow:
 		0 0 0 1px rgba(201, 168, 76, 0.2),
@@ -83,7 +83,7 @@
 	font-family: 'Cinzel', 'Georgia', serif;
 	font-size: 0.6rem;
 	letter-spacing: 0.15em;
-	color: #9b7d38;
+	color: var(--pfu-color-app-body-content);
 }
 
 /* ── Image frame ── */
@@ -143,7 +143,7 @@
 	font-family: 'Cinzel', 'Georgia', serif;
 	font-size: 0.55rem;
 	letter-spacing: 0.12em;
-	color: #c9a84c;
+	color: var(--pfu-color-app-body-content);
 	text-transform: uppercase;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
