@@ -40,6 +40,13 @@ async function handleArcanum(actor, item) {
 	const currentArcanumId = actor.system.equipped.arcanum;
 	const currentArcanum = actor.items.get(currentArcanumId);
 
+	// If the item passed in has a cost, use it.
+	/** @type ResourceExpense **/
+	const arcanumCost = {
+		resource: item.system.cost.resource ?? 'mp',
+		amount: item.system.cost.amount ?? 40,
+	};
+
 	// Dismiss/Pulse
 	if (currentArcanum) {
 		/** @type ArcanumDataModel **/
@@ -167,8 +174,7 @@ async function handleArcanum(actor, item) {
 				// Calculate summon cost
 				/** @type ResourceExpense **/
 				const expense = {
-					resource: 'mp',
-					amount: 40,
+					...arcanumCost,
 					traits: [FeatureTraits.ArcanumSummon],
 				};
 				await CommonEvents.calculateExpense(actor, item, [], expense);
