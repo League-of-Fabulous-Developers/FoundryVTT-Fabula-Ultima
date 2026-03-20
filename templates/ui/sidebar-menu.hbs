@@ -1,7 +1,7 @@
   <section class="info flexcol">
     <h1 class="pfuTools-sidebar__title">{{localize "FU.UiControlTitle"}}</h1>
   </section>
-{{log "Tools" tools}}
+
   {{#each tools as |group|}}
     {{#if group.visible}}
       <section class="pfuTools-sidebar__{{group.id}} pfuTools-sidebar__section flexcol form-group {{group.expandedClasses}}">

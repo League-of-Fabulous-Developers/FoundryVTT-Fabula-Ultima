@@ -37,6 +37,32 @@ export class FUSidebar extends sidebar.Sidebar {
 			img: systemAssetPath('icons/fus-star2.svg'),
 		},
 	};
+
+	static PARTS = {
+		tabs: {
+			id: 'tabs',
+			template: systemTemplatePath('ui/sidebar-tabs'),
+		},
+	};
+
+	/**
+	 * @override
+	 * Overridden to allow for specifying an image
+	 */
+	async _prepareTabContext(context, options) {
+		context.tabs = Object.entries(FUSidebar.TABS).reduce((obj, [key, value]) => {
+			let { documentName, gmOnly, tooltip, icon, img } = value;
+			if (gmOnly && !game.user.isGM) return obj;
+			if (documentName) {
+				tooltip ??= getDocumentClass(documentName).metadata.labelPlural;
+				icon ??= CONFIG[documentName]?.sidebarIcon;
+			}
+
+			obj[key] = { tooltip, icon, img };
+			obj[key].active = this.tabGroups.primary === key;
+			return obj;
+		}, {});
+	}
 }
 
 export class FUSidebarApplication extends api.HandlebarsApplicationMixin(sidebar.AbstractSidebarTab) {
@@ -89,7 +115,7 @@ export class FUSidebarApplication extends api.HandlebarsApplicationMixin(sidebar
 	#tools = [
 		{
 			id: 'utilities',
-			label: 'FU.SidebarUtilities',
+			label: 'FU.Utilities',
 			tools: {},
 		},
 	];
