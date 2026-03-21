@@ -100,11 +100,19 @@
 					}
 				}
 
-				/* === Name — top left === */
-				.name {
+				.header {
 					position: absolute;
 					top: 8px;
 					left: 10px;
+					z-index: 2;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 3px;
+				}
+
+				/* === Name — top left === */
+				.name {
 					z-index: 2;
 					font-size: 1rem;
 					font-weight: 700;
@@ -116,9 +124,6 @@
 
 				/* === Identity (role badge) — top right === */
 				.identity {
-					position: absolute;
-					top: 2rem;
-					left: 8px;
 					z-index: 2;
 					font-size: 0.6rem;
 					font-weight: 800;
@@ -133,6 +138,7 @@
 					min-height: unset;
 					text-wrap: unset;
 					text-align: unset;
+					margin-top: 0; /* will be driven by the wrapper */
 				}
 
 				/* === Resources — bottom overlay === */

@@ -1,35 +1,47 @@
 {{!-- Bond Template --}}
 <fieldset class="section-container title-fieldset desc resource-content">
-    <legend class="bond-add resource-label-m" data-tooltip="{{localize 'FU.BondAdd'}}" data-action="addBond">
-        <a class="flex-group-center resource-inputs resource-label-m select-dropdown-m"
-           data-tooltip="{{localize 'FU.BondAdd'}}">
-            <i class="fas fa-plus icon"></i>{{localize 'FU.Bonds'}}
-        </a>
-    </legend>
-    <div class="bonds resource-content grid grid-5col">
-        {{#each system.bonds as |bond bondIndex|}}
-            <input type="text" data-tooltip="{{ bond.name }}" name="system.bonds.{{ bondIndex }}.name"
-                   class="bond-select resource-content resource-inputs" value="{{ bond.name }}" data-dtype="String" />
-            <select name="system.bonds.{{ bondIndex }}.admInf"
-                    class="bond-select resource-content resource-inputs">
-                {{selectOptions @root.FU.bonds.admInf selected=bond.admInf blank="" localize=true}}
-            </select>
-            <select name="system.bonds.{{ bondIndex }}.loyMis"
-                    class="bond-select resource-content resource-inputs">
-                {{selectOptions @root.FU.bonds.loyMis selected=bond.loyMis blank="" localize=true}}
-            </select>
-            <select name="system.bonds.{{ bondIndex }}.affHat"
-                    class="bond-select resource-content resource-inputs">
-                {{selectOptions @root.FU.bonds.affHat selected=bond.affHat blank="" localize=true}}
-            </select>
-            <div class="resource-content flexrow" style="gap: 2px;">
-                <input class="resource-inputs" data-tooltip="{{localize 'FU.BondStrength'}}" readonly value="{{ bond.strength }}" />
-                <a class="bond-delete" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}" data-action="deleteBond">
-                    <button type="button" class="resource-inputs">
-                        <i class="fas fa-xmark"></i>
-                    </button>
-                </a>
-            </div>
-        {{/each}}
-    </div>
+	<legend class="bond-add resource-label-m" data-tooltip="{{localize 'FU.BondAdd'}}" data-action="addBond">
+		<a class="flex-group-center resource-inputs resource-label-m select-dropdown-m"
+		   data-tooltip="{{localize 'FU.BondAdd'}}">
+			<i class="fas fa-plus icon"></i>{{localize 'FU.Bonds'}}
+		</a>
+	</legend>
+	{{#each system.bonds as |bond bondIndex|}}
+		<div class="flexrow flex-group-center resource-content gap-8">
+			<label class="fu-form__property resource-label-sm">
+				{{pfuAutoComplete name=(pfuConcat "system.bonds." bondIndex ".name") value=bond.name options=@root.bondOptions }}
+			</label>
+			<label class="fu-form__property resource-label-sm">
+				<i class="fu-icon--xs {{pfuIconClass 'admInf'}}"></i>
+				<select name="system.bonds.{{ bondIndex }}.admInf">
+					{{selectOptions @root.FU.bonds.admInf selected=bond.admInf blank="" localize=true}}
+				</select>
+			</label>
+			<label class="fu-form__property resource-label-sm">
+				<i class="fu-icon--xs {{pfuIconClass 'loyMis'}}"></i>
+				<select name="system.bonds.{{ bondIndex }}.loyMis">
+					{{selectOptions @root.FU.bonds.loyMis selected=bond.loyMis blank="" localize=true}}
+				</select>
+			</label>
+			<label class="fu-form__property resource-label-sm">
+				<i class="fu-icon--xs {{pfuIconClass 'affHat'}}"></i>
+				<select name="system.bonds.{{ bondIndex }}.affHat">
+					{{selectOptions @root.FU.bonds.affHat selected=bond.affHat blank="" localize=true}}
+				</select>
+			</label>
+			<label class="fu-form__property resource-label-sm fit">
+				<span>{{localize 'FU.Bonus'}}</span>
+				<input type="number" class="resource-inputs" name="system.bonds.{{ bondIndex }}.bonus"
+					   value="{{ bond.bonus }}" />
+			</label>
+			<label class="fu-form__property resource-label-sm fit">
+				<span>{{localize 'FU.Total'}}</span>
+				<span class="value">{{ bond.strength }}</span>
+			</label>
+			<button style="flex:0; align-self: baseline;" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}"
+					data-action="deleteBond" type="button">
+				<i class="fas fa-circle-trash"></i>
+			</button>
+		</div>
+	{{/each}}
 </fieldset>

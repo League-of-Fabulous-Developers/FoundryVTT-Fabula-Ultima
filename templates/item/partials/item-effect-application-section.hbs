@@ -43,12 +43,7 @@
 	{{#each system.effects.entries as |entry index|}}
 		<div class="fu-form__array__element">
 			<label class="fu-form__array__element__input">
-				<input
-				 type="text"
-				 name="system.effects.entries.{{index}}"
-				 value="{{entry}}"
-				 placeholder="e.g. status|fuid|uuid"
-				/>
+				{{pfuAutoComplete name=(pfuConcat "system.effects.entries." index) value=entry placeholder="e.g: status|fuid|uuid" options=@root.effectList }}
 			</label>
 			<a data-path="system.effects.entries" data-index="{{ index }}" data-action="removeArrayElement">
 				<button type="button" class="fu-form__button">

@@ -567,4 +567,6 @@ export default class FoundryUtils {
 			await targetItem.createEmbeddedDocuments('ActiveEffect', creates);
 		}
 	}
+
+	static PLACEHOLDER_IMG = 'icons/svg/mystery-man.svg';
 }

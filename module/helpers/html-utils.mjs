@@ -92,4 +92,12 @@ export const HTMLUtils = Object.freeze({
 			timer = setTimeout(() => fn(...args), ms);
 		};
 	},
+
+	/**
+	 * @param {String} name
+	 * @returns {string}
+	 */
+	getCSSVariable(name) {
+		return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+	},
 });
