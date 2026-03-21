@@ -144,7 +144,8 @@
 		color: var(--pfu-color-app-control-content);
 		border-radius: 3px;
 		padding: 4px;
-		width: 60px;
+		width: 30px;
+		height: auto;
 		font-weight: bold;
 		text-align: center;
 	}

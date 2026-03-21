@@ -336,6 +336,7 @@ function autoComplete(context) {
 			? template({
 					name: dataset.name,
 					value: dataset.value,
+					placeholder: dataset.placeholder,
 					options: options,
 				})
 			: '';

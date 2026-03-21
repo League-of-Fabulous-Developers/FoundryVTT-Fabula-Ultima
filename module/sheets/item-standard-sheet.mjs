@@ -6,6 +6,7 @@ import { SheetUtils } from './sheet-utils.mjs';
 import { ItemPartialTemplates } from '../documents/items/item-partial-templates.mjs';
 import { FUItemSheet } from './item-sheet.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 
 // TODO: Refactor to FUStandardItemSheet and so on..
 
@@ -50,6 +51,7 @@ export class FUStandardItemSheet extends FUItemSheet {
 					context.targetingRules = CONFIG.FU.targetingRules;
 					context.attributePartials = this.generateAttributePartials();
 					context.damageTypeOptions = FoundryUtils.getFormOptions(CONFIG.FU.damageTypes);
+					context.effectList = await CompendiumIndex.instance.getEffectIdList();
 				}
 				break;
 		}

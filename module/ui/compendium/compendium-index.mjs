@@ -240,6 +240,27 @@ export class CompendiumIndex {
 		return this.#effects;
 	}
 
+	#effectIdList;
+
+	/**
+	 * @desc Returns the fuids of all indexed effect items.
+	 * @returns {Promise<String[]>}
+	 */
+	async getEffectIdList() {
+		if (!this.#effectIdList) {
+			const effects = await this.getEffects();
+			let result = new Set();
+			for (const effect of effects) {
+				const fuid = effect.system.fuid;
+				if (fuid) {
+					result.add(fuid);
+				}
+			}
+			this.#effectIdList = Array.from(result);
+		}
+		return this.#effectIdList;
+	}
+
 	/**
 	 * @param {String} type type of document.
 	 * @returns {[]}

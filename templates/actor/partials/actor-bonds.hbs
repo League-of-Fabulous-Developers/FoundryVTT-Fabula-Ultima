@@ -29,16 +29,16 @@
 					{{selectOptions @root.FU.bonds.affHat selected=bond.affHat blank="" localize=true}}
 				</select>
 			</label>
-			<label class="fu-form__property resource-label-sm stack fit">
+			<label class="fu-form__property resource-label-sm fit">
 				<span>{{localize 'FU.Bonus'}}</span>
 				<input type="number" class="resource-inputs" name="system.bonds.{{ bondIndex }}.bonus"
 					   value="{{ bond.bonus }}" />
 			</label>
-			<label class="fu-form__property resource-label-sm stack fit">
+			<label class="fu-form__property resource-label-sm fit">
 				<span>{{localize 'FU.Total'}}</span>
 				<span class="value">{{ bond.strength }}</span>
 			</label>
-			<button style="flex:0;" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}"
+			<button style="flex:0; align-self: baseline;" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}"
 					data-action="deleteBond" type="button">
 				<i class="fas fa-circle-trash"></i>
 			</button>
