@@ -1,5 +1,4 @@
 <section class="tab {{tab.cssClass}}" data-tab="bonds" data-group="primary">
-
 	<div class="pfu-bond-chart">
 		<svg class="pfu-bond-chart__svg" xmlns="http://www.w3.org/2000/svg">
 			<defs>
@@ -11,7 +10,7 @@
 		</svg>
 
 		<div class="pfu-bond-chart__nodes">
-			{{#each characters as |char|}}
+			{{#each bondData.characters as |char|}}
 				<div class="pfu-bond-chart__node"
 					 data-action="revealActor" data-actor="{{char.id}}"
 					 data-id="{{char.id}}"

@@ -208,8 +208,7 @@ export class FUPartySheet extends FUActorSheet {
 			}
 			case 'bonds':
 				{
-					const bondData = await this.computeBondData();
-					context.characters = bondData.characters;
+					context.bondData = await this.computeBondData();
 				}
 				break;
 			case 'adversaries':
@@ -238,7 +237,6 @@ export class FUPartySheet extends FUActorSheet {
 				name: entry.name,
 				id: entry.actor.uuid,
 				img: entry.actor.img,
-				relation: 'ally',
 			};
 			entries.set(entry.name, pcData);
 			data.characters.push(pcData);
@@ -248,7 +246,6 @@ export class FUPartySheet extends FUActorSheet {
 				name: entry.name,
 				id: entry.uuid,
 				img: entry.img,
-				relation: 'enemy',
 			});
 		}
 
@@ -257,19 +254,24 @@ export class FUPartySheet extends FUActorSheet {
 			/** @type BondDataModel[] **/
 			const bonds = character.actor.system.bonds;
 			for (const bond of bonds) {
-				const target = entries.get(bond.name);
+				let target = entries.get(bond.name);
+				// If no actual character is provided for this target, make up a placeholder
 				if (!target) {
-					continue;
+					target = {
+						name: bond.name,
+						id: foundry.utils.randomID(),
+						img: FoundryUtils.PLACEHOLDER_IMG,
+					};
+					entries.set(bond.name, target);
 				}
 				if (!data.characters.find((f) => f.name === bond.name)) {
-					data.characters.push(entries.get(bond.name));
+					data.characters.push(target);
 				}
 
 				data.bonds.push({
 					source: source.id,
 					target: target.id,
 					strength: bond.strength,
-					polarity: target.relation,
 					pairings: [
 						{ key: 'admInf', emotions: ['admiration', 'inferiority'] },
 						{ key: 'affHat', emotions: ['affection', 'hatred'] },
@@ -339,6 +341,9 @@ export class FUPartySheet extends FUActorSheet {
 		windowContent.classList.add(`theme-${theme}`);
 	}
 
+	/** @type FUBondChart **/
+	#bondChart;
+
 	/** @inheritDoc */
 	async _onRender(context, options) {
 		await super._onRender(context, options);
@@ -363,10 +368,12 @@ export class FUPartySheet extends FUActorSheet {
 			});
 		}
 
-		for (const el of this.element.querySelectorAll('.pfu-bond-chart')) {
-			const bondData = await this.computeBondData();
-			const chart = new FUBondChart(el, bondData);
-			chart.render();
+		// Update bond chart
+		const bondChartContainer = this.element.querySelector('.pfu-bond-chart');
+		if (bondChartContainer) {
+			this.#bondChart?.destroy();
+			this.#bondChart = new FUBondChart(bondChartContainer, context.bondData);
+			this.#bondChart.render();
 		}
 	}
 

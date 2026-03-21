@@ -409,7 +409,7 @@
 		display: block;
 		background: var(--pfu-color-app-image-fill, #1e1508);
 		box-shadow:
-			0 0 0 4px var(--pfu-color-app-bg, #1e1508),
+			0 0 0 4px var(--pfu-color-control-border, #1e1508),
 			0 0 0 6px var(--pfu-color-control-highlight-fill, #c9a84c);
 	}
 
@@ -426,44 +426,4 @@
 		border-radius: 3px;
 		padding: 1px 5px;
 	}
-}
-
-/* ── Tooltip ── */
-.pfu-bond-chart__tooltip {
-	position: absolute;
-	background: var(--pfu-color-app-body-content, #1e1508);
-	border: 1px solid var(--pfu-color-control-highlight-fill, #c9a84c);
-	border-radius: 6px;
-	padding: 6px 10px;
-	font-size: 0.75rem;
-	color: var(--pfu-color-app-body-content);
-	pointer-events: none;
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-	max-width: 180px;
-	z-index: 10;
-
-	&[hidden] {
-		display: none;
-	}
-}
-
-.pfu-bond-chart__tooltip-pairing {
-	color: var(--pfu-color-control-highlight-fill, #c9a84c);
-	font-size: 0.7rem;
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-
-	i {
-		width: 12px;
-		text-align: center;
-	}
-}
-
-.pfu-bond-chart__tooltip-strength {
-	opacity: 0.65;
-	font-size: 0.68rem;
-	text-transform: capitalize;
 }

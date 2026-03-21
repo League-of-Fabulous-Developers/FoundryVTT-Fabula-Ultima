@@ -8,7 +8,6 @@ const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
  * @property {string} id    - Unique identifier for the character
  * @property {string} name  - Display name
  * @property {string} img   - URL to the character's portrait image
- * @property {FUFactionRelationKey} relation
  */
 
 /**
@@ -20,7 +19,6 @@ const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
  * @typedef {Object} Bond
  * @property {string}        source   - ID of the source character
  * @property {string}        target   - ID of the target character
- * @property {FUFactionRelationKey}  polarity - Whether this is an ally or enemy bond
  * @property {BondPairing[]} pairings - Emotion pairings for this bond (1–3 entries,
  *                                      one per pairing type at most)
  */
