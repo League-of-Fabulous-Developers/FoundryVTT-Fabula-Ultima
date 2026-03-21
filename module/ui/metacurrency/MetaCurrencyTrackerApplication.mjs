@@ -6,6 +6,7 @@ import { Flags } from '../../helpers/flags.mjs';
 import { CharacterDataModel } from '../../documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../../documents/actors/npc/npc-data-model.mjs';
 import FUApplication from '../application.mjs';
+import { FUHooks } from '../../hooks.mjs';
 
 /**
  * @param {SystemControlTool[]} tools
@@ -17,7 +18,24 @@ function onGetSystemTools(tools) {
 		onClick: () => renderApp(),
 	});
 }
+
+/**
+ *
+ * @param {import('../sidebar.mjs').SidebarToolGroup[]} tools
+ */
+function onGetSidebarTools(tools) {
+	const group = tools.find((group) => group.id === 'utilities');
+	if (group) {
+		group.tools.metaCurrency = {
+			icon: 'fa-solid fa-chart-line',
+			label: 'FU.AppMetaCurrencyTrackerTitle',
+			click: () => renderApp(),
+		};
+	}
+}
+
 Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
+Hooks.on(FUHooks.GET_SIDEBAR_TOOLS, onGetSidebarTools);
 
 let app;
 const renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);

@@ -8,6 +8,7 @@ import { FU } from '../../helpers/config.mjs';
 import { CompendiumFilter } from './compendium-filter.mjs';
 import { HTMLUtils } from '../../helpers/html-utils.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
+import { FUHooks } from '../../hooks.mjs';
 
 /**
  * @typedef {"classes"|"skills"|"equipment"|"spells"|"adversaries"|"abilities"|"effects"} CompendiumBrowserTab
@@ -855,7 +856,25 @@ export class CompendiumBrowser extends FUApplication {
 				},
 			});
 		};
+
+		/**
+		 *
+		 * @param {import('../sidebar.mjs').SidebarToolGroup[]} tools
+		 */
+		const onGetSidebarTools = (tools) => {
+			const group = tools.find((group) => group.id === 'utilities');
+			if (group) {
+				group.tools.compendium = {
+					icon: 'fa-solid fa-book',
+					label: 'FU.CompendiumBrowser',
+					click: () => {
+						CompendiumBrowser.instance.render({ force: true });
+					},
+				};
+			}
+		};
 		Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
+		Hooks.on(FUHooks.GET_SIDEBAR_TOOLS, onGetSidebarTools);
 	}
 
 	/**

@@ -744,6 +744,7 @@ export class FUPartySheet extends FUActorSheet {
 
 // Set up sidebar menu option
 Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
+Hooks.on(FUHooks.GET_SIDEBAR_TOOLS, onGetSidebarTools);
 
 /**
  * @param {SystemControlTool[]} tools
@@ -756,6 +757,22 @@ function onGetSystemTools(tools) {
 			FUPartySheet.toggleActive();
 		},
 	});
+}
+
+/**
+ * @param {import('../ui/sidebar.mjs').SidebarToolGroup[]} tools
+ */
+function onGetSidebarTools(tools) {
+	const group = tools.find((group) => group.id === 'utilities');
+	if (group) {
+		group.tools.party = {
+			icon: 'fa-solid fa fa-users',
+			label: 'FU.Party',
+			click: () => {
+				FUPartySheet.toggleActive();
+			},
+		};
+	}
 }
 
 /**

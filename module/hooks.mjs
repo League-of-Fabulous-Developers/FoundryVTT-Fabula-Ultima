@@ -248,4 +248,6 @@ export const FUHooks = {
 	 * @remarks Uses {@link FeatureEvent}
 	 */
 	FEATURE_EVENT: `projectfu.events.feature`,
+
+	GET_SIDEBAR_TOOLS: `projectfu.getSidebarTools`,
 };

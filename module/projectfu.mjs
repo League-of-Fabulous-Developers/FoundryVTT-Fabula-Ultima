@@ -114,6 +114,7 @@ import { FUPressureGauge, FUModernPressureGauge, FUPixelPressureGauge } from './
 import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
 import { Themes } from './ui/themes/theme-options.mjs';
+import { FUSidebar, FUSidebarApplication } from './ui/sidebar.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -288,6 +289,8 @@ Hooks.once('init', async () => {
 	Object.assign(CONFIG.ui, {
 		combat: FUCombatTracker,
 		chat: FUChatLog,
+		sidebar: FUSidebar,
+		pfuTools: FUSidebarApplication,
 	});
 
 	// Register status effects
