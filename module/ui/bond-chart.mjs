@@ -1,21 +1,7 @@
 import { FU } from '../helpers/config.mjs';
-
-const PAIRING_ICONS = {
-	'admiration-inferiority': { admiration: FU.bondIcons.admiration, inferiority: FU.bondIcons.inferiority },
-	'loyalty-mistrust': { loyalty: FU.bondIcons.loyalty, mistrust: FU.bondIcons.mistrust },
-	'affection-hatred': { affection: FU.bondIcons.affection, hatred: FU.bondIcons.hatred },
-};
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
-
-const EMOTION_COLOR = {
-	admiration: '#6aabff',
-	loyalty: '#6aabff',
-	affection: '#6aabff',
-	inferiority: '#ff6a6a',
-	mistrust: '#ff6a6a',
-	hatred: '#ff6a6a',
-};
 
 /**
  * @typedef {Object} BondChartCharacter
@@ -48,7 +34,6 @@ const EMOTION_COLOR = {
 export class FUBondChart {
 	#container;
 	#svg;
-	#tooltip;
 	#bonds;
 	#resizeObserver;
 
@@ -59,7 +44,6 @@ export class FUBondChart {
 	constructor(container, data) {
 		this.#container = container;
 		this.#svg = container.querySelector('.pfu-bond-chart__svg');
-		this.#tooltip = container.querySelector('.pfu-bond-chart__tooltip');
 		this.#bonds = data.bonds;
 	}
 
@@ -115,6 +99,15 @@ export class FUBondChart {
 	}
 
 	#drawLines() {
+		const EMOTION_COLOR = {
+			admiration: HTMLUtils.getCSSVariable('--bond-admiration'),
+			loyalty: HTMLUtils.getCSSVariable('--bond-loyalty'),
+			affection: HTMLUtils.getCSSVariable('--bond-affection'),
+			inferiority: HTMLUtils.getCSSVariable('--bond-inferiority'),
+			mistrust: HTMLUtils.getCSSVariable('--bond-mistrust'),
+			hatred: HTMLUtils.getCSSVariable('--bond-hatred'),
+		};
+
 		const linesGroup = this.#svg.querySelector('.pfu-bond-chart__lines');
 		const hitsGroup = this.#svg.querySelector('.pfu-bond-chart__hits');
 		const iconsGroup = this.#svg.querySelector('.pfu-bond-chart__icons');
@@ -187,11 +180,9 @@ export class FUBondChart {
 			hit.classList.add('pfu-bond-chart__hit');
 			hit.addEventListener('mouseenter', (e) => {
 				line.setAttribute('opacity', '1');
-				this.#showTooltip(e, bond);
 			});
 			hit.addEventListener('mouseleave', () => {
 				line.setAttribute('opacity', '0.6');
-				this.#hideTooltip();
 			});
 			hitsGroup.appendChild(hit);
 
@@ -229,43 +220,6 @@ export class FUBondChart {
 					iconsGroup.appendChild(fo);
 				});
 			});
-		});
-	}
-
-	#showTooltip(event, bond) {
-		const srcNode = this.#container.querySelector(`.pfu-bond-chart__node[data-id="${bond.source}"]`);
-		const tgtNode = this.#container.querySelector(`.pfu-bond-chart__node[data-id="${bond.target}"]`);
-		const srcName = srcNode?.querySelector('span')?.textContent ?? bond.source;
-		const tgtName = tgtNode?.querySelector('span')?.textContent ?? bond.target;
-
-		this.#tooltip.querySelector('.pfu-bond-chart__tooltip-names').textContent = `${srcName} — ${tgtName}`;
-
-		// One row per pairing
-		const pairingEl = this.#tooltip.querySelector('.pfu-bond-chart__tooltip-pairing');
-		pairingEl.innerHTML = bond.pairings
-			.map((p) => {
-				const def = PAIRING_ICONS[p.type];
-				return `<span>
-      <i class="fas ${def?.icon ?? 'fa-link'}"></i>
-      ${def?.label ?? p.type} — ${p.strength}
-    </span>`;
-			})
-			.join('');
-
-		this.#tooltip.querySelector('.pfu-bond-chart__tooltip-strength').textContent = bond.polarity;
-
-		const containerRect = this.#container.getBoundingClientRect();
-		this.#tooltip.hidden = false;
-		this.#tooltip.style.left = `${event.clientX - containerRect.left + 12}px`;
-		this.#tooltip.style.top = `${event.clientY - containerRect.top + 12}px`;
-	}
-
-	#hideTooltip() {
-		this.#tooltip.hidden = true;
-		// Clear appended pairing text to avoid duplicates on next hover
-		const pairingEl = this.#tooltip.querySelector('.pfu-bond-chart__tooltip-pairing');
-		pairingEl.childNodes.forEach((n) => {
-			if (n.nodeType === Node.TEXT_NODE) n.remove();
 		});
 	}
 
