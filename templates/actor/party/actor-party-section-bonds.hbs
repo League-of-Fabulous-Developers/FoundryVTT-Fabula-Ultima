@@ -3,20 +3,7 @@
 	<div class="pfu-bond-chart">
 		<svg class="pfu-bond-chart__svg" xmlns="http://www.w3.org/2000/svg">
 			<defs>
-				<filter id="pfu-glow-ally" x="-30%" y="-30%" width="160%" height="160%">
-					<feGaussianBlur stdDeviation="3" result="blur" />
-					<feMerge>
-						<feMergeNode in="blur" />
-						<feMergeNode in="SourceGraphic" />
-					</feMerge>
-				</filter>
-				<filter id="pfu-glow-enemy" x="-30%" y="-30%" width="160%" height="160%">
-					<feGaussianBlur stdDeviation="3" result="blur" />
-					<feMerge>
-						<feMergeNode in="blur" />
-						<feMergeNode in="SourceGraphic" />
-					</feMerge>
-				</filter>
+				<g class="pfu-bond-chart__gradients"></g>
 			</defs>
 			<g class="pfu-bond-chart__lines"></g>
 			<g class="pfu-bond-chart__hits"></g>

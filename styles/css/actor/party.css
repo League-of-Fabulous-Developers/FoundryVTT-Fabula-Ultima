@@ -365,9 +365,20 @@
 		pointer-events: stroke;
 	}
 
+	.pfu-bond-chart__bond-badge-bg {
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		background: var(--pfu-color-app-body-content, #1e1508);
+		border: 1px solid;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 	.pfu-bond-chart__bond-icon {
 		pointer-events: none;
-		font-size: 11px;
+		font-size: 12px;
 	}
 }
 

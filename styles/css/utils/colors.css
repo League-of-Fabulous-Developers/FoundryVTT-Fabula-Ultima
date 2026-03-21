@@ -340,6 +340,13 @@
 	--species-monster: #6e0f9c;
 	--species-plant: #228b22;
 	--species-undead: #bbbbbb;
+	/* Bonds */
+	--bond-admiration: #6aabff;
+	--bond-loyalty: #6aabff;
+	--bond-affection: #6aabff;
+	--bond-inferiority: #ff6a6a;
+	--bond-mistrust: #ff6a6a;
+	--bond-hatred: #ff6a6a;
 	/* Difficulty */
 	--difficulty-easy: #3d6b3d; /* muted green */
 	--difficulty-normal: #b59f3b; /* muted yellow/ochre */

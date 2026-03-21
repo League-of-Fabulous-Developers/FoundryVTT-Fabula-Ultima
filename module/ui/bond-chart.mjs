@@ -6,9 +6,15 @@ const PAIRING_ICONS = {
 	'affection-hatred': { affection: FU.bondIcons.affection, hatred: FU.bondIcons.hatred },
 };
 
-const POLARITY_COLORS = {
-	ally: { line: '#6aabff', filter: 'url(#pfu-glow-ally)' },
-	enemy: { line: '#ff6a6a', filter: 'url(#pfu-glow-enemy)' },
+const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
+
+const EMOTION_COLOR = {
+	admiration: '#6aabff',
+	loyalty: '#6aabff',
+	affection: '#6aabff',
+	inferiority: '#ff6a6a',
+	mistrust: '#ff6a6a',
+	hatred: '#ff6a6a',
 };
 
 /**
@@ -98,15 +104,26 @@ export class FUBondChart {
 		};
 	}
 
+	#bondColor(pairings) {
+		if (!pairings?.length) return '#ffffff';
+		const positiveCount = pairings.filter((p) => POSITIVE_EMOTIONS.has(p.emotion.toLowerCase())).length;
+		const negativeCount = pairings.length - positiveCount;
+		if (positiveCount > negativeCount) return '#6aabff';
+		if (negativeCount > positiveCount) return '#ff6a6a';
+		// Equal mix — purple midpoint
+		return '#c06aff';
+	}
+
 	#drawLines() {
 		const linesGroup = this.#svg.querySelector('.pfu-bond-chart__lines');
 		const hitsGroup = this.#svg.querySelector('.pfu-bond-chart__hits');
 		const iconsGroup = this.#svg.querySelector('.pfu-bond-chart__icons');
+		const gradientGroup = this.#svg.querySelector('.pfu-bond-chart__gradients');
 		linesGroup.innerHTML = '';
 		hitsGroup.innerHTML = '';
 		iconsGroup.innerHTML = '';
+		gradientGroup.innerHTML = '';
 
-		// Remove pairs that already have an active bond
 		const seen = new Set();
 		const uniqueBonds = this.#bonds.filter((bond) => {
 			const key = [bond.source, bond.target].sort().join('::');
@@ -116,42 +133,37 @@ export class FUBondChart {
 		});
 
 		const isTwoWay = (bond) => this.#bonds.some((b) => b.source === bond.target && b.target === bond.source);
-		const makeFilter = (id) => {
-			const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
-			filter.setAttribute('id', id);
-			filter.setAttribute('x', '0%');
-			filter.setAttribute('y', '0%');
-			filter.setAttribute('width', '100%');
-			filter.setAttribute('height', '100%');
-			filter.setAttribute('filterUnits', 'userSpaceOnUse'); // ← key change
-			filter.innerHTML = `
-    <feGaussianBlur stdDeviation="3" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  `;
-			return filter;
-		};
 
-		const defs = this.#svg.querySelector('defs');
-		defs.querySelectorAll('.pfu-bond-chart__filter').forEach((f) => f.remove());
-
-		['pfu-glow-ally', 'pfu-glow-enemy'].forEach((id) => {
-			const f = makeFilter(id);
-			f.classList.add('pfu-bond-chart__filter');
-			defs.appendChild(f);
-		});
-
-		// ── Draw active bond lines ─────────────────────────────────────
 		uniqueBonds.forEach((bond) => {
 			const pa = this.#nodeCenter(bond.source);
 			const pb = this.#nodeCenter(bond.target);
 			if (!pa || !pb) return;
 
-			const polarity = POLARITY_COLORS[bond.polarity] ?? POLARITY_COLORS.ally;
 			const weight = 1 + (bond.pairings.length / 3) * 4;
-
 			const dx = pb.x - pa.x,
 				dy = pb.y - pa.y;
 			const len = Math.sqrt(dx * dx + dy * dy) || 1;
+
+			const reverseBond = isTwoWay(bond) ? this.#bonds.find((b) => b.source === bond.target && b.target === bond.source) : null;
+
+			const sourceColor = this.#bondColor(bond.pairings);
+			const targetColor = reverseBond ? this.#bondColor(reverseBond.pairings) : sourceColor;
+
+			// ── Per-line gradient ────────────────────────────────────────
+			const gradientId = `pfu-grad-${bond.source}-${bond.target}`.replace(/\./g, '-');
+
+			const grad = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+			grad.setAttribute('id', gradientId);
+			grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+			grad.setAttribute('x1', pa.x);
+			grad.setAttribute('y1', pa.y);
+			grad.setAttribute('x2', pb.x);
+			grad.setAttribute('y2', pb.y);
+			grad.innerHTML = `
+            <stop offset="0%"   stop-color="${sourceColor}"/>
+            <stop offset="100%" stop-color="${targetColor}"/>
+        `;
+			gradientGroup.appendChild(grad);
 
 			// ── Single line ──────────────────────────────────────────────
 			const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -159,13 +171,14 @@ export class FUBondChart {
 			line.setAttribute('y1', pa.y);
 			line.setAttribute('x2', pb.x);
 			line.setAttribute('y2', pb.y);
-			line.setAttribute('stroke', polarity.line);
+			line.setAttribute('stroke', `url(#${gradientId})`);
 			line.setAttribute('stroke-width', weight);
 			line.setAttribute('stroke-linecap', 'round');
 			line.setAttribute('opacity', '0.6');
-			//line.setAttribute('filter', polarity.filter);
 			line.classList.add('pfu-bond-chart__line');
+			linesGroup.appendChild(line);
 
+			// ── Hit area ─────────────────────────────────────────────────
 			const hit = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 			hit.setAttribute('x1', pa.x);
 			hit.setAttribute('y1', pa.y);
@@ -180,45 +193,40 @@ export class FUBondChart {
 				line.setAttribute('opacity', '0.6');
 				this.#hideTooltip();
 			});
+			hitsGroup.appendChild(hit);
 
-			hitsGroup.append(hit);
-			linesGroup.append(line, hit);
-
-			// ── Pairing icons near source, offset along the normal ───────
-
-			// For two-way bonds, also draw icons near the target pointing back
-			const directions = isTwoWay(bond)
+			// ── Icons ────────────────────────────────────────────────────
+			const directions = reverseBond
 				? [
-						{ origin: pa, sign: 1 },
-						{ origin: pb, sign: -1 },
+						{ origin: pa, ux: dx / len, uy: dy / len, pairings: bond.pairings },
+						{ origin: pb, ux: -dx / len, uy: -dy / len, pairings: reverseBond.pairings },
 					]
-				: [{ origin: pa, sign: 1 }];
+				: [{ origin: pa, ux: dx / len, uy: dy / len, pairings: bond.pairings }];
 
-			directions.forEach(({ origin, sign }) => {
-				const iconOffset = 60;
-				const iconStep = 14;
+			directions.forEach(({ origin, ux, uy, pairings }) => {
+				const iconOffset = 64;
+				const iconStep = 26;
 
-				// Unit vector in the direction from this origin toward the other node
-				const ux = (dx / len) * sign;
-				const uy = (dy / len) * sign;
-
-				bond.pairings.forEach((pairing, i) => {
+				pairings.forEach((pairing, i) => {
 					const dist = iconOffset + i * iconStep;
 					const ix = origin.x + ux * dist;
 					const iy = origin.y + uy * dist;
-					const key = pairing.emotion.toLowerCase();
-					const icon = FU.bondIcons[key] ?? 'fas fa-link';
+					const icon = FU.bondIcons[pairing.emotion.toLowerCase()] ?? 'fas fa-link';
+					const color = EMOTION_COLOR[pairing.emotion.toLowerCase()] ?? '#ffffff';
 
 					const fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-					fo.setAttribute('x', ix - 8);
-					fo.setAttribute('y', iy - 8);
-					fo.setAttribute('width', 16);
-					fo.setAttribute('height', 16);
-					fo.innerHTML = `<i xmlns="http://www.w3.org/1999/xhtml"
-  class="fu-icon--xs ${icon} pfu-bond-chart__bond-icon"
-  style="color:${polarity.line};">
-</i>`;
-					iconsGroup.append(fo);
+					fo.setAttribute('x', ix - 12);
+					fo.setAttribute('y', iy - 12);
+					fo.setAttribute('width', 24);
+					fo.setAttribute('height', 24);
+					fo.classList.add('pfu-bond-chart__bond-badge');
+					fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml"
+                    class="pfu-bond-chart__bond-badge-bg"
+                    style="border-color: ${color};"
+                    data-tooltip="${pairing.emotion}">
+                    <i class="${icon} pfu-bond-chart__bond-icon" style="color: ${color};"></i>
+                </div>`;
+					iconsGroup.appendChild(fo);
 				});
 			});
 		});

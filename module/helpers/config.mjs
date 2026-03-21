@@ -1092,7 +1092,7 @@ FU.bondIcons = {
 	inferiority: 'ra ra-player-despair',
 	loyalty: 'ra ra-shield',
 	mistrust: 'ra ra-interdiction',
-	affection: 'ra ra-two-hearts',
+	affection: 'ra ra-hearts',
 	hatred: 'ra ra-death-skull',
 };
 
