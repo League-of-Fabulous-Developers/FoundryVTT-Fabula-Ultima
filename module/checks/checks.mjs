@@ -1,3 +1,4 @@
+import { MathHelper } from '../../../helpers/math-helper.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
@@ -334,7 +335,6 @@ async function prepareCheckDryRun(type, actor, item, initialConfigCallback) {
 
 const CRITICAL_THRESHOLD = 6;
 const ATTRIBUTE_MAXIMUM_DIE = 12;
-const ATTRIBUTE_APEX_DIE = 20;
 
 /**
  * @param {CheckV2} check
@@ -350,15 +350,14 @@ async function rollCheck(check, actor, item) {
 	let primaryDice = attributes[primary].current;
 	let secondaryDice = attributes[secondary].current;
 
-	// Optional support for attribute paragon (use D20 instead of D12s during checks)
-	const apexAttribute = actor.getFlag(Flags.Scope, Flags.Toggle.ApexAttribute);
-	if (apexAttribute) {
-		if (primary === apexAttribute && attributes[primary].base >= ATTRIBUTE_MAXIMUM_DIE) {
-			primaryDice = ATTRIBUTE_APEX_DIE;
-		}
-		if (secondary === apexAttribute && attributes[secondary].base >= ATTRIBUTE_MAXIMUM_DIE) {
-			secondaryDice = ATTRIBUTE_APEX_DIE;
-		}
+	// Optional support for unlimited dice (ex. NeoHuman use d20 when base is d12)
+	let primaryBound = MathHelper.clamp(attributes[primary].abnormal, 6, 12);
+	if (attributes[primary].unlimit && attributes[primary].base == primaryBound) {
+		primaryDice = attributes[primary].abnormal;
+	}
+	let secondaryBound = MathHelper.clamp(attributes[secondary].abnormal, 6, 12);
+	if (attributes[primary].unlimit && attributes[secondary].base == secondaryBound) {
+		secondaryDice = attributes[secondary].abnormal;
 	}
 
 	const modifierTotal = modifiers.reduce((agg, curr) => (agg += curr.value), 0);
