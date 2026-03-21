@@ -52,7 +52,6 @@ export const Flags = Object.freeze({
 	Scope: 'projectfu',
 	Toggle: Object.freeze({
 		WeaponMagicCheck: 'weaponMagicCheck',
-		ApexAttribute: 'apexAttribute',
 	}),
 	Modifier: Object.freeze({
 		ScaleIncomingDamage: 'scaleIncomingDamage',
