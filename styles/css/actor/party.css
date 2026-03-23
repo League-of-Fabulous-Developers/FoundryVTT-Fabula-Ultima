@@ -547,6 +547,30 @@
 		height 0.2s;
 }
 
+.pfu-codex__entry__viewer {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	width: 600px;
+
+	img {
+		width: 320px;
+		height: auto;
+		object-fit: cover;
+	}
+
+	.name {
+		font-size: var(--font-size-20);
+		font-weight: bold;
+		line-height: 1.2;
+	}
+
+	.description {
+		font-size: var(--font-size-14);
+		line-height: 1.4;
+	}
+}
+
 .pfu-codex__entry__chat {
 	display: flex;
 	flex-direction: column;

@@ -94,6 +94,23 @@ export default class FoundryUtils {
 	}
 
 	/**
+	 * @param {String} title
+	 * @param {String} content
+	 * @param {Object} options
+	 * @returns {Promise}
+	 */
+	static async popout(title, content, options = {}) {
+		await foundry.applications.api.DialogV2.wait({
+			window: { title, icon: 'fas fa-eye' },
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			rejectClose: false,
+			content,
+			buttons: [{ label: 'Close', action: 'close' }],
+			...options,
+		});
+	}
+
+	/**
 	 * @param options
 	 * @returns {Promise<*>}
 	 */

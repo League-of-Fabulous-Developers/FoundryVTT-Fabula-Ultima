@@ -589,6 +589,17 @@ export class FUPartySheet extends FUActorSheet {
 		entry = foundry.utils.deepClone(entry.toObject());
 
 		switch (type) {
+			case 'view':
+				{
+					const content = await FoundryUtils.renderTemplate('actor/party/actor-party-view-codex-entry', {
+						entry: entry,
+					});
+					await FoundryUtils.popout(entry.name, content, {
+						position: {},
+					});
+				}
+				break;
+
 			case 'edit':
 				{
 					const ok = await this.#editCodexEntry(entry);
