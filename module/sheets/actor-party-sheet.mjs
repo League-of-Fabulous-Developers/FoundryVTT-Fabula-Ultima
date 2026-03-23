@@ -623,12 +623,11 @@ export class FUPartySheet extends FUActorSheet {
 	async #editCodexEntry(entry) {
 		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-edit-codex-entry', { entry });
 
-		const result = await foundry.applications.api.DialogV2.prompt({
+		const result = await FoundryUtils.prompt({
 			window: { title: `Edit — ${entry.name}` },
 			position: {
 				width: 600,
 			},
-			classes: ['projectfu', 'fu-dialog'],
 			content,
 			ok: {
 				label: 'Save',

@@ -4,6 +4,41 @@
 		background: var(--pfu-color-app-body-content);
 		border: 1px solid var(--pfu-color-app-border);
 	}
+
+	.image-picker {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+
+		img {
+			width: 240px;
+			height: auto;
+		}
+
+		.inputs {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			gap: 8px;
+
+			button {
+				flex: 0;
+			}
+		}
+	}
+}
+
+.pfu-dialog__input {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	color: var(--pfu-color-app-detail-section-content-secondary);
+
+	span:first-child {
+		font-weight: bold;
+		min-width: 60px;
+	}
 }
 
 .fu-dialog form main {

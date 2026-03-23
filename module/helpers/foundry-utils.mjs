@@ -94,6 +94,57 @@ export default class FoundryUtils {
 	}
 
 	/**
+	 * @param options
+	 * @returns {Promise<*>}
+	 */
+	static async prompt(options = {}) {
+		const [result] = ObjectUtils.mergeRecursive(
+			{
+				window: { icon: 'fas fa-comment' },
+				classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+				rejectClose: false,
+				actions: {
+					// Image Picker: Browse
+					browseImage: (event, target) => {
+						const { name } = target.dataset;
+						const imagePicker = event.currentTarget.querySelector('.image-picker');
+						if (!imagePicker) {
+							return;
+						}
+						const preview = imagePicker.querySelector('img');
+						const input = imagePicker.querySelector(`input[name="${name}"]`);
+						new FilePicker({
+							type: 'image',
+							current: input?.value,
+							callback: (path) => {
+								if (input) {
+									input.value = path;
+									preview.src = path;
+								}
+							},
+						}).render(true);
+					},
+					// Generic File
+					browse: (event, target, dialog) => {
+						const { name, type } = target.dataset;
+						const input = event.currentTarget.querySelector(`input[name="${name}"]`);
+						new FilePicker({
+							type: type,
+							current: input?.value,
+							callback: (path) => {
+								if (input) input.value = path;
+							},
+						}).render(true);
+					},
+				},
+			},
+			options,
+		);
+
+		return await foundry.applications.api.DialogV2.input(result);
+	}
+
+	/**
 	 * @param {String} title
 	 * @param {FormSelectOption[]} options
 	 * @param {string} [selected] the default selected value

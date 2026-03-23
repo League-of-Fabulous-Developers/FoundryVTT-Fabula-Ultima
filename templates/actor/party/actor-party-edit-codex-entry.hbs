@@ -1,27 +1,27 @@
 <fieldset>
-	<div class="form-group">
-		<label>{{localize "Name"}}</label>
-		<div class="form-fields">
-			<input type="text" name="name" value="{{entry.name}}" />
+	<label class="pfu-dialog__input">
+		<span>{{localize "Name"}}</span>
+		<input type="text" name="name" value="{{entry.name}}" />
+	</label>
+
+	<div class="pfu-dialog__input"">
+		<span>{{localize "Image"}}</span>
+		<div class="image-picker">
+			<img class="" src="{{lookup entry 'img'}}"
+				 title="{{entry.name}}" alt=""/>
+			<div class="inputs">
+				<label>
+					<input type="text" name="img" value="{{entry.img}}" />
+				</label>
+				<button type="button" data-action="browseImage" data-name="img" data-type="image">
+					<i class="fas fa-file-image"></i>
+				</button>
+			</div>
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label>{{localize "Image"}}</label>
-		<div class="form-fields">
-			<img class="profile-img flexcol" src="{{lookup entry 'img'}}"
-				 data-action="editImage"
-				 data-edit="{{pfuConcat 'system.codex.' ../category '.' @index '.img'}}" title="{{entry.name}}" alt=""/>
-
-			<input type="text" name="img" value="{{entry.img}}" />
-			<button type="button" data-action="browse">
-				<i class="fas fa-file-image"></i>
-			</button>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label>{{localize "Description"}}</label>
+	<div class="pfu-dialog__input">
+		<span>{{localize "Description"}}</span>
 		<div class="form-fields">
 			<prose-mirror name="description"
 						  compact="true"
