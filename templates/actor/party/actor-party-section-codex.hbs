@@ -1,0 +1,27 @@
+<section class="tab codex {{tab.cssClass}}" data-tab="codex" data-group="primary">
+
+	<div class="wrapper">
+		<nav class="flexrow flex-group-center codex-nav">
+			<button class="codex-nav__tab {{#if (eq activeCodexTab 'characters')}}active{{/if}}"
+					data-tab="characters">
+				<span class="codex-nav__icon">⚔</span>
+				<span class="codex-nav__label">Characters</span>
+			</button>
+			<button class="codex-nav__tab {{#if (eq activeCodexTab 'locations')}}active{{/if}}"
+					data-tab="locations">
+				<span class="codex-nav__icon">✦</span>
+				<span class="codex-nav__label">Locations</span>
+			</button>
+			<button class="codex-nav__tab {{#if (eq activeCodexTab 'factions')}}active{{/if}}"
+					data-tab="factions">
+				<span class="codex-nav__icon">⚜</span>
+				<span class="codex-nav__label">Factions</span>
+			</button>
+		</nav>
+
+		{{> 'systems/projectfu/templates/actor/party/partials/actor-party-codex-category.hbs' category='characters' entries=system.codex.characters}}
+		{{> 'systems/projectfu/templates/actor/party/partials/actor-party-codex-category.hbs' category='locations' entries=system.codex.locations}}
+		{{> 'systems/projectfu/templates/actor/party/partials/actor-party-codex-category.hbs' category='factions' entries=system.codex.factions}}
+
+	</div>
+</section>

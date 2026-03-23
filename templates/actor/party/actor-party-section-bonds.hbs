@@ -9,10 +9,10 @@
 			<g class="pfu-bond-chart__icons"></g>
 		</svg>
 
+		<div class="pfu-bond-chart__clusters"></div>
 		<div class="pfu-bond-chart__nodes">
 			{{#each bondData.characters as |char|}}
 				<div class="pfu-bond-chart__node"
-					 data-action="revealActor" data-actor="{{char.id}}"
 					 data-id="{{char.id}}"
 					 data-index="{{@index}}"
 					 data-total="{{../characters.length}}">

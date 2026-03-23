@@ -65,6 +65,7 @@ export class FUPartySheet extends FUActorSheet {
 
 			callHook: this.#callHook,
 			activate: this.#activate,
+			codex: this.#onCodexAction,
 		},
 		position: { width: 920, height: 1000 },
 		window: {
@@ -84,6 +85,7 @@ export class FUPartySheet extends FUActorSheet {
 				{ id: 'overview', label: 'FU.Overview', icon: 'ra ra-double-team' },
 				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'codex', label: 'FU.Codex', icon: 'ra ra-book' },
 				{ id: 'bonds', label: 'FU.Bonds', icon: 'ra ra-double-team' },
 				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
 				{ id: 'character', label: 'FU.Character' },
@@ -117,6 +119,9 @@ export class FUPartySheet extends FUActorSheet {
 		adversaries: {
 			template: systemPath('templates/actor/party/actor-party-section-adversaries.hbs'),
 		},
+		codex: {
+			template: systemPath('templates/actor/party/actor-party-section-codex.hbs'),
+		},
 		bonds: {
 			template: systemPath('templates/actor/party/actor-party-section-bonds.hbs'),
 		},
@@ -130,6 +135,13 @@ export class FUPartySheet extends FUActorSheet {
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
+
+	/**
+	 * @typedef {'characters'|'locations'|'factions'} CodexTab
+	 */
+
+	/** @type CodexTab **/
+	#activeCodexTab = 'characters';
 
 	/**
 	 * @type PartyCharacterData
@@ -206,6 +218,10 @@ export class FUPartySheet extends FUActorSheet {
 				context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 				break;
 			}
+			case 'codex': {
+				context.activeCodexTab = this.#activeCodexTab;
+				break;
+			}
 			case 'bonds':
 				{
 					context.bondData = await this.computeBondData();
@@ -237,6 +253,7 @@ export class FUPartySheet extends FUActorSheet {
 				name: entry.name,
 				id: entry.actor.uuid,
 				img: entry.actor.img,
+				isPC: true,
 			};
 			entries.set(entry.name, pcData);
 			data.characters.push(pcData);
@@ -320,6 +337,36 @@ export class FUPartySheet extends FUActorSheet {
 
 		// Right click on character
 		this.setupCharacterContextMenu(html);
+	}
+
+	/**
+	 * Attach event listeners to rendered template parts.
+	 * @param {string} partId The id of the part being rendered
+	 * @param {HTMLElement} html The rendered HTML element for the part
+	 * @param {ApplicationRenderOptions} options Rendering options passed to the render method
+	 * @protected
+	 */
+	_attachPartListeners(partId, html, options) {
+		super._attachPartListeners(partId, html, options);
+		switch (partId) {
+			case 'codex':
+				{
+					html.querySelectorAll('.codex-nav__tab').forEach((tab) => {
+						tab.addEventListener('click', () => {
+							const target = tab.dataset.tab;
+
+							html.querySelectorAll('.codex-nav__tab').forEach((t) => t.classList.remove('active'));
+							html.querySelectorAll('.codex-panel').forEach((p) => p.classList.add('hidden'));
+
+							tab.classList.add('active');
+							html.querySelector(`[data-panel="${target}"]`)?.classList.remove('hidden');
+
+							this.#activeCodexTab = target;
+						});
+					});
+				}
+				break;
+		}
 	}
 
 	/** @inheritDoc */
@@ -563,6 +610,30 @@ export class FUPartySheet extends FUActorSheet {
 		for (const actor of actors) {
 			await actor.rest(false);
 			this.render(true);
+		}
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onCodexAction(event, target) {
+		const { type, category, index } = target.dataset;
+		/** @type CodexEntryDataModel **/
+		const entry = this.party.codex[category][index];
+		if (!entry) {
+			return;
+		}
+
+		switch (type) {
+			case 'send':
+				break;
+
+			case 'display':
+				FoundryUtils.popoutImage(entry.img, entry.name);
+				break;
 		}
 	}
 

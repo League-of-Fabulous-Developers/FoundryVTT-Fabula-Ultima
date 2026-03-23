@@ -2,6 +2,7 @@ import { PseudoDocument } from '../documents/pseudo/pseudo-document.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
+import { ObjectUtils } from '../helpers/object-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -35,6 +36,8 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		},
 		actions: {
 			migrateItems: this.#migrateItems,
+			addArrayElement: this.#addArrayElement,
+			removeArrayElement: this.#removeArrayElement,
 		},
 	};
 
@@ -190,6 +193,46 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 				const selectedUpdates = updates.filter((u) => uuids.has(u.item.uuid)).map((u) => u.procedure);
 				await Promise.all(selectedUpdates.map((fn) => fn()));
 				ui.notifications.info(StringUtils.localize('FU.CompendiumMigrateSuccess', { count: selectedUpdates.length }));
+			}
+		}
+	}
+
+	/**
+	 * @this FUActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #addArrayElement(event, target) {
+		const path = target.dataset.path;
+		if (path) {
+			const array = ObjectUtils.getProperty(this.actor, path);
+			if (array) {
+				array.push(null);
+				await this.actor.update({
+					[`${path}`]: array,
+				});
+			}
+		}
+	}
+
+	/**
+	 * @this FUActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #removeArrayElement(event, target) {
+		const path = target.dataset.path;
+		const index = Number.parseInt(target.dataset.index);
+		if (path) {
+			/** @type [] **/
+			const array = ObjectUtils.getProperty(this.actor, path);
+			if (array && index !== undefined) {
+				array.splice(index, 1);
+				await this.actor.update({
+					[`${path}`]: array,
+				});
 			}
 		}
 	}

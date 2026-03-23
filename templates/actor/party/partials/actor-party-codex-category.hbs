@@ -1,0 +1,62 @@
+<div class="codex-panel {{#unless (eq activeCodexTab category)}}hidden{{/unless}}"
+	 data-panel="{{category}}">
+
+	<div class="toolbar">
+		<input class="search"
+			   type="text"
+			   placeholder="..."
+			   data-codex-search="" />
+		<button class="codex-btn codex-btn--add"
+				data-action="addArrayElement" data-path="system.codex.{{category}}">
+			<span>{{localize 'FU.Add'}}</span>
+		</button>
+	</div>
+
+	<ul class="">
+		{{#each (lookup system.codex category) as |entry index|}}
+			<li class="section-container entry" data-index="{{index}}" data-category="{{../category}}">
+
+				<div class="left">
+					<img class="profile-img flexcol" src="{{lookup entry 'img'}}"
+						 data-action="editImage"
+						 data-edit="{{pfuConcat 'system.codex.' ../category '.' @index '.img'}}" title="{{entry.name}}" alt=""/>
+					<div class="controls">
+						<button data-edit="{{index}}"
+								data-category="{{../category}}"
+								title="Edit">✎</button>
+						<button data-action="codex"
+								data-type="display"
+								data-index="{{index}}"
+								data-category="{{../category}}">
+							<i class="fu-icon--xs fa-solid fa-image"></i>
+						</button>
+						<button data-action="codex"
+								data-type="send"
+								data-index="{{index}}"
+								data-category="{{../category}}">
+							<i class="fu-icon--xs fas fa-comment"></i>
+						</button>
+						<button data-action="removeArrayElement"
+								data-path="system.codex.{{../category}}"
+								data-index="{{index}}"
+								title="Delete">✕</button>
+					</div>
+				</div>
+
+				<div class="right">
+					<div style="flex-grow:1;">
+						<div class="charname-container flexrow grid-span-4" style="width: 100%;">
+							<h2 class="charname" style="flex: 3;">
+								<input name="{{pfuConcat 'system.codex.' ../category '.' @index '.name'}}" type="text" value="{{entry.name}}" placeholder="Name" style="">
+							</h2>
+						</div>
+					</div>
+					<div>
+						<prose-mirror name="{{pfuConcat 'system.codex.' ../category '.' @index '.description'}}" value="{{entry.description}}" toggled>
+						</prose-mirror>
+					</div>
+				</div>
+			</li>
+		{{/each}}
+	</ul>
+</div>

@@ -501,6 +501,20 @@ export default class FoundryUtils {
 	}
 
 	/**
+	 * @param {String} src
+	 * @param {String} title
+	 * @param {String} uuid
+	 */
+	static popoutImage(src, title, uuid = undefined) {
+		// eslint-disable-next-line no-undef
+		const popout = new ImagePopout(src, {
+			title: title,
+			uuid: uuid,
+		});
+		popout.render(true);
+	}
+
+	/**
 	 * @desc Migrates the data of an item onto another.
 	 * @param {FUItem} sourceItem
 	 * @param {FUItem} targetItem

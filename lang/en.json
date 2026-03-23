@@ -1930,6 +1930,7 @@
 		"SpecialAttacks": "Special Attacks",
 		"OptionArcanumPulse": "Arcanum Pulse",
 		"OptionArcanumPulseHint": "Whether to add pulses to arcanums as per the playtest materials.",
-		"Summon": "Summon"
+		"Summon": "Summon",
+		"Codex": "Codex"
 	}
 }
