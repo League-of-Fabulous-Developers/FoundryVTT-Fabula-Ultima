@@ -383,6 +383,7 @@
 
 				.description {
 					overflow-y: auto;
+					user-select: text;
 				}
 			}
 		}

@@ -29,6 +29,7 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
  * @property {CodexEntryDataModel[]} characters
  * @property {CodexEntryDataModel[]} locations
  * @property {CodexEntryDataModel[]} factions
+ * @property {CodexEntryDataModel[]} lore
  */
 export class CodexDataModel extends VersionedDataModel {
 	static CURRENT_VERSION = 1;
@@ -37,6 +38,7 @@ export class CodexDataModel extends VersionedDataModel {
 			characters: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
 			locations: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
 			factions: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
+			lore: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
 		});
 	}
 
@@ -44,6 +46,6 @@ export class CodexDataModel extends VersionedDataModel {
 	 * @returns {CodexEntryDataModel[]} All entries among categories.
 	 */
 	get entries() {
-		return [...this.characters, ...this.locations, ...this.factions];
+		return [...this.characters, ...this.locations, ...this.factions, ...this.lore];
 	}
 }
