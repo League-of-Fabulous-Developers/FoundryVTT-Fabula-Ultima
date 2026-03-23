@@ -21,12 +21,15 @@
 						 data-action="editImage"
 						 data-edit="{{pfuConcat 'system.codex.' ../category '.' @index '.img'}}" title="{{entry.name}}" alt=""/>
 					<div class="controls">
-						<button data-edit="{{index}}"
+						<button data-action="codex"
+								data-type="edit"
+								data-index="{{index}}"
 								data-category="{{../category}}"
 								title="Edit">✎</button>
 						<button data-action="codex"
 								data-type="display"
 								data-index="{{index}}"
+								title="SIDEBAR.CharArt"
 								data-category="{{../category}}">
 							<i class="fu-icon--xs fa-solid fa-image"></i>
 						</button>
@@ -39,7 +42,7 @@
 						<button data-action="removeArrayElement"
 								data-path="system.codex.{{../category}}"
 								data-index="{{index}}"
-								title="Delete">✕</button>
+								title="FU.Delete">✕</button>
 					</div>
 				</div>
 

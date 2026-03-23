@@ -224,7 +224,7 @@ export class FUPartySheet extends FUActorSheet {
 			}
 			case 'bonds':
 				{
-					context.bondData = await this.computeBondData();
+					context.bondData = await this.party.computeBondData();
 				}
 				break;
 			case 'adversaries':
@@ -233,75 +233,6 @@ export class FUPartySheet extends FUActorSheet {
 				break;
 		}
 		return context;
-	}
-
-	/**
-	 * @returns {Promise<BondChartData>}
-	 */
-	async computeBondData() {
-		/** @type BondChartData **/
-		let data = {
-			bonds: [],
-			characters: [],
-		};
-		const characters = await this.party.getCharacterData();
-		const adversaries = await this.party.getAdversaryData();
-
-		const entries = new Map();
-		for (const entry of characters) {
-			const pcData = {
-				name: entry.name,
-				id: entry.actor.uuid,
-				img: entry.actor.img,
-				isPC: true,
-			};
-			entries.set(entry.name, pcData);
-			data.characters.push(pcData);
-		}
-		for (const entry of adversaries) {
-			entries.set(entry.name, {
-				name: entry.name,
-				id: entry.uuid,
-				img: entry.img,
-			});
-		}
-
-		for (const character of characters) {
-			const source = entries.get(character.name);
-			/** @type BondDataModel[] **/
-			const bonds = character.actor.system.bonds;
-			for (const bond of bonds) {
-				let target = entries.get(bond.name);
-				// If no actual character is provided for this target, make up a placeholder
-				if (!target) {
-					target = {
-						name: bond.name,
-						id: foundry.utils.randomID(),
-						img: FoundryUtils.PLACEHOLDER_IMG,
-					};
-					entries.set(bond.name, target);
-				}
-				if (!data.characters.find((f) => f.name === bond.name)) {
-					data.characters.push(target);
-				}
-
-				data.bonds.push({
-					source: source.id,
-					target: target.id,
-					strength: bond.strength,
-					pairings: [
-						{ key: 'admInf', emotions: ['admiration', 'inferiority'] },
-						{ key: 'affHat', emotions: ['affection', 'hatred'] },
-						{ key: 'loyMis', emotions: ['loyalty', 'mistrust'] },
-					]
-						.filter((p) => !!bond[p.key])
-						.map((p) => ({
-							emotion: bond[p.key],
-						})),
-				});
-			}
-		}
-		return data;
 	}
 
 	/**
@@ -628,7 +559,18 @@ export class FUPartySheet extends FUActorSheet {
 		}
 
 		switch (type) {
+			case 'edit':
+				break;
+
 			case 'send':
+				{
+					const chatMessage = {
+						content: await FoundryUtils.renderTemplate('chat/chat-codex-entry', {
+							entry: entry,
+						}),
+					};
+					await ChatMessage.create(chatMessage);
+				}
 				break;
 
 			case 'display':
@@ -806,17 +748,13 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<string[]>}
 	 */
 	static async getBondOptions() {
-		let options = [];
 		const party = await FUPartySheet.getActive();
 		if (party) {
 			/** @type PartyDataModel **/
 			const data = party.system;
-			const characters = await data.getCharacterData();
-			options.push(...characters.map((a) => a.name));
-			const adversaries = await data.getAdversaryData();
-			options.push(...adversaries.map((a) => a.name));
+			return data.getBondOptions();
 		}
-		return options;
+		return [];
 	}
 
 	static #onCreate(event, target) {

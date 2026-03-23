@@ -26,14 +26,24 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 
 /**
  * @desc Represents data about an ongoing campaign.
+ * @property {CodexEntryDataModel[]} characters
+ * @property {CodexEntryDataModel[]} locations
+ * @property {CodexEntryDataModel[]} factions
  */
 export class CodexDataModel extends VersionedDataModel {
 	static CURRENT_VERSION = 1;
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			factions: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
-			locations: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
 			characters: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
+			locations: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
+			factions: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
 		});
+	}
+
+	/**
+	 * @returns {CodexEntryDataModel[]} All entries among categories.
+	 */
+	get entries() {
+		return [...this.characters, ...this.locations, ...this.factions];
 	}
 }

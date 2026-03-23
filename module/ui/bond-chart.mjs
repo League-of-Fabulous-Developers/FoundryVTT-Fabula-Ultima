@@ -3,6 +3,12 @@ import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
 
+/**
+ * @typedef BondChartData
+ * @property characters
+ * @property bonds
+ */
+
 export class FUBondChart {
 	#container;
 	#svg;
