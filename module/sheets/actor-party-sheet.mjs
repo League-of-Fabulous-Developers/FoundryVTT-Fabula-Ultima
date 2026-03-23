@@ -591,12 +591,7 @@ export class FUPartySheet extends FUActorSheet {
 		switch (type) {
 			case 'view':
 				{
-					const content = await FoundryUtils.renderTemplate('actor/party/actor-party-view-codex-entry', {
-						entry: entry,
-					});
-					await FoundryUtils.popout(entry.name, content, {
-						position: {},
-					});
+					await FUPartySheet.#viewCodexEntry(entry);
 				}
 				break;
 
@@ -625,6 +620,19 @@ export class FUPartySheet extends FUActorSheet {
 				FoundryUtils.popoutImage(entry.img, entry.name);
 				break;
 		}
+	}
+
+	/**
+	 * @param {CodexEntryDataModel} entry
+	 * @returns {Promise<boolean>}
+	 */
+	static async #viewCodexEntry(entry) {
+		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-view-codex-entry', {
+			entry: entry,
+		});
+		await FoundryUtils.popout(entry.name, content, {
+			position: {},
+		});
 	}
 
 	/**
@@ -821,6 +829,20 @@ export class FUPartySheet extends FUActorSheet {
 		const party = await FUPartySheet.getActive();
 		if (party) {
 			await party.sheet.revealNpc(uuid);
+		}
+	}
+
+	/**
+	 * @param {String} name
+	 * @returns {Promise<void>}
+	 */
+	static async viewCodexEntry(name) {
+		const party = await FUPartySheet.getActiveModel();
+		if (party) {
+			const entry = party.codex.resolveEntry(name);
+			if (entry) {
+				await FUPartySheet.#viewCodexEntry(entry);
+			}
 		}
 	}
 

@@ -48,4 +48,17 @@ export class CodexDataModel extends VersionedDataModel {
 	get entries() {
 		return [...this.characters, ...this.locations, ...this.factions, ...this.lore];
 	}
+
+	/**
+	 * @param {String} name
+	 * @returns {CodexEntryDataModel}
+	 */
+	resolveEntry(name) {
+		for (const entry of this.entries) {
+			if (entry.name === name) {
+				return entry;
+			}
+		}
+		return null;
+	}
 }
