@@ -17,32 +17,41 @@
 			<li class="section-container entry" data-index="{{index}}" data-category="{{../category}}">
 
 				<div class="left">
-					<img class="profile-img flexcol" src="{{lookup entry 'img'}}"
-						 alt="Artwork"/>
+					<a data-action="forCodexEntry"
+					   data-type="display"
+					   data-index="{{index}}"
+					   title="SIDEBAR.CharArt"
+					   data-category="{{../category}}">
+						<img class="profile-img flexcol" src="{{lookup entry 'img'}}"
+							 alt="Artwork"/>
+					</a>
+					{{#if @root.isOwner}}
 					<div class="controls">
-						<button data-action="forCodexEntry"
-								data-type="edit"
-								data-index="{{index}}"
-								data-category="{{../category}}"
-								title="Edit">✎</button>
-						<button data-action="forCodexEntry"
-								data-type="display"
-								data-index="{{index}}"
-								title="SIDEBAR.CharArt"
-								data-category="{{../category}}">
-							<i class="fu-icon--xs fa-solid fa-image"></i>
-						</button>
-						<button data-action="forCodexEntry"
-								data-type="send"
-								data-index="{{index}}"
-								data-category="{{../category}}">
-							<i class="fu-icon--xs fas fa-comment"></i>
-						</button>
-						<button data-action="removeArrayElement"
-								data-path="system.codex.{{../category}}"
-								data-index="{{index}}"
-								title="FU.Delete">✕</button>
+
+							<button data-action="forCodexEntry"
+									data-type="edit"
+									data-index="{{index}}"
+									data-category="{{../category}}"
+									title="Edit">✎</button>
+							<button data-action="forCodexEntry"
+									data-type="display"
+									data-index="{{index}}"
+									title="SIDEBAR.CharArt"
+									data-category="{{../category}}">
+								<i class="fu-icon--xs fa-solid fa-image"></i>
+							</button>
+							<button data-action="forCodexEntry"
+									data-type="send"
+									data-index="{{index}}"
+									data-category="{{../category}}">
+								<i class="fu-icon--xs fas fa-comment"></i>
+							</button>
+							<button data-action="removeArrayElement"
+									data-path="system.codex.{{../category}}"
+									data-index="{{index}}"
+									title="FU.Delete">✕</button>
 					</div>
+					{{/if}}
 				</div>
 
 				<div class="right">

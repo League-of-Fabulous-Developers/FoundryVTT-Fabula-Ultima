@@ -294,7 +294,33 @@
 			gap: 1rem;
 		}
 
+		.codex-nav__tab {
+			font-size: large;
+			background: transparent;
+			border-color: transparent;
+			box-shadow: none;
+			color: var(--pfu-color-control-content, inherit);
+			opacity: 0.6;
+			transition:
+				opacity 0.15s ease,
+				background 0.15s ease,
+				border-color 0.15s ease;
+
+			&:hover:not(.active) {
+				opacity: 0.85;
+			}
+
+			&.active {
+				opacity: 1;
+				background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 60%, transparent 100%);
+				border-color: var(--pfu-color-control-highlight-border);
+				box-shadow: none;
+				color: var(--pfu-color-control-active-content);
+			}
+		}
+
 		.wrapper {
+			padding: 8px;
 			display: flex;
 			flex-direction: column;
 			gap: 16px;
@@ -324,7 +350,8 @@
 			.left {
 				display: flex;
 				flex-direction: column;
-				justify-content: space-between;
+				justify-content: center;
+				gap: 8px;
 
 				img {
 					object-fit: cover;

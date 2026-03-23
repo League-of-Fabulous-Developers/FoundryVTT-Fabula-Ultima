@@ -29,6 +29,18 @@
 	}
 }
 
+.fu-dialog {
+	.dialog-content {
+		button {
+			background-color: var(--color-primary);
+			color: var(--color-white);
+			border: 0.093rem solid #f5f5dc;
+			border-radius: 0.5rem;
+			box-shadow: 0.063rem 0.1rem #2b4a42;
+		}
+	}
+}
+
 .pfu-dialog__input {
 	display: flex;
 	flex-direction: row;
@@ -46,14 +58,6 @@
 	border: 1px solid rgba(44, 74, 66, 0.3294117647);
 	padding: 0.25rem;
 	color: var(--color-text-dark);
-}
-
-.fu-dialog button {
-	background-color: var(--color-primary);
-	color: var(--color-white);
-	border: 0.093rem solid #f5f5dc;
-	border-radius: 0.5rem;
-	box-shadow: 0.063rem 0.1rem #2b4a42;
 }
 
 .fu-dialog__text {
