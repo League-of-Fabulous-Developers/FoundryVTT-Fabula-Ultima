@@ -25,6 +25,7 @@ import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-tabl
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
+import { CodexEntryDataModel } from '../documents/actors/party/codex-data-model.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -65,7 +66,9 @@ export class FUPartySheet extends FUActorSheet {
 
 			callHook: this.#callHook,
 			activate: this.#activate,
-			codex: this.#onCodexAction,
+
+			addCodexEntry: this.#onAddCodexEntry,
+			forCodexEntry: this.#onCodexAction,
 		},
 		position: { width: 920, height: 1000 },
 		window: {
@@ -220,6 +223,9 @@ export class FUPartySheet extends FUActorSheet {
 			}
 			case 'codex': {
 				context.activeCodexTab = this.#activeCodexTab;
+				for (const entry of this.party.codex[context.activeCodexTab]) {
+					entry.enrichedDescription = await FoundryUtils.enrichText(entry.description, {});
+				}
 				break;
 			}
 			case 'bonds':
@@ -550,16 +556,47 @@ export class FUPartySheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
+	static async #onAddCodexEntry(event, target) {
+		const { category } = target.dataset;
+		/** @type CodexEntryDataModel[] **/
+		const entries = this.party.codex[category];
+		/** @type CodexEntryDataModel **/
+		let entry = {
+			img: CodexEntryDataModel.DEFAULT_IMAGE_PATH,
+		};
+		const ok = await this.#editCodexEntry(entry);
+		if (ok) {
+			entries.push(entry);
+			await this.actor.update({ [`system.codex.${category}`]: entries });
+		}
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
 	static async #onCodexAction(event, target) {
 		const { type, category, index } = target.dataset;
+		/** @type CodexEntryDataModel[] **/
+		const entries = this.party.codex[category];
 		/** @type CodexEntryDataModel **/
-		const entry = this.party.codex[category][index];
+		let entry = entries[index];
 		if (!entry) {
 			return;
 		}
+		entry = foundry.utils.deepClone(entry.toObject());
 
 		switch (type) {
 			case 'edit':
+				{
+					const ok = await this.#editCodexEntry(entry);
+					if (ok) {
+						entries[index] = entry;
+						await this.actor.update({ [`system.codex.${category}`]: entries });
+					}
+				}
 				break;
 
 			case 'send':
@@ -577,6 +614,39 @@ export class FUPartySheet extends FUActorSheet {
 				FoundryUtils.popoutImage(entry.img, entry.name);
 				break;
 		}
+	}
+
+	/**
+	 * @param {CodexEntryDataModel} entry
+	 * @returns {Promise<boolean>}
+	 */
+	async #editCodexEntry(entry) {
+		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-edit-codex-entry', { entry });
+
+		const result = await foundry.applications.api.DialogV2.prompt({
+			window: { title: `Edit — ${entry.name}` },
+			position: {
+				width: 600,
+			},
+			classes: ['projectfu', 'fu-dialog'],
+			content,
+			ok: {
+				label: 'Save',
+				callback: (event, button, dialog) => ({
+					name: dialog.element.querySelector('[name="name"]').value.trim(),
+					img: dialog.element.querySelector('[name="img"]').value.trim(),
+					description: dialog.element.querySelector('[name="description"]').value.trim(),
+				}),
+			},
+		});
+
+		if (!result) return false;
+		if (!result.name) return false;
+
+		entry.name = result.name;
+		entry.img = result.img;
+		entry.description = result.description;
+		return true;
 	}
 
 	/**

@@ -319,6 +319,7 @@
 			position: relative;
 			height: 180px;
 			gap: 16px;
+			color: var(--pfu-color-app-section-content-secondary);
 
 			.left {
 				display: flex;
@@ -346,6 +347,16 @@
 				display: flex;
 				flex-direction: column;
 				width: 100%;
+
+				.name {
+					font-family: 'CreditValleybold';
+					font-size: xx-large;
+					font-weight: 700;
+				}
+
+				.description {
+					overflow-y: auto;
+				}
 			}
 		}
 	}

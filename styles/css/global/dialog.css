@@ -1,4 +1,11 @@
 /*		DIALOGS		*/
+.fu-dialog {
+	prose-mirror.editor.prosemirror.active div.editor-container div.editor-content.ProseMirror {
+		background: var(--pfu-color-app-body-content);
+		border: 1px solid var(--pfu-color-app-border);
+	}
+}
+
 .fu-dialog form main {
 	border-radius: 10px;
 	border: 1px solid rgba(44, 74, 66, 0.3294117647);

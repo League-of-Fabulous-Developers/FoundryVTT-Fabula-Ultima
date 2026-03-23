@@ -7,7 +7,7 @@
 			   placeholder="..."
 			   data-codex-search="" />
 		<button class="codex-btn codex-btn--add"
-				data-action="addArrayElement" data-path="system.codex.{{category}}">
+				data-action="addCodexEntry" data-category="{{category}}">
 			<span>{{localize 'FU.Add'}}</span>
 		</button>
 	</div>
@@ -18,22 +18,21 @@
 
 				<div class="left">
 					<img class="profile-img flexcol" src="{{lookup entry 'img'}}"
-						 data-action="editImage"
-						 data-edit="{{pfuConcat 'system.codex.' ../category '.' @index '.img'}}" title="{{entry.name}}" alt=""/>
+						 alt="Artwork"/>
 					<div class="controls">
-						<button data-action="codex"
+						<button data-action="forCodexEntry"
 								data-type="edit"
 								data-index="{{index}}"
 								data-category="{{../category}}"
 								title="Edit">✎</button>
-						<button data-action="codex"
+						<button data-action="forCodexEntry"
 								data-type="display"
 								data-index="{{index}}"
 								title="SIDEBAR.CharArt"
 								data-category="{{../category}}">
 							<i class="fu-icon--xs fa-solid fa-image"></i>
 						</button>
-						<button data-action="codex"
+						<button data-action="forCodexEntry"
 								data-type="send"
 								data-index="{{index}}"
 								data-category="{{../category}}">
@@ -47,17 +46,12 @@
 				</div>
 
 				<div class="right">
-					<div style="flex-grow:1;">
-						<div class="charname-container flexrow grid-span-4" style="width: 100%;">
-							<h2 class="charname" style="flex: 3;">
-								<input name="{{pfuConcat 'system.codex.' ../category '.' @index '.name'}}" type="text" value="{{entry.name}}" placeholder="Name" style="">
-							</h2>
-						</div>
-					</div>
-					<div>
-						<prose-mirror name="{{pfuConcat 'system.codex.' ../category '.' @index '.description'}}" value="{{entry.description}}" toggled>
-						</prose-mirror>
-					</div>
+					<span class="name">
+						{{entry.name}}
+					</span>
+					<span class="description">
+						{{{entry.enrichedDescription}}}
+					</span>
 				</div>
 			</li>
 		{{/each}}
