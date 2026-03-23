@@ -12,8 +12,8 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 
 	static defineSchema() {
 		return {
-			name: new fields.StringField(),
-			description: new fields.StringField(),
+			name: new fields.StringField({ initial: `` }),
+			description: new fields.StringField({ initial: `` }),
 			img: new fields.FilePathField({ categories: ['IMAGE'], initial: CodexEntryDataModel.DEFAULT_IMAGE_PATH }),
 		};
 	}

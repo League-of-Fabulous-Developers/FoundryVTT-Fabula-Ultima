@@ -151,6 +151,9 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	inspectedCharacter;
 
+	/** @type RegExp **/
+	#codexLinkPattern;
+
 	/**
 	 * @returns {PartyDataModel}
 	 */
@@ -223,9 +226,11 @@ export class FUPartySheet extends FUActorSheet {
 			}
 			case 'codex': {
 				context.activeCodexTab = this.#activeCodexTab;
-				for (const entry of this.party.codex[context.activeCodexTab]) {
-					entry.enrichedDescription = await FoundryUtils.enrichText(entry.description, {});
-				}
+				await Promise.all(
+					this.party.codex.entries.map(async (entry) => {
+						await this.#enrichCodexEntry(entry);
+					}),
+				);
 				break;
 			}
 			case 'bonds':
@@ -572,6 +577,22 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
+	 * @returns {RegExp}
+	 */
+	getCodexLinkPattern() {
+		if (!this.#codexLinkPattern) {
+			const names = this.party.codex.entries
+				.map((e) => e.name)
+				.filter(Boolean)
+				.sort((a, b) => b.length - a.length)
+				.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+			this.#codexLinkPattern = new RegExp(`\\b(${names.join('|')})\\b`, 'gi');
+		}
+		return this.#codexLinkPattern;
+	}
+
+	/**
 	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
@@ -586,12 +607,15 @@ export class FUPartySheet extends FUActorSheet {
 		if (!entry) {
 			return;
 		}
-		entry = foundry.utils.deepClone(entry.toObject());
+		if (entry.toObject) {
+			entry = entry.toObject();
+		}
+		entry = foundry.utils.deepClone(entry);
 
 		switch (type) {
 			case 'view':
 				{
-					await FUPartySheet.#viewCodexEntry(entry);
+					await this.#viewCodexEntry(entry);
 				}
 				break;
 
@@ -607,6 +631,7 @@ export class FUPartySheet extends FUActorSheet {
 
 			case 'send':
 				{
+					await this.#enrichCodexEntry(entry);
 					const chatMessage = {
 						content: await FoundryUtils.renderTemplate('chat/chat-codex-entry', {
 							entry: entry,
@@ -626,13 +651,26 @@ export class FUPartySheet extends FUActorSheet {
 	 * @param {CodexEntryDataModel} entry
 	 * @returns {Promise<boolean>}
 	 */
-	static async #viewCodexEntry(entry) {
+	async #viewCodexEntry(entry) {
+		await this.#enrichCodexEntry(entry);
 		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-view-codex-entry', {
 			entry: entry,
 		});
 		await FoundryUtils.popout(entry.name, content, {
 			position: {},
 		});
+	}
+
+	/**
+	 * @param {CodexEntryDataModel} entry
+	 * @returns {Promise<void>}
+	 */
+	async #enrichCodexEntry(entry) {
+		const autoLinked = entry.description.replace(this.getCodexLinkPattern(), (match) => {
+			if (match.toLowerCase() === entry.name.toLowerCase()) return match;
+			return `@CODEX[${match}]`;
+		});
+		entry.enrichedDescription = await FoundryUtils.enrichText(autoLinked, {});
 	}
 
 	/**
@@ -841,7 +879,7 @@ export class FUPartySheet extends FUActorSheet {
 		if (party) {
 			const entry = party.codex.resolveEntry(name);
 			if (entry) {
-				await FUPartySheet.#viewCodexEntry(entry);
+				await party.parent.sheet.#viewCodexEntry(entry);
 			}
 		}
 	}
