@@ -72,6 +72,12 @@ const { api, fields, handlebars } = foundry.applications;
  */
 
 /**
+ * @typedef FUPromptOptions
+ * @property {String} title
+ * @property {Object} context An object to use for certain supported actions
+ */
+
+/**
  * @remarks Helper usage examples can also be found here: https://foundryvtt.wiki/en/development/api/helpers
  */
 export default class FoundryUtils {
@@ -152,6 +158,25 @@ export default class FoundryUtils {
 								if (input) input.value = path;
 							},
 						}).render(true);
+					},
+					toggleTag: (event, target) => {
+						if (!options.context) {
+							return;
+						}
+						const { path, tag } = target.dataset;
+						const tags = ObjectUtils.getProperty(options.context, path);
+						if (!tags) {
+							return;
+						}
+
+						const index = tags.indexOf(tag);
+						if (index === -1) {
+							tags.push(tag);
+							target.classList.add('active');
+						} else {
+							tags.splice(index, 1);
+							target.classList.remove('active');
+						}
 					},
 				},
 			},

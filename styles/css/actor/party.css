@@ -348,10 +348,16 @@
 				flex-direction: column;
 				width: 100%;
 
-				.name {
-					font-family: 'CreditValleybold';
-					font-size: xx-large;
-					font-weight: 700;
+				.header {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+
+					.name {
+						font-family: 'CreditValleybold';
+						font-size: xx-large;
+						font-weight: 700;
+					}
 				}
 
 				.description {

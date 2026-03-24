@@ -13,8 +13,7 @@ export class CodexBrowser {
 
 	constructor(sheet) {
 		this.sheet = sheet;
-		this.actor = sheet.actor;
-		this.party = sheet.actor.system;
+		this.refresh(sheet.actor);
 	}
 
 	/**
@@ -34,7 +33,9 @@ export class CodexBrowser {
 		);
 	}
 
-	refresh() {
+	refresh(actor) {
+		this.actor = actor;
+		this.party = actor.system;
 		this.#codexLinkPattern = undefined;
 	}
 
@@ -127,6 +128,7 @@ export class CodexBrowser {
 		/** @type CodexEntryDataModel **/
 		let entry = {
 			img: CodexEntryDataModel.DEFAULT_IMAGE_PATH,
+			tags: [],
 		};
 		const ok = await this.editCodexEntry(entry);
 		if (ok) {
@@ -140,7 +142,11 @@ export class CodexBrowser {
 	 * @returns {Promise<boolean>}
 	 */
 	async editCodexEntry(entry) {
-		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-edit-codex-entry', { entry });
+		const context = {
+			entry,
+			tags: this.party.codex.tags,
+		};
+		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-edit-codex-entry', context);
 
 		const result = await FoundryUtils.prompt({
 			window: { title: `Edit — ${entry.name}` },
@@ -148,6 +154,7 @@ export class CodexBrowser {
 				width: 600,
 			},
 			content,
+			context,
 			ok: {
 				label: 'Save',
 				callback: (event, button, dialog) => ({

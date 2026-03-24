@@ -348,6 +348,9 @@ export class FUPartySheet extends FUActorSheet {
 			this.#bondChart = new FUBondChart(bondChartContainer, context.bondData);
 			this.#bondChart.render();
 		}
+
+		// Update the code browser
+		this.codexBrowser.refresh(this.actor);
 	}
 
 	/**

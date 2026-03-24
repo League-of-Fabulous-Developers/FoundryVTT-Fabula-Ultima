@@ -79,3 +79,34 @@
 		filter: unset;
 	}
 }
+
+.pfu-tag-selector {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3rem;
+
+	.tag {
+		cursor: pointer;
+		padding: 0.2rem 0.6rem;
+		border: 1px solid var(--pfu-color-control-border);
+		border-radius: 2px;
+		font-size: medium;
+		color: var(--color-light-4);
+		user-select: none;
+		transition:
+			background 0.1s,
+			color 0.1s,
+			border-color 0.1s;
+
+		&:hover {
+			border-color: var(--color-border-highlight);
+			color: var(--color-light-1);
+		}
+
+		&.active {
+			background: var(--color-border-highlight);
+			border-color: var(--color-border-highlight);
+			color: var(--color-light-1);
+		}
+	}
+}

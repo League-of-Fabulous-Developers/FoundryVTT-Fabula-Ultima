@@ -7,6 +7,7 @@ const fields = foundry.data.fields;
  * @property {String} name
  * @property {String} description
  * @property {String} img The path to the image.
+ * @property {String[]} tags
  */
 export class CodexEntryDataModel extends foundry.abstract.DataModel {
 	static DEFAULT_IMAGE_PATH = 'icons/svg/mystery-man.svg';
@@ -29,6 +30,7 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 /**
  * @desc Represents data about an ongoing campaign.
  * @property {CodexEntryDataModel[]} entries
+ * @property {String[]} tags
  */
 export class CodexDataModel extends VersionedDataModel {
 	static CURRENT_VERSION = 1;

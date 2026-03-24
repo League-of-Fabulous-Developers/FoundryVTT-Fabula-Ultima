@@ -24,7 +24,6 @@
 					</a>
 					{{#if @root.isOwner}}
 						<div class="controls">
-
 							<button data-action="forCodexEntry"
 									data-type="edit"
 									data-index="{{index}}"
@@ -49,9 +48,16 @@
 				</div>
 
 				<div class="right">
-					<span class="name">
-						{{entry.name}}
-					</span>
+					<div class="header">
+						<span class="name">
+							{{entry.name}}
+						</span>
+						<div class="pfu-tags">
+							{{#each entry.tags as |tag|}}
+								<div class="fu-tag">{{localize tag}}</div>
+							{{/each}}
+						</div>
+					</div>
 					<span class="description">
 						{{{entry.enrichedDescription}}}
 					</span>
