@@ -1,33 +1,63 @@
 <section class="tab codex {{tab.cssClass}}" data-tab="codex" data-group="primary">
 
-	<div class="wrapper">
-		<nav class="flexrow flex-group-center codex-nav">
-			<a class="codex-nav__tab {{#if (eq activeCodexTab 'characters')}}active{{/if}}"
-					data-tab="characters">
-				<span class="codex-nav__icon">⚔</span>
-				<span class="codex-nav__label">{{localize 'FU.Characters'}}</span>
-			</a>
-			<a class="codex-nav__tab {{#if (eq activeCodexTab 'locations')}}active{{/if}}"
-					data-tab="locations">
-				<span class="codex-nav__icon">✦</span>
-				<span class="codex-nav__label">{{localize 'FU.Locations'}}</span>
-			</a>
-			<a class="codex-nav__tab {{#if (eq activeCodexTab 'factions')}}active{{/if}}"
-					data-tab="factions">
-				<span class="codex-nav__icon">⚜</span>
-				<span class="codex-nav__label">{{localize 'FU.Factions'}}</span>
-			</a>
-			<a class="codex-nav__tab {{#if (eq activeCodexTab 'lore')}}active{{/if}}"
-			   data-tab="lore">
-				<span class="codex-nav__icon">⚜</span>
-				<span class="codex-nav__label">{{localize 'FU.Lore'}}</span>
-			</a>
-		</nav>
-
-		{{> 'systems/projectfu/templates/actor/party/partials/actor-party-codex-category.hbs' category='characters' entries=system.codex.characters}}
-		{{> 'systems/projectfu/templates/actor/party/partials/actor-party-codex-category.hbs' category='locations' entries=system.codex.locations}}
-		{{> 'systems/projectfu/templates/actor/party/partials/actor-party-codex-category.hbs' category='factions' entries=system.codex.factions}}
-		{{> 'systems/projectfu/templates/actor/party/partials/actor-party-codex-category.hbs' category='lore' entries=system.codex.lore}}
-
+	<div class="toolbar">
+		<label class="search">
+			<input type="text"
+				   placeholder="..." />
+		</label>
+		<button class="codex-btn codex-btn--add"
+				data-action="addCodexEntry">
+			<span>{{localize 'FU.Add'}}</span>
+		</button>
 	</div>
+
+	<ul class="entries">
+		{{#each system.codex.entries as |entry index|}}
+			<li class="section-container entry" data-index="{{index}}">
+				<div class="left">
+					<a data-action="forCodexEntry"
+					   data-type="view"
+					   data-index="{{index}}"
+					   title="View">
+						<img class="profile-img flexcol" src="{{lookup entry 'img'}}"
+							 alt="Artwork"/>
+					</a>
+					{{#if @root.isOwner}}
+						<div class="controls">
+
+							<button data-action="forCodexEntry"
+									data-type="edit"
+									data-index="{{index}}"
+									title="Edit">✎</button>
+							<button data-action="forCodexEntry"
+									data-type="display"
+									data-index="{{index}}"
+									title="{{localize 'SIDEBAR.CharArt'}}">
+								<i class="fu-icon--xs fa-solid fa-image"></i>
+							</button>
+							<button data-action="forCodexEntry"
+									data-type="send"
+									data-index="{{index}}">
+								<i class="fu-icon--xs fas fa-comment"></i>
+							</button>
+							<button data-action="removeArrayElement"
+									data-path="system.codex.entries"
+									data-index="{{index}}"
+									title="FU.Delete">✕</button>
+						</div>
+					{{/if}}
+				</div>
+
+				<div class="right">
+					<span class="name">
+						{{entry.name}}
+					</span>
+					<span class="description">
+						{{{entry.enrichedDescription}}}
+					</span>
+				</div>
+			</li>
+		{{/each}}
+	</ul>
+
 </section>

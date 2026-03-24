@@ -25,7 +25,7 @@ import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-tabl
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
-import { CodexEntryDataModel } from '../documents/actors/party/codex-data-model.mjs';
+import { CodexBrowser } from '../ui/codex-browser.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -138,21 +138,22 @@ export class FUPartySheet extends FUActorSheet {
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
-
-	/**
-	 * @typedef {'characters'|'locations'|'factions'} CodexTab
-	 */
-
-	/** @type CodexTab **/
-	#activeCodexTab = 'characters';
+	#codexBrowser;
 
 	/**
 	 * @type PartyCharacterData
 	 */
 	inspectedCharacter;
 
-	/** @type RegExp **/
-	#codexLinkPattern;
+	/**
+	 * @return CodexBrowser
+	 */
+	get codexBrowser() {
+		if (!this.#codexBrowser) {
+			this.#codexBrowser = new CodexBrowser(this);
+		}
+		return this.#codexBrowser;
+	}
 
 	/**
 	 * @returns {PartyDataModel}
@@ -225,12 +226,7 @@ export class FUPartySheet extends FUActorSheet {
 				break;
 			}
 			case 'codex': {
-				context.activeCodexTab = this.#activeCodexTab;
-				await Promise.all(
-					this.party.codex.entries.map(async (entry) => {
-						await this.#enrichCodexEntry(entry);
-					}),
-				);
+				await this.codexBrowser.prepareContext(context);
 				break;
 			}
 			case 'bonds':
@@ -293,19 +289,7 @@ export class FUPartySheet extends FUActorSheet {
 		switch (partId) {
 			case 'codex':
 				{
-					html.querySelectorAll('.codex-nav__tab').forEach((tab) => {
-						tab.addEventListener('click', () => {
-							const target = tab.dataset.tab;
-
-							html.querySelectorAll('.codex-nav__tab').forEach((t) => t.classList.remove('active'));
-							html.querySelectorAll('.codex-panel').forEach((p) => p.classList.add('hidden'));
-
-							tab.classList.add('active');
-							html.querySelector(`[data-panel="${target}"]`)?.classList.remove('hidden');
-
-							this.#activeCodexTab = target;
-						});
-					});
+					this.codexBrowser.attachListeners(html);
 				}
 				break;
 		}
@@ -562,34 +546,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onAddCodexEntry(event, target) {
-		const { category } = target.dataset;
-		/** @type CodexEntryDataModel[] **/
-		const entries = this.party.codex[category];
-		/** @type CodexEntryDataModel **/
-		let entry = {
-			img: CodexEntryDataModel.DEFAULT_IMAGE_PATH,
-		};
-		const ok = await this.#editCodexEntry(entry);
-		if (ok) {
-			entries.push(entry);
-			await this.actor.update({ [`system.codex.${category}`]: entries });
-		}
-	}
-
-	/**
-	 * @returns {RegExp}
-	 */
-	getCodexLinkPattern() {
-		if (!this.#codexLinkPattern) {
-			const names = this.party.codex.entries
-				.map((e) => e.name)
-				.filter(Boolean)
-				.sort((a, b) => b.length - a.length)
-				.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-
-			this.#codexLinkPattern = new RegExp(`\\b(${names.join('|')})\\b`, 'gi');
-		}
-		return this.#codexLinkPattern;
+		return this.codexBrowser.addCodexEntry();
 	}
 
 	/**
@@ -599,110 +556,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onCodexAction(event, target) {
-		const { type, category, index } = target.dataset;
-		/** @type CodexEntryDataModel[] **/
-		const entries = this.party.codex[category];
-		/** @type CodexEntryDataModel **/
-		let entry = entries[index];
-		if (!entry) {
-			return;
-		}
-		if (entry.toObject) {
-			entry = entry.toObject();
-		}
-		entry = foundry.utils.deepClone(entry);
-
-		switch (type) {
-			case 'view':
-				{
-					await this.#viewCodexEntry(entry);
-				}
-				break;
-
-			case 'edit':
-				{
-					const ok = await this.#editCodexEntry(entry);
-					if (ok) {
-						entries[index] = entry;
-						await this.actor.update({ [`system.codex.${category}`]: entries });
-					}
-				}
-				break;
-
-			case 'send':
-				{
-					await this.#enrichCodexEntry(entry);
-					const chatMessage = {
-						content: await FoundryUtils.renderTemplate('chat/chat-codex-entry', {
-							entry: entry,
-						}),
-					};
-					await ChatMessage.create(chatMessage);
-				}
-				break;
-
-			case 'display':
-				FoundryUtils.popoutImage(entry.img, entry.name);
-				break;
-		}
-	}
-
-	/**
-	 * @param {CodexEntryDataModel} entry
-	 * @returns {Promise<boolean>}
-	 */
-	async #viewCodexEntry(entry) {
-		await this.#enrichCodexEntry(entry);
-		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-view-codex-entry', {
-			entry: entry,
-		});
-		await FoundryUtils.popout(entry.name, content, {
-			position: {},
-		});
-	}
-
-	/**
-	 * @param {CodexEntryDataModel} entry
-	 * @returns {Promise<void>}
-	 */
-	async #enrichCodexEntry(entry) {
-		const autoLinked = entry.description.replace(this.getCodexLinkPattern(), (match) => {
-			if (match.toLowerCase() === entry.name.toLowerCase()) return match;
-			return `@CODEX[${match}]`;
-		});
-		entry.enrichedDescription = await FoundryUtils.enrichText(autoLinked, {});
-	}
-
-	/**
-	 * @param {CodexEntryDataModel} entry
-	 * @returns {Promise<boolean>}
-	 */
-	async #editCodexEntry(entry) {
-		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-edit-codex-entry', { entry });
-
-		const result = await FoundryUtils.prompt({
-			window: { title: `Edit — ${entry.name}` },
-			position: {
-				width: 600,
-			},
-			content,
-			ok: {
-				label: 'Save',
-				callback: (event, button, dialog) => ({
-					name: dialog.element.querySelector('[name="name"]').value.trim(),
-					img: dialog.element.querySelector('[name="img"]').value.trim(),
-					description: dialog.element.querySelector('[name="description"]').value.trim(),
-				}),
-			},
-		});
-
-		if (!result) return false;
-		if (!result.name) return false;
-
-		entry.name = result.name;
-		entry.img = result.img;
-		entry.description = result.description;
-		return true;
+		return this.codexBrowser.handleContextAction(event, target);
 	}
 
 	/**
@@ -879,7 +733,7 @@ export class FUPartySheet extends FUActorSheet {
 		if (party) {
 			const entry = party.codex.resolveEntry(name);
 			if (entry) {
-				await party.parent.sheet.#viewCodexEntry(entry);
+				await party.parent.sheet.codexBrowser.viewCodexEntry(entry);
 			}
 		}
 	}

@@ -1,0 +1,31 @@
+<div class="fu-form__property stack">
+	<div class="fu-form__property__header">
+		<span>{{localize label}}</span>
+		<a data-tooltip="{{localize 'FU.Add'}}"
+		   data-path="{{path}}"
+		   data-action="addArrayElement">
+			<i class="fu-icon--s fas fa-plus-circle">
+			</i>
+		</a>
+	</div>
+	<div class="fu-form__array">
+		{{#each array as |entry index|}}
+			<div class="fu-form__array__element">
+				<label class="fu-form__array__element__input">
+					{{#if ../options}}
+						{{pfuAutoComplete name=(pfuConcat ../path "." index) value=entry placeholder="..." options=../options}}
+					{{else if (eq ../type 'string')}}
+						<input type="text"
+							   name="{{pfuConcat ../path '.' index}}"
+							   value="{{entry}}"
+							   placeholder="..." />
+					{{/if}}
+				</label>
+				<a data-path="{{../path}}" data-index="{{ index }}" data-action="removeArrayElement">
+					<i class="fu-icon--xs fas fa-minus-circle"></i>
+				</a>
+			</div>
+		{{/each}}
+	</div>
+</div>
+

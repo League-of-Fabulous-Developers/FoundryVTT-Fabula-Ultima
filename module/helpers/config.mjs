@@ -1156,3 +1156,15 @@ FU.compendiumBrowserPacks = Object.freeze({
 	system: 'FU.System',
 	custom: 'FU.Custom',
 });
+
+/**
+ * @typedef {'character'|'location'|'faction'|'event'} FUCodexTag
+ */
+
+FU.codexTags = Object.freeze({
+	character: 'FU.CODEX.Character',
+	location: 'FU.CODEX.Location',
+	faction: 'FU.CODEX.Faction',
+	event: 'FU.CODEX.Event',
+	lore: 'FU.CODEX.Lore',
+});

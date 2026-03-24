@@ -87,6 +87,19 @@
 	}
 }
 
+.fu-form__property__header {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	color: var(--pfu-color-app-detail-section-content-secondary);
+
+	span {
+		width: unset !important;
+	}
+}
+
 .fu-form__property {
 	--property-label-width: 120px;
 	--property-select-width: 100px;

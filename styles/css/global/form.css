@@ -56,6 +56,17 @@
 	font-weight: bold;
 }
 
+.fu-form__array {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+
+	a {
+		color: var(--pfu-color-app-detail-section-content-secondary);
+	}
+}
+
 .fu-form__array__element {
 	display: flex;
 	margin: 2px;

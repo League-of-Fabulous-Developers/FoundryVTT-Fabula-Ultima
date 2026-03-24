@@ -22,8 +22,12 @@
 					{{localize 'Settings'}}
 				</a>
 			</legend>
-			<div class="flexrow flex-group-center">
-				<button data-action="activate" class="set-active-button"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
+
+			<div class="grid-2col">
+				<div class="flexrow flex-group-center">
+					<button data-action="activate" class="set-active-button"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
+				</div>
+				{{pfuArrayField array=system.codex.tags label="FU.Tags" path="system.codex.tags" type="string" }}
 			</div>
 		</fieldset>
 	</main>

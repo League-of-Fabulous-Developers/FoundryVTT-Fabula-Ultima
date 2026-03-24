@@ -57,6 +57,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/common/icons/badge.hbs',
 			'systems/projectfu/templates/common/icons/item.hbs',
 			'systems/projectfu/templates/common/icons/compendium.hbs',
+			'systems/projectfu/templates/common/array-field.hbs',
 
 			// Effects
 			'systems/projectfu/templates/effects/active-effect-details.hbs',

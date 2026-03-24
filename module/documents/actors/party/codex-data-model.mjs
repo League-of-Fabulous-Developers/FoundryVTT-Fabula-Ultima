@@ -1,4 +1,5 @@
 import { VersionedDataModel } from '../../../fields/versioned-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 const fields = foundry.data.fields;
 
@@ -15,6 +16,7 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 			name: new fields.StringField({ initial: `` }),
 			description: new fields.StringField({ initial: `` }),
 			img: new fields.FilePathField({ categories: ['IMAGE'], initial: CodexEntryDataModel.DEFAULT_IMAGE_PATH }),
+			tags: new fields.ArrayField(new fields.StringField(), {}),
 		};
 	}
 
@@ -26,27 +28,17 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 
 /**
  * @desc Represents data about an ongoing campaign.
- * @property {CodexEntryDataModel[]} characters
- * @property {CodexEntryDataModel[]} locations
- * @property {CodexEntryDataModel[]} factions
- * @property {CodexEntryDataModel[]} lore
+ * @property {CodexEntryDataModel[]} entries
  */
 export class CodexDataModel extends VersionedDataModel {
 	static CURRENT_VERSION = 1;
 	static defineSchema() {
 		return Object.assign(super.defineSchema(), {
-			characters: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
-			locations: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
-			factions: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
-			lore: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
+			entries: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
+			tags: new fields.ArrayField(new fields.StringField({ initial: '', nullable: false, blank: true }), {
+				initial: Object.keys(FU.codexTags),
+			}),
 		});
-	}
-
-	/**
-	 * @returns {CodexEntryDataModel[]} All entries among categories.
-	 */
-	get entries() {
-		return [...this.characters, ...this.locations, ...this.factions, ...this.lore];
 	}
 
 	/**
