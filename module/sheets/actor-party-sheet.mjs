@@ -70,6 +70,7 @@ export class FUPartySheet extends FUActorSheet {
 			addCodexEntry: this.#onAddCodexEntry,
 			forCodexEntry: this.#onCodexAction,
 			resetCodexTags: this.#onResetCodexTags,
+			inspectBondNode: { handler: this.#onInspectBondNode, buttons: [2] },
 		},
 		position: { width: 920, height: 1000 },
 		window: {
@@ -575,6 +576,34 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onInspectBondNode(event, target) {
+		const { id, type, name } = target.dataset;
+		switch (type) {
+			case 'character':
+				{
+					const actor = await fromUuid(id);
+					if (actor) {
+						actor.sheet.render(true);
+					}
+				}
+				break;
+
+			case 'adversary':
+				await this.revealNpc(id);
+				break;
+
+			case 'codex':
+				await this.codexBrowser.revealCodexEntry(name);
+				break;
+		}
+	}
+
+	/**
 	 * @param uuid
 	 * @returns {Promise<void>}
 	 */
@@ -746,10 +775,7 @@ export class FUPartySheet extends FUActorSheet {
 	static async viewCodexEntry(name) {
 		const party = await FUPartySheet.getActiveModel();
 		if (party) {
-			const entry = party.codex.resolveEntry(name);
-			if (entry) {
-				await party.parent.sheet.codexBrowser.viewCodexEntry(entry);
-			}
+			await party.parent.sheet.codexBrowser.revealCodexEntry(name);
 		}
 	}
 

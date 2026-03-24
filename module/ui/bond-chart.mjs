@@ -4,8 +4,17 @@ import { HTMLUtils } from '../helpers/html-utils.mjs';
 const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
 
 /**
+ * @typedef BondNodeData
+ * @property name
+ * @property id
+ * @property img
+ * @property {'character'|'adversary'|'codex'} type
+ * @property isPC
+ */
+
+/**
  * @typedef BondChartData
- * @property characters
+ * @property {BondNodeData[]} characters // TODO: Rename
  * @property bonds
  */
 
@@ -270,25 +279,34 @@ export class FUBondChart {
 			hit.addEventListener('mouseleave', () => line.setAttribute('opacity', lineOpacity));
 			hitsGroup.appendChild(hit);
 
-			// Icons only on bonds close to the focus
-			//if (maxD > 1) return;
+			// Only show icons if the focus character is involved in this bond
+			const focusInvolved = bond.source === focusId || bond.target === focusId;
+			if (!focusInvolved) return;
+
+			const mid = {
+				x: (pa.x + pb.x) / 2,
+				y: (pa.y + pb.y) / 2,
+			};
 
 			const directions = reverseBond
 				? [
-						{ origin: pa, ux: dx / len, uy: dy / len, pairings: bond.pairings },
-						{ origin: pb, ux: -dx / len, uy: -dy / len, pairings: reverseBond.pairings },
+						// From midpoint towards source (pa)
+						{ origin: mid, ux: -dx / len, uy: -dy / len, pairings: bond.pairings },
+						// From midpoint towards target (pb)
+						{ origin: mid, ux: dx / len, uy: dy / len, pairings: reverseBond.pairings },
 					]
-				: [{ origin: pa, ux: dx / len, uy: dy / len, pairings: bond.pairings }];
+				: [
+						// One-way: from midpoint towards source
+						{ origin: mid, ux: -dx / len, uy: -dy / len, pairings: bond.pairings },
+					];
 
 			directions.forEach(({ origin, ux, uy, pairings }) => {
-				// Clamp iconOffset to at most 40% of the line length
-				// so icons always stay on the line regardless of node proximity
-				const maxOffset = len * 0.4;
-				const iconOffset = Math.min(64, maxOffset);
-				const iconStep = Math.min(26, (maxOffset - iconOffset) / (pairings.length || 1));
+				const maxOffset = (len / 2) * 0.85; // stay within half the line
+				const iconSpacing = Math.min(26, maxOffset / (pairings.length || 1));
+				const iconOffset = iconSpacing * 0.5; // start just off center
 
 				pairings.forEach((pairing, i) => {
-					const dist = iconOffset + i * iconStep;
+					const dist = iconOffset + i * iconSpacing;
 					const ix = origin.x + ux * dist;
 					const iy = origin.y + uy * dist;
 					const icon = FU.bondIcons[pairing.emotion.toLowerCase()] ?? 'fas fa-link';
@@ -301,11 +319,11 @@ export class FUBondChart {
 					fo.setAttribute('height', 24);
 					fo.classList.add('pfu-bond-chart__bond-badge');
 					fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml"
-                        class="pfu-bond-chart__bond-badge-bg"
-                        style="border-color: ${color};"
-                        data-tooltip="${pairing.emotion}">
-                        <i class="${icon} pfu-bond-chart__bond-icon" style="color: ${color};"></i>
-                    </div>`;
+                class="pfu-bond-chart__bond-badge-bg"
+                style="border-color: ${color};"
+                data-tooltip="${pairing.emotion}">
+                <i class="${icon} pfu-bond-chart__bond-icon" style="color: ${color};"></i>
+            </div>`;
 					iconsGroup.appendChild(fo);
 				});
 			});

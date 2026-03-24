@@ -450,6 +450,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 				name: entry.name,
 				id: entry.actor.uuid,
 				img: entry.actor.img,
+				type: 'character',
 				isPC: true,
 			};
 			entries.set(entry.name, pcData);
@@ -460,6 +461,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 				name: entry.name,
 				id: entry.uuid,
 				img: entry.img,
+				type: 'adversary',
 			});
 		}
 		for (const entry of this.codex.entries) {
@@ -467,6 +469,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 				name: entry.name,
 				id: foundry.utils.randomID(),
 				img: entry.img,
+				type: 'codex',
 			});
 		}
 

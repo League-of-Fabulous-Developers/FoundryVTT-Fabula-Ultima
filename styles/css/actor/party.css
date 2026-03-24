@@ -475,6 +475,9 @@
 }
 
 .pfu-bond-chart__node {
+	--node-accent: var(--pfu-color-control-highlight-fill, #c9a84c);
+	--node-ring: #1e1508;
+
 	position: absolute;
 	display: flex;
 	flex-direction: column;
@@ -483,18 +486,31 @@
 	transform: translate(-50%, -50%);
 	cursor: pointer;
 
+	&.character {
+		--node-accent: #6aabff;
+		--node-ring: #1e1508;
+	}
+	&.adversary {
+		--node-accent: #ff6a6a;
+		--node-ring: #1e1508;
+	}
+	&.codex {
+		--node-accent: #c9a84c;
+		--node-ring: #1e1508;
+	}
+
 	img {
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
-		border: 2px solid var(--pfu-color-control-highlight-fill, #c9a84c);
+		border: 2px solid var(--node-accent);
 		object-fit: cover;
 		object-position: center top;
 		display: block;
 		background: var(--pfu-color-app-image-fill, #1e1508);
-		box-shadow:
-			0 0 0 3px var(--pfu-color-control-border, #1e1508),
-			0 0 0 5px var(--pfu-color-control-highlight-fill, #c9a84c);
+		/*box-shadow:*/
+		/*  0 0 0 3px var(--node-ring),*/
+		/*  0 0 0 5px var(--node-accent);*/
 	}
 
 	span {
@@ -506,7 +522,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		background: var(--pfu-color-app-control-fill, #1e1508);
-		border: 1px solid var(--pfu-color-control-highlight-fill, #c9a84c);
+		border: 1px solid var(--node-accent);
 		border-radius: 3px;
 		padding: 1px 5px;
 	}

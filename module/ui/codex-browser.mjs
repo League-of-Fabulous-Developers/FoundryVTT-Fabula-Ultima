@@ -193,6 +193,13 @@ export class CodexBrowser {
 		}
 	}
 
+	async revealCodexEntry(name) {
+		const entry = this.party.codex.resolveEntry(name);
+		if (entry) {
+			await this.viewCodexEntry(entry);
+		}
+	}
+
 	/**
 	 * @param {CodexEntryDataModel} entry
 	 * @returns {Promise<boolean>}
