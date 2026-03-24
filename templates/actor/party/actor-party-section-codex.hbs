@@ -1,6 +1,6 @@
 <section class="tab codex {{tab.cssClass}}" data-tab="codex" data-group="primary">
 
-	<div class="pfu-tag-selector">
+	<div class="pfu-tag-selector" style="margin: 8px;">
 		{{#each system.codex.tags as |tag|}}
 			<div class="tag {{#if (pfuCollectionContains tag ../browser.selected)}}active{{/if}}"
 				 data-action="toggleCodexTagFilter"

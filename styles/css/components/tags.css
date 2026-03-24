@@ -83,15 +83,13 @@
 .pfu-tag-selector {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1rem;
-	margin: 8px;
+	gap: 0.5rem;
 
 	.tag {
 		cursor: pointer;
-		margin: 0.2em;
 		padding: 0.4em;
 		border: 1px solid grey;
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		line-height: 1.2rem;
 		background: var(--pfu-color-app-detail-section-content-primary);
 		border-radius: 0;

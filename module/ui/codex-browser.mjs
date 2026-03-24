@@ -1,5 +1,6 @@
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { CodexEntryDataModel } from '../documents/actors/party/codex-data-model.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 export class CodexBrowser {
 	/** @type FUPartySheet **/
@@ -15,6 +16,8 @@ export class CodexBrowser {
 	selected;
 	/** @type CodexEntryDataModel **/
 	entries;
+	/** @type String **/
+	filter;
 
 	constructor(sheet) {
 		this.sheet = sheet;
@@ -25,7 +28,36 @@ export class CodexBrowser {
 	/**
 	 * @param {HTMLElement} html
 	 */
-	attachListeners(html) {}
+	attachListeners(html) {
+		const toolbar = html.querySelector('.toolbar');
+		const searchInput = toolbar.querySelector('.search').querySelector('input');
+		if (searchInput) {
+			searchInput.addEventListener(
+				'input',
+				HTMLUtils.debounce(() => {
+					const text = searchInput.value.toLowerCase() || '';
+					this.filter = text;
+					this.updateEntries();
+				}, 150),
+			);
+		}
+
+		html.querySelectorAll('.pfu-tag-selector .tag').forEach((tag) => {
+			tag.addEventListener('click', () => {
+				const value = tag.dataset.tag;
+
+				if (this.selected.includes(value)) {
+					this.selected = this.selected.filter((t) => t !== value);
+					tag.classList.remove('active');
+				} else {
+					this.selected.push(value);
+					tag.classList.add('active');
+				}
+
+				this.updateEntries();
+			});
+		});
+	}
 
 	/**
 	 * @param context
@@ -46,18 +78,32 @@ export class CodexBrowser {
 		this.#linkPattern = undefined;
 	}
 
-	toggleTagFilter(tag) {
-		if (this.selected.includes(tag)) {
-			const index = this.selected.indexOf(tag);
-			this.selected.splice(index, 1);
-		} else {
-			this.selected.push(tag);
-		}
-		this.updateFilters();
-	}
+	updateEntries() {
+		const element = this.sheet.element;
+		const entries = element.querySelector('.tab.codex .entries');
+		if (entries) {
+			const set = new Set(this.selected);
+			const filter = this.filter ? this.filter.toLowerCase() : '';
 
-	updateFilters() {
-		this.sheet.render();
+			for (const li of entries.querySelectorAll('li.entry')) {
+				const index = li.dataset.index;
+				const entry = this.party.codex.entries[index];
+				if (!entry) {
+					return;
+				}
+
+				let visible = true;
+				if (!entry.name.toLowerCase().includes(filter)) {
+					visible = false;
+				} else {
+					if (set.size > 0 && !entry.tags.some((tag) => set.has(tag))) {
+						visible = false;
+					}
+				}
+
+				li.classList.toggle('hidden', !visible);
+			}
+		}
 	}
 
 	/**

@@ -50,6 +50,8 @@
 	span:first-child {
 		font-weight: bold;
 		min-width: 60px;
+		font-size: 16px;
+		text-align: justify;
 	}
 }
 
