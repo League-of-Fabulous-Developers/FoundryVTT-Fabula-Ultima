@@ -1167,4 +1167,5 @@ FU.codexTags = Object.freeze({
 	faction: 'FU.CODEX.Faction',
 	event: 'FU.CODEX.Event',
 	lore: 'FU.CODEX.Lore',
+	glossary: 'FU.CODEX.Glossary',
 });

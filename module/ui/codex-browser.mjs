@@ -1,6 +1,7 @@
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { CodexEntryDataModel } from '../documents/actors/party/codex-data-model.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
+import { FU } from '../helpers/config.mjs';
 
 export class CodexBrowser {
 	/** @type FUPartySheet **/
@@ -18,10 +19,13 @@ export class CodexBrowser {
 	entries;
 	/** @type String **/
 	filter;
+	/** @type String[] **/
+	enrichedDescriptions;
 
 	constructor(sheet) {
 		this.sheet = sheet;
 		this.selected = [];
+		this.enrichedDescriptions = [];
 		this.refresh(sheet.actor);
 	}
 
@@ -65,17 +69,32 @@ export class CodexBrowser {
 	 */
 	async prepareContext(context) {
 		context.browser = this;
-		await Promise.all(
-			this.party.codex.entries.map(async (entry) => {
-				await this.#enrichCodexEntry(entry);
-			}),
-		);
 	}
 
 	refresh(actor) {
 		this.actor = actor;
 		this.party = actor.system;
 		this.#linkPattern = undefined;
+	}
+
+	async resetTags() {
+		const defaultCodexTags = Object.keys(FU.codexTags);
+		const currentTags = FoundryUtils.safeClone(this.party.codex.tags);
+		for (const tag of defaultCodexTags) {
+			if (!currentTags.includes(tag)) {
+				currentTags.push(tag);
+			}
+		}
+
+		await this.actor.update({ [`system.codex.tags`]: currentTags });
+	}
+
+	async enrichDescriptions() {
+		this.enrichedDescriptions.splice(0, this.enrichedDescriptions.length);
+		for (const entry of this.party.codex.entries) {
+			const ed = await this.#enrichEntryDescription(entry);
+			this.enrichedDescriptions.push(ed);
+		}
 	}
 
 	updateEntries() {
@@ -96,7 +115,7 @@ export class CodexBrowser {
 				if (!entry.name.toLowerCase().includes(filter)) {
 					visible = false;
 				} else {
-					if (set.size > 0 && !entry.tags.some((tag) => set.has(tag))) {
+					if (set.size > 0 && ![...set].every((tag) => entry.tags.includes(tag))) {
 						visible = false;
 					}
 				}
@@ -108,14 +127,14 @@ export class CodexBrowser {
 
 	/**
 	 * @param {CodexEntryDataModel} entry
-	 * @returns {Promise<void>}
+	 * @returns {Promise<String>}
 	 */
-	async #enrichCodexEntry(entry) {
+	async #enrichEntryDescription(entry) {
 		const autoLinked = entry.description.replace(this.getCodexLinkPattern(), (match) => {
 			if (match.toLowerCase() === entry.name.toLowerCase()) return match;
 			return `@CODEX[${match}]`;
 		});
-		entry.enrichedDescription = await FoundryUtils.enrichText(autoLinked, {});
+		return await FoundryUtils.enrichText(autoLinked, {});
 	}
 
 	/**
@@ -156,10 +175,12 @@ export class CodexBrowser {
 
 			case 'send':
 				{
-					await this.#enrichCodexEntry(entry);
+					const enrichedDescription = await this.#enrichEntryDescription(entry);
+					await this.#enrichEntryDescription(entry);
 					const chatMessage = {
 						content: await FoundryUtils.renderTemplate('chat/chat-codex-entry', {
 							entry: entry,
+							enrichedDescription,
 						}),
 					};
 					await ChatMessage.create(chatMessage);
@@ -177,9 +198,10 @@ export class CodexBrowser {
 	 * @returns {Promise<boolean>}
 	 */
 	async viewCodexEntry(entry) {
-		await this.#enrichCodexEntry(entry);
+		const enrichedDescription = await this.#enrichEntryDescription(entry);
 		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-view-codex-entry', {
 			entry: entry,
+			enrichedDescription,
 		});
 		await FoundryUtils.popout(entry.name, content, {
 			position: {},

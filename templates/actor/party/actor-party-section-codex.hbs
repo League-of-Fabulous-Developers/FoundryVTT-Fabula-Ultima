@@ -69,11 +69,7 @@
 						</div>
 					</div>
 					<span class="description">
-						{{#if entry.enrichedDescription}}
-							{{{entry.enrichedDescription}}}
-						{{else}}
-							{{{entry.description}}}
-						{{/if}}
+						{{{lookup ../browser.enrichedDescriptions @index }}}
 					</span>
 				</div>
 			</li>

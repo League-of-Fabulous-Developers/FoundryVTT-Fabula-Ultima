@@ -5,9 +5,11 @@ const fields = foundry.data.fields;
 
 /**
  * @property {String} name
- * @property {String} description
+ * @property {String} description User-facing description.
+ * @property {String} notes GM-only notes.
  * @property {String} img The path to the image.
  * @property {String[]} tags
+ * @property {Boolean} hidden
  */
 export class CodexEntryDataModel extends foundry.abstract.DataModel {
 	static DEFAULT_IMAGE_PATH = 'icons/svg/mystery-man.svg';
@@ -18,6 +20,8 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 			description: new fields.StringField({ initial: `` }),
 			img: new fields.FilePathField({ categories: ['IMAGE'], initial: CodexEntryDataModel.DEFAULT_IMAGE_PATH }),
 			tags: new fields.ArrayField(new fields.StringField(), {}),
+			notes: new fields.StringField({ initial: `` }),
+			hidden: new fields.BooleanField(),
 		};
 	}
 
@@ -48,8 +52,9 @@ export class CodexDataModel extends VersionedDataModel {
 	 * @returns {CodexEntryDataModel}
 	 */
 	resolveEntry(name) {
+		name = name.toLowerCase();
 		for (const entry of this.entries) {
-			if (entry.name === name) {
+			if (entry.name.toLowerCase() === name) {
 				return entry;
 			}
 		}

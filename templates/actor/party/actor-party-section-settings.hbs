@@ -24,8 +24,9 @@
 			</legend>
 
 			<div class="grid-2col">
-				<div class="flexrow flex-group-center">
-					<button data-action="activate" class="set-active-button"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
+				<div class="flexcol">
+					<button data-action="activate"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
+					<button data-action="resetCodexTags"><i class="fas fa-list icon"></i>Reset Tags</button>
 				</div>
 				{{pfuArrayField array=system.codex.tags label="FU.Tags" path="system.codex.tags" type="string" }}
 			</div>

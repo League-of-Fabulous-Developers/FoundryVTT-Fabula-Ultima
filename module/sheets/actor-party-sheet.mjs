@@ -69,6 +69,7 @@ export class FUPartySheet extends FUActorSheet {
 
 			addCodexEntry: this.#onAddCodexEntry,
 			forCodexEntry: this.#onCodexAction,
+			resetCodexTags: this.#onResetCodexTags,
 		},
 		position: { width: 920, height: 1000 },
 		window: {
@@ -227,6 +228,7 @@ export class FUPartySheet extends FUActorSheet {
 			}
 			case 'codex': {
 				await this.codexBrowser.prepareContext(context);
+				await this.codexBrowser.enrichDescriptions();
 				break;
 			}
 			case 'bonds':
@@ -560,6 +562,16 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #onCodexAction(event, target) {
 		return this.codexBrowser.handleContextAction(event, target);
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onResetCodexTags(event, target) {
+		return this.codexBrowser.resetTags();
 	}
 
 	/**
