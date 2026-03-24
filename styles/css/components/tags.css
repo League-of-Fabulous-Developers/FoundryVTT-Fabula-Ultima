@@ -83,15 +83,19 @@
 .pfu-tag-selector {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.3rem;
+	gap: 1rem;
+	margin: 8px;
 
 	.tag {
 		cursor: pointer;
-		padding: 0.2rem 0.6rem;
-		border: 1px solid var(--pfu-color-control-border);
-		border-radius: 2px;
-		font-size: medium;
-		color: var(--color-light-4);
+		margin: 0.2em;
+		padding: 0.4em;
+		border: 1px solid grey;
+		font-size: 1.2rem;
+		line-height: 1.2rem;
+		background: var(--pfu-color-app-detail-section-content-primary);
+		border-radius: 0;
+		color: #f1f1f1;
 		user-select: none;
 		transition:
 			background 0.1s,
@@ -99,13 +103,14 @@
 			border-color 0.1s;
 
 		&:hover {
-			border-color: var(--color-border-highlight);
-			color: var(--color-light-1);
+			background: white;
+			text-shadow: none;
+			color: var(--pfu-color-app-detail-section-content-primary);
 		}
 
 		&.active {
-			background: var(--color-border-highlight);
-			border-color: var(--color-border-highlight);
+			background: var(--pfu-color-control-highlight-content);
+			border-color: #f1f1f1;
 			color: var(--color-light-1);
 		}
 	}

@@ -8,11 +8,17 @@ export class CodexBrowser {
 	actor;
 	/** @type PartyDataModel **/
 	party;
+
 	/** @type RegExp **/
-	#codexLinkPattern;
+	#linkPattern;
+	/** @type String[] **/
+	selected;
+	/** @type CodexEntryDataModel **/
+	entries;
 
 	constructor(sheet) {
 		this.sheet = sheet;
+		this.selected = [];
 		this.refresh(sheet.actor);
 	}
 
@@ -26,6 +32,7 @@ export class CodexBrowser {
 	 * @returns {Promise<void>}
 	 */
 	async prepareContext(context) {
+		context.browser = this;
 		await Promise.all(
 			this.party.codex.entries.map(async (entry) => {
 				await this.#enrichCodexEntry(entry);
@@ -36,7 +43,21 @@ export class CodexBrowser {
 	refresh(actor) {
 		this.actor = actor;
 		this.party = actor.system;
-		this.#codexLinkPattern = undefined;
+		this.#linkPattern = undefined;
+	}
+
+	toggleTagFilter(tag) {
+		if (this.selected.includes(tag)) {
+			const index = this.selected.indexOf(tag);
+			this.selected.splice(index, 1);
+		} else {
+			this.selected.push(tag);
+		}
+		this.updateFilters();
+	}
+
+	updateFilters() {
+		this.sheet.render();
 	}
 
 	/**
@@ -178,15 +199,15 @@ export class CodexBrowser {
 	 * @returns {RegExp}
 	 */
 	getCodexLinkPattern() {
-		if (!this.#codexLinkPattern) {
+		if (!this.#linkPattern) {
 			const names = this.party.codex.entries
 				.map((e) => e.name)
 				.filter(Boolean)
 				.sort((a, b) => b.length - a.length)
 				.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
-			this.#codexLinkPattern = new RegExp(`\\b(${names.join('|')})\\b`, 'gi');
+			this.#linkPattern = new RegExp(`\\b(${names.join('|')})\\b`, 'gi');
 		}
-		return this.#codexLinkPattern;
+		return this.#linkPattern;
 	}
 }
