@@ -5,7 +5,7 @@
 			<div class="tag {{#if (pfuCollectionContains tag ../browser.selected)}}active{{/if}}"
 				 data-action="toggleCodexTagFilter"
 				 data-tag="{{tag}}">
-				{{pfuCapitalize tag}}
+				{{pfuHumanize tag}}
 			</div>
 		{{/each}}
 	</div>
@@ -64,12 +64,16 @@
 						</span>
 						<div class="pfu-tags">
 							{{#each entry.tags as |tag|}}
-								<div class="fu-tag">{{localize tag}}</div>
+								<div class="fu-tag">{{pfuHumanize tag}}</div>
 							{{/each}}
 						</div>
 					</div>
 					<span class="description">
-						{{{entry.enrichedDescription}}}
+						{{#if entry.enrichedDescription}}
+							{{{entry.enrichedDescription}}}
+						{{else}}
+							{{{entry.description}}}
+						{{/if}}
 					</span>
 				</div>
 			</li>

@@ -110,10 +110,10 @@ const inlineCodexEnricher = {
 	enricher: async (match, options) => {
 		const entry = match.groups.entry;
 		const anchor = document.createElement('a');
-		anchor.classList.add('inline', 'inline-common');
+		anchor.classList.add('inline', 'inline-link');
 		anchor.dataset.action = 'viewCodexEntry';
 		anchor.dataset.entry = entry;
-		anchor.innerHTML = `<i class="fas fa-scroll"></i> ${entry}`;
+		anchor.innerHTML = `${entry}`;
 		return anchor;
 	},
 	onRender: async (element) => {

@@ -2,6 +2,7 @@ import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
 import { FU } from './config.mjs';
 import { TraitUtils } from '../pipelines/traits.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -41,6 +42,13 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuCapitalize', function (str) {
 			if (str && typeof str === 'string') {
 				return str.charAt(0).toUpperCase() + str.slice(1);
+			}
+			return str;
+		});
+
+		Handlebars.registerHelper('pfuHumanize', function (str) {
+			if (str && typeof str === 'string') {
+				return StringUtils.humanize(str);
 			}
 			return str;
 		});

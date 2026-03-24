@@ -244,6 +244,24 @@ a.inline-roll {
 	margin-right: 0.125rem;
 }
 
+.inline-link {
+	color: var(--color-hyperlink);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	cursor: pointer;
+
+	&:hover {
+		color: var(--color-hyperlink-visited, var(--color-hyperlink));
+		text-decoration-thickness: 2px;
+	}
+
+	i {
+		font-size: 0.85em;
+		margin-right: 0.2em;
+		opacity: 0.8;
+	}
+}
+
 @-webkit-keyframes recovery-indicator-bobbing {
 	to {
 		translate: 0 -2px;
