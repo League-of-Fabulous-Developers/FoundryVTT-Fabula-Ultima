@@ -1,7 +1,6 @@
 <nav class="tabs faded-ui" role="tablist" data-tooltip-direction="LEFT">
     <menu class="flexcol">
         {{#each tabs}}
-        {{log "Tab" this}}
         <li>
             <button type="button" class="ui-control plain icon {{ icon }}" data-action="tab" data-tab="{{ @key }}"
                     role="tab" aria-pressed="{{ active }}" data-group="primary" aria-label="{{ localize tooltip }}"
