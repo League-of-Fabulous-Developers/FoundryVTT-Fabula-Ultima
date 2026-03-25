@@ -1934,6 +1934,10 @@
 		"Codex": "Codex",
 		"Tags": "Tags",
 		"Hidden": "Hidden",
+		"BrowseImage": "Browse Image",
+		"UploadClipboardImage": "Upload Clipboard Image",
+		"CodexUploadDirectory": "Codex Upload Directory",
+		"CodexUploadDirectoryMissing": "You must set an user directory for codex clipboard images to be uploaded to. This can be configured in the system settings.",
 		"CODEX": {
 			"Character": "Character",
 			"Location": "Location",

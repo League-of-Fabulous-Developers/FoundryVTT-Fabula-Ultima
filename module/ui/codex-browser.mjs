@@ -1,6 +1,9 @@
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { CodexDataModel, CodexEntryDataModel } from '../documents/actors/party/codex-data-model.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
+import { getSystemSetting, SETTINGS } from '../settings.js';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { FileUtils } from '../helpers/file-utils.mjs';
 
 export class CodexBrowser {
 	/** @type FUPartySheet **/
@@ -14,8 +17,6 @@ export class CodexBrowser {
 	#linkPattern;
 	/** @type String[] **/
 	selected;
-	/** @type CodexEntryDataModel **/
-	entries;
 	/** @type String **/
 	filter;
 	/** @type String[] **/
@@ -233,6 +234,8 @@ export class CodexBrowser {
 		}
 	}
 
+	static UPLOAD_FILE_PREFIX = 'codex-entry';
+
 	/**
 	 * @param {CodexEntryDataModel} entry
 	 * @returns {Promise<boolean>}
@@ -248,6 +251,35 @@ export class CodexBrowser {
 			window: { title: `Edit — ${entry.name}` },
 			position: {
 				width: 750,
+			},
+			actions: {
+				// Image Picker: Clipboard
+				clipboardImage: async (event, target) => {
+					const { name } = target.dataset;
+					const imagePicker = event.currentTarget.querySelector('.image-picker');
+					if (!imagePicker) {
+						return;
+					}
+					const preview = imagePicker.querySelector('img');
+					const input = imagePicker.querySelector(`input[name="${name}"]`);
+
+					// Check if there's a valid upload directory
+					// TODO: Get full path from whatever it stores here
+					const uploadDirectory = getSystemSetting(SETTINGS.codexUploadDirectory);
+					if (!uploadDirectory) {
+						ui.notifications.warn(StringUtils.localize('FU.CodexUploadDirectoryMissing'));
+						return;
+					}
+
+					const imagePath = await FileUtils.uploadClipboardImage(uploadDirectory, CodexBrowser.UPLOAD_FILE_PREFIX);
+					if (!imagePath) {
+						return;
+					}
+
+					// Update the preview and input
+					preview.src = imagePath;
+					input.value = imagePath;
+				},
 			},
 			content,
 			context,
@@ -272,6 +304,35 @@ export class CodexBrowser {
 		entry.hidden = result.hidden;
 		entry.notes = result.notes;
 		return true;
+	}
+
+	async cleanCodexImages() {
+		const uploadDirectory = getSystemSetting(SETTINGS.codexUploadDirectory);
+		if (uploadDirectory) {
+			const entries = this.party.codex.entries;
+			const usedImages = new Set(entries.map((e) => e.img).filter((img) => img !== undefined));
+			const filePattern = new RegExp(CodexBrowser.UPLOAD_FILE_PREFIX);
+
+			// Browse the directory to get all files
+			const browse = await FilePicker.browse('data', uploadDirectory);
+			/** @type String[] **/
+			const imagesToDelete = browse.files.filter((file) => {
+				const filename = file.split('/').pop();
+				return filePattern.test(filename) && !usedImages.has(file);
+			});
+
+			// TODO: Delete all images in the upload directory that match the file pattern and are not being used
+			if (imagesToDelete.length > 0) {
+				const confirm = await FoundryUtils.confirmDialog('Unused Images', `${imagesToDelete.length} uploaded images are unused:\n${imagesToDelete.join('\n')}`);
+				if (confirm) {
+					// // TODO: Delete the images
+					// for (const file of imagesToDelete) {
+					// 	await FileUtils.deleteFile('data', file);
+					// }
+					// ui.notifications.info(`Deleted ${imagesToDelete.length} unused images.`);
+				}
+			}
+		}
 	}
 
 	/**

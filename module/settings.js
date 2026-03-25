@@ -102,6 +102,7 @@ export const SETTINGS = Object.freeze({
 	// Party
 	activeParty: 'optionActiveParty',
 	partySheetTheme: 'optionPartySheetTheme',
+	codexUploadDirectory: 'optionCodexUploadDirectory',
 	// Class Features
 	activeWellsprings: 'activeWellsprings',
 	// Drag ruler
@@ -178,6 +179,14 @@ export const registerSystemSettings = async function () {
 		default: 'modern',
 		choices: FU.partySheetThemes,
 		requiresReload: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.codexUploadDirectory, {
+		name: game.i18n.localize('FU.CodexUploadDirectory'),
+		scope: 'world',
+		config: true,
+		type: String,
+		filePicker: 'folder',
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
