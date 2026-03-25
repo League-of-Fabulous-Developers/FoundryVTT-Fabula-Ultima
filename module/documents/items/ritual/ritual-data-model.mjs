@@ -24,7 +24,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
-Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (data, check, actor, item, flags) => {
 	if (item?.system instanceof RitualDataModel) {
 		data.tags.push(
 			...[
@@ -44,7 +44,6 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 					flip: true,
 				},
 			],
-			CHECK_DETAILS,
 		);
 
 		if (item.system.hasClock.value) {
@@ -52,6 +51,13 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 		}
 
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		/** @type ResourceExpense **/
+		const expense = {
+			source: 'spell',
+			resource: 'mp',
+			amount: item.system.mpCost.value,
+		};
+		CommonSections.expense(data, actor, item, [], flags, expense);
 	}
 });
 
@@ -151,7 +157,9 @@ export class RitualDataModel extends FUStandardItemDataModel {
 		(this.clock ??= {}).value = potency.clock;
 		this.progress.max = potency.clock;
 
-		foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
+		if (this.parent.overrides) {
+			foundry.utils.setProperty(this.parent.overrides, 'system.progress.max', this.progress.max);
+		}
 	}
 
 	afterApplyActiveEffects() {
