@@ -22,6 +22,25 @@ function camelToKebab(str) {
 }
 
 /**
+ * Converts a kebab-case, camelCase, snake_case, or PascalCase string into a
+ * human-readable label with capitalized words.
+ * @param {string} value
+ * @returns {string}
+ */
+function humanize(value) {
+	return (
+		value
+			// Insert space before uppercase letters in camelCase/PascalCase
+			.replace(/([a-z])([A-Z])/g, '$1 $2')
+			// Replace kebab and snake separators with spaces
+			.replace(/[-_]+/g, ' ')
+			// Capitalize the first letter of each word
+			.replace(/\b\w/g, (c) => c.toUpperCase())
+			.trim()
+	);
+}
+
+/**
  * @param {String} str
  * @returns {string}
  */
@@ -124,5 +143,6 @@ export const StringUtils = Object.freeze({
 	capitalize,
 	truncate,
 	toBase64,
+	humanize,
 	fromBase64,
 });

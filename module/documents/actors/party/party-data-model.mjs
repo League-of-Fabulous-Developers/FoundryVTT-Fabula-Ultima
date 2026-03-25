@@ -51,6 +51,8 @@ import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { StudyRollHandler } from '../../../pipelines/study-roll.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { CodexDataModel } from './codex-data-model.mjs';
+import FoundryUtils from '../../../helpers/foundry-utils.mjs';
 
 /**
  * @description Represents a party of characters, as well as their management
@@ -60,6 +62,7 @@ import { StringUtils } from '../../../helpers/string-utils.mjs';
  * @property {FUActor} parent
  * @property {Number} resources.zenit.value
  * @property {ProgressDataModel[]} tracks
+ * @property {CodexDataModel} codex
  */
 export class PartyDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
@@ -86,6 +89,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			resources: new SchemaField({
 				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 			}),
+			codex: new EmbeddedDataField(CodexDataModel, {}),
 		};
 	}
 
@@ -426,6 +430,98 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			fxp: fabulaExperience,
 			total: totalXp,
 		};
+	}
+
+	/**
+	 * @returns {Promise<BondChartData>}
+	 */
+	async computeBondData() {
+		/** @type BondChartData **/
+		let data = {
+			bonds: [],
+			characters: [],
+		};
+		const characters = await this.getCharacterData();
+		const adversaries = await this.getAdversaryData();
+
+		const entries = new Map();
+		for (const entry of characters) {
+			const pcData = {
+				name: entry.name,
+				id: entry.actor.uuid,
+				img: entry.actor.img,
+				type: 'character',
+				isPC: true,
+			};
+			entries.set(entry.name, pcData);
+			data.characters.push(pcData);
+		}
+		for (const entry of adversaries) {
+			entries.set(entry.name, {
+				name: entry.name,
+				id: entry.uuid,
+				img: entry.img,
+				type: 'adversary',
+			});
+		}
+		for (const entry of this.codex.entries) {
+			entries.set(entry.name, {
+				name: entry.name,
+				id: foundry.utils.randomID(),
+				img: entry.img,
+				type: 'codex',
+			});
+		}
+
+		for (const character of characters) {
+			const source = entries.get(character.name);
+			/** @type BondDataModel[] **/
+			const bonds = character.actor.system.bonds;
+			for (const bond of bonds) {
+				let target = entries.get(bond.name);
+				// If no actual character is provided for this target, make up a placeholder
+				if (!target) {
+					target = {
+						name: bond.name,
+						id: foundry.utils.randomID(),
+						img: FoundryUtils.PLACEHOLDER_IMG,
+					};
+					entries.set(bond.name, target);
+				}
+				if (!data.characters.find((f) => f.name === bond.name)) {
+					data.characters.push(target);
+				}
+
+				data.bonds.push({
+					source: source.id,
+					target: target.id,
+					strength: bond.strength,
+					pairings: [
+						{ key: 'admInf', emotions: ['admiration', 'inferiority'] },
+						{ key: 'affHat', emotions: ['affection', 'hatred'] },
+						{ key: 'loyMis', emotions: ['loyalty', 'mistrust'] },
+					]
+						.filter((p) => !!bond[p.key])
+						.map((p) => ({
+							emotion: bond[p.key],
+						})),
+				});
+			}
+		}
+		return data;
+	}
+
+	/**
+	 * @returns {Promise<string[]>}
+	 */
+	async getBondOptions() {
+		let options = [];
+		const characters = await this.getCharacterData();
+		options.push(...characters.map((a) => a.name));
+		const adversaries = await this.getAdversaryData();
+		options.push(...adversaries.map((a) => a.name));
+		options.push(...this.codex.entries.map((e) => e.name));
+		return options;
 	}
 
 	async distributeExperience() {

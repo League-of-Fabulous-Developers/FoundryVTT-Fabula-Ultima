@@ -145,3 +145,34 @@ describe('toBase64 / fromBase64', () => {
 		expect(StringUtils.fromBase64(btoa('not json'))).toBeNull();
 	});
 });
+
+describe('StringUtils.humanize', () => {
+	describe('kebab-case', () => {
+		it('converts a single word', () => expect(StringUtils.humanize('dog')).toBe('Dog'));
+		it('converts two words', () => expect(StringUtils.humanize('dog-town')).toBe('Dog Town'));
+		it('converts multiple words', () => expect(StringUtils.humanize('the-great-dog-town')).toBe('The Great Dog Town'));
+	});
+
+	describe('camelCase', () => {
+		it('converts two words', () => expect(StringUtils.humanize('dogTown')).toBe('Dog Town'));
+		it('converts multiple words', () => expect(StringUtils.humanize('theGreatDogTown')).toBe('The Great Dog Town'));
+	});
+
+	describe('PascalCase', () => {
+		it('converts two words', () => expect(StringUtils.humanize('DogTown')).toBe('Dog Town'));
+		it('converts multiple words', () => expect(StringUtils.humanize('TheGreatDogTown')).toBe('The Great Dog Town'));
+	});
+
+	describe('snake_case', () => {
+		it('converts two words', () => expect(StringUtils.humanize('dog_town')).toBe('Dog Town'));
+		it('converts multiple words', () => expect(StringUtils.humanize('the_great_dog_town')).toBe('The Great Dog Town'));
+	});
+
+	describe('edge cases', () => {
+		it('handles an empty string', () => expect(StringUtils.humanize('')).toBe(''));
+		it('handles a single character', () => expect(StringUtils.humanize('d')).toBe('D'));
+		it('handles already humanized input', () => expect(StringUtils.humanize('Dog Town')).toBe('Dog Town'));
+		it('handles mixed separators', () => expect(StringUtils.humanize('dog_town-center')).toBe('Dog Town Center'));
+		it('trims leading and trailing whitespace', () => expect(StringUtils.humanize('  dog-town  ')).toBe('Dog Town'));
+	});
+});

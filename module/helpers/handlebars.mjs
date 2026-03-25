@@ -2,6 +2,7 @@ import { systemTemplatePath } from './system-utils.mjs';
 import { ObjectUtils } from './object-utils.mjs';
 import { FU } from './config.mjs';
 import { TraitUtils } from '../pipelines/traits.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
@@ -41,6 +42,13 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuCapitalize', function (str) {
 			if (str && typeof str === 'string') {
 				return str.charAt(0).toUpperCase() + str.slice(1);
+			}
+			return str;
+		});
+
+		Handlebars.registerHelper('pfuHumanize', function (str) {
+			if (str && typeof str === 'string') {
+				return StringUtils.humanize(str);
 			}
 			return str;
 		});
@@ -241,6 +249,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuBadge', badge);
 		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
 		Handlebars.registerHelper('pfuCompendium', compendium);
+		Handlebars.registerHelper('pfuArrayField', arrayField);
 	},
 });
 
@@ -467,6 +476,35 @@ function compendium(tab, options) {
 			? template({
 					tab: tab,
 					...options,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @typedef FUArrayFieldOptions
+ * @property {*[]} array
+ * @property {String} label
+ * @property {String} path
+ * @property {'string'} type
+ * @property {String[]|undefined} options
+ */
+
+/**
+ * @param {FUArrayFieldOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function arrayField(options) {
+	options = options.hash;
+	const template = Handlebars.partials[systemTemplatePath('common/array-field')];
+	const html =
+		typeof template === 'function'
+			? template({
+					array: options.array,
+					label: options.label,
+					path: options.path,
+					type: options.type,
+					options: options.options,
 				})
 			: '';
 	return new Handlebars.SafeString(html);

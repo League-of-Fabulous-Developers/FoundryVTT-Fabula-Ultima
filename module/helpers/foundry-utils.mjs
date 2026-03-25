@@ -72,6 +72,12 @@ const { api, fields, handlebars } = foundry.applications;
  */
 
 /**
+ * @typedef FUPromptOptions
+ * @property {String} title
+ * @property {Object} context An object to use for certain supported actions
+ */
+
+/**
  * @remarks Helper usage examples can also be found here: https://foundryvtt.wiki/en/development/api/helpers
  */
 export default class FoundryUtils {
@@ -91,6 +97,93 @@ export default class FoundryUtils {
 			},
 		});
 		return result;
+	}
+
+	/**
+	 * @param {String} title
+	 * @param {String} content
+	 * @param {Object} options
+	 * @returns {Promise}
+	 */
+	static async popout(title, content, options = {}) {
+		await foundry.applications.api.DialogV2.wait({
+			window: { title, icon: 'fas fa-eye' },
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			rejectClose: false,
+			content,
+			buttons: [{ label: 'Close', action: 'close' }],
+			...options,
+		});
+	}
+
+	/**
+	 * @param options
+	 * @returns {Promise<*>}
+	 */
+	static async prompt(options = {}) {
+		const [result] = ObjectUtils.mergeRecursive(
+			{
+				window: { icon: 'fas fa-comment' },
+				classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+				rejectClose: false,
+				actions: {
+					// Image Picker: Browse
+					browseImage: (event, target) => {
+						const { name } = target.dataset;
+						const imagePicker = event.currentTarget.querySelector('.image-picker');
+						if (!imagePicker) {
+							return;
+						}
+						const preview = imagePicker.querySelector('img');
+						const input = imagePicker.querySelector(`input[name="${name}"]`);
+						new FilePicker({
+							type: 'image',
+							current: input?.value,
+							callback: (path) => {
+								if (input) {
+									input.value = path;
+									preview.src = path;
+								}
+							},
+						}).render(true);
+					},
+					// Generic File
+					browse: (event, target, dialog) => {
+						const { name, type } = target.dataset;
+						const input = event.currentTarget.querySelector(`input[name="${name}"]`);
+						new FilePicker({
+							type: type,
+							current: input?.value,
+							callback: (path) => {
+								if (input) input.value = path;
+							},
+						}).render(true);
+					},
+					toggleTag: (event, target) => {
+						if (!options.context) {
+							return;
+						}
+						const { path, tag } = target.dataset;
+						const tags = ObjectUtils.getProperty(options.context, path);
+						if (!tags) {
+							return;
+						}
+
+						const index = tags.indexOf(tag);
+						if (index === -1) {
+							tags.push(tag);
+							target.classList.add('active');
+						} else {
+							tags.splice(index, 1);
+							target.classList.remove('active');
+						}
+					},
+				},
+			},
+			options,
+		);
+
+		return await foundry.applications.api.DialogV2.input(result);
 	}
 
 	/**
@@ -498,6 +591,20 @@ export default class FoundryUtils {
 			}
 		}
 		return speaker;
+	}
+
+	/**
+	 * @param {String} src
+	 * @param {String} title
+	 * @param {String} uuid
+	 */
+	static popoutImage(src, title, uuid = undefined) {
+		// eslint-disable-next-line no-undef
+		const popout = new ImagePopout(src, {
+			title: title,
+			uuid: uuid,
+		});
+		popout.render(true);
 	}
 
 	/**

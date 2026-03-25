@@ -79,3 +79,37 @@
 		filter: unset;
 	}
 }
+
+.pfu-tag-selector {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+
+	.tag {
+		cursor: pointer;
+		padding: 0.4em;
+		border: 1px solid grey;
+		font-size: 1.1rem;
+		line-height: 1.2rem;
+		background: var(--pfu-color-app-detail-section-content-primary);
+		border-radius: 0;
+		color: #f1f1f1;
+		user-select: none;
+		transition:
+			background 0.1s,
+			color 0.1s,
+			border-color 0.1s;
+
+		&:hover {
+			background: white;
+			text-shadow: none;
+			color: var(--pfu-color-app-detail-section-content-primary);
+		}
+
+		&.active {
+			background: var(--pfu-color-control-highlight-content);
+			border-color: #f1f1f1;
+			color: var(--color-light-1);
+		}
+	}
+}

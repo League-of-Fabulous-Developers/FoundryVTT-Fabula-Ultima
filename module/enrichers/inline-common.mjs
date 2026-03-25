@@ -2,6 +2,7 @@ import { FU } from '../helpers/config.mjs';
 import { InlineHelper } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { CompendiumBrowser } from '../ui/compendium/compendium-browser.mjs';
+import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 
 const inlineIconEnricher = {
 	id: 'inlineIconEnricher',
@@ -103,9 +104,30 @@ const inlineEvalEnricher = {
 	},
 };
 
+const inlineCodexEnricher = {
+	id: 'inlineCodexEnricher',
+	pattern: InlineHelper.compose('(?:CODEX)', '\\s*(?<entry>.*?)'),
+	enricher: async (match, options) => {
+		const entry = match.groups.entry;
+		const anchor = document.createElement('a');
+		anchor.classList.add('inline', 'inline-link');
+		anchor.dataset.action = 'viewCodexEntry';
+		anchor.dataset.entry = entry;
+		anchor.innerHTML = `${entry}`;
+		return anchor;
+	},
+	onRender: async (element) => {
+		const renderContext = await InlineHelper.getRenderContext(element);
+		const entry = renderContext.dataset.entry;
+		element.addEventListener('click', async function (event) {
+			return FUPartySheet.viewCodexEntry(entry);
+		});
+	},
+};
+
 /**
  * @type {FUInlineCommand}
  */
 export const InlineCommon = Object.freeze({
-	enrichers: [inlineIconEnricher, inlineCompendiumEnricher, inlineEvalEnricher],
+	enrichers: [inlineIconEnricher, inlineCompendiumEnricher, inlineEvalEnricher, inlineCodexEnricher],
 });

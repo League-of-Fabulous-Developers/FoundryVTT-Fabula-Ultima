@@ -25,6 +25,7 @@ import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-tabl
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
+import { CodexBrowser } from '../ui/codex-browser.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -65,6 +66,11 @@ export class FUPartySheet extends FUActorSheet {
 
 			callHook: this.#callHook,
 			activate: this.#activate,
+
+			addCodexEntry: this.#onAddCodexEntry,
+			forCodexEntry: this.#onCodexAction,
+			resetCodexTags: this.#onResetCodexTags,
+			inspectBondNode: { handler: this.#onInspectBondNode, buttons: [2] },
 		},
 		position: { width: 920, height: 1000 },
 		window: {
@@ -84,6 +90,7 @@ export class FUPartySheet extends FUActorSheet {
 				{ id: 'overview', label: 'FU.Overview', icon: 'ra ra-double-team' },
 				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
 				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'codex', label: 'FU.Codex', icon: 'ra ra-book' },
 				{ id: 'bonds', label: 'FU.Bonds', icon: 'ra ra-double-team' },
 				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
 				{ id: 'character', label: 'FU.Character' },
@@ -117,6 +124,9 @@ export class FUPartySheet extends FUActorSheet {
 		adversaries: {
 			template: systemPath('templates/actor/party/actor-party-section-adversaries.hbs'),
 		},
+		codex: {
+			template: systemPath('templates/actor/party/actor-party-section-codex.hbs'),
+		},
 		bonds: {
 			template: systemPath('templates/actor/party/actor-party-section-bonds.hbs'),
 		},
@@ -130,11 +140,22 @@ export class FUPartySheet extends FUActorSheet {
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
+	#codexBrowser;
 
 	/**
 	 * @type PartyCharacterData
 	 */
 	inspectedCharacter;
+
+	/**
+	 * @return CodexBrowser
+	 */
+	get codexBrowser() {
+		if (!this.#codexBrowser) {
+			this.#codexBrowser = new CodexBrowser(this);
+		}
+		return this.#codexBrowser;
+	}
 
 	/**
 	 * @returns {PartyDataModel}
@@ -206,9 +227,14 @@ export class FUPartySheet extends FUActorSheet {
 				context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
 				break;
 			}
+			case 'codex': {
+				await this.codexBrowser.prepareContext(context);
+				await this.codexBrowser.enrichDescriptions();
+				break;
+			}
 			case 'bonds':
 				{
-					context.bondData = await this.computeBondData();
+					context.bondData = await this.party.computeBondData();
 				}
 				break;
 			case 'adversaries':
@@ -217,74 +243,6 @@ export class FUPartySheet extends FUActorSheet {
 				break;
 		}
 		return context;
-	}
-
-	/**
-	 * @returns {Promise<BondChartData>}
-	 */
-	async computeBondData() {
-		/** @type BondChartData **/
-		let data = {
-			bonds: [],
-			characters: [],
-		};
-		const characters = await this.party.getCharacterData();
-		const adversaries = await this.party.getAdversaryData();
-
-		const entries = new Map();
-		for (const entry of characters) {
-			const pcData = {
-				name: entry.name,
-				id: entry.actor.uuid,
-				img: entry.actor.img,
-			};
-			entries.set(entry.name, pcData);
-			data.characters.push(pcData);
-		}
-		for (const entry of adversaries) {
-			entries.set(entry.name, {
-				name: entry.name,
-				id: entry.uuid,
-				img: entry.img,
-			});
-		}
-
-		for (const character of characters) {
-			const source = entries.get(character.name);
-			/** @type BondDataModel[] **/
-			const bonds = character.actor.system.bonds;
-			for (const bond of bonds) {
-				let target = entries.get(bond.name);
-				// If no actual character is provided for this target, make up a placeholder
-				if (!target) {
-					target = {
-						name: bond.name,
-						id: foundry.utils.randomID(),
-						img: FoundryUtils.PLACEHOLDER_IMG,
-					};
-					entries.set(bond.name, target);
-				}
-				if (!data.characters.find((f) => f.name === bond.name)) {
-					data.characters.push(target);
-				}
-
-				data.bonds.push({
-					source: source.id,
-					target: target.id,
-					strength: bond.strength,
-					pairings: [
-						{ key: 'admInf', emotions: ['admiration', 'inferiority'] },
-						{ key: 'affHat', emotions: ['affection', 'hatred'] },
-						{ key: 'loyMis', emotions: ['loyalty', 'mistrust'] },
-					]
-						.filter((p) => !!bond[p.key])
-						.map((p) => ({
-							emotion: bond[p.key],
-						})),
-				});
-			}
-		}
-		return data;
 	}
 
 	/**
@@ -320,6 +278,24 @@ export class FUPartySheet extends FUActorSheet {
 
 		// Right click on character
 		this.setupCharacterContextMenu(html);
+	}
+
+	/**
+	 * Attach event listeners to rendered template parts.
+	 * @param {string} partId The id of the part being rendered
+	 * @param {HTMLElement} html The rendered HTML element for the part
+	 * @param {ApplicationRenderOptions} options Rendering options passed to the render method
+	 * @protected
+	 */
+	_attachPartListeners(partId, html, options) {
+		super._attachPartListeners(partId, html, options);
+		switch (partId) {
+			case 'codex':
+				{
+					this.codexBrowser.attachListeners(html);
+				}
+				break;
+		}
 	}
 
 	/** @inheritDoc */
@@ -375,6 +351,9 @@ export class FUPartySheet extends FUActorSheet {
 			this.#bondChart = new FUBondChart(bondChartContainer, context.bondData);
 			this.#bondChart.render();
 		}
+
+		// Update the code browser
+		this.codexBrowser.refresh(this.actor);
 	}
 
 	/**
@@ -567,6 +546,64 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onAddCodexEntry(event, target) {
+		return this.codexBrowser.addCodexEntry();
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onCodexAction(event, target) {
+		return this.codexBrowser.handleContextAction(event, target);
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onResetCodexTags(event, target) {
+		return this.codexBrowser.resetTags();
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onInspectBondNode(event, target) {
+		const { id, type, name } = target.dataset;
+		switch (type) {
+			case 'character':
+				{
+					const actor = await fromUuid(id);
+					if (actor) {
+						actor.sheet.render(true);
+					}
+				}
+				break;
+
+			case 'adversary':
+				await this.revealNpc(id);
+				break;
+
+			case 'codex':
+				await this.codexBrowser.revealCodexEntry(name);
+				break;
+		}
+	}
+
+	/**
 	 * @param uuid
 	 * @returns {Promise<void>}
 	 */
@@ -732,20 +769,27 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
+	 * @param {String} name
+	 * @returns {Promise<void>}
+	 */
+	static async viewCodexEntry(name) {
+		const party = await FUPartySheet.getActiveModel();
+		if (party) {
+			await party.parent.sheet.codexBrowser.revealCodexEntry(name);
+		}
+	}
+
+	/**
 	 * @returns {Promise<string[]>}
 	 */
 	static async getBondOptions() {
-		let options = [];
 		const party = await FUPartySheet.getActive();
 		if (party) {
 			/** @type PartyDataModel **/
 			const data = party.system;
-			const characters = await data.getCharacterData();
-			options.push(...characters.map((a) => a.name));
-			const adversaries = await data.getAdversaryData();
-			options.push(...adversaries.map((a) => a.name));
+			return data.getBondOptions();
 		}
-		return options;
+		return [];
 	}
 
 	static #onCreate(event, target) {

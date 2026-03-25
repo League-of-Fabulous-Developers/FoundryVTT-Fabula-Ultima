@@ -9,12 +9,15 @@
 			<g class="pfu-bond-chart__icons"></g>
 		</svg>
 
+		<div class="pfu-bond-chart__clusters"></div>
 		<div class="pfu-bond-chart__nodes">
 			{{#each bondData.characters as |char|}}
-				<div class="pfu-bond-chart__node"
-					 data-action="revealActor" data-actor="{{char.id}}"
+				<div class="pfu-bond-chart__node {{char.type}}"
 					 data-id="{{char.id}}"
+					 data-name="{{char.name}}"
 					 data-index="{{@index}}"
+					 data-type="{{char.type}}"
+					 data-action="inspectBondNode"
 					 data-total="{{../characters.length}}">
 					<img src="{{char.img}}" alt="{{char.name}}" />
 					<span>{{char.name}}</span>
