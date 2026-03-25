@@ -329,8 +329,9 @@
 				img {
 					object-fit: cover;
 					width: 160px;
+					padding: 0;
 					height: auto;
-					border: none;
+					border: 2px solid var(--pfu-color-control-active-border);
 				}
 
 				.controls {

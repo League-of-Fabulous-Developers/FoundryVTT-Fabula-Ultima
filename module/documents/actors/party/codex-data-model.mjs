@@ -1,5 +1,6 @@
 import { VersionedDataModel } from '../../../fields/versioned-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { systemAssetPath } from '../../../helpers/system-utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -12,7 +13,7 @@ const fields = foundry.data.fields;
  * @property {Boolean} hidden
  */
 export class CodexEntryDataModel extends foundry.abstract.DataModel {
-	static DEFAULT_IMAGE_PATH = 'icons/svg/mystery-man.svg';
+	static DEFAULT_IMAGE_PATH = systemAssetPath('ui/codex-entry.svg'); //'icons/svg/mystery-man.svg';
 
 	static defineSchema() {
 		return {

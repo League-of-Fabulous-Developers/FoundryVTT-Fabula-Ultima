@@ -257,6 +257,8 @@ export class CodexBrowser {
 					name: dialog.element.querySelector('[name="name"]').value.trim(),
 					img: dialog.element.querySelector('[name="img"]').value.trim(),
 					description: dialog.element.querySelector('[name="description"]').value.trim(),
+					notes: dialog.element.querySelector('[name="notes"]').value.trim(),
+					hidden: dialog.element.querySelector('[name="hidden"]').checked,
 				}),
 			},
 		});
@@ -267,6 +269,8 @@ export class CodexBrowser {
 		entry.name = result.name;
 		entry.img = result.img;
 		entry.description = result.description;
+		entry.hidden = result.hidden;
+		entry.notes = result.notes;
 		return true;
 	}
 

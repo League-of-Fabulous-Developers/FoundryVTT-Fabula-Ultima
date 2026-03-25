@@ -66,6 +66,9 @@
 							{{#each entry.tags as |tag|}}
 								<div class="fu-tag">{{pfuHumanize tag}}</div>
 							{{/each}}
+							{{#if entry.hidden}}
+								<div class="fu-tag"><i class="fa fa-eye-slash "></i></div>
+							{{/if}}
 						</div>
 					</div>
 					<span class="description">

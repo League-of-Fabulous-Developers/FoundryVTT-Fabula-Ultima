@@ -1,11 +1,11 @@
 <fieldset>
 	<label class="pfu-dialog__input">
-		<span>{{localize "Name"}}</span>
+		<span>{{localize "FU.Name"}}</span>
 		<input type="text" name="name" value="{{entry.name}}" />
 	</label>
 
 	<div class="pfu-dialog__input">
-		<span>{{localize "Tags"}}</span>
+		<span>{{localize "FU.Tags"}}</span>
 		<div class="pfu-tag-selector">
 			{{#each tags as |tag|}}
 				<div class="tag {{#if (pfuCollectionContains tag ../entry.tags)}}active{{/if}}"
@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="pfu-dialog__input">
-		<span>{{localize "Image"}}</span>
+		<span>{{localize "FU.Image"}}</span>
 		<div class="image-picker">
 			<img class="" src="{{lookup entry 'img'}}"
 				 title="{{entry.name}}" alt=""/>
@@ -34,13 +34,25 @@
 		</div>
 	</div>
 
+	<label class="pfu-dialog__input">
+		<span>{{localize "FU.Hidden"}}</span>
+		<input type="checkbox" name="hidden" checked="{{entry.hidden}}" />
+	</label>
+
 	<div class="pfu-dialog__input">
-		<span>{{localize "Description"}}</span>
+		<span>{{localize "FU.Description"}}</span>
 		<div class="form-fields">
 			<prose-mirror name="description"
 						  compact="true"
 						  value="{{entry.description}}">
 			</prose-mirror>
+		</div>
+	</div>
+
+	<div class="pfu-dialog__input">
+		<span>{{localize "FU.Notes"}}</span>
+		<div class="form-fields">
+			<textarea name="notes">{{entry.notes}}</textarea>
 		</div>
 	</div>
 </fieldset>

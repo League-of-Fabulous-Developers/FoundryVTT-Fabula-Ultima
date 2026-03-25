@@ -99,8 +99,8 @@ export class FUBondChart {
 		});
 
 		const maxDist = Math.max(...[...dist.values()].filter((d) => d !== 999));
-		const maxRadius = Math.min(width, height) * 0.75; // was 0.46
-		const minR = Math.min(width, height) * 0.3; // was 0.22
+		const maxRadius = Math.min(width, height) * 0.65;
+		const minR = Math.min(width, height) * 0.3;
 
 		byDist.forEach((chars, d) => {
 			chars.forEach((c, i) => {
