@@ -1,3 +1,5 @@
+import { StringUtils } from './string-utils.mjs';
+
 /**
  * @desc Helper for reading string content out of a text file.
  * @param {string} filePath The path to the file.
@@ -34,6 +36,22 @@ async function uploadClipboardImage(directory, prefix) {
 
 	const imageType = imageItem.types.find((type) => type.startsWith('image/'));
 	const blob = await imageItem.getType(imageType);
+
+	// Preview and confirm
+	const objectUrl = URL.createObjectURL(blob);
+	const confirm = await foundry.applications.api.DialogV2.confirm({
+		window: {
+			title: StringUtils.localize('FU.UploadClipboardImage'),
+		},
+		content: `<img id="clipboard-preview" style="max-width:100%; max-height:300px; object-fit:contain;">`,
+		render: (event, dialog) => {
+			dialog.element.querySelector('#clipboard-preview').src = objectUrl;
+		},
+		rejectClose: false,
+	});
+	URL.revokeObjectURL(objectUrl);
+
+	if (!confirm) return;
 
 	const extension = imageType.split('/')[1];
 	const filename = `${prefix}-${Date.now()}.${extension}`;

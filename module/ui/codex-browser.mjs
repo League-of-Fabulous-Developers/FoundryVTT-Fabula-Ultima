@@ -234,7 +234,7 @@ export class CodexBrowser {
 		}
 	}
 
-	static UPLOAD_FILE_PATTERN = new RegExp('codex-entry');
+	static UPLOAD_FILE_PREFIX = 'codex-entry';
 
 	/**
 	 * @param {CodexEntryDataModel} entry
@@ -271,7 +271,7 @@ export class CodexBrowser {
 						return;
 					}
 
-					const imagePath = await FileUtils.uploadClipboardImage(uploadDirectory, CodexBrowser.UPLOAD_FILE_PATTERN);
+					const imagePath = await FileUtils.uploadClipboardImage(uploadDirectory, CodexBrowser.UPLOAD_FILE_PREFIX);
 					if (!imagePath) {
 						return;
 					}
@@ -311,7 +311,7 @@ export class CodexBrowser {
 		if (uploadDirectory) {
 			const entries = this.party.codex.entries;
 			const usedImages = new Set(entries.map((e) => e.img).filter((img) => img !== undefined));
-			const filePattern = CodexBrowser.UPLOAD_FILE_PATTERN;
+			const filePattern = new RegExp(CodexBrowser.UPLOAD_FILE_PREFIX);
 
 			// Browse the directory to get all files
 			const browse = await FilePicker.browse('data', uploadDirectory);
