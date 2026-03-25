@@ -36,6 +36,7 @@ export class CodexBrowser {
 		const toolbar = html.querySelector('.toolbar');
 		const searchInput = toolbar.querySelector('.search').querySelector('input');
 		if (searchInput) {
+			requestAnimationFrame(() => searchInput.removeAttribute('disabled'));
 			searchInput.addEventListener(
 				'input',
 				HTMLUtils.debounce(() => {
@@ -112,12 +113,12 @@ export class CodexBrowser {
 				}
 
 				let visible = true;
-				if (!entry.name.toLowerCase().includes(filter)) {
+				if (entry.hidden && !game.user.isGM) {
 					visible = false;
-				} else {
-					if (set.size > 0 && ![...set].every((tag) => entry.tags.includes(tag))) {
-						visible = false;
-					}
+				} else if (!entry.name.toLowerCase().includes(filter)) {
+					visible = false;
+				} else if (set.size > 0 && ![...set].every((tag) => entry.tags.includes(tag))) {
+					visible = false;
 				}
 
 				li.classList.toggle('hidden', !visible);
@@ -247,7 +248,7 @@ export class CodexBrowser {
 		const result = await FoundryUtils.prompt({
 			window: { title: `Edit — ${entry.name}` },
 			position: {
-				width: 600,
+				width: 750,
 			},
 			content,
 			context,
