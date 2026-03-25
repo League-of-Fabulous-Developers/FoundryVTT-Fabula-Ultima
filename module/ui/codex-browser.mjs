@@ -1,7 +1,6 @@
 import FoundryUtils from '../helpers/foundry-utils.mjs';
-import { CodexEntryDataModel } from '../documents/actors/party/codex-data-model.mjs';
+import { CodexDataModel, CodexEntryDataModel } from '../documents/actors/party/codex-data-model.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
-import { FU } from '../helpers/config.mjs';
 
 export class CodexBrowser {
 	/** @type FUPartySheet **/
@@ -79,7 +78,7 @@ export class CodexBrowser {
 	}
 
 	async resetTags() {
-		const defaultCodexTags = Object.keys(FU.codexTags);
+		const defaultCodexTags = CodexDataModel.getDefaultTags();
 		const currentTags = FoundryUtils.safeClone(this.party.codex.tags);
 		for (const tag of defaultCodexTags) {
 			if (!currentTags.includes(tag)) {

@@ -331,7 +331,7 @@
 					width: 160px;
 					padding: 0;
 					height: auto;
-					border: 2px solid var(--pfu-color-control-active-border);
+					border: 2px solid var(--pfu-color-control-border);
 				}
 
 				.controls {
@@ -574,6 +574,7 @@
 		font-size: var(--font-size-14);
 		line-height: 1.4;
 		overflow-y: auto;
+		text-align: center;
 	}
 }
 

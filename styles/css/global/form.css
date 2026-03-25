@@ -59,19 +59,56 @@
 .fu-form__array {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	width: 100%;
-
-	a {
-		color: var(--pfu-color-app-detail-section-content-secondary);
-	}
+	background: var(--pfu-color-app-control-content);
+	border: 1px solid var(--pfu-color-app-control-border);
+	overflow: auto;
+	max-height: 150px;
+	min-height: 150px;
 }
 
 .fu-form__array__element {
 	display: flex;
-	margin: 2px;
-	gap: 4px;
 	align-items: center;
+	gap: 4px;
+	padding: 2px 4px;
+	border-radius: 3px;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(75, 10, 10, 0.1);
+	transition: border-color 0.12s;
+
+	&:hover {
+		border-color: rgba(255, 255, 255, 0.25);
+		background: rgba(255, 255, 255, 0.11);
+	}
+
+	a {
+		opacity: 0.45;
+		padding: 2px 5px;
+		border-radius: 3px;
+		transition:
+			opacity 0.12s,
+			background 0.12s;
+		flex-shrink: 0;
+
+		&:hover {
+			opacity: 1;
+			color: #ff9999;
+		}
+	}
+}
+
+.fu-form__array__element__input {
+	flex: 1;
+	display: flex;
+
+	input {
+		flex: 1;
+		min-width: 0;
+		padding: 3px 4px;
+		outline: none;
+		color: inherit; /* respect Foundry's text color */
+	}
 }
 
 .fu-form__row {

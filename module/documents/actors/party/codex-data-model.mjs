@@ -1,6 +1,7 @@
 import { VersionedDataModel } from '../../../fields/versioned-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { systemAssetPath } from '../../../helpers/system-utils.mjs';
+import { StringUtils } from '../../../helpers/string-utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -43,8 +44,20 @@ export class CodexDataModel extends VersionedDataModel {
 		return Object.assign(super.defineSchema(), {
 			entries: new fields.ArrayField(new fields.EmbeddedDataField(CodexEntryDataModel), {}),
 			tags: new fields.ArrayField(new fields.StringField({ initial: '', nullable: false, blank: true }), {
-				initial: Object.keys(FU.codexTags),
+				initial: CodexDataModel.getDefaultTags(),
 			}),
+		});
+	}
+
+	/**
+	 * @returns {String[]}
+	 */
+	static getDefaultTags() {
+		return Object.entries(FU.codexTags).map(([key, value]) => {
+			if (StringUtils.hasLocalization(key)) {
+				return StringUtils.localize(value).toLowerCase();
+			}
+			return key;
 		});
 	}
 

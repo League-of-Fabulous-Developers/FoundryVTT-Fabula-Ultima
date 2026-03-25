@@ -1939,7 +1939,8 @@
 			"Location": "Location",
 			"Faction": "Faction",
 			"Event": "Event",
-			"Lore": "Lore"
+			"Lore": "Lore",
+			"Glossary": "Glossary"
 		}
 	}
 }
