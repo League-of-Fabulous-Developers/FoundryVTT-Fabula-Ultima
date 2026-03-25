@@ -70,6 +70,7 @@ export class FUPartySheet extends FUActorSheet {
 			addCodexEntry: this.#onAddCodexEntry,
 			forCodexEntry: this.#onCodexAction,
 			resetCodexTags: this.#onResetCodexTags,
+			browseUploadDirectory: this.onBrowseUploadDirectory,
 			inspectBondNode: { handler: this.#onInspectBondNode, buttons: [2] },
 		},
 		position: { width: 920, height: 1000 },
@@ -573,6 +574,23 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #onResetCodexTags(event, target) {
 		return this.codexBrowser.resetTags();
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async onBrowseUploadDirectory(event, target) {
+		const uploadDirectory = getSystemSetting(SETTINGS.codexUploadDirectory);
+		if (uploadDirectory) {
+			new foundry.applications.apps.FilePicker({
+				type: 'file',
+				current: uploadDirectory,
+				activeSource: 'data',
+			}).render(true);
+		}
 	}
 
 	/**

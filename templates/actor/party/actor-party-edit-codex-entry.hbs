@@ -27,8 +27,15 @@
 				<label>
 					<input type="text" name="img" value="{{entry.img}}" />
 				</label>
-				<button type="button" data-action="browseImage" data-name="img" data-type="image">
+				<button type="button" data-action="browseImage"
+						data-tooltip="FU.BrowseImage"
+						data-name="img">
 					<i class="fas fa-file-image"></i>
+				</button>
+				<button type="button" data-action="clipboardImage"
+						data-tooltip="FU.UploadClipboardImage"
+						data-name="img">
+					<i class="fas fa-file-clipboard"></i>
 				</button>
 			</div>
 		</div>
