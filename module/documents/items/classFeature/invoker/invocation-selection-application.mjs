@@ -55,7 +55,7 @@ export class InvocationSelectionApplication extends FUApplication {
 
 	async _prepareContext(options = {}) {
 		const activeWellsprings = this.getActiveWellsprings();
-		const targets = await getTargeted();
+		const targets = await getTargeted(false, false);
 		if (!this.#wellspring) {
 			this.#wellspring = WELLSPRINGS[activeWellsprings[0]];
 			await this.onWellspringChanged();
