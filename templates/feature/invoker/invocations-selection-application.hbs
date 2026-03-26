@@ -1,4 +1,4 @@
-<div class="pfu-wellspring {{wellspring.type}} flexcol gap-05 invocations-selection gap-8">
+<div class="pfu-wellspring {{wellspring.type}} flexcol gap-05 pfu-invocations-selection gap-8">
 	<div class="grid-2col">
 	{{#each wellsprings}}
 		<a class="wellspring fu-icon__container"
@@ -9,17 +9,24 @@
 		</a>
 	{{/each}}
 	</div>
-	<div class="grid grid-4col gap-8">
+	<div class="grid grid-2col gap-8">
 		{{#each invocations as |invocation|}}
-			<fieldset class="desc title-fieldset resource-content">
-				<legend class="resource-label-sm">{{localize invocation.label}}</legend>
-				<label class="resource-label-sm">
-					{{invocation.name}}
-				</label>
-				<div class="invocation-description">
+			<div class="invocation-card"
+			   data-action="useInvocation"
+			   data-index="{{@index}}"
+			   data-element="{{invocation.wellspring}}"
+			   data-level="{{invocation.level}}"
+			   data-tooltip="{{invocation.name}}">
+				<div class="invocation-card__header">
+					<i class="fu-icon--m {{pfuIconClass invocation.level}}"></i>
+					<div class="invocation-card__name">{{invocation.name}}</div>
+					<span class="invocation-card__label">{{localize invocation.label}}</span>
+				</div>
+
+				<div class="invocation-card__description">
 					{{{invocation.description}}}
 				</div>
-			</fieldset>
+			</div>
 		{{/each}}
 	</div>
 </div>

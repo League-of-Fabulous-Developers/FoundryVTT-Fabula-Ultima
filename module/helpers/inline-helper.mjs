@@ -324,6 +324,7 @@ let inlineCommands = [];
  * @property {HTMLElement} target
  * @property {InlineSourceInfo} sourceInfo
  * @property {DOMStringMap} dataset
+ * @property {Boolean} valid
  */
 
 /**
@@ -342,12 +343,13 @@ function getRenderContext(element) {
 		sourceInfo = InlineHelper.determineSource(document, target);
 	}
 
-	const dataset = target.dataset;
+	const dataset = target?.dataset ?? {};
 	return {
 		document,
 		target,
 		sourceInfo,
 		dataset,
+		valid: target !== undefined,
 	};
 }
 
@@ -385,7 +387,7 @@ function resolveDocument(element) {
 			}
 		}
 		if (sheet) {
-			return sheet.document;
+			return sheet.document ?? sheet.element;
 		}
 	}
 	console.debug(`Failed to resolve the document from ${element.toString()}`);

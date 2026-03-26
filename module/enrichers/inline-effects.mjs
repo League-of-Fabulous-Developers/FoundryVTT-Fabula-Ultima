@@ -164,14 +164,11 @@ async function inlineEffectEnricher(match, options) {
  * @returns {Promise<void>}
  */
 async function onRender(element) {
-	const target = element.firstElementChild;
-	const document = InlineHelper.resolveDocument(element);
-	const sourceInfo = InlineHelper.determineSource(document, target);
-	const dataset = target.dataset;
+	const renderContext = InlineHelper.getRenderContext(element);
 
-	const effectData = StringUtils.fromBase64(dataset.effect);
-	const status = dataset.status;
-	const config = StringUtils.fromBase64(dataset.config);
+	const effectData = StringUtils.fromBase64(renderContext.dataset.effect);
+	const status = renderContext.dataset.status;
+	const config = StringUtils.fromBase64(renderContext.dataset.config);
 
 	// Click handler
 	element.addEventListener('click', async function (event) {
@@ -182,15 +179,15 @@ async function onRender(element) {
 		targets.forEach((actor) => {
 			if (effectData) {
 				if (isCtrlClick) {
-					Effects.removeEffect(actor, sourceInfo, effectData);
+					Effects.removeEffect(actor, renderContext.sourceInfo, effectData);
 				} else {
-					Effects.applyEffect(actor, effectData, sourceInfo, config);
+					Effects.applyEffect(actor, effectData, renderContext.sourceInfo, config);
 				}
 			} else if (status) {
 				if (isCtrlClick) {
 					disableStatusEffect(actor, status);
 				} else if (!actor.statuses.has(status)) {
-					Effects.toggleStatusEffect(actor, status, sourceInfo, config);
+					Effects.toggleStatusEffect(actor, status, renderContext.sourceInfo, config);
 				}
 			}
 		});
@@ -200,10 +197,10 @@ async function onRender(element) {
 	element.addEventListener('dragstart', function (event) {
 		const data = {
 			type: INLINE_EFFECT,
-			sourceInfo: sourceInfo,
-			config: StringUtils.fromBase64(dataset.config),
-			effect: StringUtils.fromBase64(dataset.effect),
-			status: dataset.status,
+			sourceInfo: renderContext.sourceInfo,
+			config: StringUtils.fromBase64(renderContext.dataset.config),
+			effect: StringUtils.fromBase64(renderContext.dataset.effect),
+			status: renderContext.dataset.status,
 		};
 
 		event.dataTransfer.setData('text/plain', JSON.stringify(data));
@@ -216,18 +213,18 @@ async function onRender(element) {
 		event.stopPropagation();
 
 		let effectData;
-		if (dataset.status) {
-			const status = dataset.status;
+		if (renderContext.dataset.status) {
+			const status = renderContext.dataset.status;
 			const statusEffect = CONFIG.statusEffects.find((value) => value.id === status);
 			if (statusEffect) {
 				effectData = { ...statusEffect, statuses: [status] };
 			}
 		} else {
-			effectData = StringUtils.fromBase64(dataset.effect);
+			effectData = StringUtils.fromBase64(renderContext.dataset.effect);
 		}
 
 		if (effectData) {
-			effectData.sourceInfo = sourceInfo;
+			effectData.sourceInfo = renderContext.sourceInfo;
 
 			const tempActor = new foundry.documents.Actor.implementation({ name: 'Temp Actor', type: 'character' });
 			const tempEffect = new foundry.documents.ActiveEffect.implementation(effectData, { temporary: true, parent: tempActor });

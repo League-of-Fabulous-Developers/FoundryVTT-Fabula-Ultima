@@ -16,9 +16,6 @@ export class InvocationSelectionApplication extends FUApplication {
 		actions: {
 			selectWellspring: InvocationSelectionApplication.#selectWellspring,
 			useInvocation: InvocationSelectionApplication.#useInvocation,
-			// The item name template from the table renderer we're using
-			// hard codes the data-action on its icon to `roll`
-			roll: InvocationSelectionApplication.#useInvocation,
 		},
 	};
 

@@ -1,12 +1,14 @@
-.invocations-selection {
-	fieldset {
+.pfu-invocations-selection {
+	card {
+		--card-width: 180px;
 		padding: 0.5em;
-		width: 180px;
-		max-width: 180px;
+		width: var(--card-width);
+		max-width: var(--card-width);
 		height: 300px;
 
-		fieldset {
-			box-shadow: color-mix(in srgb, #2b4a42, transparent 50%) 2px 2px;
+		.description {
+			width: var(--card-width);
+			max-width: var(--card-width);
 		}
 	}
 
@@ -25,11 +27,11 @@
 	/* Card base */
 	.invocation-card {
 		display: flex;
+		cursor: pointer;
 		flex-direction: column;
 		gap: 0.4rem;
 		padding: 0.75rem;
 		border-radius: 6px;
-		cursor: pointer;
 		text-decoration: none;
 		transition:
 			filter 0.15s ease,
@@ -56,21 +58,22 @@
 	.invocation-card__header {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: 0.4rem;
-	}
 
-	.invocation-card__label {
-		font-size: 0.7rem;
-		text-transform: uppercase;
-		letter-spacing: 0.06em;
-		opacity: 0.75;
-	}
+		/* Name */
+		.invocation-card__name {
+			font-weight: 600;
+			font-size: 1.5rem;
+			line-height: 1.2;
+		}
 
-	/* Name */
-	.invocation-card__name {
-		font-weight: 600;
-		font-size: 0.95rem;
-		line-height: 1.2;
+		.invocation-card__label {
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+			opacity: 0.75;
+		}
 	}
 
 	/* Description */

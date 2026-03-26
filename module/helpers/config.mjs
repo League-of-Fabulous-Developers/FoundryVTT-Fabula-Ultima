@@ -1096,6 +1096,13 @@ FU.bondIcons = {
 	hatred: 'ra ra-death-skull',
 };
 
+FU.invocationIcons = {
+	basic: 'ra ra-blast',
+	advanced: 'ra ra-burning-eye',
+	superior1: 'ra ra-sapphire',
+	superior2: 'ra ra-emerald',
+};
+
 /**
  * @desc All commonly-used icons throughout the system.
  * @remarks Make sure icon declarations in this file are before this one.
@@ -1141,6 +1148,7 @@ FU.allIcon = {
 	...FU.attributeIcons,
 	...FU.derivedIcons,
 	...FU.weaponCategoryIcons,
+	...FU.invocationIcons,
 };
 
 /**
