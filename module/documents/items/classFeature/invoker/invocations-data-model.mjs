@@ -6,9 +6,10 @@ import { Checks } from '../../../../checks/checks.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CHECK_FLAVOR } from '../../../../checks/default-section-order.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { CommonEvents } from '../../../../checks/common-events.mjs';
+import { FeatureTraits } from '../../../../pipelines/traits.mjs';
 
 const BASIC = 'FU.ClassFeatureInvocationsBasicName';
-
 const ADVANCED = 'FU.ClassFeatureInvocationsAdvancedName';
 
 const FIRST_SUPERIOR = 'FU.ClassFeatureInvocationsSuperiorNameFirst';
@@ -20,12 +21,23 @@ const RANKS = {
 	superior: 'FU.ClassFeatureInvocationsLevelSuperior',
 };
 
+const LOCALIZED_RANKS = {
+	basic: 'FU.ClassFeatureInvocationsLevelBasic',
+	advanced: 'FU.ClassFeatureInvocationsLevelAdvanced',
+	superior1: 'FU.ClassFeatureInvocationsLevelSuperior',
+	superior2: 'FU.ClassFeatureInvocationsLevelSuperior',
+};
+
+/**
+ * @typedef {'basic'|'advanced'|'superior1'|'superior2'} InvocationLevel
+ */
+
 const invocationKey = 'invocation';
 
 /**
  * @type RenderCheckHook
  */
-const onRenderCheck = (data, check, actor, item, additionalFlags) => {
+const onRenderCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system?.data instanceof InvocationsDataModel) {
 		if (!check.additionalData[invocationKey]) {
 			data.tags.push({
@@ -48,10 +60,22 @@ const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 			});
 			CommonSections.description(data.sections, item.system.data[element][invocation].description);
 		}
+		/** @type ResourceExpense **/
+		const expense = {
+			source: 'skill',
+			resource: 'mp',
+			amount: 5,
+		};
+		CommonSections.expense(data, actor, item, [], flags, expense);
+		await CommonEvents.feature(actor, item, [FeatureTraits.Invocation], data);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
+/**
+ * @property {String} level
+ * @property {String} description
+ */
 export class InvocationsDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, SchemaField, HTMLField } = foundry.data.fields;
@@ -82,6 +106,44 @@ export class InvocationsDataModel extends RollableClassFeatureDataModel {
 		}
 
 		return schema;
+	}
+
+	/**
+	 * @typedef AvailableInvocationData
+	 * @property key
+	 * @property img
+	 * @property wellspring
+	 * @property invocation
+	 * @property name
+	 * @property description
+	 */
+
+	/**
+	 * @param {WellspringElement}  wellspring
+	 * @returns {Promise<AvailableInvocationData[]>
+	 */
+	async getAvailableInvocations(wellspring) {
+		/**
+		 * @type {String[]}
+		 */
+		const availableInvocations = {
+			basic: ['basic'],
+			advanced: ['basic', 'advanced'],
+			superior: ['basic', 'advanced', 'superior1', 'superior2'],
+		}[this.level];
+
+		return Promise.all(
+			availableInvocations.map(async (invocation) => ({
+				key: `${wellspring}:${invocation}`,
+				label: LOCALIZED_RANKS[invocation],
+				img: this.item.img,
+				wellspring,
+				level: invocation,
+				invocation,
+				name: this[wellspring][invocation].name,
+				description: await TextEditor.enrichHTML(this[wellspring][invocation].description),
+			})),
+		);
 	}
 
 	static get template() {

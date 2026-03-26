@@ -69,6 +69,7 @@ export const FeatureTraits = Object.freeze({
 	ArcanumSummon: 'arcanum-summon',
 	ArcanumDismiss: 'arcanum-dismiss',
 	ArcanumPulse: 'arcanum-pulse',
+	Invocation: 'invocation',
 });
 
 /**

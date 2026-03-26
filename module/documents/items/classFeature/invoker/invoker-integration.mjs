@@ -9,7 +9,16 @@ import { FUHooks } from '../../../../hooks.mjs';
  */
 
 /**
- * @type {Record<WellspringElement, {name: string, icon: string, type: string, nameShort: string, element: string}>}
+ * @typedef WellspringElementData
+ * @property {String} name
+ * @property {String} type
+ * @property {String} nameShort *
+ * @property {String} icon
+ * @property {String} element
+ */
+
+/**
+ * @type {Record<WellspringElement, WellspringElementData>}
  */
 export const WELLSPRINGS = {
 	air: {

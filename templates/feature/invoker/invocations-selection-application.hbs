@@ -1,14 +1,25 @@
-<div class="flexcol gap-05 invocations-selection">
-    <section class="desc">
-        {{#each wellsprings}}
-            <header class="items-main-header">
-                <span class="items-main">
-                    <i class="{{wellspring.icon}}"></i>
-                    <label class="items-label">{{ localize wellspring.name }}</label>
-                </span>
-            </header>
-            {{{table}}}
-            <p></p>
-        {{/each}}
-    </section>
+<div class="pfu-wellspring {{wellspring.type}} flexcol gap-05 invocations-selection gap-8">
+	<div class="grid-2col">
+	{{#each wellsprings}}
+		<a class="wellspring fu-icon__container"
+		   data-action="selectWellspring"
+		   data-type="{{wellspring.type}}"
+		   data-tooltip="{{wellspring.name}}">
+			<i class="fu-icon--l {{wellspring.icon}}"></i>
+		</a>
+	{{/each}}
+	</div>
+	<div class="grid grid-4col gap-8">
+		{{#each invocations as |invocation|}}
+			<fieldset class="desc title-fieldset resource-content">
+				<legend class="resource-label-sm">{{localize invocation.label}}</legend>
+				<label class="resource-label-sm">
+					{{invocation.name}}
+				</label>
+				<div class="invocation-description">
+					{{{invocation.description}}}
+				</div>
+			</fieldset>
+		{{/each}}
+	</div>
 </div>

@@ -257,16 +257,17 @@ function determineSource(document, element) {
 
 	// TODO: Figure out which case triggers this
 	// FALLBACK
-	const chatItemText = element.closest('#chat-item-text');
-	if (chatItemText) {
-		if (chatItemText.dataset.actorUuid) {
-			itemUuid = chatItemText.dataset.actorUuid;
-		}
-		if (chatItemText.dataset.itemId) {
-			itemUuid = chatItemText.dataset.itemId;
+	if (element) {
+		const chatItemText = element.closest('#chat-item-text');
+		if (chatItemText) {
+			if (chatItemText.dataset.actorUuid) {
+				itemUuid = chatItemText.dataset.actorUuid;
+			}
+			if (chatItemText.dataset.itemId) {
+				itemUuid = chatItemText.dataset.itemId;
+			}
 		}
 	}
-
 	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid);
 }
 
