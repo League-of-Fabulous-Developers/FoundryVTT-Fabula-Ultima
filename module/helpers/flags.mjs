@@ -5,6 +5,8 @@
  * @remarks Flag data can be of any type, as long as it can be JSON.stringify'd. Flags can be used with almost all types of documents — not just Actors and Items, but nearly everything in Foundry. Settings are the only exception.
  */
 
+import { systemId } from './system-utils.mjs';
+
 /**
  * @description The keys for scoped flags commonly used by the system. They are stored and accessed by documents such as actors, chat messages.
  * @example Usage: actor.getFlag(Flags.Scope, Flags.CurrentTurn)
@@ -54,7 +56,20 @@ export const Flags = Object.freeze({
 		WeaponMagicCheck: 'weaponMagicCheck',
 		ApexAttribute: 'apexAttribute',
 	}),
+	State: Object.freeze({
+		PreviousDance: 'previousDance',
+	}),
 	Modifier: Object.freeze({
 		ScaleIncomingDamage: 'scaleIncomingDamage',
 	}),
+});
+
+export const FlagUtility = Object.freeze({
+	getEffectChange: (flag, value) => {
+		return {
+			key: `flags.${systemId}.${flag}`,
+			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			value: value,
+		};
+	},
 });

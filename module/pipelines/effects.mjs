@@ -61,12 +61,13 @@ import { systemId } from '../helpers/system-utils.mjs';
 
 /**
  * @param {Actor|Item} owner The owning document which manages this effect
- * @param {String} effectType
+ * @param {'temporary'|'inactive'} effectType
  * @param {String} name
+ * @param {ActiveEffectData} data
  * @returns {*}
  * @remarks Effects created this way will by default be removed at the end of the scene
  */
-function createTemporaryEffect(owner, effectType, name = undefined) {
+function createTemporaryEffect(owner, effectType, name = undefined, data = {}) {
 	const system = {
 		duration: {
 			event: effectType === 'passive' ? 'none' : 'endOfScene',
@@ -75,12 +76,13 @@ function createTemporaryEffect(owner, effectType, name = undefined) {
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
 			name: name ?? (owner instanceof FUItem ? owner.name : game.i18n.localize('FU.NewEffect')),
-			img: 'icons/svg/aura.svg',
+			img: owner instanceof FUItem ? owner.img : 'icons/svg/aura.svg',
 			source: owner.uuid,
 			origin: owner.uuid,
 			system: system,
 			'duration.rounds': effectType === 'temporary' ? 1 : undefined,
 			disabled: effectType === 'inactive',
+			...data,
 		},
 	]);
 }
