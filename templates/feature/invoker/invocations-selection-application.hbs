@@ -1,17 +1,19 @@
-<div class="pfu-wellspring {{wellspring.type}} flexcol gap-05 pfu-invocations-selection gap-8">
-	<div class="grid-2col">
-	{{#each wellsprings}}
-		<a class="wellspring fu-icon__container"
-		   data-action="selectWellspring"
-		   data-type="{{wellspring.type}}"
-		   data-tooltip="{{wellspring.name}}">
-			<i class="fu-icon--l {{wellspring.icon}}"></i>
-		</a>
-	{{/each}}
+<div class="pfu-wellspring flexcol gap-05 pfu-invocations-selection gap-12">
+
+	<div class="flexrow flex-center gap-4">
+		{{#each wellsprings}}
+			<a class="wellspring fu-icon__container"
+			   data-action="selectWellspring"
+			   data-element="{{wellspring.key}}"
+			   data-tooltip="{{wellspring.name}}">
+				<i class="fu-icon--l {{wellspring.icon}}"></i>
+			</a>
+		{{/each}}
 	</div>
-	<div class="grid grid-2col gap-8">
+
+	<div class="grid grid-2col gap-12 invocation-grid ">
 		{{#each invocations as |invocation|}}
-			<div class="invocation-card"
+			<div class="invocation-card {{invocation.wellspring}}"
 			   data-action="useInvocation"
 			   data-index="{{@index}}"
 			   data-element="{{invocation.wellspring}}"
@@ -22,11 +24,18 @@
 					<div class="invocation-card__name">{{invocation.name}}</div>
 					<span class="invocation-card__label">{{localize invocation.label}}</span>
 				</div>
-
-				<div class="invocation-card__description">
+				<div class="invocation-card__description" style="pointer-events: none;">
 					{{{invocation.description}}}
 				</div>
 			</div>
 		{{/each}}
 	</div>
+
+	{{#if targets}}
+		<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
+			<legend class="resource-text-m">{{localize 'FU.Targets'}}</legend>
+			{{> 'systems/projectfu/templates/ui/partials/document-carousel.hbs' documents=targets}}
+		</fieldset>
+	{{/if}}
+
 </div>

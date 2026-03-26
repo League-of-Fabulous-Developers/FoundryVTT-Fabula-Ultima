@@ -2,6 +2,7 @@ import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { InvocationTableRenderer } from '../../../../helpers/tables/invocation-table-renderer.mjs';
 import { WELLSPRINGS } from './invoker-integration.mjs';
+import { getTargeted } from '../../../../helpers/target-handler.mjs';
 
 export class InvocationSelectionApplication extends FUApplication {
 	static DEFAULT_OPTIONS = {
@@ -10,7 +11,7 @@ export class InvocationSelectionApplication extends FUApplication {
 			title: 'FU.ClassFeatureInvocationsSelectDialogTitle',
 		},
 		position: {
-			width: 800,
+			width: 640,
 			height: 'auto',
 		},
 		actions: {
@@ -54,6 +55,7 @@ export class InvocationSelectionApplication extends FUApplication {
 
 	async _prepareContext(options = {}) {
 		const activeWellsprings = this.getActiveWellsprings();
+		const targets = await getTargeted();
 		if (!this.#wellspring) {
 			this.#wellspring = WELLSPRINGS[activeWellsprings[0]];
 			await this.onWellspringChanged();
@@ -70,13 +72,14 @@ export class InvocationSelectionApplication extends FUApplication {
 		return {
 			invocations: this.#invocations,
 			wellspring: this.#wellspring,
+			targets: targets,
 			buttons: [{ type: 'submit', icon: 'fa-solid fa-times', label: 'Close' }],
 			wellsprings: wellsprings,
 		};
 	}
 
 	async onWellspringChanged() {
-		this.#invocations = await this.#model.getAvailableInvocations(this.#wellspring.type);
+		this.#invocations = await this.#model.getAvailableInvocations(this.#wellspring.key);
 	}
 
 	/**
@@ -85,8 +88,8 @@ export class InvocationSelectionApplication extends FUApplication {
 	 * @param {HTMLElement} target
 	 */
 	static async #selectWellspring(event, target) {
-		const { type } = target.dataset;
-		this.#wellspring = WELLSPRINGS[type];
+		const { element } = target.dataset;
+		this.#wellspring = WELLSPRINGS[element];
 		await this.onWellspringChanged();
 		this.render(true);
 	}

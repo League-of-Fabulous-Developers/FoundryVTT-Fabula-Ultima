@@ -36,6 +36,9 @@ export async function getPrioritizedUserSelected() {
 	return targets || [];
 }
 
+/**
+ * @returns {Promise<FUActor[]>}
+ */
 export async function getPrioritizedUserTargeted() {
 	const targets = Array.from(game.user.targets)
 		.map((target) => target.actor)

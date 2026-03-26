@@ -663,6 +663,7 @@
 		"ClockStatus": "Clock?",
 		"ClockAdd": "Add Clock",
 		"Target": "Target",
+		"Targets": "Targets",
 		"MaxTargets": "Max Targets",
 		"Duration": "Duration",
 		"Instantaneous": "Instantaneous",

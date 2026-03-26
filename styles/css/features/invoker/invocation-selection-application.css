@@ -17,41 +17,107 @@
 	}
 }
 
-/* Base container */
+/* Base container — neutral, no element color here */
 .pfu-wellspring {
 	border-radius: 8px;
 	padding: 0.5rem;
 	background-size: cover;
 	background-position: center;
 
-	/* Card base */
+	.invocation-grid {
+		padding: 16px;
+	}
+
 	.invocation-card {
 		display: flex;
 		cursor: pointer;
 		flex-direction: column;
 		gap: 0.4rem;
-		padding: 0.75rem;
-		border-radius: 6px;
+		padding: 1.25rem 1rem;
+		position: relative;
 		text-decoration: none;
 		transition:
 			filter 0.15s ease,
 			box-shadow 0.15s ease,
 			transform 0.1s ease;
 
-		/* Fallback if no wellspring class is active */
-		background: linear-gradient(160deg, #2a2a2a, #1a1a1a);
-		border: 1px solid #444;
-		color: inherit;
+		/* Parchment base */
+		background: linear-gradient(160deg, #f5ecd7, #e8d5b0, #f0e0c0);
+		color: #2a1f0e;
+		border: none;
+		border-radius: 0;
+
+		/* Scroll shadow */
+		box-shadow:
+			0 4px 8px rgba(0, 0, 0, 0.35),
+			inset 0 0 12px rgba(0, 0, 0, 0.08);
+	}
+
+	/* Rolled top edge */
+	.invocation-card::before {
+		content: '';
+		position: absolute;
+		top: -6px;
+		left: 0;
+		right: 0;
+		height: 12px;
+		background: linear-gradient(180deg, #c8a96e, #e8d5a0, #c8a96e);
+		border-radius: 50% / 6px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		z-index: 1;
+	}
+
+	/* Rolled bottom edge */
+	.invocation-card::after {
+		content: '';
+		position: absolute;
+		bottom: -6px;
+		left: 0;
+		right: 0;
+		height: 12px;
+		background: linear-gradient(180deg, #c8a96e, #e8d5a0, #c8a96e);
+		border-radius: 50% / 6px;
+		box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+		z-index: 1;
 	}
 
 	.invocation-card:hover {
-		filter: brightness(1.15);
-		transform: translateY(-2px);
+		filter: brightness(1.05);
+		transform: translateY(-3px);
+		box-shadow:
+			0 8px 16px rgba(0, 0, 0, 0.4),
+			inset 0 0 12px rgba(0, 0, 0, 0.08);
 	}
 
 	.invocation-card:active {
 		transform: translateY(0px);
-		filter: brightness(0.95);
+		filter: brightness(0.97);
+	}
+
+	/* ─── Themed scroll tints ─── */
+	.invocation-card.air {
+		background: linear-gradient(160deg, #f0f8ff, #ddeef8, #eaf4ff);
+		color: #0d2a3a;
+	}
+
+	.invocation-card.earth {
+		background: linear-gradient(160deg, #f5eedc, #ecdcc0, #f0e5ce);
+		color: #1a0e00;
+	}
+
+	.invocation-card.fire {
+		background: linear-gradient(160deg, #fff5e8, #fde8cc, #fff0da);
+		color: #2a0800;
+	}
+
+	.invocation-card.lightning {
+		background: linear-gradient(160deg, #fffef0, #fdf8d0, #fffde8);
+		color: #1a1400;
+	}
+
+	.invocation-card.water {
+		background: linear-gradient(160deg, #f0faff, #d8f0fa, #e8f6ff);
+		color: #001a2a;
 	}
 
 	/* Header row: icon + label */
@@ -61,7 +127,6 @@
 		justify-content: space-between;
 		gap: 0.4rem;
 
-		/* Name */
 		.invocation-card__name {
 			font-weight: 600;
 			font-size: 1.5rem;
@@ -78,100 +143,8 @@
 
 	/* Description */
 	.invocation-card__description {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		opacity: 0.85;
 		line-height: 1.4;
 	}
-
-	/* ─── Wellspring-themed overrides ─── */
-	/* The cards sit inside .pfu-wellspring.{element}, so they
-	   automatically inherit whichever theme is active.          */
-
-	.pfu-wellspring.air .invocation-card {
-		background: linear-gradient(160deg, #c8e8ff, #a0ccf0);
-		border-color: #89c4f4;
-		color: #1a3a50;
-		box-shadow: 0 2px 8px rgba(137, 196, 244, 0.25);
-	}
-
-	.pfu-wellspring.earth .invocation-card {
-		background: linear-gradient(160deg, #c0a878, #7a5a30);
-		border-color: #8b6914;
-		color: #f5e6c8;
-		box-shadow: 0 2px 8px rgba(139, 105, 20, 0.3);
-	}
-
-	.pfu-wellspring.fire .invocation-card {
-		background: linear-gradient(160deg, #ff9a40, #aa1800);
-		border-color: #ff6600;
-		color: #fff3e0;
-		box-shadow: 0 2px 8px rgba(255, 100, 0, 0.35);
-	}
-
-	.pfu-wellspring.lightning .invocation-card {
-		background: linear-gradient(160deg, #ffe566, #a07800);
-		border-color: #f0c000;
-		color: #1a1400;
-		box-shadow: 0 2px 8px rgba(240, 192, 0, 0.35);
-	}
-
-	.pfu-wellspring.water .invocation-card {
-		background: linear-gradient(160deg, #60c8f0, #004466);
-		border-color: #0077aa;
-		color: #e0f7ff;
-		box-shadow: 0 2px 8px rgba(0, 119, 170, 0.35);
-	}
-
-	/* Hover glow per theme */
-	.pfu-wellspring.air .invocation-card:hover {
-		box-shadow: 0 4px 16px rgba(137, 196, 244, 0.55);
-	}
-	.pfu-wellspring.earth .invocation-card:hover {
-		box-shadow: 0 4px 16px rgba(139, 105, 20, 0.55);
-	}
-	.pfu-wellspring.fire .invocation-card:hover {
-		box-shadow: 0 4px 16px rgba(255, 100, 0, 0.6);
-	}
-	.pfu-wellspring.lightning .invocation-card:hover {
-		box-shadow: 0 4px 16px rgba(240, 192, 0, 0.6);
-	}
-	.pfu-wellspring.water .invocation-card:hover {
-		box-shadow: 0 4px 16px rgba(0, 119, 170, 0.55);
-	}
-}
-
-/* Themed backgrounds per element */
-.pfu-wellspring.air {
-	background: linear-gradient(135deg, #e0f0ff 0%, #b8d9f5 50%, #d6eaff 100%);
-	border: 1px solid #89c4f4;
-	color: #2a6496;
-	box-shadow: 0 0 8px rgba(137, 196, 244, 0.4);
-}
-
-.pfu-wellspring.earth {
-	background: linear-gradient(135deg, #d4c5a0 0%, #a08050 50%, #6b4f2a 100%);
-	border: 1px solid #8b6914;
-	color: #f5e6c8;
-	box-shadow: 0 0 8px rgba(139, 105, 20, 0.4);
-}
-
-.pfu-wellspring.fire {
-	background: linear-gradient(135deg, #ffe0a0 0%, #ff8c00 50%, #cc2200 100%);
-	border: 1px solid #ff6600;
-	color: #fff3e0;
-	box-shadow: 0 0 8px rgba(255, 100, 0, 0.5);
-}
-
-.pfu-wellspring.lightning {
-	background: linear-gradient(135deg, #fffde0 0%, #ffe033 50%, #c8a000 100%);
-	border: 1px solid #f0c000;
-	color: #3a2e00;
-	box-shadow: 0 0 8px rgba(240, 192, 0, 0.5);
-}
-
-.pfu-wellspring.water {
-	background: linear-gradient(135deg, #d0f0ff 0%, #0090cc 50%, #005580 100%);
-	border: 1px solid #0077aa;
-	color: #e0f7ff;
-	box-shadow: 0 0 8px rgba(0, 119, 170, 0.4);
 }
