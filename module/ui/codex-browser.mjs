@@ -269,7 +269,7 @@ export class CodexBrowser {
 		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-edit-codex-entry', context);
 
 		const result = await FoundryUtils.prompt({
-			window: { title: `Edit — ${entry.name}` },
+			window: { title: `Edit — ${entry.name}`, resizable: true },
 			position: {
 				width: 750,
 			},
