@@ -1,14 +1,35 @@
-<div class="flexcol gap-05 invocations-selection">
-    <section class="desc">
-        {{#each wellsprings}}
-            <header class="items-main-header">
-                <span class="items-main">
-                    <i class="{{wellspring.icon}}"></i>
-                    <label class="items-label">{{ localize wellspring.name }}</label>
-                </span>
-            </header>
-            {{{table}}}
-            <p></p>
-        {{/each}}
-    </section>
+<div class="pfu-wellspring {{wellspring.key}} flexcol gap-05 pfu-invocations-selection gap-12">
+
+	<div class="flexrow flex-center gap-4">
+		{{#each wellsprings}}
+			<a class="wellspring fu-icon__container"
+			   data-action="selectWellspring"
+			   data-element="{{wellspring.key}}"
+			   data-tooltip="{{wellspring.name}}">
+				<i class="fu-icon--l {{wellspring.icon}}"></i>
+			</a>
+		{{/each}}
+	</div>
+
+	<div class="grid grid-2col gap-12 invocation-grid ">
+		{{#each invocations as |invocation|}}
+			<div class="invocation-card {{invocation.wellspring}}"
+			   data-action="useInvocation"
+			   data-index="{{@index}}"
+			   data-element="{{invocation.wellspring}}"
+			   data-level="{{invocation.level}}"
+			   data-tooltip="{{invocation.name}}">
+				<div class="invocation-card__header">
+					<div class="invocation-card__icon">
+						<i class="fu-icon--s {{pfuIconClass invocation.level}}"></i>
+					</div>
+					<div class="invocation-card__name">{{invocation.name}}</div>
+					<span class="invocation-card__label">{{localize invocation.label}}</span>
+				</div>
+				<div class="invocation-card__description" style="pointer-events: none;">
+					{{{invocation.description}}}
+				</div>
+			</div>
+		{{/each}}
+	</div>
 </div>

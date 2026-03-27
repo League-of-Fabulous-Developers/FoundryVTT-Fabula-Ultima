@@ -95,6 +95,11 @@ async function onRender(element) {
 			const config = CheckConfiguration.configure(eventCheck);
 			config.setDefaultTargets();
 			config.setDamage(type, amount);
+			// Inherit traits
+			if (check) {
+				const checkInspector = CheckConfiguration.inspect(check);
+				config.addTraits(checkInspector.getTraits());
+			}
 			const damageData = config.getDamage();
 
 			// Check source actor for outgoing damage bonuses

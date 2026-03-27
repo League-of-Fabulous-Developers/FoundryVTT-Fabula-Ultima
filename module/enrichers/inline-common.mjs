@@ -3,6 +3,7 @@ import { InlineHelper } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { CompendiumBrowser } from '../ui/compendium/compendium-browser.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 const inlineIconEnricher = {
 	id: 'inlineIconEnricher',
@@ -78,8 +79,23 @@ const inlineEvalEnricher = {
 		const rollData = options.rollData ?? {};
 
 		if (expression && rollData) {
-			const roll = new Roll(expression, rollData);
-			await roll.evaluate();
+			let textContent;
+
+			try {
+				// If it's an expression
+				if (rollData.sourceInfo && Expressions.isExpression(expression)) {
+					let context = ExpressionContext.fromSourceInfo(rollData.sourceInfo, []);
+					textContent = await Expressions.evaluateAsync(expression, context);
+				}
+				// Execute a roll directly
+				else {
+					const roll = new Roll(expression, rollData);
+					await roll.evaluate();
+					textContent = `${roll.total}`;
+				}
+			} catch (err) {
+				textContent = StringUtils.localize(expression);
+			}
 
 			const anchor = document.createElement('a');
 			anchor.classList.add('inline', 'inline-common');
@@ -89,7 +105,7 @@ const inlineEvalEnricher = {
 
 			// RESULT
 			const result = document.createElement('span');
-			result.textContent = `${roll.total}`;
+			result.textContent = textContent;
 			anchor.append(result);
 
 			// ICON

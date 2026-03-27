@@ -9,13 +9,24 @@ import { FUHooks } from '../../../../hooks.mjs';
  */
 
 /**
- * @type {Record<WellspringElement, {name: string, icon: string, type: string, nameShort: string, element: string}>}
+ * @typedef WellspringElementData
+ * @property {String} name
+ * @property {String} type The affinity type
+ * @property {String} element The localized wellspring type
+ * @property {String} nameShort *
+ * @property {String} icon
+ * @property {String} key
+ */
+
+/**
+ * @type {Record<WellspringElement, WellspringElementData>}
  */
 export const WELLSPRINGS = {
 	air: {
 		name: 'FU.ClassFeatureInvocationsWellspringAirName',
 		nameShort: 'FU.ClassFeatureInvocationsWellspringAirNameShort',
 		type: 'air',
+		key: 'air',
 		element: 'FU.ClassFeatureInvocationsWellspringAirElement',
 		icon: 'fu-air',
 	},
@@ -23,6 +34,7 @@ export const WELLSPRINGS = {
 		name: 'FU.ClassFeatureInvocationsWellspringEarthName',
 		nameShort: 'FU.ClassFeatureInvocationsWellspringEarthNameShort',
 		type: 'earth',
+		key: 'earth',
 		element: 'FU.ClassFeatureInvocationsWellspringEarthElement',
 		icon: 'fu-earth',
 	},
@@ -30,6 +42,7 @@ export const WELLSPRINGS = {
 		name: 'FU.ClassFeatureInvocationsWellspringFireName',
 		nameShort: 'FU.ClassFeatureInvocationsWellspringFireNameShort',
 		type: 'fire',
+		key: 'fire',
 		element: 'FU.ClassFeatureInvocationsWellspringFireElement',
 		icon: 'fu-fire',
 	},
@@ -37,6 +50,7 @@ export const WELLSPRINGS = {
 		name: 'FU.ClassFeatureInvocationsWellspringLightningName',
 		nameShort: 'FU.ClassFeatureInvocationsWellspringLightningNameShort',
 		type: 'bolt',
+		key: 'lightning',
 		element: 'FU.ClassFeatureInvocationsWellspringLightningElement',
 		icon: 'fu-bolt',
 	},
@@ -44,6 +58,7 @@ export const WELLSPRINGS = {
 		name: 'FU.ClassFeatureInvocationsWellspringWaterName',
 		nameShort: 'FU.ClassFeatureInvocationsWellspringWaterNameShort',
 		type: 'ice',
+		key: 'water',
 		element: 'FU.ClassFeatureInvocationsWellspringWaterElement',
 		icon: 'ra ra-droplets',
 	},

@@ -64,7 +64,7 @@ export class VersesApplication extends FUApplication {
 	/** @type ApplicationConfiguration */
 	static DEFAULT_OPTIONS = {
 		window: { title: 'FU.ClassFeatureVerseSingDialogTitle', minimizable: false },
-		classes: ['form', 'projectfu', 'verses-app'],
+		classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog', 'verses-app'],
 		position: {
 			width: 550,
 			height: 'auto',

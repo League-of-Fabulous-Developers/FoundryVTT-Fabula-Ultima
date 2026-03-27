@@ -1,8 +1,10 @@
 <header class="title-desc chat-header flexrow invocation-message">
-    <a data-link draggable="true" data-uuid="{{uuid}}" data-type="Item" data-tooltip="{{name}}">
-        <i class="invocation-icon {{icon}} flexshrink item-img" data-item-id="{{id}}"></i>
+    <a data-link draggable="true" data-uuid="{{uuid}}" 	   
+	   data-type="Item" data-tooltip="{{name}}">
+        <img class="item-img fu-icon--{{size}}" src="{{img}}" data-item-id="{{id}}" alt="{{name}}">
     </a>
-    <h2 style="flex-grow: 8;">{{name}}</h2>
+	<i class="fu-icon--s {{icon}}"></i>
+    <h2 style="flex-grow: 8; margin-left: 4px;">{{name}}</h2>
 
     <a class="universal-toggle pfu-tags flexrow gap-5" style="align-items:end;"
 			 data-tooltip="{{localize 'FU.ChatMessageShow'}}">

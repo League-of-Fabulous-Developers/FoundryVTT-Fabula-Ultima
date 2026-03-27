@@ -63,7 +63,115 @@
       "max": 0
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Elemental Harmony",
+      "img": "systems/projectfu/styles/static/compendium/classes/invoker/elemental_harmony.png",
+      "origin": "Compendium.projectfu.skills.Item.YZkp0hXK29tfI0MI",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "3af5EdiLcqMppdTi": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "H8OXu0eslNHMrj3Y",
+                "type": "calculateResourceRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "increment"
+              },
+              "_id": "3af5EdiLcqMppdTi",
+              "predicates": {
+                "5dx5t6bwoVJlA76T": {
+                  "type": "traitsRulePredicate",
+                  "_id": "5dx5t6bwoVJlA76T",
+                  "traits": {
+                    "entries": [
+                      "invocation"
+                    ]
+                  }
+                },
+                "AJ0aSZW8y86E2oH6": {
+                  "type": "speciesRulePredicate",
+                  "_id": "AJ0aSZW8y86E2oH6",
+                  "species": [
+                    "elemental"
+                  ],
+                  "selector": "scene"
+                }
+              },
+              "actions": {
+                "UkaKvruXJqxt6lMh": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "UkaKvruXJqxt6lMh",
+                  "amount": "$sl*5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "oiSxoi3ydH5Pqfsf",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Elemental Harmony",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.YZkp0hXK29tfI0MI",
+            "effectUuid": null,
+            "fuid": "elemental-harmony"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774599955799,
+        "modifiedTime": 1774600174757,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!YZkp0hXK29tfI0MI.oiSxoi3ydH5Pqfsf"
+    }
+  ],
   "folder": "OYJupsuCc49hZmiB",
   "ownership": {
     "default": 0,

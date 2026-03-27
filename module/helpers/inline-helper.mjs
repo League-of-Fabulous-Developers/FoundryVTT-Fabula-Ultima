@@ -257,16 +257,17 @@ function determineSource(document, element) {
 
 	// TODO: Figure out which case triggers this
 	// FALLBACK
-	const chatItemText = element.closest('#chat-item-text');
-	if (chatItemText) {
-		if (chatItemText.dataset.actorUuid) {
-			itemUuid = chatItemText.dataset.actorUuid;
-		}
-		if (chatItemText.dataset.itemId) {
-			itemUuid = chatItemText.dataset.itemId;
+	if (element) {
+		const chatItemText = element.closest('#chat-item-text');
+		if (chatItemText) {
+			if (chatItemText.dataset.actorUuid) {
+				itemUuid = chatItemText.dataset.actorUuid;
+			}
+			if (chatItemText.dataset.itemId) {
+				itemUuid = chatItemText.dataset.itemId;
+			}
 		}
 	}
-
 	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid, fuid);
 }
 
@@ -323,6 +324,7 @@ let inlineCommands = [];
  * @property {HTMLElement} target
  * @property {InlineSourceInfo} sourceInfo
  * @property {DOMStringMap} dataset
+ * @property {Boolean} valid
  */
 
 /**
@@ -341,12 +343,13 @@ function getRenderContext(element) {
 		sourceInfo = InlineHelper.determineSource(document, target);
 	}
 
-	const dataset = target.dataset;
+	const dataset = target?.dataset ?? {};
 	return {
 		document,
 		target,
 		sourceInfo,
 		dataset,
+		valid: target !== undefined,
 	};
 }
 
@@ -384,7 +387,7 @@ function resolveDocument(element) {
 			}
 		}
 		if (sheet) {
-			return sheet.document;
+			return sheet.document ?? sheet.element;
 		}
 	}
 	console.debug(`Failed to resolve the document from ${element.toString()}`);
