@@ -63,7 +63,125 @@
       "max": 0
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Wellspring Expansion",
+      "img": "systems/projectfu/styles/static/compendium/classes/invoker/wellspring_expansion.png",
+      "origin": "Compendium.projectfu.skills.Item.HlSeaheZt8969qI7",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "cmsMMyxMNYPLKrBj": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "TuEb3TmF5ErJIhO1",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "cmsMMyxMNYPLKrBj",
+              "predicates": {
+                "QTuyRKQeNK6QcYd9": {
+                  "type": "traitsRulePredicate",
+                  "_id": "QTuyRKQeNK6QcYd9",
+                  "traits": {
+                    "entries": [
+                      "invocation-blast"
+                    ]
+                  }
+                },
+                "bXqYeVHrM8otbScc": {
+                  "type": "weaponRulePredicate",
+                  "_id": "bXqYeVHrM8otbScc",
+                  "categories": [
+                    "arcane",
+                    "bow",
+                    "brawling",
+                    "flail",
+                    "sword",
+                    "thrown"
+                  ]
+                }
+              },
+              "actions": {
+                "9DEpFT1FfRiIcHkp": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "9DEpFT1FfRiIcHkp",
+                  "amount": "$sl",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BE7hRoMlSX5MrQXw",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Wellspring Expansion",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.HlSeaheZt8969qI7",
+            "effectUuid": null,
+            "fuid": "wellspring-expansion"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774600495618,
+        "modifiedTime": 1774600561198,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!HlSeaheZt8969qI7.BE7hRoMlSX5MrQXw"
+    }
+  ],
   "folder": "OYJupsuCc49hZmiB",
   "ownership": {
     "default": 0,

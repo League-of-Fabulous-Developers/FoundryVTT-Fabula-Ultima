@@ -165,15 +165,20 @@ export class ExpressionContext {
 	/**
 	 * @param {String} match
 	 * @param {Boolean} redirect
+	 * @param {Boolean} strict
 	 * @returns {FUActor}
 	 */
-	resolveActorOrSource(match, redirect) {
+	resolveActorOrSource(match, redirect, strict = true) {
 		if (redirect) {
 			this.assertSource(match);
 			const sourceActor = this.sourceItem.actor;
 			if (!sourceActor) {
-				ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
-				throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
+				if (strict) {
+					ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
+					throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
+				} else {
+					return undefined;
+				}
 			}
 			return sourceActor;
 		}
@@ -451,14 +456,14 @@ function evaluateMacros(expression, context) {
 			}
 			// Skill level
 			case `sl`: {
-				const actor = context.resolveActorOrSource(match, redirect);
+				const actor = context.resolveActorOrSource(match, redirect, false);
+				if (!actor) {
+					return 0;
+				}
 				const skillId = parseIdentifier(splitArgs[0]);
 				const skill = actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
-					// TODO: Evaluate whether this restriction should not be relaxed
 					return 0;
-					// ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
-					// throw new Error(`The actor ${actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
 				}
 				return skill.system.level.value;
 			}

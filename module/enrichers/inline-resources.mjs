@@ -4,6 +4,8 @@ import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -118,7 +120,15 @@ async function onRender(element) {
 			if (check) {
 				context = context.withCheck(check);
 			}
-			const amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
+			let amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
+
+			if (context.actor) {
+				const config = CheckConfiguration.configure(check);
+				config.setResource(type, amount);
+				const updateData = config.getResource();
+				await CommonEvents.calculateResource(context.actor, context.item, config, updateData);
+				amount = updateData.total;
+			}
 
 			if (target.classList.contains(classInlineRecovery)) {
 				await applyRecovery(renderContext.sourceInfo, targets, type, amount, uncapped);
