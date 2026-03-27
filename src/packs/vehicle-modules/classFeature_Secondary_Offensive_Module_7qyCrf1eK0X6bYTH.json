@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr /><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one <strong>disabled weapon module</strong>. As long as the chosen module is disabled and this module is enabled, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p>",
+      "description": "<h5>(EXOSKELETON AND MECHA FRAMES ONLY)</h5><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one <strong>disabled weapon module</strong>. As long as the chosen module is disabled and this module is enabled, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p>",
       "complex": false
     },
     "source": "FUTF169",
@@ -25,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
+    "coreVersion": "13.346",
     "createdTime": 1711477104179,
-    "modifiedTime": 1773733373474,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1743183682852,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

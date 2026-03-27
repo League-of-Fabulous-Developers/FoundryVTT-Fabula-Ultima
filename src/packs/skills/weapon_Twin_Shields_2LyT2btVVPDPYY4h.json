@@ -79,80 +79,61 @@
   },
   "effects": [
     {
-      "name": "Twin Shields",
-      "img": "systems/projectfu/styles/static/compendium/classes/guardian/twin-shields/twin-shields.png",
-      "origin": "Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h",
-      "system": {
-        "duration": {
-          "event": "none",
-          "interval": 1,
-          "tracking": "self",
-          "remaining": 1
-        },
-        "type": "default",
-        "predicate": {
-          "crisisInteraction": "none"
-        },
-        "rules": {
-          "elements": {},
-          "progress": {
-            "enabled": false,
-            "id": "",
-            "name": "",
-            "current": 0,
-            "max": 6,
-            "style": "bar"
-          },
-          "stacking": {
-            "progress": false,
-            "duration": false,
-            "increment": 1
-          }
-        }
-      },
       "duration": {
+        "rounds": 1,
         "startTime": null,
-        "combat": null
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "disabled": false,
-      "_id": "QbAh5N55J9WZm2IQ",
-      "type": "base",
+      "name": "Twin Shields",
+      "_id": "oaHQT6sqi0iC32QB",
       "changes": [
         {
           "key": "system.damage.value",
           "mode": 2,
-          "value": "&sl('defensive-mastery')",
+          "value": "&sl(\"defensive-mastery\")",
           "priority": null
         }
       ],
       "description": "<p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p>",
-      "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
-      "sort": 0,
       "flags": {
         "projectfu": {
-          "Source": {
-            "name": "Twin Shields",
-            "actorUuid": null,
-            "itemUuid": "Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h",
-            "effectUuid": null,
-            "fuid": "twin-shields"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR196"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1745431208440,
+        "lastModifiedBy": "4BP57v2riKcaALIW",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/guardian/twin-shields/twin-shields.png",
+      "type": "base",
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
           }
         }
       },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.351",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1773729334721,
-        "modifiedTime": 1773729368179,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
-      },
-      "_key": "!items.effects!2LyT2btVVPDPYY4h.QbAh5N55J9WZm2IQ"
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!2LyT2btVVPDPYY4h.oaHQT6sqi0iC32QB"
     }
   ],
   "ownership": {

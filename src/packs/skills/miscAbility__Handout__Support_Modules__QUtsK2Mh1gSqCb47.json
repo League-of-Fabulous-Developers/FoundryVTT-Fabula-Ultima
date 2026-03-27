@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Support modules provide a variety of miscellaneous benefits; these benefits often apply to the vehicle's passengers in addition to the Pilot themselves.</p><ul><li><p>A personal vehicle cannot have <strong>more than one enabled support modules of the same name</strong>.</p></li><li><p>Some support modules are particularly complex or cumbersome and count as <strong>two modules</strong> towards the limit on total active modules.</p></li></ul><p></p><h2>SUPPORT MODULE LIST</h2><table><tbody><tr><td><p><strong>Support Module</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.9YM4VR2e6Y4MgmJ2]{Advanced Targeting Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells (@ICON[offensive]) you cast.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.76ieutWWlthLOXap]{Aerial Module} <strong>(counts as two enabled modules)</strong></p></td></tr><tr><td><p>This personal vehicle can fly, and its <strong>distance</strong> becomes ×3.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying </strong>creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.nFC5y451Xd24hlM7]{Anti-Element Module}</p></td></tr><tr><td><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> are treated as being Resistant to the chosen damage type until this module remains enabled.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.zhzy9ZWLUwZc0BKg]{Counterstrike Module}</p></td></tr><tr><td><p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend 1 Inventory Point. If you do, the attacker suffers 10 <strong>physical</strong> damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Hi6V9QoWjKofxZkQ]{Excavation Module}</p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can burrow through the ground and is equipped with powerful lights.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.Fa1V1JIKwTD1uMqY]{Expanded Plating Module} <strong>(Mecha and Steed frames only)</strong></p></td></tr><tr><td><p>While you are driving this <strong>personal vehicle</strong>, if it has an active <strong>Heavy</strong>, <strong>Runic</strong>, or <strong>Standard Plating</strong> module, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the <strong>armor module</strong> in question (they may still use their normal scores if those would be better).</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.CVQO5xvCXzTCc7ca]{Magistatic Module}</p></td></tr><tr><td><p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong>, if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover 5 Mind Points, or 10 Mind Points if the cost was <strong>equal to or higher than 30 MP</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.qzvVPIVFgZ9jtOYT]{Power Module} <strong>(Exoskeleton and Mecha frames only)</strong></p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.hTpTh6WA2AGkRymI]{Rapid Interface Module}</p></td></tr><tr><td><p>When you <strong>enter</strong> this <strong>personal vehicle</strong> on your turn during a conflict, you may immediately perform an additional action.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.P1Vw28xK0NzPydqG]{Seafarer Module}</p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can travel on water and underwater.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.vGz7COjgUSUh9vY3]{Seat Module} <strong>(Mecha and Steed frames only)</strong></p></td></tr><tr><td><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.7qyCrf1eK0X6bYTH]{Secondary Offensive Module} <strong>(Exoskeleton and Mecha frames only)</strong></p></td></tr><tr><td><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one <strong>disabled weapon module</strong>. As long as the chosen module is disabled and this module is enabled, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.F281qYUhqNxVoSk3]{Sensor Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.vehicle-modules.Item.OEgMfny6AwrXCkEg]{Turbo Module}</p></td></tr><tr><td><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>speed</strong> and <strong>rapid maneuvers</strong>.</p></td></tr></tbody></table>",
+    "description": "<p>Support modules provide a variety of miscellaneous benefits; these benefits often apply to the vehicle's passengers in addition to the Pilot themselves.</p><ul><li><p>A personal vehicle cannot have <strong>more than one enabled support modules of the same name</strong>.</p></li><li><p>Some support modules are particularly complex or cumbersome and count as <strong>two modules</strong> towards the limit on total active modules.</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -125,12 +125,7 @@
     },
     "opportunity": "",
     "defense": "def",
-    "fuid": "handout-support-modules",
-    "effects": {
-      "duration": {
-        "interval": null
-      }
-    }
+    "fuid": "handout-support-modules"
   },
   "effects": [],
   "ownership": {
@@ -142,18 +137,15 @@
     "projectfu-playtest": {
       "growthClock": false
     },
-    "core": {},
-    "projectfu": {
-      "favorite": false
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
+    "coreVersion": "13.346",
     "createdTime": 1711431619011,
-    "modifiedTime": 1773734964976,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1741951847077,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

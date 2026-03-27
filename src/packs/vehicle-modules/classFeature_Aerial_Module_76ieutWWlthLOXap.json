@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><strong>Counts as two enabled modules.</strong></p><hr /><p>This personal vehicle can fly, and its <strong>distance</strong> becomes ×3.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying </strong>creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
+      "description": "<h5>(COUNTS AS TWO ENABLED MODULES)</h5><p>This personal vehicle can fly, and its <strong>distance</strong> becomes ×3.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying </strong>creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
       "complex": true
     },
     "source": "FUTF168",
@@ -35,99 +35,9 @@
       "name": "Aerial Module",
       "_id": "iT2kp5MfqL4yaKp7",
       "type": "base",
-      "system": {
-        "rules": {
-          "progress": {
-            "enabled": false,
-            "id": "",
-            "name": "",
-            "current": 0,
-            "max": 6,
-            "style": "bar"
-          },
-          "stacking": {
-            "progress": false,
-            "duration": false,
-            "increment": 1
-          },
-          "elements": {
-            "3gGJV5MyuQMXyqrb": {
-              "type": "ruleElement",
-              "trigger": {
-                "_id": "XWfj0q5U7TjBX9Wz",
-                "type": "damageRuleTrigger",
-                "eventRelation": "target",
-                "damageType": "air",
-                "affinity": "",
-                "damageSources": [],
-                "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
-                }
-              },
-              "_id": "3gGJV5MyuQMXyqrb",
-              "actions": {
-                "PPAh1z8I7fgVtkgS": {
-                  "type": "messageRuleAction",
-                  "_id": "PPAh1z8I7fgVtkgS",
-                  "message": "<p>Flying ceases until the start of your next turn.</p>"
-                }
-              },
-              "selector": "self"
-            },
-            "FIIqPKp84yvwIDzW": {
-              "type": "ruleElement",
-              "trigger": {
-                "_id": "PfDRUbi5xap49v6U",
-                "type": "damageRuleTrigger",
-                "eventRelation": "target",
-                "damageType": "bolt",
-                "affinity": "",
-                "damageSources": [],
-                "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
-                }
-              },
-              "_id": "FIIqPKp84yvwIDzW",
-              "selector": "self",
-              "actions": {
-                "NJSZiWb365pvpzpf": {
-                  "type": "messageRuleAction",
-                  "_id": "NJSZiWb365pvpzpf",
-                  "message": "<p>Flying ceases until the start of your next turn.</p>"
-                }
-              }
-            },
-            "FsFohoAzqS0WLNQZ": {
-              "type": "ruleElement",
-              "trigger": {
-                "_id": "xxBh8Ghu2RqTFJtW",
-                "type": "damageRuleTrigger",
-                "eventRelation": "target",
-                "damageType": "ice",
-                "affinity": "",
-                "damageSources": [],
-                "damageThreshold": {
-                  "operator": "",
-                  "amount": 0
-                }
-              },
-              "_id": "FsFohoAzqS0WLNQZ",
-              "selector": "self",
-              "actions": {
-                "HoujNbwEfnLu8ZzC": {
-                  "type": "messageRuleAction",
-                  "_id": "HoujNbwEfnLu8ZzC",
-                  "message": "<p>Flying ceases until the start of your next turn.</p>"
-                }
-              }
-            }
-          }
-        }
-      },
+      "system": {},
       "changes": [],
-      "description": "<p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying </strong>creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
+      "description": "<p>This personal vehicle can fly, and its <strong>distance</strong> becomes ×3.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying </strong>creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [
@@ -144,12 +54,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.351",
+        "coreVersion": "13.346",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743183356662,
-        "modifiedTime": 1773720760363,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+        "modifiedTime": 1744750783209,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn",
         "exportSource": null
       },
       "_key": "!items.effects!76ieutWWlthLOXap.iT2kp5MfqL4yaKp7"
@@ -161,10 +71,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
+    "coreVersion": "13.346",
     "createdTime": 1711476977290,
-    "modifiedTime": 1773733177158,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1724180864672,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

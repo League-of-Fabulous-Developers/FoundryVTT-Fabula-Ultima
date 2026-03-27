@@ -15,7 +15,7 @@
       "complex": false,
       "quality": "",
       "type": "shield",
-      "description": "<p><strong>Exoskeleton and Mecha frames only.</strong></p><hr /><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module <strong>does not</strong> count as a “weapon”: instead, it counts as an equipped <strong>shield</strong>. This module <strong>cannot</strong> be equipped in your <strong>main hand slot</strong>, unless you have acquired the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill. If you have, your @UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields} deal 2 extra damage (this is cumulative if you have two <strong>Shield modules</strong> enabled at the same time).</p>",
+      "description": "<h5>(EXOSKELETON AND MECHA ONLY)</h5><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module <strong>does not</strong> count as a “weapon”: instead, it counts as an equipped <strong>shield</strong>. This module <strong>cannot</strong> be equipped in your <strong>main hand slot</strong>, unless you have acquired the <strong>Dual Shieldbearer</strong> Skill (see <strong>Core Rulebook</strong>, page <strong>197</strong>). If you have, your <strong>Twin Shields</strong> deal 2 extra damage (this is cumulative if you have two <strong>Shield modules</strong> enabled at the same time).</p>",
       "accuracy": {
         "attr1": "dex",
         "attr2": "ins",
@@ -34,114 +34,17 @@
     "source": "FUTF167",
     "fuid": "shield-module"
   },
-  "effects": [
-    {
-      "name": "Shield Module",
-      "img": "systems/projectfu/styles/static/compendium/weapon-modules/shield-module.png",
-      "origin": "Compendium.projectfu.vehicle-modules.Item.TWzSnTRW9frKW1CO",
-      "system": {
-        "duration": {
-          "event": "none",
-          "interval": 1,
-          "tracking": "self",
-          "remaining": 1
-        },
-        "type": "default",
-        "predicate": {
-          "crisisInteraction": "none"
-        },
-        "rules": {
-          "elements": {
-            "WJtwa43Eik0EhOh2": {
-              "type": "ruleElement",
-              "trigger": {
-                "_id": "t1sEgWPLE39BIO1j",
-                "type": "calculateDamageRuleTrigger",
-                "eventRelation": "source",
-                "damageSources": [
-                  "attack"
-                ],
-                "damageTypes": [],
-                "local": false,
-                "identifier": "twin-shields"
-              },
-              "_id": "WJtwa43Eik0EhOh2",
-              "actions": {
-                "4FswUp80O9ttgcNj": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "4FswUp80O9ttgcNj",
-                  "amount": "2",
-                  "effect": "",
-                  "cost": {
-                    "amount": null
-                  }
-                }
-              }
-            }
-          },
-          "progress": {
-            "enabled": false,
-            "id": "",
-            "name": "",
-            "current": 0,
-            "max": 6,
-            "style": "bar"
-          },
-          "stacking": {
-            "progress": false,
-            "duration": false,
-            "increment": 1
-          }
-        }
-      },
-      "duration": {
-        "startTime": null,
-        "combat": null
-      },
-      "disabled": false,
-      "_id": "jOKhdioJP2SPIWgX",
-      "type": "base",
-      "changes": [],
-      "description": "<p>Your <strong>Twin Shields</strong> deal 2 extra damage.</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "Source": {
-            "name": "Shield Module",
-            "actorUuid": null,
-            "itemUuid": "Compendium.projectfu.vehicle-modules.Item.TWzSnTRW9frKW1CO",
-            "effectUuid": null,
-            "fuid": "shield-module"
-          }
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.351",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1773729109005,
-        "modifiedTime": 1773729248239,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
-      },
-      "_key": "!items.effects!TWzSnTRW9frKW1CO.jOKhdioJP2SPIWgX"
-    }
-  ],
+  "effects": [],
   "flags": {
     "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
+    "coreVersion": "13.346",
     "createdTime": 1711474486592,
-    "modifiedTime": 1773729174881,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1724180864726,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -12,23 +12,74 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.KJsVY7mPr0ub8tGM]</p>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p>",
       "complex": false
     },
     "source": "FUTF169",
     "fuid": "sensor-module"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/commodities/tech/sensor-brown.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.F281qYUhqNxVoSk3",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Sensor Module",
+      "_id": "OyRDYwvhLfJt7eCu",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.openCheck",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF169",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.346",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743183194146,
+        "modifiedTime": 1743183284768,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
+        "exportSource": null
+      },
+      "_key": "!items.effects!F281qYUhqNxVoSk3.OyRDYwvhLfJt7eCu"
+    }
+  ],
   "flags": {
     "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.351",
+    "coreVersion": "13.346",
     "createdTime": 1711477115279,
-    "modifiedTime": 1773733398022,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1724180864698,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
