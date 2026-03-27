@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>air</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>air</strong>.</p><hr /><p><strong>You Receive:</strong> @TYPE[affinity air resistance e:sot i:1 t:source]{Griffin Dance: Resistance} or @TYPE[damage all air e:sot i:1 t:source]{Griffin Dance: Damage}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>air</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>air</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>You Receive:</strong> @TYPE[affinity air resistance e:sot i:1 t:source]{Griffin Dance: Resistance} or @TYPE[damage all air e:sot i:1 t:source]{Griffin Dance: Damage}</p>",
       "duration": "nextTurn"
     },
     "source": "FUHF144",
@@ -34,8 +34,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710175496075,
-    "modifiedTime": 1774483534360,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770279707238,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell (<span>@ICON[offensive]</span>) during this scene, that attack or spell must include you among its targets if possible.</p><hr /><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.9b6mngsWCfB7TLa7]{Effect: Peacock Dance}</p>",
+      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell (<span>@ICON[offensive]</span>) during this scene, that attack or spell must include you among its targets if possible.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.9b6mngsWCfB7TLa7]{Effect: Peacock Dance}</p>",
       "duration": "instant"
     },
     "source": "FUHF145",
@@ -34,8 +34,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710176414684,
-    "modifiedTime": 1774483590104,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1770280222894,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

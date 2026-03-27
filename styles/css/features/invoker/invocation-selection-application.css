@@ -23,11 +23,11 @@
 
 /* ─── Element themes ─── */
 .pfu-wellspring.air {
-	--roll-light: #90d060;
-	--roll-dark: #3a7a20;
-	--accent: #3a7a20;
-	--card-glow: rgba(58, 122, 32, 0.5);
-	--accent-text: #3a7a20;
+	--roll-light: #a0d0f0;
+	--roll-dark: #4a90c4;
+	--accent: #4a90c4;
+	--card-glow: rgba(74, 144, 196, 0.5);
+	--accent-text: #4a90c4;
 }
 
 .pfu-wellspring.earth {
