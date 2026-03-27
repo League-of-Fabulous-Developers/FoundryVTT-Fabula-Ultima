@@ -8,6 +8,7 @@ import { CHECK_FLAVOR } from '../../../../checks/default-section-order.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
 import { FeatureTraits } from '../../../../pipelines/traits.mjs';
+import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
 
 const BASIC = 'FU.ClassFeatureInvocationsBasicName';
 const ADVANCED = 'FU.ClassFeatureInvocationsAdvancedName';
@@ -39,12 +40,12 @@ const invocationKey = 'invocation';
  */
 const onRenderCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system?.data instanceof InvocationsDataModel) {
+		data.tags.push({
+			tag: 'FU.Rank',
+			value: game.i18n.localize(RANKS[item.system.data.level]),
+			separator: ':',
+		});
 		if (!check.additionalData[invocationKey]) {
-			data.tags.push({
-				tag: 'FU.Rank',
-				value: game.i18n.localize(RANKS[item.system.data.level]),
-				separator: ':',
-			});
 			CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		} else {
 			const { element, invocation } = check.additionalData[invocationKey];
@@ -53,6 +54,7 @@ const onRenderCheck = async (data, check, actor, item, flags) => {
 				data: {
 					uuid: item.uuid,
 					id: item.id,
+					img: item.img,
 					name: item.system.data[element][invocation].name,
 					icon: WELLSPRINGS[element].icon,
 				},
@@ -60,6 +62,8 @@ const onRenderCheck = async (data, check, actor, item, flags) => {
 			});
 			CommonSections.description(data.sections, item.system.data[element][invocation].description);
 		}
+		const config = CheckConfiguration.configure(check);
+		config.addTraits(FeatureTraits.Invocation);
 		/** @type ResourceExpense **/
 		const expense = {
 			source: 'skill',
