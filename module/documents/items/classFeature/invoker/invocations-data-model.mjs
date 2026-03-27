@@ -40,15 +40,16 @@ const invocationKey = 'invocation';
  */
 const onRenderCheck = async (data, check, actor, item, flags) => {
 	if (check.type === 'display' && item?.system?.data instanceof InvocationsDataModel) {
+		const { element, invocation } = check.additionalData[invocationKey];
 		data.tags.push({
 			tag: 'FU.Rank',
 			value: game.i18n.localize(RANKS[item.system.data.level]),
 			separator: ':',
 		});
+		// TODO: For custom invocations??
 		if (!check.additionalData[invocationKey]) {
 			CommonSections.description(data.sections, item.system.description, item.system.summary.value);
 		} else {
-			const { element, invocation } = check.additionalData[invocationKey];
 			data.sections.push({
 				partial: 'systems/projectfu/templates/feature/invoker/invocation-use-flavor.hbs',
 				data: {
@@ -64,6 +65,14 @@ const onRenderCheck = async (data, check, actor, item, flags) => {
 		}
 		const config = CheckConfiguration.configure(check);
 		config.addTraits(FeatureTraits.Invocation);
+		switch (invocation) {
+			case 'basic':
+				config.addTraits(FeatureTraits.InvocationBlast);
+				break;
+			case 'advanced':
+				config.addTraits(FeatureTraits.InvocationHex);
+				break;
+		}
 		/** @type ResourceExpense **/
 		const expense = {
 			source: 'skill',
