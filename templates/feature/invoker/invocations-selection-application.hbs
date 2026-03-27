@@ -20,7 +20,9 @@
 			   data-level="{{invocation.level}}"
 			   data-tooltip="{{invocation.name}}">
 				<div class="invocation-card__header">
-					<i class="fu-icon--m {{pfuIconClass invocation.level}}"></i>
+					<div class="invocation-card__icon">
+						<i class="fu-icon--s {{pfuIconClass invocation.level}}"></i>
+					</div>
 					<div class="invocation-card__name">{{invocation.name}}</div>
 					<span class="invocation-card__label">{{localize invocation.label}}</span>
 				</div>
