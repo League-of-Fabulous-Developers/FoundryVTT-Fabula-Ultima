@@ -10,6 +10,11 @@
 		text-align: center;
 	}
 
+	i {
+		width: 24px;
+		height: 24px;
+	}
+
 	.ra-droplets {
 		color: cornflowerblue;
 	}
