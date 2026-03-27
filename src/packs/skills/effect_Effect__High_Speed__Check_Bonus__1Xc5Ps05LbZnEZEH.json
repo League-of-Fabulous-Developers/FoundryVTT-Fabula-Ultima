@@ -1,11 +1,11 @@
 {
   "folder": "rQmMmixedC5WcKu3",
-  "name": "Effect: High Speed",
+  "name": "Effect: High Speed (Check Bonus)",
   "type": "effect",
   "_id": "1Xc5Ps05LbZnEZEH",
   "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
   "system": {
-    "fuid": "effect-high-speed",
+    "fuid": "effect-high-speed-check-bonus",
     "cost": {
       "value": 0
     },
@@ -13,7 +13,7 @@
   },
   "effects": [
     {
-      "name": "High Speed (Accuracy)",
+      "name": "High Speed (Check Bonus)",
       "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
       "system": {
         "duration": {
@@ -35,6 +35,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -48,13 +53,13 @@
       "type": "base",
       "changes": [
         {
-          "key": "system.bonuses.accuracy.accuracyCheck",
+          "key": "system.bonuses.accuracy.all",
           "mode": 2,
           "value": "&sl('high-speed')",
           "priority": null
         }
       ],
-      "description": "<p><span>You gain a bonus equal to <strong>【SL】</strong> to Accuracy Checks you perform as part of the chosen option.</span></p>",
+      "description": "<p><span>You gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the <strong>Hinder</strong> Skill.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -69,7 +74,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1771839784633,
-        "modifiedTime": 1771839963681,
+        "modifiedTime": 1774637734284,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!1Xc5Ps05LbZnEZEH.E6ygYISuUvF9iZmc"
@@ -89,7 +94,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771839774855,
-    "modifiedTime": 1771839995124,
+    "modifiedTime": 1774637751950,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!1Xc5Ps05LbZnEZEH"

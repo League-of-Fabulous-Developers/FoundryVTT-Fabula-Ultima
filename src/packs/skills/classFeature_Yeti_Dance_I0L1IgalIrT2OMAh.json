@@ -3,7 +3,7 @@
   "name": "Yeti Dance",
   "type": "classFeature",
   "_id": "I0L1IgalIrT2OMAh",
-  "img": "icons/magic/water/water-elemental-blue-teeth.webp",
+  "img": "icons/creatures/magical/spirit-undead-horned-blue.webp",
   "system": {
     "summary": {
       "value": ""
@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "nextTurn",
-      "description": "<p>Choose one option: you gain Resistance to <strong>ice</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>ice</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>You Receive:</strong> @TYPE[affinity ice resistance e:sot i:1 t:source]{Yeti Dance: Resistance} or @TYPE[damage all ice e:sot i:1 t:source]{Yeti Dance: Damage}</p>"
+      "description": "<p>Choose one option: you gain Resistance to <strong>ice</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>ice</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.YrYM9dcNJvOzDUyK]{Yeti Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.Ie1Yd8psnwNcPVMT]{Yeti Dance (Damage)}</p>"
     },
     "source": "FUHF145",
     "fuid": "yeti-dance"
@@ -34,7 +34,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710176719942,
-    "modifiedTime": 1770279819084,
+    "modifiedTime": 1774642679466,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

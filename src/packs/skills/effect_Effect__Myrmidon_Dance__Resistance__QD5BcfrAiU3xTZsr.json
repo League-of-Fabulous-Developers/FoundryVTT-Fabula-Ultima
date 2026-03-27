@@ -1,10 +1,11 @@
 {
-  "folder": "Kygq9Ep5BWhLZxvd",
-  "name": "Effect: Support Magic (+2)",
+  "folder": "MTTrNaLq5gQVIJ5N",
+  "name": "Effect: Myrmidon Dance (Resistance)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
+  "_id": "QD5BcfrAiU3xTZsr",
+  "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
   "system": {
-    "fuid": "effect-support-magic-check-up",
+    "fuid": "effect-myrmidon-dance-resistance",
     "cost": {
       "value": 0
     },
@@ -12,11 +13,12 @@
   },
   "effects": [
     {
-      "name": "Support Magic (+2)",
-      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
+      "name": "Myrmidon Dance (Resistance)",
+      "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
+      "origin": "Compendium.projectfu.skills.Item.QD5BcfrAiU3xTZsr",
       "system": {
         "duration": {
-          "event": "endOfScene",
+          "event": "startOfTurn",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
@@ -33,8 +35,7 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic",
-            "step": 1
+            "style": "bar"
           },
           "stacking": {
             "progress": false,
@@ -49,23 +50,32 @@
         "combat": null
       },
       "disabled": false,
-      "_id": "vtQW0Tb2MeYEYzRX",
+      "_id": "x7VlyYHGRV9O0Hr0",
       "type": "base",
       "changes": [
         {
-          "key": "system.bonuses.accuracy.all",
-          "mode": 2,
-          "value": "2",
+          "key": "system.affinities.earth",
+          "mode": 0,
+          "value": "upgrade",
           "priority": null
         }
       ],
-      "description": "<p>You gain a +2 bonus to the next Check you perform during the current scene.</p>",
-      "origin": null,
+      "description": "<p>Until the start of your next turn, you gain Resistance to <strong>earth </strong>damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Myrmidon Dance (Resistance)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.QD5BcfrAiU3xTZsr",
+            "effectUuid": null,
+            "fuid": "effect-myrmidon-dance-resistance"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
@@ -73,12 +83,18 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1774637972762
+        "createdTime": 1774642233605,
+        "modifiedTime": 1774642260542,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!s9gRkNI1b5eSIuxi.vtQW0Tb2MeYEYzRX"
+      "_key": "!items.effects!QD5BcfrAiU3xTZsr.x7VlyYHGRV9O0Hr0"
     }
   ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -87,15 +103,9 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770609424075,
-    "modifiedTime": 1771475706142,
+    "createdTime": 1774642174500,
+    "modifiedTime": 1774642184964,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "ownership": {
-    "default": 0,
-    "mA8SNY2rY4X5tOHa": 3
-  },
-  "_id": "s9gRkNI1b5eSIuxi",
-  "sort": 200000,
-  "_key": "!items!s9gRkNI1b5eSIuxi"
+  "_key": "!items!QD5BcfrAiU3xTZsr"
 }

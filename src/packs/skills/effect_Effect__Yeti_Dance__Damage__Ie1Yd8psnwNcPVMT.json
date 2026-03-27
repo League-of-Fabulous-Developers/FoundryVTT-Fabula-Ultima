@@ -1,11 +1,11 @@
 {
-  "folder": "Kygq9Ep5BWhLZxvd",
-  "name": "Effect: Support Magic (+1)",
+  "folder": "psohdKVXFm3jRNrY",
+  "name": "Effect: Yeti Dance (Damage)",
   "type": "effect",
-  "_id": "Fl82KkmDq9R7i86N",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
+  "_id": "Ie1Yd8psnwNcPVMT",
+  "img": "icons/creatures/magical/spirit-undead-horned-blue.webp",
   "system": {
-    "fuid": "effect-support-magic-check-up",
+    "fuid": "effect-yeti-dance-damage",
     "cost": {
       "value": 0
     },
@@ -13,11 +13,12 @@
   },
   "effects": [
     {
-      "name": "Support Magic (+1)",
-      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
+      "name": "Yeti Dance (Damage)",
+      "img": "icons/creatures/magical/spirit-undead-horned-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.Ie1Yd8psnwNcPVMT",
       "system": {
         "duration": {
-          "event": "endOfScene",
+          "event": "startOfTurn",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
@@ -34,7 +35,7 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
           },
           "stacking": {
             "progress": false,
@@ -49,23 +50,38 @@
         "combat": null
       },
       "disabled": false,
-      "_id": "vtQW0Tb2MeYEYzRX",
+      "_id": "MGc6z2kIImF0rC2k",
       "type": "base",
       "changes": [
         {
-          "key": "system.bonuses.accuracy.all",
-          "mode": 2,
-          "value": "1",
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "ice",
+          "priority": null
+        },
+        {
+          "key": "system.overrides.damageType.spell.normal",
+          "mode": 5,
+          "value": "ice",
           "priority": null
         }
       ],
-      "description": "<p>You gain a +1 bonus to the next Check you perform during the current scene.</p>",
-      "origin": null,
+      "description": "<p>Until the start of your next turn, all damage dealt by your attacks and spells becomes <strong>ice</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Yeti Dance (Damage)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.Ie1Yd8psnwNcPVMT",
+            "effectUuid": null,
+            "fuid": "effect-yeti-dance-damage"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
@@ -73,14 +89,14 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1770609311012,
-        "modifiedTime": 1774637962055,
+        "createdTime": 1774642580039,
+        "modifiedTime": 1774642610291,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!Fl82KkmDq9R7i86N.vtQW0Tb2MeYEYzRX"
+      "_key": "!items.effects!Ie1Yd8psnwNcPVMT.MGc6z2kIImF0rC2k"
     }
   ],
-  "sort": 100000,
+  "sort": 0,
   "ownership": {
     "default": 0,
     "mA8SNY2rY4X5tOHa": 3
@@ -93,9 +109,9 @@
     "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1770609296942,
-    "modifiedTime": 1771475704953,
+    "createdTime": 1774642530440,
+    "modifiedTime": 1774642557569,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
-  "_key": "!items!Fl82KkmDq9R7i86N"
+  "_key": "!items!Ie1Yd8psnwNcPVMT"
 }

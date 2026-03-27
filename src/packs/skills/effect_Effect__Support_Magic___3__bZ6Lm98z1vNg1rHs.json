@@ -35,6 +35,11 @@
             "max": 6,
             "style": "basic",
             "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -48,25 +53,7 @@
       "type": "base",
       "changes": [
         {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.openCheck",
-          "mode": 2,
-          "value": "3",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.opposedCheck",
+          "key": "system.bonuses.accuracy.all",
           "mode": 2,
           "value": "3",
           "priority": null
@@ -87,7 +74,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1770634074954
+        "modifiedTime": 1774637981840
       },
       "_key": "!items.effects!bZ6Lm98z1vNg1rHs.vtQW0Tb2MeYEYzRX"
     }

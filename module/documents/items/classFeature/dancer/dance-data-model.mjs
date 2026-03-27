@@ -85,15 +85,18 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		CommonSections.expense(renderData, actor, item, [], flags, expense);
 		await CommonEvents.feature(actor, item, [FeatureTraits.Dance], renderData);
 
-		Effects.createTemporaryEffect(actor, 'temporary', 'Previous Dance', {
+		const effectName = 'Previous Dance (' + item.name + ')';
+		const effectDescription = '<p>The last dance you performed was the <strong>' + item.name + '</strong>.</p>';
+		Effects.createTemporaryEffect(actor, 'temporary', effectName, {
 			img: item.img,
 			system: {
 				duration: {
 					event: 'endOfTurn',
-					interval: 1,
+					interval: 2,
 				},
 			},
 			changes: [FlagUtility.getEffectChange(Flags.State.PreviousDance, currentDance)],
+			description: effectDescription,
 		});
 
 		const builder = new FUChatBuilder(actor, item);
