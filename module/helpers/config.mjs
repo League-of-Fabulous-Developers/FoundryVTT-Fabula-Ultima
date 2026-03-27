@@ -1177,3 +1177,11 @@ FU.codexTags = Object.freeze({
 	lore: 'FU.CODEX.Lore',
 	glossary: 'FU.CODEX.Glossary',
 });
+
+/**
+ * @typedef {'wellspring'} UserDefinedType User-modifiable types.
+ */
+
+FU.userDefinedTypes = Object.freeze({
+	wellspring: 'FU.Wellspring',
+});

@@ -1,0 +1,7 @@
+<label class="fu-form__property">
+	<span>{{localize 'FU.Type'}}</span>
+	<select name="{{pfuConcat path ".dataType"}}">
+		<option value="">-</option>
+		{{selectOptions options.userDefinedTypes selected=trigger.dataType sort=true localize=true}}
+	</select>
+</label>

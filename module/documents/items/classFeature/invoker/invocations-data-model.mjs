@@ -36,6 +36,20 @@ const LOCALIZED_RANKS = {
 const invocationKey = 'invocation';
 
 /**
+ * @typedef {Object} InvocationData
+ * @property {string} name        - Localized name of the invocation
+ * @property {string} description - HTML description of the invocation
+ */
+
+/**
+ * @typedef {Object} WellspringInvocations
+ * @property {InvocationData} basic      - The basic invocation
+ * @property {InvocationData} advanced   - The advanced invocation
+ * @property {InvocationData} superior1  - The first superior invocation
+ * @property {InvocationData} superior2  - The second superior invocation
+ */
+
+/**
  * @type RenderCheckHook
  */
 const onRenderCheck = async (data, check, actor, item, flags) => {

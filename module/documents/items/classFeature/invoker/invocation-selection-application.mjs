@@ -47,14 +47,16 @@ export class InvocationSelectionApplication extends FUApplication {
 	/**
 	 * @returns {WellspringElement[]}
 	 */
-	getActiveWellsprings() {
-		return Object.entries(this.#model.actor.wellspringManager.activeWellsprings)
+	async getActiveWellsprings() {
+		// TODO: Include
+		const entries = await this.#model.actor.wellspringManager.getActiveWellsprings();
+		return Object.entries(entries)
 			.filter(([, value]) => value)
 			.map(([key]) => key);
 	}
 
 	async _prepareContext(options = {}) {
-		const activeWellsprings = this.getActiveWellsprings();
+		const activeWellsprings = await this.getActiveWellsprings();
 		const targets = await getTargeted(false, false);
 		if (!this.#wellspring) {
 			this.#wellspring = WELLSPRINGS[activeWellsprings[0]];
