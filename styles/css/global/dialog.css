@@ -40,7 +40,13 @@
 }
 
 .fu-dialog {
+	.dialog-form.standard-form {
+		min-height: 0;
+	}
+
 	.dialog-content {
+		overflow-y: auto;
+
 		button {
 			background-color: var(--color-primary);
 			color: var(--color-white);

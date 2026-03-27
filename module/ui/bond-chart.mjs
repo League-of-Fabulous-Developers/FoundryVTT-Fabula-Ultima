@@ -18,6 +18,9 @@ const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
  * @property bonds
  */
 
+const RADIUS_SCALE = 0.65;
+const MINIMUM_RADIUS = 0.35;
+
 export class FUBondChart {
 	#container;
 	#svg;
@@ -99,8 +102,8 @@ export class FUBondChart {
 		});
 
 		const maxDist = Math.max(...[...dist.values()].filter((d) => d !== 999));
-		const maxRadius = Math.min(width, height) * 0.65;
-		const minR = Math.min(width, height) * 0.3;
+		const maxRadius = Math.min(width, height) * RADIUS_SCALE;
+		const minR = Math.min(width, height) * MINIMUM_RADIUS;
 
 		byDist.forEach((chars, d) => {
 			chars.forEach((c, i) => {
