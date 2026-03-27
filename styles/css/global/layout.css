@@ -26,6 +26,23 @@
 	}
 }
 
+.pfu-layout__browser {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	height: 100%;
+
+	.controls {
+		flex-shrink: 0;
+	}
+
+	.content {
+		flex: 1;
+		overflow-y: auto;
+		min-height: 0;
+	}
+}
+
 .pfu-sheet__padding {
 	padding: 0.5rem;
 }

@@ -7,6 +7,11 @@
 		height: 100%;
 	}
 
+	.tab {
+		.content {
+		}
+	}
+
 	.tab,
 	.active {
 		grid-area: active-tab;
