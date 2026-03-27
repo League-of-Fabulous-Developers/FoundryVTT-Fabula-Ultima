@@ -131,6 +131,9 @@ export class CodexBrowser {
 	 * @returns {Promise<String>}
 	 */
 	async #enrichEntryDescription(entry) {
+		if (!entry.description) {
+			return '';
+		}
 		const autoLinked = entry.description.replace(this.getCodexLinkPattern(), (match) => {
 			if (match.toLowerCase() === entry.name.toLowerCase()) return match;
 			return `@CODEX[${match}]`;
@@ -232,6 +235,24 @@ export class CodexBrowser {
 			entries.push(entry);
 			await this.actor.update({ [`system.codex.entries`]: entries });
 		}
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns {Promise<void>}
+	 */
+	async importActor(actor) {
+		/** @type CodexEntryDataModel[] **/
+		const entries = this.party.codex.entries;
+		/** @type CodexEntryDataModel **/
+		let entry = {
+			name: actor.name,
+			img: actor.img,
+			description: actor.system?.description ?? '',
+			tags: ['character'],
+		};
+		entries.push(entry);
+		await this.actor.update({ [`system.codex.entries`]: entries });
 	}
 
 	static UPLOAD_FILE_PREFIX = 'codex-entry';

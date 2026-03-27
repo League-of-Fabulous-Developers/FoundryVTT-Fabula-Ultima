@@ -26,6 +26,7 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
 import { CodexBrowser } from '../ui/codex-browser.mjs';
+import { getSelected } from '../helpers/target-handler.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -68,6 +69,7 @@ export class FUPartySheet extends FUActorSheet {
 			activate: this.#activate,
 
 			addCodexEntry: this.#onAddCodexEntry,
+			importCodexEntry: this.#onImportCodexEntry,
 			forCodexEntry: this.#onCodexAction,
 			resetCodexTags: this.#onResetCodexTags,
 			browseUploadDirectory: this.onBrowseUploadDirectory,
@@ -562,6 +564,24 @@ export class FUPartySheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
+	static async #onImportCodexEntry(event, target) {
+		const selected = await getSelected();
+		if (selected.length > 0) {
+			const confirm = await FoundryUtils.confirmDialog('FU.Import', `The following actors will be imported as codex entries: [${selected.map((a) => a.name)}]`);
+			if (confirm) {
+				for (const actor of selected) {
+					await this.codexBrowser.importActor(actor);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
 	static async #onCodexAction(event, target) {
 		return this.codexBrowser.handleContextAction(event, target);
 	}
@@ -707,10 +727,7 @@ export class FUPartySheet extends FUActorSheet {
 			},
 		];
 
-		new foundry.applications.ux.ContextMenu(html, '.character-option', contextMenuOptions, {
-			fixed: true,
-			jQuery: false,
-		});
+		FoundryUtils.contextMenu(html, '.character-option', contextMenuOptions);
 	}
 
 	/**

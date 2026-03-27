@@ -608,6 +608,48 @@ export default class FoundryUtils {
 	}
 
 	/**
+	 * @callback ContextMenuCallback
+	 * @param {HTMLElement} target                          The element that the context menu has been triggered for.
+	 * @returns {unknown}
+	 */
+
+	/**
+	 * @typedef ContextMenuEntry
+	 * @property {string} name                              The context menu label. Can be localized.
+	 * @property {string} [icon]                            A string containing an HTML icon element for the menu item.
+	 * @property {string} [classes]                         Additional CSS classes to apply to this menu item.
+	 * @property {string} [group]                           An identifier for a group this entry belongs to.
+	 * @property {ContextMenuJQueryCallback} callback       The function to call when the menu item is clicked.
+	 * @property {ContextMenuCondition|boolean} [condition] A function to call or boolean value to determine if this entry
+	 *                                                      appears in the menu.
+	 */
+
+	/**
+	 * @typedef ContextMenuOptions
+	 * @property {string} [eventName="contextmenu"] Optionally override the triggering event which can spawn the menu. If
+	 *                                              the menu is using fixed positioning, this event must be a MouseEvent.
+	 * @property {ContextMenuCallback} [onOpen]     A function to call when the context menu is opened.
+	 * @property {ContextMenuCallback} [onClose]    A function to call when the context menu is closed.
+	 * @property {boolean} [fixed=false]            If true, the context menu is given a fixed position rather than being
+	 *                                              injected into the target.
+	 * @property {boolean} [jQuery=true]            If true, callbacks will be passed jQuery objects instead of HTMLElement
+	 *                                              instances.
+	 */
+
+	/**
+	 *
+	 * @param html
+	 * @param className
+	 * @param {ContextMenuEntry[]} entries
+	 */
+	static contextMenu(html, className, entries) {
+		new foundry.applications.ux.ContextMenu(html, className, entries, {
+			fixed: true,
+			jQuery: false,
+		});
+	}
+
+	/**
 	 * @desc Migrates the data of an item onto another.
 	 * @param {FUItem} sourceItem
 	 * @param {FUItem} targetItem
