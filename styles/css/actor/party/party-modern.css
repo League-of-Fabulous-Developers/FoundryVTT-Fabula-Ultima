@@ -95,6 +95,9 @@
 				flex-direction: column;
 				gap: 0.5rem;
 				min-width: 160px;
+				max-height: 90%;
+				overflow-y: auto;
+				padding-right: 1rem;
 
 				.entry {
 					display: flex;
