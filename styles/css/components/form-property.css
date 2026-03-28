@@ -96,7 +96,7 @@
 
 	width: 100%;
 	margin: 0;
-	background: var(--pfu-color-app-control-highlight-fill);
+	background: var(--pfu-color-control-fill);
 	color: var(--pfu-color-app-body-content);
 
 	span {
