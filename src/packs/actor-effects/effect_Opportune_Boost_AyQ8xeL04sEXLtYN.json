@@ -16,7 +16,7 @@
       "img": "icons/magic/control/buff-luck-fortune-clover-green.webp",
       "system": {
         "duration": {
-          "event": "endOfTurn",
+          "event": "none",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
@@ -32,7 +32,13 @@
             "name": "",
             "current": 0,
             "step": 1,
-            "max": 6
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -46,25 +52,7 @@
       "type": "base",
       "changes": [
         {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "4",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
-          "mode": 2,
-          "value": "4",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.opposedCheck",
-          "mode": 2,
-          "value": "4",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.openCheck",
+          "key": "system.bonuses.accuracy.all",
           "mode": 2,
           "value": "4",
           "priority": null
@@ -81,12 +69,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.342",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1754233508092,
-        "modifiedTime": 1754234624795,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1774832215451,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!AyQ8xeL04sEXLtYN.k3wtbyDJUHiaY6Lz"
     }

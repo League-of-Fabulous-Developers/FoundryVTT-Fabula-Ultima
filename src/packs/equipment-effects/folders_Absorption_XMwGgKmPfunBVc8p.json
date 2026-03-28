@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "onpWbs2FowfpVWp0",
+  "name": "Absorption",
+  "color": "#105b57",
+  "sorting": "a",
+  "_id": "XMwGgKmPfunBVc8p",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774814710432
+  },
+  "_key": "!folders!XMwGgKmPfunBVc8p"
+}

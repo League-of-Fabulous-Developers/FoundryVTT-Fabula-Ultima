@@ -1,0 +1,129 @@
+{
+  "folder": "gFIBB0I6XXkT9Mo9",
+  "name": "Spell HP Restore Up",
+  "type": "effect",
+  "_id": "RjgXavSj05SGTxzj",
+  "img": "systems/projectfu/styles/static/icons/resources/hp.png",
+  "system": {
+    "fuid": "spell-hp-restore-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spell HP Restore Up",
+      "img": "systems/projectfu/styles/static/icons/resources/hp.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.RjgXavSj05SGTxzj",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "k35zQeG0qrkWih5Z": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "xIWYIL0p3CMb7DK0",
+                "type": "calculateResourceRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "increment"
+              },
+              "_id": "k35zQeG0qrkWih5Z",
+              "predicates": {
+                "psGDdmWC57uaGGrl": {
+                  "type": "spellRulePredicate",
+                  "_id": "psGDdmWC57uaGGrl"
+                }
+              },
+              "actions": {
+                "ShC6jWL459l1kw8W": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "ShC6jWL459l1kw8W",
+                  "amount": "5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "J8HudV1CA8jLhI54",
+      "type": "base",
+      "changes": [],
+      "description": "<p><strong>Spells</strong> you cast whose effect restores <strong>Hit Points</strong> will restore <strong>5 additional Hit Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spell HP Restore Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.RjgXavSj05SGTxzj",
+            "effectUuid": null,
+            "fuid": "spell-hp-restore-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774828171684,
+        "modifiedTime": 1774828208515,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!RjgXavSj05SGTxzj.J8HudV1CA8jLhI54"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774764582801,
+    "modifiedTime": 1774764582801,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!RjgXavSj05SGTxzj"
+}

@@ -1,0 +1,135 @@
+{
+  "folder": "5ZenCjx6n04peFsh",
+  "name": "Spell Inflict Status (Poisoned)",
+  "type": "effect",
+  "_id": "W5xksHQPLoXDpJkH",
+  "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+  "system": {
+    "fuid": "spell-inflict-status-poisoned",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spell Inflict Status (Poisoned)",
+      "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.W5xksHQPLoXDpJkH",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "ODAYj9EnBB9UOgVt": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "8DDsU56NYv5rvnxD",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "ODAYj9EnBB9UOgVt",
+              "actions": {
+                "tefVGNzMfqGligqz": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "tefVGNzMfqGligqz",
+                  "effect": "poisoned"
+                }
+              },
+              "predicates": {
+                "VNCKEoVn0VOXuSsx": {
+                  "type": "spellRulePredicate",
+                  "_id": "VNCKEoVn0VOXuSsx",
+                  "offensive": "true"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kEv8BbgIF3AcQG1t",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>poisoned</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spell Inflict Status (Poisoned)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.W5xksHQPLoXDpJkH",
+            "effectUuid": null,
+            "fuid": "spell-inflict-status-poisoned"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774810155182,
+        "modifiedTime": 1774810197032,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!W5xksHQPLoXDpJkH.kEv8BbgIF3AcQG1t"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774810057780,
+    "modifiedTime": 1774810151497,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!W5xksHQPLoXDpJkH"
+}

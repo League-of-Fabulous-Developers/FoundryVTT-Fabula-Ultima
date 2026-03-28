@@ -1,0 +1,133 @@
+{
+  "folder": "WDV28mSMrVRkI543",
+  "name": "Bronze Gauntlets",
+  "type": "accessory",
+  "_id": "VIpAsk7G6RGHi7H2",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/glove-bronze.png",
+  "system": {
+    "fuid": "bronze-gauntlets",
+    "description": "<p>You gain a +1 bonus to your <strong>Accuracy Checks</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1000
+    },
+    "quality": {
+      "value": "Accuracy Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Bronze Gauntlets",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/glove-bronze.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.VIpAsk7G6RGHi7H2",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "EBJGU2hZbTwmJoUC",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain a +1 bonus to your <strong>Accuracy Checks</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Bronze Gauntlets",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.VIpAsk7G6RGHi7H2",
+            "effectUuid": null,
+            "fuid": "bronze-gauntlets"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774668141964,
+        "modifiedTime": 1775708249296,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!VIpAsk7G6RGHi7H2.EBJGU2hZbTwmJoUC"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774667884887,
+    "modifiedTime": 1775708244038,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!VIpAsk7G6RGHi7H2"
+}

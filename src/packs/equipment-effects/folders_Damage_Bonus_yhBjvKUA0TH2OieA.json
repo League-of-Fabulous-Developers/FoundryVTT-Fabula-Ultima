@@ -1,0 +1,23 @@
+{
+  "name": "Damage Bonus",
+  "sorting": "a",
+  "folder": "ys7VHxUuD1EkvRXO",
+  "type": "Item",
+  "_id": "yhBjvKUA0TH2OieA",
+  "description": "",
+  "sort": 400000,
+  "color": "#6a1616",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728758714776,
+    "modifiedTime": 1774765225018,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
+  },
+  "_key": "!folders!yhBjvKUA0TH2OieA"
+}

@@ -3,35 +3,52 @@
   "name": "Physical Resistance",
   "type": "effect",
   "_id": "6yf1uUJP4vxmU3eW",
-  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
   "system": {
-    "fuid": "physical-resistance"
+    "fuid": "physical-resistance",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.6yf1uUJP4vxmU3eW",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Physical Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
-      "_id": "PL4467NyM6rVy2p1",
-      "type": "base",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.6yf1uUJP4vxmU3eW",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "J1tbnEgP5KBqEGY9",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.physical",
@@ -40,40 +57,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Resistance to <strong>physical</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Physical Resistance",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.6yf1uUJP4vxmU3eW",
+            "effectUuid": null,
+            "fuid": "physical-resistance"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725754592979,
-        "modifiedTime": 1747231156196,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774816248993,
+        "modifiedTime": 1774816262689,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!6yf1uUJP4vxmU3eW.PL4467NyM6rVy2p1"
+      "_key": "!items.effects!6yf1uUJP4vxmU3eW.J1tbnEgP5KBqEGY9"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1747231152055,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774761080583,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "sort": 0,

@@ -1,0 +1,132 @@
+{
+  "folder": "otoipAEPi73bXx73",
+  "name": "HP Cost Down",
+  "type": "effect",
+  "_id": "gtwdxn3uT2ShP07r",
+  "img": "systems/projectfu/styles/static/icons/resources/hp.png",
+  "system": {
+    "fuid": "hp-cost-down",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "HP Cost Down",
+      "img": "systems/projectfu/styles/static/icons/resources/hp.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.gtwdxn3uT2ShP07r",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "LGn6mmkkU9LegSxA": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "PyCLMUGY7mIctquY",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "expenseSource": "",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": ""
+              },
+              "_id": "LGn6mmkkU9LegSxA",
+              "actions": {
+                "xaQouF8RfzSyjZ7Q": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "xaQouF8RfzSyjZ7Q",
+                  "amount": "-5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ADRZYRUiB1jO7rhn",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Whenever you spend <strong>Hit Points</strong>, you spend <strong>5 less Hit Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "HP Cost Down",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.gtwdxn3uT2ShP07r",
+            "effectUuid": null,
+            "fuid": "hp-cost-down"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774827494204,
+        "modifiedTime": 1774827743424,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!gtwdxn3uT2ShP07r.ADRZYRUiB1jO7rhn"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774814569256,
+    "modifiedTime": 1774814569256,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!gtwdxn3uT2ShP07r"
+}

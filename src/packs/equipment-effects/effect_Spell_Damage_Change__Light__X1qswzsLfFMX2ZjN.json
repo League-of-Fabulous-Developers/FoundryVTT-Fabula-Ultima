@@ -1,0 +1,110 @@
+{
+  "folder": "BKWTTfVn4R6JFRRx",
+  "name": "Spell Damage Change (Light)",
+  "type": "effect",
+  "_id": "X1qswzsLfFMX2ZjN",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "system": {
+    "fuid": "spell-damage-change-light",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spell Damage Change (Light)",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.X1qswzsLfFMX2ZjN",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "2h4fWixP0HPc9DCy",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.spell.normal",
+          "mode": 5,
+          "value": "light",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage dealt by your spells becomes <strong>light</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spell Damage Change (Light)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.X1qswzsLfFMX2ZjN",
+            "effectUuid": null,
+            "fuid": "spell-damage-change-light"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774667630317,
+        "modifiedTime": 1774667653301,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!X1qswzsLfFMX2ZjN.2h4fWixP0HPc9DCy"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774667108964,
+    "modifiedTime": 1774667629632,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!X1qswzsLfFMX2ZjN"
+}

@@ -3,28 +3,52 @@
   "name": "Shaken Immunity",
   "type": "effect",
   "_id": "zSg3jNvLG1FtqOAz",
-  "img": "systems/projectfu/styles/static/statuses/Shaken.webp",
+  "img": "systems/projectfu/styles/static/statuses/immunities/ShakenImmune.webp",
   "system": {
-    "fuid": "shaken-immunity"
+    "fuid": "shaken-immunity",
+    "source": ""
   },
   "effects": [
     {
+      "name": "Shaken Immunity",
+      "img": "systems/projectfu/styles/static/statuses/immunities/ShakenImmune.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Shaken Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Shaken.webp",
-      "_id": "cphv3kj7mSLTZLLk",
+      "_id": "pcSxTvsR7yNMiShd",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.immunities.shaken.base",
@@ -33,28 +57,34 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You are immune to <strong>shaken</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Shaken Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz",
+            "effectUuid": null,
+            "fuid": "shaken-immunity"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725755457276,
-        "modifiedTime": 1725755477607,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774828434501,
+        "modifiedTime": 1774828446945,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!zSg3jNvLG1FtqOAz.cphv3kj7mSLTZLLk"
+      "_key": "!items.effects!zSg3jNvLG1FtqOAz.pcSxTvsR7yNMiShd"
     }
   ],
   "sort": 600000,
@@ -66,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725755237148,
-    "modifiedTime": 1743124185466,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1774763273045,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!zSg3jNvLG1FtqOAz"

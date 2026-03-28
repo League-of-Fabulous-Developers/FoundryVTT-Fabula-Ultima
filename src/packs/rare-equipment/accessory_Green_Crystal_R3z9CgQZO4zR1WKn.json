@@ -1,0 +1,133 @@
+{
+  "folder": "ArBlOISf307QSlES",
+  "name": "Green Crystal",
+  "type": "accessory",
+  "_id": "R3z9CgQZO4zR1WKn",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-green.png",
+  "system": {
+    "fuid": "green-crystal",
+    "description": "<p>You gain Resistance to <strong>air</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 700
+    },
+    "quality": {
+      "value": "Air Resistance"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Green Crystal",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-green.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.R3z9CgQZO4zR1WKn",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "shQS1xH8S7P0mv9k",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>air</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Green Crystal",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.R3z9CgQZO4zR1WKn",
+            "effectUuid": null,
+            "fuid": "green-crystal"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775684513607,
+        "modifiedTime": 1775708465345,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!R3z9CgQZO4zR1WKn.shQS1xH8S7P0mv9k"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774653488389,
+    "modifiedTime": 1775708460519,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!R3z9CgQZO4zR1WKn"
+}

@@ -1,0 +1,137 @@
+{
+  "folder": "ao7cVB1tz3p47PiE",
+  "name": "Hunter (Construct)",
+  "type": "effect",
+  "_id": "phbBKRj7Ej99Qtvd",
+  "img": "systems/projectfu/styles/static/icons/construct.svg",
+  "system": {
+    "fuid": "hunter-construct",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Hunter (Construct)",
+      "img": "systems/projectfu/styles/static/icons/construct.svg",
+      "origin": "Compendium.projectfu.equipment-effects.Item.phbBKRj7Ej99Qtvd",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "dKIFJw3pm1dHfarA": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Vo5AOku3ScFCaSfd",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "dKIFJw3pm1dHfarA",
+              "predicates": {
+                "vtoRZyfDpoPSHkGl": {
+                  "type": "speciesRulePredicate",
+                  "_id": "vtoRZyfDpoPSHkGl",
+                  "species": [
+                    "construct"
+                  ]
+                }
+              },
+              "actions": {
+                "OKfK4ycC1O8MAI4P": {
+                  "type": "messageRuleAction",
+                  "_id": "OKfK4ycC1O8MAI4P",
+                  "message": "<p>If <strong>construct</strong> target, deal 5 extra damage to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LksbSK4OBzir93gF",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The weapon deals 5 extra damage to <strong>constructs</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Hunter (Construct)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.phbBKRj7Ej99Qtvd",
+            "effectUuid": null,
+            "fuid": "hunter-construct"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774723996261,
+        "modifiedTime": 1774729470712,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!phbBKRj7Ej99Qtvd.LksbSK4OBzir93gF"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774723991965,
+    "modifiedTime": 1774723995204,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!phbBKRj7Ej99Qtvd"
+}

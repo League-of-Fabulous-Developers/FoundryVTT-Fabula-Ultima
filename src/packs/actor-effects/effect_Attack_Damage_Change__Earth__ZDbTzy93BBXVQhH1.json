@@ -1,0 +1,111 @@
+{
+  "folder": "ZQq6XtjmjmCDudd9",
+  "name": "Attack Damage Change (Earth)",
+  "type": "effect",
+  "_id": "ZDbTzy93BBXVQhH1",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "system": {
+    "fuid": "attack-damage-change-earth",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Attack Damage Change (Earth)",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.ZDbTzy93BBXVQhH1",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "TMprCVyWv8bI5Euu",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "earth",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage dealt by your <strong>attacks</strong> becomes <strong>earth</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Attack Damage Change (Earth)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.ZDbTzy93BBXVQhH1",
+            "effectUuid": null,
+            "fuid": "attack-damage-change-earth"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774825415642,
+        "modifiedTime": 1774826142780,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!ZDbTzy93BBXVQhH1.TMprCVyWv8bI5Euu"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762493423,
+    "modifiedTime": 1774762493423,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!ZDbTzy93BBXVQhH1"
+}

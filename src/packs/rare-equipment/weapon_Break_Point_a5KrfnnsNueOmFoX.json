@@ -1,0 +1,106 @@
+{
+  "folder": "bgUgGTAsek6Iw9a0",
+  "name": "Break Point",
+  "type": "weapon",
+  "_id": "a5KrfnnsNueOmFoX",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/crossbow-copperlight.png",
+  "system": {
+    "fuid": "break-point",
+    "description": "<p>Damage dealt by this weapon <strong>ignores Resistances</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 550
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Piercing"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 8
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "ranged"
+    },
+    "category": {
+      "value": "bow"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [
+      "ignore-resistances"
+    ],
+    "source": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774734371026,
+    "modifiedTime": 1775709230086,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!a5KrfnnsNueOmFoX"
+}

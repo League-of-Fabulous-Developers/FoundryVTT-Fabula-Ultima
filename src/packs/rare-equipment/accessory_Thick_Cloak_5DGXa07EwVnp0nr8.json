@@ -1,0 +1,133 @@
+{
+  "folder": "sQ8axLKVw7WoLhp4",
+  "name": "Thick Cloak",
+  "type": "accessory",
+  "_id": "5DGXa07EwVnp0nr8",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-purple.png",
+  "system": {
+    "fuid": "thick-cloak",
+    "description": "<p>You are immune to <strong>poisoned</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 500
+    },
+    "quality": {
+      "value": "Anti Poisoned"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Thick Cloak",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-purple.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.5DGXa07EwVnp0nr8",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "pCbdgMemOiyhZpkY",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.poisoned.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you are immune to <strong>poisoned</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Thick Cloak",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.5DGXa07EwVnp0nr8",
+            "effectUuid": null,
+            "fuid": "thick-cloak"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775681630520,
+        "modifiedTime": 1775708182512,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!5DGXa07EwVnp0nr8.pCbdgMemOiyhZpkY"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774652080943,
+    "modifiedTime": 1775708177855,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!5DGXa07EwVnp0nr8"
+}

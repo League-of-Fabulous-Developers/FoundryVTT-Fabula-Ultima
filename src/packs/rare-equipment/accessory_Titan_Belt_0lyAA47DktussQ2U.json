@@ -1,0 +1,133 @@
+{
+  "folder": "rQhyO7WyH2z4o7SA",
+  "name": "Titan Belt",
+  "type": "accessory",
+  "_id": "0lyAA47DktussQ2U",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/belt-skull.png",
+  "system": {
+    "fuid": "titan-belt",
+    "description": "<p>Your attacks with <strong>melee</strong> weapons deal 5 extra damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2000
+    },
+    "quality": {
+      "value": "Melee Weapon Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Titan Belt",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/belt-skull.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.0lyAA47DktussQ2U",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "okomaOMQEzhaLZbM",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.melee",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, your attacks with <strong>melee</strong> weapons deal 5 extra damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Titan Belt",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.0lyAA47DktussQ2U",
+            "effectUuid": null,
+            "fuid": "titan-belt"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775692018999,
+        "modifiedTime": 1775708305822,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!0lyAA47DktussQ2U.okomaOMQEzhaLZbM"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774672065485,
+    "modifiedTime": 1775708300872,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!0lyAA47DktussQ2U"
+}

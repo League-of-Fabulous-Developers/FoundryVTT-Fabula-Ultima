@@ -1,0 +1,133 @@
+{
+  "folder": "yOAoiu4gWVRD1WSo",
+  "name": "Drop Gem",
+  "type": "accessory",
+  "_id": "UWsPMEbuTtS7Vjz0",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/liquid-drop-bluelight.png",
+  "system": {
+    "fuid": "drop-gem",
+    "description": "<p>Whenever you recover Mind Points, you recover <strong>5 additional Mind Points</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1000
+    },
+    "quality": {
+      "value": "Sanity Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Drop Gem",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/liquid-drop-bluelight.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.UWsPMEbuTtS7Vjz0",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "T0Ewo2XRRC5Xgss8",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingRecovery.mp",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Whenever you recover Mind Points while you have this equipped, you recover <strong>5 additional Mind Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Drop Gem",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.UWsPMEbuTtS7Vjz0",
+            "effectUuid": null,
+            "fuid": "drop-gem"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774669346206,
+        "modifiedTime": 1775708769784,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!UWsPMEbuTtS7Vjz0.T0Ewo2XRRC5Xgss8"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774669201826,
+    "modifiedTime": 1775708765137,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!UWsPMEbuTtS7Vjz0"
+}

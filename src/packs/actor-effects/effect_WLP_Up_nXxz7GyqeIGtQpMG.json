@@ -4,26 +4,49 @@
   "_id": "nXxz7GyqeIGtQpMG",
   "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
   "system": {
-    "fuid": "effect"
+    "fuid": "wlp-up"
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "WLP Up",
       "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
-      "_id": "6Q0sXzf4i5X6Zu7Q",
+      "origin": "Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "5LkeR7vUX4mqWKuG",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.attributes.wlp",
@@ -32,31 +55,37 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Willpower die size by 1.</p>",
+      "description": "<p>You treat your <strong>Willpower</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "WLP Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG",
+            "effectUuid": null,
+            "fuid": "wlp-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
-        "exportSource": null
+        "createdTime": 1774816902407,
+        "modifiedTime": 1774816922110,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!nXxz7GyqeIGtQpMG.6Q0sXzf4i5X6Zu7Q"
+      "_key": "!items.effects!nXxz7GyqeIGtQpMG.5LkeR7vUX4mqWKuG"
     }
   ],
-  "folder": "7NQvpwoHcTkOxvMv",
+  "folder": "mI21NJqZ45bnQ2S3",
   "ownership": {
     "default": 0,
     "dobQfkKFj2NK96cc": 3
@@ -65,14 +94,14 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725743470257,
-    "modifiedTime": 1725743470257,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774761666298,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
-  "sort": 0,
+  "sort": 150000,
   "_key": "!items!nXxz7GyqeIGtQpMG"
 }

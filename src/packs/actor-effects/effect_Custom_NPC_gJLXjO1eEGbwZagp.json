@@ -1,5 +1,5 @@
 {
-  "folder": "qlg3jVpqguQ6x9z7",
+  "folder": "423RpDks0B2eewCA",
   "name": "Custom NPC",
   "type": "effect",
   "_id": "gJLXjO1eEGbwZagp",
@@ -485,7 +485,7 @@
       "_key": "!items.effects!gJLXjO1eEGbwZagp.wRElOGOUVUWHaQMF"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "4BP57v2riKcaALIW": 3
@@ -494,12 +494,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745422132322,
-    "modifiedTime": 1745422260547,
-    "lastModifiedBy": "4BP57v2riKcaALIW",
+    "modifiedTime": 1774812454940,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!gJLXjO1eEGbwZagp"

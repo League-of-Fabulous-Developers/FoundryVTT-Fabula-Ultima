@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "1aYXCBUk8bxv64DS",
+  "name": "Hunter",
+  "color": "#6a1616",
+  "sorting": "a",
+  "_id": "3ywX6HVujl6eTROw",
+  "description": "",
+  "sort": 600000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775709113178
+  },
+  "_key": "!folders!3ywX6HVujl6eTROw"
+}

@@ -1,0 +1,139 @@
+{
+  "folder": "Anan0FYcxIi9qWJ4",
+  "name": "Malevolent Ring",
+  "type": "accessory",
+  "_id": "xAIll4Ey42tID0G4",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/ring-red-black.png",
+  "system": {
+    "fuid": "malevolent-ring",
+    "description": "<p>You gain Resistance to <strong>dark</strong> and <strong>fire</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1000
+    },
+    "quality": {
+      "value": "Dark Fire Resistance"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Malevolent Ring",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/ring-red-black.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.xAIll4Ey42tID0G4",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "nKtdwJPu3pCgCtLO",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.fire",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>dark</strong> and <strong>fire</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Malevolent Ring",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.xAIll4Ey42tID0G4",
+            "effectUuid": null,
+            "fuid": "malevolent-ring"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774656674150,
+        "modifiedTime": 1775708599332,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!xAIll4Ey42tID0G4.nKtdwJPu3pCgCtLO"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774656634830,
+    "modifiedTime": 1775708594321,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!xAIll4Ey42tID0G4"
+}

@@ -1,0 +1,110 @@
+{
+  "folder": "sT60HsbrtK4laoQE",
+  "name": "Bow Accuracy Check Up",
+  "type": "effect",
+  "_id": "ogCM90Cnot7Hqv5C",
+  "img": "systems/projectfu/styles/static/icons/weapons/bow.png",
+  "system": {
+    "fuid": "bow-accuracy-check-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Bow Accuracy Check Up",
+      "img": "systems/projectfu/styles/static/icons/weapons/bow.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.ogCM90Cnot7Hqv5C",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ch8WMlaSSkBPamQa",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.bow",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>bows</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Bow Accuracy Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.ogCM90Cnot7Hqv5C",
+            "effectUuid": null,
+            "fuid": "bow-accuracy-check-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774758609319,
+        "modifiedTime": 1774758621569,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!ogCM90Cnot7Hqv5C.ch8WMlaSSkBPamQa"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774757555713,
+    "modifiedTime": 1774758606351,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!ogCM90Cnot7Hqv5C"
+}

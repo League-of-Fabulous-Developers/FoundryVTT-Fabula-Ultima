@@ -1,0 +1,136 @@
+{
+  "folder": "5ZenCjx6n04peFsh",
+  "name": "Spell Inflict Status (Slow)",
+  "type": "effect",
+  "_id": "RVK4jjaUEguyucbP",
+  "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+  "system": {
+    "fuid": "spell-inflict-status-slow",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spell Inflict Status (Slow)",
+      "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.RVK4jjaUEguyucbP",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "F93irlnL9kZYTaOe": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "08AObdBmze2OpN6e",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "F93irlnL9kZYTaOe",
+              "actions": {
+                "v2wXCVTeCKWhr7fL": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "v2wXCVTeCKWhr7fL",
+                  "effect": "slow"
+                }
+              },
+              "predicates": {
+                "Gs2NdKqzKATIeEhO": {
+                  "type": "spellRulePredicate",
+                  "_id": "Gs2NdKqzKATIeEhO",
+                  "offensive": "true"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "7PlGOoh5aF4yJgj1",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>slow</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spell Inflict Status (Slow)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.RVK4jjaUEguyucbP",
+            "effectUuid": null,
+            "fuid": "spell-inflict-status-slow"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774827009885,
+        "modifiedTime": 1774827045144,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!RVK4jjaUEguyucbP.7PlGOoh5aF4yJgj1"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774811636888,
+    "modifiedTime": 1774811636888,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!RVK4jjaUEguyucbP"
+}

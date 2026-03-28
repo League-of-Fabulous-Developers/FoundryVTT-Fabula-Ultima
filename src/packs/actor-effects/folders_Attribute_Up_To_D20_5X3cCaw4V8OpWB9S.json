@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "7NQvpwoHcTkOxvMv",
+  "name": "Attribute Up To D20",
+  "color": "#256722",
+  "sorting": "a",
+  "_id": "5X3cCaw4V8OpWB9S",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768681877
+  },
+  "_key": "!folders!5X3cCaw4V8OpWB9S"
+}

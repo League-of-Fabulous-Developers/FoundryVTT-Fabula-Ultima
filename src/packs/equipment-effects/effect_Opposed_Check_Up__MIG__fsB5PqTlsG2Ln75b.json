@@ -1,0 +1,138 @@
+{
+  "folder": "KdeKj6lCpEeWNudK",
+  "name": "Opposed Check Up (MIG)",
+  "type": "effect",
+  "_id": "fsB5PqTlsG2Ln75b",
+  "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
+  "system": {
+    "fuid": "opposed-check-up-mig",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Opposed Check Up (MIG)",
+      "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.fsB5PqTlsG2Ln75b",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "jjPROA24h8QgubOm": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "4U6eWJeRUGqsaPZS",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "opposed"
+                ]
+              },
+              "_id": "jjPROA24h8QgubOm",
+              "actions": {
+                "HHHrHfr6boZAkqFp": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "HHHrHfr6boZAkqFp",
+                  "bonus": "2"
+                }
+              },
+              "predicates": {
+                "jtXbk798CBkdDDAJ": {
+                  "type": "checkRulePredicate",
+                  "_id": "jtXbk798CBkdDDAJ",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "mig"
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "c98i9tOAfqjRZfw9",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Might</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Opposed Check Up (MIG)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.fsB5PqTlsG2Ln75b",
+            "effectUuid": null,
+            "fuid": "opposed-check-up-mig"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774758421355,
+        "modifiedTime": 1774758455897,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!fsB5PqTlsG2Ln75b.c98i9tOAfqjRZfw9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774685307350,
+    "modifiedTime": 1774758419190,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!fsB5PqTlsG2Ln75b"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "l7FDM6CBuHpyyd7h",
+  "name": "Reduce Cost",
+  "color": "#475e6b",
+  "sorting": "a",
+  "_id": "3I0o8HLwTUjRrn3N",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774814283003
+  },
+  "_key": "!folders!3I0o8HLwTUjRrn3N"
+}

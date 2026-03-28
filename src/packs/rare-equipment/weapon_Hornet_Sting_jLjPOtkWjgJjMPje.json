@@ -1,0 +1,197 @@
+{
+  "folder": "qYtBD5MEfzGg5HdQ",
+  "name": "Hornet Sting",
+  "type": "weapon",
+  "_id": "jLjPOtkWjgJjMPje",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/bow-yellow.png",
+  "system": {
+    "fuid": "hornet-sting",
+    "description": "<p>Each target hit by this weapon suffers <strong>enraged</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2200
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Inflict Enraged"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "dex"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 8
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "ranged"
+    },
+    "category": {
+      "value": "bow"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Hornet Sting",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/bow-yellow.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.jLjPOtkWjgJjMPje",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Ono3weZBMlwPt9W3": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "QalPukyhQjgEm1CH",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "Ono3weZBMlwPt9W3",
+              "actions": {
+                "NOIGu8fDZwOn0qbq": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "NOIGu8fDZwOn0qbq",
+                  "effect": "enraged"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "T0w4yqbSCGCRoNzy",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by this weapon suffers <strong>enraged</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Hornet Sting",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.jLjPOtkWjgJjMPje",
+            "effectUuid": null,
+            "fuid": "hornet-sting"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774741157383,
+        "modifiedTime": 1775709164015,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!jLjPOtkWjgJjMPje.T0w4yqbSCGCRoNzy"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774741094276,
+    "modifiedTime": 1775709159212,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!jLjPOtkWjgJjMPje"
+}

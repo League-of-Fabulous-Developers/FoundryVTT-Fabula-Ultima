@@ -1,0 +1,133 @@
+{
+  "folder": "ArBlOISf307QSlES",
+  "name": "Radiant Crystal",
+  "type": "accessory",
+  "_id": "3ShX849AI8MILOAU",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-whitecool.png",
+  "system": {
+    "fuid": "radiant-crystal",
+    "description": "<p>You gain Resistance to <strong>light</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 700
+    },
+    "quality": {
+      "value": "Light Resistance"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Radiant Crystal",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-whitecool.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.3ShX849AI8MILOAU",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "t3RZ7daH0ifvdbbf",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.light",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>light</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Radiant Crystal",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.3ShX849AI8MILOAU",
+            "effectUuid": null,
+            "fuid": "radiant-crystal"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775684697583,
+        "modifiedTime": 1775708517263,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!3ShX849AI8MILOAU.t3RZ7daH0ifvdbbf"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774653781377,
+    "modifiedTime": 1775708512213,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!3ShX849AI8MILOAU"
+}

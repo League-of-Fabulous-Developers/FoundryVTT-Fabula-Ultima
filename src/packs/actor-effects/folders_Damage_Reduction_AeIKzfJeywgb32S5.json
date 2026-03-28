@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "c8nkfqgAAjIeUbLy",
+  "name": "Damage Reduction",
+  "color": "#7c2222",
+  "sorting": "a",
+  "_id": "AeIKzfJeywgb32S5",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774830535337
+  },
+  "_key": "!folders!AeIKzfJeywgb32S5"
+}

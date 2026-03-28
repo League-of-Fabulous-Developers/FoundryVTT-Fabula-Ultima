@@ -1,0 +1,161 @@
+{
+  "folder": "3I0o8HLwTUjRrn3N",
+  "name": "Blood Stained Plate",
+  "type": "armor",
+  "_id": "3agBdZusqKkZFNbX",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-red.png",
+  "system": {
+    "fuid": "blood-stained-plate",
+    "description": "<p>When you spend <strong>Hit Points</strong>, you spend <strong>5 less Hit Points</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1400
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Grim Favor"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 11
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 0
+    },
+    "init": {
+      "value": -3
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Blood Stained Plate",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-red.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.3agBdZusqKkZFNbX",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "4VdMKJckh2x03Ujl": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "PJD4aBXDVXwduQvN",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "expenseSource": "",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": ""
+              },
+              "_id": "4VdMKJckh2x03Ujl",
+              "actions": {
+                "amJR2h1Kuxe4xbe0": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "amJR2h1Kuxe4xbe0",
+                  "amount": "-5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "RHmt2JKl4OT7A9IO",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you spend <strong>Hit Points</strong> while you have this equipped, you spend <strong>5 less Hit Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Blood Stained Plate",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.3agBdZusqKkZFNbX",
+            "effectUuid": null,
+            "fuid": "blood-stained-plate"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774814487011,
+        "modifiedTime": 1775708956253,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!3agBdZusqKkZFNbX.RHmt2JKl4OT7A9IO"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774814322672,
+    "modifiedTime": 1775708952513,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!3agBdZusqKkZFNbX"
+}

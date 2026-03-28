@@ -1,0 +1,110 @@
+{
+  "folder": "2ydTveFhgatlxP99",
+  "name": "Flail Damage Up",
+  "type": "effect",
+  "_id": "WEWTyxgNVDbx9YTS",
+  "img": "systems/projectfu/styles/static/icons/weapons/flail.png",
+  "system": {
+    "fuid": "flail-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Flail Damage Up",
+      "img": "systems/projectfu/styles/static/icons/weapons/flail.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.WEWTyxgNVDbx9YTS",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Ig485jLNDb0FGgVt",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.flail",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, your attacks with <strong>flail</strong> weapons deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Flail Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.WEWTyxgNVDbx9YTS",
+            "effectUuid": null,
+            "fuid": "flail-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774752515845,
+        "modifiedTime": 1774757039739,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!WEWTyxgNVDbx9YTS.Ig485jLNDb0FGgVt"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774752232767,
+    "modifiedTime": 1774752514914,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!WEWTyxgNVDbx9YTS"
+}

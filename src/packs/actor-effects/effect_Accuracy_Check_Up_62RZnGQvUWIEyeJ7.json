@@ -5,26 +5,50 @@
   "_id": "62RZnGQvUWIEyeJ7",
   "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
   "system": {
-    "fuid": "accuracy-check-up"
+    "fuid": "accuracy-check-up",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.62RZnGQvUWIEyeJ7",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Accuracy Check Up",
       "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
-      "_id": "VQaSDQX4e1Mv0JXL",
+      "origin": "Compendium.projectfu.actor-effects.Item.62RZnGQvUWIEyeJ7",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BPezVWZ23h1GRVJq",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.bonuses.accuracy.accuracyCheck",
@@ -33,30 +57,34 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Accuracy Check bonus by 1.</p>",
+      "description": "<p>You gain a +1 bonus to your <strong>Accuracy Checks</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": ""
+          "Source": {
+            "name": "Accuracy Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.62RZnGQvUWIEyeJ7",
+            "effectUuid": null,
+            "fuid": "accuracy-check-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725745426520,
-        "modifiedTime": 1736279142582,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
-        "exportSource": null
+        "createdTime": 1774817715114,
+        "modifiedTime": 1774817727242,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!62RZnGQvUWIEyeJ7.VQaSDQX4e1Mv0JXL"
+      "_key": "!items.effects!62RZnGQvUWIEyeJ7.BPezVWZ23h1GRVJq"
     }
   ],
   "sort": 0,
@@ -68,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725745421045,
-    "modifiedTime": 1736279136038,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1774758213267,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!62RZnGQvUWIEyeJ7"

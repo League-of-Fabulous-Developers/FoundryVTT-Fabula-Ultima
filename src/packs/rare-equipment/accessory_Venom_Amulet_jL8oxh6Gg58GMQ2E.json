@@ -1,0 +1,133 @@
+{
+  "folder": "8z3NsYEd9xqrDUeF",
+  "name": "Venom Amulet",
+  "type": "accessory",
+  "_id": "jL8oxh6Gg58GMQ2E",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/amulet-goldring-purple.png",
+  "system": {
+    "fuid": "venom-amulet",
+    "description": "<p>All damage dealt by your attacks, spells, and Skills becomes <strong>poison</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 300
+    },
+    "quality": {
+      "value": "Poison Change"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Venom Amulet",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/amulet-goldring-purple.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.jL8oxh6Gg58GMQ2E",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "YdtVS80zb3CycYfO",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.normal",
+          "mode": 5,
+          "value": "poison",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage dealt by your attacks, spells, and Skills becomes <strong>poison</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Venom Amulet",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.jL8oxh6Gg58GMQ2E",
+            "effectUuid": null,
+            "fuid": "venom-amulet"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774665185439,
+        "modifiedTime": 1775708710725,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!jL8oxh6Gg58GMQ2E.YdtVS80zb3CycYfO"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774665168726,
+    "modifiedTime": 1775708706053,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!jL8oxh6Gg58GMQ2E"
+}

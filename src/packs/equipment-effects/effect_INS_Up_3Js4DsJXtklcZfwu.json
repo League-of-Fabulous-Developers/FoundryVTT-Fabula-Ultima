@@ -1,0 +1,110 @@
+{
+  "folder": "lcWBXdBj3CFpWnCq",
+  "name": "INS Up",
+  "type": "effect",
+  "_id": "3Js4DsJXtklcZfwu",
+  "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
+  "system": {
+    "fuid": "ins-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "INS Up",
+      "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.3Js4DsJXtklcZfwu",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "cV5Ct0dXX0b2yyC9",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.ins",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you treat your <strong>Insight</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "INS Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.3Js4DsJXtklcZfwu",
+            "effectUuid": null,
+            "fuid": "ins-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774762060837,
+        "modifiedTime": 1774762105826,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!3Js4DsJXtklcZfwu.cV5Ct0dXX0b2yyC9"
+    }
+  ],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762016932,
+    "modifiedTime": 1774762249609,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!3Js4DsJXtklcZfwu"
+}

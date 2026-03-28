@@ -1,0 +1,133 @@
+{
+  "folder": "XdMgkw7IEqMnSNF1",
+  "name": "Vile Orb",
+  "type": "accessory",
+  "_id": "IuQ0lG0JJgy1eAv8",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/orb-elemental-shadow.png",
+  "system": {
+    "fuid": "vile-orb",
+    "description": "<p>You gain Immunity to <strong>dark</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1500
+    },
+    "quality": {
+      "value": "Dark Immunity"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Vile Orb",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/orb-elemental-shadow.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.IuQ0lG0JJgy1eAv8",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "y4AehsbszyfmckOg",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark.current",
+          "mode": 4,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Immunity to <strong>dark</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Vile Orb",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.IuQ0lG0JJgy1eAv8",
+            "effectUuid": null,
+            "fuid": "vile-orb"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775683446900,
+        "modifiedTime": 1775708438483,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!IuQ0lG0JJgy1eAv8.y4AehsbszyfmckOg"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774657972251,
+    "modifiedTime": 1775708434233,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!IuQ0lG0JJgy1eAv8"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Improve Defenses",
+  "color": "#2e7e8e",
+  "sorting": "a",
+  "_id": "On9IJ6ivSp8o4bFZ",
+  "description": "",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774683769776,
+    "modifiedTime": 1774764266480,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!folders!On9IJ6ivSp8o4bFZ"
+}

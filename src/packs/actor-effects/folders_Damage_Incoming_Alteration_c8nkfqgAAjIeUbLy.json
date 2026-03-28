@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Damage Incoming Alteration",
+  "color": "#a22f2f",
+  "sorting": "a",
+  "_id": "c8nkfqgAAjIeUbLy",
+  "description": "",
+  "sort": 1200000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774814747931,
+    "modifiedTime": 1774830695690,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!folders!c8nkfqgAAjIeUbLy"
+}

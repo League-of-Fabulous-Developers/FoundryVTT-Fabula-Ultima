@@ -1,0 +1,111 @@
+{
+  "folder": "EGSfO88Nmi05Tgzh",
+  "name": "INS Down",
+  "type": "effect",
+  "_id": "2QI8wHhms3OOl4HS",
+  "img": "systems/projectfu/styles/static/statuses/InsDown.webp",
+  "system": {
+    "fuid": "ins-down",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "INS Down",
+      "img": "systems/projectfu/styles/static/statuses/InsDown.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.2QI8wHhms3OOl4HS",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "36hCVFgA9JFpPFFH",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.ins",
+          "mode": 0,
+          "value": "downgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You treat your <strong>Insight</strong> as if it were one die size lower (down to a minimum of <strong>d6</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "INS Down",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.2QI8wHhms3OOl4HS",
+            "effectUuid": null,
+            "fuid": "ins-down"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774816744567,
+        "modifiedTime": 1774816759646,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!2QI8wHhms3OOl4HS.36hCVFgA9JFpPFFH"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774761692495,
+    "modifiedTime": 1774761739745,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!2QI8wHhms3OOl4HS"
+}

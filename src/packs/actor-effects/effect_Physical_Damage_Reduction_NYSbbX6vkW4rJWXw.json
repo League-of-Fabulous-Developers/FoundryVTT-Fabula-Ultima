@@ -1,0 +1,111 @@
+{
+  "folder": "AeIKzfJeywgb32S5",
+  "name": "Physical Damage Reduction",
+  "type": "effect",
+  "_id": "NYSbbX6vkW4rJWXw",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "system": {
+    "fuid": "physical-damage-reduction",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Physical Damage Reduction",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.NYSbbX6vkW4rJWXw",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kmtAcHZwza2wstBY",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.physical",
+          "mode": 2,
+          "value": "-5",
+          "priority": null
+        }
+      ],
+      "description": "<p>All <strong>physical</strong> damage you suffer is <strong>reduced by 5</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Physical Damage Reduction",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.NYSbbX6vkW4rJWXw",
+            "effectUuid": null,
+            "fuid": "physical-damage-reduction"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774829309178,
+        "modifiedTime": 1774829330709,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!NYSbbX6vkW4rJWXw.kmtAcHZwza2wstBY"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774829023689,
+    "modifiedTime": 1774829308432,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!NYSbbX6vkW4rJWXw"
+}

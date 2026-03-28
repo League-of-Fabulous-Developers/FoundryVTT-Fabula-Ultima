@@ -1,22 +1,23 @@
 {
   "name": "Alter Damage Type",
   "sorting": "a",
-  "folder": null,
+  "folder": "ys7VHxUuD1EkvRXO",
   "type": "Item",
   "_id": "Z7sOoJ1jkwGP6nE3",
   "description": "",
-  "sort": 0,
-  "color": null,
+  "sort": 100000,
+  "color": "#6a1616",
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725773818491,
-    "modifiedTime": 1725774228574,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1774765207228,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
   },
   "_key": "!folders!Z7sOoJ1jkwGP6nE3"
 }

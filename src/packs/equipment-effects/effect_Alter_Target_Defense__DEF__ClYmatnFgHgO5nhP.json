@@ -3,12 +3,13 @@
   "name": "Alter Target Defense (DEF)",
   "type": "effect",
   "_id": "ClYmatnFgHgO5nhP",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
   "system": {
     "fuid": "alter-target-defense-def",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -24,10 +25,26 @@
       },
       "disabled": false,
       "name": "Alter Target Defense (DEF)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
       "_id": "CYu3xXo2gXLvJ90v",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.defense",
@@ -36,7 +53,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>This weapon targets <strong>Defense</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -49,12 +66,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728758317799,
-        "modifiedTime": 1744751636542,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1774733673994,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!ClYmatnFgHgO5nhP.CYu3xXo2gXLvJ90v"
@@ -69,12 +86,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728758084500,
-    "modifiedTime": 1744751631327,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1774733669575,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!ClYmatnFgHgO5nhP"

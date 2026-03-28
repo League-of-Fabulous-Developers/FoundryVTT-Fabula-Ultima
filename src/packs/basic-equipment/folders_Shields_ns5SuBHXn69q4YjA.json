@@ -5,15 +5,19 @@
   "type": "Item",
   "_id": "ns5SuBHXn69q4YjA",
   "sort": 0,
-  "color": null,
+  "color": "#935625",
   "flags": {},
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "13.351",
     "createdTime": 1719125580888,
-    "modifiedTime": 1719125580888,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1774668733044,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
+  "description": "",
   "_key": "!folders!ns5SuBHXn69q4YjA"
 }

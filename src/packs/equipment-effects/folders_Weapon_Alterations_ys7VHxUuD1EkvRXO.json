@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Weapon Alterations",
+  "color": "#891f1f",
+  "sorting": "a",
+  "_id": "ys7VHxUuD1EkvRXO",
+  "description": "",
+  "sort": 1400000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774732763329,
+    "modifiedTime": 1774733569194,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!folders!ys7VHxUuD1EkvRXO"
+}

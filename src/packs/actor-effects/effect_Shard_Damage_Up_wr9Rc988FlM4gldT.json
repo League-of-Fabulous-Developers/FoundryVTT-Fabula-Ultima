@@ -1,0 +1,129 @@
+{
+  "folder": "cSoNctKx8POGFn7U",
+  "name": "Shard Damage Up",
+  "type": "effect",
+  "_id": "wr9Rc988FlM4gldT",
+  "img": "systems/projectfu/styles/static/compendium/consumables/elemental-shard.png",
+  "system": {
+    "fuid": "shard-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Shard Damage Up",
+      "img": "systems/projectfu/styles/static/compendium/consumables/elemental-shard.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.wr9Rc988FlM4gldT",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "o59nSdT9hUb2IzXg": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "oanZXIiy7BNGtjji",
+                "type": "createConsumableRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "elemental-shard",
+                    "damage"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "_id": "o59nSdT9hUb2IzXg",
+              "actions": {
+                "IAQzoS3WRhkTUtSt": {
+                  "type": "modifyConsumableRuleAction",
+                  "_id": "IAQzoS3WRhkTUtSt",
+                  "bonus": "5",
+                  "multiplier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Blhzf4mwLQVX3LDp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you create an <strong>elemental shard</strong> with your Inventory Points, it deals <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Shard Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.wr9Rc988FlM4gldT",
+            "effectUuid": null,
+            "fuid": "shard-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774828563601,
+        "modifiedTime": 1774828688114,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!wr9Rc988FlM4gldT.Blhzf4mwLQVX3LDp"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774828542862,
+    "modifiedTime": 1774828560565,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!wr9Rc988FlM4gldT"
+}

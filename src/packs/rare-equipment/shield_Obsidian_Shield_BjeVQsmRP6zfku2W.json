@@ -1,0 +1,179 @@
+{
+  "folder": "e2xF1TahnhKRCTqB",
+  "name": "Obsidian Shield",
+  "type": "shield",
+  "_id": "BjeVQsmRP6zfku2W",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-black.png",
+  "system": {
+    "fuid": "obsidian-shield",
+    "description": "<p>You gain Resistance to <strong>dark</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 800
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Dark Resistance"
+    },
+    "def": {
+      "value": 2
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 5
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Obsidian Shield",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-black.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.BjeVQsmRP6zfku2W",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "DRVFPAS9EevoVOx4",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>dark</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Obsidian Shield",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.BjeVQsmRP6zfku2W",
+            "effectUuid": null,
+            "fuid": "obsidian-shield"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774767440003,
+        "modifiedTime": 1775709060772,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!BjeVQsmRP6zfku2W.DRVFPAS9EevoVOx4"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774767419228,
+    "modifiedTime": 1775709056156,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!BjeVQsmRP6zfku2W"
+}

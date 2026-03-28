@@ -32,7 +32,8 @@
     "traits": {
       "entries": [
         "potion",
-        "restore"
+        "restore",
+        "mind-point"
       ]
     }
   },
@@ -54,7 +55,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706515894820,
-    "modifiedTime": 1771880441534,
+    "modifiedTime": 1774718094187,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

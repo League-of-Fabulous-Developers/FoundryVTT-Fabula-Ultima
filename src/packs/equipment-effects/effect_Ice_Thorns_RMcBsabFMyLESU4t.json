@@ -1,0 +1,142 @@
+{
+  "folder": "BlKCuhMT72VW7Anp",
+  "name": "Ice Thorns",
+  "type": "effect",
+  "_id": "RMcBsabFMyLESU4t",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "system": {
+    "fuid": "ice-thorns",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ice Thorns",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.RMcBsabFMyLESU4t",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "UfrsEHCzsMmARfTf": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "sfzkrJHez76IfA0u",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "UfrsEHCzsMmARfTf",
+              "predicates": {
+                "5D0gBVPqcgXdrwsh": {
+                  "type": "checkRulePredicate",
+                  "_id": "5D0gBVPqcgXdrwsh",
+                  "outcome": "success",
+                  "result": null
+                },
+                "FEmQ7tA0jGMsWnXL": {
+                  "type": "weaponRulePredicate",
+                  "_id": "FEmQ7tA0jGMsWnXL",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "KqDmOQrDYrPSNeK1": {
+                  "type": "messageRuleAction",
+                  "_id": "KqDmOQrDYrPSNeK1",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 ice] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BPQY1vcOGAJRzusF",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>ice</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Ice Thorns",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.RMcBsabFMyLESU4t",
+            "effectUuid": null,
+            "fuid": "ice-thorns"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774749051973,
+        "modifiedTime": 1774749965531,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!RMcBsabFMyLESU4t.BPQY1vcOGAJRzusF"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774748440531,
+    "modifiedTime": 1774749051187,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!RMcBsabFMyLESU4t"
+}

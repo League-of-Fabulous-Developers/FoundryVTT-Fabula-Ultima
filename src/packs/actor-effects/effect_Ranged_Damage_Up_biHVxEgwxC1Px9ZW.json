@@ -1,0 +1,108 @@
+{
+  "folder": "cSoNctKx8POGFn7U",
+  "name": "Ranged Damage Up",
+  "type": "effect",
+  "_id": "biHVxEgwxC1Px9ZW",
+  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
+  "system": {
+    "fuid": "ranged-damage-up",
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ranged Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.biHVxEgwxC1Px9ZW",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3REsgbJDpUj6IsRO",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.ranged",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your attacks with <strong>ranged</strong> weapons deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Ranged Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.biHVxEgwxC1Px9ZW",
+            "effectUuid": null,
+            "fuid": "ranged-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774824416169,
+        "modifiedTime": 1774824448356,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!biHVxEgwxC1Px9ZW.3REsgbJDpUj6IsRO"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725745141730,
+    "modifiedTime": 1774763808486,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "exportSource": null
+  },
+  "_key": "!items!biHVxEgwxC1Px9ZW"
+}

@@ -1,0 +1,133 @@
+{
+  "folder": "rQhyO7WyH2z4o7SA",
+  "name": "Outlander Hood",
+  "type": "accessory",
+  "_id": "e5WHSaqal1BiM3R2",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/helmet-cap-green.png",
+  "system": {
+    "fuid": "outlander-hood",
+    "description": "<p>Your attacks with <strong>ranged</strong> weapons deal 5 extra damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2000
+    },
+    "quality": {
+      "value": "Ranged Weapon Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Outlander Hood",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/helmet-cap-green.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.e5WHSaqal1BiM3R2",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "wAsadrbuOnaQrN9s",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.ranged",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, your attacks with <strong>ranged</strong> weapons deal 5 extra damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Outlander Hood",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.e5WHSaqal1BiM3R2",
+            "effectUuid": null,
+            "fuid": "outlander-hood"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774672330472,
+        "modifiedTime": 1775708288880,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!e5WHSaqal1BiM3R2.wAsadrbuOnaQrN9s"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774672307383,
+    "modifiedTime": 1775708284121,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!e5WHSaqal1BiM3R2"
+}

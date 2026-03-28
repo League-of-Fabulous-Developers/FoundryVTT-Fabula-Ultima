@@ -1,0 +1,110 @@
+{
+  "folder": "2tE6Ya4uidA9PhD8",
+  "name": "Demon Damage Up",
+  "type": "effect",
+  "_id": "cD1ef9HueDUR9gUU",
+  "img": "systems/projectfu/styles/static/icons/demon.svg",
+  "system": {
+    "fuid": "demon-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Demon Damage Up",
+      "img": "systems/projectfu/styles/static/icons/demon.svg",
+      "origin": "Compendium.projectfu.equipment-effects.Item.cD1ef9HueDUR9gUU",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "LOxYBvtbqXVlj6x9",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.demon",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage you deal to <strong>demons</strong> deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Demon Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.cD1ef9HueDUR9gUU",
+            "effectUuid": null,
+            "fuid": "demon-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774839722929,
+        "modifiedTime": 1774839752433,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!cD1ef9HueDUR9gUU.LOxYBvtbqXVlj6x9"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774839545989,
+    "modifiedTime": 1774839721351,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!cD1ef9HueDUR9gUU"
+}

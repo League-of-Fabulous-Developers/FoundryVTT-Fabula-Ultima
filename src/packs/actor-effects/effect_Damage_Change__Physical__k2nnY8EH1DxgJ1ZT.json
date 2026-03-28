@@ -1,0 +1,111 @@
+{
+  "folder": "i0jimZH61f90h4La",
+  "name": "Damage Change (Physical)",
+  "type": "effect",
+  "_id": "k2nnY8EH1DxgJ1ZT",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "system": {
+    "fuid": "damage-change-physical",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Damage Change (Physical)",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.k2nnY8EH1DxgJ1ZT",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "vxmVEqUEI8fxwHod",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.normal",
+          "mode": 5,
+          "value": "physical",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage dealt by your <strong>attacks</strong>, <strong>spells</strong>, and <strong>Skills</strong> becomes <strong>physical</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Damage Change (Physical)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.k2nnY8EH1DxgJ1ZT",
+            "effectUuid": null,
+            "fuid": "damage-change-physical"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774825192218,
+        "modifiedTime": 1774826352413,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!k2nnY8EH1DxgJ1ZT.vxmVEqUEI8fxwHod"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762589073,
+    "modifiedTime": 1774762589073,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!k2nnY8EH1DxgJ1ZT"
+}

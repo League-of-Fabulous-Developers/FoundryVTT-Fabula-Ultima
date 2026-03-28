@@ -1,0 +1,203 @@
+{
+  "folder": "rNpGX8mi0M6i6y66",
+  "name": "Horizon Carver",
+  "type": "weapon",
+  "_id": "IRTJfvyCq0X8JJPT",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/sword-swipe.png",
+  "system": {
+    "fuid": "horizon-carver",
+    "description": "<p>When you use the <strong>Bladestorm</strong> Skill, its MP cost is <strong>halved</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 700
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Cleave"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 1
+    },
+    "defense": "def",
+    "damage": {
+      "value": 10
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "sword"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Horizon Carver",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/sword-swipe.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.IRTJfvyCq0X8JJPT",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "vcdNVNniGgrsqUJF": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "rAk4pjUARwiPHSpP",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "skill",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "bladestorm"
+              },
+              "_id": "vcdNVNniGgrsqUJF",
+              "actions": {
+                "1UaAIllH949uowT5": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "1UaAIllH949uowT5",
+                  "amount": "0.5",
+                  "operation": "multiply"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "lvpN91MMzHFZJ6LD",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you use the <strong>Bladestorm</strong> Skill while you have this equipped, its MP cost is <strong>halved</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Horizon Carver",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.IRTJfvyCq0X8JJPT",
+            "effectUuid": null,
+            "fuid": "horizon-carver"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774813451519,
+        "modifiedTime": 1775709267820,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!IRTJfvyCq0X8JJPT.lvpN91MMzHFZJ6LD"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774813370688,
+    "modifiedTime": 1775709262952,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!IRTJfvyCq0X8JJPT"
+}

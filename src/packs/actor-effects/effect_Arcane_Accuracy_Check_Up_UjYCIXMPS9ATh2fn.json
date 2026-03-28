@@ -1,0 +1,111 @@
+{
+  "folder": "uVLG7Fn26UP2kgRX",
+  "name": "Arcane Accuracy Check Up",
+  "type": "effect",
+  "_id": "UjYCIXMPS9ATh2fn",
+  "img": "systems/projectfu/styles/static/icons/weapons/arcane.png",
+  "system": {
+    "fuid": "arcane-accuracy-check-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Arcane Accuracy Check Up",
+      "img": "systems/projectfu/styles/static/icons/weapons/arcane.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.UjYCIXMPS9ATh2fn",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "hSou6y0qFgw9hbhQ",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.arcane",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a +1 bonus to <strong>Accuracy Checks</strong> with <strong>arcane</strong> weapons.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Arcane Accuracy Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.UjYCIXMPS9ATh2fn",
+            "effectUuid": null,
+            "fuid": "arcane-accuracy-check-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774817483416,
+        "modifiedTime": 1774817495280,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!UjYCIXMPS9ATh2fn.hSou6y0qFgw9hbhQ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774758905815,
+    "modifiedTime": 1774758918096,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!UjYCIXMPS9ATh2fn"
+}

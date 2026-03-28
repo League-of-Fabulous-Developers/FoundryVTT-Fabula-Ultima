@@ -1,0 +1,139 @@
+{
+  "folder": "Anan0FYcxIi9qWJ4",
+  "name": "Sinister Ring",
+  "type": "accessory",
+  "_id": "qeZHSzW1BSX7yrQL",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/ring-purple-green.png",
+  "system": {
+    "fuid": "sinister-ring",
+    "description": "<p>You gain Resistance to <strong>air</strong> and <strong>poison</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1000
+    },
+    "quality": {
+      "value": "Air Poison Resistance"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Sinister Ring",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/ring-purple-green.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.qeZHSzW1BSX7yrQL",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "9GrlrqX9yXeVFBSe",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.poison",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>air</strong> and <strong>poison</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Sinister Ring",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.qeZHSzW1BSX7yrQL",
+            "effectUuid": null,
+            "fuid": "sinister-ring"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774656924100,
+        "modifiedTime": 1775708626731,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!qeZHSzW1BSX7yrQL.9GrlrqX9yXeVFBSe"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774656896630,
+    "modifiedTime": 1775708622195,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!qeZHSzW1BSX7yrQL"
+}

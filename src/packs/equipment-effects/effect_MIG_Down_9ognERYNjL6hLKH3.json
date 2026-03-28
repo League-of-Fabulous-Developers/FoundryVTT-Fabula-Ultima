@@ -1,0 +1,110 @@
+{
+  "folder": "yonYPxrQink4EW9d",
+  "name": "MIG Down",
+  "type": "effect",
+  "_id": "9ognERYNjL6hLKH3",
+  "img": "systems/projectfu/styles/static/statuses/MigDown.webp",
+  "system": {
+    "fuid": "mig-down",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "MIG Down",
+      "img": "systems/projectfu/styles/static/statuses/MigDown.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.9ognERYNjL6hLKH3",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "2yXDVoCbSG649UQL",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.mig",
+          "mode": 0,
+          "value": "downgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you treat your <strong>Might</strong> as if it were one die size lower (down to a minimum of <strong>d6</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "MIG Down",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.9ognERYNjL6hLKH3",
+            "effectUuid": null,
+            "fuid": "mig-down"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774762363025,
+        "modifiedTime": 1774762377557,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!9ognERYNjL6hLKH3.2yXDVoCbSG649UQL"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762267965,
+    "modifiedTime": 1774762361892,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!9ognERYNjL6hLKH3"
+}

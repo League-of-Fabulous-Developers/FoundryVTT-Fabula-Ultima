@@ -2,35 +2,52 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Ice Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
   "system": {
-    "fuid": "ice-absorption"
+    "fuid": "ice-absorption",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.VhdH4DOOCAJMd197",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Ice Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
-      "_id": "k0HozToRN0chvXz5",
-      "type": "base",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.VhdH4DOOCAJMd197",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "gcgEkDAE9H6tkX2J",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.ice.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Absorption to <strong>ice</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Ice Absorption",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.VhdH4DOOCAJMd197",
+            "effectUuid": null,
+            "fuid": "ice-absorption"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725750899551,
-        "modifiedTime": 1747230682121,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774815726533,
+        "modifiedTime": 1774815755345,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!VhdH4DOOCAJMd197.k0HozToRN0chvXz5"
+      "_key": "!items.effects!VhdH4DOOCAJMd197.gcgEkDAE9H6tkX2J"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1747230677434,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774760867413,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "VhdH4DOOCAJMd197",

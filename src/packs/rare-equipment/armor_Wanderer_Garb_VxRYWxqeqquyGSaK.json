@@ -1,0 +1,159 @@
+{
+  "folder": "R6k4uTCimJ5mRGQU",
+  "name": "Wanderer Garb",
+  "type": "armor",
+  "_id": "VxRYWxqeqquyGSaK",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/jacket-brown.png",
+  "system": {
+    "fuid": "wanderer-coat",
+    "description": "<p>When a create a <strong>potion</strong> with your Inventory Points whose effects restore Mind Points, it restores <strong>5 extra Mind Points</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 700
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Elixir Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 1
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 1
+    },
+    "init": {
+      "value": -1
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Wanderer Garb",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/jacket-brown.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.VxRYWxqeqquyGSaK",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Lc17Rzw77Br4nGQH": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "DKESRpS7ppzeRvA9",
+                "type": "createConsumableRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "potion",
+                    "restore",
+                    "mind-point"
+                  ],
+                  "quantifier": "all"
+                }
+              },
+              "_id": "Lc17Rzw77Br4nGQH",
+              "actions": {
+                "9KESCmQJ8SK9oMLn": {
+                  "type": "modifyConsumableRuleAction",
+                  "_id": "9KESCmQJ8SK9oMLn",
+                  "bonus": "5",
+                  "multiplier": ""
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "stBdwD7oP9EhWsEj",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you create a <strong>potion</strong> with your Inventory Points whose effects restore Mind Points while you have this equipped, it restores <strong>5 extra Mind Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Wanderer Garb",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.VxRYWxqeqquyGSaK",
+            "effectUuid": null,
+            "fuid": "wanderer-coat"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774719757944,
+        "modifiedTime": 1775708976284,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!VxRYWxqeqquyGSaK.stBdwD7oP9EhWsEj"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774719182942,
+    "modifiedTime": 1775708970166,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!VxRYWxqeqquyGSaK"
+}

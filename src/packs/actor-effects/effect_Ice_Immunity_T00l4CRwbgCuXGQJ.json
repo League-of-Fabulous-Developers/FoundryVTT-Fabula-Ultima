@@ -2,35 +2,52 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Ice Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
   "system": {
-    "fuid": "ice-immunity"
+    "fuid": "ice-immunity",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.T00l4CRwbgCuXGQJ",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Ice Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
-      "_id": "UcvwlEqnHMfszeHv",
-      "type": "base",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.T00l4CRwbgCuXGQJ",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "fqvJ7Rtn9hdzqHd1",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.ice.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Immunity to <strong>ice</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Ice Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.T00l4CRwbgCuXGQJ",
+            "effectUuid": null,
+            "fuid": "ice-immunity"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725754310477,
-        "modifiedTime": 1747231080455,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774816015644,
+        "modifiedTime": 1774816028768,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!T00l4CRwbgCuXGQJ.UcvwlEqnHMfszeHv"
+      "_key": "!items.effects!T00l4CRwbgCuXGQJ.fqvJ7Rtn9hdzqHd1"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1747231074913,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774760956655,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "T00l4CRwbgCuXGQJ",

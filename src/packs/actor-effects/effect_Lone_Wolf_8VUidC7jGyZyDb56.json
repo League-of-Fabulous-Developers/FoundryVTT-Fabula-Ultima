@@ -12,22 +12,45 @@
   },
   "effects": [
     {
+      "name": "Lone Wolf",
       "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.8VUidC7jGyZyDb56",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Lone Wolf",
-      "_id": "mQzgJKqdYcJo1nNI",
+      "_id": "3l44jRiTJvXTeMvo",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.bonuses.turns",
@@ -49,23 +72,27 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "type": "default",
-          "source": "",
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Lone Wolf",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.8VUidC7jGyZyDb56",
+            "effectUuid": null,
+            "fuid": "lone-wolf"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1740170720297,
-        "modifiedTime": 1740434987968,
-        "lastModifiedBy": "esOkelwPNblkbxW3",
-        "exportSource": null
+        "createdTime": 1774832150722,
+        "modifiedTime": 1774832178617,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!8VUidC7jGyZyDb56.mQzgJKqdYcJo1nNI"
+      "_key": "!items.effects!8VUidC7jGyZyDb56.3l44jRiTJvXTeMvo"
     }
   ],
   "sort": 0,

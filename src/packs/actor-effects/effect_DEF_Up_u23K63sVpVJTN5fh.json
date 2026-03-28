@@ -3,28 +3,52 @@
   "name": "DEF Up",
   "type": "effect",
   "_id": "u23K63sVpVJTN5fh",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
   "system": {
-    "fuid": "def-up"
+    "fuid": "def-up",
+    "source": ""
   },
   "effects": [
     {
+      "name": "DEF Up",
+      "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.u23K63sVpVJTN5fh",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "DEF Up",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
-      "_id": "2ZSReUCu21yKNMY1",
+      "_id": "nv4Wmh6Tzr8nhQOy",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.derived.def.bonus",
@@ -33,28 +57,34 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Defense by 1.</p>",
+      "description": "<p>You gain a +1 bonus to <strong>Defense</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "DEF Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.u23K63sVpVJTN5fh",
+            "effectUuid": null,
+            "fuid": "def-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725747572312,
-        "modifiedTime": 1725747677551,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774826739931,
+        "modifiedTime": 1774826750954,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!u23K63sVpVJTN5fh.2ZSReUCu21yKNMY1"
+      "_key": "!items.effects!u23K63sVpVJTN5fh.nv4Wmh6Tzr8nhQOy"
     }
   ],
   "sort": 0,
@@ -66,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725747567368,
-    "modifiedTime": 1725747571177,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774764360071,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!u23K63sVpVJTN5fh"

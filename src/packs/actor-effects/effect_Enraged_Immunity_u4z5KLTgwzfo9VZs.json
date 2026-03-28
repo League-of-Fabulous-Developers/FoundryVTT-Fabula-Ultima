@@ -3,28 +3,52 @@
   "name": "Enraged Immunity",
   "type": "effect",
   "_id": "u4z5KLTgwzfo9VZs",
-  "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
+  "img": "systems/projectfu/styles/static/statuses/immunities/EnragedImmune.webp",
   "system": {
-    "fuid": "enraged-immunity"
+    "fuid": "enraged-immunity",
+    "source": ""
   },
   "effects": [
     {
+      "name": "Enraged Immunity",
+      "img": "systems/projectfu/styles/static/statuses/immunities/EnragedImmune.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Enraged Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
-      "_id": "JvYyclKZ0P4gGFkQ",
+      "_id": "4IP22dzpW2vFWrR4",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.immunities.enraged.base",
@@ -33,28 +57,34 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You are immune to <strong>enraged</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Enraged Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs",
+            "effectUuid": null,
+            "fuid": "enraged-immunity"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725755512783,
-        "modifiedTime": 1725755534050,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774828397149,
+        "modifiedTime": 1774828410418,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!u4z5KLTgwzfo9VZs.JvYyclKZ0P4gGFkQ"
+      "_key": "!items.effects!u4z5KLTgwzfo9VZs.4IP22dzpW2vFWrR4"
     }
   ],
   "sort": 400000,
@@ -66,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725755259964,
-    "modifiedTime": 1743124185466,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1774763244628,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!u4z5KLTgwzfo9VZs"

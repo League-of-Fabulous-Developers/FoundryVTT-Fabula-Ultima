@@ -1,0 +1,137 @@
+{
+  "folder": "ao7cVB1tz3p47PiE",
+  "name": "Hunter (Demon)",
+  "type": "effect",
+  "_id": "EIBhuom4FnhQ6DjY",
+  "img": "systems/projectfu/styles/static/icons/demon.svg",
+  "system": {
+    "fuid": "hunter-demon",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Hunter (Demon)",
+      "img": "systems/projectfu/styles/static/icons/demon.svg",
+      "origin": "Compendium.projectfu.equipment-effects.Item.EIBhuom4FnhQ6DjY",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "REorP2jDFLERwWWH": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "ong14IkEo30OU9u8",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "REorP2jDFLERwWWH",
+              "predicates": {
+                "ZmuvkQA2PH4XPGk8": {
+                  "type": "speciesRulePredicate",
+                  "_id": "ZmuvkQA2PH4XPGk8",
+                  "species": [
+                    "demon"
+                  ]
+                }
+              },
+              "actions": {
+                "Pmk3NBpHQiDCq4BV": {
+                  "type": "messageRuleAction",
+                  "_id": "Pmk3NBpHQiDCq4BV",
+                  "message": "<p>If <strong>demon</strong> target, deal 5 extra damage to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3nUEOerFYOnycmxx",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The weapon deals 5 extra damage to <strong>demons</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Hunter (Demon)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.EIBhuom4FnhQ6DjY",
+            "effectUuid": null,
+            "fuid": "hunter-demon"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774724024930,
+        "modifiedTime": 1774729483030,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!EIBhuom4FnhQ6DjY.3nUEOerFYOnycmxx"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774724020902,
+    "modifiedTime": 1774724023835,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!EIBhuom4FnhQ6DjY"
+}

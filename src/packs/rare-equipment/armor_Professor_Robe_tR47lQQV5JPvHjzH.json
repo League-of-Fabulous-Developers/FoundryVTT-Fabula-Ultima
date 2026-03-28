@@ -1,0 +1,140 @@
+{
+  "folder": "n7VHwKnti5iZ4ybZ",
+  "name": "Professor Robe",
+  "type": "armor",
+  "_id": "tR47lQQV5JPvHjzH",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-professor.png",
+  "system": {
+    "fuid": "professor-robe",
+    "description": "<p>You treat your <strong>Insight</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2100
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "INS Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 1
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 1
+    },
+    "init": {
+      "value": -1
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Professor Robe",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-professor.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.tR47lQQV5JPvHjzH",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "QFG7nM7zasjtF1FC",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.ins",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you treat your <strong>Insight</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Professor Robe",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.tR47lQQV5JPvHjzH",
+            "effectUuid": null,
+            "fuid": "professor-robe"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774808039205,
+        "modifiedTime": 1775708839192,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!tR47lQQV5JPvHjzH.QFG7nM7zasjtF1FC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774807957640,
+    "modifiedTime": 1775708834691,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!tR47lQQV5JPvHjzH"
+}
