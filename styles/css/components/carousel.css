@@ -33,6 +33,7 @@
 	height: 50px; /* image height */
 	object-fit: cover;
 	display: block;
+	background: white;
 	border-radius: 4px; /* optional, smaller radius */
 }
 
@@ -40,7 +41,7 @@
 	margin-top: 2px;
 	font-size: 0.7em; /* smaller font for compact layout */
 	text-align: center;
-	color: var(--text-color);
+	color: var(--pfu-color-app-section-content-primary);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

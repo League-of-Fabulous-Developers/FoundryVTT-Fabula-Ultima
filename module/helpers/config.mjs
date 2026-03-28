@@ -94,16 +94,16 @@ FU.damageTypes = {
  * @type {Object<DamageType, string>}
  */
 FU.affIcon = {
-	physical: 'fua fu-physical',
-	air: 'fua fu-air',
-	bolt: 'fua fu-bolt',
-	dark: 'fua fu-dark',
-	earth: 'fua fu-earth',
-	fire: 'fua fu-fire',
-	ice: 'fua fu-ice',
-	light: 'fua fu-light',
-	poison: 'fua fu-poison',
-	untyped: 'fua fu-untyped',
+	physical: 'fu-physical',
+	air: 'fu-air',
+	bolt: 'fu-bolt',
+	dark: 'fu-dark',
+	earth: 'fu-earth',
+	fire: 'fu-fire',
+	ice: 'fu-ice',
+	light: 'fu-light',
+	poison: 'fu-poison',
+	untyped: 'fu-untyped',
 };
 
 /**
@@ -133,6 +133,7 @@ FU.checkIcons = {
 	ritual: 'fu-check-ritual',
 	difficulty: 'fu-roll-difficulty',
 	result: 'fu-roll-result',
+	base: 'fu-roll-base',
 	mod: 'fu-roll-modifier',
 	hr: 'fu-roll-high',
 	target: 'fu-roll-target',

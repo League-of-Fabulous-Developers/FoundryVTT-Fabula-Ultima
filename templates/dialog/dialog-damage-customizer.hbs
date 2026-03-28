@@ -1,19 +1,39 @@
 <main class="">
 
+	<fieldset class="title-fieldset resource-content flex-group-center flexrow desc">
+		<legend class="resource-text-m">{{localize 'Targets'}}</legend>
+		{{> 'systems/projectfu/templates/ui/partials/document-carousel.hbs' documents=targets}}
+	</fieldset>
+
 	<fieldset class="title-fieldset desc resource-content">
 		<legend class="resource-label-full">
 			<label class="resource-label-m">{{localize 'FU.Total'}}</label>
 		</legend>
-		<div class="flex-group-center">
-			<span id="total-damage">
-					<b>{{damage.total}} {{localize (lookup FU.damageTypes damage.type)}} + 0 {{localize 'FU.Extra'}}</b>
-			</span>
-			<i id="total-damage-icon" class="icon {{lookup FU.affIcon damage.type}}" style="flex: 0 1 auto;"></i>
+		<div id="total-damage" class="flex-group-center grid grid-5col flex3">
+			<div>
+				{{pfuBadge 'base' label='FU.Base' }}
+				<label id="base" class="detail total">{{damage.modifiers.0.amount}}</label>
+			</div>
+			<div>
+				{{pfuBadge 'hr' label='FU.HighRollAbbr' }}
+				<label id="hr" class="detail total">{{damage.hr}}</label>
+			</div>
+			<div>
+				{{pfuBadge 'mod' label='FU.Bonus' }}
+				<label id="extra" class="detail">0</label>
+			</div>
+			<div>
+				{{pfuBadge 'result' label='FU.Total' }}
+				<label id="total" class="detail">{{damage.total}}</label>
+			</div>
+			<div class="fu-icon__container">
+				<i id="damage-type-icon" class="fu-icon--m {{lookup FU.affIcon damage.type}}" style="flex: 0 1 auto;"></i>
+			</div>
 		</div>
 	</fieldset>
 
 	<fieldset class="title-fieldset desc resource-content">
-		<div class="desc flexrow flex-group-center">
+		<div class="flexrow flex-group-center">
 			<div class="form-group">
 				<label for="extra-damage">
 					<b>{{localize 'FU.Bonus'}}</b>
