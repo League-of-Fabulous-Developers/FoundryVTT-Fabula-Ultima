@@ -62,19 +62,16 @@
 }
 
 .projectfu .sheet-header .charname-container {
-	background: var(--pfu-color-app-name-section-fill);
 	margin-right: 1px;
 
 	border-radius: 0;
 	display: flex;
 	align-items: center;
-	padding: 0;
-	border: none #c1b7c7;
-	border-right: 3px groove #ffffff;
+	padding: 4px;
+	gap: 4px;
 
 	& input[type='text'] {
 		color: var(--pfu-color-app-name-section-content);
-		background: none;
 	}
 
 	& .charname input[type='text'] {
@@ -227,7 +224,7 @@
 	background-color: transparent;
 	border-color: transparent;
 	color: #000000;
-	height: 100%;
+	height: 50px;
 	border-bottom: 0;
 	margin: 0;
 }
