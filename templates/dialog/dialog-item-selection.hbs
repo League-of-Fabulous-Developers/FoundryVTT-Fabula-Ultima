@@ -82,7 +82,7 @@
 					<thead>
 					<tr>
 						<th></th>
-						<th>{{localize 'FU.Item'}}</th>
+						<th>{{localize 'FU.Entry'}}</th>
 						{{#if compendiumItems}}
 							<th>{{localize 'FU.CompendiumItem'}}</th>
 						{{/if}}
@@ -102,7 +102,7 @@
 							</td>
 							<td>
 								{{pfuItemAnchor item}}
-								<span data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
+								<span style="display: inline-block; min-width: 160px;" data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
 							</td>
 							{{#if @root.compendiumItems}}
 								<td>

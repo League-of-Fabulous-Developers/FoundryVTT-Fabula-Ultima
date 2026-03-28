@@ -26,7 +26,6 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { ProgressPipeline } from '../pipelines/progress-pipeline.mjs';
 import { FUBondChart } from '../ui/bond-chart.mjs';
 import { CodexBrowser } from '../ui/codex-browser.mjs';
-import { getSelected } from '../helpers/target-handler.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -69,7 +68,8 @@ export class FUPartySheet extends FUActorSheet {
 			activate: this.#activate,
 
 			addCodexEntry: this.#onAddCodexEntry,
-			importCodexEntry: this.#onImportCodexEntry,
+			importCodexActorEntry: this.#onImportCodexActorEntry,
+			importCodexJournalEntry: this.#onImportCodexJournalEntry,
 			forCodexEntry: this.#onCodexAction,
 			resetCodexTags: this.#onResetCodexTags,
 			browseUploadDirectory: this.onBrowseUploadDirectory,
@@ -356,7 +356,7 @@ export class FUPartySheet extends FUActorSheet {
 		}
 
 		// Update the code browser
-		this.codexBrowser.refresh(this.actor);
+		this.codexBrowser.refresh(this.actor, this.element);
 	}
 
 	/**
@@ -564,13 +564,41 @@ export class FUPartySheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async #onImportCodexEntry(event, target) {
-		const selected = await getSelected();
-		if (selected.length > 0) {
-			const confirm = await FoundryUtils.confirmDialog('FU.Import', `The following actors will be imported as codex entries: [${selected.map((a) => a.name)}]`);
+	static async #onImportCodexActorEntry(event, target) {
+		const selected = await FoundryUtils.selectActors();
+		if (selected) {
+			const content = await FoundryUtils.renderTemplate('common/document-list', {
+				message: 'The following actors will be imported as codex entries.',
+				documents: selected,
+			});
+			const confirm = await FoundryUtils.confirm('FU.Import', content);
 			if (confirm) {
 				for (const actor of selected) {
 					await this.codexBrowser.importActor(actor);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onImportCodexJournalEntry(event, target) {
+		// Built-in Foundry document selector
+		const selected = await FoundryUtils.selectJournalEntries();
+		if (selected) {
+			const pages = selected.flatMap((je) => je.pages.contents);
+			const content = await FoundryUtils.renderTemplate('common/document-list', {
+				message: 'The following journal entry pages will be imported as codex entries.',
+				documents: pages,
+			});
+			const confirm = await FoundryUtils.confirm('FU.Import', content);
+			if (confirm) {
+				for (const page of pages) {
+					await this.codexBrowser.importJournalEntryPage(page);
 				}
 			}
 		}

@@ -95,6 +95,10 @@
 			opacity: 1;
 			color: #ff9999;
 		}
+
+		i {
+			color: var(--pfu-color-app-control-fill-1);
+		}
 	}
 }
 

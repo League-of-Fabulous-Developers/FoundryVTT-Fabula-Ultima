@@ -46,6 +46,7 @@
 	--icon-fu-check-opposed: url('../../static/icons/checks/check_opposed.png');
 	--icon-fu-check-ritual: url('../../static/icons/checks/check_ritual.png');
 
+	--icon-fu-roll-base: url('../../static/icons/checks/roll_base.png');
 	--icon-fu-roll-difficulty: url('../../static/icons/checks/roll_difficulty.png');
 	--icon-fu-roll-high: url('../../static/icons/checks/roll_high.png');
 	--icon-fu-roll-modifier: url('../../static/icons/checks/roll_modifier.png');
@@ -166,6 +167,10 @@
 
 .fu-check-ritual {
 	background-image: var(--icon-fu-check-ritual);
+}
+
+.fu-roll-base {
+	background-image: var(--icon-fu-roll-base);
 }
 
 .fu-roll-difficulty {
@@ -445,7 +450,7 @@
 }
 
 .fu-weapon-enchant {
-	background-image: url('../../../static/icons/fus-weapon-enchant.svg');
+	background-image: url('../../static/icons/fus-weapon-enchant.svg');
 }
 
 .fu-damage {

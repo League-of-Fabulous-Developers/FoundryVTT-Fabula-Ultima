@@ -1797,14 +1797,13 @@
 }
 
 .title-fieldset.desc {
-	background: -webkit-gradient(linear, left top, right top, from(rgba(238, 244, 228, 0.5)), to(rgba(226, 237, 213, 0.5)));
-	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+	background: var(--pfu-color-app-detail-section-primary-fill-to-bottom);
 	border-radius: 10px;
-	border: 1px solid rgba(44, 74, 66, 0.3294117647);
+	color: var(--pfu-color-app-section-content-primary);
+	border: 1px solid var(--pfu-color-app-section-border);
 }
 
 .button-style {
-	display: -webkit-inline-box;
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	-webkit-box-pack: center;

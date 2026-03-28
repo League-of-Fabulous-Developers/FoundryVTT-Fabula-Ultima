@@ -72,10 +72,37 @@ export class CodexBrowser {
 		context.browser = this;
 	}
 
-	refresh(actor) {
+	/**
+	 * @param {FUActor} actor
+	 * @param {HTMLElement} element
+	 */
+	refresh(actor, element) {
 		this.actor = actor;
 		this.party = actor.system;
 		this.#linkPattern = undefined;
+		if (element) {
+			this.sortEntries(element);
+		}
+	}
+
+	/**
+	 * @param {HTMLElement} element
+	 */
+	sortEntries(element) {
+		const entries = element.querySelector('.tab.codex .entries');
+		if (entries) {
+			const items = [...entries.querySelectorAll('li.entry')];
+			items
+				.sort((a, b) => {
+					const indexA = Number(a.dataset.index);
+					const indexB = Number(b.dataset.index);
+					const entryA = this.party.codex.entries[indexA];
+					const entryB = this.party.codex.entries[indexB];
+					if (!entryA || !entryB) return 0;
+					return entryA.name.localeCompare(entryB.name);
+				})
+				.forEach((li) => entries.appendChild(li));
+		}
 	}
 
 	async resetTags() {
@@ -242,6 +269,11 @@ export class CodexBrowser {
 	 * @returns {Promise<void>}
 	 */
 	async importActor(actor) {
+		if (this.party.codex.resolveEntry(actor.name)) {
+			ui.notifications.warn(`Failed to import actor ${actor.name} as there's already an entry with that name.`);
+			return;
+		}
+
 		/** @type CodexEntryDataModel[] **/
 		const entries = this.party.codex.entries;
 		/** @type CodexEntryDataModel **/
@@ -251,6 +283,42 @@ export class CodexBrowser {
 			description: actor.system?.description ?? '',
 			tags: ['character'],
 		};
+		entries.push(entry);
+		await this.actor.update({ [`system.codex.entries`]: entries });
+	}
+
+	/**
+	 * @param {JournalEntryPageData} page
+	 * @returns {Promise<void>}
+	 */
+	async importJournalEntryPage(page) {
+		if (this.party.codex.resolveEntry(page.name)) {
+			ui.notifications.warn(`Failed to import journal entry page ${page.name} as there's already an entry with that name.`);
+			return;
+		}
+
+		/** @type CodexEntryDataModel[] **/
+		const entries = this.party.codex.entries;
+		/** @type CodexEntryDataModel **/
+		let entry = {
+			name: page.name,
+			tags: [],
+		};
+
+		switch (page.type) {
+			case 'image':
+				if (page.src) {
+					entry.img = page.src;
+				}
+				break;
+
+			case 'text':
+				if (page.text?.content) {
+					entry.description = page.text.content;
+				}
+				break;
+		}
+
 		entries.push(entry);
 		await this.actor.update({ [`system.codex.entries`]: entries });
 	}

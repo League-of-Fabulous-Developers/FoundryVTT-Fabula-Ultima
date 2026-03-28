@@ -30,6 +30,50 @@ export {};
  * @extends {DataModel<DocumentData, DocumentContext>}
  */
 
+/**
+ * @typedef JournalEntryData
+ * @property {string|null} _id                              The _id which uniquely identifies this JournalEntry document
+ * @property {string} name                                  The name of this JournalEntry
+ * @property {JournalEntryPageData[]} pages                 The pages contained within this JournalEntry document
+ * @property {string|null} folder                           The _id of a Folder which contains this JournalEntry
+ * @property {JournalEntryCategoryData[]} categories        The categories contained within this JournalEntry.
+ * @property {number} [sort]                                The numeric sort value which orders this JournalEntry
+ *                                                          relative to its siblings
+ * @property {object} [ownership]                           An object which configures ownership of this JournalEntry
+ * @property {DocumentFlags} flags                          An object of optional key/value flags
+ * @property {DocumentStats} _stats                         An object of creation and access information
+ */
+
+/**
+ * @typedef JournalEntryPageImageData
+ * @property {string} [caption]           A caption for the image.
+ */
+
+/**
+ * @typedef JournalEntryPageTextData
+ * @property {string} [content]           The content of the JournalEntryPage in a format appropriate for its type.
+ * @property {string} [markdown]          The original markdown source, if applicable.
+ * @property {number} format              The format of the page's content, in CONST.JOURNAL_ENTRY_PAGE_FORMATS.
+ */
+
+/**
+ * @typedef JournalEntryPageData
+ * @property {string|null} _id            The _id which uniquely identifies this JournalEntryPage embedded document.
+ * @property {string} name                The text name of this page.
+ * @property {'image'|'text'} type                The type of this page.
+ * @property {JournalEntryPageTitleData} title  Data that control's the display of this page's title.
+ * @property {JournalEntryPageImageData} image  Data particular to image journal entry pages.
+ * @property {JournalEntryPageTextData} text    Data particular to text journal entry pages.
+ * @property {JournalEntryPageVideoData} video  Data particular to video journal entry pages.
+ * @property {string} [src]               The URI of the image or other external media to be used for this page.
+ * @property {object} system              System-specific data.
+ * @property {string} [category]          An optional category that this page belongs to.
+ * @property {number} sort                The numeric sort value which orders this page relative to its siblings.
+ * @property {object} [ownership]         An object which configures the ownership of this page.
+ * @property {DocumentFlags} flags        An object of optional key/value flags
+ * @property {DocumentStats} _stats       An object of creation and access information
+ */
+
 // TODO: Figure out how to remove warnings
 /**
  * @global

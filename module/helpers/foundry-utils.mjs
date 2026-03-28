@@ -3,6 +3,7 @@ import { systemTemplatePath } from './system-utils.mjs';
 import { TextEditor } from './text-editor.mjs';
 import { CompendiumIndex } from '../ui/compendium/compendium-index.mjs';
 import { ObjectUtils } from './object-utils.mjs';
+import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 
 const { api, fields, handlebars } = foundry.applications;
 
@@ -451,7 +452,6 @@ export default class FoundryUtils {
 	}
 
 	/**
-	 *
 	 * @param {String} title
 	 * @param {String} message
 	 * @returns {Promise<Boolean>}
@@ -465,6 +465,28 @@ export default class FoundryUtils {
 			content: await this.renderTemplate('dialog/dialog-common', {
 				message: message,
 			}),
+			rejectClose: false,
+			yes: {
+				label: 'FU.Confirm',
+			},
+			no: {
+				label: 'FU.Cancel',
+			},
+		});
+	}
+
+	/**
+	 * @param {String} title
+	 * @param {String} content
+	 * @returns {Promise<Boolean>}
+	 */
+	static async confirm(title, content) {
+		return foundry.applications.api.DialogV2.confirm({
+			window: {
+				title: title,
+			},
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			content: content,
 			rejectClose: false,
 			yes: {
 				label: 'FU.Confirm',
@@ -647,6 +669,56 @@ export default class FoundryUtils {
 			fixed: true,
 			jQuery: false,
 		});
+	}
+
+	/**
+	 * @returns {Promise<JournalEntryData[]>}
+	 */
+	static async selectJournalEntries() {
+		const journals = game.journal.contents;
+		if (!journals.length) {
+			ui.notifications.warn('No journal entries found in this world.');
+			return;
+		}
+
+		const title = `${StringUtils.localize('CONTROLS.CommonSelect')} ${StringUtils.localize('DOCUMENT.JournalEntry')}`;
+
+		const data = {
+			title: title,
+			style: 'list',
+			items: journals,
+			getDescription: async (item) => {
+				const text = item.name ?? '';
+				return text;
+			},
+		};
+		const dialog = new ItemSelectionDialog(data);
+		return await dialog.open();
+	}
+
+	/**
+	 * @returns {Promise<FUActor[]>}
+	 */
+	static async selectActors() {
+		const actors = game.actors.contents;
+		if (!actors.length) {
+			ui.notifications.warn('No actors found in this world.');
+			return;
+		}
+		const title = `${StringUtils.localize('CONTROLS.CommonSelect')} ${StringUtils.localize('DOCUMENT.Actor')}`;
+
+		const data = {
+			title: title,
+			style: 'list',
+			items: actors,
+			getDescription: async (item) => {
+				const text = item.name ?? '';
+				return text;
+			},
+		};
+		const dialog = new ItemSelectionDialog(data);
+		const result = await dialog.open();
+		return result;
 	}
 
 	/**

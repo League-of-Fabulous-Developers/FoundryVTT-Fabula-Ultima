@@ -4,6 +4,14 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+
+	&.inset {
+		background: var(--pfu-color-control-active-fill);
+		border-radius: 4px;
+		padding: 4px;
+		aspect-ratio: 1 / 1;
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
 }
 
 .fu-icon__badge {
@@ -53,14 +61,14 @@
 }
 
 .fu-icon,
-.fu-icon--m,
-.fu-icon--s,
 .fu-icon--xs,
+.fu-icon--s,
+.fu-icon--sm,
+.fu-icon--m,
 .fu-icon--l {
-	/*display: inline-flex;*/
 	--icon-size: 100%;
 	line-height: 1;
-	font-size: var(--icon-size);
+	font-size: var(--icon-size) !important;
 	width: var(--icon-size);
 	height: var(--icon-size);
 	background-repeat: no-repeat;
@@ -68,6 +76,10 @@
 	background-size: contain;
 	pointer-events: none;
 	object-fit: contain;
+
+	&.glow {
+		filter: drop-shadow(0 0 4px var(--pfu-color-misc-shadow-highlight));
+	}
 }
 
 .fu-icon--xs {
@@ -75,6 +87,9 @@
 }
 .fu-icon--s {
 	--icon-size: 24px;
+}
+.fu-icon--sm {
+	--icon-size: 36px;
 }
 .fu-icon--m {
 	--icon-size: 48px;

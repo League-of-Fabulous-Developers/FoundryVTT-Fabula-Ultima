@@ -21,6 +21,9 @@ const POSITIVE_EMOTIONS = new Set(['admiration', 'loyalty', 'affection']);
 const RADIUS_SCALE = 0.65;
 const MINIMUM_RADIUS = 0.35;
 
+const MIN_ZOOM = 0.3;
+const MAX_ZOOM = 2;
+
 export class FUBondChart {
 	#container;
 	#svg;
@@ -29,6 +32,10 @@ export class FUBondChart {
 	#positions = new Map(); // id → {x, y}
 	#focusId = null;
 	#resizeObserver;
+	#zoom = 1;
+	#panOffset = { x: 0, y: 0 };
+	#panStart = { x: 0, y: 0 };
+	#isPanning = false;
 
 	/**
 	 * @param {HTMLElement}   container
@@ -49,6 +56,8 @@ export class FUBondChart {
 		// Place instantly on first render, no transition
 		this.#refocus(this.#focusId, true);
 		this.#bindNodeClicks();
+		this.#bindPanAndZoom();
+		this.#bindVisibility();
 
 		this.#resizeObserver = new ResizeObserver(() => {
 			this.#refocus(this.#focusId, true);
@@ -62,9 +71,25 @@ export class FUBondChart {
 			node.addEventListener('click', () => {
 				const id = node.dataset.id;
 				this.#focusId = id;
+				this.resetTransform();
 				this.#refocus(id);
 			});
 		});
+	}
+
+	#bindVisibility() {
+		const tabPanel = this.#container.closest('.tab');
+		if (!tabPanel) return;
+
+		const observer = new MutationObserver(() => {
+			const isVisible = !tabPanel.classList.contains('hidden') && tabPanel.style.display !== 'none';
+			if (isVisible) {
+				this.#refocus(this.#focusId, true);
+			}
+		});
+
+		observer.observe(tabPanel, { attributes: true, attributeFilter: ['class', 'style'] });
+		this.#resizeObserver = observer; // store to disconnect on destroy
 	}
 
 	#refocus(centerId, instant = false) {
@@ -153,19 +178,88 @@ export class FUBondChart {
 			});
 		});
 
-		setTimeout(() => this.#drawLines(), 420);
+		//setTimeout(() => this.#drawLines(), 420);
+
+		// Before
+		//setTimeout(() => this.#drawLines(), 420);
+
+		// After — positions are already known, no need to wait
+		this.#drawLines();
+	}
+
+	// ── Pan/Zoom  ───────────────────────────
+	#bindPanAndZoom() {
+		const el = this.#container;
+
+		// Pan — mousedown to start
+		el.addEventListener('mousedown', (e) => {
+			if (e.button !== 0 || e.target.closest('.pfu-bond-chart__node')) return;
+			this.#isPanning = true;
+			this.#panStart = {
+				x: e.clientX - this.#panOffset.x,
+				y: e.clientY - this.#panOffset.y,
+			};
+			el.style.cursor = 'grabbing';
+		});
+
+		// Pan — mousemove
+		window.addEventListener('mousemove', (e) => {
+			if (!this.#isPanning) return;
+			this.#panOffset = {
+				x: e.clientX - this.#panStart.x,
+				y: e.clientY - this.#panStart.y,
+			};
+			this.#applyTransform();
+		});
+
+		// Pan — mouseup to stop
+		window.addEventListener('mouseup', () => {
+			if (!this.#isPanning) return;
+			this.#isPanning = false;
+			el.style.cursor = '';
+		});
+
+		// Zoom — scroll wheel
+		el.addEventListener(
+			'wheel',
+			(e) => {
+				e.preventDefault();
+				const delta = e.deltaY > 0 ? -0.1 : 0.1;
+				this.#zoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, this.#zoom + delta));
+				this.#applyTransform();
+			},
+			{ passive: false },
+		);
+	}
+
+	#applyTransform() {
+		const inner = this.#container.querySelector('.pfu-bond-chart__inner');
+		if (!inner) return;
+		inner.style.transform = `translate(${this.#panOffset.x}px, ${this.#panOffset.y}px) scale(${this.#zoom})`;
+		inner.style.transformOrigin = 'center center';
+	}
+
+	resetTransform() {
+		this.#panOffset = { x: 0, y: 0 };
+		this.#zoom = 1;
+		this.#applyTransform();
 	}
 
 	// ── Node center (relative to container) ───────────────────────────
 	#nodeCenter(id) {
-		const node = this.#container.querySelector(`.pfu-bond-chart__node[data-id="${id}"]`);
-		if (!node) return null;
-		const cr = this.#container.getBoundingClientRect();
-		const nr = node.getBoundingClientRect();
-		return {
-			x: nr.left + nr.width / 2 - cr.left,
-			y: nr.top + nr.height / 2 - cr.top,
-		};
+		// Use stored logical positions instead of reading from DOM
+		const pos = this.#positions.get(id);
+		if (!pos) return null;
+		return { x: pos.x, y: pos.y };
+
+		// const node = this.#container.querySelector(`.pfu-bond-chart__node[data-id="${id}"]`);
+		// if (!node) return null;
+		// const cr = this.#container.getBoundingClientRect();
+		// const nr = node.getBoundingClientRect();
+		// return {
+		// 	x: nr.left + nr.width / 2 - cr.left,
+		// 	y: nr.top + nr.height / 2 - cr.top,
+		// };
 	}
 
 	#bondColor(pairings) {

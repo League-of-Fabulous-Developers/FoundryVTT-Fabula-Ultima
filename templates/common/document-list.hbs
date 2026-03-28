@@ -1,0 +1,13 @@
+{{#if message}}
+	<div class="fu-dialog__text">
+		{{{message}}}
+	</div>
+{{/if}}
+<ul class="desc">
+	{{#each documents as |document|}}
+		<li class="flexrow flex-group-center">
+			{{pfuItemAnchor document size="m"}}
+			<span>{{document.name}}</span>
+		</li>
+	{{/each}}
+</ul>
