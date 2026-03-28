@@ -90,6 +90,7 @@
 			opacity 0.12s,
 			background 0.12s;
 		flex-shrink: 0;
+		background: var(--pfu-color-app-control-fill);
 
 		&:hover {
 			opacity: 1;

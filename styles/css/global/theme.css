@@ -97,6 +97,7 @@
 	--pfu-color-app-section-primary-fill-1: #d4e7e8ff;
 	--pfu-color-app-section-primary-fill-2: #c3dbd6b3;
 	--pfu-color-app-section-primary-fill: linear-gradient(270deg, var(--pfu-color-app-section-primary-fill-1) 0%, var(--pfu-color-app-section-primary-fill-2) 100%);
+	--pfu-color-app-section-secondary-fill: linear-gradient(270deg, var(--pfu-color-app-section-primary-fill-2) 0%, var(--pfu-color-app-section-primary-fill-1) 100%);
 	--pfu-color-app-detail-section-content-primary: #272a2aff;
 	--pfu-color-app-detail-section-content-secondary: #2b4a42ff;
 	--pfu-color-app-detail-section-content-tertiary: #3d665aff;
