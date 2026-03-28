@@ -450,7 +450,7 @@
 }
 
 .fu-weapon-enchant {
-	background-image: url('../../../static/icons/fus-weapon-enchant.svg');
+	background-image: url('../../static/icons/fus-weapon-enchant.svg');
 }
 
 .fu-damage {
