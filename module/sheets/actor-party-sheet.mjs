@@ -566,8 +566,12 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #onImportCodexActorEntry(event, target) {
 		const selected = await FoundryUtils.selectActors();
-		if (selected.length > 0) {
-			const confirm = await FoundryUtils.confirmDialog('FU.Import', `The following actors will be imported as codex entries: [${selected.map((a) => a.name)}]`);
+		if (selected) {
+			const content = await FoundryUtils.renderTemplate('common/document-list', {
+				message: 'The following actors will be imported as codex entries.',
+				documents: selected,
+			});
+			const confirm = await FoundryUtils.confirm('FU.Import', content);
 			if (confirm) {
 				for (const actor of selected) {
 					await this.codexBrowser.importActor(actor);
@@ -587,7 +591,11 @@ export class FUPartySheet extends FUActorSheet {
 		const selected = await FoundryUtils.selectJournalEntries();
 		if (selected) {
 			const pages = selected.flatMap((je) => je.pages.contents);
-			const confirm = await FoundryUtils.confirmDialog('FU.Import', `The following journal entry pages will be imported as codex entries: [${pages.map((a) => a.name)}]`);
+			const content = await FoundryUtils.renderTemplate('common/document-list', {
+				message: 'The following journal entry pages will be imported as codex entries.',
+				documents: pages,
+			});
+			const confirm = await FoundryUtils.confirm('FU.Import', content);
 			if (confirm) {
 				for (const page of pages) {
 					await this.codexBrowser.importJournalEntryPage(page);

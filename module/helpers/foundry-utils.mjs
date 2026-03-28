@@ -452,7 +452,6 @@ export default class FoundryUtils {
 	}
 
 	/**
-	 *
 	 * @param {String} title
 	 * @param {String} message
 	 * @returns {Promise<Boolean>}
@@ -466,6 +465,28 @@ export default class FoundryUtils {
 			content: await this.renderTemplate('dialog/dialog-common', {
 				message: message,
 			}),
+			rejectClose: false,
+			yes: {
+				label: 'FU.Confirm',
+			},
+			no: {
+				label: 'FU.Cancel',
+			},
+		});
+	}
+
+	/**
+	 * @param {String} title
+	 * @param {String} content
+	 * @returns {Promise<Boolean>}
+	 */
+	static async confirm(title, content) {
+		return foundry.applications.api.DialogV2.confirm({
+			window: {
+				title: title,
+			},
+			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+			content: content,
 			rejectClose: false,
 			yes: {
 				label: 'FU.Confirm',
@@ -696,7 +717,8 @@ export default class FoundryUtils {
 			},
 		};
 		const dialog = new ItemSelectionDialog(data);
-		return await dialog.open();
+		const result = await dialog.open();
+		return result;
 	}
 
 	/**

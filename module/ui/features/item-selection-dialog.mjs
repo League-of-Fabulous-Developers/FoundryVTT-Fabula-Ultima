@@ -105,7 +105,7 @@ export class ItemSelectionDialog {
 							card.classList.toggle('selected', true);
 						}
 					}
-					this.#selectedItems = this.data.initial;
+					this.#selectedItems = this.data.items;
 					return false;
 				},
 				/** @param {Event} event
