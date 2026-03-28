@@ -28,8 +28,8 @@
 		</div>
 
 		<ul class="entries content">
-			{{#each (pfuSortArray system.codex.entries 'name') as |entry index|}}
-				<li class="section-container entry {{#if (and entry.hidden (not @root.user.isGM))}}hidden{{/if}} " data-index="{{index}}">
+			{{#each browser.entries as |entry index|}}
+				<li class="section-container entry {{#if (and entry.hidden (not @root.user.isGM))}}hidden{{/if}} " data-index="{{index}}" data-name="{{entry.name}}">
 					<div class="left">
 						<a data-action="forCodexEntry"
 						   data-type="view"

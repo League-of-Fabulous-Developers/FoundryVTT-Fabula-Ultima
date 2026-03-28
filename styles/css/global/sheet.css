@@ -133,15 +133,13 @@
 }
 
 .projectfu .sheet-header .header-fields .header-start {
-	border-top-right-radius: 12px;
-	border: 1px solid rgba(44, 74, 66, 0.3294117647);
 }
 
 .projectfu .sheet-header .header-fields .header-center {
 	border-radius: 0 0 12px 0;
-	padding: 4px 0;
+	padding: 8px;
 	grid-row-gap: 2px;
-	height: 147px;
+	gap: 4px;
 }
 
 .projectfu .sheet-header .header-fields .header-center.item-header {

@@ -244,7 +244,7 @@ h4.divider::after {
 	--border-primary: var(--pfu-color-app-section-divider);
 	--table-row-color-odd: transparent;
 	--table-row-color-even: rgba(0, 0, 0, 0.1);
-	--table-background-color: var(--pfu-color-control-content);
+	--table-background-color: var(--pfu-color-app-detail-section-primary-fill-to-right);
 	--checkbox-font-weight: bold;
 
 	& input[type='checkbox'],

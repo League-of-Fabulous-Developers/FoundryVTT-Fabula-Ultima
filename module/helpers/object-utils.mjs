@@ -76,6 +76,15 @@ function deepFreeze(obj) {
 	return Object.freeze(obj);
 }
 
+/**
+ * @param {Object[]} array
+ * @param {String} property
+ * @returns {*[]}
+ */
+function sortArray(array, property) {
+	return [...array].sort((a, b) => (a[property] > b[property] ? 1 : -1));
+}
+
 export const ObjectUtils = Object.freeze({
 	mergeRecursive,
 	getProperty,
@@ -83,4 +92,5 @@ export const ObjectUtils = Object.freeze({
 	cleanObject,
 	pick,
 	deepFreeze,
+	sortArray,
 });

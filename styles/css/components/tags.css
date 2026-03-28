@@ -101,12 +101,11 @@
 			border-color 0.1s;
 
 		&:hover {
-			background: color-mix(in srgb, var(--pfu-color-control-fill) 70%, white);
-			color: color-mix(in srgb, var(--pfu-color-control-content) 70%, white);
+			filter: brightness(1.2);
 		}
 
 		&.active {
-			background: color-mix(in srgb, var(--pfu-color-control-fill) 70%, black);
+			background: color-mix(in srgb, var(--pfu-color-app-control-active-shadow) 70%, white);
 			color: color-mix(in srgb, var(--pfu-color-control-content) 70%, white);
 		}
 	}

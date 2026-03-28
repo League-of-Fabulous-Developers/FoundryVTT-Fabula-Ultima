@@ -4,6 +4,7 @@ import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { FileUtils } from '../helpers/file-utils.mjs';
+import { ObjectUtils } from '../helpers/object-utils.mjs';
 
 export class CodexBrowser {
 	/** @type FUPartySheet **/
@@ -12,6 +13,11 @@ export class CodexBrowser {
 	actor;
 	/** @type PartyDataModel **/
 	party;
+	/**
+	 * @type CodexEntryDataModel[]
+	 * @remarks These are sorted by name. Only to be used for rendering.
+	 **/
+	#entries;
 
 	/** @type RegExp **/
 	#linkPattern;
@@ -72,9 +78,14 @@ export class CodexBrowser {
 		context.browser = this;
 	}
 
+	get entries() {
+		return this.#entries;
+	}
+
 	refresh(actor) {
 		this.actor = actor;
 		this.party = actor.system;
+		this.#entries = ObjectUtils.sortArray(this.party.codex.entries, 'name');
 		this.#linkPattern = undefined;
 	}
 
@@ -107,7 +118,7 @@ export class CodexBrowser {
 
 			for (const li of entries.querySelectorAll('li.entry')) {
 				const index = li.dataset.index;
-				const entry = this.party.codex.entries[index];
+				const entry = this.#entries[index];
 				if (!entry) {
 					return;
 				}
@@ -149,7 +160,7 @@ export class CodexBrowser {
 	async handleContextAction(event, target) {
 		const { type, index } = target.dataset;
 		/** @type CodexEntryDataModel[] **/
-		const entries = this.party.codex.entries;
+		const entries = this.#entries;
 		/** @type CodexEntryDataModel **/
 		let entry = entries[index];
 		if (!entry) {

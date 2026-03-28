@@ -192,7 +192,7 @@ export const FUHandlebars = Object.freeze({
 			return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
 		});
 
-		Handlebars.registerHelper('pfuSortArray', (array, key) => {
+		Handlebars.registerHelper('pfuSort', (array, key) => {
 			return [...array].sort((a, b) => (a[key] > b[key] ? 1 : -1));
 		});
 
