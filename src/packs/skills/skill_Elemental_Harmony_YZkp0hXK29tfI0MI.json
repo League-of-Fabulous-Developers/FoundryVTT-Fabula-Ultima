@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><p><strong>Target Restores:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p>",
+    "description": "<p>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><p><em>Automatically applied to invocations while an elemental is in the encounter.</em></p>",
     "isFavored": {
       "value": false
     },
@@ -55,12 +55,21 @@
     },
     "fuid": "elemental-harmony",
     "cost": {
-      "resource": "mp",
-      "amount": 0
+      "resource": "hp",
+      "amount": ""
     },
     "targeting": {
       "rule": "self",
       "max": 0
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "resource": {
+      "enabled": true,
+      "amount": "$sl*5"
     }
   },
   "effects": [
@@ -142,7 +151,7 @@
       "_id": "oiSxoi3ydH5Pqfsf",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -166,8 +175,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774599955799,
-        "modifiedTime": 1774600174757,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1774632394950,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!YZkp0hXK29tfI0MI.oiSxoi3ydH5Pqfsf"
     }
@@ -190,7 +199,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1770413743107,
+    "modifiedTime": 1774632816973,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

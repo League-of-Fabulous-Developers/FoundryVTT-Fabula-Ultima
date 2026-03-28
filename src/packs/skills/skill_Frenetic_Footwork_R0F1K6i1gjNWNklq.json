@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
+    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
     "isFavored": {
       "value": false
     },
@@ -123,10 +123,106 @@
       "rule": "self"
     },
     "effects": {
-      "entries": []
+      "entries": [],
+      "duration": {
+        "interval": null
+      }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Frenetic Footwork",
+      "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
+      "origin": "Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "UVnwu1cz8dSPJr5d": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Z4rUnFJNpo2KHzoP",
+                "type": "featureRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "dance"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "_id": "UVnwu1cz8dSPJr5d",
+              "actions": {
+                "2VN9owlCXPc4EBfm": {
+                  "type": "messageRuleAction",
+                  "_id": "2VN9owlCXPc4EBfm",
+                  "message": "<p>If this dance has a <strong>duration</strong> of \"Until the start of your next turn\", gain @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]{Frenetic Footwork}.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "frz0tJqw9gxnqgLX",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Frenetic Footwork",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq",
+            "effectUuid": null,
+            "fuid": "frenetic-footwork"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774645552403,
+        "modifiedTime": 1774645650491,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!R0F1K6i1gjNWNklq.frz0tJqw9gxnqgLX"
+    }
+  ],
   "sort": 400000,
   "ownership": {
     "default": 0,
@@ -143,7 +239,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706560364056,
-    "modifiedTime": 1770277385895,
+    "modifiedTime": 1774645542158,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

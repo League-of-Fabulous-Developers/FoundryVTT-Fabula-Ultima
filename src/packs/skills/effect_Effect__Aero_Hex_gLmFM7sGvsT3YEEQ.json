@@ -44,7 +44,8 @@
             "id": "",
             "name": "",
             "style": "basic"
-          }
+          },
+          "elements": {}
         }
       },
       "changes": [
@@ -75,7 +76,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744520063950,
-        "modifiedTime": 1770633243403,
+        "modifiedTime": 1774637130808,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

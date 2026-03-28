@@ -3,7 +3,7 @@
   "name": "Golem Dance",
   "type": "classFeature",
   "_id": "YN5ZFhKRnqq381I7",
-  "img": "icons/magic/earth/construct-stone.webp",
+  "img": "icons/creatures/magical/construct-stone-earth-gray.webp",
   "system": {
     "summary": {
       "value": ""
@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>You Receive:</strong> @TYPE[affinity bolt resistance e:sot i:1 t:source]{Golem Dance: Resistance} or @TYPE[damage all bolt e:sot i:1 t:source]{Golem Dance: Damage}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.Jhppf0TyPKJgfxUS]{Golem Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.AYjd1XWMIMXSHzAr]{Golem Dance (Damage)}</p>",
       "duration": "nextTurn"
     },
     "source": "FUHF144",
@@ -34,7 +34,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710175451986,
-    "modifiedTime": 1770279701747,
+    "modifiedTime": 1774641509355,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -127,7 +127,7 @@
       "_id": "gfLbsAulc8lLMAn9",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>When you perform an <strong>invocation</strong>, you may spend up to <strong>【SL × 10】</strong>additional MP. For every 10 MP you spend this way, the invocation may target an additional creature you can see.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -151,8 +151,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774600212153,
-        "modifiedTime": 1774600476408,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "modifiedTime": 1774634186827,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!OQaLTvDV59JKnFqO.gfLbsAulc8lLMAn9"
     }

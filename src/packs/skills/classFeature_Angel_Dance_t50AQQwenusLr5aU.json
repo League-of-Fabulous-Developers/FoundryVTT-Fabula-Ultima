@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>light</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>light</strong>.</p><hr /><p><strong>You Spend:</strong> @LOSS[10 mp] or @LOSS[5 mp]<br /><strong>You Receive:</strong> @TYPE[affinity light resistance e:sot i:1 t:source]{Angel Dance: Resistance} or @TYPE[damage all light e:sot i:1 t:source]{Angel Dance: Damage}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>light</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>light</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.tSDWgpPtvuxhxeSq]{Angel Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.pTGmqlUV6EvHquoQ]{Angel Dance (Damage)}</p>",
       "duration": "nextTurn"
     },
     "source": "FUHF144",
@@ -34,7 +34,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710041769185,
-    "modifiedTime": 1770280324338,
+    "modifiedTime": 1774641156716,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

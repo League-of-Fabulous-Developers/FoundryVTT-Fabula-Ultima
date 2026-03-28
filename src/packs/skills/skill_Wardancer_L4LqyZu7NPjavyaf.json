@@ -123,7 +123,101 @@
       "rule": "self"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Wardancer",
+      "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
+      "origin": "Compendium.projectfu.skills.Item.L4LqyZu7NPjavyaf",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "EXPigphbqPwAnChg": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "K7P3wpsKrjDXOxro",
+                "type": "featureRuleTrigger",
+                "eventRelation": "source",
+                "traits": {
+                  "entries": [
+                    "dance"
+                  ],
+                  "quantifier": "any"
+                }
+              },
+              "_id": "EXPigphbqPwAnChg",
+              "predicates": {},
+              "actions": {
+                "4f4lnGLdlQim8PGT": {
+                  "type": "messageRuleAction",
+                  "_id": "4f4lnGLdlQim8PGT",
+                  "message": "<p>You gain @EFFECT[Compendium.projectfu.skills.Item.T9rvLMTdI2aICL1u]{Wardancer}</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "eX4Bhumd0lleMsZF",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane </strong>weapon equipped<strong>, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Wardancer",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.L4LqyZu7NPjavyaf",
+            "effectUuid": null,
+            "fuid": "wardancer"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774642758608,
+        "modifiedTime": 1774645688694,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!L4LqyZu7NPjavyaf.eX4Bhumd0lleMsZF"
+    }
+  ],
   "sort": 300000,
   "ownership": {
     "default": 0,
