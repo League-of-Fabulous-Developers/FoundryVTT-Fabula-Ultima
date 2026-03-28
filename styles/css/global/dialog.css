@@ -1,5 +1,7 @@
 /*		DIALOGS		*/
 .fu-dialog {
+	max-height: 768px;
+
 	prose-mirror.editor.prosemirror.active div.editor-container div.editor-content.ProseMirror {
 		background: var(--pfu-color-app-body-content);
 		border: 1px solid var(--pfu-color-app-border);
