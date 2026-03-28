@@ -121,7 +121,7 @@ export class ThemeMenu extends FUApplication {
 						action: 'import',
 						icon: 'fas fa-file-import',
 						label: game.i18n.localize('FU.Import'),
-						callback: (event, button, dialog) => {
+						callback: async (event, button, dialog) => {
 							const fileInput = dialog.element.querySelector('input[type="file"]');
 
 							if (!fileInput?.files?.length) {
@@ -129,7 +129,9 @@ export class ThemeMenu extends FUApplication {
 								return false; // Keeps dialog open
 							}
 
-							return FileUtils.readTextFromFile(fileInput.files[0]).then((json) => Theme.fromJSON(json));
+							const file = fileInput.files[0];
+							const theme = await FileUtils.readTextFromFile(file).then((json) => Theme.fromJSON(json));
+							return theme;
 						},
 					},
 					{
@@ -155,19 +157,16 @@ export class ThemeMenu extends FUApplication {
 	static async #importTheme(event, target) {
 		const theme = await ThemeMenu.importFromJSONDialog();
 		if (!theme) {
-			console.warn(`Failed to import theme`);
+			ui.notifications.warn(`Failed to import theme from the selected file.`);
 			return;
 		}
 
+		const themeName = theme.name ?? 'Custom';
 		const form = target.closest('form');
 		const select = form.querySelector('select[name="theme"]');
-		const value = select?.value;
-		if (!value) {
-			console.warn(`No theme was selected to import.`);
-			return;
-		}
+		select.value = themeName;
 		this.setThemeFields(form, theme);
-		ui.notifications.info(`Imported theme ${value}`);
+		ui.notifications.info(`Imported custom theme '${themeName}'`);
 	}
 
 	/**
