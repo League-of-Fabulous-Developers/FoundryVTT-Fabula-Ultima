@@ -57,6 +57,7 @@ export class FUBondChart {
 		this.#refocus(this.#focusId, true);
 		this.#bindNodeClicks();
 		this.#bindPanAndZoom();
+		this.#bindVisibility();
 
 		this.#resizeObserver = new ResizeObserver(() => {
 			this.#refocus(this.#focusId, true);
@@ -74,6 +75,21 @@ export class FUBondChart {
 				this.#refocus(id);
 			});
 		});
+	}
+
+	#bindVisibility() {
+		const tabPanel = this.#container.closest('.tab');
+		if (!tabPanel) return;
+
+		const observer = new MutationObserver(() => {
+			const isVisible = !tabPanel.classList.contains('hidden') && tabPanel.style.display !== 'none';
+			if (isVisible) {
+				this.#refocus(this.#focusId, true);
+			}
+		});
+
+		observer.observe(tabPanel, { attributes: true, attributeFilter: ['class', 'style'] });
+		this.#resizeObserver = observer; // store to disconnect on destroy
 	}
 
 	#refocus(centerId, instant = false) {
@@ -225,14 +241,19 @@ export class FUBondChart {
 
 	// ── Node center (relative to container) ───────────────────────────
 	#nodeCenter(id) {
-		const node = this.#container.querySelector(`.pfu-bond-chart__node[data-id="${id}"]`);
-		if (!node) return null;
-		const cr = this.#container.getBoundingClientRect();
-		const nr = node.getBoundingClientRect();
-		return {
-			x: nr.left + nr.width / 2 - cr.left,
-			y: nr.top + nr.height / 2 - cr.top,
-		};
+		// Use stored logical positions instead of reading from DOM
+		const pos = this.#positions.get(id);
+		if (!pos) return null;
+		return { x: pos.x, y: pos.y };
+
+		// const node = this.#container.querySelector(`.pfu-bond-chart__node[data-id="${id}"]`);
+		// if (!node) return null;
+		// const cr = this.#container.getBoundingClientRect();
+		// const nr = node.getBoundingClientRect();
+		// return {
+		// 	x: nr.left + nr.width / 2 - cr.left,
+		// 	y: nr.top + nr.height / 2 - cr.top,
+		// };
 	}
 
 	#bondColor(pairings) {
