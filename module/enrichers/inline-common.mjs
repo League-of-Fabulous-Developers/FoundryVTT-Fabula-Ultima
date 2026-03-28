@@ -135,9 +135,16 @@ const inlineCodexEnricher = {
 	onRender: async (element) => {
 		const renderContext = await InlineHelper.getRenderContext(element);
 		const entry = renderContext.dataset.entry;
-		element.addEventListener('click', async function (event) {
-			return FUPartySheet.viewCodexEntry(entry);
-		});
+
+		element._codexAbort?.abort();
+		element._codexAbort = new AbortController();
+		element.addEventListener(
+			'click',
+			async function (event) {
+				return FUPartySheet.viewCodexEntry(entry);
+			},
+			{ signal: element._codexAbort.signal },
+		);
 	},
 };
 
