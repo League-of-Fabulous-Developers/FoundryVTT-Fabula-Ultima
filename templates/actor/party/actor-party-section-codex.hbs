@@ -21,14 +21,18 @@
 					<span>{{localize 'FU.Add'}}</span>
 				</button>
 
-				<button class="import-codex-entry" data-action="importCodexEntry">
-					<span>{{localize 'FU.Import'}}</span>
+				<button class="import-codex-entry" data-action="importCodexActorEntry">
+					<span>{{localize 'FU.Import'}} {{localize 'FU.Actor'}}</span>
+				</button>
+
+				<button class="import-codex-entry" data-action="importCodexJournalEntry">
+					<span>{{localize 'FU.Import'}} {{localize 'DOCUMENT.JournalEntry'}}</span>
 				</button>
 			</div>
 		</div>
 
 		<ul class="entries content">
-			{{#each browser.entries as |entry index|}}
+			{{#each system.codex.entries as |entry index|}}
 				<li class="section-container entry {{#if (and entry.hidden (not @root.user.isGM))}}hidden{{/if}} " data-index="{{index}}" data-name="{{entry.name}}">
 					<div class="left">
 						<a data-action="forCodexEntry"

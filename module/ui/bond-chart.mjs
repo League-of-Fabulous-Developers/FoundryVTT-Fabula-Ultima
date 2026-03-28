@@ -178,7 +178,13 @@ export class FUBondChart {
 			});
 		});
 
-		setTimeout(() => this.#drawLines(), 420);
+		//setTimeout(() => this.#drawLines(), 420);
+
+		// Before
+		//setTimeout(() => this.#drawLines(), 420);
+
+		// After — positions are already known, no need to wait
+		this.#drawLines();
 	}
 
 	// ── Pan/Zoom  ───────────────────────────

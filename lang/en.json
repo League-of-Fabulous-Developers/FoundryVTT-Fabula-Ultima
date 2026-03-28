@@ -1935,6 +1935,7 @@
 		"Codex": "Codex",
 		"Tags": "Tags",
 		"Hidden": "Hidden",
+		"Entry": "Entry",
 		"BrowseImage": "Browse Image",
 		"UploadClipboardImage": "Upload Clipboard Image",
 		"CodexUploadDirectory": "Codex Upload Directory",
