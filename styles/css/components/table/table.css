@@ -13,6 +13,7 @@
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-column: 1 / -1;
+		align-items: center;
 	}
 
 	.fu-table__row--deeply-nested {
