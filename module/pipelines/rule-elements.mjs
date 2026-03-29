@@ -58,6 +58,7 @@ import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-t
 import { FUItem } from '../documents/items/item.mjs';
 import { RenderMessageRuleTrigger } from '../documents/effects/triggers/render-message-rule-trigger.mjs';
 import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigger.mjs';
+import { FlagRulePredicate } from '../documents/effects/predicates/flag-rule-predicate.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
@@ -110,6 +111,7 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, TraitsRulePredicate.TYPE, TraitsRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, SpellRulePredicate.TYPE, SpellRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, CheckRulePredicate.TYPE, CheckRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, FlagRulePredicate.TYPE, FlagRulePredicate);
 }
 
 /**

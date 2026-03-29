@@ -72,4 +72,10 @@ export const FlagUtility = Object.freeze({
 			value: value,
 		};
 	},
+	hasSystemFlag: (document, flag) => {
+		if (document.getFlag) {
+			return document.getFlag(systemId, flag) !== undefined;
+		}
+		return false;
+	},
 });
