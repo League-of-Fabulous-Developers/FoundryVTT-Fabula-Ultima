@@ -367,7 +367,7 @@ const defaultTheme = Object.freeze({
 	uiAccentImage: '',
 	appBgImage: systemAssetPath(`ui/HojitasDouble_highres.png`),
 	appSectionBgImage: '',
-	sidebarBgImage: systemAssetPath('ui/pattern_hojita_half.png'),
+	sidebarBgImage: systemAssetPath('ui/patterns/pattern_hojita_half.png'),
 
 	colorMiscShadowPrimary: '#77ebd7ff',
 	colorMiscShadowHighlight: '#E03A3AFF',
