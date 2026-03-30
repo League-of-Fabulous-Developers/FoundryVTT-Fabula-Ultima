@@ -70,6 +70,12 @@ export class CodexBrowser {
 	 */
 	async prepareContext(context) {
 		context.browser = this;
+		context.playingSounds = new Set(
+			game.playlists.contents
+				.flatMap((p) => p.sounds.contents)
+				.filter((s) => s.playing)
+				.map((s) => s.name),
+		);
 	}
 
 	/**
@@ -223,6 +229,12 @@ export class CodexBrowser {
 
 			case 'playSound':
 				await entry.playSound();
+				this.sheet.render({ parts: ['codex'] });
+				break;
+
+			case 'stopSound':
+				await entry.stopSound();
+				this.sheet.render({ parts: ['codex'] });
 				break;
 		}
 	}

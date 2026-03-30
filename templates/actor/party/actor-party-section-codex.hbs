@@ -62,11 +62,19 @@
 									<i class="fu-icon--xs fas fa-comment"></i>
 								</button>
 								{{#if (and entry.audio.path @root.isGM)}}
-									<button data-action="forCodexEntry"
-											data-type="playSound"
-											data-index="{{index}}">
-										<i class="fu-icon--xs fas fa-play"></i>
-									</button>
+									{{#if (pfuCollectionContains entry.name ../playingSounds)}}
+										<button data-action="forCodexEntry"
+												data-type="stopSound"
+												data-index="{{index}}">
+											<i class="fu-icon--xs fas fa-stop"></i>
+										</button>
+									{{else}}
+										<button data-action="forCodexEntry"
+												data-type="playSound"
+												data-index="{{index}}">
+											<i class="fu-icon--xs fas fa-play"></i>
+										</button>
+									{{/if}}
 								{{/if}}
 								<button data-action="removeArrayElement"
 										data-prompt="true"

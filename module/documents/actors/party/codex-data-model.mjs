@@ -35,6 +35,10 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 		return super.migrateData(source);
 	}
 
+	static get PLAYLIST() {
+		return `Fabula Ultima - ${StringUtils.localize('FU.Codex')}`;
+	}
+
 	/**
 	 * @param {Boolean} broadcast Whether to play the sound for all connected clients.
 	 * @returns {Promise<PlaylistSound|undefined>}
@@ -43,12 +47,11 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 		if (!this.audio.path) return;
 
 		// Find or create a dedicated playlist for this module
-		const playlistName = `Fabula Ultima - ${StringUtils.localize('FU.Codex')}`;
-		let playlist = game.playlists.getName(playlistName);
+		let playlist = game.playlists.getName(CodexEntryDataModel.PLAYLIST);
 		if (!playlist) {
 			// eslint-disable-next-line no-undef
 			playlist = await Playlist.create({
-				name: playlistName,
+				name: CodexEntryDataModel.PLAYLIST,
 				mode: CONST.PLAYLIST_MODES.DISABLED, // manual control only
 			});
 		}
@@ -80,6 +83,18 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 
 		// Play via the playlist, which handles broadcast automatically
 		return playlist.playSound(sound);
+	}
+
+	async stopSound() {
+		if (!this.audio?.path) return;
+
+		const playlist = game.playlists.getName(CodexEntryDataModel.PLAYLIST);
+		if (!playlist) return;
+
+		const sound = playlist.sounds.find((s) => s.path === this.audio.path);
+		if (!sound) return;
+
+		return playlist.stopSound(sound);
 	}
 }
 
