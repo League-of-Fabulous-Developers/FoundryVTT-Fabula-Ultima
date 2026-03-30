@@ -229,12 +229,12 @@ export class CodexBrowser {
 
 			case 'playSound':
 				await entry.playSound();
-				this.sheet.render({ parts: ['codex'] });
+				this.sheet.render(true);
 				break;
 
 			case 'stopSound':
 				await entry.stopSound();
-				this.sheet.render({ parts: ['codex'] });
+				this.sheet.render(true);
 				break;
 		}
 	}
