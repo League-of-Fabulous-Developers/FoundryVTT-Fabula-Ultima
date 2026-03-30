@@ -61,12 +61,6 @@
 										data-index="{{index}}">
 									<i class="fu-icon--xs fas fa-comment"></i>
 								</button>
-								<button data-action="removeArrayElement"
-										data-prompt="true"
-										data-label="{{localize 'FU.CodexEntry'}}"
-										data-path="system.codex.entries"
-										data-index="{{index}}"
-										title="FU.Delete">✕</button>
 								{{#if (and entry.audio.path @root.isGM)}}
 									<button data-action="forCodexEntry"
 											data-type="playSound"
@@ -74,6 +68,13 @@
 										<i class="fu-icon--xs fas fa-play"></i>
 									</button>
 								{{/if}}
+								<button data-action="removeArrayElement"
+										data-prompt="true"
+										data-label="{{entry.name}}"
+										data-path="system.codex.entries"
+										data-index="{{index}}"
+										title="Delete">✕
+								</button>
 							</div>
 						{{/if}}
 					</div>
