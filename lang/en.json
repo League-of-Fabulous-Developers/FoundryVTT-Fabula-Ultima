@@ -1934,6 +1934,7 @@
 		"OptionArcanumPulseHint": "Whether to add pulses to arcanums as per the playtest materials.",
 		"Summon": "Summon",
 		"Codex": "Codex",
+		"CodexEntry": "Codex Entry",
 		"Tags": "Tags",
 		"Hidden": "Hidden",
 		"Entry": "Entry",

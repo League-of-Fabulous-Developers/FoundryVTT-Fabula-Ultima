@@ -1,8 +1,16 @@
 <fieldset>
-	<label class="pfu-dialog__input">
-		<span>{{localize "FU.Name"}}</span>
-		<input type="text" name="name" value="{{entry.name}}" />
-	</label>
+
+	<div class="flexrow flex-group-center">
+		<label class="pfu-dialog__input">
+			<span>{{localize "FU.Name"}}</span>
+			<input type="text" name="name" value="{{entry.name}}" />
+		</label>
+
+		<label class="pfu-dialog__input">
+			<span>{{localize "FU.Hidden"}}</span>
+			<input type="checkbox" name="hidden" {{checked entry.hidden}} />
+		</label>
+	</div>
 
 	<div class="pfu-dialog__input">
 		<span>{{localize "FU.Tags"}}</span>
@@ -42,8 +50,44 @@
 	</div>
 
 	<label class="pfu-dialog__input">
-		<span>{{localize "FU.Hidden"}}</span>
-		<input type="checkbox" name="hidden" {{checked entry.hidden}} />
+		<span>{{localize "Sound"}}</span>
+		<div class="grid-2col gap-16">
+
+			<div class="fu-form__property-row">
+				<label class="fu-form__property">
+					<span>{{localize 'PLAYLIST_SOUND.FIELDS.path.label'}}</span>
+					<input type="text" name="audio.path" value="{{entry.audio.path}}">
+					<button type="button" data-action="browse"
+							data-type="audio"
+							data-tooltip="FU.Browse"
+							data-name="audio.path">
+						<i class="fas fa-file-audio"></i>
+					</button>
+				</label>
+				<label class="fu-form__property">
+					<span>{{localize 'PLAYLIST_SOUND.FIELDS.channel.label'}}</span>
+					<select name="audio.channel" class="">
+						{{selectOptions audioChannels selected=entry.audio.channel localize=true}}
+					</select>
+				</label>
+			</div>
+
+			<div class="fu-form__property-row">
+				<label class="fu-form__property">
+					<span>{{localize 'PLAYLIST_SOUND.FIELDS.repeat.label'}}</span>
+					<input type="checkbox" name="audio.repeat" {{checked entry.audio.repeat}} />
+				</label>
+				<label class="fu-form__property">
+					<span>{{localize 'PLAYLIST_SOUND.FIELDS.volume.label'}}</span>
+					<div class="form-fields">
+						<input type="range"
+							   name="audio.volume"
+							   value="{{entry.audio.volume}}"
+							   min="0" max="1" step="0.05" />
+					</div>
+				</label>
+			</div>
+		</div>
 	</label>
 
 	<div class="pfu-dialog__input">

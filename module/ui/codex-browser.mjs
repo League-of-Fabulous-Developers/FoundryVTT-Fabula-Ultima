@@ -182,11 +182,6 @@ export class CodexBrowser {
 		if (!entry) {
 			return;
 		}
-		if (entry.toObject) {
-			entry = entry.toObject();
-		}
-		entry = foundry.utils.deepClone(entry);
-
 		switch (type) {
 			case 'view':
 				{
@@ -196,6 +191,10 @@ export class CodexBrowser {
 
 			case 'edit':
 				{
+					if (entry.toObject) {
+						entry = entry.toObject();
+					}
+					entry = foundry.utils.deepClone(entry);
 					const ok = await this.editCodexEntry(entry);
 					if (ok) {
 						entries[index] = entry;
@@ -220,6 +219,10 @@ export class CodexBrowser {
 
 			case 'display':
 				FoundryUtils.popoutImage(entry.img, entry.name);
+				break;
+
+			case 'playSound':
+				await entry.playSound();
 				break;
 		}
 	}
@@ -333,6 +336,10 @@ export class CodexBrowser {
 		const context = {
 			entry,
 			tags: this.party.codex.tags,
+			audioChannels: Object.entries(CONST.AUDIO_CHANNELS).reduce((channels, [key, value]) => {
+				channels[key] = game.i18n.localize(value);
+				return channels;
+			}, {}),
 		};
 		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-edit-codex-entry', context);
 
@@ -380,6 +387,13 @@ export class CodexBrowser {
 					description: dialog.element.querySelector('[name="description"]').value.trim(),
 					notes: dialog.element.querySelector('[name="notes"]').value.trim(),
 					hidden: dialog.element.querySelector('[name="hidden"]').checked,
+
+					audio: {
+						path: dialog.element.querySelector('[name="audio.path"]').value.trim(),
+						volume: parseFloat(dialog.element.querySelector('[name="audio.volume"]').value),
+						channel: dialog.element.querySelector('[name="audio.channel"]').value.trim(),
+						repeat: dialog.element.querySelector('[name="audio.repeat"]').checked,
+					},
 				}),
 			},
 		});
@@ -392,6 +406,9 @@ export class CodexBrowser {
 		entry.description = result.description;
 		entry.hidden = result.hidden;
 		entry.notes = result.notes;
+
+		entry.audio = result.audio;
+
 		return true;
 	}
 
