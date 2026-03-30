@@ -269,7 +269,7 @@ Hooks.once('init', async () => {
 
 	CONFIG.Actor.trackableAttributes = {
 		character: {
-			bar: ['resources.hp', 'resources.mp', 'resources.ip', 'clocks.brainwave'],
+			bar: ['resources.hp', 'resources.mp', 'resources.ip', 'clocks.brainwave', 'clocks.garden'],
 			value: ['resources.fp.value', 'resources.exp.value'],
 		},
 		npc: {
