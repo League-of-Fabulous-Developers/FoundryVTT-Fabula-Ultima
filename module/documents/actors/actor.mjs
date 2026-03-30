@@ -566,6 +566,29 @@ export class FUActor extends Actor {
 		return null;
 	}
 
+	/**
+	 * @returns {Record<string, ProgressDataModel>}
+	 */
+	get tracks() {
+		let result = {};
+		// Search items
+		const items = this.items.values();
+		for (const item of items) {
+			const progress = item.getProgress();
+			if (progress) {
+				result[progress.id ?? item.name] = progress;
+			}
+		}
+		// Search active effects: match the id on the progress track
+		for (const effect of this.allApplicableEffects()) {
+			if (effect.system.rules?.progress?.enabled) {
+				const progress = effect.system.rules.progress;
+				result[progress.id ?? effect.name] = progress;
+			}
+		}
+		return result;
+	}
+
 	// TODO: Move out
 	/**
 	 * @description Searches through current items for one with the given fuid, then updates its progress.

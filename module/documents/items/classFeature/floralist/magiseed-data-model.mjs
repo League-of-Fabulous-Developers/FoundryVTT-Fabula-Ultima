@@ -17,7 +17,11 @@ const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 		/** @type MagiseedAction */
 		const action = check.additionalData[magiseedActionKey];
 
-		const gardenName = foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') || foundry.utils.getProperty(actor, 'system.floralist.garden.name') || game.i18n.localize('FU.ClassFeatureGarden');
+		const garden = actor.resolveProgress('floralist-garden');
+		if (!garden) {
+			ui.notifications.error('Missing garden tracker. Make sure you have the latest version of the Chloromancy skill.');
+			return;
+		}
 
 		switch (action) {
 			case 'effect': {
@@ -29,7 +33,7 @@ const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 					});
 					break;
 				}
-				const filledSections = floralistData.garden.system.data.clock.current;
+				const filledSections = garden.current;
 				let effect = null;
 				for (const value of item.system.data.effects) {
 					if (value.start <= filledSections && value.end >= filledSections) {
@@ -58,7 +62,7 @@ const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenAdded', {
 							item: item.name,
-							garden: gardenName,
+							garden: garden.name,
 						}),
 					},
 				});
@@ -70,7 +74,7 @@ const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenRemoved', {
 							item: item.name,
-							garden: gardenName,
+							garden: garden.name,
 						}),
 					},
 				});

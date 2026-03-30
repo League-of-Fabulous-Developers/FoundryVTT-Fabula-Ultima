@@ -1,12 +1,10 @@
 {{#if system.floralist.planted}}
     <fieldset class="title-fieldset desc resource-content garden-section">
-        {{#unless system.floralist.garden.system.data.gardenName}}
-            <legend class="resource-label-m">{{localize 'FU.ClassFeatureGarden'}}</legend>
-        {{else}}
-            <legend class="item resource-label-m" data-item-id="{{ system.floralist.garden.id }}">
-                {{system.floralist.garden.system.data.gardenName}}
-            </legend>
-        {{/unless}}
+		{{#if actor.tracks.floralist-garden}}
+			<legend class="item resource-label-m" data-item-id="{{ actor.tracks.floralist-garden.id }}">
+				{{actor.tracks.floralist-garden.name}}
+			</legend>
+		{{/if}}
         <div class="items-list">
             <div class="item" data-item-id="{{system.floralist.planted.id}}">
                 <div class="flexrow">
@@ -28,8 +26,5 @@
                 </div>
             </div>
         </div>
-        {{#if system.floralist.garden}}
-			{{pfuProgress actor 'system.floralist.garden.system.data.clock' displayName=true type='clockCounter' }}
-        {{/if}}
     </fieldset>
 {{/if}}
