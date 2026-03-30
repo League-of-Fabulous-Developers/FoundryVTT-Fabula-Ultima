@@ -116,13 +116,15 @@ async function onRender(element) {
 		const targets = await targetHandler();
 		if (targets.length > 0) {
 			let context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+
 			let check = renderContext.document.getFlag(SYSTEM, Flags.ChatMessage.Check);
 			if (check) {
 				context = context.withCheck(check);
 			}
+
 			let amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
 
-			if (context.actor) {
+			if (context.actor && check) {
 				const config = CheckConfiguration.configure(check);
 				config.setResource(type, amount);
 				const updateData = config.getResource();

@@ -157,23 +157,6 @@ function getResourceValue(actor, resourcePath) {
 	return parseInt(foundry.utils.getProperty(actor.system, resourcePath), 10) || 0;
 }
 
-/**
- * @param {FUActor} actor
- * @param {String} attributePath
- * @param {Number} amountRecovered
- * @returns {Promise<*>
- */
-function createUpdateForRecovery(actor, attributePath, amountRecovered) {
-	const currentValue = getResourceValue(actor, attributePath);
-	const newValue = Math.floor(currentValue + amountRecovered);
-
-	// Update the actor's resource directly
-	const updateData = {
-		[`system.${attributePath}`]: newValue,
-	};
-	return actor.update(updateData);
-}
-
 function calculateMissingResource(actor, resourcePath) {
 	const resource = foundry.utils.getProperty(actor.system, resourcePath);
 	return resource.max - resource.value;
@@ -235,7 +218,24 @@ async function processRecovery(request) {
 		const updates = [];
 
 		if (request.isMetaCurrency) {
-			updates.push(createUpdateForRecovery(actor, request.attributeValuePath, amountRecovered));
+			const currentValue = getResourceValue(actor, request.attributeValuePath) || 0;
+			const newValue = Math.floor(currentValue + amountRecovered);
+			const updateData = {};
+			updateData[`system.${request.attributeValuePath}`] = newValue;
+			updates.push(
+				actor.update(updateData).then(async (result) => {
+					/** @type FURenderData **/
+					let renderData = {
+						sections: [],
+						postRenderActions: [],
+					};
+					CommonEvents.gain(actor, request.resourceType, amountRecovered, request.origin);
+					await CommonEvents.resource(request.sourceActor, request.targets, request.resourceType, amountRecovered, request.origin, renderData);
+					TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
+					await createChatMessage(request, actor, Math.abs(amountRecovered), flavor, template, message, renderData);
+					return result;
+				}),
+			);
 		} else {
 			// Overheal recovery (uncapped)
 			if (request.uncapped === true && uncappedRecoveryValue > (attr.max || 0)) {
