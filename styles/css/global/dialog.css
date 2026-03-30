@@ -9,7 +9,7 @@
 
 	.image-picker {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		gap: 1rem;
 		width: 100%;
 
@@ -71,6 +71,13 @@
 		font-size: 16px;
 		text-align: justify;
 	}
+
+	.group {
+		border: 2px solid var(--pfu-color-app-control-border);
+		background: var(--pfu-color-control-content);
+		border-radius: var(--pfu-border-radius-small);
+		padding: 4px;
+	}
 }
 
 .fu-dialog form main {
@@ -90,7 +97,6 @@
 	text-align: center;
 	border: 1px solid var(--color-border-divider);
 	background: var(--pfu-color-app-control-fill);
-	color: var(--pfu-color-app-control-content);
 	border-radius: var(--pfu-border-radius-small);
 }
 
