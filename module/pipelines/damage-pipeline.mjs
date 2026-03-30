@@ -42,36 +42,18 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
 	affinity: 'FU.DamagePipelineStepAffinity',
 	incomingDamage: {
 		all: 'FU.DamagePipelineStepIncomingDamageAll',
-		physical: 'FU.DamagePipelineStepIncomingDamagePhysical',
-		air: 'FU.DamagePipelineStepIncomingDamageAir',
-		bolt: 'FU.DamagePipelineStepIncomingDamageBolt',
-		dark: 'FU.DamagePipelineStepIncomingDamageDark',
-		earth: 'FU.DamagePipelineStepIncomingDamageEarth',
-		fire: 'FU.DamagePipelineStepIncomingDamageFire',
-		ice: 'FU.DamagePipelineStepIncomingDamageIce',
-		light: 'FU.DamagePipelineStepIncomingDamageLight',
-		poison: 'FU.DamagePipelineStepIncomingDamagePoison',
 
-		beast: `FU.Beast`,
-		construct: 'FU.Construct',
-		demon: 'FU.Demon',
-		elemental: 'FU.Elemental',
-		humanoid: 'FU.Humanoid',
-		monster: 'FU.Monster',
-		plant: 'FU.Plant',
-		undead: 'FU.Undead',
+		...FU.damageTypes,
+		...FU.species,
+		...FU.weaponCategories,
 	},
 	// TODO: Better way to not duplicate?
 	damage: {
 		all: 'FU.DamageBonusAll',
-		beast: `FU.Beast`,
-		construct: 'FU.Construct',
-		demon: 'FU.Demon',
-		elemental: 'FU.Elemental',
-		humanoid: 'FU.Humanoid',
-		monster: 'FU.Monster',
-		plant: 'FU.Plant',
-		undead: 'FU.Undead',
+
+		...FU.damageTypes,
+		...FU.species,
+		...FU.weaponCategories,
 	},
 };
 
@@ -139,7 +121,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {Number} affinity The index of the affinity
  * @property {String} affinityMessage The localized affinity message to use
  * @property {DamageType} damageType
- * @property {TableDamageData} damageData
+ * @property {DamageData} damageData
  * @property {DamageOverrideInfo} damageOverride
  * @property {String} extra An optional expression to evaluate for onApply damage
  * @property {Number} amount The base amount before bonuses or modifiers are applied
@@ -319,6 +301,8 @@ function overrideResult(context) {
  * @return {Promise<Boolean>}
  */
 async function collectIncrements(context) {
+	const outgoing = context.sourceActor?.system.bonuses.damage;
+
 	// Target
 	if (context.actor.system.bonuses) {
 		const incoming = context.actor.system.bonuses.incomingDamage;
@@ -332,10 +316,16 @@ async function collectIncrements(context) {
 			context.addBonus(`incomingDamage.${species}`, incoming[species] ?? 0);
 		}
 
+		// Potentially from specific weapon types, ...
+		for (const trait of context.traits) {
+			if (incoming[trait]) {
+				context.addBonus(`incomingDamage.${trait}`, incoming[trait] ?? 0);
+			}
+		}
+
 		// Potentially modify damage TO a specific species (from a PC)
-		if (context.sourceActor?.system.species && context.actor.system.species) {
+		if (outgoing && context.actor.system.species) {
 			const species = context.actor.system.species.value;
-			const outgoing = context.sourceActor.system.bonuses.damage;
 			context.addBonus(`damage.${species}`, outgoing[species] ?? 0);
 		}
 	}
