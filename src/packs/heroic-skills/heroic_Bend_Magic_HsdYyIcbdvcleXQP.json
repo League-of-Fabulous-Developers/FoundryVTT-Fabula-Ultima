@@ -77,38 +77,6 @@
         },
         "rules": {
           "elements": {
-            "aDeQ9cqfNSgNt5gT": {
-              "type": "ruleElement",
-              "_id": "aDeQ9cqfNSgNt5gT",
-              "trigger": {
-                "_id": "PXNjhhtCyx4s4nKh",
-                "type": "renderCheckRuleTrigger",
-                "eventRelation": "target",
-                "checkTypes": [
-                  "accuracy"
-                ],
-                "itemGroups": [
-                  "attack"
-                ],
-                "local": false,
-                "identifier": ""
-              },
-              "predicates": {
-                "TReEzSGP86Na5wnZ": {
-                  "type": "checkRulePredicate",
-                  "_id": "TReEzSGP86Na5wnZ",
-                  "parity": "even",
-                  "result": null
-                }
-              },
-              "actions": {
-                "TJgUq7nCcodY74d2": {
-                  "type": "messageRuleAction",
-                  "_id": "TJgUq7nCcodY74d2",
-                  "message": "<p>The invoker may use an <strong>Invocation</strong> back.</p>"
-                }
-              }
-            },
             "jotNPxvUv3VfB2R8": {
               "type": "ruleElement",
               "_id": "jotNPxvUv3VfB2R8",
@@ -135,7 +103,15 @@
                   "type": "checkRulePredicate",
                   "_id": "4JUflNoXPiCPK0sr",
                   "parity": "even",
-                  "result": null
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": ""
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
                 }
               },
               "actions": {
@@ -154,6 +130,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -165,7 +146,7 @@
       "_id": "Y5NywAw1nL87QTHa",
       "type": "base",
       "changes": [],
-      "description": "",
+      "description": "<p>After an enemy you can see hits or misses you with an offensive spell, if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -180,7 +161,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770875865113,
-        "modifiedTime": 1770876885246,
+        "modifiedTime": 1774844164325,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!HsdYyIcbdvcleXQP.Y5NywAw1nL87QTHa"
