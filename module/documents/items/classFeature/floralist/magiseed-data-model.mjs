@@ -17,7 +17,7 @@ const onRenderCheck = (data, check, actor, item, additionalFlags) => {
 		/** @type MagiseedAction */
 		const action = check.additionalData[magiseedActionKey];
 
-		const garden = actor.resolveProgress('floralist-garden');
+		const garden = actor.resolveProgress('garden');
 		if (!garden) {
 			ui.notifications.error('Missing garden tracker. Make sure you have the latest version of the Chloromancy skill.');
 			return;

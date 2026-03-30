@@ -84,7 +84,7 @@
           "elements": {},
           "progress": {
             "enabled": true,
-            "id": "floralist-garden",
+            "id": "garden",
             "name": "Garden",
             "current": 0,
             "max": 4,
@@ -129,7 +129,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774899180736,
-        "modifiedTime": 1774899224010,
+        "modifiedTime": 1774910823198,
         "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!ZmzDl88kGMvrumoJ.iNGe7hdKe1Gwx2FQ"
