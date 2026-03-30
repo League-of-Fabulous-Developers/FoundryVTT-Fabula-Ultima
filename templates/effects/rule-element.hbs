@@ -103,7 +103,7 @@
 							</a>
 						</div>
 						<div class="fu-form__item__content">
-							{{> (lookup (lookup (lookup action "schema") "model") "template") path=(concat ../path ".actions." action.id) action=action options=../options}}
+							{{> (lookup (lookup (lookup action "schema") "model") "template") path=(concat ../path ".actions." action.id) action=action trigger=../trigger options=../options}}
 						</div>
 					</div>
 				{{/each}}

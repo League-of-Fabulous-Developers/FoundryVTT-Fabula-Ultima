@@ -162,11 +162,16 @@ export const FUHooks = {
 	 */
 	HOOK_WELLSPRING_CHANGED: 'projectfu.wellspringChanged',
 	/**
+	 * @description Dispatched when data is being prepared for a pipeline..
+	 * @example callback(event)
+	 * @remarks Uses {@link PrepareDataEvent}
+	 */
+	PREPARE_DATA_EVENT: 'projectfu.events.prepareData',
+	/**
 	 * @description Dispatched after an actor rests
 	 * @example callback(event)
 	 * @remarks Uses {@link RestEvent}
-	 */
-	REST_EVENT: 'projectfu.events.rest',
+	 */ REST_EVENT: 'projectfu.events.rest',
 	/**
 	 * @description Dispatched after information is revealed about an actor
 	 * @example callback(event)

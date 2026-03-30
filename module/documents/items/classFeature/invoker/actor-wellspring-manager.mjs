@@ -1,6 +1,7 @@
 import { GameWellspringManager } from './game-wellspring-manager.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { FUHooks } from '../../../../hooks.mjs';
+import { CommonEvents } from '../../../../checks/common-events.mjs';
 
 const FLAG_INNER_WELLSPRING = 'innerWellspring';
 
@@ -27,7 +28,7 @@ export class ActorWellspringManager {
 	/**
 	 * @returns {WellspringDataModel[]}
 	 */
-	get activeWellsprings() {
+	async getActiveWellsprings() {
 		let activeWellsprings = GameWellspringManager.currentSceneActiveWellsprings;
 		if (!activeWellsprings.isActive()) {
 			activeWellsprings = GameWellspringManager.activeSceneActiveWellsprings;
@@ -40,6 +41,8 @@ export class ActorWellspringManager {
 		if (innerWellspring) {
 			activeWellsprings[innerWellspring] = true;
 		}
+
+		await CommonEvents.prepareData(this.#actor, 'wellspring');
 
 		return activeWellsprings;
 	}

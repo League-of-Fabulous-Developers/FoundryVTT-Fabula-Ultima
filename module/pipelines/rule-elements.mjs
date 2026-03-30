@@ -58,6 +58,8 @@ import { FeatureRuleTrigger } from '../documents/effects/triggers/feature-rule-t
 import { FUItem } from '../documents/items/item.mjs';
 import { RenderMessageRuleTrigger } from '../documents/effects/triggers/render-message-rule-trigger.mjs';
 import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigger.mjs';
+import { PrepareDataRuleTrigger } from '../documents/effects/triggers/prepare-data-rule-trigger.mjs';
+import { RegisterTypeRuleAction } from '../documents/effects/actions/register-type-rule-action.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
@@ -79,6 +81,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, ItemRollRuleTrigger.TYPE, ItemRollRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, FeatureRuleTrigger.TYPE, FeatureRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, RenderMessageRuleTrigger.TYPE, RenderMessageRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, PrepareDataRuleTrigger.TYPE, PrepareDataRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -98,6 +101,7 @@ function register() {
 	RuleActionRegistry.instance.register(systemId, PerformCheckRuleAction.TYPE, PerformCheckRuleAction);
 	RuleActionRegistry.instance.register(systemId, ModifyResourceRuleAction.TYPE, ModifyResourceRuleAction);
 	RuleActionRegistry.instance.register(systemId, OpenApplicationRuleAction.TYPE, OpenApplicationRuleAction);
+	RuleActionRegistry.instance.register(systemId, RegisterTypeRuleAction.TYPE, RegisterTypeRuleAction);
 
 	RulePredicateRegistry.instance.register(systemId, BondRulePredicate.TYPE, BondRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FactionRelationRulePredicate.TYPE, FactionRelationRulePredicate);

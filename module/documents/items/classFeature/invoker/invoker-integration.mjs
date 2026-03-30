@@ -13,7 +13,6 @@ import { FUHooks } from '../../../../hooks.mjs';
  * @property {String} name
  * @property {String} type The affinity type
  * @property {String} element The localized wellspring type
- * @property {String} nameShort *
  * @property {String} icon
  * @property {String} key
  */
@@ -110,6 +109,7 @@ function initialize() {
 	Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
 	Hooks.on(FUHooks.GET_SIDEBAR_TOOLS, onGetSidebarTools);
 
+	// Every 'character' gets their own wellspring manager
 	Hooks.on('projectfu.actor.dataPrepared', ActorWellspringManager.onActorPrepared);
 
 	Hooks.on('chatMessage', onChatMessage);

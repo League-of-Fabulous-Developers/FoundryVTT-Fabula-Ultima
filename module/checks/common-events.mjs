@@ -721,6 +721,28 @@ async function feature(actor, item, traits, renderData) {
 }
 
 /**
+ * @desc Dispatched when a class feature has been used.
+ * @typedef PrepareDataEvent
+ * @property {CharacterInfo} source
+ * @property {FUItem} item
+ * @property {UserDefinedType} type The data type being prepared.
+ * @property {String[]} traits
+ * @property {Object[]} data Initially empty when the event is dispatched, meant to be modified by subscribers.
+ * @property
+ */
+
+async function prepareData(actor, type) {
+	const source = CharacterInfo.fromActor(actor);
+	/** @type PrepareDataEvent  **/
+	const event = {
+		source: source,
+		type: type,
+		data: [],
+	};
+	return AsyncHooks.callSequential(FUHooks.FEATURE_EVENT, event);
+}
+
+/**
  * @typedef EffectToggledEvent
  * @property {CharacterInfo} source
  * @property {String} uuid The uuid of the effect
@@ -824,6 +846,7 @@ export const CommonEvents = Object.freeze({
 	createConsumable,
 	itemRoll,
 	feature,
+	prepareData,
 });
 
 // Helpers
