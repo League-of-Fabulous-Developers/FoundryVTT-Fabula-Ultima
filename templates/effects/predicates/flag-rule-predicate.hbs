@@ -1,0 +1,25 @@
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Scope'}}</span>
+		<input type="text" name="{{pfuConcat path '.scope'}}" value="{{predicate.scope}}" placeholder="projectfu">
+	</label>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Key'}}</span>
+		<input type="text" name="{{pfuConcat path '.key'}}" value="{{predicate.key}}">
+	</label>
+</div>
+
+<div class="fu-form__property-row">
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Quantifier'}}</span>
+		<select name="{{pfuConcat path ".quantifier"}}" class="">
+			{{selectOptions options.predicateQuantifier selected=predicate.quantifier localize=true}}
+		</select>
+	</label>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Value'}}</span>
+		<input type="text" name="{{pfuConcat path '.value'}}" value="{{predicate.value}}" placeholder="Optionally, a matching value.">
+	</label>
+</div>
