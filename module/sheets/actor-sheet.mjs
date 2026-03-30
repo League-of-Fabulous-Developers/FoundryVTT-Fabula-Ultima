@@ -223,9 +223,15 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	 * @returns {Promise<void>}
 	 */
 	static async #removeArrayElement(event, target) {
-		const path = target.dataset.path;
+		const { path, prompt, label } = target.dataset;
 		const index = Number.parseInt(target.dataset.index);
 		if (path) {
+			if (prompt) {
+				const confirm = await FoundryUtils.confirmDialog(StringUtils.localize(`FU.Remove`), StringUtils.localize('FU.DialogRemoveMessage', { label: label ?? 'FU.Entry' }));
+				if (!confirm) {
+					return;
+				}
+			}
 			/** @type [] **/
 			const array = ObjectUtils.getProperty(this.actor, path);
 			if (array && index !== undefined) {

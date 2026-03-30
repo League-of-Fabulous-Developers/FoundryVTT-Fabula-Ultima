@@ -2,6 +2,7 @@ import { VersionedDataModel } from '../../../fields/versioned-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { systemAssetPath } from '../../../helpers/system-utils.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { AudioDataModel } from '../../../fields/audio-data-model.mjs';
 
 const fields = foundry.data.fields;
 
@@ -11,6 +12,7 @@ const fields = foundry.data.fields;
  * @property {String} notes GM-only notes.
  * @property {String} img The path to the image.
  * @property {String[]} tags
+ * @property {AudioDataModel} audio
  * @property {Boolean} hidden
  */
 export class CodexEntryDataModel extends foundry.abstract.DataModel {
@@ -21,6 +23,7 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 			name: new fields.StringField({ initial: `` }),
 			description: new fields.StringField({ initial: `` }),
 			img: new fields.FilePathField({ categories: ['IMAGE'], initial: CodexEntryDataModel.DEFAULT_IMAGE_PATH }),
+			audio: new fields.EmbeddedDataField(AudioDataModel),
 			tags: new fields.ArrayField(new fields.StringField(), {}),
 			notes: new fields.StringField({ initial: `` }),
 			hidden: new fields.BooleanField(),
@@ -30,6 +33,68 @@ export class CodexEntryDataModel extends foundry.abstract.DataModel {
 	static migrateData(source) {
 		if (!source.img) source.img = CodexEntryDataModel.DEFAULT_IMAGE_PATH;
 		return super.migrateData(source);
+	}
+
+	static get PLAYLIST() {
+		return `Fabula Ultima - ${StringUtils.localize('FU.Codex')}`;
+	}
+
+	/**
+	 * @param {Boolean} broadcast Whether to play the sound for all connected clients.
+	 * @returns {Promise<PlaylistSound|undefined>}
+	 */
+	async playSound({ broadcast = false } = {}) {
+		if (!this.audio.path) return;
+
+		// Find or create a dedicated playlist for this module
+		let playlist = game.playlists.getName(CodexEntryDataModel.PLAYLIST);
+		if (!playlist) {
+			// eslint-disable-next-line no-undef
+			playlist = await Playlist.create({
+				name: CodexEntryDataModel.PLAYLIST,
+				mode: CONST.PLAYLIST_MODES.DISABLED, // manual control only
+			});
+		}
+
+		// Check if this sound is already in the playlist
+		let sound = playlist.sounds.find((s) => s.path === this.audio.path);
+		if (!sound) {
+			// eslint-disable-next-line no-undef
+			sound = await PlaylistSound.create(
+				{
+					name: this.name, // this.path.split('/').pop(), // filename as name
+					path: this.audio.path,
+					volume: this.audio.volume,
+					repeat: this.audio.repeat,
+					fade: this.audio.fade,
+					channel: this.audio.channel,
+				},
+				{ parent: playlist },
+			);
+		} else {
+			await sound.update({
+				name: this.name,
+				volume: this.audio.volume,
+				repeat: this.audio.repeat,
+				fade: this.audio.fade,
+				channel: this.audio.channel,
+			});
+		}
+
+		// Play via the playlist, which handles broadcast automatically
+		return playlist.playSound(sound);
+	}
+
+	async stopSound() {
+		if (!this.audio?.path) return;
+
+		const playlist = game.playlists.getName(CodexEntryDataModel.PLAYLIST);
+		if (!playlist) return;
+
+		const sound = playlist.sounds.find((s) => s.path === this.audio.path);
+		if (!sound) return;
+
+		return playlist.stopSound(sound);
 	}
 }
 
