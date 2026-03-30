@@ -1941,6 +1941,7 @@
 		"UploadClipboardImage": "Upload Clipboard Image",
 		"CodexUploadDirectory": "Codex Upload Directory",
 		"CodexUploadDirectoryMissing": "You must set an user directory for codex clipboard images to be uploaded to. This can be configured in the system settings.",
+		"Scope": "Scope",
 		"Flag": "Flag",
 		"Key": "Key",
 		"Value": "Value",
