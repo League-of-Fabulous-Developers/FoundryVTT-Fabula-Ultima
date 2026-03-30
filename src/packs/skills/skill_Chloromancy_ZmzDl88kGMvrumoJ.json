@@ -64,7 +64,77 @@
       "max": 0
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Garden",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/chloromancy.png",
+      "origin": "Compendium.projectfu.skills.Item.ZmzDl88kGMvrumoJ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": true,
+            "id": "floralist-garden",
+            "name": "Garden",
+            "current": 0,
+            "max": 4,
+            "style": "clock"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "iNGe7hdKe1Gwx2FQ",
+      "type": "base",
+      "changes": [],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Chloromancy",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.ZmzDl88kGMvrumoJ",
+            "effectUuid": null,
+            "fuid": "chloromancy"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774899180736,
+        "modifiedTime": 1774899224010,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+      },
+      "_key": "!items.effects!ZmzDl88kGMvrumoJ.iNGe7hdKe1Gwx2FQ"
+    }
+  ],
   "ownership": {
     "default": 0,
     "aylHtMTxbnWEKFH9": 3
