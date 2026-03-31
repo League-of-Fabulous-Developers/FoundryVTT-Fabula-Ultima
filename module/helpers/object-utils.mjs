@@ -2,6 +2,7 @@
  * @param {Object} target
  * @param {Object} source
  * @returns {(Object|boolean)[]}
+ * @remarks If you don't care about whether it was changed, you can ignore the result.
  */
 function mergeRecursive(target, source) {
 	let changed = false;

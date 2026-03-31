@@ -85,10 +85,11 @@ export default class FoundryUtils {
 	/**
 	 * @param {String} title
 	 * @param content
+	 * @param {Object} options
 	 * @returns {Promise<*>}
 	 */
-	static async input(title, content) {
-		const result = await foundry.applications.api.DialogV2.input({
+	static async input(title, content, options = {}) {
+		let defaultOptions = {
 			window: { title: title, icon: 'fas fa-comment' },
 			content: content,
 			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
@@ -96,8 +97,9 @@ export default class FoundryUtils {
 			ok: {
 				label: 'FU.Confirm',
 			},
-		});
-		return result;
+		};
+		ObjectUtils.mergeRecursive(defaultOptions, options);
+		return await foundry.applications.api.DialogV2.input(defaultOptions);
 	}
 
 	/**

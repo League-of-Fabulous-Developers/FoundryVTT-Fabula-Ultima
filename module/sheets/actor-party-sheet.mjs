@@ -430,7 +430,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onAddTrack(event, target) {
-		await ProgressDataModel.promptAddToDocument(this.actor, 'system.tracks', true);
+		await ProgressPipeline.promptAddToDocument(this.actor, 'system.tracks', true);
 	}
 
 	/**
