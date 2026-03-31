@@ -797,48 +797,72 @@ export default class FoundryUtils {
 	static PLACEHOLDER_IMG = 'icons/svg/mystery-man.svg';
 
 	/**
-	 * @desc Instantiates an actor on the current scene.
+	 * @desc Instantiates an actor on the current scene, prompting the user to click where to place it.
 	 * @param {FUActor} actor
 	 * @param {Object} data
-	 * @param {Boolean} pan
-	 * @returns {TokenDocument}
+	 * @returns {TokenDocument|null}
 	 */
-	static async instantiateActor(actor, data, pan = false) {
+	static async instantiateActor(actor, data) {
 		const scene = game.scenes.viewed;
 		if (!scene) {
-			return;
+			return null;
 		}
 
 		const gridSize = scene.grid.size;
-		// Prepare token data from the actor's prototype token
 		const tokenData = await actor.getTokenDocument({
 			x: 0,
 			y: 0,
-			actorLink: false, // unlinked token (set true to link to actor)
+			actorLink: false,
+		});
+		const tokenSize = tokenData.width;
+
+		const notification = ui.notifications.info('Left click to place the token on the active scene, right click to cancel the operation.', { permanent: true });
+
+		const position = await new Promise((resolve) => {
+			const clickHandler = (event) => {
+				const { x, y } = event.getLocalPosition(canvas.stage);
+				cleanup();
+				resolve({ x, y });
+			};
+
+			const rightClickHandler = () => {
+				cleanup();
+				resolve(null);
+			};
+
+			const cleanup = () => {
+				canvas.stage.off('click', clickHandler);
+				canvas.stage.off('rightclick', rightClickHandler);
+				ui.notifications.remove(notification);
+			};
+
+			canvas.stage.on('click', clickHandler);
+			canvas.stage.on('rightclick', rightClickHandler);
 		});
 
-		const tokenSize = tokenData.width; // token width in grid units (usually 1)
-		const x = scene.width / 2 - (tokenSize * gridSize) / 2;
-		const y = scene.height / 2 - (tokenSize * gridSize) / 2;
+		if (!position) {
+			return null; // cancelled
+		}
 
-		// Create the token on the scene
+		const snapped = scene.grid.getSnappedPoint({
+			x: position.x - (tokenSize * gridSize) / 2,
+			y: position.y - (tokenSize * gridSize) / 2,
+		});
+
 		const [tokenDocument] = await scene.createEmbeddedDocuments('Token', [
 			{
 				...tokenData.toObject(),
-				x,
-				y,
+				x: snapped.x,
+				y: snapped.y,
 				...data,
 			},
 		]);
-		if (pan) {
-			canvas.animatePan({ x: tokenDocument.x, y: tokenDocument.y, scale: 1 });
-		}
 		return tokenDocument;
 	}
 
 	/**
 	 * @param imagePath
-	 * @returns {Promise<unknown>}
+	 * @returns {Promise<Tile>}
 	 */
 	static async placeTile(imagePath) {
 		const scene = game.scenes.viewed;
@@ -877,7 +901,7 @@ export default class FoundryUtils {
 			return;
 		}
 
-		const notification = ui.notifications.info('Left-Click to place tile. Right-Click to cancel the operation.', { permanent: true });
+		const notification = ui.notifications.info('Left click to place tile on the active scene, right click to cancel the operation.', { permanent: true });
 
 		return new Promise((resolve) => {
 			const clickHandler = async (event) => {
@@ -896,7 +920,6 @@ export default class FoundryUtils {
 				]);
 
 				canvas.tiles.releaseAll();
-				tileDocument.object.control({ releaseOthers: true });
 				resolve(tileDocument);
 			};
 

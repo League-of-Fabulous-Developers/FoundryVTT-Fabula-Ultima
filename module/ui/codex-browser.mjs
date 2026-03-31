@@ -250,11 +250,16 @@ export class CodexBrowser {
 				break;
 
 			case 'tile':
-				if (entry.img === CodexEntryDataModel.DEFAULT_IMAGE_PATH) {
-					ui.notifications.warn(`The codex entry is still using the default image.`);
-					return;
+				{
+					if (entry.img === CodexEntryDataModel.DEFAULT_IMAGE_PATH) {
+						ui.notifications.warn(`The codex entry is still using the default image.`);
+						return;
+					}
+					const tile = await FoundryUtils.placeTile(entry.img);
+					if (tile) {
+						tile.object.control({ releaseOthers: true });
+					}
 				}
-				await FoundryUtils.placeTile(entry.img);
 				break;
 
 			case 'token':
@@ -285,7 +290,6 @@ export class CodexBrowser {
 						// Release any current selection
 						canvas.tokens.releaseAll();
 						token.object.control({ releaseOthers: true });
-						this.sheet.close();
 					} else {
 						ui.notifications.error(`Failed to instance a token for the selected codex entry`);
 					}
