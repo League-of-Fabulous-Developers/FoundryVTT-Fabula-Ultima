@@ -347,12 +347,6 @@
 					flex-wrap: nowrap;
 					justify-content: center;
 					gap: 1px;
-
-					button {
-						width: 24px;
-						height: 24px;
-						padding: 0;
-					}
 				}
 			}
 

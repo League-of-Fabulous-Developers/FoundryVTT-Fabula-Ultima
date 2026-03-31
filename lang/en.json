@@ -1941,6 +1941,7 @@
 		"BrowseImage": "Browse Image",
 		"UploadClipboardImage": "Upload Clipboard Image",
 		"CodexUploadDirectory": "Codex Upload Directory",
+		"InstantiateToken": "Instantiate Token",
 		"CodexUploadDirectoryMissing": "You must set an user directory for codex clipboard images to be uploaded to. This can be configured in the system settings.",
 		"Scope": "Scope",
 		"Flag": "Flag",
@@ -1953,8 +1954,6 @@
 			"Event": "Event",
 			"Lore": "Lore",
 			"Glossary": "Glossary"
-		},
-		"Resolutive": "Resolutive",
-		"ClockConflictMinor": "Provides a minor temporary advtang"
+		}
 	}
 }

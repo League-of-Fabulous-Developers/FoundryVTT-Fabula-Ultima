@@ -181,7 +181,7 @@ export class CodexBrowser {
 	 */
 	async handleContextAction(event, target) {
 		const { type, index } = target.dataset;
-		return this.executeCodexEntryAction(type, index);
+		return this.executeCodexEntryAction(index, type);
 	}
 
 	/**
@@ -244,6 +244,9 @@ export class CodexBrowser {
 			case 'stopSound':
 				await entry.stopSound();
 				this.sheet.render(true);
+				break;
+
+			case 'token':
 				break;
 		}
 	}
