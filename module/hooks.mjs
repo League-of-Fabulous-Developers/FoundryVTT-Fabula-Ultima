@@ -248,6 +248,12 @@ export const FUHooks = {
 	 * @remarks Uses {@link FeatureEvent}
 	 */
 	FEATURE_EVENT: `projectfu.events.feature`,
-
+	/**
+	 * // TODO: ERICA LOOK AT ME!
+	 */
 	GET_SIDEBAR_TOOLS: `projectfu.getSidebarTools`,
+	/**
+	 * @description Dispatched when the party sheet is about to open, in order to provide options.
+	 */
+	SHEET_EXTENSIONS: `projectfu.sheets.extensions`,
 };

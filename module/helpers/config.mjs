@@ -1178,3 +1178,9 @@ FU.codexTags = Object.freeze({
 	lore: 'FU.CODEX.Lore',
 	glossary: 'FU.CODEX.Glossary',
 });
+
+FU.conflictClockObjective = Object.freeze({
+	minor: 'FU.Minor',
+	major: 'FU.Major',
+	resolutive: 'FU.Resolutive',
+});

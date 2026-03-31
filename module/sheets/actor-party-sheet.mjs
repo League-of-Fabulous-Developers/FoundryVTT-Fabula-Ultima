@@ -144,6 +144,15 @@ export class FUPartySheet extends FUActorSheet {
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
 	#codexBrowser;
+	/** @type SheetExtensions **/
+	#extensions;
+
+	constructor(...args) {
+		super(...args);
+		if (FU.sheetExtensions.party) {
+			this.#extensions = FU.sheetExtensions.party;
+		}
+	}
 
 	/**
 	 * @type PartyCharacterData
@@ -158,6 +167,13 @@ export class FUPartySheet extends FUActorSheet {
 			this.#codexBrowser = new CodexBrowser(this);
 		}
 		return this.#codexBrowser;
+	}
+
+	/**
+	 * @returns {SheetExtensions}
+	 */
+	get extensions() {
+		return this.#extensions;
 	}
 
 	/**
@@ -186,22 +202,54 @@ export class FUPartySheet extends FUActorSheet {
 			zenit: this.party.resources.zenit.value,
 		};
 		context.currency = getCurrencyString();
+		if (this.extensions) {
+			await this.extensions.prepareContext(context);
+		}
 		return context;
 	}
 
-	/** @inheritdoc */
+	/**
+	 * Prepare application tab data for a single tab group.
+	 * @param {string} group The ID of the tab group to prepare
+	 * @returns {Record<string, ApplicationTab>}
+	 * @protected
+	 */
 	_prepareTabs(group) {
+		/** @type {Record<string, ApplicationTab>} **/
 		const tabs = super._prepareTabs(group);
-
+		if (this.extensions) {
+			this.extensions.prepareTabs(tabs);
+		}
 		// This could probably do with better logic than "are they a GM?".
 		if (!game.user.isGM) delete tabs.settings;
 		return tabs;
 	}
 
+	/**
+	 * Allow subclasses to dynamically configure render parts.
+	 * @param {HandlebarsRenderOptions} options
+	 * @returns {Record<string, HandlebarsTemplatePart>}
+	 * @protected
+	 */
 	_configureRenderParts(options) {
+		/** @type {Record<string, HandlebarsTemplatePart>} **/
 		const parts = super._configureRenderParts(options);
+		if (this.extensions) {
+			this.extensions.configureRenderParts(parts);
+		}
 		if (!game.user.isGM) delete parts.settings;
 		return parts;
+	}
+
+	/**
+	 * Modify the provided options passed to a render request.
+	 * @param {RenderOptions} options                 Options which configure application rendering behavior
+	 * @protected
+	 */
+	_configureRenderOptions(options) {
+		super._configureRenderOptions(options);
+		// TODO: Insert hook
+		Hooks.callAll(FUHooks.PARTY_SHEET_OPTIONS, options);
 	}
 
 	/** @inheritdoc */

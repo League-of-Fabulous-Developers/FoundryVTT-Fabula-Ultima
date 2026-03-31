@@ -1953,6 +1953,8 @@
 			"Event": "Event",
 			"Lore": "Lore",
 			"Glossary": "Glossary"
-		}
+		},
+		"Resolutive": "Resolutive",
+		"ClockConflictMinor": "Provides a minor temporary advtang"
 	}
 }
