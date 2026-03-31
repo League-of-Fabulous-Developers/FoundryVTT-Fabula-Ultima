@@ -282,6 +282,10 @@ Hooks.once('init', async () => {
 		CONFIG.Actor.trackableAttributes.npc.bar.push('clocks.pressure');
 	}
 
+	if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+		CONFIG.Actor.trackableAttributes.character.bar.push('clocks.zeroPower');
+	}
+
 	// Set combat tracker
 	console.log(`${SYSTEM} | Initializing combat tracker`);
 	CONFIG.Combat.documentClass = FUCombat;
