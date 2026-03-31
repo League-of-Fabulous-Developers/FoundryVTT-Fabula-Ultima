@@ -827,6 +827,7 @@ export default class FoundryUtils {
 
 			const rightClickHandler = () => {
 				cleanup();
+				ui.notifications.warn('Cancelled token placement.');
 				resolve(null);
 			};
 

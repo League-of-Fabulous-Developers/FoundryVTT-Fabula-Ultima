@@ -4,6 +4,7 @@ import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { FileUtils } from '../helpers/file-utils.mjs';
+import { systemAssetPath } from '../helpers/system-utils.mjs';
 
 export class CodexBrowser {
 	/** @type FUPartySheet **/
@@ -22,7 +23,8 @@ export class CodexBrowser {
 	/** @type String[] **/
 	enrichedDescriptions;
 
-	static PROXY_ACTOR_NAME = 'Codex Entry Proxy';
+	static PROXY_ACTOR_NAME = 'PFU: Codex Entry Placeholder';
+	static PROXY_ACTOR_IMG = systemAssetPath('ui/pfu-logo.png');
 	static UPLOAD_FILE_PREFIX = 'codex-entry';
 
 	constructor(sheet) {
@@ -257,6 +259,7 @@ export class CodexBrowser {
 					}
 					const tile = await FoundryUtils.placeTile(entry.img);
 					if (tile) {
+						await canvas.tiles.activate();
 						tile.object.control({ releaseOthers: true });
 					}
 				}
@@ -272,6 +275,7 @@ export class CodexBrowser {
 					if (!actor) {
 						actor = await Actor.implementation.create({
 							name: CodexBrowser.PROXY_ACTOR_NAME,
+							img: CodexBrowser.PROXY_ACTOR_IMG,
 							type: 'stash',
 						});
 					}
@@ -287,11 +291,8 @@ export class CodexBrowser {
 					);
 					if (token) {
 						ui.notifications.info(`Instanced a token for ${entry.name} on the active scene.`);
-						// Release any current selection
-						canvas.tokens.releaseAll();
+						canvas.tokens.activate();
 						token.object.control({ releaseOthers: true });
-					} else {
-						ui.notifications.error(`Failed to instance a token for the selected codex entry`);
 					}
 				}
 				break;
