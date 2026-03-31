@@ -13,6 +13,7 @@ import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { systemPath } from '../helpers/config.mjs';
 
 /**
  * @param {FUActor} actor
@@ -189,6 +190,34 @@ async function openTrackMenuAtIndex(event, document, propertyPath, index) {
 }
 
 /**
+ * @param {Document} document
+ * @param {String} propertyPath
+ * @pararm {Boolean} selectStyle
+ * @returns {Promise<void>}
+ */
+async function promptAddToDocument(document, propertyPath, selectStyle = false) {
+	const title = StringUtils.localize('FU.ClockAdd');
+	const content = await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-track.hbs'), {
+		selectStyle: selectStyle,
+	});
+	const result = await FoundryUtils.input(title, content, {});
+
+	if (result) {
+		if (!result.name) {
+			ui.notifications.error(`No name was given for the tracker!`);
+			return;
+		}
+		console.log('Creating progress track with name: ', result.name);
+		const newTrack = ProgressDataModel.construct(result.name, {
+			id: result.id,
+			max: result.max,
+			style: result.style,
+		});
+		await this.addToDocument(document, propertyPath, newTrack);
+	}
+}
+
+/**
  * @param {ChatMessage} message
  * @param {HTMLElement} html
  */
@@ -224,4 +253,5 @@ export const ProgressPipeline = Object.freeze({
 	getAdvanceTargetedAction,
 	promptCheckAtIndexForDocument,
 	openTrackMenuAtIndex,
+	promptAddToDocument,
 });

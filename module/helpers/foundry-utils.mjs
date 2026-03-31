@@ -15,6 +15,7 @@ const { api, fields, handlebars } = foundry.applications;
  * @property {boolean} [disabled]
  * @property {boolean} [selected]
  * @property {boolean} [rule]
+ * @property {String} img (Custom for PFU dialogs)
  * @property {Record<string, string>} [dataset]
  */
 
@@ -85,10 +86,11 @@ export default class FoundryUtils {
 	/**
 	 * @param {String} title
 	 * @param content
+	 * @param {Object} options
 	 * @returns {Promise<*>}
 	 */
-	static async input(title, content) {
-		const result = await foundry.applications.api.DialogV2.input({
+	static async input(title, content, options = {}) {
+		let defaultOptions = {
 			window: { title: title, icon: 'fas fa-comment' },
 			content: content,
 			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
@@ -96,8 +98,9 @@ export default class FoundryUtils {
 			ok: {
 				label: 'FU.Confirm',
 			},
-		});
-		return result;
+		};
+		ObjectUtils.mergeRecursive(defaultOptions, options);
+		return await foundry.applications.api.DialogV2.input(defaultOptions);
 	}
 
 	/**
@@ -662,10 +665,12 @@ export default class FoundryUtils {
 	 *
 	 * @param html
 	 * @param className
+	 * @param eventName
 	 * @param {ContextMenuEntry[]} entries
 	 */
-	static contextMenu(html, className, entries) {
+	static contextMenu(html, className, entries, eventName = 'click') {
 		new foundry.applications.ux.ContextMenu(html, className, entries, {
+			eventName: eventName,
 			fixed: true,
 			jQuery: false,
 		});
@@ -790,4 +795,149 @@ export default class FoundryUtils {
 	}
 
 	static PLACEHOLDER_IMG = 'icons/svg/mystery-man.svg';
+
+	/**
+	 * @desc Instantiates an actor on the current scene, prompting the user to click where to place it.
+	 * @param {FUActor} actor
+	 * @param {Object} data
+	 * @returns {TokenDocument|null}
+	 */
+	static async instantiateActor(actor, data) {
+		const scene = game.scenes.viewed;
+		if (!scene) {
+			return null;
+		}
+
+		const gridSize = scene.grid.size;
+		const tokenData = await actor.getTokenDocument({
+			x: 0,
+			y: 0,
+			actorLink: false,
+		});
+		const tokenSize = tokenData.width;
+
+		const notification = ui.notifications.info('Left click to place the token on the active scene, right click to cancel the operation.', { permanent: true });
+
+		const position = await new Promise((resolve) => {
+			const clickHandler = (event) => {
+				const { x, y } = event.getLocalPosition(canvas.stage);
+				cleanup();
+				resolve({ x, y });
+			};
+
+			const rightClickHandler = () => {
+				cleanup();
+				ui.notifications.warn('Cancelled token placement.');
+				resolve(null);
+			};
+
+			const cleanup = () => {
+				canvas.stage.off('click', clickHandler);
+				canvas.stage.off('rightclick', rightClickHandler);
+				ui.notifications.remove(notification);
+			};
+
+			canvas.stage.on('click', clickHandler);
+			canvas.stage.on('rightclick', rightClickHandler);
+		});
+
+		if (!position) {
+			return null; // cancelled
+		}
+
+		const snapped = scene.grid.getSnappedPoint({
+			x: position.x - (tokenSize * gridSize) / 2,
+			y: position.y - (tokenSize * gridSize) / 2,
+		});
+
+		const [tokenDocument] = await scene.createEmbeddedDocuments('Token', [
+			{
+				...tokenData.toObject(),
+				x: snapped.x,
+				y: snapped.y,
+				...data,
+			},
+		]);
+		return tokenDocument;
+	}
+
+	/**
+	 * @param imagePath
+	 * @returns {Promise<Tile>}
+	 */
+	static async placeTile(imagePath) {
+		const scene = game.scenes.viewed;
+
+		// Get image dimensions to use as default tile size
+		// eslint-disable-next-line no-undef
+		const tex = await loadTexture(imagePath);
+		let width, height;
+
+		const promptTitle = `${StringUtils.localize('CONTROLS.TilePlace')} - Preset`;
+		const preset = await FoundryUtils.selectOptionDialog(promptTitle, [
+			{
+				label: StringUtils.localizeMultiple(['Token', 'Scale']),
+				value: 'token',
+			},
+			{
+				label: StringUtils.localizeMultiple(['Default', 'Scale']),
+				value: 'default',
+			},
+		]);
+		switch (preset) {
+			case 'token':
+				{
+					const scale = Math.min(100 / tex.width, 100 / tex.height);
+					width = tex.width * scale;
+					height = tex.height * scale;
+				}
+				break;
+			case 'default':
+				width = tex.width;
+				height = tex.height;
+				break;
+		}
+
+		if (!preset) {
+			return;
+		}
+
+		const notification = ui.notifications.info('Left click to place tile on the active scene, right click to cancel the operation.', { permanent: true });
+
+		return new Promise((resolve) => {
+			const clickHandler = async (event) => {
+				const { x, y } = event.getLocalPosition(canvas.stage);
+
+				cleanup();
+
+				const [tileDocument] = await scene.createEmbeddedDocuments('Tile', [
+					{
+						texture: { src: imagePath },
+						width,
+						height,
+						x: x - width / 2,
+						y: y - height / 2,
+					},
+				]);
+
+				canvas.tiles.releaseAll();
+				resolve(tileDocument);
+			};
+
+			const rightClickHandler = () => {
+				cleanup();
+				ui.notifications.warn('Cancelled tile placement.');
+				resolve(null); // cancelled
+			};
+
+			const cleanup = () => {
+				canvas.stage.off('click', clickHandler);
+				canvas.stage.off('rightclick', rightClickHandler);
+				ui.notifications.remove(notification);
+			};
+
+			canvas.stage.on('click', clickHandler);
+			canvas.stage.on('rightclick', rightClickHandler);
+		});
+	}
 }

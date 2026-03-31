@@ -115,6 +115,7 @@ import { FUChatLog } from './ui/chat-log.mjs';
 import { AutomationPipeline } from './pipelines/automation.mjs';
 import { Themes } from './ui/themes/theme-options.mjs';
 import { FUSidebar, FUSidebarApplication } from './ui/sidebar.mjs';
+import { SheetExtensions } from './sheets/sheet-extension.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -175,6 +176,7 @@ Hooks.once('init', async () => {
 			return FUPartySheet;
 		},
 		index: CompendiumIndex.instance,
+		hooks: FUHooks,
 	};
 
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
@@ -213,6 +215,11 @@ Hooks.once('init', async () => {
 		ruleTrigger: FU.ruleTriggerRegistry,
 		rulePredicate: FU.rulePredicateRegistry,
 	};
+
+	FU.sheetExtensions = {
+		party: new SheetExtensions(),
+	};
+
 	CONFIG.FU = FU;
 
 	/**
@@ -424,6 +431,9 @@ Hooks.once('init', async () => {
 	PressureSystem.initialize();
 	CompendiumBrowser.initialize();
 	Themes.initialize();
+
+	// Fetch any extensions from modules
+	Hooks.callAll(FUHooks.SHEET_EXTENSIONS, FU.sheetExtensions);
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();

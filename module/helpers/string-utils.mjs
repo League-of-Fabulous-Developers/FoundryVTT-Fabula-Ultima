@@ -67,6 +67,15 @@ function localize(key, data = undefined) {
 }
 
 /**
+ * @param {String[]} keys
+ * @param {String} separator
+ * @returns {String}
+ */
+function localizeMultiple(keys, separator = ' ') {
+	return keys.map((k) => localize(k)).join(separator);
+}
+
+/**
  * @param {String} key
  * @returns {Boolean}
  */
@@ -139,6 +148,7 @@ export const StringUtils = Object.freeze({
 	camelToKebab,
 	titleToKebab,
 	localize,
+	localizeMultiple,
 	hasLocalization,
 	capitalize,
 	truncate,

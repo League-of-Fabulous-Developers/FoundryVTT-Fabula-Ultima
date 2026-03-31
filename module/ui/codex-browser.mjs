@@ -4,6 +4,7 @@ import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { FileUtils } from '../helpers/file-utils.mjs';
+import { systemAssetPath } from '../helpers/system-utils.mjs';
 
 export class CodexBrowser {
 	/** @type FUPartySheet **/
@@ -21,6 +22,10 @@ export class CodexBrowser {
 	filter;
 	/** @type String[] **/
 	enrichedDescriptions;
+
+	static PROXY_ACTOR_NAME = 'PFU: Codex Entry Placeholder';
+	static PROXY_ACTOR_IMG = systemAssetPath('ui/pfu-logo.png');
+	static UPLOAD_FILE_PREFIX = 'codex-entry';
 
 	constructor(sheet) {
 		this.sheet = sheet;
@@ -181,6 +186,15 @@ export class CodexBrowser {
 	 */
 	async handleContextAction(event, target) {
 		const { type, index } = target.dataset;
+		return this.executeCodexEntryAction(index, type);
+	}
+
+	/**
+	 * @param {Number} index
+	 * @param {String} type
+	 * @returns {Promise<void>}
+	 */
+	async executeCodexEntryAction(index, type) {
 		/** @type CodexEntryDataModel[] **/
 		const entries = this.party.codex.entries;
 		/** @type CodexEntryDataModel **/
@@ -235,6 +249,52 @@ export class CodexBrowser {
 			case 'stopSound':
 				await entry.stopSound();
 				this.sheet.render(true);
+				break;
+
+			case 'tile':
+				{
+					if (entry.img === CodexEntryDataModel.DEFAULT_IMAGE_PATH) {
+						ui.notifications.warn(`The codex entry is still using the default image.`);
+						return;
+					}
+					const tile = await FoundryUtils.placeTile(entry.img);
+					if (tile) {
+						await canvas.tiles.activate();
+						tile.object.control({ releaseOthers: true });
+					}
+				}
+				break;
+
+			case 'token':
+				{
+					if (entry.img === CodexEntryDataModel.DEFAULT_IMAGE_PATH) {
+						ui.notifications.warn(`The codex entry is still using the default image.`);
+						return;
+					}
+					let actor = game.actors.getName(CodexBrowser.PROXY_ACTOR_NAME);
+					if (!actor) {
+						actor = await Actor.implementation.create({
+							name: CodexBrowser.PROXY_ACTOR_NAME,
+							img: CodexBrowser.PROXY_ACTOR_IMG,
+							type: 'stash',
+						});
+					}
+					const token = await FoundryUtils.instantiateActor(
+						actor,
+						{
+							name: entry.name,
+							texture: {
+								src: entry.img,
+							},
+						},
+						true,
+					);
+					if (token) {
+						ui.notifications.info(`Instanced a token for ${entry.name} on the active scene.`);
+						canvas.tokens.activate();
+						token.object.control({ releaseOthers: true });
+					}
+				}
 				break;
 		}
 	}
@@ -337,8 +397,6 @@ export class CodexBrowser {
 		entries.push(entry);
 		await this.actor.update({ [`system.codex.entries`]: entries });
 	}
-
-	static UPLOAD_FILE_PREFIX = 'codex-entry';
 
 	/**
 	 * @param {CodexEntryDataModel} entry

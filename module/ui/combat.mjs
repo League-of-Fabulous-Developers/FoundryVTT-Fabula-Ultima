@@ -660,7 +660,7 @@ export class FUCombat extends foundry.documents.Combat {
 		if (track) {
 			return ProgressDataModel.addToDocument(this, 'system.tracks', track);
 		} else {
-			return ProgressDataModel.promptAddToDocument(this, 'system.tracks', true);
+			return ProgressPipeline.promptAddToDocument(this, 'system.tracks', true);
 		}
 	}
 

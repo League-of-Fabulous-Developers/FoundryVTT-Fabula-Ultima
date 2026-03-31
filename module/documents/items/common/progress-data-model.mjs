@@ -1,4 +1,3 @@
-import { systemPath } from '../../../helpers/config.mjs';
 import { ObjectUtils } from '../../../helpers/object-utils.mjs';
 import { MathHelper } from '../../../helpers/math-helper.mjs';
 import FoundryUtils from '../../../helpers/foundry-utils.mjs';
@@ -290,39 +289,6 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		tracks.push(newTrack);
 		document.update({ [propertyPath]: tracks });
 		CommonEvents.progress(document, newTrack, 'add');
-	}
-
-	/**
-	 * @param {Document} document
-	 * @param {String} propertyPath
-	 * @pararm {Boolean} selectStyle
-	 * @returns {Promise<void>}
-	 */
-	static async promptAddToDocument(document, propertyPath, selectStyle = false) {
-		const result = await foundry.applications.api.DialogV2.input({
-			window: { title: game.i18n.localize('FU.ClockAdd') },
-			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-			content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-add-track.hbs'), {
-				selectStyle: selectStyle,
-			}),
-			rejectClose: false,
-			ok: {
-				label: game.i18n.localize('FU.Confirm'),
-			},
-		});
-
-		if (result) {
-			if (!result.name) {
-				return;
-			}
-			console.log('Creating progress track with name: ', result.name);
-			const newTrack = ProgressDataModel.construct(result.name, {
-				id: result.id,
-				max: result.max,
-				style: result.style,
-			});
-			await this.addToDocument(document, propertyPath, newTrack);
-		}
 	}
 
 	/**
