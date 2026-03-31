@@ -664,10 +664,12 @@ export default class FoundryUtils {
 	 *
 	 * @param html
 	 * @param className
+	 * @param eventName
 	 * @param {ContextMenuEntry[]} entries
 	 */
-	static contextMenu(html, className, entries) {
+	static contextMenu(html, className, entries, eventName = 'click') {
 		new foundry.applications.ux.ContextMenu(html, className, entries, {
+			eventName: eventName,
 			fixed: true,
 			jQuery: false,
 		});

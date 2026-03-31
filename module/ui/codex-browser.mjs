@@ -181,6 +181,15 @@ export class CodexBrowser {
 	 */
 	async handleContextAction(event, target) {
 		const { type, index } = target.dataset;
+		return this.executeCodexEntryAction(type, index);
+	}
+
+	/**
+	 * @param {Number} index
+	 * @param {String} type
+	 * @returns {Promise<void>}
+	 */
+	async executeCodexEntryAction(index, type) {
 		/** @type CodexEntryDataModel[] **/
 		const entries = this.party.codex.entries;
 		/** @type CodexEntryDataModel **/

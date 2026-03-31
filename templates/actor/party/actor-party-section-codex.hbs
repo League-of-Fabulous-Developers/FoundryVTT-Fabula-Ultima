@@ -50,16 +50,10 @@
 										title="Edit">
 									<i class="fu-icon--xs fa-solid fa-edit"></i>
 								</button>
-								<button data-action="forCodexEntry"
-										data-type="display"
+								<button data-context-menu="shareCodexEntry"
 										data-index="{{index}}"
-										title="{{localize 'SIDEBAR.CharArt'}}">
-									<i class="fu-icon--xs fa-solid fa-image"></i>
-								</button>
-								<button data-action="forCodexEntry"
-										data-type="send"
-										data-index="{{index}}">
-									<i class="fu-icon--xs fas fa-comment"></i>
+										title="{{localize 'FU.Share'}}">
+									<i class="fu-icon--xs fa-solid fa-share"></i>
 								</button>
 								{{#if (and entry.audio.path @root.isGM)}}
 									{{#if (pfuCollectionContains entry.name ../playingSounds)}}
