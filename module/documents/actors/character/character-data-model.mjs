@@ -240,7 +240,7 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 
 	#prepareClockResources() {
 		this.addClockResource('brainwave', 'brainwave-clock');
-		this.addClockResource('garden', 'floralist-garden');
+		this.addClockResource('garden', 'garden');
 		this.addClockResource('zeroPower', 'zero-power');
 	}
 }
