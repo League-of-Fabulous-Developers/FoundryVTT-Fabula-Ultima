@@ -22,6 +22,9 @@ export class CodexBrowser {
 	/** @type String[] **/
 	enrichedDescriptions;
 
+	static PROXY_ACTOR_NAME = 'Codex Entry Proxy';
+	static UPLOAD_FILE_PREFIX = 'codex-entry';
+
 	constructor(sheet) {
 		this.sheet = sheet;
 		this.selected = [];
@@ -247,6 +250,34 @@ export class CodexBrowser {
 				break;
 
 			case 'token':
+				{
+					if (entry.img === CodexEntryDataModel.DEFAULT_IMAGE_PATH) {
+						ui.notifications.warn(`The codex entry is still using the default image.`);
+						return;
+					}
+					let actor = game.actors.getName(CodexBrowser.PROXY_ACTOR_NAME);
+					if (!actor) {
+						actor = await Actor.implementation.create({
+							name: CodexBrowser.PROXY_ACTOR_NAME,
+							type: 'stash',
+						});
+					}
+					const token = FoundryUtils.instantiateActor(
+						actor,
+						{
+							name: entry.name,
+							texture: {
+								src: entry.img,
+							},
+						},
+						true,
+					);
+					if (token) {
+						ui.notifications.info(`Instanced a token for ${entry.name} on the active scene.`);
+					} else {
+						ui.notifications.error(`Failed to instance a token for the selected codex entry`);
+					}
+				}
 				break;
 		}
 	}
@@ -349,8 +380,6 @@ export class CodexBrowser {
 		entries.push(entry);
 		await this.actor.update({ [`system.codex.entries`]: entries });
 	}
-
-	static UPLOAD_FILE_PREFIX = 'codex-entry';
 
 	/**
 	 * @param {CodexEntryDataModel} entry

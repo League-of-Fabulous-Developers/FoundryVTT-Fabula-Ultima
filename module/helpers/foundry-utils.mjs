@@ -794,4 +794,44 @@ export default class FoundryUtils {
 	}
 
 	static PLACEHOLDER_IMG = 'icons/svg/mystery-man.svg';
+
+	/**
+	 * @desc Instantiates an actor on the current scene.
+	 * @param {FUActor} actor
+	 * @param {Object} data
+	 * @param {Boolean} pan
+	 * @returns {TokenDocument}
+	 */
+	static async instantiateActor(actor, data, pan = false) {
+		const scene = game.scenes.viewed;
+		if (!scene) {
+			return;
+		}
+
+		const gridSize = scene.grid.size;
+		// Prepare token data from the actor's prototype token
+		const tokenData = await actor.getTokenDocument({
+			x: 0,
+			y: 0,
+			actorLink: false, // unlinked token (set true to link to actor)
+		});
+
+		const tokenSize = tokenData.width; // token width in grid units (usually 1)
+		const x = scene.width / 2 - (tokenSize * gridSize) / 2;
+		const y = scene.height / 2 - (tokenSize * gridSize) / 2;
+
+		// Create the token on the scene
+		const [tokenDocument] = await scene.createEmbeddedDocuments('Token', [
+			{
+				...tokenData.toObject(),
+				x,
+				y,
+				...data,
+			},
+		]);
+		if (pan) {
+			canvas.animatePan({ x: tokenDocument.x, y: tokenDocument.y, scale: 1 });
+		}
+		return tokenDocument;
+	}
 }
