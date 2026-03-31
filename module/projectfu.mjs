@@ -7,7 +7,7 @@ import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { registerSystemSettings } from './settings.js';
+import { registerSystemSettings, SETTINGS } from './settings.js';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat, FUCombatDataModel } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -233,16 +233,7 @@ Hooks.once('init', async () => {
 		party: PartyDataModel,
 		stash: StashDataModel,
 	};
-	CONFIG.Actor.trackableAttributes = {
-		character: {
-			bar: ['resources.hp', 'resources.mp', 'resources.ip'],
-			value: ['resources.fp.value', 'resources.exp.value'],
-		},
-		npc: {
-			bar: ['resources.hp', 'resources.mp', 'clocks.pressure'],
-			value: ['resources.fp.value'],
-		},
-	};
+
 	CONFIG.Item.documentClass = FUItem;
 	CONFIG.Item.dataModels = {
 		accessory: AccessoryDataModel,
@@ -275,6 +266,25 @@ Hooks.once('init', async () => {
 	// Register system settings
 	await registerSystemSettings();
 	await registerKeyBindings();
+
+	CONFIG.Actor.trackableAttributes = {
+		character: {
+			bar: ['resources.hp', 'resources.mp', 'resources.ip', 'clocks.brainwave', 'clocks.garden'],
+			value: ['resources.fp.value', 'resources.exp.value'],
+		},
+		npc: {
+			bar: ['resources.hp', 'resources.mp'],
+			value: ['resources.fp.value'],
+		},
+	};
+
+	if (game.settings.get(SYSTEM, SETTINGS.pressureSystem)) {
+		CONFIG.Actor.trackableAttributes.npc.bar.push('clocks.pressure');
+	}
+
+	if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+		CONFIG.Actor.trackableAttributes.character.bar.push('clocks.zeroPower');
+	}
 
 	// Set combat tracker
 	console.log(`${SYSTEM} | Initializing combat tracker`);

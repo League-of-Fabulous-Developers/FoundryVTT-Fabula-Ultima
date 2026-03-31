@@ -35,6 +35,38 @@ export class BaseCharacterDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	/**
+	 * Adds a trackable resource to the clocks property of this DataModel
+	 * @param {string} key - Key name for the clock to be added to the DataModel
+	 * @param {string} fuid - fuid of the progress clock -- will be resolved with {@link FUActor.resolveProgress}
+	 */
+	addClockResource(key, fuid) {
+		this.clocks ??= {};
+		this.clocks[key] ??= {};
+
+		const actor = this.parent;
+
+		Object.defineProperty(this.clocks[key], 'value', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const clock = actor?.resolveProgress(fuid);
+				if (!clock) return 0;
+				return clock.current;
+			},
+		});
+
+		Object.defineProperty(this.clocks[key], 'max', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const clock = actor?.resolveProgress(fuid);
+				if (!clock) return 0;
+				return clock.max;
+			},
+		});
+	}
+
+	/**
 	 * @return FUActor
 	 */
 	get actor() {

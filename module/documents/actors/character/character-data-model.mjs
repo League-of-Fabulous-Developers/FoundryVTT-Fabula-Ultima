@@ -109,6 +109,7 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
 		this.#prepareBasicResources();
+		this.#prepareClockResources();
 		this.vehicle.prepareData();
 		this.floralist.prepareData();
 		this.derived.prepareData();
@@ -235,5 +236,11 @@ export class CharacterDataModel extends BaseCharacterDataModel {
 		// Initialize fp and exp
 		this.resources.fp.value = this.resources.fp.value || 0;
 		this.resources.exp.value = this.resources.exp.value || 0;
+	}
+
+	#prepareClockResources() {
+		this.addClockResource('brainwave', 'brainwave-clock');
+		this.addClockResource('garden', 'garden');
+		this.addClockResource('zeroPower', 'zero-power');
 	}
 }
