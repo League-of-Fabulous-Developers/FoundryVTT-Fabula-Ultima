@@ -249,6 +249,14 @@ export class CodexBrowser {
 				this.sheet.render(true);
 				break;
 
+			case 'tile':
+				if (entry.img === CodexEntryDataModel.DEFAULT_IMAGE_PATH) {
+					ui.notifications.warn(`The codex entry is still using the default image.`);
+					return;
+				}
+				await FoundryUtils.placeTile(entry.img);
+				break;
+
 			case 'token':
 				{
 					if (entry.img === CodexEntryDataModel.DEFAULT_IMAGE_PATH) {
@@ -262,7 +270,7 @@ export class CodexBrowser {
 							type: 'stash',
 						});
 					}
-					const token = FoundryUtils.instantiateActor(
+					const token = await FoundryUtils.instantiateActor(
 						actor,
 						{
 							name: entry.name,
@@ -274,6 +282,10 @@ export class CodexBrowser {
 					);
 					if (token) {
 						ui.notifications.info(`Instanced a token for ${entry.name} on the active scene.`);
+						// Release any current selection
+						canvas.tokens.releaseAll();
+						token.object.control({ releaseOthers: true });
+						this.sheet.close();
 					} else {
 						ui.notifications.error(`Failed to instance a token for the selected codex entry`);
 					}

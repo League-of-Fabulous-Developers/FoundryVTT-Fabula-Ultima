@@ -370,6 +370,14 @@ export class FUPartySheet extends FUActorSheet {
 								return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'token');
 							},
 						},
+						{
+							name: StringUtils.localize('CONTROLS.TilePlace'),
+							icon: `<i class="fu-icon--xs fa-solid fa-cube"></i>`,
+							callback: async (el) => {
+								const { index } = el.dataset;
+								return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'tile');
+							},
+						},
 					]);
 				}
 				break;

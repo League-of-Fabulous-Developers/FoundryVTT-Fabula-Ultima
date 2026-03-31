@@ -15,6 +15,7 @@ const { api, fields, handlebars } = foundry.applications;
  * @property {boolean} [disabled]
  * @property {boolean} [selected]
  * @property {boolean} [rule]
+ * @property {String} img (Custom for PFU dialogs)
  * @property {Record<string, string>} [dataset]
  */
 
@@ -833,5 +834,86 @@ export default class FoundryUtils {
 			canvas.animatePan({ x: tokenDocument.x, y: tokenDocument.y, scale: 1 });
 		}
 		return tokenDocument;
+	}
+
+	/**
+	 * @param imagePath
+	 * @returns {Promise<unknown>}
+	 */
+	static async placeTile(imagePath) {
+		const scene = game.scenes.viewed;
+
+		// Get image dimensions to use as default tile size
+		// eslint-disable-next-line no-undef
+		const tex = await loadTexture(imagePath);
+		let width, height;
+
+		const promptTitle = `${StringUtils.localize('CONTROLS.TilePlace')} - Preset`;
+		const preset = await FoundryUtils.selectOptionDialog(promptTitle, [
+			{
+				label: StringUtils.localizeMultiple(['Token', 'Scale']),
+				value: 'token',
+			},
+			{
+				label: StringUtils.localizeMultiple(['Default', 'Scale']),
+				value: 'default',
+			},
+		]);
+		switch (preset) {
+			case 'token':
+				{
+					const scale = Math.min(100 / tex.width, 100 / tex.height);
+					width = tex.width * scale;
+					height = tex.height * scale;
+				}
+				break;
+			case 'default':
+				width = tex.width;
+				height = tex.height;
+				break;
+		}
+
+		if (!preset) {
+			return;
+		}
+
+		const notification = ui.notifications.info('Left-Click to place tile. Right-Click to cancel the operation.', { permanent: true });
+
+		return new Promise((resolve) => {
+			const clickHandler = async (event) => {
+				const { x, y } = event.getLocalPosition(canvas.stage);
+
+				cleanup();
+
+				const [tileDocument] = await scene.createEmbeddedDocuments('Tile', [
+					{
+						texture: { src: imagePath },
+						width,
+						height,
+						x: x - width / 2,
+						y: y - height / 2,
+					},
+				]);
+
+				canvas.tiles.releaseAll();
+				tileDocument.object.control({ releaseOthers: true });
+				resolve(tileDocument);
+			};
+
+			const rightClickHandler = () => {
+				cleanup();
+				ui.notifications.warn('Cancelled tile placement.');
+				resolve(null); // cancelled
+			};
+
+			const cleanup = () => {
+				canvas.stage.off('click', clickHandler);
+				canvas.stage.off('rightclick', rightClickHandler);
+				ui.notifications.remove(notification);
+			};
+
+			canvas.stage.on('click', clickHandler);
+			canvas.stage.on('rightclick', rightClickHandler);
+		});
 	}
 }
