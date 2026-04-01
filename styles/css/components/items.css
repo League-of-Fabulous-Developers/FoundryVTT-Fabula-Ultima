@@ -484,7 +484,7 @@
 .items-list .item .item-name .item-image,
 .items-list .effect .item-name .item-image {
 	border: none;
-	padding-right: 5px;
+	/*padding-right: 5px;*/
 	flex: 0 0 30px;
 	position: relative;
 }
