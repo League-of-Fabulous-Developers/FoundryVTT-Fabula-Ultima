@@ -10,6 +10,7 @@ import { CHECK_FLAVOR } from '../checks/default-section-order.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { StringUtils } from './string-utils.mjs';
 import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
+import FoundryUtils from './foundry-utils.mjs';
 
 const actionKey = 'ruleDefinedAction';
 
@@ -175,5 +176,26 @@ export class ActionHandler {
 			ui.notifications.info('Guard is activated.');
 			await this.createActionMessage('guard');
 		}
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @param element
+	 */
+	static setupMenu(actor, element) {
+		const attacks = WeaponResolver.getEquippedWeapons(actor, true);
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="attack"]', actor, attacks);
+		const spells = ['spell'].map((t) => actor.getItemsByType(t)).flat();
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="spell"]', actor, spells);
+		const consumables = ['consumable'].map((t) => actor.getItemsByType(t)).flat();
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="inventory"]', actor, consumables);
+		/** @type {FUItem[]} **/
+		const skills = ['skill', 'miscAbility']
+			.map((t) => actor.getItemsByType(t))
+			.flat()
+			.filter((s) => {
+				return !s.system.passive;
+			});
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="skill"]', actor, skills);
 	}
 }

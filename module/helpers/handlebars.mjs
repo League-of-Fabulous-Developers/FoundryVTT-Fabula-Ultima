@@ -245,6 +245,16 @@ export const FUHandlebars = Object.freeze({
 			},
 		);
 
+		// Creates array from arguments
+		Handlebars.registerHelper('pfuArray', function (...args) {
+			return args.slice(0, -1);
+		});
+
+		// Creates a plain object from the handlebars named parameters
+		Handlebars.registerHelper('pfuHash', function (options) {
+			return options.hash;
+		});
+
 		Handlebars.registerHelper('pfuProgress', progress);
 		Handlebars.registerHelper('pfuProgressCollection', progressCollection);
 		Handlebars.registerHelper('pfuAutoComplete', autoComplete);

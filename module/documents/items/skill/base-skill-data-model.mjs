@@ -110,6 +110,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
  * @property {ActionCostDataModel} cost
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
+ * @property {Boolean} hasRoll.value
  */
 export class BaseSkillDataModel extends FUStandardItemDataModel {
 	static defineSchema() {
@@ -155,6 +156,25 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 */
 	getTags() {
 		return [];
+	}
+
+	/**
+	 * @returns {boolean} Whether this is a passive skill.
+	 * @remarks This is used to determine whether to show this skill in some UIs.
+	 */
+	get passive() {
+		let active = this.hasRoll.value || this.useWeapon.accuracy || this.damage.hasDamage || this.effects.entries.size > 0;
+		/** @type {FUItem} **/
+		const item = this.parent;
+		for (const effect of item.effects) {
+			const rollRule = effect.findRuleElement((rule) => {
+				return rule.trigger.type === 'itemRollRuleTrigger';
+			});
+			if (rollRule !== undefined) {
+				active = true;
+			}
+		}
+		return !active;
 	}
 
 	/**

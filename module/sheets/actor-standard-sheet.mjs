@@ -689,6 +689,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 				}
 				break;
 			}
+
+			case 'stats':
+				{
+					ActionHandler.setupMenu(this.actor, element);
+				}
+				break;
 		}
 	}
 

@@ -317,6 +317,18 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		}
 
 		/**
+		 * @param {function(RuleElementDataModel): boolean} predicate
+		 */
+		findRuleElement(predicate) {
+			for (const rule of this.system.rules.elements) {
+				if (predicate(rule)) {
+					return rule;
+				}
+			}
+			return undefined;
+		}
+
+		/**
 		 * @description Emits a chat message with this effect
 		 * @returns {Promise<void>}
 		 */
