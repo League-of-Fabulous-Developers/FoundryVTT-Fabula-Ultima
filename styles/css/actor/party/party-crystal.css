@@ -139,6 +139,7 @@
 					text-wrap: unset;
 					text-align: unset;
 					margin-top: 0; /* will be driven by the wrapper */
+					margin-right: 8px;
 				}
 
 				/* === Resources — bottom overlay === */
