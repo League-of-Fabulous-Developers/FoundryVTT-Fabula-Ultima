@@ -9,6 +9,7 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CHECK_FLAVOR } from '../checks/default-section-order.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { StringUtils } from './string-utils.mjs';
+import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
 
 const actionKey = 'ruleDefinedAction';
 
@@ -48,7 +49,8 @@ const onRenderCheck = (data, check, actor) => {
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
- * @desc Encapsulates basic character actions.\
+ * @desc Encapsulates basic character actions.
+ * @property {FUActor} actor
  * @property {Number} bonus
  */
 export class ActionHandler {
@@ -65,9 +67,17 @@ export class ActionHandler {
 		return this;
 	}
 
+	/**
+	 *
+	 * @param {FUActionType} actionType
+	 * @param isShift
+	 * @returns {Promise<void>}
+	 */
 	async handleAction(actionType, isShift = false) {
 		if (!isShift) {
 			switch (actionType) {
+				case 'attack':
+					return this.attack();
 				case 'equipment':
 					return this.createActionMessage(actionType);
 				case 'guard':
@@ -121,6 +131,17 @@ export class ActionHandler {
 				title: `${StringUtils.localize(FU.actionTypes.hinder)} ${StringUtils.localize('FU.Check')}`,
 			},
 		});
+	}
+
+	/**
+	 * @desc Performs an attack with one of the equipped weapons or attacks.
+	 * @returns {Promise<void>}
+	 */
+	async attack() {
+		const resolution = await WeaponResolver.prompt(this.actor, true);
+		if (resolution?.item) {
+			resolution.item.roll();
+		}
 	}
 
 	/**
