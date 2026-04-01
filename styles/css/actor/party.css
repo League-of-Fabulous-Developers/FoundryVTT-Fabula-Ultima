@@ -52,27 +52,27 @@
 	.nav {
 		grid-area: nav;
 		padding: 8px;
+	}
 
-		.widgets {
-			gap: 2rem;
+	.widgets {
+		gap: 2rem;
 
-			.tracks {
-				color: var(--pfu-color-app-control-content);
-			}
+		.tracks {
+			color: var(--pfu-color-app-control-content);
+		}
 
-			.resources {
-				display: flex;
-			}
+		.resources {
+			display: flex;
+		}
 
-			.actions {
-				display: flex;
-				flex-direction: column;
-				color: var(--pfu-color-app-control-content);
-				gap: 4px;
+		.actions {
+			display: flex;
+			flex-direction: column;
+			color: var(--pfu-color-app-control-content);
+			gap: 4px;
 
-				i {
-					font-size: 24px;
-				}
+			i {
+				font-size: 24px;
 			}
 		}
 	}

@@ -213,7 +213,7 @@ async function promptAddToDocument(document, propertyPath, selectStyle = false) 
 			max: result.max,
 			style: result.style,
 		});
-		await this.addToDocument(document, propertyPath, newTrack);
+		await ProgressDataModel.addToDocument(document, propertyPath, newTrack);
 	}
 }
 
