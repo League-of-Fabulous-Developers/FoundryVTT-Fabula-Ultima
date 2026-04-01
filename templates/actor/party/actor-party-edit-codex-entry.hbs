@@ -11,7 +11,19 @@
 		</label>
 	</div>
 
-
+	<div class="pfu-dialog__input">
+		<span>{{localize "FU.Tags"}}</span>
+		<div class="pfu-tag-selector">
+			{{#each tags as |tag|}}
+				<div class="tag {{#if (pfuCollectionContains tag ../entry.tags)}}active{{/if}}"
+					 data-action="toggleTag"
+					 data-path="entry.tags"
+					 data-tag="{{tag}}">
+					{{pfuHumanize tag}}
+				</div>
+			{{/each}}
+		</div>
+	</div>
 
 	<div class="flexrow flex-group-center gap-16">
 		<div class="pfu-dialog__input">
