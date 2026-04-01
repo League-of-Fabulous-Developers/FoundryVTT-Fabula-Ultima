@@ -465,6 +465,9 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			});
 		}
 		for (const entry of this.codex.entries) {
+			if (characters.find((c) => c.name === entry.name)) {
+				continue;
+			}
 			entries.set(entry.name, {
 				name: entry.name,
 				id: foundry.utils.randomID(),
