@@ -500,6 +500,9 @@ app.projectfu .prosemirror menu {
 	border-radius: var(--pfu-border-radius-medium);
 	transition: none;
 	margin: 4px;
+	display: flex;
+	align-items: center;
+	gap: 4px;
 
 	&:hover {
 		color: var(--pfu-color-control-focus-content);

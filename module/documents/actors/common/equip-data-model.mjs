@@ -1,4 +1,14 @@
 /**
+ * @typedef CharacterEquipment
+ * @property mainHand
+ * @property offHand
+ * @property armor
+ * @property accessory
+ */
+
+import { FU } from '../../../helpers/config.mjs';
+
+/**
  * @property {string} armor
  * @property {string} mainHand
  * @property {string} offHand
@@ -45,6 +55,22 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 			equipment.push(this.accessory);
 		}
 		return equipment;
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @param {'mainHand', 'offHand', 'phantom', 'armor'} slot
+	 * @return {FUItem|null}
+	 */
+	static getEquipment(actor, slot) {
+		return (
+			[actor.system.equipped[slot]]
+				.filter((value) => value)
+				.map((value) => actor.items.get(value))
+				.filter((value) => value)
+				.filter((value) => value.type in FU.weaponItemTypes)
+				.at(0) ?? null
+		);
 	}
 
 	/**

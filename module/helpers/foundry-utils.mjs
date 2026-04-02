@@ -662,7 +662,6 @@ export default class FoundryUtils {
 	 */
 
 	/**
-	 *
 	 * @param html
 	 * @param className
 	 * @param eventName
@@ -674,6 +673,53 @@ export default class FoundryUtils {
 			fixed: true,
 			jQuery: false,
 		});
+	}
+
+	/**
+	 * @param {HTMLElement} html
+	 * @param {String} className
+	 * @param {FUItem[]} items
+	 * @param {function(FUItem): Promise<void>} [action]
+	 * @remarks {Boolean} True if the context menu was set.
+	 */
+	static itemContextMenu(html, className, items, action = undefined) {
+		const entries = items
+			.toSorted((a, b) => a.name.localeCompare(b.name))
+			.map((item) => {
+				return {
+					name: item.name,
+					icon: `<img class="fu-icon--xs" src="${item.img}" alt="${item.name}"/>`,
+					callback: async (html) => {
+						if (action) {
+							return action(item);
+						}
+						if (item.roll) {
+							return item.roll();
+						}
+					},
+				};
+			});
+
+		if (entries.length === 0) {
+			html.querySelectorAll(className).forEach((el) => {
+				el.addEventListener(
+					'click',
+					() => {
+						ui.notifications.warn(StringUtils.localize('FU.DialogEntriesMissing'));
+					},
+					{ once: true },
+				);
+			});
+			return false;
+		}
+
+		new foundry.applications.ux.ContextMenu(html, className, entries, {
+			eventName: 'click',
+			fixed: true,
+			jQuery: false,
+		});
+
+		return true;
 	}
 
 	/**

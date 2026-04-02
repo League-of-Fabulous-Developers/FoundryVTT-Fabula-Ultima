@@ -440,6 +440,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						};
 					}
 					context.favoritesTable = await this.#favoritesTable.renderTable(this.document);
+					context.temporaryEffects = this.actor.temporaryEffects.filter((e) => e.hasDuration);
 				}
 				break;
 
@@ -689,6 +690,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 				}
 				break;
 			}
+
+			case 'stats':
+				{
+					ActionHandler.setupMenu(this.actor, element);
+				}
+				break;
 		}
 	}
 

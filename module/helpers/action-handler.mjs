@@ -9,6 +9,9 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CHECK_FLAVOR } from '../checks/default-section-order.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { StringUtils } from './string-utils.mjs';
+import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
+import FoundryUtils from './foundry-utils.mjs';
+import { EquipmentHandlerDialog } from './equipment-handler.mjs';
 
 const actionKey = 'ruleDefinedAction';
 
@@ -48,7 +51,8 @@ const onRenderCheck = (data, check, actor) => {
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
- * @desc Encapsulates basic character actions.\
+ * @desc Encapsulates basic character actions.
+ * @property {FUActor} actor
  * @property {Number} bonus
  */
 export class ActionHandler {
@@ -65,11 +69,19 @@ export class ActionHandler {
 		return this;
 	}
 
+	/**
+	 *
+	 * @param {FUActionType} actionType
+	 * @param isShift
+	 * @returns {Promise<void>}
+	 */
 	async handleAction(actionType, isShift = false) {
 		if (!isShift) {
 			switch (actionType) {
+				case 'attack':
+					return this.attack();
 				case 'equipment':
-					return this.createActionMessage(actionType);
+					return this.equipment();
 				case 'guard':
 					return this.toggleGuardEffect(this.actor);
 				case 'hinder':
@@ -77,7 +89,7 @@ export class ActionHandler {
 				case 'inventory':
 					return this.createActionMessage(actionType);
 				case 'objective':
-					return this.createActionMessage(actionType);
+					return this.objective();
 				case 'spell':
 					return this.createActionMessage(actionType);
 				case 'study':
@@ -124,6 +136,35 @@ export class ActionHandler {
 	}
 
 	/**
+	 * @desc Performs an attack with one of the equipped weapons or attacks.
+	 * @returns {Promise<void>}
+	 */
+	async attack() {
+		const resolution = await WeaponResolver.prompt(this.actor, true);
+		if (resolution?.item) {
+			resolution.item.roll();
+		}
+	}
+
+	/**
+	 * @desc Attempts to roll a check for one of the existing clocks.
+	 * @returns {Promise<void>}
+	 */
+	async objective() {
+		// TODO: Look at active clocks in party/scene and roll a check to advance them
+		return CheckPrompt.attributeCheck(this.actor);
+	}
+
+	/**
+	 * @desc Opens a dialog to swap the current equipment.
+	 * @returns {Promise<void>}
+	 */
+	async equipment() {
+		const dialog = new EquipmentHandlerDialog(this.actor);
+		dialog.render(true);
+	}
+
+	/**
 	 * Create a chat message for a given action.
 	 * @param {string} action - The type of action to create a message for.
 	 */
@@ -154,5 +195,38 @@ export class ActionHandler {
 			ui.notifications.info('Guard is activated.');
 			await this.createActionMessage('guard');
 		}
+	}
+
+	static skillsWithApps = ['invocations', 'verse'];
+
+	/**
+	 * @param {FUActor} actor
+	 * @param element
+	 */
+	static setupMenu(actor, element) {
+		// ATTACKS
+		const attacks = WeaponResolver.getEquippedWeapons(actor, true);
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="attack"]', attacks);
+		// SPELLS
+		const spells = ['spell'].map((t) => actor.getItemsByType(t)).flat();
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="spell"]', spells);
+		// INVENTORY
+		const consumables = ['consumable'].map((t) => actor.getItemsByType(t)).flat();
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="inventory"]', consumables);
+		// SKILLS
+		/** @type {FUItem[]} **/
+		let skills = ['skill', 'miscAbility']
+			.map((t) => actor.getItemsByType(t))
+			.flat()
+			.filter((s) => {
+				return !s.system.passive;
+			});
+		for (const fuid of ActionHandler.skillsWithApps) {
+			const skill = actor.getItemsByFuid(fuid);
+			if (skill) {
+				skills.push(...skill);
+			}
+		}
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="skill"]', skills);
 	}
 }

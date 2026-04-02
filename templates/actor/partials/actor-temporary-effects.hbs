@@ -1,0 +1,18 @@
+<fieldset class="section-container title-fieldset desc resource-content">
+	<legend class="resource-label-m">
+		{{localize 'FU.Effects'}}
+	</legend>
+	<div class="flexcol gap-4">
+		{{#each temporaryEffects as |effect|}}
+			<div class="flexrow flex-between" data-effect-id="{{effect.id}}">
+					<span class="flexrow flex-group-left">
+						{{pfuItemAnchor effect}}
+						<span>{{effect.name}}</span>
+					</span>
+				<button data-action="deleteEffect" style="flex: 0; width: 1.5rem; height: 1.5rem;">
+					<i class="fa fa-trash"></i>
+				</button>
+			</div>
+		{{/each}}
+	</div>
+</fieldset>

@@ -1876,6 +1876,8 @@
 .button-style.action-style {
 	width: 100% !important;
 	height: 100% !important;
+	display: flex;
+	gap: 4px;
 }
 .button-style button {
 	border-radius: inherit;

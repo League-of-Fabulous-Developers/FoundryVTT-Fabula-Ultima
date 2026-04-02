@@ -6,6 +6,13 @@
 	}
 }
 
+.grid-2row {
+	display: grid;
+	grid-row: span 2 / span 2;
+	grid-template-rows: repeat(2, minmax(0, 1fr));
+	padding: 0;
+}
+
 .grid,
 .grid-2col {
 	display: grid;

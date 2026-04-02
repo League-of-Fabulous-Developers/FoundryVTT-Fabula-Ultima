@@ -366,7 +366,7 @@ export class FUActor extends Actor {
 	 * Returns an array of items that match a given FUID and optionally an item type
 	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
 	 * @param {string} [type] - Optionally, a type name to restrict the search
-	 * @returns {Array} - An array containing the found items
+	 * @returns {FUItem[]} - An array containing the found items
 	 */
 	getItemsByFuid(fuid, type) {
 		const fuidFilter = (i) => i.system.fuid === fuid;

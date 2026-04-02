@@ -291,15 +291,15 @@ FU.actionTypes = {
 };
 
 FU.actionIcons = {
-	attack: 'ra ra-crossed-swords', // attack / melee
-	equipment: 'ra ra-armor', // equipment / gear
-	guard: 'ra ra-shield', // guard / defense
-	hinder: 'ra ra-interdiction', // hinder / block
-	inventory: 'ra ra-ammo-bag', // inventory / bag
-	objective: 'ra ra-targeted', // objective / goal
-	spell: 'ra ra-crystal-wand', // spell / magic
-	study: 'ra ra-book', // study / learn
-	skill: 'ra ra-muscle-up', // skill / ability improvement
+	attack: 'ra ra-crossed-swords',
+	equipment: 'ra ra-vest',
+	guard: 'ra ra-shield',
+	hinder: 'ra ra-interdiction',
+	inventory: 'ra ra-ammo-bag',
+	objective: 'ra ra-targeted',
+	spell: 'ra ra-crystal-wand',
+	study: 'ra ra-book',
+	skill: 'ra ra-muscle-up',
 };
 
 FU.actionRule = {
@@ -1141,6 +1141,7 @@ FU.allIcon = {
 
 	...FU.bondIcons,
 
+	...FU.actionIcons,
 	roll: FU.checkIcons.open,
 	...FU.checkIcons,
 	...FU.affinityIcons,
@@ -1178,3 +1179,13 @@ FU.codexTags = Object.freeze({
 	lore: 'FU.CODEX.Lore',
 	glossary: 'FU.CODEX.Glossary',
 });
+
+/**
+ * @typedef {'mainHand', 'offHand', 'armor', 'accessory', 'phantom', 'arcanum'} FUEquipmentSlot
+ */
+
+FU.equipmentSlots = {
+	mainHand: 'FU.MainHand',
+	offHand: 'FU.OffHand',
+	phantom: 'FU.PhantomHand',
+};
