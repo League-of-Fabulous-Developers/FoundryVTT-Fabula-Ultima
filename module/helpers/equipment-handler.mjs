@@ -1,3 +1,12 @@
+import FUApplication from '../ui/application.mjs';
+import { systemAssetPath, systemTemplatePath } from './system-utils.mjs';
+import { EquipDataModel } from '../documents/actors/common/equip-data-model.mjs';
+import FoundryUtils from './foundry-utils.mjs';
+import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
+
+/**
+ * @desc Manages equipment for a character.
+ */
 export class EquipmentHandler {
 	constructor(actor) {
 		this.actor = actor;
@@ -167,5 +176,116 @@ export class EquipmentHandler {
 		if (!equippedData.offHand) {
 			equippedData.offHand = unarmedStrike.id;
 		}
+	}
+}
+
+/**
+ * @desc A dialog used for switching equipment on an actor.
+ */
+export class EquipmentHandlerDialog extends FUApplication {
+	static DEFAULT_OPTIONS = {
+		window: {
+			title: 'FU.Equipment',
+			icon: 'ra ra-vest',
+			resizable: false,
+		},
+		position: {
+			width: 680,
+			height: 'auto',
+		},
+		actions: {
+			switch: this.#switchEquipment,
+		},
+	};
+
+	static PARTS = {
+		main: {
+			template: systemTemplatePath('ui/equipment-handler'),
+		},
+	};
+
+	#actor;
+	#slots;
+	#weapons;
+	#accessories;
+	#armors;
+
+	constructor(actor) {
+		super();
+		this.#actor = actor;
+		this.#slots = EquipDataModel.getSlottedEquipment(actor);
+		this.#weapons = WeaponResolver.getEquippedWeapons(actor, true);
+		this.#armors = actor.getItemsByType('armor');
+		this.#accessories = actor.getItemsByType('accessory');
+	}
+
+	/** @type {FUActor} **/
+	get actor() {
+		return this.#actor;
+	}
+
+	/**
+	 * @returns {CharacterEquipment}
+	 */
+	get slots() {
+		return this.#slots;
+	}
+
+	/**
+	 * @returns {EquipDataModel|*}
+	 */
+	get equipped() {
+		return this.actor.system.equipped;
+	}
+
+	/** @override */
+	async _prepareContext(options) {
+		return {
+			slots: {
+				mainHand: { label: 'FU.MainHand', current: this.slots.mainHand, items: this.slots.mainHand },
+				offHand: { label: 'FU.OffHand', current: this.slots.offHand, items: this.slots.offHand },
+				armor: { label: 'FU.Armor', current: this.slots.armor, items: this.slots.armor },
+				accessory: { label: 'FU.Accessory', current: this.slots.accessory, items: this.slots.accessory },
+			},
+			dollImage: systemAssetPath('ui/equipment-doll.png'),
+		};
+	}
+
+	/**
+	 * @override
+	 * @param partId
+	 * @param element
+	 * @param options
+	 * @private
+	 */
+	_attachPartListeners(partId, element, options) {
+		super._attachPartListeners(partId, element, options);
+		switch (partId) {
+			case 'main':
+				{
+					FoundryUtils.itemContextMenu(element, '[data-context-menu="mainHand"]', this.#weapons, (item) => {
+						ui.notifications.info(`Switching main hand to ${item.name}`);
+					});
+					FoundryUtils.itemContextMenu(element, '[data-context-menu="offHand"]', this.#weapons, (item) => {
+						ui.notifications.info(`Switching offhand hand to ${item.name}`);
+					});
+					FoundryUtils.itemContextMenu(element, '[data-context-menu="armor"]', this.#armors, (item) => {
+						ui.notifications.info(`Switching armor to ${item.name}`);
+					});
+					FoundryUtils.itemContextMenu(element, '[data-context-menu="accessory"]', this.#accessories, (item) => {
+						ui.notifications.info(`Switching accessory to ${item.name}`);
+					});
+				}
+				break;
+		}
+	}
+
+	/**
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #switchEquipment(event, target) {
+		// TODO: Switch equipment
 	}
 }

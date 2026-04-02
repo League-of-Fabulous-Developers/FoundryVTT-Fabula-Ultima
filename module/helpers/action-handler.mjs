@@ -11,6 +11,7 @@ import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { StringUtils } from './string-utils.mjs';
 import { WeaponResolver } from '../documents/items/skill/weapon-resolver.mjs';
 import FoundryUtils from './foundry-utils.mjs';
+import { EquipmentHandlerDialog } from './equipment-handler.mjs';
 
 const actionKey = 'ruleDefinedAction';
 
@@ -158,7 +159,10 @@ export class ActionHandler {
 	 * @desc Opens a dialog to swap the current equipment.
 	 * @returns {Promise<void>}
 	 */
-	async equipment() {}
+	async equipment() {
+		const dialog = new EquipmentHandlerDialog(this.actor);
+		dialog.render(true);
+	}
 
 	/**
 	 * Create a chat message for a given action.
@@ -193,24 +197,36 @@ export class ActionHandler {
 		}
 	}
 
+	static skillsWithApps = ['invocations', 'verse'];
+
 	/**
 	 * @param {FUActor} actor
 	 * @param element
 	 */
 	static setupMenu(actor, element) {
+		// ATTACKS
 		const attacks = WeaponResolver.getEquippedWeapons(actor, true);
-		FoundryUtils.itemContextMenu(element, '[data-context-menu="attack"]', actor, attacks);
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="attack"]', attacks);
+		// SPELLS
 		const spells = ['spell'].map((t) => actor.getItemsByType(t)).flat();
-		FoundryUtils.itemContextMenu(element, '[data-context-menu="spell"]', actor, spells);
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="spell"]', spells);
+		// INVENTORY
 		const consumables = ['consumable'].map((t) => actor.getItemsByType(t)).flat();
-		FoundryUtils.itemContextMenu(element, '[data-context-menu="inventory"]', actor, consumables);
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="inventory"]', consumables);
+		// SKILLS
 		/** @type {FUItem[]} **/
-		const skills = ['skill', 'miscAbility']
+		let skills = ['skill', 'miscAbility']
 			.map((t) => actor.getItemsByType(t))
 			.flat()
 			.filter((s) => {
 				return !s.system.passive;
 			});
-		FoundryUtils.itemContextMenu(element, '[data-context-menu="skill"]', actor, skills);
+		for (const fuid of ActionHandler.skillsWithApps) {
+			const skill = actor.getItemsByFuid(fuid);
+			if (skill) {
+				skills.push(...skill);
+			}
+		}
+		FoundryUtils.itemContextMenu(element, '[data-context-menu="skill"]', skills);
 	}
 }

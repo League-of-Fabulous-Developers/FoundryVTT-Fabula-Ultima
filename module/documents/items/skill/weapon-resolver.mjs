@@ -14,7 +14,7 @@ import FoundryUtils from '../../../helpers/foundry-utils.mjs';
  * @param {'mainHand', 'offHand', 'phantom', 'armor'} slot
  * @return {FUItem|null}
  */
-function getWeapon(actor, slot) {
+function getEquipment(actor, slot) {
 	return (
 		[actor.system.equipped[slot]]
 			.filter((value) => value)
@@ -34,24 +34,24 @@ function getEquippedWeapons(actor, includeWeaponModules) {
 	let equippedWeapons = [];
 
 	if (actor.system instanceof CharacterDataModel) {
-		const phantomHand = getWeapon(actor, 'phantom');
+		const phantomHand = getEquipment(actor, 'phantom');
 		if (includeWeaponModules && actor.system.vehicle.embarked && actor.system.vehicle.weapons.length > 0) {
 			let modules = actor.system.vehicle.weapons;
 			modules = modules.filter((w) => w.system.data.type !== 'shield' || w === phantomHand);
 			equippedWeapons.push(...modules, phantomHand);
 		} else {
-			const mainHand = getWeapon(actor, 'mainHand');
-			const offHand = getWeapon(actor, 'offHand');
-			const armor = getWeapon(actor, 'armor');
+			const mainHand = getEquipment(actor, 'mainHand');
+			const offHand = getEquipment(actor, 'offHand');
+			const armor = getEquipment(actor, 'armor');
 
 			equippedWeapons.push(...new Set([mainHand, offHand, phantomHand, armor]));
 		}
 	}
 	if (actor.system instanceof NpcDataModel) {
 		if (actor.system.useEquipment.value) {
-			const mainHand = getWeapon(actor, 'mainHand');
-			const offHand = getWeapon(actor, 'offHand');
-			const armor = getWeapon(actor, 'armor');
+			const mainHand = getEquipment(actor, 'mainHand');
+			const offHand = getEquipment(actor, 'offHand');
+			const armor = getEquipment(actor, 'armor');
 
 			equippedWeapons.push(...new Set([mainHand, offHand, armor]));
 		} else {
@@ -221,7 +221,7 @@ function getAccuracy(weapon) {
 
 export const WeaponResolver = Object.freeze({
 	prompt,
-	getWeapon,
+	getEquipment,
 	getEquippedWeapons,
 	getAccuracy,
 });

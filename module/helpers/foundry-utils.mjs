@@ -678,11 +678,11 @@ export default class FoundryUtils {
 	/**
 	 * @param {HTMLElement} html
 	 * @param {String} className
-	 * @param {FUActor} actor
 	 * @param {FUItem[]} items
+	 * @param {function(FUItem): Promise<void>} [action]
 	 * @remarks {Boolean} True if the context menu was set.
 	 */
-	static itemContextMenu(html, className, actor, items) {
+	static itemContextMenu(html, className, items, action = undefined) {
 		const entries = items
 			.toSorted((a, b) => a.name.localeCompare(b.name))
 			.map((item) => {
@@ -690,6 +690,9 @@ export default class FoundryUtils {
 					name: item.name,
 					icon: `<img class="fu-icon--xs" src="${item.img}" alt="${item.name}"/>`,
 					callback: async (html) => {
+						if (action) {
+							return action(item);
+						}
 						if (item.roll) {
 							return item.roll();
 						}

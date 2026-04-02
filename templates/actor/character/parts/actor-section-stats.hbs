@@ -25,6 +25,8 @@
 		</section>
 		<section class="body-section grid grid-4col flexgrow-1">
 			<aside class="sidebar flex-group-center">
+				{{!-- Action Buttons --}}
+				{{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
 				{{!-- Bond Section --}}
 				<fieldset class="section-container title-fieldset desc resource-content">
 					<legend class="resource-label-m">
@@ -59,8 +61,6 @@
 						{{/each}}
 					</div>
 				</fieldset>
-				{{!-- Action Buttons --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
 				{{!-- Vehicle Section --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-vehicle.hbs"}}
 				{{!-- Garden Section --}}
@@ -80,7 +80,6 @@
 			<aside class="sidebar flex-group-center">
 				{{!-- Action Buttons --}}
 				{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
-
 				<!-- Villain -->
 				{{#if system.villain.value}}
 					<fieldset class="section-container title-fieldset desc resource-content">

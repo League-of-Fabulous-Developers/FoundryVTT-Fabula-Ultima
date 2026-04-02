@@ -91,8 +91,8 @@ export class WeaponRulePredicate extends RulePredicateDataModel {
 		// If not using the event attack item...
 		if (!attackItem) {
 			if (character.actor.type === 'character') {
-				const mainHand = WeaponResolver.getWeapon(context.character.actor, 'mainHand');
-				const offHand = WeaponResolver.getWeapon(context.character.actor, 'offHand');
+				const mainHand = WeaponResolver.getEquipment(context.character.actor, 'mainHand');
+				const offHand = WeaponResolver.getEquipment(context.character.actor, 'offHand');
 				attackItem = mainHand ?? offHand;
 			} else if (character.actor.type === 'npc') {
 				/** @type {BasicItemDataModel[]} **/
