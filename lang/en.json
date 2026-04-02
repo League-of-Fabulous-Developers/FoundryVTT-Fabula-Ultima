@@ -1956,6 +1956,7 @@
 			"Lore": "Lore",
 			"Glossary": "Glossary"
 		},
-		"SwitchEquipment": "Switch Equipment"
+		"SwitchEquipment": "Switch Equipment",
+		"SwitchEquipmentChatMessage": "<strong>{actor}</strong> is now wearing the following equipment."
 	}
 }

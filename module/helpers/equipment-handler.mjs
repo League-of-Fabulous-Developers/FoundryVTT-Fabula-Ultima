@@ -1,6 +1,8 @@
 import FUApplication from '../ui/application.mjs';
 import { systemAssetPath, systemTemplatePath } from './system-utils.mjs';
 import FoundryUtils from './foundry-utils.mjs';
+import { FUChatBuilder } from './chat-builder.mjs';
+import { CommonSections } from '../checks/common-sections.mjs';
 
 /**
  * @desc Manages equipment for a character.
@@ -246,6 +248,20 @@ export class EquipmentHandler {
 		// );
 		return items;
 	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @param {EquipDataModel} equippedData
+	 */
+	static getItems(actor, equippedData) {
+		let items = [];
+		for (const [, value] of Object.entries(equippedData)) {
+			if (value) {
+				items.push(actor.items.get(value));
+			}
+		}
+		return items;
+	}
 }
 
 /**
@@ -366,5 +382,12 @@ export class EquipmentHandlerDialog extends FUApplication {
 	static async #switchEquipment(event, target) {
 		// TODO: Chat message
 		await this.actor.update({ 'system.equipped': this.#equippedData });
+		const chatBuilder = new FUChatBuilder(this.actor);
+		CommonSections.template(chatBuilder.sections, 'chat/chat-equipment-change', {
+			actor: this.#actor,
+			items: EquipmentHandler.getItems(this.actor, this.#equippedData),
+		});
+
+		await chatBuilder.create();
 	}
 }

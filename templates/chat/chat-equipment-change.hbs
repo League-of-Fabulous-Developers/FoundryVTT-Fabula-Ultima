@@ -1,0 +1,16 @@
+{{{localize 'FU.SwitchEquipmentChatMessage' actor=actor.name }}}
+
+<table class="table-compact">
+	<tbody>
+	{{#each items as |item|}}
+		<tr>
+			<td>
+				{{pfuItemAnchor item}}
+			</td>
+			<td>
+				<span>{{item.name}}</span>
+			</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>

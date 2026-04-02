@@ -74,18 +74,6 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * @returns {CharacterEquipment}
-	 */
-	static getSlottedEquipment(actor) {
-		return {
-			mainHand: EquipDataModel.getEquipment(actor, 'mainHand'),
-			offHand: EquipDataModel.getEquipment(actor, 'offHand'),
-			accessory: EquipDataModel.getEquipment(actor, 'accessory'),
-			armor: EquipDataModel.getEquipment(actor, 'armor'),
-		};
-	}
-
-	/**
 	 * @param {FUItem} item
 	 * @return {null,"mainHand","offHand","phantom","armor","accessory","arcanum"}
 	 */
