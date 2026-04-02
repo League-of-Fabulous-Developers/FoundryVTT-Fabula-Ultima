@@ -260,7 +260,9 @@ export class EquipmentHandler {
 				items.push(actor.items.get(value));
 			}
 		}
-		return items;
+		return items.filter((it) => {
+			return it.system.fuid !== 'unarmed-strike';
+		});
 	}
 }
 

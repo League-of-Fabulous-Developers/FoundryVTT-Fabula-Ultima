@@ -27,6 +27,16 @@
 			<aside class="sidebar flex-group-center">
 				{{!-- Action Buttons --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
+				{{!-- Vehicle Section --}}
+				{{> "systems/projectfu/templates/actor/partials/actor-vehicle.hbs"}}
+				{{!-- Garden Section --}}
+				{{> "systems/projectfu/templates/actor/partials/actor-garden.hbs"}}
+			</aside>
+			<main class="grid-span-2 flexcol">
+				{{!-- Favorite Section --}}
+				{{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
+			</main>
+			<div class="flex-group-center">
 				{{!-- Bond Section --}}
 				<fieldset class="section-container title-fieldset desc resource-content">
 					<legend class="resource-label-m">
@@ -61,17 +71,9 @@
 						{{/each}}
 					</div>
 				</fieldset>
-				{{!-- Vehicle Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-vehicle.hbs"}}
-				{{!-- Garden Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-garden.hbs"}}
 				{{!-- Clock Section --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
-			</aside>
-			<main class="grid-span-3 flexcol">
-				{{!-- Favorite Section --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
-			</main>
+			</div>
 		</section>
 	{{/if}}
 
