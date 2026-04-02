@@ -2,14 +2,14 @@
 	<div class="pfu-equipment-grid">
 
 		<div class="pfu-equipment-column">
-			<div class="pfu-equipment-slot" data-context-menu="offHand" data-action="selectSlot" data-slot="offHand">
-				{{#if slots.offHand.current}}
-					<img class="pfu-equipment-slot-img" src="{{slots.offHand.current.img}}" alt="{{slots.offHand.current.name}}"/>
-					<span class="pfu-equipment-slot-name">{{slots.offHand.current.name}}</span>
+			<div class="pfu-equipment-slot" data-action="selectSlot" data-context-menu="mainHand" data-slot="mainHand">
+				{{#if slots.mainHand.current}}
+					<img class="pfu-equipment-slot-img" src="{{slots.mainHand.current.img}}" alt="{{slots.mainHand.current.name}}"/>
+					<span class="pfu-equipment-slot-name">{{slots.mainHand.current.name}}</span>
 				{{else}}
 					<span class="pfu-equipment-slot-empty">+</span>
 				{{/if}}
-				<span class="pfu-equipment-slot-label">{{localize "FU.OffHand"}}</span>
+				<span class="pfu-equipment-slot-label">{{localize "FU.MainHand"}}</span>
 			</div>
 			<div class="pfu-equipment-slot" data-action="selectSlot" data-context-menu="armor" data-slot="armor">
 				{{#if slots.armor.current}}
@@ -27,15 +27,16 @@
 		</div>
 
 		<div class="pfu-equipment-column">
-			<div class="pfu-equipment-slot" data-action="selectSlot" data-context-menu="mainHand" data-slot="mainHand">
-				{{#if slots.mainHand.current}}
-					<img class="pfu-equipment-slot-img" src="{{slots.mainHand.current.img}}" alt="{{slots.mainHand.current.name}}"/>
-					<span class="pfu-equipment-slot-name">{{slots.mainHand.current.name}}</span>
+			<div class="pfu-equipment-slot" data-context-menu="offHand" data-action="selectSlot" data-slot="offHand">
+				{{#if slots.offHand.current}}
+					<img class="pfu-equipment-slot-img" src="{{slots.offHand.current.img}}" alt="{{slots.offHand.current.name}}"/>
+					<span class="pfu-equipment-slot-name">{{slots.offHand.current.name}}</span>
 				{{else}}
 					<span class="pfu-equipment-slot-empty">+</span>
 				{{/if}}
-				<span class="pfu-equipment-slot-label">{{localize "FU.MainHand"}}</span>
+				<span class="pfu-equipment-slot-label">{{localize "FU.OffHand"}}</span>
 			</div>
+
 			<div class="pfu-equipment-slot" data-action="selectSlot" data-context-menu="accessory" data-slot="accessory">
 				{{#if slots.accessory.current}}
 					<img class="pfu-equipment-slot-img" src="{{slots.accessory.current.img}}" alt="{{slots.accessory.current.name}}"/>
@@ -48,8 +49,9 @@
 		</div>
 	</div>
 
-	<div>
-		<button>
+	<div class="form-footer">
+		<button data-action="switchEquipment">
+			<i class="fu-icon--s {{pfuIconClass 'equipment'}}"></i>
 			{{localize 'FU.SwitchEquipment'}}
 		</button>
 	</div>

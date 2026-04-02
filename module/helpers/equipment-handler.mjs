@@ -238,11 +238,12 @@ export class EquipmentHandler {
 		let items = [];
 		items.push(...actor.getItemsByType('weapon'));
 		items.push(...actor.getItemsByType('customWeapon'));
-		items.push(
-			...actor.getItemsByType('classFeature').filter((cf) => {
-				return cf.system.featureType.endsWith('weaponModule') || cf.system.featureType.endsWith('shieldModule');
-			}),
-		);
+		// TODO: Support?
+		// items.push(
+		// 	...actor.getItemsByType('classFeature').filter((cf) => {
+		// 		return cf.system.featureType.endsWith('weaponModule') || cf.system.featureType.endsWith('shieldModule');
+		// 	}),
+		// );
 		return items;
 	}
 }
@@ -262,7 +263,7 @@ export class EquipmentHandlerDialog extends FUApplication {
 			height: 'auto',
 		},
 		actions: {
-			switch: this.#switchEquipment,
+			switchEquipment: this.#switchEquipment,
 		},
 	};
 

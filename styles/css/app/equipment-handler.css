@@ -1,12 +1,12 @@
 .pfu-equipment-doll {
-	--pfu-slot-bg: transparent;
-	--pfu-slot-bg-hover: rgba(255, 255, 255, 0.05);
+	--pfu-slot-bg: var(--pfu-app-section-bg-image), var(--pfu-color-app-section-primary-fill);
+	--pfu-slot-bg-hover: var(--pfu-color-app-control-active-fill);
 	--pfu-slot-border: rgba(255, 255, 255, 0.15);
 	--pfu-slot-border-hover: rgba(255, 255, 255, 0.35);
-	--pfu-slot-border-empty: rgba(255, 255, 255, 0.1);
-	--pfu-slot-text-primary: rgba(255, 255, 255, 0.9);
-	--pfu-slot-text-secondary: rgba(255, 255, 255, 0.4);
-	--pfu-slot-empty-icon: rgba(255, 255, 255, 0.25);
+	--pfu-slot-border-empty: var(--pfu-color-app-control-border);
+	--pfu-slot-text-primary: var(--pfu-color-app-section-content-secondary);
+	--pfu-slot-text-secondary: var(--pfu-color-app-detail-section-content-tertiary);
+	--pfu-slot-empty-icon: var(--pfu-color-app-control-border);
 	--pfu-silhouette-color: rgba(255, 255, 255, 0.15);
 
 	padding: 8px;
@@ -74,7 +74,7 @@
 }
 
 .pfu-equipment-slot-label {
-	font-size: 10px;
+	font-size: 12px;
 	color: var(--pfu-slot-text-secondary);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
@@ -82,9 +82,9 @@
 }
 
 .pfu-equipment-slot-name {
-	font-size: 12px;
+	font-size: 18px;
 	color: var(--pfu-slot-text-primary);
-	font-weight: 500;
+	font-weight: bold;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
