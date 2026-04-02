@@ -1179,3 +1179,13 @@ FU.codexTags = Object.freeze({
 	lore: 'FU.CODEX.Lore',
 	glossary: 'FU.CODEX.Glossary',
 });
+
+/**
+ * @typedef {'mainHand', 'offHand', 'armor', 'accessory', 'phantom', 'arcanum'} FUEquipmentSlot
+ */
+
+FU.equipmentSlots = {
+	mainHand: 'FU.MainHand',
+	offHand: 'FU.OffHand',
+	phantom: 'FU.PhantomHand',
+};
