@@ -254,15 +254,10 @@ export class EquipmentHandler {
 	 * @param {EquipDataModel} equippedData
 	 */
 	static getItems(actor, equippedData) {
-		let items = [];
-		for (const [, value] of Object.entries(equippedData)) {
-			if (value) {
-				items.push(actor.items.get(value));
-			}
-		}
-		return items.filter((it) => {
-			return it.system.fuid !== 'unarmed-strike';
-		});
+		return Object.values(equippedData)
+			.filter(Boolean)
+			.map((value) => actor.items.get(value))
+			.filter((item, index, self) => item?.system.fuid !== 'unarmed-strike' && self.findIndex((i) => i._id === item._id) === index);
 	}
 }
 
