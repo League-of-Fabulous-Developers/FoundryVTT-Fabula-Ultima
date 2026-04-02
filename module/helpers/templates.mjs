@@ -34,6 +34,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/actor/partials/actor-npc-skills.hbs',
 			'systems/projectfu/templates/actor/partials/actor-favorite.hbs',
 			'systems/projectfu/templates/actor/partials/actor-bonds.hbs',
+			'systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs',
 
 			'systems/projectfu/templates/actor/partials/actor-progress-clock.hbs',
 			'systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs',
