@@ -33,6 +33,7 @@
 			  {{#unless this.ctx}}data-action="action"{{/unless}}
 			  data-type="{{this.id}}" {{#if this.ctx}}data-context-menu="{{this.ctx}}"{{/if}}
 			  data-roll-type="action-type" data-tooltip="{{localize this.tooltip}}">
+			<i class="fu-icon--xs {{pfuIconClass id}}"></i>
 			{{localize this.label}}
 		</span>
 	{{/each}}
@@ -41,14 +42,17 @@
 	{{#if (eq actor.type "character")}}
 		<span class="action-style button-style rollable" id="inventoryAction" data-type="inventory"
 			  data-context-menu="inventory" data-roll-type="action-type" data-tooltip="{{localize 'FU.InventoryRule'}}">
+			<i class="fu-icon--xs {{pfuIconClass 'inventory'}}"></i>
 			{{localize "FU.Inventory"}}
 		</span>
 		<span class="action-style button-style rollable" id="studyAction" data-action="action" data-type="study"
 			  data-roll-type="action-type" data-tooltip="{{localize 'FU.StudyRule'}}">
+			<i class="fu-icon--xs {{pfuIconClass 'study'}}"></i>
 			{{localize "FU.Study"}}
 		</span>
 		<span class="action-style button-style rollable" id="equipmentAction" data-type="equipment" data-action="action"
 			  data-roll-type="action-type" data-tooltip="{{localize 'FU.EquipmentRule'}}">
+			<i class="fu-icon--xs {{pfuIconClass 'equipment'}}"></i>
 			{{localize "FU.Equipment"}}
 		</span>
 	{{/if}}

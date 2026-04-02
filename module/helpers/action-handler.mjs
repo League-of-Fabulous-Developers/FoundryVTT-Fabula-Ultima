@@ -80,7 +80,7 @@ export class ActionHandler {
 				case 'attack':
 					return this.attack();
 				case 'equipment':
-					return this.createActionMessage(actionType);
+					return this.equipment();
 				case 'guard':
 					return this.toggleGuardEffect(this.actor);
 				case 'hinder':
@@ -88,7 +88,7 @@ export class ActionHandler {
 				case 'inventory':
 					return this.createActionMessage(actionType);
 				case 'objective':
-					return this.createActionMessage(actionType);
+					return this.objective();
 				case 'spell':
 					return this.createActionMessage(actionType);
 				case 'study':
@@ -144,6 +144,21 @@ export class ActionHandler {
 			resolution.item.roll();
 		}
 	}
+
+	/**
+	 * @desc Attempts to roll a check for one of the existing clocks.
+	 * @returns {Promise<void>}
+	 */
+	async objective() {
+		// TODO: Look at active clocks in party/scene and roll a check to advance them
+		return CheckPrompt.attributeCheck(this.actor);
+	}
+
+	/**
+	 * @desc Opens a dialog to swap the current equipment.
+	 * @returns {Promise<void>}
+	 */
+	async equipment() {}
 
 	/**
 	 * Create a chat message for a given action.
