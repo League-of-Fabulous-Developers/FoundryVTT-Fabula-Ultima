@@ -1,4 +1,4 @@
-import { FU, systemPath } from '../helpers/config.mjs';
+import { FU } from '../helpers/config.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { targetHandler } from '../helpers/target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
@@ -11,6 +11,7 @@ import { InlineEffects } from './inline-effects.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { systemAssetPath } from '../helpers/system-utils.mjs';
 import { CustomWeaponDataModel } from '../documents/items/customWeapon/custom-weapon-data-model.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
 const className = `inline-weapon`;
@@ -139,11 +140,13 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 	if (actor.system instanceof CharacterDataModel) {
 		const source = sourceInfo.resolve();
-		const weapon = await WeaponResolver.prompt(actor, true);
-		if (!weapon) {
+		const promptWeapon = await WeaponResolver.prompt(actor, true);
+		if (!promptWeapon) {
 			ui.notifications.error('FU.AbilityNoWeaponEquipped', { localize: true });
 			return;
 		}
+
+		const weapon = promptWeapon.item;
 
 		const onApply = async (choice) => {
 			choice = choice.trim();
@@ -167,15 +170,13 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 			if (isAny) {
 				choices = Object.keys(FU.damageTypes);
 			}
-			const result = await foundry.applications.api.DialogV2.wait({
-				window: { title: 'Select Damage Type' },
-				content: await foundry.applications.handlebars.renderTemplate(systemPath('templates/dialog/dialog-inline-weapon-enchant.hbs')),
-				rejectClose: false,
-				buttons: choices.map((choice) => ({
-					action: choice,
-					label: game.i18n.localize(FU.damageTypes[choice]),
-				})),
-			});
+			const options = choices.map((choice) => ({
+				label: game.i18n.localize(FU.damageTypes[choice]),
+				value: choice,
+				icon: FU.affIcon[choice],
+			}));
+			const result = await FoundryUtils.selectIconOptionDialog('FU.SelectDamageType', options);
+
 			console.log(result);
 			if (result) {
 				onApply(result);

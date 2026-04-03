@@ -420,6 +420,15 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 				}
 			}
 
+			// Remove malformed actions
+			actions = actions.filter((a) => {
+				if (!a) {
+					ui.notifications.warn(`An action was malformed during the rendering of this chat message. Please report the issue!`);
+					return false;
+				}
+				return true;
+			});
+
 			// Set any flags
 			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
 			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Source, sourceInfo);

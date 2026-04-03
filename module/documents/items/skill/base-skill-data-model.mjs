@@ -399,16 +399,16 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @returns {Promise<WeaponResolution>}
 	 */
 	async getWeapon(actor) {
-		const weapon = await WeaponResolver.prompt(actor, true);
-		if (weapon === false) {
+		const getWeapon = await WeaponResolver.prompt(actor, true);
+		if (getWeapon === false) {
 			let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
 			ui.notifications.error(message);
 			throw new Error(message);
 		}
-		if (weapon == null) {
+		if (getWeapon == null) {
 			throw new Error('no selection');
 		}
-		return weapon;
+		return getWeapon;
 	}
 
 	/**

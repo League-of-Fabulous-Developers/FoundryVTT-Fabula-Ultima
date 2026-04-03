@@ -73,7 +73,7 @@ async function filterTargetsByRule(actor, item, targets) {
 			return targets;
 		case 'weapon': {
 			const weapon = await WeaponResolver.prompt(actor);
-			return [weapon];
+			return [weapon.item];
 		}
 		case 'special':
 			return targets;
