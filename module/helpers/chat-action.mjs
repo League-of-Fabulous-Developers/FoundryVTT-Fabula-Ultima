@@ -77,7 +77,8 @@ export class ChatAction {
 	 */
 	forActor(actor) {
 		return this.withDataset({
-			actorId: actor.uuid,
+			['actor-id']: actor.uuid,
+			['actor-img']: actor.img,
 		}).notTargeted();
 	}
 

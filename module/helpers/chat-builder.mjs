@@ -7,6 +7,7 @@ import { ChatSectionOrder } from '../checks/default-section-order.mjs';
  * @property {CheckSectionRenderData} sections
  * @property {Promise[]} postRenderActions
  * @property {Tag[]} tags
+ * @property {Object} flags
  */
 
 /**
@@ -46,6 +47,7 @@ export class FUChatBuilder {
 			tags: [],
 			sections: [],
 			postRenderActions: [],
+			flags: [],
 		};
 	}
 
@@ -83,9 +85,8 @@ export class FUChatBuilder {
 	getMergedFlags() {
 		// Merge all current flags
 		let merged = {};
-		for (const current of this.#flags) {
+		for (const current of this.#flags.concat(this.renderData.flags)) {
 			foundry.utils.mergeObject(merged, current, { overwrite: false });
-			//ObjectUtils.mergeRecursive(merged, flag);
 		}
 		return merged;
 	}

@@ -61,6 +61,10 @@
 			   data-tooltip="{{localize tooltip}}">
             <span class='fu-tag button flex-group-center gap-5 fu-target-action__icon__container'
 				  style="width: 100%;white-space: nowrap;">
+				{{#if dataset.actor-img}}
+					<img class="fu-target-action__icon {{classes}}" alt="{{localize tooltip}}"
+						 src="{{dataset.actor-img}}" />
+				{{/if}}
 				{{~localize action.label}}
 				{{#if img}}
 					<img class="fu-target-action__icon {{classes}}" alt="{{localize tooltip}}"
