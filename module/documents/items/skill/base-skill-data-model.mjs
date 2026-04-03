@@ -163,7 +163,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @remarks This is used to determine whether to show this skill in some UIs.
 	 */
 	get passive() {
-		let active = this.hasRoll.value || this.useWeapon.accuracy || this.damage.hasDamage || this.effects.entries.size > 0;
+		let active = this.hasRoll.value || this.useWeapon.accuracy || this.damage.hasDamage || this.effects.entries.length > 0;
 		/** @type {FUItem} **/
 		const item = this.parent;
 		for (const effect of item.effects) {
