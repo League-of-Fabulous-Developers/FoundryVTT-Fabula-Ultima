@@ -604,7 +604,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		const subtype = item.system.subtype?.value;
 		// Determine the configuration based on item type
-		const config = ActorSheetUtils.findItemConfig(item.type, subtype);
+		const config = ActorSheetUtils.findItemConfig(item.parent, item.type, subtype);
 		if (config) {
 			// Check if there is an active ProseMirror editor
 			const activeEditor = document.querySelector('.editor-content.ProseMirror');

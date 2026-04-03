@@ -42,25 +42,30 @@ async function prepareData(context, sheet) {
 
 /**
  * @description Helper function to find the appropriate update configuration
+ * @param {FUActor} sourceActor
  * @param type
  * @param subtype
  * @returns {{types: string[], subtypes: string[], update: ((function(*, *): Promise<void>)|*)} | {types: string[], update: ((function(*): Promise<void>)|*)}}
  */
-function findItemConfig(type, subtype) {
+function findItemConfig(sourceActor, type, subtype) {
 	const itemTypeConfigs = [
 		{
 			types: ['treasure'],
 			subtypes: ['artifact', 'material', 'treasure'],
 			update: async (itemData, item) => {
+				// Do not duplicate if on self
+				if (item.parent === sourceActor) {
+					return;
+				}
 				const incrementValue = itemData.system.quantity?.value || 1;
 				const newQuantity = (item.system.quantity.value || 0) + incrementValue;
 				await item.update({ 'system.quantity.value': newQuantity });
 			},
 		},
 		{
+			// Effects are handled separately
 			types: ['effect'],
 			update: async (itemData) => {
-				// Effects are handled separately
 				return;
 			},
 		},
@@ -279,7 +284,7 @@ async function handleStashDrop(actor, item) {
 		const existingItem = actor.items.find((i) => i.name === item.name && i.type === item.type);
 		if (existingItem) {
 			const subtype = item.system.subtype?.value;
-			const config = findItemConfig(item.type, subtype);
+			const config = findItemConfig(actor, item.type, subtype);
 			if (config) {
 				await config.update(item, existingItem);
 				console.debug(`${item.name} was appended onto ${actor.name}`);
