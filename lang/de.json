@@ -1210,6 +1210,7 @@
 		"ChatExpAwardBaseExp": "Grundwert",
 		"ChatExpAwardUltimaExp": "Benutzte Ultima-Punkte",
 		"ChatExpAwardSpentFabula": "Benutzte Fabula-Punkte",
+		"ChatExpAwardPartyLevel": "Gruppenstufe",
 		"ChatExpAwardFabulaExp": "Erfahrung aus Fabula-Punkten",
 		"ChatExpAwardTotalExp": "Gewonnene Erfahrung",
 		"ChatExpAwardActiveCharacters": "Aktive Charaktere",

@@ -1133,6 +1133,7 @@ FU.allIcon = {
 	species: 'fas fa-paw',
 	vulnerability: 'fas fa-heart-crack',
 	level: 'fas fa-star',
+	party: 'fu-party',
 
 	bond: 'fas fa-bookmark',
 	admInf: 'fas fa-medal',

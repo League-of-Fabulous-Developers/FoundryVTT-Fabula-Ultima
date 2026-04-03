@@ -38,6 +38,7 @@
 	--icon-fu-up: url('../../static/icons/resources/up.png');
 	--icon-fu-zenit: url('../../static/icons/resources/zenit.png');
 	--icon-fu-xp: url('../../static/icons/resources/xp.png');
+	--icon-fu-party: url('../../static/icons/resources/level.png');
 
 	--icon-fu-check-accuracy: url('../../static/icons/checks/check_accuracy.png');
 	--icon-fu-check-attribute: url('../../static/icons/checks/check_attribute.png');
@@ -143,6 +144,10 @@
 
 .fu-xp {
 	background-image: var(--icon-fu-xp);
+}
+
+.fu-party {
+	background-image: var(--icon-fu-party);
 }
 
 .fu-check-accuracy {

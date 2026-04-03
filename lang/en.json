@@ -714,7 +714,6 @@
 		"DialogRemoveMessage": "Remove <strong>{label}</strong>?",
 		"DialogClearMessage": "Clear all elements?",
 		"DialogSelectionMissingError": "No items were selected!",
-		"DialogEntriesMissing": "No matching entries were found.",
 		"Success": "Success",
 		"Critical": "Critical",
 		"Failure": "Failure",
@@ -1216,6 +1215,7 @@
 		"ChatExpAwardBaseExp": "Base Experience",
 		"ChatExpAwardUltimaExp": "Spent Ultima Points",
 		"ChatExpAwardSpentFabula": "Spent Fabula Points",
+		"ChatExpAwardPartyLevel": "Party Level",
 		"ChatExpAwardFabulaExp": "Exp from Fabula Points",
 		"ChatExpAwardTotalExp": "Total earned Experience",
 		"ChatExpAwardActiveCharacters": "Active Characters",
@@ -1955,8 +1955,6 @@
 			"Event": "Event",
 			"Lore": "Lore",
 			"Glossary": "Glossary"
-		},
-		"SwitchEquipment": "Switch Equipment",
-		"SwitchEquipmentChatMessage": "<strong>{actor}</strong> is now wearing the following equipment."
+		}
 	}
 }

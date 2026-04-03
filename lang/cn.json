@@ -1210,6 +1210,7 @@
 		"ChatExpAwardBaseExp": "基础经验",
 		"ChatExpAwardUltimaExp": "花费的终极点数",
 		"ChatExpAwardSpentFabula": "花费的物语点数",
+		"ChatExpAwardPartyLevel": "队伍等级",
 		"ChatExpAwardFabulaExp": "来自物语点数的经验",
 		"ChatExpAwardTotalExp": "获得的总经验",
 		"ChatExpAwardActiveCharacters": "活跃角色",

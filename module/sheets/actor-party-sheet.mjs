@@ -196,6 +196,7 @@ export class FUPartySheet extends FUActorSheet {
 		context.adversaries = FUPartySheet.sortAdversaryData(adversaries);
 		const experience = this.party.calculateExperience();
 		context.stats = {
+			level: context.characters.length > 0 ? Math.max(...context.characters.map((c) => c.level)) : 0,
 			fp: experience.fp,
 			up: experience.up,
 			xp: experience.total,

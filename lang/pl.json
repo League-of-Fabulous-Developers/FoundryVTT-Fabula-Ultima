@@ -1210,6 +1210,7 @@
 		"ChatExpAwardBaseExp": "Base Experience",
 		"ChatExpAwardUltimaExp": "Spent Ultima Points",
 		"ChatExpAwardSpentFabula": "Spent Fabula Points",
+		"ChatExpAwardPartyLevel": "Poziom Drużyny",
 		"ChatExpAwardFabulaExp": "Exp from Fabula Points",
 		"ChatExpAwardTotalExp": "Total earned Experience",
 		"ChatExpAwardActiveCharacters": "Active Characters",
