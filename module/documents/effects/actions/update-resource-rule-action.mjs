@@ -4,6 +4,10 @@ import { ExpressionContext, Expressions } from '../../../expressions/expressions
 import { ResourcePipeline, ResourceRequest } from '../../../pipelines/resource-pipeline.mjs';
 import { RuleActionDataModel } from './rule-action-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { ChatSectionOrder } from '../../../checks/default-section-order.mjs';
+import { Pipeline } from '../../../pipelines/pipeline.mjs';
+import { Flags } from '../../../helpers/flags.mjs';
 
 const fields = foundry.data.fields;
 
@@ -48,12 +52,18 @@ export class UpdateResourceRuleAction extends RuleActionDataModel {
 		const request = new ResourceRequest(context.sourceInfo, targets, this.resource, amount);
 		request.fromOrigin(context.origin);
 
+		const targetAction = ResourcePipeline.getTargetedAction(request);
+		if (selected.length === 1 && selected[0] === context.character) {
+			targetAction.forActor(context.character.actor);
+		}
+
 		if (context.config) {
-			const targetAction = ResourcePipeline.getTargetedAction(request);
-			if (selected.length === 1 && selected[0] === context.character) {
-				targetAction.forActor(context.character.actor);
-			}
 			context.config.addTargetedAction(targetAction);
+		} else if (context.renderData) {
+			let flags = Pipeline.initializedFlags(Flags.ChatMessage.Source, context.sourceInfo);
+			flags = Pipeline.setFlag(flags, Flags.ChatMessage.Item, context.item.uuid);
+			context.renderData.flags = flags;
+			CommonSections.chatActions(context.renderData.sections, [targetAction], flags, ChatSectionOrder.actions);
 		}
 
 		if (game.settings.get(SYSTEM, SETTINGS.automationApplyDamage)) {
