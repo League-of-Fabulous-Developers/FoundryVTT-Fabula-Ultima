@@ -104,6 +104,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 	#hooks = [];
 	#renderTimer = null
+	#effectContextMenu = null;
 
 	static DEFAULT_OPTIONS = {
 		id: 'combat-hud',
@@ -529,7 +530,8 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	}
 
 	_setEffectContextMenus() {
-		new foundry.applications.ux.ContextMenu(
+		if (this.#effectContextMenu) return;
+		this.#effectContextMenu = new foundry.applications.ux.ContextMenu(
 			this.element,
 			'.combat-effects [data-effect-id][data-actor-id]',
 			[
