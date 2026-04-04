@@ -55,6 +55,7 @@ export const Flags = Object.freeze({
 	Toggle: Object.freeze({
 		WeaponMagicCheck: 'weaponMagicCheck',
 		ApexAttribute: 'apexAttribute',
+		SpellProvider: 'spellProvider',
 	}),
 	State: Object.freeze({
 		PreviousDance: 'previousDance',

@@ -473,7 +473,7 @@ function evaluateMacros(expression, context) {
 				const attribute = parseIdentifier(splitArgs[0]);
 				return getAttributeSize(actor, attribute);
 			}
-			// Progress track
+			// Tracker: Filled sections
 			case 'pg':
 			case 'cs': {
 				const actor = context.resolveActorOrSource(match, redirect);
@@ -484,6 +484,17 @@ function evaluateMacros(expression, context) {
 					throw new Error(`The progress track with id ${id} was not found`);
 				}
 				return clock.current;
+			}
+			// Tracker: Empty sections
+			case 'pgr': {
+				const actor = context.resolveActorOrSource(match, redirect);
+				const id = parseIdentifier(splitArgs[0]);
+				const clock = actor.resolveProgress(id);
+				if (!clock) {
+					ui.notifications.warn(`${game.i18n.localize('FU.ChatEvaluateNoProgress')}: '${id}'`, { localize: true });
+					throw new Error(`The progress track with id ${id} was not found`);
+				}
+				return clock.max - clock.current;
 			}
 			// Scale from 5-19, 20-39, 40+
 			case 'step':

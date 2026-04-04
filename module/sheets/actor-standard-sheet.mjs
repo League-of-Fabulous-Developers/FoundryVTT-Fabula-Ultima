@@ -43,6 +43,10 @@ import { ProgressDataModel } from '../documents/items/common/progress-data-model
 import { TechnospheresTableRenderer } from '../helpers/tables/technospheres-table-renderer.mjs';
 import { SheetUtils } from './sheet-utils.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
+import { AdvancementBrowser } from '../ui/advancement-browser.mjs';
+import { AdvancementTracker } from '../documents/actors/character/advancement-tracker.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const VISIBLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -109,6 +113,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			deleteBond: FUStandardActorSheet.DeleteBond,
 			rest: { buttons: [0, 2], handler: FUStandardActorSheet.handleRestClick },
 			levelUp: FUStandardActorSheet.levelUp,
+			advancements: FUStandardActorSheet.#handleAdvancements,
 
 			// Features
 			toggleActiveGarden: FUStandardActorSheet.toggleActiveGarden,
@@ -137,7 +142,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 		// NPC
 		combat: { template: systemTemplatePath(`actor/character/parts/actor-section-combat`) },
 		behavior: { template: systemTemplatePath(`actor/character/parts/actor-section-behavior`) },
-		// Character
+		// PC
+		advancements: { template: systemTemplatePath(`actor/character/parts/actor-section-advancements`) },
 		classes: { template: systemTemplatePath(`actor/character/parts/actor-section-classes`) },
 		items: { template: systemTemplatePath(`actor/character/parts/actor-section-items`) },
 		spells: { template: systemTemplatePath(`actor/character/parts/actor-section-spells`) },
@@ -159,6 +165,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		primary: {
 			tabs: [
 				{ id: 'stats', label: 'FU.Stats' },
+				{ id: 'advancements', label: '', icon: 'fa-solid fas fa-star' },
 				{ id: 'classes', label: 'FU.Classes' },
 				{ id: 'features', label: 'FU.Features' },
 				{ id: 'spells', label: 'FU.Spell' },
@@ -262,6 +269,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 			case 'npc':
 				{
+					delete tabs.advancements;
 					delete tabs.features;
 					delete tabs.classes;
 					delete tabs.spells;
@@ -312,6 +320,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'npc':
+				delete parts.advancements;
 				delete parts.features;
 				delete parts.classes;
 				delete parts.spells;
@@ -444,6 +453,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 				}
 				break;
 
+			case 'advancements':
+				{
+					context.summary = AdvancementTracker.evaluate(this.actor);
+				}
+				break;
+
 			case 'tabs':
 				context.tabs = this._prepareTabs('primary');
 				break;
@@ -460,6 +475,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				context.classesTable = await this.#classesTable.renderTable(this.document);
 				context.skillsTable = await this.#skillsTable.renderTable(this.document);
 				context.heroicsTable = await this.#heroicsTable.renderTable(this.document);
+				context.summary = AdvancementTracker.evaluate(this.actor);
 				break;
 
 			case 'spells':
@@ -1084,6 +1100,51 @@ export class FUStandardActorSheet extends FUActorSheet {
 				'system.level.value': level + 1,
 			});
 		});
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {void}
+	 */
+	static async setAdvancement(event, target) {
+		const { type, index } = target.dataset;
+		const browser = new AdvancementBrowser(this.actor, type, Number.parseInt(index));
+		browser.render(true);
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {void}
+	 */
+	static async #handleAdvancements(event, target) {
+		const { type, index, entry, path } = target.dataset;
+		switch (type) {
+			case 'set':
+				{
+					const browser = new AdvancementBrowser(this.actor, entry, Number.parseInt(index), path);
+					browser.render(true);
+				}
+				break;
+
+			case 'sync':
+				return AdvancementTracker.synchronizeSkillLevels(this.actor);
+
+			case 'prune':
+				return AdvancementTracker.pruneItems(this.actor);
+
+			case 'clear':
+				{
+					const confirm = await FoundryUtils.confirmDialog('FU.Clear', StringUtils.localize('FU.AdvancementsClear'));
+					if (confirm) {
+						return AdvancementTracker.initializeEntries(this.actor);
+					}
+				}
+				break;
+		}
 	}
 
 	/**

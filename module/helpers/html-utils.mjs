@@ -94,6 +94,21 @@ export const HTMLUtils = Object.freeze({
 	},
 
 	/**
+	 * @desc Sets up basic input safeguards.
+	 * @param html
+	 */
+	setupInputs: (html) => {
+		html.querySelectorAll('input').forEach((input) => {
+			input.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter') {
+					event.preventDefault();
+					event.currentTarget.blur();
+				}
+			});
+		});
+	},
+
+	/**
 	 * @param {String} name
 	 * @returns {string}
 	 */

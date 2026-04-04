@@ -7,6 +7,7 @@ import { ItemBehaviourMixin } from './item-behaviour-mixin.mjs';
 /**
  * @typedef Item
  * @property {Actor} actor
+ * @property {String} id
  * @property {String} uuid
  * @property {String} name
  * @property {Map<String, Object>} effects

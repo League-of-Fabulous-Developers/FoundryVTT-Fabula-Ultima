@@ -1958,6 +1958,18 @@
 			"Glossary": "Glossary"
 		},
 		"SwitchEquipment": "Switch Equipment",
-		"SwitchEquipmentChatMessage": "<strong>{actor}</strong> is now wearing the following equipment."
+		"SwitchEquipmentChatMessage": "<strong>{actor}</strong> is now wearing the following equipment.",
+		"Advancement": "Advancement",
+		"Advancements": "Advancements",
+		"AdvancementsSkillSynchronization": "Advancement Skill Synchronization",
+		"AdvancementsSkillsUpToDate": "All tracked skills are already up to date.",
+		"AdvancementsPruneItems": "Prune Untracked Items",
+		"AdvancementsClear": "Would you like to clear all advancements from the tracker? Note that this will not remove the items from the actor.",
+		"AdvancementClassLimit": "A character cannot have over 3 unmastered classes at any time.",
+		"AdvancementSkillMissingClass": "The skill is missing a matching class in its data.",
+		"AdvancementStartingClassLimit": "A starting character must have a minimum of two classes selected.",
+		"AdvancementSkillClassNotFound": "The class in the selected skill could not be found.",
+		"AdvancementSpellLocked": "There should not be a spell selection in this advancement.",
+		"Synchronize": "Synchronize"
 	}
 }

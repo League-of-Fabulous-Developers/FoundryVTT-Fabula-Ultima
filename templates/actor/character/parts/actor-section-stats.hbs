@@ -117,15 +117,13 @@
 							{{localize 'FU.BiographyInfo'}}
 						</a>
 					</legend>
-					<div>
-						{{#if (eq (pfuGetSetting 'optionNPCNotesTab') true)}}
+					{{#if (eq (pfuGetSetting 'optionNPCNotesTab') true)}}
+						<span>{{{enrichedHtml.description}}}</span>
+					{{else}}
+						<prose-mirror name="system.description" value="{{system.description}}" class="fit" toggled>
 							{{{enrichedHtml.description}}}
-						{{else}}
-							<prose-mirror name="system.description" value="{{system.description}}" class="fit" toggled>
-								{{{enrichedHtml.description}}}
-							</prose-mirror>
-						{{/if}}
-					</div>
+						</prose-mirror>
+					{{/if}}
 				</fieldset>
 				<!-- Favorite Section -->
 				{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}

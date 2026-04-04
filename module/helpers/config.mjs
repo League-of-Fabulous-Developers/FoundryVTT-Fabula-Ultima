@@ -1102,6 +1102,12 @@ FU.invocationIcons = {
 	advanced: 'ra ra-burning-eye',
 	superior1: 'ra ra-sapphire',
 	superior2: 'ra ra-emerald',
+
+	air: 'fu-air',
+	earth: 'fu-earth',
+	fire: 'fu-fire',
+	lightning: 'fu-bolt',
+	water: 'fu-water',
 };
 
 /**
@@ -1115,6 +1121,8 @@ FU.allIcon = {
 	range: 'fa-solid fa-bow-arrow',
 	spell: 'fa-solid fa-wand-magic-sparkles',
 	skill: 'is-skill',
+	heroic: 'ra ra-crowned-heart',
+	class: 'ra ra-tower',
 	twoweapon: 'is-two-weapon',
 	header: 'is-header',
 	diamond: 'is-diamond',

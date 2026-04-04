@@ -31,19 +31,13 @@ export class ApplyEffectRuleAction extends RuleActionDataModel {
 			return;
 		}
 
-		const targets = selected.map((c) => c.actor);
 		if (context.config) {
 			/** @type CheckConfigurer **/
 			const config = context.event.config;
 			config.addEffects(this.effect);
 		} else {
-			for (const sel of selected) {
-				const instancedEffect = await Effects.getEffectData(this.effect);
-				if (!instancedEffect) {
-					return;
-				}
-				await Effects.promptApplyEffect(sel.actor, targets, [instancedEffect], context.sourceInfo);
-			}
+			const targets = selected.map((c) => c.actor);
+			await Effects.promptApplyEffect(context.character.actor, targets, [this.effect], context.sourceInfo);
 		}
 	}
 }

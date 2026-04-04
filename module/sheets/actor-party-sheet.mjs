@@ -838,7 +838,7 @@ export class FUPartySheet extends FUActorSheet {
 			},
 		];
 
-		FoundryUtils.contextMenu(html, '.character-option', contextMenuOptions);
+		FoundryUtils.contextMenu(html, '.character-option', contextMenuOptions, 'contextmenu');
 	}
 
 	/**

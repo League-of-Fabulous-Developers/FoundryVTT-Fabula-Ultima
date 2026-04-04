@@ -85,7 +85,6 @@
 	min-height: 25em;
 
 	&.fit {
-		height: unset;
 		min-height: unset;
 	}
 }

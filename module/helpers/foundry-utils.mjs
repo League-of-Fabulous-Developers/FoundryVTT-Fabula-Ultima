@@ -463,6 +463,7 @@ export default class FoundryUtils {
 		return foundry.applications.api.DialogV2.confirm({
 			window: {
 				title: title,
+				icon: 'fas fa-comment',
 			},
 			classes: ['projectfu', 'sheet', 'backgroundstyle'],
 			content: await this.renderTemplate('dialog/dialog-common', {
@@ -650,8 +651,12 @@ export default class FoundryUtils {
 	 */
 
 	/**
+	 * @typedef {'click'|'contextmenu'|'pointerdown'|'pointermove'|'mouseover'} ContextMenuEventName
+	 */
+
+	/**
 	 * @typedef ContextMenuOptions
-	 * @property {string} [eventName="contextmenu"] Optionally override the triggering event which can spawn the menu. If
+	 * @property {ContextMenuEventName} [eventName="contextmenu"] Optionally override the triggering event which can spawn the menu. If
 	 *                                              the menu is using fixed positioning, this event must be a MouseEvent.
 	 * @property {ContextMenuCallback} [onOpen]     A function to call when the context menu is opened.
 	 * @property {ContextMenuCallback} [onClose]    A function to call when the context menu is closed.
@@ -664,10 +669,10 @@ export default class FoundryUtils {
 	/**
 	 * @param html
 	 * @param className
-	 * @param eventName
+	 * @param {ContextMenuEventName} eventName
 	 * @param {ContextMenuEntry[]} entries
 	 */
-	static contextMenu(html, className, entries, eventName = 'click') {
+	static contextMenu(html, className, entries, eventName = 'contextmenu') {
 		new foundry.applications.ux.ContextMenu(html, className, entries, {
 			eventName: eventName,
 			fixed: true,
@@ -985,5 +990,15 @@ export default class FoundryUtils {
 			canvas.stage.on('click', clickHandler);
 			canvas.stage.on('rightclick', rightClickHandler);
 		});
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @param {FUItem} item
+	 * @returns {Promise<FUItem>}
+	 */
+	static async addItemToActor(actor, item) {
+		const [createdItem] = await actor.createEmbeddedDocuments('Item', [item.toObject()]);
+		return createdItem;
 	}
 }

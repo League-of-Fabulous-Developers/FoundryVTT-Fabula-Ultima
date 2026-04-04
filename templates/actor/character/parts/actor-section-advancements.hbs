@@ -1,0 +1,167 @@
+<div class="tab desc {{tab.cssClass}} pfu-advancements" data-group="primary" data-tab="advancements">
+	<table class="pfu-advancements">
+		<thead>
+			<tr class="summary">
+				<th class="flex-group-center">
+					<a data-tooltip="{{localize 'FU.Synchronize'}}" data-action="advancements" data-type="sync">
+						<i class="fas fa-arrows-rotate"></i>
+					</a>
+					<a data-tooltip="{{localize 'FU.Clear'}}" data-action="advancements" data-type="clear">
+						<i class="fas fa-eraser"></i>
+					</a>
+					<a data-tooltip="{{localize 'FU.AdvancementsPruneItems'}}" data-action="advancements" data-type="prune">
+						<i class="fas fa-scissors "></i>
+					</a>
+				</th>
+				<th class="flexrow flex-group-center">
+					<div class="badge-group">
+						{{#each summary.classes as |class|}}
+							<span class="badge" data-tooltip="{{@key}}">
+								<img class="fu-icon--xs" src="{{class.img}}" alt="{{key}}"/>
+								{{class.level}}
+							</span>
+						{{/each}}
+					</div>
+
+					<div class="badge-group">
+						<span class="badge" data-tooltip="{{localize 'FU.HealthAbbr'}}">
+							<i class="fu-icon--xs {{pfuIconClass 'hp'}}"></i>
+							{{pfuDefault summary.benefits.hp 0}}
+						</span>
+						<span class="badge" data-tooltip="{{localize 'FU.MindAbbr'}}">
+							<i class="fu-icon--xs {{pfuIconClass 'mp'}}"></i>
+							{{pfuDefault summary.benefits.mp 0}}
+						</span>
+						<span class="badge" data-tooltip="{{localize 'FU.InventoryAbbr'}}">
+							<i class="fu-icon--xs {{pfuIconClass 'ip'}}"></i>
+							{{pfuDefault summary.benefits.ip 0}}
+						</span>
+						<span class="badge" data-tooltip="{{localize 'FU.Spell'}}">
+							<i class="fu-icon--xs {{pfuIconClass 'spell'}}"></i>
+							{{pfuDefault summary.benefits.spell 0}}
+						</span>
+					</div>
+
+					<span class="badge" data-tooltip="{{summary.untrackedItemMessage}}">
+						<i class="fu-icon--xs {{pfuIconClass 'warning'}}"></i>
+						{{summary.untrackedItems.length}}
+					</span>
+				</th>
+			</tr>
+			<tr>
+				<th class="flex-group-center">{{localize 'FU.Level'}}</th>
+				<th class="flex-group-center">
+					{{localize 'FU.Advancements'}}
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		{{#each summary.entries as |advancement idx|}}
+			<tr class="pfu-advancements__row {{advancement.state}}">
+
+				{{#unless (eq advancement.state 'locked') }}
+				{{!-- 1. LEVEL --}}
+					<td class="flex-group-center">
+					<span class="pfu-advancements__badge {{advancement.state}}" data-tooltip="{{localize advancement.message}}">
+					  <span class="pfu-advancements__badge-level">{{pfuMath idx '+' 1}}</span>
+					</span>
+					</td>
+
+					{{!--2. ADVANCEMENTS --}}
+					<td class="pfu-advancement__entries {{#if (eq advancement.state 'locked')}}disabled{{/if}}">
+						{{!-- Class --}}
+						{{#unless advancement.data.class.locked}}
+							<button class="pfu-advancements__button"
+									data-action="advancements"
+									data-type="set"
+									data-index="{{idx}}"
+									data-entry="class">
+								{{#if advancement.data.class.id}}
+									{{#with (pfuLookupById @root.actor.items advancement.data.class.id) as |item|}}
+										<img class="fu-icon--s" src="{{item.img}}">
+										<span>{{item.name}}</span>
+									{{/with}}
+								{{else}}
+									<span class="flexrow">
+									<i class="fu-icon--s {{pfuIconClass 'class'}}"></i>
+										{{localize 'FU.Class'}}
+								</span>
+								{{/if}}
+							</button>
+						{{/unless}}
+
+						{{!-- Skill --}}
+						<button class="pfu-advancements__button"
+								data-action="advancements"
+								data-type="set"
+								{{#if advancement.data.skill.locked}}disabled{{/if}}
+								data-index="{{idx}}"
+								data-entry="skill">
+							{{#if advancement.data.skill.id}}
+								{{#with (pfuLookupById @root.actor.items advancement.data.skill.id) as |item|}}
+									<img class="fu-icon--s" src="{{item.img}}">
+									<span>{{item.name}}</span>
+								{{/with}}
+								<span>{{ advancement.data.skill.value }}/{{ advancement.data.skill.max }}</span>
+							{{else}}
+								<span class="flexrow">
+									<i class="fu-icon--s {{pfuIconClass 'skill'}}"></i>
+									{{localize 'FU.Skill'}}
+								</span>
+							{{/if}}
+						</button>
+
+						{{!-- Spell --}}
+						{{#if advancement.data.entries.spell}}
+							{{#unless advancement.data.entries.spell.locked}}
+								<button class="pfu-advancements__button"
+										data-action="advancements"
+										data-type="set"
+										data-index="{{idx}}"
+										data-path="entries.spell"
+										data-entry="spell">
+									{{#if advancement.data.entries.spell.id}}
+										{{#with (pfuLookupById @root.actor.items advancement.data.entries.spell.id) as |item|}}
+											<img class="fu-icon--s" src="{{item.img}}">
+											<span>{{item.name}}</span>
+										{{/with}}
+									{{else}}
+										<span class="flexrow">
+										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
+											{{localize 'FU.Spell'}}
+									</span>
+									{{/if}}
+								</button>
+							{{/unless}}
+						{{/if}}
+
+						{{!-- Heroic --}}
+						{{#if advancement.data.entries.heroic}}
+							{{#unless advancement.data.entries.heroic.locked}}
+								<button class="pfu-advancements__button"
+										data-action="advancements"
+										data-type="set"
+										data-index="{{idx}}"
+										data-path="entries.heroic"
+										data-entry="heroic">
+									{{#if advancement.data.entries.heroic.id}}
+										{{#with (pfuLookupById @root.actor.items advancement.data.entries.heroic.id) as |item|}}
+											<img class="fu-icon--s" src="{{item.img}}">
+											<span>{{item.name}}</span>
+										{{/with}}
+									{{else}}
+										<span class="flexrow">
+										<i class="fu-icon--s {{pfuIconClass 'heroic'}}"></i>
+											{{localize 'FU.Heroic'}}
+									</span>
+									{{/if}}
+								</button>
+							{{/unless}}
+						{{/if}}
+					</td>
+				{{/unless}}
+			</tr>
+		{{/each}}
+		</tbody>
+	</table>
+</div>

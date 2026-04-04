@@ -433,4 +433,9 @@
 	font-weight: bold;
 	min-width: 1.5rem;
 	text-align: center;
+
+	&.max {
+		color: var(--pfu-color-app-control-fill);
+		background: var(--pfu-color-app-control-content);
+	}
 }

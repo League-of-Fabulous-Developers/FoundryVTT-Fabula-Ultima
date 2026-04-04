@@ -1,13 +1,20 @@
-<div class="cell-class-level">
-	<a class="cell-class-level__button" data-action="{{action}}" data-level-action="decrement">
-		<span>-</span>
-	</a>
+<div class="cell-class-level"
+	{{#if (gt current max)}}style="background: var(--color-warning)"{{/if}}>
+	{{#if action}}
+		<a class="cell-class-level__button" data-action="{{action}}" data-level-action="decrement">
+			<span>-</span>
+		</a>
+	{{/if}}
+
 	<div class="cell-class-level__level">
 		<span>{{ current }}</span>
 		<span>/</span>
 		<span>{{ max }}</span>
 	</div>
-	<a class="cell-class-level__button" data-action="{{action}}" data-level-action="increment">
-		<span>+</span>
-	</a>
+
+	{{#if action}}
+		<a class="cell-class-level__button" data-action="{{action}}" data-level-action="increment">
+			<span>+</span>
+		</a>
+	{{/if}}
 </div>

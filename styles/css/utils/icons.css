@@ -84,6 +84,7 @@
 	--icon-fu--physical: url('../../static/affinities/icons/physical.png');
 	--icon-fu--poison: url('../../static/affinities/icons/poison.png');
 	--icon-fu--untyped: url('../../static/affinities/icons/untyped.png');
+	--icon-fu--water: url('../../static/affinities/icons/water.png');
 
 	--icon-fu--arcane: url('../../static/icons/weapons/arcane.png');
 	--icon-fu--bow: url('../../static/icons/weapons/bow.png');
@@ -235,6 +236,10 @@
 
 .fu-untyped {
 	background-image: var(--icon-fu--untyped);
+}
+
+.fu-water {
+	background-image: var(--icon-fu--water);
 }
 
 .fu-arcane {
