@@ -52,7 +52,10 @@ export class CompendiumFilter {
 						const paths = Array.isArray(category.propertyPath) ? category.propertyPath : [category.propertyPath];
 						const matchesAnyPath = paths.some((path) => {
 							const value = foundry.utils.getProperty(entry, path);
-							return value && category.selected.has(value);
+							if (!value) return false;
+
+							const values = value.includes(',') ? value.split(',').map((v) => v.trim()) : [value];
+							return values.some((v) => category.selected.has(v));
 						});
 						if (!matchesAnyPath) {
 							return false;
