@@ -639,7 +639,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			hudWidth = minWidth;
 		}
 
-		let uiRightWidth = uiRight.length ? uiRight.clientWidth : 0;
+		let uiRightWidth = uiRight ? uiRight.clientWidth : 0;
 		hudWidth -= uiRightWidth * 0.5;
 
 		const alpha = game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100;
