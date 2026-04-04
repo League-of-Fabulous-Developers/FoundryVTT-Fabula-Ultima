@@ -103,6 +103,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 
 export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 	#hooks = [];
+	#renderTimer = null
 
 	static DEFAULT_OPTIONS = {
 		id: 'combat-hud',
@@ -1072,17 +1073,14 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 	_onUpdateHUD_Round() {
 		this._onUpdateHUD();
-
-		setTimeout(() => {
-			this._onUpdateHUD();
-		}, 300);
 	}
 
 	_onUpdateHUD() {
 		if (!game.combat) return;
 		if (!game.combat.isActive) return;
 
-		this.render(true);
+		clearTimeout(this.#renderTimer);
+		this.#renderTimer = setTimeout(() => this.render(true), 50);
 	}
 
 	_onUpdateCombatant() {
@@ -1219,6 +1217,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	}
 
 	_onCombatEnd() {
+		clearTimeout(this.#renderTimer);
 		this._resetCombatState(!game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved));
 		this._resetButtons();
 		this.close();
@@ -1245,6 +1244,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	}
 
 	unregisterHooks() {
+		clearTimeout(this.#renderTimer);
 		this.#hooks.forEach(({ hook, func }) => Hooks.off(hook, func));
 	}
 
