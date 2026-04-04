@@ -17,6 +17,7 @@
 @import 'css/global/form.css';
 @import 'css/global/application.css';
 @import 'css/global/theme.css';
+@import 'css/global/theme-modules.css';
 @import 'css/global/layout.css';
 @import 'css/global/icon.css';
 @import 'css/global/dialog.css';
@@ -50,7 +51,143 @@
 @import 'css/app/_index.css';
 @import 'css/actor/_index.css';
 
-/*Chat*/
 @import 'css/chat/chat-prompt.css';
 @import 'css/chat/chat-slotted-technospheres.css';
 @import 'css/chat/chat-optional-features.css';
+
+:root {
+	/* Controls */
+	--pfu-color-control-content: #ebf7afff;
+	--pfu-color-control-border: #148782ff;
+	--pfu-color-control-focus-content: #ffffffff;
+	--pfu-color-control-inactive-content: #ebf7af80;
+	--pfu-color-control-fill-1: #11292999;
+	--pfu-color-control-fill-2: #49a49999;
+	--pfu-color-control-fill: linear-gradient(180deg, var(--pfu-color-control-fill-1) 0%, var(--pfu-color-control-fill-2) 100%);
+
+	--pfu-color-control-highlight-content: #047470ff;
+	--pfu-color-control-highlight-border: #047470ff;
+	--pfu-color-control-highlight-fill-1: #dcd374ff;
+	--pfu-color-control-highlight-fill-2: #fff79aff;
+	--pfu-color-control-highlight-fill: linear-gradient(0deg, var(--pfu-color-control-highlight-fill-1) 0%, var(--pfu-color-control-highlight-fill-2) 100%);
+
+	--pfu-color-control-active-content: #fff79aff;
+	--pfu-color-control-active-border: #fff79aff;
+	--pfu-color-control-active-fill-1: #e28079cc;
+	--pfu-color-control-active-fill-2: #f1a372cc;
+	--pfu-color-control-active-fill: linear-gradient(0deg, var(--pfu-color-control-active-fill-1) 0%, var(--pfu-color-control-active-fill-2) 100%);
+
+	--pfu-control-shadow: none;
+
+	/* Applications */
+	--pfu-color-app-header-content: #ebf7afff;
+	--pfu-color-app-header-focus-content: #ffffffff;
+	--pfu-color-app-header-fill-1: #23574bdd;
+	--pfu-color-app-header-fill-2: #011f13dd;
+	--pfu-color-app-header-fill: linear-gradient(90deg, var(--pfu-color-app-header-fill-1) 0%, var(--pfu-color-app-header-fill-2) 100%);
+	--pfu-color-app-body-content: #191813ff;
+	--pfu-color-app-body-content-secondary: #4b4a44ff;
+	--pfu-color-app-body-primary-fill-1: #112929e0;
+	--pfu-color-app-body-primary-fill-2: #25544fe0;
+	--pfu-color-app-body-primary-fill: linear-gradient(270deg, var(--pfu-color-app-body-primary-fill-1) 0%, var(--pfu-color-app-body-primary-fill-2) 100%);
+	--pfu-color-app-border: #148782ff;
+	--pfu-color-app-name-section-content: #ebf7afff;
+	--pfu-color-app-name-section-shadow: #000000ff;
+	--pfu-color-app-name-section-fill-1: #532853ff;
+	--pfu-color-app-name-section-fill-2: #bfb8c4ff;
+	--pfu-color-app-name-section-fill: linear-gradient(90deg, var(--pfu-color-app-name-section-fill-1) 0%, var(--pfu-color-app-name-section-fill-2) 100%);
+	--pfu-color-app-control-content: #ebf7afff;
+	--pfu-color-app-control-content-shadow: #000000ff;
+	--pfu-color-app-control-border: #148782ff;
+	--pfu-color-app-control-shadow: #2b4a42ff;
+	--pfu-color-app-control-fill-1: #2b4a42ff;
+	--pfu-color-app-control-fill-2: #2b4a42ff;
+	--pfu-color-app-control-fill: linear-gradient(0deg, var(--pfu-color-app-control-fill-1) 0%, var(--pfu-color-app-control-fill-2) 100%);
+	--pfu-color-app-control-focus-content: #ffffffff;
+	--pfu-color-app-control-highlight-content: #3a6359ff;
+	--pfu-color-app-control-highlight-border: #3a6359ff;
+	--pfu-color-app-control-highlight-shadow: #3a6359ff;
+	--pfu-color-app-control-highlight-fill-1: #dcd374ff;
+	--pfu-color-app-control-highlight-fill-2: #fff79aff;
+	--pfu-color-app-control-highlight-fill: linear-gradient(0deg, var(--pfu-color-app-control-highlight-fill-1) 0%, var(--pfu-color-app-control-highlight-fill-2) 100%);
+	--pfu-color-app-control-active-content: #fff79aff;
+	--pfu-color-app-control-active-border: #753002ff;
+	--pfu-color-app-control-active-shadow: #753002ff;
+	--pfu-color-app-control-active-fill-1: #e28079cc;
+	--pfu-color-app-control-active-fill-2: #f1a372cc;
+	--pfu-color-app-control-active-fill: linear-gradient(0deg, var(--pfu-color-app-control-active-fill-1) 0%, var(--pfu-color-app-control-active-fill-2) 100%);
+	--pfu-color-app-item-content: #2b4a42ff;
+	--pfu-color-app-item-header-content: #ebf7afff;
+	--pfu-color-app-item-header-content-focus: #ffffffff;
+	--pfu-color-app-item-header-fill-1: #2c584dff;
+	--pfu-color-app-item-header-fill-2: #a0cdbcff;
+	--pfu-color-app-item-header-fill: linear-gradient(to bottom, var(--pfu-color-app-item-header-fill-1), var(--pfu-color-app-item-header-fill-2));
+	--pfu-color-app-item-header-shadow: #2b4a42ff;
+	--pfu-color-app-item-highlight-border: #2b4a42ff;
+	--pfu-color-app-item-highlight-fill-1: #e1efe3ff;
+	--pfu-color-app-item-highlight-fill-2: #e1efe300;
+	--pfu-color-app-item-highlight-fill: linear-gradient(90deg, var(--pfu-color-app-item-highlight-fill-1), var(--pfu-color-app-item-highlight-fill-2));
+	--pfu-color-app-clock-border: #2b4a42ff;
+	--pfu-color-app-clock-fill-1: #2b4a42e0;
+	--pfu-color-app-clock-fill-2: #2b4a42e0;
+	--pfu-color-app-clock-fill: linear-gradient(0deg, var(--pfu-color-app-clock-fill-1) 0%, var(--pfu-color-app-clock-fill-2) 100%);
+	--pfu-color-app-clock-bg-1: #ffffffff;
+	--pfu-color-app-clock-bg-2: #ffffffff;
+	--pfu-color-app-clock-bg: linear-gradient(0deg, var(--pfu-color-app-clock-bg-1) 0%, var(--pfu-color-app-clock-bg-2) 100%);
+	--pfu-color-app-image-fill-1: #2b4a42ff;
+	--pfu-color-app-image-fill-2: #3d665aff;
+	--pfu-color-app-image-fill: linear-gradient(90deg, var(--pfu-color-app-image-fill-1), var(--pfu-color-app-image-fill-2));
+	--pfu-color-app-section-content-primary: #191813ff;
+	--pfu-color-app-section-content-secondary: #2b4a42ff;
+	--pfu-color-app-section-content-tertiary: #4b4a44ff;
+	--pfu-color-app-section-divider: #7a7971ff;
+	--pfu-color-app-section-border: #aeb8a8ff;
+	--pfu-color-app-section-primary-fill-1: #d4e7e8ff;
+	--pfu-color-app-section-primary-fill-2: #c3dbd6b3;
+	--pfu-color-app-section-primary-fill: linear-gradient(270deg, var(--pfu-color-app-section-primary-fill-1) 0%, var(--pfu-color-app-section-primary-fill-2) 100%);
+	--pfu-color-app-section-secondary-fill: linear-gradient(270deg, var(--pfu-color-app-section-primary-fill-2) 0%, var(--pfu-color-app-section-primary-fill-1) 100%);
+	--pfu-color-app-detail-section-content-primary: #272a2aff;
+	--pfu-color-app-detail-section-content-secondary: #2b4a42ff;
+	--pfu-color-app-detail-section-content-tertiary: #3d665aff;
+	--pfu-color-app-detail-section-shadow: #2b4a42ff;
+	--pfu-color-app-detail-section-primary-fill-1: #d4e7e8ff;
+	--pfu-color-app-detail-section-primary-fill-2: #c3dbd6b3;
+	--pfu-color-app-detail-section-primary-fill-to-bottom: linear-gradient(to bottom, var(--pfu-color-app-detail-section-primary-fill-1), var(--pfu-color-app-detail-section-primary-fill-2));
+	--pfu-color-app-detail-section-primary-fill-to-right: linear-gradient(to right, var(--pfu-color-app-detail-section-primary-fill-1), var(--pfu-color-app-detail-section-primary-fill-2));
+
+	--pfu-color-app-scrollbar: #5d142bff;
+	--pfu-color-app-scrollbar-track: #00000000;
+
+	--pfu-color-hud-background-fill-1: #49a499;
+	--pfu-color-hud-background-fill-2: #49a499;
+	--pfu-color-hud-background-fill: linear-gradient(180deg, var(--pfu-color-hud-background-fill-1) 0%, var(--pfu-color-hud-background-fill-2) 100%);
+
+	/* Misc */
+	--pfu-color-misc-shadow-primary: #77ebd7ff;
+	--pfu-color-misc-shadow-highlight: #e03a3aff;
+	--pfu-color-misc-border-highlight: #e03a3acc;
+
+	/* Spacing and Sizing */
+	--pfu-border-radius-large: 20px;
+	--pfu-border-radius-medium: 10px;
+	--pfu-border-radius-small: 5px;
+	--pfu-border-width: 1px;
+	--pfu-backdrop-filter: none;
+	--pfu-ui-accent-width: 500px;
+	--pfu-ui-accent-height: 500px;
+	--pfu-ui-accent-position-top: -24px;
+	--pfu-ui-accent-position-left: 1px;
+	--pfu-ui-accent-clip-path: inset(0 370px 402px 0);
+	--pfu-app-section-bg-image-size: cover;
+	--pfu-app-section-bg-image-repeat: repeat-y;
+	--pfu-app-accent-width: 200px;
+	--pfu-app-accent-height: 200px;
+	--pfu-app-accent-position-top: -42px;
+	--pfu-app-accent-position-left: -47px;
+
+	/* Assets */
+	--pfu-app-accent-image: url('../../static/ui/logo.png');
+	--pfu-app-section-bg-image: url('../../static/ui/Bkg_pattern_highres.png');
+	--pfu-app-bg-image: url('../../static/ui/Hojitas_highres.png');
+	--pfu-sidebar-bg-image: url('../../static/ui/HojitasDouble_highres.png');
+}

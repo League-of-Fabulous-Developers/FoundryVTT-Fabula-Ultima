@@ -1,0 +1,249 @@
+/*
+	MODULE: Global Progress Clocks
+*/
+#clock-panel {
+	--control-bg-color: var(--pfu-color-control-fill);
+	--control-icon-color: var(--pfu-color-control-content);
+	--control-border-color: var(--pfu-color-control-border);
+
+	& .clock-display {
+		& .clock-entry {
+			background: unset;
+			border: unset;
+
+			& a {
+				+ .value {
+					padding-left: unset;
+				}
+
+				&:hover {
+					text-shadow: 0 0 5px var(--pfu-color-misc-shadow-highlight);
+				}
+			}
+		}
+	}
+
+	& .clock-display.left .clock-entry::before {
+		border-radius: calc(var(--entry-height) / 2) var(--pfu-border-radius-medium) var(--pfu-border-radius-medium) calc(var(--entry-height) / 2);
+	}
+	& .clock-display:not(.left) .clock-entry::before {
+		border-radius: var(--pfu-border-radius-medium) calc(var(--entry-height) / 2) calc(var(--entry-height) / 2) var(--pfu-border-radius-medium);
+	}
+}
+
+/*
+	MODULE: FU Roll Enhancements
+*/
+.application.roll-enhancements {
+	--color-text-emphatic: var(--pfu-color-app-body-content);
+	--color-text-primary: var(--pfu-color-app-body-content);
+	--color-text-secondary: var(--pfu-color-app-body-content-secondary);
+	--color-text-subtle: var(--pfu-color-app-body-content-secondary);
+	--color-tabs-border: var(--pfu-color-app-section-divider);
+	--checkbox-font-weight: bold;
+
+	& .window-header {
+		color: var(--pfu-color-app-header-content);
+		background: var(--pfu-color-app-header-fill);
+		& .window-title {
+			color: var(--pfu-color-app-header-content);
+		}
+	}
+
+	& input[type='checkbox'] {
+		background: none;
+		appearance: none;
+	}
+
+	& input[type='checkbox']::before {
+		color: var(--pfu-color-app-control-fill-1);
+	}
+	& input[type='checkbox']:checked::before,
+	& input[type='radio']:checked::before {
+		color: var(--pfu-color-app-control-content);
+		font-weight: var(--checkbox-font-weight);
+	}
+
+	& input[type='checkbox']:disabled,
+	& input[type='radio']:disabled {
+		opacity: 0.6;
+	}
+
+	& input[type='checkbox']:checked::after,
+	& input[type='radio']:checked::after {
+		color: var(--pfu-color-app-control-fill-1);
+		font-family: var(--font-awesome);
+		font-weight: var(--checkbox-font-weight);
+		content: '\f0c8';
+	}
+
+	& input[type='number'],
+	& input[type='search'],
+	& input[type='text'],
+	& input[type='datetime-local'],
+	& select,
+	& textarea {
+		background: var(--pfu-color-app-control-fill);
+		border-color: var(--pfu-color-app-control-border);
+		color: var(--pfu-color-app-control-content);
+	}
+	& input[type='number']:focus,
+	& input[type='search']:focus,
+	& input[type='text']:focus {
+		outline-color: var(--pfu-color-app-control-highlight-border);
+	}
+	& input[type='range'] {
+		--range-track-color: var(--pfu-color-app-control-fill);
+		--range-track-border-color: var(--pfu-color-app-control-border);
+		--range-thumb-background-color: var(--pfu-color-app-control-highlight-fill);
+		--range-thumb-border-color: var(--pfu-color-app-control-highlight-border);
+	}
+	& select option {
+		background: var(--pfu-color-app-control-fill-1);
+		border-color: var(--pfu-color-app-control-border);
+		color: var(--pfu-color-app-control-content);
+	}
+
+	& .window-content {
+		background: var(--pfu-color-app-body-primary-fill);
+		color: var(--pfu-color-app-body-content);
+	}
+
+	&.roll-configuration .window-content {
+		background: var(--pfu-app-bg-image), var(--pfu-color-app-body-primary-fill);
+		background-size: 100% auto;
+	}
+
+	& footer.action-buttons button,
+	& .dialog-buttons .dialog-button,
+	& .form-footer button,
+	& .form-group button,
+	& a.button,
+	& .window-content section button {
+		color: var(--pfu-color-control-content);
+		text-shadow: none;
+		border: solid;
+		border-width: var(--pfu-border-width);
+		border-color: var(--pfu-color-control-border);
+		border-radius: var(--pfu-border-radius-medium);
+		background: var(--pfu-color-control-fill);
+		&:hover {
+			color: var(--pfu-color-control-highlight-content);
+			border-color: var(--pfu-color-control-highlight-border);
+			background: var(--pfu-color-control-highlight-fill);
+			/* box-shadow: 0 0 5px var(--pfu-color-misc-shadow-highlight) */
+		}
+		&.active,
+		&[aria-pressed='true'] {
+			border-color: var(--pfu-color-control-active-border);
+			background: var(--pfu-color-control-active-fill);
+			box-shadow: 0 0 5px var(--pfu-color-misc-shadow-highlight);
+			color: var(--pfu-color-control-focus-content);
+			text-shadow: none;
+			outline: none;
+		}
+	}
+
+	& button.inline-control,
+	& button.header-control,
+	& .editor-menu button {
+		color: var(--pfu-color-control-content);
+		border: none;
+	}
+	& button.inactive,
+	& input.inactive {
+		filter: grayscale(100%);
+	}
+
+	& button.plain:hover {
+		color: var(--pfu-color-control-focus-content);
+		border-color: var(--pfu-color-control-active-border);
+	}
+	& button.header-control:hover,
+	& .editor-menu button:hover {
+		color: var(--pfu-color-app-control-highlight-content);
+		background: var(--pfu-color-app-control-highlight-fill);
+	}
+	& button.inline-control:hover {
+		color: var(--pfu-color-control-highlight-content);
+		border-color: var(--pfu-color-control-highlight-border);
+		background: var(--pfu-color-control-highlight-fill);
+		box-shadow: 0 0 5px var(--pfu-color-misc-shadow-highlight);
+	}
+	& button.inline-control.active {
+		border-color: var(--pfu-color-control-active-border);
+		background: var(--pfu-color-control-active-fill);
+		box-shadow: 0 0 5px var(--pfu-color-misc-shadow-highlight);
+		color: var(--pfu-color-control-focus-content);
+		text-shadow: none;
+		outline: none;
+	}
+
+	& fieldset {
+		border-radius: var(--pfu-border-radius-medium);
+		color: var(--pfu-color-app-section-content-primary);
+		border: 1px solid var(--pfu-color-app-section-border);
+		background: var(--pfu-app-section-bg-image), var(--pfu-color-app-section-primary-fill);
+		background-blend-mode: multiply;
+		background-position: right top;
+		background-size: var(--pfu-app-section-bg-image-size), cover;
+		background-repeat: var(--pfu-app-section-bg-image-repeat);
+
+		--color-text-dark: var(--pfu-color-app-section-content-primary);
+		--color-primary: var(--pfu-color-app-section-content-secondary);
+		--color-secondary: var(--pfu-color-app-section-content-tertiary);
+		--color-shadow-primary: var(--pfu-color-misc-shadow-highlight);
+		--color-border-primary: var(--pfu-color-app-section-content-secondary);
+		--color-border-secondary: var(--pfu-color-app-detail-section-shadow);
+		--color-transparent-gradient: var(--pfu-color-app-detail-section-primary-fill-to-right);
+		--color-quote-gradient: var(--pfu-color-app-detail-section-primary-fill-to-right);
+		--color-text-emphatic: var(--color-border-primary);
+		--color-text-primary: var(--pfu-color-app-section-content-primary);
+		--color-text-secondary: var(--pfu-color-app-section-content-secondary);
+		--color-text-subtle: var(--pfu-color-app-section-content-tertiary);
+		--color-tabs-border: var(--pfu-color-app-section-divider);
+		--color-scrollbar: var(--pfu-color-app-control-fill-1);
+
+		& .roll-options label {
+			font-size: var(--font-size-base);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+			color: var(--color-text-primary);
+		}
+
+		& .roll-fields {
+			font-family: var(--font-primary);
+		}
+
+		& .roll-fields label {
+			font-size: var(--font-size-large);
+			font-weight: var(--font-weight-bold);
+			font-family: var(--font-secondary);
+			color: var(--color-text-secondary);
+		}
+
+		& legend {
+			padding: 0.2rem 0.5rem;
+			border-radius: 10px;
+			border: 1px solid var(--pfu-color-app-control-border);
+			color: var(--pfu-color-app-control-content);
+			background: var(--pfu-color-app-control-fill);
+			text-align: center;
+			font-family: var(--font-secondary);
+			font-size: var(--font-size-large);
+			font-weight: var(--font-weight-bold);
+			& label {
+				vertical-align: text-top;
+			}
+		}
+	}
+}
+
+.chat-message .roll-enhancements section.auto-target-results {
+	padding: 0.5rem 0.2rem;
+	margin: 0.1rem 0 0.2rem 0;
+	color: var(--pfu-color-app-detail-section-content-primary);
+	background: var(--pfu-color-app-detail-section-primary-fill-to-bottom);
+	border-radius: 10px;
+	box-shadow: 1px 2px var(--pfu-color-app-detail-section-shadow);
+}

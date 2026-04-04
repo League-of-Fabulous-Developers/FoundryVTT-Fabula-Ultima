@@ -1906,3 +1906,260 @@
 	-ms-transform: translateY(1px);
 	transform: translateY(1px);
 }
+
+.projectfu,
+.chat-message {
+	& .pfu-progress__chat,
+	&.clock-s,
+	&.clock-m,
+	&.clock-l {
+		& .pfu-progress__segments__container {
+			&::after {
+				content: unset;
+				background: unset;
+			}
+		}
+	}
+
+	& .pfu-progress__segments__container .pfu-progress__segments,
+	& .pfu-progress__segments {
+		& input[type='radio'].pie {
+			background: unset;
+			&:hover,
+			&:hover ~ .pie,
+			&:checked:has(~ .pie:hover),
+			&:checked ~ .pie:has(~ .pie:hover) {
+				background: var(--pfu-color-app-clock-fill);
+				/* opacity: 0.7; */
+			}
+
+			&:checked,
+			&:checked ~ .pie,
+			&:checked:hover,
+			&:checked:hover ~ .pie,
+			&:checked ~ .pie:hover,
+			&:checked ~ .pie:hover ~ .pie,
+			&:hover ~ .pie:checked,
+			&:hover ~ .pie:checked ~ .pie {
+				background: var(--pfu-color-app-clock-fill);
+				/* opacity: 1; */
+			}
+		}
+
+		& .divider {
+			background: var(--pfu-color-app-clock-border);
+			box-shadow: unset;
+		}
+
+		& .foreground {
+			border-left-color: var(--pfu-color-app-clock-border);
+			border-right-color: var(--pfu-color-app-clock-border);
+			border-bottom-color: var(--pfu-color-app-clock-border);
+			border-top-color: var(--pfu-color-app-clock-border);
+		}
+	}
+
+	.tags.input-element-tags .tag {
+		color: var(--pfu-color-app-control-content);
+		background: var(--pfu-color-app-control-fill);
+		border-color: var(--pfu-color-app-control-border);
+	}
+
+	& .items-list .item,
+	& .items-list .item .item-name {
+	}
+	& .items-list .effect,
+	& .items-list .item .item-name {
+		color: var(--color-primary);
+
+		&:hover {
+			background: var(--pfu-color-app-detail-section-primary-fill-to-right);
+		}
+	}
+
+	& .inline-desc .pfu-progress__segments__container,
+	& .inline-desc {
+		padding: 2px;
+
+		& .pfu-progress__segments {
+			--border-width: 2px;
+		}
+
+		& .resource-label-sm {
+			/*color: var(--pfu-color-app-control-content);*/
+		}
+	}
+
+	& .pfu-progress__segments {
+		background: var(--pfu-color-app-clock-bg);
+		border-radius: 50%;
+	}
+
+	& .button-style,
+	& .resource-content button,
+	& .desc button,
+	& .resource-content.desc button,
+	& .desc .form-group button,
+	& .cell-item-controls .cell-item-controls__control,
+	& .cell-effect-controls .cell-effect-controls__control {
+		border: thin solid var(--pfu-color-app-control-border);
+		color: var(--pfu-color-app-control-content) !important;
+		background: var(--pfu-color-app-control-fill);
+		box-shadow: 1px 2px var(--pfu-color-app-control-shadow);
+		transition: none;
+
+		& button,
+		input {
+			border: none !important;
+			background: none !important;
+
+			&:focus {
+				outline: none;
+			}
+			&:disabled {
+				opacity: unset;
+			}
+		}
+
+		&:has(button:disabled),
+		&:disabled {
+			filter: grayscale(50%);
+			opacity: 0.9;
+		}
+
+		&:not(:has(input), :has(button:disabled), :disabled) {
+			&.cell-item-controls__control--active,
+			&.active,
+			&.active:hover,
+			&:active,
+			&:active:hover {
+				margin: 1px -1px -1px 1px;
+				-webkit-transform: unset;
+				transform: unset;
+				color: var(--pfu-color-app-control-active-content) !important;
+				border: thin solid var(--pfu-color-app-control-active-border);
+				background: var(--pfu-color-app-control-active-fill) !important;
+				box-shadow: 0 1px var(--pfu-color-app-control-active-shadow);
+				text-shadow: unset;
+				transition: none;
+			}
+
+			&:not(.active, :active, .cell-item-controls__control--active):hover {
+				text-shadow: none;
+				color: var(--pfu-color-app-control-highlight-content) !important;
+				border: thin solid var(--pfu-color-app-control-highlight-border);
+				background: var(--pfu-color-app-control-highlight-fill) !important;
+				box-shadow: 1px 2px var(--pfu-color-app-control-highlight-shadow);
+			}
+		}
+	}
+
+	& .resource-middle-input {
+		border: 1px solid var(--pfu-color-app-section-border);
+	}
+
+	& .star-label:not(.fus-star2-border) {
+		&.fus-sl-star {
+			background-image: none;
+			color: var(--pfu-color-app-section-content-secondary);
+		}
+
+		&.ful-sl-star {
+			background-image: none;
+
+			&::after {
+				color: transparent;
+			}
+		}
+
+		&::after {
+			font-family: 'BabelStoneShapes';
+			-webkit-text-stroke: 2px var(--pfu-color-app-section-content-secondary);
+			color: var(--pfu-color-app-section-content-secondary);
+			content: '\1F7C5';
+			line-height: 28px;
+			font-size: 24px;
+		}
+	}
+
+	& .rollable:hover,
+	& .rollable:focus {
+		color: inherit;
+		text-shadow: 0 0 8px var(--pfu-color-misc-shadow-highlight);
+	}
+
+	& .breakline-border {
+		background: linear-gradient(to right, transparent, var(--pfu-color-app-section-primary-fill-1), transparent);
+	}
+
+	& :is(.window-content, .dialog-content) .desc :is(.inline-desc, .item-m),
+	& .desc .inline-desc,
+	& .pfu-progress__chat,
+	& .cell-class-level {
+		background: var(--pfu-color-app-detail-section-primary-fill-to-bottom);
+		border: 1px solid var(--pfu-color-app-detail-section-content-secondary);
+		border-radius: 10px;
+
+		& a:hover {
+			background: var(--pfu-color-app-control-fill);
+			color: var(--pfu-color-app-control-content);
+		}
+	}
+
+	&.window-app:not([id$='-popout']) .resource-content.affinity label {
+		color: var(--pfu-color-app-section-content-secondary);
+	}
+
+	& .items-main {
+		color: var(--pfu-color-app-item-header-content);
+		background: var(--pfu-color-app-item-header-fill);
+		text-shadow: 1px 1px var(--pfu-color-app-item-header-shadow);
+		box-shadow: 2px 4px var(--pfu-color-app-item-header-shadow);
+
+		&.total-level a:hover,
+		& a:hover {
+			color: var(--pfu-color-app-item-header-content-focus);
+			text-shadow: inherit;
+			> *:hover {
+				color: inherit;
+			}
+		}
+	}
+
+	& .body-section .section-container .desc-header.resource-content .traitdesc {
+		color: var(--pfu-color-app-control-content);
+		background: var(--pfu-color-app-control-fill);
+		border: none;
+
+		&::placeholder {
+			color: var(--pfu-color-app-control-content);
+			opacity: 0.5;
+		}
+	}
+
+	& .resource-max-input,
+	& .resource-current-input {
+		border: none;
+		margin: 0 1px 0 1px;
+		color: var(--pfu-color-app-control-content);
+		background: var(--pfu-color-app-control-fill);
+
+		&:hover {
+			border: none;
+			color: var(--pfu-color-app-control-content);
+		}
+
+		&::placeholder {
+			color: var(--pfu-color-app-control-content);
+			opacity: 0.5;
+		}
+
+		& :disabled,
+		& :hover:disabled {
+			color: var(--pfu-color-app-control-content);
+			background: var(--pfu-color-app-control-fill);
+			border: 1px solid var(--pfu-color-app-control-border);
+			opacity: 0.8;
+		}
+	}
+}
