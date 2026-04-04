@@ -81,9 +81,12 @@
 }
 
 .projectfu .editor {
-	&.stretch {
-		height: 100%;
-		min-height: 25em;
+	height: 100%;
+	min-height: 25em;
+
+	&.fit {
+		height: unset;
+		min-height: unset;
 	}
 }
 

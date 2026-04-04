@@ -121,7 +121,7 @@
 						{{#if (eq (pfuGetSetting 'optionNPCNotesTab') true)}}
 							{{{enrichedHtml.description}}}
 						{{else}}
-							<prose-mirror name="system.description" value="{{system.description}}" toggled>
+							<prose-mirror name="system.description" value="{{system.description}}" class="fit" toggled>
 								{{{enrichedHtml.description}}}
 							</prose-mirror>
 						{{/if}}
