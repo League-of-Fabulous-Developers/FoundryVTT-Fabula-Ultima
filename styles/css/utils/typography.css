@@ -114,6 +114,14 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'BabelStoneShapes';
+	src:
+		url('../../fonts/babel-stone-shapes/BabelStoneShapes.woff2') format('woff2'),
+		url('../../fonts/babel-stone-shapes/BabelStoneShapes.woff') format('woff'),
+		url('../../fonts/babel-stone-shapes/BabelStoneShapes.ttf') format('truetype');
+}
+
 /* =========================
    Typography Variables
    ========================= */
