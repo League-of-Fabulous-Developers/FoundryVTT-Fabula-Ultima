@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>.</p><hr /><p>After you sing a <strong>haunting verse</strong>, or after you succeed on an Opposed Check for your <strong>Condemn</strong> Skill, you may choose one enemy among the targets of that <strong>verse</strong> or Skill.</p><p>If you do, choose one status effect that enemy is currently suffering from: that enemy becomes <strong>bewitched</strong> until the start of your next turn or until they recover from the chosen status effect. Enemies you have <strong>bewitched</strong> must include you among the targets of their attacks and offensive spells (@ICON[offensive]), if able.</p>",
     "class": {
-      "value": ""
+      "value": "Chanter, Orator"
     },
     "showTitleCard": {
       "value": false
@@ -65,7 +65,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1771887028909,
+    "modifiedTime": 1775353905308,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "folder": "1Ky2u7fi2lfxr4JB",

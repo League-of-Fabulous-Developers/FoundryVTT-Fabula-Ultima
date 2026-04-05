@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Commander, Guardian"
     },
     "useWeapon": {
       "accuracy": {
@@ -185,7 +185,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684635660,
-    "modifiedTime": 1771892366370,
+    "modifiedTime": 1775354925207,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

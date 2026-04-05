@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Entropist, Spiritist"
     },
     "hasResource": {
       "value": false
@@ -212,7 +212,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771894208445,
+    "modifiedTime": 1775355140642,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

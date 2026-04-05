@@ -16,7 +16,7 @@
       "min": 0
     },
     "class": {
-      "value": "Necromancer"
+      "value": "Entropist, Necromancer"
     },
     "useWeapon": {
       "accuracy": {
@@ -264,7 +264,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1697668153306,
-    "modifiedTime": 1771885221937,
+    "modifiedTime": 1775353797206,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

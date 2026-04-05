@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Ace of Cards, Arcanist, Chanter, Chimerist, Commander, Dancer, Darkblade, Elementalist, Entropist, Esper, Floralist, Fury, Gourmet, Guardian, Invoker, Loremaster, Merchant, Mutant, Necromancer, Orator, Pilot, Rogue, Sharpshooter, Spiritist, Symbolist, Tinkerer, Wayfarer, Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -184,7 +184,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706583614340,
-    "modifiedTime": 1771887148248,
+    "modifiedTime": 1775356028642,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

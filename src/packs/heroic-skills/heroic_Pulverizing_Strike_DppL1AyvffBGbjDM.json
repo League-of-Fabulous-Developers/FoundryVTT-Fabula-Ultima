@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Darkblade, Fury, Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -122,7 +122,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684687580,
-    "modifiedTime": 1771892974517,
+    "modifiedTime": 1775354968410,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

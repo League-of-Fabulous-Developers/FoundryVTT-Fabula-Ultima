@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong> and <strong>Weaponmaster</strong>.</p><hr /><p>When you transform a <strong>transforming custom weapon</strong> on your turn, choose <strong>one</strong> option:</p><ul><li><p>If you have not performed any attacks during this turn, the next attack you perform with this weapon during this turn deals 5 extra damage.</p></li><li><p>If you hit one or more creatures with an attack using this weapon during this turn, you recover 5 Hit Points and 5 Mind Points.</p></li></ul><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.0jslWSatV2i8SKix] or @EFFECT[Compendium.projectfu.heroic-skills.Item.3PRgAxgGjeOiBjKg]</p>",
     "class": {
-      "value": ""
+      "value": "Sharpshooter, Weaponmaster"
     },
     "showTitleCard": {
       "value": false
@@ -59,7 +59,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1771886049140,
+    "modifiedTime": 1775353807867,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "folder": "1Ky2u7fi2lfxr4JB",

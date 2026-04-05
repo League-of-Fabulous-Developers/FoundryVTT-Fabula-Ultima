@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Chimerist, Darkblade, Esper, Fury, Wayfarer"
     },
     "hasResource": {
       "value": false
@@ -74,7 +74,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771894300455,
+    "modifiedTime": 1775355164573,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
