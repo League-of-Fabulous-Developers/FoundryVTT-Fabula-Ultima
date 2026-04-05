@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Chanter, Esper, Orator"
     },
     "hasResource": {
       "value": false
@@ -191,7 +191,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771893798968,
+    "modifiedTime": 1775355118587,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

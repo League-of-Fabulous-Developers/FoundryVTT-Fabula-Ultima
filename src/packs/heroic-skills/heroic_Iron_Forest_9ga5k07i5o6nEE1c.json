@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Commander, Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -240,7 +240,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684646291,
-    "modifiedTime": 1771892472071,
+    "modifiedTime": 1775354935655,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

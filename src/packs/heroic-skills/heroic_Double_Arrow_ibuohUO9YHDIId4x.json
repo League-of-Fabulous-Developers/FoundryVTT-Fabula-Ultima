@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Commander, Sharpshooter"
     },
     "useWeapon": {
       "accuracy": {
@@ -122,7 +122,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684593529,
-    "modifiedTime": 1771892290980,
+    "modifiedTime": 1775354862536,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

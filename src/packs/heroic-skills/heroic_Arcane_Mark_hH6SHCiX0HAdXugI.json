@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Sharpshooter, Symbolist, Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -239,7 +239,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684532126,
-    "modifiedTime": 1771892101080,
+    "modifiedTime": 1775354797953,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

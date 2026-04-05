@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury</strong>, <strong>Loremaster</strong>, <strong>Sharpshooter</strong> and <strong>Weaponmaster</strong>, and have acquired the <strong>Knowledge is Power</strong> Skill.</p><hr /><p>Whenever you acquire this Heroic Skill, choose <strong>two</strong> Species among <strong>beast</strong>, <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, <strong>monster</strong>, <strong>plant</strong>, and <strong>undead</strong>.</p><p>When you deal damage to a creature belonging to the <strong>humanoid</strong> Species or to a Species you have chosen for this Heroic Skill, you may choose one option:</p><ul><li><p>You deal 5 extra damage to that creature.</p></li><li><p>That creature becomes <strong>reeling</strong> until the end of the scene. When a <strong>reeling</strong> creature recovers Hit Points and/or Mind Points, instead that creature recovers <strong>half</strong> the normal amount of HP and/or MP and is no longer <strong>reeling</strong>.</p></li></ul><p>This Heroic Skill can be acquired <strong>up to three times</strong>.</p>",
     "class": {
-      "value": ""
+      "value": "Fury, Loremaster, Sharpshooter, Weaponmaster"
     },
     "showTitleCard": {
       "value": false
@@ -59,7 +59,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1771885043613,
+    "modifiedTime": 1775353673565,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "folder": "1Ky2u7fi2lfxr4JB",

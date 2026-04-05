@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": "Arcanist"
+      "value": "Arcanist, Spiritist"
     },
     "hasResource": {
       "value": false
@@ -78,7 +78,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771893579165,
+    "modifiedTime": 1775355073695,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

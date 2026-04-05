@@ -9,7 +9,7 @@
     "summary": {
       "value": "Deal extra damage with spells."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among the following: <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, or <strong>Spiritist</strong>. </p><hr /><p>When you cast a spell that deals damage to one or more creatures, that spell deals 5 extra damage to each creature. </p><p>The amount of extra damage increases to 10 if you are<strong> level 40 or higher</strong> . </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p><hr /><p>When you cast a spell that deals damage to one or more creatures, that spell deals 5 extra damage to each creature. </p><p>The amount of extra damage increases to 10 if you are<strong> level 40 or higher</strong> . </p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Chimerist, Elementalist, Entropist, Spiritist"
     },
     "useWeapon": {
       "accuracy": {
@@ -178,7 +178,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706585369283,
-    "modifiedTime": 1771888706587,
+    "modifiedTime": 1775354647799,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

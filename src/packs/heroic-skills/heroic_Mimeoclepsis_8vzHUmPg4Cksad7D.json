@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Chimerist, Mutant"
     },
     "useWeapon": {
       "accuracy": {
@@ -118,7 +118,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1771896930044,
+    "modifiedTime": 1775355372141,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

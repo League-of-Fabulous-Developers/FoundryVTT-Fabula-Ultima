@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Elementalist, Entropist, Invoker, Symbolist"
     },
     "hasResource": {
       "value": false
@@ -180,7 +180,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771893598675,
+    "modifiedTime": 1775355087925,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong>, <strong>Elementalist</strong>, <strong>Esper</strong>, and <strong>Invoker</strong>.</p><hr /><p>When you deal <strong>dark</strong>, <strong>earth</strong>, <strong>ice</strong>, or <strong>physical</strong> damage for the first time during a turn, you gain <strong>1 Yin Point</strong> and, if you have <strong>at least 1 Yang Point</strong>, you deal 5 extra damage.</p><p>When you deal <strong>air</strong>, <strong>bolt</strong>, <strong>fire</strong>, or <strong>light</strong> damage for the first time during a turn, you gain <strong>1 Yang Point</strong> and, if you have <strong>at least 1 Yin Point</strong>, you deal 5 extra damage.</p><p>At the end of your turn, if you have <strong>3 or more Yin and/or Yang points</strong> and have <strong>at least 1 point of each type</strong>, you lose all <strong>Yin and Yang Points</strong> and perform one of the following effects based on the points you lost (perform <strong>both</strong> in case of a tie):</p><ul><li><p><strong>Yin majority</strong>: every enemy present on the scene loses an amount of Mind Points equal to <strong>【half your level】</strong>.</p></li><li><p><strong>Yang majority</strong>: one creature you can see that is present on the scene recovers an amount of Mind Points equal to <strong>【your level】</strong>.</p></li></ul><p>You may gain and use <strong>Yin and Yang Points</strong> only during conflicts, and you lose all your <strong>Yin and Yang Points</strong> at the end of each scene.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.0HGU4K2CyxTGtDAP] or @EFFECT[Compendium.projectfu.heroic-skills.Item.XziwyFx5pn8OHLM1]<br /><strong>Enemies Lose:</strong> @LOSS[floor($cl/2) mp]{Half Level MP}<br /><strong>Target Gains:</strong> @GAIN[$cl mp]{Level MP}</p>",
     "class": {
-      "value": ""
+      "value": "Dancer, Elementalist, Esper, Invoker"
     },
     "showTitleCard": {
       "value": false
@@ -30,7 +30,16 @@
       "max": 6,
       "enabled": false
     },
-    "fuid": "flow-of-yin-and-yang"
+    "fuid": "flow-of-yin-and-yang",
+    "damage": {
+      "onRoll": "",
+      "onApply": ""
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [
     {
@@ -156,7 +165,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1767915231139,
-    "modifiedTime": 1771008883074,
+    "modifiedTime": 1775353764148,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "folder": "1Ky2u7fi2lfxr4JB",

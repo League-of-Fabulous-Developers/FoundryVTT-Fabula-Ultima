@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Rogue, Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -190,7 +190,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684553854,
-    "modifiedTime": 1771892202477,
+    "modifiedTime": 1775354838758,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

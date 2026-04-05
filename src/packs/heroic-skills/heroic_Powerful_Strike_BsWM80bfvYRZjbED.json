@@ -9,7 +9,7 @@
     "summary": {
       "value": "Deal extra damage with melee attacks."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among the following: <strong>Fury </strong>or <strong>Weaponmaster</strong>.</p><hr /><p>When you hit one or more creatures with a <strong>melee </strong>attack, that attack deals 5 extra damage to each creature. </p><p>The amount of extra damage increases to 10 if you are <strong>level 40 or higher</strong>. </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury</strong> and <strong>Weaponmaster</strong>.</p><hr /><p>When you hit one or more creatures with a <strong>melee </strong>attack, that attack deals 5 extra damage to each creature. </p><p>The amount of extra damage increases to 10 if you are <strong>level 40 or higher</strong>. </p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Fury, Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -178,7 +178,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706585658140,
-    "modifiedTime": 1771888716068,
+    "modifiedTime": 1775354708625,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

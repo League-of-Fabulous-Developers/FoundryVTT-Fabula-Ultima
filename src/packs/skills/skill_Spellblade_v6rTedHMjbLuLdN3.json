@@ -106,7 +106,7 @@
       }
     },
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "hasResource": {
       "value": false
@@ -118,7 +118,15 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "spellblade"
+    "fuid": "spellblade",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    },
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [
     {
@@ -253,7 +261,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706498028252,
-    "modifiedTime": 1770331267776,
+    "modifiedTime": 1775353735730,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

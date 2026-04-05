@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Chimerist, Elementalist, Entropist, Spiritist"
     },
     "useWeapon": {
       "accuracy": {
@@ -122,7 +122,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684602733,
-    "modifiedTime": 1771892317030,
+    "modifiedTime": 1775354904761,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

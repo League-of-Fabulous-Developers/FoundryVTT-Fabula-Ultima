@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Commander, Loremaster, Orator"
     },
     "hasResource": {
       "value": false
@@ -82,7 +82,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771895066355,
+    "modifiedTime": 1775355285344,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

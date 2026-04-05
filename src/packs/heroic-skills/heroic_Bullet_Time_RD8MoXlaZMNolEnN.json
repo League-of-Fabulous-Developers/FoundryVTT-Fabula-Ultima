@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Entropist, Rogue"
     },
     "useWeapon": {
       "accuracy": {
@@ -192,7 +192,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711473807263,
-    "modifiedTime": 1771895726759,
+    "modifiedTime": 1775355313906,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Fury, Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -221,7 +221,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684696121,
-    "modifiedTime": 1771893139526,
+    "modifiedTime": 1775354991844,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

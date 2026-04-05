@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Darkblade, Floralist"
     },
     "hasResource": {
       "value": false
@@ -198,7 +198,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771893607962,
+    "modifiedTime": 1775355099380,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

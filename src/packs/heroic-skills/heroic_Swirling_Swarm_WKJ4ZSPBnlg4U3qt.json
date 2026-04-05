@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Dancer, Fury, Sharpshooter"
     },
     "useWeapon": {
       "accuracy": {
@@ -53,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -93,7 +95,12 @@
       "step": 1,
       "max": 5
     },
-    "fuid": "swirling-swarm"
+    "fuid": "swirling-swarm",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [
     {
@@ -249,7 +256,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706684737113,
-    "modifiedTime": 1770765364687,
+    "modifiedTime": 1775355025461,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

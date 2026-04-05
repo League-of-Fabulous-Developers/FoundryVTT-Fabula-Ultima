@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": ""
+      "value": "Dancer, Esper, Rogue, Spiritist, Symbolist"
     },
     "hasResource": {
       "value": false
@@ -194,7 +194,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771894277954,
+    "modifiedTime": 1775355170382,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
