@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr /><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.skills.Item.Q4Pkg9rrX82uhCLc]{Bat Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.9VFzdZVtMbxlpj77]{Bat Dance (Damage)}</p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.Q4Pkg9rrX82uhCLc]{Bat Dance (Resistance)} or @EFFECT[Compendium.projectfu.skills.Item.9VFzdZVtMbxlpj77]{Bat Dance (Damage)}</p>",
       "duration": "nextTurn"
     },
     "source": "FUHF144",

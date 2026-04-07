@@ -1,0 +1,111 @@
+{
+  "folder": "OiG6GWbd4l8tD5lN",
+  "name": "Effect: Delicacy (DEX Up)",
+  "type": "effect",
+  "_id": "gc2VICfC8pACRBHy",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "system": {
+    "fuid": "effect-delicacy-dex-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Delicacy (DEX Up)",
+      "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
+      "origin": "Compendium.projectfu.skills.Item.gc2VICfC8pACRBHy",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "eJIPJUrNkYvUCo6d",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.dex",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You treat your <strong>Dexterity</strong> as if it were one die size higher (up to a max of <strong>d12</strong>) until the end of the <strong>gourmet's</strong> next turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Delicacy (DEX Up)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.gc2VICfC8pACRBHy",
+            "effectUuid": null,
+            "fuid": "effect-delicacy-dex-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775544130926,
+        "modifiedTime": 1775544197530,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!gc2VICfC8pACRBHy.eJIPJUrNkYvUCo6d"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775544083180,
+    "modifiedTime": 1775544121545,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!gc2VICfC8pACRBHy"
+}

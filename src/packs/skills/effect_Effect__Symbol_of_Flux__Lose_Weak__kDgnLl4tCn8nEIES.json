@@ -53,7 +53,7 @@
           "priority": 51
         }
       ],
-      "description": "<p>While you bear the <strong>Symbol of Flux</strong>, you lose immunity to <strong>weak </strong>and cannot gain it.</p>",
+      "description": "<p>While you bear the <strong>Symbol of Flux</strong>, you lose immunity to <strong>weak</strong> and cannot gain it.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

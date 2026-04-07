@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</span></p><ul><li><p><span>Perform a <strong>free attack</strong> with a weapon you have equipped.</span></p></li><li><p><span>Perform a <strong>Hinder </strong>or <strong>Objective </strong>action.</span></p></li></ul><p><span>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
+    "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round:</span></p><ul><li><p><span>Perform a <strong>free attack</strong> with a weapon you have equipped.</span></p></li><li><p><span>Perform a <strong>Hinder</strong> or <strong>Objective</strong> action.</span></p></li></ul><p><span>You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.1Xc5Ps05LbZnEZEH]</p>",
     "isFavored": {
       "value": false
     },

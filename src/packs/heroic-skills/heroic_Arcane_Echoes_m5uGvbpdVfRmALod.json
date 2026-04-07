@@ -9,7 +9,7 @@
     "summary": {
       "value": "Arcana help you influence Clocks."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Arcanist </strong>Class. </p><hr /><p>When you successfully perform a Check to fill or erase one or more sections of a Clock, if the <strong>domains </strong>of one or more Arcana you have bound are applicable to the Check in question, you may fill or erase an additional section of that Clock.</p><p>The Game Master has final say on whether a given domain applies or not. </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Arcanist</strong> Class. </p><hr /><p>When you successfully perform a Check to fill or erase one or more sections of a Clock, if the <strong>domains</strong> of one or more Arcana you have bound are applicable to the Check in question, you may fill or erase an additional section of that Clock.</p><p>The Game Master has final say on whether a given domain applies or not. </p>",
     "isFavored": {
       "value": false
     },

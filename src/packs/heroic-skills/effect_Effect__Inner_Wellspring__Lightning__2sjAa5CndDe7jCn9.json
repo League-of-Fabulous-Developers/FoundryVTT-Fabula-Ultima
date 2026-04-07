@@ -96,7 +96,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your inner wellspring is <strong>lightning</strong>.</p><ul><li>You <strong>always</strong> treat the <strong>lightning wellspring</strong> as being available during each scene.</li><li>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the <strong>lightning </strong>element.</li><li>You gain <strong>bolt </strong>Resistance.</li><li>When you deal damage, you may change its type to <strong>bolt</strong>. If you do, that damage ignores Resistances.</li></ul>",
+      "description": "<p>Your inner wellspring is <strong>lightning</strong>.</p><ul><li>You <strong>always</strong> treat the <strong>lightning wellspring</strong> as being available during each scene.</li><li>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the <strong>lightning</strong> element.</li><li>You gain <strong>bolt</strong> Resistance.</li><li>When you deal damage, you may change its type to <strong>bolt</strong>. If you do, that damage ignores Resistances.</li></ul>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

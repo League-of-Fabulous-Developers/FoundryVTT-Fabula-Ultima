@@ -140,7 +140,7 @@
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.dnKJmQVRsUHUD91P"
     },
     {
-      "type": "document",
+      "type": "text",
       "weight": 1,
       "range": [
         6,
@@ -151,34 +151,34 @@
       "_id": "j6WlsKtj7SCXjZIW",
       "flags": {},
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1775546174785,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "name": "Your choice",
-      "documentUuid": "Compendium.projectfu.skills.Item.rCwHs7DhXDWwnQYe",
-      "description": "",
+      "documentUuid": null,
+      "description": "<p>Choose @UUID[Compendium.projectfu.skills.Item.9uSPEQZ4fi6PDkV1]{Bitter}, @UUID[Compendium.projectfu.skills.Item.pClb5dXEgvo29U0C]{Salty}, @UUID[Compendium.projectfu.skills.Item.oMpFTAPDl7SEG3v2]{Sour}, @UUID[Compendium.projectfu.skills.Item.ZLrC6QQvsJOh4F2h]{Sweet}, or @UUID[Compendium.projectfu.skills.Item.DjSSat9WKMIziH5E]{Umami}.</p>",
       "_key": "!tables.results!sKStLRxDOy1yZkuJ.j6WlsKtj7SCXjZIW"
     }
   ],
   "replacement": true,
-  "displayRoll": true,
+  "displayRoll": false,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742677029227,
-    "modifiedTime": 1759658744144,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1775546214991,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "formula": "1d6",

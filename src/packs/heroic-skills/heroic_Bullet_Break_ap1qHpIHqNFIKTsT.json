@@ -9,7 +9,7 @@
     "summary": {
       "value": "Counterattack with firearms after using Crossfire."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter </strong>Class.</p><hr /><p>After you negate a <strong>ranged </strong>attack with the @UUID[Compendium.projectfu.skills.Item.sIkQa2NzkqsvczBr]{Crossfire}<strong> </strong>Skill, if the Result of the Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against the attacker with a <strong>ranged firearm</strong> weapon you have equipped. This attack must have that enemy as its <strong>only </strong>target; treat your <strong>High Roll (HR) </strong>as 0 when calculating damage dealt by it. </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter</strong> Class.</p><hr /><p>After you negate a <strong>ranged</strong> attack with the @UUID[Compendium.projectfu.skills.Item.sIkQa2NzkqsvczBr]{Crossfire} Skill, if the Result of the Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against the attacker with a <strong>ranged firearm</strong> weapon you have equipped. This attack must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by it.</p>",
     "isFavored": {
       "value": false
     },

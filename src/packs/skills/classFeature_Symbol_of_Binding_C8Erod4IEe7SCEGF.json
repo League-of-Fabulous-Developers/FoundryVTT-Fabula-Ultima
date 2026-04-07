@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>The <strong>current </strong>Attribute die sizes of the creature bearing this <strong>symbol </strong>can <strong>never </strong>be <strong>higher </strong>than that creature’s corresponding <strong>base </strong>Attribute die sizes (this does <strong>not</strong> end any spells or effects, but it will negate their influence over the creature’s Attributes).</p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.lknSsGUWuf9a3PGZ]</p>"
+      "description": "<p>The <strong>current</strong> Attribute die sizes of the creature bearing this <strong>symbol</strong> can <strong>never</strong> be <strong>higher</strong> than that creature’s corresponding <strong>base</strong> Attribute die sizes (this does <strong>not</strong> end any spells or effects, but it will negate their influence over the creature’s Attributes).</p><hr /><p><strong>You Spend:</strong> @LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.lknSsGUWuf9a3PGZ]</p>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-binding"

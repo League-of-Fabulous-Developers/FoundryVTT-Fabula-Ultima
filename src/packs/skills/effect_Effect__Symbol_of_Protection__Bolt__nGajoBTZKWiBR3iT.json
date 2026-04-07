@@ -53,7 +53,7 @@
           "priority": null
         }
       ],
-      "description": "<p>While you bear the <strong>Symbol of Protection</strong>, you gain Resistance to <strong>bolt </strong>damage.</p>",
+      "description": "<p>While you bear the <strong>Symbol of Protection</strong>, you gain Resistance to <strong>bolt</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

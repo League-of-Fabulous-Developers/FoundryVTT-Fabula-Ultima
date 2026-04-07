@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped,</strong> offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
     "showTitleCard": {
       "value": false
     },
@@ -118,7 +118,7 @@
           "priority": null
         }
       ],
-      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {

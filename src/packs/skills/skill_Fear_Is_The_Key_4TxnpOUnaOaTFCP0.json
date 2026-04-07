@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the Beyond the Realms of Death Skill and at least one of them is suffering from <strong>shaken</strong> and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Mind Points.</p><hr /><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update 1]{Gain 1 Grave Point}<br /><strong>You Recover: </strong>@GAIN[2*$sl mp]{SL × 2 MP}</p>",
+    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond The Realms Of Death</strong> Skill and at least one of them is suffering from <strong>shaken</strong> and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update 1]{Gain 1 Grave Point}<br /><strong>You Recover:</strong> @GAIN[2*$sl mp]{SL × 2 MP}</p>",
     "isFavored": {
       "value": false
     },
@@ -137,8 +137,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1684757022310,
-    "modifiedTime": 1773436058385,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1775595345520,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

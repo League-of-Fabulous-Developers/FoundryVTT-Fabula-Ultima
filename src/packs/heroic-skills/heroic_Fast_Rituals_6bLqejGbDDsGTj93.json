@@ -9,7 +9,7 @@
     "summary": {
       "value": "Reduce the number of sections for Ritual Clocks in conflicts."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p><hr /><p>When you initiate a Ritual during a conflict scene, its Ritual Clock is created with <strong>two fewer sections </strong>than normal, to a minimum of <strong>four sections</strong>. </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p><hr /><p>When you initiate a Ritual during a conflict scene, its Ritual Clock is created with <strong>two fewer sections</strong> than normal, to a minimum of <strong>four sections</strong>. </p>",
     "isFavored": {
       "value": false
     },

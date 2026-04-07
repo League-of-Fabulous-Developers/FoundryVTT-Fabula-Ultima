@@ -51,7 +51,7 @@
         }
       },
       "changes": [],
-      "description": "<p><span>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Spell </strong>action. If you can't, you must perform a different action.</span></p>",
+      "description": "<p><span>Until the start of the loremaster's next turn, you must spend 20 MP whenever you wish to perform the <strong>Spell</strong> action. If you can't, you must perform a different action.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

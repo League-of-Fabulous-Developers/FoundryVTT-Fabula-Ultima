@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【3 + (SL, multiplied by the number of Bonds you have)】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p>",
+    "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【3 + (SL, multiplied by the number of Bonds you have)】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -205,7 +205,7 @@
       "_id": "buYFIqyFA25Zi9JL",
       "type": "base",
       "changes": [],
-      "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an Hit Points.</p>",
+      "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may have each of those allies recover an Hit Points.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

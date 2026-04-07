@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You recover <strong>【SL】</strong> Inventory Points after each <strong>travel roll</strong>.</p><hr /><p><strong>You Recover: </strong>@GAIN[$sl ip]{SL IP}</p>",
+    "description": "<p>You recover <strong>【SL】</strong> Inventory Points after each <strong>travel roll</strong>.</p><hr /><p><strong>You Recover:</strong> @GAIN[$sl ip]{SL IP}</p>",
     "isFavored": {
       "value": false
     },
@@ -152,7 +152,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706513073568,
-    "modifiedTime": 1771884116160,
+    "modifiedTime": 1775596996698,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

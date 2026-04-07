@@ -92,7 +92,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their <strong>Traits</strong>; or name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity </strong>towards that damage type.</p>",
+          "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their <strong>Traits</strong>; or name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity</strong> towards that damage type.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -236,7 +236,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[ins ins ($sl)]</p></li></ul>",
+          "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p><hr /><ul><li><p><strong>You Perform:</strong> @CHECK[ins ins ($sl)]</p></li></ul>",
           "showTitleCard": {
             "value": false
           },
@@ -358,7 +358,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study </strong>action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
+          "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study</strong> action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
           "showTitleCard": {
             "value": false
           },

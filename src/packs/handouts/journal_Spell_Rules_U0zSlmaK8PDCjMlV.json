@@ -1,0 +1,65 @@
+{
+  "name": "Spell Rules",
+  "_id": "U0zSlmaK8PDCjMlV",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "SPELLS",
+      "type": "text",
+      "_id": "l681ZhO2MNCZK1mx",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Spells can belong to any of the following disciplines: <strong>Chimerism</strong>, <strong>Elementalism</strong>, <strong>Entropism</strong>, and <strong>Spiritism</strong>. The remaining two disciplines, <strong>Arcanism</strong> and <strong>Ritualism</strong>, do not feature any spells.</p><p>Each <strong>spell</strong> description uses the format below and contains a variety of information:</p><p></p><table style=\"height:51px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px;width:33%\"><p><strong>Spell</strong></p></td><td style=\"height:17px;border-width:1px;width:15%\"><p style=\"text-align:center\"><strong>MP</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Target</strong></p></td><td style=\"height:17px;border-width:1px;width:26%\"><p style=\"text-align:center\"><strong>Duration</strong></p></td></tr><tr style=\"height:34px\"><td style=\"height:34px;border-width:1px;width:33%\"><p>@UUID[Compendium.projectfu.skills.Item.smvo8sxjGdaHFgtl]{Ignis} @ICON[offensive]</p></td><td style=\"height:34px;border-width:1px;width:15%\"><p style=\"text-align:center\">10 × T</p></td><td style=\"height:34px;border-width:1px;width:26%\"><p style=\"text-align:center\">Up to three creatures</p></td><td style=\"height:34px;border-width:1px;width:26%\"><p style=\"text-align:center\">Instantaneous</p></td></tr></tbody></table><p></p><p>You unleash a searing barrage against your foes, conjuring flames out of thin air. You deal <strong>【HR + 15】 fire</strong> damage to each target hit by this spell.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>shaken</strong>.</p><hr /><p></p><ul><li><p>The <strong>name</strong> of the spell, and whether it is an <strong>offensive</strong> spell (@ICON[offensive]).</p><p>See below for more information on offensive spells.</p></li><li><p>The cost of the spell in <strong>Mind Points.</strong> To cast a spell, you must have enough MP to pay its cost; additionally, some spells allow you to spend more MP to increase the number of targets or strengthen the effect. For instance, a spell with a cost of <strong>10 × T</strong> will cost you 10 Mind Points per target; the final amount of Mind Points required to cast a spell is known as the <strong>total MP cost</strong>.</p></li><li><p>The <strong>targets</strong> that can be affected by the spell. Most spells can target a certain number of creatures, but others may affect different targets (such as weapons).</p></li><li><p>A target of <strong>\"Self\"</strong> means the caster will use the spell on themselves, while a target of <strong>\"Special\"</strong> indicates that the spell functions in a unique way described in its text (these spells <strong>never</strong> count as \"targeting\").</p></li><li><p>The <strong>duration</strong> of the spell. Either <strong>\"Instantaneous\"</strong>, meaning that the spell takes effect immediately and then dissipates, or <strong>\"Scene\"</strong>, meaning that the spell creates an ongoing effect lasting until the end of the scene it was cast in.</p></li><li><p>The <strong>effect</strong> of the spell, often preceded by a flavorful description. This description has no mechanical relevance, but can help you understand the concept behind the spell and customize its appearance in order to fit your character.</p></li><li><p>Spells that require a Magic Check often feature an <strong>opportunity</strong> effect. If you roll a <strong>critical success</strong> on your Magic Check, you may spend the corresponding <strong>opportunity</strong> to trigger this effect.</p></li></ul><p></p><h2>CASTING A SPELL</h2><p>To cast a spell, you must fulfill the following prerequisites:</p><ul><li><p>You must be free to move your body. You can be holding items in your hands, as long as you can move your arms.</p></li><li><p>You must be able to speak and pronounce the invocation.</p></li><li><p>You must have enough Mind Points to pay for the spell's <strong>total MP cost</strong>, including any additional MP used to enhance its effect.</p></li><li><p>Unless you are casting a spell with a target of <strong>Self</strong> or <strong>Special</strong>, you must be able to see your targets.</p></li></ul><p>If all of the above are true, you may <strong>cast the spell</strong>.</p><ol><li><p>Declare which spell you want to cast among those your character has learned, and what its effect will be.</p></li><li><p>If required, choose the targets for your spell.</p></li><li><p>Perform the magical gestures and pronounce the formula — remember that any nearby creatures will see and hear you.</p></li><li><p>Spend the required amount of Mind Points.</p></li><li><p>If the spell is an offensive spell (@ICON[offensive]), you must also perform a Magic Check. <strong>Elementalism</strong>, <strong>Entropism</strong>, and <strong>Spiritism</strong> Checks rely on <strong>【INS + WLP】</strong>, while <strong>Chimerism</strong> may choose between <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>.</p><p>Non-offensive spells are automatically successful and require no Check.</p><p><strong>Fumbles</strong> and <strong>critical successes</strong> rolled on Magic Checks generate <strong>opportunities</strong> as normal.</p></li><li><p>Apply the effects of the spell.</p></li></ol><p></p><h2>CASTING A SPELL FURTIVELY</h2><p>Spells require precise movements and spoken incantations; they also produce visible and fantastical effects. Because of this, everyone nearby will immediately know that magic is being used, and who by — <strong>it is impossible to cast a spell furtively</strong>.</p><p></p><h2>OFFENSIVE SPELLS</h2><p>Spells marked with (@ICON[offensive]) next to their name are <strong>offensive spells</strong>.</p><p>When you cast an offensive spell, you perform the appropriate Magic Check and the target's Magic Defense score determines the Difficulty Level. If the spell has multiple targets, it will affect each target whose Magic Defense is equal to or lower than the Result of your Magic Check (similarly to a <strong>multi</strong> attack). The spell will affect each target whose Magic Defense is equal to or lower than the total Result of your Magic Check.</p><p>If you roll a <strong>critical success</strong> on the Magic Check, the spell automatically hits all targets.</p><p></p><h2>CALCULATING DAMAGE AND SIMILAR EFFECTS</h2><p>Several spells require you to calculate the potency of their effects using your <strong>High Roll (HR)</strong> — to do so, simply take the highest die you rolled on your Magic Check.</p><p></p><h2>ENDING THE EFFECTS OF A SPELL</h2><p>If you cast a spell with a <strong>duration</strong> of \"Scene\", you can end it at any time, but during a conflict you may only do so on your turn, while no other effect is being resolved. The spell also ends if you leave the scene, or if you die or fall unconscious.</p><p></p><h2>CUMULATIVE SPELL EFFECTS</h2><p>If the same spell is cast more than once on a target, its effects will not stack — the most recent casting will replace the previous one.</p><blockquote><p><strong>Example:</strong> the spell <strong>Elemental Shroud</strong> grants Resistance to one damage type chosen among <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, and <strong>ice</strong>. If this spell is cast on a creature granting them Resistance to <strong>fire</strong>, and is subsequently cast again on the same creature granting them Resistance to <strong>ice</strong>, the creature will only be Resistant to <strong>ice</strong>.</p></blockquote><p>If two spells have identical effects but different names, they <strong>do not</strong> stack.</p><p></p><h2>DESCRIBING YOUR MAGIC</h2><p>While the effects of spells and disciplines are defined by the rules of the game, the way they manifest in your world is something that can vary from one character to another, and another great opportunity to inject personality into each of your heroes.</p><ul><li><p>A <strong>druid</strong> or <strong>witch</strong> might conjure magical branches blossoming into fruits or flowers that produce the effects of the spell.</p></li><li><p>A <strong>spellblade</strong> might channel magic through precise blade movements.</p></li><li><p>A <strong>sorcerer</strong> might summon a swarm of imps or pixies to torment their enemies and assist their allies.</p></li></ul><p>If you can use magic, spend some time during each session describing what your spells look like!</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "mA8SNY2rY4X5tOHa": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775506057085,
+        "modifiedTime": 1775510644158,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!journal.pages!U0zSlmaK8PDCjMlV.l681ZhO2MNCZK1mx"
+    }
+  ],
+  "folder": null,
+  "categories": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775506053119,
+    "modifiedTime": 1775506053119,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!journal!U0zSlmaK8PDCjMlV"
+}

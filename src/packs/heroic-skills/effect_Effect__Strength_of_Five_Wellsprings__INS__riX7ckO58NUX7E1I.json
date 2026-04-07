@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your <strong>Insight </strong>is increased by one die size. This lasts until the end of the scene, or until you use the <strong>Strength of Five Wellsprings</strong> Heroic Skill again.</p>",
+      "description": "<p>Your <strong>Insight</strong> is increased by one die size. This lasts until the end of the scene, or until you use the <strong>Strength of Five Wellsprings</strong> Heroic Skill again.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

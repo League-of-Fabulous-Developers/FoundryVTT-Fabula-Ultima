@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may perform Rituals of the <strong>Arcanism</strong> discipline, as long as their effects fall within the <strong>domains</strong> of one or more Arcana you have bound.</p><p><span>Arcanism Rituals use <strong>【WLP + WLP】</strong> for the Magic Check.</span></p>",
+    "description": "<p>You may perform Rituals of the <strong>Arcanism</strong> discipline, as long as their effects fall within the <strong>domains</strong> of one or more Arcana you have bound.</p><p><span><strong>Arcanism</strong> Rituals use <strong>【WLP + WLP】</strong> for the Magic Check.</span></p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "ritual-arcanism",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -229,7 +234,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706494680646,
-    "modifiedTime": 1771044394818,
+    "modifiedTime": 1775510489557,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

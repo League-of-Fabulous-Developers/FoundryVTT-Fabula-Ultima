@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "xEJLs3KBQFon1pAq",
+  "name": "Delicacy 11 (Attribute Up)",
+  "color": "#3a4b2a",
+  "sorting": "a",
+  "_id": "OiG6GWbd4l8tD5lN",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775543589662
+  },
+  "_key": "!folders!OiG6GWbd4l8tD5lN"
+}

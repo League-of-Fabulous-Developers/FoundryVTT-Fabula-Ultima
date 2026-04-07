@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p><span class=\"fontstyle0\">When you deal damage with an attack or spell, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal air damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>weak</strong>.</span></p>"
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal air damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>weak</strong>.</p>"
     },
     "source": "FUTF157",
     "fuid": "pneumophora"
@@ -145,10 +145,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1767290608557,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1775522653911,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

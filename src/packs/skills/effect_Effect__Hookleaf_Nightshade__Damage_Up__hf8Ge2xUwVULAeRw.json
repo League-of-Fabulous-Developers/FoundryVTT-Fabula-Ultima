@@ -68,7 +68,7 @@
                 "9sIZw11n5ayz7HGk": {
                   "type": "messageRuleAction",
                   "_id": "9sIZw11n5ayz7HGk",
-                  "message": "<p>The first time you deal <strong>poison</strong>, you deal<strong> </strong>extra damage and those that lose HP suffer <strong>poisoned</strong>.</p>"
+                  "message": "<p>The first time you deal <strong>poison</strong>, you deal extra damage and those that lose HP suffer <strong>poisoned</strong>.</p>"
                 },
                 "zcjUlQnCPiFyk4rL": {
                   "type": "applyEffectRuleAction",

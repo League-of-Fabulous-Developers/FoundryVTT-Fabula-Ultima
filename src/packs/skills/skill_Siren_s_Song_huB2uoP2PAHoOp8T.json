@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to create <strong>hearing-based illusions</strong>.</p><p><span>Ritualism Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</span></p>",
+    "description": "<p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to create <strong>hearing-based illusions</strong>.</p><p><span><strong>Ritualism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</span></p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -232,7 +232,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706551707225,
-    "modifiedTime": 1771830913212,
+    "modifiedTime": 1775526629501,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

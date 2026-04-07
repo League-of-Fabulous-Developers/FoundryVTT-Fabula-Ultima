@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target suffers <strong>【HR + 15】</strong> <strong>(choose type)</strong> damage and suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p>",
+    "description": "<p>You deal <strong>【HR + 15】</strong> <strong>(choose type)</strong> damage to the target, and the target suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p>",
     "class": {
       "value": "NPC"
     },
@@ -113,7 +113,10 @@
         "shaken",
         "slow",
         "weak"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      }
     },
     "traits": []
   },
@@ -130,7 +133,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1771280369566,
+    "modifiedTime": 1775513159826,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

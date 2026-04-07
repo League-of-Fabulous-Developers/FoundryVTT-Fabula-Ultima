@@ -47,7 +47,12 @@
             "enabled": false,
             "style": "basic"
           },
-          "elements": {}
+          "elements": {},
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
         }
       },
       "changes": [
@@ -64,7 +69,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">Until the start of the invoker's next turn, you suffer</span><strong>【5 + Wellspring Expansion SL】</strong><span class=\"fontstyle0\">extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>air</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">damage.</span></p>",
+      "description": "<p>Until the start of the <strong>invoker's</strong> next turn, you suffer <strong>【5 + Wellspring Expansion SL】</strong> extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -79,7 +84,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1770633557249
+        "modifiedTime": 1775522939545
       },
       "_key": "!items.effects!Th7FXd7ohgY8Rfx7.voAqkunG1OEY2rdl"
     }

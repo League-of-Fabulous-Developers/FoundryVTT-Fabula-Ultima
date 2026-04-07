@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain Resistance to <strong>fire </strong>until you use <strong>Ecdysis</strong> again.</p>",
+      "description": "<p>You gain Resistance to <strong>fire</strong> until you use <strong>Ecdysis</strong> again.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

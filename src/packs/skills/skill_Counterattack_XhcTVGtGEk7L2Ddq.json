@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy (after their attack has been fully resolved). This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack.</p>",
+    "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy (after their attack has been fully resolved). This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll</strong> as 0 when calculating damage dealt by this attack.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "counterattack",
     "targeting": {
       "rule": "single"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -240,7 +245,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706514121336,
-    "modifiedTime": 1770618958150,
+    "modifiedTime": 1775597183183,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

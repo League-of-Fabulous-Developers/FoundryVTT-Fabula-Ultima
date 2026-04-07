@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell </strong>actions during their next turn.</p>",
+    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell</strong> actions during their next turn.</p>",
     "showTitleCard": {
       "value": false
     },

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>A storm of dark energy turns matter into ash. You deal <strong>【HR + 15】 dark </strong>damage to each target hit by this spell.</p><hr /><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[weak].</p>",
+    "description": "<p>A storm of dark energy turns matter into ash. You deal <strong>【HR + 15】 dark</strong> damage to each target hit by this spell.</p><hr /><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[weak].</p>",
     "showTitleCard": {
       "value": false
     },

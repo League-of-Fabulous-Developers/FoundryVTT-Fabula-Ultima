@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p></p><table style=\"width:96.5571%;height:153px;border:1px solid black\"><colgroup><col style=\"width:14.4231%\"></col><col style=\"width:16.8269%\"></col><col style=\"width:21.7949%\"></col><col style=\"width:21.9551%\"></col><col style=\"width:25.1603%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>Key</strong></td><td style=\"height:17px;text-align:center\"><strong>Type</strong></td><td style=\"height:17px;text-align:center\"><strong>Status Effect</strong></td><td style=\"height:17px;text-align:center\"><strong>Attribute</strong></td><td style=\"height:17px;text-align:center\"><strong>Recovery</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;text-align:left\"><strong>@UUID[Compendium.projectfu.skills.Item.cmo71xT0QgJCOOMp]{Flame}</strong></td><td style=\"height:17px;text-align:center\"><span class=\"fontstyle0\"><strong>Fire</strong> @ICON[fire]</span></td><td style=\"height:17px;text-align:center\"><strong>Shaken</strong> </td><td style=\"height:17px;text-align:center\"><strong>Might</strong></td><td style=\"height:17px;text-align:center\"><strong>Hit Points</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.QZOttsghYTCeqnCx]{Frost}</strong></td><td style=\"height:17px;text-align:center\"><span class=\"fontstyle0\"><strong>Ice</strong> @ICON[ice]</span></td><td style=\"height:17px;text-align:center\"><strong>Weak</strong></td><td style=\"height:17px;text-align:center\"><strong>Willpower</strong></td><td style=\"height:17px;text-align:center\"><strong>Mind Points</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.qpRWVxEuy6iHiUCP]{Iron}</strong></td><td style=\"height:17px;text-align:center\"><span class=\"fontstyle0\"><strong>Physical</strong> @ICON[physical]</span></td><td style=\"height:17px;text-align:center\"><strong>Slow</strong></td><td style=\"height:17px;text-align:center\"><strong>Willpower</strong></td><td style=\"height:17px;text-align:center\"><strong>Mind Points</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.ymWN6HhIvwji1Y39]{Radiance}</strong></td><td style=\"height:17px;text-align:center\"><strong>Light</strong> @ICON[light]</td><td style=\"height:17px;text-align:center\"><strong>Dazed</strong></td><td style=\"height:17px;text-align:center\"><strong>Insight</strong></td><td style=\"height:17px;text-align:center\"><strong>Hit Points</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.zzyNprcgb1RF2niW]{Shadow}</strong></td><td style=\"height:17px;text-align:center\"><strong>Dark</strong> @ICON[dark]</td><td style=\"height:17px;text-align:center\"><strong>Weak</strong></td><td style=\"height:17px;text-align:center\"><strong>Dexterity</strong></td><td style=\"height:17px;text-align:center\"><strong>Mind Points</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.dyyFIR6iB0brrh1I]{Stone}</strong></td><td style=\"height:17px;text-align:center\"><strong>Earth</strong> @ICON[earth]</td><td style=\"height:17px;text-align:center\"><strong>Dazed</strong></td><td style=\"height:17px;text-align:center\"><strong>Might</strong></td><td style=\"height:17px;text-align:center\"><strong>Hit Points</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.GBEltqKPxdTA0ppJ]{Thunder}</strong></td><td style=\"height:17px;text-align:center\"><strong>Bolt</strong> @ICON[bolt]</td><td style=\"height:17px;text-align:center\"><strong>Shaken</strong></td><td style=\"height:17px;text-align:center\"><strong>Dexterity</strong></td><td style=\"height:17px;text-align:center\"><strong>Hit Points</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.zqNF92stxmhiX85K]{Wind}</strong></td><td style=\"height:17px;text-align:center\"><strong>Air</strong> @ICON[air]</td><td style=\"height:17px;text-align:center\"><strong>Slow</strong></td><td style=\"height:17px;text-align:center\"><strong>Insight</strong></td><td style=\"height:17px;text-align:center\"><strong>Mind Points</strong></td></tr></tbody></table>",
+    "description": "<p></p><table><tbody><tr><td><p><strong>Key</strong></p></td><td><p style=\"text-align:center\"><strong>Type</strong></p></td><td><p style=\"text-align:center\"><strong>Status Effect</strong></p></td><td><p style=\"text-align:center\"><strong>Attribute</strong></p></td><td><p style=\"text-align:center\"><strong>Recovery</strong></p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.cmo71xT0QgJCOOMp]{Key of Flame}</p></td><td><p style=\"text-align:center\"><strong>Fire</strong> @ICON[fire]</p></td><td><p style=\"text-align:center\">shaken</p></td><td><p style=\"text-align:center\">Might</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.QZOttsghYTCeqnCx]{Key of Frost}</p></td><td><p style=\"text-align:center\"><strong>Ice</strong> @ICON[ice]</p></td><td><p style=\"text-align:center\">weak</p></td><td><p style=\"text-align:center\">Willpower</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.qpRWVxEuy6iHiUCP]{Key of Iron}</p></td><td><p style=\"text-align:center\"><strong>Physical</strong> @ICON[physical]</p></td><td><p style=\"text-align:center\">slow</p></td><td><p style=\"text-align:center\">Willpower</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.ymWN6HhIvwji1Y39]{Key of Radiance}</p></td><td><p style=\"text-align:center\"><strong>Light</strong> @ICON[light]</p></td><td><p style=\"text-align:center\">dazed</p></td><td><p style=\"text-align:center\">Insight</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zzyNprcgb1RF2niW]{Key of Shadow}</p></td><td><p style=\"text-align:center\"><strong>Dark</strong> @ICON[dark]</p></td><td><p style=\"text-align:center\">weak</p></td><td><p style=\"text-align:center\">Dexterity</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.dyyFIR6iB0brrh1I]{Key of Stone}</p></td><td><p style=\"text-align:center\"><strong>Earth</strong> @ICON[earth]</p></td><td><p style=\"text-align:center\">dazed</p></td><td><p style=\"text-align:center\">Might</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.GBEltqKPxdTA0ppJ]{Key of Thunder}</p></td><td><p style=\"text-align:center\"><strong>Bolt</strong> @ICON[bolt]</p></td><td><p style=\"text-align:center\">shaken</p></td><td><p style=\"text-align:center\">Dexterity</p></td><td><p style=\"text-align:center\">Hit Points</p></td></tr><tr><td><p>@UUID[Compendium.projectfu.skills.Item.zqNF92stxmhiX85K]{Key of Wind}</p></td><td><p style=\"text-align:center\"><strong>Air</strong> @ICON[air]</p></td><td><p style=\"text-align:center\">slow</p></td><td><p style=\"text-align:center\">Insight</p></td><td><p style=\"text-align:center\">Mind Points</p></td></tr></tbody></table>",
     "isFavored": {
       "value": false
     },
@@ -126,7 +126,12 @@
     },
     "opportunity": "",
     "defense": "def",
-    "fuid": "handout-key-list"
+    "fuid": "handout-key-list",
+    "effects": {
+      "duration": {
+        "interval": null
+      }
+    }
   },
   "effects": [],
   "sort": 0,
@@ -139,15 +144,18 @@
   "flags": {
     "projectfu-playtest": {
       "growthClock": false
+    },
+    "projectfu": {
+      "favorite": false
     }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "createdTime": 1708922588320,
-    "modifiedTime": 1741991859547,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1775523129412,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

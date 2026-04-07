@@ -16,7 +16,7 @@
       "passengers": 1,
       "distanceMultiplier": 2,
       "moduleSlots": 3,
-      "description": "<p>This <strong>personal vehicle </strong>may have up to <strong>1 weapon module</strong>, <strong>1 armor module </strong>and<strong> any number of support modules </strong>enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>"
+      "description": "<p>This <strong>personal vehicle</strong> may have up to <strong>1 weapon module</strong>, <strong>1 armor module</strong> and <strong>any number of support modules</strong> enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.vehicle-modules.Item.xiOfV2wI1QKyTHmu]</p>"
     },
     "source": "FUTF165",
     "fuid": "steed-frame"

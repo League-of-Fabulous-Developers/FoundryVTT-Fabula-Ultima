@@ -43,6 +43,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -60,7 +65,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain Resistance to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">dark</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Magic Defense.</span></span></p>",
+      "description": "<p>You gain Resistance to <strong>dark</strong> damage.</p><p>You gain a +1 bonus to your <strong>Magic Defense</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -79,7 +84,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725597065537,
-        "modifiedTime": 1771044882878,
+        "modifiedTime": 1775522079864,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

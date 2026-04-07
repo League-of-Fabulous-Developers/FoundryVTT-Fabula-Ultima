@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane </strong>weapon equipped<strong>, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.T9rvLMTdI2aICL1u]</p>",
+    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped<strong>,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.T9rvLMTdI2aICL1u]</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "wardancer",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -188,7 +193,7 @@
       "_id": "eX4Bhumd0lleMsZF",
       "type": "base",
       "changes": [],
-      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane </strong>weapon equipped<strong>, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, <strong>sword</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane</strong> weapon equipped<strong>,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -234,7 +239,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706560640482,
-    "modifiedTime": 1771284033466,
+    "modifiedTime": 1775525713559,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

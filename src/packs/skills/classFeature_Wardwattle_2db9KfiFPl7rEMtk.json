@@ -22,12 +22,12 @@
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.KHNmbjlLdJOWMhoZ]<br><strong>Attacker Suffers: </strong>@DMG[5+&sl('chloromancy')+5*floor($cl/30) physical]{5 + (SL in Chloromancy)}</p>"
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.KHNmbjlLdJOWMhoZ]<br><strong>Attacker Suffers:</strong> @DMG[5+&sl('chloromancy')+5*floor($cl/30) physical]{5 + (SL in Chloromancy)}</p>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong>, and then deal an amount of <strong>poison </strong>damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.UUwKmAmXaMWdilui]<br><strong>Attacker Suffers: </strong>@DMG[5+&sl('chloromancy')+5*floor($cl/30) physical]{5 + (SL in Chloromancy)} and @DMG[5+&sl('chloromancy')+5*floor($cl/30) poison]{5 + (SL in Chloromancy)}</p>"
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong>, and then deal an amount of <strong>poison</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.UUwKmAmXaMWdilui]<br><strong>Attacker Suffers:</strong> @DMG[5+&sl('chloromancy')+5*floor($cl/30) physical]{5 + (SL in Chloromancy)} and @DMG[5+&sl('chloromancy')+5*floor($cl/30) poison]{5 + (SL in Chloromancy)}</p>"
         }
       ]
     },

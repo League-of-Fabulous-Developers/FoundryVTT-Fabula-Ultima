@@ -43,6 +43,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -60,7 +65,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain Resistance to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">air </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">and </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">bolt </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You may use an action to accurately predict weather conditions for the next day within a range of </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">two travel days</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">— the Game Master will tell you what the weather conditions will be.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p>",
+      "description": "<p>You gain Resistance to <strong>air</strong> and <strong>bolt</strong> damage.</p><p>You may use an action to accurately predict weather conditions for the next day within a range of <strong>two travel days</strong> — the Game Master will tell you what the weather conditions will be.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -79,7 +84,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725597617033,
-        "modifiedTime": 1771045073789,
+        "modifiedTime": 1775522026812,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

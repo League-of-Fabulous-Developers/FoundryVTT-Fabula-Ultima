@@ -10,7 +10,7 @@
     "summary": {
       "value": "Double magiseed effects and manipulate vegetation."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Floralist</strong> Class.</p><hr /><p><span class=\"fontstyle0\">Once per turn when a </span><span class=\"fontstyle2\"><strong>magiseed</strong> </span><span class=\"fontstyle0\">leaves your </span><span class=\"fontstyle2\"><strong>garden</strong></span><span class=\"fontstyle0\">, if that </span><span class=\"fontstyle2\"><strong>magiseed</strong> </span><span class=\"fontstyle0\">has one or more \"at the end of your turn\" effects, you may spend </span>20<span class=\"fontstyle0\"> Mind Points. If you do, reproduce </span><span class=\"fontstyle2\"><strong>one</strong> </span><span class=\"fontstyle0\">of those effects (you may also choose an effect that doesn't match the current sections of your </span><span class=\"fontstyle2\"><strong>Growth Clock</strong></span><span class=\"fontstyle0\">).</span></p><p><span class=\"fontstyle0\">Additionally, if you have acquired the </span><span class=\"fontstyle2\">@UUID[Compendium.projectfu.skills.Item.ilAq8Q2OSE3oCVdi]{Verdant Sway} </span><span class=\"fontstyle0\">Skill, your Rituals can now also influence and control </span><span class=\"fontstyle2\"><strong>soldier</strong></span><span class=\"fontstyle0\">-Rank creatures belonging to the </span><span class=\"fontstyle2\"><strong>plant</strong> </span><span class=\"fontstyle0\">Species (but you are still unable to </span><span class=\"fontstyle2\"><strong>create</strong> </span><span class=\"fontstyle0\">them).</span></p><hr /><p><strong>You Spend:</strong> @LOSS[20 mp]<strong><br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></strong></p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Floralist</strong> Class.</p><hr /><p>Once per turn when a <strong>magiseed</strong> leaves your <strong>garden</strong>, if that <strong>magiseed</strong> has one or more \"at the end of your turn\" effects, you may spend 20 Mind Points. If you do, reproduce <strong>one</strong> of those effects (you may also choose an effect that doesn't match the current sections of your <strong>Growth Clock</strong>).</p><p>Additionally, if you have acquired the @UUID[Compendium.projectfu.skills.Item.ilAq8Q2OSE3oCVdi]{Verdant Sway} Skill, your Rituals can now also influence and control <strong>soldier</strong>-Rank creatures belonging to the <strong>plant</strong> Species (but you are still unable to <strong>create</strong> them).</p>",
     "isFavored": {
       "value": false
     },
@@ -58,6 +58,9 @@
     },
     "targeting": {
       "rule": "self"
+    },
+    "cost": {
+      "amount": "20"
     }
   },
   "effects": [],
@@ -74,7 +77,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1771894348944,
+    "modifiedTime": 1775521241937,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

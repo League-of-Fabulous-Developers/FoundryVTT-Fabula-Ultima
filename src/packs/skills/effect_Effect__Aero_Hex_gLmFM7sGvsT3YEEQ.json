@@ -45,7 +45,12 @@
             "name": "",
             "style": "basic"
           },
-          "elements": {}
+          "elements": {},
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
         }
       },
       "changes": [
@@ -62,7 +67,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">Until the start of the invoker's next turn, you suffer 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p>",
+      "description": "<p>Until the start of the <strong>invoker's</strong> next turn, you suffer 5 extra damage from all sources that deal <strong>bolt</strong> and <strong>fire</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -76,7 +81,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744520063950,
-        "modifiedTime": 1774637130808,
+        "modifiedTime": 1775522874447,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

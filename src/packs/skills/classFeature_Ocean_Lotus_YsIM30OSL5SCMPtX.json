@@ -22,7 +22,7 @@
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>You treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p>"
+          "effect": "<p>You treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p>"
         },
         {
           "start": 3,

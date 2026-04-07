@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Skills cause HP loss."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p><hr /><p>After you use @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict} or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King’s Castle} Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose 10 Hit Points. This amount increases to 20 Hit Points if you are <strong>level 20 or higher,</strong> or 30 Hit Points if you are <strong>level 40 or higher</strong>.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander</strong> Class.</p><hr /><p>After you use @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict} or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King’s Castle} Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose 10 Hit Points. This amount increases to 20 Hit Points if you are <strong>level 20 or higher,</strong> or 30 Hit Points if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -200,7 +200,7 @@
       "_id": "EDMMGpxBX8YE8K7J",
       "type": "base",
       "changes": [],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">After you use <strong style=\"box-sizing:border-box;user-select:text\">Bishop’s Edict</strong> or <strong style=\"box-sizing:border-box;user-select:text\">King’s Castle</strong> Skills, if you are in <strong style=\"box-sizing:border-box;user-select:text\">Crisis</strong>, you may have every enemy creature present on the scene lose <strong>Hit Points</strong>.</span></p>",
+      "description": "<p>After you use <strong>Bishop's Edict</strong> or <strong>King's Castle</strong> Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose <strong>Hit Points</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

@@ -43,6 +43,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -60,7 +65,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are immune to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">slow</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Defense.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p>",
+      "description": "<p>You are immune to <strong>slow</strong>.</p><p>You gain a +1 bonus to your <strong>Defense</strong>. </p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -79,7 +84,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725598840239,
-        "modifiedTime": 1771045887067,
+        "modifiedTime": 1775522083458,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

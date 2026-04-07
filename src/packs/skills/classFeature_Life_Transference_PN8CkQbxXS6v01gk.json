@@ -51,7 +51,7 @@
                 "cLNBh20iD0JqbiRC": {
                   "type": "messageRuleAction",
                   "_id": "cLNBh20iD0JqbiRC",
-                  "message": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis:</strong></p><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}<br><strong>Target Recovers: </strong>@GAIN[5+(&cs('brainwave-clock')*5) hp]{Life Transference}<br><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
+                  "message": "<p>Choose yourself or an ally who is your <strong>focus</strong>: if the chosen creature is in <strong>Crisis:</strong></p><p><strong>You Spend:</strong> @LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}<br><strong>Target Recovers:</strong> @GAIN[5+(&cs('brainwave-clock')*5) hp]{Life Transference}<br><strong>Progress:</strong> @CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p>"
                 }
               },
               "predicates": {

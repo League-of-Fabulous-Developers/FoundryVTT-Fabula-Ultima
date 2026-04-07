@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Choose any number of creatures you can see: each of them suffers 30 <strong>(choose type) </strong>damage. You may only cast this spell <strong>once per turn</strong>.</p><p>This spell should only be given to <strong>champion</strong> and <strong>elite</strong> creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p><hr /><ul><li><p><strong>Targets Suffer:</strong> @DMG[30 untyped]</p></li></ul>",
+    "description": "<p>Choose any number of creatures you can see: each of them suffers 30 <strong>(choose type)</strong> damage. You may only cast this spell <strong>once per turn</strong>.</p><p>This spell should only be given to <strong>champion</strong> and <strong>elite</strong> creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p><hr /><ul><li><p><strong>Targets Suffer:</strong> @DMG[30 untyped]</p></li></ul>",
     "class": {
       "value": "NPC"
     },

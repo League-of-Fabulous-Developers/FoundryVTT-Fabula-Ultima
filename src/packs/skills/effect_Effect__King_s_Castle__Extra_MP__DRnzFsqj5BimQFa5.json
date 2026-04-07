@@ -46,6 +46,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -57,7 +62,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">All effects that restore Mind Points restore</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points until the start of the commander's next turn.</span> </p>",
+      "description": "<p>All effects that restore Mind Points restore <strong>【SL × 5】</strong> additional Mind Points until the start of the <strong>commander's</strong> next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -71,7 +76,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744461747223,
-        "modifiedTime": 1770632132202,
+        "modifiedTime": 1775523042369,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

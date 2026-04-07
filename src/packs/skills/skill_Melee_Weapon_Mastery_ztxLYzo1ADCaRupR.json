@@ -144,7 +144,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain a bonus equal to <strong>【SL】 </strong>to all Accuracy Checks with <strong>melee</strong> weapons. </p>",
+      "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to all Accuracy Checks with <strong>melee</strong> weapons. </p>",
       "transfer": true,
       "statuses": [],
       "flags": {

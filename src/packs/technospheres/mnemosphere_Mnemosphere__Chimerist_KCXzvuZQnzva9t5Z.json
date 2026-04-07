@@ -12,21 +12,21 @@
     "maxLevel": 5,
     "items": [
       {
-        "name": "Spell Mimic",
+        "name": "Consume",
         "type": "skill",
-        "_id": "ynchunmkPho9cJqe",
-        "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_spell_mimic.png",
+        "_id": "XUXJi53X7eN2t8Lt",
+        "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_consume.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you see a creature belonging to the <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> Species cast a spell, you may immediately choose to learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p><p>When you first acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your offensive ( @ICON[offensive] ) Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</p><p>You may have up to <strong>【SL + 2】</strong> different Chimerist spells memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p>",
+          "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p><strong>You:</strong> @GAIN[$sl*2 mp]{SL x 2 MP}</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
             "value": 0,
-            "max": 10,
+            "max": 5,
             "min": 0
           },
           "class": {
@@ -41,7 +41,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -65,172 +65,145 @@
             "enabled": false
           },
           "defense": "def",
-          "fuid": "spell-mimic",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
+          "fuid": "consume",
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 500000
-      },
-      {
-        "name": "Ritual Chimerism",
-        "type": "skill",
-        "_id": "A9mq9wZ7eBEhel4K",
-        "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_ritual_chimerism.png",
-        "system": {
-          "summary": {
-            "value": ""
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
-          "description": "<p>You may perform Rituals whose effects fall within the <strong>Chimerism</strong> discipline.</p><p>When you acquire this Skill, choose <strong>【INS + WLP】</strong> <strong>or</strong> <strong>【MIG + WLP】</strong>. From now on, your Chimerism Rituals will use the chosen Attributes for the Magic Check.</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 1,
-            "min": 0
-          },
-          "class": {
-            "value": "Chimerist"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR183",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "ritual-chimerism",
+          "traits": [],
           "cost": {
             "resource": "mp",
-            "amount": 0,
+            "amount": "",
             "perTarget": false
           },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
-        "effects": [],
+        "effects": [
+          {
+            "name": "Consume",
+            "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_consume.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "0pSgDRx5DTtpbC1r": {
+                    "type": "ruleElement",
+                    "_id": "0pSgDRx5DTtpbC1r",
+                    "trigger": {
+                      "_id": "vLC7M37rryxzsNwg",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [
+                        "spell"
+                      ],
+                      "local": false,
+                      "identifier": ""
+                    },
+                    "predicates": {
+                      "1FXM0cyqHXfTBwMp": {
+                        "type": "weaponRulePredicate",
+                        "_id": "1FXM0cyqHXfTBwMp",
+                        "categories": [
+                          "arcane",
+                          "dagger",
+                          "flail"
+                        ],
+                        "selector": "self",
+                        "martial": "",
+                        "handedness": "",
+                        "weaponType": ""
+                      },
+                      "fMX5d5xLaGe4IfTN": {
+                        "type": "traitsRulePredicate",
+                        "_id": "fMX5d5xLaGe4IfTN",
+                        "traits": {
+                          "entries": [
+                            "damage"
+                          ],
+                          "quantifier": "any"
+                        }
+                      }
+                    },
+                    "actions": {
+                      "38M0seyIClMNOZsr": {
+                        "type": "messageRuleAction",
+                        "_id": "38M0seyIClMNOZsr",
+                        "message": "<p>If you damage one or more, recover<strong>【SL × 2】</strong>MP.</p>"
+                      },
+                      "C4sr0SUqEHuh5PXh": {
+                        "type": "updateResourceRuleAction",
+                        "_id": "C4sr0SUqEHuh5PXh",
+                        "resource": "mp",
+                        "amount": "$sl*2"
+                      }
+                    },
+                    "selector": "self",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "QvJKfoqYcZGOxmLS",
+            "type": "base",
+            "changes": [],
+            "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
         },
-        "sort": 300000
-      },
-      {
-        "name": "Pathogenesis",
-        "type": "skill",
-        "_id": "DKTSxAFQ37dwPR76",
-        "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p><hr /><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[poisoned]</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 1,
-            "min": 0
-          },
-          "class": {
-            "value": "Chimerist"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR183",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "pathogenesis",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 225000
+        "sort": 0
       },
       {
         "name": "Feral Speech",
         "type": "skill",
-        "_id": "ptV6TTSOCw5yCjrm",
+        "_id": "TXwFtEfX2mU13Whq",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_feral_speech.png",
         "system": {
           "summary": {
@@ -257,7 +230,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -282,82 +255,56 @@
           },
           "defense": "def",
           "fuid": "feral-speech",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
-        },
-        "effects": [
-          {
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
             "duration": {
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "rounds": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
-            },
-            "disabled": false,
-            "name": "Feral Speech",
-            "_id": "kGje9s2Znry5fjz6",
-            "changes": [],
-            "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">You can communicate with creatures of the </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>beast</strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">, <strong style=\"box-sizing:border-box;user-select:text\">monster</strong>, and </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>plant</strong> </span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">Species. </span></p>",
-            "transfer": true,
-            "statuses": [],
-            "flags": {
-              "projectfu": {
-                "source": "FUCR183"
-              }
-            },
-            "tint": "#ffffff",
-            "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_feral_speech.png",
-            "type": "base",
-            "system": {
-              "type": "default",
-              "predicate": {
-                "crisisInteraction": "none",
-                "suppressed": false
-              },
-              "duration": {
-                "event": "none",
-                "interval": 1,
-                "tracking": "self",
-                "remaining": 0
-              },
-              "rules": {}
-            },
-            "origin": null,
-            "sort": 0
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
           }
-        ],
-        "flags": {
-          "core": {}
         },
-        "sort": 150000
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
+        },
+        "sort": 0
       },
       {
-        "name": "Consume",
+        "name": "Pathogenesis",
         "type": "skill",
-        "_id": "82PqfyPQXnvyWsdw",
-        "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_consume.png",
+        "_id": "nJaboy33vg57XTwM",
+        "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr><ul><li><p><strong>You Recover: </strong>@GAIN[$sl*2 mp]{SL × 2}</p></li></ul>",
+          "description": "<p>When you deal damage to one or more creatures with one of your <strong>Chimerist</strong> spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
             "value": 0,
-            "max": 5,
+            "max": 1,
             "min": 0
           },
           "class": {
@@ -372,7 +319,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -396,21 +343,306 @@
             "enabled": false
           },
           "defense": "def",
-          "fuid": "consume",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
+          "fuid": "pathogenesis",
+          "effects": {
+            "entries": [
+              "poisoned"
+            ],
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "prompt": false
           },
           "targeting": {
             "rule": "special",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
-        "effects": [],
+        "effects": [
+          {
+            "name": "Pathogenesis",
+            "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "wG3QUYGcPUhuaWnk": {
+                    "type": "ruleElement",
+                    "_id": "wG3QUYGcPUhuaWnk",
+                    "trigger": {
+                      "_id": "4xDYjDv3vOrrk3L5",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [],
+                      "itemGroups": [
+                        "spell"
+                      ],
+                      "local": false,
+                      "identifier": ""
+                    },
+                    "predicates": {
+                      "sscv40mUCY4Frt4I": {
+                        "type": "traitsRulePredicate",
+                        "_id": "sscv40mUCY4Frt4I",
+                        "traits": {
+                          "entries": [
+                            "damage"
+                          ],
+                          "quantifier": "any"
+                        }
+                      },
+                      "ACaIppU5l1Bb16Cj": {
+                        "type": "speciesRulePredicate",
+                        "_id": "ACaIppU5l1Bb16Cj",
+                        "species": [
+                          "beast",
+                          "monster",
+                          "plant"
+                        ],
+                        "selector": "initial"
+                      }
+                    },
+                    "actions": {
+                      "X63gHodhVxCaAW8N": {
+                        "type": "messageRuleAction",
+                        "_id": "X63gHodhVxCaAW8N",
+                        "message": "<p>If you damage one or more with a Chimerist spell, those that share <strong>Species</strong> suffer <strong>poisoned</strong>.</p>"
+                      },
+                      "TXYeCQTRMxgbBNqK": {
+                        "type": "applyEffectRuleAction",
+                        "_id": "TXYeCQTRMxgbBNqK",
+                        "effect": "poisoned"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "UiwmY4WawFJGxq3H",
+            "type": "base",
+            "changes": [],
+            "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
+        },
+        "sort": 0
+      },
+      {
+        "name": "Spell Mimic",
+        "type": "skill",
+        "_id": "C0I6XyrZzGZtbcVK",
+        "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_spell_mimic.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a <strong>Chimerist</strong> spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p><p>When you first acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your offensive (@ICON[offensive]) <strong>Chimerist</strong> spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</p><p>You may have <strong>up to 【SL + 2】 different Chimerist spells</strong> memorized this way. If you want to memorize a new <strong>Chimerist</strong> spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p><hr /><p>For <strong>spell</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.U0zSlmaK8PDCjMlV]{Spell Rules} or see <strong>Core Rulebook,</strong> page <strong>114</strong>.</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 10,
+            "min": 0
+          },
+          "class": {
+            "value": "Chimerist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR183",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "spell-mimic",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [
+          {
+            "name": "Spell Mimic",
+            "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_spell_mimic.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "gV4JoLHDd53BVD78": {
+                    "type": "ruleElement",
+                    "_id": "gV4JoLHDd53BVD78",
+                    "trigger": {
+                      "_id": "ate421kuSXwlruFV",
+                      "type": "renderCheckRuleTrigger",
+                      "eventRelation": "",
+                      "checkTypes": [],
+                      "itemGroups": [
+                        "spell"
+                      ],
+                      "local": false,
+                      "identifier": ""
+                    },
+                    "predicates": {
+                      "72E5kUiLUBiNIiMv": {
+                        "type": "speciesRulePredicate",
+                        "_id": "72E5kUiLUBiNIiMv",
+                        "species": [
+                          "beast",
+                          "monster",
+                          "plant"
+                        ],
+                        "selector": "source"
+                      }
+                    },
+                    "actions": {
+                      "TmtaC4LiXQe9p888": {
+                        "type": "messageRuleAction",
+                        "_id": "TmtaC4LiXQe9p888",
+                        "message": "<p>The chimerist may learn this as a Chimerist spell.</p>"
+                      }
+                    },
+                    "selector": "self",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "LSKs1p3YHGDXv1IS",
+            "type": "base",
+            "changes": [],
+            "description": "<p>After a <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> creature you can see casts a spell and resolves its effects, you may learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
         },
         "sort": 0
       }
@@ -429,12 +661,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1759654851015,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1775523506349,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!KCXzvuZQnzva9t5Z"

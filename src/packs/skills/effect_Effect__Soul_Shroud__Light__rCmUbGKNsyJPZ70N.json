@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Until this spell ends, you gain Resistance to <strong>light </strong>damage.</p>",
+      "description": "<p>Until this spell ends, you gain Resistance to <strong>light</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

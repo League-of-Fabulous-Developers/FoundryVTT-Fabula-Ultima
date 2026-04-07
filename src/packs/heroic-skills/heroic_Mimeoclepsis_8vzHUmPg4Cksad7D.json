@@ -10,7 +10,7 @@
     "summary": {
       "value": "Learn spells through the Mutant's Genoclepsis."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chimerist</strong> and <strong>Mutant</strong>, and must have acquired both the <strong>Genoclepsis</strong> and <strong>Spell Mimic</strong> Skills.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis} Skill on an NPC, if that NPC’s Species is among those you can learn spells from with the <strong>Spell Mimic</strong> Skill, the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spells, you may learn <strong>one of those spells</strong> as a Chimerist spell of your own.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong> and <strong>Mutant</strong>, and must have acquired both the <strong>Genoclepsis</strong> and <strong>Spell Mimic</strong> Skills.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis} Skill on an NPC, if that NPC’s Species is among those you can learn spells from with the <strong>Spell Mimic</strong> Skill, the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spells, you may learn <strong>one of those spells</strong> as a Chimerist spell of your own.</p>",
     "isFavored": {
       "value": false
     },

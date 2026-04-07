@@ -42,7 +42,7 @@
                 "45qP2rE9bFvQ76XU": {
                   "type": "messageRuleAction",
                   "_id": "45qP2rE9bFvQ76XU",
-                  "message": "<p><span class=\"fontstyle0\">No creature can recover HP or MP.</span></p>"
+                  "message": "<p>No creature can recover HP or MP.</p>"
                 }
               }
             }
@@ -54,6 +54,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -79,7 +84,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">You cannot recover Hit Points or Mind Points until the start of the commander's next turn.</span> </p>",
+      "description": "<p>You <strong>cannot</strong> recover Hit Points or Mind Points until the start of the <strong>commander's</strong> next turn. </p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -94,7 +99,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770276191960,
-        "modifiedTime": 1770632144363,
+        "modifiedTime": 1775523027704,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!lwzEcMwQICongcb5.ncSlU2nJDypBoneS"

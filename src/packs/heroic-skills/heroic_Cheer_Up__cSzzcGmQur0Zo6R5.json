@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improves My Trust in You."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong>, <strong>Esper</strong>, and <strong>Orator</strong>, and must have acquired the <strong>My Trust in You</strong> Skill.</p><hr /><p>When you use @UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust in You} on another Player Character, that character chooses <strong>Dexterity, Insight, Might, </strong>or<strong> Willpower</strong>: they treat the chosen Attribute as being increased by one die size (up to a maximum of <strong>d12</strong>) until the end of the scene or until you use <strong>My Trust in You</strong> on them again.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong>, <strong>Esper</strong>, and <strong>Orator</strong>, and must have acquired the <strong>My Trust in You</strong> Skill.</p><hr /><p>When you use @UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust in You} on another Player Character, that character chooses <strong>Dexterity, Insight, Might,</strong> or <strong>Willpower</strong>: they treat the chosen Attribute as being increased by one die size (up to a maximum of <strong>d12</strong>) until the end of the scene or until you use <strong>My Trust in You</strong> on them again.</p>",
     "isFavored": {
       "value": false
     },

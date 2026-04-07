@@ -1,0 +1,65 @@
+{
+  "name": "Project Rules",
+  "_id": "8yqC3CkxUEUTTKe0",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "PROJECTS",
+      "type": "text",
+      "_id": "z8ZdHKLh2NEGZvbP",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Much like how spellcasters gain access to Ritual magic, characters with the @UUID[Compendium.projectfu.classes.Item.Zmqvu8QKmgyIci7C]{Tinkerer} Class may start <strong>Projects</strong> and work on a variety of custom inventions — love potions, walking magitech shields, or even majestic airships.</p><p>Projects work as follows:</p><ol><li><p>Describe the invention's effects, how it operates, what kind of energy it requires, and the specific benefits it provides. The Game Master has final say on whether a given invention is feasible in your circumstances.</p></li><li><p>If an invention is complex enough — such as a <strong>magitech motorcycle</strong> equipped with a cannon, acting as both a vehicle and a weapon — the Game Master is free to split the Project into two or more separate inventions, each requiring its own individual development process.</p></li><li><p>By consulting the <strong>area</strong>, <strong>potency</strong>, and <strong>uses</strong> tables (see next page), the GM determines the invention’s total cost in materials, to be paid <strong>immediately</strong>.</p><p>For inventions of <strong>medium or higher</strong> potency, the Game Master also describes a necessary <strong>special ingredient or material</strong>. This item cannot simply be purchased and should become the focus of one or two sessions.</p></li><li><p>You may negotiate a <strong>terrible flaw</strong> with the Game Master — perhaps the invention must be recharged at regular intervals, is unreliable, cumbersome, or extremely loud. This flaw reduces the total cost of the Project by <strong>25%</strong>.</p></li><li><p>To complete the Project, you must reach an amount of <strong>progress</strong> equal to <strong>one for every 100 zenit of material costs (minimum one progress required)</strong>.</p><p>At the end of each day, the Project will advance as follows:</p><ul><li><p><strong>+1 progress</strong> for every Player Character who worked on the Project today.</p></li><li><p><strong>+1 extra progress</strong> for every Player Character with one or more levels in the Tinkerer Class who worked on the Project today.</p></li></ul></li><li><p>Once the required amount of progress is reached, the invention is created!</p><p>If you can generate more progress in a day than what is currently needed to complete the Project, it will be ready within one or two hours.</p></li></ol><p></p><table><tbody><tr><td><p style=\"width:60px\"><strong>Potency</strong></p></td><td><p style=\"width:60px;text-align:center\"><strong>Base Cost</strong></p></td><td><p><strong>The invention can…</strong></p></td></tr><tr><td><p style=\"width:60px\"><strong>Minor</strong></p></td><td><p style=\"width:60px;text-align:center\">100 zenit</p></td><td><p>Provide light, transport people or cargo on land or water, obtain some limited form of protection.</p></td></tr><tr><td><p style=\"width:60px\"><strong>Medium</strong></p></td><td><p style=\"width:60px;text-align:center\">200 zenit</p></td><td><p>Travel underwater, suppress a magical effect, relay sound or speech, perform a specific operation in place of the inventor, provide short-term energy.</p></td></tr><tr><td><p style=\"width:60px\"><strong>Major</strong></p></td><td><p style=\"width:60px;text-align:center\">400 zenit</p></td><td><p>Fly, alter the nature of an area for a short time, erase a magical effect, possess minor intelligence, fight alongside the inventor, provide long-term energy, capture or immobilize the target.</p></td></tr><tr><td><p style=\"width:60px\"><strong>Extreme</strong></p></td><td><p style=\"width:60px;text-align:center\">800 zenit</p></td><td><p>Alter the nature of an area for a long time, suppress the power of a demon, prevent a catastrophe, possess a full intelligence and personality.</p></td></tr></tbody></table><p></p><table><tbody><tr><td><p style=\"width:60px\"><strong>Area</strong></p></td><td><p style=\"width:60px;text-align:center\"><strong>Multiplier</strong></p></td><td><p><strong>The effects of the invention may affect…</strong></p></td></tr><tr><td><p style=\"width:60px\"><strong>Individual</strong></p></td><td><p style=\"width:60px;text-align:center\">×1</p></td><td><p>A human-sized creature, a door, a tree, or a weapon.</p></td></tr><tr><td><p style=\"width:60px\"><strong>Small</strong></p></td><td><p style=\"width:60px;text-align:center\">×2</p></td><td><p>A group of human-sized creatures, a large creature, a small clearing, a room, a railway car, or a hut.</p></td></tr><tr><td><p style=\"width:60px\"><strong>Large</strong></p></td><td><p style=\"width:60px;text-align:center\">×3</p></td><td><p>A crowd, a small forest, an airship or galleon, a castle hall, a house, or a giant creature.</p></td></tr><tr><td><p style=\"width:60px\"><strong>Huge</strong></p></td><td><p style=\"width:60px;text-align:center\">×4</p></td><td><p>A fortress, a lake, the top of a mountain, a village, or a city block.</p></td></tr></tbody></table><p></p><table><tbody><tr><td><p style=\"width:60px\"><strong>Uses</strong></p></td><td><p style=\"width:60px;text-align:center\"><strong>Multiplier</strong></p></td><td><p><strong>Once activated, the invention…</strong></p></td></tr><tr><td><p style=\"width:60px\"><strong>Consumable</strong></p></td><td><p style=\"width:60px;text-align:center\">×1</p></td><td><p>Can never be used again unless the inventor creates a different copy of it.</p></td></tr><tr><td><p style=\"width:60px\"><strong>Permanent</strong></p></td><td><p style=\"width:60px;text-align:center\">×5</p></td><td><p>Remains available for multiple uses in different situations.</p></td></tr></tbody></table><p></p><p>Remember that the Game Master has the right to split any particularly complex or powerful inventions into several Projects, each with its own costs and requirements.</p><p></p><h3>DAMAGE AND PROTECTION</h3><p>Sooner or later, the heroes might want to craft items that give them an edge in battle. The Game Master always has final say on the potency of a given invention but should use the table below as a guideline when establishing it.</p><p></p><table><tbody><tr><td><p><strong>Potency</strong></p></td><td><p style=\"text-align:center\"><strong>Damage</strong></p></td><td><p style=\"text-align:center\"><strong>Healing</strong></p></td><td><p style=\"text-align:center\"><strong>Protection</strong></p></td></tr><tr><td><p><strong>Minor</strong></p></td><td><p style=\"text-align:center\">Not available</p></td><td><p style=\"text-align:center\">Not available</p></td><td><p style=\"text-align:center\">One Resistance (consumables only)</p></td></tr><tr><td><p><strong>Medium</strong></p></td><td><p style=\"text-align:center\">Minor</p></td><td><p style=\"text-align:center\">Heavy</p></td><td><p style=\"text-align:center\">One Resistance</p></td></tr><tr><td><p><strong>Major</strong></p></td><td><p style=\"text-align:center\">Heavy</p></td><td><p style=\"text-align:center\">Massive</p></td><td><p style=\"text-align:center\">One Immunity <strong>or</strong> two Resistances</p></td></tr><tr><td><p><strong>Extreme</strong></p></td><td><p style=\"text-align:center\">Massive</p></td><td><p style=\"text-align:center\">Massive + 20</p></td><td><p style=\"text-align:center\">Two Immunities <strong>or</strong> three Resistances</p></td></tr></tbody></table><p></p><ul><li><p>Avoid creating inventions that grant Immunity to <strong>physical</strong> damage.</p></li><li><p>If an invention has mixed effects, such as granting Resistance to a damage type and dealing damage, it should be split into multiple Projects (see <strong>step 2</strong> above).</p></li></ul><p>To determine the amount of damage or healing granted by an invention, use the values corresponding to the current level of its inventor on the table below.</p><p></p><table><tbody><tr><td><p style=\"text-align:center\"><strong>Level</strong></p></td><td><p style=\"text-align:center\"><strong>Minor Amount</strong></p></td><td><p style=\"text-align:center\"><strong>Heavy Amount</strong></p></td><td><p style=\"text-align:center\"><strong>Massive Amount</strong></p></td></tr><tr><td><p style=\"text-align:center\"><strong>5+</strong></p></td><td><p style=\"text-align:center\">10</p></td><td><p style=\"text-align:center\">30</p></td><td><p style=\"text-align:center\">40</p></td></tr><tr><td><p style=\"text-align:center\"><strong>20+</strong></p></td><td><p style=\"text-align:center\">20</p></td><td><p style=\"text-align:center\">40</p></td><td><p style=\"text-align:center\">60</p></td></tr><tr><td><p style=\"text-align:center\"><strong>40+</strong></p></td><td><p style=\"text-align:center\">30</p></td><td><p style=\"text-align:center\">50</p></td><td><p style=\"text-align:center\">80</p></td></tr></tbody></table><p></p><h3>USING MATERIALS TO PAY FOR PROJECTS</h3><p>If you happen to gather precious materials during your adventures, you may use them to pay for the costs of a Project. The Game Master has final say on which materials and ingredients can help you cover the cost of a Project.</p><p>If the Game Master requests a given material to be consumed due to the invention’s <strong>potency</strong> (as described under <strong>step 3</strong> of the steps above), said material cannot also be used to pay for the Project’s costs.</p><p></p><h3>HIRING HELPERS</h3><p>If an inventor wants to increase the daily amount of progress, or if they want a Project to progress while they’re not present, they may hire <strong>helpers</strong>.</p><ul><li><p>Each helper will ask for a pay equal to half the Project’s total cost; some may offer their help for free, out of gratitude or kindness for the heroes’ actions.</p></li><li><p>Each helper will generate <strong>1 additional progress</strong> at the end of each day.</p></li></ul><p></p><h3>HOW TO USE PROJECTS</h3><p>These rules are meant to be light and flexible, not realistic or bulletproof. They exist so Tinkerers may feel like heroic inventors creating <strong>unique solutions to problems</strong>, not to craft <strong>equipment</strong> or everyday items, and neither to sidestep nor cheapen the game’s intended experience and progression.</p><ul><li><p>Projects shouldn’t be at odds with the narrative: Tinkerers are expected to focus on inventions that aid the group in their mission, rather than treat these rules as a separate minigame or a path to \"breaking\" the system.</p></li><li><p>Prioritizing small Projects that can be worked on while traveling is a good idea; use <strong>interlude scenes</strong> to narrate progress made on the journey.</p></li><li><p>Tinkerers should accept that expensive Projects are often made impossible by a lack of time or resources, focusing instead on cheaper <strong>consumables</strong> and on making sure the rest of their Skills properly support the group.</p></li></ul>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "mA8SNY2rY4X5tOHa": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775504201440,
+        "modifiedTime": 1775505764365,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!journal.pages!8yqC3CkxUEUTTKe0.z8ZdHKLh2NEGZvbP"
+    }
+  ],
+  "folder": null,
+  "categories": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775501639729,
+    "modifiedTime": 1775501639729,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!journal!8yqC3CkxUEUTTKe0"
+}

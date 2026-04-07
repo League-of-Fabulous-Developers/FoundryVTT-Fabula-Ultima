@@ -6,7 +6,7 @@
     "summary": {
       "value": "Grave Points modify your Affinities."
     },
-    "description": "<p><strong>Requirements</strong>: you must have mastered the <strong>Necromancer</strong> Class.</p><hr /><p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark </strong>and <strong>poison </strong>damage, Resistance to <strong>physical </strong>damage, and Vulnerability to <strong>light </strong>damage. These Affinities take precedence over any other effect, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.BB5jHS32g8Wcsvwr]</p>",
+    "description": "<p><strong>Requirements</strong>: you must have mastered the <strong>Necromancer</strong> Class.</p><hr /><p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark</strong> and <strong>poison</strong> damage, Resistance to <strong>physical</strong> damage, and Vulnerability to <strong>light</strong> damage. These Affinities take precedence over any other effect, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.BB5jHS32g8Wcsvwr]</p>",
     "isFavored": {
       "value": false
     },

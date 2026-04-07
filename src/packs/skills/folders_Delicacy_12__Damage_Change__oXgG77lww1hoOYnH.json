@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "xEJLs3KBQFon1pAq",
+  "name": "Delicacy 12 (Damage Change)",
+  "color": "#3a4b2a",
+  "sorting": "a",
+  "_id": "oXgG77lww1hoOYnH",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!oXgG77lww1hoOYnH"
+}

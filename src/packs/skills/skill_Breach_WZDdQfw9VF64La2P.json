@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one shield equipped by the target.</p></li><li><p>You destroy the target’s equipped armor.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
+    "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one <strong>shield</strong> equipped by the target.</p></li><li><p>You destroy the target’s equipped <strong>armor</strong>.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -128,7 +128,10 @@
     "effects": {
       "entries": [
         "Compendium.projectfu.skills.Item.Cc1391vhlS1yIMrI"
-      ]
+      ],
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -148,7 +151,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706514105557,
-    "modifiedTime": 1770619520201,
+    "modifiedTime": 1775597132829,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

@@ -60,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Until the start of your next turn, you gain Resistance to <strong>dark </strong>damage.</p>",
+      "description": "<p>Until the start of your next turn, you gain Resistance to <strong>dark</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

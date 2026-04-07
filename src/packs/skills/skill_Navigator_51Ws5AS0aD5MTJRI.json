@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other </strong>for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information </strong>and track entities while inside the soul network.</p>",
+    "description": "<p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other</strong> for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information</strong> and track entities while inside the soul network.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -117,6 +117,11 @@
     "fuid": "navigator",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -224,7 +229,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1770367850264,
+    "modifiedTime": 1775526637621,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

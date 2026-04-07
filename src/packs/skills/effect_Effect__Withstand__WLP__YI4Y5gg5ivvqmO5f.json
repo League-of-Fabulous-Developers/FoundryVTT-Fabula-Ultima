@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your <strong>Willpower </strong>is increased by one die size until the end of your next turn.</p>",
+      "description": "<p>Your <strong>Willpower</strong> is increased by one die size until the end of your next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

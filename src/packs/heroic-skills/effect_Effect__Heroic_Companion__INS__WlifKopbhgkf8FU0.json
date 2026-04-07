@@ -58,7 +58,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your <strong>Insight </strong>is increased by one die size.</p>",
+      "description": "<p>Your <strong>Insight</strong> is increased by one die size.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

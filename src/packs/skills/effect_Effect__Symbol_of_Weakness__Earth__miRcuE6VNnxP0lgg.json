@@ -53,7 +53,7 @@
           "priority": null
         }
       ],
-      "description": "<p>While you bear the <strong>Symbol of Weakness</strong>, you suffer 5 extra damage from sources dealing <strong>earth </strong>damage.</p>",
+      "description": "<p>While you bear the <strong>Symbol of Weakness</strong>, you suffer 5 extra damage from sources dealing <strong>earth</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

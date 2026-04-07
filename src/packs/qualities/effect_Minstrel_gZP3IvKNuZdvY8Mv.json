@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you attack with this weapon using the <strong>Vibrato</strong> Skill (see <strong>Atlas High Fantasy</strong>,<strong> </strong>page<strong> 137</strong>), all damage dealt by the attack becomes of the same type as the <strong>【key type】</strong> of the last verse you sang.</p>",
+      "description": "<p>When you attack with this weapon using the <strong>Vibrato</strong> Skill (see <strong>Atlas High Fantasy</strong>, page <strong>137</strong>), all damage dealt by the attack becomes of the same type as the <strong>【key type】</strong> of the last verse you sang.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

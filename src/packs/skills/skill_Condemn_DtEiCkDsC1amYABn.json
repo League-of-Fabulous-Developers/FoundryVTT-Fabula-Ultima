@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【INS + WLP】 </strong>Check against an enemy that can hear and understand you. If you succeed, that enemy loses <strong>【SL × 5】</strong> Mind Points, suffers a status effect of your choice between <strong>dazed</strong> and <strong>shaken</strong>, and all sources deal <strong>【SL】</strong> extra damage to them until the start of your next turn.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p>",
+    "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【INS + WLP】</strong> Check against an enemy that can hear and understand you. If you succeed, that enemy loses <strong>【SL × 5】</strong> Mind Points, suffers a status effect of your choice between <strong>dazed</strong> and <strong>shaken</strong>, and all sources deal <strong>【SL】</strong> extra damage to them until the start of your next turn.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -208,7 +208,7 @@
       "_id": "TwbBKbRvOuTzpUW1",
       "type": "base",
       "changes": [],
-      "description": "<p>Performing the <strong>Condemn </strong>Skill allows you to perform an <strong>Opposed Check</strong>.</p>",
+      "description": "<p>Performing the <strong>Condemn</strong> Skill allows you to perform an <strong>Opposed Check</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
