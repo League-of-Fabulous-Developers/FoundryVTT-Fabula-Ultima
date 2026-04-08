@@ -1136,6 +1136,7 @@ FU.allIcon = {
 	info: 'fas fa-circle-info',
 	compendium: 'fas fa-book',
 	warning: 'fas fa-triangle-exclamation',
+	villain: 'ra ra-bleeding-eye',
 
 	rank: 'fas fa-shield',
 	species: 'fas fa-paw',

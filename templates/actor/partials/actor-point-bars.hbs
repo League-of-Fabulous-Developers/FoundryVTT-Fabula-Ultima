@@ -127,27 +127,3 @@
         </div>
     </div>
 {{/if}}
-
-<div class="flexrow header-end flex-group-center resource-content" style="align-self: baseline;">
-	<!-- FU Points -->
-	{{#if showMetaCurrency}}
-		<div class="flexcol flex-group-center">
-			<a class="rollable" data-action="spendMetaCurrency">
-				<span class="fu-icon__container resource-label-m flex-group-center">
-					{{#if (eq actor.type "npc")}}
-                    <i class="fu-icon--sm {{pfuIconClass 'up'}}"></i>
-                    <span>{{localize 'FU.UltimaAbbr'}}</span>
-				{{/if}}
-				{{#if (eq actor.type "character")}}
-                    <i class="fu-icon--sm {{pfuIconClass 'fp'}}"></i>
-                    <span>{{localize 'FU.FabulaAbbr'}}</span>
-				{{/if}}
-				</span>
-			</a>
-			<div class="buttons-inc" style="display: flex; justify-content: center; align-items: center;">
-				<input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
-					   data-dtype="Number" id="fp-input" class="resource-inputs" style="text-align: center;" />
-			</div>
-		</div>
-	{{/if}}
-</div>

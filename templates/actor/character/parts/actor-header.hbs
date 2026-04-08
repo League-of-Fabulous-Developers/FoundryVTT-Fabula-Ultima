@@ -24,8 +24,33 @@
 				</div>
 
 				{{!-- DEF/MDEF/INIT/FU/UP --}}
-				<div class="derived grid grid-3col flexgrow-2 flex-group-center">
+				<div class="derived grid grid-4col flexgrow-2 flex-group-center">
 					{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs" actor=actor}}
+					<!-- FU Points -->
+					{{#if showMetaCurrency}}
+						<div class="flexrow flex-group-centerb gap-8" style="margin-right: 8px;">
+							<a class="rollable resource-content" data-action="spendMetaCurrency">
+								<label class="fu-icon__container resource-label-l flex-group-center">
+									{{#if (eq actor.type "npc")}}
+										<i class="fu-icon--sm {{pfuIconClass 'up'}}"></i>
+										{{localize 'FU.UltimaAbbr'}}
+									{{/if}}
+									{{#if (eq actor.type "character")}}
+										<i class="fu-icon--sm {{pfuIconClass 'fp'}}"></i>
+										{{localize 'FU.FabulaAbbr'}}
+									{{/if}}
+								</label>
+							</a>
+							<div class="buttons-inc"
+								 style="display: flex; justify-content: center; align-items: center;">
+								<input type="number" name="system.resources.fp.value"
+									   value="{{ system.resources.fp.value }}"
+									   data-dtype="Number" id="fp-input" class="resource-inputs"
+									   style="text-align: center;" />
+							</div>
+						</div>
+					{{/if}}
+
 				</div>
 			</div>
 		</div>
