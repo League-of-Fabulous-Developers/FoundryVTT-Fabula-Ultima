@@ -9,7 +9,7 @@
     "summary": {
       "value": "Status effects make you stronger."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p><hr /><p>As long as you are suffering from one or more status effects, you gain a +1 bonus on all Checks for every status effect you are suffering from, and you deal 2 extra damage for every status effect you are suffering from (be it with attacks, spells, Arcana, items or any other method).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Darkblade</strong> Class.</p><hr /><p>As long as you are suffering from one or more status effects, you gain a +1 bonus on all Checks for every status effect you are suffering from, and you deal 2 extra damage for every status effect you are suffering from (be it with attacks, spells, Arcana, items or any other method).</p>",
     "isFavored": {
       "value": false
     },

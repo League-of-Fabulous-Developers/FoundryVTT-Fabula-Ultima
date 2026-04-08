@@ -46,6 +46,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -57,7 +62,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are able to read, write, speak and understand all languages.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You treat your </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Insight </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">as if it were one die size higher.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p>",
+      "description": "<p>You are able to read, write, speak and understand all languages.</p><p>You treat your <strong>Insight</strong> as if it were one die size higher. </p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -76,7 +81,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725596664723,
-        "modifiedTime": 1771044930431,
+        "modifiedTime": 1775521991154,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

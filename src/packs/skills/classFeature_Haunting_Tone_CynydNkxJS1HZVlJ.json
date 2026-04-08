@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target suffers <strong>@DATA[key.status]</strong>. Each target also loses Resistance to<strong> @DATA[key.typeLocal] </strong>damage until the start of your next turn, and cannot gain Resistance to that damage type.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[@DATA[key.status]]<br /><strong>If @DATA[key.typeLocal] Resistant: </strong>@TYPE[affinity @DATA[key.type] none e:sot i:1 t:source]{Haunting Tone}</p>"
+      "description": "<p>Each target suffers <strong>@DATA[key.status]</strong>. Each target also loses Resistance to <strong>@DATA[key.typeLocal]</strong> damage until the start of your next turn, and cannot gain Resistance to that damage type.</p><hr /><p><strong>Target Receives:</strong> @EFFECT[@DATA[key.status]]<br /><strong>If @DATA[key.typeLocal] Resistant:</strong> @TYPE[affinity @DATA[key.type] none e:sot i:1 t:source]{Haunting Tone}</p>"
     },
     "source": "FUHF139",
     "fuid": "haunting-tone"

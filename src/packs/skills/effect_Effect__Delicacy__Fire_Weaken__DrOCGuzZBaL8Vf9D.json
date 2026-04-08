@@ -1,0 +1,111 @@
+{
+  "folder": "Uaan6UJJ5XnoCUNn",
+  "name": "Effect: Delicacy (Fire Weaken)",
+  "type": "effect",
+  "_id": "DrOCGuzZBaL8Vf9D",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "system": {
+    "fuid": "effect-delicacy-fire-weaken",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Delicacy (Fire Weaken)",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
+      "origin": "Compendium.projectfu.skills.Item.DrOCGuzZBaL8Vf9D",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Fq1CaRCcFTm2vRA5",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.fire",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the end of the <strong>gourmet's</strong> next turn, every source that deals <strong>fire</strong> damage deals 5 extra damage to you.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Delicacy (Fire Weaken)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.DrOCGuzZBaL8Vf9D",
+            "effectUuid": null,
+            "fuid": "effect-delicacy-fire-weaken"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775538415181,
+        "modifiedTime": 1775538551802,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!DrOCGuzZBaL8Vf9D.Fq1CaRCcFTm2vRA5"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775538282750,
+    "modifiedTime": 1775538322955,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!DrOCGuzZBaL8Vf9D"
+}

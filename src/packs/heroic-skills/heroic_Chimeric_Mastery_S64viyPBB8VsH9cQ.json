@@ -9,7 +9,7 @@
     "summary": {
       "value": "Learn spells from new Species and increase spell limit."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Chimerist </strong>Class. </p><hr /><p>Choose two creature Species among <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, and <strong>undead</strong>. You can now use <strong>spell mimic</strong> to learn spells from creatures of the chosen Species. </p><p>This Heroic Skill <strong>may be acquired up to twice</strong>, each time selecting two Species from the list above.</p><p>Whenever you acquire this Skill, you also increase your upper limit for memorized Chimerist spells by 2. </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Chimerist</strong> Class. </p><hr /><p>Choose two creature Species among <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, and <strong>undead</strong>. You can now use <strong>spell mimic</strong> to learn spells from creatures of the chosen Species. </p><p>This Heroic Skill <strong>may be acquired up to twice</strong>, each time selecting two Species from the list above.</p><p>Whenever you acquire this Skill, you also increase your upper limit for memorized Chimerist spells by 2. </p>",
     "isFavored": {
       "value": false
     },

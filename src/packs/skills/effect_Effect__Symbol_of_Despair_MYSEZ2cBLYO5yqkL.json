@@ -63,7 +63,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you recover HP and/or MP during conflicts while you bear the <strong>Symbol of Despair</strong>, instead you only recover <strong>half </strong>the normal amount of HP and/or MP.</p>",
+      "description": "<p>When you recover HP and/or MP during conflicts while you bear the <strong>Symbol of Despair</strong>, instead you only recover <strong>half</strong> the normal amount of HP and/or MP.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

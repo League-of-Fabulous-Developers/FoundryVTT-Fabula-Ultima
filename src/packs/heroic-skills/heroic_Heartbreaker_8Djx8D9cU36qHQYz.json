@@ -9,7 +9,7 @@
     "summary": {
       "value": "Sacrifice HP for massive damage."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p><hr /><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><p><strong>Target Suffers:</strong> @DMG[10 untyped]{1 Bond: 10 Untyped}, @DMG[20 untyped]{2 Bond: 20 Untyped}, or @DMG[30 untyped]{3 Bond: 30 Untyped}</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Darkblade</strong> Class.</p><hr /><p>When you hit a creature with an attack, if that attack <strong>only</strong> targeted that creature and you have a <strong>Bond</strong> towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><p><strong>Target Suffers:</strong> @DMG[10 untyped]{1 Bond: 10 Untyped}, @DMG[20 untyped]{2 Bond: 20 Untyped}, or @DMG[30 untyped]{3 Bond: 30 Untyped}</p>",
     "isFavored": {
       "value": false
     },
@@ -185,7 +185,7 @@
       "_id": "Lbkn2cBwEfIjUW4x",
       "type": "base",
       "changes": [],
-      "description": "<p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p>",
+      "description": "<p>When you hit a creature with an attack, if that attack <strong>only</strong> targeted that creature and you have a <strong>Bond</strong> towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

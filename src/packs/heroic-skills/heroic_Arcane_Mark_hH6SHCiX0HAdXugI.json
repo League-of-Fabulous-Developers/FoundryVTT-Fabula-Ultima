@@ -9,7 +9,7 @@
     "summary": {
       "value": "Improve spells’ critical chance with arcane weapons."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong>, <strong>Symbolist</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell (@ICON[offensive]) you cast during this scene <strong>only </strong>targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Sharpshooter</strong>, <strong>Symbolist</strong>, and <strong>Weaponmaster</strong>.</p><hr /><p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane</strong> Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell (@ICON[offensive]) you cast during this scene <strong>only</strong> targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -202,7 +202,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures.</p>",
+      "description": "<p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane</strong> Category, the attack deals 5 extra damage and you may choose one of those creatures.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

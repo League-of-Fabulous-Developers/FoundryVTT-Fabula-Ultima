@@ -51,7 +51,7 @@
         }
       },
       "changes": [],
-      "description": "<p>You must spend 10 MP whenever you wish to perform the <strong>Spell </strong>action. If you can’t, you must perform a different type of action. This effect lasts until the start of the originator's next turn, or until the originator uses this Skill again.</p>",
+      "description": "<p>You must spend 10 MP whenever you wish to perform the <strong>Spell</strong> action. If you can’t, you must perform a different type of action. This effect lasts until the start of the originator's next turn, or until the originator uses this Skill again.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

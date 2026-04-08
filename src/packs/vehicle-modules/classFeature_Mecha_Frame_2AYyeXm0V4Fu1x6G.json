@@ -16,7 +16,7 @@
       "passengers": 0,
       "distanceMultiplier": 2,
       "moduleSlots": 0,
-      "description": "<p>This personal vehicle may have up to <strong>2 weapon modules, 1 armor module, </strong>and <strong>any number of support modules</strong> enabled.</p>"
+      "description": "<p>This personal vehicle may have up to <strong>2 weapon modules, 1 armor module,</strong> and <strong>any number of support modules</strong> enabled.</p>"
     },
     "source": "FUTF165",
     "fuid": "mecha-frame"

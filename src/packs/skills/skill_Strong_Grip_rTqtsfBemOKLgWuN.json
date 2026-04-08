@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform an Accuracy Check with a <strong>weapon module</strong>, you may replace <strong>one</strong> of the Attributes with Might (such as <strong>【MIG + WLP】 </strong>for an Arcane module).</p>",
+    "description": "<p>When you perform an Accuracy Check with a <strong>weapon module</strong>, you may replace <strong>one</strong> of the Attributes with Might (such as <strong>【MIG + WLP】</strong> for an <strong>arcane module</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -118,6 +118,11 @@
     "fuid": "strong-grip",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -137,7 +142,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711431286236,
-    "modifiedTime": 1770453040751,
+    "modifiedTime": 1775595845760,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

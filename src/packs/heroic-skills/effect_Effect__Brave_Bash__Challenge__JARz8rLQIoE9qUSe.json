@@ -47,11 +47,16 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "changes": [],
-      "description": "<p><span class=\"fontstyle0\">You have been <strong>challenged</strong>. This lasts until the end of the originator's next turn, or if they <strong>challenge</strong> another creature, or you are <strong>challenged</strong> by another creature.</span></p><p><span class=\"fontstyle0\">You</span><span class=\"fontstyle2\"> </span><span class=\"fontstyle0\">must include the originator among the targets of your attacks and offensive spells, if able.</span></p>",
+      "description": "<p>You have been <strong>challenged</strong>. This lasts until the end of the originator's next turn, or if they <strong>challenge</strong> another creature, or you are <strong>challenged</strong> by another creature.</p><p>You must include the originator among the targets of your attacks and offensive spells, if able.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -65,7 +70,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744244125709,
-        "modifiedTime": 1770878074841,
+        "modifiedTime": 1775520975625,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

@@ -1,0 +1,111 @@
+{
+  "folder": "oXgG77lww1hoOYnH",
+  "name": "Effect: Delicacy (Bolt Change)",
+  "type": "effect",
+  "_id": "NXCuHsCUgSgzKODy",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "system": {
+    "fuid": "effect-delicacy-bolt-change",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Delicacy (Bolt Change)",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
+      "origin": "Compendium.projectfu.skills.Item.NXCuHsCUgSgzKODy",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "riz1hpSdgTYg93zD",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "bolt",
+          "priority": null
+        }
+      ],
+      "description": "<p>During your next turn, all damage you deal becomes <strong>bolt</strong> damage and its type cannot change.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Delicacy (Bolt Change)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.NXCuHsCUgSgzKODy",
+            "effectUuid": null,
+            "fuid": "effect-delicacy-bolt-change"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775545213833,
+        "modifiedTime": 1775545258025,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!NXCuHsCUgSgzKODy.riz1hpSdgTYg93zD"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775545087058,
+    "modifiedTime": 1775545137519,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!NXCuHsCUgSgzKODy"
+}

@@ -121,6 +121,11 @@
     "fuid": "knowledge-is-power",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -140,7 +145,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706487511681,
-    "modifiedTime": 1770415513453,
+    "modifiedTime": 1775594438366,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

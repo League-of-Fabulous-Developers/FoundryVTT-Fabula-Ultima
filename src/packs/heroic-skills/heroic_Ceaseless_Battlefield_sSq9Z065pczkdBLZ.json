@@ -9,7 +9,7 @@
     "summary": {
       "value": "Halve the MP cost of Commander Skills."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p><hr /><p>The MP costs for your @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, and @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle} are halved. </p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Commander</strong> Class.</p><hr /><p>The MP costs for your @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, and @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle} are halved. </p>",
     "isFavored": {
       "value": false
     },

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
+    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.8Tm8w8F0xQm7FmvL]</p>",
     "isFavored": {
       "value": false
     },
@@ -239,7 +239,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706560364056,
-    "modifiedTime": 1774645542158,
+    "modifiedTime": 1775525531430,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

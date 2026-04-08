@@ -96,7 +96,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your inner wellspring is <strong>fire</strong>.</p><ul><li>You <strong>always</strong> treat the <strong>fire wellspring</strong> as being available during each scene.</li><li>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the <strong>fire </strong>element.</li><li>You gain <strong>fire </strong>Resistance.</li><li>When you deal damage, you may change its type to <strong>fire</strong>. If you do, that damage ignores Resistances.</li></ul>",
+      "description": "<p>Your inner wellspring is <strong>fire</strong>.</p><ul><li>You <strong>always</strong> treat the <strong>fire wellspring</strong> as being available during each scene.</li><li>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the <strong>fire</strong> element.</li><li>You gain <strong>fire</strong> Resistance.</li><li>When you deal damage, you may change its type to <strong>fire</strong>. If you do, that damage ignores Resistances.</li></ul>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

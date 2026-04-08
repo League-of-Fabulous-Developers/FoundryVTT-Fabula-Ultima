@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Until the this spell ends, you gain Resistance to <strong>ice </strong>damage.</p>",
+      "description": "<p>Until the this spell ends, you gain Resistance to <strong>ice</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

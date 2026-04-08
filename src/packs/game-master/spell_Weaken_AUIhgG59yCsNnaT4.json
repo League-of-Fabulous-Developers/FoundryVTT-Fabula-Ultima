@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, the target suffers 5 extra damage from all sources that deal <strong>(choose type)</strong> damage.</p><hr /><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.game-master.Item.F7vItVCE5aVZjgG7], @EFFECT[Compendium.projectfu.game-master.Item.3u8TxdveQgM4THLr], @EFFECT[Compendium.projectfu.game-master.Item.l9D9CW5snjAFoWxw], @EFFECT[Compendium.projectfu.game-master.Item.3arDuXneGG264kpd], @EFFECT[Compendium.projectfu.game-master.Item.U91NHOxpVmtqN7Pd], @EFFECT[Compendium.projectfu.game-master.Item.MSU4wyOjHh7X29oJ], @EFFECT[Compendium.projectfu.game-master.Item.gJaiSQQKpyl79uEM], @EFFECT[Compendium.projectfu.game-master.Item.TBaMhx4AMwamseGE], or @EFFECT[Compendium.projectfu.game-master.Item.I6AH3hPvNHDqFggI]</p>",
+    "description": "<p>Until this spell ends, sources that deal <strong>(choose type)</strong> damage deal 5 extra damage to the target.</p>",
     "class": {
       "value": "NPC"
     },
@@ -108,7 +108,21 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [
+        "Compendium.projectfu.game-master.Item.F7vItVCE5aVZjgG7",
+        "Compendium.projectfu.game-master.Item.3u8TxdveQgM4THLr",
+        "Compendium.projectfu.game-master.Item.l9D9CW5snjAFoWxw",
+        "Compendium.projectfu.game-master.Item.3arDuXneGG264kpd",
+        "Compendium.projectfu.game-master.Item.U91NHOxpVmtqN7Pd",
+        "Compendium.projectfu.game-master.Item.MSU4wyOjHh7X29oJ",
+        "Compendium.projectfu.game-master.Item.gJaiSQQKpyl79uEM",
+        "Compendium.projectfu.game-master.Item.TBaMhx4AMwamseGE",
+        "Compendium.projectfu.game-master.Item.I6AH3hPvNHDqFggI"
+      ],
+      "duration": {
+        "interval": null
+      },
+      "prompt": true
     },
     "traits": []
   },
@@ -125,7 +139,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1771281323348,
+    "modifiedTime": 1775513524597,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

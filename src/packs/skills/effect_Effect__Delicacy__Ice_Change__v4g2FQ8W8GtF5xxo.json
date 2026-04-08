@@ -1,0 +1,111 @@
+{
+  "folder": "oXgG77lww1hoOYnH",
+  "name": "Effect: Delicacy (Ice Change)",
+  "type": "effect",
+  "_id": "v4g2FQ8W8GtF5xxo",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "system": {
+    "fuid": "effect-delicacy-ice-change",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Delicacy (Ice Change)",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
+      "origin": "Compendium.projectfu.skills.Item.v4g2FQ8W8GtF5xxo",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "IdGfv2uEX5ia7c4n",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "ice",
+          "priority": null
+        }
+      ],
+      "description": "<p>During your next turn, all damage you deal becomes <strong>ice</strong> damage and its type cannot change.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Delicacy (Ice Change)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.v4g2FQ8W8GtF5xxo",
+            "effectUuid": null,
+            "fuid": "effect-delicacy-ice-change"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775545337999,
+        "modifiedTime": 1775545360783,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!v4g2FQ8W8GtF5xxo.IdGfv2uEX5ia7c4n"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775545116125,
+    "modifiedTime": 1775545148820,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!v4g2FQ8W8GtF5xxo"
+}

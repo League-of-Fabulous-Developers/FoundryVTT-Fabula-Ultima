@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may perform Rituals whose effects fall within the <strong>Chimerism</strong> discipline.</p><p>When you acquire this Skill, choose <strong>【INS + WLP】</strong> <strong>or</strong> <strong>【MIG + WLP】</strong>. From now on, your Chimerism Rituals will use the chosen Attributes for the Magic Check.</p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Chimerism</strong> discipline.</p><p>When you acquire this Skill, choose <strong>【INS + WLP】</strong> <strong>or</strong> <strong>【MIG + WLP】</strong>. From now on, your <strong>Chimerism</strong> Rituals will use the chosen Attributes for the Magic Check.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "ritual-chimerism",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -190,7 +195,7 @@
       "_id": "uSyOw5nEsFXbdQ4M",
       "type": "base",
       "changes": [],
-      "description": "<p>Performing the <strong>Ritual Chimerism </strong>Skill allows you to perform a <strong>Ritual</strong>.</p>",
+      "description": "<p>Performing the <strong>Ritual Chimerism</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -225,10 +230,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "13.348",
+    "coreVersion": "13.351",
     "createdTime": 1706495654796,
-    "modifiedTime": 1768060745176,
-    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
+    "modifiedTime": 1775516043076,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

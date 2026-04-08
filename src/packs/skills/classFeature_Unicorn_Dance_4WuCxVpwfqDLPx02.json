@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose an ally that is able to see you and has a Bond towards you: you and that ally both recover an amount of Hit Points equal to your current <strong>Dexterity</strong> die size.</p><p>The restored amount increases by 5 Hit Points if you are <strong>level 20 or higher</strong>, or by 10 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>Targets Recover: </strong>@GAIN[$dex+&amp;step(0,5,10) hp]{DEX HP}</p>",
+      "description": "<p>Choose an ally that is able to see you and has a Bond towards you: you and that ally both recover an amount of Hit Points equal to your current <strong>Dexterity</strong> die size.</p><p>The restored amount increases by 5 Hit Points if you are <strong>level 20 or higher</strong>, or by 10 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr /><p><strong>Targets Recover:</strong> @GAIN[$dex+&amp;step(0,5,10) hp]{DEX HP}</p>",
       "duration": "instant"
     },
     "source": "FUHF145",

@@ -13,95 +13,95 @@
     "featureType": "projectfu.invocations",
     "data": {
       "level": "basic",
-      "description": "<h3>DETERMINING AVAILABLE WELLSPRINGS</h3><p>During each scene, your surroundings grant you <strong>two different wellsprings. </strong>(See @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules})</p><p>When you perform an <strong>invocation</strong>, choose one option you have access to, then apply its effects to <strong>one</strong> creature you can see.</p>",
+      "description": "<h3>DETERMINING AVAILABLE WELLSPRINGS</h3><p>During each scene, your surroundings grant you <strong>two different wellsprings.</strong> (See @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules})</p><p>When you perform an <strong>invocation</strong>, choose one option you have access to, then apply its effects to <strong>one</strong> creature you can see.</p>",
       "air": {
         "basic": {
           "name": "Aero Blast",
-          "description": "<p><span class=\"fontstyle0\">You deal <strong>20 air damage</strong> to the target.</span></p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(20,25,30) air]{Air Damage}</span></p>"
+          "description": "<p>You deal <strong>20 air damage</strong> to the target.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(20,25,30) air]{Air Damage}</p>"
         },
         "advanced": {
           "name": "Aero Hex",
-          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers <strong>5 extra damage</strong> from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p><hr><p><span class=\"fontstyle0\"><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.0gA7OpsSZiQoLM79]{Aero Hex} or @EFFECT[Compendium.projectfu.skills.Item.0gA7OpsSZiQoLM79]{Aero Hex (Wellspring Expansion)}</span></p>"
+          "description": "<p>Until the start of your next turn, the target suffers <strong>5 extra damage</strong> from all sources that deal <strong>bolt</strong> and <strong>fire</strong> damage.</p><hr><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.0gA7OpsSZiQoLM79]{Aero Hex} or @EFFECT[Compendium.projectfu.skills.Item.0gA7OpsSZiQoLM79]{Aero Hex (Wellspring Expansion)}</p>"
         },
         "superior1": {
           "name": "Breeze",
-          "description": "<p>The target <strong>recovers 30 Hit Points.</strong></p><hr><p><strong>Target Recovers:</strong> <span class=\"fontstyle0\">@GAIN[&step(30,40,50) hp]{Recover HP}</span></p>"
+          "description": "<p>The target <strong>recovers 30 Hit Points.</strong></p><hr><p><strong>Target Recovers:</strong> @GAIN[&step(30,40,50) hp]{Recover HP}</p>"
         },
         "superior2": {
           "name": "Twister",
-          "description": "<p>You deal <strong>10 air</strong> <strong>damage</strong> to the target, and they <strong>suffer</strong> <strong>dazed</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(10,15,20) air]{Air Damage}<strong> </strong>@EFFECT[dazed]</span></p>"
+          "description": "<p>You deal <strong>10 air</strong> <strong>damage</strong> to the target, and they <strong>suffer</strong> <strong>dazed</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(10,15,20) air]{Air Damage} @EFFECT[dazed]</p>"
         }
       },
       "earth": {
         "basic": {
           "name": "Geo Blast",
-          "description": "<p>You deal <strong>20</strong> <strong>earth</strong> damage to the target.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(20,25,30) earth]{Earth Damage}</span></p>"
+          "description": "<p>You deal <strong>20</strong> <strong>earth</strong> damage to the target.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(20,25,30) earth]{Earth Damage}</p>"
         },
         "advanced": {
           "name": "Geo Hex",
-          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</span></p><hr><p><span class=\"fontstyle0\"><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.XneKAK7lEd344SDX]{Geo Hex} or @EFFECT[Compendium.projectfu.skills.Item.bBrv53NViJtpvdol]{Geo Hex (Wellspring Expansion)}</span></p>"
+          "description": "<p>Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</p><hr><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.XneKAK7lEd344SDX]{Geo Hex} or @EFFECT[Compendium.projectfu.skills.Item.bBrv53NViJtpvdol]{Geo Hex (Wellspring Expansion)}</p>"
         },
         "superior1": {
           "name": "Growth",
-          "description": "<p>The target <strong>recovers 30 Hit Points.</strong></p><hr><p><strong>Target Recovers:</strong> <span class=\"fontstyle0\">@GAIN[&step(30,40,50) hp]{Recover HP}</span></p>"
+          "description": "<p>The target <strong>recovers 30 Hit Points.</strong></p><hr><p><strong>Target Recovers:</strong> @GAIN[&step(30,40,50) hp]{Recover HP}</p>"
         },
         "superior2": {
           "name": "Quicksand",
-          "description": "<p>You deal<strong> 10 earth damage</strong> to the target, and they <strong>suffer</strong> <strong>slow</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(10,15,20) earth]{Earth Damage} @EFFECT[slow]</span></p>"
+          "description": "<p>You deal <strong>10 earth damage</strong> to the target, and they <strong>suffer</strong> <strong>slow</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(10,15,20) earth]{Earth Damage} @EFFECT[slow]</p>"
         }
       },
       "fire": {
         "basic": {
           "name": "Pyro Blast",
-          "description": "<p>You deal <strong>20</strong> <strong>fire</strong> <strong>damage</strong> to the target.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(20,25,30) fire]{Fire Damage}</span></p>"
+          "description": "<p>You deal <strong>20</strong> <strong>fire</strong> <strong>damage</strong> to the target.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(20,25,30) fire]{Fire Damage}</p>"
         },
         "advanced": {
           "name": "Pyro Hex",
-          "description": "<p>Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><span class=\"fontstyle0\"><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.P35wmm9xOT0bnImB]{Pyro Hex} or </span>@EFFECT[Compendium.projectfu.skills.Item.4sBRI5eerg9x3eXM]{Pyro Hex (Wellspring Expansion)}</p>"
+          "description": "<p>Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.P35wmm9xOT0bnImB]{Pyro Hex} or @EFFECT[Compendium.projectfu.skills.Item.4sBRI5eerg9x3eXM]{Pyro Hex (Wellspring Expansion)}</p>"
         },
         "superior1": {
           "name": "Burst",
-          "description": "<p>You deal<strong> 10</strong> <strong>fire damage</strong> to the target, and they <strong>suffer</strong> <strong>shaken</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(10,15,20) fire]{Fire Damage} @EFFECT[shaken]</span></p>"
+          "description": "<p>You deal <strong>10</strong> <strong>fire damage</strong> to the target, and they <strong>suffer</strong> <strong>shaken</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(10,15,20) fire]{Fire Damage} @EFFECT[shaken]</p>"
         },
         "superior2": {
           "name": "Smoke",
-          "description": "<p>The target <strong>loses 20 Mind Points</strong> and also <strong>suffers</strong> <strong>weak</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@LOSS[&step(20,30,40) mp]{Lose MP} @EFFECT[weak]</span></p>"
+          "description": "<p>The target <strong>loses 20 Mind Points</strong> and also <strong>suffers</strong> <strong>weak</strong>.</p><hr><p><strong>Target Suffers:</strong> @LOSS[&step(20,30,40) mp]{Lose MP} @EFFECT[weak]</p>"
         }
       },
       "lightning": {
         "basic": {
           "name": "Electro Blast",
-          "description": "<p>You deal <strong>20</strong> <strong>bolt</strong> <strong>damage</strong> to the target.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(20,25,30) bolt]{Bolt Damage}</span></p>"
+          "description": "<p>You deal <strong>20</strong> <strong>bolt</strong> <strong>damage</strong> to the target.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(20,25,30) bolt]{Bolt Damage}</p>"
         },
         "advanced": {
           "name": "Electro Hex",
-          "description": "<p>Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p><hr><p><span class=\"fontstyle0\"><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.Aotszm4Q25ys3Mbv]{Electro Hex} or @EFFECT[Compendium.projectfu.skills.Item.fTW9GoIRmH9L0KkI]{Electro Hex (Wellspring Expansion)}</span></p>"
+          "description": "<p>Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p><hr><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.Aotszm4Q25ys3Mbv]{Electro Hex} or @EFFECT[Compendium.projectfu.skills.Item.fTW9GoIRmH9L0KkI]{Electro Hex (Wellspring Expansion)}</p>"
         },
         "superior1": {
           "name": "Static",
-          "description": "<p>You deal <strong>10</strong> <strong>bolt damage</strong> to the target, and they <strong>suffer</strong> <strong>slow</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(10,15,20) bolt]{Bolt Damage} @EFFECT[slow]</span></p>"
+          "description": "<p>You deal <strong>10</strong> <strong>bolt damage</strong> to the target, and they <strong>suffer</strong> <strong>slow</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(10,15,20) bolt]{Bolt Damage} @EFFECT[slow]</p>"
         },
         "superior2": {
           "name": "Thunder",
-          "description": "<p>The target <strong>loses 20 Mind Points</strong> and also <strong>suffers</strong> <strong>dazed</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@LOSS[&step(20,30,40) mp]{Lose MP} @EFFECT[dazed]</span></p>"
+          "description": "<p>The target <strong>loses 20 Mind Points</strong> and also <strong>suffers</strong> <strong>dazed</strong>.</p><hr><p><strong>Target Suffers:</strong> @LOSS[&step(20,30,40) mp]{Lose MP} @EFFECT[dazed]</p>"
         }
       },
       "water": {
         "basic": {
           "name": "Hydro Blast",
-          "description": "<p>You deal <strong>20</strong> <strong>ice</strong> damage to the target.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(20,25,30) ice]{Ice Damage}</span></p>"
+          "description": "<p>You deal <strong>20</strong> <strong>ice</strong> damage to the target.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(20,25,30) ice]{Ice Damage}</p>"
         },
         "advanced": {
           "name": "Hydro Hex",
-          "description": "<p>Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p><hr><p><span class=\"fontstyle0\"><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.XpYrgDtYILIGS7Sf]{Hydro Hex} or @EFFECT[Compendium.projectfu.skills.Item.Th7FXd7ohgY8Rfx7]{Hydro Hex (Wellspring Expansion)}</span></p>"
+          "description": "<p>Until the start of your next turn, the target <strong>suffers 5 extra damage</strong> from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p><hr><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.XpYrgDtYILIGS7Sf]{Hydro Hex} or @EFFECT[Compendium.projectfu.skills.Item.Th7FXd7ohgY8Rfx7]{Hydro Hex (Wellspring Expansion)}</p>"
         },
         "superior1": {
           "name": "Chill",
-          "description": "<p>The target loses <strong>20 Mind Points</strong> and also <strong>suffers</strong> <strong>shaken</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@LOSS[&step(20,30,40) mp]{Lose MP} @EFFECT[shaken]</span></p>"
+          "description": "<p>The target loses <strong>20 Mind Points</strong> and also <strong>suffers</strong> <strong>shaken</strong>.</p><hr><p><strong>Target Suffers:</strong> @LOSS[&step(20,30,40) mp]{Lose MP} @EFFECT[shaken]</p>"
         },
         "superior2": {
           "name": "Frostbite",
-          "description": "<p>You deal <strong>10</strong> <strong>ice damage</strong> to the target, and they <strong>suffer</strong> <strong>weak</strong>.</p><hr><p><strong>Target Suffers:</strong> <span class=\"fontstyle0\">@DMG[&step(10,15,20) ice]{Ice Damage} @EFFECT[weak]</span></p>"
+          "description": "<p>You deal <strong>10</strong> <strong>ice damage</strong> to the target, and they <strong>suffer</strong> <strong>weak</strong>.</p><hr><p><strong>Target Suffers:</strong> @DMG[&step(10,15,20) ice]{Ice Damage} @EFFECT[weak]</p>"
         }
       }
     },
@@ -123,7 +123,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1774637482473,
+    "modifiedTime": 1775522629602,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

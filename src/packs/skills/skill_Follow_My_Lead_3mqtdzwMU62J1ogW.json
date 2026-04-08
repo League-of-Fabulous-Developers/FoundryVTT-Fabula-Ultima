@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you may spend <strong>10 MP</strong>. If you do, choose one ally you can see towards whom you have a Bond of <strong>affection</strong>: apply the benefits of the <strong>dance</strong> to that ally as well as yourself (the benefits still last until the start of <strong>your</strong> next turn).</p>",
+    "description": "<p>When you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn\", you may spend 10 Mind Points. If you do, choose one ally you can see towards whom you have a Bond of <strong>affection</strong>: apply the benefits of the <strong>dance</strong> to that ally as well as yourself (the benefits still last until the start of <strong>your</strong> next turn).</p>",
     "isFavored": {
       "value": false
     },
@@ -123,6 +123,11 @@
     },
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -142,7 +147,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706560181599,
-    "modifiedTime": 1770277220386,
+    "modifiedTime": 1775525487608,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

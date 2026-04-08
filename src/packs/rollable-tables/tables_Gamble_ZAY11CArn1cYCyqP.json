@@ -2,7 +2,7 @@
   "name": "Gamble",
   "_id": "ZAY11CArn1cYCyqP",
   "img": "icons/commodities/currency/coin-embossed-skull-gold.webp",
-  "description": "<p>You summon a vortex of chaotic energy. Roll your current <strong>Willpower </strong>die once for every 10 Mind Points spent while casting this spell, then keep the <strong>single</strong> die you prefer: the number on that die determines the effects of this spell.</p>",
+  "description": "<p>You summon a vortex of chaotic energy. Roll your current <strong>Willpower</strong> die once for every 10 Mind Points spent while casting this spell, then keep the <strong>single</strong> die you prefer: the number on that die determines the effects of this spell.</p>",
   "results": [
     {
       "type": "text",

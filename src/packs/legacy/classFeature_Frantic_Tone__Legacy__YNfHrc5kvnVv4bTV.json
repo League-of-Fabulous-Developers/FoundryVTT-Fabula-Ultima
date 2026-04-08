@@ -9,7 +9,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>You deal an amount of @DMG[($wlp*2)+&amp;step(0,10,20) @DATA[key.type]]<strong> </strong>damage to each target.</p>"
+      "description": "<p>You deal an amount of @DMG[($wlp*2)+&amp;step(0,10,20) @DATA[key.type]] damage to each target.</p>"
     },
     "source": "FUHF139",
     "fuid": "frantic-tone-legacy"

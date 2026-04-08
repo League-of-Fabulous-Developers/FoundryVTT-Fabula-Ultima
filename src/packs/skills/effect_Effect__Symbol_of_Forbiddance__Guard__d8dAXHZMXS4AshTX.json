@@ -51,7 +51,7 @@
         }
       },
       "changes": [],
-      "description": "<p>When you perform the <strong>Guard </strong>action while bearing the <strong>Symbol of Forbiddance</strong>, you lose 5 HP and MP (<strong>before</strong> performing that action). Both amounts increase to 10 if the symbolist is <strong>level 20 or higher</strong>, or to 20 if they are <strong>level 40 or higher</strong>.</p>",
+      "description": "<p>When you perform the <strong>Guard</strong> action while bearing the <strong>Symbol of Forbiddance</strong>, you lose 5 HP and MP (<strong>before</strong> performing that action). Both amounts increase to 10 if the symbolist is <strong>level 20 or higher</strong>, or to 20 if they are <strong>level 40 or higher</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

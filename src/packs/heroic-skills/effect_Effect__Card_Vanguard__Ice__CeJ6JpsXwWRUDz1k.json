@@ -54,7 +54,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain Resistance to <strong>ice </strong>until the end of the current turn.</p>",
+      "description": "<p>You gain Resistance to <strong>ice</strong> until the end of the current turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

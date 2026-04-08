@@ -933,7 +933,7 @@
 		"ChatApplyDamageNormal": "<strong>{actor}</strong> sofreu <strong>{type}</strong> e perdeu <strong>{damage} {resource}</strong> de <strong>{from}</strong>",
 		"ChatApplyDamageResistant": "<strong>{actor}</strong> era <strong>resistente</strong> a <strong>{type}</strong> e perdeu <strong>{damage} {resource}</strong> de <strong>{from}</strong>",
 		"ChatApplyDamageResistantIgnored": "<strong>{actor}</strong> recebeu <strong>{damage} {type}</strong> de dano de <strong>{from} (Resistência ignorada)</strong>",
-		"ChatApplyDamageImmune": "<strong>{actor}</strong> era <strong>imune</strong> a <strong>{type}</strong> e sofreu <strong>{damage}</strong> de dano de <strong>{from} </strong>",
+		"ChatApplyDamageImmune": "<strong>{actor}</strong> era <strong>imune</strong> a <strong>{type}</strong> e sofreu <strong>{damage}</strong> de dano de <strong>{from}</strong> ",
 		"ChatApplyDamageImmuneIgnored": "<strong>{actor}</strong> sofreu <strong>{damage} {type}</strong> de dano de <strong>{from} (Imunidade ignorada)</strong>",
 		"ChatApplyDamageAbsorb": "<strong>{actor} absorveu {type}</strong> dano de <strong>{from}</strong> e foi curado em <strong>{damage}</strong> Pvs",
 		"ChatApplyDamageNone": "<strong>{actor}</strong> não recebeu dano algum de <strong>{from}</strong>.",

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">If the creature bearing this </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">symbol </span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">is about to be reduced to 0 Hit Points, they may destroy this <strong>symbol</strong>: if they do, they are instead reduced to exactly 1 Hit Point. </span></p><hr /><p><strong>You Spend: </strong>@LOSS[2 ip]<br /><strong>Target Receives: </strong><span style=\"font-family:'PT Sans Narrow', sans-serif\">@EFFECT[Compendium.projectfu.skills.PKduzohKSvwQRaa1]</span></p>"
+      "description": "<p>If the creature bearing this symbol is about to be reduced to 0 Hit Points, they may destroy this <strong>symbol</strong>: if they do, they are instead reduced to exactly 1 Hit Point.</p><hr /><p><strong>You Spend:</strong> @LOSS[2 ip]<br /><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.PKduzohKSvwQRaa1]</p>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-rebirth"
@@ -33,7 +33,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1710177955124,
-    "modifiedTime": 1770635315581,
+    "modifiedTime": 1775522713579,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

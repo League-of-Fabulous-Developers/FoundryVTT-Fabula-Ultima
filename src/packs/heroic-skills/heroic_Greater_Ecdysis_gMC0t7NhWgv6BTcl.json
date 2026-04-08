@@ -10,7 +10,7 @@
     "summary": {
       "value": "Ecdysis allows you to end status effects and spells."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered the <strong>Mutant</strong> Class.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options:</p><ul><li><p>You recover from all status effects.</p></li><li><p>If you are affected by one or more spells with a <strong>duration </strong>of “Scene”, you are no longer affected by any of those spells.</p></li></ul>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Mutant</strong> Class.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis} Skill, you may also choose one or both options:</p><ul><li><p>You recover from all status effects.</p></li><li><p>If you are affected by one or more spells with a <strong>duration</strong> of “Scene”, you are no longer affected by any of those spells.</p></li></ul>",
     "isFavored": {
       "value": false
     },

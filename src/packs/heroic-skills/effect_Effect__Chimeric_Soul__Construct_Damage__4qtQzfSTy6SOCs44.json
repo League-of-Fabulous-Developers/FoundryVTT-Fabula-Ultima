@@ -60,7 +60,7 @@
           "priority": null
         }
       ],
-      "description": "<p>When you deal <strong>earth </strong>or <strong>poison</strong> damage, you deal 5 extra damage. This lasts until the end of the scene, or until you cast a Chimerist spell again.</p>",
+      "description": "<p>When you deal <strong>earth</strong> or <strong>poison</strong> damage, you deal 5 extra damage. This lasts until the end of the scene, or until you cast a Chimerist spell again.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

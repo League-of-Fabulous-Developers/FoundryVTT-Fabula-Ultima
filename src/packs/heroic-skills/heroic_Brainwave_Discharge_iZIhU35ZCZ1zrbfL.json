@@ -192,7 +192,7 @@
       "_id": "0Fos8RmUb79tMvRz",
       "type": "base",
       "changes": [],
-      "description": "<p>When you have the <strong>Brainwave Discharge</strong> Heroic Skill target a single enemy, it deals 30 damage instead.</p><p>The amount of damage the <strong>Brainwave Discharge </strong>Heroic Skill deals increase by 10 at <strong>level 20</strong>, or 20 at <strong>level 40</strong>.</p>",
+      "description": "<p>When you have the <strong>Brainwave Discharge</strong> Heroic Skill target a single enemy, it deals 30 damage instead.</p><p>The amount of damage the <strong>Brainwave Discharge</strong> Heroic Skill deals increase by 10 at <strong>level 20</strong>, or 20 at <strong>level 40</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

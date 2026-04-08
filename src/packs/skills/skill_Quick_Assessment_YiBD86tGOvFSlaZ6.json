@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option:</p><ul><li><p>Choose a creature you can see and the GM reveals one of their <strong>Traits</strong>.</p></li><li><p>Name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity </strong>towards that damage type.</p></li></ul>",
+    "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option:</p><ul><li><p>Choose a creature you can see and the GM reveals one of their <strong>Traits</strong>.</p></li><li><p>Name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity</strong> towards that damage type.</p></li></ul>",
     "isFavored": {
       "value": false
     },

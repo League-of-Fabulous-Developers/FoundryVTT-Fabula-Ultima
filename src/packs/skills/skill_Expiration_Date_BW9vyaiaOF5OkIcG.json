@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>When a <strong>potion</strong> or <strong>delicacy</strong> you created that <strong>does not</strong> deal damage causes one or more creatures to recover Hit Points, you may instead have it deal <strong>poison</strong> damage equal to <strong>【half your level + (SL × 10)】 </strong>to each of those creatures. This damage type cannot change, and it is <strong>halved</strong> if you are dealing damage to <strong>two or more creatures</strong>.</span></p><hr /><p><strong>Target Suffers:</strong> @DMG[($cl/2)+($sl*10) poison]{Level/2 + (SL × 10) Poison (Single)} or @DMG[(($cl/2)+($sl*10)/2) poison]{Level/2 + (SL × 10) /2 Poison (Multi)}</p>",
+    "description": "<p><span>When a <strong>potion</strong> or <strong>delicacy</strong> you created that <strong>does not</strong> deal damage causes one or more creatures to recover Hit Points, you may instead have it deal <strong>poison</strong> damage equal to <strong>【half your level + (SL × 10)】</strong> to each of those creatures. This damage type cannot change, and it is <strong>halved</strong> if you are dealing damage to <strong>two or more creatures</strong>.</span></p><hr /><p><strong>Target Suffers:</strong> @DMG[($cl/2)+($sl*10) poison]{Level/2 + (SL × 10) Poison (Single)} or @DMG[(($cl/2)+($sl*10)/2) poison]{Level/2 + (SL × 10) /2 Poison (Multi)}</p>",
     "isFavored": {
       "value": false
     },
@@ -86,7 +86,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1771837400557,
+    "modifiedTime": 1775594609953,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

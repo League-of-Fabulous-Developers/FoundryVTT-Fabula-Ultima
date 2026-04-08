@@ -20,7 +20,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+          "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped,</strong> offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -123,7 +123,7 @@
                 "priority": null
               }
             ],
-            "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
+            "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped,</strong> offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
             "transfer": true,
             "statuses": [],
             "flags": {
@@ -425,7 +425,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>Each time you take this Skill, you learn a <strong>dance</strong> (see <strong>High Fantasy</strong>, page <strong>144</strong>).</p><p>On your turn during a conflict scene, if you have no <strong>martial armor</strong> equipped, you may spend 10 Mind Points to perform a dance you have learned. This doesn’t require an action, but it can only be done <strong>before or after</strong> an action, and only <strong>once per turn</strong>. If you already performed a <strong>different dance</strong> during your previous turn in this scene, the cost of the new dance is reduced to 5 Mind Points.</p><p>Some dances are <strong>instantaneous</strong> and resolve immediately, while others have effects that last <strong>until the start of your next turn</strong>.</p><hr /><ul><li><p>For <strong>dance</strong> breakdown and a list of Dances, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}</p></li><li><p><strong>You Spend (reduced)</strong>: @LOSS[5 mp]</p></li></ul>",
+          "description": "<p>Each time you take this Skill, you learn a <strong>dance</strong> (see <strong>High Fantasy</strong>, page <strong>144</strong>).</p><p>On your turn during a conflict scene, if you have no <strong>martial armor</strong> equipped, you may spend 10 Mind Points to perform a dance you have learned. This doesn't require an action, but it can only be done <strong>before or after</strong> an action, and only <strong>once per turn</strong>. If you already performed a <strong>different dance</strong> during your previous turn in this scene, the cost of the new dance is reduced to 5 Mind Points.</p><p>Some dances are <strong>instantaneous</strong> and resolve immediately, while others have effects that last <strong>until the start of your next turn</strong>.</p><hr /><ul><li><p>For <strong>dance</strong> breakdown and a list of Dances, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}</p></li><li><p><strong>You Spend (reduced)</strong>: @LOSS[5 mp]</p></li></ul>",
           "showTitleCard": {
             "value": false
           },

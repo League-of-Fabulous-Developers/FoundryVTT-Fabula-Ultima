@@ -43,6 +43,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -66,7 +71,7 @@
           "priority": 51
         }
       ],
-      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum. </span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">When you perform an attack, you may have that attack gain the </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">multi (any number of targets)</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">not </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">considered a willing dismiss).</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p>",
+      "description": "<p>Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum. </p><p>When you perform an attack, you may have that attack gain the <strong>multi (any number of targets)</strong> property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is <strong>not</strong> considered a willing dismiss). </p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -85,7 +90,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725597746753,
-        "modifiedTime": 1771045154364,
+        "modifiedTime": 1775522052403,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

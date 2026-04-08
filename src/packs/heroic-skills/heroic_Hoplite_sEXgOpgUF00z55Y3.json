@@ -9,7 +9,7 @@
     "summary": {
       "value": "Strenghten attacks when you fight with weapon and shield."
     },
-    "description": "<p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Guardian</strong>.</p><hr /><p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot </strong>be combined with <strong>custom weapons </strong>with the <strong>defense boost</strong> customization, <strong>nor </strong>with the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill.</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Guardian</strong>.</p><hr /><p>As long as you have a <strong>weapon</strong> equipped in your <strong>main hand slot</strong> and a <strong>shield</strong> equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot</strong> be combined with <strong>custom weapons</strong> with the <strong>defense boost</strong> customization, <strong>nor</strong> with the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -139,7 +139,7 @@
           "priority": null
         }
       ],
-      "description": "<p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p>",
+      "description": "<p>As long as you have a <strong>weapon</strong> equipped in your <strong>main hand slot</strong> and a <strong>shield</strong> equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {

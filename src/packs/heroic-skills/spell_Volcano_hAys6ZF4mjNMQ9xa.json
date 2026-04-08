@@ -234,7 +234,7 @@
       "_id": "zV3cnqvXYnDpSY9s",
       "type": "base",
       "changes": [],
-      "description": "<p>When you have the <strong>Volcano </strong>spell target a single creature, it deals 50 damage instead.</p><p>The amount of damage the <strong>Volcano </strong>spell deals increase by 5 at <strong>level 20</strong>, or 10 at <strong>level 40</strong>.</p>",
+      "description": "<p>When you have the <strong>Volcano</strong> spell target a single creature, it deals 50 damage instead.</p><p>The amount of damage the <strong>Volcano</strong> spell deals increase by 5 at <strong>level 20</strong>, or 10 at <strong>level 40</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

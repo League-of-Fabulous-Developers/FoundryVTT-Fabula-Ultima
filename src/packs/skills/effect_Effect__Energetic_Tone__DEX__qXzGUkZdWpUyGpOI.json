@@ -47,7 +47,7 @@
       "_id": "rF8QzuzEXc3LD2sB",
       "type": "base",
       "changes": [],
-      "description": "<p>Until the start of the <strong>chanter's</strong> next turn, when you <strong>succeed</strong> on a <strong>Check</strong> that includes<strong> Dexterity </strong>and that <strong>Check</strong> allows you to advance or turn back a Clock, you may <strong>fill or erase</strong> an additional section of that Clock.</p>",
+      "description": "<p>Until the start of the <strong>chanter's</strong> next turn, when you <strong>succeed</strong> on a <strong>Check</strong> that includes <strong>Dexterity</strong> and that <strong>Check</strong> allows you to advance or turn back a Clock, you may <strong>fill or erase</strong> an additional section of that Clock.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose another creature that is able to see you. That creature loses an amount of Mind Points equal to your current <strong>Dexterity</strong> die size.</p><hr /><p><strong>Target Loses: </strong>@LOSS[$dex mp]{DEX MP}</p>",
+      "description": "<p>Choose another creature that is able to see you. That creature loses an amount of Mind Points equal to your current <strong>Dexterity</strong> die size.</p><hr /><p><strong>Target Loses:</strong> @LOSS[$dex mp]{DEX MP}</p>",
       "duration": "instant"
     },
     "source": "FUHF144",

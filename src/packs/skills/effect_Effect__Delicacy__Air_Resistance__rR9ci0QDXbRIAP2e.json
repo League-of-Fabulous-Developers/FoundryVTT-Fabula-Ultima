@@ -1,0 +1,111 @@
+{
+  "folder": "Pv53L2hWT3GPxapJ",
+  "name": "Effect: Delicacy (Air Resistance)",
+  "type": "effect",
+  "_id": "rR9ci0QDXbRIAP2e",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "system": {
+    "fuid": "effect-delicacy-air-resistance",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Delicacy (Air Resistance)",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+      "origin": "Compendium.projectfu.skills.Item.rR9ci0QDXbRIAP2e",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "pxED105mCNWs0SLA",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain Resistance to <strong>air</strong> damage until the end of the <strong>gourmet's</strong> next turn.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Delicacy (Air Resistance)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.rR9ci0QDXbRIAP2e",
+            "effectUuid": null,
+            "fuid": "effect-delicacy-air-resistance"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775543681579,
+        "modifiedTime": 1775543801051,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!rR9ci0QDXbRIAP2e.pxED105mCNWs0SLA"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1775543607897,
+    "modifiedTime": 1775543794362,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!rR9ci0QDXbRIAP2e"
+}

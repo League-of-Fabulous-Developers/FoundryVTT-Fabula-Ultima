@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong>, if the target is an NPC).</p>",
+    "description": "<p>The target may perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong>, if the target is an NPC).</p>",
     "class": {
       "value": "NPC"
     },
@@ -108,21 +108,27 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [],
+      "duration": {
+        "interval": null
+      }
     },
     "traits": []
   },
   "effects": [],
   "flags": {
     "core": {},
-    "cf": {}
+    "cf": {},
+    "projectfu": {
+      "favorite": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1775513244570,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

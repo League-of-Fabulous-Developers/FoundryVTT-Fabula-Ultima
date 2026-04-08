@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may perform Rituals whose effects fall within the <strong>Spiritism</strong> discipline.</p><p>Spiritism Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Spiritism</strong> discipline.</p><p><strong>Spiritism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><p>For <strong>Rituals</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.IAF8g9kqFz87zfDr]{Ritual Rules} or see <strong>Core Rulebook,</strong> page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "ritual-spiritism",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -182,7 +187,7 @@
       "_id": "9yy6BFLcB9551EvD",
       "type": "base",
       "changes": [],
-      "description": "<p>Performing the <strong>Ritual Spiritism </strong>Skill allows you to perform a <strong>Ritual</strong>.</p>",
+      "description": "<p>Performing the <strong>Ritual Spiritism</strong> Skill allows you to perform a <strong>Ritual</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -219,7 +224,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706507916684,
-    "modifiedTime": 1770609129420,
+    "modifiedTime": 1775596295564,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

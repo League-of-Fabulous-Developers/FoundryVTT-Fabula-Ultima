@@ -9,7 +9,7 @@
     "summary": {
       "value": "Improve allies’ critical success chance with songs."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Chanter </strong>Class.</p><hr /><p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn:</p><p>Your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Chanter</strong> Class.</p><hr /><p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn:</p><p>Your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
     "isFavored": {
       "value": false
     },

@@ -92,7 +92,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>You may perform Rituals whose effects fall within the <strong>Entropism </strong>discipline.</p><p><strong>Entropism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+          "description": "<p>You may perform Rituals whose effects fall within the <strong>Entropism</strong> discipline.</p><p><strong>Entropism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -306,7 +306,7 @@
           "summary": {
             "value": ""
           },
-          "description": "<p>After you suffer damage, you may immediately recover <strong>【SL × 2】 </strong>Mind Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[2*$sl mp]{SL × 2 MP}</p></li></ul>",
+          "description": "<p>After you suffer damage, you may immediately recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[2*$sl mp]{SL × 2 MP}</p></li></ul>",
           "showTitleCard": {
             "value": false
           },

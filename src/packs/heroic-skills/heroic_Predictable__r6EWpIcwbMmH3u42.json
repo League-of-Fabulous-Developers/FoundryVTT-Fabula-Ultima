@@ -9,7 +9,7 @@
     "summary": {
       "value": "Force an enemy to spend MP to perform specific actions."
     },
-    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Loremaster</strong> Class.</span></p><hr /><p><span>During a conflict, you may use an action and spend 20 Mind Points to anticipate the upcoming moves of a creature you can see, as long as you know <strong>two or more</strong> of that creature's Traits. If you do so, choose one type of action among the following: <strong>Attack, Guard, Objective, Spell, </strong>or<strong> Skill</strong>. Until the start of your next turn, the creature must spend 20 Mind Points whenever they wish to perform that action. If they can't, they must perform a different action.</span></p>",
+    "description": "<p><span><strong>Requirements:</strong> you must have mastered the <strong>Loremaster</strong> Class.</span></p><hr /><p><span>During a conflict, you may use an action and spend 20 Mind Points to anticipate the upcoming moves of a creature you can see, as long as you know <strong>two or more</strong> of that creature's Traits. If you do so, choose one type of action among the following: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. Until the start of your next turn, the creature must spend 20 Mind Points whenever they wish to perform that action. If they can't, they must perform a different action.</span></p>",
     "isFavored": {
       "value": false
     },

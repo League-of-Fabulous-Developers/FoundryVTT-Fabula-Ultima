@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you acquire this Skill, you gain a <strong>personal vehicle</strong> with a <strong>frame</strong> of your choice and <strong>three different modules</strong> of your choice (see <strong>Techno Fantasy Atlas</strong>, page <strong>160</strong>).</p><p>Whenever you acquire this Skill again, you acquire <strong>two additional modules</strong> of your choice.</p><hr /><p>For <strong>vehicle</strong> breakdown and a list of Vehicle Modules, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Vehicle Rules}<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG.JournalEntryPage.7R1h5R48OHr4m7hq]{Pilot VTT Instructions}</p>",
+    "description": "<p>When you acquire this Skill, you gain a <strong>personal vehicle</strong> with a <strong>frame</strong> of your choice and <strong>three different modules</strong> of your choice.</p><p>Whenever you acquire this Skill again, you acquire <strong>two additional modules</strong> of your choice.</p><hr /><p>For <strong>vehicle</strong> breakdown and a list of <strong>Vehicle Modules</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Pilot Rules} or see <strong>Techno Fantasy Atlas</strong>, page <strong>160</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG.JournalEntryPage.7R1h5R48OHr4m7hq]{Pilot VTT Instructions}</p>",
     "isFavored": {
       "value": false
     },
@@ -118,6 +118,11 @@
     "fuid": "personal-vehicle",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -137,7 +142,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711431286236,
-    "modifiedTime": 1770453034034,
+    "modifiedTime": 1775595879126,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

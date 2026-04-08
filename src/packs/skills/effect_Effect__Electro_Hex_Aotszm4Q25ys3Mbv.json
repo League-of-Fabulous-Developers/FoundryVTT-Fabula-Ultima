@@ -44,6 +44,11 @@
             "id": "",
             "name": "",
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -61,7 +66,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">Until the start of the invoker's next turn, you suffer 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>earth</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p>",
+      "description": "<p>Until the start of the <strong>invoker's</strong> next turn, you suffer 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -75,7 +80,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744520420133,
-        "modifiedTime": 1770633269073,
+        "modifiedTime": 1775522890152,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

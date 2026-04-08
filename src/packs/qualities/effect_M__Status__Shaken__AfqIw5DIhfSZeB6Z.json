@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you hit one or more creatures with an offensive spell, each of them suffers<strong> </strong>@EFFECT[shaken].</p>",
+      "description": "<p>When you hit one or more creatures with an offensive spell, each of them suffers @EFFECT[shaken].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Remove spells and status effects from creatures."
     },
-    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist </strong>Class.</p><hr /><p>You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a <strong>duration </strong>of “Scene” that were affecting them. </p><hr /><p><strong>You Spend for Each Creature:</strong> @LOSS[5 mp]</p>",
+    "description": "<p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist</strong> Class.</p><hr /><p>You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a <strong>duration</strong> of “Scene” that were affecting them. </p><hr /><p><strong>You Spend for Each Creature:</strong> @LOSS[5 mp]</p>",
     "isFavored": {
       "value": false
     },

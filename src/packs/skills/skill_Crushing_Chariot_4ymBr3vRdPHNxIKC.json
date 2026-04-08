@@ -121,6 +121,11 @@
     "fuid": "crushing-chariot",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -262,7 +267,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706555533504,
-    "modifiedTime": 1770331797837,
+    "modifiedTime": 1775516300928,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

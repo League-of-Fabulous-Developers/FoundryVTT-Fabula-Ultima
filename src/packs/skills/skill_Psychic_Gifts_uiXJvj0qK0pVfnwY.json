@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>).</p><p>The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p><hr /><p>For <strong>gift</strong> breakdown, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}<br />For a list of <strong>Psychic Gifts</strong> refer to: @UUID[Compendium.projectfu.skills.Item.uiXJvj0qK0pVfnwY]<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p>",
+    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong>.</p><hr /><p>For <strong>gift</strong> breakdown and a list of <strong>Psychic Gifts</strong>, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Esper Rules} or see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>.<br />To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p>",
     "isFavored": {
       "value": false
     },
@@ -117,6 +117,11 @@
     "fuid": "psychic-gifts",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -234,7 +239,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711424945464,
-    "modifiedTime": 1771231100429,
+    "modifiedTime": 1775526838056,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

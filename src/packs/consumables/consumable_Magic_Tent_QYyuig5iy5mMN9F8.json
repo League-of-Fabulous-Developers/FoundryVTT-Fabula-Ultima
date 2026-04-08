@@ -9,7 +9,7 @@
     "summary": {
       "value": "Allows the entire group to rest while in the wilderness."
     },
-    "description": "<p>Allows the entire group to <strong>rest</strong> while in the wilderness. <span class=\"fontstyle0\">Cannot be used in settlements.</span></p>",
+    "description": "<p>Allows the entire group to <strong>rest</strong> while in the wilderness. Cannot be used in settlements.</p>",
     "isFavored": {
       "value": false
     },
@@ -43,7 +43,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706516284047,
-    "modifiedTime": 1771880496319,
+    "modifiedTime": 1775517604907,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

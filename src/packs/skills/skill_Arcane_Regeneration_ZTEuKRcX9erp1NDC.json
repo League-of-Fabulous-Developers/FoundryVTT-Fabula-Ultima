@@ -121,6 +121,11 @@
     "fuid": "arcane-regeneration",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -223,7 +228,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706494639713,
-    "modifiedTime": 1771046301951,
+    "modifiedTime": 1775510242309,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

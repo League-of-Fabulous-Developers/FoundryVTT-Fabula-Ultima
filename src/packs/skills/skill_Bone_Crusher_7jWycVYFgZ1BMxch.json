@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>dazed </strong>on each target hit by the attack.</p></li><li><p>Inflict <strong>weak</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
+    "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option:</p><ul><li><p>Inflict <strong>dazed</strong> on each target hit by the attack.</p></li><li><p>Inflict <strong>weak</strong> on each target hit by the attack.</p></li><li><p>Each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points.</p></li></ul><p>Describe your maneuver!</p>",
     "isFavored": {
       "value": false
     },
@@ -217,7 +217,7 @@
       "_id": "YkOEtHV4uwAnjQnW",
       "type": "base",
       "changes": [],
-      "description": "<p>When you hit one or more targets with a <strong>melee </strong>attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>dazed</strong>, <strong>weak</strong>, or <strong>lose MP</strong>.</p>",
+      "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose to have the targets suffer <strong>dazed</strong>, <strong>weak</strong>, or <strong>lose MP</strong>.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

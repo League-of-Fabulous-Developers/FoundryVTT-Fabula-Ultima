@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target suffers <strong>HR + 15 (choose type)</strong> damage. Then, you recover an amount of Hit Points equal to half the Hit Point loss they suffered.</p>",
+    "description": "<p>You deal <strong>【HR + 15】</strong> <strong>(choose type)</strong> damage to the target. Then, you recover an amount of Hit Points equal to half the Hit Point loss they suffered.</p>",
     "class": {
       "value": "NPC"
     },
@@ -111,7 +111,10 @@
       "type": "hp"
     },
     "effects": {
-      "entries": []
+      "entries": [],
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [],
@@ -127,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1690417015023,
-    "modifiedTime": 1770872387812,
+    "modifiedTime": 1775513129812,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

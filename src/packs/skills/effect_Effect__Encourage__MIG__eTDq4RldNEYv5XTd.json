@@ -53,7 +53,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You treat your <strong>Might </strong>as one die size higher until the start of the orator's next turn.</p>",
+      "description": "<p>You treat your <strong>Might</strong> as one die size higher until the start of the orator's next turn.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</span></p>",
+    "description": "<p><span>As long as you have <strong>no</strong> <strong>shields</strong> and <strong>no</strong> <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -121,6 +121,11 @@
     "fuid": "dodge",
     "targeting": {
       "rule": "self"
+    },
+    "effects": {
+      "duration": {
+        "interval": null
+      }
     }
   },
   "effects": [
@@ -145,7 +150,7 @@
           "priority": null
         }
       ],
-      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by<strong>【SL】</strong>. </span></p>",
+      "description": "<p>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by<strong>【SL】</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -193,7 +198,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706504745151,
-    "modifiedTime": 1770454688937,
+    "modifiedTime": 1775595983049,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

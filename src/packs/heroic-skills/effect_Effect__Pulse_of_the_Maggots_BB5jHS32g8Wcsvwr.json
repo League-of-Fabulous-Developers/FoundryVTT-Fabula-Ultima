@@ -72,7 +72,7 @@
           "priority": null
         }
       ],
-      "description": "<p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark </strong>and <strong>poison </strong>damage, Resistance to <strong>physical </strong>damage, and Vulnerability to <strong>light </strong>damage. These Affinities <strong>overwrite </strong>any other Affinity for those damage types, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p>",
+      "description": "<p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark</strong> and <strong>poison</strong> damage, Resistance to <strong>physical</strong> damage, and Vulnerability to <strong>light</strong> damage. These Affinities <strong>overwrite</strong> any other Affinity for those damage types, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

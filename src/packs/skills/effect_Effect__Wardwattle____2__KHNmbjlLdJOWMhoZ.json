@@ -94,7 +94,7 @@
           "priority": null
         }
       ],
-      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong> 【5 + your Chloromancy SL】</strong> (after their attack was resolved).</p>",
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Chloromancy SL】</strong> (after their attack was resolved).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,

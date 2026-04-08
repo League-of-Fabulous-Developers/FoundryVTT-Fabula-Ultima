@@ -9,7 +9,7 @@
     "summary": {
       "value": "Fight with two weapons of different categories."
     },
-    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to weapons belonging to different Categories, even if one is a <strong>melee</strong> weapon and the other is a <strong>ranged </strong>weapon (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p><p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense and the <strong>second attack</strong> you perform during each of your turns deals 5 extra damage.</p><hr /><p><strong>You Receive For 2nd Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.n8smo5hXfdkEOI4e]</p>",
+    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to weapons belonging to different Categories, even if one is a <strong>melee</strong> weapon and the other is a <strong>ranged</strong> weapon (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p><p>As long as you have <strong>exactly two weapons equipped</strong> and they <strong>share no Categories with each other</strong>, you gain a +2 bonus to Defense and the <strong>second attack</strong> you perform during each of your turns deals 5 extra damage.</p><hr /><p><strong>You Receive For 2nd Attack:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.n8smo5hXfdkEOI4e]</p>",
     "isFavored": {
       "value": false
     },
@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Ace of Cards, Arcanist, Chanter, Chimerist, Commander, Dancer, Darkblade, Elementalist, Entropist, Esper, Floralist, Fury, Gourmet, Guardian, Invoker, Loremaster, Merchant, Mutant, Necromancer, Orator, Pilot, Rogue, Sharpshooter, Spiritist, Symbolist, Tinkerer, Wayfarer, Weaponmaster"
+      "value": ""
     },
     "useWeapon": {
       "accuracy": {
@@ -184,7 +184,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706583614340,
-    "modifiedTime": 1775356028642,
+    "modifiedTime": 1775526851661,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,
