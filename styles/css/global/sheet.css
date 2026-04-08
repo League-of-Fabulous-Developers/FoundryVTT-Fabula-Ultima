@@ -130,6 +130,15 @@
 		border: none;
 		background: none;
 	}
+
+	.resources {
+	}
+
+	.derived {
+		background: var(--pfu-color-app-item-highlight-fill);
+		border: var(--pfu-border-width, 1px) solid var(--pfu-color-app-border);
+		border-radius: var(--pfu-border-radius);
+	}
 }
 
 .projectfu .sheet-header .header-fields .header-start {
@@ -478,7 +487,7 @@
 .projectfu .resource-content input.fp-resource-inputs,
 .projectfu .resource-content input.up-resource-inputs {
 	color: #2b4a42;
-	font-size: 32px;
+	font-size: 24px;
 	font-weight: bold;
 	background-color: transparent;
 	border-color: transparent;

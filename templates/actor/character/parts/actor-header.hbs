@@ -1,31 +1,32 @@
 <header class="sheet-header">
 	<div class="profile desc" style="display: flex; align-items: stretch;">
 		<img class="profile-img"
-			src="{{ actor.img }}"
-			data-edit="img"
-			data-action="editImage"
-			data-tooltip="{{ actor.name }}" />
-		
+			 src="{{ actor.img }}"
+			 data-edit="img"
+			 data-action="editImage"
+			 data-tooltip="{{ actor.name }}" />
+
 		<div class="header-fields"
-			style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-			
+			 style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+
 			<!-- Start Header -->
 			<div class="header-start grid grid-6col" style="flex-shrink: 0;">
 				{{>"systems/projectfu/templates/actor/partials/actor-charname.hbs" actor=actor}}
 			</div>
 
 			<!-- Center Header -->
-			<div class="header-center grid grid-3col desc" style="flex-grow: 1;">
+			<div class="header-center flexcol gap-8" style="flex-grow: 1;">
 				{{!-- TODO: Simplify Resource partial --}}
-				{{!-- HP/MP/IP --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-point-bars.hbs" actor=actor}}
-
-				{{!-- Creature Statistics --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-creatures.hbs" actor=actor}}
+				{{!- HP/MP/IP/FP|UP --}}
+				<div class="resources flexrow flex-group-center">
+					{{>"systems/projectfu/templates/actor/partials/actor-point-bars.hbs" actor=actor}}
+					{{>"systems/projectfu/templates/actor/partials/actor-creatures.hbs" actor=actor}}
+				</div>
 
 				{{!-- DEF/MDEF/INIT/FU/UP --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-defensive.hbs" actor=actor}}
-
+				<div class="derived grid grid-3col flexgrow-2 flex-group-center">
+					{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs" actor=actor}}
+				</div>
 			</div>
 		</div>
 	</div>
