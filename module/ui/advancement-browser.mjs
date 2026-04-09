@@ -208,7 +208,11 @@ export class AdvancementBrowser extends FUApplication {
 				// Get only skills from classes that the actor has
 				compendiumEntries = compendiumEntries.filter((entry) => {
 					const className = entry.system.class.value;
-					if (specificClass && className && className !== specificClass) {
+					// Entries that specify no class can be picked up by ANY class
+					if (!className) {
+						return true;
+					}
+					if (specificClass && className !== specificClass) {
 						return false;
 					}
 					return this.#classList.includes(className) && this.#summary.classes[className].level === 10;
