@@ -143,25 +143,23 @@ export class AdvancementTracker {
 
 	/**
 	 * @param {FUActor} actor
-	 * @desc Clean up any items that may not be part of the actor.
+	 * @param {AdvancementDataModel[]} advancements
+	 * @returns {[AdvancementDataModel[], Boolean]} A copy of the changed advancement's data.
 	 */
-	static trimEntries(actor) {
-		/**
-		 * @type {AdvancementDataModel[]}
-		 **/
-		const advancements = actor.system.advancements.map((adv) => adv.toObject());
+	static removeUnresolvedItems(actor, advancements) {
 		let changed = false;
+		advancements = advancements.map((adv) => adv.toObject());
 		for (const adv of advancements) {
-			if (adv.class.id && actor.items.get(adv.class.id) === undefined) {
+			if (adv.class.id && actor.items.has(adv.class.id) === undefined) {
 				adv.class.id = undefined;
 				changed = true;
 			}
-			if (adv.skill.id && actor.items.get(adv.skill.id) === undefined) {
+			if (adv.skill.id && actor.items.has(adv.skill.id) === undefined) {
 				adv.skill.id = undefined;
 				changed = true;
 			}
 			if (adv.entries.spell && adv.entries.spell.id) {
-				if (actor.items.get(adv.entries.spell.id) === undefined) {
+				if (actor.items.has(adv.entries.spell.id) === undefined) {
 					adv.entries.spell.id = undefined;
 					changed = true;
 				}
@@ -173,6 +171,15 @@ export class AdvancementTracker {
 				}
 			}
 		}
+		return [advancements, changed];
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @desc Clean up any items that may not be part of the actor.
+	 */
+	static trimEntries(actor) {
+		const [advancements, changed] = AdvancementTracker.removeUnresolvedItems(actor, actor.system.advancements);
 		if (changed) {
 			console.debug(`${ADVANCEMENT_LOG_PREFIX} Refreshed item entries for ${actor.name}`);
 			actor.update({ 'system.advancements': advancements });
@@ -246,10 +253,10 @@ export class AdvancementTracker {
 		/** @type {AdvancementEntry[]} **/
 		let entries = [];
 
-		const advancements = system.advancements;
+		const [advancements] = AdvancementTracker.removeUnresolvedItems(actor, system.advancements);
 		for (let i = 0; i < advancements.length; i++) {
 			/** @type {AdvancementDataModel} **/
-			const data = advancements[i].toObject();
+			const data = advancements[i];
 			const level = i + 1;
 
 			/** @type {AdvancementState} **/
@@ -274,6 +281,7 @@ export class AdvancementTracker {
 				// CLASS
 				if (data.class.id) {
 					const classItem = actor.items.get(data.class.id);
+
 					/** @type ClassDataModel **/
 					const classData = classItem.system;
 					if (classData.benefits.resources.hp.value) {
