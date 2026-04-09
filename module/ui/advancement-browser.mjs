@@ -138,6 +138,9 @@ export class AdvancementBrowser extends FUApplication {
 		// Items which the actor does not have
 		let compendiumEntries = await CompendiumIndex.instance.getItemsOfType(this.#type);
 		compendiumEntries = compendiumEntries.filter((entry) => {
+			if (entry.name.includes('[Legacy]')) {
+				return false;
+			}
 			return !this.#actorItemFuids.has(entry.system.fuid);
 		});
 
@@ -221,6 +224,31 @@ export class AdvancementBrowser extends FUApplication {
 				break;
 		}
 
+		// Sort entries
+		actorItems = ObjectUtils.sortArray(actorItems, 'name');
+		compendiumEntries = ObjectUtils.sortArray(compendiumEntries, 'name');
+
+		options = [];
+		options.push(
+			...actorItems.map((item) => {
+				return {
+					name: item.name,
+					type: 'item',
+					item: item,
+				};
+			}),
+		);
+		options.push(
+			...compendiumEntries.map((entry) => {
+				return {
+					name: entry.name,
+					type: 'entry',
+					entry: entry,
+				};
+			}),
+		);
+		options = ObjectUtils.sortArray(options, 'name');
+
 		return {
 			actor: this.#actor,
 			data: this.#advancement,
@@ -229,6 +257,7 @@ export class AdvancementBrowser extends FUApplication {
 			index: this.#index,
 			skillMap: this.#skillMap,
 			summary: this.#summary,
+			options,
 			compendiumEntries,
 			actorItems,
 		};

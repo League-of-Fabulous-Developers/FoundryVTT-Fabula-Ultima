@@ -24,75 +24,79 @@
 	</fieldset>
 
 	<div class="pfu-advancement__entry__cards">
-		{{#each actorItems as |item|}}
-			<div class="pfu-advancement__entry__card">
-				{{!-- Ring: item image + skill counter --}}
-				<div class="pfu-advancement__entry__card-ring">
-					<div class="pfu-advancement__entry__card-ring-border"></div>
-					<div class="pfu-advancement__entry__card-ring-img">
-						{{pfuItemAnchor item size='l'}}
-					</div>
-					{{#if (pfuCollectionContains item.id @root.skillMap)}}
-						{{#with (lookup @root.skillMap item.id) as |skill|}}
-							<div class="pfu-advancement__entry__card-ring-counter">
-								{{skill.value}}/{{skill.max}}
+		{{#each options as |option|}}
+			{{#if (eq option.type 'item')}}
+				{{#with option.item as |item|}}
+					<div class="pfu-advancement__entry__card">
+						{{!-- Ring: item image + skill counter --}}
+						<div class="pfu-advancement__entry__card-ring">
+							<div class="pfu-advancement__entry__card-ring-border"></div>
+							<div class="pfu-advancement__entry__card-ring-img">
+								{{pfuItemAnchor item size='l'}}
 							</div>
-						{{/with}}
-					{{/if}}
-				</div>
+							{{#if (pfuCollectionContains item.id @root.skillMap)}}
+								{{#with (lookup @root.skillMap item.id) as |skill|}}
+									<div class="pfu-advancement__entry__card-ring-counter">
+										{{skill.value}}/{{skill.max}}
+									</div>
+								{{/with}}
+							{{/if}}
+						</div>
 
-				{{!-- Tags --}}
-				<div class="pfu-advancement__entry__card-tags">
-					{{#with (lookup @root.summary.classes item.system.class.value) as |class|}}
-						<img class="" src="{{class.img}}" alt="{{class.name}}"/>
-					{{/with}}
-				</div>
+						{{!-- Tags --}}
+						<div class="pfu-advancement__entry__card-tags">
+							{{#with (lookup @root.summary.classes item.system.class.value) as |class|}}
+								<img class="" src="{{class.img}}" alt="{{class.name}}"/>
+							{{/with}}
+						</div>
 
-				{{!-- Item name --}}
-				<div class="pfu-advancement__entry__card-name">
-					{{item.name}}
-				</div>
+						{{!-- Item name --}}
+						<div class="pfu-advancement__entry__card-name">
+							{{item.name}}
+						</div>
 
-				{{!-- Select button --}}
-				<button class="pfu-advancement__entry__card-select"
-						data-action="assignItem"
-						data-id="{{item.id}}">
-					{{localize 'CONTROLS.CommonSelect'}}
-				</button>
-			</div>
-		{{/each}}
-
-		{{#each compendiumEntries as |entry|}}
-			<div class="pfu-advancement__entry__card">
-
-				{{!-- Ring: item image --}}
-				<div class="pfu-advancement__entry__card-ring">
-					<div class="pfu-advancement__entry__card-ring-border"></div>
-					<div class="pfu-advancement__entry__card-ring-img">
-						{{pfuItemAnchor entry size='l'}}
+						{{!-- Select button --}}
+						<button class="pfu-advancement__entry__card-select"
+								data-action="assignItem"
+								data-id="{{item.id}}">
+							{{localize 'CONTROLS.CommonSelect'}}
+						</button>
 					</div>
-				</div>
+				{{/with}}
+			{{else}}
+				{{#with option.entry as |entry|}}
+					<div class="pfu-advancement__entry__card">
 
-				{{!-- Tags --}}
-				<div class="pfu-advancement__entry__card-tags">
-					<i class="{{pfuIconClass 'compendium'}}"></i>
-					{{#with (lookup @root.summary.classes entry.system.class.value) as |class| }}
-						<img class="" src="{{class.img}}" alt="{{class.name}}"/>
-					{{/with}}
-				</div>
+						{{!-- Ring: item image --}}
+						<div class="pfu-advancement__entry__card-ring">
+							<div class="pfu-advancement__entry__card-ring-border"></div>
+							<div class="pfu-advancement__entry__card-ring-img">
+								{{pfuItemAnchor entry size='l'}}
+							</div>
+						</div>
 
-				{{!-- Item name --}}
-				<div class="pfu-advancement__entry__card-name">
-					{{entry.name}}
-				</div>
+						{{!-- Tags --}}
+						<div class="pfu-advancement__entry__card-tags">
+							<i class="{{pfuIconClass 'compendium'}}"></i>
+							{{#with (lookup @root.summary.classes entry.system.class.value) as |class| }}
+								<img class="" src="{{class.img}}" alt="{{class.name}}"/>
+							{{/with}}
+						</div>
 
-				{{!-- Select button --}}
-				<button class="pfu-advancement__entry__card-select"
-						data-action="addItem"
-						data-uuid="{{entry.uuid}}">
-					{{localize 'CONTROLS.CommonSelect'}}
-				</button>
-			</div>
+						{{!-- Item name --}}
+						<div class="pfu-advancement__entry__card-name">
+							{{entry.name}}
+						</div>
+
+						{{!-- Select button --}}
+						<button class="pfu-advancement__entry__card-select"
+								data-action="addItem"
+								data-uuid="{{entry.uuid}}">
+							{{localize 'CONTROLS.CommonSelect'}}
+						</button>
+					</div>
+				{{/with}}
+			{{/if}}
 		{{/each}}
 	</div>
 </main>
