@@ -155,10 +155,52 @@
 }
 
 .pfu-advancement__entry__card-ring {
+	--ring-radius: 36px;
 	position: relative;
 	width: 64px;
 	height: 64px;
 	cursor: pointer;
+}
+
+.pfu-advancement__entry__card-ring-img {
+	position: relative;
+	border-radius: 50%;
+	overflow: hidden;
+	z-index: 0;
+}
+
+.pfu-advancement__entry__card-ring__badges {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+}
+
+.pfu-advancement__entry__card-ring__badge {
+	--badge-size: 24px;
+	--badge-half: calc(var(--badge-size) / 2);
+
+	position: absolute;
+	text-align: center;
+	line-height: var(--badge-size);
+	width: var(--badge-size);
+	height: var(--badge-size);
+	top: calc(50% - var(--badge-half) + var(--ring-radius) * -1 * cos(var(--badge-angle)));
+	left: calc(50% - var(--badge-half) + var(--ring-radius) * sin(var(--badge-angle)));
+
+	border: 1px solid var(--pfu-color-app-border);
+	background: var(--pfu-color-app-header-fill-1);
+	border-radius: var(--badge-half);
+}
+
+.pfu-advancement__entry__card-ring__badge:nth-child(2) {
+	--badge-angle: -45deg;
+}
+.pfu-advancement__entry__card-ring__badge:nth-child(1) {
+	--badge-angle: 0deg;
+}
+.pfu-advancement__entry__card-ring__badge:nth-child(3) {
+	--badge-angle: 45deg;
 }
 
 .pfu-advancement__entry__card-ring-border {
@@ -166,16 +208,9 @@
 	inset: 0;
 	border-radius: 50%;
 	border: 3px solid var(--pfu-color-app-control-border);
-	z-index: 2;
+	z-index: 1;
 	pointer-events: none;
 	transition: border-color 0.15s;
-}
-
-.pfu-advancement__entry__card-ring-img {
-	position: absolute;
-	inset: 4px;
-	border-radius: 50%;
-	overflow: hidden;
 }
 
 .pfu-advancement__entry__card-ring-counter {

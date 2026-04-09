@@ -1,6 +1,6 @@
 <main class="flexcol fu-scrollable gap-16" style="height: 100%">
 
-	<div class="flexrow flex-between">
+	<div class="flexrow flex-between" style="margin-bottom: 16px;">
 		<img class="fu-icon profile-img shine" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" style="height: 96px; width: auto; object-fit: contain;">
 		{{#if current}}
 			<div>
@@ -41,13 +41,13 @@
 										</div>
 									{{/with}}
 								{{/if}}
-							</div>
 
-							{{!-- Tags --}}
-							<div class="pfu-advancement__entry__card-tags">
-								{{#with (lookup @root.summary.classes item.system.class.value) as |class|}}
-									<img class="" src="{{class.img}}" alt="{{class.name}}"/>
-								{{/with}}
+								{{!-- Badges --}}
+								<div class="pfu-advancement__entry__card-ring__badges">
+									{{#with (lookup @root.summary.classes item.system.class.value) as |class|}}
+										<img class="pfu-advancement__entry__card-ring__badge" src="{{class.img}}" alt="{{class.name}}" data-tooltip="{{class.name}}"/>
+									{{/with}}
+								</div>
 							</div>
 
 							{{!-- Item name --}}
@@ -73,14 +73,14 @@
 								<div class="pfu-advancement__entry__card-ring-img">
 									{{pfuItemAnchor entry size='l'}}
 								</div>
-							</div>
 
-							{{!-- Tags --}}
-							<div class="pfu-advancement__entry__card-tags">
-								<i class="{{pfuIconClass 'compendium'}}"></i>
-								{{#with (lookup @root.summary.classes entry.system.class.value) as |class| }}
-									<img class="" src="{{class.img}}" alt="{{class.name}}"/>
-								{{/with}}
+								{{!-- Badges --}}
+								<div class="pfu-advancement__entry__card-ring__badges">
+									{{#with (lookup @root.summary.classes entry.system.class.value) as |class| }}
+										<img class="pfu-advancement__entry__card-ring__badge" src="{{class.img}}" alt="{{class.name}}" data-tooltip="{{class.name}}"/>
+									{{/with}}
+									<i class="pfu-advancement__entry__card-ring__badge {{pfuIconClass 'compendium'}}"></i>
+								</div>
 							</div>
 
 							{{!-- Item name --}}
