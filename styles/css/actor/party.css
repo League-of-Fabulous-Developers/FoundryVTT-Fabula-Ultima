@@ -560,38 +560,167 @@
 		height 0.2s;
 }
 
+.pfu-codex__entry__frame {
+	--codex-text-color: #1a0f00;
+
+	background-image: url('../../static/ui/backgrounds/FelisChaus_ParchmentBackground.jpg') !important;
+	background-color: var(--pfu-color-app-section-content-secondary) !important;
+	background-blend-mode: multiply !important;
+	background-size: cover !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+
+	& .dialog-form.standard-form {
+		gap: 0;
+	}
+
+	& .window-content,
+	& .dialog-content {
+		background: unset !important;
+	}
+
+	& .window-header {
+		opacity: 0;
+		height: 8px; /* thin draggable strip at the top */
+		min-height: unset;
+		padding: 0;
+		pointer-events: all; /* ensure dragging still works */
+	}
+
+	& button {
+	}
+
+	& .name {
+		color: var(--pfu-color-app-section-content-secondary) !important;
+	}
+}
+
 .pfu-codex__entry__viewer {
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
+	padding: 16px;
+
+	/* ── Default / Small ─────────────────────────── */
 	width: 600px;
 	height: 400px;
 
-	img {
-		width: 320px;
-		height: auto;
-		object-fit: cover;
+	.image {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			width: 320px;
+			height: auto;
+			object-fit: contain;
+		}
 	}
 
 	.content {
 		display: flex;
 		flex-direction: column;
-		flex: 2;
+		flex: 1;
 		justify-content: center;
 	}
-
 	.name {
-		font-size: var(--font-size-20);
-		font-weight: bold;
-		line-height: 1.2;
+		font-size: 32px;
 		text-align: center;
+		font-family: 'CreditValleybold', serif;
+		text-shadow:
+			-1px -1px 0 rgba(0, 0, 0, 0.6),
+			1px -1px 0 rgba(0, 0, 0, 0.6),
+			-1px 1px 0 rgba(0, 0, 0, 0.6),
+			1px 1px 0 rgba(0, 0, 0, 0.6);
 	}
-
 	.description {
-		font-size: var(--font-size-14);
+		font-size: 14px;
 		line-height: 1.4;
 		overflow-y: auto;
 		text-align: center;
+		padding: 1rem;
+
+		box-shadow:
+			inset 0 2px 4px rgba(255, 220, 150, 0.4),
+			inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+			inset 2px 0 4px rgba(255, 220, 150, 0.2),
+			inset -2px 0 4px rgba(0, 0, 0, 0.2),
+			0 4px 8px rgba(0, 0, 0, 0.4);
+	}
+
+	/* ── Medium ──────────────────────────────────── */
+	&.--medium {
+		width: 800px;
+		height: 500px;
+
+		.image {
+			img {
+				width: 400px;
+			}
+		}
+
+		.description {
+			font-size: 15px;
+		}
+	}
+
+	/* ── Large ───────────────────────────────────── */
+	&.--large {
+		width: 1200px;
+		height: 800px;
+
+		.image {
+			img {
+				width: 600px;
+			}
+		}
+
+		.name {
+			font-size: 64px;
+			margin: 1rem;
+		}
+		.description {
+			font-size: 16px;
+		}
+	}
+
+	/* ── Portrait (tall image, short description) ── */
+	&.--portrait {
+		flex-direction: column;
+		width: 400px;
+		height: auto;
+
+		.image {
+			img {
+				width: 100%;
+				height: 350px;
+			}
+		}
+
+		.description {
+			font-size: 14px;
+		}
+	}
+
+	/* ── Wide (long description, small image) ─────── */
+	&.--wide {
+		width: 1000px;
+		height: 400px;
+
+		.name {
+			margin: 1rem;
+		}
+
+		.image {
+			img {
+				width: 300px;
+			}
+		}
+
+		.description {
+			font-size: 15px;
+		}
 	}
 }
 

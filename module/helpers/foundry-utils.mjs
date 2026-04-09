@@ -110,14 +110,17 @@ export default class FoundryUtils {
 	 * @returns {Promise}
 	 */
 	static async popout(title, content, options = {}) {
-		await foundry.applications.api.DialogV2.wait({
-			window: { title, icon: 'fas fa-eye' },
-			classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
-			rejectClose: false,
-			content,
-			buttons: [{ label: 'Close', action: 'close' }],
-			...options,
-		});
+		const [mergedOptions] = ObjectUtils.mergeRecursive(
+			{
+				window: { title, icon: 'fas fa-eye' },
+				classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
+				rejectClose: false,
+				content,
+				buttons: [{ label: 'Close', action: 'close' }],
+			},
+			options,
+		);
+		await foundry.applications.api.DialogV2.wait(mergedOptions);
 	}
 
 	/**
