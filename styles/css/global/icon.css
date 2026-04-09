@@ -84,6 +84,10 @@
 	&.shine {
 		filter: drop-shadow(0 0 4px var(--pfu-color-app-body-content-secondary));
 	}
+
+	&.warn {
+		color: var(--color-warning);
+	}
 }
 
 .fu-icon--xs {
