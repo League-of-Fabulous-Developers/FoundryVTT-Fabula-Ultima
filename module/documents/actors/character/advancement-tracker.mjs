@@ -1,4 +1,4 @@
-import { SkillTraits } from '../../../pipelines/traits.mjs';
+import { HeroicSkillTraits, SkillTraits } from '../../../pipelines/traits.mjs';
 import { ItemSelectionDialog } from '../../../ui/features/item-selection-dialog.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 
@@ -274,8 +274,13 @@ export class AdvancementTracker {
 			} else {
 				let resolvedClass = false;
 				let resolvedSkill = false;
+
 				let grantedSpell = false;
 				let resolvedSpell = false;
+
+				let grantedExtraSpells = false;
+				let resolvedExtraSpells = false;
+
 				let resolvedEntries = true;
 
 				// CLASS
@@ -374,6 +379,30 @@ export class AdvancementTracker {
 				if (data.entries.heroic) {
 					if (!data.entries.heroic.locked && !data.entries.heroic.id) {
 						resolvedEntries = false;
+					} else {
+						const heroicItem = actor.items.get(data.entries.heroic.id);
+						grantedExtraSpells = heroicItem.system.traits.has(HeroicSkillTraits.GrantExtraSpells);
+						if (grantedExtraSpells) {
+							if (data.entries.extraSpells === undefined) {
+								data.entries.extraSpells = {
+									ids: [],
+									required: 2,
+								};
+								patched = true;
+							}
+						} else {
+							if (data.entries.extraSpells) {
+								delete data.entries.extraSpells;
+								patched = true;
+							}
+						}
+					}
+				}
+
+				// EXTRA SPELLS (OPTIONAL)
+				if (data.entries.extraSpells) {
+					if (data.entries.extraSpells.ids.length === data.entries.extraSpells.required) {
+						resolvedExtraSpells = true;
 					}
 				}
 
@@ -393,29 +422,13 @@ export class AdvancementTracker {
 					}
 				}
 
-				// FINAL VALIDATION
-				if (resolvedClass) {
-					if (resolvedSkill) {
-						if (grantedSpell) {
-							if (resolvedSpell && resolvedEntries) {
-								state = 'valid';
-							}
-						} else {
-							if (resolvedEntries) {
-								state = 'valid';
-							}
-						}
-					}
-				} else if (resolvedSkill) {
-					if (grantedSpell) {
-						if (resolvedSpell && resolvedEntries) {
-							state = 'valid';
-						}
-					} else {
-						if (resolvedEntries) {
-							state = 'valid';
-						}
-					}
+				const classValid = resolvedClass ? resolvedSkill : true;
+				const skillValid = resolvedSkill;
+				const spellValid = grantedSpell ? resolvedSpell : true;
+				const extraSpellsValid = grantedExtraSpells ? resolvedExtraSpells : true;
+
+				if (classValid && skillValid && spellValid && resolvedEntries && extraSpellsValid) {
+					state = 'valid';
 				}
 			}
 

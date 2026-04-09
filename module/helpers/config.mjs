@@ -299,7 +299,7 @@ FU.actionIcons = {
 	objective: 'ra ra-targeted',
 	spell: 'ra ra-crystal-wand',
 	study: 'ra ra-book',
-	skill: 'ra ra-muscle-up',
+	skill: 'ra ra-trophy',
 };
 
 FU.actionRule = {

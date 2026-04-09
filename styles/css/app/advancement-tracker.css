@@ -68,7 +68,7 @@
 .pfu-advancement__entries {
 	display: flex;
 	flex-direction: row;
-	gap: 8px;
+	gap: 2px;
 }
 
 .pfu-advancements__badge {
@@ -100,12 +100,34 @@
 	}
 }
 
+.pfu-advancement__entry__cards__container {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex: 2;
+}
+
 .pfu-advancement__entry__cards {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
 	padding: 8px;
 	justify-content: center;
+}
+
+.pfu-advancements__background {
+	background-image: url('../../static/ui/backgrounds/cubes.png') !important;
+	background-color: var(--pfu-color-app-section-content-secondary) !important;
+	background-blend-mode: multiply !important;
+	background-size: cover !important;
+	background-position: center;
+}
+
+.pfu_advancement__type {
+	display: flex;
+	gap: 1.5rem;
+	justify-content: center;
+	align-items: center;
 }
 
 .pfu-advancement__entry__card {

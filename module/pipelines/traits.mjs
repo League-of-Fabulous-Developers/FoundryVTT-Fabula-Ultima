@@ -63,6 +63,13 @@ export const DamageTraits = Object.freeze({
  */
 export const SkillTraits = Object.freeze({
 	GrantSpell: 'grant-spell',
+});
+
+/**
+ * @desc Some heroic skills provide certain features that are hard to quantify otherwise.
+ * @type {Readonly<{}>}
+ */
+export const HeroicSkillTraits = Object.freeze({
 	GrantExtraSpells: 'grant-extra-spells',
 });
 

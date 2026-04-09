@@ -1121,11 +1121,18 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @returns {void}
 	 */
 	static async #handleAdvancements(event, target) {
-		const { type, index, entry, path } = target.dataset;
-		switch (type) {
+		const { command, type, index, path, collectionIndex, unlock } = target.dataset;
+		switch (command) {
 			case 'set':
 				{
-					const browser = new AdvancementBrowser(this.actor, entry, Number.parseInt(index), path);
+					const browser = new AdvancementBrowser({
+						actor: this.actor,
+						type: type,
+						path: path,
+						index: Number.parseInt(index),
+						collectionIndex: Number.parseInt(collectionIndex),
+						unlock,
+					});
 					browser.render(true);
 				}
 				break;

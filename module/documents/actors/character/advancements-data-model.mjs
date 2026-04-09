@@ -12,12 +12,19 @@
  */
 
 /**
+ * @typedef AdvancementCollectionReference
+ * @property {String[]} ids
+ * @property {Number} required The minimum amount required.
+ */
+
+/**
  * @desc Represents a single level advancement for a player character.
  * @property {AdvancementReference} class The class item.
  * @property {AdvancementSkillReference} skill The skill item.
  * @property {Record<String, AdvancementReference>} entries
  * @property {AdvancementReference} entries.heroic Optional heroic advancement.
  * @property {AdvancementReference} entries.spell Optional spell advancement.
+ * @property {AdvancementCollectionReference} entries.extraSpells Optional spell advancement.
  */
 export class AdvancementDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {

@@ -80,6 +80,10 @@
 	&.glow {
 		filter: drop-shadow(0 0 4px var(--pfu-color-misc-shadow-highlight));
 	}
+
+	&.shine {
+		filter: drop-shadow(0 0 4px var(--pfu-color-app-body-content-secondary));
+	}
 }
 
 .fu-icon--xs {

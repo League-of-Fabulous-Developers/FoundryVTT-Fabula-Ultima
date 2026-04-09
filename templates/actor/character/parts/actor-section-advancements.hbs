@@ -73,9 +73,9 @@
 						{{#unless advancement.data.class.locked}}
 							<button class="pfu-advancements__button"
 									data-action="advancements"
-									data-type="set"
+									data-command="set"
 									data-index="{{idx}}"
-									data-entry="class">
+									data-type="class">
 								{{#if advancement.data.class.id}}
 									{{#with (pfuLookupById @root.actor.items advancement.data.class.id) as |item|}}
 										<img class="fu-icon--s" src="{{item.img}}">
@@ -93,10 +93,10 @@
 						{{!-- Skill --}}
 						<button class="pfu-advancements__button"
 								data-action="advancements"
-								data-type="set"
+								data-command="set"
 								{{#if advancement.data.skill.locked}}disabled{{/if}}
 								data-index="{{idx}}"
-								data-entry="skill">
+								data-type="skill">
 							{{#if advancement.data.skill.id}}
 								{{#with (pfuLookupById @root.actor.items advancement.data.skill.id) as |item|}}
 									<img class="fu-icon--s" src="{{item.img}}">
@@ -116,10 +116,10 @@
 							{{#unless advancement.data.entries.spell.locked}}
 								<button class="pfu-advancements__button"
 										data-action="advancements"
-										data-type="set"
+										data-command="set"
 										data-index="{{idx}}"
 										data-path="entries.spell"
-										data-entry="spell">
+										data-type="spell">
 									{{#if advancement.data.entries.spell.id}}
 										{{#with (pfuLookupById @root.actor.items advancement.data.entries.spell.id) as |item|}}
 											<img class="fu-icon--s" src="{{item.img}}">
@@ -140,10 +140,10 @@
 							{{#unless advancement.data.entries.heroic.locked}}
 								<button class="pfu-advancements__button"
 										data-action="advancements"
-										data-type="set"
+										data-command="set"
 										data-index="{{idx}}"
 										data-path="entries.heroic"
-										data-entry="heroic">
+										data-type="heroic">
 									{{#if advancement.data.entries.heroic.id}}
 										{{#with (pfuLookupById @root.actor.items advancement.data.entries.heroic.id) as |item|}}
 											<img class="fu-icon--s" src="{{item.img}}">
@@ -158,6 +158,52 @@
 								</button>
 							{{/unless}}
 						{{/if}}
+
+						{{!-- Extra Spells --}}
+						{{#if advancement.data.entries.extraSpells}}
+							<button class="pfu-advancements__button"
+									data-action="advancements"
+									data-command="set"
+									data-index="{{idx}}"
+									data-path="entries.extraSpells"
+									data-collection-index="0"
+									data-unlock="true"
+									data-type="spell">
+								{{#with (lookup advancement.data.entries.extraSpells.ids 0) as |spellId|}}
+									{{#with (pfuLookupById @root.actor.items spellId) as |item|}}
+										<img class="fu-icon--s" src="{{item.img}}">
+										<span>{{item.name}}</span>
+									{{/with}}
+								{{else}}
+									<span class="flexrow">
+										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
+										{{localize 'FU.Spell'}}
+									</span>
+								{{/with}}
+							</button>
+
+							<button class="pfu-advancements__button"
+									data-action="advancements"
+									data-command="set"
+									data-index="{{idx}}"
+									data-path="entries.extraSpells"
+									data-collection-index="1"
+									data-unlock="true"
+									data-type="spell">
+								{{#with (lookup advancement.data.entries.extraSpells.ids 1) as |spellId|}}
+									{{#with (pfuLookupById @root.actor.items spellId) as |item|}}
+										<img class="fu-icon--s" src="{{item.img}}">
+										<span>{{item.name}}</span>
+									{{/with}}
+								{{else}}
+									<span class="flexrow">
+										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
+										{{localize 'FU.Spell'}}
+									</span>
+								{{/with}}
+							</button>
+						{{/if}}
+
 					</td>
 				{{/unless}}
 			</tr>

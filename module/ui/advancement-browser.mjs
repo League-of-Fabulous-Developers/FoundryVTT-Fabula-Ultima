@@ -6,10 +6,25 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { AdvancementTracker } from '../documents/actors/character/advancement-tracker.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
 
+/**
+ * @typedef {'class'|'skill'|'spell'|'heroic'} AdvancementAssignmentType
+ */
+
+/**
+ * @typedef SetAdvancementData
+ * @property {FUActor} actor
+ * @property {AdvancementAssignmentType} type
+ * @property {String} path
+ * @property {Number} index The advancement index (its level)
+ * @property {Boolean} unlock Whether to unlock all entries of the type.
+ * @property {Number} collectionIndex Some advancements have collections of their own.
+ */
+
 export class AdvancementBrowser extends FUApplication {
 	static DEFAULT_OPTIONS = {
+		classes: ['fu-dialog'],
 		window: {
-			classes: 'fu-dialog',
+			contentClasses: ['pfu-advancements__background'],
 			title: 'FU.Advancements',
 			icon: 'ra ra-tower',
 			resizable: true,
@@ -25,12 +40,14 @@ export class AdvancementBrowser extends FUApplication {
 		},
 	};
 
+	/**
+	 * @type {SetAdvancementData}
+	 */
+	#data;
 	/** @type {FUActor} **/
 	#actor;
-	/** @type {'class'|'skill'|'spell'|'heroic'} **/
+	/** @type {AdvancementAssignmentType} **/
 	#type;
-	/** @type {String} **/
-	#path;
 	/** @type {Number} **/
 	#index;
 	/** @type AdvancementDataModel **/
@@ -58,20 +75,34 @@ export class AdvancementBrowser extends FUApplication {
 		},
 	};
 
-	constructor(actor, type, index, path) {
+	/**
+	 * @param {SetAdvancementData} data
+	 */
+	constructor(data) {
 		super();
-		this.#actor = actor;
-		this.#type = type;
-		this.#index = index;
-		this.#advancement = actor.system.advancements[index].toObject();
-		this.#path = path ?? type;
-		const reference = ObjectUtils.getProperty(this.#advancement, this.#path);
+		this.#data = data;
+		this.#actor = data.actor;
+		this.#type = data.type;
+		this.#index = data.index;
+		this.#advancement = data.actor.system.advancements[data.index].toObject();
 
-		this.#current = actor.items.get(reference.id);
-		this.#actorItemFuids = new Set(actor.items.map((item) => item.system?.fuid).filter(Boolean));
-		this.#trackedItemIds = AdvancementTracker.getTrackedItemIds(actor, index + 1);
-		this.#trackedItems = AdvancementTracker.getTrackedItems(actor, index + 1);
-		this.#summary = AdvancementTracker.evaluate(actor);
+		let itemId;
+		if (this.isCollection) {
+			/** @type AdvancementCollectionReference **/
+			const collection = ObjectUtils.getProperty(this.#advancement, data.path);
+			itemId = collection.ids[data.collectionIndex];
+		} else {
+			const path = data.path ?? data.type;
+			/** @type AdvancementReference **/
+			const reference = ObjectUtils.getProperty(this.#advancement, path);
+			itemId = reference.id;
+		}
+
+		this.#current = data.actor.items.get(itemId);
+		this.#actorItemFuids = new Set(data.actor.items.map((item) => item.system?.fuid).filter(Boolean));
+		this.#trackedItemIds = AdvancementTracker.getTrackedItemIds(data.actor, data.index + 1);
+		this.#trackedItems = AdvancementTracker.getTrackedItems(data.actor, data.index + 1);
+		this.#summary = AdvancementTracker.evaluate(data.actor);
 
 		// Filter these up to the current advancements
 		this.#spellList = this.getSpellList();
@@ -79,7 +110,21 @@ export class AdvancementBrowser extends FUApplication {
 		this.#skillMap = this.getSkillMap();
 	}
 
+	/**
+	 * @returns {boolean}
+	 */
+	get isCollection() {
+		return !Number.isNaN(this.#data.collectionIndex);
+	}
+
+	get level() {
+		return this.#index + 1;
+	}
+
 	getSpellList() {
+		if (this.#data.unlock) {
+			return CompendiumIndex.spellGrantingClasses;
+		}
 		return this.#trackedItems
 			.filter((item) => {
 				if (item.type !== 'skill') {
@@ -118,10 +163,6 @@ export class AdvancementBrowser extends FUApplication {
 			}
 		}
 		return list;
-	}
-
-	get level() {
-		return this.#index + 1;
 	}
 
 	/**
@@ -166,10 +207,14 @@ export class AdvancementBrowser extends FUApplication {
 					if (specificClass && className !== specificClass) {
 						return false;
 					}
-					return this.#spellList.includes(className);
+					return this.#spellList.length > 0 ? this.#spellList.includes(className) : true;
 				});
 				actorItems = this.getMatchingItems().filter((item) => {
-					return !this.#trackedItemIds.has(item.id) && this.#spellList.includes(item.system.class.value);
+					const className = item.system.class.value;
+					if (this.#trackedItemIds.has(item.id)) {
+						return false;
+					}
+					return this.#spellList.length > 0 ? this.#spellList.includes(className) : true;
 				});
 				break;
 
@@ -314,30 +359,37 @@ export class AdvancementBrowser extends FUApplication {
 	static #updateEntry(browser, entry, item) {
 		const id = item.id;
 		const type = browser.#type;
-		switch (type) {
-			case 'class':
-				entry.class.id = id;
-				break;
 
-			case 'skill':
-				{
-					entry.skill.id = id;
-					const current = browser.#skillMap[id]?.value ?? 0;
-					entry.skill.value = current + 1;
-					entry.skill.max = item.system.level.max;
-					if (!entry.class.id) {
-						entry.class.locked = true;
+		if (browser.isCollection) {
+			/** @type AdvancementCollectionReference **/
+			const collection = ObjectUtils.getProperty(entry, browser.#data.path);
+			collection.ids.push(id);
+		} else {
+			switch (type) {
+				case 'class':
+					entry.class.id = id;
+					break;
+
+				case 'skill':
+					{
+						entry.skill.id = id;
+						const current = browser.#skillMap[id]?.value ?? 0;
+						entry.skill.value = current + 1;
+						entry.skill.max = item.system.level.max;
+						if (!entry.class.id) {
+							entry.class.locked = true;
+						}
 					}
-				}
-				break;
+					break;
 
-			case 'spell':
-				entry.entries.spell.id = id;
-				break;
+				case 'spell':
+					entry.entries.spell.id = id;
+					break;
 
-			case 'heroic':
-				entry.entries.heroic.id = id;
-				break;
+				case 'heroic':
+					entry.entries.heroic.id = id;
+					break;
+			}
 		}
 	}
 
@@ -352,28 +404,34 @@ export class AdvancementBrowser extends FUApplication {
 		ui.notifications.info(`Clearing ${item.name} from advancement level ${this.level}`);
 
 		return AdvancementTracker.updateEntry(this.#actor, this.#index, (entry) => {
-			switch (this.#type) {
-				case 'class':
-					entry.class.id = undefined;
-					entry.skill.id = undefined;
-					delete entry.entries.spell;
-					delete entry.entries.heroic;
-					break;
+			if (this.isCollection) {
+				/** @type AdvancementCollectionReference **/
+				const collection = ObjectUtils.getProperty(entry, this.#data.path);
+				collection.ids.splice(this.#data.collectionIndex, 1);
+			} else {
+				switch (this.#type) {
+					case 'class':
+						entry.class.id = undefined;
+						entry.skill.id = undefined;
+						delete entry.entries.spell;
+						delete entry.entries.heroic;
+						break;
 
-				case 'skill':
-					entry.class.locked = false;
-					entry.skill.id = undefined;
-					delete entry.entries.spell;
-					delete entry.entries.heroic;
-					break;
+					case 'skill':
+						entry.class.locked = false;
+						entry.skill.id = undefined;
+						delete entry.entries.spell;
+						delete entry.entries.heroic;
+						break;
 
-				case 'spell':
-					entry.entries.spell.id = undefined;
-					break;
+					case 'spell':
+						entry.entries.spell.id = undefined;
+						break;
 
-				case 'heroic':
-					entry.entries.heroic.id = undefined;
-					break;
+					case 'heroic':
+						entry.entries.heroic.id = undefined;
+						break;
+				}
 			}
 		});
 	}

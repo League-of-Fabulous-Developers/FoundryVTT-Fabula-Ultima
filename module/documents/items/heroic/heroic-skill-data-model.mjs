@@ -1,7 +1,7 @@
 import { FU } from '../../../helpers/config.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
-import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { DamageTraits, HeroicSkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @property {string} subtype.value
@@ -36,7 +36,7 @@ export class HeroicSkillDataModel extends BaseSkillDataModel {
 	get traitOptions() {
 		return TraitUtils.getOptions({
 			...DamageTraits,
-			...SkillTraits,
+			...HeroicSkillTraits,
 		});
 	}
 
