@@ -30,7 +30,9 @@
 						<div class="pfu-advancement__entry__card">
 							{{!-- Ring: item image + skill counter --}}
 							<div class="pfu-advancement__entry__card-ring">
-								<div class="pfu-advancement__entry__card-ring-border"></div>
+								<div class="pfu-advancement__entry__card-ring-border {{#if (pfuCollectionContains item.id @root.skillMap)}}invested{{else}}untracked{{/if}}">
+
+								</div>
 								<div class="pfu-advancement__entry__card-ring-img">
 									{{pfuItemAnchor item size='l'}}
 								</div>
