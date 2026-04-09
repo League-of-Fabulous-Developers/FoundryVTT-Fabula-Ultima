@@ -103,7 +103,7 @@ Hooks.once(FUHooks.GET_SIDEBAR_TOOLS, (tools) => {
 
 export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 	#hooks = [];
-	#renderTimer = null
+	#renderTimer = null;
 	#effectContextMenu = null;
 
 	static DEFAULT_OPTIONS = {

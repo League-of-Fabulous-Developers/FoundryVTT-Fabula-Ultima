@@ -220,7 +220,11 @@ export class AdvancementBrowser extends FUApplication {
 				// Filter items from classes the actor has
 				actorItems = this.getMatchingItems().filter((item) => {
 					const className = item.system.class.value;
-					if (specificClass && className && className !== specificClass) {
+					// Items that specify no class can be picked up by ANY class
+					if (!className) {
+						return true;
+					}
+					if (specificClass && className !== specificClass) {
 						return false;
 					}
 					return this.#classList.includes(className) && this.#summary.classes[className].level === 10;

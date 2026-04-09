@@ -63,6 +63,7 @@ export const DamageTraits = Object.freeze({
  */
 export const SkillTraits = Object.freeze({
 	GrantSpell: 'grant-spell',
+	GrantExtraSpells: 'grant-extra-spells',
 });
 
 /**

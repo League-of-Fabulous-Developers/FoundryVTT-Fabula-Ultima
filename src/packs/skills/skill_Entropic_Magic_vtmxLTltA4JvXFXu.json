@@ -123,7 +123,10 @@
       "duration": {
         "interval": null
       }
-    }
+    },
+    "traits": [
+      "grant-spell"
+    ]
   },
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_entropic_magic.png",
   "effects": [],
@@ -139,8 +142,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706421766290,
-    "modifiedTime": 1775526264589,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775737279795,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
