@@ -1,7 +1,7 @@
 import { GameWellspringManager } from './game-wellspring-manager.mjs';
 import { SystemControls } from '../../../../helpers/system-controls.mjs';
 import { ActorWellspringManager } from './actor-wellspring-manager.mjs';
-import { SYSTEM } from '../../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../../helpers/config.mjs';
 import { FUHooks } from '../../../../hooks.mjs';
 
 /**
@@ -28,7 +28,7 @@ export const WELLSPRINGS = {
 		type: 'air',
 		key: 'air',
 		element: 'FU.ClassFeatureInvocationsWellspringAirElement',
-		icon: 'fu-air',
+		icon: FU.invocationIcons.air,
 	},
 	earth: {
 		name: 'FU.ClassFeatureInvocationsWellspringEarthName',
@@ -36,7 +36,7 @@ export const WELLSPRINGS = {
 		type: 'earth',
 		key: 'earth',
 		element: 'FU.ClassFeatureInvocationsWellspringEarthElement',
-		icon: 'fu-earth',
+		icon: FU.invocationIcons.earth,
 	},
 	fire: {
 		name: 'FU.ClassFeatureInvocationsWellspringFireName',
@@ -44,7 +44,7 @@ export const WELLSPRINGS = {
 		type: 'fire',
 		key: 'fire',
 		element: 'FU.ClassFeatureInvocationsWellspringFireElement',
-		icon: 'fu-fire',
+		icon: FU.invocationIcons.fire,
 	},
 	lightning: {
 		name: 'FU.ClassFeatureInvocationsWellspringLightningName',
@@ -52,7 +52,7 @@ export const WELLSPRINGS = {
 		type: 'bolt',
 		key: 'lightning',
 		element: 'FU.ClassFeatureInvocationsWellspringLightningElement',
-		icon: 'fu-bolt',
+		icon: FU.invocationIcons.lightning,
 	},
 	water: {
 		name: 'FU.ClassFeatureInvocationsWellspringWaterName',
@@ -60,7 +60,7 @@ export const WELLSPRINGS = {
 		type: 'ice',
 		key: 'water',
 		element: 'FU.ClassFeatureInvocationsWellspringWaterElement',
-		icon: 'ra ra-droplets',
+		icon: FU.invocationIcons.water,
 	},
 };
 

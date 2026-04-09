@@ -126,7 +126,10 @@
       "duration": {
         "interval": null
       }
-    }
+    },
+    "traits": [
+      "grant-spell"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -145,8 +148,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706507930339,
-    "modifiedTime": 1775596319019,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1775737270348,
+    "lastModifiedBy": "J5B4HfVqUaCPvzGg",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

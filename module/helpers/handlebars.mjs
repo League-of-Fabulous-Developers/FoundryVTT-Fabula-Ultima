@@ -250,6 +250,9 @@ export const FUHandlebars = Object.freeze({
 			return args.slice(0, -1);
 		});
 
+		// Render a fallback if the value is falsy for handlebars
+		Handlebars.registerHelper('pfuDefault', (value, fallback) => value ?? fallback);
+
 		// Creates a plain object from the handlebars named parameters
 		Handlebars.registerHelper('pfuHash', function (options) {
 			return options.hash;

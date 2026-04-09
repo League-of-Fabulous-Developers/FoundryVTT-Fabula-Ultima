@@ -1,6 +1,7 @@
 import { FU } from '../../../helpers/config.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { BaseSkillDataModel } from '../skill/base-skill-data-model.mjs';
+import { DamageTraits, HeroicSkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @property {string} subtype.value
@@ -30,6 +31,13 @@ export class HeroicSkillDataModel extends BaseSkillDataModel {
 
 	get attributePartials() {
 		return [...this.commonPartials, ItemPartialTemplates.classField, ItemPartialTemplates.heroicSkill];
+	}
+
+	get traitOptions() {
+		return TraitUtils.getOptions({
+			...DamageTraits,
+			...HeroicSkillTraits,
+		});
 	}
 
 	/**

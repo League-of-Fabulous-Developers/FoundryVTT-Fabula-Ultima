@@ -8,6 +8,12 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  */
 
 /**
+ * @typedef ItemSelectionColumn
+ * @property {String} label
+ * @property {function(Item) : String} getContent
+ */
+
+/**
  * @typedef {'grid'|'list'|'deck'} FUSelectionDialogStyle
  */
 
@@ -16,8 +22,10 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  * @property {String} title
  * @property {String} message
  * @property {DialogSelectableItem[]} items
+ * @property {Object[]} payload Associated data returned instead of the item reference.
  * @property {FUItem[]} compendiumItems If assigned, will be used to compare to the original items.
  * @property {Object[]} initial
+ * @property {ItemSelectionColumn[]} columns Additional columns for the dialog.
  * @property {FUSelectionDialogStyle} style
  * @property {Number} max
  * @property {(item: FUItem) => Promise<string>} getDescription
@@ -39,6 +47,11 @@ export class ItemSelectionDialog {
 	#selectedItems;
 
 	/**
+	 * @type {Number[]}
+	 */
+	#selectedIndexes;
+
+	/**
 	 * @param {ItemSelectionData} data
 	 */
 	constructor(data) {
@@ -46,8 +59,10 @@ export class ItemSelectionDialog {
 		data.title = data.title ?? StringUtils.localize('FU.Selection');
 		this.#data = data;
 		this.#selectedItems = [];
+		this.#selectedIndexes = [];
 		if (data.initial) {
 			this.#selectedItems.push(...data.initial);
+			this.#selectedIndexes.push(...data.initial.map((initial) => data.items.findIndex((item) => item.id === initial.id)));
 		}
 	}
 
@@ -64,25 +79,41 @@ export class ItemSelectionDialog {
 	async open() {
 		// We cache the item descriptions here...
 		const descriptions = await Promise.all(this.data.items.map((item) => this.data.getDescription(item)));
+		// Additional columns
+		let columnData = {};
+		if (this.data.columns) {
+			for (const column of this.data.columns) {
+				columnData[column.label] = await Promise.all(this.data.items.map((item) => column.getContent(item)));
+			}
+		}
 		const context = {
 			...this.data,
-			descriptions: descriptions,
+			descriptions,
+			columnData,
 		};
 
 		/**
 		 * @param {HTMLElement} container
 		 * @param {HTMLElement} card
+		 * @param {Boolean} updateData
 		 */
-		const toggleCardSelection = (container, card) => {
-			const cardItem = this.data.items[card.dataset.index];
+		const toggleCardSelection = (container, card, updateData = true) => {
+			const index = Number.parseInt(card.dataset.index);
+			const cardItem = this.data.items[index];
 			if (!card.classList.contains('selected')) {
 				const selectedCards = container.querySelectorAll('.fu-item.selected');
 				if (selectedCards.length >= this.data.max) return;
 				card.classList.add('selected');
-				this.#selectedItems.push(cardItem);
+				if (updateData) {
+					this.#selectedItems.push(cardItem);
+					this.#selectedIndexes.push(index);
+				}
 			} else {
 				card.classList.remove('selected');
-				this.#selectedItems = this.#selectedItems.filter((it) => it !== cardItem);
+				if (updateData) {
+					this.#selectedItems = this.#selectedItems.filter((it) => it !== cardItem);
+					this.#selectedIndexes = this.#selectedIndexes.filter((it) => it !== index);
+				}
 			}
 		};
 
@@ -141,7 +172,7 @@ export class ItemSelectionDialog {
 				for (const input of inputs) {
 					const card = input.closest('.fu-item');
 					if (card) {
-						toggleCardSelection(container, card);
+						toggleCardSelection(container, card, false);
 					}
 				}
 				// ✅ Event handling
@@ -154,7 +185,12 @@ export class ItemSelectionDialog {
 		});
 		if (result) {
 			console.debug(result);
-			return this.#selectedItems;
+			// If a custom payload is expected
+			if (this.data.payload) {
+				return this.#selectedIndexes.map((idx) => this.data.payload[idx]);
+			} else {
+				return this.#selectedItems;
+			}
 		} else {
 			throw Error('Canceled by user.');
 		}

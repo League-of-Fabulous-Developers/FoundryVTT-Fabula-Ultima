@@ -8,7 +8,7 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
+import { DamageTraits, Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { WeaponResolver } from './weapon-resolver.mjs';
@@ -324,6 +324,14 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 		if (this.defense) {
 			config.setTargetedDefense(this.defense);
 		}
+	}
+
+	/**
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Used by templates.
+	 */
+	get traitOptions() {
+		return TraitUtils.getOptions(DamageTraits);
 	}
 
 	/**

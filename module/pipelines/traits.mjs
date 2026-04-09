@@ -58,6 +58,22 @@ export const DamageTraits = Object.freeze({
 });
 
 /**
+ * @desc Some skills provide certain features that are hard to quantify otherwise.
+ * @type {Readonly<{}>}
+ */
+export const SkillTraits = Object.freeze({
+	GrantSpell: 'grant-spell',
+});
+
+/**
+ * @desc Some heroic skills provide certain features that are hard to quantify otherwise.
+ * @type {Readonly<{}>}
+ */
+export const HeroicSkillTraits = Object.freeze({
+	GrantExtraSpells: 'grant-extra-spells',
+});
+
+/**
  * @description A list of traits in use for certain skills or class features.
  * @remarks Automatically converted to kebab case.
  */

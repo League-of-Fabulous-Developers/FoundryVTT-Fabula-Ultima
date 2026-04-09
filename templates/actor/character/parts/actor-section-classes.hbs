@@ -5,12 +5,9 @@
 			<label class="items-label">{{localize "FU.Classes"}}</label>
 			{{pfuCompendium "classes" type='class'}}
 		</span>
-		<span class="items-main total-level grid grid-2col">
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalClass.value }} / {{
-			tlTracker.totalClass.max }} </span>
-		</span>
 	</header>
 	{{{classesTable}}}
+
 	<!-- Skills Section -->
 	<header class="items-main-header">
 		<span class="items-main">
@@ -18,8 +15,9 @@
 			{{pfuCompendium "classes" type='skill' actorId=actor.uuid}}
 		</span>
 		<span class="items-main total-level grid grid-2col">
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.value }} / {{
-			tlTracker.totalSkill.max }} </span>
+			<span class="total-class-levels grid-span-2 flex-between">
+				{{ tlTracker.totalSkill.value }} / {{ tlTracker.totalSkill.max }}
+			</span>
 		</span>
 	</header>
 	{{{skillsTable}}}

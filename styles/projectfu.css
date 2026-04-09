@@ -167,7 +167,11 @@
 	--pfu-color-misc-shadow-highlight: #e03a3aff;
 	--pfu-color-misc-border-highlight: #e03a3acc;
 
-	/* Spacing and Sizing */
+	/*
+	 	SPACING & SIZING
+	*/
+	/* Default border radius */
+	--pfu-border-radius: 4px;
 	--pfu-border-radius-large: 20px;
 	--pfu-border-radius-medium: 10px;
 	--pfu-border-radius-small: 5px;

@@ -91,19 +91,6 @@
 				gap: 0.5rem;
 				margin-top: 0.25rem;
 				flex: 0;
-
-				.lv-badge {
-					font-family: 'DM Mono', monospace;
-					font-weight: 700;
-					font-size: 1rem;
-					border: 2px solid #c8d840;
-					border-radius: 50%;
-					width: 36px;
-					height: 36px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				}
 			}
 
 			.name {

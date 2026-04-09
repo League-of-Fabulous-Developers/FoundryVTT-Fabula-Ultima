@@ -1,6 +1,7 @@
 import { SkillMigrations } from './skill-migrations.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { BaseSkillDataModel } from './base-skill-data-model.mjs';
+import { DamageTraits, SkillTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @property {string} subtype.value
@@ -64,6 +65,13 @@ export class SkillDataModel extends BaseSkillDataModel {
 			{ tag: 'FU.Class', separator: ':', value: this.class.value, show: this.class.value },
 			{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: this.level.value },
 		];
+	}
+
+	get traitOptions() {
+		return TraitUtils.getOptions({
+			...DamageTraits,
+			...SkillTraits,
+		});
 	}
 
 	/**

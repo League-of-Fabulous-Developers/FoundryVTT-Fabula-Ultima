@@ -547,12 +547,12 @@ function createEffectFlags(effect, sourceInfo, identifier) {
 /**
  * @param {FUActor} actor
  * @param {FUActor[]} targets
- * @param {FUActiveEffect[]} effects
+ * @param {String[]} effectIds
  * @param {InlineSourceInfo} sourceInfo
  * @returns {Promise<void>}
  */
-async function promptApplyEffect(actor, targets, effects, sourceInfo) {
-	let actions = await Promise.all(effects.map((effect) => getTargetedAction(effect.uuid ?? effect.id, sourceInfo)));
+async function promptApplyEffect(actor, targets, effectIds, sourceInfo) {
+	let actions = await Promise.all(effectIds.map((id) => getTargetedAction(id, sourceInfo)));
 	actions = actions.filter((a) => a !== null);
 	let flags = Pipeline.initializedFlags(Flags.ChatMessage.Targets, true);
 	flags = Pipeline.setFlag(flags, Flags.ChatMessage.Effects, true);
@@ -564,7 +564,6 @@ async function promptApplyEffect(actor, targets, effects, sourceInfo) {
 		content: await FoundryUtils.renderTemplate('chat/chat-apply-effect-prompt', {
 			actor: actor,
 			source: sourceInfo.name,
-			effects: effects,
 			actions: actions,
 			targets: targetData,
 			fields: StringUtils.toBase64({

@@ -80,6 +80,14 @@
 	&.glow {
 		filter: drop-shadow(0 0 4px var(--pfu-color-misc-shadow-highlight));
 	}
+
+	&.shine {
+		filter: drop-shadow(0 0 4px var(--pfu-color-app-body-content-secondary));
+	}
+
+	&.warn {
+		color: var(--color-warning);
+	}
 }
 
 .fu-icon--xs {
@@ -169,4 +177,28 @@
 .fu-icon__radio__label.selected {
 	-webkit-filter: unset;
 	filter: unset;
+}
+
+.pfu__badge__level {
+	--size: 36px;
+	--font-size: 1rem;
+	font-family: 'DM Mono', monospace;
+	font-weight: 800;
+	font-size: var(--font-size);
+	border: 4px solid var(--pfu-color-app-control-highlight-border);
+	background: var(--pfu-color-app-detail-section-content-secondary);
+	color: var(--pfu-color-app-control-content);
+	border-radius: 50%;
+	width: var(--size);
+	height: var(--size);
+	min-width: var(--size);
+	display: flex;
+	flex: 0;
+	align-items: center;
+	justify-content: center;
+
+	&.large {
+		--size: 64px;
+		--font-size: 32px;
+	}
 }

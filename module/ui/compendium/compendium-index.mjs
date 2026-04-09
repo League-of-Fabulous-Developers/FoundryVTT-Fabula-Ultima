@@ -109,6 +109,11 @@ export class CompendiumIndex {
 	 */
 	#actorsByType;
 
+	/**
+	 * @type {string[]}
+	 */
+	static spellGrantingClasses = ['Elementalist', 'Entropist', 'Spiritist'];
+
 	// Actors
 	static npcFields = Object.freeze({
 		species: 'system.species.value',

@@ -3,6 +3,7 @@ import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -40,6 +41,11 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 			removeArrayElement: this.#removeArrayElement,
 		},
 	};
+
+	_onRender(context, options) {
+		super._onRender(context, options);
+		HTMLUtils.setupInputs(this.element);
+	}
 
 	_attachFrameListeners() {
 		super._attachFrameListeners();

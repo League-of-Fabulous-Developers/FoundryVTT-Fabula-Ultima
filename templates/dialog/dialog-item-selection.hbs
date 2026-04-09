@@ -86,6 +86,9 @@
 						{{#if compendiumItems}}
 							<th>{{localize 'FU.CompendiumItem'}}</th>
 						{{/if}}
+						{{#each columns as |col|}}
+							<th>{{localize col.label}}</th>
+						{{/each}}
 					</tr>
 					</thead>
 					{{#each items as |item|}}
@@ -112,6 +115,13 @@
 									{{/with}}
 								</td>
 							{{/if}}
+							{{#each @root.columns as |col|}}
+								<td>
+									<span>
+										{{lookup (lookup @root.columnData col.label) @../index}}
+									</span>
+								</td>
+							{{/each}}
 						</tr>
 					{{/each}}
 				</table>

@@ -1,31 +1,57 @@
 <header class="sheet-header">
 	<div class="profile desc" style="display: flex; align-items: stretch;">
 		<img class="profile-img"
-			src="{{ actor.img }}"
-			data-edit="img"
-			data-action="editImage"
-			data-tooltip="{{ actor.name }}" />
-		
+			 src="{{ actor.img }}"
+			 data-edit="img"
+			 data-action="editImage"
+			 data-tooltip="{{ actor.name }}" />
+
 		<div class="header-fields"
-			style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-			
+			 style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+
 			<!-- Start Header -->
 			<div class="header-start grid grid-6col" style="flex-shrink: 0;">
 				{{>"systems/projectfu/templates/actor/partials/actor-charname.hbs" actor=actor}}
 			</div>
 
 			<!-- Center Header -->
-			<div class="header-center grid grid-3col desc" style="flex-grow: 1;">
+			<div class="header-center flexcol gap-8" style="flex-grow: 1;">
 				{{!-- TODO: Simplify Resource partial --}}
-				{{!-- HP/MP/IP --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-point-bars.hbs" actor=actor}}
-
-				{{!-- Creature Statistics --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-creatures.hbs" actor=actor}}
+				{{!- HP/MP/IP/FP|UP --}}
+				<div class="resources flexrow flex-group-center">
+					{{>"systems/projectfu/templates/actor/partials/actor-point-bars.hbs" actor=actor}}
+					{{>"systems/projectfu/templates/actor/partials/actor-creatures.hbs" actor=actor}}
+				</div>
 
 				{{!-- DEF/MDEF/INIT/FU/UP --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-defensive.hbs" actor=actor}}
+				<div class="derived grid grid-4col flexgrow-2 flex-group-center">
+					{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs" actor=actor}}
+					<!-- FU Points -->
+					{{#if showMetaCurrency}}
+						<div class="flexrow flex-group-centerb gap-8" style="margin-right: 8px;">
+							<a class="rollable resource-content" data-action="spendMetaCurrency">
+								<label class="fu-icon__container resource-label-l flex-group-center">
+									{{#if (eq actor.type "npc")}}
+										<i class="fu-icon--sm {{pfuIconClass 'up'}}"></i>
+										{{localize 'FU.UltimaAbbr'}}
+									{{/if}}
+									{{#if (eq actor.type "character")}}
+										<i class="fu-icon--sm {{pfuIconClass 'fp'}}"></i>
+										{{localize 'FU.FabulaAbbr'}}
+									{{/if}}
+								</label>
+							</a>
+							<div class="buttons-inc"
+								 style="display: flex; justify-content: center; align-items: center;">
+								<input type="number" name="system.resources.fp.value"
+									   value="{{ system.resources.fp.value }}"
+									   data-dtype="Number" id="fp-input" class="resource-inputs"
+									   style="text-align: center;" />
+							</div>
+						</div>
+					{{/if}}
 
+				</div>
 			</div>
 		</div>
 	</div>
