@@ -341,7 +341,7 @@ export class AdvancementBrowser extends FUApplication {
 	static async #addItem(event, target) {
 		const { uuid } = target.dataset;
 		const item = await fromUuid(uuid);
-		ui.notifications.info(`Adding ${item.name} to advancement of level ${this.level}`);
+		ui.notifications.info(`Adding ${item.name} to level ${this.level} advancement.`);
 
 		// TODO: Add item to actor, get id
 		const createdItem = await FoundryUtils.addItemToActor(this.#actor, item);
@@ -401,7 +401,7 @@ export class AdvancementBrowser extends FUApplication {
 	 */
 	static async #clearItem(event, target) {
 		const item = this.#current;
-		ui.notifications.info(`Clearing ${item.name} from advancement level ${this.level}`);
+		ui.notifications.info(`Removing ${item.name} from level ${this.level} advancement.`);
 
 		return AdvancementTracker.updateEntry(this.#actor, this.#index, (entry) => {
 			if (this.isCollection) {
