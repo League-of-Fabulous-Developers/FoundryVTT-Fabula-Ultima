@@ -121,6 +121,10 @@
 	background-blend-mode: multiply !important;
 	background-size: cover !important;
 	background-position: center;
+
+	&.inset {
+		border: 4px inset var(--pfu-color-app-control-fill-2);
+	}
 }
 
 .pfu_advancement__type {

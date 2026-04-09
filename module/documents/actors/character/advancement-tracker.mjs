@@ -59,7 +59,18 @@ const CLASS_IP_BENEFITS = 2;
  * @param {AdvancementDataModel} advancement
  */
 function getAdvancementIds(advancement) {
-	return [advancement.class.id, advancement.skill.id, advancement.entries.spell?.id, advancement.entries.heroic?.id].filter(Boolean);
+	let ids = [];
+	ids.push(advancement.class.id, advancement.skill.id);
+	for (const [, entry] of Object.entries(advancement.entries)) {
+		for (const [key, value] of Object.entries(entry)) {
+			if (key === 'id' && typeof value === 'string') {
+				ids.push(value);
+			} else if (key === 'ids' && Array.isArray(value)) {
+				ids.push(...value);
+			}
+		}
+	}
+	return ids.filter(Boolean);
 }
 
 /**
