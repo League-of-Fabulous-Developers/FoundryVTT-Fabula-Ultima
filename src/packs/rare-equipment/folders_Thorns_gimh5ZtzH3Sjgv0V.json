@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "l7FDM6CBuHpyyd7h",
+  "name": "Thorns",
+  "color": "#475e6b",
+  "sorting": "a",
+  "_id": "gimh5ZtzH3Sjgv0V",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774765411667
+  },
+  "_key": "!folders!gimh5ZtzH3Sjgv0V"
+}

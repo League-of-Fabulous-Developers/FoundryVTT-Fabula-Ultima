@@ -1,0 +1,111 @@
+{
+  "folder": "ZQq6XtjmjmCDudd9",
+  "name": "Attack Damage Change (Dark)",
+  "type": "effect",
+  "_id": "RGPciruvEqhGzP7p",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "system": {
+    "fuid": "attack-damage-change-dark",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Attack Damage Change (Dark)",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.RGPciruvEqhGzP7p",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Et39aicy1nnkIzmn",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "dark",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage dealt by your <strong>attacks</strong> becomes <strong>dark</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Attack Damage Change (Dark)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.RGPciruvEqhGzP7p",
+            "effectUuid": null,
+            "fuid": "attack-damage-change-dark"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774825381850,
+        "modifiedTime": 1774826136265,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!RGPciruvEqhGzP7p.Et39aicy1nnkIzmn"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762493423,
+    "modifiedTime": 1774762493423,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!RGPciruvEqhGzP7p"
+}

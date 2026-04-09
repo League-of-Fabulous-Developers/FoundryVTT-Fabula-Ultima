@@ -1,0 +1,110 @@
+{
+  "folder": "TeRSK11zUNs12irv",
+  "name": "MP Recovery Up",
+  "type": "effect",
+  "_id": "qOzITQosmmi6LQqA",
+  "img": "systems/projectfu/styles/static/icons/resources/mp.png",
+  "system": {
+    "fuid": "mp-recovery-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "MP Recovery Up",
+      "img": "systems/projectfu/styles/static/icons/resources/mp.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.qOzITQosmmi6LQqA",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "PgWX4ce19JISDFRJ",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingRecovery.mp",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Whenever you recover <strong>Mind Points</strong> while you have this equipped, you recover <strong>5 additional Mind Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "MP Recovery Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.qOzITQosmmi6LQqA",
+            "effectUuid": null,
+            "fuid": "mp-recovery-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774670149242,
+        "modifiedTime": 1774827266927,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!qOzITQosmmi6LQqA.PgWX4ce19JISDFRJ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774670041015,
+    "modifiedTime": 1774670147509,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!qOzITQosmmi6LQqA"
+}

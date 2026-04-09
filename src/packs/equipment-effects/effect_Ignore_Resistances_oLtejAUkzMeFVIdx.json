@@ -1,0 +1,130 @@
+{
+  "folder": "hNMNCF1h2hiZcgBa",
+  "name": "Ignore Resistances",
+  "type": "effect",
+  "_id": "oLtejAUkzMeFVIdx",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "ignore-resistances",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ignore Resistances",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.oLtejAUkzMeFVIdx",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "HQYbiCIkg3Lb2cqe": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "jlHQf4y44EtTcykI",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "HQYbiCIkg3Lb2cqe",
+              "actions": {
+                "8wJytIeuF39nD2nW": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "8wJytIeuF39nD2nW",
+                  "traits": {
+                    "entries": [
+                      "ignore-resistances"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "4FtYsey3pr1zogpF",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Damage dealt by this weapon <strong>ignores Resistances</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Ignores Resistances",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.oLtejAUkzMeFVIdx",
+            "effectUuid": null,
+            "fuid": "ignores-resistances"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774732961928,
+        "modifiedTime": 1774733220840,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!oLtejAUkzMeFVIdx.4FtYsey3pr1zogpF"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774732944932,
+    "modifiedTime": 1774733296693,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!oLtejAUkzMeFVIdx"
+}

@@ -1,0 +1,133 @@
+{
+  "folder": "otoipAEPi73bXx73",
+  "name": "Awaken MP Cost Half",
+  "type": "effect",
+  "_id": "3VLWztMh1NoaNKSj",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
+  "system": {
+    "fuid": "awaken-mp-cost-half",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Awaken MP Cost Half",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/awaken.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.3VLWztMh1NoaNKSj",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "Y4MEMCLji6hcJqtD": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "cYBCa3hRLsp5312g",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "spell",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "awaken"
+              },
+              "_id": "Y4MEMCLji6hcJqtD",
+              "actions": {
+                "BCGCnn0vQACKGByC": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "BCGCnn0vQACKGByC",
+                  "amount": "0.5",
+                  "operation": "multiply"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "xINyLrRslaaZUcay",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you use the <strong>Awaken</strong> spell, its MP cost is <strong>halved</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Awaken MP Cost Half",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.3VLWztMh1NoaNKSj",
+            "effectUuid": null,
+            "fuid": "awaken-mp-cost-half"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774827346894,
+        "modifiedTime": 1774827375994,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!3VLWztMh1NoaNKSj.xINyLrRslaaZUcay"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774814569256,
+    "modifiedTime": 1774814569256,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!3VLWztMh1NoaNKSj"
+}

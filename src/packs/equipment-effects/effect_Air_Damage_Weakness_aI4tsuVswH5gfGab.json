@@ -1,0 +1,111 @@
+{
+  "folder": "ZRup8UZGBBD2SFVi",
+  "name": "Air Damage Weakness",
+  "type": "effect",
+  "_id": "aI4tsuVswH5gfGab",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "system": {
+    "fuid": "air-damage-weakness",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Air Damage Weakness",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.aI4tsuVswH5gfGab",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "1GiMeZdwhSYchKNg",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.air",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, every source that deals <strong>air</strong> damage deals <strong>5 extra damage</strong> to you.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Air Damage Weakness",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.aI4tsuVswH5gfGab",
+            "effectUuid": null,
+            "fuid": "air-damage-weakness"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774831078049,
+        "modifiedTime": 1774831163359,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!aI4tsuVswH5gfGab.1GiMeZdwhSYchKNg"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "esOkelwPNblkbxW3": 3,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774830699095,
+    "modifiedTime": 1774830699095,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!aI4tsuVswH5gfGab"
+}

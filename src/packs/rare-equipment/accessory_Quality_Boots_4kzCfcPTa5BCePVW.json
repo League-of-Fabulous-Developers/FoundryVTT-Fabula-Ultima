@@ -1,0 +1,56 @@
+{
+  "folder": "WDV28mSMrVRkI543",
+  "name": "Quality Boots",
+  "type": "accessory",
+  "_id": "4kzCfcPTa5BCePVW",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/shoe-brown-tall.png",
+  "system": {
+    "fuid": "quality-boots",
+    "description": "<p>If you have this item equipped at the start of a conflict, you gain a +4 bonus to your <strong>Initiative</strong> modifier.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 500
+    },
+    "quality": {
+      "value": "Initiative Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 4
+    },
+    "source": ""
+  },
+  "effects": [],
+  "sort": 150000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774683706369,
+    "modifiedTime": 1775708267294,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!4kzCfcPTa5BCePVW"
+}

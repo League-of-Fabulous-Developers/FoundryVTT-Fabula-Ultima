@@ -1,0 +1,130 @@
+{
+  "folder": "hNMNCF1h2hiZcgBa",
+  "name": "Ignore Absorptions",
+  "type": "effect",
+  "_id": "uSStoIWiQRtg1Zuh",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "ignore-absorptions",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ignore Absorptions",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.uSStoIWiQRtg1Zuh",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "k33iCGKJNwWnFVwu": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "J7PYPpkb9CzLsrPF",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "k33iCGKJNwWnFVwu",
+              "actions": {
+                "NROKV08Jp1JLd7Kp": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "NROKV08Jp1JLd7Kp",
+                  "traits": {
+                    "entries": [
+                      "ignore-absorption"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "fjl5u8dv2iIvGXD6",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Damage dealt by this weapon <strong>ignores Absorptions</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Ignore Absorptions",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.uSStoIWiQRtg1Zuh",
+            "effectUuid": null,
+            "fuid": "ignore-absorptions"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774733424733,
+        "modifiedTime": 1774733454264,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!uSStoIWiQRtg1Zuh.fjl5u8dv2iIvGXD6"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774733325217,
+    "modifiedTime": 1774733421405,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!uSStoIWiQRtg1Zuh"
+}

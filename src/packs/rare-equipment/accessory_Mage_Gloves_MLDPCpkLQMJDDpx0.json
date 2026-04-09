@@ -1,0 +1,133 @@
+{
+  "folder": "WDV28mSMrVRkI543",
+  "name": "Mage Gloves",
+  "type": "accessory",
+  "_id": "MLDPCpkLQMJDDpx0",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/glove-lavender.png",
+  "system": {
+    "fuid": "mage-gloves",
+    "description": "<p>You gain a +1 bonus to your <strong>Magic Checks</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1000
+    },
+    "quality": {
+      "value": "Magic Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Mage Gloves",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/glove-lavender.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.MLDPCpkLQMJDDpx0",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "AqXwB249zYrami5p",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.magicCheck",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain a +1 bonus to your <strong>Magic Checks</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Mage Gloves",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.MLDPCpkLQMJDDpx0",
+            "effectUuid": null,
+            "fuid": "mage-gloves"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774668265385,
+        "modifiedTime": 1775708261795,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!MLDPCpkLQMJDDpx0.AqXwB249zYrami5p"
+    }
+  ],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774668223232,
+    "modifiedTime": 1775708255241,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!MLDPCpkLQMJDDpx0"
+}

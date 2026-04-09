@@ -1,0 +1,110 @@
+{
+  "folder": "kjGE4lDUKcBzGLnt",
+  "name": "Ice Resistance",
+  "type": "effect",
+  "_id": "bHHcERva6e2rxw03",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "system": {
+    "fuid": "ice-resistance",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ice Resistance",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.bHHcERva6e2rxw03",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "A0cu6o17luN1bXMn",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>ice</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Ice Resistance",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.bHHcERva6e2rxw03",
+            "effectUuid": null,
+            "fuid": "ice-resistance"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774655548159,
+        "modifiedTime": 1774655560431,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!bHHcERva6e2rxw03.A0cu6o17luN1bXMn"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774655246338,
+    "modifiedTime": 1774655547239,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!bHHcERva6e2rxw03"
+}

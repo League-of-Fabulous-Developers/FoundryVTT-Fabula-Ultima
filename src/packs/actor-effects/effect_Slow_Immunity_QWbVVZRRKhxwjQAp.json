@@ -3,28 +3,52 @@
   "name": "Slow Immunity",
   "type": "effect",
   "_id": "QWbVVZRRKhxwjQAp",
-  "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+  "img": "systems/projectfu/styles/static/statuses/immunities/SlowImmune.webp",
   "system": {
-    "fuid": "slow-immunity"
+    "fuid": "slow-immunity",
+    "source": ""
   },
   "effects": [
     {
+      "name": "Slow Immunity",
+      "img": "systems/projectfu/styles/static/statuses/immunities/SlowImmune.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Slow Immunity",
-      "img": "systems/projectfu/styles/static/statuses/Slow.webp",
-      "_id": "BrxOWDu5nPRmcexw",
+      "_id": "A9bQyFE0LRixIpmB",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.immunities.slow.base",
@@ -33,28 +57,34 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You are immune to <strong>slow</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Slow Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp",
+            "effectUuid": null,
+            "fuid": "slow-immunity"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725755432275,
-        "modifiedTime": 1725755452323,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774828454418,
+        "modifiedTime": 1774828469769,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!QWbVVZRRKhxwjQAp.BrxOWDu5nPRmcexw"
+      "_key": "!items.effects!QWbVVZRRKhxwjQAp.A9bQyFE0LRixIpmB"
     }
   ],
   "sort": 100000,
@@ -66,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725755227833,
-    "modifiedTime": 1743124185466,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1774763286974,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!QWbVVZRRKhxwjQAp"

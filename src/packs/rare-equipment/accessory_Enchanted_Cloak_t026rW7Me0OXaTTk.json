@@ -1,0 +1,56 @@
+{
+  "folder": "aiNg88sma1nTOezV",
+  "name": "Enchanted Cloak",
+  "type": "accessory",
+  "_id": "t026rW7Me0OXaTTk",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-fancy.png",
+  "system": {
+    "fuid": "enchanted-cloak",
+    "description": "<p>You gain a +1 bonus to <strong>Defense</strong> and <strong>Magic Defense</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2000
+    },
+    "quality": {
+      "value": "Omnishield"
+    },
+    "def": {
+      "value": 1
+    },
+    "mdef": {
+      "value": 1
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774684361920,
+    "modifiedTime": 1775708729563,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!t026rW7Me0OXaTTk"
+}

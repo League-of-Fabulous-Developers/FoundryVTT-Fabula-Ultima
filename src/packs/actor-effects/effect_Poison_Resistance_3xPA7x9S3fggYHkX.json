@@ -2,35 +2,52 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Poison Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
   "system": {
-    "fuid": "poison-resistance"
+    "fuid": "poison-resistance",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Poison Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
-      "_id": "Uco3eDAyfe7ySmUB",
-      "type": "base",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "1LWd72xYP1ltRyjh",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.poison",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Resistance to <strong>poison</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Poison Resistance",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX",
+            "effectUuid": null,
+            "fuid": "poison-resistance"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725754614588,
-        "modifiedTime": 1747231188428,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774816268942,
+        "modifiedTime": 1774816282418,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!3xPA7x9S3fggYHkX.Uco3eDAyfe7ySmUB"
+      "_key": "!items.effects!3xPA7x9S3fggYHkX.1LWd72xYP1ltRyjh"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1747231184608,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774761095235,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "3xPA7x9S3fggYHkX",

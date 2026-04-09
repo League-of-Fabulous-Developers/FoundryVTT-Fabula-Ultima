@@ -1,0 +1,130 @@
+{
+  "folder": "hNMNCF1h2hiZcgBa",
+  "name": "Ignore Affinities",
+  "type": "effect",
+  "_id": "55Fge2bXBNV84PzO",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "ignore-affinities",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ignore Affinities",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.55Fge2bXBNV84PzO",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "v7nkeqyTQSt08PJQ": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "2CDzaw3s1tgn7Obo",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "attack"
+                ],
+                "damageTypes": [],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "v7nkeqyTQSt08PJQ",
+              "actions": {
+                "wLhcwchlxD3jX3BL": {
+                  "type": "changeTraitsRuleAction",
+                  "_id": "wLhcwchlxD3jX3BL",
+                  "traits": {
+                    "entries": [
+                      "ignore-affinities"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "EPcJocz9tJDqfJLI",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Damage dealt by this weapon <strong>ignores Affinities</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Ignore All Affinities",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.55Fge2bXBNV84PzO",
+            "effectUuid": null,
+            "fuid": "ignore-all-affinities"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774733471701,
+        "modifiedTime": 1774733518704,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!55Fge2bXBNV84PzO.EPcJocz9tJDqfJLI"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774733310240,
+    "modifiedTime": 1774733525581,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!55Fge2bXBNV84PzO"
+}

@@ -1,0 +1,142 @@
+{
+  "folder": "BlKCuhMT72VW7Anp",
+  "name": "Earth Thorns",
+  "type": "effect",
+  "_id": "JZb7WnRYdPlNu0Le",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "system": {
+    "fuid": "earth-thorns",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Earth Thorns",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.JZb7WnRYdPlNu0Le",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "8KZJ09zjzREtPoY8": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "TgLeQPi6Vrr3M2fG",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "8KZJ09zjzREtPoY8",
+              "predicates": {
+                "VMxQ8q2yAsbmHCCo": {
+                  "type": "checkRulePredicate",
+                  "_id": "VMxQ8q2yAsbmHCCo",
+                  "outcome": "success",
+                  "result": null
+                },
+                "w2CaiKLxw9lqfFzC": {
+                  "type": "weaponRulePredicate",
+                  "_id": "w2CaiKLxw9lqfFzC",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "f1tEMhpL5LxHUCnI": {
+                  "type": "messageRuleAction",
+                  "_id": "f1tEMhpL5LxHUCnI",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 earth] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "66IGA4I5Zfjwgkrx",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>earth</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Earth Thorns",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.JZb7WnRYdPlNu0Le",
+            "effectUuid": null,
+            "fuid": "earth-thorns"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774748948193,
+        "modifiedTime": 1774749940660,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!JZb7WnRYdPlNu0Le.66IGA4I5Zfjwgkrx"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774748429490,
+    "modifiedTime": 1774748946929,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!JZb7WnRYdPlNu0Le"
+}

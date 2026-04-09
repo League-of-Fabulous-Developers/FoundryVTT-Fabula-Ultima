@@ -1,0 +1,133 @@
+{
+  "folder": "8z3NsYEd9xqrDUeF",
+  "name": "Tectonic Amulet",
+  "type": "accessory",
+  "_id": "nHgtJQlJLMpsEbIj",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/amulet-goldring-orange.png",
+  "system": {
+    "fuid": "tectonic-amulet",
+    "description": "<p>All damage dealt by your attacks, spells, and Skills becomes <strong>earth</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 300
+    },
+    "quality": {
+      "value": "Earth Change"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Tectonic Amulet",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/amulet-goldring-orange.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.nHgtJQlJLMpsEbIj",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "7QQjE22fgdDvlyf0",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.normal",
+          "mode": 5,
+          "value": "earth",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage dealt by your attacks, spells, and Skills becomes <strong>earth</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Tectonic Amulet",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.nHgtJQlJLMpsEbIj",
+            "effectUuid": null,
+            "fuid": "tectonic-amulet"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774664957691,
+        "modifiedTime": 1775708700139,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!nHgtJQlJLMpsEbIj.7QQjE22fgdDvlyf0"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774664796019,
+    "modifiedTime": 1775708695781,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!nHgtJQlJLMpsEbIj"
+}

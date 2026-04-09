@@ -3,28 +3,52 @@
   "name": "MDEF Up",
   "type": "effect",
   "_id": "6csFHmRlLRQ0FhQh",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/Aura.webp",
   "system": {
-    "fuid": "mdef-up"
+    "fuid": "mdef-up",
+    "source": ""
   },
   "effects": [
     {
+      "name": "MDEF Up",
+      "img": "systems/projectfu/styles/static/statuses/Aura.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.6csFHmRlLRQ0FhQh",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "MDEF Up",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
-      "_id": "U1gNIfE4gc4PXI2j",
+      "_id": "7lUc7lFtmwrioN4s",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.derived.mdef.bonus",
@@ -33,28 +57,34 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Magical Defense by 1.</p>",
+      "description": "<p>You gain a +1 bonus to <strong>Magic</strong> <strong>Defense</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "MDEF Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.6csFHmRlLRQ0FhQh",
+            "effectUuid": null,
+            "fuid": "mdef-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725747610100,
-        "modifiedTime": 1725747635365,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774826758318,
+        "modifiedTime": 1774826769475,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!6csFHmRlLRQ0FhQh.U1gNIfE4gc4PXI2j"
+      "_key": "!items.effects!6csFHmRlLRQ0FhQh.7lUc7lFtmwrioN4s"
     }
   ],
   "sort": 0,
@@ -66,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725747608527,
-    "modifiedTime": 1725747641060,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774764424391,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!6csFHmRlLRQ0FhQh"

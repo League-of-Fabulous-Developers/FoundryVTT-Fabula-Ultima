@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Inflict Status on Spell",
+  "color": "#1b7e62",
+  "sorting": "a",
+  "_id": "5ZenCjx6n04peFsh",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774809827789,
+    "modifiedTime": 1774811626303,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!folders!5ZenCjx6n04peFsh"
+}

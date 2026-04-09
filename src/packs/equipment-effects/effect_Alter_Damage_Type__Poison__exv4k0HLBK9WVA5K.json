@@ -3,9 +3,10 @@
   "name": "Alter Damage Type (Poison)",
   "type": "effect",
   "_id": "exv4k0HLBK9WVA5K",
-  "img": "systems/projectfu/styles/static/affinities/poison.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
   "system": {
-    "fuid": "alter-damage-type-poison"
+    "fuid": "alter-damage-type-poison",
+    "source": ""
   },
   "effects": [
     {
@@ -24,7 +25,23 @@
       "img": "systems/projectfu/styles/static/affinities/poison.svg",
       "_id": "xWb1ScygsswzktYg",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -33,7 +50,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>The damage type of this weapon becomes <strong>poison</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -46,12 +63,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725776313689,
-        "modifiedTime": 1725776368777,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1774732891176,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!exv4k0HLBK9WVA5K.xWb1ScygsswzktYg"
@@ -66,12 +83,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725776309850,
-    "modifiedTime": 1725776375610,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774732888051,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!exv4k0HLBK9WVA5K"

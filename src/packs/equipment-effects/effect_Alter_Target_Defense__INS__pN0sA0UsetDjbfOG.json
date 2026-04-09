@@ -1,0 +1,110 @@
+{
+  "folder": "lUNcRxp9DjYR1CDQ",
+  "name": "Alter Target Defense (INS)",
+  "type": "effect",
+  "_id": "pN0sA0UsetDjbfOG",
+  "img": "systems/projectfu/styles/static/icons/attributes/ins.png",
+  "system": {
+    "fuid": "alter-target-defense-ins",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Alter Target Defense (INS)",
+      "img": "systems/projectfu/styles/static/icons/attributes/ins.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.pN0sA0UsetDjbfOG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "wwLiJt3WkSKNDTBC",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.defense",
+          "mode": 5,
+          "value": "ins",
+          "priority": null
+        }
+      ],
+      "description": "<p>This weapon treats the target's Defense score as being equal to their current <strong>Insight</strong> die size.</p>",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Alter Target Defense (INS)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.pN0sA0UsetDjbfOG",
+            "effectUuid": null,
+            "fuid": "alter-target-defense-ins"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774733853282,
+        "modifiedTime": 1774733935629,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!pN0sA0UsetDjbfOG.wwLiJt3WkSKNDTBC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774733639450,
+    "modifiedTime": 1774733852333,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!pN0sA0UsetDjbfOG"
+}

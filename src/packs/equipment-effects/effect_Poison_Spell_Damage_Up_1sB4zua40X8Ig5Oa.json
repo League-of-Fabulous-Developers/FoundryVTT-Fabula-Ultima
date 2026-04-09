@@ -1,0 +1,132 @@
+{
+  "folder": "iUWEn7Lso1K0AIOK",
+  "name": "Poison Spell Damage Up",
+  "type": "effect",
+  "_id": "1sB4zua40X8Ig5Oa",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "system": {
+    "fuid": "poison-spell-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Poison Spell Damage Up",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.1sB4zua40X8Ig5Oa",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "fQeeIxG7tOqjXnnT": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "0nZ62LmkJZtxxkzf",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [
+                  "poison"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "fQeeIxG7tOqjXnnT",
+              "actions": {
+                "eI1OTmohwSvyZkcf": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "eI1OTmohwSvyZkcf",
+                  "amount": "5",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "SaNlwHY394FGonP4",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, <strong>spells</strong> you cast that deal <strong>light</strong> damage deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Poison Spell Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.1sB4zua40X8Ig5Oa",
+            "effectUuid": null,
+            "fuid": "poison-spell-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774824074685,
+        "modifiedTime": 1774824096578,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!1sB4zua40X8Ig5Oa.SaNlwHY394FGonP4"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774824064533,
+    "modifiedTime": 1774824071521,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!1sB4zua40X8Ig5Oa"
+}

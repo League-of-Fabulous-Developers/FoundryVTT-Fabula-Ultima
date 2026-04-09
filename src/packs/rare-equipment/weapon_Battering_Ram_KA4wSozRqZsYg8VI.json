@@ -1,0 +1,104 @@
+{
+  "folder": "kONhkA7I6Yh3FslA",
+  "name": "Battering Ram",
+  "type": "weapon",
+  "_id": "KA4wSozRqZsYg8VI",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/glove-black.png",
+  "system": {
+    "fuid": "battering-ram",
+    "description": "<p>Attacks with this weapon treat the Defense score of each target as being equal to their current <strong>Might</strong> die size.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1050
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Forceful"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "mig",
+    "damage": {
+      "value": 10
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774743217832,
+    "modifiedTime": 1775709273753,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!KA4wSozRqZsYg8VI"
+}

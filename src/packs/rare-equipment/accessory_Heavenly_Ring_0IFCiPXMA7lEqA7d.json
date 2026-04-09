@@ -1,0 +1,139 @@
+{
+  "folder": "Anan0FYcxIi9qWJ4",
+  "name": "Heavenly Ring",
+  "type": "accessory",
+  "_id": "0IFCiPXMA7lEqA7d",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/ring-orange-silver.png",
+  "system": {
+    "fuid": "heavenly-ring",
+    "description": "<p>You gain Resistance to <strong>fire</strong> and <strong>light</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1000
+    },
+    "quality": {
+      "value": "Fire Light Resistance"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Heavenly Ring",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/ring-orange-silver.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.0IFCiPXMA7lEqA7d",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BimhodP2ljUKZrP0",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.fire",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.light",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>fire</strong> and <strong>light</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Heavenly Ring",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.0IFCiPXMA7lEqA7d",
+            "effectUuid": null,
+            "fuid": "heavenly-ring"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774657351288,
+        "modifiedTime": 1775708588520,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!0IFCiPXMA7lEqA7d.BimhodP2ljUKZrP0"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774657321204,
+    "modifiedTime": 1775708583233,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!0IFCiPXMA7lEqA7d"
+}

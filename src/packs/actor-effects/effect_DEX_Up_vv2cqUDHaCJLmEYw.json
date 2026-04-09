@@ -4,26 +4,49 @@
   "_id": "vv2cqUDHaCJLmEYw",
   "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
   "system": {
-    "fuid": "effect"
+    "fuid": "dex-up"
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "DEX Up",
       "img": "systems/projectfu/styles/static/statuses/DexUp.webp",
-      "_id": "f4rgFsliMvKR15em",
+      "origin": "Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kU456g6U0fse5vvK",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.attributes.dex",
@@ -32,31 +55,37 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Dexterity die size by 1.</p>",
+      "description": "<p>You treat your <strong>Dexterity</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "DEX Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw",
+            "effectUuid": null,
+            "fuid": "dex-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725742832609,
-        "modifiedTime": 1725743173307,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774816834194,
+        "modifiedTime": 1774816850679,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!vv2cqUDHaCJLmEYw.f4rgFsliMvKR15em"
+      "_key": "!items.effects!vv2cqUDHaCJLmEYw.kU456g6U0fse5vvK"
     }
   ],
-  "folder": "7NQvpwoHcTkOxvMv",
+  "folder": "mI21NJqZ45bnQ2S3",
   "sort": 100000,
   "ownership": {
     "default": 0,
@@ -66,12 +95,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725742806618,
-    "modifiedTime": 1725742929311,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774761369643,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!vv2cqUDHaCJLmEYw"

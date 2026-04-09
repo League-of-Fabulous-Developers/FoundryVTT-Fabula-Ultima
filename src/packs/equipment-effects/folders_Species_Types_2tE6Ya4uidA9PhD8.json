@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "uFZ8jKMARjGWZd5Y",
+  "name": "Species Types",
+  "color": "#853c38",
+  "sorting": "a",
+  "_id": "2tE6Ya4uidA9PhD8",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774839944553
+  },
+  "_key": "!folders!2tE6Ya4uidA9PhD8"
+}

@@ -1,0 +1,133 @@
+{
+  "folder": "XdMgkw7IEqMnSNF1",
+  "name": "Cyclone Orb",
+  "type": "accessory",
+  "_id": "tFW0yHz5dMNp9ucM",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/orb-green.png",
+  "system": {
+    "fuid": "cyclone-orb",
+    "description": "<p>You gain Immunity to <strong>air</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1500
+    },
+    "quality": {
+      "value": "Air Immunity"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Cyclone Orb",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/orb-green.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.tFW0yHz5dMNp9ucM",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "dyHQJlpUD8aPSZSr",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.air.current",
+          "mode": 4,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Immunity to <strong>air</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Cyclone Orb",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.tFW0yHz5dMNp9ucM",
+            "effectUuid": null,
+            "fuid": "cyclone-orb"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775683224914,
+        "modifiedTime": 1775708317669,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!tFW0yHz5dMNp9ucM.dyHQJlpUD8aPSZSr"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774657832748,
+    "modifiedTime": 1775708312868,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!tFW0yHz5dMNp9ucM"
+}

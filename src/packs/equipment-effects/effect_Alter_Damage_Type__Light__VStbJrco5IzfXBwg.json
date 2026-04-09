@@ -3,9 +3,10 @@
   "name": "Alter Damage Type (Light)",
   "type": "effect",
   "_id": "VStbJrco5IzfXBwg",
-  "img": "systems/projectfu/styles/static/affinities/light.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
   "system": {
-    "fuid": "alter-damage-type-light"
+    "fuid": "alter-damage-type-light",
+    "source": ""
   },
   "effects": [
     {
@@ -21,10 +22,26 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Light)",
-      "img": "systems/projectfu/styles/static/affinities/light.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
       "_id": "Bq2jfRi7kkYkLgtI",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.damageType.value",
@@ -33,7 +50,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>The damage type of this weapon becomes <strong>light</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -46,12 +63,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725776039592,
-        "modifiedTime": 1725776080512,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1774732882191,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!VStbJrco5IzfXBwg.Bq2jfRi7kkYkLgtI"
@@ -66,12 +83,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725776037069,
-    "modifiedTime": 1725776084369,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774732878897,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!VStbJrco5IzfXBwg"

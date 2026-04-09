@@ -1,0 +1,132 @@
+{
+  "folder": "iUWEn7Lso1K0AIOK",
+  "name": "Dark Spell Damage Up",
+  "type": "effect",
+  "_id": "QUPEgja7NrDgBtdA",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "system": {
+    "fuid": "dark-spell-damage-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Dark Spell Damage Up",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.QUPEgja7NrDgBtdA",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "FMUoHqkrZuJsCbIk": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "rLkePJNQ2nd8UVGT",
+                "type": "calculateDamageRuleTrigger",
+                "eventRelation": "source",
+                "damageSources": [
+                  "spell"
+                ],
+                "damageTypes": [
+                  "dark"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "FMUoHqkrZuJsCbIk",
+              "actions": {
+                "eTDh6wA7XvY6W7Sg": {
+                  "type": "modifyDamageRuleAction",
+                  "_id": "eTDh6wA7XvY6W7Sg",
+                  "amount": "5",
+                  "effect": "",
+                  "cost": {
+                    "amount": null
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kEywo30zlQgsb23b",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, <strong>spells</strong> you cast that deal <strong>dark</strong> damage deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Dark Spell Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.QUPEgja7NrDgBtdA",
+            "effectUuid": null,
+            "fuid": "dark-spell-damage-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774746870835,
+        "modifiedTime": 1774764032647,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!QUPEgja7NrDgBtdA.kEywo30zlQgsb23b"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774746788943,
+    "modifiedTime": 1774746868920,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!QUPEgja7NrDgBtdA"
+}

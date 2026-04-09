@@ -1,0 +1,140 @@
+{
+  "folder": "n7VHwKnti5iZ4ybZ",
+  "name": "Pneumatic Plate",
+  "type": "armor",
+  "_id": "0DGBK5qW3qpLapxS",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-frontplate-bronze.png",
+  "system": {
+    "fuid": "pneumatic-plate",
+    "description": "<p>You treat your <strong>Might</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2200
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "MIG Up"
+    },
+    "slots": "alpha",
+    "def": {
+      "attribute": "dex",
+      "value": 11
+    },
+    "mdef": {
+      "attribute": "ins",
+      "value": 0
+    },
+    "init": {
+      "value": -3
+    },
+    "items": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Pneumatic Plate",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-frontplate-bronze.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.0DGBK5qW3qpLapxS",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "oau3PyVY5KjYP4VF",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.mig",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you treat your <strong>Might</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Pneumatic Plate",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.0DGBK5qW3qpLapxS",
+            "effectUuid": null,
+            "fuid": "pneumatic-plate"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774808401555,
+        "modifiedTime": 1775708829432,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!0DGBK5qW3qpLapxS.oau3PyVY5KjYP4VF"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774808340081,
+    "modifiedTime": 1775708825039,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!0DGBK5qW3qpLapxS"
+}

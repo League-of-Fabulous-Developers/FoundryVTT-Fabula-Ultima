@@ -1,0 +1,117 @@
+{
+  "folder": "5X3cCaw4V8OpWB9S",
+  "name": "MIG Apex",
+  "type": "effect",
+  "_id": "UshRKaPJW2yet0qI",
+  "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
+  "system": {
+    "fuid": "mig-apex",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "MIG Apex",
+      "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.UshRKaPJW2yet0qI",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Knl6EsLLIcSt9KAY",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.mig",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.apexAttribute",
+          "mode": 5,
+          "value": "mig",
+          "priority": null
+        }
+      ],
+      "description": "<p>You treat your <strong>Might</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>) or, if its <strong>base die size</strong> is <strong>d12</strong>, you treat is as having a <strong>current</strong> die size of <strong>d20</strong> during Checks your perform (<strong>only</strong> during Checks, and regardless of <strong>status effects</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "MIG Apex",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.UshRKaPJW2yet0qI",
+            "effectUuid": null,
+            "fuid": "mig-apex"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774816991777,
+        "modifiedTime": 1774817011661,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!UshRKaPJW2yet0qI.Knl6EsLLIcSt9KAY"
+    }
+  ],
+  "sort": 150000,
+  "ownership": {
+    "default": 0,
+    "J5B4HfVqUaCPvzGg": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1773070155174,
+    "modifiedTime": 1774763656638,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!UshRKaPJW2yet0qI"
+}

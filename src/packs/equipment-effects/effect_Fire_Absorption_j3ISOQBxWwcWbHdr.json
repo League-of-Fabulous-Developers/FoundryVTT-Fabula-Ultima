@@ -1,0 +1,110 @@
+{
+  "folder": "XMwGgKmPfunBVc8p",
+  "name": "Fire Absorption",
+  "type": "effect",
+  "_id": "j3ISOQBxWwcWbHdr",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "system": {
+    "fuid": "fire-absorption",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Fire Absorption",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.j3ISOQBxWwcWbHdr",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "3YKRDEOeKVikgn0Y",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.fire.current",
+          "mode": 4,
+          "value": "3",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Absorption to <strong>fire</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Fire Absorption",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.j3ISOQBxWwcWbHdr",
+            "effectUuid": null,
+            "fuid": "fire-absorption"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774715837731,
+        "modifiedTime": 1774715850824,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!j3ISOQBxWwcWbHdr.3YKRDEOeKVikgn0Y"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774715834207,
+    "modifiedTime": 1774715836646,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!j3ISOQBxWwcWbHdr"
+}

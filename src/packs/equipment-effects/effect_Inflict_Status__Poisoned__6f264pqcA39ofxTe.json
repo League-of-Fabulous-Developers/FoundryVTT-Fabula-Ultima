@@ -1,0 +1,126 @@
+{
+  "folder": "9eMA0CXLIWjQMypE",
+  "name": "Inflict Status (Poisoned)",
+  "type": "effect",
+  "_id": "6f264pqcA39ofxTe",
+  "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+  "system": {
+    "fuid": "inflict-status-poisoned",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Inflict Status (Poisoned)",
+      "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.6f264pqcA39ofxTe",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "O8GHB1wkJ6ItGpNX": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "vveGJBF2vY2YQoiO",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "O8GHB1wkJ6ItGpNX",
+              "actions": {
+                "tIeHDS6Db9Ku9ocR": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "tIeHDS6Db9Ku9ocR",
+                  "effect": "poisoned"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "cNcdQDTpHWFmPYl1",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by this weapon suffers <strong>poisoned</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Inflict Status (Poisoned)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.6f264pqcA39ofxTe",
+            "effectUuid": null,
+            "fuid": "inflict-status-poisoned"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774734919865,
+        "modifiedTime": 1774734949645,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!6f264pqcA39ofxTe.cNcdQDTpHWFmPYl1"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774734733439,
+    "modifiedTime": 1774734918666,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!6f264pqcA39ofxTe"
+}

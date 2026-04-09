@@ -1,0 +1,133 @@
+{
+  "folder": "rQhyO7WyH2z4o7SA",
+  "name": "Crystal Pendant",
+  "type": "accessory",
+  "_id": "yEIyKxsECjjcpdqu",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/amulet-pendant-red.png",
+  "system": {
+    "fuid": "crystal-pendant",
+    "description": "<p>Spells you cast deal 5 extra damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 2000
+    },
+    "quality": {
+      "value": "Spell Up"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Crystal Pendant",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/amulet-pendant-red.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.yEIyKxsECjjcpdqu",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "sK882ij96zcVg14U",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.spell",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, <strong>spells</strong> you cast deal 5 extra damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Crystal Pendant",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.yEIyKxsECjjcpdqu",
+            "effectUuid": null,
+            "fuid": "crystal-pendant"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774671555899,
+        "modifiedTime": 1775708279145,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!yEIyKxsECjjcpdqu.sK882ij96zcVg14U"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774671526268,
+    "modifiedTime": 1775708274881,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!yEIyKxsECjjcpdqu"
+}

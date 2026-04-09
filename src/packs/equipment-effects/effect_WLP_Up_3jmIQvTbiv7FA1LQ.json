@@ -1,0 +1,110 @@
+{
+  "folder": "lcWBXdBj3CFpWnCq",
+  "name": "WLP Up",
+  "type": "effect",
+  "_id": "3jmIQvTbiv7FA1LQ",
+  "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
+  "system": {
+    "fuid": "wlp-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "WLP Up",
+      "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.3jmIQvTbiv7FA1LQ",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "HYeYgs57TTUJ7jue",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.wlp",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you treat your <strong>Willpower</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "WLP Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.3jmIQvTbiv7FA1LQ",
+            "effectUuid": null,
+            "fuid": "wlp-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774762133102,
+        "modifiedTime": 1774762144997,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!3jmIQvTbiv7FA1LQ.HYeYgs57TTUJ7jue"
+    }
+  ],
+  "sort": 125000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762029828,
+    "modifiedTime": 1774762250752,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!3jmIQvTbiv7FA1LQ"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "8GhSn2ow5Egq3ZFh",
+  "name": "Antistatus",
+  "color": "#12591a",
+  "sorting": "a",
+  "_id": "sQ8axLKVw7WoLhp4",
+  "description": "",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774648889823,
+    "modifiedTime": 1774768248543,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!folders!sQ8axLKVw7WoLhp4"
+}

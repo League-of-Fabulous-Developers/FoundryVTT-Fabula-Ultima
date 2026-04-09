@@ -1,0 +1,139 @@
+{
+  "folder": "7aFSmhxxgbZscBuH",
+  "name": "Opposed Check Up (INS)",
+  "type": "effect",
+  "_id": "x4rqGUqhyyeEtLFc",
+  "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
+  "system": {
+    "fuid": "opposed-check-up-ins",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Opposed Check Up (INS)",
+      "img": "systems/projectfu/styles/static/statuses/InsUp.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.x4rqGUqhyyeEtLFc",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "lVPJbyHjWy9v6S61": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "6ZVECcvQJfewQJva",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "opposed"
+                ]
+              },
+              "_id": "lVPJbyHjWy9v6S61",
+              "actions": {
+                "g7Dw7zfwhIj7eVvd": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "g7Dw7zfwhIj7eVvd",
+                  "bonus": "2"
+                }
+              },
+              "predicates": {
+                "fySb9luGVumdzfCX": {
+                  "type": "checkRulePredicate",
+                  "_id": "fySb9luGVumdzfCX",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "ins"
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "CLKBVd2F1va0S8ki",
+      "type": "base",
+      "changes": [],
+      "description": "<p>You gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Insight</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Opposed Check Up (INS)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.x4rqGUqhyyeEtLFc",
+            "effectUuid": null,
+            "fuid": "opposed-check-up-ins"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774817354205,
+        "modifiedTime": 1774817391894,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!x4rqGUqhyyeEtLFc.CLKBVd2F1va0S8ki"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774759369782,
+    "modifiedTime": 1774759392769,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!x4rqGUqhyyeEtLFc"
+}

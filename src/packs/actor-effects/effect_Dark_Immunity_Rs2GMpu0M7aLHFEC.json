@@ -2,35 +2,52 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Dark Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
   "system": {
-    "fuid": "dark-immunity"
+    "fuid": "dark-immunity",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.Rs2GMpu0M7aLHFEC",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Dark Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
-      "_id": "mJuxzT56bsMUggsd",
-      "type": "base",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.Rs2GMpu0M7aLHFEC",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "rGEF0cQdpU5alnZ3",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.dark.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Immunity to <strong>dark</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Dark Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.Rs2GMpu0M7aLHFEC",
+            "effectUuid": null,
+            "fuid": "dark-immunity"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725754080019,
-        "modifiedTime": 1747230975414,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774815931995,
+        "modifiedTime": 1774815945247,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!Rs2GMpu0M7aLHFEC.mJuxzT56bsMUggsd"
+      "_key": "!items.effects!Rs2GMpu0M7aLHFEC.rGEF0cQdpU5alnZ3"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1747230970721,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774760929532,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "Rs2GMpu0M7aLHFEC",

@@ -31,7 +31,8 @@
     "traits": {
       "entries": [
         "potion",
-        "restore"
+        "restore",
+        "hit-point"
       ]
     }
   },
@@ -53,7 +54,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706516053996,
-    "modifiedTime": 1771880423516,
+    "modifiedTime": 1774718088792,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

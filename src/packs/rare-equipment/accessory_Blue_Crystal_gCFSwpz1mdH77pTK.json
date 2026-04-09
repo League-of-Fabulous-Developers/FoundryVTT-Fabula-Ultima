@@ -1,0 +1,133 @@
+{
+  "folder": "ArBlOISf307QSlES",
+  "name": "Blue Crystal",
+  "type": "accessory",
+  "_id": "gCFSwpz1mdH77pTK",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-blue.png",
+  "system": {
+    "fuid": "blue-crystal",
+    "description": "<p>You gain Resistance to <strong>ice</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 700
+    },
+    "quality": {
+      "value": "Ice Resistance"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Blue Crystal",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-blue.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.gCFSwpz1mdH77pTK",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "keHj1BjBKyHYdXIa",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>ice</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Blue Crystal",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.gCFSwpz1mdH77pTK",
+            "effectUuid": null,
+            "fuid": "blue-crystal"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775684475041,
+        "modifiedTime": 1775708455253,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!gCFSwpz1mdH77pTK.keHj1BjBKyHYdXIa"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774653767029,
+    "modifiedTime": 1775708448090,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!gCFSwpz1mdH77pTK"
+}

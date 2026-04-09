@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "7NQvpwoHcTkOxvMv",
+  "name": "Attribute Down",
+  "color": "#256722",
+  "sorting": "a",
+  "_id": "EGSfO88Nmi05Tgzh",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768677448
+  },
+  "_key": "!folders!EGSfO88Nmi05Tgzh"
+}

@@ -1,0 +1,132 @@
+{
+  "folder": "otoipAEPi73bXx73",
+  "name": "Spell MP Cost Down",
+  "type": "effect",
+  "_id": "JVxF4vLowNM10iNi",
+  "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
+  "system": {
+    "fuid": "spell-mp-cost-down",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Spell MP Cost Down",
+      "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
+      "origin": "Compendium.projectfu.actor-effects.Item.JVxF4vLowNM10iNi",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "n1Ineg6LQG4dKaAn": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "2oOOejdFc6oUno1q",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "spell",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": ""
+              },
+              "_id": "n1Ineg6LQG4dKaAn",
+              "actions": {
+                "1abc40m2qv7aJ59d": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "1abc40m2qv7aJ59d",
+                  "amount": "-5"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "6WlESzPC0bwfJdT1",
+      "type": "base",
+      "changes": [],
+      "description": "<p>The total MP cost of your <strong>spells</strong> are <strong>reduced by 5</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Spell MP Cost Down",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.JVxF4vLowNM10iNi",
+            "effectUuid": null,
+            "fuid": "spell-mp-cost-down"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774827810672,
+        "modifiedTime": 1774827840152,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!JVxF4vLowNM10iNi.6WlESzPC0bwfJdT1"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774814569256,
+    "modifiedTime": 1774814569256,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!JVxF4vLowNM10iNi"
+}

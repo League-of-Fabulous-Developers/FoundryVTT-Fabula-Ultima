@@ -36,6 +36,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -43,11 +48,11 @@
         {
           "key": "system.damage.value",
           "mode": 2,
-          "value": "5",
+          "value": "4",
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>This weapon deals <strong>4 extra damage</strong>.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -66,7 +71,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728758779688,
-        "modifiedTime": 1770964360387,
+        "modifiedTime": 1774734596348,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "cSoNctKx8POGFn7U",
+  "name": "Spell Damage Types",
+  "color": "#853c38",
+  "sorting": "a",
+  "_id": "iUWEn7Lso1K0AIOK",
+  "description": "",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768732906
+  },
+  "_key": "!folders!iUWEn7Lso1K0AIOK"
+}

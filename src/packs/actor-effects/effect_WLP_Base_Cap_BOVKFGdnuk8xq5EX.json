@@ -1,5 +1,5 @@
 {
-  "folder": "7NQvpwoHcTkOxvMv",
+  "folder": "KtEArjkGWRkOEKtb",
   "name": "WLP Base Cap",
   "type": "effect",
   "_id": "BOVKFGdnuk8xq5EX",
@@ -9,22 +9,45 @@
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.BOVKFGdnuk8xq5EX",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "WLP Base Cap",
       "img": "systems/projectfu/styles/static/statuses/WlpDown.webp",
-      "_id": "t1T3A6fojAyovrHa",
+      "origin": "Compendium.projectfu.actor-effects.Item.BOVKFGdnuk8xq5EX",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "Wd416YPndZZ2AU1M",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.attributes.wlp.current",
@@ -33,31 +56,37 @@
           "priority": null
         }
       ],
-      "description": "<p>Cap Current Willpower Attribute to Base.</p>",
+      "description": "<p>Your <strong>Willpower</strong> die size cannot be higher than your <strong>base</strong> Willpower die size.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "WLP Base Cap",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.BOVKFGdnuk8xq5EX",
+            "effectUuid": null,
+            "fuid": "wlp-base-cap"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725744105016,
-        "modifiedTime": 1725744315835,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
-        "exportSource": null
+        "createdTime": 1774817128104,
+        "modifiedTime": 1774817144868,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!BOVKFGdnuk8xq5EX.t1T3A6fojAyovrHa"
+      "_key": "!items.effects!BOVKFGdnuk8xq5EX.Wd416YPndZZ2AU1M"
     }
   ],
-  "sort": 0,
+  "sort": 125000,
   "ownership": {
     "default": 0,
     "dobQfkKFj2NK96cc": 3
@@ -66,12 +95,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725743884725,
-    "modifiedTime": 1725744154245,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1774761360936,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!BOVKFGdnuk8xq5EX"

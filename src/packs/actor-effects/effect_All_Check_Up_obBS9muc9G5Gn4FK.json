@@ -3,66 +3,88 @@
   "name": "All Check Up",
   "type": "effect",
   "_id": "obBS9muc9G5Gn4FK",
-  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "system": {
-    "fuid": "all-check-up"
+    "fuid": "all-check-up",
+    "source": ""
   },
   "effects": [
     {
+      "name": "All Check Up",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.obBS9muc9G5Gn4FK",
+      "system": {
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "All Check Up",
-      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
-      "_id": "ZawAzHClEtivFmVp",
+      "_id": "NrUfnHFL5z6zJWuj",
       "type": "base",
-      "system": {},
       "changes": [
         {
-          "key": "system.bonuses.accuracy.accuracyCheck",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.magicCheck",
+          "key": "system.bonuses.accuracy.all",
           "mode": 2,
           "value": "1",
           "priority": null
         }
       ],
-      "description": "<p>Increase Accuracy and Magic Check bonus by 1.</p>",
+      "description": "<p>You gain a +1 bonus to all <strong>Checks</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": ""
+          "Source": {
+            "name": "All Check Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.obBS9muc9G5Gn4FK",
+            "effectUuid": null,
+            "fuid": "all-check-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725745340560,
-        "modifiedTime": 1736279285540,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
-        "exportSource": null
+        "createdTime": 1774817734346,
+        "modifiedTime": 1774817747587,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!obBS9muc9G5Gn4FK.ZawAzHClEtivFmVp"
+      "_key": "!items.effects!obBS9muc9G5Gn4FK.NrUfnHFL5z6zJWuj"
     }
   ],
   "sort": 0,
@@ -74,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725745334468,
-    "modifiedTime": 1736279280225,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1774759245420,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!obBS9muc9G5Gn4FK"

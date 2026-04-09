@@ -2,35 +2,52 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Air Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
   "system": {
-    "fuid": "air-immunity"
+    "fuid": "air-immunity",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.ZCe1E7RtKJLMgcn8",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Air Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
-      "_id": "94GdTX2nFEVnsVRR",
-      "type": "base",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.ZCe1E7RtKJLMgcn8",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "TYbm9DOmnAaXAYjT",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.air.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Immunity to <strong>air</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Air Immunity",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.ZCe1E7RtKJLMgcn8",
+            "effectUuid": null,
+            "fuid": "air-immunity"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725752594746,
-        "modifiedTime": 1747230890783,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774815852280,
+        "modifiedTime": 1774815869456,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!ZCe1E7RtKJLMgcn8.94GdTX2nFEVnsVRR"
+      "_key": "!items.effects!ZCe1E7RtKJLMgcn8.TYbm9DOmnAaXAYjT"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1747230884683,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774760911544,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "ZCe1E7RtKJLMgcn8",

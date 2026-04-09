@@ -1,0 +1,208 @@
+{
+  "folder": "3ywX6HVujl6eTROw",
+  "name": "Big Game Musket",
+  "type": "weapon",
+  "_id": "82nMd9rEWFnQuaH1",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/gun-brown.png",
+  "system": {
+    "fuid": "big-game-musket",
+    "description": "<p>This weapon deals 5 extra damage to <strong>beasts</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 550
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": "Beast Hunter"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 12
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "ranged"
+    },
+    "category": {
+      "value": "firearm"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Big Game Musket",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/gun-brown.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.82nMd9rEWFnQuaH1",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "nfOWtD6i25a8TS8Q": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "HNRrZjSsMEiBACwY",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": true,
+                "identifier": ""
+              },
+              "_id": "nfOWtD6i25a8TS8Q",
+              "predicates": {
+                "03NSFyohKiEfN9ei": {
+                  "type": "speciesRulePredicate",
+                  "_id": "03NSFyohKiEfN9ei",
+                  "species": [
+                    "beast"
+                  ]
+                }
+              },
+              "actions": {
+                "keVbTysjUWeOxVc5": {
+                  "type": "messageRuleAction",
+                  "_id": "keVbTysjUWeOxVc5",
+                  "message": "<p>If <strong>beast</strong> target, deal 5 extra damage to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "kj0QRzgcXP4HCtgr",
+      "type": "base",
+      "changes": [],
+      "description": "<p>This weapon deals 5 extra damage to <strong>beasts</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Big Game Musket",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.82nMd9rEWFnQuaH1",
+            "effectUuid": null,
+            "fuid": "big-game-musket"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774730050671,
+        "modifiedTime": 1775709124176,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!82nMd9rEWFnQuaH1.kj0QRzgcXP4HCtgr"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774729936886,
+    "modifiedTime": 1775709119954,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!82nMd9rEWFnQuaH1"
+}

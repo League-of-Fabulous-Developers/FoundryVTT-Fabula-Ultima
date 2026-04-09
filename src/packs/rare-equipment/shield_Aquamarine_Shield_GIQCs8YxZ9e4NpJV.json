@@ -1,0 +1,179 @@
+{
+  "folder": "e2xF1TahnhKRCTqB",
+  "name": "Aquamarine Shield",
+  "type": "shield",
+  "_id": "GIQCs8YxZ9e4NpJV",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-bluelight.png",
+  "system": {
+    "fuid": "aquamarine-shield",
+    "description": "<p>You gain Resistance to <strong>ice</strong> damage.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 800
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Ice Resistance"
+    },
+    "def": {
+      "value": 2
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 5
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Aquamarine Shield",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-bluelight.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.GIQCs8YxZ9e4NpJV",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "v416XsP2g5Gknvuz",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain Resistance to <strong>ice</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Aquamarine Shield",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.GIQCs8YxZ9e4NpJV",
+            "effectUuid": null,
+            "fuid": "aquamarine-shield"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774767675019,
+        "modifiedTime": 1775709022459,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!GIQCs8YxZ9e4NpJV.v416XsP2g5Gknvuz"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774767644078,
+    "modifiedTime": 1775709018068,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!GIQCs8YxZ9e4NpJV"
+}

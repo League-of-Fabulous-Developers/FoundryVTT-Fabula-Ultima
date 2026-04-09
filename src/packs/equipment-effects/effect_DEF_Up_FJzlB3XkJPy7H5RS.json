@@ -1,0 +1,110 @@
+{
+  "folder": "On9IJ6ivSp8o4bFZ",
+  "name": "DEF Up",
+  "type": "effect",
+  "_id": "FJzlB3XkJPy7H5RS",
+  "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
+  "system": {
+    "fuid": "def-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "DEF Up",
+      "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
+      "origin": "Compendium.projectfu.equipment-effects.Item.FJzlB3XkJPy7H5RS",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "pjGeeq7oMYAtioMw",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.def.bonus",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you gain a +1 bonus to <strong>Defense</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "DEF Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.FJzlB3XkJPy7H5RS",
+            "effectUuid": null,
+            "fuid": "def-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774764282266,
+        "modifiedTime": 1774764294850,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!FJzlB3XkJPy7H5RS.pjGeeq7oMYAtioMw"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774683779634,
+    "modifiedTime": 1774764280689,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!FJzlB3XkJPy7H5RS"
+}

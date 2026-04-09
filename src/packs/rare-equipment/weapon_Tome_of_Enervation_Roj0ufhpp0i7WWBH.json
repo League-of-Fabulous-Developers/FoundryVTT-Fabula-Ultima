@@ -1,0 +1,206 @@
+{
+  "folder": "jpwgV1EBBIppnZjZ",
+  "name": "Tome of Enervation",
+  "type": "weapon",
+  "_id": "Roj0ufhpp0i7WWBH",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/spellbook-ornamental-black.png",
+  "system": {
+    "fuid": "tome-of-enervation",
+    "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>weak</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1600
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Weak Hex"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 6
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "arcane"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Tome of Enervation",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/spellbook-ornamental-black.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.Roj0ufhpp0i7WWBH",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "muj2CCrGtzlMZMr2": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "kcwKUTkRE1qODWXk",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "magic"
+                ],
+                "itemGroups": [
+                  "spell"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "muj2CCrGtzlMZMr2",
+              "actions": {
+                "IAFjRvzWgja7X9SD": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "IAFjRvzWgja7X9SD",
+                  "effect": "weak"
+                }
+              },
+              "predicates": {
+                "hJGD4UvO9TI43Ng1": {
+                  "type": "spellRulePredicate",
+                  "_id": "hJGD4UvO9TI43Ng1",
+                  "offensive": "true"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "osnetnIbeJuQ3CJp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong> while you have this equipped, each of them suffers <strong>weak</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Tome of Enervation",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.Roj0ufhpp0i7WWBH",
+            "effectUuid": null,
+            "fuid": "tome-of-enervation"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774739159044,
+        "modifiedTime": 1775709219324,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Roj0ufhpp0i7WWBH.osnetnIbeJuQ3CJp"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774738705937,
+    "modifiedTime": 1775709213695,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Roj0ufhpp0i7WWBH"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "zy8cTJyhoH2dcD8H",
+  "name": "Spell",
+  "color": "#744a06",
+  "sorting": "a",
+  "_id": "BKWTTfVn4R6JFRRx",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1774768755764
+  },
+  "_key": "!folders!BKWTTfVn4R6JFRRx"
+}

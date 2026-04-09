@@ -1,0 +1,104 @@
+{
+  "folder": "kONhkA7I6Yh3FslA",
+  "name": "Psionic Reach",
+  "type": "weapon",
+  "_id": "Y857mA0p8J7y4irG",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/glove-teal.png",
+  "system": {
+    "fuid": "psionic-reach",
+    "description": "<p>Attacks with this weapon treat the Defense score of each target as being equal to their current <strong>Willpower</strong> die size.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1050
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Telekinetic"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "wlp",
+    "damage": {
+      "value": 6
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "dark"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774745473634,
+    "modifiedTime": 1775709286842,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Y857mA0p8J7y4irG"
+}

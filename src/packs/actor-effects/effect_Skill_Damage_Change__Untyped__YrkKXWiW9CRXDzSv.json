@@ -1,0 +1,111 @@
+{
+  "folder": "e6VG70pYUgpuiLoP",
+  "name": "Skill Damage Change (Untyped)",
+  "type": "effect",
+  "_id": "YrkKXWiW9CRXDzSv",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+  "system": {
+    "fuid": "skill-damage-change-untyped",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Skill Damage Change (Untyped)",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.YrkKXWiW9CRXDzSv",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "sdIniQLlnNALrI7q",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.skill.normal",
+          "mode": 5,
+          "value": "untyped",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage dealt by your <strong>Skills</strong> becomes <strong>untyped</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Skill Damage Change (Untyped)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.YrkKXWiW9CRXDzSv",
+            "effectUuid": null,
+            "fuid": "skill-damage-change-untyped"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774825825922,
+        "modifiedTime": 1774826281177,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!YrkKXWiW9CRXDzSv.sdIniQLlnNALrI7q"
+    }
+  ],
+  "sort": 500000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774762494486,
+    "modifiedTime": 1774826443529,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!YrkKXWiW9CRXDzSv"
+}

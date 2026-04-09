@@ -1,0 +1,110 @@
+{
+  "folder": "ZQq6XtjmjmCDudd9",
+  "name": "Attack Damage Change (Physical)",
+  "type": "effect",
+  "_id": "OWcbocKylcaH1Th3",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "system": {
+    "fuid": "attack-damage-change-physical",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Attack Damage Change (Physical)",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.OWcbocKylcaH1Th3",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "BAyAsajANTH3qUBG",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.attack.normal",
+          "mode": 5,
+          "value": "physical",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage dealt by your attacks becomes <strong>physical</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Attack Damage Change (Physical)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.OWcbocKylcaH1Th3",
+            "effectUuid": null,
+            "fuid": "attack-damage-change-physical"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774666845460,
+        "modifiedTime": 1774666861575,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!OWcbocKylcaH1Th3.BAyAsajANTH3qUBG"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774666683316,
+    "modifiedTime": 1774666844649,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!OWcbocKylcaH1Th3"
+}

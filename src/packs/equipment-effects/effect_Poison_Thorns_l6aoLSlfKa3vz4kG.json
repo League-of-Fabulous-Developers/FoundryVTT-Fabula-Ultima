@@ -1,0 +1,142 @@
+{
+  "folder": "BlKCuhMT72VW7Anp",
+  "name": "Poison Thorns",
+  "type": "effect",
+  "_id": "l6aoLSlfKa3vz4kG",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "system": {
+    "fuid": "poison-thorns",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Poison Thorns",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.l6aoLSlfKa3vz4kG",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "FfiwKIUhW8g7Zn5y": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "Mdpo4bC6zi41fiIV",
+                "type": "renderCheckRuleTrigger",
+                "eventRelation": "target",
+                "checkTypes": [
+                  "accuracy"
+                ],
+                "itemGroups": [
+                  "attack"
+                ],
+                "local": false,
+                "identifier": ""
+              },
+              "_id": "FfiwKIUhW8g7Zn5y",
+              "predicates": {
+                "Fd0K3gLb62mNdwp0": {
+                  "type": "checkRulePredicate",
+                  "_id": "Fd0K3gLb62mNdwp0",
+                  "result": null,
+                  "outcome": "success"
+                },
+                "3gVzl74GXsYwO8j2": {
+                  "type": "weaponRulePredicate",
+                  "_id": "3gVzl74GXsYwO8j2",
+                  "weaponType": "melee",
+                  "selector": "source"
+                }
+              },
+              "actions": {
+                "WcG1rIO4M6bxYJzs": {
+                  "type": "messageRuleAction",
+                  "_id": "WcG1rIO4M6bxYJzs",
+                  "message": "<p>If they <strong>hit</strong> you, deal @DMG[5 poison] to them.</p>"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "vyFzdheBet4Tj216",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack while you have this equipped, you deal 5 <strong>poison</strong> damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Poison Thorns",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.l6aoLSlfKa3vz4kG",
+            "effectUuid": null,
+            "fuid": "poison-thorns"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774749208812,
+        "modifiedTime": 1774749989286,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!l6aoLSlfKa3vz4kG.vyFzdheBet4Tj216"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774748456783,
+    "modifiedTime": 1774749208053,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!l6aoLSlfKa3vz4kG"
+}

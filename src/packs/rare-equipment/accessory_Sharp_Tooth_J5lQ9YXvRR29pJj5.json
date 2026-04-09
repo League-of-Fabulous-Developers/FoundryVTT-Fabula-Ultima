@@ -1,0 +1,133 @@
+{
+  "folder": "rQhyO7WyH2z4o7SA",
+  "name": "Sharp Tooth",
+  "type": "accessory",
+  "_id": "J5lQ9YXvRR29pJj5",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/claw-white.png",
+  "system": {
+    "fuid": "sharp-tooth",
+    "description": "<p>All damage you deal to <strong>monsters</strong> deal <strong>5 extra damage</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 700
+    },
+    "quality": {
+      "value": "Monster Hunter"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Sharp Tooth",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/claw-white.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.J5lQ9YXvRR29pJj5",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "ZbRHjdycncVVawBS",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.monster",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, all damage you deal to <strong>monsters</strong> deal <strong>5 extra damage</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Sharp Tooth",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.J5lQ9YXvRR29pJj5",
+            "effectUuid": null,
+            "fuid": "sharp-tooth"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774840657574,
+        "modifiedTime": 1775708296953,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!J5lQ9YXvRR29pJj5.ZbRHjdycncVVawBS"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774840605860,
+    "modifiedTime": 1775708293058,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!J5lQ9YXvRR29pJj5"
+}

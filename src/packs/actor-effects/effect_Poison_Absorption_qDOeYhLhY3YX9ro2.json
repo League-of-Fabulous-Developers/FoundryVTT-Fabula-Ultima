@@ -2,35 +2,52 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Poison Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
   "system": {
-    "fuid": "poison-absorption"
+    "fuid": "poison-absorption",
+    "source": ""
   },
   "effects": [
     {
-      "origin": "Compendium.projectfu.actor-effects.Item.qDOeYhLhY3YX9ro2",
-      "duration": {
-        "rounds": null,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
       "name": "Poison Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
-      "_id": "bRKKizv7MP6Yg5x4",
-      "type": "base",
+      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "origin": "Compendium.projectfu.actor-effects.Item.qDOeYhLhY3YX9ro2",
       "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
         "rules": {
+          "elements": {},
           "progress": {
+            "enabled": false,
             "id": "",
-            "name": ""
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "RJYB0GyVfJKKNbI2",
+      "type": "base",
       "changes": [
         {
           "key": "system.affinities.poison.current",
@@ -39,40 +56,46 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain Absorption to <strong>poison</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "Source": {
+            "name": "Poison Absorption",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.qDOeYhLhY3YX9ro2",
+            "effectUuid": null,
+            "fuid": "poison-absorption"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725752500460,
-        "modifiedTime": 1747230716563,
-        "lastModifiedBy": "0rGg2qMpfjSi3eN1",
-        "exportSource": null
+        "createdTime": 1774815804493,
+        "modifiedTime": 1774815819203,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!qDOeYhLhY3YX9ro2.bRKKizv7MP6Yg5x4"
+      "_key": "!items.effects!qDOeYhLhY3YX9ro2.RJYB0GyVfJKKNbI2"
     }
   ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1747230712474,
-    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
+    "modifiedTime": 1774760900747,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_id": "qDOeYhLhY3YX9ro2",

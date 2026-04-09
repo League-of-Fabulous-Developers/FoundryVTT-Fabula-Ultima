@@ -1,0 +1,110 @@
+{
+  "folder": "TeRSK11zUNs12irv",
+  "name": "HP Recovery Up",
+  "type": "effect",
+  "_id": "PtzaR4UdPah09trS",
+  "img": "systems/projectfu/styles/static/icons/resources/hp.png",
+  "system": {
+    "fuid": "hp-recovery-up",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "HP Recovery Up",
+      "img": "systems/projectfu/styles/static/icons/resources/hp.png",
+      "origin": "Compendium.projectfu.equipment-effects.Item.PtzaR4UdPah09trS",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "OMuvbeMDfUEG8iqx",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingRecovery.hp",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Whenever you recover <strong>Hit Points</strong> while you have this equipped, you recover <strong>5 additional Hit Points</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "HP Recovery Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.equipment-effects.Item.PtzaR4UdPah09trS",
+            "effectUuid": null,
+            "fuid": "hp-recovery-up"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774670083771,
+        "modifiedTime": 1774827251805,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!PtzaR4UdPah09trS.OMuvbeMDfUEG8iqx"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774670047583,
+    "modifiedTime": 1774670081016,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!PtzaR4UdPah09trS"
+}

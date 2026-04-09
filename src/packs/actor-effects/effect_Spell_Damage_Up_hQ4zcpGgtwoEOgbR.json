@@ -3,28 +3,52 @@
   "name": "Spell Damage Up",
   "type": "effect",
   "_id": "hQ4zcpGgtwoEOgbR",
-  "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
+  "img": "systems/projectfu/styles/static/statuses/SpellUp.webp",
   "system": {
-    "fuid": "spell-damage-up"
+    "fuid": "spell-damage-up",
+    "source": ""
   },
   "effects": [
     {
+      "name": "Spell Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/SpellUp.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.hQ4zcpGgtwoEOgbR",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Spell Damage Up",
-      "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
-      "_id": "JsnTwmVR1MqWVqWL",
+      "_id": "NUIChj1DKqYNvVmG",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.bonuses.damage.spell",
@@ -33,30 +57,34 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Spell Damage by 5.</p>",
+      "description": "<p><strong>Spells</strong> you cast deal <strong>5 extra damage</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": ""
+          "Source": {
+            "name": "Spell Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.hQ4zcpGgtwoEOgbR",
+            "effectUuid": null,
+            "fuid": "spell-damage-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725745046631,
-        "modifiedTime": 1736279200303,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
-        "exportSource": null
+        "createdTime": 1774824454433,
+        "modifiedTime": 1774824469491,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!hQ4zcpGgtwoEOgbR.JsnTwmVR1MqWVqWL"
+      "_key": "!items.effects!hQ4zcpGgtwoEOgbR.NUIChj1DKqYNvVmG"
     }
   ],
   "sort": 0,
@@ -68,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725745026520,
-    "modifiedTime": 1736279193743,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1774763859040,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!hQ4zcpGgtwoEOgbR"

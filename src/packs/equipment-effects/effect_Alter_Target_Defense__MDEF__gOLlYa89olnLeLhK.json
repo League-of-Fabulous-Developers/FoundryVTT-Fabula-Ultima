@@ -3,12 +3,13 @@
   "name": "Alter Target Defense (MDEF)",
   "type": "effect",
   "_id": "gOLlYa89olnLeLhK",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/Aura.webp",
   "system": {
     "fuid": "alter-target-defense-mdef",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
@@ -24,10 +25,26 @@
       },
       "disabled": false,
       "name": "Alter Target Defense (MDEF)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/Aura.webp",
       "_id": "gLezlQ0MFhQ25DuQ",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.defense",
@@ -36,7 +53,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>This weapon targets <strong>Magic</strong> <strong>Defense</strong> instead of Defense.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -49,12 +66,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728758316825,
-        "modifiedTime": 1744751652771,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1774733828296,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
       "_key": "!items.effects!gOLlYa89olnLeLhK.gLezlQ0MFhQ25DuQ"
@@ -69,12 +86,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728758094729,
-    "modifiedTime": 1744751647570,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1774733678305,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!gOLlYa89olnLeLhK"

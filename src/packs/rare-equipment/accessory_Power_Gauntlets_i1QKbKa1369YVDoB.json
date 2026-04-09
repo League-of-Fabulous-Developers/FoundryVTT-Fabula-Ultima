@@ -1,0 +1,161 @@
+{
+  "folder": "SzVYanP7r7aueL49",
+  "name": "Power Gauntlets",
+  "type": "accessory",
+  "_id": "i1QKbKa1369YVDoB",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/glove-red.png",
+  "system": {
+    "fuid": "power-gauntlets",
+    "description": "<p>You gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Might</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 1500
+    },
+    "quality": {
+      "value": "Talented Might"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Power Gauntlets",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/glove-red.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.i1QKbKa1369YVDoB",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "XIlD46SKKKjLa7YZ": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "7B3jmMOluWAK2pDE",
+                "type": "performCheckRuleTrigger",
+                "eventRelation": "source",
+                "checkTypes": [
+                  "opposed"
+                ]
+              },
+              "_id": "XIlD46SKKKjLa7YZ",
+              "predicates": {
+                "ICAXI1WQTk0Xv0k2": {
+                  "type": "checkRulePredicate",
+                  "_id": "ICAXI1WQTk0Xv0k2",
+                  "result": null,
+                  "attributes": {
+                    "primary": {
+                      "value": "mig"
+                    },
+                    "secondary": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              "actions": {
+                "hTVsroaQgAZfOLx3": {
+                  "type": "modifyCheckRuleAction",
+                  "_id": "hTVsroaQgAZfOLx3",
+                  "bonus": "2"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "8O7wpVTUpSlrudlw",
+      "type": "base",
+      "changes": [],
+      "description": "<p>While you have this equipped, you gain a +2 bonus to <strong>Opposed Checks</strong> that rely on <strong>Might</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Power Gauntlets",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.i1QKbKa1369YVDoB",
+            "effectUuid": null,
+            "fuid": "power-gauntlets"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774686800133,
+        "modifiedTime": 1775708237074,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!i1QKbKa1369YVDoB.8O7wpVTUpSlrudlw"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774686782135,
+    "modifiedTime": 1775708232563,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!i1QKbKa1369YVDoB"
+}

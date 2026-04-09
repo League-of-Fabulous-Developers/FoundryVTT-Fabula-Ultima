@@ -1,0 +1,133 @@
+{
+  "folder": "sQ8axLKVw7WoLhp4",
+  "name": "Scholarly Cloak",
+  "type": "accessory",
+  "_id": "m0lDm3Wi3UGIfkRr",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-gray.png",
+  "system": {
+    "fuid": "scholarly-cloak",
+    "description": "<p>You are immune to <strong>dazed</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 500
+    },
+    "quality": {
+      "value": "Anti Dazed"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Scholarly Cloak",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-gray.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.m0lDm3Wi3UGIfkRr",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "z01vFtMoTXhcU7sY",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.dazed.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have this equipped, you are immune to <strong>dazed</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Scholarly Cloak",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.m0lDm3Wi3UGIfkRr",
+            "effectUuid": null,
+            "fuid": "scholarly-cloak"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1775681486261,
+        "modifiedTime": 1775708150013,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!m0lDm3Wi3UGIfkRr.z01vFtMoTXhcU7sY"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774651939711,
+    "modifiedTime": 1775708142442,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!m0lDm3Wi3UGIfkRr"
+}

@@ -1,0 +1,203 @@
+{
+  "folder": "rNpGX8mi0M6i6y66",
+  "name": "Bishop Wand",
+  "type": "weapon",
+  "_id": "Pls03jSDkcWThdQI",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-sceptre-white.png",
+  "system": {
+    "fuid": "bishop-wand",
+    "description": "<p>When you cast the <strong>Awaken</strong> spell, its MP cost is <strong>halved</strong>.</p>",
+    "summary": {
+      "value": ""
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 800
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Awaken Savant"
+    },
+    "def": {
+      "value": 0
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": 0
+    },
+    "attributes": {
+      "primary": {
+        "value": "wlp"
+      },
+      "secondary": {
+        "value": "wlp"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "defense": "def",
+    "damage": {
+      "value": 2
+    },
+    "hasDamage": true,
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "arcane"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "traits": [],
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Bishop Wand",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-sceptre-white.png",
+      "origin": "Compendium.projectfu.rare-equipment.Item.Pls03jSDkcWThdQI",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {
+            "RfZI4NhS5pKkIUti": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "IyRdZ04tXPbh4Bil",
+                "type": "calculateExpenseRuleTrigger",
+                "eventRelation": "source",
+                "resource": "mp",
+                "expenseSource": "spell",
+                "threshold": {
+                  "operator": "",
+                  "amount": 0
+                },
+                "traits": {
+                  "entries": [],
+                  "quantifier": "any"
+                },
+                "identifier": "awaken"
+              },
+              "_id": "RfZI4NhS5pKkIUti",
+              "actions": {
+                "FfY1uCg6rCaESonq": {
+                  "type": "modifyExpenseRuleAction",
+                  "_id": "FfY1uCg6rCaESonq",
+                  "amount": "0.5",
+                  "operation": "multiply"
+                }
+              }
+            }
+          },
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "oCR623iq5uPyxESF",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you cast the <strong>Awaken</strong> spell while you have this equipped, its MP cost is <strong>halved</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Bishop Wand",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.rare-equipment.Item.Pls03jSDkcWThdQI",
+            "effectUuid": null,
+            "fuid": "bishop-staff"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1774814113809,
+        "modifiedTime": 1775709247855,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!Pls03jSDkcWThdQI.oCR623iq5uPyxESF"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {
+    "projectfu": {
+      "favorite": false
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1774813978293,
+    "modifiedTime": 1775709244107,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!Pls03jSDkcWThdQI"
+}

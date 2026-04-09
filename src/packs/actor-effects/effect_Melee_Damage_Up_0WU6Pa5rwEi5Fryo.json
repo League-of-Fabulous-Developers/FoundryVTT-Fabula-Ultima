@@ -3,28 +3,52 @@
   "name": "Melee Damage Up",
   "type": "effect",
   "_id": "0WU6Pa5rwEi5Fryo",
-  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "system": {
-    "fuid": "melee-damage-up"
+    "fuid": "melee-damage-up",
+    "source": ""
   },
   "effects": [
     {
+      "name": "Melee Damage Up",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "origin": "Compendium.projectfu.actor-effects.Item.0WU6Pa5rwEi5Fryo",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
       "duration": {
-        "rounds": null,
+        "rounds": 1,
         "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "combat": null
       },
       "disabled": false,
-      "name": "Melee Damage Up",
-      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
-      "_id": "Hd5k1JDoHHXaOiDh",
+      "_id": "9qE8NDaCzpKjZmc9",
       "type": "base",
-      "system": {},
       "changes": [
         {
           "key": "system.bonuses.damage.melee",
@@ -33,30 +57,34 @@
           "priority": null
         }
       ],
-      "description": "<p>Increase Melee Damage by 5.</p>",
+      "description": "<p>Your attacks with <strong>melee</strong> weapons deal <strong>5 extra damage</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": ""
+          "Source": {
+            "name": "Melee Damage Up",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.actor-effects.Item.0WU6Pa5rwEi5Fryo",
+            "effectUuid": null,
+            "fuid": "melee-damage-up"
+          }
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "13.346",
+        "exportSource": null,
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1725744840092,
-        "modifiedTime": 1736279175423,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
-        "exportSource": null
+        "createdTime": 1774824396506,
+        "modifiedTime": 1774824409445,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!0WU6Pa5rwEi5Fryo.Hd5k1JDoHHXaOiDh"
+      "_key": "!items.effects!0WU6Pa5rwEi5Fryo.9qE8NDaCzpKjZmc9"
     }
   ],
   "sort": 0,
@@ -68,12 +96,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725744829293,
-    "modifiedTime": 1736279171223,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1774763785378,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!0WU6Pa5rwEi5Fryo"

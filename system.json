@@ -208,6 +208,17 @@
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
 			}
+		},
+		{
+			"label": "Sample Rare Equipment",
+			"type": "Item",
+			"name": "rare-equipment",
+			"path": "packs/rare-equipment",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
 		}
 	],
 	"packFolders": [
@@ -233,7 +244,7 @@
 			"name": "Equipment",
 			"sorting": "a",
 			"color": "#005390",
-			"packs": ["basic-equipment", "consumables", "vehicle-modules", "technospheres"]
+			"packs": ["basic-equipment", "consumables", "vehicle-modules", "technospheres", "rare-equipment"]
 		},
 		{
 			"name": "GM Tools",
