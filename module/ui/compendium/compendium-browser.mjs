@@ -17,7 +17,7 @@ import { FUHooks } from '../../hooks.mjs';
 class CompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		getItems: async (entries) => entries,
+		getItems: async (entries) => entries.filter((e) => e.name),
 		tablePreset: 'item',
 		sort: true,
 	};

@@ -1965,6 +1965,7 @@
 		"Advancement": "Advancement",
 		"Advancements": "Advancements",
 		"AdvancementsUntrackedItems": "Untracked Items",
+		"AdvancementsUnsynchronizedSkills": "Unsynchronized Skills",
 		"AdvancementsSkillSynchronization": "Advancement Skill Synchronization",
 		"AdvancementsSkillsUpToDate": "All tracked skills are already up to date.",
 		"AdvancementsPruneItems": "Prune Untracked Items",
