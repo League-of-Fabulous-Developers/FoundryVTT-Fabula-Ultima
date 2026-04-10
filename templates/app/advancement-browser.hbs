@@ -1,6 +1,6 @@
 <main class="flexcol fu-scrollable gap-16" style="height: 100%">
 
-	<div class="flexrow flex-between" style="margin-bottom: 16px;">
+	<div class="flex-row-center gap-16" style="margin: 16px;">
 		<img class="fu-icon profile-img shine" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" style="height: 96px; width: auto; object-fit: contain;">
 		{{#if current}}
 			<div>
@@ -16,7 +16,6 @@
 			</div>
 		{{/if}}
 		<div class="pfu_advancement__type">
-			<i class="fu-icon--m {{pfuIconClass type}}"></i>
 			<span class="pfu__badge__level large">{{pfuMath index '+' 1}}</span>
 		</div>
 

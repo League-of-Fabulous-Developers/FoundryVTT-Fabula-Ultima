@@ -35,6 +35,7 @@ export class Theme {
 		return themeData instanceof Theme ? themeData : new Theme(themeData);
 	}
 
+	// TODO: Iterate over te option field keys instead?
 	/**
 	 * @desc Applies this theme to the game world.
 	 * @return {Promise}
@@ -53,8 +54,13 @@ export class Theme {
 		const properties = Object.keys(this).filter((key) => key !== 'advanced');
 		const styleData = properties
 			.map((themeKey) => {
-				const themeType = ThemeOptionFields[themeKey]?.type;
+				const themeField = ThemeOptionFields[themeKey];
+				const themeType = themeField?.type;
 				let themeValue = this[themeKey];
+				if (themeValue === undefined && themeField.default) {
+					themeValue = themeField.default;
+				}
+
 				if (themeType === 'image') {
 					if (!themeValue) {
 						themeValue = 'url("")';

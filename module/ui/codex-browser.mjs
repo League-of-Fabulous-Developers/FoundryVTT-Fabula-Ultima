@@ -312,12 +312,20 @@ export class CodexBrowser {
 	 */
 	async viewCodexEntry(entry) {
 		const enrichedDescription = await this.#enrichEntryDescription(entry);
+
+		const [width, height] = await HTMLUtils.resolveImageDimensions(entry.img);
+		let layout = HTMLUtils.getViewerLayout(width, height, enrichedDescription.length);
+		const layoutClass = layout ? `--${layout}` : null;
+
 		const content = await FoundryUtils.renderTemplate('actor/party/actor-party-view-codex-entry', {
 			entry: entry,
 			enrichedDescription,
+			layoutClass,
 		});
+
 		await FoundryUtils.popout(entry.name, content, {
 			position: {},
+			classes: ['projectfu', 'pfu-codex__entry__frame'],
 		});
 	}
 
