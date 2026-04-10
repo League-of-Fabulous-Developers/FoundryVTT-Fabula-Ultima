@@ -20,7 +20,7 @@
         "duration": {
           "event": "startOfTurn",
           "interval": 1,
-          "tracking": "self",
+          "tracking": "source",
           "remaining": 1
         },
         "type": "default",
@@ -90,7 +90,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774642190162,
-        "modifiedTime": 1774642222697,
+        "modifiedTime": 1775844304054,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!pbh1nZKCCYWVdK4q.OirPxHv84dXU08QO"
