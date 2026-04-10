@@ -47,6 +47,11 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		HTMLUtils.setupInputs(this.element);
 	}
 
+	_onFirstRender(context, options) {
+		super._onFirstRender(context, options);
+		this.element.classList.add(this.actor.type);
+	}
+
 	_attachFrameListeners() {
 		super._attachFrameListeners();
 		this.element.addEventListener('auxclick', this.#onAuxClick.bind(this));

@@ -334,8 +334,37 @@
 	margin-top: auto;
 }
 
-.projectfu .body-section {
+.projectfu.sheet.npc .body-section {
 	gap: 5px;
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	flex: 0 1 auto;
+	overflow-y: auto;
+
+	> .stats-container {
+		grid-template-rows: 0.6fr minmax(0, 1fr);
+		display: grid;
+		gap: 0.25rem;
+		overflow-y: auto;
+
+		.biography-section {
+			prose-mirror[name='system.description'] {
+				&.active {
+					min-height: 12rem;
+				}
+			}
+		}
+
+		.favorites-section {
+			min-height: 0;
+			overflow-y: auto;
+
+			.favorites-table .fu-table__header {
+				position: sticky;
+				top: 0;
+			}
+		}
+	}
 }
 
 .projectfu .section-container {

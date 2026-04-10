@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</section>
-		<section class="body-section grid grid-4col flexgrow-1">
+		<section class="body-section grid grid-4col">
 			<aside class="sidebar flex-group-center">
 				{{!-- Action Buttons --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
@@ -80,7 +80,7 @@
 	{{/if}}
 
 	{{#if isNPC}}
-		<section class="body-section grid grid-3col flexgrow-1">
+		<section class="body-section">
 			<aside class="sidebar flex-group-center">
 				{{!-- Action Buttons --}}
 				{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
@@ -133,11 +133,11 @@
 				{{!-- Clock Section --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
 			</aside>
-			<main class="stats-container grid-span-2 grid-2row">
+			<main class="stats-container">
 				<!-- Description Section -->
-				<fieldset class="section-container title-fieldset desc resource-content">
+				<fieldset class="section-container biography-section title-fieldset desc resource-content">
 					<legend class="resource-label-m" aria-describedby="tooltip">
-						<a class="resource-inputs resource-label-m">
+						<a class="resource-label-m">
 							{{localize 'FU.BiographyInfo'}}
 						</a>
 					</legend>
