@@ -115,7 +115,14 @@ import { getSystemSetting } from '../../settings.js';
  */
 
 /**
- * @type {Readonly<Record<String, Object>>}
+ * @typedef ThemeOptionField
+ * @property {String} label
+ * @property {'color'|'image'|'text'} type
+ * @property {String} default
+ */
+
+/**
+ * @type {Readonly<Record<String, ThemeOptionField>>}
  */
 export const ThemeOptionFields = ObjectUtils.deepFreeze({
 	/* Controls - Default */
@@ -231,8 +238,8 @@ export const ThemeOptionFields = ObjectUtils.deepFreeze({
 	uiAccentImage: { label: 'FU.UiAccentImageLabel', type: 'image' },
 	appAccentImage: { label: 'FU.AppAccentImageLabel', type: 'image' },
 	appBgImage: { label: 'FU.AppBgImageLabel', type: 'image' },
-	appBgBlendMode: { label: 'FU.AppBgBlendModeLabel', type: 'text' },
-	appBgSize: { label: 'FU.AppBgSizeLabel', type: 'text' },
+	appBgBlendMode: { label: 'FU.AppBgBlendModeLabel', type: 'text', default: 'overlay;' },
+	appBgSize: { label: 'FU.AppBgSizeLabel', type: 'text', default: '100% auto;' },
 	appSectionBgImage: { label: 'FU.AppSectionBgImageLabel', type: 'image' },
 	sidebarBgImage: { label: 'FU.SidebarBgImageLabel', type: 'image' },
 
