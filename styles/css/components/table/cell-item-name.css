@@ -1,4 +1,6 @@
 .cell-item-name {
+	max-width: 30ch;
+
 	.cell-item-name__main {
 		display: flex;
 		gap: 0.25rem;

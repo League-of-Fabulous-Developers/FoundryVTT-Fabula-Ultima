@@ -484,7 +484,7 @@ const heroicDetailsRenderer = CommonColumns.resourceColumn({
 }).renderCell;
 
 const renderSummary = () => {
-	return CommonColumns.textColumn({ alignment: 'start', cssClass: 'cell-text--no-overflow', getText: (item) => item.system.summary.value ?? '', tooltip: (item) => item.system.summary.value ?? '' }).renderCell;
+	return CommonColumns.textColumn({ alignment: 'start', cssClass: '', getText: (item) => item.system.summary.value ?? '', tooltip: (item) => item.system.summary.value ?? '' }).renderCell;
 };
 
 function renderProjectDetails() {
