@@ -465,9 +465,7 @@ export class AdvancementTracker {
 
 			// Update number of unmastered classes
 			unmasteredClasses = Object.values(classes).filter((cl) => cl.level < 10).length;
-			if (unmasteredClasses === 3) {
-				lockClasses = true;
-			}
+			lockClasses = unmasteredClasses === UNMASTERED_CLASS_LIMIT;
 		}
 
 		const entryItemIds = new Set(entries.flatMap((adv) => getAdvancementIds(adv.data)));
