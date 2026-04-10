@@ -696,8 +696,8 @@ app.projectfu .prosemirror menu {
 	& .dialog-content {
 		color: var(--pfu-color-app-body-content);
 		background: var(--pfu-app-bg-image), var(--pfu-color-app-body-primary-fill);
-		background-size: 100% auto;
-		background-blend-mode: overlay;
+		background-size: var(--pfu-app-bg-size);
+		background-blend-mode: var(--pfu-app-bg-blend-mode);
 		--color-scrollbar: var(--pfu-color-app-scrollbar) var(--pfu-color-app-scrollbar-track);
 
 		& > :is(select, input) {

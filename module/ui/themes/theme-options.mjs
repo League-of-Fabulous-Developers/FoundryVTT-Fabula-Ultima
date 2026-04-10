@@ -231,6 +231,8 @@ export const ThemeOptionFields = ObjectUtils.deepFreeze({
 	uiAccentImage: { label: 'FU.UiAccentImageLabel', type: 'image' },
 	appAccentImage: { label: 'FU.AppAccentImageLabel', type: 'image' },
 	appBgImage: { label: 'FU.AppBgImageLabel', type: 'image' },
+	appBgBlendMode: { label: 'FU.AppBgBlendModeLabel', type: 'text' },
+	appBgSize: { label: 'FU.AppBgSizeLabel', type: 'text' },
 	appSectionBgImage: { label: 'FU.AppSectionBgImageLabel', type: 'image' },
 	sidebarBgImage: { label: 'FU.SidebarBgImageLabel', type: 'image' },
 
