@@ -345,40 +345,45 @@ export class FUPartySheet extends FUActorSheet {
 				{
 					this.codexBrowser.attachListeners(html);
 
-					FoundryUtils.contextMenu(html, '[data-context-menu="shareCodexEntry"]', [
-						{
-							name: StringUtils.localize('SIDEBAR.CharArt'),
-							icon: `<i class="fu-icon--xs fas fa-image"></i>`,
-							callback: async (el) => {
-								const { index } = el.dataset;
-								return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'display');
+					FoundryUtils.contextMenu(
+						html,
+						'[data-context-menu="shareCodexEntry"]',
+						[
+							{
+								name: StringUtils.localize('SIDEBAR.CharArt'),
+								icon: `<i class="fu-icon--xs fas fa-image"></i>`,
+								callback: async (el) => {
+									const { index } = el.dataset;
+									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'display');
+								},
 							},
-						},
-						{
-							name: StringUtils.localize('FU.ChatMessageSendHint'),
-							icon: `<i class="fu-icon--xs fas fa-comment"></i>`,
-							callback: async (el) => {
-								const { index } = el.dataset;
-								return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'send');
+							{
+								name: StringUtils.localize('FU.ChatMessageSendHint'),
+								icon: `<i class="fu-icon--xs fas fa-comment"></i>`,
+								callback: async (el) => {
+									const { index } = el.dataset;
+									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'send');
+								},
 							},
-						},
-						{
-							name: StringUtils.localize('FU.InstantiateToken'),
-							icon: `<i class="fu-icon--xs fas fa-user"></i>`,
-							callback: async (el) => {
-								const { index } = el.dataset;
-								return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'token');
+							{
+								name: StringUtils.localize('FU.InstantiateToken'),
+								icon: `<i class="fu-icon--xs fas fa-user"></i>`,
+								callback: async (el) => {
+									const { index } = el.dataset;
+									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'token');
+								},
 							},
-						},
-						{
-							name: StringUtils.localize('CONTROLS.TilePlace'),
-							icon: `<i class="fu-icon--xs fa-solid fa-cube"></i>`,
-							callback: async (el) => {
-								const { index } = el.dataset;
-								return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'tile');
+							{
+								name: StringUtils.localize('CONTROLS.TilePlace'),
+								icon: `<i class="fu-icon--xs fa-solid fa-cube"></i>`,
+								callback: async (el) => {
+									const { index } = el.dataset;
+									return this.codexBrowser.executeCodexEntryAction(Number.parseInt(index), 'tile');
+								},
 							},
-						},
-					]);
+						],
+						'click',
+					);
 				}
 				break;
 		}
