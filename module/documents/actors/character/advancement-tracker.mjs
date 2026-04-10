@@ -40,7 +40,21 @@ const CLASS_IP_BENEFITS = 2;
 /**
  * @typedef AdvancementCounter
  * @property {Number} current
- * @propert {Number} max
+ * @property {Number} max
+ */
+
+/**
+ * @typedef AdvancementSkillUpdate
+ * @property {FUItem} item
+ * @property {Number} currentLevel The current skill level on the item.
+ * @property {Number} targetLevel What the skill level should be.
+ */
+
+/**
+ * @typedef AdvancementNotifications
+ * @property {String} icon
+ * @property {String} message
+ * @property {Number} count
  */
 
 /**
@@ -52,7 +66,9 @@ const CLASS_IP_BENEFITS = 2;
  * @property {Number} unmasteredClasses
  * @property {AdvancementBenefits} benefits
  * @property {Boolean} patched Whether during the summary updates were applied.
+ * @property {AdvancementNotifications[]} notifications
  * @property {FUItem[]} untrackedItems Items which are currently not being tracked.
+ * @property {AdvancementSkillUpdate[]} pendingSkillUpdates
  */
 
 /**
@@ -465,14 +481,18 @@ export class AdvancementTracker {
 
 			// Update number of unmastered classes
 			unmasteredClasses = Object.values(classes).filter((cl) => cl.level < 10).length;
-			if (unmasteredClasses === 3) {
-				lockClasses = true;
-			}
+			lockClasses = unmasteredClasses === UNMASTERED_CLASS_LIMIT;
 		}
 
-		const entryItemIds = new Set(entries.flatMap((adv) => getAdvancementIds(adv.data)));
+		// Only return entries up to the current level
+		const level = system.level.value;
+		entries = entries.slice(0, level);
+
+		/** @type AdvancementNotifications[]  **/
+		let notifications = [];
 
 		// Let's record items (class, skill, spell) not yet being tracked
+		const entryItemIds = new Set(entries.flatMap((adv) => getAdvancementIds(adv.data)));
 		const untrackedItems = actor.items.filter((item) => {
 			switch (item.type) {
 				case 'class':
@@ -487,23 +507,53 @@ export class AdvancementTracker {
 
 			return false;
 		});
-		const untrackedItemMessage = untrackedItems.map((item) => item.name).join(', ');
 
-		// Only return entries up to the current level
-		const level = system.level.value;
-		entries = entries.slice(0, level);
+		if (untrackedItems.length > 0) {
+			notifications.push({
+				icon: 'warning',
+				message: `${StringUtils.localize('FU.AdvancementsUntrackedItems')}: [${untrackedItems.map((item) => item.name).join(', ')}]`,
+				count: untrackedItems.length,
+			});
+		}
+
+		// Let's record skills which levels are not synchronized
+		/** @type AdvancementSkillUpdate[] **/
+		let pendingSkillUpdates = [];
+		for (const [skillId, value] of Object.entries(skillLevels)) {
+			const item = actor.items.get(skillId);
+			if (!item) continue;
+
+			/** @type {SkillDataModel} */
+			const itemData = item.system;
+			if (itemData.level.value !== value) {
+				pendingSkillUpdates.push({
+					item,
+					currentLevel: itemData.level.value,
+					targetLevel: value,
+					count: pendingSkillUpdates.length,
+				});
+			}
+		}
+		if (pendingSkillUpdates.length > 0) {
+			notifications.push({
+				icon: 'skill',
+				message: `${StringUtils.localize('FU.AdvancementsUnsynchronizedSkills')}: [${pendingSkillUpdates.map((update) => update.item.name).join(', ')}]`,
+				count: pendingSkillUpdates.length,
+			});
+		}
 
 		return {
 			level,
 			entries,
 			patched,
 			benefits,
+			notifications,
 			classes,
 			unmasteredClasses,
 			skillLevels,
 			classSkills,
 			untrackedItems,
-			untrackedItemMessage,
+			pendingSkillUpdates,
 		};
 	}
 
@@ -536,34 +586,22 @@ export class AdvancementTracker {
 	 */
 	static async synchronizeSkillLevels(actor) {
 		const summary = AdvancementTracker.evaluate(actor);
-		let pendingUpdates = [];
 
-		for (const [skillId, value] of Object.entries(summary.skillLevels)) {
-			const item = actor.items.get(skillId);
-			if (!item) continue;
-
-			/** @type {SkillDataModel} */
-			const itemData = item.system;
-			if (itemData.level.value !== value) {
-				pendingUpdates.push({ item, value: value, current: itemData.level.value });
-			}
-		}
-
-		if (!pendingUpdates.length) {
+		if (!summary.pendingSkillUpdates.length) {
 			ui.notifications.warn(StringUtils.localize('FU.AdvancementsSkillsUpToDate'));
 			return;
 		}
 
-		const items = pendingUpdates.map((u) => u.item);
+		const items = summary.pendingSkillUpdates.map((u) => u.item);
 		const dialog = new ItemSelectionDialog({
 			items: items,
 			initial: items,
-			payload: pendingUpdates,
+			payload: summary.pendingSkillUpdates,
 			columns: [
 				{
 					label: 'FU.Change',
 					getContent: (item) => {
-						return `${item.system.level.value} > ${pendingUpdates.find((upd) => upd.item.id === item.id).value}`;
+						return `${item.system.level.value} > ${summary.pendingSkillUpdates.find((upd) => upd.item.id === item.id).targetLevel}`;
 					},
 				},
 			],
@@ -572,9 +610,10 @@ export class AdvancementTracker {
 			title: 'FU.AdvancementsSkillSynchronization',
 		});
 
+		/** @type AdvancementSkillUpdate[] **/
 		const result = await dialog.open();
 		if (result) {
-			await Promise.all(result.map((update) => update.item.update({ 'system.level.value': update.value })));
+			await Promise.all(result.map((update) => update.item.update({ 'system.level.value': update.targetLevel })));
 			ui.notifications.info(`Synchronized ${result.length} skills.`);
 		}
 	}

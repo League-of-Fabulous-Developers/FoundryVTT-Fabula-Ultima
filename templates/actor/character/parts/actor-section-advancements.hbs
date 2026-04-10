@@ -3,15 +3,19 @@
 		<thead>
 			<tr class="summary">
 				<th class="flex-group-center">
-					<a data-tooltip="{{localize 'FU.Synchronize'}}" data-action="advancements" data-command="sync">
-						<i class="fas fa-arrows-rotate"></i>
-					</a>
+					{{#if (gte summary.pendingSkillUpdates.length 1)}}
+						<a data-tooltip="{{localize 'FU.Synchronize'}}" data-action="advancements" data-command="sync">
+							<i class="fas fa-arrows-rotate"></i>
+						</a>
+					{{/if}}
 					<a data-tooltip="{{localize 'FU.Clear'}}" data-action="advancements" data-command="clear">
 						<i class="fas fa-eraser"></i>
 					</a>
-					<a data-tooltip="{{localize 'FU.AdvancementsPruneItems'}}" data-action="advancements" data-command="prune">
-						<i class="fas fa-scissors "></i>
-					</a>
+					{{#if (gte summary.untrackedItems.length 1)}}
+						<a data-tooltip="{{localize 'FU.AdvancementsPruneItems'}}" data-action="advancements" data-command="prune">
+							<i class="fas fa-scissors "></i>
+						</a>
+					{{/if}}
 				</th>
 				<th class="flexrow flex-group-center">
 					<div class="badge-group">
@@ -42,10 +46,17 @@
 						</span>
 					</div>
 
-					<span class="badge" data-tooltip="{{localize 'FU.AdvancementsUntrackedItems'}}: [{{summary.untrackedItemMessage}}]">
-						<i class="fu-icon--xs {{pfuIconClass 'warning'}} warn"></i>
-						{{summary.untrackedItems.length}}
-					</span>
+					<div class="badge-group">
+						{{#each summary.notifications as |notif|}}
+							<span class="badge" data-tooltip="{{notif.message}}">
+								<i class="fu-icon--xs {{pfuIconClass notif.icon}} warn"></i>
+								{{#if notif.count}}
+									{{notif.count}}
+								{{/if}}
+							</span>
+						{{/each}}
+					</div>
+
 				</th>
 			</tr>
 			<tr>
