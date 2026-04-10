@@ -325,7 +325,7 @@ export class CodexBrowser {
 
 		await FoundryUtils.popout(entry.name, content, {
 			position: {},
-			classes: ['projectfu', 'sheet', 'backgroundstyle', 'pfu-codex__entry__frame'],
+			classes: ['projectfu', 'pfu-codex__entry__frame'],
 		});
 	}
 

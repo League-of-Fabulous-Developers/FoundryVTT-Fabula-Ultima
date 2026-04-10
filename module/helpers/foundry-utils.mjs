@@ -112,7 +112,7 @@ export default class FoundryUtils {
 	static async popout(title, content, options = {}) {
 		const [mergedOptions] = ObjectUtils.mergeRecursive(
 			{
-				window: { title, icon: 'fas fa-eye' },
+				window: { title, icon: 'fas fa-eye', resizable: true },
 				classes: ['projectfu', 'sheet', 'backgroundstyle', 'fu-dialog'],
 				rejectClose: false,
 				content,
