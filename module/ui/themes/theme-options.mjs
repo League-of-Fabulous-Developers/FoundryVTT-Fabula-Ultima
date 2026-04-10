@@ -247,6 +247,7 @@ const themeFiles = Object.freeze({
 	ReactorFive: systemAssetPath('ui/themes/reactor-five.json'),
 	BravelyRed: systemAssetPath('ui/themes/bravely-red.json'),
 	AncientForest: systemAssetPath('ui/themes/ancient-forest.json'),
+	FabulaKnights: systemAssetPath('ui/themes/fabula-knights.json'),
 });
 
 /**
