@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Dark Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-absorption",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Dark Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.actor-effects.Item.VFfFrNxSyFsBz4jP",
       "system": {
         "duration": {

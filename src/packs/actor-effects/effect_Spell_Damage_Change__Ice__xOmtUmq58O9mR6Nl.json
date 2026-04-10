@@ -3,7 +3,7 @@
   "name": "Spell Damage Change (Ice)",
   "type": "effect",
   "_id": "xOmtUmq58O9mR6Nl",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "spell-damage-change-ice",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Spell Damage Change (Ice)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.actor-effects.Item.xOmtUmq58O9mR6Nl",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Air Damage Reduction",
   "type": "effect",
   "_id": "KctlkEJ5OvbVGZ9W",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-damage-reduction",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Air Damage Reduction",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.KctlkEJ5OvbVGZ9W",
       "system": {
         "duration": {

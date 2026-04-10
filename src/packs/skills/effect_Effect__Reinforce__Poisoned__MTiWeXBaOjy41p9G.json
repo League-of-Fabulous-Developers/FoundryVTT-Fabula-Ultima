@@ -2,7 +2,7 @@
   "folder": "IVX5w6gevHlC5Gt6",
   "name": "Effect: Reinforce (Poisoned)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce_poisoned.png",
   "system": {
     "fuid": "effect-reinforce-poisoned",
     "cost": {
@@ -13,7 +13,7 @@
   "effects": [
     {
       "name": "Reinforce (Poisoned)",
-      "img": "systems/projectfu/styles/static/statuses/immunities/PoisonedImmune.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce_poisoned.png",
       "system": {
         "duration": {
           "event": "endOfScene",
@@ -35,6 +35,11 @@
             "max": 6,
             "style": "basic",
             "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -68,7 +73,8 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "3DqQhTAexuyMSem6",
+        "modifiedTime": 1775876513598
       },
       "_key": "!items.effects!MTiWeXBaOjy41p9G.sJloIrKsBjrUWGxt"
     }
@@ -82,8 +88,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771475560048,
-    "modifiedTime": 1771475683661,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "modifiedTime": 1775876509524,
+    "lastModifiedBy": "3DqQhTAexuyMSem6"
   },
   "ownership": {
     "default": 0,

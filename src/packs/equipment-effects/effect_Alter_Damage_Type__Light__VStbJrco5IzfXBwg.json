@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Light)",
   "type": "effect",
   "_id": "VStbJrco5IzfXBwg",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "alter-damage-type-light",
     "source": ""
@@ -22,7 +22,7 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Light)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "_id": "Bq2jfRi7kkYkLgtI",
       "type": "base",
       "system": {

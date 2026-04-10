@@ -3,7 +3,7 @@
   "name": "Earth Damage Weakness",
   "type": "effect",
   "_id": "YpXM5ClzMzIcwCgd",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Earth Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.YpXM5ClzMzIcwCgd",
       "system": {
         "duration": {

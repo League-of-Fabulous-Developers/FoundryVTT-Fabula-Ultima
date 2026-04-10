@@ -3,7 +3,7 @@
   "name": "Air Damage Weakness",
   "type": "effect",
   "_id": "aI4tsuVswH5gfGab",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Air Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.aI4tsuVswH5gfGab",
       "system": {
         "duration": {

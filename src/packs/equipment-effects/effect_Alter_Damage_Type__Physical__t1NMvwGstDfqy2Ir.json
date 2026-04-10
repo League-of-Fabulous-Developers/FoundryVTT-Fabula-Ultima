@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Physical)",
   "type": "effect",
   "_id": "t1NMvwGstDfqy2Ir",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "alter-damage-type-physical",
     "source": ""
@@ -22,7 +22,7 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Physical)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "_id": "skO0HIoywH6e9bIK",
       "type": "base",
       "system": {

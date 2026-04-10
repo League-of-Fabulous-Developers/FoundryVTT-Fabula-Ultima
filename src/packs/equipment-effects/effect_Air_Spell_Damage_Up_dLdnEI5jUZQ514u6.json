@@ -3,7 +3,7 @@
   "name": "Air Spell Damage Up",
   "type": "effect",
   "_id": "dLdnEI5jUZQ514u6",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-spell-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Air Spell Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.dLdnEI5jUZQ514u6",
       "system": {
         "duration": {

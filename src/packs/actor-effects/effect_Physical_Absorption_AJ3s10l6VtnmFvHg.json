@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Physical Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-absorption",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Physical Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.actor-effects.Item.AJ3s10l6VtnmFvHg",
       "system": {
         "duration": {

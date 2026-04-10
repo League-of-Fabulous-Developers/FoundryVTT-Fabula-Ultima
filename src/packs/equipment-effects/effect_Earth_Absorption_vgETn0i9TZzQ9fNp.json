@@ -3,7 +3,7 @@
   "name": "Earth Absorption",
   "type": "effect",
   "_id": "vgETn0i9TZzQ9fNp",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-absorption",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Earth Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.vgETn0i9TZzQ9fNp",
       "system": {
         "duration": {

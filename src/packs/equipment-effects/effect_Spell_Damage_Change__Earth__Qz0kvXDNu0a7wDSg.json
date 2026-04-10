@@ -3,7 +3,7 @@
   "name": "Spell Damage Change (Earth)",
   "type": "effect",
   "_id": "Qz0kvXDNu0a7wDSg",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "spell-damage-change-earth",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Spell Damage Change (Earth)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.Qz0kvXDNu0a7wDSg",
       "system": {
         "duration": {

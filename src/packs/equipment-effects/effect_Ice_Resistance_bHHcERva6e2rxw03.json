@@ -3,7 +3,7 @@
   "name": "Ice Resistance",
   "type": "effect",
   "_id": "bHHcERva6e2rxw03",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "ice-resistance",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Ice Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.bHHcERva6e2rxw03",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Skill Damage Change (Untyped)",
   "type": "effect",
   "_id": "YrkKXWiW9CRXDzSv",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
   "system": {
     "fuid": "skill-damage-change-untyped",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Skill Damage Change (Untyped)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
       "origin": "Compendium.projectfu.actor-effects.Item.YrkKXWiW9CRXDzSv",
       "system": {
         "duration": {

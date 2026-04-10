@@ -3,7 +3,7 @@
   "name": "Earth Immunity",
   "type": "effect",
   "_id": "c20CJ5TMHQ0bSTMK",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-immunity",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Earth Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.c20CJ5TMHQ0bSTMK",
       "system": {
         "duration": {

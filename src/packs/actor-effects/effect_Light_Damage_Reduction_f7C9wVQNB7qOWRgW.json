@@ -3,7 +3,7 @@
   "name": "Light Damage Reduction",
   "type": "effect",
   "_id": "f7C9wVQNB7qOWRgW",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-damage-reduction",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Light Damage Reduction",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.actor-effects.Item.f7C9wVQNB7qOWRgW",
       "system": {
         "duration": {

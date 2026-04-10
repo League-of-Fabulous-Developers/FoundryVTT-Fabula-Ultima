@@ -3,7 +3,7 @@
   "name": "Damage Change (Fire)",
   "type": "effect",
   "_id": "WAzr96EE19JR4VvA",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "damage-change-fire",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Damage Change (Fire)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.WAzr96EE19JR4VvA",
       "system": {
         "duration": {

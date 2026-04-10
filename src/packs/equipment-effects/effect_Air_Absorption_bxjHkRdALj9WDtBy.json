@@ -3,7 +3,7 @@
   "name": "Air Absorption",
   "type": "effect",
   "_id": "bxjHkRdALj9WDtBy",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-absorption",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Air Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.bxjHkRdALj9WDtBy",
       "system": {
         "duration": {

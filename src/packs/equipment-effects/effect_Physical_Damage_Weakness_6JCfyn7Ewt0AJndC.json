@@ -3,7 +3,7 @@
   "name": "Physical Damage Weakness",
   "type": "effect",
   "_id": "6JCfyn7Ewt0AJndC",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Physical Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.6JCfyn7Ewt0AJndC",
       "system": {
         "duration": {

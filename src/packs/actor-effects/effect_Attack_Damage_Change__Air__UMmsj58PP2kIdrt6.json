@@ -3,7 +3,7 @@
   "name": "Attack Damage Change (Air)",
   "type": "effect",
   "_id": "UMmsj58PP2kIdrt6",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "attack-damage-change-air",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Attack Damage Change (Air)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.actor-effects.Item.UMmsj58PP2kIdrt6",
       "system": {
         "duration": {

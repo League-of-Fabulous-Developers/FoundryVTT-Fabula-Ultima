@@ -3,7 +3,7 @@
   "name": "Attack Damage Change (Untyped)",
   "type": "effect",
   "_id": "tZDXWkBkSzTdCEu4",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
   "system": {
     "fuid": "attack-damage-change-untyped",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Attack Damage Change (Untyped)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
       "origin": "Compendium.projectfu.actor-effects.Item.tZDXWkBkSzTdCEu4",
       "system": {
         "duration": {

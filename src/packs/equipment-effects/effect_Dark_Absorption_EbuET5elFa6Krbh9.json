@@ -3,7 +3,7 @@
   "name": "Dark Absorption",
   "type": "effect",
   "_id": "EbuET5elFa6Krbh9",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-absorption",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Dark Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.EbuET5elFa6Krbh9",
       "system": {
         "duration": {

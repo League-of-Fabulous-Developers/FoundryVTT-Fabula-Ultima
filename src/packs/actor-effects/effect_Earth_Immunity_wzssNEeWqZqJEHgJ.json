@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Earth Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-immunity",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Earth Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.actor-effects.Item.wzssNEeWqZqJEHgJ",
       "system": {
         "duration": {

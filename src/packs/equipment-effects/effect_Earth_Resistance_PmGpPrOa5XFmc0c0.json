@@ -3,7 +3,7 @@
   "name": "Earth Resistance",
   "type": "effect",
   "_id": "PmGpPrOa5XFmc0c0",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-resistance",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Earth Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.PmGpPrOa5XFmc0c0",
       "system": {
         "duration": {

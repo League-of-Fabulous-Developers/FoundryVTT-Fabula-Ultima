@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Air)",
   "type": "effect",
   "_id": "NHP8FASwfMCFYhXb",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "alter-damage-type-air",
     "cost": {
@@ -25,7 +25,7 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Air)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "_id": "4tay6tc1XdWR8IGm",
       "type": "base",
       "system": {
