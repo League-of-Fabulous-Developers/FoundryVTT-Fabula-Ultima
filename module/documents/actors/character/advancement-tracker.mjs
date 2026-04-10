@@ -412,8 +412,13 @@ export class AdvancementTracker {
 
 				// EXTRA SPELLS (OPTIONAL)
 				if (data.entries.extraSpells) {
-					if (data.entries.extraSpells.ids.length === data.entries.extraSpells.required) {
-						resolvedExtraSpells = true;
+					if (!grantedExtraSpells) {
+						delete data.entries.extraSpells;
+						patched = true;
+					} else {
+						if (data.entries.extraSpells.ids.length === data.entries.extraSpells.required) {
+							resolvedExtraSpells = true;
+						}
 					}
 				}
 
