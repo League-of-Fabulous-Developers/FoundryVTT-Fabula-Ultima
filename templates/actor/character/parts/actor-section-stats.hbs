@@ -81,7 +81,7 @@
 
 	{{#if isNPC}}
 		<section class="body-section">
-			<aside class="sidebar flex-group-center">
+			<aside class="sidebar flexcol">
 				{{!-- Action Buttons --}}
 				{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
 				{{!-- Therioform Section --}}
@@ -98,7 +98,7 @@
 					</fieldset>
 				{{/if}}
 				{{!-- Traits Section --}}
-				<fieldset class="desc resource-content title-fieldset">
+				<fieldset class="section-container traits-section title-fieldset desc resource-content">
 					<legend class="resource-label-m">
 						<label>{{localize 'FU.Traits'}}</label>
 					</legend>
@@ -110,21 +110,19 @@
 				</fieldset>
 				<!-- Villain -->
 				{{#if system.villain.value}}
-					<fieldset class="section-container title-fieldset desc resource-content">
+					<fieldset class="section-container flexrow villain-section title-fieldset desc resource-content">
 						<legend class="resource-label-m">
 							{{localize 'FU.Villain'}}
 						</legend>
-						<div class="flexrow flex-group-center gap-8">
-							<div class="flexrow resource-content">
-								<label class="resource-label-sm">{{localize 'FU.Phase'}}</label>
-								<input type="number" name="system.phases.value" value="{{ system.phases.value }}"
-									   data-dtype="Number" class="resource-inputs bonus" />
-							</div>
-							<div class="flexrow resource-content">
-								<label class="resource-label-sm">{{localize 'FU.Multipart'}}</label>
-								<input type="text" name="system.multipart.value" value="{{ system.multipart.value }}"
-									   data-dtype="String" class="resource-inputs bonus" />
-							</div>
+						<div class="flexcol resource-content">
+							<label class="resource-label-sm">{{localize 'FU.Phase'}}</label>
+							<input type="number" name="system.phases.value" value="{{ system.phases.value }}"
+								   data-dtype="Number" class="resource-inputs bonus" />
+						</div>
+						<div class="flexcol resource-content">
+							<label class="resource-label-sm">{{localize 'FU.Multipart'}}</label>
+							<input type="text" name="system.multipart.value" value="{{ system.multipart.value }}"
+								   data-dtype="String" class="resource-inputs bonus" />
 						</div>
 					</fieldset>
 				{{/if}}
@@ -133,7 +131,7 @@
 				{{!-- Clock Section --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
 			</aside>
-			<main class="stats-container">
+			<main class="stats-container flexcol">
 				<!-- Description Section -->
 				<fieldset class="section-container biography-section title-fieldset desc resource-content">
 					<legend class="resource-label-m" aria-describedby="tooltip">
@@ -141,13 +139,15 @@
 							{{localize 'FU.BiographyInfo'}}
 						</a>
 					</legend>
+					<div>
 					{{#if (eq (pfuGetSetting 'optionNPCNotesTab') true)}}
-						<span>{{{enrichedHtml.description}}}</span>
+						{{{enrichedHtml.description}}}
 					{{else}}
 						<prose-mirror name="system.description" value="{{system.description}}" class="fit" toggled>
 							{{{enrichedHtml.description}}}
 						</prose-mirror>
 					{{/if}}
+					</div>
 				</fieldset>
 				<!-- Favorite Section -->
 				{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}

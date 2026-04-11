@@ -1,11 +1,11 @@
-<fieldset class="section-container title-fieldset desc resource-content">
+<fieldset class="section-container effects-section title-fieldset desc resource-content">
 	<legend class="resource-label-m">
 		{{localize 'FU.Effects'}}
 	</legend>
 	<div class="flexcol gap-4">
 		{{#each temporaryEffects as |effect|}}
 			<div class="flexrow flex-between" data-effect-id="{{effect.id}}">
-					<span class="flexrow flex-group-left">
+					<span class="flexrow flex-group-left gap-5">
 						{{pfuItemAnchor effect}}
 						<span>{{effect.name}}</span>
 					</span>

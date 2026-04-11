@@ -75,7 +75,7 @@
 .projectfu .window-content > .tab.active {
 	margin-bottom: 5px;
 	overflow-y: auto;
-	padding: 0.5em;
+	padding: 0;
 	flex-grow: 1;
 }
 
