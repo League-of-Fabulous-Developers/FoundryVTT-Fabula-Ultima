@@ -16,6 +16,10 @@
 		align-items: center;
 	}
 
+	.fu-table__row {
+		gap: 0.25rem;
+	}
+
 	.fu-table__row--deeply-nested {
 		background: rgb(100 100 100 / 0.2);
 	}
