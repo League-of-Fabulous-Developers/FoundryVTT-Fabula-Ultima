@@ -271,7 +271,10 @@ export class CompendiumIndex {
 	 * @param {FUItem|CompendiumIndexEntry} document The entry or item that is referencing the class it's associated to.
 	 */
 	static getClassReference(document) {
-		return StringUtils.titleToKebab(document.system.class.value);
+		if (document.system?.class?.value) {
+			return StringUtils.titleToKebab(document.system.class.value);
+		}
+		return '';
 	}
 
 	/**

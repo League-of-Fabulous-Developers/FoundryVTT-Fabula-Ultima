@@ -20,7 +20,7 @@
 				<th class="flexrow flex-group-center">
 					<div class="badge-group">
 						{{#each summary.classes as |class|}}
-							<span class="badge" data-tooltip="{{@key}}">
+							<span class="badge" data-tooltip="{{pfuHumanize @key}}">
 								<img class="fu-icon--xs" src="{{class.img}}" alt="{{key}}"/>
 								{{class.level}}
 							</span>

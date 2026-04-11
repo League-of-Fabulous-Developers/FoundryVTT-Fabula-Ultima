@@ -100,9 +100,9 @@ export class AdvancementBrowser extends FUApplication {
 
 		this.#current = data.actor.items.get(itemId);
 		this.#actorItemFuids = new Set(data.actor.items.map((item) => item.system?.fuid).filter(Boolean));
-		this.#trackedItemIds = AdvancementTracker.getTrackedItemIds(data.actor, data.index + 1);
-		this.#trackedItems = AdvancementTracker.getTrackedItems(data.actor, data.index + 1);
 		this.#summary = AdvancementTracker.evaluate(data.actor);
+		this.#trackedItems = AdvancementTracker.getTrackedItems(data.actor, data.index + 1);
+		this.#trackedItemIds = new Set(this.#trackedItems.map((item) => item.id));
 
 		// Filter these up to the current advancements
 		this.#spellList = this.getSpellList();
@@ -420,6 +420,7 @@ export class AdvancementBrowser extends FUApplication {
 					case 'skill':
 						entry.class.locked = false;
 						entry.skill.id = undefined;
+						entry.skill.value = entry.skill.max = undefined;
 						delete entry.entries.spell;
 						delete entry.entries.heroic;
 						break;
