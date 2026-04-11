@@ -1,6 +1,7 @@
 import { systemId } from '../../helpers/system-utils.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { SETTINGS } from '../../settings.js';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 /**
  * @typedef CompendiumIndexEntry
@@ -108,6 +109,9 @@ export class CompendiumIndex {
 	 * @type {Record<string, CompendiumIndexEntry[]>}
 	 */
 	#actorsByType;
+
+	#effectIdList;
+	#classList;
 
 	/**
 	 * @type {string[]}
@@ -245,8 +249,6 @@ export class CompendiumIndex {
 		return this.#effects;
 	}
 
-	#effectIdList;
-
 	/**
 	 * @desc Returns the fuids of all indexed effect items.
 	 * @returns {Promise<String[]>}
@@ -264,6 +266,34 @@ export class CompendiumIndex {
 			this.#effectIdList = Array.from(result);
 		}
 		return this.#effectIdList;
+	}
+
+	/**
+	 * @returns {Promise<String[]>} The fuids of all indexed class items.
+	 */
+	async getClassList() {
+		if (!this.#classList) {
+			const classInfo = await this.getClasses();
+			let result = new Set();
+			for (const entry of classInfo.class) {
+				const fuid = entry.system.fuid;
+				if (fuid) {
+					result.add(fuid);
+				}
+			}
+			this.#classList = Array.from(result);
+		}
+		return this.#classList;
+	}
+
+	/**
+	 * @param {FUItem|CompendiumIndexEntry} document The entry or item that is referencing the class it's associated to.
+	 */
+	static getClassReference(document) {
+		if (document.system?.class?.value) {
+			return StringUtils.titleToKebab(document.system.class.value);
+		}
+		return '';
 	}
 
 	/**
@@ -394,61 +424,72 @@ export class CompendiumIndex {
 		// TODO: Use lowercase?
 		switch (entry.type) {
 			case 'class':
-				_class = entry.name;
+				_class = entry.system.fuid;
+				break;
+			case 'skill':
+			case 'heroic':
+				{
+					// Patch existing compendium skills to use fuid format
+					if (entry.system?.class?.value) {
+						let classes = entry.system.class.value.split(',');
+						classes = classes.map((c) => StringUtils.titleToKebab(c));
+						_class = classes.join(',');
+					}
+				}
 				break;
 		}
 		switch (entry.system.featureType) {
 			case 'projectfu.dance':
-				_class = 'Dancer';
+				_class = 'dancer';
 				break;
 
 			case 'projectfu.key':
 			case 'projectfu.tone':
 			case 'projectfu.verse':
-				_class = 'Chanter';
+				_class = 'chanter';
 				break;
 
 			case 'projectfu.symbol':
-				_class = 'Symbolist';
+				_class = 'symbolist';
 				break;
 
 			case 'projectfu.therioform':
-				_class = 'Mutant';
+				_class = 'mutant';
 				break;
 
 			case 'projectfu.magitech':
 			case 'projectfu.alchemy':
 			case 'projectfu.infusions':
-				_class = 'Tinkerer';
+				_class = 'tinkerer';
 				break;
 
 			case 'projectfu.magiseed':
 			case 'projectfu.garden':
-				_class = 'Floralist';
+				_class = 'floralist';
 				break;
 
 			case 'projectfu.ingredient':
 			case 'projectfu.cookbook':
-				_class = 'Gourmet';
+				_class = 'gourmet';
 				break;
 
 			case 'projectfu.arcanum':
-				_class = 'Arcanist';
+				_class = 'arcanist';
 				break;
 
 			case 'projectfu.vehicle':
 			case 'projectfu.armorModule':
 			case 'projectfu.weaponModule':
 			case 'projectfu.supportModule':
-				_class = 'Pilot';
+				_class = 'pilot';
 				break;
 
 			case 'projectfu.invocations':
-				_class = 'Invoker';
+				_class = 'invoker';
 				break;
 
 			case 'projectfu.psychicGift':
-				_class = 'Esper';
+				_class = 'esper';
 				break;
 		}
 		entry.metadata = {

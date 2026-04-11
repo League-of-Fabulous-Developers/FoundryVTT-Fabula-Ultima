@@ -1,9 +1,11 @@
 import { HeroicSkillTraits, SkillTraits } from '../../../pipelines/traits.mjs';
 import { ItemSelectionDialog } from '../../../ui/features/item-selection-dialog.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { CompendiumIndex } from '../../../ui/compendium/compendium-index.mjs';
 
 const UNMASTERED_CLASS_LIMIT = 3;
 const CLASS_SKILL_LIMIT = 10;
+const TRACKED_TYPES = new Set(['class', 'skill', 'heroic', 'spell']);
 const ADVANCEMENT_LOG_PREFIX = '[AdvancementTracker]';
 
 const CLASS_HP_BENEFITS = 5;
@@ -67,6 +69,7 @@ const CLASS_IP_BENEFITS = 2;
  * @property {AdvancementBenefits} benefits
  * @property {Boolean} patched Whether during the summary updates were applied.
  * @property {AdvancementNotifications[]} notifications
+ * @property {FUItem[]} trackedItems Items which are currently assigned during advancements.
  * @property {FUItem[]} untrackedItems Items which are currently not being tracked.
  * @property {AdvancementSkillUpdate[]} pendingSkillUpdates
  */
@@ -86,7 +89,7 @@ function getAdvancementIds(advancement) {
 			}
 		}
 	}
-	return ids.filter(Boolean);
+	return [...new Set(ids.filter(Boolean))];
 }
 
 /**
@@ -177,17 +180,22 @@ export class AdvancementTracker {
 		let changed = false;
 		advancements = advancements.map((adv) => adv.toObject());
 		for (const adv of advancements) {
-			if (adv.class.id && actor.items.has(adv.class.id) === undefined) {
+			if (adv.class.id && !actor.items.has(adv.class.id)) {
 				adv.class.id = undefined;
 				changed = true;
 			}
-			if (adv.skill.id && actor.items.has(adv.skill.id) === undefined) {
+			if (adv.skill.id && !actor.items.has(adv.skill.id)) {
 				adv.skill.id = undefined;
 				changed = true;
 			}
-			if (adv.entries.spell && adv.entries.spell.id) {
-				if (actor.items.has(adv.entries.spell.id) === undefined) {
-					adv.entries.spell.id = undefined;
+			if (adv.entries.spell && !actor.items.has(adv.entries.spell.id)) {
+				adv.entries.spell.id = undefined;
+				changed = true;
+			}
+			if (adv.entries.extraSpells) {
+				let originalCount = adv.entries.extraSpells.ids.length;
+				adv.entries.extraSpells.ids = adv.entries.extraSpells.ids.filter((id) => actor.items.has(id));
+				if (adv.entries.extraSpells.ids.length !== originalCount) {
 					changed = true;
 				}
 			}
@@ -239,12 +247,12 @@ export class AdvancementTracker {
 
 		/**
 		 * @type {Record<string, AdvancementClassInfo>}
-		 * @remarks CLASS NAME: LEVEL
+		 * @remarks CLASS FUID: LEVEL
 		 **/
 		let classes = {};
 		/**
 		 * @type {Record<string, string[]>}
-		 * @remarks CLASS NAME: SKILL FUID
+		 * @remarks CLASS FUID: SKILL FUID
 		 **/
 		let classSkills = {};
 		/**
@@ -313,6 +321,7 @@ export class AdvancementTracker {
 				// CLASS
 				if (data.class.id) {
 					const classItem = actor.items.get(data.class.id);
+					const classIdentifier = classItem.system.fuid;
 
 					/** @type ClassDataModel **/
 					const classData = classItem.system;
@@ -328,8 +337,8 @@ export class AdvancementTracker {
 
 					resolvedClass = true;
 					// TODO: Error if same class added twice?
-					classSkills[classItem.name] = [];
-					classes[classItem.name] = {
+					classSkills[classIdentifier] = [];
+					classes[classIdentifier] = {
 						level: 0,
 						id: data.class.id,
 						img: classItem.img,
@@ -344,9 +353,10 @@ export class AdvancementTracker {
 					const skillItem = actor.items.get(skillIdentifier);
 					/** @type SkillDataModel **/
 					const skillData = skillItem.system;
-					const skillClass = skillData.class.value;
-					if (skillClass) {
-						if (classSkills[skillClass] === undefined) {
+					const classIdentifier = CompendiumIndex.getClassReference(skillItem);
+
+					if (classIdentifier) {
+						if (classSkills[classIdentifier] === undefined) {
 							state = 'invalid';
 							message = 'FU.AdvancementSkillClassNotFound';
 						} else {
@@ -369,18 +379,18 @@ export class AdvancementTracker {
 
 							// A. Add skill for the first time
 							if (!skillLevels[skillIdentifier]) {
-								classSkills[skillClass].push(skillData.fuid);
+								classSkills[classIdentifier].push(skillData.fuid);
 								skillLevels[skillIdentifier] = 1;
 							}
 							// B. Mark SL investment
 							else {
 								skillLevels[skillIdentifier]++;
 							}
-							classes[skillClass].level++;
+							classes[classIdentifier].level++;
 							resolvedSkill = true;
 
 							// If a heroic is unlocked
-							const unlockedHeroic = classes[skillClass].level === CLASS_SKILL_LIMIT;
+							const unlockedHeroic = classes[classIdentifier].level === CLASS_SKILL_LIMIT;
 							if (unlockedHeroic) {
 								if (data.entries.heroic === undefined) {
 									data.entries.heroic = {
@@ -493,21 +503,28 @@ export class AdvancementTracker {
 
 		// Let's record items (class, skill, spell) not yet being tracked
 		const entryItemIds = new Set(entries.flatMap((adv) => getAdvancementIds(adv.data)));
-		const untrackedItems = actor.items.filter((item) => {
+		const matchingItems = actor.items.filter((item) => TRACKED_TYPES.has(item.type));
+		let { trackedItems, untrackedItems } = matchingItems.reduce(
+			(acc, item) => {
+				acc[entryItemIds.has(item.id) ? 'trackedItems' : 'untrackedItems'].push(item);
+				return acc;
+			},
+			{ trackedItems: [], untrackedItems: [] },
+		);
+		untrackedItems = untrackedItems.filter((item) => {
 			switch (item.type) {
-				case 'class':
-				case 'skill':
-				case 'heroic':
 				case 'spell':
-					if (!entryItemIds.has(item.id)) {
-						return true;
+					{
+						// Make an exception for Chimerist spells
+						const classReference = CompendiumIndex.getClassReference(item);
+						if (classReference === 'chimerist') {
+							return false;
+						}
 					}
 					break;
 			}
-
-			return false;
+			return true;
 		});
-
 		if (untrackedItems.length > 0) {
 			notifications.push({
 				icon: 'warning',
@@ -552,19 +569,10 @@ export class AdvancementTracker {
 			unmasteredClasses,
 			skillLevels,
 			classSkills,
+			trackedItems,
 			untrackedItems,
 			pendingSkillUpdates,
 		};
-	}
-
-	/**
-	 * @param {FUActor} actor
-	 * @param {Number} [level] If provided, only include advancements up to this level.
-	 * @return {Set<String>}
-	 */
-	static getTrackedItemIds(actor, level) {
-		const range = AdvancementTracker.getRange(actor, level);
-		return new Set(range.flatMap((adv) => getAdvancementIds(adv)));
 	}
 
 	/**
@@ -574,10 +582,9 @@ export class AdvancementTracker {
 	 */
 	static getTrackedItems(actor, level) {
 		const range = AdvancementTracker.getRange(actor, level);
-		return range
-			.flatMap((adv) => getAdvancementIds(adv))
-			.map((id) => actor.items.get(id))
-			.filter(Boolean);
+		const ids = new Set(range.flatMap((adv) => getAdvancementIds(adv)));
+		const trackedItemsIds = Array.from(ids);
+		return trackedItemsIds.map((id) => actor.items.get(id)).filter(Boolean);
 	}
 
 	/**
@@ -652,7 +659,7 @@ export class AdvancementTracker {
 	 */
 	static getSkillAdvancements(actor, level) {
 		const range = AdvancementTracker.getRange(actor, level);
-		return range.filter((adv) => adv.skill.id).map((adv) => adv.skill);
+		return range.filter((adv) => adv.skill.id && actor.items.has(adv.skill.id)).map((adv) => adv.skill);
 	}
 }
 

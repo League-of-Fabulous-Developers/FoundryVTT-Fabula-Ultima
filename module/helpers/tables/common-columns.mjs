@@ -461,19 +461,33 @@ function damageColumn(options = {}) {
 }
 
 /**
+ * @typedef PropertyColumnOptions
+ * @property {Record<String, String>} localizationRecord
+ * @property {function} mapFunction
+ */
+
+/**
  *
  * @param {String} label
  * @param {String} path
- * @param {Record} localizationRecord = null For localization.
+ * @param {PropertyColumnOptions} options
  * @return {ColumnConfig<FUItem>}
  */
-function propertyColumn(label, path, localizationRecord = undefined) {
+function propertyColumn(label, path, options = {}) {
 	return CommonColumns.textColumn({
 		columnLabel: label,
 		getText: (entry) => {
 			const property = ObjectUtils.getProperty(entry, path);
+			let value = property;
+			if (options.localizationRecord) {
+				value = options.localizationRecord[value];
+			} else if (options.mapFunction) {
+				value = options.mapFunction(value);
+			} else {
+				value = property;
+			}
 			if (property) {
-				return StringUtils.localize(localizationRecord ? localizationRecord[property] : property);
+				return StringUtils.localize(value);
 			}
 			return '';
 		},
