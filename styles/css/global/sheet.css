@@ -334,56 +334,33 @@
 	margin-top: auto;
 }
 
-.projectfu.sheet.npc .body-section {
-	gap: 5px;
-	display: flex;
-	flex: 1 1 auto;
-	overflow-y: auto;
-
-	.sidebar {
-		flex: 1 0 auto;
-		align-items: center;
-		text-align: center;
-		overflow-y: auto;
-		overflow-x: hidden;
-		> * {
-			width: 100%;
-		}
-
-		.villain-section {
-			flex: 0 1 auto;
-			.resource-content:has(input) {
-				width: 5rem;
-			}
-		}
-		.effects-section {
-			[data-effect-id] {
-				a[data-link][data-type='Item'] {
-					flex: 0 1 max-content;
-				}
-			}
-		}
-	}
-
-	.stats-container {
-		/* grid-template-rows: 0.6fr minmax(0, 1fr);*/
-		gap: 0.25rem;
+.projectfu.sheet.character,
+.projectfu.sheet.npc {
+	.body-section {
+		gap: 5px;
+		display: flex;
+		flex: 1 1 auto;
 		overflow-y: auto;
 
-		.biography-section {
-			min-height: 4rem;
-			flex: 1 1 auto;
-			font-size: var(--font-size-base);
+		main {
+			gap: 0.25rem;
 			overflow-y: auto;
+		}
 
-			&:has(prose-mirror[name='system.description']) {
-				min-height: max-content;
+		aside {
+			flex: 1 0 auto;
+			align-items: center;
+			text-align: center;
+			overflow-y: auto;
+			overflow-x: hidden;
+			> * {
+				width: 100%;
 			}
-
-			prose-mirror[name='system.description'] {
-				min-height: 8rem;
-				&.active {
-					min-height: 12rem;
+			.effects-section {
+				[data-effect-id] {
+					a[data-link][data-type='Item'] {
+						flex: 0 1 max-content;
+					}
 				}
 			}
 		}
@@ -396,6 +373,46 @@
 			.favorites-table .fu-table__header {
 				position: sticky;
 				top: 0;
+			}
+		}
+	}
+
+	&.npc .body-section {
+		aside .villain-section {
+			flex: 0 1 auto;
+			.resource-content:has(input) {
+				width: 5rem;
+			}
+		}
+
+		main {
+			.biography-section {
+				min-height: 4rem;
+				flex: 1 1 auto;
+				font-size: var(--font-size-base);
+				overflow-y: auto;
+
+				&:has(prose-mirror[name='system.description']) {
+					min-height: max-content;
+				}
+
+				prose-mirror[name='system.description'] {
+					min-height: 8rem;
+					&.active {
+						min-height: 12rem;
+					}
+				}
+			}
+
+			.favorites-section {
+				min-height: 12rem;
+				overflow-y: auto;
+				flex: 1 1 auto;
+
+				.favorites-table .fu-table__header {
+					position: sticky;
+					top: 0;
+				}
 			}
 		}
 	}
