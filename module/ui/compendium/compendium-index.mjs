@@ -1,6 +1,7 @@
 import { systemId } from '../../helpers/system-utils.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { SETTINGS } from '../../settings.js';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 /**
  * @typedef CompendiumIndexEntry
@@ -264,6 +265,13 @@ export class CompendiumIndex {
 			this.#effectIdList = Array.from(result);
 		}
 		return this.#effectIdList;
+	}
+
+	/**
+	 * @param {FUItem|CompendiumIndexEntry} document The entry or item that is referencing the class it's associated to.
+	 */
+	static getClassReference(document) {
+		return StringUtils.titleToKebab(document.system.class.value);
 	}
 
 	/**

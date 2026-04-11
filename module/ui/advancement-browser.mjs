@@ -135,7 +135,7 @@ export class AdvancementBrowser extends FUApplication {
 				return sd.traits.has(SkillTraits.GrantSpell);
 			})
 			.map((item) => {
-				return item.system.class.value;
+				return CompendiumIndex.getClassReference(item);
 			});
 	}
 
@@ -143,7 +143,7 @@ export class AdvancementBrowser extends FUApplication {
 		return this.#trackedItems
 			.filter((item) => item.type === 'class')
 			.map((item) => {
-				return item.name;
+				return item.system.fuid;
 			});
 	}
 
@@ -190,7 +190,7 @@ export class AdvancementBrowser extends FUApplication {
 		let specificClass = undefined;
 		if (this.#advancement.class.id) {
 			const classItem = this.#actor.items.get(this.#advancement.class.id);
-			specificClass = classItem.name;
+			specificClass = classItem.system.fuid;
 		}
 
 		switch (this.#type) {
@@ -203,29 +203,29 @@ export class AdvancementBrowser extends FUApplication {
 			case 'spell':
 				// Get only spells from class spell lists the character has access to
 				compendiumEntries = compendiumEntries.filter((entry) => {
-					const className = entry.system.class.value;
-					if (specificClass && className !== specificClass) {
+					const classIdentifier = CompendiumIndex.getClassReference(entry);
+					if (specificClass && classIdentifier !== specificClass) {
 						return false;
 					}
-					return this.#spellList.length > 0 ? this.#spellList.includes(className) : true;
+					return this.#spellList.length > 0 ? this.#spellList.includes(classIdentifier) : true;
 				});
 				actorItems = this.getMatchingItems().filter((item) => {
-					const className = item.system.class.value;
+					const classIdentifier = CompendiumIndex.getClassReference(item);
 					if (this.#trackedItemIds.has(item.id)) {
 						return false;
 					}
-					return this.#spellList.length > 0 ? this.#spellList.includes(className) : true;
+					return this.#spellList.length > 0 ? this.#spellList.includes(classIdentifier) : true;
 				});
 				break;
 
 			case 'skill':
 				// Get only skills from classes that the actor has
 				compendiumEntries = compendiumEntries.filter((entry) => {
-					const className = entry.system.class.value;
-					if (specificClass && className !== specificClass) {
+					const classIdentifier = CompendiumIndex.getClassReference(entry);
+					if (specificClass && classIdentifier !== specificClass) {
 						return false;
 					}
-					return this.#classList.includes(className) && this.#summary.classes[className].level < 10;
+					return this.#classList.includes(classIdentifier) && this.#summary.classes[classIdentifier].level < 10;
 				});
 				// If owned, return skills that we have not yet maxed
 				actorItems = Object.values(this.#skillMap)
@@ -241,38 +241,38 @@ export class AdvancementBrowser extends FUApplication {
 				);
 				// Filter items from classes the actor has
 				actorItems = actorItems.filter((item) => {
-					const className = item.system.class.value;
-					if (specificClass && className !== specificClass) {
+					const classIdentifier = CompendiumIndex.getClassReference(item);
+					if (specificClass && classIdentifier !== specificClass) {
 						return false;
 					}
-					return this.#classList.includes(className) && this.#summary.classes[className].level < 10;
+					return this.#classList.includes(classIdentifier) && this.#summary.classes[classIdentifier].level < 10;
 				});
 				break;
 
 			case 'heroic':
 				// Get only skills from classes that the actor has
 				compendiumEntries = compendiumEntries.filter((entry) => {
-					const className = entry.system.class.value;
+					const classIdentifier = CompendiumIndex.getClassReference(entry);
 					// Entries that specify no class can be picked up by ANY class
-					if (!className) {
+					if (!classIdentifier) {
 						return true;
 					}
-					if (specificClass && className !== specificClass) {
+					if (specificClass && classIdentifier !== specificClass) {
 						return false;
 					}
-					return this.#classList.includes(className) && this.#summary.classes[className].level === 10;
+					return this.#classList.includes(classIdentifier) && this.#summary.classes[classIdentifier].level === 10;
 				});
 				// Filter items from classes the actor has
 				actorItems = this.getMatchingItems().filter((item) => {
-					const className = item.system.class.value;
+					const classIdentifier = CompendiumIndex.getClassReference(item);
 					// Items that specify no class can be picked up by ANY class
-					if (!className) {
+					if (!classIdentifier) {
 						return true;
 					}
-					if (specificClass && className !== specificClass) {
+					if (specificClass && classIdentifier !== specificClass) {
 						return false;
 					}
-					return this.#classList.includes(className) && this.#summary.classes[className].level === 10;
+					return this.#classList.includes(classIdentifier) && this.#summary.classes[classIdentifier].level === 10;
 				});
 				break;
 		}

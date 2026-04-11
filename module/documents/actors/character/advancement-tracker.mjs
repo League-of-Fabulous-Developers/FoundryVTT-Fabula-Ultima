@@ -1,6 +1,7 @@
 import { HeroicSkillTraits, SkillTraits } from '../../../pipelines/traits.mjs';
 import { ItemSelectionDialog } from '../../../ui/features/item-selection-dialog.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
+import { CompendiumIndex } from '../../../ui/compendium/compendium-index.mjs';
 
 const UNMASTERED_CLASS_LIMIT = 3;
 const CLASS_SKILL_LIMIT = 10;
@@ -239,12 +240,12 @@ export class AdvancementTracker {
 
 		/**
 		 * @type {Record<string, AdvancementClassInfo>}
-		 * @remarks CLASS NAME: LEVEL
+		 * @remarks CLASS FUID: LEVEL
 		 **/
 		let classes = {};
 		/**
 		 * @type {Record<string, string[]>}
-		 * @remarks CLASS NAME: SKILL FUID
+		 * @remarks CLASS FUID: SKILL FUID
 		 **/
 		let classSkills = {};
 		/**
@@ -313,6 +314,7 @@ export class AdvancementTracker {
 				// CLASS
 				if (data.class.id) {
 					const classItem = actor.items.get(data.class.id);
+					const classIdentifier = classItem.system.fuid;
 
 					/** @type ClassDataModel **/
 					const classData = classItem.system;
@@ -328,8 +330,8 @@ export class AdvancementTracker {
 
 					resolvedClass = true;
 					// TODO: Error if same class added twice?
-					classSkills[classItem.name] = [];
-					classes[classItem.name] = {
+					classSkills[classIdentifier] = [];
+					classes[classIdentifier] = {
 						level: 0,
 						id: data.class.id,
 						img: classItem.img,
@@ -344,9 +346,10 @@ export class AdvancementTracker {
 					const skillItem = actor.items.get(skillIdentifier);
 					/** @type SkillDataModel **/
 					const skillData = skillItem.system;
-					const skillClass = skillData.class.value;
-					if (skillClass) {
-						if (classSkills[skillClass] === undefined) {
+					const classIdentifier = CompendiumIndex.getClassReference(skillItem);
+
+					if (classIdentifier) {
+						if (classSkills[classIdentifier] === undefined) {
 							state = 'invalid';
 							message = 'FU.AdvancementSkillClassNotFound';
 						} else {
@@ -369,18 +372,18 @@ export class AdvancementTracker {
 
 							// A. Add skill for the first time
 							if (!skillLevels[skillIdentifier]) {
-								classSkills[skillClass].push(skillData.fuid);
+								classSkills[classIdentifier].push(skillData.fuid);
 								skillLevels[skillIdentifier] = 1;
 							}
 							// B. Mark SL investment
 							else {
 								skillLevels[skillIdentifier]++;
 							}
-							classes[skillClass].level++;
+							classes[classIdentifier].level++;
 							resolvedSkill = true;
 
 							// If a heroic is unlocked
-							const unlockedHeroic = classes[skillClass].level === CLASS_SKILL_LIMIT;
+							const unlockedHeroic = classes[classIdentifier].level === CLASS_SKILL_LIMIT;
 							if (unlockedHeroic) {
 								if (data.entries.heroic === undefined) {
 									data.entries.heroic = {
