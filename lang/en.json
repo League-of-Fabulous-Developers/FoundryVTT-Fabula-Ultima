@@ -1964,6 +1964,7 @@
 		"SwitchEquipmentChatMessage": "<strong>{actor}</strong> is now wearing the following equipment.",
 		"Advancement": "Advancement",
 		"Advancements": "Advancements",
+		"AdvancementTracker": "Advancement Tracker",
 		"AdvancementsUntrackedItems": "Untracked Items",
 		"AdvancementsUnsynchronizedSkills": "Unsynchronized Skills",
 		"AdvancementsSkillSynchronization": "Advancement Skill Synchronization",

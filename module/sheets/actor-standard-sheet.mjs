@@ -1,7 +1,7 @@
 import { Effects, isActiveEffectForStatusEffectId, onManageActiveEffect } from '../pipelines/effects.mjs';
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
-import { SETTINGS } from '../settings.js';
+import { getSystemSetting, SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Checks } from '../checks/checks.mjs';
 import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
@@ -266,6 +266,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'character':
 				delete tabs.behavior;
 				delete tabs.combat;
+				if (!getSystemSetting(SETTINGS.showAdvancementTracker)) {
+					delete tabs.advancements;
+				}
 				break;
 
 			case 'npc':
@@ -318,6 +321,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'character':
 				delete parts.behavior;
 				delete parts.combat;
+				if (!getSystemSetting(SETTINGS.showAdvancementTracker)) {
+					delete parts.advancements;
+				}
 				break;
 
 			case 'npc':

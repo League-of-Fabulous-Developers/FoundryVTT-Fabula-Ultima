@@ -80,9 +80,11 @@ export const SETTINGS = Object.freeze({
 	// Document Sheets
 	sheetOptions: 'sheetOptions',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
+	showAdvancementTracker: 'showAdvancementTracker',
 	optionNPCNotesTab: 'optionNPCNotesTab',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	optionAutomaticAdversaryRegistration: 'optionRegisterAdversaries',
+	partySheetTheme: 'optionPartySheetTheme',
 	// Automation
 	automationOptions: 'automationOptions',
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
@@ -101,7 +103,6 @@ export const SETTINGS = Object.freeze({
 	optionCrisisMultiplier: 'optionCrisisMultiplier',
 	// Party
 	activeParty: 'optionActiveParty',
-	partySheetTheme: 'optionPartySheetTheme',
 	codexUploadDirectory: 'optionCodexUploadDirectory',
 	// Class Features
 	activeWellsprings: 'activeWellsprings',
@@ -167,7 +168,14 @@ export const registerSystemSettings = async function () {
 		label: game.i18n.localize('FU.SheetOptions'),
 		hint: game.i18n.localize('FU.SheetOptionsHint'),
 		icon: 'fas fa-book',
-		type: createConfigurationApp('FU.SheetOptions', [SETTINGS.optionNPCNotesTab, SETTINGS.optionAlwaysFavorite, SETTINGS.showAssociatedTherioforms, SETTINGS.optionAutomaticAdversaryRegistration, SETTINGS.partySheetTheme]),
+		type: createConfigurationApp('FU.SheetOptions', [
+			SETTINGS.optionNPCNotesTab,
+			SETTINGS.optionAlwaysFavorite,
+			SETTINGS.showAssociatedTherioforms,
+			SETTINGS.showAdvancementTracker,
+			SETTINGS.optionAutomaticAdversaryRegistration,
+			SETTINGS.partySheetTheme,
+		]),
 		restricted: true,
 	});
 
@@ -203,6 +211,14 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
 		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
 		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAdvancementTracker, {
+		name: game.i18n.localize('FU.AdvancementTracker'),
+		scope: 'world',
 		config: false,
 		type: Boolean,
 		default: true,

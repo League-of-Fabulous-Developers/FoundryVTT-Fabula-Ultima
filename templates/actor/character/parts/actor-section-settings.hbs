@@ -359,6 +359,7 @@
 								{{ checked system.useEquipment.value }} data-action="useEquipment" />
 						</label>
 					{{/unless}}
+					<!-- Companion -->
 					{{#if (or (eq actor.system.rank.value "companion") (eq actor.system.rank.value "custom"))}}
 						<label class="resource-label-sm flexcol flex-group-center"
 							   data-tooltip="{{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}"
