@@ -36,6 +36,14 @@
 			text-overflow: ellipsis;
 			flex-shrink: 1;
 		}
+
+		a[data-link][draggable] {
+			cursor: grab;
+		}
+
+		a[data-link][draggable]:active {
+			cursor: grabbing;
+		}
 	}
 
 	.cell-item-name__caption {
