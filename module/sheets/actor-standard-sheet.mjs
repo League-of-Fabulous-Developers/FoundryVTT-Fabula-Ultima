@@ -165,16 +165,17 @@ export class FUStandardActorSheet extends FUActorSheet {
 		primary: {
 			tabs: [
 				{ id: 'stats', label: 'FU.Stats' },
-				{ id: 'advancements', label: '', icon: 'fa-solid fas fa-star' },
 				{ id: 'classes', label: 'FU.Classes' },
 				{ id: 'features', label: 'FU.Features' },
 				{ id: 'spells', label: 'FU.Spell' },
 				{ id: 'items', label: 'FU.Items' },
+
 				{ id: 'combat', label: 'FU.Combat' },
 				{ id: 'behavior', label: 'FU.Behavior' },
 
 				{ id: 'notes', label: '', icon: 'fa-solid fa-file-pen' },
 				{ id: 'effects', label: '', icon: 'fa-solid fa-wand-magic-sparkles' },
+				{ id: 'advancements', label: '', icon: 'ra ra-tower' },
 				{ id: 'settings', label: '', icon: 'fa-solid fa-sliders' },
 			],
 			initial: 'stats',

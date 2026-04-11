@@ -135,7 +135,7 @@
 	}
 
 	.derived {
-		background: var(--pfu-color-app-item-highlight-fill);
+		background: var(--pfu-color-app-control-active-fill-2);
 		border: 1px solid var(--pfu-color-app-border);
 		border-radius: var(--pfu-border-radius);
 	}

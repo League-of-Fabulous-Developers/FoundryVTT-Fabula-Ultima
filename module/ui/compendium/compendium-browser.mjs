@@ -9,6 +9,7 @@ import { CompendiumFilter } from './compendium-filter.mjs';
 import { HTMLUtils } from '../../helpers/html-utils.mjs';
 import FoundryUtils from '../../helpers/foundry-utils.mjs';
 import { FUHooks } from '../../hooks.mjs';
+import { StringUtils } from '../../helpers/string-utils.mjs';
 
 /**
  * @typedef {"classes"|"skills"|"equipment"|"spells"|"adversaries"|"abilities"|"effects"} CompendiumBrowserTab
@@ -17,7 +18,7 @@ import { FUHooks } from '../../hooks.mjs';
 class CompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
-		getItems: async (entries) => entries,
+		getItems: async (entries) => entries.filter((e) => e.name),
 		tablePreset: 'item',
 		sort: true,
 	};
@@ -43,7 +44,9 @@ class SkillsCompendiumTableRenderer extends CompendiumTableRenderer {
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			sl: CommonColumns.propertyColumn('FU.SkillLevel', 'system.level.max'),
-			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
+			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value', {
+				mapFunction: (value) => StringUtils.titleToKebab(value),
+			}),
 		},
 	};
 }
@@ -55,7 +58,9 @@ class SpellsCompendiumTableRenderer extends CompendiumTableRenderer {
 		cssClass: 'compendium-spells-table',
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
-			duration: CommonColumns.propertyColumn('FU.Duration', 'system.duration.value', FU.duration),
+			duration: CommonColumns.propertyColumn('FU.Duration', 'system.duration.value', {
+				localizationRecord: FU.duration,
+			}),
 			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.amount'),
 			class: CommonColumns.propertyColumn('FU.Class', 'system.class.value'),
 		},
@@ -82,7 +87,9 @@ class WeaponCompendiumTableRenderer extends CompendiumTableRenderer {
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			damage: CommonColumns.propertyColumn('FU.Damage', 'system.damage.value'),
-			type: CommonColumns.propertyColumn('FU.Type', 'system.damageType.value', FU.damageTypes),
+			type: CommonColumns.propertyColumn('FU.Type', 'system.damageType.value', {
+				localizationRecord: FU.damageTypes,
+			}),
 			cost: CommonColumns.propertyColumn('FU.Cost', 'system.cost.value'),
 		},
 	};
@@ -96,7 +103,9 @@ class AttackCompendiumTableRenderer extends CompendiumTableRenderer {
 		columns: {
 			name: CommonColumns.itemAnchorColumn({ columnName: 'FU.Name' }),
 			damage: CommonColumns.propertyColumn('FU.Damage', 'system.damage.value'),
-			type: CommonColumns.propertyColumn('FU.Type', 'system.damageType.value', FU.damageTypes),
+			type: CommonColumns.propertyColumn('FU.Type', 'system.damageType.value', {
+				localizationRecord: FU.damageTypes,
+			}),
 		},
 	};
 }
@@ -577,9 +586,9 @@ export class CompendiumBrowser extends FUApplication {
 					const classes = await this.index.getClasses();
 					const skills = await this.index.getSkills();
 					const classOptions = classes.class
-						.sort((a, b) => a.name.localeCompare(b.name))
+						.sort((a, b) => a.system.fuid.localeCompare(b.system.fuid))
 						.map((c) => ({
-							value: c.name,
+							value: c.system.fuid,
 							label: c.name,
 						}));
 					await this.onRenderTables(
@@ -898,11 +907,11 @@ export class CompendiumBrowser extends FUApplication {
 			if (inputFilter.actorId) {
 				const actor = fromUuidSync(inputFilter.actorId);
 				if (actor) {
-					const classNames = actor.getItemsByType('class').map((i) => i.name);
+					const classReferences = actor.getItemsByType('class').map((i) => i.system.fuid);
 					switch (tab) {
 						case 'classes':
 						case 'spells':
-							filters.class.selected = classNames;
+							filters.class.selected = classReferences;
 							break;
 					}
 				}

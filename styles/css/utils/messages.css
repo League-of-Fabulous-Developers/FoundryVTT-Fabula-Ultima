@@ -2036,7 +2036,7 @@
 				margin: 1px -1px -1px 1px;
 				-webkit-transform: unset;
 				transform: unset;
-				color: var(--pfu-color-app-control-active-content) !important;
+				/*color: var(--pfu-color-app-control-active-content) !important;*/
 				border: thin solid var(--pfu-color-app-control-active-border);
 				background: var(--pfu-color-app-control-active-fill) !important;
 				box-shadow: 0 1px var(--pfu-color-app-control-active-shadow);
@@ -2046,7 +2046,7 @@
 
 			&:not(.active, :active, .cell-item-controls__control--active):hover {
 				text-shadow: none;
-				color: var(--pfu-color-app-control-highlight-content) !important;
+				/*color: var(--pfu-color-app-control-highlight-content) !important;*/
 				border: thin solid var(--pfu-color-app-control-highlight-border);
 				background: var(--pfu-color-app-control-highlight-fill) !important;
 				box-shadow: 1px 2px var(--pfu-color-app-control-highlight-shadow);

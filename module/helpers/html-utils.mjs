@@ -115,4 +115,53 @@ export const HTMLUtils = Object.freeze({
 	getCSSVariable(name) {
 		return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 	},
+
+	/**
+	 * @param {Number} width
+	 * @param {Number} height
+	 * @returns {{ratio: string, w: number, h: number}}
+	 */
+	getAspectRatio(width, height) {
+		const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+		const divisor = gcd(width, height);
+		return {
+			ratio: `${width / divisor} / ${height / divisor}`,
+			w: width / divisor,
+			h: height / divisor,
+		};
+	},
+
+	/**
+	 * @desc Resolves the natural dimensions of an image from a path.
+	 * @param {string} src
+	 * @returns {Promise<[number, number]>} [width, height]
+	 */
+	resolveImageDimensions(src) {
+		return new Promise((resolve) => {
+			const img = new Image();
+			img.onload = () => resolve([img.naturalWidth, img.naturalHeight]);
+			img.onerror = () => resolve([0, 0]); // fallback to default layout
+			img.src = src;
+		});
+	},
+
+	/**
+	 * @typedef {'medium'|'large'|'portrait'|'wide'} ViewerLayout
+	 */
+
+	/**
+	 * @param {number} width
+	 * @param {number} height
+	 * @param {number} textLength
+	 * @returns {ViewerLayout|null}
+	 */
+	getViewerLayout(width, height, textLength) {
+		const ratio = width / height;
+
+		if (ratio < 0.9 || textLength <= 50) return 'portrait';
+		if (width >= 600) return 'large';
+		if (textLength > 500) return 'wide';
+		if (width >= 300 && textLength >= 500) return 'medium';
+		return null;
+	},
 });
