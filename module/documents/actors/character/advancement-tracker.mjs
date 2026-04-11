@@ -504,13 +504,27 @@ export class AdvancementTracker {
 		// Let's record items (class, skill, spell) not yet being tracked
 		const entryItemIds = new Set(entries.flatMap((adv) => getAdvancementIds(adv.data)));
 		const matchingItems = actor.items.filter((item) => TRACKED_TYPES.has(item.type));
-		const { trackedItems, untrackedItems } = matchingItems.reduce(
+		let { trackedItems, untrackedItems } = matchingItems.reduce(
 			(acc, item) => {
 				acc[entryItemIds.has(item.id) ? 'trackedItems' : 'untrackedItems'].push(item);
 				return acc;
 			},
 			{ trackedItems: [], untrackedItems: [] },
 		);
+		untrackedItems = untrackedItems.filter((item) => {
+			switch (item.type) {
+				case 'spell':
+					{
+						// Make an exception for Chimerist spells
+						const classReference = CompendiumIndex.getClassReference(item);
+						if (classReference === 'chimerist') {
+							return false;
+						}
+					}
+					break;
+			}
+			return true;
+		});
 		if (untrackedItems.length > 0) {
 			notifications.push({
 				icon: 'warning',
