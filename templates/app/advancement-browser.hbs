@@ -9,9 +9,9 @@
 			<span class="pfu__badge__level large">{{pfuMath index '+' 1}}</span>
 		</div>
 		{{#if current}}
-			<div>
+			<div class="">
 				<div class="pfu__advancement__current flexrow">
-					<div class="flexcol flex-group-center flexshrink" style="min-width: 96px;">
+					<div class="pfu__badge flexcol flex-group-center flexshrink" style="min-width: 96px;">
 						{{pfuItemAnchor current size='l'}}
 						<div class="flexrow flex-group-center gap-4">
 							{{current.name}}
@@ -33,12 +33,15 @@
 					 style="width: {{group._size}}px; height: {{group._size}}px;">
 
 					{{!-- Central hub --}}
-					{{#with (lookup @root.summary.classes group.classId) as |class|}}
-						<div class="pfu-advancement__entry__orbit-hub"
-							 data-tooltip="{{pfuHumanize group.classId}}">
-							<img src="{{class.img}}" alt="{{class.name}}"/>
-						</div>
-					{{/with}}
+				 	<div class="pfu-advancement__entry__orbit-hub" data-tooltip="{{pfuHumanize group.classId}}">
+						{{#if (lookup @root.summary.classes group.classId)}}
+							{{#with (lookup @root.summary.classes group.classId) as |class|}}
+								<img src="{{class.img}}" alt="{{class.name}}"/>
+							{{/with}}
+						{{else}}
+							<i class="{{pfuIconClass 'class'}}"></i>
+						{{/if}}
+					</div>
 
 					{{!-- Orbiting cards --}}
 					{{#each group.options as |option|}}

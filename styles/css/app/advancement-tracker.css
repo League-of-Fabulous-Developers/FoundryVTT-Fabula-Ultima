@@ -136,14 +136,24 @@
 	z-index: 1;
 
 	box-shadow:
-		0 0 8px 2px var(--color-warm-2),
-		0 0 20px 4px var(--color-warm-1);
+		0 0 8px 2px var(--pfu-color-control-highlight-fill-1),
+		0 0 20px 4px var(--pfu-color-control-highlight-fill-2);
 
 	img {
 		width: var(--orbit-icon-size);
 		height: var(--orbit-icon-size);
 		border-radius: 50%;
 		border: none;
+	}
+
+	i {
+		width: var(--orbit-icon-size);
+		height: var(--orbit-icon-size);
+		font-size: var(--orbit-icon-size);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
 	}
 }
 
@@ -163,17 +173,36 @@
 }
 
 .pfu-advancements__background {
-	background-image: url('../../static/ui/backgrounds/cubes.png') !important;
-	background-color: var(--pfu-color-app-section-content-secondary) !important;
-	background-blend-mode: multiply !important;
-	background-size: cover !important;
-	background-position: center;
+	--star-sm: 1px;
+	--star-md: 3px;
+	--star-lg: 5px;
+	--star-bright: #ffffff;
+	--star-blue: rgba(180, 200, 255, 1);
+	--star-purple: rgba(200, 180, 255, 1);
+	--star-dim-1: rgba(255, 255, 255, 0.95);
+	--star-dim-2: rgba(255, 255, 255, 0.85);
+	--star-dim-3: rgba(255, 255, 255, 0.75);
+	--star-dim-4: rgba(255, 255, 255, 0.7);
+	--bg: #080c14;
 
-	&.inset {
-		border: 4px inset var(--pfu-color-app-control-fill-2);
-	}
+	background-color: var(--bg) !important;
+	background-image:
+		radial-gradient(var(--star-md) var(--star-md) at 10% 20%, var(--star-dim-1) 100%, transparent), radial-gradient(var(--star-sm) var(--star-sm) at 25% 55%, var(--star-dim-2) 100%, transparent),
+		radial-gradient(var(--star-lg) var(--star-lg) at 40% 10%, var(--star-bright) 100%, transparent), radial-gradient(var(--star-md) var(--star-md) at 55% 70%, var(--star-dim-1) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 60% 35%, var(--star-bright) 100%, transparent), radial-gradient(var(--star-lg) var(--star-lg) at 70% 15%, var(--star-blue) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 75% 80%, var(--star-dim-1) 100%, transparent), radial-gradient(var(--star-lg) var(--star-lg) at 85% 45%, var(--star-bright) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 90% 25%, var(--star-dim-1) 100%, transparent), radial-gradient(var(--star-md) var(--star-md) at 15% 85%, var(--star-dim-2) 100%, transparent),
+		radial-gradient(var(--star-sm) var(--star-sm) at 35% 40%, var(--star-dim-2) 100%, transparent), radial-gradient(var(--star-lg) var(--star-lg) at 50% 90%, var(--star-blue) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 65% 60%, var(--star-bright) 100%, transparent), radial-gradient(var(--star-md) var(--star-md) at 80% 70%, var(--star-dim-1) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 92% 88%, var(--star-dim-2) 100%, transparent), radial-gradient(var(--star-md) var(--star-md) at 5% 50%, var(--star-dim-2) 100%, transparent),
+		radial-gradient(var(--star-lg) var(--star-lg) at 45% 75%, var(--star-purple) 100%, transparent), radial-gradient(var(--star-md) var(--star-md) at 20% 30%, var(--star-dim-1) 100%, transparent),
+		radial-gradient(var(--star-sm) var(--star-sm) at 30% 95%, var(--star-dim-4) 100%, transparent), radial-gradient(var(--star-lg) var(--star-lg) at 95% 5%, var(--star-blue) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 7% 33%, var(--star-dim-2) 100%, transparent), radial-gradient(var(--star-sm) var(--star-sm) at 17% 68%, var(--star-dim-3) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 28% 12%, var(--star-dim-1) 100%, transparent), radial-gradient(var(--star-lg) var(--star-lg) at 33% 78%, var(--star-purple) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 47% 48%, var(--star-dim-2) 100%, transparent), radial-gradient(var(--star-sm) var(--star-sm) at 53% 22%, var(--star-dim-2) 100%, transparent),
+		radial-gradient(var(--star-lg) var(--star-lg) at 63% 92%, var(--star-blue) 100%, transparent), radial-gradient(var(--star-md) var(--star-md) at 73% 38%, var(--star-dim-1) 100%, transparent),
+		radial-gradient(var(--star-md) var(--star-md) at 82% 18%, var(--star-dim-2) 100%, transparent), radial-gradient(var(--star-lg) var(--star-lg) at 97% 62%, var(--star-blue) 100%, transparent) !important;
 }
-
 .pfu-advancement__header {
 	position: absolute;
 	top: 16px;
