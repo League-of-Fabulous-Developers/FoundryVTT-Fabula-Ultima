@@ -377,7 +377,7 @@ export class AdvancementBrowser extends FUApplication {
 		// Minimum radius so cards don't overlap each other
 		const minRadiusForCards = (itemCount * (cardSize + 5)) / (2 * Math.PI);
 		// Minimum radius so cards clear the hub
-		const minRadiusForHub = hubRadius + orbitGap + cardSize / 2;
+		const minRadiusForHub = hubRadius + orbitGap + cardSize * 0.25;
 
 		const radius = Math.max(minRadiusForCards, minRadiusForHub);
 

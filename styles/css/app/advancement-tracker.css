@@ -107,7 +107,6 @@
 	flex: 2;
 
 	&.orbit {
-		gap: 4rem;
 		flex-wrap: wrap;
 	}
 }
@@ -302,10 +301,16 @@
 	padding: 0;
 	cursor: pointer;
 	flex-shrink: 0;
+	border: none;
+	background: transparent;
+	font-size: 24px;
+	line-height: 1;
+}
 
-	i {
-		font-size: 24px;
-	}
+.pfu-advancement__entry__card-select i {
+	font-size: inherit;
+	line-height: 1;
+	display: block;
 }
 
 .pfu-advancement__entry__card:hover .pfu-advancement__entry__card-ring-border {
