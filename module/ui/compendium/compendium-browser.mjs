@@ -19,7 +19,7 @@ class CompendiumTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		getItems: async (entries) => entries.filter((e) => e.name),
-		tablePreset: 'item',
+		tablePreset: 'compendium-item',
 		sort: true,
 	};
 }
@@ -129,7 +129,7 @@ class AdversariesCompendiumTableRenderer extends CompendiumTableRenderer {
 	static TABLE_CONFIG = {
 		...super.TABLE_CONFIG,
 		cssClass: 'compendium-adversaries-table',
-		tablePreset: 'actor',
+		tablePreset: 'compendium-item',
 		columns: {
 			name: CommonColumns.actorAnchorColumn({ columnName: 'FU.Name' }),
 			species: CommonColumns.propertyColumn('FU.Species', 'system.species.value', FU.species),

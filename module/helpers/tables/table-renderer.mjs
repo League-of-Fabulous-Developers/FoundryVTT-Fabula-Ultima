@@ -8,7 +8,7 @@ import { PseudoItem } from '../../documents/items/pseudo-item.mjs';
  * @template {Object} T the type of the items in the table
  * @property {string, (() => string)} cssClass
  * @property {string} id An unique identifier to the table.
- * @property {"item", "effect", "custom"} [tablePreset="item"]
+ * @property {"item", "effect", "custom", "compendium-item"} [tablePreset="item"]
  * @property {(document: D, options: FUTableRendererRenderOptions) => T[]} getItems
  * @property {boolean, ((a: D, b: D) => number)} [sort=true] sorting function to determine the order of entries, true means sort using foundry sort order, false means don't sort
  * @property {(element: HTMLElement) => void} activateListeners
@@ -158,6 +158,18 @@ export class FUTableRenderer {
 					tableClass: 'item-list',
 					rowClass: 'item',
 					draggable: true,
+				};
+				break;
+			}
+
+			case 'compendium-item': {
+				config.advancedConfig = {
+					getKey: (item) => item.uuid,
+					keyDataAttribute: 'data-uuid',
+					additionalRowAttributes: [],
+					tableClass: 'item-list',
+					rowClass: 'item',
+					draggable: false,
 				};
 				break;
 			}
