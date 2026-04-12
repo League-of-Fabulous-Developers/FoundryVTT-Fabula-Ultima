@@ -167,7 +167,7 @@
 .pfu-advancement__entry__cards {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 12px;
+	gap: 3rem;
 	padding: 8px;
 	justify-content: center;
 }
