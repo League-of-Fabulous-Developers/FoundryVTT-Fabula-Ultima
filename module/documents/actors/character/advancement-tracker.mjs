@@ -362,7 +362,7 @@ export class AdvancementTracker {
 					const skillItem = actor.items.get(skillIdentifier);
 					/** @type SkillDataModel **/
 					const skillData = skillItem.system;
-					const classIdentifier = CompendiumIndex.getClassReference(skillItem);
+					const classIdentifier = CompendiumIndex.getClassRequirements(skillItem);
 
 					if (classIdentifier) {
 						if (classSkills[classIdentifier] === undefined) {
@@ -525,7 +525,7 @@ export class AdvancementTracker {
 				case 'spell':
 					{
 						// Make an exception for Chimerist spells
-						const classReference = CompendiumIndex.getClassReference(item);
+						const classReference = CompendiumIndex.getClassRequirements(item);
 						if (classReference === 'chimerist') {
 							return false;
 						}

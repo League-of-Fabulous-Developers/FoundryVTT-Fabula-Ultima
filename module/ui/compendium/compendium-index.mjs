@@ -288,12 +288,15 @@ export class CompendiumIndex {
 
 	/**
 	 * @param {FUItem|CompendiumIndexEntry} document The entry or item that is referencing the class it's associated to.
+	 * @returns {String[]} The classes being referenced by the entry, which can be comma-separated.
 	 */
-	static getClassReference(document) {
+	static getClassRequirements(document) {
 		if (document.system?.class?.value) {
-			return StringUtils.titleToKebab(document.system.class.value);
+			let classes = document.system.class.value.split(',');
+			classes = classes.map((c) => StringUtils.titleToKebab(c));
+			return classes;
 		}
-		return '';
+		return [];
 	}
 
 	/**
