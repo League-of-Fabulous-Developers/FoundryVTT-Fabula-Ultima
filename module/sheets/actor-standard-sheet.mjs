@@ -486,7 +486,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 				context.classesTable = await this.#classesTable.renderTable(this.document);
 				context.skillsTable = await this.#skillsTable.renderTable(this.document);
 				context.heroicsTable = await this.#heroicsTable.renderTable(this.document);
-				context.summary = AdvancementTracker.evaluate(this.actor);
 				break;
 
 			case 'spells':
