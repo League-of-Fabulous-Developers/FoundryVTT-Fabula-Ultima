@@ -18,90 +18,38 @@
 		<div class="pfu_advancement__type">
 			<span class="pfu__badge__level large">{{pfuMath index '+' 1}}</span>
 		</div>
-
 	</div>
 
-	<div class="pfu-advancement__entry__cards__container">
-		<div class="pfu-advancement__entry__cards">
-			{{#each options as |option|}}
-				{{#if (eq option.type 'item')}}
-					{{#with option.item as |item|}}
-						<div class="pfu-advancement__entry__card">
-							{{!-- Ring: item image + skill counter --}}
-							<div class="pfu-advancement__entry__card-ring">
-								<div class="pfu-advancement__entry__card-ring-border {{#if (pfuCollectionContains item.id @root.skillMap)}}invested{{else}}untracked{{/if}}">
+	<div class="pfu-advancement__entry__cards__container {{#if groupedOptions}}orbit{{/if}}">
+		{{#if groupedOptions}}
+			{{#each groupedData as |group|}}
+				<div class="pfu-advancement__entry__orbit"
+					 style="width: {{group._bounds.width}}px; height: {{group._bounds.height}}px;">
 
-								</div>
-								<div class="pfu-advancement__entry__card-ring-img">
-									{{pfuItemAnchor item size='l'}}
-								</div>
-								{{#if (pfuCollectionContains item.id @root.skillMap)}}
-									{{#with (lookup @root.skillMap item.id) as |skill|}}
-										<div class="pfu-advancement__entry__card-ring-counter">
-											{{skill.value}}/{{skill.max}}
-										</div>
-									{{/with}}
-								{{/if}}
-
-								{{!-- Badges --}}
-								<div class="pfu-advancement__entry__card-ring__badges">
-									{{#with (lookup @root.summary.classes item.system.class.value) as |class|}}
-										<img class="pfu-advancement__entry__card-ring__badge" src="{{class.img}}" alt="{{class.name}}" data-tooltip="{{class.name}}"/>
-									{{/with}}
-								</div>
-							</div>
-
-							{{!-- Item name --}}
-							<div class="pfu-advancement__entry__card-name">
-								{{item.name}}
-							</div>
-
-							{{!-- Select button --}}
-							<button class="pfu-advancement__entry__card-select"
-									data-action="assignItem"
-									data-id="{{item.id}}">
-								{{localize 'CONTROLS.CommonSelect'}}
-							</button>
+					{{!-- Central hub --}}
+					{{#with (lookup @root.summary.classes group.classId) as |class|}}
+						<div class="pfu-advancement__entry__orbit-hub" data-tooltip="{{class.name}}">
+							<img src="{{class.img}}" alt="{{class.name}}"/>
 						</div>
 					{{/with}}
-				{{else}}
-					{{#with option.entry as |entry|}}
-						<div class="pfu-advancement__entry__card">
 
-							{{!-- Ring: item image --}}
-							<div class="pfu-advancement__entry__card-ring">
-								<div class="pfu-advancement__entry__card-ring-border"></div>
-								<div class="pfu-advancement__entry__card-ring-img">
-									{{pfuItemAnchor entry size='l'}}
-								</div>
-
-								{{!-- Badges --}}
-								<div class="pfu-advancement__entry__card-ring__badges">
-									{{#with (lookup @root.summary.classes entry.system.class.value) as |class| }}
-										<img class="pfu-advancement__entry__card-ring__badge" src="{{class.img}}" alt="{{class.name}}" data-tooltip="{{class.name}}"/>
-									{{/with}}
-									<i class="pfu-advancement__entry__card-ring__badge {{pfuIconClass 'compendium'}}"></i>
-								</div>
-							</div>
-
-							{{!-- Item name --}}
-							<div class="pfu-advancement__entry__card-name">
-								{{entry.name}}
-							</div>
-
-							{{!-- Select button --}}
-							<button class="pfu-advancement__entry__card-select"
-									data-action="addItem"
-									data-uuid="{{entry.uuid}}">
-								{{localize 'CONTROLS.CommonSelect'}}
-							</button>
+					{{!-- Orbiting cards --}}
+					{{#each group.options as |option|}}
+						<div class="pfu-advancement__entry__orbit-card"
+							 style="transform: translate(calc(-50% + {{option._x}}px), calc(-50% + {{option._y}}px));">
+							{{> "systems/projectfu/templates/app/partials/advancement-option-card.hbs" option=option}}
 						</div>
-					{{/with}}
-				{{/if}}
+					{{/each}}
+
+				</div>
 			{{/each}}
-		</div>
+		{{else}}
+			<div class="pfu-advancement__entry__cards">
+				{{#each options as |option|}}
+					{{> "systems/projectfu/templates/app/partials/advancement-option-card.hbs" option=option}}
+				{{/each}}
+			</div>
+		{{/if}}
 	</div>
-
-
 </main>
 

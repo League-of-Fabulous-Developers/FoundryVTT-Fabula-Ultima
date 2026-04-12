@@ -105,6 +105,63 @@
 	align-items: center;
 	display: flex;
 	flex: 2;
+
+	&.orbit {
+		gap: 4rem;
+		flex-wrap: wrap;
+	}
+}
+
+.pfu-advancement__entry__orbit {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.pfu-advancement__entry__orbit-hub {
+	position: absolute;
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+
+	background: var(--color-background-secondary);
+	border: 3px solid var(--color-border-secondary);
+	outline: 2px solid var(--color-border-tertiary);
+	outline-offset: 3px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1;
+
+	box-shadow:
+		0 0 8px 2px var(--color-warm-2),
+		0 0 20px 4px var(--color-warm-1);
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 6px;
+		border-radius: 50%;
+		border: 1px solid var(--color-border-tertiary);
+		pointer-events: none;
+	}
+
+	img {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		border: none;
+	}
+}
+
+.pfu-advancement__entry__orbit-card {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
 }
 
 .pfu-advancement__entry__cards {

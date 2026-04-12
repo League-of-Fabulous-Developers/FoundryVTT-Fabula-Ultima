@@ -172,6 +172,15 @@ export class AdvancementBrowser extends FUApplication {
 		return this.#actor.getItemsByType(this.#type);
 	}
 
+	/**
+	 * @typedef AdvancementOption
+	 * @property {String} name
+	 * @property {'entry'|'item'} type
+	 * @property {CompendiumIndexEntry} entry
+	 * @property {FUItem} item
+	 * @property {String[]} classes
+	 */
+
 	/** @override */
 	async _prepareContext(options) {
 		// Items the actor already has
@@ -266,6 +275,7 @@ export class AdvancementBrowser extends FUApplication {
 		actorItems = ObjectUtils.sortArray(actorItems, 'name');
 		compendiumEntries = ObjectUtils.sortArray(compendiumEntries, 'name');
 
+		/** @type AdvancementOption[] **/
 		options = [];
 		options.push(
 			...actorItems.map((item) => {
@@ -273,6 +283,7 @@ export class AdvancementBrowser extends FUApplication {
 					name: item.name,
 					type: 'item',
 					item: item,
+					classes: CompendiumIndex.getClassRequirements(item),
 				};
 			}),
 		);
@@ -282,10 +293,32 @@ export class AdvancementBrowser extends FUApplication {
 					name: entry.name,
 					type: 'entry',
 					entry: entry,
+					classes: CompendiumIndex.getClassRequirements(entry),
 				};
 			}),
 		);
+
 		options = ObjectUtils.sortArray(options, 'name');
+
+		// GROUPS
+		const CARD_SIZE = 80;
+		const HUB_RADIUS = 48;
+		const ORBIT_GAP = 24;
+		let groupedOptions;
+		let groupedData;
+		if (this.#data.type !== 'class') {
+			groupedOptions = AdvancementBrowser.groupOptionsByClass(options);
+			groupedData = groupedOptions.map((group) => {
+				const positions = AdvancementBrowser.computeOrbitalPositions(group.options.length, CARD_SIZE, HUB_RADIUS, ORBIT_GAP);
+				const bounds = AdvancementBrowser.computeOrbitBounds(positions, CARD_SIZE);
+				const options = group.options.map((option, i) => ({
+					...option,
+					_x: positions[i].x,
+					_y: positions[i].y,
+				}));
+				return { ...group, options, _bounds: bounds };
+			});
+		}
 
 		return {
 			actor: this.#actor,
@@ -296,9 +329,86 @@ export class AdvancementBrowser extends FUApplication {
 			skillMap: this.#skillMap,
 			summary: this.#summary,
 			options,
+			groupedOptions,
+			groupedData,
 			compendiumEntries,
 			actorItems,
 		};
+	}
+
+	/**
+	 * Groups options by class for template rendering.
+	 * Options belonging to multiple classes are duplicated into each group.
+	 * Options with no classes fall into a catch-all 'shared' group.
+	 *
+	 * @param {AdvancementOption[]} options
+	 * @returns {Array<{classId: string, options: AdvancementOption[]}>}
+	 */
+	static groupOptionsByClass(options) {
+		const groupMap = new Map();
+
+		for (const option of options) {
+			const classes = option.classes?.length ? option.classes : ['shared'];
+
+			for (const classId of classes) {
+				if (!groupMap.has(classId)) {
+					groupMap.set(classId, { classId, options: [] });
+				}
+				groupMap.get(classId).options.push(option);
+			}
+		}
+
+		return Array.from(groupMap.values());
+	}
+
+	/**
+	 * @desc Computes orbital positions for cards around a central hub. Distributes cards across concentric rings based on capacity.
+	 * @param {number} itemCount - Total number of cards to place
+	 * @param {number} cardSize - Width/height of each card in px
+	 * @param {number} hubRadius - Radius of the central hub circle in px
+	 * @param {number} orbitGap - Gap between rings in px
+	 * @returns {Array<{x: number, y: number, ring: number}>}
+	 */
+	static computeOrbitalPositions(itemCount, cardSize = 80, hubRadius = 60, orbitGap = 20) {
+		const positions = [];
+		let remaining = itemCount;
+		let ring = 0;
+
+		while (remaining > 0) {
+			const orbitRadius = hubRadius + cardSize / 2 + orbitGap + ring * (cardSize + orbitGap);
+			const circumference = 2 * Math.PI * orbitRadius;
+			const capacity = Math.max(1, Math.floor(circumference / (cardSize + 10)));
+			const count = Math.min(remaining, capacity);
+
+			for (let i = 0; i < count; i++) {
+				const angle = (2 * Math.PI * i) / count - Math.PI / 2;
+				positions.push({
+					x: Math.cos(angle) * orbitRadius,
+					y: Math.sin(angle) * orbitRadius,
+					ring,
+				});
+			}
+
+			remaining -= count;
+			ring++;
+		}
+
+		return positions;
+	}
+
+	/**
+	 * @desc Computes the bounding box size needed to contain all orbital positions.
+	 * @param {Array<{x: number, y: number}>} positions
+	 * @param {number} cardSize
+	 * @returns {{width: number, height: number}}
+	 */
+	static computeOrbitBounds(positions, cardSize = 80) {
+		if (!positions.length) return { width: cardSize, height: cardSize };
+		const xs = positions.map((p) => p.x);
+		const ys = positions.map((p) => p.y);
+		const width = Math.max(...xs) - Math.min(...xs) + cardSize;
+		const height = Math.max(...ys) - Math.min(...ys) + cardSize;
+		return { width, height };
 	}
 
 	/**

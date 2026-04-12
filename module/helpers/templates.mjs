@@ -122,6 +122,7 @@ export const preloadHandlebarsTemplates = async function () {
 			'systems/projectfu/templates/app/partials/inline-effect-config-modify-damage-bonuses.hbs',
 			'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
 			'systems/projectfu/templates/app/partials/inline-effect-config-modify-defenses.hbs',
+			'systems/projectfu/templates/app/partials/advancement-option-card.hbs',
 
 			// Optional Rule Templates
 			'systems/projectfu/templates/optional/feature-basic-preview.hbs',
