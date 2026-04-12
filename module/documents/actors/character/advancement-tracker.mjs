@@ -188,21 +188,30 @@ export class AdvancementTracker {
 				adv.skill.id = undefined;
 				changed = true;
 			}
-			if (adv.entries.spell && !actor.items.has(adv.entries.spell.id)) {
-				adv.entries.spell.id = undefined;
-				changed = true;
-			}
-			if (adv.entries.extraSpells) {
-				let originalCount = adv.entries.extraSpells.ids.length;
-				adv.entries.extraSpells.ids = adv.entries.extraSpells.ids.filter((id) => actor.items.has(id));
-				if (adv.entries.extraSpells.ids.length !== originalCount) {
-					changed = true;
-				}
-			}
 			if (!adv.skill.id) {
 				if (adv.class.locked) {
 					adv.class.locked = false;
 					changed = true;
+				}
+			}
+
+			// GENERIC
+			for (const [, entry] of Object.entries(adv.entries)) {
+				if (typeof entry !== 'object' || entry === null) continue;
+
+				for (const [key, value] of Object.entries(entry)) {
+					if (key === 'id' && typeof value === 'string') {
+						if (value && !actor.items.has(value)) {
+							entry.id = undefined;
+							changed = true;
+						}
+					} else if (key === 'ids' && Array.isArray(value)) {
+						const originalCount = value.length;
+						entry.ids = value.filter((id) => actor.items.has(id));
+						if (entry.ids.length !== originalCount) {
+							changed = true;
+						}
+					}
 				}
 			}
 		}
