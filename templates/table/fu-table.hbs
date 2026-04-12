@@ -2,7 +2,7 @@
 	<li class="fu-table__header">
 		{{#each columns}}
 			{{#unless hideHeader}}
-				<div class="fu-table__header-cell {{#if headerAlignment}} fu-table__header-cell--{{headerAlignment}} {{/if}}" data-column="{{@key}}" style="--fu-table-column-span: {{headerSpan}}">
+				<div class="fu-table__header-cell {{#if headerAlignment}} fu-table__header-cell--{{headerAlignment}} {{/if}}" data-column="{{@key}}"{{#if headerSpan}} style="--fu-table-column-span: {{headerSpan}}"{{/if}}>
 					{{{header}}}
 				</div>
 			{{/unless}}

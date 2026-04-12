@@ -2,7 +2,10 @@
 /* Forms Styles                       
 /* ----------------------------------------- */
 .projectfu.actor .window-content {
-	/*padding: 1rem;*/
+	gap: 5px;
+	.tab {
+		gap: 5px;
+	}
 }
 
 .projectfu.actor .tab {
@@ -16,6 +19,10 @@
 	min-height: 10em;
 	padding: 0;
 	/* NPC Description */
+}
+
+.projectfu.actor #roll-section {
+	flex: 0 1 auto;
 }
 
 .projectfu .npc-border-col .npc-desc {
@@ -108,15 +115,10 @@
 	flex: 0;
 }
 
-.projectfu .vehicle-section,
-.projectfu .associated-therioforms {
-	margin-bottom: 0.5em;
-}
-
 .projectfu .vehicle-section .vehicle-header {
 	display: flex;
 	justify-content: center;
-	gap: 0.25em;
+	gap: 0.5px;
 }
 
 .projectfu .vehicle-section .embark-button {
