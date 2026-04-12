@@ -1,5 +1,5 @@
 .favorites-table {
-	grid-template-columns: [name] minmax(max-content, auto) [details] 1fr [controls] min-content;
+	grid-template-columns: [name] minmax(max-content, auto) [details] 1fr [controls] 100px;
 }
 
 .classes-table {

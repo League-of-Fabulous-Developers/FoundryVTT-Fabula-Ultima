@@ -24,7 +24,6 @@
 	flex-direction: column !important;
 	flex-wrap: wrap;
 	justify-content: flex-start;
-	margin-bottom: 5px;
 	gap: 5px;
 }
 
@@ -89,6 +88,7 @@
 
 .projectfu .sheet-header .header-fields {
 	flex: 1;
+	padding: 5px;
 	border: none;
 	background: var(--pfu-app-section-bg-image), var(--pfu-color-app-section-primary-fill);
 	background-blend-mode: multiply;
@@ -168,28 +168,55 @@
 	align-self: baseline;
 }
 
+.projectfu .sheet-header #resources-section {
+	flex-wrap: nowrap;
+
+	#status-section {
+		flex: 1 1 auto;
+		> .grid {
+			flex: 1 1 auto;
+			.status-effect-toggle img {
+				margin-right: -1px;
+				margin-bottom: -1px;
+			}
+		}
+	}
+
+	#attribute-section {
+		display: grid;
+		gap: 1px;
+		grid-template-columns: repeat(2, max-content 1.5fr auto 1fr 1fr);
+		grid-template-rows: repeat(2, auto);
+		place-items: center;
+		justify-self: center;
+		align-self: center;
+		align-items: center;
+		flex: 1 1 auto;
+		border-radius: 0;
+		height: 100%;
+
+		.attribute {
+			display: contents;
+
+			select {
+				width: 2.7rem;
+			}
+		}
+	}
+
+	#roll-section {
+		border-radius: 0 10px 10px 0;
+		height: 100%;
+		align-items: baseline;
+		flex: 1 1 auto;
+	}
+}
+
 .projectfu .sheet-header .header-fields #status-section,
 .projectfu .sheet-header .header-fields #subtype-section {
 	border-radius: 10px 0 0 10px;
 	display: flex;
 	align-items: center;
-}
-
-.projectfu .sheet-header .header-fields #attribute-section {
-	border-radius: 0;
-	display: flex;
-	align-items: center;
-	height: 100%;
-}
-
-.projectfu .sheet-header .header-fields #attribute-section div {
-	gap: 2px;
-}
-
-.projectfu .sheet-header .header-fields #roll-section {
-	border-radius: 0 10px 10px 0;
-	height: 100%;
-	align-items: baseline;
 }
 
 .projectfu .sheet-header .header-fields #item-navbar {
@@ -343,16 +370,21 @@
 		overflow-y: auto;
 
 		main {
-			gap: 0.25rem;
+			flex: 1 1 auto;
+			gap: 5px;
 			overflow-y: auto;
 		}
 
 		aside {
-			flex: 1 0 auto;
-			align-items: center;
+			display: flex;
+			flex-direction: column;
+			flex: 0 0 auto;
+			justify-content: start;
+			align-items: start;
 			text-align: center;
 			overflow-y: auto;
 			overflow-x: hidden;
+			gap: 5px;
 			> * {
 				width: 100%;
 			}
@@ -405,7 +437,7 @@
 			}
 
 			.favorites-section {
-				min-height: 12rem;
+				min-height: 8rem;
 				overflow-y: auto;
 				flex: 1 1 auto;
 
@@ -419,7 +451,7 @@
 }
 
 .projectfu .section-container {
-	margin-bottom: 5px;
+	margin: 0;
 }
 
 /* ----------------------------------------- */

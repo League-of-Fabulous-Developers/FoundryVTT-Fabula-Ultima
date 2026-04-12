@@ -1,6 +1,6 @@
-<div class="header-fields flexrow" style="align-self: stretch;">
+<div id="resources-section" class="header-fields flexrow gap-5">
     <!-- Status Toggle Section -->
-    <div id="status-section" class="desc">
+    <div id="status-section">
         {{!-- Key Statuses --}}
         <div class="grid grid-8col">
             {{#each statusEffectToggles as |statusEffect|}}
@@ -13,11 +13,11 @@
 
     </div>
     <!-- Attribute Section -->
-    <div id="attribute-section" class="resource-content flex-group-center desc">
+    <div id="attribute-section" class="resource-content">
         {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
     </div>
     <!-- Roll Section -->
-    <div id="roll-section" class="resource-content flex-group-center desc grid grid-4col">
+    <div id="roll-section" class="resource-content flex-group-center grid grid-4col">
         {{!-- Group Check --}}
         <div class="flexcol flex-group-center rollable spin2win" data-roll-type="group-check"
              data-tooltip="{{localize 'FU.GroupCheckTooltip'}}" data-action="roll">
