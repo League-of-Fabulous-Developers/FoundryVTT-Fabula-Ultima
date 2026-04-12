@@ -30,8 +30,8 @@ export class AdvancementBrowser extends FUApplication {
 			resizable: true,
 		},
 		position: {
-			width: 700,
-			height: 580,
+			width: 1024,
+			height: 768,
 		},
 		actions: {
 			assignItem: this.#assignItem,
@@ -172,6 +172,15 @@ export class AdvancementBrowser extends FUApplication {
 		return this.#actor.getItemsByType(this.#type);
 	}
 
+	/**
+	 * @typedef AdvancementOption
+	 * @property {String} name
+	 * @property {'entry'|'item'} type
+	 * @property {CompendiumIndexEntry} entry
+	 * @property {FUItem} item
+	 * @property {String[]} classes
+	 */
+
 	/** @override */
 	async _prepareContext(options) {
 		// Items the actor already has
@@ -266,6 +275,7 @@ export class AdvancementBrowser extends FUApplication {
 		actorItems = ObjectUtils.sortArray(actorItems, 'name');
 		compendiumEntries = ObjectUtils.sortArray(compendiumEntries, 'name');
 
+		/** @type AdvancementOption[] **/
 		options = [];
 		options.push(
 			...actorItems.map((item) => {
@@ -273,6 +283,7 @@ export class AdvancementBrowser extends FUApplication {
 					name: item.name,
 					type: 'item',
 					item: item,
+					classes: CompendiumIndex.getClassRequirements(item),
 				};
 			}),
 		);
@@ -282,10 +293,33 @@ export class AdvancementBrowser extends FUApplication {
 					name: entry.name,
 					type: 'entry',
 					entry: entry,
+					classes: CompendiumIndex.getClassRequirements(entry),
 				};
 			}),
 		);
+
 		options = ObjectUtils.sortArray(options, 'name');
+
+		// GROUPS
+		const CARD_SIZE = 96;
+		const HUB_RADIUS = 120;
+		const ORBIT_GAP = 8;
+		let groupedOptions;
+		let groupedData;
+		if (this.#data.type !== 'class') {
+			groupedOptions = AdvancementBrowser.groupOptionsByClass(options);
+			groupedData = groupedOptions.map((group) => {
+				const positions = AdvancementBrowser.computeOrbitalPositions(group.options.length, CARD_SIZE, HUB_RADIUS, ORBIT_GAP);
+				const radius = positions.length ? Math.hypot(positions[0].x, positions[0].y) : HUB_RADIUS;
+				const size = (radius + CARD_SIZE) * 2 - 40;
+				const options = group.options.map((option, i) => ({
+					...option,
+					_x: positions[i].x,
+					_y: positions[i].y,
+				}));
+				return { ...group, options, _size: size };
+			});
+		}
 
 		return {
 			actor: this.#actor,
@@ -296,9 +330,79 @@ export class AdvancementBrowser extends FUApplication {
 			skillMap: this.#skillMap,
 			summary: this.#summary,
 			options,
+			groupedOptions,
+			groupedData,
 			compendiumEntries,
 			actorItems,
 		};
+	}
+
+	/**
+	 * Groups options by class for template rendering.
+	 * Options belonging to multiple classes are duplicated into each group.
+	 * Options with no classes fall into a catch-all 'shared' group.
+	 *
+	 * @param {AdvancementOption[]} options
+	 * @returns {Array<{classId: string, options: AdvancementOption[]}>}
+	 */
+	static groupOptionsByClass(options) {
+		const groupMap = new Map();
+
+		for (const option of options) {
+			const classes = option.classes?.length ? option.classes : ['shared'];
+
+			for (const classId of classes) {
+				if (!groupMap.has(classId)) {
+					groupMap.set(classId, { classId, options: [] });
+				}
+				groupMap.get(classId).options.push(option);
+			}
+		}
+
+		return Array.from(groupMap.values());
+	}
+
+	/**
+	 * @desc Computes positions for cards evenly distributed on a single orbit ring.
+	 * The ring radius grows automatically to prevent card overlap.
+	 * @param {number} itemCount - Total number of cards to place
+	 * @param {number} cardSize - Width/height of each card in px
+	 * @param {number} hubRadius - Radius of the central hub circle in px
+	 * @param {number} orbitGap - Gap between hub edge and card center in px
+	 * @returns {Array<{x: number, y: number}>}
+	 */
+	static computeOrbitalPositions(itemCount, cardSize, hubRadius, orbitGap = 32) {
+		if (itemCount === 0) return [];
+
+		// Minimum radius so cards don't overlap each other
+		const minRadiusForCards = (itemCount * (cardSize + 5)) / (2 * Math.PI);
+		// Minimum radius so cards clear the hub
+		const minRadiusForHub = hubRadius + orbitGap + cardSize * 0.25;
+
+		const radius = Math.max(minRadiusForCards, minRadiusForHub);
+
+		return Array.from({ length: itemCount }, (_, i) => {
+			const angle = (2 * Math.PI * i) / itemCount - Math.PI / 2;
+			return {
+				x: Math.cos(angle) * radius,
+				y: Math.sin(angle) * radius,
+			};
+		});
+	}
+
+	/**
+	 * @desc Computes the bounding box size needed to contain all orbital positions.
+	 * @param {Array<{x: number, y: number}>} positions
+	 * @param {number} cardSize
+	 * @returns {{width: number, height: number}}
+	 */
+	static computeOrbitBounds(positions, cardSize = 80) {
+		if (!positions.length) return { width: cardSize, height: cardSize };
+		const xs = positions.map((p) => p.x);
+		const ys = positions.map((p) => p.y);
+		const width = Math.max(...xs) - Math.min(...xs) + cardSize;
+		const height = Math.max(...ys) - Math.min(...ys) + cardSize;
+		return { width, height };
 	}
 
 	/**
