@@ -24,11 +24,12 @@
 		{{#if groupedOptions}}
 			{{#each groupedData as |group|}}
 				<div class="pfu-advancement__entry__orbit"
-					 style="width: {{group._bounds.width}}px; height: {{group._bounds.height}}px;">
+					 style="width: {{group._size}}px; height: {{group._size}}px;">
 
 					{{!-- Central hub --}}
 					{{#with (lookup @root.summary.classes group.classId) as |class|}}
-						<div class="pfu-advancement__entry__orbit-hub" data-tooltip="{{class.name}}">
+						<div class="pfu-advancement__entry__orbit-hub"
+							 data-tooltip="{{pfuHumanize group.classId}}">
 							<img src="{{class.img}}" alt="{{class.name}}"/>
 						</div>
 					{{/with}}

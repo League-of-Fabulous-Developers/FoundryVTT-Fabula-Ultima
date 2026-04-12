@@ -30,8 +30,8 @@ export class AdvancementBrowser extends FUApplication {
 			resizable: true,
 		},
 		position: {
-			width: 700,
-			height: 580,
+			width: 800,
+			height: 600,
 		},
 		actions: {
 			assignItem: this.#assignItem,
@@ -301,22 +301,23 @@ export class AdvancementBrowser extends FUApplication {
 		options = ObjectUtils.sortArray(options, 'name');
 
 		// GROUPS
-		const CARD_SIZE = 80;
-		const HUB_RADIUS = 48;
-		const ORBIT_GAP = 24;
+		const CARD_SIZE = 96;
+		const HUB_RADIUS = 120;
+		const ORBIT_GAP = 8;
 		let groupedOptions;
 		let groupedData;
 		if (this.#data.type !== 'class') {
 			groupedOptions = AdvancementBrowser.groupOptionsByClass(options);
 			groupedData = groupedOptions.map((group) => {
 				const positions = AdvancementBrowser.computeOrbitalPositions(group.options.length, CARD_SIZE, HUB_RADIUS, ORBIT_GAP);
-				const bounds = AdvancementBrowser.computeOrbitBounds(positions, CARD_SIZE);
+				const radius = positions.length ? Math.hypot(positions[0].x, positions[0].y) : HUB_RADIUS;
+				const size = (radius + CARD_SIZE) * 2;
 				const options = group.options.map((option, i) => ({
 					...option,
 					_x: positions[i].x,
 					_y: positions[i].y,
 				}));
-				return { ...group, options, _bounds: bounds };
+				return { ...group, options, _size: size };
 			});
 		}
 
@@ -362,38 +363,31 @@ export class AdvancementBrowser extends FUApplication {
 	}
 
 	/**
-	 * @desc Computes orbital positions for cards around a central hub. Distributes cards across concentric rings based on capacity.
+	 * @desc Computes positions for cards evenly distributed on a single orbit ring.
+	 * The ring radius grows automatically to prevent card overlap.
 	 * @param {number} itemCount - Total number of cards to place
 	 * @param {number} cardSize - Width/height of each card in px
 	 * @param {number} hubRadius - Radius of the central hub circle in px
-	 * @param {number} orbitGap - Gap between rings in px
-	 * @returns {Array<{x: number, y: number, ring: number}>}
+	 * @param {number} orbitGap - Gap between hub edge and card center in px
+	 * @returns {Array<{x: number, y: number}>}
 	 */
-	static computeOrbitalPositions(itemCount, cardSize = 80, hubRadius = 60, orbitGap = 20) {
-		const positions = [];
-		let remaining = itemCount;
-		let ring = 0;
+	static computeOrbitalPositions(itemCount, cardSize, hubRadius, orbitGap = 32) {
+		if (itemCount === 0) return [];
 
-		while (remaining > 0) {
-			const orbitRadius = hubRadius + cardSize / 2 + orbitGap + ring * (cardSize + orbitGap);
-			const circumference = 2 * Math.PI * orbitRadius;
-			const capacity = Math.max(1, Math.floor(circumference / (cardSize + 10)));
-			const count = Math.min(remaining, capacity);
+		// Minimum radius so cards don't overlap each other
+		const minRadiusForCards = (itemCount * (cardSize + 5)) / (2 * Math.PI);
+		// Minimum radius so cards clear the hub
+		const minRadiusForHub = hubRadius + orbitGap + cardSize / 2;
 
-			for (let i = 0; i < count; i++) {
-				const angle = (2 * Math.PI * i) / count - Math.PI / 2;
-				positions.push({
-					x: Math.cos(angle) * orbitRadius,
-					y: Math.sin(angle) * orbitRadius,
-					ring,
-				});
-			}
+		const radius = Math.max(minRadiusForCards, minRadiusForHub);
 
-			remaining -= count;
-			ring++;
-		}
-
-		return positions;
+		return Array.from({ length: itemCount }, (_, i) => {
+			const angle = (2 * Math.PI * i) / itemCount - Math.PI / 2;
+			return {
+				x: Math.cos(angle) * radius,
+				y: Math.sin(angle) * radius,
+			};
+		});
 	}
 
 	/**
