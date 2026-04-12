@@ -184,11 +184,6 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 	 */
 	refresh(force = false) {
 		try {
-			const { width, height } = this._getScaledSize();
-			if (force) {
-				this._destroyChildren();
-				this._createElements(width, height);
-			}
 			if (!this.shouldDrawPressureGauge) {
 				this.visible = false;
 				return;
@@ -196,6 +191,11 @@ export class FUPressureGauge extends globalThis.PIXI.Container {
 				this.visible = true;
 			}
 
+			const { width, height } = this._getScaledSize();
+			if (force) {
+				this._destroyChildren();
+				this._createElements(width, height);
+			}
 			const [bg, fg, border, mask] = ['BG', 'FG', 'Border', 'FGMask', 'Shadow'].map((name) => this._getChildElement(name));
 
 			if (!(bg && fg && border && mask)) throw new Error(`Pressure gauge PIXI elements not created for ${this.token.id}!`);
