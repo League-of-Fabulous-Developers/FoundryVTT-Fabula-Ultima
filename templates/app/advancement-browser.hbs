@@ -1,23 +1,29 @@
 <main class="flexcol fu-scrollable gap-16" style="height: 100%">
 
-	<div class="flex-row-center gap-16" style="margin: 16px;">
-		<img class="fu-icon profile-img shine" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" style="height: 96px; width: auto; object-fit: contain;">
-		{{#if current}}
-			<div>
-				<div class="flexcol flex-group-center flexshrink" style="min-width: 96px;">
-					{{pfuItemAnchor current size='l'}}
-					<div class="flexrow flex-group-center gap-4">
-						{{current.name}}
-						<button class="button-style" data-action="clearItem">
-							<i class="fas fa-trash-alt"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-		{{/if}}
+	<div class="pfu-advancement__character">
+		<img class="pfu-advancement__character-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}">
+	</div>
+
+	<div class="pfu-advancement__header">
 		<div class="pfu_advancement__type">
 			<span class="pfu__badge__level large">{{pfuMath index '+' 1}}</span>
 		</div>
+		{{#if current}}
+			<div>
+				<div class="pfu__advancement__current flexrow">
+					<div class="flexcol flex-group-center flexshrink" style="min-width: 96px;">
+						{{pfuItemAnchor current size='l'}}
+						<div class="flexrow flex-group-center gap-4">
+							{{current.name}}
+						</div>
+					</div>
+					<button data-action="clearItem">
+						<i class="fas fa-window-close"></i>
+					</button>
+				</div>
+
+			</div>
+		{{/if}}
 	</div>
 
 	<div class="pfu-advancement__entry__cards__container {{#if groupedOptions}}orbit{{/if}}">

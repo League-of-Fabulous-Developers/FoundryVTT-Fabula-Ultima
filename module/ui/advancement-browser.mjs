@@ -30,8 +30,8 @@ export class AdvancementBrowser extends FUApplication {
 			resizable: true,
 		},
 		position: {
-			width: 800,
-			height: 600,
+			width: 1024,
+			height: 768,
 		},
 		actions: {
 			assignItem: this.#assignItem,
@@ -311,7 +311,7 @@ export class AdvancementBrowser extends FUApplication {
 			groupedData = groupedOptions.map((group) => {
 				const positions = AdvancementBrowser.computeOrbitalPositions(group.options.length, CARD_SIZE, HUB_RADIUS, ORBIT_GAP);
 				const radius = positions.length ? Math.hypot(positions[0].x, positions[0].y) : HUB_RADIUS;
-				const size = (radius + CARD_SIZE) * 2;
+				const size = (radius + CARD_SIZE) * 2 - 40;
 				const options = group.options.map((option, i) => ({
 					...option,
 					_x: positions[i].x,
