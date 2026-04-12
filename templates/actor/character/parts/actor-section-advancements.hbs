@@ -1,6 +1,17 @@
 <div class="tab desc {{tab.cssClass}} pfu-advancements" data-group="primary" data-tab="advancements">
-	<table class="pfu-advancements">
-		<thead>
+
+	{{#if error}}
+		<div class="pfu-error-message">
+			<i class="fu-icon--l fas fa-exclamation-triangle"></i>
+			<span class="title">{{localize 'FU.SheetRenderingError'}}</span>
+			<span class="message">{{error.message}}</span>
+			<span class="stack">{{error.stack}}</span>
+		</div>
+	{{/if}}
+
+	{{#unless error}}
+		<table class="pfu-advancements">
+			<thead>
 			<tr class="summary">
 				<th class="flex-group-center">
 					{{#if (gte summary.pendingSkillUpdates.length 1)}}
@@ -65,74 +76,123 @@
 					{{localize 'FU.Advancements'}}
 				</th>
 			</tr>
-		</thead>
-		<tbody>
-		{{#each summary.entries as |advancement idx|}}
-			<tr class="pfu-advancements__row {{advancement.state}}">
+			</thead>
+			<tbody>
+			{{#each summary.entries as |advancement idx|}}
+				<tr class="pfu-advancements__row {{advancement.state}}">
 
-				{{#unless (eq advancement.state 'locked') }}
-				{{!-- 1. LEVEL --}}
-					<td class="flex-group-center">
+					{{#unless (eq advancement.state 'locked') }}
+					{{!-- 1. LEVEL --}}
+						<td class="flex-group-center">
 					<span class="pfu-advancements__badge {{advancement.state}}" data-tooltip="{{localize advancement.message}}">
 					  <span class="pfu-advancements__badge-level">{{pfuMath idx '+' 1}}</span>
 					</span>
-					</td>
+						</td>
 
-					{{!--2. ADVANCEMENTS --}}
-					<td class="pfu-advancement__entries {{#if (eq advancement.state 'locked')}}disabled{{/if}}">
-						{{!-- Class --}}
-						{{#unless advancement.data.class.locked}}
-							<button class="pfu-advancements__button"
-									data-action="advancements"
-									data-command="set"
-									data-index="{{idx}}"
-									data-type="class">
-								{{#if advancement.data.class.id}}
-									{{#with (pfuLookupById @root.actor.items advancement.data.class.id) as |item|}}
-										<img class="fu-icon--s" src="{{item.img}}">
-										<span>{{item.name}}</span>
-									{{/with}}
-								{{else}}
-									<span class="flexrow">
-									<i class="fu-icon--s {{pfuIconClass 'class'}}"></i>
-										{{localize 'FU.Class'}}
-								</span>
-								{{/if}}
-							</button>
-						{{/unless}}
-
-						{{!-- Skill --}}
-						<button class="pfu-advancements__button"
-								data-action="advancements"
-								data-command="set"
-								{{#if advancement.data.skill.locked}}disabled{{/if}}
-								data-index="{{idx}}"
-								data-type="skill">
-							{{#if advancement.data.skill.id}}
-								{{#with (pfuLookupById @root.actor.items advancement.data.skill.id) as |item|}}
-									<img class="fu-icon--s" src="{{item.img}}">
-									<span>{{item.name}}</span>
-								{{/with}}
-								<span>{{ advancement.data.skill.value }}/{{ advancement.data.skill.max }}</span>
-							{{else}}
-								<span class="flexrow">
-									<i class="fu-icon--s {{pfuIconClass 'skill'}}"></i>
-									{{localize 'FU.Skill'}}
-								</span>
-							{{/if}}
-						</button>
-
-						{{!-- Spell --}}
-						{{#if advancement.data.entries.spell}}
-							{{#unless advancement.data.entries.spell.locked}}
+						{{!--2. ADVANCEMENTS --}}
+						<td class="pfu-advancement__entries {{#if (eq advancement.state 'locked')}}disabled{{/if}}">
+							{{!-- Class --}}
+							{{#unless advancement.data.class.locked}}
 								<button class="pfu-advancements__button"
 										data-action="advancements"
 										data-command="set"
 										data-index="{{idx}}"
-										data-path="entries.spell"
+										data-type="class">
+									{{#if advancement.data.class.id}}
+										{{#with (pfuLookupById @root.actor.items advancement.data.class.id) as |item|}}
+											<img class="fu-icon--s" src="{{item.img}}">
+											<span>{{item.name}}</span>
+										{{/with}}
+									{{else}}
+										<span class="flexrow">
+									<i class="fu-icon--s {{pfuIconClass 'class'}}"></i>
+											{{localize 'FU.Class'}}
+								</span>
+									{{/if}}
+								</button>
+							{{/unless}}
+
+							{{!-- Skill --}}
+							<button class="pfu-advancements__button"
+									data-action="advancements"
+									data-command="set"
+									{{#if advancement.data.skill.locked}}disabled{{/if}}
+									data-index="{{idx}}"
+									data-type="skill">
+								{{#if advancement.data.skill.id}}
+									{{#with (pfuLookupById @root.actor.items advancement.data.skill.id) as |item|}}
+										<img class="fu-icon--s" src="{{item.img}}">
+										<span>{{item.name}}</span>
+									{{/with}}
+									<span>{{ advancement.data.skill.value }}/{{ advancement.data.skill.max }}</span>
+								{{else}}
+									<span class="flexrow">
+									<i class="fu-icon--s {{pfuIconClass 'skill'}}"></i>
+										{{localize 'FU.Skill'}}
+								</span>
+								{{/if}}
+							</button>
+
+							{{!-- Spell --}}
+							{{#if advancement.data.entries.spell}}
+								{{#unless advancement.data.entries.spell.locked}}
+									<button class="pfu-advancements__button"
+											data-action="advancements"
+											data-command="set"
+											data-index="{{idx}}"
+											data-path="entries.spell"
+											data-type="spell">
+										{{#if advancement.data.entries.spell.id}}
+											{{#with (pfuLookupById @root.actor.items advancement.data.entries.spell.id) as |item|}}
+												<img class="fu-icon--s" src="{{item.img}}">
+												<span>{{item.name}}</span>
+											{{/with}}
+										{{else}}
+											<span class="flexrow">
+										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
+												{{localize 'FU.Spell'}}
+									</span>
+										{{/if}}
+									</button>
+								{{/unless}}
+							{{/if}}
+
+							{{!-- Heroic --}}
+							{{#if advancement.data.entries.heroic}}
+								{{#unless advancement.data.entries.heroic.locked}}
+									<button class="pfu-advancements__button"
+											data-action="advancements"
+											data-command="set"
+											data-index="{{idx}}"
+											data-path="entries.heroic"
+											data-type="heroic">
+										{{#if advancement.data.entries.heroic.id}}
+											{{#with (pfuLookupById @root.actor.items advancement.data.entries.heroic.id) as |item|}}
+												<img class="fu-icon--s" src="{{item.img}}">
+												<span>{{item.name}}</span>
+											{{/with}}
+										{{else}}
+											<span class="flexrow">
+										<i class="fu-icon--s {{pfuIconClass 'heroic'}}"></i>
+												{{localize 'FU.Heroic'}}
+									</span>
+										{{/if}}
+									</button>
+								{{/unless}}
+							{{/if}}
+
+							{{!-- Extra Spells --}}
+							{{#if advancement.data.entries.extraSpells}}
+								<button class="pfu-advancements__button"
+										data-action="advancements"
+										data-command="set"
+										data-index="{{idx}}"
+										data-path="entries.extraSpells"
+										data-collection-index="0"
+										data-unlock="true"
 										data-type="spell">
-									{{#if advancement.data.entries.spell.id}}
-										{{#with (pfuLookupById @root.actor.items advancement.data.entries.spell.id) as |item|}}
+									{{#with (lookup advancement.data.entries.extraSpells.ids 0) as |spellId|}}
+										{{#with (pfuLookupById @root.actor.items spellId) as |item|}}
 											<img class="fu-icon--s" src="{{item.img}}">
 											<span>{{item.name}}</span>
 										{{/with}}
@@ -141,84 +201,36 @@
 										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
 											{{localize 'FU.Spell'}}
 									</span>
-									{{/if}}
+									{{/with}}
 								</button>
-							{{/unless}}
-						{{/if}}
 
-						{{!-- Heroic --}}
-						{{#if advancement.data.entries.heroic}}
-							{{#unless advancement.data.entries.heroic.locked}}
 								<button class="pfu-advancements__button"
 										data-action="advancements"
 										data-command="set"
 										data-index="{{idx}}"
-										data-path="entries.heroic"
-										data-type="heroic">
-									{{#if advancement.data.entries.heroic.id}}
-										{{#with (pfuLookupById @root.actor.items advancement.data.entries.heroic.id) as |item|}}
+										data-path="entries.extraSpells"
+										data-collection-index="1"
+										data-unlock="true"
+										data-type="spell">
+									{{#with (lookup advancement.data.entries.extraSpells.ids 1) as |spellId|}}
+										{{#with (pfuLookupById @root.actor.items spellId) as |item|}}
 											<img class="fu-icon--s" src="{{item.img}}">
 											<span>{{item.name}}</span>
 										{{/with}}
 									{{else}}
 										<span class="flexrow">
-										<i class="fu-icon--s {{pfuIconClass 'heroic'}}"></i>
-											{{localize 'FU.Heroic'}}
+										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
+											{{localize 'FU.Spell'}}
 									</span>
-									{{/if}}
+									{{/with}}
 								</button>
-							{{/unless}}
-						{{/if}}
+							{{/if}}
 
-						{{!-- Extra Spells --}}
-						{{#if advancement.data.entries.extraSpells}}
-							<button class="pfu-advancements__button"
-									data-action="advancements"
-									data-command="set"
-									data-index="{{idx}}"
-									data-path="entries.extraSpells"
-									data-collection-index="0"
-									data-unlock="true"
-									data-type="spell">
-								{{#with (lookup advancement.data.entries.extraSpells.ids 0) as |spellId|}}
-									{{#with (pfuLookupById @root.actor.items spellId) as |item|}}
-										<img class="fu-icon--s" src="{{item.img}}">
-										<span>{{item.name}}</span>
-									{{/with}}
-								{{else}}
-									<span class="flexrow">
-										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
-										{{localize 'FU.Spell'}}
-									</span>
-								{{/with}}
-							</button>
-
-							<button class="pfu-advancements__button"
-									data-action="advancements"
-									data-command="set"
-									data-index="{{idx}}"
-									data-path="entries.extraSpells"
-									data-collection-index="1"
-									data-unlock="true"
-									data-type="spell">
-								{{#with (lookup advancement.data.entries.extraSpells.ids 1) as |spellId|}}
-									{{#with (pfuLookupById @root.actor.items spellId) as |item|}}
-										<img class="fu-icon--s" src="{{item.img}}">
-										<span>{{item.name}}</span>
-									{{/with}}
-								{{else}}
-									<span class="flexrow">
-										<i class="fu-icon--s {{pfuIconClass 'spell'}}"></i>
-										{{localize 'FU.Spell'}}
-									</span>
-								{{/with}}
-							</button>
-						{{/if}}
-
-					</td>
-				{{/unless}}
-			</tr>
-		{{/each}}
-		</tbody>
-	</table>
+						</td>
+					{{/unless}}
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+	{{/unless}}
 </div>

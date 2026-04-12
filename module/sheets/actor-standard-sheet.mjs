@@ -462,7 +462,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 			case 'advancements':
 				{
-					context.summary = AdvancementTracker.evaluate(this.actor);
+					try {
+						context.summary = AdvancementTracker.evaluate(this.actor);
+					} catch (err) {
+						context.error = err;
+					}
 				}
 				break;
 
