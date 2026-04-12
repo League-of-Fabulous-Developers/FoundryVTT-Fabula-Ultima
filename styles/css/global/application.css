@@ -66,3 +66,43 @@
 .fu-application h4 {
 	font-size: 0.95em;
 }
+
+.pfu-error-message {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	gap: 1rem;
+
+	.title {
+		font-size: 18px;
+		width: 50%;
+		text-align: center;
+	}
+
+	.message {
+		font-size: 14px;
+		padding: 0.5rem;
+		font-style: italic;
+	}
+
+	.stack {
+		font-size: 11px;
+		font-family: monospace;
+		padding: 0.75rem;
+		width: 80%;
+		max-height: 200px;
+		overflow-y: auto;
+		white-space: pre-wrap;
+		word-break: break-all;
+		background-color: var(--color-warning-bg);
+		border: 1px solid var(--color-warning-border);
+		opacity: 0.8;
+	}
+
+	i {
+		color: var(--color-warning);
+		text-align: center;
+	}
+}

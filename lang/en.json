@@ -1976,6 +1976,7 @@
 		"AdvancementStartingClassLimit": "A starting character must have a minimum of two classes selected.",
 		"AdvancementSkillClassNotFound": "The class in the selected skill could not be found.",
 		"AdvancementSpellLocked": "There should not be a spell selection in this advancement.",
-		"Synchronize": "Synchronize"
+		"Synchronize": "Synchronize",
+		"SheetRenderingError": "A critical error occurred during the rendering of this sheet part. Please report the issue to the development team."
 	}
 }
