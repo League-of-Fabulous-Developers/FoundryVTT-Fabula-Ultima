@@ -1,0 +1,99 @@
+/* ----------------------------------------- */
+/* Retro Style                       
+/* ----------------------------------------- */
+.combat-hud-retro {
+	--hud-height: auto;
+	--npc-width-percent: 30%;
+	--character-width-percent: calc(100% - var(--npc-width-percent));
+	--combat-info-height: auto;
+	--combat-info-content-padding: 5px;
+	--combat-info-image-size: calc(3.5em - var(--combat-info-content-padding) * 2);
+	--combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
+	--combat-info-effects-icon-size: 1.5em;
+	--combat-bars-right-margin: 2.5em;
+	--combat-info-character-width-none: 100%;
+	--combat-bars-width-none: 0;
+	--combat-info-character-width-one: 65%;
+	--combat-bars-width-one: calc(100% - var(--combat-info-character-width-one) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-info-character-width-two: 50%;
+	--combat-bars-width-two: calc(100% - var(--combat-info-character-width-two) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-info-character-width-three: 30%;
+	--combat-bars-width-three: calc(100% - var(--combat-info-character-width-three) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+	--combat-bars-icon-width: 45%;
+	--combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
+	--hud-buttons-height: 2.2em;
+	--hud-buttons-width: 3em;
+	--hud-opacity: 1;
+	--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));
+	--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));
+	--combatant-control-z-index: 99;
+	position: fixed;
+	left: 0;
+	height: var(--hud-height);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: 4px;
+}
+.combat-hud-retro__window-button {
+	position: absolute;
+	color: #ffffff;
+	z-index: 99;
+	/*
+  Set !important because some themes will set pointer-events to none on the main application
+  element, and the selector for that is more specific than this one.
+   */
+	pointer-events: initial !important;
+	text-shadow: 1px 1px 1px #000000;
+	-webkit-box-shadow: 3px 3px #2b4a42;
+	box-shadow: 3px 3px #2b4a42;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc)), #2b4a42;
+	background: linear-gradient(to bottom, #2c584d, #a0cdbc), #2b4a42;
+	padding: 0.5em 1em 0.5em 1em;
+	height: var(--hud-buttons-height);
+	width: var(--hud-buttons-width);
+}
+.combat-hud-retro__window-button--top {
+	top: -2em;
+}
+.combat-hud-retro__window-button--bottom {
+	bottom: -2em;
+}
+.combat-hud-retro__window-button--hidden {
+	display: none;
+}
+.combat-hud-retro__window-button a {
+	padding: 0;
+	margin: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+.combat-hud-retro__window-button--minimize {
+	right: 0.5em;
+}
+.combat-hud-retro__window-button--popout {
+	right: 4em;
+}
+.combat-hud-retro__window-button--compact {
+	right: 7.5em;
+}
+.combat-hud-retro__window-button--hidden {
+	display: none;
+}
+.combat-hud-retro__window-button--drag {
+	left: 0em;
+}
+.combat-hud-retro__window-button--start,
+.combat-hud-retro__window-button--stop {
+	left: 3.5em;
+}

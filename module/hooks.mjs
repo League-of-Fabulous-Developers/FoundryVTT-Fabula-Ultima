@@ -256,4 +256,13 @@ export const FUHooks = {
 	 * @description Dispatched when the party sheet is about to open, in order to provide options.
 	 */
 	SHEET_EXTENSIONS: `projectfu.sheets.extensions`,
+
+	COMBAT_HUD: {
+		/** @description Called when the combat HUD begins initializing */
+		INIT: 'projectfu.combatHud.init',
+		/** @description Called after the combat hUD is initialized */
+		READY: 'projectfu.combatHud.ready',
+		/** @description Called when the combat HUD is rendered */
+		RENDER: 'projectfu.combatHud.renderCombatHud',
+	},
 };
