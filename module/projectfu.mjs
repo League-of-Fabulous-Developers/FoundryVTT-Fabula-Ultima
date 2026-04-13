@@ -120,6 +120,7 @@ import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 import { ActorDirectoryEnhancements } from './ui/actor-directory-enhancements.mjs';
 import { PixelArtDetection } from './helpers/pixel-art-detection.mjs';
 import { refreshCompendiumData } from './helpers/compendium-refresh.mjs';
+import { BaseCombatHUD } from './ui/combat-hud/base-combat-hud.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -178,6 +179,7 @@ Hooks.once('init', () => {
 		},
 		index: CompendiumIndex.instance,
 		hooks: FUHooks,
+		CombatHUD: BaseCombatHUD,
 	};
 
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
@@ -768,3 +770,4 @@ function rollEquipment(actor, slot, isShift) {
 		ui.notifications.warn(`Equipped item in ${slot} slot not found!`);
 	}
 }
+

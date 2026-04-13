@@ -1,6 +1,6 @@
 import { SETTINGS } from '../settings.js';
 import { MESSAGES } from '../socket.mjs';
-import { CombatHUD } from './combat-hud.mjs';
+import { BaseCombatHUD } from './combat-hud/index.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
@@ -105,7 +105,7 @@ export class FUCombat extends foundry.documents.Combat {
 	constructor(data, context) {
 		super(data, context);
 		console.debug('Constructed combat');
-		if (this.isActive && game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) CombatHUD.init();
+		if (this.isActive && game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) BaseCombatHUD.init();
 	}
 
 	/**
