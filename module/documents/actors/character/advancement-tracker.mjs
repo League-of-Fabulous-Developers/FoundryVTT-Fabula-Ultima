@@ -248,11 +248,13 @@ export class AdvancementTracker {
 	/**
 	 * @desc Evaluates the character's current advancements
 	 * @param {FUActor} actor
+	 * @param {Number} targetLevel If not set, will use the highest level.
 	 * @returns {AdvancementSummary}
 	 */
-	static evaluate(actor) {
+	static evaluate(actor, targetLevel = undefined) {
 		/** @type {CharacterDataModel} **/
 		const system = actor.system;
+		targetLevel = targetLevel ?? system.level.value;
 
 		/**
 		 * @type {Record<string, AdvancementClassInfo>}
@@ -269,6 +271,10 @@ export class AdvancementTracker {
 		 * @remarks SKILL FUID : SKILL SL
 		 **/
 		let skillLevels = {};
+		/**
+		 * @type {Set<String>} The ids that have been referenced so far.
+		 */
+		let ids = new Set();
 		/**
 		 * @type {number}
 		 */
@@ -297,7 +303,8 @@ export class AdvancementTracker {
 		/** @type {AdvancementEntry[]} **/
 		let entries = [];
 
-		const [advancements] = AdvancementTracker.removeUnresolvedItems(actor, system.advancements);
+		let [advancements] = AdvancementTracker.removeUnresolvedItems(actor, system.advancements);
+		advancements = targetLevel ? advancements.slice(0, targetLevel) : advancements;
 		for (let i = 0; i < advancements.length; i++) {
 			/** @type {AdvancementDataModel} **/
 			const data = advancements[i];
@@ -352,6 +359,8 @@ export class AdvancementTracker {
 						id: data.class.id,
 						img: classItem.img,
 					};
+
+					ids.add(data.class.id);
 				} else if (lockClasses) {
 					data.class.locked = true;
 				}
@@ -415,6 +424,8 @@ export class AdvancementTracker {
 								}
 							}
 						}
+
+						ids.add(data.skill.id);
 					} else {
 						state = 'invalid';
 						message = 'FU.AdvancementSkillMissingClass';
@@ -442,6 +453,7 @@ export class AdvancementTracker {
 								patched = true;
 							}
 						}
+						ids.add(data.entries.heroic.id);
 					}
 				}
 
@@ -466,6 +478,7 @@ export class AdvancementTracker {
 						if (resolvedSkill) {
 							resolvedSpell = true;
 							benefits.spell++;
+							ids.add(data.entries.spell.id);
 						} else {
 							state = 'invalid';
 							message = 'FU.AdvancementMissingSkill';
@@ -504,8 +517,7 @@ export class AdvancementTracker {
 		}
 
 		// Only return entries up to the current level
-		const level = system.level.value;
-		entries = entries.slice(0, level);
+		//entries = entries.slice(0, level);
 
 		/** @type AdvancementNotifications[]  **/
 		let notifications = [];
@@ -525,8 +537,8 @@ export class AdvancementTracker {
 				case 'spell':
 					{
 						// Make an exception for Chimerist spells
-						const classReference = CompendiumIndex.getClassRequirements(item);
-						if (classReference === 'chimerist') {
+						const classReqs = CompendiumIndex.getClassRequirements(item);
+						if (classReqs.includes('chimerist')) {
 							return false;
 						}
 					}
@@ -569,7 +581,7 @@ export class AdvancementTracker {
 		}
 
 		return {
-			level,
+			targetLevel,
 			entries,
 			patched,
 			benefits,

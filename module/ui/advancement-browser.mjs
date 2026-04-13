@@ -60,12 +60,17 @@ export class AdvancementBrowser extends FUApplication {
 	#actorItemFuids;
 	/** @type String[] **/
 	#spellList;
-	/** @type String[] **/
+	/**
+	 * @type String[]
+	 * @desc The classes currently held by the character.
+	 **/
 	#classList;
 	/** @type {Record<String, AdvancementSkillReference>} **/
 	#skillMap;
 	/** @type FUItem **/
 	#current;
+	/** @type String **/
+	#skillClass;
 	/** @type AdvancementSummary **/
 	#summary;
 
@@ -98,13 +103,15 @@ export class AdvancementBrowser extends FUApplication {
 			itemId = reference.id;
 		}
 
+		const level = data.index + 1;
 		this.#current = data.actor.items.get(itemId);
 		this.#actorItemFuids = new Set(data.actor.items.map((item) => item.system?.fuid).filter(Boolean));
-		this.#summary = AdvancementTracker.evaluate(data.actor);
-		this.#trackedItems = AdvancementTracker.getTrackedItems(data.actor, data.index + 1);
+		this.#summary = AdvancementTracker.evaluate(data.actor, level);
+		this.#trackedItems = AdvancementTracker.getTrackedItems(data.actor, level);
 		this.#trackedItemIds = new Set(this.#trackedItems.map((item) => item.id));
 
 		// Filter these up to the current advancements
+		this.#skillClass = this.getSkillClass();
 		this.#spellList = this.getSpellList();
 		this.#classList = this.getClassList();
 		this.#skillMap = this.getSkillMap();
@@ -119,6 +126,23 @@ export class AdvancementBrowser extends FUApplication {
 
 	get level() {
 		return this.#index + 1;
+	}
+
+	getSkillClass() {
+		let _class;
+
+		if (this.#advancement.class.id) {
+			const classItem = this.#actor.items.get(this.#advancement.class.id);
+			_class = classItem.system.fuid;
+		} else if (this.#advancement.skill.id) {
+			const skillItem = this.#actor.items.get(this.#advancement.skill.id);
+			const classReqs = CompendiumIndex.getClassRequirements(skillItem);
+			if (classReqs.length === 1) {
+				_class = classReqs[0];
+			}
+		}
+
+		return _class;
 	}
 
 	getSpellList() {
@@ -136,7 +160,8 @@ export class AdvancementBrowser extends FUApplication {
 			})
 			.map((item) => {
 				return CompendiumIndex.getClassRequirements(item);
-			});
+			})
+			.flat();
 	}
 
 	getClassList() {
@@ -194,14 +219,6 @@ export class AdvancementBrowser extends FUApplication {
 			return !this.#actorItemFuids.has(entry.system.fuid);
 		});
 
-		// Whether the items to be selected are class-specific
-		/** @type String **/
-		let specificClass = undefined;
-		if (this.#advancement.class.id) {
-			const classItem = this.#actor.items.get(this.#advancement.class.id);
-			specificClass = classItem.system.fuid;
-		}
-
 		switch (this.#type) {
 			case 'class':
 				actorItems = this.getMatchingItems().filter((item) => {
@@ -212,7 +229,7 @@ export class AdvancementBrowser extends FUApplication {
 			case 'spell':
 				compendiumEntries = compendiumEntries.filter((entry) => {
 					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (specificClass && !classReqs.includes(specificClass)) {
+					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
 						return false;
 					}
 					return this.#spellList.length > 0 ? this.#spellList.some((s) => classReqs.includes(s)) : true;
@@ -229,7 +246,7 @@ export class AdvancementBrowser extends FUApplication {
 			case 'skill':
 				compendiumEntries = compendiumEntries.filter((entry) => {
 					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (specificClass && !classReqs.includes(specificClass)) {
+					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
 						return false;
 					}
 					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level < 10);
@@ -240,7 +257,7 @@ export class AdvancementBrowser extends FUApplication {
 				actorItems = actorItems.concat(this.getMatchingItems().filter((item) => this.#skillMap[item.id] === undefined));
 				actorItems = actorItems.filter((item) => {
 					const classReqs = CompendiumIndex.getClassRequirements(item);
-					if (specificClass && !classReqs.includes(specificClass)) {
+					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
 						return false;
 					}
 					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level < 10);
@@ -253,7 +270,7 @@ export class AdvancementBrowser extends FUApplication {
 					if (classReqs.length === 0) {
 						return true;
 					}
-					if (specificClass && !classReqs.includes(specificClass)) {
+					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
 						return false;
 					}
 					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level === 10);
@@ -263,7 +280,7 @@ export class AdvancementBrowser extends FUApplication {
 					if (classReqs.length === 0) {
 						return true;
 					}
-					if (specificClass && !classReqs.includes(specificClass)) {
+					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
 						return false;
 					}
 					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level === 10);
