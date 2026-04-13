@@ -1,6 +1,6 @@
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
-import { CombatHUD } from './ui/combat-hud.mjs';
+import { BaseCombatHUD } from './ui/combat-hud/index.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { CombatHudSettings } from './settings/combatHudSettings.js';
@@ -760,7 +760,7 @@ export const registerSystemSettings = async function () {
 		default: [],
 		restricted: true,
 		onChange: () => {
-			CombatHUD.update();
+			BaseCombatHUD.implementation.update();
 		},
 	});
 
@@ -908,7 +908,7 @@ export const registerSystemSettings = async function () {
 		default: 'play_circle',
 		onChange: () => {
 			ui.combat.render(true);
-			CombatHUD.update();
+			BaseCombatHUD.implementation.update();
 		},
 	});
 
@@ -922,7 +922,7 @@ export const registerSystemSettings = async function () {
 		onChange: () => {
 			if (game.combat?.isActive) {
 				ui.combat.render(true);
-				CombatHUD.update();
+				BaseCombatHUD.implementation.update();
 			}
 		},
 	});
@@ -937,7 +937,7 @@ export const registerSystemSettings = async function () {
 		onChange: () => {
 			if (game.combat?.isActive) {
 				ui.combat.render(true);
-				CombatHUD.update();
+				BaseCombatHUD.implementation.update();
 			}
 		},
 	});
