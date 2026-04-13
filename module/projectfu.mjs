@@ -580,11 +580,11 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 		}
 
 		const chatMessage = game.messages.get(_messageId);
-		const checkV2 = chatMessage?.flags?.projectfu?.CheckV2;
+		const checkData = chatMessage.getFlag(SYSTEM, Flags.ChatMessage.Check);
 
-		if (!checkV2) return;
+		if (!checkData) return;
 
-		const { critical = false, fumble = false } = checkV2;
+		const { critical = false, fumble = false } = checkData;
 
 		const pfuSfx = { id: SYSTEM, result: null };
 
@@ -592,18 +592,18 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 			pfuSfx.result = game.i18n.localize('FU.Critical');
 		} else if (fumble) {
 			pfuSfx.result = game.i18n.localize('FU.Fumble');
-		} else if (checkV2.type === 'accuracy' || checkV2.type === 'magic') {
-			if (checkV2.additionalData.targets?.length) {
-				if (checkV2.additionalData.targets.some((target) => target.result === 'hit')) pfuSfx.result = game.i18n.localize('FU.Success');
+		} else if (checkData.type === 'accuracy' || checkData.type === 'magic') {
+			if (checkData.additionalData.targets?.length) {
+				if (checkData.additionalData.targets.some((target) => target.result === 'hit')) pfuSfx.result = game.i18n.localize('FU.Success');
 				else pfuSfx.result = game.i18n.localize('FU.Failure');
 			}
-		} else if (checkV2.type === 'opposed') {
-			if (checkV2.additionalData?.initialCheck) {
-				if (checkV2.result >= checkV2.additionalData.initialCheck.result) pfuSfx.result = game.i18n.localize('FU.Success');
+		} else if (checkData.type === 'opposed') {
+			if (checkData.additionalData?.initialCheck) {
+				if (checkData.result >= checkData.additionalData.initialCheck.result) pfuSfx.result = game.i18n.localize('FU.Success');
 				else pfuSfx.result = game.i18n.localize('FU.Failure');
 			}
 		} else {
-			if (checkV2.result >= checkV2.additionalData.difficulty) pfuSfx.result = game.i18n.localize('FU.Success');
+			if (checkData.result >= checkData.additionalData.difficulty) pfuSfx.result = game.i18n.localize('FU.Success');
 			else pfuSfx.result = game.i18n.localize('FU.Failure');
 		}
 
