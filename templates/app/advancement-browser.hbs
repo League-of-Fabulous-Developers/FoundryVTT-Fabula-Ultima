@@ -34,8 +34,8 @@
 
 					{{!-- Central hub --}}
 				 	<div class="pfu-advancement__entry__orbit-hub" data-tooltip="{{pfuHumanize group.classId}}">
-						{{#if (lookup @root.summary.classes group.classId)}}
-							{{#with (lookup @root.summary.classes group.classId) as |class|}}
+						{{#if (lookup @root.classes group.classId)}}
+							{{#with (lookup @root.classes group.classId) as |class|}}
 								<img src="{{class.img}}" alt="{{class.name}}"/>
 							{{/with}}
 						{{else}}

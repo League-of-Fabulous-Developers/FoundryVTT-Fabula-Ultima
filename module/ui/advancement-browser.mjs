@@ -229,7 +229,8 @@ export class AdvancementBrowser extends FUApplication {
 			case 'spell':
 				compendiumEntries = compendiumEntries.filter((entry) => {
 					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
+					// If unlocked, can pick from any class
+					if (!this.#data.unlock && this.#skillClass && !classReqs.includes(this.#skillClass)) {
 						return false;
 					}
 					return this.#spellList.length > 0 ? this.#spellList.some((s) => classReqs.includes(s)) : true;
@@ -338,6 +339,8 @@ export class AdvancementBrowser extends FUApplication {
 			});
 		}
 
+		const classReferences = await CompendiumIndex.instance.getClassReferences();
+
 		return {
 			actor: this.#actor,
 			data: this.#advancement,
@@ -347,6 +350,7 @@ export class AdvancementBrowser extends FUApplication {
 			skillMap: this.#skillMap,
 			summary: this.#summary,
 			options,
+			classes: Object.fromEntries(classReferences.map((cls) => [cls.fuid, cls])),
 			groupedOptions,
 			groupedData,
 			compendiumEntries,
