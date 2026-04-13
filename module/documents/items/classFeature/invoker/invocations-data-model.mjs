@@ -178,8 +178,8 @@ export class InvocationsDataModel extends RollableClassFeatureDataModel {
 	static getTabConfigurations() {
 		return [
 			{
-				group: 'invocationsTabs',
-				navSelector: '.invocations-tabs',
+				group: 'invocations',
+				navSelector: '.sheet-tabs',
 				contentSelector: '.invocations-content',
 				initial: 'description',
 			},
