@@ -8,6 +8,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
+import { DamageTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @param {CheckV2} check
@@ -115,6 +116,14 @@ export class BasicItemDataModel extends FUStandardItemDataModel {
 	 */
 	async roll(modifiers) {
 		return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAttackCheck(modifiers));
+	}
+
+	/**
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Used by templates.
+	 */
+	get traitOptions() {
+		return TraitUtils.getOptions(DamageTraits);
 	}
 
 	/**

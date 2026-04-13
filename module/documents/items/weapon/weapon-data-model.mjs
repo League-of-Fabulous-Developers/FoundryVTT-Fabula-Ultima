@@ -8,7 +8,7 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
+import { DamageTraits, Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { WeaponBehaviourMixin } from './weapon-behaviour-mixin.mjs';
@@ -132,6 +132,14 @@ export class WeaponDataModel extends WeaponBehaviourMixin(FUStandardItemDataMode
 
 	transferEffects() {
 		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.weaponsActive;
+	}
+
+	/**
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Used by templates.
+	 */
+	get traitOptions() {
+		return TraitUtils.getOptions(DamageTraits);
 	}
 
 	/**

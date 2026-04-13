@@ -16,7 +16,7 @@ import { WeaponResolver } from '../skill/weapon-resolver.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { FU } from '../../../helpers/config.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
+import { DamageTraits, Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ExpressionContext } from '../../../expressions/expressions.mjs';
@@ -109,6 +109,14 @@ export class SpellDataModel extends FUStandardItemDataModel {
 		source = super.migrateData(source);
 		SpellMigrations.run(source);
 		return source;
+	}
+
+	/**
+	 * @returns {{label: *, value: *}[]}
+	 * @remarks Used by templates.
+	 */
+	get traitOptions() {
+		return TraitUtils.getOptions(DamageTraits);
 	}
 
 	/**
