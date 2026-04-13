@@ -553,7 +553,7 @@ function progress(document, progress, action, increment = undefined, source = un
  * @remarks Emitted when a check is about to be performed
  */
 
-function performCheck(check, actor, item) {
+async function performCheck(check, actor, item) {
 	const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
 	const source = CharacterInfo.fromActor(actor);
 	const config = CheckConfiguration.configure(check);
@@ -572,7 +572,7 @@ function performCheck(check, actor, item) {
 		sourceInfo: sourceInfo,
 		targets: targets,
 	};
-	Hooks.call(FUHooks.PERFORM_CHECK_EVENT, event);
+	return AsyncHooks.callSequential(FUHooks.PERFORM_CHECK_EVENT, event);
 }
 
 /**
