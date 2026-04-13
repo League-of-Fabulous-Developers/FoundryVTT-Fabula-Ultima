@@ -117,6 +117,7 @@ import { Themes } from './ui/themes/theme-options.mjs';
 import { FUSidebarApplication } from './ui/sidebar.mjs';
 import { SheetExtensions } from './sheets/sheet-extension.mjs';
 import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
+import { BaseCombatHUD } from './ui/combat-hud/base-combat-hud.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -174,6 +175,7 @@ Hooks.once('init', () => {
 		},
 		index: CompendiumIndex.instance,
 		hooks: FUHooks,
+		CombatHUD: BaseCombatHUD,
 	};
 
 	// (!) Data Models: Moved here due to lexical declaration issues otherwise
