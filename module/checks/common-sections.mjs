@@ -217,7 +217,7 @@ const quality = (sections, quality, order) => {
  */
 const resource = (sections, resource, order) => {
 	sections.push(async () => ({
-		partial: 'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
+		partial: 'systems/projectfu/templates/common/progress/progress-bar.hbs',
 		data: {
 			data: resource,
 		},

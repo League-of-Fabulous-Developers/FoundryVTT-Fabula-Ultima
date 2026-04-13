@@ -13,6 +13,7 @@ export const CHECK_ROLL = -1000;
 export const ChatSectionOrder = Object.freeze({
 	flavor: Number.NaN,
 	tags: -3000,
+	tracker: -2500,
 	details: -2000,
 	reroll: -1100,
 	roll: -1000,

@@ -6,7 +6,7 @@ import { RitualMigrations } from './ritual-migrations.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
-import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { ChatSectionOrder, CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
@@ -47,7 +47,7 @@ Hooks.on(CheckHooks.renderCheck, (data, check, actor, item, flags) => {
 		);
 
 		if (item.system.hasClock.value) {
-			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
+			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
 		}
 
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);

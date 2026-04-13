@@ -4,6 +4,7 @@ import { OptionalFeatureTypeDataModel } from '../optional-feature-type-data-mode
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { TextEditor } from '../../../../helpers/text-editor.mjs';
+import { ChatSectionOrder } from '../../../../checks/default-section-order.mjs';
 
 /** @type RenderCheckHook */
 const onRenderCheck = (data, check, actor, item) => {
@@ -11,10 +12,10 @@ const onRenderCheck = (data, check, actor, item) => {
 		/** @type QuirkDataModel */
 		const quirk = item.system.data;
 		if (quirk.hasResource.value) {
-			CommonSections.resource(data.sections, quirk.rp, -1);
+			CommonSections.resource(data.sections, quirk.rp, ChatSectionOrder.tracker);
 		}
 		if (quirk.hasClock.value) {
-			CommonSections.clock(data.sections, quirk.progress, -1);
+			CommonSections.clock(data.sections, quirk.progress, ChatSectionOrder.tracker);
 		}
 	}
 };

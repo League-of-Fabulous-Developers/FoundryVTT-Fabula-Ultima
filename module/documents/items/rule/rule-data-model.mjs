@@ -3,11 +3,12 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { ChatSectionOrder } from '../../../checks/default-section-order.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (data, check, actor, item) => {
 	if (item?.system instanceof RuleDataModel) {
 		if (item.system.hasClock.value) {
-			CommonSections.clock(data.sections, item.system.progress);
+			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
 		}
 
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value);

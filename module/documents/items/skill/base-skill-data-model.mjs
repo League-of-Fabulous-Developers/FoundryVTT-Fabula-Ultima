@@ -16,7 +16,7 @@ import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { Checks } from '../../../checks/checks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { ChatSectionOrder, CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 
@@ -44,7 +44,7 @@ let onRenderAccuracyCheck = async (data, check, actor, item, flags) => {
 		CommonSections.description(data.sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		if (item.system.hasClock?.value) {
-			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
+			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
 		}
 	}
 };
@@ -67,10 +67,10 @@ let onRenderAttributeCheck = async (data, check, actor, item, flags) => {
 		}
 
 		if (skill.system.hasResource?.value) {
-			CommonSections.resource(data.sections, skill.system.rp, CHECK_DETAILS);
+			CommonSections.resource(data.sections, skill.system.rp, ChatSectionOrder.tracker);
 		}
 		if (skill.system.hasClock?.value) {
-			CommonSections.clock(data.sections, item.system.progress, CHECK_DETAILS);
+			CommonSections.clock(data.sections, item.system.progress, ChatSectionOrder.tracker);
 		}
 	}
 };
@@ -91,7 +91,7 @@ const onRenderDisplay = (data, check, actor, item, flags) => {
 			CommonSections.actions(data, actor, item, targets, flags, inspector);
 		}
 		if (item.system.hasResource?.value) {
-			CommonSections.resource(data.sections, item.system.rp, CHECK_DETAILS);
+			CommonSections.resource(data.sections, item.system.rp, ChatSectionOrder.tracker);
 		}
 		CommonEvents.skill(actor, item);
 	}
