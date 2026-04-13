@@ -1,9 +1,13 @@
 import { BaseCombatHUD } from './base-combat-hud.mjs';
 
 export class RetroCombatHUD extends BaseCombatHUD {
-	constructor(options) {
-		super(options);
-		BaseCombatHUD.instance = this;
+	static DEFAULT_OPTIONS = {
+		...super.DEFAULT_OPTIONS,
+		classes: [...super.DEFAULT_OPTIONS.classes, 'combat-hud-retro'],
+	};
+
+	get _elementClass() {
+		return 'combat-hud-retro';
 	}
 }
 

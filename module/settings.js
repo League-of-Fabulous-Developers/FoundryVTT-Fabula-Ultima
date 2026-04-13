@@ -49,6 +49,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
 	optionCombatHudWidth: 'optionCombatHudWidth',
+	optionCombatHudAlwaysShow: 'optionCombatHudAlwaysShow',
 	// Theme
 	theme: 'theme',
 	themeFoundry: 'themeFoundry',
@@ -753,6 +754,18 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Object,
 		default: getClientSetting(SETTINGS.optionCombatHudDraggedPosition, {}),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudAlwaysShow, {
+		name: game.i18n.localize('FU.CombatHudAlwaysShow'),
+		hint: game.i18n.localize('FU.CombatHudAlwaysShowHint'),
+		scope: 'user',
+		config: false,
+		type: Boolean,
+		default: false,
+		onChange: () => {
+			BaseCombatHUD.implementation.update();
+		},
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {
