@@ -1118,6 +1118,8 @@ FU.allIcon = {
 	offensive: 'is-offensive',
 	martial: 'is-martial',
 	melee: 'fa-solid fa-sword',
+	armor: 'ra ra-helmet',
+	shield: 'ra ra-shield',
 	range: 'fa-solid fa-bow-arrow',
 	spell: 'fa-solid fa-wand-magic-sparkles',
 	skill: 'is-skill',

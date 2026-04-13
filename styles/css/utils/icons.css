@@ -97,6 +97,8 @@
 	--icon-fu--sword: url('../../static/icons/weapons/sword.png');
 	--icon-fu--thrown: url('../../static/icons/weapons/thrown.png');
 
+	--icon-fu--action-spell: url('../../static/icons/actions/action_spell.png');
+
 	--icon-fu--damage: url('../../static/icons/inline/damage.svg');
 	--icon-fu--type: url('../../static/icons/inline/type.svg');
 	--icon-fu--pointer: url('/systems/projectfu/styles/static/ui/pointer.png');
@@ -464,6 +466,10 @@
 
 .fu-type {
 	background-image: var(--icon-fu--type);
+}
+
+.fu-action-spell {
+	background-image: var(--icon-fu--action-spell);
 }
 
 /* Icon display styles */
