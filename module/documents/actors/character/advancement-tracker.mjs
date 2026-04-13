@@ -35,8 +35,11 @@ const CLASS_IP_BENEFITS = 2;
  * @property {Number} hp
  * @property {Number} mp
  * @property {Number} ip
- * @property {Boolean} martial
- * @property {Number} spell
+ * @property {Boolean} martialArmor
+ * @property {Boolean} martialMelee
+ * @property {Boolean} martialRanged
+ * @property {Boolean} martialShield
+ * @property {Number} spell The number of spells?
  */
 
 /**
@@ -284,7 +287,10 @@ export class AdvancementTracker {
 			hp: 0,
 			ip: 0,
 			mp: 0,
-			martial: false,
+			martialArmor: false,
+			martialMelee: false,
+			martialRanged: false,
+			martialShield: false,
 			spell: 0,
 		};
 
@@ -349,6 +355,18 @@ export class AdvancementTracker {
 					}
 					if (classData.benefits.resources.ip.value) {
 						benefits.ip += CLASS_IP_BENEFITS;
+					}
+					if (classData.benefits.martials.armor.value) {
+						benefits.martialArmor = true;
+					}
+					if (classData.benefits.martials.melee.value) {
+						benefits.martialMelee = true;
+					}
+					if (classData.benefits.martials.ranged.value) {
+						benefits.martialRanged = true;
+					}
+					if (classData.benefits.martials.shields.value) {
+						benefits.martialShield = true;
 					}
 
 					resolvedClass = true;

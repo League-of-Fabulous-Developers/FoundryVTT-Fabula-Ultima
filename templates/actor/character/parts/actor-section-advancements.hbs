@@ -14,13 +14,11 @@
 			<thead>
 			<tr class="summary">
 				<th class="flex-group-center">
-
 					<span class="resource-label-m">
 						<a class="resource-label-m" data-tooltip="{{localize 'FU.AdvancementTrackerHint'}}">
 							<i class="fu-icon--xs fas fa-info-circle"></i>
 						</a>
 					</span>
-
 					{{#if (gte summary.pendingSkillUpdates.length 1)}}
 						<a data-tooltip="{{localize 'FU.Synchronize'}}" data-action="advancements" data-command="sync">
 							<i class="fas fa-arrows-rotate"></i>
@@ -59,9 +57,32 @@
 							{{pfuDefault summary.benefits.ip 0}}
 						</span>
 						<span class="badge" data-tooltip="{{localize 'FU.Spell'}}">
-							<i class="fu-icon--xs {{pfuIconClass 'spell'}}"></i>
+							<i class="fu-icon--xs fu-action-spell"></i>
 							{{pfuDefault summary.benefits.spell 0}}
 						</span>
+					</div>
+
+					<div class="badge-group">
+						{{#if summary.benefits.martialArmor }}
+							<span class="badge" data-tooltip="{{localize 'FU.BenefitArmor'}}" style="color: var(--color-equipment)">
+								<i class="fu-icon--xs {{pfuIconClass 'armor'}}"></i>
+							</span>
+						{{/if}}
+						{{#if summary.benefits.martialMelee }}
+							<span class="badge" data-tooltip="{{localize 'FU.BenefitMelee'}}" style="color: var(--color-equipment)">
+								<i class="fu-icon--xs {{pfuIconClass 'melee'}}"></i>
+							</span>
+						{{/if}}
+						{{#if summary.benefits.martialRanged }}
+							<span class="badge" data-tooltip="{{localize 'FU.BenefitRanged'}}" style="color: var(--color-equipment)">
+								<i class="fu-icon--xs {{pfuIconClass 'range'}}"></i>
+							</span>
+						{{/if}}
+						{{#if summary.benefits.martialShields }}
+							<span class="badge" data-tooltip="{{localize 'FU.BenefitShields'}}" style="color: var(--color-equipment)">
+								<i class="fu-icon--xs {{pfuIconClass 'shield'}}"></i>
+							</span>
+						{{/if}}
 					</div>
 
 					<div class="badge-group">

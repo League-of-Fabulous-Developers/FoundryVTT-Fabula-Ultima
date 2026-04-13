@@ -576,7 +576,7 @@ reapplyClickListeners();
  */
 const performCheck = async (check, actor, item, prepareCheckCallback = undefined, renderCheckCallback = undefined) => {
 	const preparedCheck = await prepareCheck(check, actor, item, prepareCheckCallback);
-	CommonEvents.performCheck(check, actor, item);
+	await CommonEvents.performCheck(check, actor, item);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
 	await renderCheck(result, actor, item);

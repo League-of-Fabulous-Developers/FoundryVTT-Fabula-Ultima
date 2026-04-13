@@ -247,3 +247,9 @@ staff-wooden-yellow (magic-rpg, staff_wooden_ornamental_004)
 sword-great (fantasy-rpg, sword_021)
 sword-long-gold (fantasy-rpg, sword_long_002)
 sword-swipe (fantasy-rpg, sword_040)
+
+--------------------------------------------------
+[projectfu\styles\static\icons/actions\*]
+
+Action Icon Assets provided by:
+Mildew - https://ko-fi.com/not_mildew
