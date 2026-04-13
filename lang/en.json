@@ -1974,7 +1974,7 @@
 		"AdvancementsClear": "Would you like to clear all advancements from the tracker? Note that this will not remove the items from the actor.",
 		"AdvancementClassLimit": "A character cannot have over 3 unmastered classes at any time.",
 		"AdvancementSkillMissingClass": "The skill is missing a matching class in its data.",
-		"AdvancementTrackerDuplicateEntry": "An entry for the current level has been incorrectly referenced again.",
+		"AdvancementTrackerDuplicateEntry": "An entry for this level duplicates an existing entry from a earlier level.",
 		"AdvancementStartingClassLimit": "A starting character must have a minimum of two classes selected.",
 		"AdvancementSkillClassNotFound": "The class in the selected skill could not be found.",
 		"AdvancementSpellLocked": "There should not be a spell selection in this advancement.",

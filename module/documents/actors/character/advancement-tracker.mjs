@@ -464,7 +464,12 @@ export class AdvancementTracker {
 						patched = true;
 					} else {
 						if (data.entries.extraSpells.ids.length === data.entries.extraSpells.required) {
-							resolvedExtraSpells = true;
+							if (data.entries.extraSpells.ids.some((id) => ids.has(id))) {
+								state = 'invalid';
+								message = 'FU.AdvancementTrackerDuplicateEntry';
+							} else {
+								resolvedExtraSpells = true;
+							}
 						}
 					}
 				}
@@ -474,6 +479,9 @@ export class AdvancementTracker {
 					if (data.entries.spell.locked) {
 						state = 'invalid';
 						message = 'FU.AdvancementSpellLocked';
+					} else if (ids.has(data.entries.spell.id)) {
+						state = 'invalid';
+						message = 'FU.AdvancementTrackerDuplicateEntry';
 					} else {
 						if (resolvedSkill) {
 							resolvedSpell = true;
