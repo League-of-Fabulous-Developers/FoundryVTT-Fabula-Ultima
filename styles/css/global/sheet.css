@@ -629,12 +629,6 @@
 	border-radius: 5px;
 }
 
-.projectfu .resource-content.traits.compact {
-	-webkit-box-flex: 1;
-	-ms-flex-positive: 1;
-	flex-grow: 1;
-}
-
 .projectfu .resource-content.levelup-container {
 	border: none;
 }

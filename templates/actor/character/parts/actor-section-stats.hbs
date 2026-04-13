@@ -1,26 +1,24 @@
 <div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="stats">
 	{{#if isCharacter}}
 		<!-- Traits Section -->
-		<section class="section-container desc">
-			<div class="grid grid-3col">
-				<div class="traits compact resource-content">
-					<label>
-						<span class="resource-label-l">{{localize 'FU.Identity'}}: </span>
-						<span class="resource-text-m">{{ system.resources.identity.name }}</span>
-					</label>
-				</div>
-				<div class="traits compact resource-content">
-					<label>
-						<span class="resource-label-l">{{localize 'FU.Theme'}}: </span>
-						<span class="resource-text-m">{{ system.resources.theme.name }}</span>
-					</label>
-				</div>
-				<div class="traits compact resource-content">
-					<label>
-						<span class="resource-label-l">{{localize 'FU.Origin'}}: </span>
-						<span class="resource-text-m">{{ system.resources.origin.name }}</span>
-					</label>
-				</div>
+		<section class="section-container traits-container desc">
+			<div class="traits resource-content">
+				<label>
+					<span class="resource-label-l">{{localize 'FU.Identity'}}: </span>
+					<span class="resource-text-m">{{ system.resources.identity.name }}</span>
+				</label>
+			</div>
+			<div class="traits resource-content">
+				<label>
+					<span class="resource-label-l">{{localize 'FU.Theme'}}: </span>
+					<span class="resource-text-m">{{ system.resources.theme.name }}</span>
+				</label>
+			</div>
+			<div class="traits resource-content">
+				<label>
+					<span class="resource-label-l">{{localize 'FU.Origin'}}: </span>
+					<span class="resource-text-m">{{ system.resources.origin.name }}</span>
+				</label>
 			</div>
 		</section>
 		<section class="body-section">
