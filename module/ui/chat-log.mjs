@@ -22,6 +22,10 @@ export class FUChatLog extends foundry.applications.sidebar.tabs.ChatLog {
 	}
 }
 
+// These icons refer the CURRENT state
+const SHOWN_ICON = 'fa-eye';
+const HIDDEN_ICON = 'fa-eye-slash';
+
 /**
  * @param {ChatMessage} message
  * @param {HTMLElement} html
@@ -31,37 +35,58 @@ function onRenderChatMessage(message, html) {
 	if (toggleSections.length === 0) return;
 
 	// Get game settings (true means hide, false means show)
-	const hideSettings = {
+	const settings = {
 		tags: getSystemSetting('optionChatMessageHideTags'),
 		quality: getSystemSetting('optionChatMessageHideQuality'),
 		description: getSystemSetting('optionChatMessageHideDescription'),
 		rollDetails: getSystemSetting('optionChatMessageHideRollDetails'),
 	};
 
+	const toggleVisibility = (visible) => {
+		toggleSections.forEach((section) => {
+			const shouldAlwaysShow = [
+				{ className: 'accuracy-check-results', setting: settings.rollDetails },
+				{ className: 'damage-results', setting: settings.rollDetails },
+				{ className: 'description', setting: settings.description },
+				{ className: 'quality', setting: settings.quality },
+				{ className: 'tags', setting: settings.tags },
+				{ className: 'pfu-tags', setting: settings.tags },
+			].some(({ className, setting }) => section.classList.contains(className) && !setting);
+
+			//section.classList.toggle('shown', shouldAlwaysShow || visible);
+			section.classList.toggle('hidden', !shouldAlwaysShow && !visible);
+		});
+	};
+
+	const setIconTooltip = (icon, visible) => {
+		icon.setAttribute('data-tooltip', game.i18n.localize(visible ? 'FU.ChatMessageShow' : 'FU.ChatMessageHide'));
+	};
+
+	// Add a button to do the toggle
 	const metaData = html.querySelector('.message-metadata');
 	const button = document.createElement('a');
 	button.classList.add('pfu-chat-message__toggle-section__button');
 	const icon = document.createElement('i');
-	icon.classList.add('fa', 'fa-eye-slash');
+	icon.classList.add('fa', HIDDEN_ICON);
+	setIconTooltip(icon, false);
 	button.appendChild(icon);
-	button.addEventListener('click', () => {});
-	metaData.appendChild(button);
-
-	// TODO: Add a conditional button in the 'message-metadata' to toggle after this
-	// Toggle visibility based on current state and settings
-	toggleSections.forEach((section) => {
-		const shouldHide = [
-			{ className: 'accuracy-check-results', setting: hideSettings.rollDetails },
-			{ className: 'damage-results', setting: hideSettings.rollDetails },
-			{ className: 'description', setting: hideSettings.description },
-			{ className: 'quality', setting: hideSettings.quality },
-			{ className: 'tags', setting: hideSettings.tags },
-			{ className: 'pfu-tags', setting: hideSettings.tags },
-		].some(({ className, setting }) => section.classList.contains(className) && setting);
-
-		//section.classList.toggle('shown', !shouldHide);
-		section.classList.toggle('hidden', shouldHide);
+	button.addEventListener('click', (event) => {
+		const icon = event.target;
+		const visible = icon.classList.contains(SHOWN_ICON);
+		if (visible) {
+			icon.classList.add(HIDDEN_ICON);
+			icon.classList.remove(SHOWN_ICON);
+		} else {
+			icon.classList.remove(HIDDEN_ICON);
+			icon.classList.add(SHOWN_ICON);
+		}
+		setIconTooltip(icon, visible);
+		toggleVisibility(!visible);
 	});
+	metaData.lastChild.before(button);
+
+	// Apply the default
+	toggleVisibility(false);
 }
 
 Hooks.on('renderChatMessageHTML', onRenderChatMessage);
