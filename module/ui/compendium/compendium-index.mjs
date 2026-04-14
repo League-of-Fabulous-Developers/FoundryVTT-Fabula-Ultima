@@ -119,7 +119,6 @@ export class CompendiumIndex {
 	#actorsByType;
 
 	#effectIdList;
-	#classList;
 
 	/**
 	 * @remarks FUID : Image Source Path
@@ -280,24 +279,6 @@ export class CompendiumIndex {
 			this.#effectIdList = Array.from(result);
 		}
 		return this.#effectIdList;
-	}
-
-	/**
-	 * @returns {Promise<String[]>} The fuids of all indexed class items.
-	 */
-	async getClassList() {
-		if (!this.#classList) {
-			const classInfo = await this.getClasses();
-			let result = new Set();
-			for (const entry of classInfo.class) {
-				const fuid = entry.system.fuid;
-				if (fuid) {
-					result.add(fuid);
-				}
-			}
-			this.#classList = Array.from(result);
-		}
-		return this.#classList;
 	}
 
 	/**

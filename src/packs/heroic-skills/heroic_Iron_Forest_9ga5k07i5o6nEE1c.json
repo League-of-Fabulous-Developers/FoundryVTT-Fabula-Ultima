@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Commander, Weaponmaster"
+      "value": "commander, weaponmaster"
     },
     "useWeapon": {
       "accuracy": {

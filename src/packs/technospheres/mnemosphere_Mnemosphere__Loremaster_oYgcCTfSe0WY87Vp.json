@@ -12,25 +12,25 @@
     "maxLevel": 5,
     "items": [
       {
-        "name": "Trained Memory",
+        "name": "Flash of Insight",
         "type": "skill",
-        "_id": "uLOjIc6Wgi4UCidI",
-        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_trained_memory.png",
+        "_id": "CAxdWJRKIC60zqQu",
+        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You may perfectly recall the details of any scene you have visited within the past week. You can \"go back in time\" within your mind in order to examine and investigate such scenes again — your <strong>Flash of Insight</strong> Skill will apply to these memories as well.</p>",
+          "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study</strong> action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
             "value": 0,
-            "max": 1,
+            "max": 3,
             "min": 0
           },
           "class": {
-            "value": "Loremaster"
+            "value": "loremaster"
           },
           "useWeapon": {
             "accuracy": false,
@@ -41,7 +41,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -65,44 +65,334 @@
             "enabled": false
           },
           "defense": "def",
-          "fuid": "trained-memory",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
+          "fuid": "flash-of-insight",
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
-        "effects": [],
+        "effects": [
+          {
+            "name": "Flash of Insight",
+            "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "5qIf7IG9ZAkwVt9R": {
+                    "type": "ruleElement",
+                    "_id": "5qIf7IG9ZAkwVt9R",
+                    "trigger": {
+                      "_id": "gkqkk1BJmj01J9jB",
+                      "type": "performCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [
+                        "open"
+                      ]
+                    },
+                    "predicates": {
+                      "udvpE739WHduDidd": {
+                        "type": "checkRulePredicate",
+                        "_id": "udvpE739WHduDidd",
+                        "result": 13,
+                        "attributes": {
+                          "primary": {
+                            "value": "ins"
+                          },
+                          "secondary": {
+                            "value": "ins"
+                          }
+                        },
+                        "parity": "",
+                        "outcome": "",
+                        "quantifier": "any"
+                      }
+                    },
+                    "actions": {
+                      "OqeboGimrr953F0i": {
+                        "type": "messageRuleAction",
+                        "_id": "OqeboGimrr953F0i",
+                        "message": "<p>If this was to investigate a creature, item or location, you may ask the GM up to<strong>【SL】</strong>questions concerning the subject.</p>"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "45F7umTTsKZUmmgj",
+            "type": "base",
+            "changes": [],
+            "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location, you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation.</p>",
+            "origin": null,
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {}
+          }
+        ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
         },
-        "sort": 400000
+        "sort": 0
       },
       {
-        "name": "Quick Assessment",
+        "name": "Focused",
         "type": "skill",
-        "_id": "zWVw5NW1DowHAFMY",
-        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_quick_assessment.png",
+        "_id": "2qECrNCT1GTwpQIs",
+        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_focused.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their <strong>Traits</strong>; or name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity</strong> towards that damage type.</p>",
+          "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p>",
           "showTitleCard": {
             "value": false
           },
           "level": {
             "value": 0,
-            "max": 6,
+            "max": 5,
             "min": 0
           },
           "class": {
-            "value": "Loremaster"
+            "value": "loremaster"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "ins",
+            "secondary": "ins"
+          },
+          "accuracy": "$sl",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR199",
+          "hasRoll": {
+            "value": true
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "",
+          "fuid": "focused",
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
+            "duration": {
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
+          },
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [
+          {
+            "duration": {
+              "startTime": null,
+              "seconds": null,
+              "combat": null,
+              "rounds": null,
+              "turns": null,
+              "startRound": null,
+              "startTurn": null
+            },
+            "disabled": false,
+            "name": "Focused",
+            "_id": "xbzOApLkBkOo2YeB",
+            "changes": [
+              {
+                "key": "system.resources.mp.bonus",
+                "mode": 2,
+                "value": "3*$sl",
+                "priority": null
+              }
+            ],
+            "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check.</p>",
+            "transfer": true,
+            "statuses": [],
+            "flags": {
+              "projectfu": {
+                "source": "FUCR199"
+              }
+            },
+            "tint": "#ffffff",
+            "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_focused.png",
+            "type": "base",
+            "system": {
+              "rules": {
+                "elements": {
+                  "Cy7av3Vt9yKqJ1ig": {
+                    "type": "ruleElement",
+                    "_id": "Cy7av3Vt9yKqJ1ig",
+                    "trigger": {
+                      "_id": "L0K3WNpDMsip9oBj",
+                      "type": "performCheckRuleTrigger",
+                      "eventRelation": "source",
+                      "checkTypes": [
+                        "open"
+                      ]
+                    },
+                    "predicates": {
+                      "N5FnDMpHmZ4JA6wb": {
+                        "type": "checkRulePredicate",
+                        "_id": "N5FnDMpHmZ4JA6wb",
+                        "result": null,
+                        "attributes": {
+                          "primary": {
+                            "value": "ins"
+                          },
+                          "secondary": {
+                            "value": "ins"
+                          }
+                        },
+                        "parity": "",
+                        "outcome": "",
+                        "quantifier": "any"
+                      }
+                    },
+                    "actions": {
+                      "RT27nMrkrFKu8UEA": {
+                        "type": "modifyCheckRuleAction",
+                        "_id": "RT27nMrkrFKu8UEA",
+                        "bonus": "$sl"
+                      }
+                    },
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 0
+              }
+            },
+            "origin": null,
+            "sort": 0
+          }
+        ],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
+        },
+        "sort": 0
+      },
+      {
+        "name": "Knowledge Is Power",
+        "type": "skill",
+        "_id": "cqMouTVEYWzvKzlO",
+        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_knowledge_is_power.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you perform an Accuracy Check, you may replace <strong>one</strong> of the Attribute dice with <strong>Insight</strong> (such as <strong>【INS + INS】</strong> for a pistol or <strong>【INS + MIG】</strong> for a waraxe).</p>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "loremaster"
           },
           "useWeapon": {
             "accuracy": false,
@@ -113,7 +403,96 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": "FUCR199",
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "knowledge-is-power",
+          "targeting": {
+            "rule": "self",
+            "max": 0
+          },
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "cost": {
+            "resource": "mp",
+            "amount": "",
+            "perTarget": false
+          },
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
+        },
+        "effects": [],
+        "flags": {
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
+        },
+        "sort": 0
+      },
+      {
+        "name": "Quick Assessment",
+        "type": "skill",
+        "_id": "udtTeTxlYv3a9g1x",
+        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_quick_assessment.png",
+        "system": {
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option:</p><ul><li><p>Choose a creature you can see and the GM reveals one of their <strong>Traits</strong>.</p></li><li><p>Name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity</strong> towards that damage type.</p></li></ul>",
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 6,
+            "min": 0
+          },
+          "class": {
+            "value": "loremaster"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false,
+            "traits": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -139,32 +518,125 @@
           "defense": "def",
           "fuid": "quick-assessment",
           "cost": {
-            "amount": 5,
+            "amount": "5",
             "resource": "mp",
             "perTarget": false
           },
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
+          "effects": {
+            "duration": {
+              "interval": null,
+              "event": "",
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
+          },
+          "traits": [],
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
-        "effects": [],
+        "effects": [
+          {
+            "name": "Quick Assessment",
+            "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_quick_assessment.png",
+            "origin": "Compendium.projectfu.skills.Item.YiBD86tGOvFSlaZ6",
+            "system": {
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 1
+              },
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none"
+              },
+              "rules": {
+                "elements": {
+                  "Ikxm2TLIcrlqFvmq": {
+                    "type": "ruleElement",
+                    "trigger": {
+                      "_id": "ssXtItftBy59rlmz",
+                      "type": "combatRuleTrigger",
+                      "eventRelation": "",
+                      "eventType": "startOfCombat",
+                      "parity": ""
+                    },
+                    "_id": "Ikxm2TLIcrlqFvmq",
+                    "actions": {
+                      "p4jMD56cqKJMXeU9": {
+                        "type": "messageRuleAction",
+                        "_id": "p4jMD56cqKJMXeU9",
+                        "message": "<p>You may reveal <strong>Traits</strong> and/or <strong>Affinities</strong>.</p>"
+                      }
+                    },
+                    "predicates": {},
+                    "selector": "initial",
+                    "enabled": true
+                  }
+                },
+                "progress": {
+                  "enabled": false,
+                  "id": "",
+                  "name": "",
+                  "current": 0,
+                  "max": 6,
+                  "style": "basic",
+                  "step": 1
+                }
+              }
+            },
+            "duration": {
+              "startTime": null,
+              "combat": null
+            },
+            "disabled": false,
+            "_id": "d76sTmbzluTJm8L4",
+            "type": "base",
+            "changes": [],
+            "description": "<p>At the start of a conflict, you may spend Mind Points to reveal <strong>Traits</strong> and/or <strong>Affinities</strong>.</p>",
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {
+              "projectfu": {
+                "Source": {
+                  "name": "Quick Assessment",
+                  "actorUuid": null,
+                  "itemUuid": "Compendium.projectfu.skills.Item.YiBD86tGOvFSlaZ6",
+                  "effectUuid": null,
+                  "fuid": "quick-assessment"
+                }
+              }
+            }
+          }
+        ],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
         },
-        "sort": 300000
+        "sort": 0
       },
       {
-        "name": "Knowledge Is Power",
+        "name": "Trained Memory",
         "type": "skill",
-        "_id": "mIxWaH8aQAt4YZG6",
-        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_knowledge_is_power.png",
+        "_id": "Q7jjSh09kpMAtEeQ",
+        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_trained_memory.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>When you perform an Accuracy Check, you may replace <strong>one</strong> of the Attribute dice with <strong>Insight</strong> (such as <strong>【INS + INS】</strong> for a pistol or <strong>【INS + MIG】</strong> for a waraxe).</p>",
+          "description": "<p>You may perfectly recall the details of any scene you have visited within the past week. You can \"go back in time\" within your mind in order to examine and investigate such scenes again — your <strong>Flash of Insight</strong> Skill will apply to these memories as well.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -174,7 +646,7 @@
             "min": 0
           },
           "class": {
-            "value": "Loremaster"
+            "value": "loremaster"
           },
           "useWeapon": {
             "accuracy": false,
@@ -185,7 +657,7 @@
             "primary": "dex",
             "secondary": "dex"
           },
-          "accuracy": 0,
+          "accuracy": "0",
           "damage": {
             "hasDamage": false,
             "value": 0,
@@ -209,215 +681,38 @@
             "enabled": false
           },
           "defense": "def",
-          "fuid": "knowledge-is-power",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
+          "fuid": "trained-memory",
           "targeting": {
-            "rule": "special",
+            "rule": "self",
             "max": 0
           },
-          "traits": []
-        },
-        "effects": [],
-        "flags": {
-          "core": {}
-        },
-        "sort": 175000
-      },
-      {
-        "name": "Focused",
-        "type": "skill",
-        "_id": "vRMvTXiv2OoNfvAa",
-        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_focused.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p><hr /><ul><li><p><strong>You Perform:</strong> @CHECK[ins ins ($sl)]</p></li></ul>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 5,
-            "min": 0
-          },
-          "class": {
-            "value": "Loremaster"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR199",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "focused",
-          "cost": {
-            "resource": "mp",
-            "amount": 0,
-            "perTarget": false
-          },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
-        },
-        "effects": [
-          {
+          "traits": [],
+          "effects": {
+            "entries": [],
+            "prompt": false,
             "duration": {
-              "startTime": null,
-              "seconds": null,
-              "combat": null,
-              "rounds": null,
-              "turns": null,
-              "startRound": null,
-              "startTurn": null
-            },
-            "disabled": false,
-            "name": "Focused",
-            "_id": "xbzOApLkBkOo2YeB",
-            "changes": [
-              {
-                "key": "system.resources.mp.bonus",
-                "mode": 2,
-                "value": "3*@system.level.value",
-                "priority": null
-              }
-            ],
-            "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p>",
-            "transfer": true,
-            "statuses": [],
-            "flags": {
-              "projectfu": {
-                "source": "FUCR199"
-              }
-            },
-            "tint": "#ffffff",
-            "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_focused.png",
-            "type": "base",
-            "system": {
-              "type": "default",
-              "predicate": {
-                "crisisInteraction": "none",
-                "suppressed": false
-              },
-              "duration": {
-                "event": "none",
-                "interval": 1,
-                "tracking": "self",
-                "remaining": 0
-              },
-              "rules": {}
-            },
-            "origin": null,
-            "sort": 0
-          }
-        ],
-        "flags": {
-          "core": {}
-        },
-        "sort": 150000
-      },
-      {
-        "name": "Flash of Insight",
-        "type": "skill",
-        "_id": "KN8cHbw9qUkBXBjr",
-        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
-        "system": {
-          "summary": {
-            "value": ""
+              "event": "",
+              "tracking": "",
+              "interval": null
+            }
           },
-          "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study</strong> action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 3,
-            "min": 0
-          },
-          "class": {
-            "value": "Loremaster"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": 0,
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR199",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "flash-of-insight",
           "cost": {
             "resource": "mp",
-            "amount": 0,
+            "amount": "",
             "perTarget": false
           },
-          "targeting": {
-            "rule": "special",
-            "max": 0
-          },
-          "traits": []
+          "resource": {
+            "enabled": false,
+            "amount": "",
+            "type": "hp"
+          }
         },
         "effects": [],
         "flags": {
-          "core": {}
+          "core": {},
+          "projectfu": {
+            "favorite": false
+          }
         },
         "sort": 0
       }
@@ -436,12 +731,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1759655247201,
-    "lastModifiedBy": "VpDy3go69LzoCFsX",
+    "modifiedTime": 1776191983126,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!oYgcCTfSe0WY87Vp"

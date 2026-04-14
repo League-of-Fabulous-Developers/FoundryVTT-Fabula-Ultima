@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Arcanist"
+      "value": "arcanist"
     },
     "useWeapon": {
       "accuracy": {

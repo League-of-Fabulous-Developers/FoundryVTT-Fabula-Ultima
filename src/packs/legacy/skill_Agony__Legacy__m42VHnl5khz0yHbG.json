@@ -17,7 +17,7 @@
       "min": 0
     },
     "class": {
-      "value": "Darkblade"
+      "value": "darkblade"
     },
     "useWeapon": {
       "accuracy": false,

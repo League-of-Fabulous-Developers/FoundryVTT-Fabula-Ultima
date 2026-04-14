@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Gourmet"
+      "value": "gourmet"
     },
     "useWeapon": {
       "accuracy": false,

@@ -3,11 +3,8 @@
     <div class="grid grid-3col" style="padding: 0 5px;">
         <label class="fu-icon__container resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
                aria-describedby="tooltip">
-            {{#if actor.system.resources.hp.inCrisis }}
-                <i class="fas fa-heart-crack is-crisis"></i>
-            {{else}}
-                <i class="fu-icon--s {{pfuIconClass 'hp'}}"></i>
-            {{/if}} {{localize 'FU.HealthAbbr'}}
+			<i class="fu-icon--s {{pfuIconClass 'hp'}}"></i>
+			{{localize 'FU.HealthAbbr'}}
         </label>
         <label class="align-right grid-start-2 grid-span-2 is-crisis" aria-describedby="tooltip">
             {{#if actor.system.resources.hp.inCrisis }}

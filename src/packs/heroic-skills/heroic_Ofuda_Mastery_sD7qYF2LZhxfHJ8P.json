@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong>, <strong>Merchant</strong>, <strong>Symbolist</strong> and <strong>Spiritist</strong>, and have acquired the <strong>Symbolism</strong> Skill.</p><hr /><p>When you use the <strong>Symbolism</strong> Skill during a conflict, you may spend 20 Mind Points to ignore the Skill's normal cost in Inventory Points.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Symbolism</strong> Skill, the attack may target enemies that cannot be targeted by <strong>melee</strong> attacks.</p>",
     "class": {
-      "value": "Arcanist, Merchant, Symbolist, Spiritist"
+      "value": "arcanist, merchant, symbolist, spiritist"
     },
     "showTitleCard": {
       "value": false

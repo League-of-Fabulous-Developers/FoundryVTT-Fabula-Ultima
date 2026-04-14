@@ -8,7 +8,7 @@
     },
     "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> and <strong>Orator</strong>.</p></blockquote><p>After one or more enemies suffer one or more status effects due to a <strong>verse</strong> you sung or due to your <strong>Condemn</strong> Skill, each of those enemies becomes <strong>bewitched</strong> (this effect does not apply to creatures that are immune or already suffering from all status effects inflicted this way). A creature you <strong>bewitched</strong> must include you among the targets of their attacks and offensive spells ( @ICON[offensive] ), if able, and stops being <strong>bewitched</strong> at the start of your next turn or as soon as it recovers from one or more status effects.</p>",
     "class": {
-      "value": "Chanter, Orator"
+      "value": "chanter, orator"
     },
     "showTitleCard": {
       "value": false

@@ -14,7 +14,7 @@
       {
         "name": "Barrage",
         "type": "skill",
-        "_id": "qG1H6K9rMvUZFCtX",
+        "_id": "B5wab1o5e8pULMcn",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_barrage.png",
         "system": {
           "summary": {
@@ -30,7 +30,7 @@
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": true,
@@ -103,7 +103,7 @@
       {
         "name": "Crossfire",
         "type": "skill",
-        "_id": "1TdEdEFG1E52c1Kp",
+        "_id": "iK5CzVs0JBnyk9cW",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_crossfire.png",
         "system": {
           "summary": {
@@ -119,7 +119,7 @@
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": false,
@@ -289,7 +289,7 @@
       {
         "name": "Hawkeye",
         "type": "skill",
-        "_id": "0OX9rhngoVc15i3P",
+        "_id": "qrZoUpAsgfT3P8ju",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_hawkeye.png",
         "system": {
           "summary": {
@@ -305,7 +305,7 @@
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": true,
@@ -378,7 +378,7 @@
       {
         "name": "Ranged Weapon Mastery",
         "type": "skill",
-        "_id": "N2trdm60udnfMoWh",
+        "_id": "zC55PPHV40CAySwZ",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
         "system": {
           "summary": {
@@ -394,7 +394,7 @@
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": false,
@@ -527,7 +527,7 @@
       {
         "name": "Warning Shot",
         "type": "skill",
-        "_id": "ZmK9Sdz66mjb48gW",
+        "_id": "sCxQvX2kGhBsmNc0",
         "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_warning_shot.png",
         "system": {
           "summary": {
@@ -543,7 +543,7 @@
             "min": 0
           },
           "class": {
-            "value": "Sharpshooter"
+            "value": "sharpshooter"
           },
           "useWeapon": {
             "accuracy": false,
@@ -733,7 +733,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1775547428012,
+    "modifiedTime": 1776192132500,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -197,6 +197,27 @@ export class AdvancementBrowser extends FUApplication {
 		return this.#actor.getItemsByType(this.#type);
 	}
 
+	// --- Static helpers (or module-level functions) ---
+
+	/**
+	 * Returns false if skillClass is set and the entry doesn't match it.
+	 * @param {string[]} classReqs
+	 * @param {string|null} skillClass
+	 */
+	static #passesClassFilter(classReqs, skillClass) {
+		return !skillClass || classReqs.includes(skillClass);
+	}
+
+	/**
+	 * @param {string[]} classReqs
+	 * @param {string[]} classList
+	 * @param {Object} classes - summary.classes map
+	 * @param {(level: number) => boolean} levelCheck
+	 */
+	static #matchesClassLevel(classReqs, classList, classes, levelCheck) {
+		return classReqs.some((req) => classList.includes(req) && levelCheck(classes[req]?.level));
+	}
+
 	/**
 	 * @typedef AdvancementOption
 	 * @property {String} name
@@ -208,85 +229,66 @@ export class AdvancementBrowser extends FUApplication {
 
 	/** @override */
 	async _prepareContext(options) {
-		// Items the actor already has
+		const isNotTracked = (item) => !this.#trackedItemIds.has(item.id);
+		const isNotLegacy = (entry) => !entry.name.includes('[Legacy]');
+		const isNotOwned = (entry) => !this.#actorItemFuids.has(entry.system.fuid);
+
+		let compendiumEntries = (await CompendiumIndex.instance.getItemsOfType(this.#type)).filter(isNotLegacy).filter(isNotOwned);
 		let actorItems;
-		// Items which the actor does not have
-		let compendiumEntries = await CompendiumIndex.instance.getItemsOfType(this.#type);
-		compendiumEntries = compendiumEntries.filter((entry) => {
-			if (entry.name.includes('[Legacy]')) {
-				return false;
-			}
-			return !this.#actorItemFuids.has(entry.system.fuid);
-		});
 
 		switch (this.#type) {
-			case 'class':
-				actorItems = this.getMatchingItems().filter((item) => {
-					return !this.#trackedItemIds.has(item.id);
-				});
+			case 'class': {
+				actorItems = this.getMatchingItems().filter(isNotTracked);
 				break;
+			}
 
-			case 'spell':
-				compendiumEntries = compendiumEntries.filter((entry) => {
-					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					// If unlocked, can pick from any class
-					if (!this.#data.unlock && this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return this.#spellList.length > 0 ? this.#spellList.some((s) => classReqs.includes(s)) : true;
-				});
-				actorItems = this.getMatchingItems().filter((item) => {
-					if (this.#trackedItemIds.has(item.id)) {
-						return false;
-					}
-					const classReqs = CompendiumIndex.getClassRequirements(item);
-					return this.#spellList.length > 0 ? this.#spellList.some((s) => classReqs.includes(s)) : true;
-				});
-				break;
+			case 'spell': {
+				const matchesSpellList = (classReqs) => this.#spellList.length === 0 || this.#spellList.some((s) => classReqs.includes(s));
 
-			case 'skill':
-				compendiumEntries = compendiumEntries.filter((entry) => {
+				const spellFilter = (entry) => {
 					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
+					if (!this.#data.unlock && !this.constructor.#passesClassFilter(classReqs, this.#skillClass)) {
 						return false;
 					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level < 10);
-				});
-				actorItems = Object.values(this.#skillMap)
-					.filter((skill) => skill.value !== skill.max)
-					.map((skill) => this.#actor.items.get(skill.id));
-				actorItems = actorItems.concat(this.getMatchingItems().filter((item) => this.#skillMap[item.id] === undefined));
-				actorItems = actorItems.filter((item) => {
-					const classReqs = CompendiumIndex.getClassRequirements(item);
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level < 10);
-				});
-				break;
+					return matchesSpellList(classReqs);
+				};
 
-			case 'heroic':
-				compendiumEntries = compendiumEntries.filter((entry) => {
-					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (classReqs.length === 0) {
-						return true;
-					}
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level === 10);
-				});
-				actorItems = this.getMatchingItems().filter((item) => {
-					const classReqs = CompendiumIndex.getClassRequirements(item);
-					if (classReqs.length === 0) {
-						return true;
-					}
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level === 10);
-				});
+				compendiumEntries = compendiumEntries.filter(spellFilter);
+				actorItems = this.getMatchingItems()
+					.filter(isNotTracked)
+					.filter((item) => matchesSpellList(CompendiumIndex.getClassRequirements(item)));
 				break;
+			}
+
+			case 'skill': {
+				const levelCheck = (level) => level < 10;
+				const skillFilter = (entry) => {
+					const classReqs = CompendiumIndex.getClassRequirements(entry);
+					return this.constructor.#passesClassFilter(classReqs, this.#skillClass) && this.constructor.#matchesClassLevel(classReqs, this.#classList, this.#summary.classes, levelCheck);
+				};
+
+				compendiumEntries = compendiumEntries.filter(skillFilter);
+				actorItems = [
+					...Object.values(this.#skillMap)
+						.filter((skill) => skill.value !== skill.max)
+						.map((skill) => this.#actor.items.get(skill.id)),
+					...this.getMatchingItems().filter((item) => this.#skillMap[item.id] === undefined),
+				].filter(skillFilter);
+				break;
+			}
+
+			case 'heroic': {
+				const levelCheck = (level) => level === 10;
+				const heroicFilter = (entry) => {
+					const classReqs = CompendiumIndex.getClassRequirements(entry);
+					if (classReqs.length === 0) return true;
+					return this.constructor.#passesClassFilter(classReqs, this.#skillClass) && this.constructor.#matchesClassLevel(classReqs, this.#classList, this.#summary.classes, levelCheck);
+				};
+
+				compendiumEntries = compendiumEntries.filter(heroicFilter);
+				actorItems = this.getMatchingItems().filter(heroicFilter);
+				break;
+			}
 		}
 
 		// Sort entries
