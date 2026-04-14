@@ -51,6 +51,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatHudAlwaysShow: 'optionCombatHudAlwaysShow',
 	optionCombatHudOrderByInitiative: 'optionCombatHudOrderByInitiative',
+	optionCombatHudShowPressureClock: 'optionCombatHudShowPressureClock',
 	// Theme
 	theme: 'theme',
 	themeFoundry: 'themeFoundry',
@@ -774,6 +775,19 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 		restricted: true,
+		requiresReload: false,
+		onChange: () => {
+			BaseCombatHUD.implementation.update();
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowPressureClock, {
+		name: game.i18n.localize('FU.CombatHudShowPressureClock'),
+		hint: game.i18n.localize('FU.CombatHudShowPressureClock'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
 		requiresReload: false,
 		onChange: () => {
 			BaseCombatHUD.implementation.update();
