@@ -18,7 +18,7 @@
       "min": 0
     },
     "class": {
-      "value": "Sharpshooter"
+      "value": "sharpshooter"
     },
     "useWeapon": {
       "accuracy": true,

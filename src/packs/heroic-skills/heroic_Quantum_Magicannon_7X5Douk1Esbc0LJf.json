@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Tinkerer"
+      "value": "tinkerer"
     },
     "useWeapon": {
       "accuracy": {

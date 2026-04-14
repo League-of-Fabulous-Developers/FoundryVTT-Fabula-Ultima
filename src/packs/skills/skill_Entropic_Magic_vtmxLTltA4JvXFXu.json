@@ -21,7 +21,7 @@
       "min": 0
     },
     "class": {
-      "value": "Entropist"
+      "value": "entropist"
     },
     "useWeapon": {
       "accuracy": {
