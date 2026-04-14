@@ -1,3 +1,5 @@
+import { getSystemSetting } from '../settings.js';
+
 /**
  * The sidebar chat tab.
  *
@@ -20,37 +22,67 @@ export class FUChatLog extends foundry.applications.sidebar.tabs.ChatLog {
 	}
 }
 
+/**
+ * @param {ChatMessage} message
+ * @param {HTMLElement} html
+ */
+function onRenderChatMessage(message, html) {
+	const toggleSections = html.querySelectorAll('.pfu-chat-message__toggle-section');
+	if (toggleSections.length === 0) return;
+
+	// Get game settings (true means hide, false means show)
+	const hideSettings = {
+		tags: getSystemSetting('optionChatMessageHideTags'),
+		quality: getSystemSetting('optionChatMessageHideQuality'),
+		description: getSystemSetting('optionChatMessageHideDescription'),
+		rollDetails: getSystemSetting('optionChatMessageHideRollDetails'),
+	};
+
+	const metaData = html.querySelector('.message-metadata');
+	const button = document.createElement('a');
+	button.classList.add('pfu-chat-message__toggle-section__button');
+	const icon = document.createElement('i');
+	icon.classList.add('fa', 'fa-eye-slash');
+	button.appendChild(icon);
+	button.addEventListener('click', () => {});
+	metaData.appendChild(button);
+
+	// TODO: Add a conditional button in the 'message-metadata' to toggle after this
+	// Toggle visibility based on current state and settings
+	toggleSections.forEach((section) => {
+		const shouldHide = [
+			{ className: 'accuracy-check-results', setting: hideSettings.rollDetails },
+			{ className: 'damage-results', setting: hideSettings.rollDetails },
+			{ className: 'description', setting: hideSettings.description },
+			{ className: 'quality', setting: hideSettings.quality },
+			{ className: 'tags', setting: hideSettings.tags },
+			{ className: 'pfu-tags', setting: hideSettings.tags },
+		].some(({ className, setting }) => section.classList.contains(className) && setting);
+
+		//section.classList.toggle('shown', !shouldHide);
+		section.classList.toggle('hidden', shouldHide);
+	});
+}
+
+Hooks.on('renderChatMessageHTML', onRenderChatMessage);
+
+/**
+ * @desc Toggles the whole chat message section.
+ */
 document.addEventListener('click', (event) => {
 	const toggleLink = event.target.closest('.pfu-chat-message__toggle');
 	if (!toggleLink) return;
 
 	const chatMessage = toggleLink.closest('.chat-message');
+	const chatMessageContent = chatMessage.querySelector('.message-content');
+	const toggleIcon = toggleLink.querySelector('.toggle-icon');
 	const isHidden = toggleIcon.classList.contains('fa-chevron-up');
 
-	const toggleSections = chatMessage.querySelectorAll('.toggle-section');
-	const toggleIcon = toggleLink.querySelector('.toggle-icon');
-
-	// Get game settings (true means hide, false means show)
-	const settings = {
-		tags: game.settings.get('projectfu', 'optionChatMessageHideTags'),
-		quality: game.settings.get('projectfu', 'optionChatMessageHideQuality'),
-		description: game.settings.get('projectfu', 'optionChatMessageHideDescription'),
-		rollDetails: game.settings.get('projectfu', 'optionChatMessageHideRollDetails'),
-	};
-
-	// Toggle visibility based on current state and settings
-	toggleSections.forEach((section) => {
-		const shouldAlwaysShow = [
-			{ className: 'accuracy-check-results', setting: settings.rollDetails },
-			{ className: 'damage-results', setting: settings.rollDetails },
-			{ className: 'description', setting: settings.description },
-			{ className: 'quality', setting: settings.quality },
-			{ className: 'tags', setting: settings.tags },
-		].some(({ className, setting }) => section.classList.contains(className) && !setting);
-
-		section.classList.toggle('shown', shouldAlwaysShow || isHidden);
-		section.classList.toggle('hidden', !shouldAlwaysShow && !isHidden);
-	});
+	if (isHidden) {
+		chatMessageContent.classList.add('hidden');
+	} else {
+		chatMessageContent.classList.remove('hidden');
+	}
 
 	// Update toggle icon and tooltip
 	const newState = !isHidden;

@@ -51,6 +51,7 @@
 @import 'css/app/_index.css';
 @import 'css/actor/_index.css';
 
+@import 'css/chat/chat.css';
 @import 'css/chat/chat-prompt.css';
 @import 'css/chat/chat-slotted-technospheres.css';
 @import 'css/chat/chat-optional-features.css';
