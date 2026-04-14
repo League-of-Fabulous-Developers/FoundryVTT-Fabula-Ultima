@@ -37,6 +37,17 @@
  */
 
 /**
+ * @typedef {Object} TrackContext
+ * @property {string} id
+ * @property {string} name
+ * @property {number} current
+ * @property {number} max
+ * @property {number} step
+ * @property {string} style
+ * @property {boolean} enabled
+ */
+
+/**
  * @typedef {Object} CombatHUDCombatantContext
  * @property {string} id
  * @property {string} name
