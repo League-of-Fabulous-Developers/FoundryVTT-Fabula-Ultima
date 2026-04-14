@@ -697,12 +697,24 @@ async function handleDamageApplication(event, targets, sourceInfo, damageData, d
  * @param {String} resource
  * @param {Number} amount
  * @param {InlineSourceInfo} sourceInfo
- * @param targets
+ * @param {FUActor[]} targets
  * @returns {Promise<void>}
  */
 async function absorbDamage(resource, amount, sourceInfo, targets) {
-	const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
-	await ResourcePipeline.processRecovery(request);
+	// We execute this as GM since a player could have applied damage to their actor from an NPC owned by the GM
+	for (const target of targets) {
+		if (target.isOwner) {
+			const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+			return ResourcePipeline.processRecovery(request);
+		} else {
+			return game.projectfu.socket.requestPipeline('resource', {
+				sourceInfo: sourceInfo,
+				targets: targets.map((a) => a.uuid),
+				resource: resource,
+				amount: amount,
+			});
+		}
+	}
 }
 
 /**
