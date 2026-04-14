@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Darkblade, Fury, Weaponmaster"
+      "value": "darkblade, fury, weaponmaster"
     },
     "useWeapon": {
       "accuracy": {

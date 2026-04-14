@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Ace of Cards, Fury, Rogue, Sharpshooter, Weaponmaster"
+      "value": "ace-of-cards, fury, rogue, sharpshooter, weaponmaster"
     },
     "useWeapon": {
       "accuracy": {

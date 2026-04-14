@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Guardian</strong>.</p><hr /><p>After an enemy you can see performs an <strong>Accuracy Check</strong> or a <strong>Magic Check</strong> for an offensive spell (@ICON[offensive]) on their turn during a conflict, you may grant them a +3 bonus to the Result of the Check. If you do, choose one option:</p><ul><li><p>You and every ally who is able to hear you gain Resistance to all damage types until the end of this turn.</p></li><li><p>You and every ally who is able to hear you deal 5 extra damage until the end of this turn.</p></li></ul><p>Once you use this Skill, you cannot use it again until the start of your next turn.</p><hr /><p><strong>You &amp; Allies Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.lqgayJpoKwrXlPVl]</p>",
     "class": {
-      "value": "Commander, Guardian"
+      "value": "commander, guardian"
     },
     "showTitleCard": {
       "value": false

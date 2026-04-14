@@ -14,7 +14,7 @@
       {
         "name": "Consume",
         "type": "skill",
-        "_id": "XUXJi53X7eN2t8Lt",
+        "_id": "LuYIgeqPJ5iGHEEe",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_consume.png",
         "system": {
           "summary": {
@@ -30,7 +30,7 @@
             "min": 0
           },
           "class": {
-            "value": "Chimerist"
+            "value": "chimerist"
           },
           "useWeapon": {
             "accuracy": false,
@@ -203,7 +203,7 @@
       {
         "name": "Feral Speech",
         "type": "skill",
-        "_id": "TXwFtEfX2mU13Whq",
+        "_id": "KVrZZRAyXx1E69BW",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_feral_speech.png",
         "system": {
           "summary": {
@@ -219,7 +219,7 @@
             "min": 0
           },
           "class": {
-            "value": "Chimerist"
+            "value": "chimerist"
           },
           "useWeapon": {
             "accuracy": false,
@@ -292,7 +292,7 @@
       {
         "name": "Pathogenesis",
         "type": "skill",
-        "_id": "nJaboy33vg57XTwM",
+        "_id": "24yQaaqGIB4ywgN0",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
         "system": {
           "summary": {
@@ -308,7 +308,7 @@
             "min": 0
           },
           "class": {
-            "value": "Chimerist"
+            "value": "chimerist"
           },
           "useWeapon": {
             "accuracy": false,
@@ -479,7 +479,7 @@
       {
         "name": "Spell Mimic",
         "type": "skill",
-        "_id": "C0I6XyrZzGZtbcVK",
+        "_id": "ejSODFuqhad6oZH5",
         "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_spell_mimic.png",
         "system": {
           "summary": {
@@ -495,7 +495,7 @@
             "min": 0
           },
           "class": {
-            "value": "Chimerist"
+            "value": "chimerist"
           },
           "useWeapon": {
             "accuracy": false,
@@ -665,7 +665,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1775523506349,
+    "modifiedTime": 1776191661906,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

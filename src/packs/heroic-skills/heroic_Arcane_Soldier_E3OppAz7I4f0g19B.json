@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Elementalist, Sharpshooter, Weaponmaster"
+      "value": "elementalist, sharpshooter, weaponmaster"
     },
     "useWeapon": {
       "accuracy": true,

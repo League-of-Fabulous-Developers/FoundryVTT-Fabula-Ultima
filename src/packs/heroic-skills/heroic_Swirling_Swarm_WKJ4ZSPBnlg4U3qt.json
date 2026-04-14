@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Dancer, Fury, Sharpshooter"
+      "value": "dancer, fury, sharpshooter"
     },
     "useWeapon": {
       "accuracy": {

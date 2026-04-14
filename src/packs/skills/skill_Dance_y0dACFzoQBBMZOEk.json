@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Dancer"
+      "value": "dancer"
     },
     "useWeapon": {
       "accuracy": {
