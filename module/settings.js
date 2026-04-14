@@ -1137,7 +1137,7 @@ function createConfigurationApp(name, settings) {
 	};
 }
 
-function createMenuTool(key) {
+export function createMenuTool(key) {
 	const menuSetting = game.settings.menus.get(key);
 	if (!menuSetting) return;
 
