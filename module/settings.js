@@ -50,6 +50,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
 	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatHudAlwaysShow: 'optionCombatHudAlwaysShow',
+	optionCombatHudOrderByInitiative: 'optionCombatHudOrderByInitiative',
 	// Theme
 	theme: 'theme',
 	themeFoundry: 'themeFoundry',
@@ -760,6 +761,20 @@ export const registerSystemSettings = async function () {
 		type: Array,
 		default: [],
 		restricted: true,
+		onChange: () => {
+			BaseCombatHUD.implementation.update();
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudOrderByInitiative, {
+		name: game.i18n.localize('FU.CombatHudOrderByInitiative'),
+		hint: game.i18n.localize('FU.CombatHudOrderByInitiativeHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		restricted: true,
+		requiresReload: false,
 		onChange: () => {
 			BaseCombatHUD.implementation.update();
 		},
