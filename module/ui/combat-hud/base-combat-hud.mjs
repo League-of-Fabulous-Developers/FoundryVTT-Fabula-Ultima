@@ -250,6 +250,14 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			showPressureClock: false,
 			hideTurns: !FUCombat.showTurnsFor(combatant),
 			order: 0,
+			tracks: (Object.values(combatant.actor.tracks) ?? []).map((track) => ({
+				id: track.id,
+				name: track.name,
+				current: track.current,
+				max: track.max,
+				style: track.style,
+				step: track.step,
+			})),
 			opacity: (game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) ?? 100) / 100,
 			zeropower: zeroPower?.system?.data ?? {
 				current: 0,
