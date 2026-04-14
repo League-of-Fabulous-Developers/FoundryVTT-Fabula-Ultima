@@ -1,4 +1,4 @@
-import { getSystemSetting } from '../settings.js';
+import { getSystemSetting, SETTINGS } from '../settings.js';
 
 /**
  * The sidebar chat tab.
@@ -36,11 +36,16 @@ function onRenderChatMessage(message, html) {
 
 	// Get game settings (true means hide, false means show)
 	const settings = {
-		tags: getSystemSetting('optionChatMessageHideTags'),
-		quality: getSystemSetting('optionChatMessageHideQuality'),
-		description: getSystemSetting('optionChatMessageHideDescription'),
-		rollDetails: getSystemSetting('optionChatMessageHideRollDetails'),
+		tags: getSystemSetting(SETTINGS.optionChatMessageHideTags),
+		quality: getSystemSetting(SETTINGS.optionChatMessageHideQuality),
+		description: getSystemSetting(SETTINGS.optionChatMessageHideDescription),
+		rollDetails: getSystemSetting(SETTINGS.optionChatMessageHideRollDetails),
 	};
+
+	const hideAnything = Object.values(settings).some((hide) => hide === true);
+	if (!hideAnything) {
+		return;
+	}
 
 	const toggleVisibility = (visible) => {
 		toggleSections.forEach((section) => {
@@ -53,7 +58,6 @@ function onRenderChatMessage(message, html) {
 				{ className: 'pfu-tags', setting: settings.tags },
 			].some(({ className, setting }) => section.classList.contains(className) && !setting);
 
-			//section.classList.toggle('shown', shouldAlwaysShow || visible);
 			section.classList.toggle('hidden', !shouldAlwaysShow && !visible);
 		});
 	};
@@ -63,27 +67,29 @@ function onRenderChatMessage(message, html) {
 	};
 
 	// Add a button to do the toggle
-	const metaData = html.querySelector('.message-metadata');
-	const button = document.createElement('a');
-	button.classList.add('pfu-chat-message__toggle-section__button');
-	const icon = document.createElement('i');
-	icon.classList.add('fa', HIDDEN_ICON);
-	setIconTooltip(icon, false);
-	button.appendChild(icon);
-	button.addEventListener('click', (event) => {
-		const icon = event.target;
-		const visible = icon.classList.contains(SHOWN_ICON);
-		if (visible) {
-			icon.classList.add(HIDDEN_ICON);
-			icon.classList.remove(SHOWN_ICON);
-		} else {
-			icon.classList.remove(HIDDEN_ICON);
-			icon.classList.add(SHOWN_ICON);
-		}
-		setIconTooltip(icon, visible);
-		toggleVisibility(!visible);
-	});
-	metaData.lastChild.before(button);
+	if (hideAnything) {
+		const metaData = html.querySelector('.message-metadata');
+		const button = document.createElement('a');
+		button.classList.add('pfu-chat-message__toggle-section__button');
+		const icon = document.createElement('i');
+		icon.classList.add('fa', HIDDEN_ICON);
+		setIconTooltip(icon, false);
+		button.appendChild(icon);
+		button.addEventListener('click', (event) => {
+			const icon = event.target;
+			const visible = icon.classList.contains(SHOWN_ICON);
+			if (visible) {
+				icon.classList.add(HIDDEN_ICON);
+				icon.classList.remove(SHOWN_ICON);
+			} else {
+				icon.classList.remove(HIDDEN_ICON);
+				icon.classList.add(SHOWN_ICON);
+			}
+			setIconTooltip(icon, visible);
+			toggleVisibility(!visible);
+		});
+		metaData.lastChild.before(button);
+	}
 
 	// Apply the default
 	toggleVisibility(false);
