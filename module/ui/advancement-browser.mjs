@@ -327,7 +327,7 @@ export class AdvancementBrowser extends FUApplication {
 		let groupedOptions;
 		let groupedData;
 		if (this.#data.type !== 'class') {
-			groupedOptions = AdvancementBrowser.groupOptionsByClass(options);
+			groupedOptions = this.#groupOptionsByClass(options);
 			groupedData = groupedOptions.map((group) => {
 				const positions = AdvancementBrowser.computeOrbitalPositions(group.options.length, CARD_SIZE, HUB_RADIUS, ORBIT_GAP);
 				const radius = positions.length ? Math.hypot(positions[0].x, positions[0].y) : HUB_RADIUS;
@@ -368,13 +368,18 @@ export class AdvancementBrowser extends FUApplication {
 	 * @param {AdvancementOption[]} options
 	 * @returns {Array<{classId: string, options: AdvancementOption[]}>}
 	 */
-	static groupOptionsByClass(options) {
+	#groupOptionsByClass(options) {
 		const groupMap = new Map();
 
 		for (const option of options) {
-			const classes = option.classes?.length ? option.classes : ['shared'];
+			const specific = option.classes?.length;
+			const classes = specific ? option.classes : ['shared'];
 
 			for (const classId of classes) {
+				if (specific && !this.#classList.includes(classId)) {
+					continue;
+				}
+
 				if (!groupMap.has(classId)) {
 					groupMap.set(classId, { classId, options: [] });
 				}
@@ -382,7 +387,20 @@ export class AdvancementBrowser extends FUApplication {
 			}
 		}
 
-		return Array.from(groupMap.values());
+		const groups = Array.from(groupMap.values());
+		const seen = new Set();
+
+		groups.sort((a, b) => b.options.length - a.options.length);
+
+		for (const group of groups) {
+			group.options = group.options.filter((option) => {
+				if (seen.has(option)) return false;
+				seen.add(option);
+				return true;
+			});
+		}
+
+		return groups.filter((group) => group.options.length > 0);
 	}
 
 	/**
@@ -411,21 +429,6 @@ export class AdvancementBrowser extends FUApplication {
 				y: Math.sin(angle) * radius,
 			};
 		});
-	}
-
-	/**
-	 * @desc Computes the bounding box size needed to contain all orbital positions.
-	 * @param {Array<{x: number, y: number}>} positions
-	 * @param {number} cardSize
-	 * @returns {{width: number, height: number}}
-	 */
-	static computeOrbitBounds(positions, cardSize = 80) {
-		if (!positions.length) return { width: cardSize, height: cardSize };
-		const xs = positions.map((p) => p.x);
-		const ys = positions.map((p) => p.y);
-		const width = Math.max(...xs) - Math.min(...xs) + cardSize;
-		const height = Math.max(...ys) - Math.min(...ys) + cardSize;
-		return { width, height };
 	}
 
 	/**

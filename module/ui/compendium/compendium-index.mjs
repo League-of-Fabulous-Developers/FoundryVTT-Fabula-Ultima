@@ -308,7 +308,9 @@ export class CompendiumIndex {
 	static getClassRequirements(document) {
 		if (document.system?.class?.value) {
 			let classes = document.system.class.value.split(',');
-			classes = classes.map((c) => StringUtils.titleToKebab(c));
+			classes = classes.map((c) => {
+				return StringUtils.titleToKebab(c.trim());
+			});
 			return classes;
 		}
 		return [];
