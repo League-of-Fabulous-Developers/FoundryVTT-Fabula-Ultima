@@ -1,4 +1,5 @@
-import { getSystemSetting, SETTINGS, SYSTEM } from '../settings.js';
+import { getSystemSetting, SETTINGS } from '../settings.js';
+import { SYSTEM } from '../helpers/config.mjs';
 
 /**
  * The sidebar chat tab.
