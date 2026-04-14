@@ -1,11 +1,9 @@
-<div>
-    <div class='chat-desc'>
-        <details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}{{open}}{{/unless}}>
-            <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
-            {{#if summary}}
-                <blockquote class='summary quote'>{{summary}}</blockquote>
-            {{/if}}
-            {{{description}}}
-        </details>
-    </div>
+<div class='pfu-chat-message__toggle-section description chat-desc'>
+	<details {{#unless (pfuGetSetting 'optionChatMessageCollapseDescription')}}{{open}}{{/unless}}>
+		<summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
+		{{#if summary}}
+			<blockquote class='summary quote'>{{summary}}</blockquote>
+		{{/if}}
+		{{{description}}}
+	</details>
 </div>
