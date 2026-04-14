@@ -347,6 +347,8 @@ export class FUCombat extends foundry.documents.Combat {
 	populateData(data) {
 		// Whether combat has started
 		data.hasCombatStarted = this.started;
+
+		data.currentRound = this.round;
 		// What faction's turn it is
 		data.currentTurn = this.getCurrentTurn();
 		// Combatant.ID : Total Turns
