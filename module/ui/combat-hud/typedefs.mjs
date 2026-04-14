@@ -64,4 +64,9 @@
  * @property {string} marqueeDirection
  * @property {number} order
  * @property {boolean} hideTurns
+ *
+ * @property {boolean} showPressureClock
+ * @property {object} pressure
+ * @property {number} pressure.current
+ * @property {number} pressure.max
  */

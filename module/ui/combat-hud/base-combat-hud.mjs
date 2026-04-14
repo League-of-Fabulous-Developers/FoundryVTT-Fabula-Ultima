@@ -247,6 +247,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			trackedResourcePart2,
 			trackedResourcePart3,
 			trackedResourcePart4,
+			showPressureClock: false,
 			hideTurns: !FUCombat.showTurnsFor(combatant),
 			order: 0,
 			opacity: (game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) ?? 100) / 100,
@@ -281,6 +282,17 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
 			actorData.marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
+		}
+
+		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowPressureClock)) {
+			const pressure = combatant.actor.resolveProgress('pressure');
+			if (pressure) {
+				actorData.showPressureClock = true;
+				actorData.pressure = {
+					current: pressure.current,
+					max: pressure.max,
+				};
+			}
 		}
 
 		return actorData;
