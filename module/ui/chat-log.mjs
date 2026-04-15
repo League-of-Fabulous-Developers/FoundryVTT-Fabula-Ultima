@@ -1,4 +1,5 @@
-import { getSystemSetting, SETTINGS } from '../settings.js';
+import { createMenuTool, getSystemSetting, SETTINGS } from '../settings.js';
+import { SYSTEM } from '../helpers/config.mjs';
 
 /**
  * The sidebar chat tab.
@@ -8,6 +9,45 @@ import { getSystemSetting, SETTINGS } from '../settings.js';
  * @mixes HandlebarsApplication
  */
 export class FUChatLog extends foundry.applications.sidebar.tabs.ChatLog {
+	/**
+	 * _toggleNotifications is where Foundry injects the chat controls, which is weird and unexpected
+	 * @param {object} options
+	 */
+	_toggleNotifications(options = {}) {
+		super._toggleNotifications(options);
+		if (ui.chat.popout?.rendered && !this.isPopout) return;
+
+		const chatControls = document.getElementById('chat-controls');
+
+		if (!chatControls.querySelector(`[data-role="pfu-settings-button"]`)) {
+			const container = chatControls.querySelector('.control-buttons');
+			if (container instanceof HTMLElement) container.prepend(this._createSettingsButton());
+		}
+	}
+
+	/**
+	 * Creates button element to open chat message settings
+	 * @returns {HTMLElement}
+	 */
+	_createSettingsButton() {
+		const tool = createMenuTool(`${SYSTEM}.myChatMessageOptions`);
+		if (!tool) return console.warn(`Unable to create menu tool for chat log settings`);
+
+		const button = document.createElement('button');
+		button.setAttribute('type', 'button');
+		button.dataset.role = 'pfu-settings-button';
+
+		// We are specifically not using the settings menu's icon, since it is a chat bubble
+		// and that is less useful in this context.
+		button.classList.add('ui-control', 'icon', 'fa-solid', 'fa-gears');
+		button.dataset.tooltip = tool.label;
+
+		button.addEventListener('click', () => {
+			tool.click();
+		});
+		return button;
+	}
+
 	_createContextMenu(handler, selector, { container, hookName, parentClassHooks, ...options } = {}) {
 		container ??= this.element;
 		hookName ??= 'get{}ContextOptions';
