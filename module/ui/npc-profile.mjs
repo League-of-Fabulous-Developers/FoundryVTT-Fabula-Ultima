@@ -5,12 +5,13 @@ import { NpcProfileBasicAttacksTableRenderer } from '../helpers/tables/npc-profi
 import { NpcProfileWeaponsTableRenderer } from '../helpers/tables/npc-profile-weapons-table-renderer.mjs';
 import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spells-table-renderer.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * @typedef NpcProfileRevealData
- * @property {Map<String, Number>} affinities
- * @property {String[]} pressurePoints
- * @property {String[]} traits
+ * @property {Map<String, Number>} affinities The currently revealed affinities.
+ * @property {Map<String, Boolean>} pressurePoints The currently revealed pressure points.
+ * @property {String[]} traits The currently revealed traits.
  */
 
 /**
@@ -188,19 +189,24 @@ export class NpcProfileWindow extends FUApplication {
 			.split(',')
 			.map((value) => value.trim())
 			.filter(Boolean);
+		// Pressure Points
+		const weaponCategories = Object.keys(FU.weaponCategories);
+		const pressurePoints = Object.fromEntries((actor.system.pressurePoints.values ?? []).map((p) => [p, false]));
 
 		if (edit) {
 			console.debug(`Editing profile of ${JSON.stringify(existing)}`);
-			let updatedProfile = await foundry.applications.api.DialogV2.input({
-				window: { title: game.i18n.localize('FU.NpcProfileUpdate') },
-				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
-					existing: existing,
-					studyDifficulties: studyDifficulties,
-					affinities: affinities,
-					affinityMap: affinityMap,
-					traits: traitsArray,
-					FU: FU,
-				}),
+			const content = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
+				actor,
+				existing: existing,
+				studyDifficulties: studyDifficulties,
+				affinities: affinities,
+				affinityMap: affinityMap,
+				pressurePoints,
+				weaponCategories,
+				traits: traitsArray,
+				FU: FU,
+			});
+			let updatedProfile = await FoundryUtils.input(game.i18n.localize('FU.NpcProfileUpdate'), content, {
 				render: (event, dialog) => {
 					const studyValueDisplay = dialog.element.querySelector('#study-value');
 					const studyValueInput = dialog.element.querySelector('[name=study]');
@@ -228,11 +234,11 @@ export class NpcProfileWindow extends FUApplication {
 
 				// Affinities
 				for (const aff of affinities) {
-					const affinityValue = foundry.utils.getProperty(updatedProfile, `affinities.${aff}`);
-					if (affinityValue === true) {
+					const isRevealed = foundry.utils.getProperty(updatedProfile, `affinities.${aff}`);
+					if (isRevealed === true) {
 						existing.revealed.affinities ??= {};
 						existing.revealed.affinities[aff] = true;
-					} else if (affinityValue === false) {
+					} else if (isRevealed === false) {
 						delete existing.revealed?.affinities?.[aff];
 					}
 				}
@@ -241,7 +247,18 @@ export class NpcProfileWindow extends FUApplication {
 				}
 
 				// Pressure Points
-				existing.revealed.pressurePoints = actor.system.pressurePoints ?? [];
+				for (const category of weaponCategories) {
+					const isRevealed = foundry.utils.getProperty(updatedProfile, `pressurePoints.${category}`);
+					if (isRevealed === true) {
+						existing.revealed.pressurePoints ??= {};
+						existing.revealed.pressurePoints[category] = true;
+					} else if (isRevealed === false) {
+						delete existing.revealed?.pressurePoints?.[category];
+					}
+				}
+				if (existing.revealed.pressurePoints && Object.keys(existing.revealed.pressurePoints).length === 0) {
+					delete existing.revealed.pressurePoints;
+				}
 
 				// Traits
 				const traits = Object.entries(updatedProfile.traits ?? {})
@@ -270,7 +287,11 @@ export class NpcProfileWindow extends FUApplication {
 			}
 
 			// Pressure Points
-			existing.revealed.pressurePoints = actor.system.pressurePoints;
+			// if (existing.revealed.pressurePoints) {
+			// 	for (const cat of Object.keys(existing.revealed.pressurePoints)) {
+			// 		existing.revealed.pressurePoints[cat] = FU.affTypeAbbr[actor.system.affinities[cat]?.current];
+			// 	}
+			// }
 
 			// Traits — retain only revealed traits that still exist on the actor
 			if (existing.revealed.traits) {

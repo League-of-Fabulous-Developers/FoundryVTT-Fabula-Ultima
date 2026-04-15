@@ -259,6 +259,7 @@ function resolveAffinity(context) {
 					if (npcData.pressurePoints.has(trait)) {
 						pressurePointTriggered = true;
 						context.pressureTrigger = TraitUtils.localize(trait);
+						context.pressurePoint = trait;
 						break;
 					}
 				}
@@ -277,6 +278,7 @@ function resolveAffinity(context) {
 			affinities: {
 				[context.damageType]: true,
 			},
+			pressurePoints: [context.pressureTrigger],
 		});
 	}
 

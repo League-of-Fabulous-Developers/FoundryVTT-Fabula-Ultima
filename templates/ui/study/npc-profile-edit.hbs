@@ -1,8 +1,12 @@
-<form class="">
+<form class="npc-profile">
 
-	<fieldset>
-		<legend>General</legend>
-		<div class="form-group">
+	<img class="profile-img flexcol" src="{{actor.img}}"
+		 data-edit="img" title="{{actor.name}}"
+		 style="height: 96px; width: auto; object-fit: contain;" />
+
+	<fieldset class="section-container title-fieldset desc resource-content">
+		<legend class="resource-label-m">{{localize 'FU.Study'}}</legend>
+		<div>
 			<label for="study">
 				Study Result: <span id="study-value">{{existing.study}}</span>
 			</label>
@@ -26,20 +30,45 @@
 		</div>
 	</fieldset>
 
-	<fieldset style="gap: 0">
-		<legend>{{localize 'FU.Affinities'}}</legend>
-		{{#each affinities}}
-			<label>
-				<input type="checkbox"
-					   name="affinities.{{this}}" {{#if (lookup ../existing.revealed.affinities this)}}checked{{/if}} />
-				{{localize (lookup @root.FU.damageTypes this)}} ({{localize (lookup ../affinityMap this)}})
-			</label>
-		{{/each}}
-	</fieldset>
+	<div class="flexrow flex-group-center">
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.Affinities'}}
+			</legend>
+			<div class="grid-2col">
+				{{#each affinities}}
+					<label>
+						<input type="checkbox"
+							   name="affinities.{{this}}" {{#if (lookup ../existing.revealed.affinities this)}}checked{{/if}} />
+						{{localize (lookup @root.FU.damageTypes this)}} ({{localize (lookup ../affinityMap this)}})
+					</label>
+				{{/each}}
+			</div>
+		</fieldset>
+
+		{{#if pressurePoints}}
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.PressurePoints'}}
+				</legend>
+				<div class="grid-2col">
+					{{#each weaponCategories}}
+						<label>
+							<input type="checkbox"
+								   name="pressurePoints.{{this}}" {{#if (lookup ../existing.revealed.pressurePoints this)}}checked{{/if}} />
+							{{localize (lookup @root.weaponCategories this)}} ({{localize (lookup ../pressurePoints this)}})
+						</label>
+					{{/each}}
+				</div>
+			</fieldset>
+		{{/if}}
+	</div>
 
 	{{#if traits}}
-		<fieldset style="gap: 0">
-			<legend>{{localize 'FU.Traits'}}</legend>
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.Traits'}}
+			</legend>
 			{{#each traits}}
 				<label>
 					<input type="checkbox"
