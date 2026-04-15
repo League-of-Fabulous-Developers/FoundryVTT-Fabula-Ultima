@@ -8,6 +8,7 @@ import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spe
 /**
  * @typedef NpcProfileRevealData
  * @property {Map<String, Number>} affinities
+ * @property {Map<String, Number>} affinities
  * @property {String[]} traits
  */
 
@@ -51,9 +52,11 @@ export class NpcProfileWindow extends FUApplication {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['actor', 'npc-profile'],
-		resizable: true,
-		title: 'NPC Profile',
+		classes: ['npc-profile'],
+		window: {
+			title: 'NPC Profile',
+			resizable: true,
+		},
 		position: { width: 750, height: 'auto' },
 		actions: {
 			revealActor: this.#revealActor,

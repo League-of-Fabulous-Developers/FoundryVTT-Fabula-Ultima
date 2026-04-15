@@ -21,13 +21,9 @@
 					<legend class="resource-label-m">
 						{{localize 'FU.Stats'}}
 					</legend>
-
 					{{#if basic}}
-					<div class="resource-label-l resource-content grid grid-7col flex-group-center" style="padding: 5px;">
-						<label>
-							{{localize 'FU.LevelAbbr'}} {{level}}
-						</label>
-						<span class="diamond-symbol">⬥</span>
+					<div class="resource-label-l resource-content grid grid-6col flex-group-center" style="padding: 5px;">
+						<span class="pfu__badge__level large" data-tooltip="{{localize 'FU.LevelAbbr'}}">{{level}}</span>
 						<label data-tooltip="{{localize localizedSpecies}}">
 							<i class="fua fu-{{species}}"></i>
 						</label>
@@ -44,7 +40,11 @@
 
 					{{#if complete}}
 						{{>"systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs"}}
-						{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
+
+						<div class="flexrow flex-group-center">
+							{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
+						</div>
+
 						{{#if system.traits.value}}
 							<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
 								<label class="resource-label-l">Traits</label>
