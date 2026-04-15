@@ -1,4 +1,4 @@
-import { getSystemSetting, SETTINGS } from '../settings.js';
+import { createMenuTool, getSystemSetting, SETTINGS } from '../settings.js';
 import { SYSTEM } from '../helpers/config.mjs';
 
 /**
@@ -30,22 +30,20 @@ export class FUChatLog extends foundry.applications.sidebar.tabs.ChatLog {
 	 * @returns {HTMLElement}
 	 */
 	_createSettingsButton() {
+		const tool = createMenuTool(`${SYSTEM}.myChatMessageOptions`);
+		if (!tool) return console.warn(`Unable to create menu tool for chat log settings`);
+
 		const button = document.createElement('button');
 		button.setAttribute('type', 'button');
 		button.dataset.role = 'pfu-settings-button';
-		button.classList.add('ui-control', 'icon', 'fa-solid', 'fa-gears');
 
-		const menu = game.settings.menus.get(`${SYSTEM}.myChatMessageOptions`);
-		if (menu) {
-			button.dataset.tooltip = menu.label;
-		}
+		// We are specifically not using the settings menu's icon, since it is a chat bubble
+		// and that is less useful in this context.
+		button.classList.add('ui-control', 'icon', 'fa-solid', 'fa-gears');
+		button.dataset.tooltip = tool.label;
 
 		button.addEventListener('click', () => {
-			// The key for this menu is hard-coded in settings
-			const menu = game.settings.menus.get(`${SYSTEM}.myChatMessageOptions`);
-			if (menu) {
-				new menu.type().render({ force: true });
-			}
+			tool.click();
 		});
 		return button;
 	}
