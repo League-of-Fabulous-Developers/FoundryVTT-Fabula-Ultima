@@ -3,7 +3,7 @@
   "name": "Effect: Wardwattle (⏱ 2)",
   "type": "effect",
   "_id": "KHNmbjlLdJOWMhoZ",
-  "img": "icons/consumables/plants/thorned-dried-stem-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/wardwattle.png",
   "system": {
     "fuid": "effect-wardwattle-2",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Wardwattle (⏱ 2)",
-      "img": "icons/consumables/plants/thorned-dried-stem-red.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/wardwattle.png",
       "system": {
         "duration": {
           "event": "endOfTurn",
@@ -75,6 +75,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -94,7 +99,7 @@
           "priority": null
         }
       ],
-      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Chloromancy SL】</strong> (after their attack was resolved).</p>",
+      "description": "<p>While this magiseed is <strong>planted</strong>, you gain Resistance to <strong>physical</strong> damage. After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Chloromancy SL】</strong> (after their attack was resolved).</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -109,7 +114,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770372908817,
-        "modifiedTime": 1771836366485,
+        "modifiedTime": 1777440591607,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!KHNmbjlLdJOWMhoZ.8YOfsARvtUrdqrtK"
@@ -129,7 +134,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770372855167,
-    "modifiedTime": 1771835658653,
+    "modifiedTime": 1777431525357,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!KHNmbjlLdJOWMhoZ"

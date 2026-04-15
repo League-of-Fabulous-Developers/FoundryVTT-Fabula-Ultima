@@ -1,0 +1,111 @@
+{
+  "folder": "B6qbxvcB3ujC3Se3",
+  "name": "Effect: Blazing Chrysanthemum (Earth)",
+  "type": "effect",
+  "_id": "q0733esmOGzxhGI8",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/blazing-chrysanthemum.png",
+  "system": {
+    "fuid": "effect-blazing-chrysanthemum-earth",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Blazing Chrysanthemum (Earth)",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/blazing-chrysanthemum.png",
+      "origin": "Compendium.projectfu.skills.Item.q0733esmOGzxhGI8",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "FxwbtICYFA8IN11R",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "earth",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until this magiseed is no longer <strong>planted</strong> or its effect is used again, all damage you deal becomes <strong>earth</strong>, its type cannot change, and it ignores Resistances.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Blazing Chrysanthemum (Earth)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.q0733esmOGzxhGI8",
+            "effectUuid": null,
+            "fuid": "effect-blazing-chrysanthemum-earth"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1777432921068,
+        "modifiedTime": 1777434342182,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!q0733esmOGzxhGI8.FxwbtICYFA8IN11R"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1777432819517,
+    "modifiedTime": 1777432882901,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!q0733esmOGzxhGI8"
+}

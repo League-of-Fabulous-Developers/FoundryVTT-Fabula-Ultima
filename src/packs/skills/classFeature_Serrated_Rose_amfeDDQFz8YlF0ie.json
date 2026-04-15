@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Serrated Rose",
   "type": "classFeature",
-  "img": "icons/consumables/plants/thorned-stem-vine-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/serrated-rose.png",
   "system": {
     "summary": {
       "value": "Its thorns form a tangle equally breathtaking and dangerous."
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370705219,
+    "modifiedTime": 1777431222209,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

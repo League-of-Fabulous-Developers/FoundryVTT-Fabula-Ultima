@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Remedy Lily",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/lily-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/remedy-lily.png",
   "system": {
     "summary": {
       "value": "Its elegant flowers filter and purify spiritual energy."
@@ -38,7 +38,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370675610,
+    "modifiedTime": 1777431215826,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

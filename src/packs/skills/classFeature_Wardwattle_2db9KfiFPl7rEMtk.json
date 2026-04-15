@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Wardwattle",
   "type": "classFeature",
-  "img": "icons/consumables/plants/thorned-dried-stem-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/wardwattle.png",
   "system": {
     "summary": {
       "value": "A tangle of robust branches, whose thorns spread powerful poison."
@@ -17,7 +17,7 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>physical</strong> damage.</p><hr><p><strong>You Receive:</strong> @TYPE[affinity physical resistance e:eot i:1 t:source]</p>"
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.e1HIHF9cJyINUqsn]</p>"
         },
         {
           "start": 2,
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770374945580,
+    "modifiedTime": 1777440629196,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

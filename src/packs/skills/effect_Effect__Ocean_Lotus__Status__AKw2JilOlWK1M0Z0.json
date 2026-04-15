@@ -1,0 +1,117 @@
+{
+  "folder": "UzrRko1Gv342c7fz",
+  "name": "Effect: Ocean Lotus (Status)",
+  "type": "effect",
+  "_id": "AKw2JilOlWK1M0Z0",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/ocean-lotus.png",
+  "system": {
+    "fuid": "effect-ocean-lotus-status",
+    "cost": {
+      "value": 0
+    },
+    "source": ""
+  },
+  "effects": [
+    {
+      "name": "Ocean Lotus (Status)",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/ocean-lotus.png",
+      "origin": "Compendium.projectfu.skills.Item.AKw2JilOlWK1M0Z0",
+      "system": {
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "7ajZFOOTyPMSQuAm",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.dazed.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        },
+        {
+          "key": "system.immunities.slow.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>While this magiseed is <strong>planted</strong>, you are Immune to <strong>dazed</strong> and <strong>slow</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Effect: Ocean Lotus (Status)",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.AKw2JilOlWK1M0Z0",
+            "effectUuid": null,
+            "fuid": "effect-ocean-lotus-status"
+          }
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1777434660184,
+        "modifiedTime": 1777435296559,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!AKw2JilOlWK1M0Z0.7ajZFOOTyPMSQuAm"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "mA8SNY2rY4X5tOHa": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1777434644609,
+    "modifiedTime": 1777434791721,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+  },
+  "_key": "!items!AKw2JilOlWK1M0Z0"
+}

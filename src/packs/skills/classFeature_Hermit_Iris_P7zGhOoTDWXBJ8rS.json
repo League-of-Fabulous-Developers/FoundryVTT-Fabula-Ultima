@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Hermit Iris",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/lotus-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/hermit-iris.png",
   "system": {
     "summary": {
       "value": "Its leaves carry whispers of ancient knowledge."
@@ -34,12 +34,12 @@
   "_stats": {
     "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.VBxhXKYKqIFvjTfT",
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9",
+    "modifiedTime": 1777431079758,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "ownership": {

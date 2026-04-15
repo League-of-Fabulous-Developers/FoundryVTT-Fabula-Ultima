@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Ocean Lotus",
+  "color": "#342022",
+  "sorting": "a",
+  "_id": "UzrRko1Gv342c7fz",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1777438825413
+  },
+  "_key": "!folders!UzrRko1Gv342c7fz"
+}

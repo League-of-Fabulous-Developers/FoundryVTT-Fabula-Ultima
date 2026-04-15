@@ -3,16 +3,17 @@
   "name": "Effect: Wrathful Carnation",
   "type": "effect",
   "_id": "GByosgzlkIfFCsKP",
-  "img": "icons/commodities/flowers/lotus-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/wrathful-carnation.png",
   "system": {
     "fuid": "effect-wrathful-carnation",
     "cost": {
       "value": 0
-    }
+    },
+    "source": ""
   },
   "effects": [
     {
-      "img": "icons/commodities/flowers/lotus-pink.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/wrathful-carnation.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -46,6 +47,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -64,7 +70,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744517118451,
-        "modifiedTime": 1771836326007,
+        "modifiedTime": 1777431372281,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
         "exportSource": null
       },
@@ -80,12 +86,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.351",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744517116093,
-    "modifiedTime": 1744517210118,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1777431341859,
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },
   "_key": "!items!GByosgzlkIfFCsKP"

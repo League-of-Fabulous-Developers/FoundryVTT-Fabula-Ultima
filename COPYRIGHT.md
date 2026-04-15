@@ -132,3 +132,7 @@ Supplied game rules in the system compendium adhere to and are published under t
 
 - Created by [kzmz](https://github.com/KzMz) with explicit permission to use with ProjectFU project
   - pc_bg.svg
+
+[projectfu\styles\static\compendium\classes\floralist\magiseeds]
+
+- Created by Kami lucky with explicit permission to use with ProjectFU project
