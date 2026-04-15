@@ -3,7 +3,7 @@
   "name": "Dark Damage Up",
   "type": "effect",
   "_id": "phAVipPwO9GPHy8P",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Dark Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.actor-effects.Item.phAVipPwO9GPHy8P",
       "system": {
         "duration": {

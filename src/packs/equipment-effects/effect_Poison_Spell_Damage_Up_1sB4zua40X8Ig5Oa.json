@@ -3,7 +3,7 @@
   "name": "Poison Spell Damage Up",
   "type": "effect",
   "_id": "1sB4zua40X8Ig5Oa",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-spell-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Poison Spell Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.1sB4zua40X8Ig5Oa",
       "system": {
         "duration": {

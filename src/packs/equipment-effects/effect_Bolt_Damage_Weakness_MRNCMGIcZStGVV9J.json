@@ -3,7 +3,7 @@
   "name": "Bolt Damage Weakness",
   "type": "effect",
   "_id": "MRNCMGIcZStGVV9J",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Bolt Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.MRNCMGIcZStGVV9J",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Dark Damage Weakness",
   "type": "effect",
   "_id": "zFQpa3KcSAmBCWdE",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Dark Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.zFQpa3KcSAmBCWdE",
       "system": {
         "duration": {

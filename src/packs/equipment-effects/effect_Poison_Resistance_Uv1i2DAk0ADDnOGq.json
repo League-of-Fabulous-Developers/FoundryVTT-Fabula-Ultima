@@ -3,7 +3,7 @@
   "name": "Poison Resistance",
   "type": "effect",
   "_id": "Uv1i2DAk0ADDnOGq",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-resistance",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Poison Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.Uv1i2DAk0ADDnOGq",
       "system": {
         "duration": {

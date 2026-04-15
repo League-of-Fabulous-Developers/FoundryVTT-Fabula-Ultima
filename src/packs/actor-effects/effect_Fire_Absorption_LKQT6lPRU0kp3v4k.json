@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Fire Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-absorption",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Fire Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.actor-effects.Item.LKQT6lPRU0kp3v4k",
       "system": {
         "duration": {

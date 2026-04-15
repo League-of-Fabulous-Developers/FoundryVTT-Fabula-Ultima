@@ -3,7 +3,7 @@
   "name": "Physical Absorption",
   "type": "effect",
   "_id": "XU3UN4eTFAcOBfHG",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-absorption",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Physical Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.XU3UN4eTFAcOBfHG",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Skill Damage Change (Earth)",
   "type": "effect",
   "_id": "n5gwf8ILV0gnC153",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "skill-damage-change-earth",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Skill Damage Change (Earth)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.n5gwf8ILV0gnC153",
       "system": {
         "duration": {

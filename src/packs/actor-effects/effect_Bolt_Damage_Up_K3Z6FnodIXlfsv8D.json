@@ -3,7 +3,7 @@
   "name": "Bolt Damage Up",
   "type": "effect",
   "_id": "K3Z6FnodIXlfsv8D",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Bolt Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "origin": "Compendium.projectfu.actor-effects.Item.K3Z6FnodIXlfsv8D",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Untyped)",
   "type": "effect",
   "_id": "pQVSoX6ol3vmg1eC",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
   "system": {
     "fuid": "alter-damage-type-untyped",
     "source": ""
@@ -22,7 +22,7 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Untyped)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/untyped.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/untyped.png",
       "_id": "OeYBD0qXY8yDrZs7",
       "type": "base",
       "system": {

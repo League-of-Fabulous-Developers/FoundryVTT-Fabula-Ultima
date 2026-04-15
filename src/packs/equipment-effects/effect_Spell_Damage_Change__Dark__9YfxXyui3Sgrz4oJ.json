@@ -3,7 +3,7 @@
   "name": "Spell Damage Change (Dark)",
   "type": "effect",
   "_id": "9YfxXyui3Sgrz4oJ",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "spell-damage-change-dark",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Spell Damage Change (Dark)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.9YfxXyui3Sgrz4oJ",
       "system": {
         "duration": {

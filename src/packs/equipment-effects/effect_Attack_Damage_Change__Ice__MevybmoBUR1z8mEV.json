@@ -3,7 +3,7 @@
   "name": "Attack Damage Change (Ice)",
   "type": "effect",
   "_id": "MevybmoBUR1z8mEV",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "attack-damage-change-ice",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Attack Damage Change (Ice)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.MevybmoBUR1z8mEV",
       "system": {
         "duration": {

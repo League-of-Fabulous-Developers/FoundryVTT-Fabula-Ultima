@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Fire Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-resistance",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Fire Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.actor-effects.Item.FAfKTXxluiqIVP5t",
       "system": {
         "duration": {

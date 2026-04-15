@@ -3,7 +3,7 @@
   "name": "Poison Damage Up",
   "type": "effect",
   "_id": "A7YTP3iY6V3vtfSq",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Poison Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.A7YTP3iY6V3vtfSq",
       "system": {
         "duration": {

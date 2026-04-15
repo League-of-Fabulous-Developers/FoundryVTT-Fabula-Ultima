@@ -3,7 +3,7 @@
   "name": "Skill Damage Change (Dark)",
   "type": "effect",
   "_id": "eQCI2Sx70ueePyxV",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "skill-damage-change-dark",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Skill Damage Change (Dark)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.actor-effects.Item.eQCI2Sx70ueePyxV",
       "system": {
         "duration": {

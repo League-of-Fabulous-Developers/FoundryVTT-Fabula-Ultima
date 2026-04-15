@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Poison Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-resistance",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Poison Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX",
       "system": {
         "duration": {

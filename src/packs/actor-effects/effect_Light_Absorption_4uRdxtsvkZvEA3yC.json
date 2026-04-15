@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Light Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-absorption",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Light Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.actor-effects.Item.4uRdxtsvkZvEA3yC",
       "system": {
         "duration": {

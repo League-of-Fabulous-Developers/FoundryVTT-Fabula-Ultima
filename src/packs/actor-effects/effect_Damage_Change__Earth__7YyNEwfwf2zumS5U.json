@@ -3,7 +3,7 @@
   "name": "Damage Change (Earth)",
   "type": "effect",
   "_id": "7YyNEwfwf2zumS5U",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "damage-change-earth",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Damage Change (Earth)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.actor-effects.Item.7YyNEwfwf2zumS5U",
       "system": {
         "duration": {

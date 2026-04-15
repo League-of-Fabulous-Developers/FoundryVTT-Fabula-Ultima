@@ -3,7 +3,7 @@
   "name": "Earth Thorns",
   "type": "effect",
   "_id": "JZb7WnRYdPlNu0Le",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-thorns",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Earth Thorns",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.JZb7WnRYdPlNu0Le",
       "system": {
         "duration": {

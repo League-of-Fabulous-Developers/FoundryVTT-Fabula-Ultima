@@ -3,7 +3,7 @@
   "name": "Air Damage Up",
   "type": "effect",
   "_id": "nWxGMr7yEFXHNVvf",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Air Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.actor-effects.Item.nWxGMr7yEFXHNVvf",
       "system": {
         "duration": {

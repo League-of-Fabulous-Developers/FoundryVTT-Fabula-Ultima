@@ -3,7 +3,7 @@
   "name": "Ice Immunity",
   "type": "effect",
   "_id": "xZiTen8UeCIIC6m6",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "ice-immunity",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Ice Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.xZiTen8UeCIIC6m6",
       "system": {
         "duration": {

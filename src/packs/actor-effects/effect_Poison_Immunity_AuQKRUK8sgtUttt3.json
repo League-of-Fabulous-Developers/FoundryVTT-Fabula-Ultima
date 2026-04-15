@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Poison Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-immunity",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Poison Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.actor-effects.Item.AuQKRUK8sgtUttt3",
       "system": {
         "duration": {
