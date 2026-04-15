@@ -833,11 +833,20 @@ export class FUPartySheet extends FUActorSheet {
 				},
 			},
 			{
+				name: StringUtils.localize('FU.Refresh'),
+				icon: '<i class="fa fa-refresh"></i>',
+				callback: (el) => {
+					const id = el.dataset.uuid;
+					return NpcProfileWindow.updateNpcProfile(this.party, id, false);
+				},
+				condition: (el) => el.dataset.type === 'npc',
+			},
+			{
 				name: StringUtils.localize('FU.Edit'),
 				icon: '<i class="fa fa-pencil"></i>',
 				callback: (el) => {
 					const id = el.dataset.uuid;
-					NpcProfileWindow.updateNpcProfile(this.party, id);
+					return NpcProfileWindow.updateNpcProfile(this.party, id, true);
 				},
 				condition: (el) => el.dataset.type === 'npc',
 			},

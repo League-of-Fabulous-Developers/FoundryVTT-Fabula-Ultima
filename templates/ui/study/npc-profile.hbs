@@ -69,28 +69,37 @@
 		</div>
 	</div>
 
-	<!-- Bottom content here -->
-	{{#if revealAffinities}}
-	<div class="bottom-row fu-scrollable">
+	<fieldset class="section-container title-fieldset desc resource-content">
+		<legend class="resource-label-m">
+			{{localize 'FU.Affinities'}}
+		</legend>
+
+		<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
+			{{#each affinities}}
+				<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
+					<div class="affinity resource-content flex-group-center" style="opacity: {{this.opacity}}; display: flex; justify-content: space-between; margin: 2px; gap: 5px; line-height: 1;">
+						<i class="fu-icon--s {{this.iconClass}}"></i>
+						<label class="resource-label-xl" style="cursor: pointer;" data-tooltip="{{this.fullName}}: {{localize this.acronymValue}}">
+							{{localize this.acronymValue}}
+						</label>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</fieldset>
+
+	{{#if (and revealPressurePoints revealed.pressurePoints)}}
 		<fieldset class="section-container title-fieldset desc resource-content">
 			<legend class="resource-label-m">
-				{{localize 'FU.Affinities'}}
+				{{localize 'FU.PressurePoints'}}
 			</legend>
-
-			<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
-				{{#each affinities}}
-					<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
-						<div class="affinity resource-content flex-group-center" style="opacity: {{this.opacity}}; display: flex; justify-content: space-between; margin: 2px; gap: 5px; line-height: 1;">
-							<i class="fu-icon--s {{this.iconClass}}"></i>
-							<label class="resource-label-xl" style="cursor: pointer;" data-tooltip="{{this.fullName}}: {{localize this.acronymValue}}">
-								{{localize this.acronymValue}}
-							</label>
-						</div>
-					</div>
-				{{/each}}
-			</div>
+			{{>"systems/projectfu/templates/actor/partials/actor-pressure-points.hbs" pressurePoints=revealed.pressurePoints}}
 		</fieldset>
+	{{/if}}
 
+	<!-- Bottom content here -->
+	{{#if revealAffinities}}
+	<div class="bottom-row">
 		{{#if detailed}}
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m">
