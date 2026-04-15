@@ -1,7 +1,12 @@
 /* ----------------------------------------- */
 /* Retro Style                       
 /* ----------------------------------------- */
-.combat-hud-retro {
+
+/* ----------------------------------------- */
+/* Retro Style                       
+/* ----------------------------------------- */
+
+.projectfu.combat-hud-retro {
 	--hud-height: auto;
 	--npc-width-percent: 30%;
 	--character-width-percent: calc(100% - var(--npc-width-percent));
@@ -34,66 +39,117 @@
 	display: -ms-flexbox;
 	display: flex;
 	gap: 4px;
-}
-.combat-hud-retro__window-button {
-	position: absolute;
-	color: #ffffff;
-	z-index: 99;
-	/*
+
+	.combat-hud-retro__window-button {
+		position: absolute;
+		color: #ffffff;
+		z-index: 99;
+		/*
   Set !important because some themes will set pointer-events to none on the main application
   element, and the selector for that is more specific than this one.
    */
-	pointer-events: initial !important;
-	text-shadow: 1px 1px 1px #000000;
-	-webkit-box-shadow: 3px 3px #2b4a42;
-	box-shadow: 3px 3px #2b4a42;
-	border-radius: 10px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc)), #2b4a42;
-	background: linear-gradient(to bottom, #2c584d, #a0cdbc), #2b4a42;
-	padding: 0.5em 1em 0.5em 1em;
-	height: var(--hud-buttons-height);
-	width: var(--hud-buttons-width);
-}
-.combat-hud-retro__window-button--top {
-	top: -2em;
-}
-.combat-hud-retro__window-button--bottom {
-	bottom: -2em;
-}
-.combat-hud-retro__window-button--hidden {
-	display: none;
-}
-.combat-hud-retro__window-button a {
-	padding: 0;
-	margin: 0;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	height: 100%;
-	width: 100%;
-}
-.combat-hud-retro__window-button--minimize {
-	right: 4em;
-}
-.combat-hud-retro__window-button--popout {
-	right: 0.5em;
-}
-.combat-hud-retro__window-button--compact {
-	right: 7.5em;
-}
-.combat-hud-retro__window-button--hidden {
-	display: none;
-}
-.combat-hud-retro__window-button--drag {
-	left: 0em;
-}
-.combat-hud-retro__window-button--start,
-.combat-hud-retro__window-button--stop {
-	left: 3.5em;
+		pointer-events: initial !important;
+		text-shadow: 1px 1px 1px #000000;
+		-webkit-box-shadow: 3px 3px #2b4a42;
+		box-shadow: 3px 3px #2b4a42;
+		border-radius: 10px;
+		background: -webkit-gradient(linear, left top, left bottom, from(#2c584d), to(#a0cdbc)), #2b4a42;
+		background: linear-gradient(to bottom, #2c584d, #a0cdbc), #2b4a42;
+		padding: 0.5em 1em 0.5em 1em;
+		height: var(--hud-buttons-height);
+		width: var(--hud-buttons-width);
+	}
+	.combat-hud-retro__window-button--top {
+		top: -2em;
+	}
+	.combat-hud-retro__window-button--bottom {
+		bottom: -2em;
+	}
+	.combat-hud-retro__window-button--hidden {
+		display: none;
+	}
+	.combat-hud-retro__window-button a {
+		padding: 0;
+		margin: 0;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+	}
+	.combat-hud-retro__window-button--minimize {
+		right: 4em;
+	}
+	.combat-hud-retro__window-button--popout {
+		right: 0.5em;
+	}
+	.combat-hud-retro__window-button--compact {
+		right: 7.5em;
+	}
+	.combat-hud-retro__window-button--hidden {
+		display: none;
+	}
+	.combat-hud-retro__window-button--drag {
+		left: 0em;
+	}
+	.combat-hud-retro__window-button--start,
+	.combat-hud-retro__window-button--stop {
+		left: 3.5em;
+	}
+
+	.combat-hud-retro__faction-list {
+		color: #ebf7af;
+		text-shadow: 1px 1px 1px #000000;
+		-webkit-box-shadow: 2px 4px var(--hud-boxshadow-color);
+		box-shadow: 2px 4px var(--hud-boxshadow-color);
+		border-radius: 10px;
+		background: var(--hud-background-gradient);
+		padding: 0.25em;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-line-pack: center;
+		align-content: center;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		gap: 2px;
+	}
+
+	.combat-hud-retro__combat-info {
+	}
+
+	.combat-hud-retro__combat-info--name {
+		height: 100%;
+	}
+
+	.combat-hud-retro__combat-info--effects {
+		height: 0;
+	}
+
+	.combat-hud-retro__token-image {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 var(--combat-info-image-size);
+		flex: 0 0 var(--combat-info-image-size);
+		height: var(--combat-info-image-size);
+		width: var(--combat-info-image-size);
+		-o-object-fit: cover;
+		object-fit: cover;
+		-o-object-position: 50% 0;
+		object-position: 50% 0;
+		border: none;
+	}
+
+	.combat-hud-retro__token-image--compact {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 var(--combat-info-image-size-compact);
+		flex: 0 0 var(--combat-info-image-size-compact);
+		height: var(--combat-info-image-size-compact);
+		width: var(--combat-info-image-size-compact);
+	}
 }

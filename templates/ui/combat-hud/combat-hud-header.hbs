@@ -1,34 +1,34 @@
 <div class="projectfu-combat-hud__header">
-  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--compact">
+  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--compact {{elementClass}}__window-button {{buttonPositionClass}}">
       <a class="compact" title="Toggle compact mode" data-action="toggleCompact">
           <i class="fas fa-caret-down {{#if isCompact }}hidden{{/if}}"></i>
           <i class="fas fa-caret-up {{#unless isCompact }}hidden{{/unless}}"></i>
       </a>
   </div>
   {{#if showPopoutButton}}
-  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--popout">
+  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--popout {{buttonPositionClass}}">
       <a class="popout" title="Popout Combat HUD" data-target="combat-hud" data-action="popout">
           <i class="fas fa-up-right-from-square"></i>
       </a>
   </div>
   {{/if}}
-  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--minimize">
+  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--minimize {{buttonPositionClass}}">
       <a class="minimize" title="Minimize Combat HUD" data-action="minimize">
           <i class="fas fa-minus"></i>
       </a>
   </div>
-  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--drag" draggable="true">
+  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--drag {{buttonPositionClass}}" draggable="true">
       <a class="drag" title="Drag Combat HUD">
           <i class="fas fa-arrows-alt"></i>
       </a>
   </div>
   {{#if isGM}}
-  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--start">
+  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--start {{buttonPositionClass}}">
       <a class="start" title="Start Combat" data-action="start">
           <i class="fas fa-play"></i>
       </a>
   </div>
-  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--stop">
+  <div class="{{elementClass}}__window-button {{elementClass}}__window-button--stop {{buttonPositionClass}}">
       <a class="stop" title="Stop Combat" data-action="stop">
           <i class="fas fa-stop"></i>
       </a>

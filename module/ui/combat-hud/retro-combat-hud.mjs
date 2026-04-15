@@ -1,4 +1,6 @@
+import { SYSTEM } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
+import { SETTINGS } from '../../settings.js';
 import { BaseCombatHUD } from './base-combat-hud.mjs';
 
 export class RetroCombatHUD extends BaseCombatHUD {
@@ -26,6 +28,12 @@ export class RetroCombatHUD extends BaseCombatHUD {
 
 	get _elementClass() {
 		return 'combat-hud-retro';
+	}
+
+	async _prepareContext(options = {}) {
+		const context = await super._prepareContext(options);
+		context.buttonPositionClass = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton) === 'top' ? 'combat-hud-retro__window-button--top' : 'combat-hud-retro__window-button--bottom';
+		return context;
 	}
 }
 

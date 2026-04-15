@@ -30,6 +30,7 @@
  * @property {boolean} isGM
  * @property {object} icons
  * @property {Record<string, string>} icons
+ * @property {string} buttonPositionClass
  *
  * @property {CombatHUDCombatantContext[]} npcs
  * @property {CombatHUDCombatantContext[]} characters
