@@ -8,7 +8,11 @@
 		</div>
 		<!-- Right content here -->
 		<div class="right-column">
-			<span class="label name">{{name}}</span>
+			<div class="flexrow flex-group-center">
+				<span class="label name">{{name}}</span>
+				<span class="pfu-badge__level large" data-tooltip="{{localize 'FU.LevelAbbr'}}">{{level}}</span>
+			</div>
+
 			{{#unless revealStats}}
 			<fieldset class="section-container title-fieldset desc resource-content">
 					<span class="label centered-message" style="color: unset;">
@@ -22,18 +26,19 @@
 						{{localize 'FU.Stats'}}
 					</legend>
 					{{#if basic}}
-					<div class="resource-label-l resource-content grid grid-6col flex-group-center" style="padding: 5px;">
-						<span class="pfu__badge__level large" data-tooltip="{{localize 'FU.LevelAbbr'}}">{{level}}</span>
-						<label data-tooltip="{{localize localizedSpecies}}">
+					<div class="resource-label-l resource-content flexrow flex-group-center" style="padding: 5px;">
+						<div class="pfu-badge" data-tooltip="{{localize localizedSpecies}}">
 							<i class="fua fu-{{species}}"></i>
+						</div>
+						<span class="diamond-symbol">⬥</span>
+						<label class="flexcol"  data-tooltip="{{localize 'FU.HealthPoints'}}">
+							<i class="fas fa-heart"></i>
+							{{hp}}
 						</label>
 						<span class="diamond-symbol">⬥</span>
-						<label data-tooltip="{{localize 'FU.HealthPoints'}}">
-							{{hp}} <i class="fas fa-heart"></i>
-						</label>
-						<span class="diamond-symbol">⬥</span>
-						<label data-tooltip="{{localize 'FU.MindPoints'}}">
-							{{mp}} <i class="fas fa-hat-wizard"></i>
+						<label class="flexcol" data-tooltip="{{localize 'FU.MindPoints'}}">
+							<i class="fas fa-hat-wizard"></i>
+							{{mp}}
 						</label>
 					</div>
 					{{/if}}

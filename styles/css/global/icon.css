@@ -179,13 +179,28 @@
 	filter: unset;
 }
 
-.pfu__badge {
+.pfu-badge {
+	--size: 48px;
 	border: 4px solid var(--pfu-color-app-control-highlight-border);
 	background: var(--pfu-color-app-detail-section-content-secondary);
 	color: var(--pfu-color-app-control-content);
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	text-align: center;
+	width: 48px;
+	height: 48px;
+
+	&.--m {
+		--size: 48px;
+	}
+
+	&.--l {
+		--size: 72px;
+	}
 }
 
-.pfu__badge__level {
+.pfu-badge__level {
 	--size: 36px;
 	--font-size: 1rem;
 	font-family: 'DM Mono', monospace;
