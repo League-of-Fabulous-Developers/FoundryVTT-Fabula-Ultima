@@ -1,4 +1,23 @@
-<div class="{{cssClasses}}" id="{{cssId}}">
+<section>
+    <div class="combat-hud-retro__faction-list combat-hud-retro__faction-list--npcs{{#if isCompact}} combat-hud-retro__faction-list--compact{{/if}}">
+        {{#each npcs as |npc|}}
+            <div class="combat-hud-retro__combat-row{{#if (pfuCollectionContains "crisis" npc.actor.statuses)}} combat-hud-retro__combat-row--crisis{{/if}}{{#if (pfuCollectionContains "ko" npc.actor.statuses)}} combat-hud-retro__combat-row--ko{{/if}}" data-actor-id="{{npc.actor.id}}" data-combatant-id="{{npc.id}}"{{#if (pfuGetSetting "optionCombatHudReordering")}} draggable="true"{{/if}}>
+                <img class="combat-hud-retro__token-image" src="{{npc.img}}" data-tooltip="{{npc.name}}" data-action="clickCombatant" data-token-id="{{npc.token.id}}" data-combatant-id="{{npc.combatant.id}}">
+                <div class="combat-hud-retro__combat-info">
+                    <div class="combat-hud-retro__combat-name"{{#unless npc.hasEffects}} combat-hud-retro__combat-name--full-height{{/unless}}>
+                        <h2 class="combat-hud-retro--token-name" data-action="clickCombatant" data-token-id="{{npc.token.id}}" data-combatant-id="{{npc.combatant.id}}">
+                            {{#if (pfuGetSetting "optionCombatHudShowOrderNumbers")}}
+                            <span class="combat-hud-retro--combat-order">{{npc.order}}</span>.&nbsp;
+                            {{/if}}
+                            {{npc.name}}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</section>
+{{!-- <div class="{{cssClasses}}" id="{{cssId}}">
 <div class="window-header" style="display: none;">Combat HUD</div>
 <div class="faction-list npcs {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
     {{#each npcs}}
@@ -101,4 +120,4 @@
         </div>
     {{/each}}
 </div>
-</div>
+</div> --}}
