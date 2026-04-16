@@ -551,6 +551,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 					context.pressurePoints = game.settings.get(systemId, SETTINGS.pressureSystem);
 				}
 				break;
+
 			case 'notes': {
 				context.enrichedHtml = {
 					description: await TextEditor.enrichHTML(context.system.description ?? '', {

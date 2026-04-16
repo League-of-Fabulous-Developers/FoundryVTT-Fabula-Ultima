@@ -1776,6 +1776,7 @@
 		"PressureClock": "Pressure Clock",
 		"PressurePoints": "Pressure Points",
 		"PressurePoint": "Pressure Point",
+		"PressurePointAbbr": "PP",
 		"Stagger": "Stagger",
 		"Compendium": "Compendium",
 		"CompendiumBrowser": "Compendium Browser",

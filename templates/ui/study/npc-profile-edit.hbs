@@ -58,7 +58,7 @@
 								   name="pressurePoints.{{@key}}" {{#if (lookup ../existing.revealed.pressurePoints @key)}}checked{{/if}} />
 							{{localize this}}
 							{{#if (lookup ../pressurePoints @key)}}
-								(PP)
+								({{localize 'FU.PressurePointAbbr'}})
 							{{else}}
 								(-)
 							{{/if}}

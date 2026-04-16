@@ -123,6 +123,8 @@ export class NpcProfileWindow extends FUApplication {
 				opacity,
 			};
 		});
+		// Pressure Points
+		const revealPressurePoints = revealAffinities && getSystemSetting(SETTINGS.pressureSystem);
 
 		Object.assign(context, this.data);
 		context.actor = actor;
@@ -136,7 +138,7 @@ export class NpcProfileWindow extends FUApplication {
 		context.affinities = affinities;
 		context.revealStats = revealStats;
 		context.revealAffinities = revealAffinities;
-		context.revealPressurePoints = revealAffinities && getSystemSetting(SETTINGS.pressureSystem);
+		context.revealPressurePoints = revealPressurePoints;
 		context.level = system.level.value;
 		context.hp = system.resources.hp.max;
 		context.mp = system.resources.mp.max;
@@ -284,14 +286,6 @@ export class NpcProfileWindow extends FUApplication {
 					existing.revealed.affinities[aff] = FU.affTypeAbbr[actor.system.affinities[aff]?.current];
 				}
 			}
-
-			// Pressure Points
-			// if (existing.revealed.pressurePoints) {
-			// 	for (const cat of Object.keys(existing.revealed.pressurePoints)) {
-			// 		existing.revealed.pressurePoints[cat] = FU.affTypeAbbr[actor.system.affinities[cat]?.current];
-			// 	}
-			// }
-
 			// Traits — retain only revealed traits that still exist on the actor
 			if (existing.revealed.traits) {
 				existing.revealed.traits = existing.revealed.traits.filter((t) => traitsArray.includes(t));

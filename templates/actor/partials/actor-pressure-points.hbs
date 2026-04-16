@@ -7,6 +7,9 @@
 					<label class="fu-icon__container"
 						   data-tooltip="{{localize category}} <br> {{#if (pfuCollectionContains @key ../pressurePoints.entries)}}{{localize 'FU.PressurePoint'}}{{/if}}">
 						<i class="fu-icon--s {{pfuIconClass @key}} {{#unless (pfuCollectionContains @key ../pressurePoints.entries)}}fu-form__disabled{{/unless}}"></i>
+						{{#if (pfuCollectionContains @key ../pressurePoints.entries)}}
+							<span class="resource-label-l">{{localize 'FU.PressurePointAbbr'}}</span>
+						{{/if}}
 					</label>
 				</div>
 			{{/each}}
