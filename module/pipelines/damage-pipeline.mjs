@@ -274,12 +274,21 @@ function resolveAffinity(context) {
 				}
 			}
 		}
-		CommonEvents.reveal(context.actor, {
+
+		// Reveal information about this adversary
+		/** @type NpcProfileRevealData **/
+		let revealData = {
 			affinities: {
 				[context.damageType]: true,
 			},
-			pressurePoints: [context.pressureTrigger],
-		});
+		};
+		if (context.pressureTrigger) {
+			revealData.pressurePoints = {
+				[context.pressurePoint]: true,
+			};
+		}
+
+		CommonEvents.reveal(context.actor, revealData);
 	}
 
 	context.affinityMessage = affinityMessage;
