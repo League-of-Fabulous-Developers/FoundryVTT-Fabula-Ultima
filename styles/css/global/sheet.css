@@ -379,26 +379,32 @@
 			flex-direction: row;
 			min-height: 0;
 
-			&:has(main .favorites-section):not(:has(main .favorites-section .item)) {
-				> main .favorites-section {
-					display: none;
+			&.multi-column {
+				&:has(main .favorites-section):not(:has(main .favorites-section .item)) {
+					> main {
+						flex: 0 1 auto;
+						.favorites-section {
+							display: none;
+						}
+					}
+
+					> aside.sidebar {
+						flex: 1 1 auto;
+						max-width: unset;
+					}
 				}
-				> aside.sidebar {
-					flex: 1 1 auto;
-					max-width: unset;
+				.sidebar-container {
+					flex-wrap: wrap;
+					width: auto;
 				}
 			}
 
 			> aside.sidebar {
 				flex: 0 1 auto;
 				overflow-y: auto;
-				min-width: 0;
+				min-width: max-content;
 				min-height: 0;
 				max-width: 45%;
-
-				&.multi-column .sidebar-container {
-					flex-wrap: wrap;
-				}
 
 				.sidebar-container {
 					height: 100%;
@@ -419,7 +425,7 @@
 			}
 
 			> main {
-				flex: 5 1 min-content;
+				flex: 1 1 auto;
 				gap: 5px;
 				display: flex;
 				flex-direction: column;

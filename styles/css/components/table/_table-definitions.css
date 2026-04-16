@@ -3,6 +3,7 @@
 	grid-template-rows: [header] auto [items] 1fr;
 	flex: 1 1 auto;
 	max-height: min-content;
+	min-height: 2rem;
 	overflow-y: auto;
 
 	.fu-table__header {
