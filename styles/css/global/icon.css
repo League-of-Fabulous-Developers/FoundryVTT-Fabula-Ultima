@@ -88,8 +88,35 @@
 	&.warn {
 		color: var(--color-warning);
 	}
+
+	&.center {
+		align-self: center;
+		justify-self: center;
+	}
 }
 
+.fu-icon {
+	.--xs {
+		--icon-size: 16px;
+	}
+	.--s {
+		--icon-size: 24px;
+	}
+	.-sm {
+		--icon-size: 36px;
+	}
+	.--m {
+		--icon-size: 48px;
+	}
+	.--l {
+		--icon-size: 64px;
+	}
+	&.--xl {
+		--icon-size: 96px;
+	}
+}
+
+/* TODO: Phase out the below */
 .fu-icon--xs {
 	--icon-size: 16px;
 }
