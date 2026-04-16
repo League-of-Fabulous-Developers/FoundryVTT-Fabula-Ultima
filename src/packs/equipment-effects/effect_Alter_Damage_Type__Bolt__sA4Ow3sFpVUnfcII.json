@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Bolt)",
   "type": "effect",
   "_id": "sA4Ow3sFpVUnfcII",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "alter-damage-type-bolt",
     "source": ""
@@ -22,7 +22,7 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Bolt)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "_id": "oZe4OoULtGYRO6od",
       "type": "base",
       "system": {

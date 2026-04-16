@@ -63,7 +63,7 @@ export class CharacterSkillTracker {
 	get totalHeroic() {
 		return {
 			value: this.#characterData.actor.itemTypes.heroic.filter((item) => item.parent === this.#characterData.actor).filter((item) => item.system.subtype.value === 'skill').length,
-			max: this.#characterData.actor.itemTypes.class.filter((item) => item.system.level.value >= 10).length,
+			max: Object.values(this.#classSkills).filter((count) => count >= 10).length,
 		};
 	}
 

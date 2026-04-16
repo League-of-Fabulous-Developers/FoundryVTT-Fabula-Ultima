@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Chanter, Orator"
+      "value": "chanter, orator"
     },
     "useWeapon": {
       "accuracy": {

@@ -3,7 +3,7 @@
   "name": "Damage Change (Air)",
   "type": "effect",
   "_id": "bB7cE4Tk0O7pB6VU",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "damage-change-air",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Damage Change (Air)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.bB7cE4Tk0O7pB6VU",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Bolt Thorns",
   "type": "effect",
   "_id": "DCWeI28EPsWYKxK4",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-thorns",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Bolt Thorns",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.DCWeI28EPsWYKxK4",
       "system": {
         "duration": {

@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Physical Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-immunity",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Physical Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.actor-effects.Item.SDc9JdC2tHXUi5xk",
       "system": {
         "duration": {

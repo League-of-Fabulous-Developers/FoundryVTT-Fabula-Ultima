@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": "Commander"
+      "value": "commander"
     },
     "useWeapon": {
       "accuracy": {

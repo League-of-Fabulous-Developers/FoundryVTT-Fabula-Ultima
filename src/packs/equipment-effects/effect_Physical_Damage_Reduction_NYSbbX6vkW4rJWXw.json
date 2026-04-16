@@ -3,7 +3,7 @@
   "name": "Physical Damage Reduction",
   "type": "effect",
   "_id": "NYSbbX6vkW4rJWXw",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-damage-reduction",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Physical Damage Reduction",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.NYSbbX6vkW4rJWXw",
       "system": {
         "duration": {

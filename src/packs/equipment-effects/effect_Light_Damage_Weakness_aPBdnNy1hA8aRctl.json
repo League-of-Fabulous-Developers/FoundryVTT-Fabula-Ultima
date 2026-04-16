@@ -3,7 +3,7 @@
   "name": "Light Damage Weakness",
   "type": "effect",
   "_id": "aPBdnNy1hA8aRctl",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Light Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.aPBdnNy1hA8aRctl",
       "system": {
         "duration": {

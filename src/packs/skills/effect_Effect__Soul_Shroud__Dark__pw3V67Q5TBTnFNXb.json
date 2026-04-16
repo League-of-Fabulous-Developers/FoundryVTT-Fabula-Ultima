@@ -3,7 +3,7 @@
   "name": "Effect: Soul Shroud (Dark)",
   "type": "effect",
   "_id": "pw3V67Q5TBTnFNXb",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/soul_shroud.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/soul_shroud_dark.png",
   "system": {
     "fuid": "effect-soul-shroud-dark",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Soul Shroud (Dark)",
-      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/soul_shroud_dark.png",
       "system": {
         "duration": {
           "event": "endOfScene",
@@ -36,6 +36,11 @@
             "max": 6,
             "style": "basic",
             "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -69,7 +74,8 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "3DqQhTAexuyMSem6",
+        "modifiedTime": 1775808149356
       },
       "_key": "!items.effects!pw3V67Q5TBTnFNXb.dk03CWyervo5sqho"
     }
@@ -88,8 +94,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771475560048,
-    "modifiedTime": 1771475696069,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "modifiedTime": 1775808145132,
+    "lastModifiedBy": "3DqQhTAexuyMSem6"
   },
   "_key": "!items!pw3V67Q5TBTnFNXb"
 }

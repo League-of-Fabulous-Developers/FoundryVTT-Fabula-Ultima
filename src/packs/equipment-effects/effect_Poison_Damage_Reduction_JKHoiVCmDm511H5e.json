@@ -3,7 +3,7 @@
   "name": "Poison Damage Reduction",
   "type": "effect",
   "_id": "JKHoiVCmDm511H5e",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-damage-reduction",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Poison Damage Reduction",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.JKHoiVCmDm511H5e",
       "system": {
         "duration": {

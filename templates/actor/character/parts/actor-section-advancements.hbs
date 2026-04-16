@@ -19,21 +19,9 @@
 							<i class="fu-icon--xs fas fa-info-circle"></i>
 						</a>
 					</span>
-					{{#if (gte summary.pendingSkillUpdates.length 1)}}
-						<a data-tooltip="{{localize 'FU.Synchronize'}}" data-action="advancements" data-command="sync">
-							<i class="fas fa-arrows-rotate"></i>
-						</a>
-					{{/if}}
-					<a data-tooltip="{{localize 'FU.Clear'}}" data-action="advancements" data-command="clear">
-						<i class="fas fa-eraser"></i>
-					</a>
-					{{#if (gte summary.untrackedItems.length 1)}}
-						<a data-tooltip="{{localize 'FU.AdvancementsPruneItems'}}" data-action="advancements" data-command="prune">
-							<i class="fas fa-scissors "></i>
-						</a>
-					{{/if}}
 				</th>
-				<th class="flexrow flex-group-center">
+				<th class="flexrow flex-group-center gap-16">
+
 					<div class="badge-group">
 						{{#each summary.classes as |class|}}
 							<span class="badge" data-tooltip="{{pfuHumanize @key}}">
@@ -44,25 +32,8 @@
 					</div>
 
 					<div class="badge-group">
-						<span class="badge" data-tooltip="{{localize 'FU.HealthAbbr'}}">
-							<i class="fu-icon--xs {{pfuIconClass 'hp'}}"></i>
-							{{pfuDefault summary.benefits.hp 0}}
-						</span>
-						<span class="badge" data-tooltip="{{localize 'FU.MindAbbr'}}">
-							<i class="fu-icon--xs {{pfuIconClass 'mp'}}"></i>
-							{{pfuDefault summary.benefits.mp 0}}
-						</span>
-						<span class="badge" data-tooltip="{{localize 'FU.InventoryAbbr'}}">
-							<i class="fu-icon--xs {{pfuIconClass 'ip'}}"></i>
-							{{pfuDefault summary.benefits.ip 0}}
-						</span>
-						<span class="badge" data-tooltip="{{localize 'FU.Spell'}}">
-							<i class="fu-icon--xs fu-action-spell"></i>
-							{{pfuDefault summary.benefits.spell 0}}
-						</span>
-					</div>
 
-					<div class="badge-group">
+						<!-- Martial -->
 						{{#if summary.benefits.martialArmor }}
 							<span class="badge" data-tooltip="{{localize 'FU.BenefitArmor'}}" style="color: var(--color-equipment)">
 								<i class="fu-icon--xs {{pfuIconClass 'armor'}}"></i>
@@ -83,9 +54,29 @@
 								<i class="fu-icon--xs {{pfuIconClass 'shield'}}"></i>
 							</span>
 						{{/if}}
+
+						<!-- Resources -->
+						<span class="badge" data-tooltip="{{localize 'FU.HealthAbbr'}}">
+							<i class="fu-icon--xs {{pfuIconClass 'hp'}}"></i>
+							{{pfuDefault summary.benefits.hp 0}}
+						</span>
+						<span class="badge" data-tooltip="{{localize 'FU.MindAbbr'}}">
+							<i class="fu-icon--xs {{pfuIconClass 'mp'}}"></i>
+							{{pfuDefault summary.benefits.mp 0}}
+						</span>
+						<span class="badge" data-tooltip="{{localize 'FU.InventoryAbbr'}}">
+							<i class="fu-icon--xs {{pfuIconClass 'ip'}}"></i>
+							{{pfuDefault summary.benefits.ip 0}}
+						</span>
+						<span class="badge" data-tooltip="{{localize 'FU.Spell'}}">
+							<i class="fu-icon--xs fu-action-spell"></i>
+							{{pfuDefault summary.benefits.spell 0}}
+						</span>
+
+
 					</div>
 
-					<div class="badge-group">
+					<div class="badge-group flexshrink">
 						{{#each summary.notifications as |notif|}}
 							<span class="badge" data-tooltip="{{notif.message}}">
 								<i class="fu-icon--xs {{pfuIconClass notif.icon}} warn"></i>
@@ -94,6 +85,20 @@
 								{{/if}}
 							</span>
 						{{/each}}
+
+						{{#if (gte summary.pendingSkillUpdates.length 1)}}
+							<a data-tooltip="{{localize 'FU.Synchronize'}}" data-action="advancements" data-command="sync">
+								<i class="fas fa-arrows-rotate"></i>
+							</a>
+						{{/if}}
+						<a data-tooltip="{{localize 'FU.Clear'}}" data-action="advancements" data-command="clear">
+							<i class="fas fa-eraser"></i>
+						</a>
+						{{#if (gte summary.untrackedItems.length 1)}}
+							<a data-tooltip="{{localize 'FU.AdvancementsPruneItems'}}" data-action="advancements" data-command="prune">
+								<i class="fas fa-scissors "></i>
+							</a>
+						{{/if}}
 					</div>
 
 				</th>

@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Darkblade</strong>, and have acquired the <strong>Charging Cavalry</strong> and <strong>Shadow Strike</strong> Skills.</p><hr /><p>When you use the <strong>Shadow Strike</strong> Skill, you may treat your <strong>High Roll</strong> as being equal to 0 when determining damage dealt by this attack. If you do, after the effects granted by <strong>Shadow Strike</strong> are resolved, you may immediately perform the <strong>Charging Cavalry</strong> Skill for free (paying the appropriate MP cost).</p>",
     "class": {
-      "value": "Commander, Darkblade"
+      "value": "commander, darkblade"
     },
     "showTitleCard": {
       "value": false

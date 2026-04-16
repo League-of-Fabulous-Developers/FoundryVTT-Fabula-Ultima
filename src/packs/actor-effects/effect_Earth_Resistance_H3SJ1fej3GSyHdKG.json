@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Earth Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-resistance",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Earth Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG",
       "system": {
         "duration": {

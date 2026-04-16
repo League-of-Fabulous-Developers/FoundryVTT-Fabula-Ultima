@@ -3,7 +3,7 @@
   "name": "Light Spell Damage Up",
   "type": "effect",
   "_id": "7SSUjPL4eSSqNBR0",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-spell-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Light Spell Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.7SSUjPL4eSSqNBR0",
       "system": {
         "duration": {

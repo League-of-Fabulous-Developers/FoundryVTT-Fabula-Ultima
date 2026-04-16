@@ -3,7 +3,7 @@
   "name": "Fire Damage Up",
   "type": "effect",
   "_id": "GcpVcJnnW2egzXfN",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Fire Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.actor-effects.Item.GcpVcJnnW2egzXfN",
       "system": {
         "duration": {

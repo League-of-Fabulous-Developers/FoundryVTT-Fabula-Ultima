@@ -59,6 +59,14 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  */
 
 /**
+ * @typedef FUClassReference
+ * @desc The reference to a character class in this system.
+ * @property {String} name The localized name.
+ * @property {String} fuid
+ * @property {String} img
+ */
+
+/**
  * @desc Handles indexing of system-specific documents.
  */
 export class CompendiumIndex {
@@ -111,12 +119,17 @@ export class CompendiumIndex {
 	#actorsByType;
 
 	#effectIdList;
-	#classList;
 
 	/**
-	 * @type {string[]}
+	 * @remarks FUID : Image Source Path
+	 * @type {Record<FUClassReference[]>}
 	 */
-	static spellGrantingClasses = ['Elementalist', 'Entropist', 'Spiritist'];
+	#classReferences;
+
+	/**
+	 * @type {string[]} The fuids of the respective classes.
+	 */
+	static spellGrantingClasses = ['elementalist', 'entropist', 'spiritist'];
 
 	// Actors
 	static npcFields = Object.freeze({
@@ -269,21 +282,23 @@ export class CompendiumIndex {
 	}
 
 	/**
-	 * @returns {Promise<String[]>} The fuids of all indexed class items.
+	 * @returns {Promise<FUClassReference[]>}
 	 */
-	async getClassList() {
-		if (!this.#classList) {
+	async getClassReferences() {
+		if (!this.#classReferences) {
 			const classInfo = await this.getClasses();
-			let result = new Set();
+			const refMap = new Map();
+
 			for (const entry of classInfo.class) {
 				const fuid = entry.system.fuid;
-				if (fuid) {
-					result.add(fuid);
+				if (fuid && !refMap.has(fuid)) {
+					refMap.set(fuid, { name: entry.name, fuid, img: entry.img });
 				}
 			}
-			this.#classList = Array.from(result);
+
+			this.#classReferences = Array.from(refMap.values());
 		}
-		return this.#classList;
+		return this.#classReferences;
 	}
 
 	/**
@@ -293,7 +308,9 @@ export class CompendiumIndex {
 	static getClassRequirements(document) {
 		if (document.system?.class?.value) {
 			let classes = document.system.class.value.split(',');
-			classes = classes.map((c) => StringUtils.titleToKebab(c));
+			classes = classes.map((c) => {
+				return StringUtils.titleToKebab(c.trim());
+			});
 			return classes;
 		}
 		return [];

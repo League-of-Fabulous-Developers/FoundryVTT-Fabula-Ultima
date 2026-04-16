@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Light Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-immunity",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Light Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.actor-effects.Item.9JSSN3qPJS2hlzcD",
       "system": {
         "duration": {

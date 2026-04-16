@@ -3,7 +3,7 @@
   "name": "Physical Immunity",
   "type": "effect",
   "_id": "EXp4rHYxlJ9lZVLG",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-immunity",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Physical Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.EXp4rHYxlJ9lZVLG",
       "system": {
         "duration": {

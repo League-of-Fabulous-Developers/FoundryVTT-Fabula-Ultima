@@ -3,7 +3,7 @@
   "name": "Physical Thorns",
   "type": "effect",
   "_id": "9OCC7zTQ0jJIGuEV",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-thorns",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Physical Thorns",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.9OCC7zTQ0jJIGuEV",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Dark Damage Reduction",
   "type": "effect",
   "_id": "VcQdwLW3n00MIskA",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-damage-reduction",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Dark Damage Reduction",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.VcQdwLW3n00MIskA",
       "system": {
         "duration": {

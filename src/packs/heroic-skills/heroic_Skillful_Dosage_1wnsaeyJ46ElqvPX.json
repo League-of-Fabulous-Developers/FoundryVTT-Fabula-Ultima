@@ -18,7 +18,7 @@
       "value": false
     },
     "class": {
-      "value": "Gourmet, Loremaster, Merchant, Tinkerer"
+      "value": "gourmet, loremaster, merchant, tinkerer"
     },
     "hasResource": {
       "value": false

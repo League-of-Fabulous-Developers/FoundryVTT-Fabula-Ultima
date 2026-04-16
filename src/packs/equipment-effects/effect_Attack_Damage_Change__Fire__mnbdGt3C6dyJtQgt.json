@@ -3,7 +3,7 @@
   "name": "Attack Damage Change (Fire)",
   "type": "effect",
   "_id": "mnbdGt3C6dyJtQgt",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "attack-damage-change-fire",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Attack Damage Change (Fire)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.mnbdGt3C6dyJtQgt",
       "system": {
         "duration": {

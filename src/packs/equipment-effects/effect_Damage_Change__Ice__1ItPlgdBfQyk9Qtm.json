@@ -3,7 +3,7 @@
   "name": "Damage Change (Ice)",
   "type": "effect",
   "_id": "1ItPlgdBfQyk9Qtm",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "damage-change-ice",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Damage Change (Ice)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.1ItPlgdBfQyk9Qtm",
       "system": {
         "duration": {

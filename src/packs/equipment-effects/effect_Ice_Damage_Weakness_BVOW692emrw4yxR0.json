@@ -3,7 +3,7 @@
   "name": "Ice Damage Weakness",
   "type": "effect",
   "_id": "BVOW692emrw4yxR0",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "ice-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Ice Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.BVOW692emrw4yxR0",
       "system": {
         "duration": {

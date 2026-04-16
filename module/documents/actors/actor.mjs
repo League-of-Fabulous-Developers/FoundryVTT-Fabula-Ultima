@@ -202,7 +202,11 @@ export class FUActor extends Actor {
 							token: this.resolveToken(),
 						},
 					);
-					await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
+					try {
+						await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
+					} catch (err) {
+						console.warn(`Failed to apply crisis effect: ${err}`);
+					}
 				}
 			}
 		}

@@ -3,7 +3,7 @@
   "name": "Skill Damage Change (Bolt)",
   "type": "effect",
   "_id": "B9fSoNMbFo0n3glm",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "skill-damage-change-bolt",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Skill Damage Change (Bolt)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.B9fSoNMbFo0n3glm",
       "system": {
         "duration": {

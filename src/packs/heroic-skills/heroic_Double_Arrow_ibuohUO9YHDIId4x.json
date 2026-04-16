@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Commander, Sharpshooter"
+      "value": "commander, sharpshooter"
     },
     "useWeapon": {
       "accuracy": {

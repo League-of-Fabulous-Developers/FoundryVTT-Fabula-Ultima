@@ -3,7 +3,7 @@
   "name": "Effect: Reinforce (Shaken)",
   "type": "effect",
   "_id": "fRj1ONYfLF8Ert18",
-  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce_shaken.png",
   "system": {
     "fuid": "effect-reinforce-shaken",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Reinforce (Shaken)",
-      "img": "systems/projectfu/styles/static/statuses/immunities/ShakenImmune.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/reinforce_shaken.png",
       "system": {
         "duration": {
           "event": "endOfScene",
@@ -36,6 +36,11 @@
             "max": 6,
             "style": "basic",
             "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -69,7 +74,8 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "3DqQhTAexuyMSem6",
+        "modifiedTime": 1775876523292
       },
       "_key": "!items.effects!fRj1ONYfLF8Ert18.sJloIrKsBjrUWGxt"
     }
@@ -88,8 +94,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771475560048,
-    "modifiedTime": 1771475684647,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "modifiedTime": 1775876519884,
+    "lastModifiedBy": "3DqQhTAexuyMSem6"
   },
   "_key": "!items!fRj1ONYfLF8Ert18"
 }
