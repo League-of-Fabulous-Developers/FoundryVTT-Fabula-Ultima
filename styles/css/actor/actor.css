@@ -12,6 +12,20 @@
 	padding: 0.5rem;
 }
 
+.projectfu.sheet.actor .traits-container {
+	display: flex;
+	justify-content: space-evenly;
+
+	.traits {
+		display: flex;
+		label {
+			display: flex;
+			place-items: baseline;
+			gap: 1ch;
+		}
+	}
+}
+
 .projectfu .npc-border-col {
 	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
 	border-radius: 10px;

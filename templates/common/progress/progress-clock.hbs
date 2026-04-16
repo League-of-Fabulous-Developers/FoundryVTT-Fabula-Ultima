@@ -20,17 +20,19 @@
 	</div>
 
 	{{#if displayName}}
-		{{#if compact}}
-			<a data-action="openTrackMenu" data-id="{{id}}"
-			   {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}
-			   data-index="{{index}}">
-				<span>{{localize displayName}}</span>
-			</a>
-		{{else}}
-			<label>
-				<span>{{localize displayName}}</span>
-			</label>
-		{{/if}}
+		<div class="pfu-progress__name__container">
+			{{#if compact}}
+				<a data-action="openTrackMenu" data-id="{{id}}"
+				   {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}
+				   data-index="{{index}}">
+					<span>{{localize displayName}}</span>
+				</a>
+			{{else}}
+				<label>
+					<span>{{localize displayName}}</span>
+				</label>
+			{{/if}}
+		</div>
 	{{/if}}
 
 	{{#unless compact}}

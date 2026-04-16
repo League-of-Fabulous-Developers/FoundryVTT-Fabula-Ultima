@@ -363,49 +363,99 @@
 
 .projectfu.sheet.character,
 .projectfu.sheet.npc {
-	.body-section {
-		gap: 5px;
+	.tab[data-tab='stats'].active {
 		display: flex;
-		flex: 1 1 auto;
-		overflow-y: auto;
+		flex-direction: column;
+		height: 80%;
 
-		main {
-			flex: 1 1 auto;
-			gap: 5px;
-			overflow-y: auto;
+		.traits-section {
+			flex: 0 0 auto;
 		}
 
-		aside {
-			display: flex;
-			flex-direction: column;
-			flex: 0 0 auto;
-			justify-content: start;
-			align-items: start;
-			text-align: center;
-			overflow-y: auto;
-			overflow-x: hidden;
+		.body-section {
+			flex: 1 1 max-content;
 			gap: 5px;
-			> * {
-				width: 100%;
+			display: flex;
+			flex-direction: row;
+			min-height: 0;
+
+			&.multi-column {
+				&:has(main .favorites-section):not(:has(main .favorites-section .item)) {
+					> main {
+						flex: 0 1 auto;
+						.favorites-section {
+							display: none;
+						}
+					}
+
+					> aside.sidebar {
+						flex: 1 1 auto;
+						max-width: unset;
+					}
+				}
+				.sidebar-container {
+					flex-wrap: wrap;
+					width: auto;
+				}
 			}
-			.effects-section {
-				[data-effect-id] {
-					a[data-link][data-type='Item'] {
-						flex: 0 1 max-content;
+
+			> aside.sidebar {
+				flex: 0 1 auto;
+				overflow-y: auto;
+				min-width: max-content;
+				min-height: 0;
+				max-width: 45%;
+
+				.sidebar-container {
+					height: 100%;
+					width: 100%;
+					gap: 5px;
+					display: flex;
+					flex-direction: column;
+
+					.clocks-section .pfu-progress .pfu-progress__name__container {
+						max-width: 12ch;
+					}
+
+					> * {
+						height: max-content;
+						flex: 0 1 min-content;
 					}
 				}
 			}
-		}
 
-		.favorites-section {
-			min-height: 12rem;
-			overflow-y: auto;
-			flex: 1 1 auto;
+			> main {
+				flex: 1 1 auto;
+				gap: 5px;
+				display: flex;
+				flex-direction: column;
+				min-height: 0;
+				min-width: 0;
+				overflow-y: auto;
+			}
 
-			.favorites-table .fu-table__header {
-				position: sticky;
-				top: 0;
-				z-index: 10;
+			.effects-section {
+				.effect {
+					a {
+						flex: 0 1 max-content;
+					}
+					.effect-name {
+						max-width: 12ch;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
+			}
+
+			.favorites-section {
+				min-height: 0;
+				flex: 5 1 auto;
+				display: flex;
+				flex-direction: column;
+				.items-main-header {
+					flex: 0 0 auto;
+				}
 			}
 		}
 	}
@@ -420,10 +470,14 @@
 
 		main {
 			.biography-section {
-				min-height: 4rem;
+				min-height: max-content;
 				flex: 1 1 auto;
 				font-size: var(--font-size-base);
 				overflow-y: auto;
+
+				&:has(> div:empty) {
+					display: none;
+				}
 
 				&:has(prose-mirror[name='system.description']) {
 					min-height: max-content;
@@ -439,13 +493,6 @@
 
 			.favorites-section {
 				min-height: 8rem;
-				overflow-y: auto;
-				flex: 1 1 auto;
-
-				.favorites-table .fu-table__header {
-					position: sticky;
-					top: 0;
-				}
 			}
 		}
 	}
@@ -627,12 +674,6 @@
 	height: 22px;
 	width: 100%;
 	border-radius: 5px;
-}
-
-.projectfu .resource-content.traits.compact {
-	-webkit-box-flex: 1;
-	-ms-flex-positive: 1;
-	flex-grow: 1;
 }
 
 .projectfu .resource-content.levelup-container {

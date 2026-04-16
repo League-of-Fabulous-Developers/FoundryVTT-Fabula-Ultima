@@ -2,7 +2,9 @@
 /* Progress Styles
  /* ----------------------------------------- */
 .pfu-progress {
-	gap: 4px;
+	display: grid;
+	gap: 1px;
+	grid-template-columns: auto 1fr;
 
 	span,
 	i {
@@ -16,10 +18,19 @@
 }
 
 .pfu-progress__segments__container {
+	grid-row: 1 / span 2;
 	display: flex;
 	padding: 2px;
 	justify-content: space-evenly;
 	gap: 2em;
+}
+
+.pfu-progress__name__container {
+	display: flex;
+	flex-direction: column;
+	label {
+		vertical-align: middle;
+	}
 }
 
 .pfu-progress__collection {
@@ -39,10 +50,18 @@
 }
 
 .pfu-progress__controls {
-	display: grid;
-	gap: 4px;
-	grid-column: span 2 / span 2;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+	display: flex;
+	gap: 2px;
+	justify-content: space-evenly;
+
+	a {
+		border-radius: 30%;
+		width: 1lh;
+		height: 1lh;
+		padding: 1px;
+		text-align: center;
+		vertical-align: middle;
+	}
 }
 
 /* Segment clip-paths */
