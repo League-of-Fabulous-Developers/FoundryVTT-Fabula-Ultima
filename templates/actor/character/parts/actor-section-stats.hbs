@@ -1,4 +1,4 @@
-<div class="tab flexcol {{tab.cssClass}}" data-group="primary" data-tab="stats">
+<div class="tab {{tab.cssClass}}" data-group="primary" data-tab="stats">
 	{{#if isCharacter}}
 		<!-- Traits Section -->
 		<section class="section-container traits-container desc">
@@ -22,96 +22,98 @@
 			</div>
 		</section>
 		<section class="body-section">
-			<aside class="sidebar flex-group-center">
-				{{!-- Action Buttons --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
-				{{!-- Vehicle Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-vehicle.hbs"}}
-				{{!-- Garden Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-garden.hbs"}}
+			<aside class="sidebar">
+				<div class="sidebar-container">
+					{{!-- Action Buttons --}}
+					{{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
+					{{!-- Vehicle Section --}}
+					{{> "systems/projectfu/templates/actor/partials/actor-vehicle.hbs"}}
+					{{!-- Garden Section --}}
+					{{> "systems/projectfu/templates/actor/partials/actor-garden.hbs"}}
+					{{!-- Bond Section --}}
+					<fieldset class="section-container title-fieldset desc resource-content">
+						<legend class="resource-label-m">
+							{{localize 'FU.Bonds'}}
+						</legend>
+						<div class="bonds">
+							{{#each system.bonds as |bond bondIndex|}}
+								<div class="bond-row flexrow mb-2">
+									<label class="resource-text-sm flex-group-left flex-grow">
+										<strong>
+											{{#if bond.name}}
+												{{bond.name}}
+											{{else}}
+												{{localize 'FU.NoItem'}}
+											{{/if}}
+										</strong>
+									</label>
+									<label class="resource-text-sm bond-strength flex0" data-tooltip="
+                                            {{#if (lookup @root.FU.bonds.admInf bond.admInf)}}
+										{{localize (lookup @root.FU.bonds.admInf bond.admInf)}}<br>
+                                            {{/if}}
+										{{#if (lookup @root.FU.bonds.loyMis bond.loyMis)}}
+											{{localize (lookup @root.FU.bonds.loyMis bond.loyMis)}}<br>
+                                            {{/if}}
+										{{#if (lookup @root.FU.bonds.affHat bond.affHat)}}
+											{{localize (lookup @root.FU.bonds.affHat bond.affHat)}}
+										{{/if}}
+                                        ">
+										{{ bond.strength }}
+									</label>
+								</div>
+							{{/each}}
+						</div>
+					</fieldset>
+					{{!-- Effects Section --}}
+					{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
+					{{!-- Clock Section --}}
+					{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
+				</div>
 			</aside>
-			<main class="flexcol">
+			<main>
 				{{!-- Favorite Section --}}
 				{{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
 			</main>
-			<aside class="flex-group-center">
-				{{!-- Bond Section --}}
-				<fieldset class="section-container title-fieldset desc resource-content">
-					<legend class="resource-label-m">
-						{{localize 'FU.Bonds'}}
-					</legend>
-					<div class="bonds">
-						{{#each system.bonds as |bond bondIndex|}}
-							<div class="bond-row flexrow mb-2">
-								<label class="resource-text-sm flex-group-left flex-grow">
-									<strong>
-										{{#if bond.name}}
-											{{bond.name}}
-										{{else}}
-											{{localize 'FU.NoItem'}}
-										{{/if}}
-									</strong>
-								</label>
-								<label class="resource-text-sm bond-strength flex0" data-tooltip="
-                                            {{#if (lookup @root.FU.bonds.admInf bond.admInf)}}
-									{{localize (lookup @root.FU.bonds.admInf bond.admInf)}}<br>
-                                            {{/if}}
-									{{#if (lookup @root.FU.bonds.loyMis bond.loyMis)}}
-										{{localize (lookup @root.FU.bonds.loyMis bond.loyMis)}}<br>
-                                            {{/if}}
-									{{#if (lookup @root.FU.bonds.affHat bond.affHat)}}
-										{{localize (lookup @root.FU.bonds.affHat bond.affHat)}}
-									{{/if}}
-                                        ">
-									{{ bond.strength }}
-								</label>
-							</div>
-						{{/each}}
-					</div>
-				</fieldset>
-				{{!-- Effects Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
-				{{!-- Clock Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
-			</aside>
 		</section>
 	{{/if}}
 
 	{{#if isNPC}}
 		<section class="body-section">
-			<aside class="sidebar flexcol">
-				{{!-- Action Buttons --}}
-				{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
-				{{!-- Therioform Section --}}
-				{{#if (pfuGetSetting 'showAssociatedTherioforms')}}
-					<fieldset class="desc resource-content title-fieldset associated-therioforms">
+			<aside class="sidebar">
+				<div class="sidebar-container">
+					{{!-- Action Buttons --}}
+					{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
+					{{!-- Therioform Section --}}
+					{{#if (pfuGetSetting 'showAssociatedTherioforms')}}
+						<fieldset class="desc resource-content title-fieldset associated-therioforms">
+							<legend class="resource-label-m">
+								<label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>
+							</legend>
+							<label>
+								<input type="text" name="system.associatedTherioforms"
+									   value="{{system.associatedTherioforms}}"
+									   class="resource-inputs select-dropdown-full resource-text-m">
+							</label>
+						</fieldset>
+					{{/if}}
+					{{!-- Traits Section --}}
+					<fieldset class="section-container traits-section title-fieldset desc resource-content">
 						<legend class="resource-label-m">
-							<label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>
+							<label>{{localize 'FU.Traits'}}</label>
 						</legend>
 						<label>
-							<input type="text" name="system.associatedTherioforms"
-								   value="{{system.associatedTherioforms}}"
-								   class="resource-inputs select-dropdown-full resource-text-m">
+							<input class="traitdesc flex3" type="text" name="system.traits.value"
+								   value="{{ system.traits.value }}" placeholder="{{localize 'FU.Traits'}}"
+								   data-dtype="String" />
 						</label>
 					</fieldset>
-				{{/if}}
-				{{!-- Traits Section --}}
-				<fieldset class="section-container traits-section title-fieldset desc resource-content">
-					<legend class="resource-label-m">
-						<label>{{localize 'FU.Traits'}}</label>
-					</legend>
-					<label>
-						<input class="traitdesc flex3" type="text" name="system.traits.value"
-							   value="{{ system.traits.value }}" placeholder="{{localize 'FU.Traits'}}"
-							   data-dtype="String" />
-					</label>
-				</fieldset>
-				{{!-- Effects Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
-				{{!-- Clock Section --}}
-				{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
+					{{!-- Effects Section --}}
+					{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
+					{{!-- Clock Section --}}
+					{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
+				</div>
 			</aside>
-			<main class="stats-container flexcol">
+			<main>
 				<!-- Description Section -->
 				<fieldset class="section-container biography-section title-fieldset desc resource-content">
 					<legend class="resource-label-m" aria-describedby="tooltip">
@@ -120,13 +122,13 @@
 						</a>
 					</legend>
 					<div>
-					{{#if (eq (pfuGetSetting 'optionNPCNotesTab') true)}}
-						{{{enrichedHtml.description}}}
-					{{else}}
-						<prose-mirror name="system.description" value="{{system.description}}" class="fit" toggled>
+					{{~#if (eq (pfuGetSetting 'optionNPCNotesTab') true)~}}
+						{{~{enrichedHtml.description}~}}
+					{{~else}}
+						<prose-mirror name="system.description" value="{{~system.description~}}" class="fit" toggled>
 							{{{enrichedHtml.description}}}
 						</prose-mirror>
-					{{/if}}
+					{{/if~}}
 					</div>
 				</fieldset>
 				<!-- Favorite Section -->

@@ -151,6 +151,7 @@
 		-ms-transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
 		transform: rotate(calc((var(--index) - 1) * 1turn / var(--segments)));
 		z-index: 1;
+		opacity: 0.75;
 
 		&.cell-clock__clock-segment--filled {
 			background-color: var(--color-border-primary);

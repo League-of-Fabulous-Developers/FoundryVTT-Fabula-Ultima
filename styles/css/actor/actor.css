@@ -18,7 +18,6 @@
 
 	.traits {
 		display: flex;
-		max-width: 50%;
 		label {
 			display: flex;
 			place-items: baseline;

@@ -1,5 +1,19 @@
 .favorites-table {
 	grid-template-columns: [name] minmax(max-content, auto) [details] 1fr [controls] 100px;
+	grid-template-rows: [header] auto [items] 1fr;
+	flex: 1 1 auto;
+	max-height: min-content;
+	overflow-y: auto;
+
+	.fu-table__header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+	}
+
+	.item {
+		height: min-content;
+	}
 }
 
 .classes-table {
