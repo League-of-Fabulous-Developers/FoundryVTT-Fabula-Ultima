@@ -190,8 +190,7 @@ export class NpcProfileWindow extends FUApplication {
 			.map((value) => value.trim())
 			.filter(Boolean);
 		// Pressure Points
-		const weaponCategories = Object.keys(FU.weaponCategories);
-		const pressurePoints = Object.fromEntries((actor.system.pressurePoints.values ?? []).map((p) => [p, false]));
+		const pressurePoints = Object.fromEntries((actor.system.pressurePoints.values ?? []).map((p) => [p, true]));
 
 		if (edit) {
 			console.debug(`Editing profile of ${JSON.stringify(existing)}`);
@@ -202,7 +201,7 @@ export class NpcProfileWindow extends FUApplication {
 				affinities: affinities,
 				affinityMap: affinityMap,
 				pressurePoints,
-				weaponCategories,
+				weaponCategories: FU.weaponCategories,
 				traits: traitsArray,
 				FU: FU,
 			});
@@ -247,7 +246,7 @@ export class NpcProfileWindow extends FUApplication {
 				}
 
 				// Pressure Points
-				for (const category of weaponCategories) {
+				for (const category of Object.keys(FU.weaponCategories)) {
 					const isRevealed = foundry.utils.getProperty(updatedProfile, `pressurePoints.${category}`);
 					if (isRevealed === true) {
 						existing.revealed.pressurePoints ??= {};

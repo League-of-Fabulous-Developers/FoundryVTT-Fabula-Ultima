@@ -55,8 +55,13 @@
 					{{#each weaponCategories}}
 						<label>
 							<input type="checkbox"
-								   name="pressurePoints.{{this}}" {{#if (lookup ../existing.revealed.pressurePoints this)}}checked{{/if}} />
-							{{localize (lookup @root.weaponCategories this)}} ({{localize (lookup ../pressurePoints this)}})
+								   name="pressurePoints.{{@key}}" {{#if (lookup ../existing.revealed.pressurePoints @key)}}checked{{/if}} />
+							{{localize this}}
+							{{#if (lookup ../pressurePoints @key)}}
+								(PP)
+							{{else}}
+								(-)
+							{{/if}}
 						</label>
 					{{/each}}
 				</div>
@@ -69,14 +74,16 @@
 			<legend class="resource-label-m">
 				{{localize 'FU.Traits'}}
 			</legend>
-			{{#each traits}}
-				<label>
-					<input type="checkbox"
-						   name="traits.{{this}}"
-						   {{#if (pfuCollectionContains ../existing.revealed.traits this)}}checked{{/if}} />
-					{{this}}
-				</label>
-			{{/each}}
+			<div class="grid-2col">
+				{{#each traits}}
+					<label>
+						<input type="checkbox"
+							   name="traits.{{this}}"
+							   {{#if (pfuCollectionContains ../existing.revealed.traits this)}}checked{{/if}} />
+						{{this}}
+					</label>
+				{{/each}}
+			</div>
 		</fieldset>
 	{{/if}}
 </div>
