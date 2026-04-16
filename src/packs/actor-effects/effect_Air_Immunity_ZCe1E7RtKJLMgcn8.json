@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Air Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-immunity",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Air Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.actor-effects.Item.ZCe1E7RtKJLMgcn8",
       "system": {
         "duration": {

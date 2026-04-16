@@ -3,7 +3,7 @@
   "name": "Attack Damage Change (Earth)",
   "type": "effect",
   "_id": "ZDbTzy93BBXVQhH1",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "attack-damage-change-earth",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Attack Damage Change (Earth)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.ZDbTzy93BBXVQhH1",
       "system": {
         "duration": {

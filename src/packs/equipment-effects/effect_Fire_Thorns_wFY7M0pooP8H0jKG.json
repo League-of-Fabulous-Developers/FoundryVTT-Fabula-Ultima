@@ -3,7 +3,7 @@
   "name": "Fire Thorns",
   "type": "effect",
   "_id": "wFY7M0pooP8H0jKG",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-thorns",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Fire Thorns",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.wFY7M0pooP8H0jKG",
       "system": {
         "duration": {

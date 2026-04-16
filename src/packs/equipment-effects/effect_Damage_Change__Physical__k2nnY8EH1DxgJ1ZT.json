@@ -3,7 +3,7 @@
   "name": "Damage Change (Physical)",
   "type": "effect",
   "_id": "k2nnY8EH1DxgJ1ZT",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "damage-change-physical",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Damage Change (Physical)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.k2nnY8EH1DxgJ1ZT",
       "system": {
         "duration": {

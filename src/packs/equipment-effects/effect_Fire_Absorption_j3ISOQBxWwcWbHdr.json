@@ -3,7 +3,7 @@
   "name": "Fire Absorption",
   "type": "effect",
   "_id": "j3ISOQBxWwcWbHdr",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-absorption",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Fire Absorption",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.j3ISOQBxWwcWbHdr",
       "system": {
         "duration": {

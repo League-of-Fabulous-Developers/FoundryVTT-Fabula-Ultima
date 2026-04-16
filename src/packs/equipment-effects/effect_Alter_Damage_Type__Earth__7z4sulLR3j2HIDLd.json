@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Earth)",
   "type": "effect",
   "_id": "7z4sulLR3j2HIDLd",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "alter-damage-type-earth",
     "source": ""
@@ -22,7 +22,7 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Earth)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "_id": "sI51dmD9J3OQLbsb",
       "type": "base",
       "system": {

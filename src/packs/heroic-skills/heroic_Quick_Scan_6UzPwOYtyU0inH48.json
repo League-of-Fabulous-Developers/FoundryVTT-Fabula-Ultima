@@ -23,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Loremaster"
+      "value": "loremaster"
     },
     "useWeapon": {
       "accuracy": {

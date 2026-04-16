@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Poison)",
   "type": "effect",
   "_id": "exv4k0HLBK9WVA5K",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "alter-damage-type-poison",
     "source": ""

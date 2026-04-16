@@ -8,7 +8,7 @@
     },
     "description": "<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Elementalist</strong> and <strong>Pilot</strong>, and have acquired the <strong>Shadow Strike</strong> Skill.</p><hr /><p>When you use the @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong> (its damage type cannot change, as usual), and you gain Resistance to the damage type you did not choose until the start of your next turn.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Shadow Strike</strong> Skill, the attack may target enemies that cannot be targeted by <strong>melee</strong> attacks.</p><hr /><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.gJWZDrbPrRIA0Udi] or @EFFECT[Compendium.projectfu.heroic-skills.Item.YD0Qid4TdxUVksXQ]</p>",
     "class": {
-      "value": "Darkblade, Elementalist, Pilot"
+      "value": "darkblade, elementalist, pilot"
     },
     "showTitleCard": {
       "value": false

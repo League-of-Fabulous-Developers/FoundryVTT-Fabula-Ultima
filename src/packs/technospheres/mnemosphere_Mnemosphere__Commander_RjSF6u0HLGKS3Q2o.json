@@ -14,7 +14,7 @@
       {
         "name": "Bishop's Edict",
         "type": "skill",
-        "_id": "p0frG3YGlKrlk2qL",
+        "_id": "66RGx8mPhY2YAdAe",
         "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
         "system": {
           "summary": {
@@ -30,7 +30,7 @@
             "min": 0
           },
           "class": {
-            "value": "Commander"
+            "value": "commander"
           },
           "useWeapon": {
             "accuracy": false,
@@ -106,7 +106,7 @@
       {
         "name": "Charging Cavalry",
         "type": "skill",
-        "_id": "Eh55DnEjjlUL56BF",
+        "_id": "lzrBeuuHB6CWnajO",
         "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
         "system": {
           "summary": {
@@ -122,7 +122,7 @@
             "min": 0
           },
           "class": {
-            "value": "Commander"
+            "value": "commander"
           },
           "useWeapon": {
             "accuracy": false,
@@ -197,7 +197,7 @@
       {
         "name": "Crushing Chariot",
         "type": "skill",
-        "_id": "urGeKgHmEVrjl4XJ",
+        "_id": "NTGZkForZQ3ieeqs",
         "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_crushing_chariot.png",
         "system": {
           "summary": {
@@ -213,7 +213,7 @@
             "min": 0
           },
           "class": {
-            "value": "Commander"
+            "value": "commander"
           },
           "useWeapon": {
             "accuracy": false,
@@ -406,7 +406,7 @@
       {
         "name": "King's Castle",
         "type": "skill",
-        "_id": "rUjmsCjsHV1cGqVO",
+        "_id": "4PsSFiSDtsMAsUjA",
         "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
         "system": {
           "summary": {
@@ -422,7 +422,7 @@
             "min": 0
           },
           "class": {
-            "value": "Commander"
+            "value": "commander"
           },
           "useWeapon": {
             "accuracy": false,
@@ -498,7 +498,7 @@
       {
         "name": "Queen's Gambit",
         "type": "skill",
-        "_id": "I21X6UAdLoF6xJde",
+        "_id": "MOE1AHz1qsPeHuqe",
         "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_queens_gambit.png",
         "system": {
           "summary": {
@@ -514,7 +514,7 @@
             "min": 0
           },
           "class": {
-            "value": "Commander"
+            "value": "commander"
           },
           "useWeapon": {
             "accuracy": true,
@@ -603,7 +603,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1775523558069,
+    "modifiedTime": 1776191702841,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

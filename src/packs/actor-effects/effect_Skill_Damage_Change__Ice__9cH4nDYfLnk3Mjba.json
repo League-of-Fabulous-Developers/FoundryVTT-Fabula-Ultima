@@ -3,7 +3,7 @@
   "name": "Skill Damage Change (Ice)",
   "type": "effect",
   "_id": "9cH4nDYfLnk3Mjba",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "skill-damage-change-ice",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Skill Damage Change (Ice)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.actor-effects.Item.9cH4nDYfLnk3Mjba",
       "system": {
         "duration": {

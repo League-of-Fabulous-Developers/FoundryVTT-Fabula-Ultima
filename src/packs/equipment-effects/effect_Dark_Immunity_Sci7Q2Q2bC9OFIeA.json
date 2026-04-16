@@ -3,7 +3,7 @@
   "name": "Dark Immunity",
   "type": "effect",
   "_id": "Sci7Q2Q2bC9OFIeA",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-immunity",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Dark Immunity",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.Sci7Q2Q2bC9OFIeA",
       "system": {
         "duration": {

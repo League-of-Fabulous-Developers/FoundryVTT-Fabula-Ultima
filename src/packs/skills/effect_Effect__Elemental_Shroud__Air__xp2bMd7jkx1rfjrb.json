@@ -3,7 +3,7 @@
   "name": "Effect: Elemental Shroud (Air)",
   "type": "effect",
   "_id": "xp2bMd7jkx1rfjrb",
-  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud_air.png",
   "system": {
     "fuid": "effect-elemental-shroud-air",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Elemental Shroud (Air)",
-      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud_air.png",
       "system": {
         "duration": {
           "event": "endOfScene",
@@ -36,6 +36,11 @@
             "max": 6,
             "style": "basic",
             "step": 1
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -69,7 +74,8 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "lastModifiedBy": null
+        "lastModifiedBy": "3DqQhTAexuyMSem6",
+        "modifiedTime": 1775792599326
       },
       "_key": "!items.effects!xp2bMd7jkx1rfjrb.kHcShxkx44ViFsOr"
     }
@@ -88,8 +94,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1771454331634,
-    "modifiedTime": 1771474202083,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+    "modifiedTime": 1775792589705,
+    "lastModifiedBy": "3DqQhTAexuyMSem6"
   },
   "_key": "!items!xp2bMd7jkx1rfjrb"
 }

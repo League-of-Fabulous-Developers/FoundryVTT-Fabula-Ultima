@@ -3,7 +3,7 @@
   "name": "Earth Spell Damage Up",
   "type": "effect",
   "_id": "ifkqRAf9tVWGIAPh",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-spell-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Earth Spell Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/earth.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.ifkqRAf9tVWGIAPh",
       "system": {
         "duration": {

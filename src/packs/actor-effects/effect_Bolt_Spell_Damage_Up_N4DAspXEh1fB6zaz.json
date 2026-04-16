@@ -3,7 +3,7 @@
   "name": "Bolt Spell Damage Up",
   "type": "effect",
   "_id": "N4DAspXEh1fB6zaz",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-spell-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Bolt Spell Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "origin": "Compendium.projectfu.actor-effects.Item.N4DAspXEh1fB6zaz",
       "system": {
         "duration": {

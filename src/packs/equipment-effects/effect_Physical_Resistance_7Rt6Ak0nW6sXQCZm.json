@@ -3,7 +3,7 @@
   "name": "Physical Resistance",
   "type": "effect",
   "_id": "7Rt6Ak0nW6sXQCZm",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-resistance",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Physical Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/physical.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.7Rt6Ak0nW6sXQCZm",
       "system": {
         "duration": {

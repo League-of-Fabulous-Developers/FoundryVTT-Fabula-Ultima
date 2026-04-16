@@ -3,7 +3,7 @@
   "name": "Fire Damage Weakness",
   "type": "effect",
   "_id": "dAFACJSQzCbcU9We",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-damage-weakness",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Fire Damage Weakness",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.dAFACJSQzCbcU9We",
       "system": {
         "duration": {

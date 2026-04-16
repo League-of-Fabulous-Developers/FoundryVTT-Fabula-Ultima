@@ -3,7 +3,7 @@
   "name": "Skill Damage Change (Light)",
   "type": "effect",
   "_id": "FX02kfeB5UFOhz6u",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "skill-damage-change-light",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Skill Damage Change (Light)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.FX02kfeB5UFOhz6u",
       "system": {
         "duration": {

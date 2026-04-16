@@ -17,7 +17,7 @@
       "min": 0
     },
     "class": {
-      "value": "Pilot"
+      "value": "pilot"
     },
     "useWeapon": {
       "accuracy": false,

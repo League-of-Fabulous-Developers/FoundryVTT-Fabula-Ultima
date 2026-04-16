@@ -3,7 +3,7 @@
   "name": "Ice Spell Damage Up",
   "type": "effect",
   "_id": "tunjVS48c8W3Kybq",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "ice-spell-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Ice Spell Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.actor-effects.Item.tunjVS48c8W3Kybq",
       "system": {
         "duration": {

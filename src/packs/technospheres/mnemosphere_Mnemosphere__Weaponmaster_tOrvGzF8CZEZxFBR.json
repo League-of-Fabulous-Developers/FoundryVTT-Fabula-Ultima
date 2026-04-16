@@ -14,7 +14,7 @@
       {
         "name": "Bladestorm",
         "type": "skill",
-        "_id": "SLqYmmAupTuneaLg",
+        "_id": "D12sbnzrOsPO57RT",
         "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bladestorm.png",
         "system": {
           "summary": {
@@ -30,7 +30,7 @@
             "min": 0
           },
           "class": {
-            "value": "Weaponmaster"
+            "value": "weaponmaster"
           },
           "useWeapon": {
             "accuracy": true,
@@ -103,7 +103,7 @@
       {
         "name": "Bone Crusher",
         "type": "skill",
-        "_id": "5PneUF2Az9rBlw79",
+        "_id": "OVqmGJ7yAEO8khpO",
         "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bone_crusher.png",
         "system": {
           "summary": {
@@ -119,7 +119,7 @@
             "min": 0
           },
           "class": {
-            "value": "Weaponmaster"
+            "value": "weaponmaster"
           },
           "useWeapon": {
             "accuracy": false,
@@ -293,13 +293,13 @@
       {
         "name": "Breach",
         "type": "skill",
-        "_id": "mZAMKjqsA0akHvYb",
+        "_id": "5w0AV3TEsS44iSho",
         "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one shield equipped by the target.</p></li><li><p>You destroy the target’s equipped armor.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
+          "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target <strong>a single creature</strong>. If the attack is successful, it deals no damage and you choose one option:</p><ul><li><p>You destroy one <strong>shield</strong> equipped by the target.</p></li><li><p>You destroy the target’s equipped <strong>armor</strong>.</p></li><li><p>All sources deal <strong>【SL × 2】</strong> extra damage to the target until the start of your next turn.</p></li></ul>",
           "showTitleCard": {
             "value": false
           },
@@ -309,7 +309,7 @@
             "min": 0
           },
           "class": {
-            "value": "Weaponmaster"
+            "value": "weaponmaster"
           },
           "useWeapon": {
             "accuracy": true,
@@ -358,12 +358,12 @@
             "entries": [
               "Compendium.projectfu.skills.Item.Cc1391vhlS1yIMrI"
             ],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "prompt": false
           },
           "traits": [],
           "resource": {
@@ -384,13 +384,13 @@
       {
         "name": "Counterattack",
         "type": "skill",
-        "_id": "V0AxH420ujK7q4zU",
+        "_id": "MExm46lFkMteKd2M",
         "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_counterattack.png",
         "system": {
           "summary": {
             "value": ""
           },
-          "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy (after their attack has been fully resolved). This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack.</p>",
+          "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy (after their attack has been fully resolved). This attack must be a <strong>melee</strong> attack and must have that enemy as its <strong>only</strong> target; treat your <strong>High Roll</strong> as 0 when calculating damage dealt by this attack.</p>",
           "showTitleCard": {
             "value": false
           },
@@ -400,7 +400,7 @@
             "min": 0
           },
           "class": {
-            "value": "Weaponmaster"
+            "value": "weaponmaster"
           },
           "useWeapon": {
             "accuracy": true,
@@ -440,16 +440,16 @@
             "rule": "single",
             "max": 0
           },
-          "traits": [],
           "effects": {
-            "entries": [],
-            "prompt": false,
             "duration": {
+              "interval": null,
               "event": "",
-              "tracking": "",
-              "interval": null
-            }
+              "tracking": ""
+            },
+            "entries": [],
+            "prompt": false
           },
+          "traits": [],
           "cost": {
             "resource": "mp",
             "amount": "",
@@ -591,7 +591,7 @@
             "min": 0
           },
           "class": {
-            "value": "Weaponmaster"
+            "value": "weaponmaster"
           },
           "useWeapon": {
             "accuracy": false,
@@ -719,7 +719,7 @@
             "favorite": false
           }
         },
-        "_id": "LSHbBhkRQmkXw9RC",
+        "_id": "4X2OZCEOJcy2wpc1",
         "sort": 500000
       }
     ],
@@ -741,7 +741,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1775547483078,
+    "modifiedTime": 1776192206347,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

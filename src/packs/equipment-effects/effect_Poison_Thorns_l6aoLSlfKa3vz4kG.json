@@ -3,7 +3,7 @@
   "name": "Poison Thorns",
   "type": "effect",
   "_id": "l6aoLSlfKa3vz4kG",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-thorns",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Poison Thorns",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/poison.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.l6aoLSlfKa3vz4kG",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Alter Damage Type (Fire)",
   "type": "effect",
   "_id": "L8aFfpKBj5qcoqEx",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "alter-damage-type-fire",
     "source": ""
@@ -22,7 +22,7 @@
       },
       "disabled": false,
       "name": "Alter Damage Type (Fire)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "_id": "8pd9i30YrQ982pG1",
       "type": "base",
       "system": {

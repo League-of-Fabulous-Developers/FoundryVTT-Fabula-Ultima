@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Ice Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "ice-resistance",
     "source": ""
@@ -10,7 +10,7 @@
   "effects": [
     {
       "name": "Ice Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/ice.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8",
       "system": {
         "duration": {

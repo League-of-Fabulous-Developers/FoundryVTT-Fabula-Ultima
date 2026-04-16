@@ -3,7 +3,7 @@
   "name": "Dark Spell Damage Up",
   "type": "effect",
   "_id": "QUPEgja7NrDgBtdA",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-spell-damage-up",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Dark Spell Damage Up",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/dark.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.QUPEgja7NrDgBtdA",
       "system": {
         "duration": {

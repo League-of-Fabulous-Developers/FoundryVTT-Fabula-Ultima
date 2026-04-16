@@ -22,7 +22,7 @@
       "min": 0
     },
     "class": {
-      "value": "Rogue"
+      "value": "rogue"
     },
     "useWeapon": {
       "accuracy": {

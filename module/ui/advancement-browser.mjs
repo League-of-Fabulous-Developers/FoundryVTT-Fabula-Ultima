@@ -197,6 +197,27 @@ export class AdvancementBrowser extends FUApplication {
 		return this.#actor.getItemsByType(this.#type);
 	}
 
+	// --- Static helpers (or module-level functions) ---
+
+	/**
+	 * Returns false if skillClass is set and the entry doesn't match it.
+	 * @param {string[]} classReqs
+	 * @param {string|null} skillClass
+	 */
+	static #passesClassFilter(classReqs, skillClass) {
+		return !skillClass || classReqs.includes(skillClass);
+	}
+
+	/**
+	 * @param {string[]} classReqs
+	 * @param {string[]} classList
+	 * @param {Object} classes - summary.classes map
+	 * @param {(level: number) => boolean} levelCheck
+	 */
+	static #matchesClassLevel(classReqs, classList, classes, levelCheck) {
+		return classReqs.some((req) => classList.includes(req) && levelCheck(classes[req]?.level));
+	}
+
 	/**
 	 * @typedef AdvancementOption
 	 * @property {String} name
@@ -208,84 +229,66 @@ export class AdvancementBrowser extends FUApplication {
 
 	/** @override */
 	async _prepareContext(options) {
-		// Items the actor already has
+		const isNotTracked = (item) => !this.#trackedItemIds.has(item.id);
+		const isNotLegacy = (entry) => !entry.name.includes('[Legacy]');
+		const isNotOwned = (entry) => !this.#actorItemFuids.has(entry.system.fuid);
+
+		let compendiumEntries = (await CompendiumIndex.instance.getItemsOfType(this.#type)).filter(isNotLegacy).filter(isNotOwned);
 		let actorItems;
-		// Items which the actor does not have
-		let compendiumEntries = await CompendiumIndex.instance.getItemsOfType(this.#type);
-		compendiumEntries = compendiumEntries.filter((entry) => {
-			if (entry.name.includes('[Legacy]')) {
-				return false;
-			}
-			return !this.#actorItemFuids.has(entry.system.fuid);
-		});
 
 		switch (this.#type) {
-			case 'class':
-				actorItems = this.getMatchingItems().filter((item) => {
-					return !this.#trackedItemIds.has(item.id);
-				});
+			case 'class': {
+				actorItems = this.getMatchingItems().filter(isNotTracked);
 				break;
+			}
 
-			case 'spell':
-				compendiumEntries = compendiumEntries.filter((entry) => {
-					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return this.#spellList.length > 0 ? this.#spellList.some((s) => classReqs.includes(s)) : true;
-				});
-				actorItems = this.getMatchingItems().filter((item) => {
-					if (this.#trackedItemIds.has(item.id)) {
-						return false;
-					}
-					const classReqs = CompendiumIndex.getClassRequirements(item);
-					return this.#spellList.length > 0 ? this.#spellList.some((s) => classReqs.includes(s)) : true;
-				});
-				break;
+			case 'spell': {
+				const matchesSpellList = (classReqs) => this.#spellList.length === 0 || this.#spellList.some((s) => classReqs.includes(s));
 
-			case 'skill':
-				compendiumEntries = compendiumEntries.filter((entry) => {
+				const spellFilter = (entry) => {
 					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
+					if (!this.#data.unlock && !this.constructor.#passesClassFilter(classReqs, this.#skillClass)) {
 						return false;
 					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level < 10);
-				});
-				actorItems = Object.values(this.#skillMap)
-					.filter((skill) => skill.value !== skill.max)
-					.map((skill) => this.#actor.items.get(skill.id));
-				actorItems = actorItems.concat(this.getMatchingItems().filter((item) => this.#skillMap[item.id] === undefined));
-				actorItems = actorItems.filter((item) => {
-					const classReqs = CompendiumIndex.getClassRequirements(item);
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level < 10);
-				});
-				break;
+					return matchesSpellList(classReqs);
+				};
 
-			case 'heroic':
-				compendiumEntries = compendiumEntries.filter((entry) => {
-					const classReqs = CompendiumIndex.getClassRequirements(entry);
-					if (classReqs.length === 0) {
-						return true;
-					}
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level === 10);
-				});
-				actorItems = this.getMatchingItems().filter((item) => {
-					const classReqs = CompendiumIndex.getClassRequirements(item);
-					if (classReqs.length === 0) {
-						return true;
-					}
-					if (this.#skillClass && !classReqs.includes(this.#skillClass)) {
-						return false;
-					}
-					return classReqs.some((req) => this.#classList.includes(req) && this.#summary.classes[req]?.level === 10);
-				});
+				compendiumEntries = compendiumEntries.filter(spellFilter);
+				actorItems = this.getMatchingItems()
+					.filter(isNotTracked)
+					.filter((item) => matchesSpellList(CompendiumIndex.getClassRequirements(item)));
 				break;
+			}
+
+			case 'skill': {
+				const levelCheck = (level) => level < 10;
+				const skillFilter = (entry) => {
+					const classReqs = CompendiumIndex.getClassRequirements(entry);
+					return this.constructor.#passesClassFilter(classReqs, this.#skillClass) && this.constructor.#matchesClassLevel(classReqs, this.#classList, this.#summary.classes, levelCheck);
+				};
+
+				compendiumEntries = compendiumEntries.filter(skillFilter);
+				actorItems = [
+					...Object.values(this.#skillMap)
+						.filter((skill) => skill.value !== skill.max)
+						.map((skill) => this.#actor.items.get(skill.id)),
+					...this.getMatchingItems().filter((item) => this.#skillMap[item.id] === undefined),
+				].filter(skillFilter);
+				break;
+			}
+
+			case 'heroic': {
+				const levelCheck = (level) => level === 10;
+				const heroicFilter = (entry) => {
+					const classReqs = CompendiumIndex.getClassRequirements(entry);
+					if (classReqs.length === 0) return true;
+					return this.constructor.#passesClassFilter(classReqs, this.#skillClass) && this.constructor.#matchesClassLevel(classReqs, this.#classList, this.#summary.classes, levelCheck);
+				};
+
+				compendiumEntries = compendiumEntries.filter(heroicFilter);
+				actorItems = this.getMatchingItems().filter(heroicFilter);
+				break;
+			}
 		}
 
 		// Sort entries
@@ -324,7 +327,7 @@ export class AdvancementBrowser extends FUApplication {
 		let groupedOptions;
 		let groupedData;
 		if (this.#data.type !== 'class') {
-			groupedOptions = AdvancementBrowser.groupOptionsByClass(options);
+			groupedOptions = this.#groupOptionsByClass(options);
 			groupedData = groupedOptions.map((group) => {
 				const positions = AdvancementBrowser.computeOrbitalPositions(group.options.length, CARD_SIZE, HUB_RADIUS, ORBIT_GAP);
 				const radius = positions.length ? Math.hypot(positions[0].x, positions[0].y) : HUB_RADIUS;
@@ -338,6 +341,8 @@ export class AdvancementBrowser extends FUApplication {
 			});
 		}
 
+		const classReferences = await CompendiumIndex.instance.getClassReferences();
+
 		return {
 			actor: this.#actor,
 			data: this.#advancement,
@@ -347,6 +352,7 @@ export class AdvancementBrowser extends FUApplication {
 			skillMap: this.#skillMap,
 			summary: this.#summary,
 			options,
+			classes: Object.fromEntries(classReferences.map((cls) => [cls.fuid, cls])),
 			groupedOptions,
 			groupedData,
 			compendiumEntries,
@@ -362,13 +368,18 @@ export class AdvancementBrowser extends FUApplication {
 	 * @param {AdvancementOption[]} options
 	 * @returns {Array<{classId: string, options: AdvancementOption[]}>}
 	 */
-	static groupOptionsByClass(options) {
+	#groupOptionsByClass(options) {
 		const groupMap = new Map();
 
 		for (const option of options) {
-			const classes = option.classes?.length ? option.classes : ['shared'];
+			const specific = option.classes?.length;
+			const classes = specific ? option.classes : ['shared'];
 
 			for (const classId of classes) {
+				if (specific && !this.#classList.includes(classId)) {
+					continue;
+				}
+
 				if (!groupMap.has(classId)) {
 					groupMap.set(classId, { classId, options: [] });
 				}
@@ -376,7 +387,20 @@ export class AdvancementBrowser extends FUApplication {
 			}
 		}
 
-		return Array.from(groupMap.values());
+		const groups = Array.from(groupMap.values());
+		const seen = new Set();
+
+		groups.sort((a, b) => b.options.length - a.options.length);
+
+		for (const group of groups) {
+			group.options = group.options.filter((option) => {
+				if (seen.has(option)) return false;
+				seen.add(option);
+				return true;
+			});
+		}
+
+		return groups.filter((group) => group.options.length > 0);
 	}
 
 	/**
@@ -405,21 +429,6 @@ export class AdvancementBrowser extends FUApplication {
 				y: Math.sin(angle) * radius,
 			};
 		});
-	}
-
-	/**
-	 * @desc Computes the bounding box size needed to contain all orbital positions.
-	 * @param {Array<{x: number, y: number}>} positions
-	 * @param {number} cardSize
-	 * @returns {{width: number, height: number}}
-	 */
-	static computeOrbitBounds(positions, cardSize = 80) {
-		if (!positions.length) return { width: cardSize, height: cardSize };
-		const xs = positions.map((p) => p.x);
-		const ys = positions.map((p) => p.y);
-		const width = Math.max(...xs) - Math.min(...xs) + cardSize;
-		const height = Math.max(...ys) - Math.min(...ys) + cardSize;
-		return { width, height };
 	}
 
 	/**

@@ -3,7 +3,7 @@
   "name": "Skill Damage Change (Air)",
   "type": "effect",
   "_id": "HGRM7PIPHaObI04Z",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "skill-damage-change-air",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Skill Damage Change (Air)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.HGRM7PIPHaObI04Z",
       "system": {
         "duration": {

@@ -3,7 +3,7 @@
   "name": "Bolt Resistance",
   "type": "effect",
   "_id": "OIbW40Ya8P1jCenm",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-resistance",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Bolt Resistance",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/bolt.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.OIbW40Ya8P1jCenm",
       "system": {
         "duration": {

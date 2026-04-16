@@ -3,7 +3,7 @@
   "name": "Spell Damage Change (Light)",
   "type": "effect",
   "_id": "X1qswzsLfFMX2ZjN",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "spell-damage-change-light",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Spell Damage Change (Light)",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.X1qswzsLfFMX2ZjN",
       "system": {
         "duration": {

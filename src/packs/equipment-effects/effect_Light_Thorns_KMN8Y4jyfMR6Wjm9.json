@@ -3,7 +3,7 @@
   "name": "Light Thorns",
   "type": "effect",
   "_id": "KMN8Y4jyfMR6Wjm9",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-thorns",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Light Thorns",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/light.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.KMN8Y4jyfMR6Wjm9",
       "system": {
         "duration": {

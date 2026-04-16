@@ -20,7 +20,7 @@
       "min": 0
     },
     "class": {
-      "value": "Invoker"
+      "value": "invoker"
     },
     "useWeapon": {
       "accuracy": false,

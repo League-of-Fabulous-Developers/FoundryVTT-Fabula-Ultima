@@ -3,7 +3,7 @@
   "name": "Fire Damage Reduction",
   "type": "effect",
   "_id": "R0tnDuKeZ6kmNORX",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-damage-reduction",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Fire Damage Reduction",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/fire.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.actor-effects.Item.R0tnDuKeZ6kmNORX",
       "system": {
         "duration": {

@@ -29,7 +29,7 @@
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -157,13 +157,13 @@
             "favorite": false
           }
         },
-        "_id": "GTSrJXuToCPrwnfj",
+        "_id": "8Xd9KbHtSG3PT5YA",
         "sort": 100000
       },
       {
         "name": "Frenzy",
         "type": "skill",
-        "_id": "kSM3y1CQpWkmkQY1",
+        "_id": "kqUr6EHX1lClVgo4",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_frenzy.png",
         "system": {
           "summary": {
@@ -179,7 +179,7 @@
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -321,7 +321,7 @@
       {
         "name": "Indomitable Spirit",
         "type": "skill",
-        "_id": "Z8mc8sxxCg4e0Cxd",
+        "_id": "rfJF1gM5wKGVc5Ra",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_indomitable_spirit.png",
         "system": {
           "summary": {
@@ -337,7 +337,7 @@
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -410,7 +410,7 @@
       {
         "name": "Provoke",
         "type": "skill",
-        "_id": "2Y5lu144I5jKsYaL",
+        "_id": "AnyFjCKFfDmletGQ",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
         "system": {
           "summary": {
@@ -426,7 +426,7 @@
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -581,7 +581,7 @@
       {
         "name": "Withstand",
         "type": "skill",
-        "_id": "xwJ63hCRVEZNdBqs",
+        "_id": "ToeRkGRMUrOTGGJM",
         "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
         "system": {
           "summary": {
@@ -597,7 +597,7 @@
             "min": 0
           },
           "class": {
-            "value": "Fury"
+            "value": "fury"
           },
           "useWeapon": {
             "accuracy": false,
@@ -686,7 +686,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1775547384644,
+    "modifiedTime": 1776191903848,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

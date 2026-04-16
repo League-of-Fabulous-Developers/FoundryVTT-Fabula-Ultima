@@ -3,7 +3,7 @@
   "name": "Air Thorns",
   "type": "effect",
   "_id": "jZ6E3DoaYpmv9oUI",
-  "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-thorns",
     "cost": {
@@ -14,7 +14,7 @@
   "effects": [
     {
       "name": "Air Thorns",
-      "img": "systems/projectfu/styles/static/affinities/icons/high-res/air.png",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "origin": "Compendium.projectfu.equipment-effects.Item.jZ6E3DoaYpmv9oUI",
       "system": {
         "duration": {
