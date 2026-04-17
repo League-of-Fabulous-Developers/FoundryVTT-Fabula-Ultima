@@ -3,12 +3,17 @@
  /* ----------------------------------------- */
 .pfu-progress {
 	display: grid;
-	gap: 1px;
+	gap: 4px;
 	grid-template-columns: auto 1fr;
 
 	span,
 	i {
 		color: var(--pfu-color-app-control-content);
+	}
+
+	&.--stack {
+		display: flex;
+		flex-direction: column;
 	}
 
 	:is(.desc) & span,
@@ -28,6 +33,7 @@
 .pfu-progress__name__container {
 	display: flex;
 	flex-direction: column;
+	flex: 0;
 	label {
 		vertical-align: middle;
 	}
@@ -169,7 +175,7 @@
 
 .pfu-progress__bar {
 	font-size: 18px;
-	height: 20px;
+	max-height: 20px;
 	width: 100px;
 	border: 1px solid #c7c7c7;
 	background-color: #656565;
@@ -195,9 +201,11 @@
 	background: var(--pfu-color-app-control-fill);
 	color: var(--pfu-color-app-control-content);
 	border-radius: 3px;
+	border: 2px solid var(--pfu-color-app-control-content);
 	padding: 0 0.35rem;
 	font-weight: bold;
 	min-width: 1.5rem;
+	max-height: 20px;
 	text-align: center;
 }
 

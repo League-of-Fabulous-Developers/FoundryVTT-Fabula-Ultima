@@ -285,6 +285,7 @@ export const FUHandlebars = Object.freeze({
  * @property {Boolean} compact If true, will present the controls in a more compact way.
  * @property action
  * @property {"clock"|"basic"} style
+ * @property {String} classes
  */
 
 const progressStyleTemplates = Object.freeze({
@@ -346,6 +347,7 @@ function renderProgress(progress, document, path, options, index = undefined) {
 					controls: controls,
 					action: action,
 					prompt: options.prompt,
+					classes: options.classes ?? '',
 					compact: options.compact,
 					displayName: options.displayName && (progress.name || document.name),
 				})

@@ -3,7 +3,7 @@
 	<div class="tracks resource-content flex-group-center">
 		<div class="pfu-progress__collection" style="background: unset;">
 			{{#each system.tracks }}
-				{{pfuProgressCollection ../document 'system.tracks' @index displayName=true compact=true prompt=true controls=../isGM }}
+				{{pfuProgressCollection ../document 'system.tracks' @index displayName=true compact=true prompt=true controls=../isGM classes="--stack"}}
 			{{/each}}
 		</div>
 	</div>
