@@ -1,0 +1,25 @@
+<div class="bar-container">
+    <div class="bar bar-progress" data-tooltip="{{localize label}}">
+        {{#unless isCompact}}
+            <div class="bar-progress-bar{{barClasses}}" style="width: {{pfuPercentage resource.value resource.max}}"></div>
+            {{#if inCrisis}}
+            <div class="center-line" style="left: calc({{resource.crisisScore}} / {{resource.max}} * 100%)"></div>
+            {{/if}}
+            <span class="bar-value"></span>
+        {{else}}
+            <div class="resource-value-compact">
+                <div class="resource-text">
+                    <span>{{ resource.value }} / {{ resource.max }}</span>
+                </div>
+            </div>
+        {{/unless}}
+    </div>  
+    {{#unless isCompact}}
+        <div class="resource-value">
+            <i class="{{icon}}"></i>
+            <div class="resource-text">
+                <span>{{ resource.value }} / {{ resource.max }}</span>
+            </div>
+        </div>
+    {{/unless}}
+</div>
