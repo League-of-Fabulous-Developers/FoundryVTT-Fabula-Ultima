@@ -243,7 +243,7 @@ h4.divider::after {
 		border-radius: var(--pfu-border-radius-medium);
 		background: var(--pfu-color-control-fill);
 		&:hover {
-			/*color: var(--pfu-color-control-highlight-content);*/
+			color: var(--pfu-color-app-control-highlight-content);
 			border-color: var(--pfu-color-control-highlight-border);
 			background: var(--pfu-color-control-highlight-fill);
 		}
