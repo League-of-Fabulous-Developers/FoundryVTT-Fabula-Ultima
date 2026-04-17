@@ -2,10 +2,6 @@
 /* Retro Style                       
 /* ----------------------------------------- */
 
-/* ----------------------------------------- */
-/* Retro Style                       
-/* ----------------------------------------- */
-
 .projectfu.combat-hud-retro {
 	--hud-height: auto;
 	--npc-width-percent: 30%;
@@ -84,13 +80,13 @@
 		width: 100%;
 	}
 	.combat-hud-retro__window-button--minimize {
-		right: 4em;
-	}
-	.combat-hud-retro__window-button--popout {
 		right: 0.5em;
 	}
-	.combat-hud-retro__window-button--compact {
+	.combat-hud-retro__window-button--popout {
 		right: 7.5em;
+	}
+	.combat-hud-retro__window-button--compact {
+		right: 4em;
 	}
 	.combat-hud-retro__window-button--hidden {
 		display: none;
@@ -101,6 +97,13 @@
 	.combat-hud-retro__window-button--start,
 	.combat-hud-retro__window-button--stop {
 		left: 3.5em;
+	}
+
+	.combat-hud-retro__container {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		gap: 2px;
 	}
 
 	.combat-hud-retro__faction-list {
@@ -121,18 +124,44 @@
 		gap: 2px;
 	}
 
-	.combat-hud-retro__combat-info {
+	.combat-hud-retro__faction-list--npcs {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 var(--npc-width-percent);
+		flex: 0 0 var(--npc-width-percent);
 	}
 
-	.combat-hud-retro__combat-info--name {
-		height: 100%;
+	.combat-hud-retro__faction-list--characters {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 var(--character-width-percent);
+		flex: 0 0 var(--character-width-percent);
 	}
 
-	.combat-hud-retro__combat-info--effects {
-		height: 0;
+	.combat-hud-retro__combatant-row {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		height: var(--combat-info-height);
+		border-radius: 10px;
+		margin: 0 auto;
+		padding: var(--combat-info-content-padding);
+		background: #2b4a42;
+		color: #ebf7af;
+		text-transform: uppercase;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		gap: 4px;
+		position: relative;
+		pointer-events: initial;
 	}
 
-	.combat-hud-retro__token-image {
+	.combat-hud-retro__combatant-info {
+		flex-direction: column;
+		gap: 0;
+		flex-grow: 1;
+	}
+
+	.combat-hud-retro__portrait {
 		-webkit-box-flex: 0;
 		-ms-flex: 0 0 var(--combat-info-image-size);
 		flex: 0 0 var(--combat-info-image-size);
@@ -145,11 +174,92 @@
 		border: none;
 	}
 
-	.combat-hud-retro__token-image--compact {
+	.combat-hud-retro__portrait img:hover {
+		cursor: pointer;
+	}
+
+	.combat-hud-retro__portrait--compact {
 		-webkit-box-flex: 0;
 		-ms-flex: 0 0 var(--combat-info-image-size-compact);
 		flex: 0 0 var(--combat-info-image-size-compact);
 		height: var(--combat-info-image-size-compact);
 		width: var(--combat-info-image-size-compact);
+	}
+
+	.combat-hud-retro__combatant-name {
+		overflow: hidden;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		height: auto;
+
+		h2 {
+			font-size: 1.1em;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			border: none;
+			margin-bottom: 0;
+		}
+	}
+
+	.combat-hud-retro__secondary-row {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.combat-hud-retro__combatant-effects {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		gap: 1px;
+		height: auto;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-ms-flex-flow: row;
+		flex-flow: row;
+		overflow: hidden;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		width: calc(var(--combat-info-effects-icon-size) * 5);
+		max-width: calc(var(--combat-info-effects-icon-size) * 5);
+	}
+
+	.combat-hud-retro__combatant-resources {
+		display: flex;
+		flex-direction: row;
+		flex-grow: 1;
+	}
+
+	.combat-hud-retro__combatant-effects--marquee {
+		white-space: nowrap;
+		display: inline-block;
+		-webkit-animation-name: effects-marquee;
+		animation-name: effects-marquee;
+		-webkit-animation-timing-function: linear;
+		animation-timing-function: linear;
+		-webkit-animation-iteration-count: infinite;
+		animation-iteration-count: infinite;
+		-webkit-animation-delay: 0.5s;
+		animation-delay: 0.5s;
+		-webkit-animation-play-state: running;
+		animation-play-state: running;
+	}
+
+	.combat-hud-retro__effect-icon {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 var(--combat-info-effects-icon-size);
+		flex: 0 0 var(--combat-info-effects-icon-size);
+		height: var(--combat-info-effects-icon-size);
+		width: var(--combat-info-effects-icon-size);
+		-o-object-fit: cover;
+		object-fit: cover;
+		-o-object-position: 50% 0;
+		object-position: 50% 0;
+		border: none;
 	}
 }

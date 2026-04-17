@@ -14,14 +14,10 @@ export class RetroCombatHUD extends BaseCombatHUD {
 		hud: {
 			template: systemTemplatePath(`ui/combat-hud/combat-hud-default`),
 			templates: [
-				systemTemplatePath(`ui/partials/combat-bar-exp`),
-				systemTemplatePath(`ui/partials/combat-bar-fp`),
-				systemTemplatePath(`ui/partials/combat-bar-hp`),
-				systemTemplatePath(`ui/partials/combat-bar-ip`),
-				systemTemplatePath(`ui/partials/combat-bar-mp`),
-				systemTemplatePath(`ui/partials/combat-bar-zenit`),
-				systemTemplatePath(`ui/partials/combat-bar-zeropower`),
-				systemTemplatePath(`ui/partials/combat-hud-turn`),
+				systemTemplatePath(`ui/combat-hud/retro/combat-hud-retro-npcs`),
+				systemTemplatePath(`ui/combat-hud/retro/combat-hud-retro-characters`),
+				systemTemplatePath(`ui/combat-hud/combat-hud-portrait`),
+				systemTemplatePath(`ui/combat-hud/retro/combat-hud-retro-bar`),
 			],
 		},
 	};
