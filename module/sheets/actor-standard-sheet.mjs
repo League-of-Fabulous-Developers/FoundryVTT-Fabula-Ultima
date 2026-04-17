@@ -164,7 +164,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	static TABS = {
 		primary: {
 			tabs: [
-				{ id: 'stats', label: 'FU.Stats' },
+				{ id: 'stats', label: 'FU.Overview' },
 				{ id: 'classes', label: 'FU.Classes' },
 				{ id: 'features', label: 'FU.Features' },
 				{ id: 'spells', label: 'FU.Spell' },
@@ -460,6 +460,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 							}),
 						};
 					}
+					const favorites = Array.from(this.actor.allItems().filter((item) => item.isFavorite));
+					context.hasFavorites = favorites.length > 0;
 					context.favoritesTable = await this.#favoritesTable.renderTable(this.document);
 					context.temporaryEffects = this.actor.temporaryEffects.filter((e) => e.hasDuration);
 				}

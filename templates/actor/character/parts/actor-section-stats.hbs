@@ -133,8 +133,11 @@
 					{{/if~}}
 					</div>
 				</fieldset>
-				<!-- Favorite Section -->
-				{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
+
+				{{#if hasFavorites}}
+					<!-- Favorite Section -->
+					{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
+				{{/if}}
 			</main>
 		</section>
 	{{/if}}
