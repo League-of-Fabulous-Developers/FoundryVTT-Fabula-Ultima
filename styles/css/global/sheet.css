@@ -458,7 +458,7 @@
 						flex: 0 1 max-content;
 					}
 					.effect-name {
-						max-width: 5ch;
+						max-width: 8ch;
 						overflow: hidden;
 						text-overflow: ellipsis;
 						white-space: nowrap;

@@ -96,7 +96,10 @@ export const FUHandlebars = Object.freeze({
 			return str;
 		});
 
-		Handlebars.registerHelper('pfuAcronym', function (str) {
+		Handlebars.registerHelper('pfuAcronym', function (str, threshold) {
+			if (str.length <= threshold) {
+				return str;
+			}
 			const split = str.trim().split(' ');
 			if (split.length > 1) {
 				return split.map((word) => word[0].toUpperCase()).join('.');
