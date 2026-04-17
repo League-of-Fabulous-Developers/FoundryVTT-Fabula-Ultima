@@ -31,39 +31,41 @@
 					{{!-- Garden Section --}}
 					{{> "systems/projectfu/templates/actor/partials/actor-garden.hbs"}}
 					{{!-- Bond Section --}}
-					<fieldset class="section-container title-fieldset desc resource-content">
-						<legend class="resource-label-m">
-							{{localize 'FU.Bonds'}}
-						</legend>
-						<div class="bonds">
-							{{#each system.bonds as |bond bondIndex|}}
-								<div class="bond-row flexrow mb-2">
-									<label class="resource-text-sm flex-group-left flex-grow">
-										<strong>
-											{{#if bond.name}}
-												{{bond.name}}
-											{{else}}
-												{{localize 'FU.NoItem'}}
-											{{/if}}
-										</strong>
-									</label>
-									<label class="resource-text-sm bond-strength flex0" data-tooltip="
+					{{~#if (eq (pfuGetSetting 'optionPCBondsSection') true)~}}
+						<fieldset class="section-container title-fieldset desc resource-content">
+							<legend class="resource-label-m">
+								{{localize 'FU.Bonds'}}
+							</legend>
+							<div class="bonds">
+								{{#each system.bonds as |bond bondIndex|}}
+									<div class="bond-row flexrow mb-2">
+										<label class="resource-text-sm flex-group-left flex-grow">
+											<strong>
+												{{#if bond.name}}
+													{{bond.name}}
+												{{else}}
+													{{localize 'FU.NoItem'}}
+												{{/if}}
+											</strong>
+										</label>
+										<label class="resource-text-sm bond-strength flex0" data-tooltip="
                                             {{#if (lookup @root.FU.bonds.admInf bond.admInf)}}
-										{{localize (lookup @root.FU.bonds.admInf bond.admInf)}}<br>
+											{{localize (lookup @root.FU.bonds.admInf bond.admInf)}}<br>
                                             {{/if}}
-										{{#if (lookup @root.FU.bonds.loyMis bond.loyMis)}}
-											{{localize (lookup @root.FU.bonds.loyMis bond.loyMis)}}<br>
+											{{#if (lookup @root.FU.bonds.loyMis bond.loyMis)}}
+												{{localize (lookup @root.FU.bonds.loyMis bond.loyMis)}}<br>
                                             {{/if}}
-										{{#if (lookup @root.FU.bonds.affHat bond.affHat)}}
-											{{localize (lookup @root.FU.bonds.affHat bond.affHat)}}
-										{{/if}}
+											{{#if (lookup @root.FU.bonds.affHat bond.affHat)}}
+												{{localize (lookup @root.FU.bonds.affHat bond.affHat)}}
+											{{/if}}
                                         ">
-										{{ bond.strength }}
-									</label>
-								</div>
-							{{/each}}
-						</div>
-					</fieldset>
+											{{ bond.strength }}
+										</label>
+									</div>
+								{{/each}}
+							</div>
+						</fieldset>
+					{{/if}}
 					{{!-- Effects Section --}}
 					{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
 					{{!-- Clock Section --}}

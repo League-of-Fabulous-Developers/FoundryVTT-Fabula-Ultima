@@ -82,6 +82,7 @@ export const SETTINGS = Object.freeze({
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	showAdvancementTracker: 'showAdvancementTracker',
 	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionPCBondsSection: 'optionPCBondsSection',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	optionAutomaticAdversaryRegistration: 'optionRegisterAdversaries',
 	partySheetTheme: 'optionPartySheetTheme',
@@ -170,6 +171,7 @@ export const registerSystemSettings = async function () {
 		icon: 'fas fa-book',
 		type: createConfigurationApp('FU.SheetOptions', [
 			SETTINGS.optionNPCNotesTab,
+			SETTINGS.optionPCBondsSection,
 			SETTINGS.optionAlwaysFavorite,
 			SETTINGS.showAssociatedTherioforms,
 			SETTINGS.showAdvancementTracker,
@@ -200,6 +202,15 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
 		name: game.i18n.localize('FU.NotesTabSettings'),
 		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionPCBondsSection, {
+		name: game.i18n.localize('FU.BondsSectionSettings'),
 		scope: 'world',
 		config: false,
 		type: Boolean,

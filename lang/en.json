@@ -1125,6 +1125,7 @@
 		"AlwaysFavoriteSettingsHint": "Enable this option to always favorite an item during creation.",
 		"NotesTabSettings": "Enable NPC Notes Tab",
 		"NotesTabSettingsHint": "Add the biography & info notes tab into the NPC Sheet.",
+		"BondsSectionSettings": "Enable PC Bonds Section",
 		"EffectCrisisInteraction": "Crisis Interaction",
 		"EffectCrisisInteractionNone": "None",
 		"EffectCrisisInteractionActive": "Active while in Crisis",
