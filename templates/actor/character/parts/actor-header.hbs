@@ -62,6 +62,9 @@
 	{{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
 	{{!-- Pressure Points --}}
 	{{#if pressurePoints}}
-		{{>"systems/projectfu/templates/actor/partials/actor-pressure-points.hbs" actor=actor}}
+		<div class="desc">
+			{{>"systems/projectfu/templates/actor/partials/actor-pressure-points.hbs" pressurePoints=system.pressurePoints}}
+		</div>
+
 	{{/if}}
 </header>

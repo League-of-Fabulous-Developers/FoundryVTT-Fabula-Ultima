@@ -108,6 +108,16 @@
 				</section>
 			</fieldset>
 			{{/if}}
+
+			{{!-- Pressure Points --}}
+			{{#if pressurePoints}}
+				<fieldset class="section-container title-fieldset desc resource-content">
+					<legend class="resource-label-m">
+						{{localize 'FU.PressurePoints'}}
+					</legend>
+					{{>"systems/projectfu/templates/actor/partials/actor-pressure-points.hbs" pressurePoints=system.pressurePoints}}
+				</fieldset>
+			{{/if}}
 		</div>
 		{{/if}}
 	</div>

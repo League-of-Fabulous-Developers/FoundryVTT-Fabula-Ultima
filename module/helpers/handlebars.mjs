@@ -264,6 +264,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuTraits', traits);
 		Handlebars.registerHelper('pfuIconAttribute', attributeIcon);
 		Handlebars.registerHelper('pfuBadge', badge);
+		Handlebars.registerHelper('pfuActorProfile', actorProfile);
 		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
 		Handlebars.registerHelper('pfuCompendium', compendium);
 		Handlebars.registerHelper('pfuArrayField', arrayField);
@@ -439,15 +440,15 @@ function badge(key, options) {
 }
 
 /**
- * @typedef ItemAnchorOptions
+ * @typedef DocumentImageOptions
  * @property {String} label
- * @property {String}
+ * @property {String} classes
  * @property {'xs'|'s'|'m'|'l'|'xl'} size
  */
 
 /**
  * @param {FUItem} item
- * @param {ItemAnchorOptions} options
+ * @param {DocumentImageOptions} options
  * @returns {Handlebars.SafeString}
  */
 function itemAnchor(item, options) {
@@ -470,6 +471,37 @@ function itemAnchor(item, options) {
 					id: item.id,
 					img: item.img,
 					pack: item.pack,
+					size: size,
+					classes: options?.classes,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {DocumentImageOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function actorProfile(actor, options) {
+	if (!actor) {
+		console.warn(`Missing actor information for rendering. Ignoring...`);
+		return '';
+	}
+
+	if (options.hash) {
+		options = options.hash;
+	}
+
+	const size = options.size ?? 'xl';
+	const template = Handlebars.partials[systemTemplatePath('common/icons/actor')];
+	const html =
+		typeof template === 'function'
+			? template({
+					name: actor.name,
+					uuid: actor.uuid,
+					id: actor.id,
+					img: actor.img,
 					size: size,
 					classes: options?.classes,
 				})

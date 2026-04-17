@@ -259,6 +259,7 @@ function resolveAffinity(context) {
 					if (npcData.pressurePoints.has(trait)) {
 						pressurePointTriggered = true;
 						context.pressureTrigger = TraitUtils.localize(trait);
+						context.pressurePoint = trait;
 						break;
 					}
 				}
@@ -273,11 +274,21 @@ function resolveAffinity(context) {
 				}
 			}
 		}
-		CommonEvents.reveal(context.actor, {
+
+		// Reveal information about this adversary
+		/** @type NpcProfileRevealData **/
+		let revealData = {
 			affinities: {
 				[context.damageType]: true,
 			},
-		});
+		};
+		if (context.pressureTrigger) {
+			revealData.pressurePoints = {
+				[context.pressurePoint]: true,
+			};
+		}
+
+		CommonEvents.reveal(context.actor, revealData);
 	}
 
 	context.affinityMessage = affinityMessage;

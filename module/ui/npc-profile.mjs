@@ -4,11 +4,14 @@ import FUApplication from './application.mjs';
 import { NpcProfileBasicAttacksTableRenderer } from '../helpers/tables/npc-profile-basic-attacks-table-renderer.mjs';
 import { NpcProfileWeaponsTableRenderer } from '../helpers/tables/npc-profile-weapons-table-renderer.mjs';
 import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spells-table-renderer.mjs';
+import { getSystemSetting, SETTINGS } from '../settings.js';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * @typedef NpcProfileRevealData
- * @property {Map<String, Number>} affinities
- * @property {String[]} traits
+ * @property {Map<String, Number>} affinities The currently revealed affinities.
+ * @property {Map<String, Boolean>} pressurePoints The currently revealed pressure points.
+ * @property {String[]} traits The currently revealed traits.
  */
 
 /**
@@ -51,9 +54,11 @@ export class NpcProfileWindow extends FUApplication {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['actor', 'npc-profile'],
-		resizable: true,
-		title: 'NPC Profile',
+		classes: ['npc-profile'],
+		window: {
+			title: 'NPC Profile',
+			resizable: true,
+		},
 		position: { width: 750, height: 'auto' },
 		actions: {
 			revealActor: this.#revealActor,
@@ -118,6 +123,9 @@ export class NpcProfileWindow extends FUApplication {
 				opacity,
 			};
 		});
+		// Pressure Points
+		const revealPressurePoints = getSystemSetting(SETTINGS.pressureSystem);
+		const pressurePoints = complete ? NpcProfileWindow.getPressurePointMap(actor) : this.data.revealed.pressurePoints;
 
 		Object.assign(context, this.data);
 		context.actor = actor;
@@ -131,6 +139,8 @@ export class NpcProfileWindow extends FUApplication {
 		context.affinities = affinities;
 		context.revealStats = revealStats;
 		context.revealAffinities = revealAffinities;
+		context.revealPressurePoints = revealPressurePoints;
+		context.pressurePoints = pressurePoints;
 		context.level = system.level.value;
 		context.hp = system.resources.hp.max;
 		context.mp = system.resources.mp.max;
@@ -141,6 +151,7 @@ export class NpcProfileWindow extends FUApplication {
 		context.basicAttacksTable = await this.#basicAttacksTable.renderTable(actor);
 		context.weaponsTable = await this.#weaponsTable.renderTable(actor);
 		context.spellsTable = await this.#spellsTable.renderTable(actor);
+		context.weaponCategories = FU.weaponCategories;
 		return context;
 	}
 
@@ -162,11 +173,20 @@ export class NpcProfileWindow extends FUApplication {
 	}
 
 	/**
+	 * @param {FUActor} actor
+	 * @returns {Record<String, Boolean>}
+	 */
+	static getPressurePointMap(actor) {
+		return Object.fromEntries((actor.system.pressurePoints.values ?? []).map((p) => [p, true]));
+	}
+
+	/**
 	 * @param {PartyDataModel} party
 	 * @param {String} uuid
+	 * @param {Boolean} edit
 	 * @returns {Promise<void>}
 	 */
-	static async updateNpcProfile(party, uuid) {
+	static async updateNpcProfile(party, uuid, edit = true) {
 		const existing = party.getAdversary(uuid);
 
 		/** @type FUActor **/
@@ -181,68 +201,111 @@ export class NpcProfileWindow extends FUApplication {
 			.split(',')
 			.map((value) => value.trim())
 			.filter(Boolean);
-		console.debug(`Editing profile of ${JSON.stringify(existing)}`);
+		// Pressure Points
+		const pressurePoints = NpcProfileWindow.getPressurePointMap(actor);
 
-		let updatedProfile = await foundry.applications.api.DialogV2.input({
-			window: { title: game.i18n.localize('FU.NpcProfileUpdate') },
-			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
+		if (edit) {
+			console.debug(`Editing profile of ${JSON.stringify(existing)}`);
+			const content = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
+				actor,
 				existing: existing,
 				studyDifficulties: studyDifficulties,
 				affinities: affinities,
 				affinityMap: affinityMap,
+				pressurePoints,
+				weaponCategories: FU.weaponCategories,
 				traits: traitsArray,
 				FU: FU,
-			}),
-			render: (event, dialog) => {
-				const studyValueDisplay = dialog.element.querySelector('#study-value');
-				const studyValueInput = dialog.element.querySelector('[name=study]');
-				studyValueInput.addEventListener('change', (e) => {
-					studyValueDisplay.textContent = studyValueInput.value;
-				});
-			},
-			rejectClose: false,
-			ok: {
-				label: 'FU.Confirm',
-			},
-		});
+			});
+			let updatedProfile = await FoundryUtils.input(game.i18n.localize('FU.NpcProfileUpdate'), content, {
+				render: (event, dialog) => {
+					// TODO: Have the current badge update?
+					//const studyValueDisplay = dialog.element.querySelector('#study-value');
+					const studyValueInput = dialog.element.querySelector('[name=study]');
+					studyValueInput.addEventListener('change', (e) => {
+						studyValueInput.setAttribute('data-tooltip', `${studyValueInput.value}`);
+						//studyValueDisplay.textContent = studyValueInput.value;
+					});
+				},
+				rejectClose: false,
+				ok: {
+					label: 'FU.Confirm',
+				},
+			});
 
-		if (updatedProfile) {
-			updatedProfile = foundry.utils.expandObject(updatedProfile);
+			if (updatedProfile) {
+				updatedProfile = foundry.utils.expandObject(updatedProfile);
 
-			// Study
-			const study = Number(updatedProfile.study);
-			if (study !== existing.study) {
-				existing.study = study;
+				// Study
+				const study = Number(updatedProfile.study);
+				if (study !== existing.study) {
+					existing.study = study;
+				}
+
+				// Revealed
+				existing.revealed ??= {};
+
+				// Affinities
+				for (const aff of affinities) {
+					const isRevealed = foundry.utils.getProperty(updatedProfile, `affinities.${aff}`);
+					if (isRevealed === true) {
+						existing.revealed.affinities ??= {};
+						existing.revealed.affinities[aff] = true;
+					} else if (isRevealed === false) {
+						delete existing.revealed?.affinities?.[aff];
+					}
+				}
+				if (existing.revealed.affinities && Object.keys(existing.revealed.affinities).length === 0) {
+					delete existing.revealed.affinities;
+				}
+
+				// Pressure Points
+				for (const category of Object.keys(FU.weaponCategories)) {
+					const isRevealed = foundry.utils.getProperty(updatedProfile, `pressurePoints.${category}`);
+					if (isRevealed === true) {
+						existing.revealed.pressurePoints ??= {};
+						existing.revealed.pressurePoints[category] = true;
+					} else if (isRevealed === false) {
+						delete existing.revealed?.pressurePoints?.[category];
+					}
+				}
+				if (existing.revealed.pressurePoints && Object.keys(existing.revealed.pressurePoints).length === 0) {
+					delete existing.revealed.pressurePoints;
+				}
+
+				// Traits
+				const traits = Object.entries(updatedProfile.traits ?? {})
+					.filter(([, value]) => value)
+					.map(([key]) => key);
+				if (traits.length > 0) {
+					existing.revealed.traits = traits;
+				} else {
+					delete existing.revealed.traits;
+				}
+
+				await party.updateAdversary(existing);
+				ui.notifications.info(`Edited NPC profile of ${actor.name}.`);
 			}
-
-			// Revealed
+		}
+		// REFRESH
+		else {
+			console.debug(`Refreshing profile of ${JSON.stringify(existing)}`);
 			existing.revealed ??= {};
 
-			// Affinities
-			for (const aff of affinities) {
-				const affinityValue = foundry.utils.getProperty(updatedProfile, `affinities.${aff}`);
-				if (affinityValue === true) {
-					existing.revealed.affinities ??= {};
-					existing.revealed.affinities[aff] = true;
-				} else if (affinityValue === false) {
-					delete existing.revealed?.affinities?.[aff];
+			// Affinities — re-sync values for already-revealed keys
+			if (existing.revealed.affinities) {
+				for (const aff of Object.keys(existing.revealed.affinities)) {
+					existing.revealed.affinities[aff] = FU.affTypeAbbr[actor.system.affinities[aff]?.current];
 				}
 			}
-			if (existing.revealed.affinities && Object.keys(existing.revealed.affinities).length === 0) {
-				delete existing.revealed.affinities;
+			// Traits — retain only revealed traits that still exist on the actor
+			if (existing.revealed.traits) {
+				existing.revealed.traits = existing.revealed.traits.filter((t) => traitsArray.includes(t));
+				if (existing.revealed.traits.length === 0) {
+					delete existing.revealed.traits;
+				}
 			}
-
-			// Traits
-			const traits = Object.entries(updatedProfile.traits ?? {})
-				.filter(([, value]) => value)
-				.map(([key]) => key);
-			if (traits.length > 0) {
-				existing.revealed.traits = traits;
-			} else {
-				delete existing.revealed.traits;
-			}
-
-			await party.updateAdversary(existing);
+			ui.notifications.info(`Updated NPC profile of ${actor.name}.`);
 		}
 	}
 }
