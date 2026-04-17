@@ -10,7 +10,7 @@
 			{{pfuBadge 'result' label='FU.Total' value=existing.study size='l' }}
 			<div class="study-total">
 				<label for="study">
-					<input id="study" type="range" name="study" value="{{existing.study}}" min="0" max="{{studyDifficulties.[2]}}" step="1" list="studyDifficulties">
+					<input id="study" type="range" data-tooltip="{{existing.study}}" name="study" value="{{existing.study}}" min="0" max="{{studyDifficulties.[2]}}" step="1" list="studyDifficulties">
 				</label>
 				<datalist id="studyDifficulties">
 					<option value="0" label="0"></option>

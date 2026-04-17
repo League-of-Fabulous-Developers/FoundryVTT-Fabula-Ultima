@@ -88,7 +88,7 @@
 		</div>
 	</fieldset>
 
-	{{#if (and revealPressurePoints revealed.pressurePoints)}}
+	{{#if revealPressurePoints}}
 		<fieldset class="section-container title-fieldset desc resource-content">
 			<legend class="resource-label-m">
 				{{localize 'FU.PressurePoints'}}
@@ -97,9 +97,9 @@
 				{{#each weaponCategories}}
 					<div class="resource-content flex-group-center">
 						<label class="fu-icon__container"
-							   data-tooltip="{{localize this}} <br> {{#if (lookup ../revealed.pressurePoints @key)}}{{localize 'FU.PressurePoint'}}{{/if}}">
-							<i class="fu-icon--s {{pfuIconClass @key}} {{#unless (lookup ../revealed.pressurePoints @key)}}fu-form__disabled{{/unless}}"></i>
-							{{#if (lookup ../revealed.pressurePoints @key)}}
+							   data-tooltip="{{localize this}} <br> {{#if (lookup ../pressurePoints @key)}}{{localize 'FU.PressurePoint'}}{{/if}}">
+							<i class="fu-icon--s {{pfuIconClass @key}} {{#unless (lookup ../pressurePoints @key)}}fu-form__disabled{{/unless}}"></i>
+							{{#if (lookup ../pressurePoints @key)}}
 								{{#if (pfuCollectionContains @key ../actor.system.pressurePoints.entries)}}
 									<span class="resource-label-l">{{localize 'FU.PressurePointAbbr'}}</span>
 								{{/if}}
@@ -112,9 +112,8 @@
 	{{/if}}
 
 	<!-- Bottom content here -->
-	{{#if revealAffinities}}
+	{{#if detailed}}
 	<div class="bottom-row">
-		{{#if detailed}}
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m">
 					{{localize 'FU.Actions'}}
@@ -128,7 +127,6 @@
 					{{{spellsTable}}}
 				</section>
 			</fieldset>
-		{{/if}}
 	</div>
 	{{/if}}
 </div>

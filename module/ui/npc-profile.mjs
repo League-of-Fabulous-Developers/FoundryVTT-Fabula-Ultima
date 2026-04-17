@@ -124,7 +124,8 @@ export class NpcProfileWindow extends FUApplication {
 			};
 		});
 		// Pressure Points
-		const revealPressurePoints = revealAffinities && getSystemSetting(SETTINGS.pressureSystem);
+		const revealPressurePoints = getSystemSetting(SETTINGS.pressureSystem);
+		const pressurePoints = complete ? NpcProfileWindow.getPressurePointMap(actor) : this.data.revealed.pressurePoints;
 
 		Object.assign(context, this.data);
 		context.actor = actor;
@@ -139,6 +140,7 @@ export class NpcProfileWindow extends FUApplication {
 		context.revealStats = revealStats;
 		context.revealAffinities = revealAffinities;
 		context.revealPressurePoints = revealPressurePoints;
+		context.pressurePoints = pressurePoints;
 		context.level = system.level.value;
 		context.hp = system.resources.hp.max;
 		context.mp = system.resources.mp.max;
@@ -171,6 +173,14 @@ export class NpcProfileWindow extends FUApplication {
 	}
 
 	/**
+	 * @param {FUActor} actor
+	 * @returns {Record<String, Boolean>}
+	 */
+	static getPressurePointMap(actor) {
+		return Object.fromEntries((actor.system.pressurePoints.values ?? []).map((p) => [p, true]));
+	}
+
+	/**
 	 * @param {PartyDataModel} party
 	 * @param {String} uuid
 	 * @param {Boolean} edit
@@ -192,7 +202,7 @@ export class NpcProfileWindow extends FUApplication {
 			.map((value) => value.trim())
 			.filter(Boolean);
 		// Pressure Points
-		const pressurePoints = Object.fromEntries((actor.system.pressurePoints.values ?? []).map((p) => [p, true]));
+		const pressurePoints = NpcProfileWindow.getPressurePointMap(actor);
 
 		if (edit) {
 			console.debug(`Editing profile of ${JSON.stringify(existing)}`);
@@ -209,10 +219,12 @@ export class NpcProfileWindow extends FUApplication {
 			});
 			let updatedProfile = await FoundryUtils.input(game.i18n.localize('FU.NpcProfileUpdate'), content, {
 				render: (event, dialog) => {
-					const studyValueDisplay = dialog.element.querySelector('#study-value');
+					// TODO: Have the current badge update?
+					//const studyValueDisplay = dialog.element.querySelector('#study-value');
 					const studyValueInput = dialog.element.querySelector('[name=study]');
 					studyValueInput.addEventListener('change', (e) => {
-						studyValueDisplay.textContent = studyValueInput.value;
+						studyValueInput.setAttribute('data-tooltip', `${studyValueInput.value}`);
+						//studyValueDisplay.textContent = studyValueInput.value;
 					});
 				},
 				rejectClose: false,
