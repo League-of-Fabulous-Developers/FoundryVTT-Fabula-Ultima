@@ -31,6 +31,8 @@
  * @property {object} icons
  * @property {Record<string, string>} icons
  * @property {string} buttonPositionClass
+ * @property {boolean} mirrorFactionList
+ * @property {number} opacity
  *
  * @property {CombatHUDCombatantContext[]} npcs
  * @property {CombatHUDCombatantContext[]} characters
@@ -59,11 +61,13 @@
  * @property {string} faction
  * @property {Object} effects
  * @property {string} img
+ * @property {boolean} showResources
  * @property {string} trackedResourcePart1
  * @property {string} trackedResourcePart2
  * @property {string} trackedResourcePart3
  * @property {string} trackedResourcePart4
- * @property {number} opacity
+ * @property {string} portraitTooltip
+ *
  * @property {object} zeropower
  * @property {object} zeropower.progress
  * @property {number} zeropower.progress.current

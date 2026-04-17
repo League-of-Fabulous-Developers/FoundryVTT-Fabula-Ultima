@@ -1,6 +1,7 @@
 import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { systemTemplatePath } from '../../helpers/system-utils.mjs';
 import { FUHooks } from '../../hooks.mjs';
+import { StudyRollHandler } from '../../pipelines/study-roll.mjs';
 import { SETTINGS } from '../../settings.js';
 import { FUCombat } from '../combat.mjs';
 
@@ -248,6 +249,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 			trackedResourcePart3,
 			trackedResourcePart4,
 			showPressureClock: false,
+			portraitTooltip: `<h4>${combatant.name}</h4>`,
 			hideTurns: !FUCombat.showTurnsFor(combatant),
 			order: 0,
 			tracks: (Object.values(combatant.actor.tracks) ?? []).map((track) => ({
@@ -264,6 +266,24 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 				max: 0,
 			},
 		};
+
+		const showResourceMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowResourcesMode);
+		if (combatant.actor.type === 'character') {
+			// Always show resource bars for PCs
+			actorData.showResources = true;
+		} else if (showResourceMode === 'never') {
+			actorData.showResources = false;
+		} else if (showResourceMode === 'only-gm' && game.user.isGM) {
+			actorData.showResources = true;
+		} else if (showResourceMode === 'only-studied') {
+			// Show resource bars if Study result would show HP/MP
+			const partyActor = game.actors.get(game.settings.get(SYSTEM, SETTINGS.activeParty));
+			const adversaryEntry = partyActor?.getAdversary(combatant.actor.resolveUuid());
+			const studyResult = adversaryEntry ? StudyRollHandler.resolveStudyResult(adversaryEntry.study) : 'none';
+			if (partyActor && adversaryEntry && studyResult !== 'none') {
+				actorData.showResources = true;
+			}
+		}
 
 		const barCount = [trackedResourcePart1, trackedResourcePart2, trackedResourcePart3, trackedResourcePart4].filter((item) => !!item).length;
 
@@ -349,6 +369,8 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		context.elementClass = this._elementClass;
 		// Only show the pop-out button if the PopOut! module is active, or we're in Foundry v14 or newer
 		context.showPopoutButton = game.modules.get('popout')?.active || game.release.isNewer('14');
+		context.isCompact = false;
+		context.mirrorFactionList = false;
 
 		const combat = game.combat;
 		combat.populateData(context);
@@ -356,6 +378,7 @@ export class BaseCombatHUD extends foundry.applications.api.HandlebarsApplicatio
 		context.combatants = [];
 		context.characters = [];
 		context.npcs = [];
+		context;
 
 		const ordering = game.settings.get(SYSTEM, SETTINGS.optionCombatHudActorOrdering);
 

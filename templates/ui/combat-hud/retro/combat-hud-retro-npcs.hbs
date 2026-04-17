@@ -1,0 +1,30 @@
+<div class="combat-hud-retro__faction-list combat-hud-retro__faction-list--npcs">
+  {{#each npcs}}
+    <div class="combat-hud-retro__combatant-row combat-hud-retro__combatant-row--npc">
+      {{> "systems/projectfu/templates/ui/combat-hud/combat-hud-portrait.hbs" compact=../isCompact elementClass=../elementClass}}
+      <div class="combat-hud-retro__combatant-info{{#if ../isCompact}} combatant-hud-retro__combatant-info--compact{{/if}}">
+        <div class="combat-hud-retro__combatant-name{{#unless hasEffects}} combatant-hud-retro__combatant-name--full-height{{/unless}}">
+          <h2 data-action="clickCombatant" data-token-id="{{token.id}}" data-actor-id="{{actor.id}}" data-combatant-id="{{id}}">
+            {{#if (pfuGetSetting "optionCombatHudShowOrderNumbers")}}
+              <span class="combat-hud-retro__combatant-order">{{order}}</span>.&nbsp;
+            {{/if}}
+            {{name}}
+          </h2>
+        </div>
+        <div class="combat-hud-retro__secondary-row">
+          <div class="combat-hud-retro__combatant-effects">
+            {{#each effects}}
+              <img src="{{img}}" class="combat-hud-retro__effect-icon">
+            {{/each}}
+          </div>
+          {{#if showResources}}
+            <div class="combat-hud-retro__combatant-resources combat-hud-retro__combatant-resources--npc">
+              {{> "systems/projectfu/templates/ui/combat-hud/retro/combat-hud-retro-bar.hbs" resource=actor.system.resources.hp label='FU.HealthPoints' inCrisis=actor.system.resources.hp.inCrisis barClass="bar-hp" icon="fa-solid fa-heart" }}
+              {{> "systems/projectfu/templates/ui/combat-hud/retro/combat-hud-retro-bar.hbs" resource=actor.system.resources.mp label='FU.HealthPoints' barClass="bar-mp" icon="fa-solid fa-hat-wizard icon" }}
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
