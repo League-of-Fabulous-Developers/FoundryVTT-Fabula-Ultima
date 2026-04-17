@@ -96,6 +96,14 @@ export const FUHandlebars = Object.freeze({
 			return str;
 		});
 
+		Handlebars.registerHelper('pfuAcronym', function (str) {
+			const split = str.trim().split(' ');
+			if (split.length > 1) {
+				return split.map((word) => word[0].toUpperCase()).join('.');
+			}
+			return split[0];
+		});
+
 		Handlebars.registerHelper('pfuHalf', function (value) {
 			var num = Number(value);
 			if (isNaN(num)) {

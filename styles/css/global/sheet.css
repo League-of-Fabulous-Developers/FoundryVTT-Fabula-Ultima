@@ -446,6 +446,24 @@
 						white-space: nowrap;
 					}
 				}
+
+				.effect-shortcut {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+					flex: 0;
+
+					a {
+						flex: 0 1 max-content;
+					}
+					.effect-name {
+						max-width: 5ch;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
 			}
 
 			.favorites-section {
