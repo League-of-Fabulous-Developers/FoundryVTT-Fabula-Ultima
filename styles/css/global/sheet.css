@@ -380,22 +380,14 @@
 			min-height: 0;
 
 			&.multi-column {
-				&:has(main .favorites-section):not(:has(main .favorites-section .item)) {
-					> main {
-						flex: 0 1 auto;
-						.favorites-section {
-							display: none;
-						}
-					}
+				flex: unset;
+				flex-wrap: wrap;
+				width: auto;
+				max-width: unset;
+				align-items: start;
 
-					> aside.sidebar {
-						flex: 1 1 auto;
-						max-width: unset;
-					}
-				}
-				.sidebar-container {
-					flex-wrap: wrap;
-					width: auto;
+				.section-container {
+					min-width: 170px;
 				}
 			}
 

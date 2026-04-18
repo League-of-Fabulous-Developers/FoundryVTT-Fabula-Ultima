@@ -80,63 +80,43 @@
 	{{/if}}
 
 	{{#if isNPC}}
-		<section class="body-section">
-			<aside class="sidebar">
-				<div class="sidebar-container">
-					{{!-- Action Buttons --}}
-					{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
-					{{!-- Therioform Section --}}
-					{{#if (pfuGetSetting 'showAssociatedTherioforms')}}
-						<fieldset class="desc resource-content title-fieldset associated-therioforms">
-							<legend class="resource-label-m">
-								<label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>
-							</legend>
-							<label>
-								<input type="text" name="system.associatedTherioforms"
-									   value="{{system.associatedTherioforms}}"
-									   class="resource-inputs select-dropdown-full resource-text-m">
-							</label>
-						</fieldset>
-					{{/if}}
-					{{!-- Traits Section --}}
-					<fieldset class="section-container traits-section title-fieldset desc resource-content">
-						<legend class="resource-label-m">
-							<label>{{localize 'FU.Traits'}}</label>
-						</legend>
-						<label>
-							<input class="traitdesc flex3" type="text" name="system.traits.value"
-								   value="{{ system.traits.value }}" placeholder="{{localize 'FU.Traits'}}"
-								   data-dtype="String" />
-						</label>
-					</fieldset>
-					{{!-- Effects Section --}}
-					{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
-					{{!-- Clock Section --}}
-					{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
-				</div>
-			</aside>
-			<main>
-				<!-- Description Section -->
-				{{~#unless (eq (pfuGetSetting 'optionNPCNotesTab') true)~}}
-				<fieldset class="section-container biography-section title-fieldset desc resource-content">
-					<legend class="resource-label-m" aria-describedby="tooltip">
-						<a class="resource-label-m">
-							{{localize 'FU.BiographyInfo'}}
-						</a>
-					</legend>
-					<div>
-						<prose-mirror name="system.description" value="{{~system.description~}}" class="fit" toggled>
-							{{{enrichedHtml.description}}}
-						</prose-mirror>
-					</div>
-				</fieldset>
-				{{/unless}}
-				<!-- Favorite Section -->
-				{{#if hasFavorites}}
-					{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
-				{{/if}}
-			</main>
+		{{#if useMultiColumnLayout}}
+		<section class="body-section multi-column">
+			{{>"systems/projectfu/templates/actor/partials/actor-npc-widgets.hbs"}}
 		</section>
+		{{else}}
+			<section class="body-section standard">
+				<aside class="sidebar">
+					<div class="sidebar-container">
+						{{!-- Favorite Section --}}
+						{{>"systems/projectfu/templates/actor/partials/actor-npc-widgets.hbs"}}
+					</div>
+				</aside>
+				{{#unless useMultiColumnLayout}}
+					<main>
+						<!-- Description Section -->
+						{{#if showNPCNotes}}
+							<fieldset class="section-container biography-section title-fieldset desc resource-content">
+								<legend class="resource-label-m" aria-describedby="tooltip">
+									<a class="resource-label-m">
+										{{localize 'FU.BiographyInfo'}}
+									</a>
+								</legend>
+								<div>
+									<prose-mirror name="system.description" value="{{~system.description~}}" class="fit" toggled>
+										{{{enrichedHtml.description}}}
+									</prose-mirror>
+								</div>
+							</fieldset>
+						{{/if}}
+						<!-- Favorite Section -->
+						{{#if hasFavorites}}
+							{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
+						{{/if}}
+					</main>
+				{{/unless}}
+			</section>
+		{{/if}}
 	{{/if}}
 </div>
 

@@ -1,0 +1,30 @@
+{{!-- Action Buttons --}}
+{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
+{{!-- Therioform Section --}}
+{{#if (pfuGetSetting 'showAssociatedTherioforms')}}
+	<fieldset class="section-container desc resource-content title-fieldset associated-therioforms">
+		<legend class="resource-label-m">
+			<label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>
+		</legend>
+		<label>
+			<input type="text" name="system.associatedTherioforms"
+				   value="{{system.associatedTherioforms}}"
+				   class="resource-inputs select-dropdown-full resource-text-m">
+		</label>
+	</fieldset>
+{{/if}}
+{{!-- Traits Section --}}
+<fieldset class="section-container traits-section title-fieldset desc resource-content">
+	<legend class="resource-label-m">
+		<label>{{localize 'FU.Traits'}}</label>
+	</legend>
+	<label>
+		<input class="traitdesc flex3" type="text" name="system.traits.value"
+			   value="{{ system.traits.value }}" placeholder="{{localize 'FU.Traits'}}"
+			   data-dtype="String" />
+	</label>
+</fieldset>
+{{!-- Effects Section --}}
+{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
+{{!-- Clock Section --}}
+{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}

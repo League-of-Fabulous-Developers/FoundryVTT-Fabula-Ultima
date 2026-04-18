@@ -461,7 +461,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 						};
 					}
 					const favorites = Array.from(this.actor.allItems().filter((item) => item.isFavorite));
-					context.hasFavorites = favorites.length > 0;
+					const hasFavorites = favorites.length > 0;
+					context.hasFavorites = hasFavorites;
+					context.showBonds = getSystemSetting(SETTINGS.optionPCBondsSection);
+					const showNPCNotes = !getSystemSetting(SETTINGS.optionNPCNotesTab);
+					context.showNPCNotes = showNPCNotes;
+					context.useMultiColumnLayout = !hasFavorites && !showNPCNotes;
+
 					context.favoritesTable = await this.#favoritesTable.renderTable(this.document);
 					context.temporaryEffects = this.actor.temporaryEffects.filter((e) => e.hasDuration);
 				}
