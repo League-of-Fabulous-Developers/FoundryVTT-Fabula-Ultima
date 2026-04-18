@@ -4,6 +4,8 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
+import { createMenuTool, SETTINGS } from '../settings.js';
+import { SYSTEM } from '../helpers/config.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -30,6 +32,15 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 					label: 'FU.CompendiumMigrateActorItems',
 					ownership: 'OWNER',
 				},
+				{
+					action: 'configureSheetOptions',
+					icon: 'fas fa-book',
+					label: 'FU.SheetOptions',
+					ownership: 'OWNER',
+					visible: () => {
+						return game.user.isGM;
+					},
+				},
 			],
 		},
 		form: {
@@ -37,6 +48,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		},
 		actions: {
 			migrateItems: this.#migrateItems,
+			configureSheetOptions: this.#configureSheetOptions,
 			addArrayElement: this.#addArrayElement,
 			removeArrayElement: this.#removeArrayElement,
 		},
@@ -252,5 +264,16 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 				});
 			}
 		}
+	}
+
+	/**
+	 * @this FUActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #configureSheetOptions(event, target) {
+		const tool = createMenuTool(`${SYSTEM}.${SETTINGS.sheetOptions}`);
+		tool.click();
 	}
 }

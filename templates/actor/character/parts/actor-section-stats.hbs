@@ -117,6 +117,7 @@
 			</aside>
 			<main>
 				<!-- Description Section -->
+				{{~#unless (eq (pfuGetSetting 'optionNPCNotesTab') true)~}}
 				<fieldset class="section-container biography-section title-fieldset desc resource-content">
 					<legend class="resource-label-m" aria-describedby="tooltip">
 						<a class="resource-label-m">
@@ -124,18 +125,14 @@
 						</a>
 					</legend>
 					<div>
-					{{~#if (eq (pfuGetSetting 'optionNPCNotesTab') true)~}}
-						{{~{enrichedHtml.description}~}}
-					{{~else}}
 						<prose-mirror name="system.description" value="{{~system.description~}}" class="fit" toggled>
 							{{{enrichedHtml.description}}}
 						</prose-mirror>
-					{{/if~}}
 					</div>
 				</fieldset>
-
+				{{/unless}}
+				<!-- Favorite Section -->
 				{{#if hasFavorites}}
-					<!-- Favorite Section -->
 					{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
 				{{/if}}
 			</main>
