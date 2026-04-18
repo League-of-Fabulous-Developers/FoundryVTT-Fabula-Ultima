@@ -385,6 +385,7 @@
 				width: auto;
 				max-width: unset;
 				align-items: start;
+				justify-content: space-between;
 
 				.section-container {
 					min-width: 170px;
