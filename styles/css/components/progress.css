@@ -175,6 +175,7 @@
 
 .pfu-progress__bar {
 	font-size: 18px;
+	height: 20px;
 	max-height: 20px;
 	width: 100px;
 	border: 1px solid #c7c7c7;
