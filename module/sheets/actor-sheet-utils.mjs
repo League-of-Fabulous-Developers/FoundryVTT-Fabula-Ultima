@@ -6,6 +6,7 @@ import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
+import { Checks } from '../checks/checks.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -97,6 +98,12 @@ function activateDefaultListeners(html, sheet) {
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
 			callback: (html) => _onItemDuplicate(html, sheet),
+			condition: (html) => !!html.closest('[data-item-id]'),
+		},
+		{
+			name: game.i18n.localize('FU.ChatMessageSendHint'),
+			icon: '<i class="fas fa-comment"></i>',
+			callback: (html) => _onItemSendToChat(html, sheet),
 			condition: (html) => !!html.closest('[data-item-id]'),
 		},
 		{
@@ -270,6 +277,19 @@ async function _onItemDuplicate(element, sheet) {
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
 		await sheet.actor.createEmbeddedDocuments('Item', [dupData]);
 		sheet.render();
+	}
+}
+
+/**
+ * Duplicates the specified item and adds it to the actor's item list.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
+ * @param {ActorSheet} sheet
+ * @returns {Promise<void>}
+ */
+async function _onItemSendToChat(element, sheet) {
+	let item = getItemFromHtml(element, sheet.actor);
+	if (item) {
+		return Checks.display(item.parent, item);
 	}
 }
 
