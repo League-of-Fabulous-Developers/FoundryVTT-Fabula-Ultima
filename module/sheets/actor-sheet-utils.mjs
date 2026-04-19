@@ -271,7 +271,7 @@ function getItemFromHtml(htmlElement, actor) {
  * @returns {Promise<void>}
  */
 async function _onItemDuplicate(element, sheet) {
-	let item = getItemFromHtml(element, sheet.actor);
+	const item = getItemFromHtml(element, sheet.actor);
 	if (item) {
 		const dupData = item.toObject(true);
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
@@ -281,13 +281,13 @@ async function _onItemDuplicate(element, sheet) {
 }
 
 /**
- * Duplicates the specified item and adds it to the actor's item list.
+ * @desc Renders the description of the item referenced in the html element.
  * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
  * @returns {Promise<void>}
  */
 async function _onItemSendToChat(element, sheet) {
-	let item = getItemFromHtml(element, sheet.actor);
+	const item = getItemFromHtml(element, sheet.actor);
 	if (item) {
 		return Checks.display(item.parent, item);
 	}
