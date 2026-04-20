@@ -131,7 +131,7 @@
                 "eventRelation": "source",
                 "resource": "mp",
                 "change": "decrement",
-                "resourceSources": [
+                "itemGroups": [
                   "spell"
                 ],
                 "local": false,

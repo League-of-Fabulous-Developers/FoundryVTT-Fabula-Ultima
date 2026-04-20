@@ -143,19 +143,19 @@ function calculateDamage(actor, item, config) {
  * @property {CharacterInfo} source
  * @property {UpdateResourceData} data
  * @property {FUItem} item
- * @property {FUItemGroup} resourceSource
+ * @property {ItemGroup} itemGroup
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} config
  */
 
 async function calculateResource(actor, item, config, data) {
-	const resourceSource = ItemUtils.resolveItemGroup(item);
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 	const targets = config.getTargets();
 	const event = {
 		source: CharacterInfo.fromActor(actor),
 		targets: CharacterInfo.fromTargetData(targets),
 		item: item,
-		resourceSource: resourceSource,
+		itemGroup: itemGroup,
 		data: data,
 		config: config,
 	};
