@@ -172,6 +172,43 @@ export class ItemSelectionDialog {
 				const document = dialog.element;
 				const container = document.querySelector('#items');
 
+				// Handle opening journal entries when clicking the icon
+				document.addEventListener(
+					'click',
+					(clickEvent) => {
+						const wrapper = clickEvent.target.closest('.journal-page-icon-wrapper');
+						if (wrapper) {
+							clickEvent.preventDefault();
+							clickEvent.stopPropagation();
+							const journalUuid = wrapper.dataset.journalUuid;
+							const pageUuid = wrapper.dataset.pageUuid;
+							if (journalUuid && pageUuid) {
+								const journal = fromUuidSync(journalUuid);
+								const page = fromUuidSync(pageUuid);
+
+								if (journal && page) {
+									const jSheet = journal.sheet;
+									const goToPage = () => {
+										if (typeof jSheet.goToPage === 'function') return jSheet.goToPage(page.id);
+										if (typeof jSheet.navigatePage === 'function') return jSheet.navigatePage(page.id);
+									};
+
+									if (jSheet.rendered) {
+										goToPage();
+										return;
+									}
+
+									Hooks.once('renderJournalSheet', (sheet) => {
+										if (sheet === jSheet) goToPage();
+									});
+									jSheet.render(true, { pageId: page.id });
+								}
+							}
+						}
+					},
+					true,
+				);
+
 				// Initial Selection
 				const inputs = container.querySelectorAll('input[name="selected"]:checked');
 				for (const input of inputs) {
@@ -181,7 +218,7 @@ export class ItemSelectionDialog {
 					}
 				}
 
-				if (this.data.style !== 'list') {
+				if (this.data.style !== 'list' && this.data.style !== 'grouped-list') {
 					container.addEventListener('mousedown', async (event) => {
 						const card = event.target.closest('.fu-item');
 						if (!card) return;
@@ -190,6 +227,30 @@ export class ItemSelectionDialog {
 				} else {
 					container.addEventListener('change', (event) => {
 						const input = event.target;
+
+						// Handle group checkbox
+						if (input?.name === 'group-selected') {
+							const groupIndex = Number.parseInt(input.dataset.groupIndex);
+							if (Number.isFinite(groupIndex) && this.data.groups && this.data.groups[groupIndex]) {
+								const groupRow = input.closest('.group-header');
+								if (groupRow) {
+									const nextRow = groupRow.nextElementSibling;
+									let currentRow = nextRow;
+									// Toggle all pages in this group
+									while (currentRow && !currentRow.classList.contains('group-header')) {
+										const pageCheckbox = currentRow.querySelector('input[name="selected"]');
+										if (pageCheckbox) {
+											pageCheckbox.checked = input.checked;
+											pageCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+										}
+										currentRow = currentRow.nextElementSibling;
+									}
+								}
+							}
+							return;
+						}
+
+						// Handle individual page checkbox
 						if (input?.name !== 'selected') return;
 						const card = input.closest('.fu-item');
 						if (!card) return;

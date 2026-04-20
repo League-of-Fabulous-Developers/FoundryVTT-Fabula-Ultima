@@ -759,42 +759,6 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * Show selection dialog then confirmation
-	 * @param {JournalEntryPage[]} pages Array of pages to select from
-	 * @returns {Promise<JournalEntryPage[]|null>} Selected pages or null if cancelled
-	 */
-	async #promptSelectAndConfirmPages(documentType, pages) {
-		if (!pages || pages.length === 0) return null;
-
-		// First show selection dialog
-		const selectedPages = await this.#promptSelectItems(documentType, pages);
-
-		if (!selectedPages || selectedPages.length === 0) {
-			return null;
-		}
-
-		// Enrich pages with source journal info for confirmation display
-		const enrichedPages = selectedPages.map((page) => ({
-			name: `${page.name} (${page.parent?.name || 'Unknown Journal'})`,
-			img: page.src,
-		}));
-
-		// Show confirmation dialog
-		const content = await FoundryUtils.renderTemplate('common/document-list', {
-			message: 'The following journal entry pages will be imported as codex entries.',
-			documents: enrichedPages,
-		});
-
-		const confirm = await FoundryUtils.confirm('FU.Import', content);
-
-		if (confirm) {
-			return selectedPages;
-		}
-
-		return null;
-	}
-
-	/**
 	 * Show a selection dialog to choose which items to import
 	 * @param {string} documentType The type label (FU.Actor, DOCUMENT.JournalEntryPage, etc)
 	 * @param {Document[]} items Array of items to select from
@@ -1036,7 +1000,7 @@ export class FUPartySheet extends FUActorSheet {
 
 	/**
 	 * Helper to show actor import dialog with optional selection
-	 * @param {FUActor[]} [initialActors] Pre-selected actors from drop, shows selection dialog if provided
+	 * @param {FUActor[]} [initialActors] Pre-selected actors from drop
 	 * @returns {Promise<void>}
 	 */
 	async #showActorImportDialog(initialActors = null) {
@@ -1049,19 +1013,11 @@ export class FUPartySheet extends FUActorSheet {
 		}
 
 		if (selected && selected.length > 0) {
-			const content = await FoundryUtils.renderTemplate('common/document-list', {
-				message: 'The following actors will be imported as codex entries.',
-				documents: selected,
-			});
-
-			const confirm = await FoundryUtils.confirm('FU.Import', content);
-			if (confirm) {
-				const result = await this.#importActorsToCodex(selected);
-				if (result.skipped.length > 0) {
-					ui.notifications.warn(`Imported ${result.imported}/${selected.length} actors. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
-				} else {
-					ui.notifications.info(`Imported ${result.imported}/${selected.length} actors to Codex.`);
-				}
+			const result = await this.#importActorsToCodex(selected);
+			if (result.skipped.length > 0) {
+				ui.notifications.warn(`Imported ${result.imported}/${selected.length} actors. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
+			} else {
+				ui.notifications.info(`Imported ${result.imported}/${selected.length} actors to Codex.`);
 			}
 		}
 	}
@@ -1077,34 +1033,82 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * Helper to show journal entry import dialog with selection and confirmation combined
-	 * @param {JournalEntry[]} [initialEntries] Pre-selected journals from drop, shows selection in confirmation if provided
+	 * Helper to show journal entry import dialog
+	 * Groups journal pages by their parent journal with visual hierarchy
+	 * @param {JournalEntry[]} [initialEntries] Pre-selected journals from drop
 	 * @returns {Promise<void>}
 	 */
 	async #showJournalImportDialog(initialEntries = null) {
-		let selected = initialEntries;
+		let journals = initialEntries;
 
-		if (!selected) {
-			selected = await FoundryUtils.selectJournalEntries();
+		if (!journals) {
+			journals = game.journal.contents;
 		}
 
-		if (selected && selected.length > 0) {
-			let pages = selected.flatMap((je) => je.pages.contents);
+		if (!journals || journals.length === 0) {
+			ui.notifications.warn('No journal entries found in this world.');
+			return;
+		}
 
-			if (pages.length === 0) {
-				ui.notifications.warn('No pages found in selected journals.');
-				return;
+		const groups = [];
+		let allPages = [];
+		let itemIndex = 0;
+
+		for (const journal of journals) {
+			const journalPages = journal.pages.contents.map((page) => {
+				const pageItem = {
+					id: page.id,
+					uuid: page.uuid,
+					name: page.name,
+					img: page.src || journal.img,
+					_originalPage: page,
+					_flatIndex: itemIndex,
+					_journalUuid: journal.uuid,
+				};
+				allPages.push(pageItem);
+				itemIndex++;
+				return pageItem;
+			});
+
+			if (journalPages.length > 0) {
+				groups.push({
+					name: journal.name,
+					items: journalPages,
+				});
 			}
+		}
 
-			const selectedPages = await this.#promptSelectAndConfirmPages('DOCUMENT.JournalEntryPage', pages);
+		if (allPages.length === 0) {
+			ui.notifications.warn('No pages found in selected journals.');
+			return;
+		}
+
+		const data = {
+			title: `${StringUtils.localize('CONTROLS.CommonSelect')} ${StringUtils.localize('DOCUMENT.JournalEntryPage')}`,
+			style: 'grouped-list',
+			groups: groups,
+			items: allPages,
+			initial: [],
+			getDescription: async () => '',
+		};
+
+		try {
+			const dialog = new ItemSelectionDialog(data);
+			const selectedPages = await dialog.open();
 
 			if (selectedPages && selectedPages.length > 0) {
-				const result = await this.#importJournalPagesToCodex(selectedPages);
+				const pages = selectedPages.map((item) => item._originalPage);
+				const result = await this.#importJournalPagesToCodex(pages);
 				if (result.skipped.length > 0) {
-					ui.notifications.warn(`Imported ${result.imported}/${selectedPages.length} journal pages. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
+					ui.notifications.warn(`Imported ${result.imported}/${pages.length} journal pages. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
 				} else {
-					ui.notifications.info(`Imported ${result.imported}/${selectedPages.length} journal pages.`);
+					ui.notifications.info(`Imported ${result.imported}/${pages.length} journal pages.`);
 				}
+			}
+		} catch (error) {
+			if (error.message !== 'Canceled by user.') {
+				console.error('Error importing journal pages:', error);
+				ui.notifications.error('Error importing journal pages.');
 			}
 		}
 	}
