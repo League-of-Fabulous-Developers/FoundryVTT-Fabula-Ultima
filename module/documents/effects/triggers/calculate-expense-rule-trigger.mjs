@@ -54,11 +54,6 @@ export class CalculateExpenseRuleTrigger extends RuleTriggerDataModel {
 		return schema;
 	}
 
-	// TODO: Remove once design is finished
-	static migrateData(source) {
-		return super.migrateData(source);
-	}
-
 	static get localization() {
 		return 'FU.RuleTriggerCalculateExpense';
 	}

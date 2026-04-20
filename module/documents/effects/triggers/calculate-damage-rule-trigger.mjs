@@ -7,7 +7,7 @@ const fields = foundry.data.fields;
 /**
  * @description Trigger based on a {@linkcode CalculateDamageEvent}
  * @extends RuleTriggerDataModel
- * @property {Set<FUItemGroup>} damageSources
+ * @property {Set<FUItemGroup>} itemGroups
  * @property {Set<DamageType>} damageTypes
  * @property {String} identifier
  * @property {Boolean} local
@@ -28,12 +28,20 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			damageSources: new fields.SetField(new fields.StringField()),
+			itemGroups: new fields.SetField(new fields.StringField()),
 			damageTypes: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
 			local: new fields.BooleanField(),
 		});
 		return schema;
+	}
+
+	static migrateData(source) {
+		if (source.damageSources) {
+			source.itemGroups = source.damageSources;
+			delete source.damageSources;
+		}
+		return super.migrateData(source);
 	}
 
 	static get localization() {
@@ -49,7 +57,7 @@ export class CalculateDamageRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		if (this.damageSources.size > 0 && !this.damageSources.has(context.event.damageSource)) {
+		if (this.itemGroups.size > 0 && !this.itemGroups.has(context.event.itemGroup)) {
 			return false;
 		}
 		if (this.damageTypes.size > 0 && !this.damageTypes.has(context.event.type)) {

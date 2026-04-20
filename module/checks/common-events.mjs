@@ -78,7 +78,7 @@ function attack(inspector, actor, item) {
  * @property {DamageType} type
  * @property {FUAffinity} affinity
  * @property {InlineSourceInfo} sourceInfo
- * @property {FUItemGroup} damageSource
+ * @property {FUItemGroup} itemGroup
  * @property {Number} amount
  * @property {CharacterInfo} target
  * @property {FUItem} item
@@ -93,7 +93,7 @@ async function damage(type, affinity, amount, traits, sourceActor, targetActor, 
 	const source = CharacterInfo.fromActor(sourceActor);
 	const target = CharacterInfo.fromActor(targetActor);
 	const item = sourceInfo.resolveItem();
-	const damageSource = ItemUtils.resolveItemGroup(item);
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 
 	/** @type DamageEvent  **/
 	const damageEvent = {
@@ -103,7 +103,7 @@ async function damage(type, affinity, amount, traits, sourceActor, targetActor, 
 		affinity: affinity,
 		source: source,
 		sourceActor: sourceInfo,
-		damageSource: damageSource,
+		itemGroup: itemGroup,
 		target: target,
 		actor: target.actor,
 		token: target.token,
@@ -119,19 +119,19 @@ async function damage(type, affinity, amount, traits, sourceActor, targetActor, 
  * @property {CharacterInfo} source
  * @property {FUItem} item
  * @property {DamageType} type
- * @property {FUItemGroup} damageSource
+ * @property {FUItemGroup} itemGroup
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} config
  */
 
 function calculateDamage(actor, item, config) {
-	const damageSource = ItemUtils.resolveItemGroup(item);
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 	const targets = config.getTargets();
 	const event = {
 		source: CharacterInfo.fromActor(actor),
 		targets: CharacterInfo.fromTargetData(targets),
 		item: item,
-		damageSource: damageSource,
+		itemGroup: itemGroup,
 		config: config,
 		type: config.getDamage()?.type,
 	};
