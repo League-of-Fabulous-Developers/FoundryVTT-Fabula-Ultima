@@ -265,7 +265,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 		 * @returns {Boolean} Whether this effect is stackable
 		 */
 		get stackable() {
-			return this.system.rules.stacking.enabled;
+			return this.system?.rules?.stacking?.enabled ?? false;
 		}
 
 		/**

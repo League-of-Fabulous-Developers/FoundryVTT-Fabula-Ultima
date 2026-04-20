@@ -359,19 +359,6 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 		return false;
 	} else {
 		await createStatusEffect(actor, statusEffectId, sourceInfo, config);
-		const statusEffect = resolveBaseEffect(statusEffectId);
-		if (statusEffect) {
-			const instance = await ActiveEffect.create(
-				{
-					...statusEffect,
-					statuses: [statusEffectId],
-					flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
-				},
-				{ parent: actor },
-			);
-			await applyConfiguration(instance, config);
-			CommonEvents.status(actor, statusEffectId, true);
-		}
 		return true;
 	}
 }

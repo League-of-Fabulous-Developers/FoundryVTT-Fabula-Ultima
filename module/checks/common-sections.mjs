@@ -359,7 +359,7 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 				}
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
 				if (traits) {
-					request.addTraits(traits)
+					request.addTraits(traits);
 				}
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}

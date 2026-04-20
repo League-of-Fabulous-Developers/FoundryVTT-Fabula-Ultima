@@ -77,7 +77,7 @@ export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 				}
 				break;
 		}
-		
+
 		if (this.itemGroups.size > 0 && !this.itemGroups.has(context.event.itemGroup)) {
 			return false;
 		}

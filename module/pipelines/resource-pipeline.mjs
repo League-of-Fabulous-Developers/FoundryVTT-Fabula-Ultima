@@ -11,7 +11,7 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
-import { DamageTraits, Traits, TraitUtils } from './traits.mjs';
+import { Traits } from './traits.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
@@ -293,7 +293,7 @@ async function processRecovery(request) {
 
 		// Handle post-resource loss traits
 		if (Math.abs(amountRecovered) > 0) {
-			processPostResource(request, Math.abs(amountRecovered))
+			processPostResource(request, Math.abs(amountRecovered));
 		}
 	}
 	return Promise.all(updates);
@@ -364,10 +364,10 @@ async function processLoss(request) {
 				}),
 			);
 		}
-		
+
 		// Handle post-resource loss traits
 		if (Math.abs(amountLost) > 0) {
-			processPostResource(request, Math.abs(amountLost))
+			processPostResource(request, Math.abs(amountLost));
 		}
 	}
 	return Promise.all(updates);
@@ -470,7 +470,7 @@ function onRenderChatMessage(message, html) {
 		const sourceInfo = new InlineSourceInfo(dataset.name, dataset.actor, dataset.item);
 		const actor = sourceInfo.resolveActor();
 		const request = new ResourceRequest(sourceInfo, [actor], dataset.resource, dataset.amount);
-		if (traits) {
+		if (dataset.traits) {
 			request.addTraits(dataset.traits);
 		}
 		return ResourcePipeline.processLoss(request);

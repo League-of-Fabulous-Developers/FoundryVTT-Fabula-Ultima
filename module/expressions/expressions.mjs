@@ -586,19 +586,17 @@ function countMasteredClasses(actor) {
 }
 
 /**
- * @param {FUActor} actor
+ * @param {CheckV2} check
  * @returns {Number}
  */
 function getHighRoll(check) {
 	if (check) {
 		if (check.primary == null && check.secondary == null) {
 			return 0;
-		}
-		else if (check.primary == null) {
-			return context.check.secondary.result;
-		}
-		else if (check.secondary == null) {
-			return context.check.primary.result;
+		} else if (check.primary == null) {
+			return check.secondary.result;
+		} else if (check.secondary == null) {
+			return check.primary.result;
 		}
 
 		return Math.max(check.primary.result, check.secondary.result);
