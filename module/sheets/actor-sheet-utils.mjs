@@ -6,6 +6,11 @@ import { PseudoItem } from '../documents/items/pseudo-item.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
+import { systemId } from '../helpers/system-utils.mjs';
+import { isActiveEffectForStatusEffectId } from '../pipelines/effects.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 import { Checks } from '../checks/checks.mjs';
 
 /**
@@ -410,6 +415,72 @@ async function lootItem(event, target, actor) {
 	}
 }
 
+// Status effect IDs
+const VISIBLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+
+/**
+ * @description Prepares status effect toggles for display
+ * @param {FUActor} actor
+ * @returns {Array<Object>}
+ */
+function prepareStatusEffectToggles(actor) {
+	const toggles = [];
+	for (const id of VISIBLE_STATUS_EFFECT_IDS) {
+		const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
+		if (statusEffect) {
+			const existing = actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
+			const immune = actor.system.immunities?.[statusEffect.id]?.base || false;
+			const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
+			const rule = game.i18n.localize(ruleKey);
+			const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
+			toggles.push({
+				...statusEffect,
+				active: existing,
+				immune,
+				tooltip,
+			});
+		}
+	}
+	return toggles;
+}
+
+/**
+ * @description Prepares study roll tier map
+ * @returns {Record<number, string>}
+ */
+function prepareStudyRollMap() {
+	const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;
+	let studyRoll = studyRollTiers.map((value) => value + '+');
+	studyRoll.unshift('-');
+	return studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
+}
+
+/**
+ * @description Enriches HTML description
+ * @param {FUActor} actor
+ * @returns {Promise<Object>}
+ */
+async function enrichDescription(actor) {
+	return {
+		description: await TextEditor.enrichHTML(actor.system.description ?? '', {
+			secrets: actor.isOwner,
+			rollData: actor.getRollData(),
+			relativeTo: actor,
+		}),
+	};
+}
+
+/**
+ * @description Prepares pressure system context
+ * @param {Object} context
+ */
+function preparePressureContext(context) {
+	context.pressurePoints = game.settings.get(systemId, SETTINGS.pressureSystem);
+	if (context.pressurePoints) {
+		context.weaponCategories = FU.weaponCategories;
+	}
+}
+
 Hooks.on('renderFUActorSheet', onRenderFUActorSheet);
 
 /**
@@ -424,4 +495,8 @@ export const ActorSheetUtils = Object.freeze({
 	activateDefaultListeners,
 	handleStashDrop,
 	prepareNpcCompanionData,
+	prepareStatusEffectToggles,
+	prepareStudyRollMap,
+	enrichDescription,
+	preparePressureContext,
 });
