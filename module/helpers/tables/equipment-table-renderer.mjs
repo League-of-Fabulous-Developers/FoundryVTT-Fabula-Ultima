@@ -4,13 +4,14 @@ import { CommonDescriptions } from './common-descriptions.mjs';
 import { FU } from '../config.mjs';
 import { TradableTableRenderer } from './tradable-table-renderer.mjs';
 
-const includedItemTypes = new Set(['accessory', 'armor', 'shield', 'weapon']);
+const includedItemTypes = new Set(['accessory', 'armor', 'shield', 'weapon', 'customWeapon']);
 
 const costFields = {
 	accessory: 'system.cost.value',
 	armor: 'system.cost.value',
 	shield: 'system.cost.value',
 	weapon: 'system.cost.value',
+	customWeapon: 'system.cost',
 };
 
 const qualityFields = {
@@ -18,6 +19,7 @@ const qualityFields = {
 	armor: 'system.quality.value',
 	shield: 'system.quality.value',
 	weapon: 'system.quality.value',
+	customWeapon: 'system.quality',
 };
 
 const descriptionRenderers = {
@@ -29,6 +31,12 @@ const descriptionRenderers = {
 		tags.push({ tag: FU.handedness[item.system.hands.value] });
 		tags.push({ tag: FU.weaponTypes[item.system.type.value] });
 		tags.push({ tag: FU.weaponCategories[item.system.category.value] });
+		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
+		return tags;
+	}),
+	customWeapon: CommonDescriptions.descriptionWithTags((item) => {
+		const tags = [];
+		tags.push({ tag: FU.handedness['two-handed'] });
 		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
 		return tags;
 	}),
@@ -98,8 +106,17 @@ const details = {
 		};
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equipment-weapon-details'), data);
 	},
+	customWeapon: (item) => {
+		const data = {
+			FU: FU,
+		};
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equipment-weapon-details'), data);
+	},
 };
 
+/**
+ * @desc To be used for non-character sheets, where different equipment types are all lumped together in a simplified way.
+ */
 export class EquipmentTableRenderer extends TradableTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
