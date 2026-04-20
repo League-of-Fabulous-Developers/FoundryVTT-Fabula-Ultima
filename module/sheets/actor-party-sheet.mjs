@@ -472,7 +472,8 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #activate() {
 		console.debug(`Setting ${this.actor.name} as the active party`);
-		game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
+		await game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
+		ui.notifications.info(game.i18n.format('FU.ActivePartySetNotification', { name: this.actor.name }));
 	}
 
 	/**
