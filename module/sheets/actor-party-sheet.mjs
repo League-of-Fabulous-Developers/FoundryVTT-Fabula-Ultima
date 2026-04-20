@@ -764,40 +764,53 @@ export class FUPartySheet extends FUActorSheet {
 	 * @param {Document[]} items Array of items to select from
 	 * @returns {Promise<Document[]|null>} Selected items or null if cancelled
 	 */
-	async #promptSelectItems(documentType, items) {
-		if (!items || items.length === 0) return null;
-		if (items.length === 1) return items; // Skip dialog for single item
+	// async #promptSelectItems(documentType, items) {
+	// 	if (!items || items.length === 0) return null;
+	// 	if (items.length === 1) return items; // Skip dialog for single item
+	// async #promptSelectItems(documentType, items) {
+	// 	if (!items || items.length === 0) return null;
+	// 	if (items.length === 1) return items; // Skip dialog for single item
 
-		const displayItems = items.map((item, idx) => ({
-			_originalIndex: idx,
-			uuid: item?.uuid,
-			id: item?.id,
-			img: item?.img || item?.src,
-			pack: item?.pack,
-			documentName: item?.documentName,
-			parent: item?.parent,
-			name: item.parent?.name && item.documentName === 'JournalEntryPage' ? `${item.name} (${item.parent.name})` : item.name,
-		}));
+	// 	const displayItems = items.map((item, idx) => ({
+	// 		_originalIndex: idx,
+	// 		uuid: item?.uuid,
+	// 		id: item?.id,
+	// 		img: item?.img || item?.src,
+	// 		pack: item?.pack,
+	// 		documentName: item?.documentName,
+	// 		parent: item?.parent,
+	// 		name: item.parent?.name && item.documentName === 'JournalEntryPage' ? `${item.name} (${item.parent.name})` : item.name,
+	// 	}));
+	// 	const displayItems = items.map((item, idx) => ({
+	// 		_originalIndex: idx,
+	// 		uuid: item?.uuid,
+	// 		id: item?.id,
+	// 		img: item?.img || item?.src,
+	// 		pack: item?.pack,
+	// 		documentName: item?.documentName,
+	// 		parent: item?.parent,
+	// 		name: item.parent?.name && item.documentName === 'JournalEntryPage' ? `${item.name} (${item.parent.name})` : item.name,
+	// 	}));
 
-		const data = {
-			title: `Select ${game.i18n.localize(documentType)} to Import`,
-			style: 'list',
-			items: displayItems,
-			initial: displayItems,
-			max: displayItems.length,
-			getDescription: async (item) => item.name,
-		};
+	// 	const data = {
+	// 		title: `Select ${game.i18n.localize(documentType)} to Import`,
+	// 		style: 'list',
+	// 		items: displayItems,
+	// 		initial: displayItems,
+	// 		max: displayItems.length,
+	// 		getDescription: async (item) => item.name,
+	// 	};
 
-		const dialog = new ItemSelectionDialog(data);
-		const selected = await dialog.open();
+	// 	const dialog = new ItemSelectionDialog(data);
+	// 	const selected = await dialog.open();
 
-		if (!selected || selected.length === 0) return null;
+	// 	if (!selected || selected.length === 0) return null;
 
-		return selected
-			.filter((sel) => sel && sel._originalIndex !== undefined)
-			.map((sel) => items[sel._originalIndex])
-			.filter(Boolean);
-	}
+	// 	return selected
+	// 		.filter((sel) => sel && sel._originalIndex !== undefined)
+	// 		.map((sel) => items[sel._originalIndex])
+	// 		.filter(Boolean);
+	// }
 
 	/**
 	 * @param {DragEvent} event
@@ -1004,22 +1017,94 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	async #showActorImportDialog(initialActors = null) {
-		let selected = initialActors;
-
-		if (!selected) {
-			selected = await FoundryUtils.selectActors();
-		} else if (selected.length > 0) {
-			selected = await this.#promptSelectItems('FU.Actor', selected);
+		let selected = initialActors ?? game.actors?.contents ?? [];
+		if (!selected.length) {
+			ui.notifications.warn('No actors found in this world.');
+			return;
 		}
 
-		if (selected && selected.length > 0) {
-			const result = await this.#importActorsToCodex(selected);
-			if (result.skipped.length > 0) {
-				ui.notifications.warn(`Imported ${result.imported}/${selected.length} actors. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
-			} else {
-				ui.notifications.info(`Imported ${result.imported}/${selected.length} actors to Codex.`);
+		selected = await this.#promptSelectActorsGrouped(selected);
+		if (!selected?.length) return;
+
+		const result = await this.#importActorsToCodex(selected);
+		if (result.skipped.length > 0) {
+			ui.notifications.warn(`Imported ${result.imported}/${selected.length} actors. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
+		} else {
+			ui.notifications.info(`Imported ${result.imported}/${selected.length} actors to Codex.`);
+		}
+	}
+
+	/**
+	 * @param {FUActor[]} actors
+	 * @returns {Promise<FUActor[]|null>}
+	 */
+	async #promptSelectActorsGrouped(actors) {
+		if (!actors?.length) return null;
+		if (actors.length === 1) return actors;
+
+		const groupsByKey = new Map();
+
+		for (const actor of actors) {
+			const folderId = this.#resolveFolderId(actor) ?? '__none__';
+			if (!groupsByKey.has(folderId)) {
+				groupsByKey.set(folderId, {
+					name: this.#resolveFolderPath(folderId === '__none__' ? null : folderId),
+					actors: [],
+				});
 			}
+			groupsByKey.get(folderId).actors.push(actor);
 		}
+
+		const groups = [];
+		const allActors = [];
+		let flatIndex = 0;
+		for (const group of [...groupsByKey.values()].sort((a, b) => a.name.localeCompare(b.name))) {
+			const items = group.actors
+				.sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''))
+				.map((actor) => {
+					const entry = {
+						id: actor.id,
+						uuid: actor.uuid,
+						name: actor.name,
+						img: actor.img,
+						_originalActor: actor,
+						_flatIndex: flatIndex++,
+					};
+					allActors.push(entry);
+					return entry;
+				});
+
+			if (items.length > 0) groups.push({ name: group.name, items });
+		}
+
+		const selected = await new ItemSelectionDialog({
+			title: `${StringUtils.localize('CONTROLS.CommonSelect')} ${game.i18n.localize('FU.Actor')}`,
+			style: 'grouped-list',
+			groups,
+			items: allActors,
+			initial: [],
+			max: allActors.length,
+			getDescription: async (item) => item.name,
+		}).open();
+		if (!selected || selected.length === 0) return null;
+		return selected.map((item) => item._originalActor).filter(Boolean);
+	}
+
+	/**
+	 * @param {string|null} folderId
+	 * @returns {string}
+	 */
+	#resolveFolderPath(folderId) {
+		if (!folderId) return game.i18n.localize('FU.None');
+		const folder = game.folders?.get(folderId);
+		if (!folder) return game.i18n.localize('FU.None');
+		const names = [folder.name];
+		let current = folder.folder ?? folder.parent ?? null;
+		while (current) {
+			names.unshift(current.name);
+			current = current.folder ?? current.parent ?? null;
+		}
+		return names.join(' / ');
 	}
 
 	/**

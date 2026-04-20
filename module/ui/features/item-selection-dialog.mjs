@@ -14,7 +14,7 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  */
 
 /**
- * @typedef {'grid'|'list'|'deck'} FUSelectionDialogStyle
+ * @typedef {'grid'|'list'|'deck'|'grouped-list'} FUSelectionDialogStyle
  */
 
 /**
@@ -25,6 +25,7 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  * @property {Object[]} payload Associated data returned instead of the item reference.
  * @property {FUItem[]} compendiumItems If assigned, will be used to compare to the original items.
  * @property {Object[]} initial
+ * @property {{name: string, items: Object[]}[]} groups
  * @property {ItemSelectionColumn[]} columns Additional columns for the dialog.
  * @property {FUSelectionDialogStyle} style
  * @property {Number} max
@@ -204,13 +205,13 @@ export class ItemSelectionDialog {
 				document.addEventListener(
 					'click',
 					(clickEvent) => {
-						const wrapper = clickEvent.target.closest('.journal-page-icon-wrapper');
+						const wrapper = clickEvent.target.closest('.journal-page-icon-wrapper[data-journal-uuid][data-page-uuid]');
 						if (wrapper) {
-							clickEvent.preventDefault();
-							clickEvent.stopPropagation();
 							const journalUuid = wrapper.dataset.journalUuid;
 							const pageUuid = wrapper.dataset.pageUuid;
 							if (journalUuid && pageUuid) {
+								clickEvent.preventDefault();
+								clickEvent.stopPropagation();
 								const journal = fromUuidSync(journalUuid);
 								const page = fromUuidSync(pageUuid);
 
