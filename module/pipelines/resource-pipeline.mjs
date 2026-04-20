@@ -11,6 +11,7 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { ChatAction } from '../helpers/chat-action.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { DamageTraits, Traits, TraitUtils } from './traits.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CommonSections } from '../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
@@ -289,6 +290,11 @@ async function processRecovery(request) {
 				);
 			}
 		}
+
+		// Handle post-resource loss traits
+		if (Math.abs(amountRecovered) > 0) {
+			processPostResource(request, Math.abs(amountRecovered))
+		}
 	}
 	return Promise.all(updates);
 }
@@ -358,6 +364,11 @@ async function processLoss(request) {
 				}),
 			);
 		}
+		
+		// Handle post-resource loss traits
+		if (Math.abs(amountLost) > 0) {
+			processPostResource(request, Math.abs(amountLost))
+		}
 	}
 	return Promise.all(updates);
 }
@@ -367,6 +378,52 @@ async function process(request) {
 		return processRecovery(request);
 	} else {
 		return processLoss(request);
+	}
+}
+
+/**
+ * @param {String} resource
+ * @param {Number} amount
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActor[]} targets
+ * @returns {Promise<void>}
+ */
+async function processPostResource(request, amount) {
+	let resource = request.resourceType;
+	if (request.traits.has(Traits.HitPointAbsorption)) {
+		resource = 'hp';
+	} else if (request.traits.has(Traits.MindPointAbsorption)) {
+		resource = 'mp';
+	}
+
+	if (request.traits.has(Traits.Absorb)) {
+		await absorbResource(resource, amount, request.sourceInfo, [request.sourceActor]);
+	} else if (request.traits.has(Traits.AbsorbHalf)) {
+		await absorbResource(resource, amount * 0.5, request.sourceInfo, [request.sourceActor]);
+	}
+}
+
+/**
+ * @param {String} resource
+ * @param {Number} amount
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActor[]} targets
+ * @returns {Promise<void>}
+ */
+async function absorbResource(resource, amount, sourceInfo, targets) {
+	// We execute this as GM since a player could have applied damage to their actor from an NPC owned by the GM
+	for (const target of targets) {
+		if (target.isOwner) {
+			const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+			return ResourcePipeline.processRecovery(request);
+		} else {
+			return game.projectfu.socket.requestPipeline('resource', {
+				sourceInfo: sourceInfo,
+				targets: targets.map((a) => a.uuid),
+				resource: resource,
+				amount: amount,
+			});
+		}
 	}
 }
 
@@ -413,6 +470,9 @@ function onRenderChatMessage(message, html) {
 		const sourceInfo = new InlineSourceInfo(dataset.name, dataset.actor, dataset.item);
 		const actor = sourceInfo.resolveActor();
 		const request = new ResourceRequest(sourceInfo, [actor], dataset.resource, dataset.amount);
+		if (traits) {
+			request.addTraits(dataset.traits);
+		}
 		return ResourcePipeline.processLoss(request);
 	};
 
@@ -445,7 +505,11 @@ function onRenderChatMessage(message, html) {
 		const amount = fields.amount;
 		const type = fields.type;
 		const targets = await Pipeline.getTargetsFromAction(dataset);
+		const traits = fields.traits;
 		const request = new ResourceRequest(sourceInfo, targets, type, amount, {});
+		if (traits) {
+			request.addTraits(traits);
+		}
 		return process(request);
 	});
 }
@@ -486,12 +550,13 @@ function getTargetedAction(request) {
 		amount: request.amount,
 		type: request.resourceType,
 		sourceInfo: request.sourceInfo,
+		traits: Array.from(request.traits),
 	})
 		.requiresOwner()
 		.setFlag(request.gain ? Flags.ChatMessage.ResourceGain : Flags.ChatMessage.ResourceLoss)
 		.withLabel(tooltip)
 		.withColor(request.gain ? 'var(--color-hp)' : 'var(--color-hp-crisis)')
-		.withTraits(request.traits)
+		.withTraits(Array.from(request.traits))
 		.withSelected();
 }
 

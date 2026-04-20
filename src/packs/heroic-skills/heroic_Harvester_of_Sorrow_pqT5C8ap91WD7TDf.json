@@ -126,13 +126,14 @@
             "rp6rEjVxiYRwGxaL": {
               "type": "ruleElement",
               "trigger": {
-                "_id": "rhPXHVTOHLEMng4t",
-                "type": "calculateDamageRuleTrigger",
+                "_id": "c0QuCtEwA11KET4n",
+                "type": "calculateResourceRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
+                "resource": "mp",
+                "change": "decrement",
+                "resourceSources": [
                   "spell"
                 ],
-                "damageTypes": [],
                 "local": false,
                 "identifier": "drain-spirit"
               },
@@ -157,13 +158,10 @@
                     ]
                   }
                 },
-                "ZIg4U5F3Prjutqje": {
-                  "type": "modifyDamageRuleAction",
-                  "_id": "ZIg4U5F3Prjutqje",
-                  "amount": "&step(0,5,10)",
-                  "cost": {
-                    "amount": null
-                  }
+                "5FdzlVF1ZFg4pn3v": {
+                  "type": "modifyResourceRuleAction",
+                  "_id": "5FdzlVF1ZFg4pn3v",
+                  "amount": "-&step(0,5,10)"
                 }
               },
               "predicates": {}
@@ -212,6 +210,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -247,7 +250,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1771885258417,
-        "modifiedTime": 1771886019819,
+        "modifiedTime": 1776671344963,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!pqT5C8ap91WD7TDf.Iwa7YOG1PJYGFKPy"

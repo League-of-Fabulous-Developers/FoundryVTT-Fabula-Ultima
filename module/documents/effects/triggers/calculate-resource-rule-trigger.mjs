@@ -10,6 +10,9 @@ const fields = foundry.data.fields;
  * @extends RuleTriggerDataModel
  * @property {FUResourceType} resource
  * @property {FUScalarChange} change
+ * @property {Set<FUItemGroup>} resourceSources
+ * @property {String} identifier
+ * @property {Boolean} local
  * @inheritDoc
  */
 export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
@@ -37,6 +40,9 @@ export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 				choices: Object.keys(FU.scalarChange),
 				required: true,
 			}),
+			resourceSources: new fields.SetField(new fields.StringField()),
+			identifier: new fields.StringField(),
+			local: new fields.BooleanField(),
 		});
 		return schema;
 	}
@@ -70,6 +76,20 @@ export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 					return false;
 				}
 				break;
+		}
+		
+		if (this.resourceSources.size > 0 && !this.resourceSources.has(context.event.resourceSource)) {
+			return false;
+		}
+		if (this.identifier) {
+			if (!context.matchesItem(this.identifier)) {
+				return false;
+			}
+		}
+		if (this.local) {
+			if (!context.isLocalItem()) {
+				return false;
+			}
 		}
 
 		return true;
