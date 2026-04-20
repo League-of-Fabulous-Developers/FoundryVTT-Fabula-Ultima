@@ -62,7 +62,7 @@ export class ItemSelectionDialog {
 		this.#selectedIndexes = [];
 		if (data.initial) {
 			this.#selectedItems.push(...data.initial);
-			this.#selectedIndexes.push(...data.initial.map((initial) => data.items.findIndex((item) => item.id === initial.id)));
+			this.#selectedIndexes.push(...data.initial.map((initial) => (initial._originalIndex !== undefined ? initial._originalIndex : data.items.findIndex((item) => item.id === initial.id))));
 		}
 	}
 
@@ -129,14 +129,18 @@ export class ItemSelectionDialog {
 				 *  @param {HTMLElement} dialog **/
 				selectAll: (event, dialog) => {
 					const inputs = dialog.closest('#items').querySelectorAll('input[name="selected"]');
+					const selectedIndexes = [];
 					for (const input of inputs) {
 						input.checked = true;
 						const card = input.closest('.fu-item');
 						if (card) {
 							card.classList.toggle('selected', true);
+							const index = Number.parseInt(card.dataset.index);
+							if (Number.isFinite(index)) selectedIndexes.push(index);
 						}
 					}
 					this.#selectedItems = this.data.items;
+					this.#selectedIndexes = selectedIndexes;
 					return false;
 				},
 				/** @param {Event} event
@@ -151,6 +155,7 @@ export class ItemSelectionDialog {
 						}
 					}
 					this.#selectedItems = [];
+					this.#selectedIndexes = [];
 					return false;
 				},
 			},
@@ -175,16 +180,36 @@ export class ItemSelectionDialog {
 						toggleCardSelection(container, card, false);
 					}
 				}
-				// ✅ Event handling
-				container.addEventListener('mousedown', async (event) => {
-					const card = event.target.closest('.fu-item');
-					if (!card) return;
-					toggleCardSelection(container, card);
-				});
+
+				if (this.data.style !== 'list') {
+					container.addEventListener('mousedown', async (event) => {
+						const card = event.target.closest('.fu-item');
+						if (!card) return;
+						toggleCardSelection(container, card);
+					});
+				} else {
+					container.addEventListener('change', (event) => {
+						const input = event.target;
+						if (input?.name !== 'selected') return;
+						const card = input.closest('.fu-item');
+						if (!card) return;
+						const index = Number.parseInt(card.dataset.index);
+						if (!Number.isFinite(index)) return;
+						const listItem = this.data.items[index];
+						if (input.checked) {
+							if (!this.#selectedIndexes.includes(index)) {
+								this.#selectedItems.push(listItem);
+								this.#selectedIndexes.push(index);
+							}
+						} else {
+							this.#selectedItems = this.#selectedItems.filter((it) => it !== listItem);
+							this.#selectedIndexes = this.#selectedIndexes.filter((it) => it !== index);
+						}
+					});
+				}
 			},
 		});
 		if (result) {
-			console.debug(result);
 			// If a custom payload is expected
 			if (this.data.payload) {
 				return this.#selectedIndexes.map((idx) => this.data.payload[idx]);

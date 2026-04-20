@@ -1,4 +1,5 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
+import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
@@ -144,6 +145,7 @@ export class FUPartySheet extends FUActorSheet {
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
 	#codexBrowser;
+	#codexDrop;
 	/** @type SheetExtensions **/
 	#extensions;
 
@@ -344,6 +346,7 @@ export class FUPartySheet extends FUActorSheet {
 			case 'codex':
 				{
 					this.codexBrowser.attachListeners(html);
+					this.#attachCodexDropzoneListeners(html);
 
 					FoundryUtils.contextMenu(
 						html,
@@ -445,6 +448,15 @@ export class FUPartySheet extends FUActorSheet {
 
 		// Update the code browser
 		this.codexBrowser.refresh(this.actor, this.element);
+	}
+
+	/** @inheritdoc */
+	async _onClose(options) {
+		if (this.#codexDrop instanceof Function) {
+			this.#codexDrop();
+			this.#codexDrop = null;
+		}
+		return super._onClose(options);
 	}
 
 	/**
@@ -574,18 +586,393 @@ export class FUPartySheet extends FUActorSheet {
 		return super._onDropItem(event, item);
 	}
 
-	async _onDropActor(event, actor) {
-		console.debug(`${actor.name} was dropped onto party sheet`);
-		if (actor.type === 'character') {
-			return this.party.addCharacter(actor);
-		} else if (actor.type === 'npc') {
-			if (actor.system.rank.value === 'companion') {
-				return this.party.addCompanion(actor);
-			} else {
-				return this.party.addOrUpdateAdversary(actor, 0);
+	async _onDropFolder(event, folder) {
+		if (this.#isCodexDropZone(event)) {
+			if (folder?.type === 'Actor') {
+				const folderIds = this.#collectFolderIds(folder);
+				const actors = (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+
+				if (actors.length === 0) {
+					ui.notifications.warn('No actors found in this folder.');
+					return folder;
+				}
+
+				await this.#showActorImportDialog(actors);
+				return folder;
+			}
+
+			if (folder?.type === 'JournalEntry') {
+				const folderIds = this.#collectFolderIds(folder);
+				const entries = (game.journal?.contents ?? []).filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
+
+				if (entries.length === 0) {
+					ui.notifications.warn('No journals found in this folder.');
+					return folder;
+				}
+
+				await this.#showJournalImportDialog(entries);
+				return folder;
+			}
+		} else {
+			if (folder?.type === 'Actor') {
+				const folderIds = this.#collectFolderIds(folder);
+				const actors = (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+
+				// Add each actor to the appropriate party list
+				for (const actor of actors) {
+					const actorCategory = this.#classifyDroppedActor(actor);
+					if (actorCategory === 'character') {
+						await this.party.addCharacter(actor);
+					} else if (actorCategory === 'companion') {
+						await this.party.addCompanion(actor);
+					} else if (actorCategory === 'adversary') {
+						await this.party.addOrUpdateAdversary(actor, 0);
+					}
+				}
+				return folder;
 			}
 		}
+
+		if (super._onDropFolder instanceof Function) {
+			return super._onDropFolder(event, folder);
+		}
+		return super._onDrop(event);
+	}
+
+	/**
+	 * Document drop routing
+	 * @param {DragEvent} event
+	 * @param {Document} document
+	 * @returns {Promise<Document|null|undefined>}
+	 */
+	async _onDropDocument(event, document) {
+		if (this.#isCodexDropZone(event)) {
+			if (document?.documentName === 'Actor') {
+				await this.#showActorImportDialog([document]);
+				return document;
+			}
+
+			if (document?.documentName === 'JournalEntry') {
+				await this.#showJournalImportDialog([document]);
+				return document;
+			}
+		}
+
+		if (super._onDropDocument instanceof Function) {
+			return super._onDropDocument(event, document);
+		}
+
+		// fallback for environments without _onDropDocument.
+		if (document?.documentName === 'Actor') {
+			return this._onDropActor(event, document);
+		}
+		return super._onDrop(event);
+	}
+
+	async _onDropActor(event, actor) {
+		if (this.#isCodexDropZone(event)) {
+			await this.#showActorImportDialog([actor]);
+			return actor;
+		}
+
+		if (this.#isCodexDropZone(event)) {
+			await this.#showActorImportDialog([actor]);
+			return actor;
+		}
+
+		console.debug(`${actor.name} was dropped onto party sheet`);
+		const actorCategory = this.#classifyDroppedActor(actor);
+		if (actorCategory === 'character') {
+			return this.party.addCharacter(actor);
+		}
+		if (actorCategory === 'companion') {
+			return this.party.addCompanion(actor);
+		}
+		if (actorCategory === 'adversary') {
+			return this.party.addOrUpdateAdversary(actor, 0);
+		}
 		return super._onDropActor(event, actor);
+	}
+
+	/**
+	 * @param {FUActor[]} actors
+	 * @returns {Promise<{imported: number, skipped: string[]}>}
+	 */
+	async #importActorsToCodex(actors) {
+		const existing = new Set((this.party.codex.entries ?? []).map((entry) => (entry?.name ?? '').trim().toLowerCase()).filter(Boolean));
+		let imported = 0;
+		const skipped = [];
+
+		for (const actor of actors) {
+			const name = (actor?.name ?? '').trim();
+			const key = name.toLowerCase();
+			if (!key || existing.has(key)) {
+				skipped.push(name || '(unnamed actor)');
+				continue;
+			}
+			await this.codexBrowser.importActor(actor);
+			existing.add(key);
+			imported += 1;
+		}
+
+		return { imported, skipped };
+	}
+
+	/**
+	 * @param {JournalEntryPage[]} pages
+	 * @returns {Promise<{imported: number, skipped: string[]}>}
+	 */
+	async #importJournalPagesToCodex(pages) {
+		const existing = new Set((this.party.codex.entries ?? []).map((entry) => (entry?.name ?? '').trim().toLowerCase()).filter(Boolean));
+		let imported = 0;
+		const skipped = [];
+
+		for (const page of pages) {
+			let name = (page?.name ?? '').trim();
+
+			if (!name) {
+				skipped.push('(unnamed page)');
+				continue;
+			}
+
+			// Include journal name for distinguishing pages with same name
+			const journalName = page.parent?.name;
+			if (journalName) {
+				name = `${name} (${journalName})`;
+			}
+
+			const key = name.toLowerCase();
+
+			// Skip if duplicate
+			if (existing.has(key)) {
+				skipped.push(name);
+				continue;
+			}
+
+			await this.codexBrowser.importJournalEntryPage(page);
+			existing.add(key);
+			imported += 1;
+		}
+
+		return { imported, skipped };
+	}
+
+	/**
+	 * Show selection dialog then confirmation
+	 * @param {JournalEntryPage[]} pages Array of pages to select from
+	 * @returns {Promise<JournalEntryPage[]|null>} Selected pages or null if cancelled
+	 */
+	async #promptSelectAndConfirmPages(documentType, pages) {
+		if (!pages || pages.length === 0) return null;
+
+		// First show selection dialog
+		const selectedPages = await this.#promptSelectItems(documentType, pages);
+
+		if (!selectedPages || selectedPages.length === 0) {
+			return null;
+		}
+
+		// Enrich pages with source journal info for confirmation display
+		const enrichedPages = selectedPages.map((page) => ({
+			name: `${page.name} (${page.parent?.name || 'Unknown Journal'})`,
+			img: page.src,
+		}));
+
+		// Show confirmation dialog
+		const content = await FoundryUtils.renderTemplate('common/document-list', {
+			message: 'The following journal entry pages will be imported as codex entries.',
+			documents: enrichedPages,
+		});
+
+		const confirm = await FoundryUtils.confirm('FU.Import', content);
+
+		if (confirm) {
+			return selectedPages;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Show a selection dialog to choose which items to import
+	 * @param {string} documentType The type label (FU.Actor, DOCUMENT.JournalEntryPage, etc)
+	 * @param {Document[]} items Array of items to select from
+	 * @returns {Promise<Document[]|null>} Selected items or null if cancelled
+	 */
+	async #promptSelectItems(documentType, items) {
+		if (!items || items.length === 0) return null;
+		if (items.length === 1) return items; // Skip dialog for single item
+
+		const displayItems = items.map((item, idx) => ({
+			_originalIndex: idx,
+			uuid: item?.uuid,
+			id: item?.id,
+			img: item?.img || item?.src,
+			pack: item?.pack,
+			documentName: item?.documentName,
+			parent: item?.parent,
+			name: item.parent?.name && item.documentName === 'JournalEntryPage' ? `${item.name} (${item.parent.name})` : item.name,
+		}));
+
+		const data = {
+			title: `Select ${game.i18n.localize(documentType)} to Import`,
+			style: 'list',
+			items: displayItems,
+			initial: displayItems,
+			max: displayItems.length,
+			getDescription: async (item) => item.name,
+		};
+
+		const dialog = new ItemSelectionDialog(data);
+		const selected = await dialog.open();
+
+		if (!selected || selected.length === 0) return null;
+
+		return selected
+			.filter((sel) => sel && sel._originalIndex !== undefined)
+			.map((sel) => items[sel._originalIndex])
+			.filter(Boolean);
+	}
+
+	/**
+	 * @param {DragEvent} event
+	 * @returns {boolean}
+	 */
+	#isCodexDropZone(event) {
+		const target = event?.target instanceof Element ? event.target.closest('[data-codex-dropzone]') : null;
+		return target?.dataset?.codexDropzone === 'entry';
+	}
+
+	/**
+	 * @param {Folder} root
+	 * @returns {Set<string>}
+	 */
+	#collectFolderIds(root) {
+		const ids = new Set();
+		const queue = [root];
+		const foldersByParent = new Map();
+
+		for (const folder of game.folders.filter((f) => f?.type === root?.type)) {
+			const parentId = this.#resolveFolderId(folder);
+			if (!foldersByParent.has(parentId)) foldersByParent.set(parentId, []);
+			foldersByParent.get(parentId).push(folder);
+		}
+
+		while (queue.length) {
+			const current = queue.shift();
+			if (!current?.id || ids.has(current.id)) continue;
+			ids.add(current.id);
+			queue.push(...(foldersByParent.get(current.id) ?? []));
+		}
+		return ids;
+	}
+
+	/**
+	 * @param {object} document
+	 * @returns {string|null}
+	 */
+	#resolveFolderId(document) {
+		if (!document) return null;
+		if (typeof document.folder === 'string') return document.folder;
+		if (document.folder?.id) return document.folder.id;
+		if (typeof document.parent === 'string') return document.parent;
+		if (document.parent?.id) return document.parent.id;
+		return null;
+	}
+
+	/**
+	 * @param {HTMLElement} html
+	 */
+	#attachCodexDropzoneListeners(html) {
+		if (this.#codexDrop instanceof Function) {
+			this.#codexDrop();
+			this.#codexDrop = null;
+		}
+
+		const dropRoot = html.querySelector('[data-codex-drop-root]');
+		if (!dropRoot) {
+			return;
+		}
+
+		let hideTimer = null;
+		const clearDropState = () => {
+			if (hideTimer) {
+				clearTimeout(hideTimer);
+				hideTimer = null;
+			}
+			dropRoot.classList.remove('show-dropzones');
+		};
+
+		const showDropState = () => {
+			if (hideTimer) {
+				clearTimeout(hideTimer);
+				hideTimer = null;
+			}
+			dropRoot.classList.add('show-dropzones');
+		};
+
+		const onRootDragEnter = () => {
+			showDropState();
+		};
+
+		const onRootDragOver = (event) => {
+			showDropState();
+			event.preventDefault();
+			if (event.dataTransfer) {
+				event.dataTransfer.dropEffect = 'copy';
+			}
+		};
+
+		const onRootDragLeave = () => {
+			if (hideTimer) {
+				clearTimeout(hideTimer);
+			}
+			hideTimer = setTimeout(() => clearDropState(), 80);
+		};
+
+		const onRootDrop = () => {
+			clearDropState();
+		};
+
+		const onGlobalDragEnd = () => {
+			clearDropState();
+		};
+
+		const onGlobalDrop = () => {
+			clearDropState();
+		};
+
+		dropRoot.addEventListener('dragenter', onRootDragEnter);
+		dropRoot.addEventListener('dragover', onRootDragOver);
+		dropRoot.addEventListener('dragleave', onRootDragLeave);
+		dropRoot.addEventListener('drop', onRootDrop);
+		document.addEventListener('dragend', onGlobalDragEnd);
+		document.addEventListener('drop', onGlobalDrop);
+
+		this.#codexDrop = () => {
+			clearDropState();
+			dropRoot.removeEventListener('dragenter', onRootDragEnter);
+			dropRoot.removeEventListener('dragover', onRootDragOver);
+			dropRoot.removeEventListener('dragleave', onRootDragLeave);
+			dropRoot.removeEventListener('drop', onRootDrop);
+			document.removeEventListener('dragend', onGlobalDragEnd);
+			document.removeEventListener('drop', onGlobalDrop);
+		};
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns {'character'|'companion'|'adversary'|null}
+	 */
+	#classifyDroppedActor(actor) {
+		switch (actor?.type) {
+			case 'character':
+				return 'character';
+			case 'npc':
+				return actor.system?.rank?.value === 'companion' ? 'companion' : 'adversary';
+			default:
+				return null;
+		}
 	}
 
 	/**
@@ -647,22 +1034,75 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
+	 * Helper to show actor import dialog with optional selection
+	 * @param {FUActor[]} [initialActors] Pre-selected actors from drop, shows selection dialog if provided
+	 * @returns {Promise<void>}
+	 */
+	async #showActorImportDialog(initialActors = null) {
+		let selected = initialActors;
+
+		if (!selected) {
+			selected = await FoundryUtils.selectActors();
+		} else if (selected.length > 0) {
+			selected = await this.#promptSelectItems('FU.Actor', selected);
+		}
+
+		if (selected && selected.length > 0) {
+			const content = await FoundryUtils.renderTemplate('common/document-list', {
+				message: 'The following actors will be imported as codex entries.',
+				documents: selected,
+			});
+
+			const confirm = await FoundryUtils.confirm('FU.Import', content);
+			if (confirm) {
+				const result = await this.#importActorsToCodex(selected);
+				if (result.skipped.length > 0) {
+					ui.notifications.warn(`Imported ${result.imported}/${selected.length} actors. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
+				} else {
+					ui.notifications.info(`Imported ${result.imported}/${selected.length} actors to Codex.`);
+				}
+			}
+		}
+	}
+
+	/**
 	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
 	static async #onImportCodexActorEntry(event, target) {
-		const selected = await FoundryUtils.selectActors();
-		if (selected) {
-			const content = await FoundryUtils.renderTemplate('common/document-list', {
-				message: 'The following actors will be imported as codex entries.',
-				documents: selected,
-			});
-			const confirm = await FoundryUtils.confirm('FU.Import', content);
-			if (confirm) {
-				for (const actor of selected) {
-					await this.codexBrowser.importActor(actor);
+		await this.#showActorImportDialog();
+	}
+
+	/**
+	 * Helper to show journal entry import dialog with selection and confirmation combined
+	 * @param {JournalEntry[]} [initialEntries] Pre-selected journals from drop, shows selection in confirmation if provided
+	 * @returns {Promise<void>}
+	 */
+	async #showJournalImportDialog(initialEntries = null) {
+		let selected = initialEntries;
+
+		if (!selected) {
+			selected = await FoundryUtils.selectJournalEntries();
+		}
+
+		if (selected && selected.length > 0) {
+			let pages = selected.flatMap((je) => je.pages.contents);
+
+			if (pages.length === 0) {
+				ui.notifications.warn('No pages found in selected journals.');
+				return;
+			}
+
+			const selectedPages = await this.#promptSelectAndConfirmPages('DOCUMENT.JournalEntryPage', pages);
+
+			if (selectedPages && selectedPages.length > 0) {
+				const result = await this.#importJournalPagesToCodex(selectedPages);
+				if (result.skipped.length > 0) {
+					ui.notifications.warn(`Imported ${result.imported}/${selectedPages.length} journal pages. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
+				} else {
+					ui.notifications.info(`Imported ${result.imported}/${selectedPages.length} journal pages.`);
 				}
 			}
 		}
@@ -675,21 +1115,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onImportCodexJournalEntry(event, target) {
-		// Built-in Foundry document selector
-		const selected = await FoundryUtils.selectJournalEntries();
-		if (selected) {
-			const pages = selected.flatMap((je) => je.pages.contents);
-			const content = await FoundryUtils.renderTemplate('common/document-list', {
-				message: 'The following journal entry pages will be imported as codex entries.',
-				documents: pages,
-			});
-			const confirm = await FoundryUtils.confirm('FU.Import', content);
-			if (confirm) {
-				for (const page of pages) {
-					await this.codexBrowser.importJournalEntryPage(page);
-				}
-			}
-		}
+		await this.#showJournalImportDialog();
 	}
 
 	/**

@@ -74,6 +74,8 @@ export class CodexBrowser {
 	 * @returns {Promise<void>}
 	 */
 	async prepareContext(context) {
+		this.refresh(this.sheet.actor);
+		this.refresh(this.sheet.actor);
 		context.browser = this;
 		context.playingSounds = new Set(
 			game.playlists.contents
@@ -357,15 +359,17 @@ export class CodexBrowser {
 			return;
 		}
 
-		/** @type CodexEntryDataModel[] **/
-		const entries = this.party.codex.entries;
+		const description = typeof actor?.system?.description === 'string' ? actor.system.description : (actor?.system?.description?.value ?? actor?.system?.description?.content ?? '');
+
 		/** @type CodexEntryDataModel **/
 		let entry = {
 			name: actor.name,
 			img: actor.img,
-			description: actor.system?.description ?? '',
+			description,
 			tags: ['character'],
 		};
+
+		const entries = FoundryUtils.safeClone(this.actor.system.codex.entries ?? []);
 		entries.push(entry);
 		await this.actor.update({ [`system.codex.entries`]: entries });
 	}
@@ -375,16 +379,17 @@ export class CodexBrowser {
 	 * @returns {Promise<void>}
 	 */
 	async importJournalEntryPage(page) {
-		if (this.party.codex.resolveEntry(page.name)) {
-			ui.notifications.warn(`Failed to import journal entry page ${page.name} as there's already an entry with that name.`);
+		const journalName = page.parent?.name;
+		let entryName = journalName ? `${page.name} (${journalName})` : page.name;
+
+		if (this.party.codex.resolveEntry(entryName)) {
+			ui.notifications.warn(`Failed to import journal entry page "${page.name}" from "${journalName}" as there's already an entry with that name.`);
 			return;
 		}
 
-		/** @type CodexEntryDataModel[] **/
-		const entries = this.party.codex.entries;
 		/** @type CodexEntryDataModel **/
 		let entry = {
-			name: page.name,
+			name: entryName,
 			tags: [],
 		};
 
@@ -402,6 +407,7 @@ export class CodexBrowser {
 				break;
 		}
 
+		const entries = FoundryUtils.safeClone(this.actor.system.codex.entries ?? []);
 		entries.push(entry);
 		await this.actor.update({ [`system.codex.entries`]: entries });
 	}

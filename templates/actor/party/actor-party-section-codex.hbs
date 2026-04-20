@@ -31,16 +31,16 @@
 			</div>
 		</div>
 
-		<ul class="entries content">
+		<ul class="entries content" data-codex-drop-root data-codex-dropzone="entry">
 			{{#each system.codex.entries as |entry index|}}
 				<li class="section-container entry {{#if (and entry.hidden (not @root.user.isGM))}}hidden{{/if}} " data-index="{{index}}" data-name="{{entry.name}}">
 					<div class="left">
 						<a data-action="forCodexEntry"
-						   data-type="view"
-						   data-index="{{index}}"
-						   title="View">
+							data-type="view"
+							data-index="{{index}}"
+							title="View">
 							<img class="flexcol" src="{{lookup entry 'img'}}"
-								 alt="Artwork"/>
+									alt="Artwork"/>
 						</a>
 						{{#if @root.isOwner}}
 							<div class="controls">
@@ -103,7 +103,4 @@
 			{{/each}}
 		</ul>
 	</div>
-
-
-
 </section>

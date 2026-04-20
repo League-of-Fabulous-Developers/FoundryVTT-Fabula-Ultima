@@ -316,6 +316,11 @@
 			gap: 1rem;
 		}
 
+		.entries.show-dropzones {
+			border: 2px dashed var(--pfu-color-app-control-border);
+			border-radius: 4px;
+		}
+
 		.entry {
 			display: flex;
 			flex-direction: row;
