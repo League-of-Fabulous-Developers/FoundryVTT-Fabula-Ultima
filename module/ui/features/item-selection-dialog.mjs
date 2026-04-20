@@ -171,6 +171,34 @@ export class ItemSelectionDialog {
 			render: async (event, dialog) => {
 				const document = dialog.element;
 				const container = document.querySelector('#items');
+				const searchInput = document.querySelector('[data-role="selection-filter"]');
+
+				const applySearchFilter = () => {
+					if (!container || !searchInput) return;
+					const query = searchInput.value.trim().toLocaleLowerCase();
+
+					for (const entry of container.querySelectorAll('.fu-item[data-index]')) {
+						const target = entry.closest('tr') ?? entry;
+						const name = (entry.dataset.name || entry.textContent || '').toLocaleLowerCase();
+						target.style.display = !query || name.includes(query) ? '' : 'none';
+					}
+
+					if (this.data.style !== 'grouped-list') return;
+					for (const header of container.querySelectorAll('.group-header')) {
+						let row = header.nextElementSibling;
+						let hasVisibleRows = false;
+						while (row && !row.classList.contains('group-header')) {
+							if (row.style.display !== 'none') {
+								hasVisibleRows = true;
+								break;
+							}
+							row = row.nextElementSibling;
+						}
+						header.style.display = hasVisibleRows ? '' : 'none';
+					}
+				};
+
+				searchInput?.addEventListener('input', applySearchFilter);
 
 				// Handle opening journal entries when clicking the icon
 				document.addEventListener(
@@ -268,6 +296,8 @@ export class ItemSelectionDialog {
 						}
 					});
 				}
+
+				applySearchFilter();
 			},
 		});
 		if (result) {

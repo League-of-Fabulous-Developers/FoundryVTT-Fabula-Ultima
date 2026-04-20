@@ -212,6 +212,10 @@
 	border: unset;
 }
 
+.fu-selection-dialog__filter {
+	margin-bottom: 8px;
+}
+
 .fu-selection-dialog__legend {
 	gap: 4px;
 }
