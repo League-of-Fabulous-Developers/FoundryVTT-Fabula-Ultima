@@ -587,11 +587,37 @@ export class FUPartySheet extends FUActorSheet {
 		return super._onDropItem(event, item);
 	}
 
+	/**
+	 * Handle folder drop payloads that are not auto-resolved by the base sheet.
+	 * @param {DragEvent} event
+	 * @returns {Promise<unknown>}
+	 */
+	async _onDrop(event) {
+		const data = TextEditor.getDragEventData(event);
+		if (this.#isCodexDropZone(event) && data?.type === 'Folder') {
+			const folderFromUuid = data.uuid ? await fromUuid(data.uuid) : null;
+			if (folderFromUuid) {
+				return this._onDropFolder(event, folderFromUuid);
+			}
+
+			const packId = data.pack ?? data.compendium ?? null;
+			const folderId = data.id ?? data.folderId ?? data._id ?? null;
+			if (packId && folderId) {
+				const pack = game.packs?.get(packId);
+				const folder = pack?.folders?.get?.(folderId) ?? pack?.folders?.contents?.find((f) => f.id === folderId);
+				if (folder) {
+					return this._onDropFolder(event, folder);
+				}
+			}
+		}
+
+		return super._onDrop(event);
+	}
+
 	async _onDropFolder(event, folder) {
 		if (this.#isCodexDropZone(event)) {
 			if (folder?.type === 'Actor') {
-				const folderIds = this.#collectFolderIds(folder);
-				const actors = (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+				const actors = await this.#getActorsFromFolder(folder);
 
 				if (actors.length === 0) {
 					ui.notifications.warn('No actors found in this folder.');
@@ -603,8 +629,7 @@ export class FUPartySheet extends FUActorSheet {
 			}
 
 			if (folder?.type === 'JournalEntry') {
-				const folderIds = this.#collectFolderIds(folder);
-				const entries = (game.journal?.contents ?? []).filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
+				const entries = await this.#getJournalEntriesFromFolder(folder);
 
 				if (entries.length === 0) {
 					ui.notifications.warn('No journals found in this folder.');
@@ -619,7 +644,7 @@ export class FUPartySheet extends FUActorSheet {
 				const folderIds = this.#collectFolderIds(folder);
 				const actors = (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
 
-				// Add each actor to the appropriate party list
+				// Add dropped actors to the party in their matching section.
 				for (const actor of actors) {
 					const actorCategory = this.#classifyDroppedActor(actor);
 					if (actorCategory === 'character') {
@@ -641,7 +666,7 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * Document drop routing
+	 * Route direct document drops.
 	 * @param {DragEvent} event
 	 * @param {Document} document
 	 * @returns {Promise<Document|null|undefined>}
@@ -663,7 +688,7 @@ export class FUPartySheet extends FUActorSheet {
 			return super._onDropDocument(event, document);
 		}
 
-		// fallback for environments without _onDropDocument.
+		// Support environments without _onDropDocument.
 		if (document?.documentName === 'Actor') {
 			return this._onDropActor(event, document);
 		}
@@ -671,11 +696,6 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	async _onDropActor(event, actor) {
-		if (this.#isCodexDropZone(event)) {
-			await this.#showActorImportDialog([actor]);
-			return actor;
-		}
-
 		if (this.#isCodexDropZone(event)) {
 			await this.#showActorImportDialog([actor]);
 			return actor;
@@ -744,7 +764,7 @@ export class FUPartySheet extends FUActorSheet {
 
 			const key = name.toLowerCase();
 
-			// Skip if duplicate
+			// Skip duplicates already in the codex.
 			if (existing.has(key)) {
 				skipped.push(name);
 				continue;
@@ -757,60 +777,6 @@ export class FUPartySheet extends FUActorSheet {
 
 		return { imported, skipped };
 	}
-
-	/**
-	 * Show a selection dialog to choose which items to import
-	 * @param {string} documentType The type label (FU.Actor, DOCUMENT.JournalEntryPage, etc)
-	 * @param {Document[]} items Array of items to select from
-	 * @returns {Promise<Document[]|null>} Selected items or null if cancelled
-	 */
-	// async #promptSelectItems(documentType, items) {
-	// 	if (!items || items.length === 0) return null;
-	// 	if (items.length === 1) return items; // Skip dialog for single item
-	// async #promptSelectItems(documentType, items) {
-	// 	if (!items || items.length === 0) return null;
-	// 	if (items.length === 1) return items; // Skip dialog for single item
-
-	// 	const displayItems = items.map((item, idx) => ({
-	// 		_originalIndex: idx,
-	// 		uuid: item?.uuid,
-	// 		id: item?.id,
-	// 		img: item?.img || item?.src,
-	// 		pack: item?.pack,
-	// 		documentName: item?.documentName,
-	// 		parent: item?.parent,
-	// 		name: item.parent?.name && item.documentName === 'JournalEntryPage' ? `${item.name} (${item.parent.name})` : item.name,
-	// 	}));
-	// 	const displayItems = items.map((item, idx) => ({
-	// 		_originalIndex: idx,
-	// 		uuid: item?.uuid,
-	// 		id: item?.id,
-	// 		img: item?.img || item?.src,
-	// 		pack: item?.pack,
-	// 		documentName: item?.documentName,
-	// 		parent: item?.parent,
-	// 		name: item.parent?.name && item.documentName === 'JournalEntryPage' ? `${item.name} (${item.parent.name})` : item.name,
-	// 	}));
-
-	// 	const data = {
-	// 		title: `Select ${game.i18n.localize(documentType)} to Import`,
-	// 		style: 'list',
-	// 		items: displayItems,
-	// 		initial: displayItems,
-	// 		max: displayItems.length,
-	// 		getDescription: async (item) => item.name,
-	// 	};
-
-	// 	const dialog = new ItemSelectionDialog(data);
-	// 	const selected = await dialog.open();
-
-	// 	if (!selected || selected.length === 0) return null;
-
-	// 	return selected
-	// 		.filter((sel) => sel && sel._originalIndex !== undefined)
-	// 		.map((sel) => items[sel._originalIndex])
-	// 		.filter(Boolean);
-	// }
 
 	/**
 	 * @param {DragEvent} event
@@ -829,8 +795,10 @@ export class FUPartySheet extends FUActorSheet {
 		const ids = new Set();
 		const queue = [root];
 		const foldersByParent = new Map();
+		const packId = this.#resolveFolderPack(root);
+		const folderSource = packId ? (game.packs?.get(packId)?.folders?.contents ?? []) : game.folders.filter((f) => f?.type === root?.type);
 
-		for (const folder of game.folders.filter((f) => f?.type === root?.type)) {
+		for (const folder of folderSource) {
 			const parentId = this.#resolveFolderId(folder);
 			if (!foldersByParent.has(parentId)) foldersByParent.set(parentId, []);
 			foldersByParent.get(parentId).push(folder);
@@ -843,6 +811,46 @@ export class FUPartySheet extends FUActorSheet {
 			queue.push(...(foldersByParent.get(current.id) ?? []));
 		}
 		return ids;
+	}
+
+	/**
+	 * @param {Folder} folder
+	 * @returns {Promise<FUActor[]>}
+	 */
+	async #getActorsFromFolder(folder) {
+		const folderIds = this.#collectFolderIds(folder);
+		const packId = this.#resolveFolderPack(folder);
+		if (packId) {
+			const pack = game.packs?.get(packId);
+			if (!pack || pack.documentName !== 'Actor') return [];
+			const actors = await pack.getDocuments();
+			return actors.filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+		}
+		return (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+	}
+
+	/**
+	 * @param {Folder} folder
+	 * @returns {Promise<JournalEntry[]>}
+	 */
+	async #getJournalEntriesFromFolder(folder) {
+		const folderIds = this.#collectFolderIds(folder);
+		const packId = this.#resolveFolderPack(folder);
+		if (packId) {
+			const pack = game.packs?.get(packId);
+			if (!pack || pack.documentName !== 'JournalEntry') return [];
+			const journals = await pack.getDocuments();
+			return journals.filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
+		}
+		return (game.journal?.contents ?? []).filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
+	}
+
+	/**
+	 * @param {Folder|object|null} folder
+	 * @returns {string|null}
+	 */
+	#resolveFolderPack(folder) {
+		return folder?.pack ?? folder?.compendium?.collection ?? null;
 	}
 
 	/**
@@ -1045,14 +1053,16 @@ export class FUPartySheet extends FUActorSheet {
 		const groupsByKey = new Map();
 
 		for (const actor of actors) {
+			const packId = this.#resolveFolderPack(actor) ?? '__world__';
 			const folderId = this.#resolveFolderId(actor) ?? '__none__';
-			if (!groupsByKey.has(folderId)) {
-				groupsByKey.set(folderId, {
-					name: this.#resolveFolderPath(folderId === '__none__' ? null : folderId),
+			const groupKey = `${packId}::${folderId}`;
+			if (!groupsByKey.has(groupKey)) {
+				groupsByKey.set(groupKey, {
+					name: this.#resolveFolderPath(folderId === '__none__' ? null : folderId, packId === '__world__' ? null : packId),
 					actors: [],
 				});
 			}
-			groupsByKey.get(folderId).actors.push(actor);
+			groupsByKey.get(groupKey).actors.push(actor);
 		}
 
 		const groups = [];
@@ -1092,15 +1102,22 @@ export class FUPartySheet extends FUActorSheet {
 
 	/**
 	 * @param {string|null} folderId
+	 * @param {string|null} [packId]
 	 * @returns {string}
 	 */
-	#resolveFolderPath(folderId) {
+	#resolveFolderPath(folderId, packId = null) {
 		if (!folderId) return game.i18n.localize('FU.None');
-		const folder = game.folders?.get(folderId);
+		const folderCollection = packId ? game.packs?.get(packId)?.folders : game.folders;
+		const getFolder = (id) => folderCollection?.get?.(id) ?? folderCollection?.contents?.find((f) => f.id === id);
+		const folder = getFolder(folderId);
 		if (!folder) return game.i18n.localize('FU.None');
 		const names = [folder.name];
 		let current = folder.folder ?? folder.parent ?? null;
 		while (current) {
+			if (typeof current === 'string') {
+				current = getFolder(current);
+				if (!current) break;
+			}
 			names.unshift(current.name);
 			current = current.folder ?? current.parent ?? null;
 		}
