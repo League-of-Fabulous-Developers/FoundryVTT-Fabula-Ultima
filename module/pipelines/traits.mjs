@@ -51,6 +51,7 @@ export const DamageTraits = Object.freeze({
 	AbsorbHalf: 'absorb-half',
 	Absorb: 'absorb',
 	MindPointLoss: 'mind-point-loss',
+	HitPointAbsorption: 'hit-point-absorption',
 	MindPointAbsorption: 'mind-point-absorption',
 	NonLethal: 'non-lethal',
 	HighRollZero: 'high-roll-zero',

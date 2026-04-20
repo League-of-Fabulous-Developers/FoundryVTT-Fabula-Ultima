@@ -198,7 +198,10 @@ export class SpellDataModel extends FUStandardItemDataModel {
 				label: 'FU.MagicCheckBaseAccuracy',
 				value: spell.rollInfo.accuracy.value,
 			});
-
+			
+			if (spell.resource.enabled) {
+				config.setResource(spell.resource.type, spell.resource.amount);
+			}
 			this.#addSpellDamage(config, actor, spell, context);
 			config.setTargetedDefense(this.defense);
 		};
