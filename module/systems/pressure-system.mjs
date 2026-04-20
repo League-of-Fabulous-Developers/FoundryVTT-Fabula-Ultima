@@ -124,11 +124,12 @@ async function applyPressureEffect(actor) {
 				}
 				// Toggle it on
 				const segments = rank.value === 'champion' ? 2 + rank.replacedSoldiers * 2 : 4;
-				const pressureData = await Effects.getEffectData('pressure');
-				pressureData.system.rules.progress.max = segments;
-				if (pressureData) {
-					await Effects.toggleStatusEffect(actor, 'pressure', InlineSourceInfo.scene);
-				}
+				const updates = {
+					['system.rules.progress.max']: segments,
+				};
+				await Effects.createStatusEffect(actor, 'pressure', InlineSourceInfo.scene, {
+					updates: updates,
+				});
 			}
 			break;
 

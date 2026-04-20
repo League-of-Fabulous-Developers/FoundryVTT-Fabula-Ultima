@@ -11,6 +11,7 @@ import { SETTINGS } from '../settings.js';
 import { systemId } from '../helpers/system-utils.mjs';
 import { isActiveEffectForStatusEffectId } from '../pipelines/effects.mjs';
 import { TextEditor } from '../helpers/text-editor.mjs';
+import { Checks } from '../checks/checks.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -102,6 +103,12 @@ function activateDefaultListeners(html, sheet) {
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
 			callback: (html) => _onItemDuplicate(html, sheet),
+			condition: (html) => !!html.closest('[data-item-id]'),
+		},
+		{
+			name: game.i18n.localize('FU.ChatMessageSendHint'),
+			icon: '<i class="fas fa-comment"></i>',
+			callback: (html) => _onItemSendToChat(html, sheet),
 			condition: (html) => !!html.closest('[data-item-id]'),
 		},
 		{
@@ -269,12 +276,25 @@ function getItemFromHtml(htmlElement, actor) {
  * @returns {Promise<void>}
  */
 async function _onItemDuplicate(element, sheet) {
-	let item = getItemFromHtml(element, sheet.actor);
+	const item = getItemFromHtml(element, sheet.actor);
 	if (item) {
 		const dupData = item.toObject(true);
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
 		await sheet.actor.createEmbeddedDocuments('Item', [dupData]);
 		sheet.render();
+	}
+}
+
+/**
+ * @desc Renders the description of the item referenced in the html element.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
+ * @param {ActorSheet} sheet
+ * @returns {Promise<void>}
+ */
+async function _onItemSendToChat(element, sheet) {
+	const item = getItemFromHtml(element, sheet.actor);
+	if (item) {
+		return Checks.display(item.parent, item);
 	}
 }
 
