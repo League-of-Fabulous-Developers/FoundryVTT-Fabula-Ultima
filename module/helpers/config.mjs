@@ -930,8 +930,6 @@ FU.itemGroup = {
 	item: 'FU.Item',
 };
 
-FU.damageSource = FU.itemGroup;
-
 /**
  * @typedef {"skill" | "spell" | "item"} FUExpenseSource
  */

@@ -9,7 +9,7 @@ const fields = foundry.data.fields;
  * @description Trigger based on a {@linkcode DamageEvent}
  * @extends RuleTriggerDataModel
  * @property {DamageType} damageTypes
- * @property {Set<FUItemGroup>} damageSource
+ * @property {Set<FUItemGroup>} itemGroups
  * @property {FUThreshold} damageThreshold
  * @property {FUAffinity} affinity
  * @inheritDoc
@@ -39,13 +39,21 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 				choices: Object.keys(FU.affValue),
 				blank: true,
 			}),
-			damageSources: new fields.SetField(new fields.StringField()),
+			itemGroups: new fields.SetField(new fields.StringField()),
 			damageThreshold: new fields.SchemaField({
 				operator: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.comparisonOperator) }),
 				amount: new fields.NumberField({ initial: 0 }),
 			}),
 		});
 		return schema;
+	}
+
+	static migrateData(source) {
+		if (source.damageSources) {
+			source.itemGroups = source.damageSources;
+			delete source.damageSources;
+		}
+		return super.migrateData(source);
 	}
 
 	static get localization() {
@@ -70,8 +78,8 @@ export class DamageRuleTrigger extends RuleTriggerDataModel {
 				return false;
 			}
 		}
-		if (this.damageSources.size > 0) {
-			if (!this.damageSources.has(context.event.damageSource)) {
+		if (this.itemGroups.size > 0) {
+			if (!this.itemGroups.has(context.event.itemGroup)) {
 				return false;
 			}
 		}
