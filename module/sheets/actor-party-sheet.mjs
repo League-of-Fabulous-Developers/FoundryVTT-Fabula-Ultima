@@ -143,7 +143,7 @@ export class FUPartySheet extends FUActorSheet {
 	#technospheresTable = new TechnospheresTableRenderer();
 	#treasuresTable = new TreasuresTableRenderer();
 	#consumablesTable = new ConsumablesTableRenderer();
-	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
+	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon', 'customWeapon');
 	#codexBrowser;
 	#codexDrop;
 	/** @type SheetExtensions **/

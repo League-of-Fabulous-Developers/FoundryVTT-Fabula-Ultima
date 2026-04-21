@@ -78,7 +78,7 @@ export class FUStashSheet extends FUActorSheet {
 		}
 		context.treasuresTable = await this.#treasuresTable.renderTable(this.document);
 		context.consumablesTable = await this.#consumablesTable.renderTable(this.document);
-		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere'] : [] });
+		context.otherItemsTable = await this.#otherItemsTable.renderTable(this.document, { exclude: technoSphereMode ? ['hoplosphere', 'mnemosphere', `customWeapon`] : [`customWeapon`] });
 		return context;
 	}
 

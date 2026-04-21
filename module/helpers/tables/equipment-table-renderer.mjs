@@ -3,14 +3,16 @@ import { systemTemplatePath } from '../system-utils.mjs';
 import { CommonDescriptions } from './common-descriptions.mjs';
 import { FU } from '../config.mjs';
 import { TradableTableRenderer } from './tradable-table-renderer.mjs';
+import { WeaponResolver } from '../../documents/items/skill/weapon-resolver.mjs';
 
-const includedItemTypes = new Set(['accessory', 'armor', 'shield', 'weapon']);
+const includedItemTypes = new Set(['accessory', 'armor', 'shield', 'weapon', 'customWeapon']);
 
 const costFields = {
 	accessory: 'system.cost.value',
 	armor: 'system.cost.value',
 	shield: 'system.cost.value',
 	weapon: 'system.cost.value',
+	customWeapon: 'system.cost',
 };
 
 const qualityFields = {
@@ -18,6 +20,7 @@ const qualityFields = {
 	armor: 'system.quality.value',
 	shield: 'system.quality.value',
 	weapon: 'system.quality.value',
+	customWeapon: 'system.quality',
 };
 
 const descriptionRenderers = {
@@ -29,6 +32,15 @@ const descriptionRenderers = {
 		tags.push({ tag: FU.handedness[item.system.hands.value] });
 		tags.push({ tag: FU.weaponTypes[item.system.type.value] });
 		tags.push({ tag: FU.weaponCategories[item.system.category.value] });
+		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
+		return tags;
+	}),
+	customWeapon: CommonDescriptions.descriptionWithTags((item) => {
+		const _data = WeaponResolver.normalizeData(item);
+		const tags = [];
+		tags.push({ tag: FU.handedness['two-handed'] });
+		tags.push({ tag: FU.weaponTypes[_data.type] });
+		tags.push({ tag: FU.weaponCategories[_data.category] });
 		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
 		return tags;
 	}),
@@ -98,8 +110,30 @@ const details = {
 		};
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equipment-weapon-details'), data);
 	},
+	customWeapon: (item) => {
+		const _data = WeaponResolver.normalizeData(item);
+		const data = {
+			FU: FU,
+			check: {
+				primary: _data.accuracy.primary,
+				secondary: _data.accuracy.secondary,
+				modifier: Math.abs(_data.accuracy.bonus),
+				signum: signum(_data.accuracy.bonus),
+			},
+			damage: {
+				type: _data.damage.type,
+				value: Math.abs(_data.damage.value),
+				signum: signum(_data.damage.value),
+				hrZero: false,
+			},
+		};
+		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equipment-weapon-details'), data);
+	},
 };
 
+/**
+ * @desc To be used for non-character sheets, where different equipment types are all lumped together in a simplified way.
+ */
 export class EquipmentTableRenderer extends TradableTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {

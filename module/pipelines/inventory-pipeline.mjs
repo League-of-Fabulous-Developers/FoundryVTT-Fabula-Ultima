@@ -49,7 +49,8 @@ async function tradeItem(actor, item, type) {
 			message = 'FU.ChatInventorySellMessage';
 			actionLabel = 'FU.ChatInventoryBuy';
 			action = sellAction;
-			cost = item.system.cost.value;
+			cost = getItemCost(item);
+
 			if (actor.type === 'stash') {
 				cost *= actor.system.rates.item;
 			}
@@ -377,6 +378,23 @@ async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}) {
 }
 
 /**
+ * @param {FUItem} item
+ * @returns {*}
+ */
+function getItemCost(item) {
+	let cost = 0;
+	if (item.type === 'customWeapon') {
+		cost = item.system.cost;
+	} else {
+		cost = item.system.cost.value;
+	}
+	if (cost === undefined) {
+		throw Error(`Failed to resolve the cost on the item '${item.name}'`);
+	}
+	return cost;
+}
+
+/**
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {Boolean} sale
@@ -395,7 +413,8 @@ async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 
 	let cost = 0;
 	if (sale) {
-		cost = item.system.cost.value;
+		cost = getItemCost(item);
+
 		if (actor.type === 'stash') {
 			cost *= actor.system.rates.item;
 		}
