@@ -9,6 +9,10 @@
 	text-align: center;
 }
 
+.application.item .window-content {
+	gap: 5px;
+}
+
 .items-header .item-name {
 	font-weight: bold;
 	text-align: left;

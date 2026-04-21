@@ -1,5 +1,5 @@
 <header class="sheet-header desc">
-	<div class="profile desc" style="display: flex; align-items: stretch;">
+	<div class="profile desc flexrow gap-5">
 		{{!-- <img class="item-profile-img" src="{{ item.img }}" data-edit="img" data-action="editImage" title="{{ item.name }}" /> --}}
 		<img class="item-profile-img"
 			 src="{{ item.img }}"
@@ -8,13 +8,13 @@
 			 data-tooltip="{{ item.name }}" />
 
 		<div class="header-fields">
-			<div class="header-start grid grid-6col">
+			<div class="header-start grid grid-6col gap-5">
 				<div class="charname-container flexrow grid-span-4">
-					<h2 class="charname" style="flex: 4;">
+					<div class="charname">
 						<input name="name" type="text" value="{{ item.name }}" placeholder="Name"
 							   data-tooltip="{{ item.name }}" class="resource-inputs-charname auto-shrink" />
-					</h2>
-					<h4 class="martials">
+					</div>
+					<div class="martials">
 						{{#if showMartial}}
 							<input id="martial-checkbox" type="checkbox" style="display: none;" {{#if
 							 system.isMartial.value}}checked{{/if}}>
@@ -36,7 +36,7 @@
 									 tabindex="0" aria-hidden="true">
 							</label>
 						{{/if}}
-					</h4>
+					</div>
 				</div>
 
 				{{!-- Part --}}

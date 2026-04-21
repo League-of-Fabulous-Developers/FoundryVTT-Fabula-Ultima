@@ -363,7 +363,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		switch (partId) {
 			case 'header':
 				{
-					context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
+					context.showMetaCurrency = this.isCharacter || (this.actor.system.villain.value && this.actor.system.rank.value !== 'companion');
 					// Setup status effect toggle data
 					context.statusEffectToggles = ActorSheetUtils.prepareStatusEffectToggles(this.actor);
 

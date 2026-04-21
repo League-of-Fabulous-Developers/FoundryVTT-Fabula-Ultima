@@ -2,7 +2,7 @@
 
 	{{#if system.schema.fields.subtype}}
 	{{!-- Sub Type --}}
-		<span id="subtype-section" class="resource-content flexrow flex-group-center desc">
+		<span class="subtype-section resource-content flexrow flex-group-center desc">
             <label class="resource-label-sm" for="item.type">
 				<i class="fas fa-chart-simple icon"></i>
 				{{localize 'FU.SubType'}}
@@ -38,7 +38,7 @@
 			{{/if}}
 	</span>
 	{{else if (or (eq item.type "classFeature") (eq item.type "optionalFeature"))}}
-		<span id="subtype-section" class="resource-content flexrow flex-group-center desc">
+		<span class="subtype-section resource-content flexrow flex-group-center desc">
 		<span>
 			<label class="resource-label-m">{{localize subtypeLocalizationKey}}</label>
 			<a data-action="changeSubtype">

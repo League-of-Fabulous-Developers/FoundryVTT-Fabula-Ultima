@@ -1,68 +1,55 @@
 {{#if (eq actor.type "npc")}}
 {{!-- Creature Rank --}}
-	<div class="flexcol gap-1">
-		<div class="resource-content levelup-container creature flex-group-center">
-			<!-- Role -->
-			<span class="flexrow">
-                <label class="resource-label-m backgroundstyle" data-tooltip="{{localize 'FU.Role'}}"
-					   aria-describedby="tooltip">
-                    <i class="fas fa-wrench-simple icon"></i>
-					{{localize 'FU.Role'}}
-                </label>
-                <div class="grid-span-2 flexrow">
-                    <select name="system.role.value" class="resource-inputs">
-						{{selectOptions FU.role selected=system.role.value localize=true}}
-					</select>
-                </div>
-            </span>
+		<!-- Role -->
+	<div class="spacer"></div>
+	<label class="resource-label-m" data-tooltip="{{localize 'FU.Role'}}"
+		   aria-describedby="tooltip">
+		<i class="fas fa-wrench-simple icon"></i>
+		{{localize 'FU.Role'}}
+	</label>
+	<select name="system.role.value" class="resource-inputs">
+		{{selectOptions FU.role selected=system.role.value localize=true}}
+	</select>
 
-			<!-- Species -->
-			<span class="flexrow">
-                <label class="resource-label-m backgroundstyle" data-tooltip="{{localize 'FU.Role'}}"
-					   aria-describedby="tooltip">
-                    <i class="{{pfuIconClass 'species'}} icon"></i>
-					{{localize 'FU.Species'}}
-                </label>
-                <div class="grid-span-2 flexrow">
-					<select name="system.species.value" class="resource-inputs species-select" style="padding: 3px 0">
-						{{#if (eq system.rank.value 'companion')}}
-							{{selectOptions FU.companionSpecies selected=system.species.value localize=true}}
-						{{else}}
-							{{selectOptions FU.species selected=system.species.value localize=true}}
-						{{/if}}
-					</select>
-                </div>
-            </span>
-		</div>
+<!-- Species -->
+	<label class="resource-label-m" data-tooltip="{{localize 'FU.Role'}}"
+		   aria-describedby="tooltip">
+		<i class="{{pfuIconClass 'species'}} icon"></i>
+		{{localize 'FU.Species'}}
+	</label>
+	<select name="system.species.value" class="resource-inputs species-select">
+		{{#if (eq system.rank.value 'companion')}}
+			{{selectOptions FU.companionSpecies selected=system.species.value localize=true}}
+		{{else}}
+			{{selectOptions FU.species selected=system.species.value localize=true}}
+		{{/if}}
+	</select>
 
-		<!-- Villain -->
-		<span class="resource-content levelup-container flexrow flex-group-center">
-			{{#if (eq system.rank.value 'companion')}}
-				<span class="flexrow combineBar villain-field resource-content flex-group-center">
-					<label class="resource-inputs"
-						   data-tooltip="({{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}">{{ localize
-					 'FU.LevelAbbr' }}</label>
-					<span class="resource-inputs">
-						<label class="resource-inputs">{{refActorLevel}}</label>
-					</span>
-					<label class="resource-inputs"
-						   data-tooltip="({{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}">{{ localize
-					 'FU.SkillLevelAbbr' }}</label>
-					<span class="resource-inputs">
-						<label class="resource-inputs">{{refSkillLevel}}</label>
-					</span>
-				</span>
-			{{else}}
-				<label class="resource-label-m backgroundstyle" data-tooltip="{{localize 'FU.Role'}}"
-					   aria-describedby="tooltip">
-					<i class="{{pfuIconClass 'villain'}} icon"></i>
-					{{localize 'FU.Villain'}}
-				</label>
-				<select name="system.villain.value" data-dtype="String"
-						class="resource-inputs villain-field">
-					{{selectOptions FU.villainTypes selected=system.villain.value blank='FU.VillainNone' localize=true}}
-				</select>
-			{{/if}}
+
+	<!-- Villain -->
+	{{#if (eq system.rank.value 'companion')}}
+
+		<label class="resource-label-m" data-tooltip="({{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}">{{ localize
+		 'FU.LevelAbbr' }}</label>
+		<span class="resource-inputs">
+			<label>{{refActorLevel}}</label>
 		</span>
-	</div>
+		<label class="resource-label-m" data-tooltip="({{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}">{{ localize
+		 'FU.SkillLevelAbbr' }}</label>
+		<span class="resource-inputs">
+			<label>{{refSkillLevel}}</label>
+		</span>
+
+	{{else}}
+		<label class="resource-label-m data-tooltip="{{localize 'FU.Role'}}"
+			   aria-describedby="tooltip">
+			<i class="{{pfuIconClass 'villain'}} icon"></i>
+			{{localize 'FU.Villain'}}
+		</label>
+		<select name="system.villain.value" data-dtype="String"
+				class="resource-inputs villain-field">
+			{{selectOptions FU.villainTypes selected=system.villain.value blank='FU.VillainNone' localize=true}}
+		</select>
+	{{/if}}
+
 {{/if}}
