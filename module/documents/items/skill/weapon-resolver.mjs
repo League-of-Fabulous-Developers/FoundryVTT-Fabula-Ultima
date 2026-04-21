@@ -224,4 +224,5 @@ export const WeaponResolver = Object.freeze({
 	getEquipment,
 	getEquippedWeapons,
 	getAccuracy,
+	normalizeData,
 });

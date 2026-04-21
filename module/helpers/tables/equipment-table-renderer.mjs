@@ -3,6 +3,7 @@ import { systemTemplatePath } from '../system-utils.mjs';
 import { CommonDescriptions } from './common-descriptions.mjs';
 import { FU } from '../config.mjs';
 import { TradableTableRenderer } from './tradable-table-renderer.mjs';
+import { WeaponResolver } from '../../documents/items/skill/weapon-resolver.mjs';
 
 const includedItemTypes = new Set(['accessory', 'armor', 'shield', 'weapon', 'customWeapon']);
 
@@ -107,8 +108,22 @@ const details = {
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equipment-weapon-details'), data);
 	},
 	customWeapon: (item) => {
+		const _data = WeaponResolver.normalizeData(item);
+
 		const data = {
 			FU: FU,
+			check: {
+				primary: _data.accuracy.primary,
+				secondary: _data.accuracy.secondary,
+				modifier: Math.abs(_data.accuracy.bonus),
+				signum: signum(_data.accuracy.bonus),
+			},
+			damage: {
+				type: _data.damage.type,
+				value: Math.abs(_data.damage.value),
+				signum: signum(_data.damage.value),
+				hrZero: false,
+			},
 		};
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-equipment-weapon-details'), data);
 	},
