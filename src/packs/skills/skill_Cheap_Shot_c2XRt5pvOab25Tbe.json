@@ -150,13 +150,26 @@
                 ],
                 "damageTypes": [],
                 "local": false,
-                "identifier": ""
+                "identifier": "",
+                "itemGroups": [
+                  "attack",
+                  "skill"
+                ]
               },
               "_id": "iMeiSArQrJM5MAh7",
               "predicates": {
                 "ilm0KpbJ3hHp907Z": {
                   "type": "targetingRulePredicate",
                   "_id": "ilm0KpbJ3hHp907Z"
+                },
+                "Av5MT6g88DEgoDBq": {
+                  "type": "traitsRulePredicate",
+                  "_id": "Av5MT6g88DEgoDBq",
+                  "traits": {
+                    "entries": [
+                      "attack"
+                    ]
+                  }
                 }
               },
               "actions": {
@@ -219,8 +232,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774633534207,
-        "modifiedTime": 1774633730691,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "modifiedTime": 1776794401499,
+        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
       },
       "_key": "!items.effects!c2XRt5pvOab25Tbe.zXuBvWCNg61ggCWh"
     }
