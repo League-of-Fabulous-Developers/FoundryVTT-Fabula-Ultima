@@ -36,8 +36,11 @@ const descriptionRenderers = {
 		return tags;
 	}),
 	customWeapon: CommonDescriptions.descriptionWithTags((item) => {
+		const _data = WeaponResolver.normalizeData(item);
 		const tags = [];
 		tags.push({ tag: FU.handedness['two-handed'] });
+		tags.push({ tag: FU.weaponTypes[_data.type] });
+		tags.push({ tag: FU.weaponCategories[_data.category] });
 		tags.push({ tag: 'FU.Versus', value: game.i18n.localize(FU.defenses[item.system.defense].abbr) });
 		return tags;
 	}),
@@ -109,7 +112,6 @@ const details = {
 	},
 	customWeapon: (item) => {
 		const _data = WeaponResolver.normalizeData(item);
-
 		const data = {
 			FU: FU,
 			check: {
