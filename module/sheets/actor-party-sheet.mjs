@@ -1,4 +1,5 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
+import { ItemSelectionDialog } from '../ui/features/item-selection-dialog.mjs';
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
@@ -144,6 +145,7 @@ export class FUPartySheet extends FUActorSheet {
 	#consumablesTable = new ConsumablesTableRenderer();
 	#otherItemsTable = new OtherItemsTableRenderer('accessory', 'armor', 'consumable', 'shield', 'treasure', 'weapon');
 	#codexBrowser;
+	#codexDrop;
 	/** @type SheetExtensions **/
 	#extensions;
 
@@ -344,6 +346,7 @@ export class FUPartySheet extends FUActorSheet {
 			case 'codex':
 				{
 					this.codexBrowser.attachListeners(html);
+					this.#attachCodexDropzoneListeners(html);
 
 					FoundryUtils.contextMenu(
 						html,
@@ -447,6 +450,15 @@ export class FUPartySheet extends FUActorSheet {
 		this.codexBrowser.refresh(this.actor, this.element);
 	}
 
+	/** @inheritdoc */
+	async _onClose(options) {
+		if (this.#codexDrop instanceof Function) {
+			this.#codexDrop();
+			this.#codexDrop = null;
+		}
+		return super._onClose(options);
+	}
+
 	/**
 	 * @returns {FUPartySheetTheme}
 	 */
@@ -460,7 +472,8 @@ export class FUPartySheet extends FUActorSheet {
 	 */
 	static async #activate() {
 		console.debug(`Setting ${this.actor.name} as the active party`);
-		game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
+		await game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
+		ui.notifications.info(game.i18n.format('FU.ActivePartySetNotification', { name: this.actor.name }));
 	}
 
 	/**
@@ -574,18 +587,378 @@ export class FUPartySheet extends FUActorSheet {
 		return super._onDropItem(event, item);
 	}
 
-	async _onDropActor(event, actor) {
-		console.debug(`${actor.name} was dropped onto party sheet`);
-		if (actor.type === 'character') {
-			return this.party.addCharacter(actor);
-		} else if (actor.type === 'npc') {
-			if (actor.system.rank.value === 'companion') {
-				return this.party.addCompanion(actor);
-			} else {
-				return this.party.addOrUpdateAdversary(actor, 0);
+	/**
+	 * Handle folder drop payloads that are not auto-resolved by the base sheet.
+	 * @param {DragEvent} event
+	 * @returns {Promise<unknown>}
+	 */
+	async _onDrop(event) {
+		const data = TextEditor.getDragEventData(event);
+		if (this.#isCodexDropZone(event) && data?.type === 'Folder') {
+			const folderFromUuid = data.uuid ? await fromUuid(data.uuid) : null;
+			if (folderFromUuid) {
+				return this._onDropFolder(event, folderFromUuid);
+			}
+
+			const packId = data.pack ?? data.compendium ?? null;
+			const folderId = data.id ?? data.folderId ?? data._id ?? null;
+			if (packId && folderId) {
+				const pack = game.packs?.get(packId);
+				const folder = pack?.folders?.get?.(folderId) ?? pack?.folders?.contents?.find((f) => f.id === folderId);
+				if (folder) {
+					return this._onDropFolder(event, folder);
+				}
 			}
 		}
+
+		return super._onDrop(event);
+	}
+
+	async _onDropFolder(event, folder) {
+		if (this.#isCodexDropZone(event)) {
+			if (folder?.type === 'Actor') {
+				const actors = await this.#getActorsFromFolder(folder);
+
+				if (actors.length === 0) {
+					ui.notifications.warn('No actors found in this folder.');
+					return folder;
+				}
+
+				await this.#showActorImportDialog(actors);
+				return folder;
+			}
+
+			if (folder?.type === 'JournalEntry') {
+				const entries = await this.#getJournalEntriesFromFolder(folder);
+
+				if (entries.length === 0) {
+					ui.notifications.warn('No journals found in this folder.');
+					return folder;
+				}
+
+				await this.#showJournalImportDialog(entries);
+				return folder;
+			}
+		} else {
+			if (folder?.type === 'Actor') {
+				const folderIds = this.#collectFolderIds(folder);
+				const actors = (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+
+				// Add dropped actors to the party in their matching section.
+				for (const actor of actors) {
+					const actorCategory = this.#classifyDroppedActor(actor);
+					if (actorCategory === 'character') {
+						await this.party.addCharacter(actor);
+					} else if (actorCategory === 'companion') {
+						await this.party.addCompanion(actor);
+					} else if (actorCategory === 'adversary') {
+						await this.party.addOrUpdateAdversary(actor, 0);
+					}
+				}
+				return folder;
+			}
+		}
+
+		if (super._onDropFolder instanceof Function) {
+			return super._onDropFolder(event, folder);
+		}
+		return super._onDrop(event);
+	}
+
+	/**
+	 * Route direct document drops.
+	 * @param {DragEvent} event
+	 * @param {Document} document
+	 * @returns {Promise<Document|null|undefined>}
+	 */
+	async _onDropDocument(event, document) {
+		if (this.#isCodexDropZone(event)) {
+			if (document?.documentName === 'Actor') {
+				await this.#showActorImportDialog([document]);
+				return document;
+			}
+
+			if (document?.documentName === 'JournalEntry') {
+				await this.#showJournalImportDialog([document]);
+				return document;
+			}
+		}
+
+		if (super._onDropDocument instanceof Function) {
+			return super._onDropDocument(event, document);
+		}
+
+		// Support environments without _onDropDocument.
+		if (document?.documentName === 'Actor') {
+			return this._onDropActor(event, document);
+		}
+		return super._onDrop(event);
+	}
+
+	async _onDropActor(event, actor) {
+		if (this.#isCodexDropZone(event)) {
+			await this.#showActorImportDialog([actor]);
+			return actor;
+		}
+
+		console.debug(`${actor.name} was dropped onto party sheet`);
+		const actorCategory = this.#classifyDroppedActor(actor);
+		if (actorCategory === 'character') {
+			return this.party.addCharacter(actor);
+		}
+		if (actorCategory === 'companion') {
+			return this.party.addCompanion(actor);
+		}
+		if (actorCategory === 'adversary') {
+			return this.party.addOrUpdateAdversary(actor, 0);
+		}
 		return super._onDropActor(event, actor);
+	}
+
+	/**
+	 * @param {FUActor[]} actors
+	 * @returns {Promise<{imported: number, skipped: string[]}>}
+	 */
+	async #importActorsToCodex(actors) {
+		const existing = new Set((this.party.codex.entries ?? []).map((entry) => (entry?.name ?? '').trim().toLowerCase()).filter(Boolean));
+		let imported = 0;
+		const skipped = [];
+
+		for (const actor of actors) {
+			const name = (actor?.name ?? '').trim();
+			const key = name.toLowerCase();
+			if (!key || existing.has(key)) {
+				skipped.push(name || '(unnamed actor)');
+				continue;
+			}
+			await this.codexBrowser.importActor(actor);
+			existing.add(key);
+			imported += 1;
+		}
+
+		return { imported, skipped };
+	}
+
+	/**
+	 * @param {JournalEntryPage[]} pages
+	 * @returns {Promise<{imported: number, skipped: string[]}>}
+	 */
+	async #importJournalPagesToCodex(pages) {
+		const existing = new Set((this.party.codex.entries ?? []).map((entry) => (entry?.name ?? '').trim().toLowerCase()).filter(Boolean));
+		let imported = 0;
+		const skipped = [];
+
+		for (const page of pages) {
+			let name = (page?.name ?? '').trim();
+
+			if (!name) {
+				skipped.push('(unnamed page)');
+				continue;
+			}
+
+			// Include journal name for distinguishing pages with same name
+			const journalName = page.parent?.name;
+			if (journalName) {
+				name = `${name} (${journalName})`;
+			}
+
+			const key = name.toLowerCase();
+
+			// Skip duplicates already in the codex.
+			if (existing.has(key)) {
+				skipped.push(name);
+				continue;
+			}
+
+			await this.codexBrowser.importJournalEntryPage(page);
+			existing.add(key);
+			imported += 1;
+		}
+
+		return { imported, skipped };
+	}
+
+	/**
+	 * @param {DragEvent} event
+	 * @returns {boolean}
+	 */
+	#isCodexDropZone(event) {
+		const target = event?.target instanceof Element ? event.target.closest('[data-codex-dropzone]') : null;
+		return target?.dataset?.codexDropzone === 'entry';
+	}
+
+	/**
+	 * @param {Folder} root
+	 * @returns {Set<string>}
+	 */
+	#collectFolderIds(root) {
+		const ids = new Set();
+		const queue = [root];
+		const foldersByParent = new Map();
+		const packId = this.#resolveFolderPack(root);
+		const folderSource = packId ? (game.packs?.get(packId)?.folders?.contents ?? []) : game.folders.filter((f) => f?.type === root?.type);
+
+		for (const folder of folderSource) {
+			const parentId = this.#resolveFolderId(folder);
+			if (!foldersByParent.has(parentId)) foldersByParent.set(parentId, []);
+			foldersByParent.get(parentId).push(folder);
+		}
+
+		while (queue.length) {
+			const current = queue.shift();
+			if (!current?.id || ids.has(current.id)) continue;
+			ids.add(current.id);
+			queue.push(...(foldersByParent.get(current.id) ?? []));
+		}
+		return ids;
+	}
+
+	/**
+	 * @param {Folder} folder
+	 * @returns {Promise<FUActor[]>}
+	 */
+	async #getActorsFromFolder(folder) {
+		const folderIds = this.#collectFolderIds(folder);
+		const packId = this.#resolveFolderPack(folder);
+		if (packId) {
+			const pack = game.packs?.get(packId);
+			if (!pack || pack.documentName !== 'Actor') return [];
+			const actors = await pack.getDocuments();
+			return actors.filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+		}
+		return (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+	}
+
+	/**
+	 * @param {Folder} folder
+	 * @returns {Promise<JournalEntry[]>}
+	 */
+	async #getJournalEntriesFromFolder(folder) {
+		const folderIds = this.#collectFolderIds(folder);
+		const packId = this.#resolveFolderPack(folder);
+		if (packId) {
+			const pack = game.packs?.get(packId);
+			if (!pack || pack.documentName !== 'JournalEntry') return [];
+			const journals = await pack.getDocuments();
+			return journals.filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
+		}
+		return (game.journal?.contents ?? []).filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
+	}
+
+	/**
+	 * @param {Folder|object|null} folder
+	 * @returns {string|null}
+	 */
+	#resolveFolderPack(folder) {
+		return folder?.pack ?? folder?.compendium?.collection ?? null;
+	}
+
+	/**
+	 * @param {object} document
+	 * @returns {string|null}
+	 */
+	#resolveFolderId(document) {
+		if (!document) return null;
+		if (typeof document.folder === 'string') return document.folder;
+		if (document.folder?.id) return document.folder.id;
+		if (typeof document.parent === 'string') return document.parent;
+		if (document.parent?.id) return document.parent.id;
+		return null;
+	}
+
+	/**
+	 * @param {HTMLElement} html
+	 */
+	#attachCodexDropzoneListeners(html) {
+		if (this.#codexDrop instanceof Function) {
+			this.#codexDrop();
+			this.#codexDrop = null;
+		}
+
+		const dropRoot = html.querySelector('[data-codex-drop-root]');
+		if (!dropRoot) {
+			return;
+		}
+
+		let hideTimer = null;
+		const clearDropState = () => {
+			if (hideTimer) {
+				clearTimeout(hideTimer);
+				hideTimer = null;
+			}
+			dropRoot.classList.remove('show-dropzones');
+		};
+
+		const showDropState = () => {
+			if (hideTimer) {
+				clearTimeout(hideTimer);
+				hideTimer = null;
+			}
+			dropRoot.classList.add('show-dropzones');
+		};
+
+		const onRootDragEnter = () => {
+			showDropState();
+		};
+
+		const onRootDragOver = (event) => {
+			showDropState();
+			event.preventDefault();
+			if (event.dataTransfer) {
+				event.dataTransfer.dropEffect = 'copy';
+			}
+		};
+
+		const onRootDragLeave = () => {
+			if (hideTimer) {
+				clearTimeout(hideTimer);
+			}
+			hideTimer = setTimeout(() => clearDropState(), 80);
+		};
+
+		const onRootDrop = () => {
+			clearDropState();
+		};
+
+		const onGlobalDragEnd = () => {
+			clearDropState();
+		};
+
+		const onGlobalDrop = () => {
+			clearDropState();
+		};
+
+		dropRoot.addEventListener('dragenter', onRootDragEnter);
+		dropRoot.addEventListener('dragover', onRootDragOver);
+		dropRoot.addEventListener('dragleave', onRootDragLeave);
+		dropRoot.addEventListener('drop', onRootDrop);
+		document.addEventListener('dragend', onGlobalDragEnd);
+		document.addEventListener('drop', onGlobalDrop);
+
+		this.#codexDrop = () => {
+			clearDropState();
+			dropRoot.removeEventListener('dragenter', onRootDragEnter);
+			dropRoot.removeEventListener('dragover', onRootDragOver);
+			dropRoot.removeEventListener('dragleave', onRootDragLeave);
+			dropRoot.removeEventListener('drop', onRootDrop);
+			document.removeEventListener('dragend', onGlobalDragEnd);
+			document.removeEventListener('drop', onGlobalDrop);
+		};
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns {'character'|'companion'|'adversary'|null}
+	 */
+	#classifyDroppedActor(actor) {
+		switch (actor?.type) {
+			case 'character':
+				return 'character';
+			case 'npc':
+				return actor.system?.rank?.value === 'companion' ? 'companion' : 'adversary';
+			default:
+				return null;
+		}
 	}
 
 	/**
@@ -647,23 +1020,197 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
+	 * Helper to show actor import dialog with optional selection
+	 * @param {FUActor[]} [initialActors] Pre-selected actors from drop
+	 * @returns {Promise<void>}
+	 */
+	async #showActorImportDialog(initialActors = null) {
+		let selected = initialActors ?? game.actors?.contents ?? [];
+		if (!selected.length) {
+			ui.notifications.warn('No actors found in this world.');
+			return;
+		}
+
+		selected = await this.#promptSelectActorsGrouped(selected);
+		if (!selected?.length) return;
+
+		const result = await this.#importActorsToCodex(selected);
+		if (result.skipped.length > 0) {
+			ui.notifications.warn(`Imported ${result.imported}/${selected.length} actors. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
+		} else {
+			ui.notifications.info(`Imported ${result.imported}/${selected.length} actors to Codex.`);
+		}
+	}
+
+	/**
+	 * @param {FUActor[]} actors
+	 * @returns {Promise<FUActor[]|null>}
+	 */
+	async #promptSelectActorsGrouped(actors) {
+		if (!actors?.length) return null;
+		if (actors.length === 1) return actors;
+
+		const groupsByKey = new Map();
+
+		for (const actor of actors) {
+			const packId = this.#resolveFolderPack(actor) ?? '__world__';
+			const folderId = this.#resolveFolderId(actor) ?? '__none__';
+			const groupKey = `${packId}::${folderId}`;
+			if (!groupsByKey.has(groupKey)) {
+				groupsByKey.set(groupKey, {
+					name: this.#resolveFolderPath(folderId === '__none__' ? null : folderId, packId === '__world__' ? null : packId),
+					actors: [],
+				});
+			}
+			groupsByKey.get(groupKey).actors.push(actor);
+		}
+
+		const groups = [];
+		const allActors = [];
+		let flatIndex = 0;
+		for (const group of [...groupsByKey.values()].sort((a, b) => a.name.localeCompare(b.name))) {
+			const items = group.actors
+				.sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''))
+				.map((actor) => {
+					const entry = {
+						id: actor.id,
+						uuid: actor.uuid,
+						name: actor.name,
+						img: actor.img,
+						_originalActor: actor,
+						_flatIndex: flatIndex++,
+					};
+					allActors.push(entry);
+					return entry;
+				});
+
+			if (items.length > 0) groups.push({ name: group.name, items });
+		}
+
+		const selected = await new ItemSelectionDialog({
+			title: `${StringUtils.localize('CONTROLS.CommonSelect')} ${game.i18n.localize('FU.Actor')}`,
+			style: 'grouped-list',
+			groups,
+			items: allActors,
+			initial: [],
+			max: allActors.length,
+			getDescription: async (item) => item.name,
+		}).open();
+		if (!selected || selected.length === 0) return null;
+		return selected.map((item) => item._originalActor).filter(Boolean);
+	}
+
+	/**
+	 * @param {string|null} folderId
+	 * @param {string|null} [packId]
+	 * @returns {string}
+	 */
+	#resolveFolderPath(folderId, packId = null) {
+		if (!folderId) return game.i18n.localize('FU.None');
+		const folderCollection = packId ? game.packs?.get(packId)?.folders : game.folders;
+		const getFolder = (id) => folderCollection?.get?.(id) ?? folderCollection?.contents?.find((f) => f.id === id);
+		const folder = getFolder(folderId);
+		if (!folder) return game.i18n.localize('FU.None');
+		const names = [folder.name];
+		let current = folder.folder ?? folder.parent ?? null;
+		while (current) {
+			if (typeof current === 'string') {
+				current = getFolder(current);
+				if (!current) break;
+			}
+			names.unshift(current.name);
+			current = current.folder ?? current.parent ?? null;
+		}
+		return names.join(' / ');
+	}
+
+	/**
 	 * @this FUPartySheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
 	static async #onImportCodexActorEntry(event, target) {
-		const selected = await FoundryUtils.selectActors();
-		if (selected) {
-			const content = await FoundryUtils.renderTemplate('common/document-list', {
-				message: 'The following actors will be imported as codex entries.',
-				documents: selected,
+		await this.#showActorImportDialog();
+	}
+
+	/**
+	 * Helper to show journal entry import dialog
+	 * Groups journal pages by their parent journal with visual hierarchy
+	 * @param {JournalEntry[]} [initialEntries] Pre-selected journals from drop
+	 * @returns {Promise<void>}
+	 */
+	async #showJournalImportDialog(initialEntries = null) {
+		let journals = initialEntries;
+
+		if (!journals) {
+			journals = game.journal.contents;
+		}
+
+		if (!journals || journals.length === 0) {
+			ui.notifications.warn('No journal entries found in this world.');
+			return;
+		}
+
+		const groups = [];
+		let allPages = [];
+		let itemIndex = 0;
+
+		for (const journal of journals) {
+			const journalPages = journal.pages.contents.map((page) => {
+				const pageItem = {
+					id: page.id,
+					uuid: page.uuid,
+					name: page.name,
+					img: page.src || journal.img,
+					_originalPage: page,
+					_flatIndex: itemIndex,
+					_journalUuid: journal.uuid,
+				};
+				allPages.push(pageItem);
+				itemIndex++;
+				return pageItem;
 			});
-			const confirm = await FoundryUtils.confirm('FU.Import', content);
-			if (confirm) {
-				for (const actor of selected) {
-					await this.codexBrowser.importActor(actor);
+
+			if (journalPages.length > 0) {
+				groups.push({
+					name: journal.name,
+					items: journalPages,
+				});
+			}
+		}
+
+		if (allPages.length === 0) {
+			ui.notifications.warn('No pages found in selected journals.');
+			return;
+		}
+
+		const data = {
+			title: `${StringUtils.localize('CONTROLS.CommonSelect')} ${StringUtils.localize('DOCUMENT.JournalEntryPage')}`,
+			style: 'grouped-list',
+			groups: groups,
+			items: allPages,
+			initial: [],
+			getDescription: async () => '',
+		};
+
+		try {
+			const dialog = new ItemSelectionDialog(data);
+			const selectedPages = await dialog.open();
+
+			if (selectedPages && selectedPages.length > 0) {
+				const pages = selectedPages.map((item) => item._originalPage);
+				const result = await this.#importJournalPagesToCodex(pages);
+				if (result.skipped.length > 0) {
+					ui.notifications.warn(`Imported ${result.imported}/${pages.length} journal pages. Skipped ${result.skipped.length}: ${result.skipped.join(', ')}`);
+				} else {
+					ui.notifications.info(`Imported ${result.imported}/${pages.length} journal pages.`);
 				}
+			}
+		} catch (error) {
+			if (error.message !== 'Canceled by user.') {
+				console.error('Error importing journal pages:', error);
+				ui.notifications.error('Error importing journal pages.');
 			}
 		}
 	}
@@ -675,21 +1222,7 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<void>}
 	 */
 	static async #onImportCodexJournalEntry(event, target) {
-		// Built-in Foundry document selector
-		const selected = await FoundryUtils.selectJournalEntries();
-		if (selected) {
-			const pages = selected.flatMap((je) => je.pages.contents);
-			const content = await FoundryUtils.renderTemplate('common/document-list', {
-				message: 'The following journal entry pages will be imported as codex entries.',
-				documents: pages,
-			});
-			const confirm = await FoundryUtils.confirm('FU.Import', content);
-			if (confirm) {
-				for (const page of pages) {
-					await this.codexBrowser.importJournalEntryPage(page);
-				}
-			}
-		}
+		await this.#showJournalImportDialog();
 	}
 
 	/**

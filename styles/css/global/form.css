@@ -197,9 +197,80 @@
 	overflow-x: hidden;
 }
 
-/* 3.  Optional: make the table header sticky */
+/* Optional: make the table header sticky */
 .fu-table__wrapper thead th {
 	position: sticky;
-	top: 0; /* stays at the top of the wrapper */
-	z-index: 1; /* stays above the rows */
+	top: 0;
+	z-index: 1;
+}
+
+.fu-table__wrapper .fu-table--no-sticky thead th {
+	position: static;
+}
+
+.fu-selection-dialog {
+	border: unset;
+}
+
+.fu-selection-dialog__filter {
+	margin-bottom: 8px;
+}
+
+.fu-selection-dialog__legend {
+	gap: 4px;
+}
+
+.fu-selection-dialog__select-col {
+	width: 40px;
+}
+
+.fu-selection-dialog__select-cell {
+	padding: 6px 8px !important;
+	width: 40px !important;
+}
+
+.fu-selection-dialog__entry-cell {
+	padding: 6px 8px !important;
+}
+
+.fu-selection-dialog__entry-cell--nested {
+	padding: 6px 8px 6px 24px !important;
+}
+
+.fu-selection-dialog__entry-content {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.fu-selection-dialog__entry-content--clickable {
+	cursor: pointer;
+}
+
+.fu-selection-dialog__entry-name {
+	display: inline-block;
+	min-width: 160px;
+}
+
+.fu-selection-dialog__group-header {
+	background: var(--color-background-alt);
+}
+
+.fu-selection-dialog__group-checkbox {
+	margin: 0;
+}
+
+.fu-selection-dialog__group-check-input {
+	cursor: pointer;
+	filter: invert(1);
+}
+
+.fu-selection-dialog__group-title {
+	padding: 8px;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.fu-selection-dialog__group-icon {
+	margin-right: 6px;
 }
