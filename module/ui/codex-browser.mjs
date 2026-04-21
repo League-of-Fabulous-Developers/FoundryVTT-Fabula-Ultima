@@ -75,7 +75,6 @@ export class CodexBrowser {
 	 */
 	async prepareContext(context) {
 		this.refresh(this.sheet.actor);
-		this.refresh(this.sheet.actor);
 		context.browser = this;
 		context.playingSounds = new Set(
 			game.playlists.contents
