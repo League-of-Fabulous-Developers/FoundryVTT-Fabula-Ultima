@@ -7,6 +7,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
  * @remarks These are generally used by items and inline actions.
  */
 export const ActionTraits = Object.freeze({
+	Attack: 'attack',
 	Damage: 'damage',
 	Restore: 'restore',
 	Gain: 'gain',

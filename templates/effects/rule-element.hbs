@@ -14,7 +14,10 @@
 		<!-- 1. Trigger -->
 		<div class="fu-form__section">
 			<header class="fu-form__header">
-				<span>{{localize 'FU.RuleTrigger'}}</span>
+				<div>
+					<span data-tooltip="{{localize 'FU.RuleTriggerHint'}}">{{localize 'FU.RuleTrigger'}}</span>
+				</div>
+
 				<!-- 1.1 Type Selector -->
 				<label>
 					{{~localize 'FU.Type'}}
@@ -40,7 +43,7 @@
 		<div class="fu-form__section">
 			<header class="fu-form__header">
 				<div>
-					<span>{{localize 'FU.RulePredicates'}}</span>
+					<span data-tooltip="{{localize 'FU.RulePredicatesHint'}}">{{localize 'FU.RulePredicates'}}</span>
 					<a data-action="addRulePredicate" data-id="{{element.id}}">
 						<i class="fas fa-plus icon"></i>
 					</a>
@@ -78,13 +81,14 @@
 		<div class="fu-form__section">
 			<header class="fu-form__header">
 				<div>
-					<span>{{localize 'FU.RuleActions'}}</span>
+					<span data-tooltip="{{localize 'FU.RuleActionsHint'}}" >{{localize 'FU.RuleActions'}}</span>
 					<a data-action="addRuleAction" data-id="{{element.id}}">
 						<i class="fas fa-plus icon"></i>
 					</a>
 				</div>
 				<!-- 3. Selector -->
-				<label class="" data-tooltip="{{localize 'FU.SelectorHint'}}">{{localize 'FU.Selector'}}
+				<label class="">
+					<span data-tooltip="{{localize 'FU.SelectorHint'}}">{{localize 'FU.Selector'}}</span>
 					<select name="{{pfuConcat path ".selector"}}" class="resource-inputs select-dropdown-m">
 						{{selectOptions options.targetSelector selected=element.selector localize=true}}
 					</select>

@@ -268,6 +268,7 @@ export const FUHandlebars = Object.freeze({
 		Handlebars.registerHelper('pfuItemAnchor', itemAnchor);
 		Handlebars.registerHelper('pfuCompendium', compendium);
 		Handlebars.registerHelper('pfuArrayField', arrayField);
+		Handlebars.registerHelper('pfuHelpIcon', helpIcon);
 	},
 });
 
@@ -554,6 +555,35 @@ function arrayField(options) {
 					path: options.path,
 					type: options.type,
 					options: options.options,
+				})
+			: '';
+	return new Handlebars.SafeString(html);
+}
+
+/**
+ * @typedef FUHandlebarsTooltipOptions
+ * @property {'help'|'info'|'warning'} type
+ * @property
+ */
+
+/**
+ * @param {String} text
+ * @param {FUHandlebarsTooltipOptions} options
+ * @returns {Handlebars.SafeString}
+ */
+function helpIcon(text, options) {
+	if (options.hash) {
+		options = options.hash;
+	}
+
+	const type = options.type ?? 'help';
+	const template = Handlebars.partials[systemTemplatePath('common/icons/tooltip')];
+	const html =
+		typeof template === 'function'
+			? template({
+					text: text,
+					type,
+					...options,
 				})
 			: '';
 	return new Handlebars.SafeString(html);
