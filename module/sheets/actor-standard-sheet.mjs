@@ -586,7 +586,32 @@ export class FUStandardActorSheet extends FUActorSheet {
 		return super._onDropItem(event, item);
 	}
 
-	// Import effect data to the actor
+	async _onDropFolder(event, folder) {
+		if (folder?.type !== 'Item') return super._onDropFolder(event, folder);
+
+		const allFolders = [folder, ...folder.getSubfolders(true)];
+		const folderIds = new Set(allFolders.map((f) => f.id));
+
+		const worldItems = allFolders.flatMap((f) => f.contents ?? []);
+		const packItems = [];
+		for (const pack of game.packs.filter((p) => p.metadata.type === 'Item')) {
+			const docs = await pack.getDocuments();
+			packItems.push(...docs.filter((i) => folderIds.has(i.folder?.id ?? i.folder)));
+		}
+
+		const allItems = [...worldItems, ...packItems];
+		const itemDataArray = allItems
+			.filter((i) => i && typeof i.toObject === 'function')
+			.map((i) => {
+				const data = i.toObject();
+				delete data._id;
+				return data;
+			});
+
+		await this.actor.createEmbeddedDocuments('Item', itemDataArray);
+		return folder;
+	}
+
 	async _importEffectData(itemData) {
 		const effects = itemData.effects || [];
 		const existingEffects = this.actor.items.filter((i) => i.type === 'ActiveEffect').map((e) => e.data.name);
