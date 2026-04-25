@@ -268,21 +268,35 @@
 	border-radius: 0 12px 0 0;
 }
 
-.projectfu .npc-level-container .champion-input {
-	display: inline-flex;
+.projectfu .npc-level-container .rank-combined {
+	display: flex;
+	place-items: center;
 }
 
-.projectfu .npc-level-container .champion-input * {
-	width: 0;
-	flex: 0;
-}
-
-.projectfu .npc-level-container .champion-input input {
+.projectfu .npc-level-container .rank-combined > * {
+	padding: 0;
+	background: none;
 	width: min-content;
 }
 
-.projectfu .npc-level-container .champion-input::before,
-.projectfu .npc-level-container .champion-input::after {
+.projectfu .npc-level-container .rank-combined > .champion-input {
+	display: flex;
+	flex: 0 1 auto;
+}
+
+.projectfu .npc-level-container .rank-combined > select {
+	flex: 1 0 auto;
+}
+
+.projectfu .npc-level-container .rank-combined .champion-input input {
+	width: min-content;
+	padding: 0;
+	line-height: normal;
+	height: auto;
+}
+
+.projectfu .npc-level-container .rank-combined .champion-input::before,
+.projectfu .npc-level-container .rank-combined .champion-input::after {
 	font-size: 120%;
 }
 

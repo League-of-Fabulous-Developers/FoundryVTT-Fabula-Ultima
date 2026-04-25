@@ -52,16 +52,22 @@
 			   aria-describedby="tooltip"> <i
 		 class="fas fa-feather-pointed icon"></i>{{localize
 		 'FU.Rank'}} </label>
+		{{#if (eq system.rank.value 'champion')}}
+		<span class="rank-combined resource-inputs">
+			<select name="system.rank.value" class="resource-inputs rank-select">
+				{{selectOptions FU.rank selected=system.rank.value localize=true}}
+			</select>
+
+				<span class="resource-inputs champion-input">
+					<input type="number" name="system.rank.replacedSoldiers" min="1" max="6"
+						   value="{{system.rank.replacedSoldiers}}"
+						   class="resource-inputs" />
+				</span>
+		</span>
+		{{else}}
 		<select name="system.rank.value" class="resource-inputs rank-select">
 			{{selectOptions FU.rank selected=system.rank.value localize=true}}
 		</select>
-
-		{{#if (eq system.rank.value 'champion')}}
-			<span class="resource-inputs flex0 champion-input">
-				<input type="number" name="system.rank.replacedSoldiers" min="1" max="6"
-					   value="{{system.rank.replacedSoldiers}}"
-					   class="resource-inputs" />
-			</span>
 		{{/if}}
 		{{>"systems/projectfu/templates/actor/partials/actor-creatures.hbs" actor=actor}}
 	</div>
