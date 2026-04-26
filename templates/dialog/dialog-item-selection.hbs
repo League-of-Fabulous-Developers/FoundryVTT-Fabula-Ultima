@@ -1,4 +1,4 @@
-<main style="border:unset;">
+<main class="fu-selection-dialog">
 	{{#if message}}
 		<div class="fu-form__message">
 			<span>
@@ -6,6 +6,14 @@
 			</span>
 		</div>
 	{{/if}}
+	<div class="fu-selection-dialog__filter">
+		<input type="search"
+			   class="resource-inputs select-dropdown-full"
+			   data-role="selection-filter"
+			   placeholder="{{localize 'FU.Search'}}"
+			   aria-label="{{localize 'FU.Search'}}"
+			   autocomplete="off" />
+	</div>
 
 	{{#if (eq style 'grid')}}
 		<div id="items" class="fu-item-grid fu-icon__radio-group">
@@ -64,7 +72,7 @@
 
 	{{#if (eq style 'list')}}
 		<fieldset id="items" class='title-fieldset resource-content flex-group-center flexrow desc'>
-			<legend class='resource-label-m' style="gap: 4px;">
+			<legend class='resource-label-m fu-selection-dialog__legend'>
 				<span class="resource-label-sm">
 					<a type="button" class="resource-label-sm" data-tooltip="{{localize 'FU.SelectAll'}}" data-action="selectAll">
 						<i class="icon fas fa-list-check"></i>
@@ -78,7 +86,7 @@
 				</span>
 			</legend>
 			<div class="fu-table__wrapper">
-				<table class="table-compact scrollable" style="max-height: 400px;">
+				<table class="table-compact scrollable fu-table--no-sticky">
 					<thead>
 					<tr>
 						<th></th>
@@ -93,7 +101,7 @@
 					</thead>
 					{{#each items as |item|}}
 						<tr>
-							<td>
+							<td class="fu-selection-dialog__select-cell">
 								<label class="fu-item"
 									   data-index="{{@index}}"
 									   data-name="{{item.name}}">
@@ -103,9 +111,11 @@
 										   value="{{item.name}}">
 								</label>
 							</td>
-							<td>
-								{{pfuItemAnchor item}}
-								<span style="display: inline-block; min-width: 160px;" data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
+							<td class="fu-selection-dialog__entry-cell">
+								<div class="fu-selection-dialog__entry-content">
+									{{pfuItemAnchor item}}
+									<span class="fu-selection-dialog__entry-name" data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
+								</div>
 							</td>
 							{{#if @root.compendiumItems}}
 								<td>
@@ -124,6 +134,73 @@
 							{{/each}}
 						</tr>
 					{{/each}}
+				</table>
+			</div>
+		</fieldset>
+	{{/if}}
+
+	{{#if (eq style 'grouped-list')}}
+		<fieldset id="items" class='title-fieldset resource-content flex-group-center flexrow desc'>
+			<legend class='resource-label-m fu-selection-dialog__legend'>
+				<span class="resource-label-sm">
+					<a type="button" class="resource-label-sm" data-tooltip="{{localize 'FU.SelectAll'}}" data-action="selectAll">
+						<i class="icon fas fa-list-check"></i>
+					</a>
+				</span>
+				<label>{{localize 'FU.Selection'}}</label>
+				<span class="resource-label-sm">
+					<a type="button" class="resource-label-sm" data-tooltip="{{localize 'FU.DeselectAll'}}" data-action="deselectAll">
+						<i class="icon fas fa-xmark-square"></i>
+					</a>
+				</span>
+			</legend>
+			<div class="fu-table__wrapper">
+				<table class="table-compact scrollable fu-table--no-sticky">
+					<thead>
+					<tr>
+						<th class="fu-selection-dialog__select-col"></th>
+						<th>{{localize 'FU.Entry'}}</th>
+					</tr>
+					</thead>
+					<tbody>
+						{{#each groups as |group|}}
+							<tr class="group-header fu-selection-dialog__group-header" data-group-index="{{@index}}">
+								<td class="fu-selection-dialog__select-cell">
+									<label class="fu-item group-checkbox fu-selection-dialog__group-checkbox">
+										<input type="checkbox"
+											   name="group-selected"
+											   class="group-check fu-selection-dialog__group-check-input"
+											   data-group-index="{{@index}}"
+											   >
+									</label>
+								</td>
+								<td class="fu-selection-dialog__group-title">
+									<i class="icon fas fa-folder fu-selection-dialog__group-icon"></i>
+									{{group.name}}
+								</td>
+							</tr>
+							{{#each group.items as |item|}}
+								<tr>
+									<td class="fu-selection-dialog__select-cell">
+										<label class="fu-item"
+											   data-index="{{item._flatIndex}}"
+											   data-name="{{item.name}}">
+											<input type="checkbox"
+												   name="selected"
+												   {{#if (pfuCollectionContains item @root.initial)}}checked{{/if}}
+												   value="{{item.name}}">
+										</label>
+									</td>
+									<td class="fu-selection-dialog__entry-cell fu-selection-dialog__entry-cell--nested">
+										<div class="journal-page-icon-wrapper fu-selection-dialog__entry-content fu-selection-dialog__entry-content--clickable" data-journal-uuid="{{item._journalUuid}}" data-page-uuid="{{item.uuid}}">
+											{{pfuItemAnchor item}}
+											<span class="fu-selection-dialog__entry-name">{{item.name}}</span>
+										</div>
+									</td>
+								</tr>
+							{{/each}}
+						{{/each}}
+					</tbody>
 				</table>
 			</div>
 		</fieldset>

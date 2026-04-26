@@ -28,9 +28,6 @@
 }
 
 .projectfu .sheet-header .combine-header {
-	flex: 0;
-	margin: 0;
-	overflow: visible;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
@@ -61,12 +58,8 @@
 }
 
 .projectfu .sheet-header .charname-container {
-	margin-right: 1px;
-
-	border-radius: 0;
 	display: flex;
 	align-items: center;
-	padding: 4px;
 	gap: 4px;
 
 	& input[type='text'] {
@@ -86,58 +79,142 @@
 	white-space: normal;
 }
 
+.projectfu .affinities {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	.affinity {
+		display: flex;
+		place-content: center;
+		flex: 1 1 auto;
+	}
+	.affinity > label {
+		flex: 0 1 auto;
+		gap: 4px;
+		display: flex;
+		place-content: center;
+		> * {
+			flex: 1 1 auto;
+		}
+	}
+}
+
 .projectfu .sheet-header .header-fields {
 	flex: 1;
-	padding: 5px;
+	gap: 8px;
 	border: none;
 	background: var(--pfu-app-section-bg-image), var(--pfu-color-app-section-primary-fill);
 	background-blend-mode: multiply;
 	background-position: right top;
 	background-size: var(--pfu-app-section-bg-image-size), cover;
 	background-repeat: var(--pfu-app-section-bg-image-repeat);
+	align-self: flex-start;
 
-	& span.combineBar:has(> .species-select) {
-		border: none !important;
-
-		& > .species-select {
-			border-radius: unset;
-		}
-	}
-
-	& > .desc {
+	> .desc {
 		border: none;
 	}
 
-	& .header-start {
-		border: none;
-	}
-
-	& .header-center {
-		background: none;
-	}
-
-	& span:has(.levelup-container) {
-		border: none !important;
-	}
-
-	& .resource-content.level-field {
+	.resource-content.level-field {
 		border: none;
 		background: none;
 		margin: 0 1px 0 1px;
 	}
 
-	& .npc-level-container > label {
-		border: none;
-		background: none;
+	.npc-level-container,
+	.pc-level-container {
+		label {
+			display: flex;
+			margin: 0 4px;
+			gap: 4px;
+			flex-wrap: nowrap;
+			align-self: center;
+			place-content: flex-end;
+		}
+
+		> .bar {
+			grid-column: span 2;
+			height: 10px;
+		}
+
+		> .resource-inputs {
+			border-radius: 0;
+			min-width: max-content;
+			width: 100%;
+			line-height: normal;
+		}
+	}
+
+	.pc-level-container {
+		.level-field:first-of-type input {
+			border-radius: 0 10px 0 0;
+		}
+		.level-field:last-of-type input {
+			border-radius: 10px 0 0 0;
+		}
+	}
+
+	.npc-level-container {
+		> .spacer {
+			grid-column: span 2;
+			height: 5px;
+		}
+
+		> :nth-child(1 of .resource-inputs),
+		> .spacer + label + .resource-inputs {
+			border-radius: 0 10px 0 0;
+		}
+
+		> :nth-last-child(1 of .resource-inputs),
+		> .resource-inputs:has(+ .spacer) {
+			border-radius: 0 0 0 10px;
+		}
+	}
+
+	&:has(.pc-level-container) .resources {
+		grid-column: span 2;
 	}
 
 	.resources {
 	}
 
 	.derived {
-		background: var(--pfu-color-app-control-active-fill-2);
-		border: 1px solid var(--pfu-color-app-border);
-		border-radius: var(--pfu-border-radius);
+		grid-column: span 2;
+		display: flex;
+		justify-content: space-evenly;
+		padding: 0.5rem;
+
+		> * {
+			display: flex;
+			flex-direction: row;
+			gap: 4px;
+			min-width: 0;
+		}
+
+		i.fas {
+			margin-right: 2px;
+		}
+
+		.fu-icon__container {
+			display: flex;
+			place-items: center;
+
+			a {
+				display: flex;
+				place-items: center;
+
+				&:hover i {
+					filter: drop-shadow(0 0 8px var(--pfu-color-misc-shadow-highlight));
+				}
+			}
+		}
+
+		input {
+			font-size: var(--font-size-large);
+			line-height: var(--font-size-large);
+			font-weight: bold;
+			text-align: center;
+			width: 6ch;
+		}
 	}
 }
 
@@ -145,9 +222,6 @@
 }
 
 .projectfu .sheet-header .header-fields .header-center {
-	border-radius: 0 0 12px 0;
-	padding: 8px;
-	grid-row-gap: 2px;
 	gap: 4px;
 }
 
@@ -168,10 +242,12 @@
 	align-self: baseline;
 }
 
-.projectfu .sheet-header #resources-section {
+.projectfu .sheet-header .resources-section {
+	display: flex;
 	flex-wrap: nowrap;
+	gap: 4px;
 
-	#status-section {
+	.status-section {
 		flex: 1 1 auto;
 		> .grid {
 			flex: 1 1 auto;
@@ -182,7 +258,7 @@
 		}
 	}
 
-	#attribute-section {
+	.attribute-section {
 		display: grid;
 		gap: 1px;
 		grid-template-columns: repeat(2, max-content 1.5fr auto 1fr 1fr);
@@ -204,7 +280,7 @@
 		}
 	}
 
-	#roll-section {
+	.roll-section {
 		border-radius: 0 10px 10px 0;
 		height: 100%;
 		align-items: baseline;
@@ -212,8 +288,8 @@
 	}
 }
 
-.projectfu .sheet-header .header-fields #status-section,
-.projectfu .sheet-header .header-fields #subtype-section {
+.projectfu .sheet-header .header-fields .status-section,
+.projectfu .sheet-header .header-fields .subtype-section {
 	border-radius: 10px 0 0 10px;
 	display: flex;
 	align-items: center;
@@ -235,17 +311,18 @@
 	color: #ebf7af;
 }
 
-.projectfu .sheet-header h2.charname {
+.projectfu .sheet-header .charname {
+	flex: 1 1 auto;
 	background-color: transparent;
 	border-color: transparent;
 	color: #000000;
 	height: 50px;
-	padding-left: 8px;
 	border-bottom: 0;
 	margin: 0;
 }
 
-.projectfu .sheet-header h2.charname input {
+.projectfu .sheet-header .charname input {
+	font-size: var(--font-size-h2);
 	color: #ebf7af;
 	border: 0;
 	background-color: transparent;
@@ -254,16 +331,18 @@
 	height: 100%;
 }
 
-.projectfu .sheet-header h4.pronouns {
+.projectfu .sheet-header .pronouns {
+	flex: 1 0 auto;
 	background-color: transparent;
 	border-color: transparent;
-	color: #000000;
 	height: 50px;
-	border-bottom: 0;
-	margin: 0;
+	> input {
+		font-size: var(--font-size-h4);
+		padding: 0.5rem 0;
+	}
 }
 
-.projectfu .sheet-header h4.pronouns input {
+.projectfu .sheet-header .pronouns input {
 	color: #ebf7af;
 	text-shadow: 1px 1px 1px black;
 	width: 100%;
@@ -273,20 +352,20 @@
 	text-align: center;
 }
 
-.projectfu .sheet-header h4.martials {
+.projectfu .sheet-header .martials {
 	border-bottom: 0;
 	display: flex;
 	align-items: center;
-	/* height: 2em; */
 	text-align: center;
 	-webkit-box-flex: 1;
 	-ms-flex-positive: 1;
-	flex-grow: 1;
+	flex: 0 1 min-content;
+
 	/* Martial & Offensive Icon */
 }
 
-.projectfu .sheet-header h4.martials img#martial-header,
-.projectfu .sheet-header h4.martials img#offensive-header {
+.projectfu .sheet-header .martials img#martial-header,
+.projectfu .sheet-header .martials img#offensive-header {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 48px;
 	flex: 0 0 48px;
@@ -303,13 +382,13 @@
 	transition: opacity 0.7s ease;
 }
 
-.projectfu .sheet-header h4.martials img#martial-header.active,
-.projectfu .sheet-header h4.martials img#offensive-header.active {
+.projectfu .sheet-header .martials img#martial-header.active,
+.projectfu .sheet-header .martials img#offensive-header.active {
 	opacity: 1;
 }
 
-.projectfu .sheet-header h4.martials img#martial-header:not(.active):hover,
-.projectfu .sheet-header h4.martials img#offensive-header:not(.active):hover {
+.projectfu .sheet-header .martials img#martial-header:not(.active):hover,
+.projectfu .sheet-header .martials img#offensive-header:not(.active):hover {
 	opacity: 0.8;
 }
 
@@ -576,9 +655,9 @@
 	color: #ebf7af;
 	background-color: var(--color-primary);
 	border: thin solid var(--color-primary);
-	width: 4em;
 	height: auto;
-	padding: 0;
+	padding: 0 0.25em;
+	width: 10ch;
 	justify-content: center;
 	text-align: center;
 	border-color: var(--color-primary);
@@ -653,16 +732,6 @@
 	border-color: transparent;
 }
 
-.projectfu .resource-content input.traitdesc {
-	color: #ebf7af;
-	background-color: var(--color-primary);
-	border: #2b4a42 1px solid;
-	border-radius: 0 10px 0 0;
-	-webkit-box-flex: 4;
-	-ms-flex: 4;
-	flex: 4;
-}
-
 .projectfu .resource-content.traits {
 	margin: 0 5px;
 }
@@ -676,50 +745,7 @@
 	border-radius: 5px;
 }
 
-.projectfu .resource-content.levelup-container {
-	border: none;
-}
-
-.projectfu .resource-content.levelup-container input.resource-inputs-charname {
-	color: #ebf7af;
-	background-color: var(--color-primary);
-	margin: 1px;
-}
-
-.projectfu .resource-content.levelup-container .resource-inputs {
-	width: 100%;
-	padding: 0;
-}
-
-.projectfu .resource-content.levelup-container .side-bar {
-	width: 85%;
-}
-
-.projectfu .resource-content.levelup-container.creature {
-	padding: 0;
-	border-radius: 10px;
-	background: none;
-}
-
-.projectfu .resource-content.levelup-container.creature .resource-inputs {
-	color: #ebf7af;
-	background-color: var(--color-primary);
-	width: 3.5em;
-	padding: 0;
-	justify-content: center;
-	text-align: center;
-	border-radius: 5px;
-}
-
-.projectfu .resource-content.levelup-container .combineBar {
-	background: var(--color-primary);
-	border-radius: 0px;
-	width: 100%;
-	align-items: center;
-}
-
 .projectfu .resource-content .villain-field {
-	margin-bottom: 6px !important;
 	border-radius: 0 0 0 14px;
 	width: 100%;
 	border: 0.125em solid #c7c7c7;

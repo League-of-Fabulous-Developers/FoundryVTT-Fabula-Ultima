@@ -67,8 +67,9 @@
 .fu-icon--m,
 .fu-icon--l {
 	--icon-size: 100%;
+	display: inline-block;
 	line-height: 1;
-	font-size: var(--icon-size) !important;
+	font-size: var(--icon-size);
 	width: var(--icon-size);
 	height: var(--icon-size);
 	background-repeat: no-repeat;

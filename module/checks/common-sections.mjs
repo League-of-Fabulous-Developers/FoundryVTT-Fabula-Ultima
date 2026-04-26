@@ -349,11 +349,18 @@ const actions = (data, actor, item, targetData, flags, inspector = undefined) =>
 			const resourceData = inspector.getResource();
 			if (resourceData) {
 				const expressionContext = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+				const checkData = inspector.getCheck();
+				if (checkData) {
+					expressionContext.withCheck(checkData);
+				}
 				let ra = 0;
 				for (const mod of resourceData.modifiers) {
 					ra += await Expressions.evaluateAsync(mod.amount, expressionContext);
 				}
 				const request = new ResourceRequest(sourceInfo, targets, resourceData.type, ra);
+				if (traits) {
+					request.addTraits(traits);
+				}
 				actions.push(ResourcePipeline.getTargetedAction(request));
 			}
 

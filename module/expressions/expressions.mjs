@@ -405,6 +405,10 @@ function evaluateVariables(expression, context) {
 				}
 				return 0;
 			}
+			// High Roll of Check
+			case 'hr': {
+				return getHighRoll(context.check);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -579,6 +583,25 @@ function countClasses(actor) {
  */
 function countMasteredClasses(actor) {
 	return actor.getItemsByType('class').filter((c) => c.system.mastered)?.length ?? 0;
+}
+
+/**
+ * @param {CheckV2} check
+ * @returns {Number}
+ */
+function getHighRoll(check) {
+	if (check) {
+		if (check.primary == null && check.secondary == null) {
+			return 0;
+		} else if (check.primary == null) {
+			return check.secondary.result;
+		} else if (check.secondary == null) {
+			return check.primary.result;
+		}
+
+		return Math.max(check.primary.result, check.secondary.result);
+	}
+	return 0;
 }
 
 // Used for referencing

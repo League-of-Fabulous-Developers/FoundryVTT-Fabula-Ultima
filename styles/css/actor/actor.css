@@ -1,14 +1,14 @@
 /* ----------------------------------------- */
 /* Forms Styles                       
 /* ----------------------------------------- */
-.projectfu.actor .window-content {
+.projectfu.sheet.actor .window-content {
 	gap: 5px;
 	.tab {
 		gap: 5px;
 	}
 }
 
-.projectfu.actor .tab {
+.projectfu.sheet.actor .tab {
 	padding: 0.5rem;
 }
 
@@ -24,6 +24,12 @@
 			gap: 1ch;
 		}
 	}
+}
+
+.projectfu.sheet.actor .profile {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 8px;
 }
 
 .projectfu .npc-border-col {
@@ -42,7 +48,7 @@
 .projectfu .npc-border-col .npc-desc {
 	max-height: 14em;
 	min-height: 12em;
-	padding: 0 0.5rem;
+	padding: 0.5rem;
 }
 
 .projectfu .npc-border-col .npc-desc .editor {
@@ -58,10 +64,13 @@
 .projectfu .action-container {
 	margin: 0 5px 5px 0px;
 	row-gap: 7px;
+
+	.study-button {
+		margin: 0 0.5rem;
+	}
 }
 
 .projectfu .item-settings {
-	margin: 0px 5px 0;
 	display: inline-flex;
 	align-items: center;
 	gap: 1em;
@@ -93,7 +102,7 @@
 	min-height: 20em;
 }
 
-.projectfu .window-content > .tab.active {
+.projectfu.actor:is(.character, .npc) .window-content > .tab.active {
 	margin-bottom: 5px;
 	overflow-y: auto;
 	padding: 0;
@@ -141,6 +150,11 @@
 
 .projectfu .zenit-and-rest-container {
 	gap: 0.25rem;
+
+.projectfu.actor .sheet-header .header-fields {
+	display: grid;
+	grid-template-columns: 1fr min-content;
+	height: 100%;
 }
 
 .projectfu .vehicle-section .vehicle-header {
@@ -203,7 +217,6 @@
 	-webkit-box-flex: 1;
 	-ms-flex-positive: 1;
 	flex-grow: 1;
-	color: var(--pfu-color-app-control-content);
 }
 
 .projectfu .bonds {
@@ -248,27 +261,19 @@
 
 .projectfu .npc-level-container {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-row: span 2;
+	grid-template-columns: auto 1fr;
+	max-height: min-content;
+}
+
+.projectfu .pc-level-container {
+	display: grid;
+	flex-direction: column;
+	grid-template-columns: auto 1fr;
+	max-height: min-content;
 }
 
 .projectfu .npc-level-container > label {
-	padding: 2px;
-	border-radius: initial !important;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 1px solid rgba(44, 74, 66, 0.3294117647);
-	width: 100%;
-	justify-content: center;
-	background:
-		url(../static/ui/Bkg_highres.png),
-		-webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-	background: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
-	background-blend-mode: multiply;
-	background-repeat: repeat-y;
-	background-position: right top;
-	border: 1px solid #6f6c66;
-	background-size: cover;
 }
 
 .projectfu .npc-level-container .level-input {
@@ -276,27 +281,35 @@
 	border-radius: 0 12px 0 0;
 }
 
-.projectfu .npc-level-container .rank-select,
-.projectfu .npc-level-container .champion-input {
-	height: 100%;
-	border-radius: 0;
+.projectfu .npc-level-container .rank-combined {
+	display: flex;
+	place-items: center;
 }
 
-.projectfu .npc-level-container .champion-input {
-	display: inline-flex;
-}
-
-.projectfu .npc-level-container .champion-input * {
-	width: 0;
-	flex: 0;
-}
-
-.projectfu .npc-level-container .champion-input input {
+.projectfu .npc-level-container .rank-combined > * {
+	padding: 0;
+	background: none;
 	width: min-content;
 }
 
-.projectfu .npc-level-container .champion-input::before,
-.projectfu .npc-level-container .champion-input::after {
+.projectfu .npc-level-container .rank-combined > .champion-input {
+	display: flex;
+	flex: 0 1 auto;
+}
+
+.projectfu .npc-level-container .rank-combined > select {
+	flex: 1 0 auto;
+}
+
+.projectfu .npc-level-container .rank-combined .champion-input input {
+	width: min-content;
+	padding: 0;
+	line-height: normal;
+	height: auto;
+}
+
+.projectfu .npc-level-container .rank-combined .champion-input::before,
+.projectfu .npc-level-container .rank-combined .champion-input::after {
 	font-size: 120%;
 }
 

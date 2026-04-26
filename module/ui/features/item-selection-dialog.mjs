@@ -14,7 +14,7 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  */
 
 /**
- * @typedef {'grid'|'list'|'deck'} FUSelectionDialogStyle
+ * @typedef {'grid'|'list'|'deck'|'grouped-list'} FUSelectionDialogStyle
  */
 
 /**
@@ -25,6 +25,7 @@ import { StringUtils } from '../../helpers/string-utils.mjs';
  * @property {Object[]} payload Associated data returned instead of the item reference.
  * @property {FUItem[]} compendiumItems If assigned, will be used to compare to the original items.
  * @property {Object[]} initial
+ * @property {{name: string, items: Object[]}[]} groups
  * @property {ItemSelectionColumn[]} columns Additional columns for the dialog.
  * @property {FUSelectionDialogStyle} style
  * @property {Number} max
@@ -62,7 +63,7 @@ export class ItemSelectionDialog {
 		this.#selectedIndexes = [];
 		if (data.initial) {
 			this.#selectedItems.push(...data.initial);
-			this.#selectedIndexes.push(...data.initial.map((initial) => data.items.findIndex((item) => item.id === initial.id)));
+			this.#selectedIndexes.push(...data.initial.map((initial) => (initial._originalIndex !== undefined ? initial._originalIndex : data.items.findIndex((item) => item.id === initial.id))));
 		}
 	}
 
@@ -129,14 +130,18 @@ export class ItemSelectionDialog {
 				 *  @param {HTMLElement} dialog **/
 				selectAll: (event, dialog) => {
 					const inputs = dialog.closest('#items').querySelectorAll('input[name="selected"]');
+					const selectedIndexes = [];
 					for (const input of inputs) {
 						input.checked = true;
 						const card = input.closest('.fu-item');
 						if (card) {
 							card.classList.toggle('selected', true);
+							const index = Number.parseInt(card.dataset.index);
+							if (Number.isFinite(index)) selectedIndexes.push(index);
 						}
 					}
 					this.#selectedItems = this.data.items;
+					this.#selectedIndexes = selectedIndexes;
 					return false;
 				},
 				/** @param {Event} event
@@ -151,6 +156,7 @@ export class ItemSelectionDialog {
 						}
 					}
 					this.#selectedItems = [];
+					this.#selectedIndexes = [];
 					return false;
 				},
 			},
@@ -166,6 +172,71 @@ export class ItemSelectionDialog {
 			render: async (event, dialog) => {
 				const document = dialog.element;
 				const container = document.querySelector('#items');
+				const searchInput = document.querySelector('[data-role="selection-filter"]');
+
+				const applySearchFilter = () => {
+					if (!container || !searchInput) return;
+					const query = searchInput.value.trim().toLocaleLowerCase();
+
+					for (const entry of container.querySelectorAll('.fu-item[data-index]')) {
+						const target = entry.closest('tr') ?? entry;
+						const name = (entry.dataset.name || entry.textContent || '').toLocaleLowerCase();
+						target.style.display = !query || name.includes(query) ? '' : 'none';
+					}
+
+					if (this.data.style !== 'grouped-list') return;
+					for (const header of container.querySelectorAll('.group-header')) {
+						let row = header.nextElementSibling;
+						let hasVisibleRows = false;
+						while (row && !row.classList.contains('group-header')) {
+							if (row.style.display !== 'none') {
+								hasVisibleRows = true;
+								break;
+							}
+							row = row.nextElementSibling;
+						}
+						header.style.display = hasVisibleRows ? '' : 'none';
+					}
+				};
+
+				searchInput?.addEventListener('input', applySearchFilter);
+
+				// Handle opening journal entries when clicking the icon
+				document.addEventListener(
+					'click',
+					(clickEvent) => {
+						const wrapper = clickEvent.target.closest('.journal-page-icon-wrapper[data-journal-uuid][data-page-uuid]');
+						if (wrapper) {
+							const journalUuid = wrapper.dataset.journalUuid;
+							const pageUuid = wrapper.dataset.pageUuid;
+							if (journalUuid && pageUuid) {
+								clickEvent.preventDefault();
+								clickEvent.stopPropagation();
+								const journal = fromUuidSync(journalUuid);
+								const page = fromUuidSync(pageUuid);
+
+								if (journal && page) {
+									const jSheet = journal.sheet;
+									const goToPage = () => {
+										if (typeof jSheet.goToPage === 'function') return jSheet.goToPage(page.id);
+										if (typeof jSheet.navigatePage === 'function') return jSheet.navigatePage(page.id);
+									};
+
+									if (jSheet.rendered) {
+										goToPage();
+										return;
+									}
+
+									Hooks.once('renderJournalSheet', (sheet) => {
+										if (sheet === jSheet) goToPage();
+									});
+									jSheet.render(true, { pageId: page.id });
+								}
+							}
+						}
+					},
+					true,
+				);
 
 				// Initial Selection
 				const inputs = container.querySelectorAll('input[name="selected"]:checked');
@@ -175,16 +246,62 @@ export class ItemSelectionDialog {
 						toggleCardSelection(container, card, false);
 					}
 				}
-				// ✅ Event handling
-				container.addEventListener('mousedown', async (event) => {
-					const card = event.target.closest('.fu-item');
-					if (!card) return;
-					toggleCardSelection(container, card);
-				});
+
+				if (this.data.style !== 'list' && this.data.style !== 'grouped-list') {
+					container.addEventListener('mousedown', async (event) => {
+						const card = event.target.closest('.fu-item');
+						if (!card) return;
+						toggleCardSelection(container, card);
+					});
+				} else {
+					container.addEventListener('change', (event) => {
+						const input = event.target;
+
+						// Handle group checkbox
+						if (input?.name === 'group-selected') {
+							const groupIndex = Number.parseInt(input.dataset.groupIndex);
+							if (Number.isFinite(groupIndex) && this.data.groups && this.data.groups[groupIndex]) {
+								const groupRow = input.closest('.group-header');
+								if (groupRow) {
+									const nextRow = groupRow.nextElementSibling;
+									let currentRow = nextRow;
+									// Toggle all pages in this group
+									while (currentRow && !currentRow.classList.contains('group-header')) {
+										const pageCheckbox = currentRow.querySelector('input[name="selected"]');
+										if (pageCheckbox) {
+											pageCheckbox.checked = input.checked;
+											pageCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+										}
+										currentRow = currentRow.nextElementSibling;
+									}
+								}
+							}
+							return;
+						}
+
+						// Handle individual page checkbox
+						if (input?.name !== 'selected') return;
+						const card = input.closest('.fu-item');
+						if (!card) return;
+						const index = Number.parseInt(card.dataset.index);
+						if (!Number.isFinite(index)) return;
+						const listItem = this.data.items[index];
+						if (input.checked) {
+							if (!this.#selectedIndexes.includes(index)) {
+								this.#selectedItems.push(listItem);
+								this.#selectedIndexes.push(index);
+							}
+						} else {
+							this.#selectedItems = this.#selectedItems.filter((it) => it !== listItem);
+							this.#selectedIndexes = this.#selectedIndexes.filter((it) => it !== index);
+						}
+					});
+				}
+
+				applySearchFilter();
 			},
 		});
 		if (result) {
-			console.debug(result);
 			// If a custom payload is expected
 			if (this.data.payload) {
 				return this.#selectedIndexes.map((idx) => this.data.payload[idx]);

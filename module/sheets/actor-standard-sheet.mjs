@@ -1,4 +1,4 @@
-import { Effects, isActiveEffectForStatusEffectId, onManageActiveEffect } from '../pipelines/effects.mjs';
+import { Effects, onManageActiveEffect } from '../pipelines/effects.mjs';
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
@@ -10,10 +10,9 @@ import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
-import { systemId, systemTemplatePath } from '../helpers/system-utils.mjs';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { BehaviorRoll } from '../documents/items/behavior/behavior-roll.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
-import { TextEditor } from '../helpers/text-editor.mjs';
 import { CheckPrompt } from '../checks/check-prompt.mjs';
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
@@ -47,8 +46,6 @@ import { AdvancementBrowser } from '../ui/advancement-browser.mjs';
 import { AdvancementTracker } from '../documents/actors/character/advancement-tracker.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
-
-const VISIBLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 const affinityKey = 'affinity';
 
@@ -366,32 +363,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 		switch (partId) {
 			case 'header':
 				{
-					context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
+					context.showMetaCurrency = this.isCharacter || (this.actor.system.villain.value && this.actor.system.rank.value !== 'companion');
 					// Setup status effect toggle data
-					context.statusEffectToggles = [];
-					for (const id of VISIBLE_STATUS_EFFECT_IDS) {
-						const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
-						if (statusEffect) {
-							const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
-							const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
-							const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
-							const rule = game.i18n.localize(ruleKey);
-							const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
-							context.statusEffectToggles.push({
-								...statusEffect,
-								active: existing,
-								immune: immune,
-								tooltip: tooltip,
-							});
-						}
-					}
+					context.statusEffectToggles = ActorSheetUtils.prepareStatusEffectToggles(this.actor);
 
 					if (this.isNPC) {
 						ActorSheetUtils.prepareNpcCompanionData(context);
-						if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
-							context.pressurePoints = true;
-							context.weaponCategories = FU.weaponCategories;
-						}
+						ActorSheetUtils.preparePressureContext(context);
 					}
 				}
 				break;
@@ -400,65 +378,23 @@ export class FUStandardActorSheet extends FUActorSheet {
 				context.isLimited = this.isLimited;
 				context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
 				// Setup status effect toggle data
-				context.statusEffectToggles = [];
-				for (const id of VISIBLE_STATUS_EFFECT_IDS) {
-					const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
-					if (statusEffect) {
-						const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
-						const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
-						const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
-						const rule = game.i18n.localize(ruleKey);
-						const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
-						context.statusEffectToggles.push({
-							...statusEffect,
-							active: existing,
-							immune: immune,
-							tooltip: tooltip,
-						});
-					}
-				}
+				context.statusEffectToggles = ActorSheetUtils.prepareStatusEffectToggles(this.actor);
 				if (this.isNPC) {
 					ActorSheetUtils.prepareNpcCompanionData(context);
 					context.basicAttacksTable = await this.#basicAttacksTable.renderTable(this.document);
 					context.weaponsTable = await this.#weaponsTable.renderTable(this.document);
 					context.spellsTable = await this.#spellsTable.renderTable(this.document);
-					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
-						context.pressurePoints = true;
-						context.weaponCategories = FU.weaponCategories;
-					}
-
-					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
-						context.pressurePoints = true;
-						context.weaponCategories = FU.weaponCategories;
-					}
+					ActorSheetUtils.preparePressureContext(context);
 				}
-				context.enrichedHtml = {
-					description: await TextEditor.enrichHTML(context.system.description ?? '', {
-						secrets: this.actor.isOwner,
-						rollData: context.actor.getRollData(),
-						relativeTo: context.actor,
-					}),
-				};
+				context.enrichedHtml = await ActorSheetUtils.enrichDescription(this.actor);
 				break;
 			}
 
 			case 'stats':
 				{
 					if (this.isNPC) {
-						const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;
-						let studyRoll;
-						studyRoll = studyRollTiers.map((value) => value + '+');
-						studyRoll.unshift('-');
-						studyRoll = studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
-						context.studyRoll = studyRoll;
-
-						context.enrichedHtml = {
-							description: await TextEditor.enrichHTML(context.system.description ?? '', {
-								secrets: this.actor.isOwner,
-								rollData: context.actor.getRollData(),
-								relativeTo: context.actor,
-							}),
-						};
+						context.studyRoll = ActorSheetUtils.prepareStudyRollMap();
+						context.enrichedHtml = await ActorSheetUtils.enrichDescription(this.actor);
 					}
 					context.favoritesTable = await this.#favoritesTable.renderTable(this.document);
 					context.temporaryEffects = this.actor.temporaryEffects.filter((e) => e.hasDuration);
@@ -544,22 +480,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'settings':
 				if (this.isNPC) {
 					ActorSheetUtils.prepareNpcCompanionData(context);
-					if (game.settings.get(systemId, SETTINGS.pressureSystem)) {
-						context.pressurePoints = true;
-						context.weaponCategories = FU.weaponCategories;
-					}
-					context.pressurePoints = game.settings.get(systemId, SETTINGS.pressureSystem);
+					ActorSheetUtils.preparePressureContext(context);
 				}
 				break;
 
 			case 'notes': {
-				context.enrichedHtml = {
-					description: await TextEditor.enrichHTML(context.system.description ?? '', {
-						secrets: this.actor.isOwner,
-						rollData: context.actor.getRollData(),
-						relativeTo: context.actor,
-					}),
-				};
+				context.enrichedHtml = await ActorSheetUtils.enrichDescription(this.actor);
 				context.bondOptions = await FUPartySheet.getBondOptions();
 			}
 		}
@@ -660,7 +586,32 @@ export class FUStandardActorSheet extends FUActorSheet {
 		return super._onDropItem(event, item);
 	}
 
-	// Import effect data to the actor
+	async _onDropFolder(event, folder) {
+		if (folder?.type !== 'Item') return super._onDropFolder(event, folder);
+
+		const allFolders = [folder, ...folder.getSubfolders(true)];
+		const folderIds = new Set(allFolders.map((f) => f.id));
+
+		const worldItems = allFolders.flatMap((f) => f.contents ?? []);
+		const packItems = [];
+		for (const pack of game.packs.filter((p) => p.metadata.type === 'Item')) {
+			const docs = await pack.getDocuments();
+			packItems.push(...docs.filter((i) => folderIds.has(i.folder?.id ?? i.folder)));
+		}
+
+		const allItems = [...worldItems, ...packItems];
+		const itemDataArray = allItems
+			.filter((i) => i && typeof i.toObject === 'function')
+			.map((i) => {
+				const data = i.toObject();
+				delete data._id;
+				return data;
+			});
+
+		await this.actor.createEmbeddedDocuments('Item', itemDataArray);
+		return folder;
+	}
+
 	async _importEffectData(itemData) {
 		const effects = itemData.effects || [];
 		const existingEffects = this.actor.items.filter((i) => i.type === 'ActiveEffect').map((e) => e.data.name);

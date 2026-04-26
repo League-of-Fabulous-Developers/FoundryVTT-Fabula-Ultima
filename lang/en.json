@@ -1495,6 +1495,7 @@
 		"NpcProfileUpdate": "Update NPC Profile",
 		"ActiveParty": "Active Party",
 		"ActivePartyHint": "Set the active party",
+		"ActivePartySetNotification": "{name} is now the active party.",
 		"ActivePartyNotAssigned": "No party has been assigned in the system settings.",
 		"ActivePartySheetOpen": "Open Party Sheet",
 		"Identifier": "Identifier",

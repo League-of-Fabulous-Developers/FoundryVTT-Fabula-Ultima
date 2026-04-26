@@ -57,6 +57,7 @@ import { systemId } from '../helpers/system-utils.mjs';
  * @property {FUEffectDuration} event e:
  * @property {Number} interval i:
  * @property {String} tracking t:
+ * @property {Record<String, String>} updates Specific updates on initial data.
  */
 
 /**
@@ -357,21 +358,38 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 		);
 		return false;
 	} else {
-		const statusEffect = resolveBaseEffect(statusEffectId);
-		if (statusEffect) {
-			const instance = await ActiveEffect.create(
-				{
-					...statusEffect,
-					statuses: [statusEffectId],
-					flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
-				},
-				{ parent: actor },
-			);
-			await applyConfiguration(instance, config);
-			CommonEvents.status(actor, statusEffectId, true);
-		}
+		await createStatusEffect(actor, statusEffectId, sourceInfo, config);
 		return true;
 	}
+}
+
+/**
+ *
+ * @param {FUActor} actor the actor the status should get applied to
+ * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {FUActiveEffectConfiguration} config
+ * @returns {Promise<boolean>}
+ */
+export async function createStatusEffect(actor, statusEffectId, sourceInfo, config) {
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
+	const statusEffect = resolveBaseEffect(statusEffectId);
+	if (statusEffect) {
+		const instance = await ActiveEffect.create(
+			{
+				...statusEffect,
+				statuses: [statusEffectId],
+				flags: createEffectFlags(statusEffect, sourceInfo, statusEffectId),
+			},
+			{ parent: actor },
+		);
+		await applyConfiguration(instance, config);
+		CommonEvents.status(actor, statusEffectId, true);
+	}
+	return true;
 }
 
 /**
@@ -498,7 +516,7 @@ async function applyConfiguration(effect, configuration) {
 	if (!configuration) {
 		return;
 	}
-	const updates = {};
+	const updates = configuration.updates ?? {};
 	if (configuration.name) {
 		updates['name'] = configuration.name;
 	}
@@ -884,6 +902,7 @@ export const Effects = Object.freeze({
 	canBeRemoved,
 	isStatusEffect,
 	toggleStatusEffect,
+	createStatusEffect,
 	createTemporaryEffect,
 	formatEffect,
 	sendToChatEffectAdded,

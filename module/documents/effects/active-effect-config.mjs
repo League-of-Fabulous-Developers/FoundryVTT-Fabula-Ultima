@@ -150,7 +150,6 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 						ruleTriggers: RuleTriggerRegistry.instance.localizedEntries,
 						damageTypeOptions: FoundryUtils.getFormOptions(FU.damageTypes),
 						itemGroupOptions: FoundryUtils.getFormOptions(FU.itemGroup),
-						damageSourceOptions: FoundryUtils.getFormOptions(FU.damageSource),
 						speciesOptions: FoundryUtils.getFormOptions(FU.species),
 						checkTypeOptions: FoundryUtils.getFormOptions(FU.checkTypes),
 						rankOptions: FoundryUtils.getFormOptions(FU.rank),
