@@ -83,6 +83,7 @@ import { FUEffectItemSheet } from './sheets/item-effect-sheet.mjs';
 import { GroupCheck } from './checks/group-check.mjs';
 import { CheckPrompt } from './checks/check-prompt.mjs';
 import { OpportunityHandler } from './pipelines/opportunity.mjs';
+import { FumbleFabulaHandler } from './pipelines/fumble-fabula.mjs';
 import { FUTokenRuler } from './ui/token-ruler.mjs';
 import { CustomWeaponDataModel } from './documents/items/customWeapon/custom-weapon-data-model.mjs';
 import { CustomWeaponSheet } from './sheets/custom-weapon-sheet.mjs';
@@ -408,6 +409,7 @@ Hooks.once('init', async () => {
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();
 	OpportunityHandler.initialize();
+	FumbleFabulaHandler.initialize();
 
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
