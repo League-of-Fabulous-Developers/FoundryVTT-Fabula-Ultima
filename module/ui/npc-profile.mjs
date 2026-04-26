@@ -6,6 +6,7 @@ import { NpcProfileWeaponsTableRenderer } from '../helpers/tables/npc-profile-we
 import { NpcProfileSpellsTableRenderer } from '../helpers/tables/npc-profile-spells-table-renderer.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
 
 /**
  * @typedef NpcProfileRevealData
@@ -84,6 +85,7 @@ export class NpcProfileWindow extends FUApplication {
 
 		/** @type FUActor **/
 		const actor = await fromUuid(this.data.uuid);
+		ActorSheetUtils.prepareCharacterData(actor);
 		/** @type NpcDataModel  **/
 		const system = actor.system;
 		const result = StudyRollHandler.resolveStudyResult(this.data.study);

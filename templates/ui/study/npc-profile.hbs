@@ -15,7 +15,7 @@
 
 			{{#unless revealStats}}
 			<fieldset class="section-container title-fieldset desc resource-content">
-					<span class="label centered-message" style="color: unset;">
+					<span class="label centered-message">
 						{{localize 'FU.AdversaryNotStudied'}}
 					</span>
 			</fieldset>
@@ -26,7 +26,7 @@
 						{{localize 'FU.Stats'}}
 					</legend>
 					{{#if basic}}
-					<div class="resource-label-l resource-content flexrow flex-group-center" style="padding: 5px;">
+					<div class="resource-label-l resource-content flexrow flex-group-center">
 						<div class="pfu-badge" data-tooltip="{{localize localizedSpecies}}">
 							<i class="fua fu-{{species}}"></i>
 						</div>
@@ -51,16 +51,16 @@
 						</div>
 
 						{{#if system.traits.value}}
-							<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
-								<label class="resource-label-l">Traits</label>
-								<input class="traitdesc flex3" type="text" name="system.traits.value" value="{{system.traits.value}}" placeholder="Traits" data-dtype="String" readonly>
+							<li class="flexrow gap-5 flex-group-center desc-header resource-content">
+								<label class="flexshrink resource-label-l">Traits</label>
+								<input type="text" name="system.traits.value" value="{{system.traits.value}}" placeholder="Traits" data-dtype="String" readonly>
 							</li>
 						{{/if}}
 					{{else}}
 						{{#if revealed.traits}}
-							<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
-								<label class="resource-label-l">Traits</label>
-								<input class="traitdesc flex3" type="text" name="revealed.traits" value="{{revealed.traits}}" placeholder="Traits" data-dtype="String" readonly>
+							<li class="flexrow gap-5 flex-group-center desc-header resource-content ">
+								<label class="flexshrink resource-label-l">Traits</label>
+								<input type="text" name="revealed.traits" value="{{revealed.traits}}" placeholder="Traits" data-dtype="String" readonly>
 							</li>
 						{{/if}}
 					{{/if}}
@@ -68,25 +68,14 @@
 			{{/if}}
 		</div>
 	</div>
-
-	<fieldset class="section-container title-fieldset desc resource-content">
-		<legend class="resource-label-m">
-			{{localize 'FU.Affinities'}}
-		</legend>
-
-		<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
-			{{#each affinities}}
-				<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
-					<div class="affinity resource-content flex-group-center" style="opacity: {{this.opacity}}; display: flex; justify-content: space-between; margin: 2px; gap: 5px; line-height: 1;">
-						<i class="fu-icon--s {{this.iconClass}}"></i>
-						<label class="resource-label-xl" style="cursor: pointer;" data-tooltip="{{this.fullName}}: {{localize this.acronymValue}}">
-							{{localize this.acronymValue}}
-						</label>
-					</div>
-				</div>
-			{{/each}}
-		</div>
-	</fieldset>
+	{{#if complete}}
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.Affinities'}}
+			</legend>
+			{{> "systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
+		</fieldset>
+	{{/if}}
 
 	{{#if revealPressurePoints}}
 		<fieldset class="section-container title-fieldset desc resource-content">

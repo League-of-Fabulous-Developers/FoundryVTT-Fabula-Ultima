@@ -1,20 +1,20 @@
 {{!-- Affinity Template --}}
-<div class="affinities desc">
-    <div class="grid grid-9col">
-        {{#if system.affinities}}
-            {{#each system.affinities as |affinity key|}}
-                <div class="affinity resource-content flex-group-center">
-                    <label class="rollable" style="cursor: pointer; display: flex; align-items: flex-end; justify-content: center; gap: 4px;"
-                        data-label="{{ affinity.label }}"
-                        data-roll-type="affinity-type"
-                        data-affinity='{{key}}'
-                        data-action="roll"
-                        data-tooltip="{{ affinity.label }} <br> {{ affinity.affTypeCurr }}">
-						<i class="fu-icon--s affinity-icon {{pfuIconClass key}}"></i>
-                        <span class="resource-label-l" style="letter-spacing: 0.5px; margin-bottom: -2px;">{{ affinity.affTypeCurrAbbr }}</span>
-                    </label>
-                </div>
-            {{/each}}
-        {{/if}}
-    </div>
+<div class="affinities {{#if section}}desc{{/if}}">
+	{{#if system.affinities}}
+		{{#each system.affinities as |affinity key|}}
+			<div class="affinity resource-content flex-group-center">
+			<label
+			{{#if ../rollable}}class="rollable"
+			 data-roll-type="affinity-type"
+			 data-affinity='{{key}}'
+			 data-action="roll"
+			 data-tooltip="{{ affinity.label }} <br> {{ affinity.affTypeCurr }} "
+			{{/if}}
+			 data-label="{{ affinity.label }}">
+				<i class="fu-icon--s affinity-icon {{pfuIconClass key}}"></i>
+				<span class="resource-label-l">{{ affinity.affTypeCurrAbbr }}</span>
+				</label>
+			</div>
+		{{/each}}
+	{{/if}}
 </div>

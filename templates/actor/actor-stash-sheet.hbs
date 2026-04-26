@@ -7,14 +7,14 @@
 					 data-edit="img" title="{{actor.name}}"
 					 style="height: 52px; width: auto; object-fit: contain;" />
 			</a>
-			<div style="display: flex; align-items: center; justify-content: center; gap:0.5rem;">
-				<div class="charname-container flexrow grid-span-4">
-					<h2 class="charname" style="flex: 3;">
+			<div class="flexgrow-1 flexrow gap-5">
+				<div class="charname-container flexrow">
+					<div class="charname">
 						<input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
-					</h2>
+					</div>
 				</div>
 
-				<label class="icon-toggle" title="{{localize 'FU.Merchant'}}?">
+				<label class="flexshrink icon-toggle" title="{{localize 'FU.Merchant'}}?">
 					<input type="checkbox" name="system.merchant" {{ checked system.merchant }} />
 					<i class="toggle-icon fa fa-balance-scale"></i>
 				</label>
