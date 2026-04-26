@@ -641,8 +641,8 @@ export class FUPartySheet extends FUActorSheet {
 			}
 		} else {
 			if (folder?.type === 'Actor') {
-				const folderIds = this.#collectFolderIds(folder);
-				const actors = (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+				const allFolders = [folder, ...folder.getSubfolders(true)];
+				const actors = (game.actors?.contents ?? []).filter((actor) => allFolders.some((f) => actor.folder?.id === f.id));
 
 				// Add dropped actors to the party in their matching section.
 				for (const actor of actors) {
@@ -659,10 +659,7 @@ export class FUPartySheet extends FUActorSheet {
 			}
 		}
 
-		if (super._onDropFolder instanceof Function) {
-			return super._onDropFolder(event, folder);
-		}
-		return super._onDrop(event);
+		return super._onDropFolder?.(event, folder) ?? super._onDrop(event);
 	}
 
 	/**
@@ -788,45 +785,21 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/**
-	 * @param {Folder} root
-	 * @returns {Set<string>}
-	 */
-	#collectFolderIds(root) {
-		const ids = new Set();
-		const queue = [root];
-		const foldersByParent = new Map();
-		const packId = this.#resolveFolderPack(root);
-		const folderSource = packId ? (game.packs?.get(packId)?.folders?.contents ?? []) : game.folders.filter((f) => f?.type === root?.type);
-
-		for (const folder of folderSource) {
-			const parentId = this.#resolveFolderId(folder);
-			if (!foldersByParent.has(parentId)) foldersByParent.set(parentId, []);
-			foldersByParent.get(parentId).push(folder);
-		}
-
-		while (queue.length) {
-			const current = queue.shift();
-			if (!current?.id || ids.has(current.id)) continue;
-			ids.add(current.id);
-			queue.push(...(foldersByParent.get(current.id) ?? []));
-		}
-		return ids;
-	}
-
-	/**
 	 * @param {Folder} folder
 	 * @returns {Promise<FUActor[]>}
 	 */
 	async #getActorsFromFolder(folder) {
-		const folderIds = this.#collectFolderIds(folder);
-		const packId = this.#resolveFolderPack(folder);
+		const packId = folder.pack ?? folder.compendium?.collection ?? null;
 		if (packId) {
 			const pack = game.packs?.get(packId);
 			if (!pack || pack.documentName !== 'Actor') return [];
+			const allFolders = [folder, ...folder.getSubfolders(true)];
+			const folderIds = new Set(allFolders.map((f) => f.id));
 			const actors = await pack.getDocuments();
-			return actors.filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+			return actors.filter((actor) => folderIds.has(actor.folder?.id));
 		}
-		return (game.actors?.contents ?? []).filter((actor) => folderIds.has(this.#resolveFolderId(actor)));
+		const allFolders = [folder, ...folder.getSubfolders(true)];
+		return (game.actors?.contents ?? []).filter((actor) => allFolders.some((f) => actor.folder?.id === f.id));
 	}
 
 	/**
@@ -834,36 +807,17 @@ export class FUPartySheet extends FUActorSheet {
 	 * @returns {Promise<JournalEntry[]>}
 	 */
 	async #getJournalEntriesFromFolder(folder) {
-		const folderIds = this.#collectFolderIds(folder);
-		const packId = this.#resolveFolderPack(folder);
+		const packId = folder.pack ?? folder.compendium?.collection ?? null;
 		if (packId) {
 			const pack = game.packs?.get(packId);
 			if (!pack || pack.documentName !== 'JournalEntry') return [];
+			const allFolders = [folder, ...folder.getSubfolders(true)];
+			const folderIds = new Set(allFolders.map((f) => f.id));
 			const journals = await pack.getDocuments();
-			return journals.filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
+			return journals.filter((entry) => folderIds.has(entry.folder?.id));
 		}
-		return (game.journal?.contents ?? []).filter((entry) => folderIds.has(this.#resolveFolderId(entry)));
-	}
-
-	/**
-	 * @param {Folder|object|null} folder
-	 * @returns {string|null}
-	 */
-	#resolveFolderPack(folder) {
-		return folder?.pack ?? folder?.compendium?.collection ?? null;
-	}
-
-	/**
-	 * @param {object} document
-	 * @returns {string|null}
-	 */
-	#resolveFolderId(document) {
-		if (!document) return null;
-		if (typeof document.folder === 'string') return document.folder;
-		if (document.folder?.id) return document.folder.id;
-		if (typeof document.parent === 'string') return document.parent;
-		if (document.parent?.id) return document.parent.id;
-		return null;
+		const allFolders = [folder, ...folder.getSubfolders(true)];
+		return (game.journal?.contents ?? []).filter((entry) => allFolders.some((f) => entry.folder?.id === f.id));
 	}
 
 	/**
@@ -1053,8 +1007,8 @@ export class FUPartySheet extends FUActorSheet {
 		const groupsByKey = new Map();
 
 		for (const actor of actors) {
-			const packId = this.#resolveFolderPack(actor) ?? '__world__';
-			const folderId = this.#resolveFolderId(actor) ?? '__none__';
+			const packId = actor.pack ?? actor.compendium?.collection ?? '__world__';
+			const folderId = actor.folder?.id ?? null ?? '__none__';
 			const groupKey = `${packId}::${folderId}`;
 			if (!groupsByKey.has(groupKey)) {
 				groupsByKey.set(groupKey, {
