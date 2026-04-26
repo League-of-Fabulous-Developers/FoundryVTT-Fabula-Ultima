@@ -36,13 +36,13 @@
 
 .projectfu .sheet-header .profile-img {
 	flex: 0 0 200px;
-	max-height: 220px;
+	max-height: 200px;
 	background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
 	border: 1px solid #aeb8a8;
 	border-radius: 10px 0 0 10px;
 	object-fit: contain;
 	object-position: center;
-	aspect-ratio: 200 / 220;
+	aspect-ratio: 200 / 200;
 	background: var(--pfu-color-app-body-primary-fill);
 }
 

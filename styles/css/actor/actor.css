@@ -138,6 +138,20 @@
 	flex: 0;
 }
 
+.projectfu .rest-button {
+	gap: 0.25rem;
+	font-weight: bold;
+}
+
+.projectfu .img-and-zenit-container {
+	gap: 0.25rem;
+	flex: 0 0 200px;
+}
+
+.projectfu .zenit-and-rest-container {
+	gap: 0.25rem;
+}
+
 .projectfu.actor .sheet-header .header-fields {
 	display: grid;
 	grid-template-columns: 1fr min-content;
@@ -371,7 +385,7 @@
 	border-color: transparent;
 	vertical-align: middle;
 	text-align: right;
-	max-width: 78%;
+	max-width: 68%;
 }
 
 .projectfu .items-main.total-level {
@@ -707,16 +721,14 @@
 	background-color: transparent;
 	border-color: transparent;
 	text-align: right;
-	max-width: 78%;
+	max-width: 68%;
 	padding: 0;
 }
 
 .projectfu .zenit-style {
 	-webkit-box-flex: 0;
-	-ms-flex: 0 0 150px;
-	flex: 0 0 150px;
-	padding: 0 0.5rem;
-	margin-right: 8px;
+	-ms-flex: 0 0 90px;
+	flex: 0 0 90px;
 }
 
 .projectfu .study-style {
@@ -789,6 +801,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 0.25rem;
 }
 
 .projectfu .sl-stars {
