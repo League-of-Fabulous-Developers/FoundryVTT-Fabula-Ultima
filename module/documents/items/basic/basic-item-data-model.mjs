@@ -8,7 +8,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { FUStandardItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
-import { DamageTraits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { ActionTraits, DamageTraits, TraitUtils } from '../../../pipelines/traits.mjs';
 
 /**
  * @param {CheckV2} check
@@ -34,7 +34,8 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		}
 		config
 			.setTargetedDefense(attack.defense)
-			.addTraits('attack')
+			.addTraits(ActionTraits.Attack)
+			.addTraits(ActionTraits.Damage)
 			.setEffects(attack.effects)
 			.setWeaponTraits({
 				weaponType: attack.type.value,

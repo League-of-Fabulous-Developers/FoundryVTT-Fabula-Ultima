@@ -1133,11 +1133,14 @@ FU.allIcon = {
 	damage: 'fu-damage',
 	type: 'fu-type',
 	stagger: 'fu-stagger',
-	info: 'fas fa-circle-info',
-	compendium: 'fas fa-book',
-	warning: 'fas fa-triangle-exclamation',
-	villain: 'ra ra-bleeding-eye',
 
+	compendium: 'fas fa-book',
+
+	info: 'fas fa-circle-info',
+	warning: 'fas fa-triangle-exclamation',
+	help: 'fas fa-circle-question',
+
+	villain: 'ra ra-bleeding-eye',
 	rank: 'fas fa-shield',
 	species: 'fas fa-paw',
 	vulnerability: 'fas fa-heart-crack',

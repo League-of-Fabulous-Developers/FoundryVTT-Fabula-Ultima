@@ -8,7 +8,7 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { EffectApplicationDataModel } from '../common/effect-application-data-model.mjs';
 import { ResourceDataModel } from '../common/resource-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { DamageTraits, Traits, TraitUtils } from '../../../pipelines/traits.mjs';
+import { ActionTraits, DamageTraits, Traits, TraitUtils } from '../../../pipelines/traits.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 import { WeaponResolver } from './weapon-resolver.mjs';
@@ -366,6 +366,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 						weaponCategory: weaponData.category ?? undefined,
 						handedness: weaponData.handedness ?? undefined,
 					});
+					config.addTraits(ActionTraits.Attack);
 				}
 				if (this.useWeapon.damage) {
 					// We do this in case we are using both a damage bonus AND weapon damage
