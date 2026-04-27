@@ -399,14 +399,6 @@
 						min-width: 170px;
 					}
 				}
-
-				.fill {
-					flex: 1;
-					box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--pfu-color-app-control-highlight-border) 40%, transparent);
-					background-image: var(--pfu-app-bg-image);
-					background-color: var(--pfu-color-app-control-fill-1);
-					background-blend-mode: color-dodge;
-				}
 			}
 
 			> aside.sidebar {

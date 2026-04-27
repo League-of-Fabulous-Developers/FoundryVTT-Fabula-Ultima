@@ -214,7 +214,7 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: true,
 		requiresReload: true,
 	});
 
