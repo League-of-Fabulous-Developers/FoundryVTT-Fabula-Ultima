@@ -622,11 +622,8 @@
 }
 
 .projectfu .status-effect-toggle img {
-	-webkit-box-flex: 0 !important;
-	-ms-flex: 0 0 32px !important;
-	flex: 0 0 32px !important;
-	height: 32px !important;
-	width: 32px !important;
+	height: 32px;
+	width: 32px;
 	display: block;
 	margin-top: -1px;
 	border-radius: 4px;

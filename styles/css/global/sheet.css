@@ -249,8 +249,9 @@
 
 	.status-section {
 		flex: 1 1 auto;
+		place-content: center;
 		> .grid {
-			flex: 1 1 auto;
+			height: 100%;
 			.status-effect-toggle img {
 				margin-right: -1px;
 				margin-bottom: -1px;
@@ -275,7 +276,9 @@
 			display: contents;
 
 			select {
-				width: 2.7rem;
+				width: min-content;
+				padding: 0;
+				margin: 2px;
 			}
 		}
 	}
