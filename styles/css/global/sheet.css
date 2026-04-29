@@ -245,12 +245,14 @@
 .projectfu .sheet-header .resources-section {
 	display: flex;
 	flex-wrap: nowrap;
+	justify-content: space-evenly;
 	gap: 4px;
 
 	.status-section {
-		flex: 1 1 auto;
+		flex: 0 1 auto;
+		place-content: center;
 		> .grid {
-			flex: 1 1 auto;
+			height: 100%;
 			.status-effect-toggle img {
 				margin-right: -1px;
 				margin-bottom: -1px;
@@ -259,6 +261,7 @@
 	}
 
 	.attribute-section {
+		flex: 0 1 auto;
 		display: grid;
 		gap: 1px;
 		grid-template-columns: repeat(2, max-content 1.5fr auto 1fr 1fr);
@@ -267,7 +270,6 @@
 		justify-self: center;
 		align-self: center;
 		align-items: center;
-		flex: 1 1 auto;
 		border-radius: 0;
 		height: 100%;
 
@@ -275,16 +277,17 @@
 			display: contents;
 
 			select {
-				width: 2.7rem;
+				width: min-content;
+				margin: 2px;
 			}
 		}
 	}
 
 	.roll-section {
+		flex: 0 1 auto;
 		border-radius: 0 10px 10px 0;
 		height: 100%;
 		align-items: baseline;
-		flex: 1 1 auto;
 	}
 }
 
