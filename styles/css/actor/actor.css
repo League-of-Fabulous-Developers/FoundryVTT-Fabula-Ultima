@@ -624,6 +624,7 @@
 .projectfu .status-effect-toggle img {
 	height: 32px;
 	width: 32px;
+	object-fit: contain;
 	display: block;
 	margin-top: -1px;
 	border-radius: 4px;
