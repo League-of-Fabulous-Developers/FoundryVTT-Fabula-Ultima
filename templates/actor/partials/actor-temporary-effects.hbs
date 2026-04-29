@@ -2,16 +2,18 @@
 	<legend class="resource-label-m">
 		{{localize 'FU.Effects'}}
 	</legend>
-	<div class="flexcol gap-4">
+	<div class="grid grid-2col gap-2">
 		{{#each temporaryEffects as |effect|}}
-			<div class="effect flexrow flex-between" data-effect-id="{{effect.id}}">
-					<span class="flexrow flex-group-left gap-5">
-						{{pfuItemAnchor effect}}
-						<span class="effect-name">{{effect.name}}</span>
+			<div class="effect-shortcut" data-effect-id="{{effect.id}}">
+				<span class="flexrow flex-group-left gap-5">
+					{{pfuItemAnchor effect delete=true}}
+					<span class="effect-name" data-tooltip="{{effect.name}}">
+						{{pfuAcronym effect.name 8}}
 					</span>
-				<button data-action="deleteEffect" style="flex: 0; width: 1.5rem; height: 1.5rem;">
+				</span>
+				<a class="pfu-action" data-action="deleteEffect">
 					<i class="fa fa-trash"></i>
-				</button>
+				</a>
 			</div>
 		{{/each}}
 	</div>

@@ -459,22 +459,24 @@
 			min-height: 0;
 
 			&.multi-column {
-				&:has(main .favorites-section):not(:has(main .favorites-section .item)) {
-					> main {
-						flex: 0 1 auto;
-						.favorites-section {
-							display: none;
-						}
-					}
+				max-width: unset;
+				flex: unset;
+				flex-wrap: wrap;
+				width: auto;
+				flex-direction: column;
+				height: 100%;
+				gap: 12px;
 
-					> aside.sidebar {
-						flex: 1 1 auto;
-						max-width: unset;
-					}
-				}
-				.sidebar-container {
+				.widgets {
+					display: flex;
+					flex-direction: row;
+					align-items: start;
+					justify-content: space-between;
 					flex-wrap: wrap;
-					width: auto;
+
+					.section-container {
+						min-width: 170px;
+					}
 				}
 			}
 
@@ -520,6 +522,24 @@
 					}
 					.effect-name {
 						max-width: 12ch;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
+
+				.effect-shortcut {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+					flex: 0;
+
+					a {
+						flex: 0 1 max-content;
+					}
+					.effect-name {
+						max-width: 8ch;
 						overflow: hidden;
 						text-overflow: ellipsis;
 						white-space: nowrap;

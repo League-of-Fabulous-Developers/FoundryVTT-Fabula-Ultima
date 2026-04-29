@@ -161,7 +161,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	static TABS = {
 		primary: {
 			tabs: [
-				{ id: 'stats', label: 'FU.Stats' },
+				{ id: 'stats', label: 'FU.Overview' },
 				{ id: 'classes', label: 'FU.Classes' },
 				{ id: 'features', label: 'FU.Features' },
 				{ id: 'spells', label: 'FU.Spell' },
@@ -396,6 +396,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 						context.studyRoll = ActorSheetUtils.prepareStudyRollMap();
 						context.enrichedHtml = await ActorSheetUtils.enrichDescription(this.actor);
 					}
+					const favorites = Array.from(this.actor.allItems().filter((item) => item.isFavorite));
+					const hasFavorites = favorites.length > 0;
+					context.hasFavorites = hasFavorites;
+					context.showBonds = getSystemSetting(SETTINGS.optionPCBondsSection);
+					const showNPCNotes = !getSystemSetting(SETTINGS.optionNPCNotesTab);
+					context.showNPCNotes = showNPCNotes;
+					context.useMultiColumnLayout = !hasFavorites && !showNPCNotes;
+
 					context.favoritesTable = await this.#favoritesTable.renderTable(this.document);
 					context.temporaryEffects = this.actor.temporaryEffects.filter((e) => e.hasDuration);
 				}

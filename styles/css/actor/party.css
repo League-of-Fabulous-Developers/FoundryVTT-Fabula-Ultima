@@ -1,7 +1,7 @@
 .projectfu .pfu-sheet__party {
 	display: grid;
 	height: 100%;
-	padding: 0;
+	padding: 4px;
 
 	section {
 		height: 100%;
@@ -9,6 +9,9 @@
 
 	.tab {
 		.content {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
 		}
 	}
 

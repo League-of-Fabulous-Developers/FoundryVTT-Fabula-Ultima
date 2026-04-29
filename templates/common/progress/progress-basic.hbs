@@ -1,4 +1,4 @@
-<div class="pfu-progress inline-desc flexrow flex-group-center">
+<div class="pfu-progress inline-desc flexrow flex-group-center {{classes}}">
 	<div class="pfu-progress__basic">
 		<span data-resource="item.rp">{{ data.current }}</span>
 		{{#if (gt data.max 0)}}
@@ -8,7 +8,7 @@
 	</div>
 
 	{{#if displayName}}
-		<div>
+		<div class="pfu-progress__name__container">
 			{{#if compact}}
 				<a data-action="openTrackMenu" data-id="{{id}}"
 				   {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}

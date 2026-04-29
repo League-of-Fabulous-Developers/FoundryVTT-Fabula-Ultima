@@ -31,39 +31,41 @@
 					{{!-- Garden Section --}}
 					{{> "systems/projectfu/templates/actor/partials/actor-garden.hbs"}}
 					{{!-- Bond Section --}}
-					<fieldset class="section-container title-fieldset desc resource-content">
-						<legend class="resource-label-m">
-							{{localize 'FU.Bonds'}}
-						</legend>
-						<div class="bonds">
-							{{#each system.bonds as |bond bondIndex|}}
-								<div class="bond-row flexrow mb-2">
-									<label class="resource-text-sm flex-group-left flex-grow">
-										<strong>
-											{{#if bond.name}}
-												{{bond.name}}
-											{{else}}
-												{{localize 'FU.NoItem'}}
-											{{/if}}
-										</strong>
-									</label>
-									<label class="resource-text-sm bond-strength flex0" data-tooltip="
+					{{~#if (eq (pfuGetSetting 'optionPCBondsSection') true)~}}
+						<fieldset class="section-container title-fieldset desc resource-content">
+							<legend class="resource-label-m">
+								{{localize 'FU.Bonds'}}
+							</legend>
+							<div class="bonds">
+								{{#each system.bonds as |bond bondIndex|}}
+									<div class="bond-row flexrow mb-2">
+										<label class="resource-text-sm flex-group-left flex-grow">
+											<strong>
+												{{#if bond.name}}
+													{{bond.name}}
+												{{else}}
+													{{localize 'FU.NoItem'}}
+												{{/if}}
+											</strong>
+										</label>
+										<label class="resource-text-sm bond-strength flex0" data-tooltip="
                                             {{#if (lookup @root.FU.bonds.admInf bond.admInf)}}
-										{{localize (lookup @root.FU.bonds.admInf bond.admInf)}}<br>
+											{{localize (lookup @root.FU.bonds.admInf bond.admInf)}}<br>
                                             {{/if}}
-										{{#if (lookup @root.FU.bonds.loyMis bond.loyMis)}}
-											{{localize (lookup @root.FU.bonds.loyMis bond.loyMis)}}<br>
+											{{#if (lookup @root.FU.bonds.loyMis bond.loyMis)}}
+												{{localize (lookup @root.FU.bonds.loyMis bond.loyMis)}}<br>
                                             {{/if}}
-										{{#if (lookup @root.FU.bonds.affHat bond.affHat)}}
-											{{localize (lookup @root.FU.bonds.affHat bond.affHat)}}
-										{{/if}}
+											{{#if (lookup @root.FU.bonds.affHat bond.affHat)}}
+												{{localize (lookup @root.FU.bonds.affHat bond.affHat)}}
+											{{/if}}
                                         ">
-										{{ bond.strength }}
-									</label>
-								</div>
-							{{/each}}
-						</div>
-					</fieldset>
+											{{ bond.strength }}
+										</label>
+									</div>
+								{{/each}}
+							</div>
+						</fieldset>
+					{{/if}}
 					{{!-- Effects Section --}}
 					{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
 					{{!-- Clock Section --}}
@@ -78,63 +80,45 @@
 	{{/if}}
 
 	{{#if isNPC}}
-		<section class="body-section">
-			<aside class="sidebar">
-				<div class="sidebar-container">
-					{{!-- Action Buttons --}}
-					{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
-					{{!-- Therioform Section --}}
-					{{#if (pfuGetSetting 'showAssociatedTherioforms')}}
-						<fieldset class="desc resource-content title-fieldset associated-therioforms">
-							<legend class="resource-label-m">
-								<label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>
-							</legend>
-							<label>
-								<input type="text" name="system.associatedTherioforms"
-									   value="{{system.associatedTherioforms}}"
-									   class="resource-inputs select-dropdown-full resource-text-m">
-							</label>
-						</fieldset>
-					{{/if}}
-					{{!-- Traits Section --}}
-					<fieldset class="section-container traits-section title-fieldset desc resource-content">
-						<legend class="resource-label-m">
-							<label>{{localize 'FU.Traits'}}</label>
-						</legend>
-						<label>
-							<input class="traitdesc flex3" type="text" name="system.traits.value"
-								   value="{{ system.traits.value }}" placeholder="{{localize 'FU.Traits'}}"
-								   data-dtype="String" />
-						</label>
-					</fieldset>
-					{{!-- Effects Section --}}
-					{{> "systems/projectfu/templates/actor/partials/actor-temporary-effects.hbs" actor=actor}}
-					{{!-- Clock Section --}}
-					{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
-				</div>
-			</aside>
-			<main>
-				<!-- Description Section -->
-				<fieldset class="section-container biography-section title-fieldset desc resource-content">
-					<legend class="resource-label-m" aria-describedby="tooltip">
-						<a class="resource-label-m">
-							{{localize 'FU.BiographyInfo'}}
-						</a>
-					</legend>
-					<div>
-					{{~#if (eq (pfuGetSetting 'optionNPCNotesTab') true)~}}
-						{{~{enrichedHtml.description}~}}
-					{{~else}}
-						<prose-mirror name="system.description" value="{{~system.description~}}" class="fit" toggled>
-							{{{enrichedHtml.description}}}
-						</prose-mirror>
-					{{/if~}}
-					</div>
-				</fieldset>
-				<!-- Favorite Section -->
-				{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
-			</main>
+		{{#if useMultiColumnLayout}}
+		<section class="body-section multi-column">
+			<div class="widgets">
+				{{>"systems/projectfu/templates/actor/partials/actor-npc-widgets.hbs"}}
+			</div>
 		</section>
+		{{else}}
+			<section class="body-section standard">
+				<aside class="sidebar">
+					<div class="sidebar-container">
+						{{!-- Favorite Section --}}
+						{{>"systems/projectfu/templates/actor/partials/actor-npc-widgets.hbs"}}
+					</div>
+				</aside>
+				{{#unless useMultiColumnLayout}}
+					<main>
+						<!-- Description Section -->
+						{{#if showNPCNotes}}
+							<fieldset class="section-container biography-section title-fieldset desc resource-content">
+								<legend class="resource-label-m" aria-describedby="tooltip">
+									<a class="resource-label-m">
+										{{localize 'FU.BiographyInfo'}}
+									</a>
+								</legend>
+								<div>
+									<prose-mirror name="system.description" value="{{~system.description~}}" class="fit" toggled>
+										{{{enrichedHtml.description}}}
+									</prose-mirror>
+								</div>
+							</fieldset>
+						{{/if}}
+						<!-- Favorite Section -->
+						{{#if hasFavorites}}
+							{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"}}
+						{{/if}}
+					</main>
+				{{/unless}}
+			</section>
+		{{/if}}
 	{{/if}}
 </div>
 

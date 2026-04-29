@@ -1,0 +1,9 @@
+.pfu-action {
+	justify-content: center;
+	flex: 0;
+	color: var(--pfu-color-app-control-fill-2);
+
+	i {
+		font-size: 12px;
+	}
+}
