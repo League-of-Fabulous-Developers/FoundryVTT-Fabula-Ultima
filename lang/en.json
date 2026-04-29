@@ -968,6 +968,8 @@
 		"ChatOpportunity": "<strong>{actor}</strong> gets to apply the effects of an opportunity!",
 		"ChatFumbleOpportunity": "The opposition of <strong>{actor}</strong> gets to apply the effects of an opportunity!",
 		"ChatOpportunitySettingMissing": "Automation for opportunities must be set on the system's homebrew settings",
+		"ChatFumbleFabulaPoint": "<strong>{actor}</strong> rolled a <strong>fumble</strong>. Remember to add 1 Fabula Point!",
+		"ChatAddFabulaPoint": "Add Fabula Point",
 		"ChatPromptCheck": "A check has been prompted to <strong>{verb}</strong> the following clock:",
 		"ChatApplyEffect": "<strong>{effect}</strong> has been applied by <strong>{source}</source>",
 		"ChatApplyEffectLabel": "Apply {effect}",

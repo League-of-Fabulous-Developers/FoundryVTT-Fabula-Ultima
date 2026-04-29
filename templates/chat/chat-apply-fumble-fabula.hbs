@@ -1,0 +1,9 @@
+{{{localize 'FU.ChatFumbleFabulaPoint' actor=actor.name}}}
+
+{{#if actor.isOwner}}
+	<div class="pfu-tags flexrow gap-5">
+		<a data-action="gainFabulaPoint" data-actor="{{actor.uuid}}">
+			<span class="fu-tag button flex-group-center gap-5" style="width: 100%;white-space: nowrap;">{{localize 'FU.ChatAddFabulaPoint'}}<i class="icon {{pfuIconClass 'fp'}}"></i></span>
+		</a>
+	</div>
+{{/if}}
