@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/sword-long-gold.png",
   "system": {
     "fuid": "sanctified-blade",
-    "description": "<p>This weapon deals 5 extra damage to <strong>demon</strong>.</p>",
+    "description": "<p>This weapon deals 5 extra damage to <strong>demon</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -201,7 +201,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774731513931,
-    "modifiedTime": 1775709128324,
+    "modifiedTime": 1777530881417,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!6XGp4nAtTYo1jbln"

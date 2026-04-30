@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/belt-skull.png",
   "system": {
     "fuid": "titan-belt",
-    "description": "<p>Your attacks with <strong>melee</strong> weapons deal 5 extra damage.</p>",
+    "description": "<p>Your attacks with <strong>melee</strong> weapons deal 5 extra damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774672065485,
-    "modifiedTime": 1775708300872,
+    "modifiedTime": 1777529996306,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!0lyAA47DktussQ2U"

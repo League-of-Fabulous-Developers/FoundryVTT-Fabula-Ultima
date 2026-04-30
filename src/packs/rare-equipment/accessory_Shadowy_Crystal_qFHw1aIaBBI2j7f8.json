@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-black.png",
   "system": {
     "fuid": "shadowy-crystal",
-    "description": "<p>You gain Resistance to <strong>dark</strong> damage.</p>",
+    "description": "<p>You gain Resistance to <strong>dark</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774653611577,
-    "modifiedTime": 1775708533637,
+    "modifiedTime": 1777530090636,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!qFHw1aIaBBI2j7f8"

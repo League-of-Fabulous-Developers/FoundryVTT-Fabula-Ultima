@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/helmet-cap-green.png",
   "system": {
     "fuid": "outlander-hood",
-    "description": "<p>Your attacks with <strong>ranged</strong> weapons deal 5 extra damage.</p>",
+    "description": "<p>Your attacks with <strong>ranged</strong> weapons deal 5 extra damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774672307383,
-    "modifiedTime": 1775708284121,
+    "modifiedTime": 1777529985920,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!e5WHSaqal1BiM3R2"

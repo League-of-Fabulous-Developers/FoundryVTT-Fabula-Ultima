@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/crystal-orange.png",
   "system": {
     "fuid": "orange-crystal",
-    "description": "<p>You gain Resistance to <strong>earth</strong> damage.</p>",
+    "description": "<p>You gain Resistance to <strong>earth</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774653746792,
-    "modifiedTime": 1775708481777,
+    "modifiedTime": 1777530070495,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!vb4gRNvl3dto6BSd"

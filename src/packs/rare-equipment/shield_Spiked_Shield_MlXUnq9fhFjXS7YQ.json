@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-spiked.png",
   "system": {
     "fuid": "spiked-shield",
-    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>physical</strong> damage to that creature (after the attack has been resolved).</p>",
+    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>physical</strong> damage to that creature (after the attack has been resolved).</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -204,7 +204,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774768408094,
-    "modifiedTime": 1775709105708,
+    "modifiedTime": 1777530868041,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!MlXUnq9fhFjXS7YQ"

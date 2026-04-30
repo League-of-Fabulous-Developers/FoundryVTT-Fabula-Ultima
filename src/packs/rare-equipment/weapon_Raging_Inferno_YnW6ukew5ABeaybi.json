@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-wide-silver-red.png",
   "system": {
     "fuid": "raging-inferno",
-    "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>enraged</strong>.</p>",
+    "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>enraged</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -199,7 +199,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774811331771,
-    "modifiedTime": 1775709205587,
+    "modifiedTime": 1777530926185,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!YnW6ukew5ABeaybi"

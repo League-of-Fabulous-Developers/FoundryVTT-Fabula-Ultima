@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/cloak-blue.png",
   "system": {
     "fuid": "calming-cloak",
-    "description": "<p>You are immune to <strong>enraged</strong>.</p>",
+    "description": "<p>You are immune to <strong>enraged</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774651977333,
-    "modifiedTime": 1775708117672,
+    "modifiedTime": 1777529812103,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!CzIGdkZgjuEypkse"

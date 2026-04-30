@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/glove-bronze.png",
   "system": {
     "fuid": "bronze-gauntlets",
-    "description": "<p>You gain a +1 bonus to your <strong>Accuracy Checks</strong>.</p>",
+    "description": "<p>You gain a +1 bonus to your <strong>Accuracy Checks</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774667884887,
-    "modifiedTime": 1775708244038,
+    "modifiedTime": 1777529958819,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!VIpAsk7G6RGHi7H2"

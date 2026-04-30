@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-bronze.png",
   "system": {
     "fuid": "beryl-shield",
-    "description": "<p>You gain Resistance to <strong>earth</strong> damage.</p>",
+    "description": "<p>You gain Resistance to <strong>earth</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -172,7 +172,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774767498087,
-    "modifiedTime": 1775709028040,
+    "modifiedTime": 1777530800913,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!Z3yuEOWI7eROIfS3"

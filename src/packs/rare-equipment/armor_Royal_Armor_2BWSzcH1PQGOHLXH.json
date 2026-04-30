@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-royal.png",
   "system": {
     "fuid": "royal-armor",
-    "description": "<p>You treat your <strong>Willpower</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+    "description": "<p>You treat your <strong>Willpower</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -133,7 +133,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774808452463,
-    "modifiedTime": 1775708843391,
+    "modifiedTime": 1777530551671,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!2BWSzcH1PQGOHLXH"

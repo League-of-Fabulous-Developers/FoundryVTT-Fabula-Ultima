@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/potion-green-tall.png",
   "system": {
     "fuid": "panacea",
-    "description": "<p>You are immune to <strong>all status effects</strong>.</p>",
+    "description": "<p>You are immune to <strong>all status effects</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -156,7 +156,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774720292516,
-    "modifiedTime": 1775708128887,
+    "modifiedTime": 1777529833419,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!F2UnZ5dBzIs500oK"

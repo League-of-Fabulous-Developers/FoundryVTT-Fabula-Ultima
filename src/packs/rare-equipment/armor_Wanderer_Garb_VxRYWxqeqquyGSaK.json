@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/jacket-brown.png",
   "system": {
     "fuid": "wanderer-coat",
-    "description": "<p>When a create a <strong>potion</strong> with your Inventory Points whose effects restore Mind Points, it restores <strong>5 extra Mind Points</strong>.</p>",
+    "description": "<p>When a create a <strong>potion</strong> with your Inventory Points whose effects restore Mind Points, it restores <strong>5 extra Mind Points</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -152,7 +152,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774719182942,
-    "modifiedTime": 1775708970166,
+    "modifiedTime": 1777530745110,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!VxRYWxqeqquyGSaK"

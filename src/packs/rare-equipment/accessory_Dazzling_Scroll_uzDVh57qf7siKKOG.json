@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/scroll-star.png",
   "system": {
     "fuid": "dazzling-scroll",
-    "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>dazed</strong>.</p>",
+    "description": "<p>When you <strong>hit</strong> one or more creatures with an <strong>offensive spell</strong>, each of them suffers <strong>dazed</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -14,7 +14,7 @@
       "value": false
     },
     "cost": {
-      "value": 100
+      "value": 1500
     },
     "quality": {
       "value": "Dazed Hex"
@@ -156,7 +156,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774811510597,
-    "modifiedTime": 1775708752821,
+    "modifiedTime": 1777530349984,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!uzDVh57qf7siKKOG"
