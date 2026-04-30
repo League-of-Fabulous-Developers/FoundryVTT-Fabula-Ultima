@@ -245,7 +245,10 @@
 								<span class="resource-label-sm">{{immunity.label}}</span>
 								<input type="checkbox"
 									   id="immunity-{{key}}"
-									   name="system.immunities.{{key}}.base"
+									   name="system.immunities.{{key}}.base"  
+									{{#if (lookup @root.actor.overrides.system.immunities key)}}
+									   disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"
+									{{/if}}
 									   {{#if immunity.base}}checked{{/if}}
 									{{checked immunity.base}}>
 							</label>
