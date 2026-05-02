@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Hookleaf Nightshade",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/lotus-violet.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/hookleaf-nightshade.png",
   "system": {
     "summary": {
       "value": "Its purplish berries contain a deadly magical venom."
@@ -38,7 +38,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770423128201,
+    "modifiedTime": 1777431143392,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

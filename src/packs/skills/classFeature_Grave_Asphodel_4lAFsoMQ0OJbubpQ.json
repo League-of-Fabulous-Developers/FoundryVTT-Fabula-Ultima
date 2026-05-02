@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Grave Asphodel",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/lily-grey-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/grave-asphodel.png",
   "system": {
     "summary": {
       "value": "Solemn and elegant, it embodies death's ineluctability."
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370343036,
+    "modifiedTime": 1777431069860,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

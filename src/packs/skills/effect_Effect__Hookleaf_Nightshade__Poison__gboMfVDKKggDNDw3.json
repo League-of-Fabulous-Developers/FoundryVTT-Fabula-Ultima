@@ -2,7 +2,7 @@
   "folder": "sKnezupplQgHL52D",
   "name": "Effect: Hookleaf Nightshade (Poison)",
   "type": "effect",
-  "img": "icons/commodities/flowers/lotus-violet.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/hookleaf-nightshade.png",
   "system": {
     "fuid": "effect-hookleaf-nightshade-poison-damage",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "icons/commodities/flowers/lotus-violet.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/hookleaf-nightshade.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -71,6 +71,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -82,7 +87,7 @@
           "priority": null
         }
       ],
-      "description": "<p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances.</p>",
+      "description": "<p>While this magiseed is <strong>planted</strong>, all damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -97,7 +102,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "lastModifiedBy": "mA8SNY2rY4X5tOHa",
-        "modifiedTime": 1771836236071
+        "modifiedTime": 1777433747650
       },
       "_key": "!items.effects!gboMfVDKKggDNDw3.2XWchLTOoMqRPAWv"
     }
@@ -111,7 +116,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1770370431058,
-    "modifiedTime": 1771835833097,
+    "modifiedTime": 1777431716680,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "ownership": {

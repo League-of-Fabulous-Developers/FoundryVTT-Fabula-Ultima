@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Horned Hawthorn",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/buds-black-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/horned-hawthorn.png",
   "system": {
     "summary": {
       "value": "Favored by witches and surgeons alike for its purifying properties."
@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>You Receive:</strong> @TYPE[affinity dark,poison resistance e:eot i:2 t:source]</p>"
+          "effect": "<p>You are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.jIYoANfwMxGFgQ39]</p>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>Targets Receive:</strong> @TYPE[affinity dark,poison resistance e:eot i:2 t:source]</p>"
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.jIYoANfwMxGFgQ39]</p>"
         }
       ]
     },
@@ -38,7 +38,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370529539,
+    "modifiedTime": 1777434030566,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

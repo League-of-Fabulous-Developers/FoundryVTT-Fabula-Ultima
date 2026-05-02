@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Star Peony",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/clover-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/star-peony.png",
   "system": {
     "summary": {
       "value": "It silently gazes into celestial depths."
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370743822,
+    "modifiedTime": 1777431237296,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Striped Orchid",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/lily-water-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/striped-orchid.png",
   "system": {
     "summary": {
       "value": "Each segment of this plant is covered in toxins."
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370789892,
+    "modifiedTime": 1777431256274,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

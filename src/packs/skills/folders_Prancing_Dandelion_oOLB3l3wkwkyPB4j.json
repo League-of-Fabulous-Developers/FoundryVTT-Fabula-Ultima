@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "wU0wYafQu5AjChaf",
+  "name": "Prancing Dandelion",
+  "color": "#342022",
+  "sorting": "a",
+  "_id": "oOLB3l3wkwkyPB4j",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1777440673193
+  },
+  "_key": "!folders!oOLB3l3wkwkyPB4j"
+}

@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Pilgrim Gazalia",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/lily-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/pilgrim-gazalia.png",
   "system": {
     "summary": {
       "value": "Its flamboyant corolla is synonymous with abundance."
@@ -38,7 +38,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370590346,
+    "modifiedTime": 1777431191269,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

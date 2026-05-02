@@ -2,7 +2,7 @@
   "folder": "XZHqXRmxtFPVYQok",
   "name": "Wrathful Carnation",
   "type": "classFeature",
-  "img": "icons/commodities/flowers/lotus-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/magiseeds/wrathful-carnation.png",
   "system": {
     "summary": {
       "value": "Despite their beauty, its yellow flowers emit an irritatingly pungent smell."
@@ -17,7 +17,7 @@
         {
           "start": 0,
           "end": 4,
-          "effect": "<p>When this <strong>magiseed</strong> leaves your <strong>garden</strong>, choose up to one enemy you can see.</p><p>Until the end of your next turn, when the chosen enemy performs an attack or casts an offensive spell (@ICON[offensive]), they must include you among the targets of that attack of spell (if able).</p><p>At the end of your turn, you may remove this <strong>magiseed</strong> from your <strong>garden</strong>; if you do, erase all sections of your Growth Clock.</p><hr><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.GByosgzlkIfFCsKP]{Effect: Wrathful Carnation}</p>"
+          "effect": "<p>When this <strong>magiseed</strong> leaves your <strong>garden</strong>, choose up to one enemy you can see.</p><p>Until the end of your next turn, when the chosen enemy performs an attack or casts an offensive spell (@ICON[offensive]), they must include you among the targets of that attack of spell (if able).</p><p>At the end of your turn, you may remove this <strong>magiseed</strong> from your <strong>garden</strong>; if you do, erase all sections of your Growth Clock.</p><hr><p><strong>Target Receives:</strong> @EFFECT[Compendium.projectfu.skills.Item.GByosgzlkIfFCsKP]</p>"
         }
       ]
     },
@@ -33,7 +33,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1770370899937,
+    "modifiedTime": 1777440655251,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "exportSource": null
   },

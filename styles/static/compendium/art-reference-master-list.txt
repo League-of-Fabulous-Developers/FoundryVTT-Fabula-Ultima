@@ -249,7 +249,13 @@ sword-long-gold (fantasy-rpg, sword_long_002)
 sword-swipe (fantasy-rpg, sword_040)
 
 --------------------------------------------------
-[projectfu\styles\static\icons/actions\*]
+[projectfu\styles\static\icons\actions\*]
 
 Action Icon Assets provided by:
 Mildew - https://ko-fi.com/not_mildew
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\classes\floralist\magiseeds\*]
+
+Magiseed Icon Assets provided by:
+Kami lucky
