@@ -41,6 +41,16 @@ export class RuleElementContext {
 	}
 
 	/**
+	 * @returns {FUItem}
+	 */
+	getItem() {
+		if (this.event.item) {
+			return this.event.item;
+		}
+		return this.item;
+	}
+
+	/**
 	 * @param {String} id An identifier to match against.
 	 * @return {Boolean}
 	 */

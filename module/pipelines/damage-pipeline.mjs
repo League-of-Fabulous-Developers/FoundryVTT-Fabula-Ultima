@@ -495,12 +495,14 @@ async function process(request) {
 			actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true).then(async (result) => {
 				/** @type FURenderData **/
 				let renderData = {
+					tags: [],
 					sections: [],
 					postRenderActions: [],
+					flags: [],
 				};
 
 				await CommonEvents.damage(request.damageType, FU.affinityKeyByValue[context.affinity], damageTaken, context.traits, context.sourceActor, actor, context.sourceInfo, request.origin, renderData);
-				await CommonEvents.resource(request.sourceActor, request.targets, resource, -damageTaken, request.origin, renderData);
+				await CommonEvents.resource(request.sourceActor, request.targets, context.sourceInfo, resource, -damageTaken, request.origin, renderData);
 				TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, color);
 
 				// Chat message

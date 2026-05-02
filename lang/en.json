@@ -1239,7 +1239,7 @@
 		"ClassFeaturePsychicGiftLabel": "Psychic Gift",
 		"ClassFeaturePsychicGiftTrigger": "Trigger",
 		"ClassFeatureTherioformLabel": "Therioform",
-		"ClassFeatureTherioformHint": "You may manifest up to two therioforms that you have learned.",
+		"ClassFeatureTherioformHint": "Choose the therioforms you want to manifest.",
 		"ClassFeatureTherioformManifest": "The following therioforms have been manifested",
 		"ClassFeatureTherioformAssociatedTherioforms": "Associated Therioforms",
 		"ClassFeatureTherioformOptionShowAssociatedTherioformsName": "Show associated Therioforms section?",

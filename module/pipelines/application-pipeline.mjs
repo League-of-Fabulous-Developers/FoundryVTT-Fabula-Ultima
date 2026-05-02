@@ -15,6 +15,7 @@ import { CommonSections } from '../checks/common-sections.mjs';
 import { FUChatBuilder } from '../helpers/chat-builder.mjs';
 import { CHECK_DETAILS } from '../checks/default-section-order.mjs';
 import { getSystemSetting, SETTINGS } from '../settings.js';
+import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
 
 /**
  * @desc An application used for specific class features.
@@ -152,10 +153,9 @@ async function handleArcanum(actor, item) {
 			items: classFeatures,
 			style: 'deck',
 			getDescription: async (item) => {
-				const text = await FoundryUtils.enrichText(item.system.data.merge, {
+				return await FoundryUtils.enrichText(item.system.data.merge, {
 					relativeTo: actor,
 				});
-				return text;
 			},
 			okLabel: 'FU.ClassFeatureArcanumMerge',
 		};
@@ -173,10 +173,11 @@ async function handleArcanum(actor, item) {
 				});
 				// Calculate summon cost
 				/** @type ResourceExpense **/
-				const expense = {
+				const arcanumCostWithTraits = {
 					...arcanumCost,
 					traits: [FeatureTraits.ArcanumSummon],
 				};
+				const expense = await ResourcePipeline.calculateExpense(arcanumCostWithTraits, actor, item, []);
 				await CommonEvents.calculateExpense(actor, item, [], expense);
 				console.debug(`Arcanum summon cost: ${expense.amount}`);
 				// Render sections
@@ -211,41 +212,66 @@ async function handleArcanum(actor, item) {
  * @returns {Promise<void>}
  */
 async function handleTheriomorphosis(actor, item) {
-	// TODO: Implement...
 	const items = actor.itemTypes;
 	const subtype = ClassFeatureRegistry.instance.qualify('therioform');
 	/** @type {FUItem[]} **/
 	const classFeatures = items.classFeature.filter((it) => it.system.featureType === subtype);
-	const formEffects = classFeatures.flatMap((it) => [...it.effects.values()]);
-	console.debug(`Forms: ${formEffects}`);
 	/** @type ItemSelectionData **/
 	const data = {
 		title: `${StringUtils.localize('FU.ClassFeatureTherioformLabel')}`,
 		message: StringUtils.localize('FU.ClassFeatureTherioformHint'),
-		max: 2, // TODO: Check for heroic skill
-		items: formEffects,
+		items: classFeatures,
 		getDescription: async (item) => {
-			const text = await FoundryUtils.enrichText(item.parent.system.description, {
+			return await FoundryUtils.enrichText(item.parent.system.description, {
 				relativeTo: actor,
 			});
-			return text;
 		},
 	};
-	for (const effect of formEffects) {
-		await effect.update({ disabled: true });
-	}
+
 	const dialog = new ItemSelectionDialog(data);
 	const selectedForms = await dialog.open();
 	if (selectedForms) {
-		for (const effect of selectedForms) {
-			await effect.update({ disabled: !effect.disabled });
+		await actor.update({
+			'system.equipped.therioforms': selectedForms.map(({ id }) => id),
+		});
+
+		// Calculate theriomorphosis cost
+		// If the item passed in has a cost, use it.
+		/** @type ResourceExpense **/
+		const therioformCost = {
+			resource: item.system.cost.resource ?? 'hp',
+			amount: item.system.cost.amount ?? 0,
+			traits: [FeatureTraits.TherioformManifest],
+		};
+		const expense = await ResourcePipeline.calculateExpense(therioformCost, actor, item, []);
+		await CommonEvents.calculateExpense(actor, item, [], expense);
+		console.debug(`Theriomorphosis cost: ${expense.amount}`);
+		// Render sections
+		/** @type {FURenderData} **/
+		const renderData = {
+			tags: [],
+			sections: [],
+			postRenderActions: [],
+			flags: [],
+		};
+		let flags = {};
+
+		CommonSections.itemFlavor(renderData.sections, item);
+		const content = await FoundryUtils.renderTemplate('feature/mutant/chat-therioform-manifest', {
+			actor: actor,
+			description: item.system.description,
+			forms: selectedForms,
+		});
+		CommonSections.content(renderData.sections, content, CHECK_DETAILS);
+		if (expense.amount > 0) {
+			CommonSections.expense(renderData, actor, item, [], flags, expense);
 		}
-		ChatMessage.create({
-			speaker: ChatMessage.getSpeaker({ actor: actor }),
-			content: await FoundryUtils.renderTemplate('feature/mutant/chat-therioform-manifest', {
-				actor: actor,
-				forms: selectedForms,
-			}),
+		await CommonEvents.feature(actor, item, expense.traits, renderData);
+		const builder = new FUChatBuilder(actor, item).withData(renderData).withFlags(flags);
+		await builder.create();
+	} else {
+		await actor.update({
+			'system.equipped.therioforms': [],
 		});
 	}
 }

@@ -21,6 +21,7 @@
     {
       "name": "Electrophora",
       "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+      "origin": "Compendium.projectfu.skills.Item.vNgf1mOEsQSpbOiv",
       "system": {
         "duration": {
           "event": "none",
@@ -34,59 +35,105 @@
         },
         "rules": {
           "elements": {
-            "9KknfP21Rpx6Brln": {
+            "aGaTyU0RtfegAwC7": {
               "type": "ruleElement",
-              "_id": "9KknfP21Rpx6Brln",
               "trigger": {
-                "_id": "blMKWHxR7zBW2WNX",
-                "type": "damageRuleTrigger",
-                "eventRelation": "source",
-                "damageType": "bolt",
-                "damageSources": [],
-                "damageThreshold": {
-                  "operator": "greaterThan",
-                  "amount": 20
-                }
-              },
-              "predicates": {
-                "l5MuPDUo18ZYXlut": {
-                  "type": "weaponRulePredicate",
-                  "_id": "l5MuPDUo18ZYXlut",
-                  "weaponType": "melee"
-                }
-              },
-              "actions": {
-                "Li6gJ5pUT1wTs9FB": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "Li6gJ5pUT1wTs9FB",
-                  "effect": "slow"
-                }
-              }
-            },
-            "s2E4rfw3xK7jV4tT": {
-              "type": "ruleElement",
-              "_id": "s2E4rfw3xK7jV4tT",
-              "trigger": {
-                "_id": "yS3b9QZ1b3gw08Ge",
+                "_id": "qvo9vgLt2zv72ICv",
                 "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageSources": [
+                "itemGroups": [
                   "attack",
                   "spell"
-                ]
+                ],
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
               },
+              "_id": "aGaTyU0RtfegAwC7",
               "actions": {
-                "jZhO7rgLXRDNn5K0": {
+                "7IS4kvn9NGfgceQe": {
                   "type": "modifyDamageRuleAction",
-                  "_id": "jZhO7rgLXRDNn5K0",
+                  "_id": "7IS4kvn9NGfgceQe",
                   "damageTypes": [
                     "bolt"
                   ],
                   "amount": "",
+                  "effect": "",
                   "cost": {
-                    "resource": "",
                     "amount": null
                   }
+                }
+              }
+            },
+            "bt4duH1EVghk1zmO": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "7ImXgvFZTxQOaB79",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "decrement",
+                "changeThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                },
+                "itemGroups": [],
+                "local": false,
+                "identifier": "unarmed-strike"
+              },
+              "_id": "bt4duH1EVghk1zmO",
+              "predicates": {
+                "T4niGhZqgbznQA6N": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "T4niGhZqgbznQA6N"
+                }
+              },
+              "actions": {
+                "sA2fLKfOIwIuSsvZ": {
+                  "type": "messageRuleAction",
+                  "_id": "sA2fLKfOIwIuSsvZ",
+                  "message": "<p>If <strong>bolt</strong> damage, they also suffer <strong>slow</strong>.</p>"
+                },
+                "dTKDDrwGQ9200xXP": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "dTKDDrwGQ9200xXP",
+                  "effect": "slow"
+                }
+              }
+            },
+            "jQ5378SSGXnrJeTa": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "KSVAanyGFiRbDKp8",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "decrement",
+                "changeThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                },
+                "itemGroups": [],
+                "local": false,
+                "identifier": "unarmed-strike-akromorphosis"
+              },
+              "_id": "jQ5378SSGXnrJeTa",
+              "predicates": {
+                "3doX4EBznAyKJcA4": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "3doX4EBznAyKJcA4"
+                }
+              },
+              "actions": {
+                "edFeSjNbQGhjmKJa": {
+                  "type": "messageRuleAction",
+                  "_id": "edFeSjNbQGhjmKJa",
+                  "message": "<p>If <strong>bolt</strong> damage, they also suffer <strong>slow</strong>.</p>"
+                },
+                "n6XROVs19uwWHFUp": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "n6XROVs19uwWHFUp",
+                  "effect": "slow"
                 }
               }
             }
@@ -97,25 +144,40 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "rpmUEDujHcoMFtnv",
+      "disabled": false,
+      "_id": "taZXhZ3zGdxN5GoW",
       "type": "base",
       "changes": [],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. When you deal damage with an <strong>attack</strong> or <strong>spell</strong>, you may have all that damage become <strong>bolt</strong>. While your <strong>unarmed strikes</strong> deal <strong>bolt</strong> damage, any enemy who <strong>loses 20 or more HP</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>slow</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Electrophora",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.vNgf1mOEsQSpbOiv",
+            "effectUuid": null,
+            "fuid": "electrophora"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
@@ -123,11 +185,11 @@
         "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767290441788,
-        "modifiedTime": 1770430840846,
+        "createdTime": 1777768586616,
+        "modifiedTime": 1777788539864,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!vNgf1mOEsQSpbOiv.rpmUEDujHcoMFtnv"
+      "_key": "!items.effects!vNgf1mOEsQSpbOiv.taZXhZ3zGdxN5GoW"
     }
   ],
   "ownership": {

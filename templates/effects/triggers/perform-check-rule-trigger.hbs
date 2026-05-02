@@ -2,3 +2,15 @@
 	<span>{{localize 'FU.CheckType'}}</span>
 	{{formGroup trigger.schema.fields.checkTypes value=trigger.checkTypes options=options.checkTypeOptions name=(pfuConcat path ".checkTypes") classes="fu-form__set stacked"}}
 </div>
+
+<div class="fu-form__property-row">
+	<div class="fu-form__property">
+		<span>{{localize 'FU.Local'}}</span>
+		{{formGroup trigger.schema.fields.local value=trigger.local name=(pfuConcat path ".local") }}
+	</div>
+
+	<label class="fu-form__property">
+		<span>{{localize 'FU.Identifier'}}</span>
+		<input type="text" name={{pfuConcat path ".identifier"}} value="{{ trigger.identifier }}" />
+	</label>
+</div>

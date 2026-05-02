@@ -21,6 +21,7 @@
     {
       "name": "Polypoda",
       "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
+      "origin": "Compendium.projectfu.skills.Item.fHHT9SZwPRXiEA0U",
       "system": {
         "duration": {
           "event": "none",
@@ -40,37 +41,52 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
       "disabled": false,
-      "_id": "szaAkHSGIyWTzCOV",
+      "_id": "FaNniaVa5YuBNTZh",
       "type": "base",
       "changes": [],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Polypoda",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.fHHT9SZwPRXiEA0U",
+            "effectUuid": null,
+            "fuid": "polypoda"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767389750632,
-        "modifiedTime": 1767389754457,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1777787555787,
+        "modifiedTime": 1777787580518,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!fHHT9SZwPRXiEA0U.szaAkHSGIyWTzCOV"
+      "_key": "!items.effects!fHHT9SZwPRXiEA0U.FaNniaVa5YuBNTZh"
     }
   ],
   "ownership": {

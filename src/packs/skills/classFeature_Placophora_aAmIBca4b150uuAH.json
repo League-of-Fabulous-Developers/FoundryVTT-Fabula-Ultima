@@ -19,59 +19,81 @@
   },
   "effects": [
     {
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
       "name": "Placophora",
-      "_id": "ZDcnVoPzAVT9GcRO",
+      "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+      "origin": "Compendium.projectfu.skills.Item.aAmIBca4b150uuAH",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "elements": {},
+          "progress": {
+            "enabled": false,
+            "id": "",
+            "name": "",
+            "current": 0,
+            "max": 6,
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
+          }
+        }
+      },
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "combat": null
+      },
+      "disabled": false,
+      "_id": "DBT0nBuyIpgRzUHY",
+      "type": "base",
       "changes": [
         {
           "key": "system.derived.def.value",
           "mode": 4,
-          "value": "floor(13+&sl('theriomorphosis')/2)",
+          "value": "13+floor(&sl('theriomorphosis')/2)",
           "priority": null
         }
       ],
-      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</p>",
+      "description": "<p>You are <strong>manifesting</strong> this therioform. Treat your <strong>Defense</strong> as <strong>【13 + (half your Theriomorphosis SL)】</strong> unless your normal score is better.</p>",
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
-        }
-      },
-      "tint": "#ffffff",
-      "_stats": {
-        "coreVersion": "13.348",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1767291784340,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-      "type": "base",
-      "system": {
-        "rules": {
-          "progress": {
-            "id": "",
-            "name": ""
+          "Source": {
+            "name": "Placophora",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.aAmIBca4b150uuAH",
+            "effectUuid": null,
+            "fuid": "placophora"
           }
         }
       },
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!aAmIBca4b150uuAH.ZDcnVoPzAVT9GcRO"
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1777787160109,
+        "modifiedTime": 1777788400736,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+      },
+      "_key": "!items.effects!aAmIBca4b150uuAH.DBT0nBuyIpgRzUHY"
     }
   ],
   "ownership": {

@@ -3,6 +3,7 @@ import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { ItemAttributesDataModel } from '../../items/common/item-attributes-data-model.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 
 const fields = foundry.data.fields;
 
@@ -52,13 +53,19 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 	 * @override
 	 */
 	validateContext(context) {
-		if (!context.config) {
-			console.warn(`No configuration provided in the event ${context.eventType}.`);
-			// TODO: Provide 'optional' property?
-			return false;
+		let check = context.check;
+		let targets = context.targets;
+
+		if (!context.check || !context.targets) {
+			if (context.config) {
+				check = context.config.check;
+				targets = context.config.getTargets();
+			} else {
+				console.warn(`No configuration provided for check in the event ${context.eventType}.`);
+				return false;
+			}
 		}
 
-		const check = context.config.check;
 		if (!check) {
 			return false;
 		}
@@ -76,45 +83,75 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		if (this.outcome) {
 			switch (this.outcome) {
 				case 'critical':
-					if (!context.config.isCritical()) {
+					if (!check.critical) {
 						return false;
 					}
 					break;
 
 				case 'fumble':
-					if (!context.config.isFumble()) {
+					if (!check.fumble) {
 						return false;
 					}
 					break;
 
 				default:
 					{
-						if (context.config.isFumble()) {
+						// 'success' or 'failure'
+						if (this.outcome === 'success' && check.fumble) {
+							return false;
+						} else if (this.outcome === 'failure' && check.critical) {
 							return false;
 						}
 
-						const selected = context.config.getTargets();
-						switch (this.quantifier) {
-							case 'all':
-								return selected.every((target) => {
-									if (target.result === 'hit') return this.outcome === 'success';
-									if (target.result === 'miss') return this.outcome === 'failure';
-									return true;
-								});
+						const inspector = CheckConfiguration.inspect(check);
+						const difficulty = inspector.getDifficulty();
+						if (difficulty != null) {
+							if (this.outcome === 'success' && check.result < difficulty) {
+								return false;
+							} else if (this.outcome === 'failure' && check.result >= difficulty) {
+								return false;
+							}
+						} else {
+							const selected = targets;
+							if (selected.length > 0) {
+								switch (this.quantifier) {
+									case 'all':
+										if (
+											!selected.every((target) => {
+												if (target.result === 'hit') return this.outcome === 'success';
+												if (target.result === 'miss') return this.outcome === 'failure';
+												return true;
+											})
+										) {
+											return false;
+										}
+										break;
 
-							case 'any':
-								return selected.some((target) => {
-									if (target.result === 'hit') return this.outcome === 'success';
-									if (target.result === 'miss') return this.outcome === 'failure';
-									return false;
-								});
+									case 'any':
+										if (
+											!selected.some((target) => {
+												if (target.result === 'hit') return this.outcome === 'success';
+												if (target.result === 'miss') return this.outcome === 'failure';
+												return false;
+											})
+										) {
+											return false;
+										}
+										break;
 
-							case 'none':
-								return selected.every((target) => {
-									if (target.result === 'hit') return this.outcome !== 'success';
-									if (target.result === 'miss') return this.outcome !== 'failure';
-									return true;
-								});
+									case 'none':
+										if (
+											!selected.every((target) => {
+												if (target.result === 'hit') return this.outcome !== 'success';
+												if (target.result === 'miss') return this.outcome !== 'failure';
+												return true;
+											})
+										) {
+											return false;
+										}
+										break;
+								}
+							}
 						}
 					}
 					break;
@@ -123,7 +160,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 
 		// Check attributes
 		const a = [this.attributes.primary.value, this.attributes.secondary.value].filter(Boolean);
-		const b = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.result.primary, check.result.secondary];
+		const b = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.primary.attribute, check.secondary.attribute];
 		if (a.length > 0) {
 			if (!a.every((v) => b.includes(v))) {
 				return false;
@@ -131,7 +168,7 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		}
 
 		// Check result
-		if (this.result > 0 && check.result <= this.result) {
+		if (this.result != null && check.result <= this.result) {
 			return false;
 		}
 

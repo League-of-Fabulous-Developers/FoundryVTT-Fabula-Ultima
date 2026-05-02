@@ -25,6 +25,8 @@ export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),
+			identifier: new fields.StringField(),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}
@@ -50,6 +52,20 @@ export class PerformCheckRuleTrigger extends RuleTriggerDataModel {
 		if (!this.checkTypes.has(context.event.check.type)) {
 			return false;
 		}
+
+		// If this RE is on an item, and it doesn't match the item in the event.
+		if (this.local) {
+			if (!context.isLocalItem()) {
+				return false;
+			}
+		}
+		// Check identifier
+		else if (this.identifier) {
+			if (!context.matchesItem(this.identifier)) {
+				return false;
+			}
+		}
+
 		return true;
 	}
 }
