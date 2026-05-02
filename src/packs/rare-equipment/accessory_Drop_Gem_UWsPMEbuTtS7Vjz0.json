@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/liquid-drop-bluelight.png",
   "system": {
     "fuid": "drop-gem",
-    "description": "<p>Whenever you recover Mind Points, you recover <strong>5 additional Mind Points</strong>.</p>",
+    "description": "<p>Whenever you recover Mind Points, you recover <strong>5 additional Mind Points</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774669201826,
-    "modifiedTime": 1775708765137,
+    "modifiedTime": 1777530404119,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!UWsPMEbuTtS7Vjz0"

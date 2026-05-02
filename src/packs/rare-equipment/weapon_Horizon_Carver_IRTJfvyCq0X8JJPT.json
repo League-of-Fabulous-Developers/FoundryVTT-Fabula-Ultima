@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/sword-swipe.png",
   "system": {
     "fuid": "horizon-carver",
-    "description": "<p>When you use the <strong>Bladestorm</strong> Skill, its MP cost is <strong>halved</strong>.</p>",
+    "description": "<p>When you use the <strong>Bladestorm</strong> Skill, its MP cost is <strong>halved</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -196,7 +196,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774813370688,
-    "modifiedTime": 1775709262952,
+    "modifiedTime": 1777530972431,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!IRTJfvyCq0X8JJPT"

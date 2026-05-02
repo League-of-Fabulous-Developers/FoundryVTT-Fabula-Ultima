@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/flail-single-black.png",
   "system": {
     "fuid": "wrecking-ball",
-    "description": "<p>This weapon deals 5 extra damage to <strong>constructs</strong>.</p>",
+    "description": "<p>This weapon deals 5 extra damage to <strong>constructs</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -201,7 +201,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774730183995,
-    "modifiedTime": 1775709137930,
+    "modifiedTime": 1777530885927,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!7ukexq7t66knnkhk"

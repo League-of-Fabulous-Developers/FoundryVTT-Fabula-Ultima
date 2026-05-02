@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/rainbow-petal.png",
   "system": {
     "fuid": "heart-gem",
-    "description": "<p>Whenever you recover Hit Points, you recover <strong>5 additional Hit Points</strong>.</p>",
+    "description": "<p>Whenever you recover Hit Points, you recover <strong>5 additional Hit Points</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774668965166,
-    "modifiedTime": 1775708774769,
+    "modifiedTime": 1777530409488,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!tWt7b90CqhCcMoIn"

@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/robe-yellow.png",
   "system": {
     "fuid": "electro-magi-robe",
-    "description": "<p>Spells you cast that deal <strong>bolt</strong> damage deal <strong>5 extra damage</strong>.</p>",
+    "description": "<p>Spells you cast that deal <strong>bolt</strong> damage deal <strong>5 extra damage</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -155,7 +155,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774747328786,
-    "modifiedTime": 1775708894486,
+    "modifiedTime": 1777530649090,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!W5kwmDLOGH4mTumn"

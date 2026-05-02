@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/orb-green.png",
   "system": {
     "fuid": "cyclone-orb",
-    "description": "<p>You gain Immunity to <strong>air</strong> damage.</p>",
+    "description": "<p>You gain Immunity to <strong>air</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774657832748,
-    "modifiedTime": 1775708312868,
+    "modifiedTime": 1777530005090,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!tFW0yHz5dMNp9ucM"

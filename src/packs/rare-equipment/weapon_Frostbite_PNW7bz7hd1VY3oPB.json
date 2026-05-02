@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/staff-frostbite.png",
   "system": {
     "fuid": "frostbite",
-    "description": "<p>When you cast an <strong>offensive spell</strong> targeting at least one enemy who is suffering from <strong>weak</strong>, that spell's total MP cost is <strong>halved</strong>.</p>",
+    "description": "<p>When you cast an <strong>offensive spell</strong> targeting at least one enemy who is suffering from <strong>weak</strong>, that spell's total MP cost is <strong>halved</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -208,7 +208,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774810975531,
-    "modifiedTime": 1775709253979,
+    "modifiedTime": 1777530968652,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!PNW7bz7hd1VY3oPB"

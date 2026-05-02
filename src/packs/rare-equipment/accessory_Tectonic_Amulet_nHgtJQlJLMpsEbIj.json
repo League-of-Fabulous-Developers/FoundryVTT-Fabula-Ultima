@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/amulet-goldring-orange.png",
   "system": {
     "fuid": "tectonic-amulet",
-    "description": "<p>All damage dealt by your attacks, spells, and Skills becomes <strong>earth</strong> damage.</p>",
+    "description": "<p>All damage dealt by your attacks, spells, and Skills becomes <strong>earth</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774664796019,
-    "modifiedTime": 1775708695781,
+    "modifiedTime": 1777530280907,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!nHgtJQlJLMpsEbIj"

@@ -3,10 +3,10 @@
   "name": "Sunstone Shield",
   "type": "shield",
   "_id": "JpsQKv88Z2mvLgNR",
-  "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield_knight_red.png",
+  "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-red.png",
   "system": {
     "fuid": "sunstone-shield",
-    "description": "<p>You gain Resistance to <strong>fire</strong> damage.</p>",
+    "description": "<p>You gain Resistance to <strong>fire</strong> damage.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -79,7 +79,7 @@
   "effects": [
     {
       "name": "Sunstone Shield",
-      "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield_knight_red.png",
+      "img": "systems/projectfu/styles/static/compendium/rare-equipment/shields/shield-knight-red.png",
       "origin": "Compendium.projectfu.rare-equipment.Item.JpsQKv88Z2mvLgNR",
       "system": {
         "duration": {
@@ -148,7 +148,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774767605251,
-        "modifiedTime": 1775696678251,
+        "modifiedTime": 1777530861333,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!JpsQKv88Z2mvLgNR.pzq39bAAOiEFyha3"
@@ -172,7 +172,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774767584831,
-    "modifiedTime": 1775696674005,
+    "modifiedTime": 1777530854316,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!JpsQKv88Z2mvLgNR"

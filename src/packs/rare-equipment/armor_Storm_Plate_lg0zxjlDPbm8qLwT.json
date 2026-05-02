@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/armor/armor-storm.png",
   "system": {
     "fuid": "storm-plate",
-    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p>",
+    "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal 5 <strong>bolt</strong> damage to that creature (after the attack has been resolved).</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -165,7 +165,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774749459601,
-    "modifiedTime": 1775708982693,
+    "modifiedTime": 1777530755176,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!lg0zxjlDPbm8qLwT"

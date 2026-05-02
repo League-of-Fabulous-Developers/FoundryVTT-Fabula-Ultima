@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/accessories/bag-brown-gold.png",
   "system": {
     "fuid": "magic-bag",
-    "description": "<p>Whenever you recover Inventory Points, you recover <strong>1 additional Inventory Point</strong>.</p>",
+    "description": "<p>Whenever you recover Inventory Points, you recover <strong>1 additional Inventory Point</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -126,7 +126,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774669418690,
-    "modifiedTime": 1775708786602,
+    "modifiedTime": 1777530414722,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!8pEnESC5kqXQbGHj"

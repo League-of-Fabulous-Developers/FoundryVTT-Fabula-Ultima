@@ -6,7 +6,7 @@
   "img": "systems/projectfu/styles/static/compendium/rare-equipment/weapons/spear-bluelight.png",
   "system": {
     "fuid": "bellringer",
-    "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p>",
+    "description": "<p>Each target hit by this weapon suffers <strong>dazed</strong>.</p><hr /><p><em><strong>Disclaimer:</strong> This is not an official item and should primarily be used as an example of automation. The statistics, quality, and price should be treated as unofficial homebrew and adjusted for each individual group if used.</em></p>",
     "summary": {
       "value": ""
     },
@@ -190,7 +190,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1774739799041,
-    "modifiedTime": 1775709173764,
+    "modifiedTime": 1777530914582,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa"
   },
   "_key": "!items!s9IAXPFtyNSh1Zeb"
