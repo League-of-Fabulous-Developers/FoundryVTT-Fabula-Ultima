@@ -245,22 +245,26 @@ function resolveAffinity(context) {
 		if (game.settings.get(SYSTEM, SETTINGS.pressureSystem) && context.actor.resolveEffect('pressure')) {
 			let pressurePointTriggered = false;
 
-			// Check if the damage type hit a vulnerable affinity
-			const vulnerabilityTriggered = context.affinity === FU.affValue.vulnerability;
-			if (vulnerabilityTriggered) {
-				context.pressureTrigger = StringUtils.localize(FU.damageTypes[context.damageType]);
-				pressurePointTriggered = true;
-			}
-			// Do a lookup on the weapon used, whose traits are passed on to the context.
-			else {
-				/** @type NpcDataModel **/
-				const npcData = context.actor.system;
-				for (const trait of context.traits) {
-					if (npcData.pressurePoints.has(trait)) {
-						pressurePointTriggered = true;
-						context.pressureTrigger = TraitUtils.localize(trait);
-						context.pressurePoint = trait;
-						break;
+			// Since pressure points are triggered on HP loss, simply bypass this entire check when
+			// Immune or Absorb, since HP is not lost in these cases.
+			if (context.affinity !== FU.affValue.immunity && context.affinity !== FU.affValue.absorption) {
+				// Check if the damage type hit a vulnerable affinity
+				const vulnerabilityTriggered = context.affinity === FU.affValue.vulnerability;
+				if (vulnerabilityTriggered) {
+					context.pressureTrigger = StringUtils.localize(FU.damageTypes[context.damageType]);
+					pressurePointTriggered = true;
+				}
+				// Do a lookup on the weapon used, whose traits are passed on to the context.
+				else {
+					/** @type NpcDataModel **/
+					const npcData = context.actor.system;
+					for (const trait of context.traits) {
+						if (npcData.pressurePoints.has(trait)) {
+							pressurePointTriggered = true;
+							context.pressureTrigger = TraitUtils.localize(trait);
+							context.pressurePoint = trait;
+							break;
+						}
 					}
 				}
 			}
@@ -365,7 +369,9 @@ function collectMultipliers(context) {
 		context.addModifier('scaleIncomingDamage', scaleIncomingDamage);
 	}
 
-	if (!context.pressured) {
+	// When the pressure system is active, Affinities other than VU are still applied
+	// as Pressure Points are evaluated on HP loss rather than damage
+	if (!game.settings.get(SYSTEM, SETTINGS.pressureSystem) || (context.affinity !== 0 && context.affinity !== -1)) {
 		const modifier = affinityDamageModifier[context.affinity]();
 		context.addModifier('affinity', modifier);
 	}
