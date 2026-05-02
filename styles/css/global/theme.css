@@ -213,9 +213,22 @@ h4.divider::after {
 		}
 	}
 
+	& .chat-input {
+		color: var(--pfu-color-control-content);
+		text-shadow: none;
+		border: solid;
+		border-width: var(--pfu-border-width);
+		border-color: var(--pfu-color-control-border);
+		border-radius: var(--pfu-border-radius-medium);
+		background: var(--pfu-color-control-fill);
+	}
 	& .chat-input:focus,
 	& .directory-header input:focus {
 		outline-color: var(--pfu-color-misc-shadow-highlight);
+	}
+
+	& .chat-input:focus::placeholder {
+		color: transparent;
 	}
 
 	& .chat-input::placeholder,
@@ -233,7 +246,6 @@ h4.divider::after {
 	& a.button,
 	& .window-content section button,
 	& .sidebar-tab .header-actions button,
-	& .chat-input,
 	& .ui-control {
 		color: var(--pfu-color-control-content);
 		text-shadow: none;
