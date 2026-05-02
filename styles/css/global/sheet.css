@@ -1079,3 +1079,12 @@
 		transform: translateY(0);
 	}
 }
+
+.projectfu prose-mirror {
+	max-height: 350px;
+
+	.source-editor {
+		height: 100%;
+		overflow-y: auto;
+	}
+}

@@ -90,7 +90,7 @@ export class FUActiveEffectConfig extends foundry.applications.sheets.ActiveEffe
 				{ id: 'details', icon: 'fa-solid fa-book' },
 				{ id: 'duration', icon: 'fa-solid fa-clock' },
 				{ id: 'predicates', label: 'FU.Predicate', icon: 'fa-solid fa-check' },
-				{ id: 'rules', label: 'FU.Rule', icon: 'fa-solid fa-list' },
+				{ id: 'rules', label: 'FU.Rule', icon: 'fa-solid fa-list', cssClass: 'scrollable' },
 				{ id: 'changes', icon: 'fa-solid fa-gears' },
 			],
 			initial: 'details',
