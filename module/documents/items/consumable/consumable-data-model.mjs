@@ -57,10 +57,28 @@ export class BasicDamageDataModel extends foundry.abstract.DataModel {
  */
 
 /**
+ * @property {string} action
  * @property {Number} amount
- * @property {FUResourceType} resourceType
+ * @property {Number} bonus
+ * @property {Number} multiplier
+ * @property {FUResourceType} type
  */
-export class ConsumableBuilder {}
+export class ConsumableBuilder {
+	constructor(action, amount, type) {
+		this.action = action;
+		this.amount = Number.parseInt(amount);
+		this.bonus = 0;
+		this.multiplier = 1;
+		this.type = type;
+	}
+
+	/**
+	 * @returns {Number}
+	 */
+	totalAmount() {
+		return Math.floor((this.amount + this.bonus) * this.multiplier);
+	}
+}
 
 /**
  * @property {string} subtype.value
@@ -111,22 +129,17 @@ export class ConsumableDataModel extends FUSubTypedItemDataModel {
 			const cost = new ActionCostDataModel({ resource: 'ip', amount: item.system.ipCost.value, perTarget: false });
 			await ResourcePipeline.configureExpense(config, actor, item, cost);
 
-			let builder = new ConsumableBuilder();
 			if (consumable.resource.enabled) {
-				builder.action = 'resource';
-				builder.amount = consumable.resource.amount;
-				builder.resourceType = consumable.resource.type;
+				let builder = new ConsumableBuilder('resource', consumable.resource.amount, consumable.resource.type);
 				await CommonEvents.createConsumable(actor, item, targets, builder);
-				config.setResource(consumable.resource.type, builder.amount);
+				config.setResource(consumable.resource.type, builder.totalAmount());
 			}
 			if (consumable.damage.enabled) {
-				builder.action = 'damage';
-				builder.amount = consumable.damage.amount;
 				const sourceInfo = InlineSourceInfo.fromInstance(actor, item);
-
-				await CommonEvents.createConsumable(actor, item, targets, builder);
 				for (const type of consumable.damage.types) {
-					const data = DamageData.construct(type, builder.amount);
+					let builder = new ConsumableBuilder('damage', consumable.damage.amount, type);
+					await CommonEvents.createConsumable(actor, item, targets, builder);
+					const data = DamageData.construct(type, builder.totalAmount());
 					const action = DamagePipeline.getTargetedAction(data, sourceInfo);
 					config.addTargetedAction(action);
 				}
