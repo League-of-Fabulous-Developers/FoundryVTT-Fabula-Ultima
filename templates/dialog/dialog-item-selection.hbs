@@ -92,6 +92,7 @@
 						<th></th>
 						<th>{{localize 'FU.Entry'}}</th>
 						{{#if compendiumItems}}
+							<th></th>
 							<th>{{localize 'FU.CompendiumItem'}}</th>
 						{{/if}}
 						{{#each columns as |col|}}
@@ -114,19 +115,21 @@
 							<td class="fu-selection-dialog__entry-cell">
 								<div class="fu-selection-dialog__entry-content">
 									{{pfuItemAnchor item}}
-									<span class="fu-selection-dialog__entry-name" data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
+									<span class="fu-selection-dialog__entry-name align-left" data-tooltip="{{lookup ../descriptions @index}}">{{item.name}}</span>
 								</div>
 							</td>
 							{{#if @root.compendiumItems}}
-								<td>
-									{{#with (lookup ../compendiumItems @index) as |item|}}
+								{{#with (lookup ../compendiumItems @index) as |item|}}
+									<td>
 										{{pfuItemAnchor item}}
+									</td>
+									<td class="align-left">
 										<span>{{item.name}}</span>
-									{{/with}}
-								</td>
+									</td>
+								{{/with}}
 							{{/if}}
 							{{#each @root.columns as |col|}}
-								<td>
+								<td class="align-left">
 									<span>
 										{{lookup (lookup @root.columnData col.label) @../index}}
 									</span>
