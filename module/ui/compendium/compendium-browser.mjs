@@ -20,7 +20,7 @@ class CompendiumTableRenderer extends FUTableRenderer {
 	static TABLE_CONFIG = {
 		getItems: async (entries) => entries.filter((e) => e.name),
 		tablePreset: 'compendium-item',
-		sort: (a, b) => a.system.fuid.localeCompare(b.system.fuid),
+		sort: (a, b) => a.name.localeCompare(b.name),
 	};
 }
 
@@ -585,7 +585,7 @@ export class CompendiumBrowser extends FUApplication {
 					const classes = await this.index.getClasses();
 					const skills = await this.index.getSkills();
 					const classOptions = classes.class
-						.sort((a, b) => a.system.fuid.localeCompare(b.system.fuid))
+						.sort((a, b) => a.name.localeCompare(b.name))
 						.map((c) => ({
 							value: c.system.fuid,
 							label: c.name,
