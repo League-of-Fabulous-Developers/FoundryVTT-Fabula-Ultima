@@ -521,33 +521,6 @@ Hooks.once('ready', async function () {
 		}
 	});
 
-	Hooks.on('preUpdateActor', async (actor, updateData, options, userId) => {
-		const equipped = foundry.utils.getProperty(updateData, 'system.equipped');
-
-		if (!equipped) return;
-
-		// Check if main hand or off hand is being unequipped
-		const mainHandUnequipped = equipped.mainHand === null;
-		const offHandUnequipped = equipped.offHand === null;
-
-		// If neither hand is unequipped, exit early
-		if (!mainHandUnequipped && !offHandUnequipped) return;
-
-		// Get the Unarmed Strike item
-		const unarmedStrike = actor.getSingleItemByFuid('unarmed-strike');
-		if (!unarmedStrike) return;
-
-		// Prepare updates only if necessary
-		const updates = {};
-		if (mainHandUnequipped) updates['system.equipped.mainHand'] = unarmedStrike.id;
-		if (offHandUnequipped) updates['system.equipped.offHand'] = unarmedStrike.id;
-
-		// Perform the update if there are changes
-		if (Object.keys(updates).length > 0) {
-			await actor.update(updates);
-		}
-	});
-
 	Hooks.on('createItem', (item, options, userId) => {
 		if (!item.parent) return; // Make sure the item belongs to an actor or entity
 		if (!game.settings.get('projectfu', 'optionAlwaysFavorite')) return;

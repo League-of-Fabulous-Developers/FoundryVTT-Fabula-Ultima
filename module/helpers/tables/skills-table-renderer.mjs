@@ -3,6 +3,7 @@ import { CommonDescriptions } from './common-descriptions.mjs';
 import { CommonColumns } from './common-columns.mjs';
 import { FU } from '../config.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
+import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
 export class SkillsTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
@@ -28,74 +29,98 @@ export class SkillsTableRenderer extends FUTableRenderer {
 	};
 
 	static async #renderCaption(item) {
+		const context = new ExpressionContext(item.actor, item, []);
 		const data = {
 			FU,
 			class: item.system.class.value,
 		};
 
 		let mainWeapon;
-		if (item.actor && item.actor.isCharacterType) {
+		if ((item.system.useWeapon.accuracy || item.system.useWeapon.damage) && item.actor && item.actor.isCharacterType) {
 			const mainHandItem = item.actor.items.get(item.actor.system.equipped.mainHand);
-			if (item.system.useWeapon.accuracy) {
-				data.useWeapon = true;
-
-				if (mainHandItem && mainHandItem.type in FU.weaponItemTypes) {
-					mainWeapon = mainHandItem;
-					data.weapon = mainWeapon.name;
-				}
+			if (mainHandItem && mainHandItem.type in FU.weaponItemTypes) {
+				mainWeapon = mainHandItem;
+				data.weapon = mainWeapon.name;
 			}
 		}
 
 		if (item.system.hasRoll.value) {
-			let weaponDamage;
+			let skillAccuracyBonus = 0;
+			if (item.system.accuracy) {
+				skillAccuracyBonus = await Expressions.evaluateAsync(item.system.accuracy, context);
+			}
 
-			if (item.system.useWeapon.accuracy && mainWeapon) {
-				if (mainWeapon.type === 'weapon') {
-					data.roll = {
-						primary: mainWeapon.system.attributes.primary.value,
-						secondary: mainWeapon.system.attributes.secondary.value,
-						modifier: mainWeapon.system.accuracy.value + item.system.accuracy,
-					};
-					weaponDamage = {
-						value: mainWeapon.system.damage.value,
-						type: mainWeapon.system.damageType.value,
-					};
-				}
-				if (mainWeapon.type === 'customWeapon') {
-					data.roll = {
-						primary: mainWeapon.system.attributes.primary,
-						secondary: mainWeapon.system.attributes.secondary,
-						modifier: mainWeapon.system.accuracy,
-					};
-					weaponDamage = {
-						value: mainWeapon.system.damage.value,
-						type: mainWeapon.system.damage.type,
-					};
+			if (item.system.useWeapon.accuracy) {
+				data.useWeaponAccuracy = true;
+				if (mainWeapon) {
+					if (mainWeapon.type === 'weapon') {
+						let weaponAccuracyBonus = 0;
+						if (mainWeapon.system.accuracy.value) {
+							weaponAccuracyBonus = await Expressions.evaluateAsync(mainWeapon.system.accuracy.value, context);
+						}
+						data.roll = {
+							primary: mainWeapon.system.attributes.primary.value,
+							secondary: mainWeapon.system.attributes.secondary.value,
+							modifier: weaponAccuracyBonus + skillAccuracyBonus,
+						};
+					}
+					if (mainWeapon.type === 'customWeapon') {
+						let weaponAccuracyBonus = 0;
+						if (mainWeapon.system.accuracy) {
+							weaponAccuracyBonus = await Expressions.evaluateAsync(mainWeapon.system.accuracy, context);
+						}
+						data.roll = {
+							primary: mainWeapon.system.attributes.primary,
+							secondary: mainWeapon.system.attributes.secondary,
+							modifier: weaponAccuracyBonus + skillAccuracyBonus,
+						};
+					}
 				}
 			} else {
 				data.roll = {
 					primary: item.system.attributes.primary,
 					secondary: item.system.attributes.secondary,
-					modifier: item.system.accuracy,
+					modifier: skillAccuracyBonus,
 				};
 			}
+		}
 
-			if (item.system.damage.hasDamage) {
-				if (item.system.useWeapon.damage && mainWeapon) {
-					if (!weaponDamage) throw new Error('Missing weapon damage data. This is a bug, please report it to the maintainers of the system.');
-					const { value: damageValue, type: damageType } = weaponDamage;
+		if (item.system.damage.hasDamage) {
+			if (item.system.useWeapon.damage) {
+				data.useWeaponDamage = true;
+				if (mainWeapon) {
+					let weaponDamageValue = 0;
+					let weaponDamageType;
+					if (mainWeapon.type === 'weapon') {
+						if (mainWeapon.system.damage.value) {
+							weaponDamageValue = await Expressions.evaluateAsync(mainWeapon.system.damage.value, context);
+						}
+						weaponDamageType = mainWeapon.system.damageType.value;
+					} else if (mainWeapon.type === 'customWeapon') {
+						if (mainWeapon.system.damage.value) {
+							weaponDamageValue = await Expressions.evaluateAsync(mainWeapon.system.damage.value, context);
+						}
+						weaponDamageType = mainWeapon.system.damage.type;
+					} else {
+						throw new Error('Missing weapon damage data. This is a bug, please report it to the maintainers of the system.');
+					}
+
+					let itemDamageValue = 0;
+					if (item.system.damage.value) {
+						itemDamageValue = await Expressions.evaluateAsync(item.system.damage.value, context);
+					}
 					data.damage = {
-						value: item.system.damage.value + damageValue,
-						type: item.system.damage.type || damageType,
-						hrZero: item.system.damage.hrZero,
-					};
-				} else {
-					data.damage = {
-						value: item.system.damage.value,
-						type: item.system.damage.type,
+						value: itemDamageValue + weaponDamageValue,
+						type: item.system.damage.type || weaponDamageType,
 						hrZero: item.system.damage.hrZero,
 					};
 				}
+			} else {
+				data.damage = {
+					value: item.system.damage.value,
+					type: item.system.damage.type,
+					hrZero: item.system.damage.hrZero,
+				};
 			}
 		}
 
