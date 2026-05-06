@@ -90,6 +90,7 @@ export const FeatureTraits = Object.freeze({
 	Invocation: 'invocation',
 	InvocationHex: 'invocation-hex',
 	InvocationBlast: 'invocation-blast',
+	TherioformManifest: 'therioform-manifest',
 });
 
 /**

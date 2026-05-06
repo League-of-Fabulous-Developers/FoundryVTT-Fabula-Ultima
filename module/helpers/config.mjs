@@ -555,10 +555,11 @@ FU.resourcesAbbr = {
 	zenit: 'FU.Zenit',
 };
 
-FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
+FU.combatHudResources = {
+	...FU.resources,
 	zeropower: 'ITEM.TypeZeroPower',
 	none: 'FU.None',
-});
+};
 
 /**
  * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "ritual", "initiative", "display"} CheckType

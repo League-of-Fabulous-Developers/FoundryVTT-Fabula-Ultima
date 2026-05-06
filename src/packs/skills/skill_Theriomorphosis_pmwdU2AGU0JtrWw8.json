@@ -150,15 +150,9 @@
               "type": "ruleElement",
               "_id": "Yec5OUMbfBFwQprM",
               "trigger": {
-                "_id": "6NZsFOuogUqYmdDp",
-                "type": "renderCheckRuleTrigger",
-                "eventRelation": "source",
-                "checkTypes": [
-                  "display"
-                ],
-                "itemGroups": [],
-                "local": true,
-                "identifier": ""
+                "_id": "hqyjr2yPlgQXbdEW",
+                "type": "itemRollRuleTrigger",
+                "eventRelation": "source"
               },
               "actions": {
                 "eHEFcn8gfT0481xK": {
@@ -176,6 +170,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -202,7 +201,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1767389458707,
-        "modifiedTime": 1771837663379,
+        "modifiedTime": 1777741390388,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!pmwdU2AGU0JtrWw8.RPlOX0C6CSWtmnFM"

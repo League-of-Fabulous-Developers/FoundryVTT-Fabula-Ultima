@@ -21,6 +21,7 @@
     {
       "name": "Pneumophora",
       "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
+      "origin": "Compendium.projectfu.skills.Item.1QqNBwC1WQKDxk3s",
       "system": {
         "duration": {
           "event": "none",
@@ -34,63 +35,105 @@
         },
         "rules": {
           "elements": {
-            "0ZbvntwNOjdVhoc7": {
+            "hPHXrd3Ns7Uhm2QO": {
               "type": "ruleElement",
-              "_id": "0ZbvntwNOjdVhoc7",
               "trigger": {
-                "_id": "MtUsuxZ2We1DUPDX",
-                "type": "damageRuleTrigger",
+                "_id": "qMDL1yUXZ7b9J2a8",
+                "type": "calculateDamageRuleTrigger",
                 "eventRelation": "source",
-                "damageType": "air",
-                "damageSources": [
+                "itemGroups": [
                   "attack",
                   "spell"
                 ],
-                "damageThreshold": {
-                  "operator": "greaterThan",
-                  "amount": 20
-                }
+                "damageTypes": [],
+                "local": false,
+                "identifier": ""
               },
-              "predicates": {
-                "Pby6xahRh26CzKTX": {
-                  "type": "weaponRulePredicate",
-                  "_id": "Pby6xahRh26CzKTX",
-                  "categories": [
-                    "brawling"
-                  ]
-                }
-              },
+              "_id": "hPHXrd3Ns7Uhm2QO",
               "actions": {
-                "3sILCyDj6SpHx9sg": {
-                  "type": "applyEffectRuleAction",
-                  "_id": "3sILCyDj6SpHx9sg",
-                  "effect": "weak"
-                }
-              }
-            },
-            "Kcc14so6hfGpHFN2": {
-              "type": "ruleElement",
-              "_id": "Kcc14so6hfGpHFN2",
-              "trigger": {
-                "_id": "ViT3bCg3I3kF1o6S",
-                "type": "calculateDamageRuleTrigger",
-                "eventRelation": "source",
-                "damageSources": [
-                  "attack",
-                  "spell"
-                ]
-              },
-              "actions": {
-                "LYV3HoVrHV0bYnGD": {
+                "tZ3Yry9cfTVltdWc": {
                   "type": "modifyDamageRuleAction",
-                  "_id": "LYV3HoVrHV0bYnGD",
+                  "_id": "tZ3Yry9cfTVltdWc",
                   "damageTypes": [
                     "air"
                   ],
                   "amount": "",
+                  "effect": "",
                   "cost": {
-                    "resource": ""
+                    "amount": null
                   }
+                }
+              }
+            },
+            "YZjBOKNfBGMbBXKm": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "hPtCtTnwVVOzPSLe",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "decrement",
+                "changeThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                },
+                "itemGroups": [],
+                "local": false,
+                "identifier": "unarmed-strike"
+              },
+              "_id": "YZjBOKNfBGMbBXKm",
+              "actions": {
+                "irKWUc0vgA5IM5Wo": {
+                  "type": "messageRuleAction",
+                  "_id": "irKWUc0vgA5IM5Wo",
+                  "message": "<p>If <strong>air</strong> damage, they also suffer <strong>weak</strong>.</p>"
+                },
+                "OYnokDmr9nTOxZ3W": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "OYnokDmr9nTOxZ3W",
+                  "effect": "weak"
+                }
+              },
+              "predicates": {
+                "OGdu27Ppq53MpRo0": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "OGdu27Ppq53MpRo0"
+                }
+              }
+            },
+            "zASVBZACMwtCPNg2": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "VptmJtapuZDhZ6kw",
+                "type": "resourceUpdateRuleTrigger",
+                "eventRelation": "source",
+                "resource": "hp",
+                "change": "decrement",
+                "changeThreshold": {
+                  "operator": "greaterThan",
+                  "amount": 20
+                },
+                "itemGroups": [],
+                "local": false,
+                "identifier": "unarmed-strike-akromorphosis"
+              },
+              "_id": "zASVBZACMwtCPNg2",
+              "predicates": {
+                "iQZkgfrt3rJlONwD": {
+                  "type": "factionRelationRulePredicate",
+                  "_id": "iQZkgfrt3rJlONwD"
+                }
+              },
+              "actions": {
+                "pwOvRqEoK2EzCh9R": {
+                  "type": "messageRuleAction",
+                  "_id": "pwOvRqEoK2EzCh9R",
+                  "message": "<p>If <strong>air</strong> damage, they also suffer <strong>weak</strong>.</p>"
+                },
+                "vuQKjvQHqUsW7Mpv": {
+                  "type": "applyEffectRuleAction",
+                  "_id": "vuQKjvQHqUsW7Mpv",
+                  "effect": "weak"
                 }
               }
             }
@@ -101,37 +144,52 @@
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "hExkPSM44Mphgtmr",
+      "disabled": false,
+      "_id": "cjeCGLY9bnHDbWQP",
       "type": "base",
       "changes": [],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. When you deal damage with an <strong>attack</strong> or <strong>spell</strong>, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal <strong>air</strong> damage, any enemy who <strong>loses 20 or more HP</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>weak</strong>.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Pneumophora",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.1QqNBwC1WQKDxk3s",
+            "effectUuid": null,
+            "fuid": "pneumophora"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767290612844,
-        "modifiedTime": 1767389771710,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1777787353792,
+        "modifiedTime": 1777788583891,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!1QqNBwC1WQKDxk3s.hExkPSM44Mphgtmr"
+      "_key": "!items.effects!1QqNBwC1WQKDxk3s.cjeCGLY9bnHDbWQP"
     }
   ],
   "ownership": {

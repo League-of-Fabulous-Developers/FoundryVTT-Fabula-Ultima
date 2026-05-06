@@ -143,7 +143,7 @@ function calculateDamage(actor, item, config) {
  * @property {CharacterInfo} source
  * @property {UpdateResourceData} data
  * @property {FUItem} item
- * @property {ItemGroup} itemGroup
+ * @property {FUItemGroup} itemGroup
  * @property {CharacterInfo[]} targets
  * @property {CheckConfigurer} config
  */
@@ -260,13 +260,18 @@ function loss(actor, resource, amount, origin) {
  * @property {Number} amount
  * @property {CharacterInfo} source
  * @property {CharacterInfo[]} targets
+ * @property {InlineSourceInfo} sourceInfo
  * @property {String} origin
+ * @property {FUItem} item
+ * @property {FUItemGroup} itemGroup
  * @property {FURenderData} renderData
  */
 
-async function resource(sourceActor, targetActors, resource, amount, origin, renderData) {
+async function resource(sourceActor, targetActors, sourceInfo, resource, amount, origin, renderData) {
 	const source = CharacterInfo.fromActor(sourceActor);
 	const targets = CharacterInfo.fromActors(targetActors);
+	const item = sourceInfo.resolveItem();
+	const itemGroup = ItemUtils.resolveItemGroup(item);
 	/** @type ResourceUpdateEvent  **/
 	const event = {
 		amount: amount,
@@ -274,6 +279,8 @@ async function resource(sourceActor, targetActors, resource, amount, origin, ren
 		source: source,
 		targets: targets,
 		origin: origin,
+		item: item,
+		itemGroup: itemGroup,
 		renderData: renderData,
 	};
 	return AsyncHooks.callSequential(FUHooks.RESOURCE_UPDATE, event);

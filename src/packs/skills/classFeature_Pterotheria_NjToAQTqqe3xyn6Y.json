@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You are able to fly. In addition to the obvious advantages in mobility, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures and you cannot be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while you are unable to fly freely (such as when inside a vehicle designed for human-sized creatures, or inside a narrow corridor). Additionally, when you suffer <strong>air</strong>, <strong>bolt</strong> or <strong>ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</p><hr /><p><strong>You Gain:</strong> @EFFECT[flying]</p>"
+      "description": "<p>You are able to fly. In addition to the obvious advantages in mobility, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures and you cannot be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while you are unable to fly freely (such as when inside a vehicle designed for human-sized creatures, or inside a narrow corridor). Additionally, when you suffer <strong>air</strong>, <strong>bolt</strong> or <strong>ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</p><hr /><p><strong>You Receive:</strong> @EFFECT[flying]</p>"
     },
     "source": "FUTF157",
     "fuid": "pterotheria"
@@ -21,6 +21,7 @@
     {
       "name": "Pterotheria",
       "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
+      "origin": "Compendium.projectfu.skills.Item.NjToAQTqqe3xyn6Y",
       "system": {
         "duration": {
           "event": "none",
@@ -33,44 +34,129 @@
           "crisisInteraction": "none"
         },
         "rules": {
-          "elements": {},
+          "elements": {
+            "rbcUWh6fyidW1YV6": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "klvObfMHAsX3JZGd",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "air",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "_id": "rbcUWh6fyidW1YV6",
+              "actions": {
+                "I3nDJvH8oygln7T6": {
+                  "type": "messageRuleAction",
+                  "_id": "I3nDJvH8oygln7T6",
+                  "message": "<p>You lose the benefits of <strong>flying</strong> until the start of your next turn.</p>"
+                }
+              }
+            },
+            "j5hmS08qjkRBwqSm": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "cdG2MyOxpoP34CJw",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "bolt",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "_id": "j5hmS08qjkRBwqSm",
+              "actions": {
+                "YYqaIIzPCI9O55iW": {
+                  "type": "messageRuleAction",
+                  "_id": "YYqaIIzPCI9O55iW",
+                  "message": "<p>You lose the benefits of <strong>flying</strong> until the start of your next turn.</p>"
+                }
+              }
+            },
+            "0G7YG9bVvUifGCXV": {
+              "type": "ruleElement",
+              "trigger": {
+                "_id": "S9MVwjuOyRLedwgo",
+                "type": "damageRuleTrigger",
+                "eventRelation": "target",
+                "damageType": "ice",
+                "affinity": "",
+                "itemGroups": [],
+                "damageThreshold": {
+                  "operator": "",
+                  "amount": 0
+                }
+              },
+              "_id": "0G7YG9bVvUifGCXV",
+              "actions": {
+                "09AmB1PydnPy9YUU": {
+                  "type": "messageRuleAction",
+                  "_id": "09AmB1PydnPy9YUU",
+                  "message": "<p>You lose the benefits of <strong>flying</strong> until the start of your next turn.</p>"
+                }
+              }
+            }
+          },
           "progress": {
             "enabled": false,
             "id": "",
             "name": "",
             "current": 0,
             "max": 6,
-            "style": "basic"
+            "style": "bar"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "combat": null
       },
-      "disabled": true,
-      "_id": "lIafZ78OXDoD5WdW",
+      "disabled": false,
+      "_id": "KAVU4jfHTaNHYD5n",
       "type": "base",
       "changes": [],
-      "description": "",
-      "origin": null,
+      "description": "<p>You are <strong>manifesting</strong> this therioform. You are able to <strong>fly</strong>. When you suffer <strong>air</strong>, <strong>bolt</strong> or <strong>ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
       "sort": 0,
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "Source": {
+            "name": "Pterotheria",
+            "actorUuid": null,
+            "itemUuid": "Compendium.projectfu.skills.Item.NjToAQTqqe3xyn6Y",
+            "effectUuid": null,
+            "fuid": "pterotheria"
+          }
+        }
+      },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1767389173558,
-        "modifiedTime": 1767389196397,
-        "lastModifiedBy": "J5B4HfVqUaCPvzGg"
+        "createdTime": 1777787614251,
+        "modifiedTime": 1777787846118,
+        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
-      "_key": "!items.effects!NjToAQTqqe3xyn6Y.lIafZ78OXDoD5WdW"
+      "_key": "!items.effects!NjToAQTqqe3xyn6Y.KAVU4jfHTaNHYD5n"
     }
   ],
   "ownership": {
@@ -86,7 +172,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1711428338643,
-    "modifiedTime": 1770431151508,
+    "modifiedTime": 1777787684101,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

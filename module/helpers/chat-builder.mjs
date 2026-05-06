@@ -85,9 +85,10 @@ export class FUChatBuilder {
 	getMergedFlags() {
 		// Merge all current flags
 		let merged = {};
-		for (const current of this.#flags.concat(this.renderData.flags)) {
+		for (const current of this.#flags) {
 			foundry.utils.mergeObject(merged, current, { overwrite: false });
 		}
+		foundry.utils.mergeObject(merged, this.#renderData.flags, { overwrite: false });
 		return merged;
 	}
 

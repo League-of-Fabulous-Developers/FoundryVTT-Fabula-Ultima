@@ -10,6 +10,7 @@ import { PseudoItem } from '../pseudo-item.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { PseudoDocumentEnabledTypeDataModel } from '../../pseudo/pseudo-document-enabled-type-data-model.mjs';
 import { WeaponBehaviourMixin } from '../weapon/weapon-behaviour-mixin.mjs';
+import { Traits } from '../../../pipelines/traits.mjs';
 
 const slotsByQuality = {
 	alpha: 1,
@@ -50,7 +51,8 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				weaponCategory: item.system.category,
 				handedness: 'two-handed',
 			})
-			.addTraits(item.system.damage.type)
+			.addTraits(Traits.Damage)
+			.addTraits(item.system.getDamageType())
 			.addTraits(...item.system.traits)
 			.setTargetedDefense(item.system.defense)
 			.setDamageOverride(actor, 'attack');

@@ -26,16 +26,15 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			resource: new fields.StringField({
-				initial: 'hp',
-				choices: Object.keys(FU.resources),
-				required: true,
+			resource: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.resources) }),
+			change: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.scalarChange) }),
+			changeThreshold: new fields.SchemaField({
+				operator: new fields.StringField({ initial: '', blank: true, choices: Object.keys(FU.comparisonOperator) }),
+				amount: new fields.NumberField({ initial: 0 }),
 			}),
-			change: new fields.StringField({
-				initial: 'increment',
-				choices: Object.keys(FU.scalarChange),
-				required: true,
-			}),
+			itemGroups: new fields.SetField(new fields.StringField()),
+			identifier: new fields.StringField(),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}
@@ -58,22 +57,62 @@ export class ResourceUpdateRuleTrigger extends RuleTriggerDataModel {
 			return false;
 		}
 
-		if (context.event.resource !== this.resource) {
-			return false;
+		if (this.resource) {
+			if (context.event.resource !== this.resource) {
+				return false;
+			}
 		}
-		const amount = context.event.amount;
-		switch (this.change) {
-			case 'decrement':
-				if (amount > 0) {
-					return false;
-				}
-				break;
 
-			case 'increment':
-				if (amount < 0) {
-					return false;
-				}
-				break;
+		const amount = context.event.amount;
+		if (this.change) {
+			switch (this.change) {
+				case 'decrement':
+					if (amount > 0) {
+						return false;
+					}
+					break;
+
+				case 'increment':
+					if (amount < 0) {
+						return false;
+					}
+					break;
+			}
+		}
+
+		if (this.changeThreshold.operator) {
+			switch (this.changeThreshold.operator) {
+				case 'greaterThan':
+					if (!(Math.abs(amount) >= Math.abs(this.changeThreshold.amount))) {
+						return false;
+					}
+					break;
+
+				case 'lessThan':
+					if (!(Math.abs(amount) <= Math.abs(this.changeThreshold.amount))) {
+						return false;
+					}
+					break;
+			}
+		}
+
+		if (this.itemGroups.size > 0) {
+			if (!this.itemGroups.has(context.event.itemGroup)) {
+				return false;
+			}
+		}
+
+		// If this RE is on an item, and it doesn't match the item in the event.
+		if (this.local) {
+			if (!context.isLocalItem()) {
+				return false;
+			}
+		}
+		// Check identifier
+		else if (this.identifier) {
+			if (!context.matchesItem(this.identifier)) {
+				return false;
+			}
 		}
 
 		return true;

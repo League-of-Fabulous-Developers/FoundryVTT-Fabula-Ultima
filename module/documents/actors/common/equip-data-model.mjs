@@ -18,7 +18,7 @@ import { FU } from '../../../helpers/config.mjs';
  */
 export class EquipDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
-		const { StringField } = foundry.data.fields;
+		const { ArrayField, StringField } = foundry.data.fields;
 		return {
 			armor: new StringField({ nullable: true }),
 			mainHand: new StringField({ nullable: true }),
@@ -26,6 +26,7 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 			accessory: new StringField({ nullable: true }),
 			phantom: new StringField({ nullable: true }),
 			arcanum: new StringField({ nullable: true }),
+			therioforms: new ArrayField(new StringField({ nullable: true }), {}),
 		};
 	}
 
