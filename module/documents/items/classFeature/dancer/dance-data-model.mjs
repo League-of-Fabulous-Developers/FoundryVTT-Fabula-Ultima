@@ -9,6 +9,9 @@ import { FUChatBuilder } from '../../../../helpers/chat-builder.mjs';
 import { StringUtils } from '../../../../helpers/string-utils.mjs';
 import { Effects } from '../../../../pipelines/effects.mjs';
 import { systemId } from '../../../../helpers/system-utils.mjs';
+import { Targeting } from '../../../../helpers/targeting.mjs';
+import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
+import { ResourcePipeline } from '../../../../pipelines/resource-pipeline.mjs';
 
 const durations = {
 	instant: 'FU.ClassFeatureDanceDurationInstant',
@@ -64,26 +67,30 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		const actor = item.parent;
 		CommonSections.itemFlavor(renderData.sections, item);
 		const description = await TextEditor.enrichHTML(model.description);
-		CommonSections.genericText(renderData.sections, description);
+		CommonSections.description(renderData.sections, description);
 		const flags = {
 			[SYSTEM]: { [Flags.ChatMessage.Item]: item.uuid },
 		};
 
 		/** @type ResourceExpense **/
-		const expense = {
-			source: 'skill',
-			resource: 'mp',
-			amount: 10,
-		};
-
+		let mpCost = 10;
 		const currentDance = item.system.fuid;
 		const previousDance = actor?.getFlag(systemId, Flags.State.PreviousDance);
 		if (previousDance && currentDance !== previousDance) {
-			expense.amount = 5;
+			mpCost = 5;
 		}
 
-		CommonSections.expense(renderData, actor, item, [], flags, expense);
-		await CommonEvents.feature(actor, item, [FeatureTraits.Dance], renderData);
+		const targets = Targeting.getSerializedTargetData();
+		const cost = new ActionCostDataModel({
+			resource: 'mp',
+			amount: mpCost,
+			perTarget: false,
+		});
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
+		CommonSections.expense(renderData, actor, item, targets, flags, expense);
+
+		await CommonEvents.feature(actor, item, [FeatureTraits.Dance], targets, renderData);
 
 		const effectName = 'Previous Dance (' + item.name + ')';
 		const effectDescription = '<p>The last dance you performed was the <strong>' + item.name + '</strong>.</p>';

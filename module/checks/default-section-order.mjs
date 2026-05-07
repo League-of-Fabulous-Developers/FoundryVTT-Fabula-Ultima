@@ -21,4 +21,5 @@ export const ChatSectionOrder = Object.freeze({
 	addendum: -900,
 	result: 1000,
 	actions: 2000,
+	expenses: 2500,
 });

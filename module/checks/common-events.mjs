@@ -718,13 +718,15 @@ async function renderMessage(renderData, actor, document = undefined) {
  * @property
  */
 
-async function feature(actor, item, traits, renderData) {
+async function feature(actor, item, traits, targetData, renderData) {
 	const source = CharacterInfo.fromActor(actor);
+	const targets = CharacterInfo.fromTargetData(targetData);
 	/** @type FeatureEvent  **/
 	const event = {
 		source: source,
 		item: item,
 		traits: traits,
+		targets: targets,
 		renderData: renderData,
 	};
 	return AsyncHooks.callSequential(FUHooks.FEATURE_EVENT, event);
