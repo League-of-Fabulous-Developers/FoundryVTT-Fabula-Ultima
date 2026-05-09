@@ -124,6 +124,7 @@
 		"ExpMax": "Maximum Experience Needed",
 		"ExpMaxHint": "Sets the maximum amount of EXP required to level up (default is 10).",
 		"Level": "Level",
+		"Levels": "Levels",
 		"LevelAbbr": "LV",
 		"LevelUp": "LEVEL UP!",
 		"Role": "Role",

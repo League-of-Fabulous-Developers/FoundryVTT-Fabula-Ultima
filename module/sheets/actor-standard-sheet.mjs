@@ -164,7 +164,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				{ id: 'stats', label: 'FU.Overview' },
 				{ id: 'classes', label: 'FU.Classes' },
 				{ id: 'features', label: 'FU.Features' },
-				{ id: 'spells', label: 'FU.Spell' },
+				{ id: 'spells', label: 'FU.Spells' },
 				{ id: 'items', label: 'FU.Items' },
 
 				{ id: 'combat', label: 'FU.Combat' },
@@ -172,7 +172,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 				{ id: 'notes', label: 'FU.Notes' },
 				{ id: 'effects', label: 'FU.Effects' },
-				{ id: 'advancements', label: 'FU.Advancements' },
+				{ id: 'advancements', label: 'FU.Levels' },
 				{ id: 'settings', label: 'FU.Settings' },
 			],
 			initial: 'stats',
