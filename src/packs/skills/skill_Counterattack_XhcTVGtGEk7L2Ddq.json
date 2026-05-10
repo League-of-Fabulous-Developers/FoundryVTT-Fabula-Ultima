@@ -53,9 +53,7 @@
         "value": false
       },
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "",
       "onRoll": "",
       "onApply": ""
     },
@@ -245,7 +243,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "13.351",
     "createdTime": 1706514121336,
-    "modifiedTime": 1775597183183,
+    "modifiedTime": 1778089801732,
     "lastModifiedBy": "mA8SNY2rY4X5tOHa",
     "compendiumSource": null,
     "duplicateSource": null,

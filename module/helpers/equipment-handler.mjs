@@ -46,7 +46,6 @@ export class EquipmentHandler {
 			// unsupported item type
 			return;
 		}
-		EquipmentHandler.autoEquipUnarmedStrike(this.actor, equippedData);
 
 		await this.actor.update({ 'system.equipped': equippedData });
 	}
@@ -218,24 +217,6 @@ export class EquipmentHandler {
 		}
 	}
 
-	/**
-	 * @param {FUActor} actor
-	 * @param {EquipDataModel} equippedData
-	 */
-	static autoEquipUnarmedStrike(actor, equippedData) {
-		const unarmedStrike = actor.getSingleItemByFuid('unarmed-strike');
-		if (!unarmedStrike) return;
-
-		// If main hand is empty, equip unarmed strike
-		if (!equippedData.mainHand) {
-			equippedData.mainHand = unarmedStrike.id;
-		}
-		// If off hand is empty, equip unarmed strike
-		if (!equippedData.offHand) {
-			equippedData.offHand = unarmedStrike.id;
-		}
-	}
-
 	static getHandEquipment(actor) {
 		let items = [];
 		items.push(...actor.getItemsByType('weapon'));
@@ -257,7 +238,7 @@ export class EquipmentHandler {
 		return Object.values(equippedData)
 			.filter(Boolean)
 			.map((value) => actor.items.get(value))
-			.filter((item, index, self) => item?.system.fuid !== 'unarmed-strike' && self.findIndex((i) => i._id === item._id) === index);
+			.filter((item, index, self) => self.findIndex((i) => i._id === item._id) === index);
 	}
 }
 

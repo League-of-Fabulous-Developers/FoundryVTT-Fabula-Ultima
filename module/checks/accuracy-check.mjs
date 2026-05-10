@@ -49,8 +49,6 @@ const critThresholdFlags = {
  * @type CheckCallback
  */
 const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
-	const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
-
 	{
 		const flag = actor.getFlag(SYSTEM, critThresholdFlags.all);
 		if (flag) {
@@ -58,39 +56,41 @@ const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
 		}
 	}
 
-	// Weapon Category
-	if (weaponTraits.weaponCategory) {
-		if (actor.system.bonuses.accuracy[weaponTraits.weaponCategory]) {
-			check.modifiers.push({
-				label: `FU.AccuracyCheckBonus${weaponTraits.weaponCategory.capitalize()}`,
-				value: actor.system.bonuses.accuracy[weaponTraits.weaponCategory],
-			});
+	const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
+	if (weaponTraits) {
+		// Weapon Category
+		if (weaponTraits.weaponCategory) {
+			if (actor.system.bonuses.accuracy[weaponTraits.weaponCategory]) {
+				check.modifiers.push({
+					label: `FU.AccuracyCheckBonus${weaponTraits.weaponCategory.capitalize()}`,
+					value: actor.system.bonuses.accuracy[weaponTraits.weaponCategory],
+				});
+			}
+
+			const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponCategory]);
+			if (flag) {
+				check.critThreshold = Math.min(check.critThreshold, Number(flag));
+			}
 		}
 
-		const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponCategory]);
-		if (flag) {
-			check.critThreshold = Math.min(check.critThreshold, Number(flag));
-		}
-	}
-
-	// Attack Type
-	const attackType = weaponTraits.weaponType;
-	if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
-		check.modifiers.push({
-			label: 'FU.AccuracyCheckBonusMelee',
-			value: actor.system.bonuses.accuracy.accuracyMelee,
-		});
-	} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
-		check.modifiers.push({
-			label: 'FU.AccuracyCheckBonusRanged',
-			value: actor.system.bonuses.accuracy.accuracyRanged,
-		});
-	}
-
-	{
-		const flag = actor.getFlag(SYSTEM, critThresholdFlags[weaponTraits.weaponType]);
-		if (flag) {
-			check.critThreshold = Math.min(check.critThreshold, Number(flag));
+		// Attack Type
+		const attackType = weaponTraits.weaponType;
+		if (attackType) {
+			if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
+				check.modifiers.push({
+					label: 'FU.AccuracyCheckBonusMelee',
+					value: actor.system.bonuses.accuracy.accuracyMelee,
+				});
+			} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
+				check.modifiers.push({
+					label: 'FU.AccuracyCheckBonusRanged',
+					value: actor.system.bonuses.accuracy.accuracyRanged,
+				});
+			}
+			const flag = actor.getFlag(SYSTEM, critThresholdFlags[attackType]);
+			if (flag) {
+				check.critThreshold = Math.min(check.critThreshold, Number(flag));
+			}
 		}
 	}
 };

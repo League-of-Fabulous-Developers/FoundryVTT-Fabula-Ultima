@@ -182,6 +182,14 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @return {Promise<void>}
 	 */
 	async roll(modifiers) {
+		if (this.useWeapon.accuracy || this.useWeapon.damage) {
+			const weapon = await this.getWeapon(this.parent.actor);
+			if (!weapon) {
+				ui.notifications.error(game.i18n.localize('FU.AbilityNoWeaponEquipped'));
+				return;
+			}
+		}
+
 		if (this.hasRoll.value) {
 			if (this.useWeapon.accuracy || this.damage.hasDamage) {
 				return Checks.accuracyCheck(this.parent.actor, this.parent, this.#initializeAccuracyCheck(modifiers));
@@ -207,29 +215,47 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 */
 	#initializeAccuracyCheck(modifiers) {
 		return async (check, actor, item) => {
+			const config = CheckConfiguration.configure(check);
+			const targets = config.getTargets();
+			const context = ExpressionContext.fromTargetData(actor, item, targets);
 			const weapon = await this.getWeapon(actor);
-			const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon.item);
-			if (error) {
-				throw error;
+
+			if (weapon && (this.useWeapon.accuracy || (this.damage.hasDamage && this.useWeapon.damage))) {
+				config.setWeaponReference(weapon.item);
 			}
 
 			if (this.useWeapon.accuracy) {
-				check.primary = weaponCheck.primary;
-				check.secondary = weaponCheck.secondary;
+				if (weapon) {
+					const { check: weaponCheck, error } = await Checks.prepareCheckDryRun('accuracy', actor, weapon.item);
+					if (error) {
+						throw error;
+					}
+					if (weaponCheck) {
+						check.primary = weaponCheck.primary;
+						check.secondary = weaponCheck.secondary;
+						check.modifiers = check.modifiers.concat(weaponCheck.modifiers);
+						if (weaponCheck.additionalData.defense) {
+							config.setTargetedDefense(weaponCheck.accuracy.defense);
+						}
+					}
+				}
 			} else {
 				check.primary = this.attributes.primary;
 				check.secondary = this.attributes.secondary;
 			}
-
-			const config = CheckConfiguration.configure(check);
-			const targets = config.getTargets();
-			const context = ExpressionContext.fromTargetData(actor, item, targets);
-
-			config.setWeaponReference(weapon.item);
-			config.setHrZero(this.damage.hrZero || modifiers.shift);
 			await this.configureCheck(config, actor, item);
-			await this.addSkillDamage(config, item, context, weapon.data);
 			await this.addSkillAccuracy(config, actor, item, context);
+
+			if (this.damage.hasDamage) {
+				if (this.useWeapon.damage) {
+					if (weapon) {
+						await this.addSkillDamage(config, item, context, weapon.data);
+					}
+				} else {
+					await this.addSkillDamage(config, item, context);
+				}
+				config.setHrZero(this.damage.hrZero || modifiers.shift);
+			}
 		};
 	}
 
@@ -243,12 +269,9 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
 
-			config.setWeaponReference(this.parent);
 			config.check.additionalData[skillForAttributeCheck] = this.parent.uuid;
-			config.setHrZero(this.damage.hrZero || modifiers.shift);
 			await this.configureCheck(config, actor, item);
 			await this.addSkillAccuracy(config, actor, item, context);
-			await this.addSkillDamage(config, item, context);
 			if (this.defense && targets.length === 1) {
 				let dl;
 				switch (this.defense) {
@@ -275,14 +298,18 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 			const config = CheckConfiguration.configure(check);
 			const targets = config.getTargets();
 			const context = ExpressionContext.fromTargetData(actor, item, targets);
+
 			await this.configureCheck(config, actor, item);
 			if (this.damage.hasDamage) {
 				if (this.useWeapon.damage) {
 					const weapon = await this.getWeapon(actor);
-					config.setWeaponReference(weapon.item);
-					config.setDamage(this.damage.type || weapon.data.damage.type, weapon.data.damage.value);
+					if (weapon) {
+						config.setWeaponReference(weapon.item);
+						await this.addSkillDamage(config, item, context, weapon.data);
+					}
+				} else {
+					await this.addSkillDamage(config, item, context);
 				}
-				await this.addSkillDamage(config, item, context);
 			}
 		};
 	}
@@ -380,12 +407,6 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 						config.setDamage(this.damage.type || weaponData.damage.type, weaponData.damage.value);
 					}
 				}
-				if (this.useWeapon.accuracy) {
-					config.addModifier('FU.CheckBonus', weaponData.accuracy.bonus);
-					if (weaponData.accuracy.defense) {
-						config.setTargetedDefense(weaponData.accuracy.defense);
-					}
-				}
 			}
 
 			const onRoll = this.damage.onRoll;
@@ -408,16 +429,7 @@ export class BaseSkillDataModel extends FUStandardItemDataModel {
 	 * @returns {Promise<WeaponResolution>}
 	 */
 	async getWeapon(actor) {
-		const getWeapon = await WeaponResolver.prompt(actor, true);
-		if (getWeapon === false) {
-			let message = game.i18n.localize('FU.AbilityNoWeaponEquipped');
-			ui.notifications.error(message);
-			throw new Error(message);
-		}
-		if (getWeapon == null) {
-			throw new Error('no selection');
-		}
-		return getWeapon;
+		return await WeaponResolver.prompt(actor, true);
 	}
 
 	/**
