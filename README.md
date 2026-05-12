@@ -74,6 +74,7 @@ Major thanks to the following contributors:
 - Joline / Liquitty - For providing custom background art for the sheet/chat card.
 - drak273 - Assisted with system compendium setup and selection of item art.
 - nyxthegender (SPG: [Link](https://startplaying.games/gm/nyxthegender)) - Assisted with restructuring system compendium and setting up journal entries.
+- [Frozedon](https://github.com/Frozedon) - Project management, quality assurance, system compendium maintenance, and various bug fixing.
 
 - Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
 
