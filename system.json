@@ -1,6 +1,6 @@
 {
 	"id": "projectfu",
-	"title": "Fabula Ultima (Project FU)",
+	"title": "Fabula Ultima",
 	"description": "An Unofficial Fabula Ultima system for FoundryVTT!",
 	"version": "#{VERSION}#",
 	"compatibility": {
