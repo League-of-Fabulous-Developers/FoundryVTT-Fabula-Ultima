@@ -289,6 +289,7 @@ export class VersesApplication extends FUApplication {
 			perTarget: false,
 		});
 		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
 
 		// Data for the template
 		const enriched = await enrichDescription(this.#verse);
@@ -325,10 +326,10 @@ export class VersesApplication extends FUApplication {
 		};
 
 		CommonSections.itemFlavor(renderData.sections, this.#verse.parent.parent);
-		CommonSections.genericText(renderData.sections, enriched);
+		CommonSections.description(renderData.sections, enriched);
 		CommonSections.expense(renderData, actor, item, targets, flags, expense);
 
-		await CommonEvents.feature(actor, item, [FeatureTraits.Verse], renderData);
+		await CommonEvents.feature(actor, item, [FeatureTraits.Verse], targets, renderData);
 
 		const builder = new FUChatBuilder(actor, item);
 		builder.withFlags(flags);
@@ -336,5 +337,7 @@ export class VersesApplication extends FUApplication {
 		await builder.create();
 
 		CommonEvents.skill(actor, item);
+
+		this.close();
 	}
 }

@@ -504,8 +504,13 @@ const spendResource = (data, actor, item, cost, targets, flags) => {
 
 		// This can be modified here...
 		await CommonEvents.calculateExpense(actor, item, targets, expense);
+
+		if (expense.amount <= 0) {
+			return;
+		}
+
 		return {
-			order: ChatSectionOrder.actions + 500,
+			order: ChatSectionOrder.expenses,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
@@ -533,7 +538,7 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
 		updateData = new UpdateResourceData(updateData);
 	}
 
-	if (updateData.total === 0) {
+	if (updateData.total <= 0) {
 		return;
 	}
 
@@ -552,7 +557,7 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 	data.sections.push(async () => {
 		return {
-			order: ChatSectionOrder.actions + 500,
+			order: ChatSectionOrder.expenses,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,
@@ -575,11 +580,15 @@ const spendResourceV2 = (data, actor, item, updateData, targets, flags) => {
  * @param {ResourceExpense} expense
  */
 const expense = (data, actor, item, targets, flags, expense) => {
+	if (expense.amount <= 0) {
+		return;
+	}
+
 	Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 	data.postRenderActions.push(() => CommonEvents.expense(actor, item, targets, expense, data));
 	data.sections.push(async () => {
 		return {
-			order: ChatSectionOrder.actions + 100,
+			order: ChatSectionOrder.expenses,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 			data: {
 				name: item.name,

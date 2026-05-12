@@ -9,6 +9,8 @@ import { TextEditor } from '../../../../helpers/text-editor.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
 import { FeatureTraits } from '../../../../pipelines/traits.mjs';
 import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
+import { ActionCostDataModel } from '../../common/action-cost-data-model.mjs';
+import { ResourcePipeline } from '../../../../pipelines/resource-pipeline.mjs';
 
 const BASIC = 'FU.ClassFeatureInvocationsBasicName';
 const ADVANCED = 'FU.ClassFeatureInvocationsAdvancedName';
@@ -74,13 +76,18 @@ const onRenderCheck = async (data, check, actor, item, flags) => {
 				break;
 		}
 		/** @type ResourceExpense **/
-		const expense = {
-			source: 'skill',
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargetsOrDefault();
+		const cost = new ActionCostDataModel({
 			resource: 'mp',
 			amount: 5,
-		};
-		CommonSections.expense(data, actor, item, [], flags, expense);
-		await CommonEvents.feature(actor, item, [FeatureTraits.Invocation], data);
+			perTarget: false,
+		});
+		const expense = await ResourcePipeline.calculateExpense(cost, actor, item, targets);
+		await CommonEvents.calculateExpense(actor, item, targets, expense);
+		CommonSections.expense(data, actor, item, targets, flags, expense);
+
+		await CommonEvents.feature(actor, item, [FeatureTraits.Invocation], targets, data);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);

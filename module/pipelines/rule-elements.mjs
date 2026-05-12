@@ -287,7 +287,7 @@ async function onEffectToggledEvent(event) {
  * @returns {Promise<void>}
  */
 async function onFeatureEvent(event) {
-	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, [], {
+	await evaluate(FUHooks.FEATURE_EVENT, event, event.source, event.targets, {
 		renderData: event.renderData,
 	});
 }

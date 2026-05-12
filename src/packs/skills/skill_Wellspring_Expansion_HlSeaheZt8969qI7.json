@@ -118,7 +118,8 @@
                     "flail",
                     "sword",
                     "thrown"
-                  ]
+                  ],
+                  "selector": "self"
                 }
               },
               "actions": {
@@ -181,7 +182,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1774600495618,
-        "modifiedTime": 1774632860016,
+        "modifiedTime": 1778185971212,
         "lastModifiedBy": "mA8SNY2rY4X5tOHa"
       },
       "_key": "!items.effects!HlSeaheZt8969qI7.BE7hRoMlSX5MrQXw"
