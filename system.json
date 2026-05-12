@@ -27,6 +27,10 @@
 		{
 			"name": "Azurelol",
 			"url": "https://github.com/Azurelol"
+		},
+		{
+			"name": "Frozedon",
+			"url": "https://github.com/Frozedon"
 		}
 	],
 	"scripts": ["greensock/dist/gsap.min.js", "greensock/dist/PixiPlugin.min.js"],
