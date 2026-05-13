@@ -60,6 +60,8 @@ import { RenderMessageRuleTrigger } from '../documents/effects/triggers/render-m
 import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigger.mjs';
 import { FlagRulePredicate } from '../documents/effects/predicates/flag-rule-predicate.mjs';
 
+import { ProgressTrackRuleTrigger } from '../documents/effects/triggers/progress-track-rule-trigger.mjs';
+
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, CombatRuleTrigger.TYPE, CombatRuleTrigger);
@@ -80,6 +82,7 @@ function register() {
 	RuleTriggerRegistry.instance.register(systemId, ItemRollRuleTrigger.TYPE, ItemRollRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, FeatureRuleTrigger.TYPE, FeatureRuleTrigger);
 	RuleTriggerRegistry.instance.register(systemId, RenderMessageRuleTrigger.TYPE, RenderMessageRuleTrigger);
+	RuleTriggerRegistry.instance.register(systemId, ProgressTrackRuleTrigger.TYPE, ProgressTrackRuleTrigger);
 
 	RuleActionRegistry.instance.register(systemId, MessageRuleAction.TYPE, MessageRuleAction);
 	RuleActionRegistry.instance.register(systemId, ApplyDamageRuleAction.TYPE, ApplyDamageRuleAction);
@@ -292,6 +295,13 @@ async function onFeatureEvent(event) {
 	});
 }
 
+async function onProgressEvent(event) {
+	console.log('onProgressEvent:', event);
+	await evaluate(FUHooks.PROGRESS_EVENT, event, event.source, [], {
+		renderData: event.renderData,
+	});
+}
+
 /**
  * @param {CharacterInfo[]} targets
  * @returns {CharacterInfo[]}
@@ -424,6 +434,8 @@ function initialize() {
 	AsyncHooks.on(FUhooks.ITEM_ROLL_EVENT, onItemRoll);
 	AsyncHooks.on(FUhooks.FEATURE_EVENT, onFeatureEvent);
 	AsyncHooks.on(FUHooks.RENDER_MESSAGE_EVENT, onRenderMessageEvent);
+
+	Hooks.on(FUHooks.PROGRESS_EVENT, onProgressEvent);
 }
 
 export const RuleElements = Object.freeze({
