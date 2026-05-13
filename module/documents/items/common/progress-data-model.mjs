@@ -238,7 +238,6 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	 * @returns {Promise}
 	 */
 	static async notifyUpdate(document, progress, increment, source) {
-		CommonEvents.progress(document, progress, 'update', increment, source);
 		const message = StringUtils.localize(increment > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock', {
 			clock: progress.name ?? progress.parent.parent.name,
 			source: source?.name ?? source ?? StringUtils.localize('FU.Unknown'),

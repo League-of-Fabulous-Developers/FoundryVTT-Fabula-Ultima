@@ -1,7 +1,3 @@
-// import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
-// import { RuleTriggerDataModel } from './rule-trigger-data-model.mjs';
-// import { FUHooks } from '../../../hooks.mjs';
-
 import { FU } from '../../../helpers/config.mjs';
 import { systemTemplatePath } from '../../../helpers/system-utils.mjs';
 import { FUHooks } from '../../../hooks.mjs';
@@ -55,12 +51,17 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
+		console.log('Validating context:', context);
+		console.log(context.origin);
+		console.log(context.event.origin);
 		if (context.origin === context.event.origin) return false;
 
 		if (!this.comparisonOperator) return false;
 
 		const event = context.event;
 		const progress = event.progress;
+
+		if (progress.id !== this.identifier && progress.name !== this.identifier) return;
 
 		switch (this.comparisonOperator) {
 			case 'max':
