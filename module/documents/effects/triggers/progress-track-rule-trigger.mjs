@@ -56,6 +56,9 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 		console.log(context.event.origin);
 		if (context.origin === context.event.origin) return false;
 
+		// Only trigger if the progress track is within the same item as this rule element
+		if (context.source !== context.item) return;
+
 		if (!this.comparisonOperator) return false;
 
 		const event = context.event;
