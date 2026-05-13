@@ -4,9 +4,9 @@
 			<i class="fas fa-clock"></i>
 			<label class="resource-label-m">{{localize 'FU.Clock'}}</label>
 		</legend>
-		<div class="grid grid-3col">
+		<div class="grid grid-4col">
 
-			<label class="resource-label-m resource-content flexcol flex-group-center grid-span-3">
+			<label class="resource-label-m resource-content flexcol flex-group-center grid-span-4">
 				{{localize 'FU.Name'}}
 				<input type="text" name="system.progress.name" value="{{ system.progress.name }}"
 					   class="resource-inputs select-dropdown-full" />
@@ -28,6 +28,11 @@
 				{{localize 'FU.Max'}}
 				<input type="number" name="system.progress.max" value="{{ system.progress.max }}"
 					   min="2" class="resource-inputs select-dropdown-m">
+			</label>
+
+			<label class="resource-label-m resource-content flexcol flex-group-center">
+				{{localize "FU.Identifier"}}
+				<input type="text" name="system.progress.id" value="{{system.progress.id}}" class="resource-inputs select-dropdown-m" placeholder="{{localize "FU.Identifier"}}">
 			</label>
 		</div>
 	</fieldset>

@@ -5,6 +5,7 @@ import { FU } from '../../../helpers/config.mjs';
 import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
 import { ProgressPipeline } from '../../../pipelines/progress-pipeline.mjs';
 import { FUHooks } from '../../../hooks.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
 
 const fields = foundry.data.fields;
 /**
@@ -81,6 +82,7 @@ export class UpdateTrackRuleAction extends RuleActionDataModel {
 					{
 						// TODO: Add automatic application variant
 						await actor.updateProgress(id, step);
+						CommonEvents.progress(actor, progress, 'update', step, context.item);
 						if (this.notify) {
 							await ProgressDataModel.notifyUpdate(actor, progress, step, context.item);
 						}

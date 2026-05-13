@@ -394,8 +394,10 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			const postUpdate = await super.update(delta);
 
 			if (delta.system?.rules?.progress) {
-				// Progress is changed
-				CommonEvents.progress(this, this.system.rules.progress, 'update', delta.system.rules.progress.current ? delta.system.rules.progress.current - previous.rules.progress.current : 0, this.parent);
+				if (previous.rules.progress.current !== this.system.rules.progress.current) {
+					// Progress is changed
+					CommonEvents.progress(this, this.system.rules.progress, 'update', delta.system.rules.progress.current ? delta.system.rules.progress.current - previous.rules.progress.current : 0, this.parent);
+				}
 			}
 
 			return postUpdate;
