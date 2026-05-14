@@ -95,7 +95,8 @@
         "sort": 100000,
         "flags": {
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         }
       },
@@ -185,7 +186,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "xrFNIw9Qwn9gZskX",
@@ -275,7 +277,8 @@
         "sort": 200000,
         "flags": {
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         }
       },
@@ -363,7 +366,8 @@
         "sort": 500000,
         "flags": {
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         }
       }

@@ -277,7 +277,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "EjarmObI7ZhvRqhz",
@@ -499,7 +500,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "XFP606KAwDeeQ7gC",
@@ -680,7 +682,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "yJDa3pqtwkeYYXtZ",
@@ -769,7 +772,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "P7U5SAmR6rKSOON3",

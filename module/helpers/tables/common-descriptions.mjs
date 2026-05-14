@@ -17,8 +17,9 @@ function simpleDescription(descriptionKey) {
  * @return {(FUItem) => Promise<string>}
  */
 function descriptionWithTags(getTags, descriptionKey) {
-	return function (item) {
-		return renderDescription(item, descriptionKey, getTags.call(this, item));
+	return async function (item) {
+		const tags = await getTags.call(this, item);
+		return renderDescription(item, descriptionKey, tags);
 	};
 }
 

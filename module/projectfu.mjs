@@ -117,6 +117,7 @@ import { AutomationPipeline } from './pipelines/automation.mjs';
 import { Themes } from './ui/themes/theme-options.mjs';
 import { FUSidebar, FUSidebarApplication } from './ui/sidebar.mjs';
 import { SheetExtensions } from './sheets/sheet-extension.mjs';
+import { ClassFuidConverter } from './documents/items/class-fuid-converter.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -527,6 +528,8 @@ Hooks.once('ready', async function () {
 		if (item.isFavorite === true) return; // Already favored
 		item.toggleFavorite(true);
 	});
+
+	ClassFuidConverter.run();
 });
 
 /* -------------------------------------------- */

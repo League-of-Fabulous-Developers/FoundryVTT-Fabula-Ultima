@@ -94,7 +94,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "n8liOYfNohtGSGUx",
@@ -183,7 +184,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "ZzkZnbOeEtZGK9gW",
@@ -358,7 +360,8 @@
         "sort": 150000,
         "flags": {
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         }
       },
@@ -446,7 +449,8 @@
         "sort": 200000,
         "flags": {
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         }
       },
@@ -619,7 +623,8 @@
         "sort": 300000,
         "flags": {
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         }
       }

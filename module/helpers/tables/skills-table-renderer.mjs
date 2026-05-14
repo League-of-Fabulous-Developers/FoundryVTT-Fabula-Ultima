@@ -4,6 +4,7 @@ import { CommonColumns } from './common-columns.mjs';
 import { FU } from '../config.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
+import { CompendiumIndex } from '../../ui/compendium/compendium-index.mjs';
 
 export class SkillsTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
@@ -34,6 +35,11 @@ export class SkillsTableRenderer extends FUTableRenderer {
 			FU,
 			class: item.system.class.value,
 		};
+
+		const foundClass = await SkillsTableRenderer.findMatchingClass(item);
+		if (foundClass) {
+			data.class = foundClass.name;
+		}
 
 		let mainWeapon;
 		if ((item.system.useWeapon.accuracy || item.system.useWeapon.damage) && item.actor && item.actor.isCharacterType) {
@@ -136,5 +142,57 @@ export class SkillsTableRenderer extends FUTableRenderer {
 				reached: current > index,
 			}));
 		return foundry.applications.handlebars.renderTemplate(systemTemplatePath('table/cell/cell-skill-level'), { skillArr: skillArr });
+	}
+
+	static findMatchingClassInArray(item, classes) {
+		const className = item.system?.class?.value;
+		if (className) {
+			// Search for a class with the same name. If found, set the skill's class attribute to match its fu-id
+			const classFound = classes.find((classItem) => {
+				return classItem.name === className;
+			});
+			if (classFound?.system?.fuid) {
+				return classFound;
+			}
+
+			// Search for a class with a fuid that matches the slugified attribute.
+			const classNameSlug = game.projectfu.util.slugify(className);
+			const classFoundWithFuid = classes.find((classItem) => {
+				return classItem.system?.fuid === classNameSlug;
+			});
+			if (classFoundWithFuid?.system?.fuid) {
+				return classFoundWithFuid;
+			}
+		}
+		return;
+	}
+
+	static async findMatchingClass(item) {
+		if (item.system.class.value) {
+			const actorClasses = item.actor.items.filter((arrayItem) => {
+				return arrayItem.type === 'class';
+			});
+			const foundActorClass = SkillsTableRenderer.findMatchingClassInArray(item, actorClasses);
+			if (foundActorClass) {
+				return foundActorClass;
+			}
+
+			const worldClasses = game.items.filter((arrayItem) => {
+				return arrayItem.type === 'class';
+			});
+			const foundWorldClass = SkillsTableRenderer.findMatchingClassInArray(item, worldClasses);
+			if (foundWorldClass) {
+				return foundWorldClass;
+			}
+
+			const compendiumClasses = await CompendiumIndex.instance.getClasses();
+			if (compendiumClasses?.class) {
+				const foundCompendiumClass = SkillsTableRenderer.findMatchingClassInArray(item, compendiumClasses.class);
+				if (foundCompendiumClass) {
+					return foundCompendiumClass;
+				}
+			}
+		}
+		return;
 	}
 }

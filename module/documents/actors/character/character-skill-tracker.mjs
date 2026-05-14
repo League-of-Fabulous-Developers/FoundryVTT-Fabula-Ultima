@@ -37,12 +37,13 @@ export class CharacterSkillTracker {
 	}
 
 	/**
-	 * @param {String} className
+	 * @param {FUItem} classItem
 	 * @returns {Number|number}
 	 */
-	getClassLevel(className) {
-		if (this.#classSkills[className]) {
-			return this.#classSkills[className];
+	getClassLevel(classItem) {
+		const fuid = classItem.system?.fuid;
+		if (fuid && this.#classSkills[fuid]) {
+			return this.#classSkills[fuid];
 		}
 		return 0;
 	}

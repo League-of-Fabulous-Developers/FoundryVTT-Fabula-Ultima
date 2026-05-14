@@ -64,6 +64,7 @@ export const Flags = Object.freeze({
 	Modifier: Object.freeze({
 		ScaleIncomingDamage: 'scaleIncomingDamage',
 	}),
+	ClassConverted: 'classConverted',
 });
 
 export const FlagUtility = Object.freeze({
