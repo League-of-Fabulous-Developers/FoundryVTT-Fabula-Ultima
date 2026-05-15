@@ -113,7 +113,7 @@
                     "_id": "5qIf7IG9ZAkwVt9R",
                     "trigger": {
                       "_id": "gkqkk1BJmj01J9jB",
-                      "type": "performCheckRuleTrigger",
+                      "type": "renderCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "open"

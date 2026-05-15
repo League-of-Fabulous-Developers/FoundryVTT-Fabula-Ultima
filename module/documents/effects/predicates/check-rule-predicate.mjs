@@ -173,11 +173,10 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 			}
 		}
 
-		// FIXME: Rule element workflow cannot access check results because the check has not yet been rolled when the predicate is checked
-		// // Check result
-		// if (this.result != null && check.result <= this.result) {
-		// 	return false;
-		// }
+		// Check result
+		if (this.result != null && check.result <= this.result) {
+			return false;
+		}
 
 		return true;
 	}
