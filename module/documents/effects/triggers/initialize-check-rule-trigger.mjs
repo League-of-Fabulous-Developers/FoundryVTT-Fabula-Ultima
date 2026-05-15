@@ -28,7 +28,7 @@ export class InitializeCheckRuleTrigger extends RuleTriggerDataModel {
 		const schema = Object.assign(super.defineSchema(), {
 			checkTypes: new fields.SetField(new fields.StringField()),
 			itemGroups: new fields.SetField(new fields.StringField()),
-			local: new fields.BooleanField({ initial: true }),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}

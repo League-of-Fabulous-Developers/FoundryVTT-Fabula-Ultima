@@ -42,7 +42,7 @@ export class CalculateResourceRuleTrigger extends RuleTriggerDataModel {
 			}),
 			itemGroups: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
-			local: new fields.BooleanField(),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}

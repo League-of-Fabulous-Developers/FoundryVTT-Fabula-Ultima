@@ -24,7 +24,7 @@ export class RenderMessageRuleTrigger extends RuleTriggerDataModel {
 
 	static defineSchema() {
 		const schema = Object.assign(super.defineSchema(), {
-			local: new fields.BooleanField({ initial: true }),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}

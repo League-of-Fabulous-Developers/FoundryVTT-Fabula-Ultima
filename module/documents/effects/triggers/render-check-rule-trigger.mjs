@@ -30,7 +30,7 @@ export class RenderCheckRuleTrigger extends RuleTriggerDataModel {
 			checkTypes: new fields.SetField(new fields.StringField()),
 			itemGroups: new fields.SetField(new fields.StringField()),
 			identifier: new fields.StringField(),
-			local: new fields.BooleanField({ initial: true }),
+			local: new fields.BooleanField({ initial: false }),
 		});
 		return schema;
 	}
