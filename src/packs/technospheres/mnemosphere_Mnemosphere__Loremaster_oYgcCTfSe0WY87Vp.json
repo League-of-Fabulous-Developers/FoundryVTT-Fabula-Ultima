@@ -11,180 +11,187 @@
     "level": 1,
     "maxLevel": 5,
     "items": [
-      {
-        "name": "Flash of Insight",
-        "type": "skill",
-        "_id": "CAxdWJRKIC60zqQu",
-        "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
-        "system": {
-          "summary": {
-            "value": ""
-          },
-          "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study</strong> action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
-          "showTitleCard": {
-            "value": false
-          },
-          "level": {
-            "value": 0,
-            "max": 3,
-            "min": 0
-          },
-          "class": {
-            "value": "loremaster"
-          },
-          "useWeapon": {
-            "accuracy": false,
-            "damage": false,
-            "traits": true
-          },
-          "attributes": {
-            "primary": "dex",
-            "secondary": "dex"
-          },
-          "accuracy": "0",
-          "damage": {
-            "hasDamage": false,
-            "value": 0,
-            "type": "physical",
-            "onRoll": "",
-            "onApply": "",
-            "hrZero": false
-          },
-          "source": "FUCR199",
-          "hasRoll": {
-            "value": false
-          },
-          "hasResource": {
-            "value": false
-          },
-          "rp": {
-            "name": "Name",
-            "current": 0,
-            "step": 1,
-            "max": 6,
-            "enabled": false
-          },
-          "defense": "def",
-          "fuid": "flash-of-insight",
-          "targeting": {
-            "rule": "self",
-            "max": 0
-          },
-          "traits": [],
-          "effects": {
-            "entries": [],
-            "prompt": false,
-            "duration": {
-              "event": "",
-              "tracking": "",
-              "interval": null
-            }
-          },
-          "cost": {
-            "resource": "mp",
-            "amount": "",
-            "perTarget": false
-          },
-          "resource": {
-            "enabled": false,
-            "amount": "",
-            "type": "hp"
-          }
-        },
-        "effects": [
-          {
-            "name": "Flash of Insight",
-            "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
-            "system": {
-              "duration": {
-                "event": "none",
-                "interval": 1,
-                "tracking": "self",
-                "remaining": 1
-              },
-              "type": "default",
-              "predicate": {
-                "crisisInteraction": "none"
-              },
-              "rules": {
-                "elements": {
-                  "5qIf7IG9ZAkwVt9R": {
-                    "type": "ruleElement",
-                    "_id": "5qIf7IG9ZAkwVt9R",
-                    "trigger": {
-                      "_id": "gkqkk1BJmj01J9jB",
-                      "type": "resolveCheckRuleTrigger",
-                      "eventRelation": "source",
-                      "checkTypes": [
-                        "open"
-                      ]
-                    },
-                    "predicates": {
-                      "udvpE739WHduDidd": {
-                        "type": "checkRulePredicate",
-                        "_id": "udvpE739WHduDidd",
-                        "result": 13,
-                        "attributes": {
-                          "primary": {
-                            "value": "ins"
-                          },
-                          "secondary": {
-                            "value": "ins"
-                          }
-                        },
-                        "parity": "",
-                        "outcome": "",
-                        "quantifier": "any"
-                      }
-                    },
-                    "actions": {
-                      "OqeboGimrr953F0i": {
-                        "type": "messageRuleAction",
-                        "_id": "OqeboGimrr953F0i",
-                        "message": "<p>If this was to investigate a creature, item or location, you may ask the GM up to<strong>【SL】</strong>questions concerning the subject.</p>"
-                      }
-                    },
-                    "selector": "initial",
-                    "enabled": true
-                  }
-                },
-                "progress": {
-                  "enabled": false,
-                  "id": "",
-                  "name": "",
-                  "current": 0,
-                  "max": 6,
-                  "style": "basic",
-                  "step": 1
-                }
-              }
-            },
-            "duration": {
-              "startTime": null,
-              "combat": null
-            },
-            "disabled": false,
-            "_id": "45F7umTTsKZUmmgj",
-            "type": "base",
-            "changes": [],
-            "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location, you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation.</p>",
-            "origin": null,
-            "tint": "#ffffff",
-            "transfer": true,
-            "statuses": [],
-            "sort": 0,
-            "flags": {}
-          }
-        ],
-        "flags": {
-          "core": {},
-          "projectfu": {
-            "favorite": false
-          }
-        },
-        "sort": 0
-      },
-      {
+		{
+			"name": "Flash of Insight",
+			"type": "skill",
+			"_id": "D4Al2CatwtTnU5tL",
+			"img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
+			"system": {
+				"summary": {
+					"value": ""
+				},
+				"description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study</strong> action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
+				"showTitleCard": {
+					"value": false
+				},
+				"level": {
+					"value": 0,
+					"max": 3,
+					"min": 0
+				},
+				"class": {
+					"value": "loremaster"
+				},
+				"useWeapon": {
+					"accuracy": false,
+					"damage": false,
+					"traits": true
+				},
+				"attributes": {
+					"primary": "dex",
+					"secondary": "dex"
+				},
+				"accuracy": "0",
+				"damage": {
+					"hasDamage": false,
+					"value": 0,
+					"type": "physical",
+					"onRoll": "",
+					"onApply": "",
+					"hrZero": false
+				},
+				"source": "FUCR199",
+				"hasRoll": {
+					"value": false
+				},
+				"hasResource": {
+					"value": false
+				},
+				"rp": {
+					"name": "Name",
+					"current": 0,
+					"step": 1,
+					"max": 6,
+					"enabled": false
+				},
+				"defense": "def",
+				"fuid": "flash-of-insight",
+				"targeting": {
+					"rule": "self",
+					"max": 0
+				},
+				"traits": [],
+				"effects": {
+					"entries": [],
+					"prompt": false,
+					"duration": {
+						"event": "",
+						"tracking": ""
+					}
+				},
+				"cost": {
+					"resource": "mp",
+					"amount": "",
+					"perTarget": false
+				},
+				"resource": {
+					"enabled": false,
+					"amount": "",
+					"type": "hp"
+				}
+			},
+			"effects": [
+				{
+					"name": "Flash of Insight",
+					"img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
+					"system": {
+						"duration": {
+							"event": "none",
+							"interval": 1,
+							"tracking": "self",
+							"remaining": 1
+						},
+						"type": "default",
+						"predicate": {
+							"crisisInteraction": "none"
+						},
+						"rules": {
+							"elements": {
+								"5qIf7IG9ZAkwVt9R": {
+									"type": "ruleElement",
+									"_id": "5qIf7IG9ZAkwVt9R",
+									"trigger": {
+										"_id": "N7OFfFMpeQInn2lL",
+										"type": "renderCheckRuleTrigger",
+										"eventRelation": "source",
+										"checkTypes": [
+											"open"
+										],
+										"itemGroups": [],
+										"local": false,
+										"identifier": ""
+									},
+									"predicates": {
+										"udvpE739WHduDidd": {
+											"type": "checkRulePredicate",
+											"_id": "udvpE739WHduDidd",
+											"result": 13,
+											"attributes": {
+												"primary": {
+													"value": "ins"
+												},
+												"secondary": {
+													"value": "ins"
+												}
+											},
+											"parity": "",
+											"outcome": "",
+											"quantifier": "any"
+										}
+									},
+									"actions": {
+										"OqeboGimrr953F0i": {
+											"type": "messageRuleAction",
+											"_id": "OqeboGimrr953F0i",
+											"message": "<p>If this was to investigate a creature, item or location, you may ask the GM up to<strong>【SL】</strong>questions concerning the subject.</p>"
+										}
+									},
+									"selector": "initial",
+									"enabled": true
+								}
+							},
+							"progress": {
+								"enabled": false,
+								"id": "",
+								"name": "",
+								"current": 0,
+								"max": 6,
+								"style": "basic",
+								"step": 1
+							},
+							"stacking": {
+								"progress": false,
+								"duration": false,
+								"increment": 1
+							}
+						}
+					},
+					"duration": {
+						"startTime": null,
+						"combat": null
+					},
+					"disabled": false,
+					"_id": "45F7umTTsKZUmmgj",
+					"type": "base",
+					"changes": [],
+					"description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location, you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation.</p>",
+					"origin": null,
+					"tint": "#ffffff",
+					"transfer": true,
+					"statuses": [],
+					"sort": 0,
+					"flags": {}
+				}
+			],
+			"flags": {
+				"core": {},
+				"projectfu": {
+					"favorite": false
+				}
+			},
+			"sort": 0
+		},
+		{
         "name": "Focused",
         "type": "skill",
         "_id": "2qECrNCT1GTwpQIs",
@@ -309,7 +316,8 @@
                       "eventRelation": "source",
                       "checkTypes": [
                         "open"
-                      ]
+                      ],
+                      "local": false
                     },
                     "predicates": {
                       "N5FnDMpHmZ4JA6wb": {
@@ -735,8 +743,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1745491348230,
-    "modifiedTime": 1776191983126,
-    "lastModifiedBy": "mA8SNY2rY4X5tOHa",
+    "modifiedTime": 1778875058784,
+    "lastModifiedBy": "VpDy3go69LzoCFsX",
     "exportSource": null
   },
   "_key": "!items!oYgcCTfSe0WY87Vp"

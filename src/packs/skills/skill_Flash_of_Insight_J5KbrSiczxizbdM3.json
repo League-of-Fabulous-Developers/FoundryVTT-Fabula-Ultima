@@ -144,12 +144,15 @@
               "type": "ruleElement",
               "_id": "5qIf7IG9ZAkwVt9R",
               "trigger": {
-                "_id": "gkqkk1BJmj01J9jB",
-                "type": "resolveCheckRuleTrigger",
+                "_id": "N7OFfFMpeQInn2lL",
+                "type": "renderCheckRuleTrigger",
                 "eventRelation": "source",
                 "checkTypes": [
                   "open"
-                ]
+                ],
+                "itemGroups": [],
+                "local": false,
+                "identifier": ""
               },
               "predicates": {
                 "udvpE739WHduDidd": {
@@ -182,6 +185,11 @@
             "current": 0,
             "max": 6,
             "style": "basic"
+          },
+          "stacking": {
+            "progress": false,
+            "duration": false,
+            "increment": 1
           }
         }
       },
@@ -208,8 +216,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1770415635015,
-        "modifiedTime": 1770417674691,
-        "lastModifiedBy": "mA8SNY2rY4X5tOHa"
+        "modifiedTime": 1778874903057,
+        "lastModifiedBy": "VpDy3go69LzoCFsX"
       },
       "_key": "!items.effects!J5KbrSiczxizbdM3.45F7umTTsKZUmmgj"
     }
