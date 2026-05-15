@@ -159,18 +159,25 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		}
 
 		// Check attributes
-		const a = [this.attributes.primary.value, this.attributes.secondary.value].filter(Boolean);
+		const a = [this.attributes.primary.value, this.attributes.secondary.value];
 		const b = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.primary.attribute, check.secondary.attribute];
-		if (a.length > 0) {
-			if (!a.every((v) => b.includes(v))) {
-				return false;
+		for (let i = 0; i < a.length; i++) {
+			const attribute = a[i];
+			if (attribute) {
+				const idx = b.findIndex((value) => value === attribute);
+				if (idx >= 0) {
+					b.splice(idx, 1);
+				} else {
+					return false;
+				}
 			}
 		}
 
-		// Check result
-		if (this.result != null && check.result <= this.result) {
-			return false;
-		}
+		// FIXME: Rule element workflow cannot access check results because the check has not yet been rolled when the predicate is checked
+		// // Check result
+		// if (this.result != null && check.result <= this.result) {
+		// 	return false;
+		// }
 
 		return true;
 	}
