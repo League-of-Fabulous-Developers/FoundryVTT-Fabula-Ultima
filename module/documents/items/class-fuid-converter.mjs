@@ -62,11 +62,31 @@ async function convertActorItemsClassAttributes(actorSource) {
 	const actorClasses = items.filter((item) => {
 		return item.type === 'class';
 	});
-	const worldClasses = game.items?.filter((item) => {
+	const worldClasses = game.items.filter((item) => {
 		return item.type === 'class';
 	});
 	const compendiumClasses = await CompendiumIndex.instance.getClasses();
 	const allClasses = actorClasses.concat(worldClasses, compendiumClasses.class);
+
+	for (const itemToConvert of itemsToConvert) {
+		await convertClassAttributeFromClassLists(itemToConvert, allClasses);
+	}
+}
+
+async function convertGameItemsClassAttributes() {
+	const itemsToConvert = game.items.filter((item) => {
+		return (item.type === 'skill' || item.type === 'spell' || item.type === 'heroic') && !item.flags?.projectfu?.classConverted;
+	});
+
+	if (itemsToConvert.length == 0) {
+		return;
+	}
+
+	const worldClasses = game.items.filter((item) => {
+		return item.type === 'class';
+	});
+	const compendiumClasses = await CompendiumIndex.instance.getClasses();
+	const allClasses = worldClasses.concat(compendiumClasses.class);
 
 	for (const itemToConvert of itemsToConvert) {
 		await convertClassAttributeFromClassLists(itemToConvert, allClasses);
@@ -78,5 +98,6 @@ export class ClassFuidConverter {
 		for (const actor of game.actors) {
 			convertActorItemsClassAttributes(actor);
 		}
+		convertGameItemsClassAttributes();
 	}
 }
