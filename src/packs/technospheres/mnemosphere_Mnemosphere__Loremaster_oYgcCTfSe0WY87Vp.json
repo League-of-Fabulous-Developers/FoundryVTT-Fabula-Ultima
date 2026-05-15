@@ -113,7 +113,7 @@
                     "_id": "5qIf7IG9ZAkwVt9R",
                     "trigger": {
                       "_id": "gkqkk1BJmj01J9jB",
-                      "type": "renderCheckRuleTrigger",
+                      "type": "resolveCheckRuleTrigger",
                       "eventRelation": "source",
                       "checkTypes": [
                         "open"
@@ -141,7 +141,7 @@
                       "OqeboGimrr953F0i": {
                         "type": "messageRuleAction",
                         "_id": "OqeboGimrr953F0i",
-                        "message": "<p>If this was to investigate a creature, item or location <strong>and</strong> you rolled a <strong>13 or higher</strong>, you may ask the GM up to<strong>【SL】</strong>questions concerning the subject.</p>"
+						"message": "<p>If this was to investigate a creature, item or location, you may ask the GM up to<strong>【SL】</strong>questions concerning the subject.</p>"
                       }
                     },
                     "selector": "initial",

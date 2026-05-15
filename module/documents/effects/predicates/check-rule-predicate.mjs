@@ -159,14 +159,14 @@ export class CheckRulePredicate extends RulePredicateDataModel {
 		}
 
 		// Check attributes
-		const a = [this.attributes.primary.value, this.attributes.secondary.value];
-		const b = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.primary.attribute, check.secondary.attribute];
-		for (let i = 0; i < a.length; i++) {
-			const attribute = a[i];
+		const predicateAttributes = [this.attributes.primary.value, this.attributes.secondary.value];
+		const checkAttributes = context.eventType === FUHooks.PERFORM_CHECK_EVENT ? [check.primary, check.secondary] : [check.primary.attribute, check.secondary.attribute];
+		for (let i = 0; i < predicateAttributes.length; i++) {
+			const attribute = predicateAttributes[i];
 			if (attribute) {
-				const idx = b.findIndex((value) => value === attribute);
+				const idx = checkAttributes.findIndex((value) => value === attribute);
 				if (idx >= 0) {
-					b.splice(idx, 1);
+					checkAttributes.splice(idx, 1);
 				} else {
 					return false;
 				}
