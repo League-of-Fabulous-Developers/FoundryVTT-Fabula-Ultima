@@ -6,6 +6,7 @@ import { ObjectUtils } from '../helpers/object-utils.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
 import { createMenuTool, SETTINGS } from '../settings.js';
 import { SYSTEM } from '../helpers/config.mjs';
+import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -143,6 +144,11 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		if (item instanceof PseudoDocument && item.parentFoundryDocument?.parent === this.actor) {
 			const result = await this._onSortItem(event, item);
 			return result?.length ? item : null;
+		}
+
+		if (item instanceof foundry.documents.Item && item.parent && item.parent !== this.actor) {
+			const isShop = item.parent.type === 'stash' && item.parent.system.merchant;
+			return InventoryPipeline.requestTrade(item.parent.uuid, item.uuid, isShop, this.actor.uuid);
 		}
 
 		return super._onDropItem(event, item);
