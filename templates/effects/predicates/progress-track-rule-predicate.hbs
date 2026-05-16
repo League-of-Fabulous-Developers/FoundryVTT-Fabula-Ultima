@@ -1,6 +1,6 @@
 <label class="fu-form__property">
 	<span>{{localize 'FU.Identifier'}}</span>
-	<input type="text" name="{{pfuConcat path ".identifier"}}" value="{{ trigger.identifier }}" />
+	<input type="text" name="{{pfuConcat path ".identifier"}}" value="{{ predicate.identifier }}" />
 </label>
 
 <div class="fu-form__property-row">
@@ -8,7 +8,7 @@
 		<span>{{localize 'FU.ComparisonOperator'}}</span>
 		<select name="{{pfuConcat path ".comparisonOperator"}}">
 			<option value="">-</option>
-			{{selectOptions trigger.schema.fields.comparisonOperator.choices selected=trigger.comparisonOperator sort=true localize=true}}
+			{{selectOptions predicate.schema.fields.comparisonOperator.choices selected=predicate.comparisonOperator sort=true localize=true}}
 		</select>
 	</label>
 
@@ -16,9 +16,4 @@
 		<span>{{localize 'FU.Value'}}</span>
 		<input type="number" name="{{pfuConcat path ".value"}}" value="{{ trigger.value }}" />
 	</label>
-</div>
-
-<div class="fu-form__property">
-	<span>{{localize 'FU.Local'}}</span>
-	<input type="checkbox" name="{{pfuConcat path ".local"}}" {{checked trigger.local}}>
 </div>

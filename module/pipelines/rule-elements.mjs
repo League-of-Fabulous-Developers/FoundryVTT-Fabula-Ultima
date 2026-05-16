@@ -61,6 +61,7 @@ import { EmptyRuleTrigger } from '../documents/effects/triggers/empty-rule-trigg
 import { FlagRulePredicate } from '../documents/effects/predicates/flag-rule-predicate.mjs';
 
 import { ProgressTrackRuleTrigger } from '../documents/effects/triggers/progress-track-rule-trigger.mjs';
+import { ProgressTrackRulePredicate } from '../documents/effects/predicates/progress-track-predicate.mjs';
 
 function register() {
 	RuleTriggerRegistry.instance.register(systemId, EmptyRuleTrigger.TYPE, EmptyRuleTrigger);
@@ -115,6 +116,7 @@ function register() {
 	RulePredicateRegistry.instance.register(systemId, SpellRulePredicate.TYPE, SpellRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, CheckRulePredicate.TYPE, CheckRulePredicate);
 	RulePredicateRegistry.instance.register(systemId, FlagRulePredicate.TYPE, FlagRulePredicate);
+	RulePredicateRegistry.instance.register(systemId, ProgressTrackRulePredicate.TYPE, ProgressTrackRulePredicate);
 }
 
 /**
@@ -296,7 +298,6 @@ async function onFeatureEvent(event) {
 }
 
 async function onProgressEvent(event) {
-	console.log('onProgressEvent:', event);
 	await evaluate(FUHooks.PROGRESS_EVENT, event, event.source, [], {
 		renderData: event.renderData,
 	});

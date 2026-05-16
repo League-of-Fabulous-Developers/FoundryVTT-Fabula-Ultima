@@ -393,7 +393,7 @@ export function ActiveEffectBehaviourMixin(BaseDocument) {
 			const previous = this.system.toObject();
 			const postUpdate = await super.update(delta);
 
-			if (delta.system?.rules?.progress) {
+			if (delta.system?.rules?.progress && previous.rules?.progress) {
 				if (previous.rules.progress.current !== this.system.rules.progress.current) {
 					// Progress is changed
 					CommonEvents.progress(this, this.system.rules.progress, 'update', delta.system.rules.progress.current ? delta.system.rules.progress.current - previous.rules.progress.current : 0, this.parent);

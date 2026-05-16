@@ -25,6 +25,7 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 		const schema = Object.assign(super.defineSchema(), {
 			value: new fields.NumberField({ blank: true }),
 			identifier: new fields.StringField({ initial: '' }),
+			local: new fields.BooleanField({ initial: false }),
 			comparisonOperator: new fields.StringField({
 				initial: '',
 				blank: true,
@@ -51,13 +52,10 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 	 * @returns {boolean}
 	 */
 	validateContext(context) {
-		console.log('Validating context:', context);
-		console.log(context.origin);
-		console.log(context.event.origin);
 		if (context.origin === context.event.origin) return false;
 
 		// Only trigger if the progress track is within the same item as this rule element
-		if (context.source !== context.item) return;
+		if (this.local && context.source !== context.item) return;
 
 		if (!this.comparisonOperator) return false;
 
