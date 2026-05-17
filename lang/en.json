@@ -1694,6 +1694,7 @@
 		"RuleTriggerCreateConsumable": "Create Consumable",
 		"RuleTriggerItemRoll": "Item Roll",
 		"RuleTriggerFeature": "Feature",
+		"RuleTriggerProgressTrack": "Progress Track",
 		"RulePredicates": "Rule Predicates",
 		"RulePredicatesHint": "Optional conditions that determine whether this element should execute.",
 		"RulePredicateBond": "Bond",
