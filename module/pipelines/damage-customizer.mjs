@@ -31,7 +31,7 @@ export async function DamageCustomizer(damage, targets, callback, onCancel) {
 	// Create and render the dialog
 	const result = await foundry.applications.api.DialogV2.input({
 		window: {
-			title: game.i18n.localize('FU.AutomationApplyDamage'),
+			title: game.i18n.localize('FU.DamageCustomizer'),
 		},
 		position: {
 			width: 440,
