@@ -6,7 +6,7 @@
         <input type="text" name="system.progress.name" value="{{ system.progress.name }}" data-dtype="String"
             placeholder="{{localize 'FU.ResourcePoints'}}" class="resource-label-m resource-inputs select-dropdown-l" />
     </legend>
-    <div class="grid grid-4col">
+    <div class="grid grid-3col">
         <div class=" flexcol flex-group-center">
             <label class="resource-label-m">{{localize 'FU.Current'}}</label>
             <input type="number" name="system.progress.current" value="{{ system.progress.current }}"
@@ -21,10 +21,6 @@
             <label class="resource-label-m">{{localize 'FU.Max'}}</label>
             <input type="number" name="system.progress.max" value="{{ system.progress.max }}"
                 class="resource-inputs select-dropdown-m" />
-        </div>
-        <div class="flexcol flex-group-center">
-            <label class="resource-label-m">{{localize "FU.Identifier"}}</label>
-            <input type="number"name="system.progress.id" value="{{system.progress.id}}" class="resource-inputs select-dropdown-m" placeholder="{{localize "FU.Identifier"}}">
         </div>
     </div>
 </fieldset>

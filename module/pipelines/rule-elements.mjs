@@ -298,6 +298,7 @@ async function onFeatureEvent(event) {
 }
 
 async function onProgressEvent(event) {
+	console.log('onProgressEvent:', event);
 	await evaluate(FUHooks.PROGRESS_EVENT, event, event.source, [], {
 		renderData: event.renderData,
 	});

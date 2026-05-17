@@ -53,7 +53,6 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 	 */
 	validateContext(context) {
 		if (context.origin === context.event.origin) return false;
-
 		// Only trigger if the progress track is within the same item as this rule element
 		if (this.local && context.source !== context.item) return;
 
@@ -62,7 +61,10 @@ export class ProgressTrackRuleTrigger extends RuleTriggerDataModel {
 		const event = context.event;
 		const progress = event.progress;
 
-		if (progress.id !== this.identifier && progress.name !== this.identifier) return;
+		// Use resolveProgress here to allow for its logic, rather than
+		// reimplementing it here
+		const actorProgress = context.character?.actor?.resolveProgress(this.identifier);
+		if (actorProgress !== progress) return false;
 
 		switch (this.comparisonOperator) {
 			case 'max':
