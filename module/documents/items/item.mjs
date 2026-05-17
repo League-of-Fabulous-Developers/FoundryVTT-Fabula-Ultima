@@ -36,7 +36,7 @@ export class FUItem extends EnablePseudoDocumentsMixin(ItemBehaviourMixin(Item))
 		const previous = this.system.toObject();
 		const postUpdate = await super.update(delta);
 
-		if (delta.system?.progress) {
+		if (delta.system?.progress && postUpdate) {
 			if (previous.progress.current !== postUpdate.system.progress.current) {
 				// Progress is changed
 				CommonEvents.progress(this, this.system.progress, 'update', delta.system.progress.current ? delta.system.progress.current - previous.progress.current : 0, this);
