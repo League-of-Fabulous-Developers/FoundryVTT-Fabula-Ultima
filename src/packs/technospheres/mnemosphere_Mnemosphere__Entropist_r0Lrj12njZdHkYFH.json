@@ -166,7 +166,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "iRCiVzzmTfukf5bf",
@@ -257,7 +258,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "HxJCfEZhjcRdebb2",
@@ -347,7 +349,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 700000
@@ -508,7 +511,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 800000

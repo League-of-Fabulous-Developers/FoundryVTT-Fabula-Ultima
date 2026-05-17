@@ -48,7 +48,7 @@ export class ClassesTableRenderer extends FUTableRenderer {
 		if (item.type === 'class') {
 			const actor = item.parent;
 			const skillTracker = new CharacterSkillTracker(actor.system);
-			const current = skillTracker.getClassLevel(item.name);
+			const current = skillTracker.getClassLevel(item);
 			data = { current: current, max: ClassDataModel.MAX_LEVEL };
 		}
 		if (item.type === 'mnemosphere') {

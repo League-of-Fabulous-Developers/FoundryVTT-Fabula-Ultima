@@ -178,7 +178,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 0
@@ -272,7 +273,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 0
@@ -361,7 +363,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 0
@@ -450,7 +453,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 0
@@ -539,7 +543,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 0

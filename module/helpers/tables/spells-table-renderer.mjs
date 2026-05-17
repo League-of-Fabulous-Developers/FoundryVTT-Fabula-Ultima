@@ -4,19 +4,26 @@ import { CommonColumns } from './common-columns.mjs';
 import { FU } from '../config.mjs';
 import { systemTemplatePath } from '../system-utils.mjs';
 import { BonusesDataModel } from '../../documents/actors/common/bonuses-data-model.mjs';
+import { CompendiumIndex } from '../../ui/compendium/compendium-index.mjs';
 
 export class SpellsTableRenderer extends FUTableRenderer {
 	/** @type TableConfig */
 	static TABLE_CONFIG = {
 		cssClass: 'spells-table',
 		getItems: (d) => d.itemTypes.spell,
-		renderDescription: CommonDescriptions.descriptionWithTags((item) => {
+		renderDescription: CommonDescriptions.descriptionWithTags(async (item) => {
 			const tags = [];
 			if (item.system.class.value && item.system.class.value.trim()) {
+				let className = item.system.class.value.trim();
+				const foundClass = await SpellsTableRenderer.findMatchingClass(item);
+				if (foundClass) {
+					className = foundClass.name;
+				}
+
 				tags.push({
 					tag: 'FU.Class',
 					separator: ':',
-					value: item.system.class.value.trim(),
+					value: className,
 				});
 			}
 			if (item.system.opportunity) {
@@ -102,5 +109,56 @@ export class SpellsTableRenderer extends FUTableRenderer {
 			classes.push('before-spell-icon');
 		}
 		return classes.join(' ');
+	}
+	static findMatchingClassInArray(item, classes) {
+		const className = item.system?.class?.value;
+		if (className) {
+			// Search for a class with the same name. If found, set the skill's class attribute to match its fu-id
+			const classFound = classes.find((classItem) => {
+				return classItem.name === className;
+			});
+			if (classFound?.system?.fuid) {
+				return classFound;
+			}
+
+			// Search for a class with a fuid that matches the slugified attribute.
+			const skillClassSlug = game.projectfu.util.slugify(className);
+			const classFoundWithFuid = classes.find((classItem) => {
+				return classItem.system?.fuid === skillClassSlug;
+			});
+			if (classFoundWithFuid?.system?.fuid) {
+				return classFoundWithFuid;
+			}
+		}
+		return;
+	}
+
+	static async findMatchingClass(item) {
+		if (item.system.class.value) {
+			const actorClasses = item.actor.items.filter((arrayItem) => {
+				return arrayItem.type === 'class';
+			});
+			const foundActorClass = SpellsTableRenderer.findMatchingClassInArray(item, actorClasses);
+			if (foundActorClass) {
+				return foundActorClass;
+			}
+
+			const worldClasses = game.items.filter((arrayItem) => {
+				return arrayItem.type === 'class';
+			});
+			const foundWorldClass = SpellsTableRenderer.findMatchingClassInArray(item, worldClasses);
+			if (foundWorldClass) {
+				return foundWorldClass;
+			}
+
+			const compendiumClasses = await CompendiumIndex.instance.getClasses();
+			if (compendiumClasses?.class) {
+				const foundCompendiumClass = SpellsTableRenderer.findMatchingClassInArray(item, compendiumClasses.class);
+				if (foundCompendiumClass) {
+					return foundCompendiumClass;
+				}
+			}
+		}
+		return;
 	}
 }

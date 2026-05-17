@@ -248,7 +248,8 @@
   ],
   "flags": {
     "projectfu": {
-      "favorite": false
+      "favorite": false,
+      "classConverted": true
     }
   },
   "_stats": {

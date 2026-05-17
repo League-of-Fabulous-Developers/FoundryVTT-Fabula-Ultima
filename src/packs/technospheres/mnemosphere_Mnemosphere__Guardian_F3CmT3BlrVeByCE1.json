@@ -95,7 +95,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 100000
@@ -244,7 +245,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 200000
@@ -333,7 +335,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 300000
@@ -479,7 +482,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "_id": "PcZ128mqed6ahFlc",
@@ -569,7 +573,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 500000

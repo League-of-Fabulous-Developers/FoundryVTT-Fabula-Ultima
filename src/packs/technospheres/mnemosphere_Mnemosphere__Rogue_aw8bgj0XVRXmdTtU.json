@@ -197,7 +197,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 100000
@@ -338,7 +339,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         }
       },
@@ -497,7 +499,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 375000
@@ -586,7 +589,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 400000
@@ -822,7 +826,8 @@
         "flags": {
           "core": {},
           "projectfu": {
-            "favorite": false
+            "favorite": false,
+            "classConverted": true
           }
         },
         "sort": 500000
