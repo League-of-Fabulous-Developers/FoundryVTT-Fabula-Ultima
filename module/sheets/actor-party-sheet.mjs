@@ -154,6 +154,13 @@ export class FUPartySheet extends FUActorSheet {
 		if (FU.sheetExtensions.party) {
 			this.#extensions = FU.sheetExtensions.party;
 		}
+		Hooks.on('updateActor', (actor) => {
+			const actorUuid = actor.uuid;
+			const { characters, companions } = this.party;
+			if (characters.has(actorUuid) || companions.has(actorUuid)) {
+				this.render();
+			}
+		});
 	}
 
 	/**
